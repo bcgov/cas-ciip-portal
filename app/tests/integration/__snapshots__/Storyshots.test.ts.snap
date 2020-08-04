@@ -127,7 +127,9 @@ Array [
         </nav>
       </header>
       <div
+        aria-label="page title"
         className="jsx-958227566 page-title"
+        role="region"
       >
         <div
           className="narrow container"
@@ -140,251 +142,256 @@ Array [
         </div>
       </div>
       <div
-        className="content narrow container"
-        id="page-content"
+        className="jsx-958227566"
+        role="main"
       >
         <div
-          className="jsx-2718615018"
+          className="content narrow container"
+          id="page-content"
         >
           <div
-            className="row"
+            className="jsx-2718615018"
           >
             <div
-              className="admin-control-card card"
+              className="row"
             >
               <div
-                className="card-body"
+                className="admin-control-card card"
               >
                 <div
-                  className="card-title h5"
+                  className="card-body"
                 >
-                  User Management
+                  <div
+                    className="card-title h5"
+                  >
+                    User Management
+                  </div>
+                  <p
+                    className="card-text"
+                  >
+                    Edit user permissions, grant/revoke access etc.
+                  </p>
                 </div>
-                <p
-                  className="card-text"
+                <div
+                  className="list-group list-group-flush"
+                  onKeyDown={[Function]}
                 >
-                  Edit user permissions, grant/revoke access etc.
-                </p>
+                  <div
+                    className="list-group-item"
+                    data-rb-event-key={null}
+                    disabled={false}
+                    onClick={[Function]}
+                  >
+                    <a
+                      className="card-link"
+                      href="#"
+                      onClick={[Function]}
+                      onMouseEnter={[Function]}
+                    >
+                      View all users
+                    </a>
+                  </div>
+                </div>
               </div>
               <div
-                className="list-group list-group-flush"
-                onKeyDown={[Function]}
+                className="admin-control-card card"
               >
                 <div
-                  className="list-group-item"
-                  data-rb-event-key={null}
-                  disabled={false}
-                  onClick={[Function]}
+                  className="card-body"
                 >
-                  <a
-                    className="card-link"
-                    href="#"
-                    onClick={[Function]}
-                    onMouseEnter={[Function]}
+                  <div
+                    className="card-title h5"
                   >
-                    View all users
-                  </a>
+                    Application Management
+                  </div>
+                  <p
+                    className="card-text"
+                  >
+                    View Application details, update applications etc.
+                  </p>
+                </div>
+                <div
+                  className="list-group list-group-flush"
+                  onKeyDown={[Function]}
+                >
+                  <div
+                    className="list-group-item"
+                    data-rb-event-key={null}
+                    disabled={false}
+                    onClick={[Function]}
+                  >
+                    <a
+                      className="card-link"
+                      href="#"
+                      onClick={[Function]}
+                      onMouseEnter={[Function]}
+                    >
+                      View all applications
+                    </a>
+                  </div>
+                  <div
+                    className="list-group-item"
+                    data-rb-event-key={null}
+                    disabled={false}
+                    onClick={[Function]}
+                  >
+                    <a
+                      className="card-link"
+                      href="#"
+                      onClick={[Function]}
+                      onMouseEnter={[Function]}
+                    >
+                      Organisation access requests
+                    </a>
+                  </div>
+                  <div
+                    className="list-group-item"
+                    data-rb-event-key={null}
+                    disabled={false}
+                    onClick={[Function]}
+                  >
+                    <a
+                      className="card-link"
+                      href="#"
+                      onClick={[Function]}
+                      onMouseEnter={[Function]}
+                    >
+                      Add new organisation
+                    </a>
+                  </div>
+                  <div
+                    className="list-group-item"
+                    data-rb-event-key={null}
+                    disabled={false}
+                    onClick={[Function]}
+                  >
+                    <a
+                      className="card-link"
+                      href="#"
+                      onClick={[Function]}
+                      onMouseEnter={[Function]}
+                    >
+                      Add new facility
+                    </a>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div
-              className="admin-control-card card"
-            >
               <div
-                className="card-body"
+                className="admin-control-card card"
               >
                 <div
-                  className="card-title h5"
+                  className="card-body"
                 >
-                  Application Management
+                  <div
+                    className="card-title h5"
+                  >
+                    Program and Data management
+                  </div>
+                  <p
+                    className="card-text"
+                  >
+                    Update program parameters, view program insights etc.
+                  </p>
                 </div>
-                <p
-                  className="card-text"
+                <div
+                  className="list-group list-group-flush"
+                  onKeyDown={[Function]}
                 >
-                  View Application details, update applications etc.
-                </p>
+                  <div
+                    className="list-group-item"
+                    data-rb-event-key={null}
+                    disabled={false}
+                    onClick={[Function]}
+                  >
+                    <a
+                      className="card-link"
+                      href="#"
+                      onClick={[Function]}
+                      onMouseEnter={[Function]}
+                    >
+                      Edit Products and Benchmarks
+                    </a>
+                  </div>
+                  <div
+                    className="list-group-item"
+                    data-rb-event-key={null}
+                    disabled={false}
+                    onClick={[Function]}
+                  >
+                    <a
+                      className="card-link"
+                      href="#"
+                      onClick={[Function]}
+                      onMouseEnter={[Function]}
+                    >
+                      Edit Reporting Period Details
+                    </a>
+                  </div>
+                  <div
+                    className="list-group-item"
+                    data-rb-event-key={null}
+                    disabled={false}
+                    onClick={[Function]}
+                  >
+                    <a
+                      className="card-link"
+                      href="https://cas-metabase.pathfinder.gov.bc.ca/"
+                      target="_blank"
+                    >
+                      Data and Insights (Metabase)
+                    </a>
+                  </div>
+                </div>
               </div>
               <div
-                className="list-group list-group-flush"
-                onKeyDown={[Function]}
+                className="admin-control-card card"
               >
                 <div
-                  className="list-group-item"
-                  data-rb-event-key={null}
-                  disabled={false}
-                  onClick={[Function]}
+                  className="card-body"
                 >
-                  <a
-                    className="card-link"
-                    href="#"
+                  <div
+                    className="card-title h5"
+                  >
+                    DevOps Management
+                  </div>
+                  <p
+                    className="card-text"
+                  >
+                    View and Perform DevOps actions, e.g. deploy new features etc.
+                  </p>
+                </div>
+                <div
+                  className="list-group list-group-flush"
+                  onKeyDown={[Function]}
+                >
+                  <div
+                    className="list-group-item"
+                    data-rb-event-key={null}
+                    disabled={false}
                     onClick={[Function]}
-                    onMouseEnter={[Function]}
                   >
-                    View all applications
-                  </a>
-                </div>
-                <div
-                  className="list-group-item"
-                  data-rb-event-key={null}
-                  disabled={false}
-                  onClick={[Function]}
-                >
-                  <a
-                    className="card-link"
-                    href="#"
+                    <a
+                      className="card-link"
+                      href="https://cas-shipit.pathfinder.gov.bc.ca/"
+                      target="_blank"
+                    >
+                      Deploy new features (Shipit)
+                    </a>
+                  </div>
+                  <div
+                    className="list-group-item"
+                    data-rb-event-key={null}
+                    disabled={false}
                     onClick={[Function]}
-                    onMouseEnter={[Function]}
                   >
-                    Organisation access requests
-                  </a>
-                </div>
-                <div
-                  className="list-group-item"
-                  data-rb-event-key={null}
-                  disabled={false}
-                  onClick={[Function]}
-                >
-                  <a
-                    className="card-link"
-                    href="#"
-                    onClick={[Function]}
-                    onMouseEnter={[Function]}
-                  >
-                    Add new organisation
-                  </a>
-                </div>
-                <div
-                  className="list-group-item"
-                  data-rb-event-key={null}
-                  disabled={false}
-                  onClick={[Function]}
-                >
-                  <a
-                    className="card-link"
-                    href="#"
-                    onClick={[Function]}
-                    onMouseEnter={[Function]}
-                  >
-                    Add new facility
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div
-              className="admin-control-card card"
-            >
-              <div
-                className="card-body"
-              >
-                <div
-                  className="card-title h5"
-                >
-                  Program and Data management
-                </div>
-                <p
-                  className="card-text"
-                >
-                  Update program parameters, view program insights etc.
-                </p>
-              </div>
-              <div
-                className="list-group list-group-flush"
-                onKeyDown={[Function]}
-              >
-                <div
-                  className="list-group-item"
-                  data-rb-event-key={null}
-                  disabled={false}
-                  onClick={[Function]}
-                >
-                  <a
-                    className="card-link"
-                    href="#"
-                    onClick={[Function]}
-                    onMouseEnter={[Function]}
-                  >
-                    Edit Products and Benchmarks
-                  </a>
-                </div>
-                <div
-                  className="list-group-item"
-                  data-rb-event-key={null}
-                  disabled={false}
-                  onClick={[Function]}
-                >
-                  <a
-                    className="card-link"
-                    href="#"
-                    onClick={[Function]}
-                    onMouseEnter={[Function]}
-                  >
-                    Edit Reporting Period Details
-                  </a>
-                </div>
-                <div
-                  className="list-group-item"
-                  data-rb-event-key={null}
-                  disabled={false}
-                  onClick={[Function]}
-                >
-                  <a
-                    className="card-link"
-                    href="https://cas-metabase.pathfinder.gov.bc.ca/"
-                    target="_blank"
-                  >
-                    Data and Insights (Metabase)
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div
-              className="admin-control-card card"
-            >
-              <div
-                className="card-body"
-              >
-                <div
-                  className="card-title h5"
-                >
-                  DevOps Management
-                </div>
-                <p
-                  className="card-text"
-                >
-                  View and Perform DevOps actions, e.g. deploy new features etc.
-                </p>
-              </div>
-              <div
-                className="list-group list-group-flush"
-                onKeyDown={[Function]}
-              >
-                <div
-                  className="list-group-item"
-                  data-rb-event-key={null}
-                  disabled={false}
-                  onClick={[Function]}
-                >
-                  <a
-                    className="card-link"
-                    href="https://cas-shipit.pathfinder.gov.bc.ca/"
-                    target="_blank"
-                  >
-                    Deploy new features (Shipit)
-                  </a>
-                </div>
-                <div
-                  className="list-group-item"
-                  data-rb-event-key={null}
-                  disabled={false}
-                  onClick={[Function]}
-                >
-                  <a
-                    className="card-link"
-                    href="#"
-                    target="_blank"
-                  >
-                    Airflow
-                  </a>
+                    <a
+                      className="card-link"
+                      href="#"
+                      target="_blank"
+                    >
+                      Airflow
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -628,7 +635,9 @@ Array [
         </nav>
       </header>
       <div
+        aria-label="page title"
         className="jsx-958227566 page-title"
+        role="region"
       >
         <div
           className="narrow container"
@@ -641,239 +650,244 @@ Array [
         </div>
       </div>
       <div
-        className="content narrow container"
-        id="page-content"
+        className="jsx-958227566"
+        role="main"
       >
-        <h4
-          className="jsx-353945995 mb-5"
-        >
-          Please verify or update your information
-        </h4>
         <div
-          className="jsx-353945995 registration-form"
+          className="content narrow container"
+          id="page-content"
         >
-          <form
-            className="rjsf"
-            noValidate={false}
-            onSubmit={[Function]}
+          <h4
+            className="jsx-353945995 mb-5"
           >
-            <div
-              className="form-group field field-object col-12"
+            Please verify or update your information
+          </h4>
+          <div
+            className="jsx-353945995 registration-form"
+          >
+            <form
+              className="rjsf"
+              noValidate={false}
+              onSubmit={[Function]}
             >
               <div
-                className="form-row"
+                className="form-group field field-object col-12"
               >
                 <div
-                  className="col-12"
-                />
-                <div
-                  className="col-12"
+                  className="form-row"
                 >
-                  <span
-                    className="font-italic text-muted"
+                  <div
+                    className="col-12"
                   />
-                </div>
-                <div
-                  className="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
-                >
-                  <label
-                    className="form-label"
-                    htmlFor="root_firstName"
+                  <div
+                    className="col-12"
                   >
-                    First Name
-                     *
-                  </label>
-                  <input
-                    autoFocus={false}
-                    className="form-control"
-                    disabled={false}
-                    id="root_firstName"
-                    label="First Name"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onFocus={[Function]}
-                    placeholder=""
-                    readOnly={false}
-                    required={true}
-                    type="text"
-                    value={
-                      Array [
-                        "Guest",
-                        "User",
-                        "Realm Administrator",
-                        "Incentive Administrator",
-                        "Incentive Analyst",
-                        "Pending Analyst",
-                      ]
-                    }
-                  />
-                  <span
-                    className="font-italic text-muted"
-                  />
-                </div>
-                <div
-                  className="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
-                >
-                  <label
-                    className="form-label"
-                    htmlFor="root_lastName"
+                    <span
+                      className="font-italic text-muted"
+                    />
+                  </div>
+                  <div
+                    className="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
                   >
-                    Last Name
-                     *
-                  </label>
-                  <input
-                    autoFocus={false}
-                    className="form-control"
-                    disabled={false}
-                    id="root_lastName"
-                    label="Last Name"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onFocus={[Function]}
-                    placeholder=""
-                    readOnly={false}
-                    required={true}
-                    type="text"
-                    value={
-                      Array [
-                        "Guest",
-                        "User",
-                        "Realm Administrator",
-                        "Incentive Administrator",
-                        "Incentive Analyst",
-                        "Pending Analyst",
-                      ]
-                    }
-                  />
-                  <span
-                    className="font-italic text-muted"
-                  />
-                </div>
-                <div
-                  className="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
-                >
-                  <label
-                    className="form-label"
-                    htmlFor="root_emailAddress"
+                    <label
+                      className="form-label"
+                      htmlFor="root_firstName"
+                    >
+                      First Name
+                       *
+                    </label>
+                    <input
+                      autoFocus={false}
+                      className="form-control"
+                      disabled={false}
+                      id="root_firstName"
+                      label="First Name"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onFocus={[Function]}
+                      placeholder=""
+                      readOnly={false}
+                      required={true}
+                      type="text"
+                      value={
+                        Array [
+                          "Guest",
+                          "User",
+                          "Realm Administrator",
+                          "Incentive Administrator",
+                          "Incentive Analyst",
+                          "Pending Analyst",
+                        ]
+                      }
+                    />
+                    <span
+                      className="font-italic text-muted"
+                    />
+                  </div>
+                  <div
+                    className="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
                   >
-                    Email Address
-                     *
-                  </label>
-                  <input
-                    autoFocus={false}
-                    className="form-control"
-                    disabled={false}
-                    id="root_emailAddress"
-                    label="Email Address"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onFocus={[Function]}
-                    placeholder=""
-                    readOnly={false}
-                    required={true}
-                    type="text"
-                    value={
-                      Array [
-                        "Guest",
-                        "User",
-                        "Realm Administrator",
-                        "Incentive Administrator",
-                        "Incentive Analyst",
-                        "Pending Analyst",
-                      ]
-                    }
-                  />
-                  <span
-                    className="font-italic text-muted"
-                  />
-                </div>
-                <div
-                  className="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
-                >
-                  <label
-                    className="form-label"
-                    htmlFor="root_phoneNumber"
+                    <label
+                      className="form-label"
+                      htmlFor="root_lastName"
+                    >
+                      Last Name
+                       *
+                    </label>
+                    <input
+                      autoFocus={false}
+                      className="form-control"
+                      disabled={false}
+                      id="root_lastName"
+                      label="Last Name"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onFocus={[Function]}
+                      placeholder=""
+                      readOnly={false}
+                      required={true}
+                      type="text"
+                      value={
+                        Array [
+                          "Guest",
+                          "User",
+                          "Realm Administrator",
+                          "Incentive Administrator",
+                          "Incentive Analyst",
+                          "Pending Analyst",
+                        ]
+                      }
+                    />
+                    <span
+                      className="font-italic text-muted"
+                    />
+                  </div>
+                  <div
+                    className="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
                   >
-                    Phone Number
-                     *
-                  </label>
-                  <input
-                    autoFocus={false}
-                    className="form-control"
-                    disabled={false}
-                    id="root_phoneNumber"
-                    label="Phone Number"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onFocus={[Function]}
-                    placeholder=""
-                    readOnly={false}
-                    required={true}
-                    type="text"
-                    value={
-                      Array [
-                        "Guest",
-                        "User",
-                        "Realm Administrator",
-                        "Incentive Administrator",
-                        "Incentive Analyst",
-                        "Pending Analyst",
-                      ]
-                    }
-                  />
-                  <span
-                    className="font-italic text-muted"
-                  />
-                </div>
-                <div
-                  className="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
-                >
-                  <label
-                    className="form-label"
-                    htmlFor="root_occupation"
+                    <label
+                      className="form-label"
+                      htmlFor="root_emailAddress"
+                    >
+                      Email Address
+                       *
+                    </label>
+                    <input
+                      autoFocus={false}
+                      className="form-control"
+                      disabled={false}
+                      id="root_emailAddress"
+                      label="Email Address"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onFocus={[Function]}
+                      placeholder=""
+                      readOnly={false}
+                      required={true}
+                      type="text"
+                      value={
+                        Array [
+                          "Guest",
+                          "User",
+                          "Realm Administrator",
+                          "Incentive Administrator",
+                          "Incentive Analyst",
+                          "Pending Analyst",
+                        ]
+                      }
+                    />
+                    <span
+                      className="font-italic text-muted"
+                    />
+                  </div>
+                  <div
+                    className="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
                   >
-                    Occupation
-                     *
-                  </label>
-                  <input
-                    autoFocus={false}
-                    className="form-control"
-                    disabled={false}
-                    id="root_occupation"
-                    label="Occupation"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onFocus={[Function]}
-                    placeholder=""
-                    readOnly={false}
-                    required={true}
-                    type="text"
-                    value={
-                      Array [
-                        "Guest",
-                        "User",
-                        "Realm Administrator",
-                        "Incentive Administrator",
-                        "Incentive Analyst",
-                        "Pending Analyst",
-                      ]
-                    }
-                  />
-                  <span
-                    className="font-italic text-muted"
-                  />
+                    <label
+                      className="form-label"
+                      htmlFor="root_phoneNumber"
+                    >
+                      Phone Number
+                       *
+                    </label>
+                    <input
+                      autoFocus={false}
+                      className="form-control"
+                      disabled={false}
+                      id="root_phoneNumber"
+                      label="Phone Number"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onFocus={[Function]}
+                      placeholder=""
+                      readOnly={false}
+                      required={true}
+                      type="text"
+                      value={
+                        Array [
+                          "Guest",
+                          "User",
+                          "Realm Administrator",
+                          "Incentive Administrator",
+                          "Incentive Analyst",
+                          "Pending Analyst",
+                        ]
+                      }
+                    />
+                    <span
+                      className="font-italic text-muted"
+                    />
+                  </div>
+                  <div
+                    className="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+                  >
+                    <label
+                      className="form-label"
+                      htmlFor="root_occupation"
+                    >
+                      Occupation
+                       *
+                    </label>
+                    <input
+                      autoFocus={false}
+                      className="form-control"
+                      disabled={false}
+                      id="root_occupation"
+                      label="Occupation"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onFocus={[Function]}
+                      placeholder=""
+                      readOnly={false}
+                      required={true}
+                      type="text"
+                      value={
+                        Array [
+                          "Guest",
+                          "User",
+                          "Realm Administrator",
+                          "Incentive Administrator",
+                          "Incentive Analyst",
+                          "Pending Analyst",
+                        ]
+                      }
+                    />
+                    <span
+                      className="font-italic text-muted"
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
-            <div>
-              <button
-                className="btn btn-info"
-                type="submit"
-              >
-                Submit
-              </button>
-            </div>
-          </form>
+              <div>
+                <button
+                  className="btn btn-info"
+                  type="submit"
+                >
+                  Submit
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
       <footer
@@ -1152,7 +1166,9 @@ Array [
         </nav>
       </div>
       <div
+        aria-label="page title"
         className="jsx-958227566 page-title"
+        role="region"
       >
         <div
           className="narrow container"
@@ -1165,114 +1181,99 @@ Array [
         </div>
       </div>
       <div
-        className="content narrow container"
-        id="page-content"
+        className="jsx-958227566"
+        role="main"
       >
         <div
-          className="row"
+          className="content narrow container"
+          id="page-content"
         >
           <div
-            className="col-md-8"
+            className="row"
           >
             <div
-              className="fade alert alert-info show"
-              role="alert"
-            >
-              One or more reporting operations has requested that you certify an application.
-               
-              <a
-                className="alert-link"
-                href="/certifier/requests"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-              >
-                View all certification requests.
-              </a>
-            </div>
-            <div
-              className="card bg-light"
+              className="col-md-8"
             >
               <div
-                className="card-body"
+                className="fade alert alert-info show"
+                role="alert"
               >
-                Operator, Operator Representative, and Reporting Operation are defined in the
+                One or more reporting operations has requested that you certify an application.
                  
                 <a
-                  href="http://www.bclaws.ca/civix/document/id/complete/statreg/14029_01"
+                  className="alert-link"
+                  href="/certifier/requests"
+                  onClick={[Function]}
+                  onKeyDown={[Function]}
                 >
-                  Greenhouse Gas Industrial Reporting and Control Act
+                  View all certification requests.
                 </a>
-                 
-                and
-                 
-                <a
-                  href="http://www.bclaws.ca/civix/document/id/lc/statreg/249_2015"
-                >
-                  Greenhouse Gas Emission Reporting Regulation
-                </a>
-                .
               </div>
-            </div>
-            <br />
-            <table
-              className="table table-striped table-bordered table-hover"
-              style={
-                Object {
-                  "marginBottom": "40px",
-                  "textAlign": "left",
-                }
-              }
-            >
-              <thead
-                className="jsx-1706603431"
+              <div
+                className="card bg-light"
               >
-                <tr
+                <div
+                  className="card-body"
+                >
+                  Operator, Operator Representative, and Reporting Operation are defined in the
+                   
+                  <a
+                    href="http://www.bclaws.ca/civix/document/id/complete/statreg/14029_01"
+                  >
+                    Greenhouse Gas Industrial Reporting and Control Act
+                  </a>
+                   
+                  and
+                   
+                  <a
+                    href="http://www.bclaws.ca/civix/document/id/lc/statreg/249_2015"
+                  >
+                    Greenhouse Gas Emission Reporting Regulation
+                  </a>
+                  .
+                </div>
+              </div>
+              <br />
+              <table
+                className="table table-striped table-bordered table-hover"
+                style={
+                  Object {
+                    "marginBottom": "40px",
+                    "textAlign": "left",
+                  }
+                }
+              >
+                <thead
                   className="jsx-1706603431"
                 >
-                  <th
+                  <tr
                     className="jsx-1706603431"
                   >
-                    Operator
-                  </th>
-                  <th
-                    className="jsx-1706603431"
-                  >
-                    Access Status
-                  </th>
-                  <th
-                    className="jsx-1706603431"
-                  >
-                    Operations/Facilities
-                  </th>
-                </tr>
-              </thead>
-              <tbody
-                className="jsx-1706603431"
-              >
-                <tr
-                  className="jsx-2428472905"
+                    <th
+                      className="jsx-1706603431"
+                    >
+                      Operator
+                    </th>
+                    <th
+                      className="jsx-1706603431"
+                    >
+                      Access Status
+                    </th>
+                    <th
+                      className="jsx-1706603431"
+                    >
+                      Operations/Facilities
+                    </th>
+                  </tr>
+                </thead>
+                <tbody
+                  className="jsx-1706603431"
                 >
-                  <td
+                  <tr
                     className="jsx-2428472905"
                   >
-                    Guest
-                    User
-                    Realm Administrator
-                    Incentive Administrator
-                    Incentive Analyst
-                    Pending Analyst
-                  </td>
-                  <td
-                    className="jsx-2428472905"
-                  >
-                    <span
-                      className="badge badge-pill"
-                      style={
-                        Object {
-                          "padding": "8px",
-                          "width": "100%",
-                        }
-                      }
+                    <td
+                      className="jsx-2428472905"
                     >
                       Guest
                       User
@@ -1280,253 +1281,273 @@ Array [
                       Incentive Administrator
                       Incentive Analyst
                       Pending Analyst
-                    </span>
-                  </td>
-                  <td
-                    className="jsx-2428472905"
-                  >
-                     
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <div>
-              <div
-                className="card"
-                style={
-                  Object {
-                    "marginTop": "50px",
-                  }
-                }
-              >
+                    </td>
+                    <td
+                      className="jsx-2428472905"
+                    >
+                      <span
+                        className="badge badge-pill"
+                        style={
+                          Object {
+                            "padding": "8px",
+                            "width": "100%",
+                          }
+                        }
+                      >
+                        Guest
+                        User
+                        Realm Administrator
+                        Incentive Administrator
+                        Incentive Analyst
+                        Pending Analyst
+                      </span>
+                    </td>
+                    <td
+                      className="jsx-2428472905"
+                    >
+                       
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <div>
                 <div
-                  className="card-body"
+                  className="card"
+                  style={
+                    Object {
+                      "marginTop": "50px",
+                    }
+                  }
                 >
                   <div
-                    className="search-dropdown dropdown"
-                    onKeyDown={[Function]}
+                    className="card-body"
                   >
                     <div
-                      className="card-title h5"
+                      className="search-dropdown dropdown"
+                      onKeyDown={[Function]}
                     >
-                      Request access to apply for the CIIP on behalf of a Reporting Operation:
-                    </div>
-                    <div
-                      className="fade alert alert-warning show"
-                      role="alert"
-                    >
-                      <p
-                        className="jsx-3491480756"
+                      <div
+                        className="card-title h5"
                       >
-                        The CleanBC Industrial Incentive Program application must be submitted by the Operator of the Reporting Operation or, if there is more than one Operator, the Designated Operator as defined by the
-                         
-                        <a
-                          className="alert-link"
-                          href="http://www.bclaws.ca/civix/document/id/complete/statreg/14029_01"
-                          onClick={[Function]}
-                          onKeyDown={[Function]}
-                        >
-                          Greenhouse Gas Industrial Reporting and Control Act
-                        </a>
-                         
-                        and
-                         
-                        <a
-                          className="alert-link"
-                          href="http://www.bclaws.ca/civix/document/id/lc/statreg/249_2015"
-                          onClick={[Function]}
-                          onKeyDown={[Function]}
-                        >
-                          Greenhouse Gas Emission Reporting Regulation
-                        </a>
-                        . Other representatives of the Reporting Operation may complete the application if authorization from the Operator is provided.
-                      </p>
-                      <p
-                        className="jsx-3491480756"
+                        Request access to apply for the CIIP on behalf of a Reporting Operation:
+                      </div>
+                      <div
+                        className="fade alert alert-warning show"
+                        role="alert"
                       >
-                        Further information on the role of the Operator and Certifying Official
-                         
-                        <a
-                          className="alert-link"
-                          href="https://www2.gov.bc.ca/gov/content/environment/climate-change/industry/cleanbc-program-for-industry/cleanbc-industrial-incentive-program"
-                          onClick={[Function]}
-                          onKeyDown={[Function]}
+                        <p
+                          className="jsx-3491480756"
                         >
-                          can be found here
-                        </a>
-                        .
-                      </p>
-                      <p
+                          The CleanBC Industrial Incentive Program application must be submitted by the Operator of the Reporting Operation or, if there is more than one Operator, the Designated Operator as defined by the
+                           
+                          <a
+                            className="alert-link"
+                            href="http://www.bclaws.ca/civix/document/id/complete/statreg/14029_01"
+                            onClick={[Function]}
+                            onKeyDown={[Function]}
+                          >
+                            Greenhouse Gas Industrial Reporting and Control Act
+                          </a>
+                           
+                          and
+                           
+                          <a
+                            className="alert-link"
+                            href="http://www.bclaws.ca/civix/document/id/lc/statreg/249_2015"
+                            onClick={[Function]}
+                            onKeyDown={[Function]}
+                          >
+                            Greenhouse Gas Emission Reporting Regulation
+                          </a>
+                          . Other representatives of the Reporting Operation may complete the application if authorization from the Operator is provided.
+                        </p>
+                        <p
+                          className="jsx-3491480756"
+                        >
+                          Further information on the role of the Operator and Certifying Official
+                           
+                          <a
+                            className="alert-link"
+                            href="https://www2.gov.bc.ca/gov/content/environment/climate-change/industry/cleanbc-program-for-industry/cleanbc-industrial-incentive-program"
+                            onClick={[Function]}
+                            onKeyDown={[Function]}
+                          >
+                            can be found here
+                          </a>
+                          .
+                        </p>
+                        <p
+                          className="jsx-3491480756"
+                        >
+                          Please email
+                           
+                          <a
+                            className="alert-link"
+                            href="mailto:GHGRegulator@gov.bc.ca?subject=CIIP Portal Inquiry"
+                            onClick={[Function]}
+                            onKeyDown={[Function]}
+                          >
+                            GHGRegulator@gov.bc.ca
+                          </a>
+                           
+                          if you have any questions.
+                        </p>
+                      </div>
+                      <small
                         className="jsx-3491480756"
-                      >
-                        Please email
-                         
-                        <a
-                          className="alert-link"
-                          href="mailto:GHGRegulator@gov.bc.ca?subject=CIIP Portal Inquiry"
-                          onClick={[Function]}
-                          onKeyDown={[Function]}
-                        >
-                          GHGRegulator@gov.bc.ca
-                        </a>
-                         
-                        if you have any questions.
-                      </p>
-                    </div>
-                    <small
-                      className="jsx-3491480756"
-                      style={
-                        Object {
-                          "display": "block",
-                          "marginBottom": "20px",
+                        style={
+                          Object {
+                            "display": "block",
+                            "marginBottom": "20px",
+                          }
                         }
-                      }
+                      >
+                        (You can search to narrow the results in the dropdown)
+                      </small>
+                      <button
+                        aria-expanded={false}
+                        aria-haspopup={true}
+                        className="search-toggle dropdown-toggle btn btn-primary"
+                        disabled={false}
+                        id="org-dropdown"
+                        onClick={[Function]}
+                        type="button"
+                      >
+                        Select Operator
+                      </button>
+                    </div>
+                    <hr
+                      className="jsx-3491480756"
+                    />
+                    If you cannot find your operator in the list, please
+                     
+                    <a
+                      className="jsx-3491480756"
+                      href="mailto:ghgregulator@gov.bc.ca"
                     >
-                      (You can search to narrow the results in the dropdown)
-                    </small>
-                    <button
-                      aria-expanded={false}
-                      aria-haspopup={true}
-                      className="search-toggle dropdown-toggle btn btn-primary"
-                      disabled={false}
-                      id="org-dropdown"
-                      onClick={[Function]}
-                      type="button"
-                    >
-                      Select Operator
-                    </button>
+                      contact CAS
+                    </a>
+                     for assistance.
                   </div>
-                  <hr
-                    className="jsx-3491480756"
-                  />
-                  If you cannot find your operator in the list, please
-                   
-                  <a
-                    className="jsx-3491480756"
-                    href="mailto:ghgregulator@gov.bc.ca"
-                  >
-                    contact CAS
-                  </a>
-                   for assistance.
                 </div>
               </div>
             </div>
-          </div>
-          <div
-            className="col-md-4"
-          >
-            <h5
-              style={
-                Object {
-                  "marginBottom": "20px",
-                }
-              }
-            >
-              How to apply for CIIP
-            </h5>
             <div
-              className="how-to-apply"
+              className="col-md-4"
             >
+              <h5
+                style={
+                  Object {
+                    "marginBottom": "20px",
+                  }
+                }
+              >
+                How to apply for CIIP
+              </h5>
               <div
-                className="list-group"
-                onKeyDown={[Function]}
+                className="how-to-apply"
               >
                 <div
-                  className="list-group-item"
-                  data-rb-event-key={null}
-                  disabled={false}
-                  onClick={[Function]}
+                  className="list-group"
+                  onKeyDown={[Function]}
                 >
-                  <strong>
-                    Step 1:
-                  </strong>
-                  <br />
-                  Request access to apply on behalf of an Operation as an applicant.
-                </div>
-                <div
-                  className="list-group-item"
-                  data-rb-event-key={null}
-                  disabled={false}
-                  onClick={[Function]}
-                >
-                  <strong>
-                    Step 2:
-                  </strong>
-                  <br />
-                  CIIP administrators will review and approve your request.
-                   
-                </div>
-                <div
-                  className="list-group-item"
-                  data-rb-event-key={null}
-                  disabled={false}
-                  onClick={[Function]}
-                >
-                  <strong>
-                    Step 3:
-                  </strong>
-                  <br />
-                  Applicants will fill out an application for the Operation and send it to a Certifying Official.
-                </div>
-                <div
-                  className="list-group-item"
-                  data-rb-event-key={null}
-                  disabled={false}
-                  onClick={[Function]}
-                >
-                  <strong>
-                    Step 4:
-                  </strong>
-                  <br />
-                  The Certifying Official reviews and signs off on the application.
-                </div>
-                <div
-                  className="list-group-item"
-                  data-rb-event-key={null}
-                  disabled={false}
-                  onClick={[Function]}
-                >
-                  <strong>
-                    Step 5:
-                  </strong>
-                  <br />
-                  The applicant submits the application for assessment by the Ministry.
-                </div>
-                <div
-                  className="list-group-item"
-                  data-rb-event-key={null}
-                  disabled={false}
-                  onClick={[Function]}
-                >
-                  <strong>
-                    Step 6:
-                  </strong>
-                  <br />
-                  CIIP administrators review the application.
-                </div>
-                <div
-                  className="list-group-item"
-                  data-rb-event-key={null}
-                  disabled={false}
-                  onClick={[Function]}
-                >
-                  <strong>
-                    Step 7:
-                  </strong>
-                  <br />
-                  If any changes are required, the applicant will be requested to revise the application.
-                </div>
-                <div
-                  className="list-group-item"
-                  data-rb-event-key={null}
-                  disabled={false}
-                  onClick={[Function]}
-                >
-                  <strong>
-                    Step 8:
-                  </strong>
-                  <br />
-                  Once processed, the applicant will receive a grant letter with further details on the expected incentive payment.
+                  <div
+                    className="list-group-item"
+                    data-rb-event-key={null}
+                    disabled={false}
+                    onClick={[Function]}
+                  >
+                    <strong>
+                      Step 1:
+                    </strong>
+                    <br />
+                    Request access to apply on behalf of an Operation as an applicant.
+                  </div>
+                  <div
+                    className="list-group-item"
+                    data-rb-event-key={null}
+                    disabled={false}
+                    onClick={[Function]}
+                  >
+                    <strong>
+                      Step 2:
+                    </strong>
+                    <br />
+                    CIIP administrators will review and approve your request.
+                     
+                  </div>
+                  <div
+                    className="list-group-item"
+                    data-rb-event-key={null}
+                    disabled={false}
+                    onClick={[Function]}
+                  >
+                    <strong>
+                      Step 3:
+                    </strong>
+                    <br />
+                    Applicants will fill out an application for the Operation and send it to a Certifying Official.
+                  </div>
+                  <div
+                    className="list-group-item"
+                    data-rb-event-key={null}
+                    disabled={false}
+                    onClick={[Function]}
+                  >
+                    <strong>
+                      Step 4:
+                    </strong>
+                    <br />
+                    The Certifying Official reviews and signs off on the application.
+                  </div>
+                  <div
+                    className="list-group-item"
+                    data-rb-event-key={null}
+                    disabled={false}
+                    onClick={[Function]}
+                  >
+                    <strong>
+                      Step 5:
+                    </strong>
+                    <br />
+                    The applicant submits the application for assessment by the Ministry.
+                  </div>
+                  <div
+                    className="list-group-item"
+                    data-rb-event-key={null}
+                    disabled={false}
+                    onClick={[Function]}
+                  >
+                    <strong>
+                      Step 6:
+                    </strong>
+                    <br />
+                    CIIP administrators review the application.
+                  </div>
+                  <div
+                    className="list-group-item"
+                    data-rb-event-key={null}
+                    disabled={false}
+                    onClick={[Function]}
+                  >
+                    <strong>
+                      Step 7:
+                    </strong>
+                    <br />
+                    If any changes are required, the applicant will be requested to revise the application.
+                  </div>
+                  <div
+                    className="list-group-item"
+                    data-rb-event-key={null}
+                    disabled={false}
+                    onClick={[Function]}
+                  >
+                    <strong>
+                      Step 8:
+                    </strong>
+                    <br />
+                    Once processed, the applicant will receive a grant letter with further details on the expected incentive payment.
+                  </div>
                 </div>
               </div>
             </div>
@@ -1770,7 +1791,9 @@ Array [
         </nav>
       </header>
       <div
+        aria-label="page title"
         className="jsx-958227566 page-title"
+        role="region"
       >
         <div
           className="narrow container"
@@ -1783,88 +1806,93 @@ Array [
         </div>
       </div>
       <div
-        className="content narrow container"
-        id="page-content"
+        className="jsx-958227566"
+        role="main"
       >
-        <div>
-          <table
-            className="table table-striped table-bordered table-hover"
-          >
-            <thead>
-              <tr>
-                <th>
-                  #
-                </th>
-                <th>
-                  First Name
-                </th>
-                <th>
-                  Last Name
-                </th>
-                <th>
-                  Occupation
-                </th>
-                <th>
-                  Email
-                </th>
-                <th>
-                  Phone
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  Guest
-                  User
-                  Realm Administrator
-                  Incentive Administrator
-                  Incentive Analyst
-                  Pending Analyst
-                </td>
-                <td>
-                  Guest
-                  User
-                  Realm Administrator
-                  Incentive Administrator
-                  Incentive Analyst
-                  Pending Analyst
-                </td>
-                <td>
-                  Guest
-                  User
-                  Realm Administrator
-                  Incentive Administrator
-                  Incentive Analyst
-                  Pending Analyst
-                </td>
-                <td>
-                  Guest
-                  User
-                  Realm Administrator
-                  Incentive Administrator
-                  Incentive Analyst
-                  Pending Analyst
-                </td>
-                <td>
-                  Guest
-                  User
-                  Realm Administrator
-                  Incentive Administrator
-                  Incentive Analyst
-                  Pending Analyst
-                </td>
-                <td>
-                  Guest
-                  User
-                  Realm Administrator
-                  Incentive Administrator
-                  Incentive Analyst
-                  Pending Analyst
-                </td>
-              </tr>
-            </tbody>
-          </table>
+        <div
+          className="content narrow container"
+          id="page-content"
+        >
+          <div>
+            <table
+              className="table table-striped table-bordered table-hover"
+            >
+              <thead>
+                <tr>
+                  <th>
+                    #
+                  </th>
+                  <th>
+                    First Name
+                  </th>
+                  <th>
+                    Last Name
+                  </th>
+                  <th>
+                    Occupation
+                  </th>
+                  <th>
+                    Email
+                  </th>
+                  <th>
+                    Phone
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    Guest
+                    User
+                    Realm Administrator
+                    Incentive Administrator
+                    Incentive Analyst
+                    Pending Analyst
+                  </td>
+                  <td>
+                    Guest
+                    User
+                    Realm Administrator
+                    Incentive Administrator
+                    Incentive Analyst
+                    Pending Analyst
+                  </td>
+                  <td>
+                    Guest
+                    User
+                    Realm Administrator
+                    Incentive Administrator
+                    Incentive Analyst
+                    Pending Analyst
+                  </td>
+                  <td>
+                    Guest
+                    User
+                    Realm Administrator
+                    Incentive Administrator
+                    Incentive Analyst
+                    Pending Analyst
+                  </td>
+                  <td>
+                    Guest
+                    User
+                    Realm Administrator
+                    Incentive Administrator
+                    Incentive Analyst
+                    Pending Analyst
+                  </td>
+                  <td>
+                    Guest
+                    User
+                    Realm Administrator
+                    Incentive Administrator
+                    Incentive Analyst
+                    Pending Analyst
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
       <footer
@@ -2104,101 +2132,106 @@ Array [
         </nav>
       </header>
       <div
-        className="content narrow container"
-        id="page-content"
+        className="jsx-958227566"
+        role="main"
       >
-        <div>
-          <button
-            className="button-edit btn btn-primary"
-            disabled={false}
-            onClick={[Function]}
-            style={
-              Object {
-                "width": "75px",
+        <div
+          className="content narrow container"
+          id="page-content"
+        >
+          <div>
+            <button
+              className="button-edit btn btn-primary"
+              disabled={false}
+              onClick={[Function]}
+              style={
+                Object {
+                  "width": "75px",
+                }
               }
-            }
-            type="button"
-          >
-            Edit
-          </button>
-          <p />
-          <table
-            className="table table-striped table-bordered table-hover"
-            style={
-              Object {
-                "marginBottom": "50px",
-                "marginTop": "30px",
+              type="button"
+            >
+              Edit
+            </button>
+            <p />
+            <table
+              className="table table-striped table-bordered table-hover"
+              style={
+                Object {
+                  "marginBottom": "50px",
+                  "marginTop": "30px",
+                }
               }
-            }
-          >
-            <tbody>
-              <tr>
-                <th>
-                  First Name
-                </th>
-                <td>
-                  Guest
-                  User
-                  Realm Administrator
-                  Incentive Administrator
-                  Incentive Analyst
-                  Pending Analyst
-                </td>
-              </tr>
-              <tr>
-                <th>
-                  Last Name
-                </th>
-                <td>
-                  Guest
-                  User
-                  Realm Administrator
-                  Incentive Administrator
-                  Incentive Analyst
-                  Pending Analyst
-                </td>
-              </tr>
-              <tr>
-                <th>
-                  Occupation
-                </th>
-                <td>
-                  Guest
-                  User
-                  Realm Administrator
-                  Incentive Administrator
-                  Incentive Analyst
-                  Pending Analyst
-                </td>
-              </tr>
-              <tr>
-                <th>
-                  Phone Number
-                </th>
-                <td>
-                  Guest
-                  User
-                  Realm Administrator
-                  Incentive Administrator
-                  Incentive Analyst
-                  Pending Analyst
-                </td>
-              </tr>
-              <tr>
-                <th>
-                  Email
-                </th>
-                <td>
-                  Guest
-                  User
-                  Realm Administrator
-                  Incentive Administrator
-                  Incentive Analyst
-                  Pending Analyst
-                </td>
-              </tr>
-            </tbody>
-          </table>
+            >
+              <tbody>
+                <tr>
+                  <th>
+                    First Name
+                  </th>
+                  <td>
+                    Guest
+                    User
+                    Realm Administrator
+                    Incentive Administrator
+                    Incentive Analyst
+                    Pending Analyst
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    Last Name
+                  </th>
+                  <td>
+                    Guest
+                    User
+                    Realm Administrator
+                    Incentive Administrator
+                    Incentive Analyst
+                    Pending Analyst
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    Occupation
+                  </th>
+                  <td>
+                    Guest
+                    User
+                    Realm Administrator
+                    Incentive Administrator
+                    Incentive Analyst
+                    Pending Analyst
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    Phone Number
+                  </th>
+                  <td>
+                    Guest
+                    User
+                    Realm Administrator
+                    Incentive Administrator
+                    Incentive Analyst
+                    Pending Analyst
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    Email
+                  </th>
+                  <td>
+                    Guest
+                    User
+                    Realm Administrator
+                    Incentive Administrator
+                    Incentive Analyst
+                    Pending Analyst
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
       <footer

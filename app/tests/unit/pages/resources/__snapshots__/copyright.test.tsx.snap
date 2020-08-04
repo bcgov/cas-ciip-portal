@@ -14,27 +14,42 @@ exports[`BCGov core copyright page It matches the last accepted Snapshot 1`] = `
   <Container
     fluid={false}
   >
-    <p>
+    <p
+      className="jsx-3316089809"
+    >
       The following policy governs the operation and management of the government's main website and all websites of ministries, and agencies reporting to ministries.
     </p>
-    <p>
+    <p
+      className="jsx-3316089809"
+    >
       Copyright © 2020, Province of British Columbia.
     </p>
-    <p>
+    <p
+      className="jsx-3316089809"
+    >
       All rights reserved.
     </p>
-    <p>
+    <p
+      className="jsx-3316089809"
+    >
       This material is owned by the Government of British Columbia and protected by copyright law. It may not be reproduced or redistributed without the prior written permission of the Province of British Columbia.
     </p>
-    <p>
-      <strong>
+    <p
+      className="jsx-3316089809"
+    >
+      <strong
+        className="jsx-3316089809"
+      >
         Permission
       </strong>
     </p>
-    <p>
+    <p
+      className="jsx-3316089809"
+    >
       To request permission to reproduce all or part of any other materials on this website, please complete the
        
       <a
+        className="jsx-3316089809"
         href="https://forms.gov.bc.ca/copyright-permission-request/"
         rel="noopener noreferrer"
         target="_blank"
@@ -43,15 +58,22 @@ exports[`BCGov core copyright page It matches the last accepted Snapshot 1`] = `
       </a>
       .
     </p>
-    <p>
-      <strong>
+    <p
+      className="jsx-3316089809"
+    >
+      <strong
+        className="jsx-3316089809"
+      >
         Exceptions
       </strong>
     </p>
-    <p>
+    <p
+      className="jsx-3316089809"
+    >
       For the reproduction of provincial legislation found on the
        
       <a
+        className="jsx-3316089809"
         href="http://www.bclaws.ca/"
         rel="noopener noreferrer"
         target="_blank"
@@ -61,6 +83,7 @@ exports[`BCGov core copyright page It matches the last accepted Snapshot 1`] = `
       , permission is subject to the terms of the
        
       <a
+        className="jsx-3316089809"
         href="http://www.bclaws.ca/standards/2014/QP-License_1.0.html"
         rel="noopener noreferrer"
         target="_blank"
@@ -69,10 +92,13 @@ exports[`BCGov core copyright page It matches the last accepted Snapshot 1`] = `
       </a>
       .
     </p>
-    <p>
+    <p
+      className="jsx-3316089809"
+    >
       For the reproduction of specified b-roll, interview and podium video footage found on the
        
       <a
+        className="jsx-3316089809"
         href="https://news.gov.bc.ca/"
         rel="noopener noreferrer"
         target="_blank"
@@ -82,6 +108,7 @@ exports[`BCGov core copyright page It matches the last accepted Snapshot 1`] = `
       , permission is subject to the terms of the
        
       <a
+        className="jsx-3316089809"
         href="https://news.gov.bc.ca/assets/license"
         rel="noopener noreferrer"
         target="_blank"
@@ -90,10 +117,13 @@ exports[`BCGov core copyright page It matches the last accepted Snapshot 1`] = `
       </a>
       .
     </p>
-    <p>
+    <p
+      className="jsx-3316089809"
+    >
       For the reproduction of materials found in the
        
       <a
+        className="jsx-3316089809"
         href="http://catalogue.data.gov.bc.ca/"
         rel="noopener noreferrer"
         target="_blank"
@@ -103,6 +133,7 @@ exports[`BCGov core copyright page It matches the last accepted Snapshot 1`] = `
       , either a license agreement (as specified in the BC Data Catalogue) will apply or the materials are “access only” and reproduction is not permitted without written permission. To request permission, please complete the
        
       <a
+        className="jsx-3316089809"
         href="https://forms.gov.bc.ca/copyright-permission-request/"
         rel="noopener noreferrer"
         target="_blank"
@@ -111,15 +142,22 @@ exports[`BCGov core copyright page It matches the last accepted Snapshot 1`] = `
       </a>
       . If a license agreement applies, permission is subject to the terms of the specified license.
     </p>
-    <p>
-      <strong>
+    <p
+      className="jsx-3316089809"
+    >
+      <strong
+        className="jsx-3316089809"
+      >
         Questions or concerns?
       </strong>
     </p>
-    <p>
+    <p
+      className="jsx-3316089809"
+    >
       For more information, please read the
        
       <a
+        className="jsx-3316089809"
         href="/gov/content/governments/services-for-government/policies-procedures/intellectual-property/frequently-asked-questions"
         rel="noopener noreferrer"
         target="_blank"
@@ -130,6 +168,7 @@ exports[`BCGov core copyright page It matches the last accepted Snapshot 1`] = `
       or contact the
        
       <a
+        className="jsx-3316089809"
         href="/gov/content/governments/services-for-government/policies-procedures/intellectual-property/intellectual-property-program/intellectual-property-disposals"
         rel="noopener noreferrer"
         target="_blank"
@@ -138,10 +177,13 @@ exports[`BCGov core copyright page It matches the last accepted Snapshot 1`] = `
       </a>
       .
     </p>
-    <p>
+    <p
+      className="jsx-3316089809"
+    >
       e-mail:
        
       <a
+        className="jsx-3316089809"
         href="mailto:QPIPPCopyright@gov.bc.ca"
         rel="noopener noreferrer"
         target="_blank"
@@ -149,9 +191,16 @@ exports[`BCGov core copyright page It matches the last accepted Snapshot 1`] = `
         QPIPPCopyright@gov.bc.ca
       </a>
     </p>
-    <p>
+    <p
+      className="jsx-3316089809"
+    >
       phone: 250-216-8935
     </p>
   </Container>
+  <JSXStyle
+    id="3316089809"
+  >
+    a.jsx-3316089809{color:#0053b3;}
+  </JSXStyle>
 </Relay(DefaultLayout)>
 `;

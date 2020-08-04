@@ -8,11 +8,16 @@ exports[`The DefaultLayout component matches the last accepted Snapshot 1`] = `
     isLoggedIn={false}
     isRegistered={false}
   />
-  <Container
-    className="content narrow"
-    fluid={false}
-    id="page-content"
-  />
+  <div
+    className="jsx-958227566"
+    role="main"
+  >
+    <Container
+      className="content narrow"
+      fluid={false}
+      id="page-content"
+    />
+  </div>
   <Footer />
   <JSXStyle
     id="958227566"

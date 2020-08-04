@@ -14,10 +14,13 @@ exports[`Contact page It matches the last accepted Snapshot 1`] = `
   <Container
     fluid={false}
   >
-    <p>
+    <p
+      className="jsx-3316089809"
+    >
       Please email
        
       <a
+        className="jsx-3316089809"
         href="mailto:GHGRegulator@gov.bc.ca?subject=CIIP Portal Inquiry"
       >
         GHGRegulator@gov.bc.ca
@@ -26,5 +29,10 @@ exports[`Contact page It matches the last accepted Snapshot 1`] = `
       with any questions or concerns.
     </p>
   </Container>
+  <JSXStyle
+    id="3316089809"
+  >
+    a.jsx-3316089809{color:#0053b3;}
+  </JSXStyle>
 </Relay(DefaultLayout)>
 `;
