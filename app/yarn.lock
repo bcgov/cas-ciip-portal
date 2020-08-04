@@ -9510,10 +9510,10 @@ handlebars@^4.7.6:
   optionalDependencies:
     uglify-js "^3.1.4"
 
-happo-cypress@^1.6.1:
-  version "1.6.1"
-  resolved "https://registry.yarnpkg.com/happo-cypress/-/happo-cypress-1.6.1.tgz#69f322dc84ef726ae6b88ea7d8526b63bb64bc24"
-  integrity sha512-VUxAWQabQ7s43ycr3bxeuWYYEJXlvSA86+4wN3amGwd4D7gZeaNwW7SrZrs/GnTFnnKfTXWEY3W98MP13gmmsw==
+happo-cypress@^1.7.3:
+  version "1.7.3"
+  resolved "https://registry.yarnpkg.com/happo-cypress/-/happo-cypress-1.7.3.tgz#bc73035ac44ede5435bea38b6b32cfa9f83106b2"
+  integrity sha512-h2wdG+iir7uocITHOpI1xN7m/qnzbIY3t62ZVEGJzxGXa0PqCArOeR8DeHOaxeOzTIfsdOdyJd7kq1BPujBuCA==
   dependencies:
     archiver "^3.1.1"
     https-proxy-agent "^5.0.0"
