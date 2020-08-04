@@ -99,7 +99,11 @@ insert into ggircs_portal.facility(id, organisation_id) overriding system value 
 insert into ggircs_portal.application(id, facility_id) overriding system value values(999, 999), (1000, 1000);
 insert into ggircs_portal.ciip_user_organisation(id, user_id, organisation_id, status) overriding system value values(999, 999, 999, 'approved'), (1000, 1000, 1000, 'approved');
 insert into ggircs_portal.review_comment(id, application_id, form_id, description, comment_type, created_by, resolved) overriding system value
-  values (999, 999, 1, 'User can see this', 'requested change', 999, false), (1000, 999, 1, 'User cannot see this', 'internal', 1,false);
+  values
+    (999, 999, 1, 'User can see this', 'requested change', 999, false),
+    (1000, 999, 1, 'User cannot see this', 'internal', 1,false),
+    (1001, 999, 1, 'User can see this', 'general', 999, false),
+    (1002, 999, 1, 'User can see this', 'approval', 999, false);
 
 
 -- CIIP_ADMINISTRATOR
@@ -117,7 +121,7 @@ select results_eq(
 select lives_ok(
   $$
     insert into ggircs_portal.review_comment (id, application_id, form_id) overriding system value
-    values (1001, 1000, 1);
+    values (1003, 1000, 1);
   $$,
     'ciip_administrator can insert data in review_comment table'
 );
@@ -149,17 +153,19 @@ select throws_like(
 set role ciip_industry_user;
 select concat('current user is: ', (select current_user));
 
-select results_eq(
+select id from ggircs_portal.review_comment;
+
+select set_eq(
   $$
     select id from ggircs_portal.review_comment
   $$,
-  ARRAY[999::integer],
-    'Industry user can view data from review_comment where the connection review_comment -> application -> facility -> ciip_user_organisation -> user exists on user.uuid = session.sub AND comment_type is requested change'
+  ARRAY[999::integer, 1001::integer, 1002::integer],
+    'Industry user can view data from review_comment where the connection review_comment -> application -> facility -> ciip_user_organisation -> user exists on user.uuid = session.sub AND comment_type in [requested change, general, approval]'
 );
 
 select is_empty (
   $$
-    select * from ggircs_portal.review_comment where comment_type != 'requested change'
+    select * from ggircs_portal.review_comment where comment_type = 'internal'
   $$,
     'Industry user cannot view internal comments'
 );
