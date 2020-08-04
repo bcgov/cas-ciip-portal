@@ -119,12 +119,12 @@ export default class Index extends Component<Props> {
 
         <Row style={{marginTop: '100px'}} id="value-props">
           <Col md={12}>
-            <h4 className="blue">How to Apply</h4>
+            <h2 className="blue">How to Apply</h2>
           </Col>
           <Col md={4}>
             <div className="value-prop">
-              <img src="/static/icons/icon-register.svg" />
-              <h5 className="blue">1. Register as an Industrial Reporter</h5>
+              <img src="/static/icons/icon-register.svg" alt="register-icon" />
+              <h3 className="blue">1. Register as an Industrial Reporter</h3>
               <p>
                 Before you can apply for the CIIP on behalf of an eligible
                 operation, you must register with the Ministry of Environment
@@ -135,8 +135,8 @@ export default class Index extends Component<Props> {
 
           <Col md={4}>
             <div className="value-prop">
-              <img src="/static/icons/icon-request.svg" />
-              <h5 className="blue">2. Request to apply for an Operation</h5>
+              <img src="/static/icons/icon-request.svg" alt="request-icon" />
+              <h3 className="blue">2. Request to apply for an Operation</h3>
               <p>
                 Once you’ve registered you can request to apply on behalf one or
                 multiple eligible Operations.
@@ -146,8 +146,8 @@ export default class Index extends Component<Props> {
 
           <Col md={4}>
             <div className="value-prop">
-              <img src="/static/icons/icon-apply.svg" />
-              <h5 className="blue">3. Apply on behalf of the Operation</h5>
+              <img src="/static/icons/icon-apply.svg" alt="apply-icon" />
+              <h3 className="blue">3. Apply on behalf of the Operation</h3>
               <p>
                 The CIIP team will verify and approve your request and then you
                 can apply for the CleanBC Industrial Incentive Program.
@@ -173,6 +173,7 @@ export default class Index extends Component<Props> {
                       /static/landing-photo-1270.jpg 1270w
               "
               src="/static/landing-photo-1020.jpg"
+              alt="main-photos"
             />
           </Col>
           <Col md={{span: 5}}>
