@@ -91,9 +91,9 @@ export default class Index extends Component<Props> {
       <DefaultLayout showSubheader={false} session={session}>
         <Row>
           <Col md={6}>
-            <h3 className="blue">
+            <h1 className="blue">
               What is the CleanBC Industrial Incentive Program?
-            </h3>
+            </h1>
             <p>
               The CleanBC Industrial Incentive Program (CIIP) is part of the
               CleanBC Program for Industry, which applies to large industrial
