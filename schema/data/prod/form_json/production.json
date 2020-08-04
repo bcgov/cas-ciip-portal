@@ -41,7 +41,7 @@
                   "productEmissions": {
                     "title": "Emissions allocated to product",
                     "type": "number",
-                    "exclusiveMinimum": 0
+                    "minimum": 0
                   },
                   "requiresEmissionAllocation": {
                     "const": true
@@ -57,7 +57,8 @@
                 "requiresProductAmount": { "const": true },
                 "productAmount": {
                   "title": "Annual Production Amount",
-                  "type": "number"
+                  "type": "number",
+                  "minimum": 0
                 },
                 "productUnits": {
                   "title": "Units",

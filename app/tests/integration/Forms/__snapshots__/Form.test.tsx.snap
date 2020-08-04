@@ -2302,7 +2302,7 @@ exports[`Form should match the snapshot with the production form 1`] = `
                       onKeyDown={[Function]}
                       onMouseUp={[Function]}
                       type="text"
-                      value="-60,000,000"
+                      value="20,000,000"
                     />
                     <span
                       className="font-italic text-muted"
