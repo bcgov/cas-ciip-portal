@@ -167,3 +167,4 @@ tables/application_revision_001 [tables/application_revision] 2020-07-22T23:13:5
 database_functions/read_only_user_policies [schema_ggircs_portal schema_ggircs_portal_private] 2020-07-30T18:10:31Z Dylan Leard <dylan@button.is> # function adds RLS policies for the read_only_user (metabase)
 computed_columns/application_current_user_can_edit [tables/ciip_user_organisation tables/application] 2020-07-30T23:55:55Z Dylan Leard <dylan@button.is> # computed column returns a boolean value: whether the current user has edit permission on the application
 policies/review_comment_policies [policies/review_comment_policies@v1.1.0] 2020-07-31T22:54:37Z Dylan Leard <dylan@button.is> # migration fixes the industry_user_statement for rls
+computed_columns/application_revision_ciip_incentive [computed_columns/application_revision_ciip_incentive@v1.1.0] 2020-08-04T21:21:18Z Matthieu Foucault <matthieu@button.is> # allow product amount to be 0

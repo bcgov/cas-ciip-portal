@@ -558,6 +558,59 @@ select lives_ok(
   'Does not throw when 2 non-energy products are reported and requires_emission_allocation=false but all other products are energy products'
 );
 
+-- Report an energy product with an amount and emission of 0
+update ggircs_portal.form_result
+set form_result = '[
+  {
+    "productRowId": 12,
+    "productAmount": 100
+  },
+  {
+    "productRowId": 3,
+    "productAmount": 0,
+    "productEmissions": 0
+  }
+]'
+where application_id = 1 and version_number = 1 and form_id = 4;
+
+select lives_ok(
+  $$
+    with record as (
+      select row(application_revision.*)::ggircs_portal.application_revision
+      from ggircs_portal.application_revision where application_id = 1 and version_number = 1
+    )
+    select ggircs_portal.application_revision_ciip_incentive((select * from record))
+  $$,
+  'Does not throw when an energy product has an amount or emissions set to 0'
+);
+
+-- Report a product with an amount and emission of 0
+update ggircs_portal.form_result
+set form_result = '[
+  {
+    "productRowId": 9,
+    "productAmount": 100,
+    "productEmissions": 15
+  },
+  {
+    "productRowId": 10,
+    "productAmount": 0,
+    "productEmissions": 0
+  }
+]'
+where application_id = 1 and version_number = 1 and form_id = 4;
+
+select lives_ok(
+  $$
+    with record as (
+      select row(application_revision.*)::ggircs_portal.application_revision
+      from ggircs_portal.application_revision where application_id = 1 and version_number = 1
+    )
+    select ggircs_portal.application_revision_ciip_incentive((select * from record))
+  $$,
+  'Does not throw when a product has an amount or emissions set to 0'
+);
+
 -- Test roles
 set role ciip_administrator;
 
