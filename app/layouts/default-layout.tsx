@@ -46,9 +46,11 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
           </Container>
         </div>
       ) : null}
-      <Container id="page-content" className={`content ${width}`}>
-        {children}
-      </Container>
+      <div role="main">
+        <Container id="page-content" className={`content ${width}`}>
+          {children}
+        </Container>
+      </div>
       <Footer />
       <style jsx global>
         {`
