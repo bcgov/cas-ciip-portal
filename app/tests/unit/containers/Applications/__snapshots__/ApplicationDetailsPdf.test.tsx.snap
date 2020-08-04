@@ -964,7 +964,7 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                   Object {
                     "comments": "mollit eu esse",
                     "isEnergyProduct": false,
-                    "productAmount": 0,
+                    "productAmount": 50000000,
                     "productRowId": -60000000,
                     "productUnits": "in qui",
                     "requiresEmissionAllocation": false,
@@ -1008,7 +1008,7 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                             Object {
                               "properties": Object {
                                 "productEmissions": Object {
-                                  "exclusiveMinimum": 0,
+                                  "minimum": 0,
                                   "title": "Emissions allocated to product",
                                   "type": "number",
                                 },
@@ -1027,6 +1027,7 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                             Object {
                               "properties": Object {
                                 "productAmount": Object {
+                                  "minimum": 0,
                                   "title": "Annual Production Amount",
                                   "type": "number",
                                 },

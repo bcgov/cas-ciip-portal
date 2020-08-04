@@ -127,7 +127,7 @@ exports[`The ProductionFields Component with archived product should match the s
               Object {
                 "properties": Object {
                   "productEmissions": Object {
-                    "exclusiveMinimum": 0,
+                    "minimum": 0,
                     "title": "Emissions allocated to product",
                     "type": "number",
                   },
@@ -146,6 +146,7 @@ exports[`The ProductionFields Component with archived product should match the s
               Object {
                 "properties": Object {
                   "productAmount": Object {
+                    "minimum": 0,
                     "title": "Annual Production Amount",
                     "type": "number",
                   },
@@ -352,7 +353,7 @@ exports[`The ProductionFields Component with published product should match the 
             Object {
               "properties": Object {
                 "productEmissions": Object {
-                  "exclusiveMinimum": 0,
+                  "minimum": 0,
                   "title": "Emissions allocated to product",
                   "type": "number",
                 },
@@ -371,6 +372,7 @@ exports[`The ProductionFields Component with published product should match the 
             Object {
               "properties": Object {
                 "productAmount": Object {
+                  "minimum": 0,
                   "title": "Annual Production Amount",
                   "type": "number",
                 },
