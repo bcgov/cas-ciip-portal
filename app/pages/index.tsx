@@ -221,6 +221,9 @@ export default class Index extends Component<Props> {
           </Col>
         </div>
         <style jsx>{`
+          a {
+            color: #0053b3;
+          }
           .value-prop {
             display: flex;
             flex-direction: column;
