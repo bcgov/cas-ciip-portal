@@ -313,6 +313,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
           props.application.latestDraftRevision.overrideJustification
         }
         revisionId={props.application.latestDraftRevision.id}
+        hasErrors={hasErrors}
       />
       <ApplicationDetailsContainer
         liveValidate

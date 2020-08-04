@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {createFragmentContainer, RelayProp} from 'react-relay';
 import {Accordion, Alert, Button, Form} from 'react-bootstrap';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
@@ -11,6 +11,7 @@ interface Props {
   applicationOverrideJustification: string;
   revisionId: string;
   relay: RelayProp;
+  hasErrors: boolean;
 }
 
 export const ApplicationOverrideJustificationComponent: React.FunctionComponent<Props> = ({
@@ -18,7 +19,8 @@ export const ApplicationOverrideJustificationComponent: React.FunctionComponent<
   setOverrideActive,
   applicationOverrideJustification,
   revisionId,
-  relay
+  relay,
+  hasErrors
 }) => {
   const [accordionOpen, setAccordionOpen] = useState(false);
   const [overrideJustification, setOverrideJustification] = useState(
@@ -77,40 +79,41 @@ export const ApplicationOverrideJustificationComponent: React.FunctionComponent<
     setAccordionOpen(true);
   };
 
-  if (overrideActive) {
-    return (
-      <>
-        <Alert variant="danger">
-          <strong>Error Validation Override Active</strong>
-        </Alert>
-        <Alert variant="secondary">
-          <p>
-            <strong>
-              You have chosen to override the errors present in your
-              application. This may cause a delay in processing your
-              application.
-            </strong>
-          </p>
-          <p>
-            <strong>Your Override Justification:</strong>
-          </p>
-          <p>{overrideJustification}</p>
-          <Button
-            style={{marginRight: '5px'}}
-            variant="secondary"
-            onClick={handleOverrideEdit}
-          >
-            Edit Justification
-          </Button>
-          <Button variant="danger" onClick={handleOverrideDelete}>
-            Delete Override
-          </Button>
-        </Alert>
-      </>
-    );
-  }
+  useEffect(() => {
+    if (overrideJustification && !hasErrors) handleOverrideDelete();
+  });
 
-  return (
+  const errorsWithOverrideActive = (
+    <>
+      <Alert variant="danger">
+        <strong>Error Validation Override Active</strong>
+      </Alert>
+      <Alert variant="secondary">
+        <p>
+          <strong>
+            You have chosen to override the errors present in your application.
+            This may cause a delay in processing your application.
+          </strong>
+        </p>
+        <p>
+          <strong>Your Override Justification:</strong>
+        </p>
+        <p>{overrideJustification}</p>
+        <Button
+          style={{marginRight: '5px'}}
+          variant="secondary"
+          onClick={handleOverrideEdit}
+        >
+          Edit Justification
+        </Button>
+        <Button variant="danger" onClick={handleOverrideDelete}>
+          Delete Override
+        </Button>
+      </Alert>
+    </>
+  );
+
+  const errorsWithoutOverrideActive = (
     <>
       <Alert variant="danger">
         <Accordion>
@@ -183,6 +186,14 @@ export const ApplicationOverrideJustificationComponent: React.FunctionComponent<
       </style>
     </>
   );
+
+  const renderOverride = () => {
+    if (!hasErrors) return null;
+    if (hasErrors && overrideActive) return errorsWithOverrideActive;
+    return errorsWithoutOverrideActive;
+  };
+
+  return renderOverride();
 };
 
 export default createFragmentContainer(
