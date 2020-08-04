@@ -36,4 +36,14 @@ describe('When logged in as a certifier(reporter)', () => {
     cy.get('.alert-link').contains('View all certification requests.').click();
     cy.url().should('include', '/certifier/requests');
   });
+
+  it('should redirect the certifier to /certify if they access the edit view by URL', () => {
+    const applicationId = window.btoa('["applications", 1]');
+    const formResultId = window.btoa('[formResults, 1]');
+    cy.visit(
+      `http://localhost:3004/reporter/application?formResultId=${formResultId}&applicationId=${applicationId}&version=1`
+    );
+    cy.wait(500);
+    cy.url().should('include', '/certifier/certify');
+  });
 });

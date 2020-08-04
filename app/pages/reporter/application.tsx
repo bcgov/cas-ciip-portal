@@ -25,6 +25,7 @@ class Application extends Component<Props> {
       query {
         application(id: $applicationId) {
           id
+          currentUserCanEdit
           latestDraftRevision {
             versionNumber
             legalDisclaimerAccepted
@@ -55,6 +56,12 @@ class Application extends Component<Props> {
     const {query, router} = this.props;
     const {session} = query || {};
     const {application} = query || {};
+
+    // Route to 404 page if no application is present
+    if (!application) {
+      router.push({pathname: '/404'});
+      return null;
+    }
 
     if (!application?.latestDraftRevision?.legalDisclaimerAccepted) {
       router.push({
