@@ -252,6 +252,11 @@ class Privacy extends Component<Props> {
             .
           </p>
         </Container>
+        <style jsx>{`
+          a {
+            color: #0053b3;
+          }
+        `}</style>
       </DefaultLayout>
     );
   }
