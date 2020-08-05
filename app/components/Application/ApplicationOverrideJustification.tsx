@@ -11,7 +11,7 @@ interface Props {
   applicationOverrideJustification: string;
   revisionId: string;
   relay: RelayProp;
-  hasErrors: boolean;
+  hasErrors: any;
 }
 
 export const ApplicationOverrideJustificationComponent: React.FunctionComponent<Props> = ({
@@ -80,7 +80,7 @@ export const ApplicationOverrideJustificationComponent: React.FunctionComponent<
   };
 
   useEffect(() => {
-    if (overrideJustification && !hasErrors) handleOverrideDelete();
+    if (overrideJustification && hasErrors === false) handleOverrideDelete();
   });
 
   const errorsWithOverrideActive = (
@@ -188,7 +188,7 @@ export const ApplicationOverrideJustificationComponent: React.FunctionComponent<
   );
 
   const renderOverride = () => {
-    if (!hasErrors) return null;
+    if (hasErrors === false) return null;
     if (hasErrors && overrideActive) return errorsWithOverrideActive;
     return errorsWithoutOverrideActive;
   };

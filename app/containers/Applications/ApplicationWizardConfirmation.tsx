@@ -52,7 +52,8 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
   const [copySuccess, setCopySuccess] = useState('');
   const [url, setUrl] = useState<string>();
   const [isChecked, toggleChecked] = useState(true);
-  const [hasErrors, setHasErrors] = useState(false);
+  // State of hasErrors is set to null until the child component ApplicationDetailsContainer returns a valid true/false decision
+  const [hasErrors, setHasErrors] = useState(null);
   const copyArea = useRef(null);
   const revision = props.application.latestDraftRevision;
   const [overrideActive, setOverrideActive] = useState(
