@@ -81,6 +81,10 @@ The materials published include:
 
 ## Documentation
 
+- [Developer and Application Documentation](./docs/index.md)
+
+- [Support Documentation for Reporters](./docs/reporting-guide.md)
+
 - [CleanBC Program for Industry](https://www2.gov.bc.ca/gov/content/environment/climate-change/industry/cleanbc-program-for-industry)
 
 - [CleanBC Industrial Incentive Program](https://www2.gov.bc.ca/gov/content/environment/climate-change/industry/cleanbc-program-for-industry/cleanbc-industrial-incentive-program)
