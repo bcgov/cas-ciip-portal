@@ -102,3 +102,60 @@ describe('When an applicaiton has errors', () => {
     cy.wait(500);
   });
 });
+
+describe('When an applicaiton does not have errors', () => {
+  beforeEach(() => {
+    cy.logout();
+    cy.sqlFixture('fixtures/reporter-all-access-setup');
+    cy.sqlFixture('fixtures/set-legal-disclaimer-true');
+    cy.login(
+      Cypress.env('TEST_REPORTER_USERNAME'),
+      Cypress.env('TEST_REPORTER_PASSWORD')
+    );
+  });
+
+  afterEach(() => {
+    cy.logout();
+    cy.sqlFixture('fixtures/reporter-all-access-teardown');
+  });
+
+  it('The override justification box should not appear', () => {
+    const applicationId = window.btoa('["applications", 2]');
+    cy.visit(
+      `/reporter/application?applicationId=${applicationId}&confirmationPage=true&version=1`
+    );
+    cy.url().should('include', '/reporter/application');
+    cy.get(':nth-child(10) > .card-header').should(
+      'contain',
+      'Application Certification'
+    );
+    cy.get('.override-accordion > .btn').should('not.exist');
+  });
+
+  it('the justification should be automatically deleted if no more errors exist', () => {
+    const applicationId = window.btoa('["applications", 2]');
+    cy.visit(
+      `/reporter/application?applicationId=${applicationId}&confirmationPage=true&version=1`
+    );
+    cy.url().should('include', '/reporter/application');
+    cy.get(':nth-child(1) > .nav-link').click();
+    cy.get('#root_operator_name').clear();
+    cy.get('.nav-guide > :nth-child(5)').click();
+    cy.get('.errors').should('contain', 'contains errors');
+    cy.get('.override-accordion > .btn').click();
+    cy.get('#overrideJustification').clear().type('delete me when fixed');
+    cy.get('.btn-success').click();
+    cy.get('.alert-secondary').should('contain', 'delete me when fixed');
+    cy.get(':nth-child(1) > .nav-link').click();
+    cy.get('#root_operator_name').clear().type('whoops');
+    cy.get('.nav-guide > :nth-child(5)').click();
+    cy.get('.override-accordion > .btn').should('not.exist');
+    cy.get(':nth-child(1) > .nav-link').click();
+    cy.get('#root_operator_name').clear();
+    cy.get('.nav-guide > :nth-child(5)').click();
+    cy.get('.errors').should('contain', 'contains errors');
+    cy.get('.override-accordion > .btn').click();
+    cy.get('.alert-secondary').should('not.contain', 'delete me when fixed');
+    cy.wait(500);
+  });
+});
