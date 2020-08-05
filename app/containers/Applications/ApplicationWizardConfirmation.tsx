@@ -53,11 +53,14 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
   const [url, setUrl] = useState<string>();
   const [isChecked, toggleChecked] = useState(true);
   // State of hasErrors is set to null until the child component ApplicationDetailsContainer returns a valid true/false decision
-  const [hasErrors, setHasErrors] = useState(null);
+  const [hasErrors, setHasErrors] = useState(false);
   const copyArea = useRef(null);
   const revision = props.application.latestDraftRevision;
   const [overrideActive, setOverrideActive] = useState(
     revision.overrideJustification !== null
+  );
+  const [applicationDetailsRendered, setApplicationDetailsRendered] = useState(
+    false
   );
 
   const checkEnableSubmitForCertification = (e) => {
@@ -315,6 +318,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
         }
         revisionId={props.application.latestDraftRevision.id}
         hasErrors={hasErrors}
+        applicationDetailsRendered={applicationDetailsRendered}
       />
       <ApplicationDetailsContainer
         liveValidate
@@ -322,6 +326,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
         application={props.application}
         review={false}
         setHasErrors={setHasErrors}
+        setApplicationDetailsRendered={setApplicationDetailsRendered}
       />
       <br />
       {hasErrors && !overrideActive ? (

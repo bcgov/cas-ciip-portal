@@ -21,6 +21,7 @@ interface Props {
   // Boolean indicates whether or not this item is being rendered by the summary component & should be liveValidated
   liveValidate: boolean;
   setHasErrors?: (...args: any[]) => void;
+  setApplicationDetailsRendered?: (boolean) => void;
 }
 
 export const ApplicationDetailsComponent: React.FunctionComponent<Props> = (
@@ -50,6 +51,8 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = (
     props.relay.refetch(refetchVariables);
   }, [oldDiffVersion, newDiffVersion, props.application.id, props.relay]);
 
+  if (props.setApplicationDetailsRendered)
+    props.setApplicationDetailsRendered(true);
   return (
     <>
       <Row>

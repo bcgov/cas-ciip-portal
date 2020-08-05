@@ -11,7 +11,8 @@ interface Props {
   applicationOverrideJustification: string;
   revisionId: string;
   relay: RelayProp;
-  hasErrors: any;
+  hasErrors: boolean;
+  applicationDetailsRendered: boolean;
 }
 
 export const ApplicationOverrideJustificationComponent: React.FunctionComponent<Props> = ({
@@ -20,7 +21,8 @@ export const ApplicationOverrideJustificationComponent: React.FunctionComponent<
   applicationOverrideJustification,
   revisionId,
   relay,
-  hasErrors
+  hasErrors,
+  applicationDetailsRendered
 }) => {
   const [accordionOpen, setAccordionOpen] = useState(false);
   const [overrideJustification, setOverrideJustification] = useState(
@@ -80,7 +82,8 @@ export const ApplicationOverrideJustificationComponent: React.FunctionComponent<
   };
 
   useEffect(() => {
-    if (overrideJustification && hasErrors === false) handleOverrideDelete();
+    if (overrideJustification && !hasErrors && applicationDetailsRendered)
+      handleOverrideDelete();
   });
 
   const errorsWithOverrideActive = (
@@ -188,7 +191,8 @@ export const ApplicationOverrideJustificationComponent: React.FunctionComponent<
   );
 
   const renderOverride = () => {
-    if (hasErrors === false) return null;
+    if (!applicationDetailsRendered) return null;
+    if (!hasErrors) return null;
     if (hasErrors && overrideActive) return errorsWithOverrideActive;
     return errorsWithoutOverrideActive;
   };
