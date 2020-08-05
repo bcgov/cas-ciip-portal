@@ -7,6 +7,7 @@ describe('OverrideJustification', () => {
     const r = shallow(
       <ApplicationOverrideJustificationComponent
         hasErrors
+        applicationDetailsRendered
         overrideActive={false}
         setOverrideActive={jest.fn()}
         applicationOverrideJustification={null}
@@ -23,6 +24,7 @@ describe('OverrideJustification', () => {
       <ApplicationOverrideJustificationComponent
         overrideActive
         hasErrors
+        applicationDetailsRendered
         setOverrideActive={jest.fn()}
         applicationOverrideJustification="bad stuff"
         revisionId="abc"
@@ -40,6 +42,7 @@ describe('OverrideJustification', () => {
       <ApplicationOverrideJustificationComponent
         overrideActive
         hasErrors
+        applicationDetailsRendered
         setOverrideActive={jest.fn()}
         applicationOverrideJustification="bad stuff"
         revisionId="abc"
@@ -53,7 +56,24 @@ describe('OverrideJustification', () => {
     const r = shallow(
       <ApplicationOverrideJustificationComponent
         overrideActive
+        applicationDetailsRendered
         hasErrors={false}
+        setOverrideActive={jest.fn()}
+        applicationOverrideJustification="bad stuff"
+        revisionId="abc"
+        relay={null}
+      />
+    );
+    expect(r.exists('Alert')).toBe(false);
+    expect(r.exists('AccordionCollapse')).toBe(false);
+  });
+
+  it('Should not render the override justification box if the ApplicationDetails component has not rendered', async () => {
+    const r = shallow(
+      <ApplicationOverrideJustificationComponent
+        overrideActive
+        hasErrors
+        applicationDetailsRendered={false}
         setOverrideActive={jest.fn()}
         applicationOverrideJustification="bad stuff"
         revisionId="abc"

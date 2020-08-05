@@ -16,8 +16,9 @@ exports[`The Confirmation Component match the snapshot 1`] = `
     className="jsx-1753635690"
   />
   <Relay(ApplicationOverrideJustificationComponent)
+    applicationDetailsRendered={false}
     applicationOverrideJustification={null}
-    hasErrors={null}
+    hasErrors={false}
     overrideActive={false}
     revisionId="abc"
     setOverrideActive={[Function]}
@@ -51,6 +52,7 @@ exports[`The Confirmation Component match the snapshot 1`] = `
       }
     }
     review={false}
+    setApplicationDetailsRendered={[Function]}
     setHasErrors={[Function]}
   />
   <br
@@ -160,8 +162,9 @@ exports[`The Confirmation Component should render the override justification com
     className="jsx-1753635690"
   />
   <Relay(ApplicationOverrideJustificationComponent)
+    applicationDetailsRendered={false}
     applicationOverrideJustification="I did a bad thing and I dont want to fix it"
-    hasErrors={null}
+    hasErrors={false}
     overrideActive={true}
     revisionId="abc"
     setOverrideActive={[Function]}
@@ -195,6 +198,7 @@ exports[`The Confirmation Component should render the override justification com
       }
     }
     review={false}
+    setApplicationDetailsRendered={[Function]}
     setHasErrors={[Function]}
   />
   <br
@@ -304,8 +308,9 @@ exports[`The Confirmation Component should render the override justification com
     className="jsx-1753635690"
   />
   <Relay(ApplicationOverrideJustificationComponent)
+    applicationDetailsRendered={false}
     applicationOverrideJustification={null}
-    hasErrors={null}
+    hasErrors={false}
     overrideActive={false}
     revisionId="abc"
     setOverrideActive={[Function]}
@@ -339,6 +344,7 @@ exports[`The Confirmation Component should render the override justification com
       }
     }
     review={false}
+    setApplicationDetailsRendered={[Function]}
     setHasErrors={[Function]}
   />
   <br
@@ -448,8 +454,9 @@ exports[`The Confirmation Component should show a "data has changed" dialogue wh
     className="jsx-1753635690"
   />
   <Relay(ApplicationOverrideJustificationComponent)
+    applicationDetailsRendered={false}
     applicationOverrideJustification={null}
-    hasErrors={null}
+    hasErrors={false}
     overrideActive={false}
     revisionId="abc"
     setOverrideActive={[Function]}
@@ -488,6 +495,7 @@ exports[`The Confirmation Component should show a "data has changed" dialogue wh
       }
     }
     review={false}
+    setApplicationDetailsRendered={[Function]}
     setHasErrors={[Function]}
   />
   <br
@@ -617,8 +625,9 @@ exports[`The Confirmation Component should show a certifier has not yet signed m
     className="jsx-1753635690"
   />
   <Relay(ApplicationOverrideJustificationComponent)
+    applicationDetailsRendered={false}
     applicationOverrideJustification={null}
-    hasErrors={null}
+    hasErrors={false}
     overrideActive={false}
     revisionId="abc"
     setOverrideActive={[Function]}
@@ -657,6 +666,7 @@ exports[`The Confirmation Component should show a certifier has not yet signed m
       }
     }
     review={false}
+    setApplicationDetailsRendered={[Function]}
     setHasErrors={[Function]}
   />
   <br
