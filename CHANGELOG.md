@@ -2,6 +2,40 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.0](https://github.com/bcgov/cas-ciip-portal/compare/v1.3.0...v1.4.0) (2020-08-06)
+
+
+### Features
+
+* add override column to application_revision table ([2f13ed0](https://github.com/bcgov/cas-ciip-portal/commit/2f13ed03041a4cffd961215a513ec43e0e3c8061))
+* add override notification component ([931d08e](https://github.com/bcgov/cas-ciip-portal/commit/931d08e7ba00209a221b6b67c57214f84e4c3f55))
+* add override notification to certifier view ([51af3bb](https://github.com/bcgov/cas-ciip-portal/commit/51af3bbbf4c7136cb73dd748b22f9d8d96b5cc6b))
+* add override notification to top of reviewer page ([f650253](https://github.com/bcgov/cas-ciip-portal/commit/f650253d1c52fc191a98705d6f795f5c05cab25b))
+* create add/remove functionality with mutations for override justification ([13193a0](https://github.com/bcgov/cas-ciip-portal/commit/13193a0d2c7ed853f3d547b96dfced6032a06513))
+* UI component to "override and justify" application errors ([42251f5](https://github.com/bcgov/cas-ciip-portal/commit/42251f5540f9d3298200ca956140709cf1307e8d))
+* update override ui / messages ([7c79da0](https://github.com/bcgov/cas-ciip-portal/commit/7c79da07125c8c1361ebf31592c171ba30d68f90))
+
+
+### Bug Fixes
+
+* add a state check if ApplicationDetailsContainer has rendered or not & use that to balance state problem with hasErrors ([da8d74d](https://github.com/bcgov/cas-ciip-portal/commit/da8d74d800f9631d818b6e90ce9da1ff1e8a4d63))
+* add computed column to application to display user's edit permission ([91b23a3](https://github.com/bcgov/cas-ciip-portal/commit/91b23a3134048a7023df2a81e5c846ba26d136d9))
+* add function that applies select true RLS policies to a user on all ggircs_portal tables ([c3875a0](https://github.com/bcgov/cas-ciip-portal/commit/c3875a03a28b6e57bbeca979a8ea13b2483d4339))
+* add missing return in OverrideNotificationCard ([2f583d3](https://github.com/bcgov/cas-ciip-portal/commit/2f583d399d53b565aaf8b7583a1fe8fbee78f189))
+* add read_only_user_policies function call to app-users cronjob ([1f23c5e](https://github.com/bcgov/cas-ciip-portal/commit/1f23c5eefd381b1c8a55c4f5d00740a6b76a02b3))
+* application_revision_ciip_incentive shouldn't throw with amount=0 ([1b11548](https://github.com/bcgov/cas-ciip-portal/commit/1b1154823c0eba2bec796ceaf25a54b743509919))
+* delete override justification if exists & application has no errors ([4ca7f0a](https://github.com/bcgov/cas-ciip-portal/commit/4ca7f0acfbf121eeecf167ed0b7a150baefa2904))
+* hide override justification box if hasErrors is false ([644c6de](https://github.com/bcgov/cas-ciip-portal/commit/644c6ded718623e20766769b50281c6b59ec100f))
+* implement redirect in ApplicationWizard for users with no edit permission (certifier) ([3251091](https://github.com/bcgov/cas-ciip-portal/commit/3251091b8ff2e72a0275537d3729348f60b75ec6))
+* increment chart version ([24188cf](https://github.com/bcgov/cas-ciip-portal/commit/24188cfb8a53c54279102ebe6c832f0d50747f8b))
+* no null textarea ([9751878](https://github.com/bcgov/cas-ciip-portal/commit/9751878e306745447f6d63afeb7c0ac7bde9c078))
+* production amount and emissions allocated should be allowed to be 0 ([5f1f86b](https://github.com/bcgov/cas-ciip-portal/commit/5f1f86b71b2bd5670ed383cd13621cf0543bae9c))
+* remove old placeholder error message from ApplicationWizard & redirect to 404 page from application if no application is present ([bb314d7](https://github.com/bcgov/cas-ciip-portal/commit/bb314d7da328a6175b2e88452ddeb5c0e610dc1e))
+* remove signature component from certify page & replace with 'certified' alert if signature is valid ([92b797e](https://github.com/bcgov/cas-ciip-portal/commit/92b797e0e9911ae79f191d1436b935d0dd3036e2))
+* set hasErrors useState default to null, use explicit hasErrors===false for condition check ([68943d5](https://github.com/bcgov/cas-ciip-portal/commit/68943d517422a0d111295c6e5b4b223b398a391a))
+* update certification messages at bottom of summary page ([cb5a16e](https://github.com/bcgov/cas-ciip-portal/commit/cb5a16ec4d450b59c98ac14d3b059a1aed89bfef))
+* update rls to only hide 'internal' comments from industry user role ([f45ae7d](https://github.com/bcgov/cas-ciip-portal/commit/f45ae7d030675b56c610fd355b5abe7ae4bc35d7))
+
 ## [1.3.0](https://github.com/bcgov/cas-ciip-portal/compare/v1.2.0...v1.3.0) (2020-07-29)
 
 
