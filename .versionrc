@@ -19,8 +19,5 @@
       "type": "json"
     }
   ],
-  "sign": true,
-  "skip": {
-    "tag": true
-  }
+  "sign": true
 }
