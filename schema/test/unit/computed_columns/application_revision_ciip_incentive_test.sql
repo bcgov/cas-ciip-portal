@@ -267,7 +267,7 @@ set form_result = '[
 ]'
 where application_id = 1 and version_number = 1 and form_id = 4;
 
-select throws_like(
+select lives_ok(
   $$
 
     with record as (
@@ -278,8 +278,7 @@ select throws_like(
       (select * from record)
     )
   $$,
-  '%Reported product requires purchased_electricity%',
-  'throws an exception if a product requires purchased electricity and it is not present'
+  'does not throw an exception if a product requires purchased electricity and it is not present'
 );
 
 -- Report a product with no allocation of emissions which requires "Sold Electricity" to be reported
@@ -321,7 +320,7 @@ set form_result = '[
 ]'
 where application_id = 1 and version_number = 1 and form_id = 4;
 
-select throws_like(
+select lives_ok(
   $$
 
     with record as (
@@ -332,8 +331,7 @@ select throws_like(
       (select * from record)
     )
   $$,
-  '%Reported product requires exported_electricity%',
-  'throws an exception if a product requires sold electricity and it is not present'
+  'does notthrow an exception if a product requires sold electricity and it is not present'
 );
 
 -- Report a product with no allocation of emissions which requires "Purchased Heat" to be reported
@@ -375,7 +373,7 @@ set form_result = '[
 ]'
 where application_id = 1 and version_number = 1 and form_id = 4;
 
-select throws_like(
+select lives_ok(
   $$
 
     with record as (
@@ -386,8 +384,7 @@ select throws_like(
       (select * from record)
     )
   $$,
-  '%Reported product requires purchased_heat%',
-  'throws an exception if a product requires purchased heat and it is not present'
+  'does not throw an exception if a product requires purchased heat and it is not present'
 );
 
 -- Report a product with no allocation of emissions which requires "Sold Heat" to be reported
@@ -429,7 +426,7 @@ set form_result = '[
 ]'
 where application_id = 1 and version_number = 1 and form_id = 4;
 
-select throws_like(
+select lives_ok(
   $$
 
     with record as (
@@ -440,8 +437,7 @@ select throws_like(
       (select * from record)
     )
   $$,
-  '%Reported product requires exported_heat%',
-  'throws an exception if a product requires sold heat and it is not present'
+  'does not throw an exception if a product requires sold heat and it is not present'
 );
 
 -- Report a product with no allocation of emissions which requires "EIO Emissions" to be reported
@@ -483,7 +479,7 @@ set form_result = '[
 ]'
 where application_id = 1 and version_number = 1 and form_id = 4;
 
-select throws_like(
+select lives_ok(
   $$
 
     with record as (
@@ -494,8 +490,7 @@ select throws_like(
       (select * from record)
     )
   $$,
-  '%Reported product requires emissions_from_eios%',
-  'throws an exception if a product requires emissions from eios and it is not present'
+  'does not throw an exception if a product requires emissions from eios and it is not present'
 );
 
 -- Report 2 non-energy products with requires_emission_allocation = false
@@ -516,7 +511,7 @@ set form_result = '[
 ]'
 where application_id = 1 and version_number = 1 and form_id = 4;
 
-select throws_like(
+select lives_ok(
   $$
     with record as (
       select row(application_revision.*)::ggircs_portal.application_revision
@@ -524,8 +519,7 @@ select throws_like(
     )
     select ggircs_portal.application_revision_ciip_incentive((select * from record))
   $$,
-  '%When a product has: requires_emission_allocation = false%',
-  'Throws when 2 non-energy products are reported and requires_emission_allocation=false'
+  'does not throw when 2 non-energy products are reported and requires_emission_allocation=false'
 );
 
 -- Report 2 non-energy products with requires_emission_allocation = false
