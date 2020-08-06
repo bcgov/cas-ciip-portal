@@ -123,7 +123,7 @@ export default class Index extends Component<Props> {
           </Col>
           <Col md={4}>
             <div className="value-prop">
-              <img src="/static/icons/icon-register.svg" alt="register-icon" />
+              <img src="/static/icons/icon-register.svg" alt="" />
               <h3 className="blue">1. Register as an Industrial Reporter</h3>
               <p>
                 Before you can apply for the CIIP on behalf of an eligible
@@ -135,7 +135,7 @@ export default class Index extends Component<Props> {
 
           <Col md={4}>
             <div className="value-prop">
-              <img src="/static/icons/icon-request.svg" alt="request-icon" />
+              <img src="/static/icons/icon-request.svg" alt="" />
               <h3 className="blue">2. Request to apply for an Operation</h3>
               <p>
                 Once you’ve registered you can request to apply on behalf one or
@@ -146,7 +146,7 @@ export default class Index extends Component<Props> {
 
           <Col md={4}>
             <div className="value-prop">
-              <img src="/static/icons/icon-apply.svg" alt="apply-icon" />
+              <img src="/static/icons/icon-apply.svg" alt="" />
               <h3 className="blue">3. Apply on behalf of the Operation</h3>
               <p>
                 The CIIP team will verify and approve your request and then you
@@ -173,7 +173,7 @@ export default class Index extends Component<Props> {
                       /static/landing-photo-1270.jpg 1270w
               "
               src="/static/landing-photo-1020.jpg"
-              alt="main-photos"
+              alt="Engineer wearing safety clothing and working at a control panel"
             />
           </Col>
           <Col md={{span: 5}}>
