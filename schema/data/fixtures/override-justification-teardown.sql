@@ -2,7 +2,7 @@ begin;
 
 alter table ggircs_portal.certification_url
   enable trigger _random_id;
-delete from ggircs_portal.ciip_user_organisation where user_id=6 and organisation_id=7;
+delete from ggircs_portal.ciip_user_organisation where user_id=6 and organisation_id=8;
 alter table ggircs_portal.ciip_user_organisation
   enable trigger _set_user_id;
 alter table ggircs_portal.application_revision_status
