@@ -133,7 +133,8 @@ while [[ "$1" =~ ^- && ! "$1" == "--" ]]; do case $1 in
   -d | --drop-db )
     actions+=('dropdb' 'deploySwrs' 'deployPortal')
     ;;
-  -prod | --prod-data | --oc-project=*-prod )
+  -prod | --prod-data | --oc-project=*-prod | --oc-project=*-test)
+    # prod data should be deployed in both test and prod openshift environments
     actions+=('deployProd')
     ;;
   -dev | --dev-data | --oc-project=*-dev )
