@@ -36,11 +36,6 @@ class Contact extends Component<Props> {
             with any questions or concerns.
           </p>
         </Container>
-        <style jsx>{`
-          a {
-            color: #0053b3;
-          }
-        `}</style>
       </DefaultLayout>
     );
   }

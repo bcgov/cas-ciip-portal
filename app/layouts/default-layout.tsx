@@ -60,6 +60,12 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
           .page-wrap {
             height: 100%;
           }
+          a {
+            color: #0053b3;
+          }
+          .btn-link {
+            color: #0053b3;
+          }
           .page-wrap {
             display: flex;
             flex-direction: column;

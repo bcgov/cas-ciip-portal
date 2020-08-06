@@ -166,11 +166,6 @@ class Copyright extends Component<Props> {
 
           <p>phone: 250-216-8935</p>
         </Container>
-        <style jsx>{`
-          a {
-            color: #0053b3;
-          }
-        `}</style>
       </DefaultLayout>
     );
   }
