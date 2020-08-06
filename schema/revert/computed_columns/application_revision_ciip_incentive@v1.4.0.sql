@@ -55,12 +55,10 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
         version_number = application_revision.version_number
         and application_id = application_revision.application_id limit 1) is not null;
 
-    -- This function contained raised exceptions that were causing a crash when combined with the ability to override errors.
-    -- It will be re-introduced after some thought on how better to handle it.
     -- Validate that application is not missing any required energy products
-    -- if has_products=true then
-    --   perform ggircs_portal_private.validate_energy_products(reported_products);
-    -- end if;
+    if has_products=true then
+      perform ggircs_portal_private.validate_energy_products(reported_products);
+    end if;
 
     -- ** Test for invalid number of products when a reported product.requires_emission_allocation = false ** --
     non_energy_product_count := (
@@ -72,17 +70,15 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
         and is_energy_product=false
     );
 
-    -- This exception was causing a crash when combined with the ability to override errors.
-    -- It will be re-introduced after some thought on how better to handle it.
-    -- if (select count(*) from ggircs_portal.ciip_production
-    --   where
-    --     version_number = application_revision.version_number
-    --     and application_id = application_revision.application_id
-    --     and requires_emission_allocation = false) > 0
-    --   and non_energy_product_count > 1
-    -- then
-    --   raise exception 'When a product has: requires_emission_allocation = false, only one reported product (excluding energy products) is allowed';
-    -- end if;
+    if (select count(*) from ggircs_portal.ciip_production
+      where
+        version_number = application_revision.version_number
+        and application_id = application_revision.application_id
+        and requires_emission_allocation = false) > 0
+      and non_energy_product_count > 1
+    then
+      raise exception 'When a product has: requires_emission_allocation = false, only one reported product (excluding energy products) is allowed';
+    end if;
     -- ** End test ** --
 
     reported_ciip_products = array(
@@ -162,18 +158,13 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
           end if;
         end if;
 
-        if (product.product_amount = 0) then
-          intensity_range = 0;
-        else
-          -- Calculate Emission Intensity
-          em_intensity = em_product / product.product_amount;
+        -- Calculate Emission Intensity
+        em_intensity = em_product / product.product_amount;
 
 
-          -- Calculate Incentive Ratio as
-          -- IncRatio = min(IncRatioMax, max(IncRatioMin, 1 - (EmIntensity - BM)/(ET - BM))
-          intensity_range = 1 - ((em_intensity - benchmark_data.benchmark) / (benchmark_data.eligibility_threshold - benchmark_data.benchmark));
-        end if;
-
+        -- Calculate Incentive Ratio as
+        -- IncRatio = min(IncRatioMax, max(IncRatioMin, 1 - (EmIntensity - BM)/(ET - BM))
+        intensity_range = 1 - ((em_intensity - benchmark_data.benchmark) / (benchmark_data.eligibility_threshold - benchmark_data.benchmark));
         incentive_ratio = least(
           benchmark_data.maximum_incentive_ratio,
           greatest(

@@ -169,3 +169,4 @@ computed_columns/application_current_user_can_edit [tables/ciip_user_organisatio
 policies/review_comment_policies [policies/review_comment_policies@v1.1.0] 2020-07-31T22:54:37Z Dylan Leard <dylan@button.is> # migration fixes the industry_user_statement for rls
 computed_columns/application_revision_ciip_incentive [computed_columns/application_revision_ciip_incentive@v1.1.0] 2020-08-04T21:21:18Z Matthieu Foucault <matthieu@button.is> # allow product amount to be 0
 @v1.4.0 2020-08-06T15:05:56Z Matthieu Foucault <matthieu@button.is> # release v1.4.0
+computed_columns/application_revision_ciip_incentive [computed_columns/application_revision_ciip_incentive@v1.4.0] 2020-08-06T18:43:10Z Dylan Leard <dylan@button.is> # Migration: remove raised exceptions from incentive function
