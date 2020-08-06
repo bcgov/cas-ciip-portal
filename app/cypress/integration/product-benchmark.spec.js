@@ -1,5 +1,6 @@
 describe('The products and benchmark page', () => {
   beforeEach(() => {
+    cy.logout();
     cy.sqlFixture('fixtures/products-benchmarks-setup');
     cy.login(
       Cypress.env('TEST_ADMIN_USERNAME'),
@@ -30,6 +31,7 @@ describe('The products and benchmark page', () => {
 
 describe('The benchmark modal', () => {
   beforeEach(() => {
+    cy.logout();
     cy.sqlFixture('fixtures/products-benchmarks-setup');
     cy.login(
       Cypress.env('TEST_ADMIN_USERNAME'),
@@ -98,6 +100,7 @@ describe('The benchmark modal', () => {
 
 describe('The linking modal', () => {
   beforeEach(() => {
+    cy.logout();
     cy.sqlFixture('fixtures/products-benchmarks-setup');
     cy.login(
       Cypress.env('TEST_ADMIN_USERNAME'),
@@ -140,6 +143,7 @@ describe('The linking modal', () => {
 
 describe('The Create Product modal', () => {
   beforeEach(() => {
+    cy.logout();
     cy.sqlFixture('fixtures/products-benchmarks-setup');
     cy.login(
       Cypress.env('TEST_ADMIN_USERNAME'),
