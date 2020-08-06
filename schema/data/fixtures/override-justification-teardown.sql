@@ -1,5 +1,7 @@
 begin;
 
+truncate ggircs_portal.certification_url restart identity cascade;
+truncate ggircs_portal.application restart identity cascade;
 alter table ggircs_portal.certification_url
   enable trigger _random_id;
 delete from ggircs_portal.ciip_user_organisation where user_id=6 and organisation_id=8;
