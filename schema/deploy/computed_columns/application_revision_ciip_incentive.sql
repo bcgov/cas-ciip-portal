@@ -116,49 +116,49 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
         else
           em_product = em_facility;
           if product_data.add_purchased_electricity_emissions then
-            em_product = em_product + (
+            em_product = em_product + coalesce((
               select p.product_emissions
               from unnest(reported_products) p
               join ggircs_portal.product _product on
                 p.product_id = _product.id
                 and _product.product_name = 'Purchased electricity'
-            );
+            ), 0);
           end if;
           if product_data.subtract_exported_electricity_emissions then
-            em_product = em_product - (
+            em_product = em_product - coalesce((
               select p.product_emissions
               from unnest(reported_products) p
               join ggircs_portal.product _product on
                 p.product_id = _product.id
                 and _product.product_name = 'Sold electricity'
-            );
+            ), 0);
           end if;
           if product_data.add_purchased_heat_emissions then
-            em_product = em_product + (
+            em_product = em_product + coalesce((
               select p.product_emissions
               from unnest(reported_products) p
               join ggircs_portal.product _product on
                 p.product_id = _product.id
                 and _product.product_name = 'Purchased heat'
-            );
+            ), 0);
           end if;
           if product_data.subtract_exported_heat_emissions then
-            em_product = em_product - (
+            em_product = em_product - coalesce((
               select p.product_emissions
               from unnest(reported_products) p
               join ggircs_portal.product _product on
                 p.product_id = _product.id
                 and _product.product_name = 'Sold heat'
-            );
+            ), 0);
           end if;
           if product_data.add_emissions_from_eios then
-            em_product = em_product + (
+            em_product = em_product + coalesce((
               select p.product_emissions
               from unnest(reported_products) p
               join ggircs_portal.product _product on
                 p.product_id = _product.id
                 and _product.product_name = 'Emissions from EIOs'
-            );
+            ), 0);
           end if;
         end if;
 
