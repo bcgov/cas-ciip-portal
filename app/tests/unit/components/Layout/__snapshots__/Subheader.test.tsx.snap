@@ -3,30 +3,30 @@
 exports[`The Subheader matches the last accepted Snapshot 1`] = `
 <div>
   <nav
-    class="jsx-1717546368 navigation-main"
+    class="jsx-2326483044 navigation-main"
     id="navbar"
   >
     <div
-      class="jsx-1717546368 container"
+      class="jsx-2326483044 container"
     >
       <ul
-        class="jsx-1717546368"
+        class="jsx-2326483044"
       >
         <li
-          class="jsx-1717546368 active"
+          class="jsx-2326483044 active"
         >
           <a
-            class="jsx-1717546368"
+            class="jsx-2326483044"
             href="/reporter"
           >
             My Dashboard
           </a>
         </li>
         <li
-          class="jsx-1717546368 "
+          class="jsx-2326483044 "
         >
           <a
-            class="jsx-1717546368"
+            class="jsx-2326483044"
             href="/reporter/facilities"
           >
             My Applications

@@ -67,7 +67,7 @@ const Subheader = () => {
             font-weight: bold;
           }
           .navigation-main ul > li.active a {
-            color: #ffc107 !important;
+            color: #ffc613 !important;
           }
 
           :focus {

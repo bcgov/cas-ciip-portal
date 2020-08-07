@@ -1265,7 +1265,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                               className="col-md-10"
                                               style={
                                                 Object {
-                                                  "color": "#888",
+                                                  "color": "#797676",
                                                   "lineHeight": "17px",
                                                   "margin": 0,
                                                   "padding": 0,
@@ -1414,7 +1414,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                               className="col-md-10"
                                               style={
                                                 Object {
-                                                  "color": "#888",
+                                                  "color": "#797676",
                                                   "lineHeight": "17px",
                                                   "margin": 0,
                                                   "padding": 0,
@@ -1670,7 +1670,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                               className="col-md-10"
                                               style={
                                                 Object {
-                                                  "color": "#888",
+                                                  "color": "#797676",
                                                   "lineHeight": "17px",
                                                   "margin": 0,
                                                   "padding": 0,

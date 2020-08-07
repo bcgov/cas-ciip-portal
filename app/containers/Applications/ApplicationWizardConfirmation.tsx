@@ -188,7 +188,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
               />
             </Form.Group>
             <Button
-              variant="info"
+              variant="primary"
               type="submit"
               disabled={!enableSubmitForCertification}
             >

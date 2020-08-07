@@ -48,7 +48,12 @@ const EmissionGasFields: React.FunctionComponent<FieldProps> = ({
           {formData.gasType} <br />
           <Col
             md={10}
-            style={{margin: 0, padding: 0, color: '#888', lineHeight: '17px'}}
+            style={{
+              margin: 0,
+              padding: 0,
+              color: '#797676',
+              lineHeight: '17px'
+            }}
           >
             <small>{formData.gasDescription}</small>
           </Col>

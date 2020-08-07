@@ -130,7 +130,7 @@ exports[`The Confirmation Component match the snapshot 1`] = `
           active={false}
           disabled={true}
           type="submit"
-          variant="info"
+          variant="primary"
         >
           Submit for Certification
         </Button>
@@ -276,7 +276,7 @@ exports[`The Confirmation Component should render the override justification com
           active={false}
           disabled={true}
           type="submit"
-          variant="info"
+          variant="primary"
         >
           Submit for Certification
         </Button>
@@ -422,7 +422,7 @@ exports[`The Confirmation Component should render the override justification com
           active={false}
           disabled={true}
           type="submit"
-          variant="info"
+          variant="primary"
         >
           Submit for Certification
         </Button>
@@ -593,7 +593,7 @@ exports[`The Confirmation Component should show a "data has changed" dialogue wh
           active={false}
           disabled={true}
           type="submit"
-          variant="info"
+          variant="primary"
         >
           Submit for Certification
         </Button>
