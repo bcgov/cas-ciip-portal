@@ -240,6 +240,15 @@ export default class Index extends Component<Props> {
           #photo {
             margin: 53px 0;
           }
+          h1 {
+            font-size: 1.17em;
+          }
+          h2 {
+            font-size: 1em;
+          }
+          h3 {
+            font-size: 0 0.83em;
+          }
           @media (min-width: 767.98px) {
             #photo-row {
               margin-top: 100px;
