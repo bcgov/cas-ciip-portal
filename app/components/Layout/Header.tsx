@@ -33,7 +33,7 @@ const HeaderLayout = ({isLoggedIn = false, isRegistered = false, children}) => {
   return (
     <header>
       <div className="nav-header">
-        <nav>
+        <nav aria-label="Main">
           <div className="header-left">
             <Link href="/">
               <a>

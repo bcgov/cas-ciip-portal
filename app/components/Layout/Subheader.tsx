@@ -10,7 +10,7 @@ const Subheader = () => {
 
   return (
     <div>
-      <nav className="navigation-main" id="navbar">
+      <nav className="navigation-main" id="navbar" aria-label="Secondary">
         <div className="container">
           <ul>
             <li className={asPath === DASHBOARD_PATH ? 'active' : ''}>

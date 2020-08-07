@@ -3,6 +3,7 @@
 exports[`The Subheader matches the last accepted Snapshot 1`] = `
 <div>
   <nav
+    aria-label="Secondary"
     class="jsx-2326483044 navigation-main"
     id="navbar"
   >

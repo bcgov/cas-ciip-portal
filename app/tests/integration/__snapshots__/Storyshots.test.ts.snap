@@ -20,6 +20,7 @@ Array [
           className="jsx-2584110530 nav-header"
         >
           <nav
+            aria-label="Main"
             className="jsx-2584110530"
           >
             <div
@@ -529,6 +530,7 @@ Array [
           className="jsx-2584110530 nav-header"
         >
           <nav
+            aria-label="Main"
             className="jsx-2584110530"
           >
             <div
@@ -1022,6 +1024,7 @@ Array [
           className="jsx-2584110530 nav-header"
         >
           <nav
+            aria-label="Main"
             className="jsx-2584110530"
           >
             <div
@@ -1133,6 +1136,7 @@ Array [
         </div>
         <div>
           <nav
+            aria-label="Secondary"
             className="jsx-2326483044 navigation-main"
             id="navbar"
           >
@@ -1687,6 +1691,7 @@ Array [
           className="jsx-2584110530 nav-header"
         >
           <nav
+            aria-label="Main"
             className="jsx-2584110530"
           >
             <div
@@ -2029,6 +2034,7 @@ Array [
           className="jsx-2584110530 nav-header"
         >
           <nav
+            aria-label="Main"
             className="jsx-2584110530"
           >
             <div
