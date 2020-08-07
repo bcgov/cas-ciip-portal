@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.1](https://github.com/bcgov/cas-ciip-portal/compare/v1.4.0...v1.4.1) (2020-08-06)
+
+
+### Bug Fixes
+
+* coalesce null energy product values with 0 ([f80148a](https://github.com/bcgov/cas-ciip-portal/commit/f80148af6c732d69de08c422c45d8524b4cf19a9))
+* prod hardcoded data should be deployed in *-test environment ([9ab8ee0](https://github.com/bcgov/cas-ciip-portal/commit/9ab8ee0dbb18001b360cba48233278056a019eda))
+* remove raised exceptions from incentive function ([adb737b](https://github.com/bcgov/cas-ciip-portal/commit/adb737b55fd20788b318e7fff760b25d0d7d3bcd))
+
 ## [1.4.0](https://github.com/bcgov/cas-ciip-portal/compare/v1.3.0...v1.4.0) (2020-08-06)
 
 
