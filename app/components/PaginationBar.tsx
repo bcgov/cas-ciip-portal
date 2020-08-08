@@ -77,7 +77,7 @@ export const PaginationBarComponent: React.FunctionComponent<Props> = (
         <Pagination.First onClick={() => handlePaginationByPageNumber(1)} />
         <Pagination.Prev onClick={previousTenPagination} />
         {startPage !== 1 && <Pagination.Ellipsis />}
-        <Pagination>{items}</Pagination>
+        {items}
         {endPage !== maxPages && <Pagination.Ellipsis />}
         <Pagination.Next onClick={nextTenPagination} />
         <Pagination.Last
