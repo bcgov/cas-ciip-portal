@@ -148,10 +148,10 @@ export const OrganisationsComponent: React.FunctionComponent<Props> = (
               </>
             ) : (
               <Dropdown className="search-dropdown">
-                <Card.Title>
+                <h2>
                   Request access to apply for the CIIP on behalf of a Reporting
                   Operation:
-                </Card.Title>
+                </h2>
                 <Alert variant="warning">
                   <p>
                     The CleanBC Industrial Incentive Program application must be

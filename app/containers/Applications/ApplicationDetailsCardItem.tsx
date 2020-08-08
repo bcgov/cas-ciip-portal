@@ -154,7 +154,7 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
       <Card.Header className="summary-form-header">
         <Row>
           <Col md={6}>
-            <h4>{formJsonByFormId.name}</h4>
+            <h2>{formJsonByFormId.name}</h2>
           </Col>
           {review ? (
             <Col md={{span: 2, offset: 3}}>
@@ -207,6 +207,12 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
         </Card.Body>
       </Collapse>
       <style jsx global>{`
+        h2 {
+          font-size: 1.5rem;
+          margin-bottom: 0.5rem;
+          font-weight: 500;
+          line-height: 1.2;
+        }
         .diffFrom {
           background-color: rgba(243, 76, 96, 0.3);
         }

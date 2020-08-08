@@ -58,7 +58,7 @@ exports[`Reporter Dashboard Reporter with certification requests 1`] = `
     <Col
       md={4}
     >
-      <h5
+      <h2
         style={
           Object {
             "marginBottom": "20px",
@@ -66,7 +66,7 @@ exports[`Reporter Dashboard Reporter with certification requests 1`] = `
         }
       >
         How to apply for CIIP
-      </h5>
+      </h2>
       <div
         className="how-to-apply"
       >
@@ -167,6 +167,13 @@ exports[`Reporter Dashboard Reporter with certification requests 1`] = `
       </div>
     </Col>
   </Row>
+  <style>
+    
+      h2 {
+        font-size: 1.25rem;
+      }
+    
+  </style>
 </Relay(DefaultLayout)>
 `;
 
@@ -228,7 +235,7 @@ exports[`Reporter Dashboard Reporter with no certification requests 1`] = `
     <Col
       md={4}
     >
-      <h5
+      <h2
         style={
           Object {
             "marginBottom": "20px",
@@ -236,7 +243,7 @@ exports[`Reporter Dashboard Reporter with no certification requests 1`] = `
         }
       >
         How to apply for CIIP
-      </h5>
+      </h2>
       <div
         className="how-to-apply"
       >
@@ -337,5 +344,12 @@ exports[`Reporter Dashboard Reporter with no certification requests 1`] = `
       </div>
     </Col>
   </Row>
+  <style>
+    
+      h2 {
+        font-size: 1.25rem;
+      }
+    
+  </style>
 </Relay(DefaultLayout)>
 `;

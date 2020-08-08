@@ -1333,11 +1333,11 @@ Array [
                       className="search-dropdown dropdown"
                       onKeyDown={[Function]}
                     >
-                      <div
-                        className="card-title h5"
+                      <h2
+                        className="jsx-3491480756"
                       >
                         Request access to apply for the CIIP on behalf of a Reporting Operation:
-                      </div>
+                      </h2>
                       <div
                         className="fade alert alert-warning show"
                         role="alert"
@@ -1442,7 +1442,7 @@ Array [
             <div
               className="col-md-4"
             >
-              <h5
+              <h2
                 style={
                   Object {
                     "marginBottom": "20px",
@@ -1450,7 +1450,7 @@ Array [
                 }
               >
                 How to apply for CIIP
-              </h5>
+              </h2>
               <div
                 className="how-to-apply"
               >
@@ -1559,6 +1559,13 @@ Array [
               </div>
             </div>
           </div>
+          <style>
+            
+      h2 {
+        font-size: 1.25rem;
+      }
+    
+          </style>
         </div>
       </main>
       <footer

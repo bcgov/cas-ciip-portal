@@ -25,7 +25,7 @@ export const ApplicationCommentsComponent: React.FunctionComponent<Props> = (
   return (
     <>
       <div key={formResult.id} className="form-result-box">
-        <h5>
+        <h3>
           {formResult.formJsonByFormId.name}{' '}
           <i
             aria-label="toggle-card-open"
@@ -39,7 +39,7 @@ export const ApplicationCommentsComponent: React.FunctionComponent<Props> = (
               <FontAwesomeIcon icon={faChevronDown} />
             )}
           </i>
-        </h5>
+        </h3>
         <Collapse in={!isOpen}>
           <div>
             <Table hover>
@@ -124,10 +124,11 @@ export const ApplicationCommentsComponent: React.FunctionComponent<Props> = (
           font-size: 14px;
         }
 
-        .form-result-box h5 {
+        .form-result-box h3 {
           border-bottom: 1px solid #888;
           padding-bottom: 10px;
           margin-bottom: 20px;
+          font-size: 1.25rem;
         }
 
         .hide-title label.form-label {

@@ -8,16 +8,16 @@ const EmissionSourceFields: React.FunctionComponent<FieldProps> = ({
   return (
     <Row style={{margin: '20px 0 20px 0'}} className="source-field-heading">
       <Col xs={12} md={4}>
-        <h5 style={{textAlign: 'left'}}>{formData}</h5>
+        <h2 style={{textAlign: 'left'}}>{formData}</h2>
       </Col>
       <Col xs={12} md={3}>
-        <h6>Tonnes</h6>
+        <p className="unit">Tonnes</p>
       </Col>
       <Col xs={12} md={2}>
-        <h6>GWP</h6>
+        <p className="unit">GWP</p>
       </Col>
       <Col xs={12} md={3}>
-        <h6>Tonnes (CO2e)</h6>
+        <p className="unit">Tonnes (CO2e)</p>
       </Col>
       <style jsx global>{`
         .hidden-title label {
@@ -31,12 +31,17 @@ const EmissionSourceFields: React.FunctionComponent<FieldProps> = ({
         }
       `}</style>
       <style jsx>{`
-        h6 {
+        .unit {
           text-align: center;
         }
         h5,
-        h6 {
+        .unit {
           color: #036;
+          font-weight: 500;
+        }
+        h2 {
+          font-size: 1.25rem;
+          margin-bottom: 0.5rem;
         }
       `}</style>
     </Row>

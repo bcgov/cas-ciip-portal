@@ -306,9 +306,9 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
   return (
     <>
       <h1>Summary of your application:</h1>
-      <h5>
+      <p style={{fontSize: '1.25rem', fontWeight: 500}}>
         Please review the information you have provided before continuing.
-      </h5>
+      </p>
       <br />
       <ApplicationOverrideJustification
         overrideActive={overrideActive}

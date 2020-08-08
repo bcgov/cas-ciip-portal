@@ -20,11 +20,11 @@ exports[`ApplicationDetailsCardItemComponent should render the individual summar
       <Col
         md={6}
       >
-        <h4
-          className="jsx-3222786205"
+        <h2
+          className="jsx-472415978"
         >
           Fuel Usage
-        </h4>
+        </h2>
       </Col>
       <Col
         md={1}
@@ -112,9 +112,9 @@ exports[`ApplicationDetailsCardItemComponent should render the individual summar
     </CardBody>
   </Collapse>
   <JSXStyle
-    id="3222786205"
+    id="472415978"
   >
-    .diffFrom{background-color:rgba(243,76,96,0.3);}.diffTo{background-color:rgba(70,241,118,0.3);}.summary-form-header&gt;.row{-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;}
+    h2{font-size:1.5rem;margin-bottom:0.5rem;font-weight:500;line-height:1.2;}.diffFrom{background-color:rgba(243,76,96,0.3);}.diffTo{background-color:rgba(70,241,118,0.3);}.summary-form-header&gt;.row{-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;}
   </JSXStyle>
 </Card>
 `;

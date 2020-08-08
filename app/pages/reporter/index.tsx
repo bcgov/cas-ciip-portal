@@ -95,7 +95,7 @@ export default class Reporter extends Component<Props> {
             />
           </Col>
           <Col md={4}>
-            <h5 style={{marginBottom: '20px'}}>How to apply for CIIP</h5>
+            <h2 style={{marginBottom: '20px'}}>How to apply for CIIP</h2>
             <div className="how-to-apply">
               <ListGroup>
                 <ListGroup.Item>
@@ -148,6 +148,11 @@ export default class Reporter extends Component<Props> {
             </div>
           </Col>
         </Row>
+        <style>{`
+      h2 {
+        font-size: 1.25rem;
+      }
+    `}</style>
       </DefaultLayout>
     );
   }

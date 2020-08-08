@@ -122,9 +122,11 @@ exports[`Organisations should announce there are certification requests to view 
           className="search-dropdown"
           navbar={false}
         >
-          <CardTitle>
+          <h2
+            className="jsx-3491480756"
+          >
             Request access to apply for the CIIP on behalf of a Reporting Operation:
-          </CardTitle>
+          </h2>
           <Alert
             closeLabel="Close alert"
             show={true}
@@ -284,9 +286,11 @@ exports[`Organisations should render no organisations if the user has not reques
           className="search-dropdown"
           navbar={false}
         >
-          <CardTitle>
+          <h2
+            className="jsx-3491480756"
+          >
             Request access to apply for the CIIP on behalf of a Reporting Operation:
-          </CardTitle>
+          </h2>
           <Alert
             closeLabel="Close alert"
             show={true}
@@ -501,9 +505,11 @@ exports[`Organisations should render the user's requested organisations 1`] = `
           className="search-dropdown"
           navbar={false}
         >
-          <CardTitle>
+          <h2
+            className="jsx-3491480756"
+          >
             Request access to apply for the CIIP on behalf of a Reporting Operation:
-          </CardTitle>
+          </h2>
           <Alert
             closeLabel="Close alert"
             show={true}
