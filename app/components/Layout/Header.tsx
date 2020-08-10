@@ -32,7 +32,7 @@ const HeaderLayout = ({isLoggedIn = false, isRegistered = false, children}) => {
 
   return (
     <header>
-      <div>
+      <div className="nav-header">
         <nav>
           <div className="header-left">
             <Link href="/">
@@ -114,13 +114,13 @@ const HeaderLayout = ({isLoggedIn = false, isRegistered = false, children}) => {
           * is accessible behind hamburger menu instead of button links.
           */
 
-          header div {
+          .nav-header {
             background-color: #036;
             border-bottom: 2px solid #fcba19;
             padding: 10px;
             color: #fff;
           }
-          header h2 {
+          h2 {
             font-weight: normal;
             font-size: calc(1rem + 1vw);
             margin: 0 0.5em;

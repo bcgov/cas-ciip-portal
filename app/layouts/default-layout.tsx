@@ -40,16 +40,17 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
         {showSubheader && <Subheader />}
       </Header>
       <main>
-        <div className="page-title">
-          {title ? (
+        {title ? (
+          <div className="page-title">
             <Container className={width}>
               <h1>{title}</h1>
               {help && (
                 <Help title={help.title} helpMessage={help.helpMessage} />
               )}
             </Container>
-          ) : null}
-        </div>
+          </div>
+        ) : null}
+
         <Container id="page-content" className={`content ${width}`}>
           {children}
         </Container>
