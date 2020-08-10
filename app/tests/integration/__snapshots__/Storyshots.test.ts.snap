@@ -11,140 +11,141 @@ Array [
     }
   >
     <div
-      className="jsx-958227566 page-wrap"
+      className="jsx-73006980 page-wrap"
     >
       <header
-        className="jsx-3597025167"
+        className="jsx-2584110530"
       >
-        <nav
-          className="jsx-3597025167"
+        <div
+          className="jsx-2584110530 nav-header"
         >
-          <div
-            className="jsx-3597025167 header-left"
+          <nav
+            className="jsx-2584110530"
           >
-            <a
-              className="jsx-3597025167"
-              href="/"
-              onClick={[Function]}
-              onMouseEnter={[Function]}
-            >
-              <picture
-                className="jsx-3597025167"
-              >
-                <source
-                  className="jsx-3597025167"
-                  media="(max-width: 767.98px)"
-                  srcSet="/static/bcid-reverse.svg"
-                />
-                <img
-                  alt="logo for Province of British Columbia CleanBC"
-                  className="jsx-3597025167"
-                  src="/static/BCID_CleanBC_rev_tagline_colour.svg"
-                />
-              </picture>
-            </a>
-            <h2
-              className="jsx-3597025167"
-            >
-              CleanBC Industrial Incentive Program
-            </h2>
-            <button
-              aria-label="Menu toggle"
-              className="jsx-3597025167"
-              id="menu-toggle"
-              onClick={[Function]}
-              type="button"
-            >
-              <svg
-                aria-hidden="true"
-                className="svg-inline--fa fa-bars fa-w-14 fa-2x "
-                color="white"
-                data-icon="bars"
-                data-prefix="fas"
-                focusable="false"
-                role="img"
-                style={Object {}}
-                viewBox="0 0 448 512"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"
-                  fill="currentColor"
-                  style={Object {}}
-                />
-              </svg>
-            </button>
-          </div>
-          <ul
-            className="jsx-3597025167 header-right"
-            style={
-              Object {
-                "display": "flex",
-              }
-            }
-          >
-            <li
-              className="jsx-3597025167"
+            <div
+              className="jsx-2584110530 header-left"
             >
               <a
-                className="jsx-3597025167 nav-button"
+                className="jsx-2584110530"
                 href="/"
                 onClick={[Function]}
                 onMouseEnter={[Function]}
               >
-                Dashboard
-              </a>
-            </li>
-            <li
-              className="jsx-3597025167"
-            >
-              <a
-                className="jsx-3597025167 nav-button"
-                href="/user/profile"
-                onClick={[Function]}
-                onMouseEnter={[Function]}
-              >
-                Profile
-              </a>
-            </li>
-            <li
-              className="jsx-3597025167"
-            >
-              <form
-                action="/logout"
-                className=""
-                method="post"
-              >
-                <button
-                  className="jsx-3597025167 nav-button"
-                  type="submit"
+                <picture
+                  className="jsx-2584110530"
                 >
-                  Logout
-                </button>
-              </form>
-            </li>
-          </ul>
-        </nav>
+                  <source
+                    className="jsx-2584110530"
+                    media="(max-width: 767.98px)"
+                    srcSet="/static/bcid-reverse.svg"
+                  />
+                  <img
+                    alt="logo for Province of British Columbia CleanBC"
+                    className="jsx-2584110530"
+                    src="/static/BCID_CleanBC_rev_tagline_colour.svg"
+                  />
+                </picture>
+              </a>
+              <h2
+                className="jsx-2584110530"
+              >
+                CleanBC Industrial Incentive Program
+              </h2>
+              <button
+                aria-label="Menu toggle"
+                className="jsx-2584110530"
+                id="menu-toggle"
+                onClick={[Function]}
+                type="button"
+              >
+                <svg
+                  aria-hidden="true"
+                  className="svg-inline--fa fa-bars fa-w-14 fa-2x "
+                  color="white"
+                  data-icon="bars"
+                  data-prefix="fas"
+                  focusable="false"
+                  role="img"
+                  style={Object {}}
+                  viewBox="0 0 448 512"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"
+                    fill="currentColor"
+                    style={Object {}}
+                  />
+                </svg>
+              </button>
+            </div>
+            <ul
+              className="jsx-2584110530 header-right"
+              style={
+                Object {
+                  "display": "flex",
+                }
+              }
+            >
+              <li
+                className="jsx-2584110530"
+              >
+                <a
+                  className="jsx-2584110530 nav-button"
+                  href="/"
+                  onClick={[Function]}
+                  onMouseEnter={[Function]}
+                >
+                  Dashboard
+                </a>
+              </li>
+              <li
+                className="jsx-2584110530"
+              >
+                <a
+                  className="jsx-2584110530 nav-button"
+                  href="/user/profile"
+                  onClick={[Function]}
+                  onMouseEnter={[Function]}
+                >
+                  Profile
+                </a>
+              </li>
+              <li
+                className="jsx-2584110530"
+              >
+                <form
+                  action="/logout"
+                  className=""
+                  method="post"
+                >
+                  <button
+                    className="jsx-2584110530 nav-button"
+                    type="submit"
+                  >
+                    Logout
+                  </button>
+                </form>
+              </li>
+            </ul>
+          </nav>
+        </div>
       </header>
-      <div
-        aria-label="page title"
-        className="jsx-958227566 page-title"
-        role="region"
+      <main
+        className="jsx-73006980"
       >
         <div
-          className="narrow container"
+          className="jsx-73006980 page-title"
         >
-          <h1
-            className="jsx-958227566"
+          <div
+            className="narrow container"
           >
-            Administrator Dashboard
-          </h1>
+            <h1
+              className="jsx-73006980"
+            >
+              Administrator Dashboard
+            </h1>
+          </div>
         </div>
-      </div>
-      <div
-        className="jsx-958227566"
-        role="main"
-      >
         <div
           className="content narrow container"
           id="page-content"
@@ -397,7 +398,7 @@ Array [
             </div>
           </div>
         </div>
-      </div>
+      </main>
       <footer
         className="jsx-3795960356 footer"
       >
@@ -519,140 +520,141 @@ Array [
     }
   >
     <div
-      className="jsx-958227566 page-wrap"
+      className="jsx-73006980 page-wrap"
     >
       <header
-        className="jsx-3597025167"
+        className="jsx-2584110530"
       >
-        <nav
-          className="jsx-3597025167"
+        <div
+          className="jsx-2584110530 nav-header"
         >
-          <div
-            className="jsx-3597025167 header-left"
+          <nav
+            className="jsx-2584110530"
           >
-            <a
-              className="jsx-3597025167"
-              href="/"
-              onClick={[Function]}
-              onMouseEnter={[Function]}
-            >
-              <picture
-                className="jsx-3597025167"
-              >
-                <source
-                  className="jsx-3597025167"
-                  media="(max-width: 767.98px)"
-                  srcSet="/static/bcid-reverse.svg"
-                />
-                <img
-                  alt="logo for Province of British Columbia CleanBC"
-                  className="jsx-3597025167"
-                  src="/static/BCID_CleanBC_rev_tagline_colour.svg"
-                />
-              </picture>
-            </a>
-            <h2
-              className="jsx-3597025167"
-            >
-              CleanBC Industrial Incentive Program
-            </h2>
-            <button
-              aria-label="Menu toggle"
-              className="jsx-3597025167"
-              id="menu-toggle"
-              onClick={[Function]}
-              type="button"
-            >
-              <svg
-                aria-hidden="true"
-                className="svg-inline--fa fa-bars fa-w-14 fa-2x "
-                color="white"
-                data-icon="bars"
-                data-prefix="fas"
-                focusable="false"
-                role="img"
-                style={Object {}}
-                viewBox="0 0 448 512"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"
-                  fill="currentColor"
-                  style={Object {}}
-                />
-              </svg>
-            </button>
-          </div>
-          <ul
-            className="jsx-3597025167 header-right"
-            style={
-              Object {
-                "display": "flex",
-              }
-            }
-          >
-            <li
-              className="jsx-3597025167"
+            <div
+              className="jsx-2584110530 header-left"
             >
               <a
-                className="jsx-3597025167 nav-button"
+                className="jsx-2584110530"
                 href="/"
                 onClick={[Function]}
                 onMouseEnter={[Function]}
               >
-                Dashboard
-              </a>
-            </li>
-            <li
-              className="jsx-3597025167"
-            >
-              <a
-                className="jsx-3597025167 nav-button"
-                href="/user/profile"
-                onClick={[Function]}
-                onMouseEnter={[Function]}
-              >
-                Profile
-              </a>
-            </li>
-            <li
-              className="jsx-3597025167"
-            >
-              <form
-                action="/logout"
-                className=""
-                method="post"
-              >
-                <button
-                  className="jsx-3597025167 nav-button"
-                  type="submit"
+                <picture
+                  className="jsx-2584110530"
                 >
-                  Logout
-                </button>
-              </form>
-            </li>
-          </ul>
-        </nav>
+                  <source
+                    className="jsx-2584110530"
+                    media="(max-width: 767.98px)"
+                    srcSet="/static/bcid-reverse.svg"
+                  />
+                  <img
+                    alt="logo for Province of British Columbia CleanBC"
+                    className="jsx-2584110530"
+                    src="/static/BCID_CleanBC_rev_tagline_colour.svg"
+                  />
+                </picture>
+              </a>
+              <h2
+                className="jsx-2584110530"
+              >
+                CleanBC Industrial Incentive Program
+              </h2>
+              <button
+                aria-label="Menu toggle"
+                className="jsx-2584110530"
+                id="menu-toggle"
+                onClick={[Function]}
+                type="button"
+              >
+                <svg
+                  aria-hidden="true"
+                  className="svg-inline--fa fa-bars fa-w-14 fa-2x "
+                  color="white"
+                  data-icon="bars"
+                  data-prefix="fas"
+                  focusable="false"
+                  role="img"
+                  style={Object {}}
+                  viewBox="0 0 448 512"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"
+                    fill="currentColor"
+                    style={Object {}}
+                  />
+                </svg>
+              </button>
+            </div>
+            <ul
+              className="jsx-2584110530 header-right"
+              style={
+                Object {
+                  "display": "flex",
+                }
+              }
+            >
+              <li
+                className="jsx-2584110530"
+              >
+                <a
+                  className="jsx-2584110530 nav-button"
+                  href="/"
+                  onClick={[Function]}
+                  onMouseEnter={[Function]}
+                >
+                  Dashboard
+                </a>
+              </li>
+              <li
+                className="jsx-2584110530"
+              >
+                <a
+                  className="jsx-2584110530 nav-button"
+                  href="/user/profile"
+                  onClick={[Function]}
+                  onMouseEnter={[Function]}
+                >
+                  Profile
+                </a>
+              </li>
+              <li
+                className="jsx-2584110530"
+              >
+                <form
+                  action="/logout"
+                  className=""
+                  method="post"
+                >
+                  <button
+                    className="jsx-2584110530 nav-button"
+                    type="submit"
+                  >
+                    Logout
+                  </button>
+                </form>
+              </li>
+            </ul>
+          </nav>
+        </div>
       </header>
-      <div
-        aria-label="page title"
-        className="jsx-958227566 page-title"
-        role="region"
+      <main
+        className="jsx-73006980"
       >
         <div
-          className="narrow container"
+          className="jsx-73006980 page-title"
         >
-          <h1
-            className="jsx-958227566"
+          <div
+            className="narrow container"
           >
-            Registration
-          </h1>
+            <h1
+              className="jsx-73006980"
+            >
+              Registration
+            </h1>
+          </div>
         </div>
-      </div>
-      <div
-        className="jsx-958227566"
-        role="main"
-      >
         <div
           className="content narrow container"
           id="page-content"
@@ -889,7 +891,7 @@ Array [
             </form>
           </div>
         </div>
-      </div>
+      </main>
       <footer
         className="jsx-3795960356 footer"
       >
@@ -1011,179 +1013,180 @@ Array [
     }
   >
     <div
-      className="jsx-958227566 page-wrap"
+      className="jsx-73006980 page-wrap"
     >
       <header
-        className="jsx-3597025167"
+        className="jsx-2584110530"
       >
-        <nav
-          className="jsx-3597025167"
+        <div
+          className="jsx-2584110530 nav-header"
         >
-          <div
-            className="jsx-3597025167 header-left"
+          <nav
+            className="jsx-2584110530"
           >
-            <a
-              className="jsx-3597025167"
-              href="/"
-              onClick={[Function]}
-              onMouseEnter={[Function]}
-            >
-              <picture
-                className="jsx-3597025167"
-              >
-                <source
-                  className="jsx-3597025167"
-                  media="(max-width: 767.98px)"
-                  srcSet="/static/bcid-reverse.svg"
-                />
-                <img
-                  alt="logo for Province of British Columbia CleanBC"
-                  className="jsx-3597025167"
-                  src="/static/BCID_CleanBC_rev_tagline_colour.svg"
-                />
-              </picture>
-            </a>
-            <h2
-              className="jsx-3597025167"
-            >
-              CleanBC Industrial Incentive Program
-            </h2>
-            <button
-              aria-label="Menu toggle"
-              className="jsx-3597025167"
-              id="menu-toggle"
-              onClick={[Function]}
-              type="button"
-            >
-              <svg
-                aria-hidden="true"
-                className="svg-inline--fa fa-bars fa-w-14 fa-2x "
-                color="white"
-                data-icon="bars"
-                data-prefix="fas"
-                focusable="false"
-                role="img"
-                style={Object {}}
-                viewBox="0 0 448 512"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"
-                  fill="currentColor"
-                  style={Object {}}
-                />
-              </svg>
-            </button>
-          </div>
-          <ul
-            className="jsx-3597025167 header-right"
-            style={
-              Object {
-                "display": "flex",
-              }
-            }
-          >
-            <li
-              className="jsx-3597025167"
+            <div
+              className="jsx-2584110530 header-left"
             >
               <a
-                className="jsx-3597025167 nav-button"
+                className="jsx-2584110530"
                 href="/"
                 onClick={[Function]}
                 onMouseEnter={[Function]}
               >
-                Dashboard
-              </a>
-            </li>
-            <li
-              className="jsx-3597025167"
-            >
-              <a
-                className="jsx-3597025167 nav-button"
-                href="/user/profile"
-                onClick={[Function]}
-                onMouseEnter={[Function]}
-              >
-                Profile
-              </a>
-            </li>
-            <li
-              className="jsx-3597025167"
-            >
-              <form
-                action="/logout"
-                className=""
-                method="post"
-              >
-                <button
-                  className="jsx-3597025167 nav-button"
-                  type="submit"
+                <picture
+                  className="jsx-2584110530"
                 >
-                  Logout
-                </button>
-              </form>
-            </li>
-          </ul>
-        </nav>
-      </header>
-      <div>
-        <nav
-          className="jsx-1717546368 navigation-main"
-          id="navbar"
-        >
-          <div
-            className="jsx-1717546368 container"
-          >
+                  <source
+                    className="jsx-2584110530"
+                    media="(max-width: 767.98px)"
+                    srcSet="/static/bcid-reverse.svg"
+                  />
+                  <img
+                    alt="logo for Province of British Columbia CleanBC"
+                    className="jsx-2584110530"
+                    src="/static/BCID_CleanBC_rev_tagline_colour.svg"
+                  />
+                </picture>
+              </a>
+              <h2
+                className="jsx-2584110530"
+              >
+                CleanBC Industrial Incentive Program
+              </h2>
+              <button
+                aria-label="Menu toggle"
+                className="jsx-2584110530"
+                id="menu-toggle"
+                onClick={[Function]}
+                type="button"
+              >
+                <svg
+                  aria-hidden="true"
+                  className="svg-inline--fa fa-bars fa-w-14 fa-2x "
+                  color="white"
+                  data-icon="bars"
+                  data-prefix="fas"
+                  focusable="false"
+                  role="img"
+                  style={Object {}}
+                  viewBox="0 0 448 512"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"
+                    fill="currentColor"
+                    style={Object {}}
+                  />
+                </svg>
+              </button>
+            </div>
             <ul
-              className="jsx-1717546368"
+              className="jsx-2584110530 header-right"
+              style={
+                Object {
+                  "display": "flex",
+                }
+              }
             >
               <li
-                className="jsx-1717546368 active"
+                className="jsx-2584110530"
               >
                 <a
-                  className="jsx-1717546368"
-                  href="/reporter"
+                  className="jsx-2584110530 nav-button"
+                  href="/"
                   onClick={[Function]}
                   onMouseEnter={[Function]}
                 >
-                  My Dashboard
+                  Dashboard
                 </a>
               </li>
               <li
-                className="jsx-1717546368 "
+                className="jsx-2584110530"
               >
                 <a
-                  className="jsx-1717546368"
-                  href="/reporter/facilities"
+                  className="jsx-2584110530 nav-button"
+                  href="/user/profile"
                   onClick={[Function]}
                   onMouseEnter={[Function]}
                 >
-                  My Applications
+                  Profile
                 </a>
+              </li>
+              <li
+                className="jsx-2584110530"
+              >
+                <form
+                  action="/logout"
+                  className=""
+                  method="post"
+                >
+                  <button
+                    className="jsx-2584110530 nav-button"
+                    type="submit"
+                  >
+                    Logout
+                  </button>
+                </form>
               </li>
             </ul>
-          </div>
-        </nav>
-      </div>
-      <div
-        aria-label="page title"
-        className="jsx-958227566 page-title"
-        role="region"
+          </nav>
+        </div>
+        <div>
+          <nav
+            className="jsx-1717546368 navigation-main"
+            id="navbar"
+          >
+            <div
+              className="jsx-1717546368 container"
+            >
+              <ul
+                className="jsx-1717546368"
+              >
+                <li
+                  className="jsx-1717546368 active"
+                >
+                  <a
+                    className="jsx-1717546368"
+                    href="/reporter"
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                  >
+                    My Dashboard
+                  </a>
+                </li>
+                <li
+                  className="jsx-1717546368 "
+                >
+                  <a
+                    className="jsx-1717546368"
+                    href="/reporter/facilities"
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                  >
+                    My Applications
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+      </header>
+      <main
+        className="jsx-73006980"
       >
         <div
-          className="narrow container"
+          className="jsx-73006980 page-title"
         >
-          <h1
-            className="jsx-958227566"
+          <div
+            className="narrow container"
           >
-            My Operators
-          </h1>
+            <h1
+              className="jsx-73006980"
+            >
+              My Operators
+            </h1>
+          </div>
         </div>
-      </div>
-      <div
-        className="jsx-958227566"
-        role="main"
-      >
         <div
           className="content narrow container"
           id="page-content"
@@ -1553,7 +1556,7 @@ Array [
             </div>
           </div>
         </div>
-      </div>
+      </main>
       <footer
         className="jsx-3795960356 footer"
       >
@@ -1675,140 +1678,141 @@ Array [
     }
   >
     <div
-      className="jsx-958227566 page-wrap"
+      className="jsx-73006980 page-wrap"
     >
       <header
-        className="jsx-3597025167"
+        className="jsx-2584110530"
       >
-        <nav
-          className="jsx-3597025167"
+        <div
+          className="jsx-2584110530 nav-header"
         >
-          <div
-            className="jsx-3597025167 header-left"
+          <nav
+            className="jsx-2584110530"
           >
-            <a
-              className="jsx-3597025167"
-              href="/"
-              onClick={[Function]}
-              onMouseEnter={[Function]}
-            >
-              <picture
-                className="jsx-3597025167"
-              >
-                <source
-                  className="jsx-3597025167"
-                  media="(max-width: 767.98px)"
-                  srcSet="/static/bcid-reverse.svg"
-                />
-                <img
-                  alt="logo for Province of British Columbia CleanBC"
-                  className="jsx-3597025167"
-                  src="/static/BCID_CleanBC_rev_tagline_colour.svg"
-                />
-              </picture>
-            </a>
-            <h2
-              className="jsx-3597025167"
-            >
-              CleanBC Industrial Incentive Program
-            </h2>
-            <button
-              aria-label="Menu toggle"
-              className="jsx-3597025167"
-              id="menu-toggle"
-              onClick={[Function]}
-              type="button"
-            >
-              <svg
-                aria-hidden="true"
-                className="svg-inline--fa fa-bars fa-w-14 fa-2x "
-                color="white"
-                data-icon="bars"
-                data-prefix="fas"
-                focusable="false"
-                role="img"
-                style={Object {}}
-                viewBox="0 0 448 512"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"
-                  fill="currentColor"
-                  style={Object {}}
-                />
-              </svg>
-            </button>
-          </div>
-          <ul
-            className="jsx-3597025167 header-right"
-            style={
-              Object {
-                "display": "flex",
-              }
-            }
-          >
-            <li
-              className="jsx-3597025167"
+            <div
+              className="jsx-2584110530 header-left"
             >
               <a
-                className="jsx-3597025167 nav-button"
+                className="jsx-2584110530"
                 href="/"
                 onClick={[Function]}
                 onMouseEnter={[Function]}
               >
-                Dashboard
-              </a>
-            </li>
-            <li
-              className="jsx-3597025167"
-            >
-              <a
-                className="jsx-3597025167 nav-button"
-                href="/user/profile"
-                onClick={[Function]}
-                onMouseEnter={[Function]}
-              >
-                Profile
-              </a>
-            </li>
-            <li
-              className="jsx-3597025167"
-            >
-              <form
-                action="/logout"
-                className=""
-                method="post"
-              >
-                <button
-                  className="jsx-3597025167 nav-button"
-                  type="submit"
+                <picture
+                  className="jsx-2584110530"
                 >
-                  Logout
-                </button>
-              </form>
-            </li>
-          </ul>
-        </nav>
+                  <source
+                    className="jsx-2584110530"
+                    media="(max-width: 767.98px)"
+                    srcSet="/static/bcid-reverse.svg"
+                  />
+                  <img
+                    alt="logo for Province of British Columbia CleanBC"
+                    className="jsx-2584110530"
+                    src="/static/BCID_CleanBC_rev_tagline_colour.svg"
+                  />
+                </picture>
+              </a>
+              <h2
+                className="jsx-2584110530"
+              >
+                CleanBC Industrial Incentive Program
+              </h2>
+              <button
+                aria-label="Menu toggle"
+                className="jsx-2584110530"
+                id="menu-toggle"
+                onClick={[Function]}
+                type="button"
+              >
+                <svg
+                  aria-hidden="true"
+                  className="svg-inline--fa fa-bars fa-w-14 fa-2x "
+                  color="white"
+                  data-icon="bars"
+                  data-prefix="fas"
+                  focusable="false"
+                  role="img"
+                  style={Object {}}
+                  viewBox="0 0 448 512"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"
+                    fill="currentColor"
+                    style={Object {}}
+                  />
+                </svg>
+              </button>
+            </div>
+            <ul
+              className="jsx-2584110530 header-right"
+              style={
+                Object {
+                  "display": "flex",
+                }
+              }
+            >
+              <li
+                className="jsx-2584110530"
+              >
+                <a
+                  className="jsx-2584110530 nav-button"
+                  href="/"
+                  onClick={[Function]}
+                  onMouseEnter={[Function]}
+                >
+                  Dashboard
+                </a>
+              </li>
+              <li
+                className="jsx-2584110530"
+              >
+                <a
+                  className="jsx-2584110530 nav-button"
+                  href="/user/profile"
+                  onClick={[Function]}
+                  onMouseEnter={[Function]}
+                >
+                  Profile
+                </a>
+              </li>
+              <li
+                className="jsx-2584110530"
+              >
+                <form
+                  action="/logout"
+                  className=""
+                  method="post"
+                >
+                  <button
+                    className="jsx-2584110530 nav-button"
+                    type="submit"
+                  >
+                    Logout
+                  </button>
+                </form>
+              </li>
+            </ul>
+          </nav>
+        </div>
       </header>
-      <div
-        aria-label="page title"
-        className="jsx-958227566 page-title"
-        role="region"
+      <main
+        className="jsx-73006980"
       >
         <div
-          className="narrow container"
+          className="jsx-73006980 page-title"
         >
-          <h1
-            className="jsx-958227566"
+          <div
+            className="narrow container"
           >
-            User List
-          </h1>
+            <h1
+              className="jsx-73006980"
+            >
+              User List
+            </h1>
+          </div>
         </div>
-      </div>
-      <div
-        className="jsx-958227566"
-        role="main"
-      >
         <div
           className="content narrow container"
           id="page-content"
@@ -1894,7 +1898,7 @@ Array [
             </table>
           </div>
         </div>
-      </div>
+      </main>
       <footer
         className="jsx-3795960356 footer"
       >
@@ -2016,124 +2020,127 @@ Array [
     }
   >
     <div
-      className="jsx-958227566 page-wrap"
+      className="jsx-73006980 page-wrap"
     >
       <header
-        className="jsx-3597025167"
+        className="jsx-2584110530"
       >
-        <nav
-          className="jsx-3597025167"
+        <div
+          className="jsx-2584110530 nav-header"
         >
-          <div
-            className="jsx-3597025167 header-left"
+          <nav
+            className="jsx-2584110530"
           >
-            <a
-              className="jsx-3597025167"
-              href="/"
-              onClick={[Function]}
-              onMouseEnter={[Function]}
-            >
-              <picture
-                className="jsx-3597025167"
-              >
-                <source
-                  className="jsx-3597025167"
-                  media="(max-width: 767.98px)"
-                  srcSet="/static/bcid-reverse.svg"
-                />
-                <img
-                  alt="logo for Province of British Columbia CleanBC"
-                  className="jsx-3597025167"
-                  src="/static/BCID_CleanBC_rev_tagline_colour.svg"
-                />
-              </picture>
-            </a>
-            <h2
-              className="jsx-3597025167"
-            >
-              CleanBC Industrial Incentive Program
-            </h2>
-            <button
-              aria-label="Menu toggle"
-              className="jsx-3597025167"
-              id="menu-toggle"
-              onClick={[Function]}
-              type="button"
-            >
-              <svg
-                aria-hidden="true"
-                className="svg-inline--fa fa-bars fa-w-14 fa-2x "
-                color="white"
-                data-icon="bars"
-                data-prefix="fas"
-                focusable="false"
-                role="img"
-                style={Object {}}
-                viewBox="0 0 448 512"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"
-                  fill="currentColor"
-                  style={Object {}}
-                />
-              </svg>
-            </button>
-          </div>
-          <ul
-            className="jsx-3597025167 header-right"
-            style={
-              Object {
-                "display": "flex",
-              }
-            }
-          >
-            <li
-              className="jsx-3597025167"
+            <div
+              className="jsx-2584110530 header-left"
             >
               <a
-                className="jsx-3597025167 nav-button"
+                className="jsx-2584110530"
                 href="/"
                 onClick={[Function]}
                 onMouseEnter={[Function]}
               >
-                Dashboard
-              </a>
-            </li>
-            <li
-              className="jsx-3597025167"
-            >
-              <a
-                className="jsx-3597025167 nav-button"
-                href="/user/profile"
-                onClick={[Function]}
-                onMouseEnter={[Function]}
-              >
-                Profile
-              </a>
-            </li>
-            <li
-              className="jsx-3597025167"
-            >
-              <form
-                action="/logout"
-                className=""
-                method="post"
-              >
-                <button
-                  className="jsx-3597025167 nav-button"
-                  type="submit"
+                <picture
+                  className="jsx-2584110530"
                 >
-                  Logout
-                </button>
-              </form>
-            </li>
-          </ul>
-        </nav>
+                  <source
+                    className="jsx-2584110530"
+                    media="(max-width: 767.98px)"
+                    srcSet="/static/bcid-reverse.svg"
+                  />
+                  <img
+                    alt="logo for Province of British Columbia CleanBC"
+                    className="jsx-2584110530"
+                    src="/static/BCID_CleanBC_rev_tagline_colour.svg"
+                  />
+                </picture>
+              </a>
+              <h2
+                className="jsx-2584110530"
+              >
+                CleanBC Industrial Incentive Program
+              </h2>
+              <button
+                aria-label="Menu toggle"
+                className="jsx-2584110530"
+                id="menu-toggle"
+                onClick={[Function]}
+                type="button"
+              >
+                <svg
+                  aria-hidden="true"
+                  className="svg-inline--fa fa-bars fa-w-14 fa-2x "
+                  color="white"
+                  data-icon="bars"
+                  data-prefix="fas"
+                  focusable="false"
+                  role="img"
+                  style={Object {}}
+                  viewBox="0 0 448 512"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"
+                    fill="currentColor"
+                    style={Object {}}
+                  />
+                </svg>
+              </button>
+            </div>
+            <ul
+              className="jsx-2584110530 header-right"
+              style={
+                Object {
+                  "display": "flex",
+                }
+              }
+            >
+              <li
+                className="jsx-2584110530"
+              >
+                <a
+                  className="jsx-2584110530 nav-button"
+                  href="/"
+                  onClick={[Function]}
+                  onMouseEnter={[Function]}
+                >
+                  Dashboard
+                </a>
+              </li>
+              <li
+                className="jsx-2584110530"
+              >
+                <a
+                  className="jsx-2584110530 nav-button"
+                  href="/user/profile"
+                  onClick={[Function]}
+                  onMouseEnter={[Function]}
+                >
+                  Profile
+                </a>
+              </li>
+              <li
+                className="jsx-2584110530"
+              >
+                <form
+                  action="/logout"
+                  className=""
+                  method="post"
+                >
+                  <button
+                    className="jsx-2584110530 nav-button"
+                    type="submit"
+                  >
+                    Logout
+                  </button>
+                </form>
+              </li>
+            </ul>
+          </nav>
+        </div>
       </header>
-      <div
-        className="jsx-958227566"
-        role="main"
+      <main
+        className="jsx-73006980"
       >
         <div
           className="content narrow container"
@@ -2233,7 +2240,7 @@ Array [
             </table>
           </div>
         </div>
-      </div>
+      </main>
       <footer
         className="jsx-3795960356 footer"
       >
