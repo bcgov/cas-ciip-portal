@@ -172,3 +172,4 @@ computed_columns/application_revision_ciip_incentive [computed_columns/applicati
 computed_columns/application_revision_ciip_incentive [computed_columns/application_revision_ciip_incentive@v1.4.0] 2020-08-06T18:43:10Z Dylan Leard <dylan@button.is> # Migration: remove raised exceptions from incentive function
 @v1.4.1 2020-08-06T23:40:58Z Dylan Leard <dylan@button.is> # release 1.4.1
 views/ciip_admin [tables/form_result] 2020-08-11T18:03:30Z Dylan Leard <dylan@button.is> # View for admin data collected from ciip
+computed_columns/application_revision_ciip_incentive [computed_columns/application_revision_ciip_incentive@v1.4.1] 2020-08-10T17:21:46Z Dylan Leard <dylan@button.is> # Migration: handle possible divide by zero
