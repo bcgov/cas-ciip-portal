@@ -7,7 +7,7 @@ import {faBars} from '@fortawesome/free-solid-svg-icons';
 
 const DESKTOP_BREAKPOINT_QUERY = '(min-width: 992px)';
 
-const HeaderLayout = ({isLoggedIn = false, isRegistered = false}) => {
+const HeaderLayout = ({isLoggedIn = false, isRegistered = false, children}) => {
   let mediaMatch;
   /**
    * Window isn't available at first for statically optimized pages like the 404 page:
@@ -32,78 +32,81 @@ const HeaderLayout = ({isLoggedIn = false, isRegistered = false}) => {
 
   return (
     <header>
-      <nav>
-        <div className="header-left">
-          <Link href="/">
-            <a>
-              <picture>
-                <source
-                  media="(max-width: 767.98px)"
-                  srcSet="/static/bcid-reverse.svg"
-                />
-                <img
-                  src="/static/BCID_CleanBC_rev_tagline_colour.svg"
-                  alt="logo for Province of British Columbia CleanBC"
-                />
-              </picture>
-            </a>
-          </Link>
-          <h2>CleanBC Industrial Incentive Program</h2>
-          <button
-            id="menu-toggle"
-            type="button"
-            aria-label="Menu toggle"
-            onClick={toggleNavMenu}
+      <div>
+        <nav>
+          <div className="header-left">
+            <Link href="/">
+              <a>
+                <picture>
+                  <source
+                    media="(max-width: 767.98px)"
+                    srcSet="/static/bcid-reverse.svg"
+                  />
+                  <img
+                    src="/static/BCID_CleanBC_rev_tagline_colour.svg"
+                    alt="logo for Province of British Columbia CleanBC"
+                  />
+                </picture>
+              </a>
+            </Link>
+            <h2>CleanBC Industrial Incentive Program</h2>
+            <button
+              id="menu-toggle"
+              type="button"
+              aria-label="Menu toggle"
+              onClick={toggleNavMenu}
+            >
+              <FontAwesomeIcon color="white" icon={faBars} size="2x" />
+            </button>
+          </div>
+          <ul
+            className="header-right"
+            style={navMenuHidden ? {display: 'none'} : {display: 'flex'}}
           >
-            <FontAwesomeIcon color="white" icon={faBars} size="2x" />
-          </button>
-        </div>
-        <ul
-          className="header-right"
-          style={navMenuHidden ? {display: 'none'} : {display: 'flex'}}
-        >
-          {isRegistered ? (
-            <li>
-              <Link href="/">
-                <a className="nav-button">Dashboard</a>
-              </Link>
-            </li>
-          ) : null}
-          {isLoggedIn ? (
-            <>
-              {isRegistered && (
-                <li>
-                  <Link href="/user/profile">
-                    <a className="nav-button">Profile</a>
-                  </Link>
-                </li>
-              )}
+            {isRegistered ? (
               <li>
-                <Form action="/logout" method="post">
-                  <button type="submit" className="nav-button">
-                    Logout
-                  </button>
-                </Form>
-              </li>
-            </>
-          ) : (
-            <>
-              <li>
-                <Link href="/register">
-                  <a className="nav-button">Register</a>
+                <Link href="/">
+                  <a className="nav-button">Dashboard</a>
                 </Link>
               </li>
-              <li>
-                <LoginButton>
-                  <button className="nav-button" type="submit">
-                    Login
-                  </button>
-                </LoginButton>
-              </li>
-            </>
-          )}
-        </ul>
-      </nav>
+            ) : null}
+            {isLoggedIn ? (
+              <>
+                {isRegistered && (
+                  <li>
+                    <Link href="/user/profile">
+                      <a className="nav-button">Profile</a>
+                    </Link>
+                  </li>
+                )}
+                <li>
+                  <Form action="/logout" method="post">
+                    <button type="submit" className="nav-button">
+                      Logout
+                    </button>
+                  </Form>
+                </li>
+              </>
+            ) : (
+              <>
+                <li>
+                  <Link href="/register">
+                    <a className="nav-button">Register</a>
+                  </Link>
+                </li>
+                <li>
+                  <LoginButton>
+                    <button className="nav-button" type="submit">
+                      Login
+                    </button>
+                  </LoginButton>
+                </li>
+              </>
+            )}
+          </ul>
+        </nav>
+      </div>
+      {children}
       <style jsx>
         {`
           /* Mobile-first styles:
@@ -111,7 +114,7 @@ const HeaderLayout = ({isLoggedIn = false, isRegistered = false}) => {
           * is accessible behind hamburger menu instead of button links.
           */
 
-          header {
+          header div {
             background-color: #036;
             border-bottom: 2px solid #fcba19;
             padding: 10px;

@@ -35,16 +35,21 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
       <Header
         isLoggedIn={Boolean(session)}
         isRegistered={Boolean(session?.ciipUserBySub)}
-      />
-      <main>
+      >
         {SITEWIDE_NOTICE && <SiteNoticeBanner content={SITEWIDE_NOTICE} />}
         {showSubheader && <Subheader />}
-        {title ? (
-          <Container className={width}>
-            <h1>{title}</h1>
-            {help && <Help title={help.title} helpMessage={help.helpMessage} />}
-          </Container>
-        ) : null}
+      </Header>
+      <main>
+        <div className="page-title">
+          {title ? (
+            <Container className={width}>
+              <h1>{title}</h1>
+              {help && (
+                <Help title={help.title} helpMessage={help.helpMessage} />
+              )}
+            </Container>
+          ) : null}
+        </div>
         <Container id="page-content" className={`content ${width}`}>
           {children}
         </Container>
