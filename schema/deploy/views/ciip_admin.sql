@@ -25,19 +25,19 @@ begin;
        (x.operator_data ->> 'naics')::varchar(1000) as naics,
        (x.operator_data ->> 'tradeName')::varchar(1000) as operator_trade_name,
        (x.operator_data ->> 'bcCorporateRegistryNumber')::varchar(1000) as bc_corporate_registry_number,
-       ((x.operator_data ->> 'mailingAddress')::json ->> 'city') as operator_city,
-       ((x.operator_data ->> 'mailingAddress')::json ->> 'province') as operator_province,
-       ((x.operator_data ->> 'mailingAddress')::json ->> 'postalCode') as operator_postal_code,
-       ((x.operator_data ->> 'mailingAddress')::json ->> 'streetAddress') as operator_street_address,
+       ((x.operator_data ->> 'mailingAddress')::json ->> 'city')::varchar(1000) as operator_city,
+       ((x.operator_data ->> 'mailingAddress')::json ->> 'province')::varchar(1000) as operator_province,
+       ((x.operator_data ->> 'mailingAddress')::json ->> 'postalCode')::varchar(1000) as operator_postal_code,
+       ((x.operator_data ->> 'mailingAddress')::json ->> 'streetAddress')::varchar(1000) as operator_street_address,
        (x.operational_representative_data ->> 'email')::varchar(1000) as operational_representative_email,
        (x.operational_representative_data ->> 'phone')::varchar(1000) as operational_representative_phone,
        (x.operational_representative_data ->> 'lastName')::varchar(1000) as operational_representative_last_name,
        (x.operational_representative_data ->> 'firstName')::varchar(1000) as operational_representative_first_name,
        (x.operational_representative_data ->> 'position')::varchar(1000) as operational_representative_position,
-       ((x.operational_representative_data ->> 'mailingAddress')::json ->> 'city') as operational_representative_city,
-       ((x.operational_representative_data ->> 'mailingAddress')::json ->> 'province') as operational_representative_province,
-       ((x.operational_representative_data ->> 'mailingAddress')::json ->> 'postalCode') as operational_representative_postal_code,
-       ((x.operational_representative_data ->> 'mailingAddress')::json ->> 'streetAddress') as operational_representative_steet_address
+       ((x.operational_representative_data ->> 'mailingAddress')::json ->> 'city')::varchar(1000) as operational_representative_city,
+       ((x.operational_representative_data ->> 'mailingAddress')::json ->> 'province')::varchar(1000) as operational_representative_province,
+       ((x.operational_representative_data ->> 'mailingAddress')::json ->> 'postalCode')::varchar(1000) as operational_representative_postal_code,
+       ((x.operational_representative_data ->> 'mailingAddress')::json ->> 'streetAddress')::varchar(1000) as operational_representative_street_address
     from x
  );
 
