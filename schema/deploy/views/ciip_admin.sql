@@ -44,5 +44,28 @@ begin;
 grant select on table ggircs_portal.ciip_admin to ciip_administrator, ciip_analyst;
 
 comment on view ggircs_portal.ciip_admin is E'@omit\n The view for admin data reported in the application';
+comment on column ggircs_portal.ciip_admin.application_id is 'The application id';
+comment on column ggircs_portal.ciip_admin.version_number is 'The application revision number';
+comment on column ggircs_portal.ciip_admin.bcghgid is 'The facility bcghgid';
+comment on column ggircs_portal.ciip_admin.facility_name is 'The name of the facility';
+comment on column ggircs_portal.ciip_admin.facility_type is 'The type of the facility';
+comment on column ggircs_portal.ciip_admin.operator_name is 'The name of the operator';
+comment on column ggircs_portal.ciip_admin.naics is 'The operators naics code';
+comment on column ggircs_portal.ciip_admin.operator_trade_name is 'The operators trade name';
+comment on column ggircs_portal.ciip_admin.bc_corporate_registry_number is 'The operators bc corporate registry number';
+comment on column ggircs_portal.ciip_admin.operator_city is 'The operators city';
+comment on column ggircs_portal.ciip_admin.operator_province is 'The operators province';
+comment on column ggircs_portal.ciip_admin.operator_postal_code is 'The operators postal code';
+comment on column ggircs_portal.ciip_admin.operator_street_address is 'The operators street address';
+comment on column ggircs_portal.ciip_admin.operational_representative_email is 'The operational representatives email address';
+comment on column ggircs_portal.ciip_admin.operational_representative_phone is 'The operational representatives phone number';
+comment on column ggircs_portal.ciip_admin.operational_representative_last_name is 'The operational representatives last name';
+comment on column ggircs_portal.ciip_admin.operational_representative_first_name is 'The operational representatives first name';
+comment on column ggircs_portal.ciip_admin.operational_representative_position is 'The operational representatives position';
+comment on column ggircs_portal.ciip_admin.operational_representative_city is 'The operational representatives city';
+comment on column ggircs_portal.ciip_admin.operational_representative_province is 'The operational representatives province';
+comment on column ggircs_portal.ciip_admin.operational_representative_postal_code is 'The operational representatives postal code';
+comment on column ggircs_portal.ciip_admin.operational_representative_street_address is 'The operational representatives street address';
+
 
 commit;
