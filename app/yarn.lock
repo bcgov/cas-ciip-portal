@@ -9508,7 +9508,7 @@ happo-cypress@^1.7.3:
     node-fetch "^2.6.0"
     parse-srcset "^1.0.2"
 
-happo.io@^5.6.2:
+happo.io@^5.6.1:
   version "5.6.2"
   resolved "https://registry.yarnpkg.com/happo.io/-/happo.io-5.6.2.tgz#fa29f30676ebf0dca81c73ae59fe9cbcf242b3ed"
   integrity sha512-yQyVF7Ce5pGDonqROahbEyJysUGuAE5qVcdm+Ye2aqtHbB4kaZN52ur/CfePwQloU4agrVaQ+woNya1liTvS4A==
