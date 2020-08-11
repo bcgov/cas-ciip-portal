@@ -55,7 +55,13 @@ const EmissionGasFields: React.FunctionComponent<FieldProps> = ({
               lineHeight: '17px'
             }}
           >
-            <small>{formData.gasDescription}</small>
+            <label
+              htmlFor={`${idSchema?.$id}_annualEmission`}
+              // Inline style counteracts an overreaching `.hidden-title label` rule set in EmissionSourceFields
+              style={{display: 'inline'}}
+            >
+              <small>{formData.gasDescription}</small>
+            </label>
           </Col>
         </Col>
         <Col md={3}>

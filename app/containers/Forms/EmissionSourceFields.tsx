@@ -34,13 +34,16 @@ const EmissionSourceFields: React.FunctionComponent<FieldProps> = ({
         .unit {
           text-align: center;
         }
-        h5,
+        h2,
         .unit {
           color: #036;
           font-weight: 500;
         }
         h2 {
           font-size: 1.25rem;
+          margin-bottom: 0.5rem;
+        }
+        .unit {
           margin-bottom: 0.5rem;
         }
       `}</style>
