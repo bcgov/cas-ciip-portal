@@ -227,6 +227,30 @@ select is(
   'incentive ratio is bound by minimum and maximum'
 );
 
+-- Report a product with 0 productAmount & productEmissions values
+update ggircs_portal.form_result
+set form_result = '[
+  {
+    "productRowId": 3,
+    "productAmount": 0,
+    "productEmissions": 0
+  }
+]'
+where application_id = 1 and version_number = 1 and form_id = 4;
+
+select lives_ok(
+  $$
+    with record as (
+      select row(application_revision.*)::ggircs_portal.application_revision
+      from ggircs_portal.application_revision where application_id = 1 and version_number = 1
+    )
+    select product_emissions
+    from ggircs_portal.application_revision_ciip_incentive(
+      (select * from record)
+    ) where product_id = 3
+  $$,
+  'function does not crash when sum of all emissions'::text
+);
 
 -- Report a product with no allocation of emissions which requires "Purchased Electricity" to be reported
 update ggircs_portal.form_result
