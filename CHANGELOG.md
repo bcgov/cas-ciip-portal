@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.0](https://github.com/bcgov/cas-ciip-portal/compare/v1.4.1...v1.5.0) (2020-08-12)
+
+
+### Features
+
+* add ciip_admin view ([8b65c9e](https://github.com/bcgov/cas-ciip-portal/commit/8b65c9e1f8710a1e28bdc6837a283357fa8d7564))
+* add comments to view ([574bba3](https://github.com/bcgov/cas-ciip-portal/commit/574bba30fd56bd3a0538cb20c8ee75bc3ad87ecb))
+
+
+### Bug Fixes
+
+* Correct @storybook/addon-info version ([a8cedcd](https://github.com/bcgov/cas-ciip-portal/commit/a8cedcdd3f782fc8b9cea12dd7ee244e04ae1f8e))
+* Ensure serialize-javascript pkg resolves to secured version ([31e5158](https://github.com/bcgov/cas-ciip-portal/commit/31e5158f3169490f8dce3ff89edf1d8522217920))
+* handle edge case all products in an application have 0 emissions ([e99bb84](https://github.com/bcgov/cas-ciip-portal/commit/e99bb84e909d370df5de4782ca4eb97f52338053))
+* undo change to immutable file & replace with sqitch-rework ([7e35a13](https://github.com/bcgov/cas-ciip-portal/commit/7e35a1352d308c7ec7622884611c232d49049b5e))
+* Update Storybook to next major version to fix npm audit ([ca7ad59](https://github.com/bcgov/cas-ciip-portal/commit/ca7ad595f847621d540618c46c8db813840a5d30))
+
 ### [1.4.1](https://github.com/bcgov/cas-ciip-portal/compare/v1.4.0...v1.4.1) (2020-08-06)
 
 
