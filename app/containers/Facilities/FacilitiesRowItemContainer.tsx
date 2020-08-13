@@ -33,7 +33,7 @@ export const FacilitiesRowItemComponent: React.FunctionComponent<Props> = ({
 
   const pendingCertification =
     isPendingCertification && applicationRevisionStatus === 'DRAFT'
-      ? '(Pending Certification)'
+      ? ' (Pending Certification)'
       : null;
 
   return (
@@ -51,7 +51,8 @@ export const FacilitiesRowItemComponent: React.FunctionComponent<Props> = ({
             style={{width: '100%'}}
             variant={statusBadgeColor[applicationRevisionStatus]}
           >
-            {applicationRevisionStatus} {pendingCertification}
+            {applicationRevisionStatus}
+            {pendingCertification}
           </Badge>
         ) : (
           <>Application not started</>
