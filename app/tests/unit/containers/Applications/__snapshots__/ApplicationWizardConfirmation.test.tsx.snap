@@ -108,29 +108,44 @@ exports[`The Confirmation Component match the snapshot 1`] = `
             controlId="certifierEmail"
             md="4"
           >
+            <FormLabel
+              column={false}
+              srOnly={false}
+            >
+              Certifier Email Address:
+            </FormLabel>
             <FormControl
               name="email"
               onChange={[Function]}
               onKeyDown={[Function]}
-              placeholder="Certifier Email"
               type="email"
             />
           </FormGroup>
         </FormRow>
         <FormGroup>
-          <FormCheck
-            checked={true}
-            className="text-muted"
-            disabled={false}
-            inline={false}
-            isInvalid={false}
-            isValid={false}
-            label="Notify certifier via email that this application is ready for certification"
-            name="sendEmailChecked"
-            onChange={[Function]}
-            title=""
-            type="checkbox"
-          />
+          <FormLabel
+            column={false}
+            srOnly={false}
+            style={
+              Object {
+                "display": "inline-flex",
+              }
+            }
+          >
+            <FormCheck
+              checked={true}
+              className="text-muted"
+              disabled={false}
+              inline={false}
+              isInvalid={false}
+              isValid={false}
+              name="sendEmailChecked"
+              onChange={[Function]}
+              title=""
+              type="checkbox"
+            />
+            Notify certifier via email that this application is ready for certification
+          </FormLabel>
         </FormGroup>
         <Button
           active={false}
@@ -260,29 +275,44 @@ exports[`The Confirmation Component should render the override justification com
             controlId="certifierEmail"
             md="4"
           >
+            <FormLabel
+              column={false}
+              srOnly={false}
+            >
+              Certifier Email Address:
+            </FormLabel>
             <FormControl
               name="email"
               onChange={[Function]}
               onKeyDown={[Function]}
-              placeholder="Certifier Email"
               type="email"
             />
           </FormGroup>
         </FormRow>
         <FormGroup>
-          <FormCheck
-            checked={true}
-            className="text-muted"
-            disabled={false}
-            inline={false}
-            isInvalid={false}
-            isValid={false}
-            label="Notify certifier via email that this application is ready for certification"
-            name="sendEmailChecked"
-            onChange={[Function]}
-            title=""
-            type="checkbox"
-          />
+          <FormLabel
+            column={false}
+            srOnly={false}
+            style={
+              Object {
+                "display": "inline-flex",
+              }
+            }
+          >
+            <FormCheck
+              checked={true}
+              className="text-muted"
+              disabled={false}
+              inline={false}
+              isInvalid={false}
+              isValid={false}
+              name="sendEmailChecked"
+              onChange={[Function]}
+              title=""
+              type="checkbox"
+            />
+            Notify certifier via email that this application is ready for certification
+          </FormLabel>
         </FormGroup>
         <Button
           active={false}
@@ -412,29 +442,44 @@ exports[`The Confirmation Component should render the override justification com
             controlId="certifierEmail"
             md="4"
           >
+            <FormLabel
+              column={false}
+              srOnly={false}
+            >
+              Certifier Email Address:
+            </FormLabel>
             <FormControl
               name="email"
               onChange={[Function]}
               onKeyDown={[Function]}
-              placeholder="Certifier Email"
               type="email"
             />
           </FormGroup>
         </FormRow>
         <FormGroup>
-          <FormCheck
-            checked={true}
-            className="text-muted"
-            disabled={false}
-            inline={false}
-            isInvalid={false}
-            isValid={false}
-            label="Notify certifier via email that this application is ready for certification"
-            name="sendEmailChecked"
-            onChange={[Function]}
-            title=""
-            type="checkbox"
-          />
+          <FormLabel
+            column={false}
+            srOnly={false}
+            style={
+              Object {
+                "display": "inline-flex",
+              }
+            }
+          >
+            <FormCheck
+              checked={true}
+              className="text-muted"
+              disabled={false}
+              inline={false}
+              isInvalid={false}
+              isValid={false}
+              name="sendEmailChecked"
+              onChange={[Function]}
+              title=""
+              type="checkbox"
+            />
+            Notify certifier via email that this application is ready for certification
+          </FormLabel>
         </FormGroup>
         <Button
           active={false}
@@ -589,29 +634,44 @@ exports[`The Confirmation Component should show a "data has changed" dialogue wh
             controlId="certifierEmail"
             md="4"
           >
+            <FormLabel
+              column={false}
+              srOnly={false}
+            >
+              Certifier Email Address:
+            </FormLabel>
             <FormControl
               name="email"
               onChange={[Function]}
               onKeyDown={[Function]}
-              placeholder="Certifier Email"
               type="email"
             />
           </FormGroup>
         </FormRow>
         <FormGroup>
-          <FormCheck
-            checked={true}
-            className="text-muted"
-            disabled={false}
-            inline={false}
-            isInvalid={false}
-            isValid={false}
-            label="Notify certifier via email that this application is ready for certification"
-            name="sendEmailChecked"
-            onChange={[Function]}
-            title=""
-            type="checkbox"
-          />
+          <FormLabel
+            column={false}
+            srOnly={false}
+            style={
+              Object {
+                "display": "inline-flex",
+              }
+            }
+          >
+            <FormCheck
+              checked={true}
+              className="text-muted"
+              disabled={false}
+              inline={false}
+              isInvalid={false}
+              isValid={false}
+              name="sendEmailChecked"
+              onChange={[Function]}
+              title=""
+              type="checkbox"
+            />
+            Notify certifier via email that this application is ready for certification
+          </FormLabel>
         </FormGroup>
         <Button
           active={false}

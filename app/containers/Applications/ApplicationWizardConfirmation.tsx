@@ -168,24 +168,27 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
           <Form onSubmit={handleClickGenerateCertificationUrl}>
             <Form.Row>
               <Form.Group as={Col} md="4" controlId="certifierEmail">
+                <Form.Label>Certifier Email Address:</Form.Label>
                 <Form.Control
                   name="email"
                   type="email"
-                  placeholder="Certifier Email"
                   onKeyDown={checkEnableSubmitForCertification}
                   onChange={checkEnableSubmitForCertification}
                 />
               </Form.Group>
             </Form.Row>
             <Form.Group>
-              <Form.Check
-                checked={isChecked}
-                className="text-muted"
-                name="sendEmailChecked"
-                type="checkbox"
-                label="Notify certifier via email that this application is ready for certification"
-                onChange={() => toggleChecked(!isChecked)}
-              />
+              <Form.Label style={{display: 'inline-flex'}}>
+                <Form.Check
+                  checked={isChecked}
+                  className="text-muted"
+                  name="sendEmailChecked"
+                  type="checkbox"
+                  onChange={() => toggleChecked(!isChecked)}
+                />
+                Notify certifier via email that this application is ready for
+                certification
+              </Form.Label>
             </Form.Group>
             <Button
               variant="primary"
