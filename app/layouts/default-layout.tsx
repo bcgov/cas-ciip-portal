@@ -35,20 +35,26 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
       <Header
         isLoggedIn={Boolean(session)}
         isRegistered={Boolean(session?.ciipUserBySub)}
-      />
-      {SITEWIDE_NOTICE && <SiteNoticeBanner content={SITEWIDE_NOTICE} />}
-      {showSubheader && <Subheader />}
-      {title ? (
-        <div className="page-title">
-          <Container className={width}>
-            <h1>{title}</h1>
-            {help && <Help title={help.title} helpMessage={help.helpMessage} />}
-          </Container>
-        </div>
-      ) : null}
-      <Container id="page-content" className={`content ${width}`}>
-        {children}
-      </Container>
+      >
+        {SITEWIDE_NOTICE && <SiteNoticeBanner content={SITEWIDE_NOTICE} />}
+        {showSubheader && <Subheader />}
+      </Header>
+      <main>
+        {title ? (
+          <div className="page-title">
+            <Container className={width}>
+              <h1>{title}</h1>
+              {help && (
+                <Help title={help.title} helpMessage={help.helpMessage} />
+              )}
+            </Container>
+          </div>
+        ) : null}
+
+        <Container id="page-content" className={`content ${width}`}>
+          {children}
+        </Container>
+      </main>
       <Footer />
       <style jsx global>
         {`
@@ -57,6 +63,12 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
           #__next,
           .page-wrap {
             height: 100%;
+          }
+          a {
+            color: #0053b3;
+          }
+          .btn-link {
+            color: #0053b3;
           }
           .page-wrap {
             display: flex;

@@ -2,126 +2,130 @@
 
 exports[`It matches the last accepted Snapshot 1`] = `
 <header
-  className="jsx-3597025167"
+  className="jsx-2584110530"
 >
-  <nav
-    className="jsx-3597025167"
+  <div
+    className="jsx-2584110530 nav-header"
   >
-    <div
-      className="jsx-3597025167 header-left"
+    <nav
+      className="jsx-2584110530"
     >
-      <Link
-        href="/"
-      >
-        <a
-          className="jsx-3597025167"
-        >
-          <picture
-            className="jsx-3597025167"
-          >
-            <source
-              className="jsx-3597025167"
-              media="(max-width: 767.98px)"
-              srcSet="/static/bcid-reverse.svg"
-            />
-            <img
-              alt="logo for Province of British Columbia CleanBC"
-              className="jsx-3597025167"
-              src="/static/BCID_CleanBC_rev_tagline_colour.svg"
-            />
-          </picture>
-        </a>
-      </Link>
-      <h2
-        className="jsx-3597025167"
-      >
-        CleanBC Industrial Incentive Program
-      </h2>
-      <button
-        aria-label="Menu toggle"
-        className="jsx-3597025167"
-        id="menu-toggle"
-        onClick={[Function]}
-        type="button"
-      >
-        <FontAwesomeIcon
-          border={false}
-          className=""
-          color="white"
-          fixedWidth={false}
-          flip={null}
-          icon={
-            Object {
-              "icon": Array [
-                448,
-                512,
-                Array [],
-                "f0c9",
-                "M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z",
-              ],
-              "iconName": "bars",
-              "prefix": "fas",
-            }
-          }
-          inverse={false}
-          listItem={false}
-          mask={null}
-          pull={null}
-          pulse={false}
-          rotation={null}
-          size="2x"
-          spin={false}
-          swapOpacity={false}
-          symbol={false}
-          title=""
-          transform={null}
-        />
-      </button>
-    </div>
-    <ul
-      className="jsx-3597025167 header-right"
-      style={
-        Object {
-          "display": "flex",
-        }
-      }
-    >
-      <li
-        className="jsx-3597025167"
+      <div
+        className="jsx-2584110530 header-left"
       >
         <Link
-          href="/register"
+          href="/"
         >
           <a
-            className="jsx-3597025167 nav-button"
+            className="jsx-2584110530"
           >
-            Register
+            <picture
+              className="jsx-2584110530"
+            >
+              <source
+                className="jsx-2584110530"
+                media="(max-width: 767.98px)"
+                srcSet="/static/bcid-reverse.svg"
+              />
+              <img
+                alt="logo for Province of British Columbia CleanBC"
+                className="jsx-2584110530"
+                src="/static/BCID_CleanBC_rev_tagline_colour.svg"
+              />
+            </picture>
           </a>
         </Link>
-      </li>
-      <li
-        className="jsx-3597025167"
+        <h2
+          className="jsx-2584110530"
+        >
+          CleanBC Industrial Incentive Program
+        </h2>
+        <button
+          aria-label="Menu toggle"
+          className="jsx-2584110530"
+          id="menu-toggle"
+          onClick={[Function]}
+          type="button"
+        >
+          <FontAwesomeIcon
+            border={false}
+            className=""
+            color="white"
+            fixedWidth={false}
+            flip={null}
+            icon={
+              Object {
+                "icon": Array [
+                  448,
+                  512,
+                  Array [],
+                  "f0c9",
+                  "M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z",
+                ],
+                "iconName": "bars",
+                "prefix": "fas",
+              }
+            }
+            inverse={false}
+            listItem={false}
+            mask={null}
+            pull={null}
+            pulse={false}
+            rotation={null}
+            size="2x"
+            spin={false}
+            swapOpacity={false}
+            symbol={false}
+            title=""
+            transform={null}
+          />
+        </button>
+      </div>
+      <ul
+        className="jsx-2584110530 header-right"
+        style={
+          Object {
+            "display": "flex",
+          }
+        }
       >
-        <LoginForm>
-          <button
-            className="jsx-3597025167 nav-button"
-            type="submit"
+        <li
+          className="jsx-2584110530"
+        >
+          <Link
+            href="/register"
           >
-            Login
-          </button>
-        </LoginForm>
-      </li>
-    </ul>
-  </nav>
+            <a
+              className="jsx-2584110530 nav-button"
+            >
+              Register
+            </a>
+          </Link>
+        </li>
+        <li
+          className="jsx-2584110530"
+        >
+          <LoginForm>
+            <button
+              className="jsx-2584110530 nav-button"
+              type="submit"
+            >
+              Login
+            </button>
+          </LoginForm>
+        </li>
+      </ul>
+    </nav>
+  </div>
   <JSXStyle
     dynamic={
       Array [
         "(min-width: 992px)",
       ]
     }
-    id="1232402113"
+    id="1411061697"
   >
-    header.__jsx-style-dynamic-selector{background-color:#036;border-bottom:2px solid #fcba19;padding:10px;color:#fff;}header.__jsx-style-dynamic-selector h2.__jsx-style-dynamic-selector{font-weight:normal;font-size:calc(1rem + 1vw);margin:0 0.5em;text-align:center;}.header-left.__jsx-style-dynamic-selector{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;width:100%;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;}.header-left.__jsx-style-dynamic-selector img.__jsx-style-dynamic-selector{height:46px;}.header-right.__jsx-style-dynamic-selector{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:100%;text-align:right;margin:0;padding:0.8em 1em 0 0;}nav.__jsx-style-dynamic-selector{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}li.__jsx-style-dynamic-selector{list-style-type:none;}button.__jsx-style-dynamic-selector{background:none;border:none;}.nav-button.__jsx-style-dynamic-selector{color:#f8f9fa;display:inline-block;text-align:center;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;background-color:transparent;border:1px solid transparent;padding:0.375rem 0.75rem;font-size:1rem;border-radius:0.25rem;-webkit-transition:color 0.15s ease-in-out, background-color 0.15s ease-in-out,border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;transition:color 0.15s ease-in-out, background-color 0.15s ease-in-out,border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;}@media screen and (min-width: 992px){nav.__jsx-style-dynamic-selector{-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;padding:0 15px;}.header-left.__jsx-style-dynamic-selector{width:auto;}header.__jsx-style-dynamic-selector h2.__jsx-style-dynamic-selector{margin:0 0 0 18px;}button#menu-toggle.__jsx-style-dynamic-selector{display:none;}.header-right.__jsx-style-dynamic-selector{-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;width:auto;text-align:right;margin:0;padding:0;}.nav-button.__jsx-style-dynamic-selector{border-color:#f8f9fa;}li.__jsx-style-dynamic-selector{padding-left:12px;}}@media screen and (min-width:1092px){header.__jsx-style-dynamic-selector h2.__jsx-style-dynamic-selector{font-size:2rem;}}@media screen and (min-width:1200px){nav.__jsx-style-dynamic-selector{max-width:1140px;margin-left:auto;margin-right:auto;}}
+    .nav-header.__jsx-style-dynamic-selector{background-color:#036;border-bottom:2px solid #fcba19;padding:10px;color:#fff;}h2.__jsx-style-dynamic-selector{font-weight:normal;font-size:calc(1rem + 1vw);margin:0 0.5em;text-align:center;}.header-left.__jsx-style-dynamic-selector{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;width:100%;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;}.header-left.__jsx-style-dynamic-selector img.__jsx-style-dynamic-selector{height:46px;}.header-right.__jsx-style-dynamic-selector{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:100%;text-align:right;margin:0;padding:0.8em 1em 0 0;}nav.__jsx-style-dynamic-selector{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}li.__jsx-style-dynamic-selector{list-style-type:none;}button.__jsx-style-dynamic-selector{background:none;border:none;}.nav-button.__jsx-style-dynamic-selector{color:#f8f9fa;display:inline-block;text-align:center;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;background-color:transparent;border:1px solid transparent;padding:0.375rem 0.75rem;font-size:1rem;border-radius:0.25rem;-webkit-transition:color 0.15s ease-in-out, background-color 0.15s ease-in-out,border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;transition:color 0.15s ease-in-out, background-color 0.15s ease-in-out,border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;}@media screen and (min-width: 992px){nav.__jsx-style-dynamic-selector{-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;padding:0 15px;}.header-left.__jsx-style-dynamic-selector{width:auto;}header.__jsx-style-dynamic-selector h2.__jsx-style-dynamic-selector{margin:0 0 0 18px;}button#menu-toggle.__jsx-style-dynamic-selector{display:none;}.header-right.__jsx-style-dynamic-selector{-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;width:auto;text-align:right;margin:0;padding:0;}.nav-button.__jsx-style-dynamic-selector{border-color:#f8f9fa;}li.__jsx-style-dynamic-selector{padding-left:12px;}}@media screen and (min-width:1092px){header.__jsx-style-dynamic-selector h2.__jsx-style-dynamic-selector{font-size:2rem;}}@media screen and (min-width:1200px){nav.__jsx-style-dynamic-selector{max-width:1140px;margin-left:auto;margin-right:auto;}}
   </JSXStyle>
 </header>
 `;
