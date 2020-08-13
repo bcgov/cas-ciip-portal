@@ -81,7 +81,7 @@ export default createFragmentContainer(FacilitiesRowItemComponent, {
       applicationByApplicationId {
         latestDraftRevision {
           certificationUrl {
-            id
+            __typename
           }
         }
       }
