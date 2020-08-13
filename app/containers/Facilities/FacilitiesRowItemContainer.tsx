@@ -26,6 +26,15 @@ export const FacilitiesRowItemComponent: React.FunctionComponent<Props> = ({
   query
 }) => {
   const {applicationRevisionStatus} = facilitySearchResult;
+  const isPendingCertification = Boolean(
+    facilitySearchResult?.applicationByApplicationId?.latestDraftRevision
+      ?.certificationUrl
+  );
+
+  const pendingCertification =
+    isPendingCertification && applicationRevisionStatus === 'DRAFT'
+      ? '(Pending Certification)'
+      : null;
 
   return (
     <tr>
@@ -42,7 +51,7 @@ export const FacilitiesRowItemComponent: React.FunctionComponent<Props> = ({
             style={{width: '100%'}}
             variant={statusBadgeColor[applicationRevisionStatus]}
           >
-            {applicationRevisionStatus}
+            {applicationRevisionStatus} {pendingCertification}
           </Badge>
         ) : (
           <>Application not started</>
@@ -68,6 +77,13 @@ export default createFragmentContainer(FacilitiesRowItemComponent, {
       lastSwrsReportingYear
       applicationRevisionStatus
       organisationName
+      applicationByApplicationId {
+        latestDraftRevision {
+          certificationUrl {
+            id
+          }
+        }
+      }
     }
   `,
   query: graphql`
