@@ -17,6 +17,9 @@ describe('When logged in as a certifier(reporter)', () => {
     const applicationId = window.btoa('["applications", 1]');
     cy.visit('localhost:3004/certifier/certification-redirect?rowId=testpage');
     cy.get('#page-content');
+    cy.get('.page-wrap').happoScreenshot({
+      component: 'Certification Redirect'
+    });
     cy.contains('Continue').click();
     cy.visit(
       `http://localhost:3004/certifier/certify?applicationId=${applicationId}&version=1`
@@ -32,9 +35,21 @@ describe('When logged in as a certifier(reporter)', () => {
     cy.contains('Legal Disclaimer');
     cy.contains('View').click();
     cy.url().should('include', '/certifier/certify');
+    cy.get('.page-wrap').happoScreenshot({
+      component: 'Certification Page'
+    });
     cy.visit('/reporter');
     cy.get('.alert-link').contains('View all certification requests.').click();
     cy.url().should('include', '/certifier/requests');
+    cy.get('.page-wrap').happoScreenshot({
+      component: 'Batch certification page',
+      variant: 'Nothing selected'
+    });
+    cy.get('input[type="checkbox"]').first().click();
+    cy.get('.page-wrap').happoScreenshot({
+      component: 'Batch certification page',
+      variant: 'Multiple certification requests selected'
+    });
   });
 
   it('should redirect the certifier to /certify if they access the edit view by URL', () => {
