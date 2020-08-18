@@ -38,7 +38,7 @@ describe('When reviewing a submitted application as an analyst', () => {
     // Operator details
     cy.get('#root_operator_name').clear().type('John Smith');
     cy.get('#root_operator_tradeName').clear().type('Acme Co');
-    cy.get('#root_operator_naics').clear().type('112200');
+    cy.get('#root_operator_naics').clear().type('abcd');
     cy.get('#root_operator_bcCorporateRegistryNumber')
       .clear()
       .type('111112222233333');
@@ -77,20 +77,32 @@ describe('When reviewing a submitted application as an analyst', () => {
     // Facility details
     cy.get('#root_facility_facilityName').clear().type('Acme1');
     cy.get('#root_facility_facilityType').select('LFO');
-    cy.get('#root_facility_bcghgid').clear().type('11001100223');
+    cy.get('#root_facility_bcghgid').clear().type('abcd');
 
     cy.contains('Next Page').click();
+    cy.get('#root_facility_bcghgid +div .error-detail').contains(
+      'BCGHGID code should be numeric'
+    );
+    cy.get('#root_operator_naics +div .error-detail').contains(
+      'NAICS code should be numeric'
+    );
     cy.get(
       '#root_operator_bcCorporateRegistryNumber +div .error-detail'
     ).contains(
       'BC Corporate Registry number should be 1-3 letters followed by 7 digits'
     );
-
     cy.get(
       '#root_operationalRepresentative_mailingAddress_postalCode +div .error-detail'
     ).contains('Format should be A1A 1A1');
 
     cy.visit(summaryPageUrl);
+    // Format error messages for should be explicit
+    cy.get('.admin > .collapse').contains('NAICS code should be numeric');
+    cy.get('.admin > .collapse').contains(
+      'BC Corporate Registry number should be 1-3 letters followed by 7 digits'
+    );
+    cy.get('.admin > .collapse').contains('Format should be A1A 1A1');
+    cy.get('.admin > .collapse').contains('BCGHGID code should be numeric');
     cy.get('.admin.summary-card').happoScreenshot({
       component: 'Admin Summary Card',
       variant: 'with errors'
@@ -116,6 +128,8 @@ describe('When reviewing a submitted application as an analyst', () => {
     cy.visit(adminFormUrl);
 
     // Fix invalid data
+    cy.get('#root_facility_bcghgid').clear().type(11001100223);
+    cy.get('#root_operator_naics').clear().type('1234');
     cy.get('#root_operationalRepresentative_mailingAddress_postalCode')
       .clear()
       .type('A1A 1A1');
