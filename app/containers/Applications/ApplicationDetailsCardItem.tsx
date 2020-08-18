@@ -1,7 +1,7 @@
 import React, {useState, useMemo} from 'react';
 import {Button, Card, Collapse, Col, Row} from 'react-bootstrap';
 import {createFragmentContainer, graphql} from 'react-relay';
-import JsonSchemaForm, {FieldProps} from 'react-jsonschema-form';
+import JsonSchemaForm, {FieldProps, AjvError} from 'react-jsonschema-form';
 import {FormJson} from 'next-env';
 import {ApplicationDetailsCardItem_formResult} from '__generated__/ApplicationDetailsCardItem_formResult.graphql';
 import {ApplicationDetailsCardItem_query} from '__generated__/ApplicationDetailsCardItem_query.graphql';
@@ -11,6 +11,7 @@ import SummaryFormArrayFieldTemplate from 'containers/Forms/SummaryFormArrayFiel
 import SummaryFormFieldTemplate from 'containers/Forms/SummaryFormFieldTemplate';
 import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
 import ApplicationReviewContainer from './ApplicationReviewContainer';
+import {customTransformErrors} from 'functions/customTransformErrors';
 
 interface Props {
   // The form_result used by the fragment
@@ -48,6 +49,10 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
   const {formJsonByFormId} = formResult;
   const {formJson} = formJsonByFormId;
   const {schema, uiSchema, customFormats} = formJson as FormJson;
+
+  const transformErrors = (errors: AjvError[]) => {
+    return customTransformErrors(errors, formJson);
+  };
 
   // Expands or collapses the form_result card
   const [isOpen, setIsOpen] = useState(false);
@@ -184,6 +189,7 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
             showErrorList={false}
             fields={CUSTOM_FIELDS}
             customFormats={customFormats}
+            transformErrors={transformErrors}
             schema={schema}
             uiSchema={uiSchema}
             ObjectFieldTemplate={FormObjectFieldTemplate}
