@@ -74,6 +74,15 @@ export const CertificationSignature: React.FunctionComponent<Props> = ({
   return (
     <Container>
       <h3>Certifier Signature:</h3>
+      <p>
+        To create a digital signature, click, hold and drag your pointer within
+        the box to draw your signature. Use the Clear button below the signature
+        box to delete the signature and start again. Alternatively, you can
+        select &quot;Choose File&quot; to upload an existing signature image
+        file from your computer (.png, .jpg, .jpeg). When you&apos;re ready to
+        submit your certification, click &quot;Sign&quot; below the signature
+        box.
+      </p>
       <Row>
         <Col md={12}>
           <SignaturePad
