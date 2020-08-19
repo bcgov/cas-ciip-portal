@@ -41,13 +41,12 @@ function requestAccessToOrg() {
   cy.visit('/reporter');
   cy.get('#page-content');
   cy.get('button#org-dropdown').click();
-  cy.wait(500);
   cy.get('.dropdown-menu.show a.dropdown-item')
     .contains('MacDonalds Agriculture, Ltd.')
     .click();
-  cy.wait(500);
+  cy.get('.card h4').contains('MacDonalds Agriculture, Ltd.');
   cy.contains('Request Access').click();
-  cy.wait(500);
+  cy.get('td').contains('MacDonalds Agriculture, Ltd.');
 }
 
 describe('Organisation access request emails', () => {
@@ -58,7 +57,6 @@ describe('Organisation access request emails', () => {
       Cypress.env('TEST_REPORTER_PASSWORD')
     );
     cy.request('DELETE', 'localhost:8025/api/v1/messages');
-    cy.wait(500);
   });
   afterEach(() => {
     cy.logout();
