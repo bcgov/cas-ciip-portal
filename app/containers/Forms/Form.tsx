@@ -21,6 +21,7 @@ import FuelRowIdField from './FuelRowIdField';
 import NumberField from './NumberField';
 import EmissionCategoryRowIdField from './EmissionCategoryRowIdField';
 import ProblemReportField from 'components/Forms/ProblemReportField';
+import {customTransformErrors} from 'functions/customTransformErrors';
 
 interface Props {
   query: Form_query;
@@ -65,25 +66,10 @@ export const FormComponent: React.FunctionComponent<Props> = ({
     formResult
   } = result || {formJsonByFormId: {}};
   if (!result) return null;
-  const {
-    schema,
-    uiSchema,
-    customFormats,
-    customFormatsErrorMessages = {}
-  } = formJson as FormJson;
+  const {schema, uiSchema, customFormats} = formJson as FormJson;
 
   const transformErrors = (errors: AjvError[]) => {
-    // Ignore oneOf errors https://github.com/rjsf-team/react-jsonschema-form/issues/1263
-    return errors
-      .filter((error) => error.name !== 'oneOf')
-      .map((error) => {
-        if (error.name !== 'format') return error;
-        if (!customFormatsErrorMessages[error.params.format]) return error;
-        return {
-          ...error,
-          message: customFormatsErrorMessages[error.params.format]
-        };
-      });
+    return customTransformErrors(errors, formJson);
   };
 
   const onError = () => {

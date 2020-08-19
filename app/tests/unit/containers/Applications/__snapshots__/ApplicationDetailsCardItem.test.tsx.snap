@@ -106,6 +106,7 @@ exports[`ApplicationDetailsCardItemComponent should render the individual summar
           }
         }
         showErrorList={false}
+        transformErrors={[Function]}
         uiSchema={Object {}}
       />
     </CardBody>
