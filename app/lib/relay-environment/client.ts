@@ -31,7 +31,7 @@ export default {
         debounceMutationMiddleware(),
         batchMiddleware({
           batchUrl: async () => Promise.resolve('/graphql'),
-          batchTimeout: 1000,
+          batchTimeout: 10,
           allowMutations: true
         })
       ]),
