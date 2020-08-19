@@ -11,7 +11,7 @@ let debouncedMutation: {
   timeoutId: number;
 } = null;
 
-const debounceMutationMiddleware = (timeout = 1000): Middleware => {
+const debounceMutationMiddleware = (timeout = 250): Middleware => {
   return (next) => async (req) => {
     if (!(req instanceof RelayNetworkLayerRequest) || !req.isMutation()) {
       if (debouncedMutation) {
