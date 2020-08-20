@@ -94,6 +94,7 @@ exports[`ApplicationDetailsCardItemComponent should render the individual summar
           }
         }
         formData={Object {}}
+        idPrefix="fuel-usage"
         liveOmit={true}
         liveValidate={false}
         noHtml5Validate={false}

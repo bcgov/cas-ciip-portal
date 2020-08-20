@@ -146,6 +146,9 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
   // Override submit button for each form with an empty fragment
   // eslint-disable-next-line react/jsx-no-useless-fragment
   const buttonOverride = <></>;
+  const formIdPrefix = `${formJsonByFormId.name
+    .toLowerCase()
+    .replace(' ', '-')}`;
   return (
     <Card
       style={{width: '100%', marginBottom: '10px'}}
@@ -191,6 +194,7 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
             customFormats={customFormats}
             transformErrors={transformErrors}
             schema={schema}
+            idPrefix={formIdPrefix}
             uiSchema={uiSchema}
             ObjectFieldTemplate={FormObjectFieldTemplate}
             formData={review ? diffTo.node.formResult : formResult.formResult}

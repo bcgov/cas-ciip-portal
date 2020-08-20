@@ -185,7 +185,7 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
               }
               formData={
                 Object {
-                  "adminComments": "culpa",
+                  "comments": "culpa",
                   "facility": Object {
                     "bcghgid": "23",
                     "facilityName": "culpa",
@@ -271,8 +271,7 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                     },
                   },
                   "properties": Object {
-                    "adminComments": Object {
-                      "title": "comments",
+                    "comments": Object {
                       "type": "string",
                     },
                     "facility": Object {
@@ -387,7 +386,7 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
               tagName="VIEW"
               uiSchema={
                 Object {
-                  "adminComments": Object {
+                  "comments": Object {
                     "ui:col-md": 12,
                     "ui:field": "ProblemReportField",
                     "ui:options": Object {
@@ -454,7 +453,7 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                     ],
                   },
                   "ui:order": Array [
-                    "adminComments",
+                    "comments",
                     "operator",
                     "operationalRepresentative",
                     "facility",
@@ -529,7 +528,7 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
               }
               formData={
                 Object {
-                  "emissionComments": "est dolor",
+                  "comments": "est dolor",
                   "sourceTypes": Array [
                     Object {
                       "gases": Array [
@@ -655,8 +654,7 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                     },
                   },
                   "properties": Object {
-                    "emissionComments": Object {
-                      "title": "comments",
+                    "comments": Object {
                       "type": "string",
                     },
                     "sourceTypes": Object {
@@ -675,7 +673,7 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
               tagName="VIEW"
               uiSchema={
                 Object {
-                  "emissionComments": Object {
+                  "comments": Object {
                     "ui:col-md": 12,
                     "ui:field": "ProblemReportField",
                     "ui:options": Object {
@@ -715,7 +713,7 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                   "ui:className": "emission-form no-col-padding",
                   "ui:field": "emission",
                   "ui:order": Array [
-                    "emissionComments",
+                    "comments",
                     "sourceTypes",
                   ],
                 }
@@ -789,22 +787,22 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
               formData={
                 Array [
                   Object {
+                    "comments": "consequat Ut Duis",
                     "emissionCategoryRowId": -60000000,
-                    "fuelComments": "consequat Ut Duis",
                     "fuelRowId": -40000000,
                     "fuelUnits": "in qui",
                     "quantity": 0,
                   },
                   Object {
+                    "comments": "culpa",
                     "emissionCategoryRowId": -40000000,
-                    "fuelComments": "culpa",
                     "fuelRowId": -20000000,
                     "fuelUnits": "est dolor",
                     "quantity": -80000000,
                   },
                   Object {
+                    "comments": "in qui",
                     "emissionCategoryRowId": -20000000,
-                    "fuelComments": "in qui",
                     "fuelRowId": 0,
                     "fuelUnits": "mollit eu esse",
                     "quantity": -60000000,
@@ -821,13 +819,12 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                   "definitions": Object {
                     "fuel": Object {
                       "properties": Object {
+                        "comments": Object {
+                          "type": "string",
+                        },
                         "emissionCategoryRowId": Object {
                           "title": "Emission Category",
                           "type": "number",
-                        },
-                        "fuelComments": Object {
-                          "title": "comments",
-                          "type": "string",
                         },
                         "fuelRowId": Object {
                           "title": "Fuel Name",
@@ -861,15 +858,15 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
               uiSchema={
                 Object {
                   "items": Object {
-                    "emissionCategoryRowId": Object {
-                      "ui:field": "emissionCategoryRowId",
-                    },
-                    "fuelComments": Object {
+                    "comments": Object {
                       "ui:col-md": 12,
                       "ui:field": "ProblemReportField",
                       "ui:options": Object {
                         "label": false,
                       },
+                    },
+                    "emissionCategoryRowId": Object {
+                      "ui:field": "emissionCategoryRowId",
                     },
                     "fuelRowId": Object {
                       "ui:col-md": 6,
@@ -885,7 +882,7 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                     },
                     "ui:field": "fuel",
                     "ui:order": Array [
-                      "fuelComments",
+                      "comments",
                       "fuelRowId",
                       "quantity",
                       "fuelUnits",
@@ -965,25 +962,25 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
               formData={
                 Array [
                   Object {
+                    "comments": "mollit eu esse",
                     "isEnergyProduct": false,
                     "productAmount": 50000000,
                     "productRowId": -60000000,
                     "productUnits": "in qui",
-                    "productionComments": "mollit eu esse",
                     "requiresEmissionAllocation": false,
                     "requiresProductAmount": true,
                   },
                   Object {
+                    "comments": "consequat Ut Duis",
                     "isEnergyProduct": false,
                     "productRowId": -40000000,
-                    "productionComments": "consequat Ut Duis",
                     "requiresEmissionAllocation": false,
                     "requiresProductAmount": false,
                   },
                   Object {
+                    "comments": "culpa",
                     "isEnergyProduct": false,
                     "productRowId": -20000000,
-                    "productionComments": "culpa",
                     "requiresEmissionAllocation": false,
                     "requiresProductAmount": false,
                   },
@@ -1057,16 +1054,15 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                         },
                       },
                       "properties": Object {
+                        "comments": Object {
+                          "type": "string",
+                        },
                         "isEnergyProduct": Object {
                           "type": "boolean",
                         },
                         "productRowId": Object {
                           "title": "Product or Service",
                           "type": "integer",
-                        },
-                        "productionComments": Object {
-                          "title": "comments",
-                          "type": "string",
                         },
                         "requiresEmissionAllocation": Object {
                           "type": "boolean",
@@ -1094,6 +1090,13 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
               uiSchema={
                 Object {
                   "items": Object {
+                    "comments": Object {
+                      "ui:col-md": 12,
+                      "ui:field": "ProblemReportField",
+                      "ui:options": Object {
+                        "label": false,
+                      },
+                    },
                     "isEnergyProduct": Object {
                       "ui:widget": "hidden",
                     },
@@ -1114,13 +1117,6 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                       "ui:col-md": 4,
                       "ui:readonly": true,
                     },
-                    "productionComments": Object {
-                      "ui:col-md": 12,
-                      "ui:field": "ProblemReportField",
-                      "ui:options": Object {
-                        "label": false,
-                      },
-                    },
                     "requiresEmissionAllocation": Object {
                       "ui:widget": "hidden",
                     },
@@ -1129,7 +1125,7 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                     },
                     "ui:field": "product",
                     "ui:order": Array [
-                      "productionComments",
+                      "comments",
                       "productRowId",
                       "productAmount",
                       "productUnits",

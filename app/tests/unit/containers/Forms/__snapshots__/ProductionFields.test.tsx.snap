@@ -173,16 +173,15 @@ exports[`The ProductionFields Component with archived product should match the s
           },
         },
         "properties": Object {
+          "comments": Object {
+            "type": "string",
+          },
           "isEnergyProduct": Object {
             "type": "boolean",
           },
           "productRowId": Object {
             "title": "Product or Service",
             "type": "integer",
-          },
-          "productionComments": Object {
-            "title": "comments",
-            "type": "string",
           },
           "requiresEmissionAllocation": Object {
             "type": "boolean",
@@ -202,6 +201,13 @@ exports[`The ProductionFields Component with archived product should match the s
     uiSchema={
       Object {
         "items": Object {
+          "comments": Object {
+            "ui:col-md": 12,
+            "ui:field": "ProblemReportField",
+            "ui:options": Object {
+              "label": false,
+            },
+          },
           "isEnergyProduct": Object {
             "ui:widget": "hidden",
           },
@@ -222,13 +228,6 @@ exports[`The ProductionFields Component with archived product should match the s
             "ui:col-md": 4,
             "ui:readonly": true,
           },
-          "productionComments": Object {
-            "ui:col-md": 12,
-            "ui:field": "ProblemReportField",
-            "ui:options": Object {
-              "label": false,
-            },
-          },
           "requiresEmissionAllocation": Object {
             "ui:widget": "hidden",
           },
@@ -237,7 +236,7 @@ exports[`The ProductionFields Component with archived product should match the s
           },
           "ui:field": "product",
           "ui:order": Array [
-            "productionComments",
+            "comments",
             "productRowId",
             "productAmount",
             "productUnits",
@@ -400,16 +399,15 @@ exports[`The ProductionFields Component with published product should match the 
         },
       },
       "properties": Object {
+        "comments": Object {
+          "type": "string",
+        },
         "isEnergyProduct": Object {
           "type": "boolean",
         },
         "productRowId": Object {
           "title": "Product or Service",
           "type": "integer",
-        },
-        "productionComments": Object {
-          "title": "comments",
-          "type": "string",
         },
         "requiresEmissionAllocation": Object {
           "type": "boolean",
@@ -429,6 +427,13 @@ exports[`The ProductionFields Component with published product should match the 
   uiSchema={
     Object {
       "items": Object {
+        "comments": Object {
+          "ui:col-md": 12,
+          "ui:field": "ProblemReportField",
+          "ui:options": Object {
+            "label": false,
+          },
+        },
         "isEnergyProduct": Object {
           "ui:widget": "hidden",
         },
@@ -449,13 +454,6 @@ exports[`The ProductionFields Component with published product should match the 
           "ui:col-md": 4,
           "ui:readonly": true,
         },
-        "productionComments": Object {
-          "ui:col-md": 12,
-          "ui:field": "ProblemReportField",
-          "ui:options": Object {
-            "label": false,
-          },
-        },
         "requiresEmissionAllocation": Object {
           "ui:widget": "hidden",
         },
@@ -464,7 +462,7 @@ exports[`The ProductionFields Component with published product should match the 
         },
         "ui:field": "product",
         "ui:order": Array [
-          "productionComments",
+          "comments",
           "productRowId",
           "productAmount",
           "productUnits",
