@@ -1,0 +1,344 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchTableLayout should render an empty result message if no data is returned from the search query 1`] = `
+<Fragment>
+  <Container
+    fluid={false}
+  >
+    <Row
+      noGutters={false}
+    >
+      <Col
+        className="no-pad"
+        md={
+          Object {
+            "span": 12,
+          }
+        }
+      >
+        <SearchBox
+          displayNameToColumnNameMap={
+            Object {
+              "": null,
+              "Email": "email_address",
+              "First Name": "first_name",
+              "Last Name": "last_name",
+              "Operator": "operator_name",
+              "Status": "status",
+              "User ID": "user_id",
+            }
+          }
+          dropdownSortItems={
+            Array [
+              "User ID",
+              "First Name",
+              "Last Name",
+              "Email",
+              "Operator",
+              "Status",
+              "",
+            ]
+          }
+          handleEvent={[MockFunction]}
+        />
+      </Col>
+    </Row>
+  </Container>
+  <ForwardRef
+    bordered={true}
+    className="search-table"
+    hover={true}
+    striped={true}
+  >
+    <thead
+      className="jsx-3042046352"
+    >
+      <tr
+        className="jsx-3042046352"
+      >
+        <SortableTableHeader
+          headerVariables={
+            Object {
+              "columnName": "user_id",
+              "displayName": "User ID",
+            }
+          }
+          key="User ID"
+          sort={[MockFunction]}
+        />
+        <SortableTableHeader
+          headerVariables={
+            Object {
+              "columnName": "first_name",
+              "displayName": "First Name",
+            }
+          }
+          key="First Name"
+          sort={[MockFunction]}
+        />
+        <SortableTableHeader
+          headerVariables={
+            Object {
+              "columnName": "last_name",
+              "displayName": "Last Name",
+            }
+          }
+          key="Last Name"
+          sort={[MockFunction]}
+        />
+        <SortableTableHeader
+          headerVariables={
+            Object {
+              "columnName": "email_address",
+              "displayName": "Email",
+            }
+          }
+          key="Email"
+          sort={[MockFunction]}
+        />
+        <SortableTableHeader
+          headerVariables={
+            Object {
+              "columnName": "operator_name",
+              "displayName": "Operator",
+            }
+          }
+          key="Operator"
+          sort={[MockFunction]}
+        />
+        <SortableTableHeader
+          headerVariables={
+            Object {
+              "columnName": "status",
+              "displayName": "Status",
+            }
+          }
+          key="Status"
+          sort={[MockFunction]}
+        />
+        <SortableTableHeader
+          headerVariables={
+            Object {
+              "columnName": null,
+              "displayName": "",
+            }
+          }
+          key=""
+          sort={[MockFunction]}
+        />
+      </tr>
+    </thead>
+    <Component />
+  </ForwardRef>
+  <Col
+    md={
+      Object {
+        "offset": 3,
+        "span": 6,
+      }
+    }
+  >
+    <span
+      id="no-search-results"
+    >
+      <Alert
+        closeLabel="Close alert"
+        show={true}
+        transition={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "defaultProps": Object {
+              "appear": false,
+              "in": false,
+              "mountOnEnter": false,
+              "timeout": 300,
+              "unmountOnExit": false,
+            },
+            "displayName": "Fade",
+            "render": [Function],
+          }
+        }
+        variant="secondary"
+      >
+        <p>
+          "No matching results to show."
+        </p>
+        <p>
+          Clicking 'Reset' will clear your search parameters.
+        </p>
+      </Alert>
+      <br />
+    </span>
+  </Col>
+  <JSXStyle
+    id="3042046352"
+  >
+    .search-table{text-align:center;}.master-select{background:#003366;color:white;min-width:6em;position:relative;}.master-select label{margin-bottom:0;width:100%;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;position:absolute;top:0;right:0;bottom:0;left:0;}.search-table.loading td{opacity:0;pointer-events:none;}.search-table.loading tbody{position:relative;}.search-table.loading tbody::after{width:2rem;height:2rem;vertical-align:text-bottom;background-color:black;border-radius:50%;opacity:0;content:'';position:absolute;top:50%;left:50%;-webkit-animation:spinner-grow 0.75s linear infinite;animation:spinner-grow 0.75s linear infinite;}#no-search-results{text-align:center;}
+  </JSXStyle>
+</Fragment>
+`;
+
+exports[`SearchTableLayout should render the proper headers 1`] = `
+<Fragment>
+  <Container
+    fluid={false}
+  >
+    <Row
+      noGutters={false}
+    >
+      <Col
+        className="no-pad"
+        md={
+          Object {
+            "span": 12,
+          }
+        }
+      >
+        <SearchBox
+          displayNameToColumnNameMap={
+            Object {
+              "": null,
+              "Email": "email_address",
+              "First Name": "first_name",
+              "Last Name": "last_name",
+              "Operator": "operator_name",
+              "Status": "status",
+              "User ID": "user_id",
+            }
+          }
+          dropdownSortItems={
+            Array [
+              "User ID",
+              "First Name",
+              "Last Name",
+              "Email",
+              "Operator",
+              "Status",
+              "",
+            ]
+          }
+          handleEvent={[MockFunction]}
+        />
+      </Col>
+    </Row>
+  </Container>
+  <ForwardRef
+    bordered={true}
+    className="search-table"
+    hover={true}
+    striped={true}
+  >
+    <thead
+      className="jsx-3042046352"
+    >
+      <tr
+        className="jsx-3042046352"
+      >
+        <SortableTableHeader
+          headerVariables={
+            Object {
+              "columnName": "user_id",
+              "displayName": "User ID",
+            }
+          }
+          key="User ID"
+          sort={[MockFunction]}
+        />
+        <SortableTableHeader
+          headerVariables={
+            Object {
+              "columnName": "first_name",
+              "displayName": "First Name",
+            }
+          }
+          key="First Name"
+          sort={[MockFunction]}
+        />
+        <SortableTableHeader
+          headerVariables={
+            Object {
+              "columnName": "last_name",
+              "displayName": "Last Name",
+            }
+          }
+          key="Last Name"
+          sort={[MockFunction]}
+        />
+        <SortableTableHeader
+          headerVariables={
+            Object {
+              "columnName": "email_address",
+              "displayName": "Email",
+            }
+          }
+          key="Email"
+          sort={[MockFunction]}
+        />
+        <SortableTableHeader
+          headerVariables={
+            Object {
+              "columnName": "operator_name",
+              "displayName": "Operator",
+            }
+          }
+          key="Operator"
+          sort={[MockFunction]}
+        />
+        <SortableTableHeader
+          headerVariables={
+            Object {
+              "columnName": "status",
+              "displayName": "Status",
+            }
+          }
+          key="Status"
+          sort={[MockFunction]}
+        />
+        <SortableTableHeader
+          headerVariables={
+            Object {
+              "columnName": null,
+              "displayName": "",
+            }
+          }
+          key=""
+          sort={[MockFunction]}
+        />
+      </tr>
+    </thead>
+    <tbody>
+      <OrganisationRequestsTableRowComponent
+        key="abc"
+        userOrganisation={
+          Object {
+            "ciipUserByUserId": Object {
+              "emailAddress": "c",
+              "firstName": "a",
+              "lastName": "b",
+            },
+            "id": "abc",
+            "organisationByOrganisationId": Object {
+              "operatorName": "a",
+            },
+            "status": null,
+            "userId": null,
+          }
+        }
+      />
+    </tbody>
+  </ForwardRef>
+  <Col
+    md={
+      Object {
+        "offset": 3,
+        "span": 6,
+      }
+    }
+  />
+  <JSXStyle
+    id="3042046352"
+  >
+    .search-table{text-align:center;}.master-select{background:#003366;color:white;min-width:6em;position:relative;}.master-select label{margin-bottom:0;width:100%;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;position:absolute;top:0;right:0;bottom:0;left:0;}.search-table.loading td{opacity:0;pointer-events:none;}.search-table.loading tbody{position:relative;}.search-table.loading tbody::after{width:2rem;height:2rem;vertical-align:text-bottom;background-color:black;border-radius:50%;opacity:0;content:'';position:absolute;top:50%;left:50%;-webkit-animation:spinner-grow 0.75s linear infinite;animation:spinner-grow 0.75s linear infinite;}#no-search-results{text-align:center;}
+  </JSXStyle>
+</Fragment>
+`;
