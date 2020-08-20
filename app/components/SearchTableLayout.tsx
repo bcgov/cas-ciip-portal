@@ -1,5 +1,5 @@
 import React from 'react';
-import {Container, Row, Col, Table} from 'react-bootstrap';
+import {Container, Row, Col, Table, Alert} from 'react-bootstrap';
 import SortableTableHeader from 'components/SortableTableHeader';
 import SearchBox from 'components/SearchBox';
 interface Props {
@@ -21,6 +21,17 @@ export const SearchTableLayoutComponent: React.FunctionComponent<Props> = (
     body,
     isLoading
   } = props;
+
+  const noSearchResults =
+    body.props.children.length === 0 ? (
+      <span id="no-search-results">
+        <Alert variant="secondary">
+          <p>&quot;No matching results to show.&quot;</p>
+          <p>Clicking &apos;Reset&apos; will clear your search parameters.</p>
+        </Alert>
+        <br />
+      </span>
+    ) : null;
 
   return (
     <>
@@ -70,52 +81,56 @@ export const SearchTableLayoutComponent: React.FunctionComponent<Props> = (
           </tr>
         </thead>
         {body}
-        <style jsx global>{`
-          .search-table {
-            text-align: center;
-          }
-          .master-select {
-            background: #003366;
-            color: white;
-            min-width: 6em;
-            position: relative;
-          }
-          .master-select label {
-            margin-bottom: 0;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-          }
-          .search-table.loading td {
-            opacity: 0;
-            pointer-events: none;
-          }
-
-          .search-table.loading tbody {
-            position: relative;
-          }
-          .search-table.loading tbody::after {
-            width: 2rem;
-            height: 2rem;
-            vertical-align: text-bottom;
-            background-color: black;
-            border-radius: 50%;
-            opacity: 0;
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            animation: spinner-grow 0.75s linear infinite;
-          }
-        `}</style>
       </Table>
+      <Col md={{span: 6, offset: 3}}>{noSearchResults}</Col>
+      <style jsx global>{`
+        .search-table {
+          text-align: center;
+        }
+        .master-select {
+          background: #003366;
+          color: white;
+          min-width: 6em;
+          position: relative;
+        }
+        .master-select label {
+          margin-bottom: 0;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+        }
+        .search-table.loading td {
+          opacity: 0;
+          pointer-events: none;
+        }
+
+        .search-table.loading tbody {
+          position: relative;
+        }
+        .search-table.loading tbody::after {
+          width: 2rem;
+          height: 2rem;
+          vertical-align: text-bottom;
+          background-color: black;
+          border-radius: 50%;
+          opacity: 0;
+          content: '';
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          animation: spinner-grow 0.75s linear infinite;
+        }
+        #no-search-results {
+          text-align: center;
+        }
+      `}</style>
     </>
   );
 };
