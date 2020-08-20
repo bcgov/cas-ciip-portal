@@ -1,0 +1,268 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FacilitiesRowItem should match the previous snapshot 1`] = `
+<tr>
+  <td>
+    org
+  </td>
+  <td>
+    fac
+  </td>
+  <td>
+    EIO
+  </td>
+  <td>
+    123
+  </td>
+  <td>
+    2019
+  </td>
+  <td>
+     
+    <Badge
+      pill={true}
+      style={
+        Object {
+          "width": "100%",
+        }
+      }
+      variant="info"
+    >
+      SUBMITTED
+    </Badge>
+  </td>
+  <td>
+    <Relay(ApplyButton)
+      applyButtonDetails={
+        Object {
+          " $fragmentRefs": Object {
+            "ApplyButtonContainer_applyButtonDetails": true,
+          },
+          " $refType": "FacilitiesRowItemContainer_facilitySearchResult",
+          "applicationByApplicationId": Object {
+            "latestDraftRevision": Object {
+              "certificationUrl": Object {
+                "id": "abc",
+              },
+            },
+          },
+          "applicationRevisionStatus": "SUBMITTED",
+          "facilityBcghgid": "123",
+          "facilityName": "fac",
+          "facilityType": "EIO",
+          "lastSwrsReportingYear": 2019,
+          "organisationName": "org",
+        }
+      }
+      query={
+        Object {
+          " $fragmentRefs": Object {
+            "ApplyButtonContainer_query": true,
+          },
+          " $refType": "FacilitiesRowItemContainer_query",
+        }
+      }
+    />
+  </td>
+</tr>
+`;
+
+exports[`FacilitiesRowItem should not show Pending Certification in the status if the application is in draft but a certificationUrl does not exist 1`] = `
+<tr>
+  <td>
+    org
+  </td>
+  <td>
+    fac
+  </td>
+  <td>
+    EIO
+  </td>
+  <td>
+    123
+  </td>
+  <td>
+    2019
+  </td>
+  <td>
+     
+    <Badge
+      pill={true}
+      style={
+        Object {
+          "width": "100%",
+        }
+      }
+      variant="warning"
+    >
+      DRAFT
+    </Badge>
+  </td>
+  <td>
+    <Relay(ApplyButton)
+      applyButtonDetails={
+        Object {
+          " $fragmentRefs": Object {
+            "ApplyButtonContainer_applyButtonDetails": true,
+          },
+          " $refType": "FacilitiesRowItemContainer_facilitySearchResult",
+          "applicationByApplicationId": Object {
+            "latestDraftRevision": Object {
+              "certificationUrl": null,
+            },
+          },
+          "applicationRevisionStatus": "DRAFT",
+          "facilityBcghgid": "123",
+          "facilityName": "fac",
+          "facilityType": "EIO",
+          "lastSwrsReportingYear": 2019,
+          "organisationName": "org",
+        }
+      }
+      query={
+        Object {
+          " $fragmentRefs": Object {
+            "ApplyButtonContainer_query": true,
+          },
+          " $refType": "FacilitiesRowItemContainer_query",
+        }
+      }
+    />
+  </td>
+</tr>
+`;
+
+exports[`FacilitiesRowItem should not show Pending Certification in the status if the application is not in draft state and a certificationUrl exists 1`] = `
+<tr>
+  <td>
+    org
+  </td>
+  <td>
+    fac
+  </td>
+  <td>
+    EIO
+  </td>
+  <td>
+    123
+  </td>
+  <td>
+    2019
+  </td>
+  <td>
+     
+    <Badge
+      pill={true}
+      style={
+        Object {
+          "width": "100%",
+        }
+      }
+      variant="success"
+    >
+      APPROVED
+    </Badge>
+  </td>
+  <td>
+    <Relay(ApplyButton)
+      applyButtonDetails={
+        Object {
+          " $fragmentRefs": Object {
+            "ApplyButtonContainer_applyButtonDetails": true,
+          },
+          " $refType": "FacilitiesRowItemContainer_facilitySearchResult",
+          "applicationByApplicationId": Object {
+            "latestDraftRevision": Object {
+              "certificationUrl": Object {
+                "id": "abc",
+              },
+            },
+          },
+          "applicationRevisionStatus": "APPROVED",
+          "facilityBcghgid": "123",
+          "facilityName": "fac",
+          "facilityType": "EIO",
+          "lastSwrsReportingYear": 2019,
+          "organisationName": "org",
+        }
+      }
+      query={
+        Object {
+          " $fragmentRefs": Object {
+            "ApplyButtonContainer_query": true,
+          },
+          " $refType": "FacilitiesRowItemContainer_query",
+        }
+      }
+    />
+  </td>
+</tr>
+`;
+
+exports[`FacilitiesRowItem should show Pending Certification in the status if the application is in draft and a certificationUrl exists 1`] = `
+<tr>
+  <td>
+    org
+  </td>
+  <td>
+    fac
+  </td>
+  <td>
+    EIO
+  </td>
+  <td>
+    123
+  </td>
+  <td>
+    2019
+  </td>
+  <td>
+     
+    <Badge
+      pill={true}
+      style={
+        Object {
+          "width": "100%",
+        }
+      }
+      variant="warning"
+    >
+      DRAFT
+       (Pending Certification)
+    </Badge>
+  </td>
+  <td>
+    <Relay(ApplyButton)
+      applyButtonDetails={
+        Object {
+          " $fragmentRefs": Object {
+            "ApplyButtonContainer_applyButtonDetails": true,
+          },
+          " $refType": "FacilitiesRowItemContainer_facilitySearchResult",
+          "applicationByApplicationId": Object {
+            "latestDraftRevision": Object {
+              "certificationUrl": Object {
+                "id": "abc",
+              },
+            },
+          },
+          "applicationRevisionStatus": "DRAFT",
+          "facilityBcghgid": "123",
+          "facilityName": "fac",
+          "facilityType": "EIO",
+          "lastSwrsReportingYear": 2019,
+          "organisationName": "org",
+        }
+      }
+      query={
+        Object {
+          " $fragmentRefs": Object {
+            "ApplyButtonContainer_query": true,
+          },
+          " $refType": "FacilitiesRowItemContainer_query",
+        }
+      }
+    />
+  </td>
+</tr>
+`;
