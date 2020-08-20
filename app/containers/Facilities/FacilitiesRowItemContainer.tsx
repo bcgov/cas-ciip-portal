@@ -26,13 +26,13 @@ export const FacilitiesRowItemComponent: React.FunctionComponent<Props> = ({
   query
 }) => {
   const {applicationRevisionStatus} = facilitySearchResult;
-  const isPendingCertification = Boolean(
+  const hasCertificationUrl = Boolean(
     facilitySearchResult?.applicationByApplicationId?.latestDraftRevision
       ?.certificationUrl
   );
 
   const pendingCertification =
-    isPendingCertification && applicationRevisionStatus === 'DRAFT'
+    hasCertificationUrl && applicationRevisionStatus === 'DRAFT'
       ? ' (Pending Certification)'
       : null;
 
