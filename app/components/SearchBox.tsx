@@ -34,10 +34,12 @@ const SearchBox: React.FunctionComponent<Props> = ({
     type: 'object',
     properties: {
       searchField: {
+        title: 'Search By:',
         type: 'string',
         enum: dropdownSortItems
       },
       searchValue: {
+        title: 'Search Term:',
         type: 'string'
       }
     }
@@ -45,13 +47,10 @@ const SearchBox: React.FunctionComponent<Props> = ({
 
   const uiSchema = {
     searchField: {
-      'ui:placeholder': 'Search By: ',
-      'ui:col-md': 5,
-      classNames: 'hide-title'
+      'ui:col-md': 5
     },
     searchValue: {
-      'ui:col-md': 7,
-      classNames: 'hide-title'
+      'ui:col-md': 7
     }
   };
 
@@ -76,16 +75,6 @@ const SearchBox: React.FunctionComponent<Props> = ({
           </ButtonGroup>
         </div>
       </JsonSchemaForm>
-      {/* Hide searchField / searchValue JsonSchemaForm titles  */}
-      <style jsx global>
-        {`
-          .hide-title label.form-label {
-            display: none;
-          }
-        `}
-      </style>
-
-      <br />
     </div>
   );
 };

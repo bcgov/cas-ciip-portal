@@ -8,6 +8,7 @@ exports[`It matches the last accepted Snapshot 1`] = `
     className="jsx-2584110530 nav-header"
   >
     <nav
+      aria-label="Main"
       className="jsx-2584110530"
     >
       <div

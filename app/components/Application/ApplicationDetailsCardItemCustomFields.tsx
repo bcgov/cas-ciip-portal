@@ -38,8 +38,9 @@ const customFields = (
       let prevValue;
       let hasDiff = false;
       if (showDiff) {
-        hasDiff = diffPathArray.includes(id.replace(/^root_/g, ''));
-        prevValue = diffArray[diffPathArray.indexOf(id.replace(/^root_/g, ''))];
+        hasDiff = diffPathArray.includes(id.replace(/^[^_]*_/g, ''));
+        prevValue =
+          diffArray[diffPathArray.indexOf(id.replace(/^[^_]*_/g, ''))];
 
         if ((hasDiff || previousIsEmpty) && prevValue !== formData) {
           prevValue = handleEnums(props, false, prevValue);
@@ -81,12 +82,14 @@ const customFields = (
       const {idSchema, formData} = props;
       const id = idSchema?.$id;
       const hasDiff = diffPathArray.includes(
-        idSchema.$id.replace(/^root_/g, '')
+        idSchema.$id.replace(/^[^_]*_/g, '')
       );
 
       if (showDiff && hasDiff) {
         const prevValue =
-          diffArray[diffPathArray.indexOf(idSchema.$id.replace(/^root_/g, ''))];
+          diffArray[
+            diffPathArray.indexOf(idSchema.$id.replace(/^[^_]*_/g, ''))
+          ];
         return (
           <>
             <span id={`${id}-diffFrom`} className="diffFrom">
@@ -139,8 +142,9 @@ const customFields = (
       let prevValue;
       let hasDiff = false;
       if (showDiff) {
-        hasDiff = diffPathArray.includes(id.replace(/^root_/g, ''));
-        prevValue = diffArray[diffPathArray.indexOf(id.replace(/^root_/g, ''))];
+        hasDiff = diffPathArray.includes(id.replace(/^[^_]*_/g, ''));
+        prevValue =
+          diffArray[diffPathArray.indexOf(id.replace(/^[^_]*_/g, ''))];
         if (hasDiff || previousIsEmpty) {
           prevValue = handleEnums(props, false, prevValue);
           const currentValue = handleEnums(props, true, prevValue);

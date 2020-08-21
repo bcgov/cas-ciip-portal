@@ -106,4 +106,23 @@ describe('When logged in as a reporter', () => {
     cy.get('#page-content');
     cy.checkA11y();
   });
+
+  it('The /reporter/view-application page has no detectable ally violations on load', () => {
+    const applicationId = window.btoa('["applications", 2]');
+    cy.visit(
+      `/reporter/view-application?applicationId=${applicationId}&version=1`
+    );
+    cy.get('#page-content');
+    cy.injectAxe();
+    cy.get('#page-content');
+    cy.checkA11y();
+  });
+
+  it('The /reporter/complete-submit page has no detectable ally violations on load', () => {
+    cy.visit('/reporter/complete-submit');
+    cy.get('#page-content');
+    cy.injectAxe();
+    cy.get('#page-content');
+    cy.checkA11y();
+  });
 });

@@ -118,9 +118,6 @@ const FormFieldTemplate: React.FunctionComponent<FieldTemplateProps> = ({
           padding-top: 0;
           padding-bottom: 50px;
         }
-        .summary-card .card-header h2 {
-          font-size: 30px;
-        }
         .emission .summary-formrow .emission-summary-row {
           border-bottom: 1px solid #ccc;
           margin-top: -1px;

@@ -7,11 +7,17 @@ exports[`The Confirmation Component match the snapshot 1`] = `
   >
     Summary of your application:
   </h1>
-  <h5
+  <p
     className="jsx-1753635690"
+    style={
+      Object {
+        "fontSize": "1.25rem",
+        "fontWeight": 500,
+      }
+    }
   >
     Please review the information you have provided before continuing.
-  </h5>
+  </p>
   <br
     className="jsx-1753635690"
   />
@@ -102,35 +108,50 @@ exports[`The Confirmation Component match the snapshot 1`] = `
             controlId="certifierEmail"
             md="4"
           >
+            <FormLabel
+              column={false}
+              srOnly={false}
+            >
+              Certifier Email Address:
+            </FormLabel>
             <FormControl
               name="email"
               onChange={[Function]}
               onKeyDown={[Function]}
-              placeholder="Certifier Email"
               type="email"
             />
           </FormGroup>
         </FormRow>
         <FormGroup>
-          <FormCheck
-            checked={true}
-            className="text-muted"
-            disabled={false}
-            inline={false}
-            isInvalid={false}
-            isValid={false}
-            label="Notify certifier via email that this application is ready for certification"
-            name="sendEmailChecked"
-            onChange={[Function]}
-            title=""
-            type="checkbox"
-          />
+          <FormLabel
+            column={false}
+            srOnly={false}
+            style={
+              Object {
+                "display": "inline-flex",
+              }
+            }
+          >
+            <FormCheck
+              checked={true}
+              className="text-muted"
+              disabled={false}
+              inline={false}
+              isInvalid={false}
+              isValid={false}
+              name="sendEmailChecked"
+              onChange={[Function]}
+              title=""
+              type="checkbox"
+            />
+            Notify certifier via email that this application is ready for certification
+          </FormLabel>
         </FormGroup>
         <Button
           active={false}
           disabled={true}
           type="submit"
-          variant="info"
+          variant="primary"
         >
           Submit for Certification
         </Button>
@@ -153,11 +174,17 @@ exports[`The Confirmation Component should render the override justification com
   >
     Summary of your application:
   </h1>
-  <h5
+  <p
     className="jsx-1753635690"
+    style={
+      Object {
+        "fontSize": "1.25rem",
+        "fontWeight": 500,
+      }
+    }
   >
     Please review the information you have provided before continuing.
-  </h5>
+  </p>
   <br
     className="jsx-1753635690"
   />
@@ -248,35 +275,50 @@ exports[`The Confirmation Component should render the override justification com
             controlId="certifierEmail"
             md="4"
           >
+            <FormLabel
+              column={false}
+              srOnly={false}
+            >
+              Certifier Email Address:
+            </FormLabel>
             <FormControl
               name="email"
               onChange={[Function]}
               onKeyDown={[Function]}
-              placeholder="Certifier Email"
               type="email"
             />
           </FormGroup>
         </FormRow>
         <FormGroup>
-          <FormCheck
-            checked={true}
-            className="text-muted"
-            disabled={false}
-            inline={false}
-            isInvalid={false}
-            isValid={false}
-            label="Notify certifier via email that this application is ready for certification"
-            name="sendEmailChecked"
-            onChange={[Function]}
-            title=""
-            type="checkbox"
-          />
+          <FormLabel
+            column={false}
+            srOnly={false}
+            style={
+              Object {
+                "display": "inline-flex",
+              }
+            }
+          >
+            <FormCheck
+              checked={true}
+              className="text-muted"
+              disabled={false}
+              inline={false}
+              isInvalid={false}
+              isValid={false}
+              name="sendEmailChecked"
+              onChange={[Function]}
+              title=""
+              type="checkbox"
+            />
+            Notify certifier via email that this application is ready for certification
+          </FormLabel>
         </FormGroup>
         <Button
           active={false}
           disabled={true}
           type="submit"
-          variant="info"
+          variant="primary"
         >
           Submit for Certification
         </Button>
@@ -299,11 +341,17 @@ exports[`The Confirmation Component should render the override justification com
   >
     Summary of your application:
   </h1>
-  <h5
+  <p
     className="jsx-1753635690"
+    style={
+      Object {
+        "fontSize": "1.25rem",
+        "fontWeight": 500,
+      }
+    }
   >
     Please review the information you have provided before continuing.
-  </h5>
+  </p>
   <br
     className="jsx-1753635690"
   />
@@ -394,35 +442,50 @@ exports[`The Confirmation Component should render the override justification com
             controlId="certifierEmail"
             md="4"
           >
+            <FormLabel
+              column={false}
+              srOnly={false}
+            >
+              Certifier Email Address:
+            </FormLabel>
             <FormControl
               name="email"
               onChange={[Function]}
               onKeyDown={[Function]}
-              placeholder="Certifier Email"
               type="email"
             />
           </FormGroup>
         </FormRow>
         <FormGroup>
-          <FormCheck
-            checked={true}
-            className="text-muted"
-            disabled={false}
-            inline={false}
-            isInvalid={false}
-            isValid={false}
-            label="Notify certifier via email that this application is ready for certification"
-            name="sendEmailChecked"
-            onChange={[Function]}
-            title=""
-            type="checkbox"
-          />
+          <FormLabel
+            column={false}
+            srOnly={false}
+            style={
+              Object {
+                "display": "inline-flex",
+              }
+            }
+          >
+            <FormCheck
+              checked={true}
+              className="text-muted"
+              disabled={false}
+              inline={false}
+              isInvalid={false}
+              isValid={false}
+              name="sendEmailChecked"
+              onChange={[Function]}
+              title=""
+              type="checkbox"
+            />
+            Notify certifier via email that this application is ready for certification
+          </FormLabel>
         </FormGroup>
         <Button
           active={false}
           disabled={true}
           type="submit"
-          variant="info"
+          variant="primary"
         >
           Submit for Certification
         </Button>
@@ -445,11 +508,17 @@ exports[`The Confirmation Component should show a "data has changed" dialogue wh
   >
     Summary of your application:
   </h1>
-  <h5
+  <p
     className="jsx-1753635690"
+    style={
+      Object {
+        "fontSize": "1.25rem",
+        "fontWeight": 500,
+      }
+    }
   >
     Please review the information you have provided before continuing.
-  </h5>
+  </p>
   <br
     className="jsx-1753635690"
   />
@@ -565,35 +634,50 @@ exports[`The Confirmation Component should show a "data has changed" dialogue wh
             controlId="certifierEmail"
             md="4"
           >
+            <FormLabel
+              column={false}
+              srOnly={false}
+            >
+              Certifier Email Address:
+            </FormLabel>
             <FormControl
               name="email"
               onChange={[Function]}
               onKeyDown={[Function]}
-              placeholder="Certifier Email"
               type="email"
             />
           </FormGroup>
         </FormRow>
         <FormGroup>
-          <FormCheck
-            checked={true}
-            className="text-muted"
-            disabled={false}
-            inline={false}
-            isInvalid={false}
-            isValid={false}
-            label="Notify certifier via email that this application is ready for certification"
-            name="sendEmailChecked"
-            onChange={[Function]}
-            title=""
-            type="checkbox"
-          />
+          <FormLabel
+            column={false}
+            srOnly={false}
+            style={
+              Object {
+                "display": "inline-flex",
+              }
+            }
+          >
+            <FormCheck
+              checked={true}
+              className="text-muted"
+              disabled={false}
+              inline={false}
+              isInvalid={false}
+              isValid={false}
+              name="sendEmailChecked"
+              onChange={[Function]}
+              title=""
+              type="checkbox"
+            />
+            Notify certifier via email that this application is ready for certification
+          </FormLabel>
         </FormGroup>
         <Button
           active={false}
           disabled={true}
           type="submit"
-          variant="info"
+          variant="primary"
         >
           Submit for Certification
         </Button>
@@ -616,11 +700,17 @@ exports[`The Confirmation Component should show a certifier has not yet signed m
   >
     Summary of your application:
   </h1>
-  <h5
+  <p
     className="jsx-1753635690"
+    style={
+      Object {
+        "fontSize": "1.25rem",
+        "fontWeight": 500,
+      }
+    }
   >
     Please review the information you have provided before continuing.
-  </h5>
+  </p>
   <br
     className="jsx-1753635690"
   />

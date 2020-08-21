@@ -1170,8 +1170,8 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                             <div
                               className="col-md-4 col-12"
                             >
-                              <h5
-                                className="jsx-2818596207"
+                              <h2
+                                className="jsx-4192774634"
                                 style={
                                   Object {
                                     "textAlign": "left",
@@ -1179,34 +1179,34 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                 }
                               >
                                 culpa
-                              </h5>
+                              </h2>
                             </div>
                             <div
                               className="col-md-3 col-12"
                             >
-                              <h6
-                                className="jsx-2818596207"
+                              <p
+                                className="jsx-4192774634 unit"
                               >
                                 Tonnes
-                              </h6>
+                              </p>
                             </div>
                             <div
                               className="col-md-2 col-12"
                             >
-                              <h6
-                                className="jsx-2818596207"
+                              <p
+                                className="jsx-4192774634 unit"
                               >
                                 GWP
-                              </h6>
+                              </p>
                             </div>
                             <div
                               className="col-md-3 col-12"
                             >
-                              <h6
-                                className="jsx-2818596207"
+                              <p
+                                className="jsx-4192774634 unit"
                               >
                                 Tonnes (CO2e)
-                              </h6>
+                              </p>
                             </div>
                           </div>
                           <span
@@ -1265,18 +1265,28 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                               className="col-md-10"
                                               style={
                                                 Object {
-                                                  "color": "#888",
+                                                  "color": "#797676",
                                                   "lineHeight": "17px",
                                                   "margin": 0,
                                                   "padding": 0,
                                                 }
                                               }
                                             >
-                                              <small
+                                              <label
                                                 className="jsx-381954189"
+                                                htmlFor="root_sourceTypes_0_gases_0_annualEmission"
+                                                style={
+                                                  Object {
+                                                    "display": "inline",
+                                                  }
+                                                }
                                               >
-                                                consequat Ut Duis
-                                              </small>
+                                                <small
+                                                  className="jsx-381954189"
+                                                >
+                                                  consequat Ut Duis
+                                                </small>
+                                              </label>
                                             </div>
                                           </div>
                                           <div
@@ -1414,18 +1424,28 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                               className="col-md-10"
                                               style={
                                                 Object {
-                                                  "color": "#888",
+                                                  "color": "#797676",
                                                   "lineHeight": "17px",
                                                   "margin": 0,
                                                   "padding": 0,
                                                 }
                                               }
                                             >
-                                              <small
+                                              <label
                                                 className="jsx-381954189"
+                                                htmlFor="root_sourceTypes_0_gases_1_annualEmission"
+                                                style={
+                                                  Object {
+                                                    "display": "inline",
+                                                  }
+                                                }
                                               >
-                                                in qui
-                                              </small>
+                                                <small
+                                                  className="jsx-381954189"
+                                                >
+                                                  in qui
+                                                </small>
+                                              </label>
                                             </div>
                                           </div>
                                           <div
@@ -1575,8 +1595,8 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                             <div
                               className="col-md-4 col-12"
                             >
-                              <h5
-                                className="jsx-2818596207"
+                              <h2
+                                className="jsx-4192774634"
                                 style={
                                   Object {
                                     "textAlign": "left",
@@ -1584,34 +1604,34 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                 }
                               >
                                 consequat Ut Duis
-                              </h5>
+                              </h2>
                             </div>
                             <div
                               className="col-md-3 col-12"
                             >
-                              <h6
-                                className="jsx-2818596207"
+                              <p
+                                className="jsx-4192774634 unit"
                               >
                                 Tonnes
-                              </h6>
+                              </p>
                             </div>
                             <div
                               className="col-md-2 col-12"
                             >
-                              <h6
-                                className="jsx-2818596207"
+                              <p
+                                className="jsx-4192774634 unit"
                               >
                                 GWP
-                              </h6>
+                              </p>
                             </div>
                             <div
                               className="col-md-3 col-12"
                             >
-                              <h6
-                                className="jsx-2818596207"
+                              <p
+                                className="jsx-4192774634 unit"
                               >
                                 Tonnes (CO2e)
-                              </h6>
+                              </p>
                             </div>
                           </div>
                           <span
@@ -1670,18 +1690,28 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                               className="col-md-10"
                                               style={
                                                 Object {
-                                                  "color": "#888",
+                                                  "color": "#797676",
                                                   "lineHeight": "17px",
                                                   "margin": 0,
                                                   "padding": 0,
                                                 }
                                               }
                                             >
-                                              <small
+                                              <label
                                                 className="jsx-381954189"
+                                                htmlFor="root_sourceTypes_1_gases_0_annualEmission"
+                                                style={
+                                                  Object {
+                                                    "display": "inline",
+                                                  }
+                                                }
                                               >
-                                                mollit eu esse
-                                              </small>
+                                                <small
+                                                  className="jsx-381954189"
+                                                >
+                                                  mollit eu esse
+                                                </small>
+                                              </label>
                                             </div>
                                           </div>
                                           <div

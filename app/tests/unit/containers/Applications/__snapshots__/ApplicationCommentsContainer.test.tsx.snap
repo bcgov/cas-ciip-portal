@@ -3,17 +3,17 @@
 exports[`ApplicationCommentsComponent should match the snapshot with the ApplicationCommentsComponent component 1`] = `
 <Fragment>
   <div
-    className="jsx-3814283397 form-result-box"
+    className="jsx-2344769289 form-result-box"
     key="abc"
   >
-    <h5
-      className="jsx-3814283397"
+    <h3
+      className="jsx-2344769289"
     >
       ddd
        
       <i
         aria-label="toggle-card-open"
-        className="jsx-3814283397"
+        className="jsx-2344769289"
         onClick={[Function]}
         style={
           Object {
@@ -55,7 +55,7 @@ exports[`ApplicationCommentsComponent should match the snapshot with the Applica
           transform={null}
         />
       </i>
-    </h5>
+    </h3>
     <Collapse
       appear={false}
       dimension="height"
@@ -66,26 +66,26 @@ exports[`ApplicationCommentsComponent should match the snapshot with the Applica
       unmountOnExit={false}
     >
       <div
-        className="jsx-3814283397"
+        className="jsx-2344769289"
       >
         <ForwardRef
           hover={true}
         >
           <thead
-            className="jsx-3814283397 comments-header"
+            className="jsx-2344769289 comments-header"
           >
             <tr
-              className="jsx-3814283397"
+              className="jsx-2344769289"
             >
               <th
-                className="jsx-3814283397"
+                className="jsx-2344769289"
               >
                 General Comment
               </th>
             </tr>
           </thead>
           <tbody
-            className="jsx-3814283397"
+            className="jsx-2344769289"
           >
             <Relay(ApplicationCommentsByForm)
               formResultId="abc"
@@ -108,20 +108,20 @@ exports[`ApplicationCommentsComponent should match the snapshot with the Applica
           hover={true}
         >
           <thead
-            className="jsx-3814283397 comments-header"
+            className="jsx-2344769289 comments-header"
           >
             <tr
-              className="jsx-3814283397"
+              className="jsx-2344769289"
             >
               <th
-                className="jsx-3814283397"
+                className="jsx-2344769289"
               >
                 Request Changes
               </th>
             </tr>
           </thead>
           <tbody
-            className="jsx-3814283397"
+            className="jsx-2344769289"
           >
             <Relay(ApplicationCommentsByForm)
               formResultId="abc"
@@ -158,9 +158,9 @@ exports[`ApplicationCommentsComponent should match the snapshot with the Applica
     </Collapse>
   </div>
   <JSXStyle
-    id="3814283397"
+    id="2344769289"
   >
-    .form-result-box{padding:25px;margin-bottom:20px;border:1px solid #ff713a;border-radius:5px;background-color:#fff4dcab;font-size:14px;}.form-result-box h5{border-bottom:1px solid #888;padding-bottom:10px;margin-bottom:20px;}.hide-title label.form-label{display:none;}i{cursor:pointer;}.comments-header{font-weight:bold;color:#036;}.comments-header th{border:0;}
+    .form-result-box{padding:25px;margin-bottom:20px;border:1px solid #ff713a;border-radius:5px;background-color:#fff4dcab;font-size:14px;}.form-result-box h3{border-bottom:1px solid #888;padding-bottom:10px;margin-bottom:20px;font-size:1.25rem;}.hide-title label.form-label{display:none;}i{cursor:pointer;}.comments-header{font-weight:bold;color:#036;}.comments-header th{border:0;}
   </JSXStyle>
 </Fragment>
 `;

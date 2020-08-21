@@ -132,6 +132,17 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
               padding-top: 110px;
             }
           }
+
+          /* BS overrides for purposes of accessibility: */
+
+          .btn-outline-primary {
+            color: #0053b3;
+            border-color: #0053b3;
+          }
+          .badge-success,
+          .btn-success {
+            background-color: #24883e;
+          }
         `}
       </style>
     </div>

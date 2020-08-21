@@ -11,7 +11,7 @@ Array [
     }
   >
     <div
-      className="jsx-73006980 page-wrap"
+      className="jsx-3730414943 page-wrap"
     >
       <header
         className="jsx-2584110530"
@@ -20,6 +20,7 @@ Array [
           className="jsx-2584110530 nav-header"
         >
           <nav
+            aria-label="Main"
             className="jsx-2584110530"
           >
             <div
@@ -131,16 +132,16 @@ Array [
         </div>
       </header>
       <main
-        className="jsx-73006980"
+        className="jsx-3730414943"
       >
         <div
-          className="jsx-73006980 page-title"
+          className="jsx-3730414943 page-title"
         >
           <div
             className="narrow container"
           >
             <h1
-              className="jsx-73006980"
+              className="jsx-3730414943"
             >
               Administrator Dashboard
             </h1>
@@ -520,7 +521,7 @@ Array [
     }
   >
     <div
-      className="jsx-73006980 page-wrap"
+      className="jsx-3730414943 page-wrap"
     >
       <header
         className="jsx-2584110530"
@@ -529,6 +530,7 @@ Array [
           className="jsx-2584110530 nav-header"
         >
           <nav
+            aria-label="Main"
             className="jsx-2584110530"
           >
             <div
@@ -640,16 +642,16 @@ Array [
         </div>
       </header>
       <main
-        className="jsx-73006980"
+        className="jsx-3730414943"
       >
         <div
-          className="jsx-73006980 page-title"
+          className="jsx-3730414943 page-title"
         >
           <div
             className="narrow container"
           >
             <h1
-              className="jsx-73006980"
+              className="jsx-3730414943"
             >
               Registration
             </h1>
@@ -1013,7 +1015,7 @@ Array [
     }
   >
     <div
-      className="jsx-73006980 page-wrap"
+      className="jsx-3730414943 page-wrap"
     >
       <header
         className="jsx-2584110530"
@@ -1022,6 +1024,7 @@ Array [
           className="jsx-2584110530 nav-header"
         >
           <nav
+            aria-label="Main"
             className="jsx-2584110530"
           >
             <div
@@ -1133,20 +1136,21 @@ Array [
         </div>
         <div>
           <nav
-            className="jsx-1717546368 navigation-main"
+            aria-label="Secondary"
+            className="jsx-2326483044 navigation-main"
             id="navbar"
           >
             <div
-              className="jsx-1717546368 container"
+              className="jsx-2326483044 container"
             >
               <ul
-                className="jsx-1717546368"
+                className="jsx-2326483044"
               >
                 <li
-                  className="jsx-1717546368 active"
+                  className="jsx-2326483044 active"
                 >
                   <a
-                    className="jsx-1717546368"
+                    className="jsx-2326483044"
                     href="/reporter"
                     onClick={[Function]}
                     onMouseEnter={[Function]}
@@ -1155,10 +1159,10 @@ Array [
                   </a>
                 </li>
                 <li
-                  className="jsx-1717546368 "
+                  className="jsx-2326483044 "
                 >
                   <a
-                    className="jsx-1717546368"
+                    className="jsx-2326483044"
                     href="/reporter/facilities"
                     onClick={[Function]}
                     onMouseEnter={[Function]}
@@ -1172,16 +1176,16 @@ Array [
         </div>
       </header>
       <main
-        className="jsx-73006980"
+        className="jsx-3730414943"
       >
         <div
-          className="jsx-73006980 page-title"
+          className="jsx-3730414943 page-title"
         >
           <div
             className="narrow container"
           >
             <h1
-              className="jsx-73006980"
+              className="jsx-3730414943"
             >
               My Operators
             </h1>
@@ -1329,11 +1333,11 @@ Array [
                       className="search-dropdown dropdown"
                       onKeyDown={[Function]}
                     >
-                      <div
-                        className="card-title h5"
+                      <h2
+                        className="jsx-3491480756"
                       >
                         Request access to apply for the CIIP on behalf of a Reporting Operation:
-                      </div>
+                      </h2>
                       <div
                         className="fade alert alert-warning show"
                         role="alert"
@@ -1438,7 +1442,7 @@ Array [
             <div
               className="col-md-4"
             >
-              <h5
+              <h2
                 style={
                   Object {
                     "marginBottom": "20px",
@@ -1446,7 +1450,7 @@ Array [
                 }
               >
                 How to apply for CIIP
-              </h5>
+              </h2>
               <div
                 className="how-to-apply"
               >
@@ -1555,6 +1559,13 @@ Array [
               </div>
             </div>
           </div>
+          <style>
+            
+      h2 {
+        font-size: 1.25rem;
+      }
+    
+          </style>
         </div>
       </main>
       <footer
@@ -1678,7 +1689,7 @@ Array [
     }
   >
     <div
-      className="jsx-73006980 page-wrap"
+      className="jsx-3730414943 page-wrap"
     >
       <header
         className="jsx-2584110530"
@@ -1687,6 +1698,7 @@ Array [
           className="jsx-2584110530 nav-header"
         >
           <nav
+            aria-label="Main"
             className="jsx-2584110530"
           >
             <div
@@ -1798,16 +1810,16 @@ Array [
         </div>
       </header>
       <main
-        className="jsx-73006980"
+        className="jsx-3730414943"
       >
         <div
-          className="jsx-73006980 page-title"
+          className="jsx-3730414943 page-title"
         >
           <div
             className="narrow container"
           >
             <h1
-              className="jsx-73006980"
+              className="jsx-3730414943"
             >
               User List
             </h1>
@@ -2020,7 +2032,7 @@ Array [
     }
   >
     <div
-      className="jsx-73006980 page-wrap"
+      className="jsx-3730414943 page-wrap"
     >
       <header
         className="jsx-2584110530"
@@ -2029,6 +2041,7 @@ Array [
           className="jsx-2584110530 nav-header"
         >
           <nav
+            aria-label="Main"
             className="jsx-2584110530"
           >
             <div
@@ -2140,7 +2153,7 @@ Array [
         </div>
       </header>
       <main
-        className="jsx-73006980"
+        className="jsx-3730414943"
       >
         <div
           className="content narrow container"
