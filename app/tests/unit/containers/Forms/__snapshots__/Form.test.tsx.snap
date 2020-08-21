@@ -37,6 +37,11 @@ exports[`The Form Component should match the snapshot 1`] = `
         Foo
       </h1>
     </Col>
+    <Col
+      md={4}
+    >
+      <SavingIndicator />
+    </Col>
   </Row>
   <Form
     ArrayFieldTemplate={[Function]}
@@ -662,6 +667,11 @@ exports[`The Form Component should not render an alert reminder to check the gui
       >
         Foo
       </h1>
+    </Col>
+    <Col
+      md={4}
+    >
+      <SavingIndicator />
     </Col>
   </Row>
   <Form
@@ -1298,6 +1308,11 @@ exports[`The Form Component should render alert reminder to check the guidance i
       >
         Foo
       </h1>
+    </Col>
+    <Col
+      md={4}
+    >
+      <SavingIndicator />
     </Col>
   </Row>
   <Form
@@ -1958,6 +1973,11 @@ exports[`The Form Component should render an alert reminder to report any missin
       >
         Foo
       </h1>
+    </Col>
+    <Col
+      md={4}
+    >
+      <SavingIndicator />
     </Col>
   </Row>
   <Alert

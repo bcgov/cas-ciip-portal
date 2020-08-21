@@ -1,5 +1,5 @@
 import {graphql} from 'react-relay';
-import {RelayModernEnvironment} from 'relay-runtime/lib/store/RelayModernEnvironment';
+import RelayModernEnvironment from 'relay-runtime/lib/store/RelayModernEnvironment';
 import {
   createBenchmarkMutation as createBenchmarkMutationType,
   createBenchmarkMutationVariables
@@ -9,7 +9,6 @@ import BaseMutation from 'mutations/BaseMutation';
 const mutation = graphql`
   mutation createBenchmarkMutation($input: CreateBenchmarkInput!) {
     createBenchmark(input: $input) {
-      clientMutationId
       benchmark {
         id
         rowId

@@ -22,12 +22,14 @@ import NumberField from './NumberField';
 import EmissionCategoryRowIdField from './EmissionCategoryRowIdField';
 import ProblemReportField from 'components/Forms/ProblemReportField';
 import {customTransformErrors} from 'functions/customTransformErrors';
+import SavingIndicator from 'components/helpers/SavingIndicator';
 
 interface Props {
   query: Form_query;
   onComplete: (e: IChangeEvent) => void;
   onBack: () => void;
   onValueChanged?: (e: IChangeEvent, es?: ErrorSchema) => void;
+  isSaved: boolean;
 }
 
 const CUSTOM_FIELDS = {
@@ -55,6 +57,7 @@ const CUSTOM_FIELDS = {
 
 export const FormComponent: React.FunctionComponent<Props> = ({
   query,
+  isSaved,
   onComplete,
   onBack,
   onValueChanged
@@ -222,6 +225,9 @@ export const FormComponent: React.FunctionComponent<Props> = ({
       <Row>
         <Col md={8}>
           <h1 className="form-title">{name}</h1>
+        </Col>
+        <Col md={4}>
+          <SavingIndicator isSaved={isSaved} />
         </Col>
       </Row>
 

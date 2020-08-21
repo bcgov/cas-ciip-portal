@@ -2,14 +2,20 @@ import {
   commitMutation as commitMutationDefault,
   GraphQLTaggedNode
 } from 'react-relay';
-import {RelayModernEnvironment} from 'relay-runtime/lib/store/RelayModernEnvironment';
-import {DeclarativeMutationConfig} from 'relay-runtime';
+import {
+  DeclarativeMutationConfig,
+  Disposable,
+  MutationParameters
+} from 'relay-runtime';
 import {toast} from 'react-toastify';
+import RelayModernEnvironment from 'relay-runtime/lib/store/RelayModernEnvironment';
+import {MutationConfigWithDebounce} from 'next-env';
 
-interface BaseMutationType {
-  response: any;
+interface BaseMutationType extends MutationParameters {
   variables: {input: any; messages?: {success: string; failure: string}};
 }
+
+const debouncedMutationMap = new Map<string, Disposable>();
 
 export default class BaseMutation<T extends BaseMutationType = never> {
   counter: number;
@@ -26,7 +32,8 @@ export default class BaseMutation<T extends BaseMutationType = never> {
     mutation: GraphQLTaggedNode,
     variables: T['variables'],
     optimisticResponse?: any,
-    updater?: any
+    updater?: (...args: any[]) => any,
+    debounceKey?: string
   ) {
     const success_message = variables.messages?.success
       ? variables.messages.success
@@ -34,14 +41,7 @@ export default class BaseMutation<T extends BaseMutationType = never> {
     const failure_message = variables.messages?.failure
       ? variables.messages.failure
       : 'Oops! Seems like something went wrong';
-    const clientMutationId = `${this.mutationName}-${this.counter}`;
-    variables.input.clientMutationId = clientMutationId;
-    if (optimisticResponse) {
-      const key = Object.keys(optimisticResponse)[0];
-      optimisticResponse[key].clientMutationId = clientMutationId;
-    }
 
-    this.counter++;
     const {configs, mutationName} = this;
     async function commitMutation(
       environment,
@@ -53,10 +53,25 @@ export default class BaseMutation<T extends BaseMutationType = never> {
       }
     ) {
       return new Promise<T['response']>((resolve, reject) => {
-        commitMutationDefault<T>(environment, {
+        // Debounced mutations should be commited immediately to perform the optimisticUpdate
+        // The actual request will be cancelled in the network layer
+        // Here we either dispose of a debounced mutation, or remove it from the map when it errors/completes
+        if (debounceKey) {
+          const previousMutation = debouncedMutationMap.get(debounceKey);
+          if (previousMutation) {
+            previousMutation.dispose();
+          }
+        }
+
+        const disposable = commitMutationDefault<T>(environment, {
           ...options,
           configs,
+          cacheConfig: {debounceKey},
           onError: (error) => {
+            if (debounceKey) {
+              debouncedMutationMap.delete(debounceKey);
+            }
+
             reject(error);
             if (failure_message) {
               toast(failure_message, {
@@ -69,6 +84,10 @@ export default class BaseMutation<T extends BaseMutationType = never> {
             }
           },
           onCompleted: (response, errors) => {
+            if (debounceKey) {
+              debouncedMutationMap.delete(debounceKey);
+            }
+
             errors ? reject(errors) : resolve(response);
             if (success_message) {
               toast(success_message, {
@@ -78,7 +97,10 @@ export default class BaseMutation<T extends BaseMutationType = never> {
               });
             }
           }
-        });
+        } as MutationConfigWithDebounce<T>);
+        if (debounceKey) {
+          debouncedMutationMap.set(debounceKey, disposable);
+        }
       });
     }
 

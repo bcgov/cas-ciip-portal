@@ -24,7 +24,8 @@
         "__generated__/*"
       ]
     },
-    "allowJs": true
+    "allowJs": true,
+    "downlevelIteration": true
   },
   "exclude": [
     ".next",

@@ -1,5 +1,5 @@
 import {graphql} from 'react-relay';
-import {RelayModernEnvironment} from 'relay-runtime/lib/store/RelayModernEnvironment';
+import RelayModernEnvironment from 'relay-runtime/lib/store/RelayModernEnvironment';
 import {
   updateReviewCommentMutationVariables,
   updateReviewCommentMutation as updateReviewCommentMutationType
@@ -9,7 +9,6 @@ import BaseMutation from 'mutations/BaseMutation';
 const mutation = graphql`
   mutation updateReviewCommentMutation($input: UpdateReviewCommentInput!) {
     updateReviewComment(input: $input) {
-      clientMutationId
       reviewComment {
         resolved
         ...ApplicationCommentsByForm_reviewComment

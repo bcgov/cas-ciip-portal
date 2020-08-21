@@ -1,5 +1,5 @@
 import {graphql, DeclarativeMutationConfig} from 'react-relay';
-import {RelayModernEnvironment} from 'relay-runtime/lib/store/RelayModernEnvironment';
+import RelayModernEnvironment from 'relay-runtime/lib/store/RelayModernEnvironment';
 import {
   createReviewCommentMutationVariables,
   createReviewCommentMutation as createReviewCommentMutationType
@@ -13,7 +13,6 @@ const mutation = graphql`
     $version: String!
   ) {
     createReviewCommentMutationChain(input: $input) {
-      clientMutationId
       reviewCommentEdge {
         node {
           ...ApplicationCommentsByForm_reviewComment

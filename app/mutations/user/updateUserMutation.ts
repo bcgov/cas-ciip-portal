@@ -2,11 +2,11 @@ import {graphql} from 'react-relay';
 import {
   updateUserMutation as updateUserMutationType,
   updateUserMutationVariables
-} from '__generated__/updateUserMutation.graphql';
-import {RelayModernEnvironment} from 'relay-runtime/lib/store/RelayModernEnvironment';
+} from 'updateUserMutation.graphql';
 import BaseMutation from 'mutations/BaseMutation';
+import RelayModernEnvironment from 'relay-runtime/lib/store/RelayModernEnvironment';
 
-const mutation = graphql`
+const mutationQuery = graphql`
   mutation updateUserMutation($input: UpdateCiipUserInput!) {
     updateCiipUser(input: $input) {
       ciipUser {
@@ -17,10 +17,13 @@ const mutation = graphql`
         occupation
         phoneNumber
       }
-      clientMutationId
     }
   }
 `;
+
+const mutation = new BaseMutation<updateUserMutationType>(
+  'update-ciip-user-mutation'
+);
 
 const updateUserMutation = async (
   environment: RelayModernEnvironment,
@@ -36,9 +39,14 @@ const updateUserMutation = async (
     }
   };
 
-  return new BaseMutation<updateUserMutationType>(
-    'update-ciip-user-mutation'
-  ).performMutation(environment, mutation, variables, updateUserPayload);
+  return mutation.performMutation(
+    environment,
+    mutationQuery,
+    variables,
+    updateUserPayload,
+    null,
+    `update-ciip-user${variables.input.id}`
+  );
 };
 
 export default updateUserMutation;

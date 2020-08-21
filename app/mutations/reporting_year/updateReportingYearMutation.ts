@@ -3,7 +3,7 @@ import {
   updateReportingYearMutation as updateReportingYearMutationType,
   updateReportingYearMutationVariables
 } from '__generated__/updateReportingYearMutation.graphql';
-import {RelayModernEnvironment} from 'relay-runtime/lib/store/RelayModernEnvironment';
+import RelayModernEnvironment from 'relay-runtime/lib/store/RelayModernEnvironment';
 import BaseMutation from 'mutations/BaseMutation';
 
 const mutation = graphql`
@@ -14,7 +14,6 @@ const mutation = graphql`
         applicationOpenTime
         applicationCloseTime
       }
-      clientMutationId
     }
   }
 `;

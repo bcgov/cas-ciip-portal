@@ -15,7 +15,6 @@ const mutation = `
         applicationOpenTime
         applicationCloseTime
       }
-      clientMutationId
     }
   }
 `;

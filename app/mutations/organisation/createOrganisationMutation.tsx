@@ -3,13 +3,12 @@ import {
   createOrganisationMutation as createOrganisationMutationType,
   createOrganisationMutationVariables
 } from 'createOrganisationMutation.graphql';
-import {RelayModernEnvironment} from 'relay-runtime/lib/store/RelayModernEnvironment';
+import RelayModernEnvironment from 'relay-runtime/lib/store/RelayModernEnvironment';
 import BaseMutation from 'mutations/BaseMutation';
 
 const mutation = graphql`
   mutation createOrganisationMutation($input: CreateOrganisationInput!) {
     createOrganisation(input: $input) {
-      clientMutationId
       organisation {
         id
         rowId

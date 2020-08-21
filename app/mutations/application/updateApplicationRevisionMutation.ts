@@ -1,5 +1,5 @@
 import {graphql} from 'react-relay';
-import {RelayModernEnvironment} from 'relay-runtime/lib/store/RelayModernEnvironment';
+import RelayModernEnvironment from 'relay-runtime/lib/store/RelayModernEnvironment';
 import {
   updateApplicationRevisionMutationVariables,
   updateApplicationRevisionMutation as updateApplicationRevisionMutationType
@@ -11,7 +11,6 @@ const mutation = graphql`
     $input: UpdateApplicationRevisionInput!
   ) {
     updateApplicationRevision(input: $input) {
-      clientMutationId
       applicationRevision {
         id
         applicationId

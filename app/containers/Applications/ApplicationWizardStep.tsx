@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
 import {ApplicationWizardStep_query} from 'ApplicationWizardStep_query.graphql';
 import {Row, Col} from 'react-bootstrap';
@@ -27,8 +27,11 @@ const ApplicationWizardStep: React.FunctionComponent<Props> = ({
   relay
 }) => {
   const {application, formResult} = query;
+
+  const [isSaved, setSaved] = useState(true);
   // Function: store the form result
   const storeResult = async (result) => {
+    setSaved(false);
     const {environment} = relay;
     const variables = {
       input: {
@@ -36,10 +39,13 @@ const ApplicationWizardStep: React.FunctionComponent<Props> = ({
         formResultPatch: {
           formResult: result
         }
+      },
+      messages: {
+        failure: 'An error occured while saving your form.'
       }
     };
-    const response = await updateFormResultMutation(environment, variables);
-    console.log('response', response);
+    await updateFormResultMutation(environment, variables);
+    setSaved(true);
   };
 
   // Define a callback methods on survey complete
@@ -51,7 +57,6 @@ const ApplicationWizardStep: React.FunctionComponent<Props> = ({
 
   const onValueChanged = async (change) => {
     const {formData} = change;
-    console.log(formData);
     await storeResult(formData);
   };
 
@@ -66,30 +71,26 @@ const ApplicationWizardStep: React.FunctionComponent<Props> = ({
 
   if (!application) return null;
 
-  if (formResult.hasUnresolvedComments)
-    return (
-      <Row>
-        <Col md={8}>
-          <Form
-            query={query}
-            onComplete={onComplete}
-            onValueChanged={onValueChanged}
-            onBack={onStepBack}
-          />
-        </Col>
-        <Col md={4}>
-          <ApplicationComments formResult={formResult} review={false} />
-        </Col>
-      </Row>
-    );
-  return (
+  const form = (
     <Form
       query={query}
+      isSaved={isSaved}
       onComplete={onComplete}
       onValueChanged={onValueChanged}
       onBack={onStepBack}
     />
   );
+
+  if (formResult.hasUnresolvedComments)
+    return (
+      <Row>
+        <Col md={8}>{form}</Col>
+        <Col md={4}>
+          <ApplicationComments formResult={formResult} review={false} />
+        </Col>
+      </Row>
+    );
+  return form;
 };
 
 export default createFragmentContainer(ApplicationWizardStep, {

@@ -1,5 +1,5 @@
 import {graphql} from 'react-relay';
-import {RelayModernEnvironment} from 'relay-runtime/lib/store/RelayModernEnvironment';
+import RelayModernEnvironment from 'relay-runtime/lib/store/RelayModernEnvironment';
 import {
   updateApplicationMutationVariables,
   updateApplicationMutation as updateApplicationMutationType
@@ -9,7 +9,6 @@ import BaseMutation from 'mutations/BaseMutation';
 const mutation = graphql`
   mutation updateApplicationMutation($input: UpdateApplicationInput!) {
     updateApplication(input: $input) {
-      clientMutationId
       application {
         id
         rowId

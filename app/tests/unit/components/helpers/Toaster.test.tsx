@@ -4,7 +4,7 @@ import ToastHelper from 'components/helpers/Toaster';
 import {act} from 'react-dom/test-utils';
 import {graphql} from 'react-relay';
 import BaseMutation from 'mutations/BaseMutation';
-import {RelayModernEnvironment} from 'relay-runtime/lib/store/RelayModernEnvironment';
+import RelayModernEnvironment from 'relay-runtime/lib/store/RelayModernEnvironment';
 
 type fakeMutationVariables = {
   input: Record<string, unknown>;
@@ -50,8 +50,7 @@ const fakeInput = {
   input: {
     ciipUser: {
       emailAddress: 'test@test.com'
-    },
-    clientMutationId: 'create-facility-mutation-0'
+    }
   },
   messages: {
     success: 'Wohoo',
