@@ -73,6 +73,8 @@ Other tools such as alembic ([https://alembic.sqlalchemy.org/](https://alembic.s
 
 ### Yarn
 
+We are using Yarn for package management as opposed to NPM. One of the advantages to using Yarn is the use of [resolutions](https://classic.yarnpkg.com/en/docs/selective-version-resolutions/). Resolutions can be used to specify package versions, which is helpful when addressing vulnerabilities in sub-dependencies. Using a glob pattern any package dependency or sub-dependency can be set to a specific version not affected by the vulnerability.
+
 
 
 ### Authentication and Authorization
