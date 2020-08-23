@@ -178,7 +178,7 @@
   "devDependencies": {
     "@babel/core": "^7.10.3",
     "@storybook/addon-a11y": "^6.0.2",
-    "@storybook/addon-actions": "^6.0.2",
+    "@storybook/addon-actions": "^6.0.16",
     "@storybook/addon-cssresources": "^6.0.2",
     "@storybook/addon-info": "^6.0.0-alpha.2",
     "@storybook/addon-storyshots": "^6.0.2",
