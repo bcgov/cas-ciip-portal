@@ -182,7 +182,7 @@
     "@storybook/addon-cssresources": "^6.0.2",
     "@storybook/addon-info": "^6.0.0-alpha.2",
     "@storybook/addon-storyshots": "^6.0.2",
-    "@storybook/addons": "^6.0.2",
+    "@storybook/addons": "^6.0.16",
     "@storybook/react": "^6.0.2",
     "@types/enzyme": "^3.10.5",
     "@types/jest": "^25.2.1",
