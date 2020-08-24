@@ -34,7 +34,6 @@ class ViewApplication extends Component<Props> {
             oldVersion: $version
             newVersion: $version
           )
-        ...ReviseApplicationButtonContainer_query
 
         application(id: $applicationId) {
           applicationRevisionStatus(versionNumberInput: $version) {

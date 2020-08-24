@@ -5,8 +5,7 @@ import {viewApplicationQueryResponse} from 'viewApplicationQuery.graphql';
 
 const query: viewApplicationQueryResponse['query'] = {
   ' $fragmentRefs': {
-    ApplicationDetailsContainer_query: true,
-    ReviseApplicationButtonContainer_query: true
+    ApplicationDetailsContainer_query: true
   },
   session: {
     ' $fragmentRefs': {
