@@ -163,9 +163,6 @@ exports[`SearchTableLayout should render an empty result message if no data is r
         <p>
           "No matching results to show."
         </p>
-        <p>
-          Clicking 'Reset' will clear your search parameters.
-        </p>
       </Alert>
       <br />
     </span>
