@@ -3747,6 +3747,16 @@
                   "defaultValue": null
                 },
                 {
+                  "name": "reportingYear",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
                   "name": "searchField",
                   "description": null,
                   "type": {

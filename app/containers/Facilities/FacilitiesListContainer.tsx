@@ -29,6 +29,7 @@ export const FacilitiesList: React.FunctionComponent<Props> = ({
   const [offsetValue, setOffset] = useState(0);
   const [activePage, setActivePage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
+  const reportingYear = 2019;
   const maxResultsPerPage = 10;
   useEffect(() => {
     const refetchVariables = {
@@ -37,7 +38,8 @@ export const FacilitiesList: React.FunctionComponent<Props> = ({
       orderByField,
       direction,
       maxResultsPerPage,
-      offsetValue
+      offsetValue,
+      reportingYear
     };
     setIsLoading(true);
     relay.refetch(refetchVariables, undefined, () => {
@@ -105,6 +107,7 @@ export default createRefetchContainer(
           organisationRowId: {type: "String"}
           offsetValue: {type: "Int"}
           maxResultsPerPage: {type: "Int"}
+          reportingYear: {type: "Int"}
         ) {
         ...FacilitiesRowItemContainer_query
         searchAllFacilities(
@@ -115,6 +118,7 @@ export default createRefetchContainer(
           direction: $direction
           offsetValue: $offsetValue
           maxResultsPerPage: $maxResultsPerPage
+          reportingYear: $reportingYear
         ) {
           edges {
             node {
@@ -136,6 +140,7 @@ export default createRefetchContainer(
       $organisationRowId: String
       $offsetValue: Int
       $maxResultsPerPage: Int
+      $reportingYear: Int
     ) {
       query {
         ...FacilitiesListContainer_query
@@ -147,6 +152,7 @@ export default createRefetchContainer(
             organisationRowId: $organisationRowId
             offsetValue: $offsetValue
             maxResultsPerPage: $maxResultsPerPage
+            reportingYear: $reportingYear
           )
       }
     }
