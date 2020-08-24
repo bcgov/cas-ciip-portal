@@ -25,7 +25,7 @@ begin
   values (application_id_input, new_version_number);
 
   select reporting_year from ggircs_portal.opened_reporting_year() into current_reporting_year;
-  if current_reporting_year is null then
+  if new_version_number <= 1 and current_reporting_year is null then
     raise exception 'The application window is closed';
   end if;
 
