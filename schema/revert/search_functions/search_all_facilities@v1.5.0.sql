@@ -4,9 +4,7 @@
 
 begin;
 
-drop function if exists ggircs_portal.search_all_facilities;
-
-create or replace function ggircs_portal.search_all_facilities(search_field text, search_value text, order_by_field text, direction text, organisation_row_id text, offset_value int, max_results_per_page int, reporting_year int)
+create or replace function ggircs_portal.search_all_facilities(search_field text, search_value text, order_by_field text, direction text, organisation_row_id text, offset_value int, max_results_per_page int)
 
   returns setof ggircs_portal.facility_search_result as
     $function$
@@ -18,11 +16,6 @@ create or replace function ggircs_portal.search_all_facilities(search_field text
       begin
         user_sub := (select sub from ggircs_portal.session());
         user_id := (select id from ggircs_portal.ciip_user as cu where cu.uuid = user_sub);
-
-        -- guard against null data
-        if user_id is null then
-          user_id=0;
-        end if;
 
         -- Filters the facilities by organisation if the organisation_row_id variable is set
         if organisation_row_id is null then
@@ -39,10 +32,7 @@ create or replace function ggircs_portal.search_all_facilities(search_field text
           group by application_id) a
           on a.application_id = t.application_id
           and a.latest_version = t.version_number
-          and a.last_created = t.created_at
-          join ggircs_portal.application app
-          on a.application_id = app.id
-          and app.reporting_year = ' || reporting_year || '),
+          and a.last_created = t.created_at),
 
           applicationDetails as (
               select s.application_revision_status, a.id, a.facility_id
@@ -77,11 +67,7 @@ create or replace function ggircs_portal.search_all_facilities(search_field text
             select count(*)::integer as total_facility_count from organisationInfo
           )';
 
-        if user_sub is null then
-          return query execute
-          search_query_input_query ||
-          'select organisationInfo.*, total_facility_count from organisationInfo, total_count limit 0';
-        elsif search_field is null or search_value is null
+        if search_field is null or search_value is null
           then return query execute search_query_input_query ||
           'select organisationInfo.*, total_facility_count from organisationInfo, total_count order by ' || order_by_field || ' ' || direction || ' limit '|| max_results_per_page ||'  offset ' || offset_value;
         else
