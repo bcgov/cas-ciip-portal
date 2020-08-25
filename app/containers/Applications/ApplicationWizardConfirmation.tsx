@@ -267,8 +267,9 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
         <Card.Header>Pending Certification</Card.Header>
         <Card.Body>
           <p>
-            Your application has been sent to a certifier. Submission will be
-            possible once they have verified the data in the application.
+            Your application is pending verification by the certifying official
+            you indicated. You will be notified when they have certified the
+            application, at which time it can be submitted.
           </p>
           <p>You may copy the direct link to the certification page below.</p>
         </Card.Body>

@@ -181,7 +181,7 @@ describe('The Confirmation Component', () => {
     );
     expect(wrapper).toMatchSnapshot();
     expect(wrapper.find('CardBody').find('p').at(0).text()).toBe(
-      'Your application has been sent to a certifier. Submission will be possible once they have verified the data in the application.'
+      'Your application is pending verification by the certifying official you indicated. You will be notified when they have certified the application, at which time it can be submitted.'
     );
   });
 
