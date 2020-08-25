@@ -87,7 +87,7 @@ The materials published include:
 
 - [CleanBC Program for Industry](https://www2.gov.bc.ca/gov/content/environment/climate-change/industry/cleanbc-program-for-industry)
 
-- [CleanBC Industrial Incentive Program](https://www2.gov.bc.ca/gov/content/environment/climate-change/industry/cleanbc-program-for-industry/cleanbc-industrial-incentive-program)
+- [CleanBC Industrial Incentive Program](https://www2.gov.bc.ca/gov/content?id=6F748A4DD83447C59B8B9361882FF9A3)
 
 - [Fact Sheet](https://www2.gov.bc.ca/assets/gov/environment/climate-change/ind/cleanbc-program-for-industry/ciip_factsheet_190524_final.pdf?forcedownload=true)
 

@@ -172,7 +172,7 @@ export const OrganisationsComponent: React.FunctionComponent<Props> = (
                   <p>
                     Further information on the role of the Operator and
                     Certifying Official{' '}
-                    <Alert.Link href="https://www2.gov.bc.ca/gov/content/environment/climate-change/industry/cleanbc-program-for-industry/cleanbc-industrial-incentive-program">
+                    <Alert.Link href="https://www2.gov.bc.ca/gov/content?id=6F748A4DD83447C59B8B9361882FF9A3">
                       can be found here
                     </Alert.Link>
                     .

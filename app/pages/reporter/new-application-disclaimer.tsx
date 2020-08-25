@@ -75,7 +75,7 @@ class NewApplicationDisclaimer extends Component<Props> {
               paid or which, upon audit or review by the Province of British
               Columbia, are determined by the Province to be either inconsistent
               with{' '}
-              <Card.Link href="https://www2.gov.bc.ca/gov/content/environment/climate-change/industry/cleanbc-program-for-industry/cleanbc-industrial-incentive-program">
+              <Card.Link href="https://www2.gov.bc.ca/gov/content?id=6F748A4DD83447C59B8B9361882FF9A3">
                 CIIP Rules
               </Card.Link>{' '}
               or not supported by evidence related to fuel usage and tax paid,

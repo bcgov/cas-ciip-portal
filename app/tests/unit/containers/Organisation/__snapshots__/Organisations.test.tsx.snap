@@ -172,7 +172,7 @@ exports[`Organisations should announce there are certification requests to view 
               Further information on the role of the Operator and Certifying Official
                
               <AlertLink
-                href="https://www2.gov.bc.ca/gov/content/environment/climate-change/industry/cleanbc-program-for-industry/cleanbc-industrial-incentive-program"
+                href="https://www2.gov.bc.ca/gov/content?id=6F748A4DD83447C59B8B9361882FF9A3"
               >
                 can be found here
               </AlertLink>
@@ -336,7 +336,7 @@ exports[`Organisations should render no organisations if the user has not reques
               Further information on the role of the Operator and Certifying Official
                
               <AlertLink
-                href="https://www2.gov.bc.ca/gov/content/environment/climate-change/industry/cleanbc-program-for-industry/cleanbc-industrial-incentive-program"
+                href="https://www2.gov.bc.ca/gov/content?id=6F748A4DD83447C59B8B9361882FF9A3"
               >
                 can be found here
               </AlertLink>
@@ -555,7 +555,7 @@ exports[`Organisations should render the user's requested organisations 1`] = `
               Further information on the role of the Operator and Certifying Official
                
               <AlertLink
-                href="https://www2.gov.bc.ca/gov/content/environment/climate-change/industry/cleanbc-program-for-industry/cleanbc-industrial-incentive-program"
+                href="https://www2.gov.bc.ca/gov/content?id=6F748A4DD83447C59B8B9361882FF9A3"
               >
                 can be found here
               </AlertLink>

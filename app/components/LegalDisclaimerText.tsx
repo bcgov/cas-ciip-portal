@@ -7,7 +7,7 @@ const LegalDisclaimerText: React.FunctionComponent = () => {
       <ol id="glossary">
         <li>
           (a) &quot;CIIP&quot; means the{' '}
-          <a href="https://www2.gov.bc.ca/gov/content/environment/climate-change/industry/cleanbc-program-for-industry/cleanbc-industrial-incentive-program">
+          <a href="https://www2.gov.bc.ca/gov/content?id=6F748A4DD83447C59B8B9361882FF9A3">
             CleanBC Industrial Incentive Program;
           </a>
         </li>
@@ -59,7 +59,7 @@ const LegalDisclaimerText: React.FunctionComponent = () => {
           The Operator agrees to repay any incentive amounts erroneously paid or
           which, upon audit or review by the Province of British Columbia, are
           determined by the Province to be either inconsistent with{' '}
-          <a href="https://www2.gov.bc.ca/gov/content/environment/climate-change/industry/cleanbc-program-for-industry/cleanbc-industrial-incentive-program">
+          <a href="https://www2.gov.bc.ca/gov/content?id=6F748A4DD83447C59B8B9361882FF9A3">
             CIIP Rules
           </a>{' '}
           or not supported by evidence related to fuel usage and tax paid, and

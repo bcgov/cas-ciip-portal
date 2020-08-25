@@ -7,7 +7,7 @@
 
 This document is for users of the [CIIP Reporting Application Portal](https://ciip.gov.bc.ca/ ) and summarizes information from a number of sources including:
 
-- [CleanBC Industrial Incentive Program webpage](https://www2.gov.bc.ca/gov/content/environment/climate-change/industry/cleanbc-program-for-industry) (includes webinar slides, product-specific benchmarks and thresholds, and sector eligibility).
+- [CleanBC Industrial Incentive Program webpage](https://www2.gov.bc.ca/gov/content?id=6F748A4DD83447C59B8B9361882FF9A3) (includes webinar slides, product-specific benchmarks and thresholds, and sector eligibility).
 - [BC Government's Reporting Industrial Greenhouse Gas Emissions webpage](https://www2.gov.bc.ca/gov/content/environment/climate-change/industry/reporting) (includes important dates, links to related information).
 - [BC Greenhouse Gas Industrial Reporting and Control Act, [Sbc 2014] Chapter 29](https://www.bclaws.ca/civix/document/id/complete/statreg/14029_01) (includes definitions, compliance obligations, etc).
 
@@ -17,13 +17,13 @@ This document is for users of the [CIIP Reporting Application Portal](https://ci
 
 'CIIP' stands for the CleanBC Industrial Incentive Program which supports emissions reductions and industrial competitiveness by providing incentives for cleaner industrial operations that meet a world-leading low-carbon emissions benchmark. The level of incentive payment is based on the performance of each industrial operation.
 
-More information on the CIIP, including details on the items below, is available on the [CleanBC Industrial Incentive Program webpage](https://www2.gov.bc.ca/gov/content/environment/climate-change/industry/cleanbc-program-for-industry) which we recommend you have handy in another browser tab/window.
+More information on the CIIP, including details on the items below, is available on the [CleanBC Industrial Incentive Program webpage](https://www2.gov.bc.ca/gov/content?id=6F748A4DD83447C59B8B9361882FF9A3) which we recommend you have handy in another browser tab/window.
 
 
 
 ## Who is eligible?
 
-The CleanBC Industrial Incentive Program is open to businesses that emit more than 10,000 tonnes of carbon dioxide equivalent (CO<sub>2</sub>e) per year and/or those that report under the Greenhouse Gas Industrial Reporting and Control Act that have taken all reasonable measures to comply with the requirements under the Act. Additionally the business does not operate in a sector listed as being ineligible in the Sector Eligibility table listed on the [CleanBC Industrial Incentive Program webpage](https://www2.gov.bc.ca/gov/content/environment/climate-change/industry/cleanbc-program-for-industry).
+The CleanBC Industrial Incentive Program is open to businesses that emit more than 10,000 tonnes of carbon dioxide equivalent (CO<sub>2</sub>e) per year and/or those that report under the Greenhouse Gas Industrial Reporting and Control Act that have taken all reasonable measures to comply with the requirements under the Act. Additionally the business does not operate in a sector listed as being ineligible in the Sector Eligibility table listed on the [CleanBC Industrial Incentive Program webpage](https://www2.gov.bc.ca/gov/content?id=6F748A4DD83447C59B8B9361882FF9A3).
 
 
 
@@ -79,7 +79,7 @@ While you are in the system, it will save your live (as you type) form data cont
 
 Before you can apply for the CIIP on behalf of an eligible operation, you must [register with the Ministry of Environment and Climate Change Strategy](https://ciip.gov.bc.ca/register).
 
-For more information please see the [CleanBC Industrial Incentive Program webpage](https://www2.gov.bc.ca/gov/content/environment/climate-change/industry/cleanbc-program-for-industry).
+For more information please see the [CleanBC Industrial Incentive Program webpage](https://www2.gov.bc.ca/gov/content?id=6F748A4DD83447C59B8B9361882FF9A3).
 
 
 
