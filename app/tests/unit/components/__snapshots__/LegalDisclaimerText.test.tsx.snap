@@ -12,7 +12,7 @@ exports[`LegalDisclaimerText Component should match the last snapshot 1`] = `
       (a) "CIIP" means the
        
       <a
-        href="https://www2.gov.bc.ca/gov/content/environment/climate-change/industry/cleanbc-program-for-industry/cleanbc-industrial-incentive-program"
+        href="https://www2.gov.bc.ca/gov/content?id=6F748A4DD83447C59B8B9361882FF9A3"
       >
         CleanBC Industrial Incentive Program;
       </a>
@@ -65,7 +65,7 @@ exports[`LegalDisclaimerText Component should match the last snapshot 1`] = `
        
       <a
         className="jsx-3350969095"
-        href="https://www2.gov.bc.ca/gov/content/environment/climate-change/industry/cleanbc-program-for-industry/cleanbc-industrial-incentive-program"
+        href="https://www2.gov.bc.ca/gov/content?id=6F748A4DD83447C59B8B9361882FF9A3"
       >
         CIIP Rules
       </a>

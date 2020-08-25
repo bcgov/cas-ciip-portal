@@ -22,7 +22,7 @@ const createCertificationRequestMail = ({
           <h3>Your certification is requested.</h3>
           <p>
             <strong>${firstName} ${lastName}</strong> (${reporterEmail}), on behalf of <strong>${operatorName}</strong> for the <strong>${facilityName}</strong>
-            facility has requested that you review, certify and sign off on the data contained in this application for the <a href="https://www2.gov.bc.ca/gov/content/environment/climate-change/industry/cleanbc-program-for-industry/cleanbc-industrial-incentive-program">CleanBC Industrial Incentive Program</a>.
+            facility has requested that you review, certify and sign off on the data contained in this application for the <a href="https://www2.gov.bc.ca/gov/content?id=6F748A4DD83447C59B8B9361882FF9A3">CleanBC Industrial Incentive Program</a>.
           </p>
           <p>As the Certifying Official, you must agree to the <a href="${createUrl(
             'resources/application-disclaimer'
