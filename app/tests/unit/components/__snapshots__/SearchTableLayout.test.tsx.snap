@@ -138,34 +138,28 @@ exports[`SearchTableLayout should render an empty result message if no data is r
       }
     }
   >
-    <span
+    <Alert
+      closeLabel="Close alert"
       id="no-search-results"
-    >
-      <Alert
-        closeLabel="Close alert"
-        show={true}
-        transition={
-          Object {
-            "$$typeof": Symbol(react.forward_ref),
-            "defaultProps": Object {
-              "appear": false,
-              "in": false,
-              "mountOnEnter": false,
-              "timeout": 300,
-              "unmountOnExit": false,
-            },
-            "displayName": "Fade",
-            "render": [Function],
-          }
+      show={true}
+      transition={
+        Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "defaultProps": Object {
+            "appear": false,
+            "in": false,
+            "mountOnEnter": false,
+            "timeout": 300,
+            "unmountOnExit": false,
+          },
+          "displayName": "Fade",
+          "render": [Function],
         }
-        variant="secondary"
-      >
-        <p>
-          "No matching results to show."
-        </p>
-      </Alert>
-      <br />
-    </span>
+      }
+      variant="secondary"
+    >
+      No matching results to show.
+    </Alert>
   </Col>
   <JSXStyle
     id="3042046352"

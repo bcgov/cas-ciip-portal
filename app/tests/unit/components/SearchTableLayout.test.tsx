@@ -94,6 +94,6 @@ describe('SearchTableLayout', () => {
       />
     );
     expect(r).toMatchSnapshot();
-    expect(r.find('span').text()).toContain('No matching results');
+    expect(r.find('Alert').text()).toContain('No matching results');
   });
 });
