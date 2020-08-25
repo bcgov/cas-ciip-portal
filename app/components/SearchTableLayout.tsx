@@ -25,12 +25,9 @@ export const SearchTableLayoutComponent: React.FunctionComponent<Props> = (
   const noSearchResults =
     body.props.children.length === 0 ||
     body?.props?.children[0]?.length === 0 ? (
-      <span id="no-search-results">
-        <Alert variant="secondary">
-          <p>&quot;No matching results to show.&quot;</p>
-        </Alert>
-        <br />
-      </span>
+      <Alert variant="secondary" id="no-search-results">
+        No matching results to show.
+      </Alert>
     ) : null;
 
   return (
