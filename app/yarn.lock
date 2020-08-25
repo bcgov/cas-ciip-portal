@@ -2511,11 +2511,6 @@
   resolved "https://registry.yarnpkg.com/@graphile-contrib/pg-many-to-many/-/pg-many-to-many-1.0.0-beta.13.tgz#1093409d541df918fcf1bf72f60e0400b9ea9832"
   integrity sha512-gmawC6WtCzwDwzL+E2/DJpfiH84430PB5ApbbfcAhB3qLld/pN1RDwZ8XjiWYzxrKIBoRCv9VL8mF7YhI4dkMw==
 
-"@graphile/lru@4.5.0":
-  version "4.5.0"
-  resolved "https://registry.yarnpkg.com/@graphile/lru/-/lru-4.5.0.tgz#e8fe036d322dfe1715675aab171979981e28ac9e"
-  integrity sha512-OoIgewLowjegJzz3tpcRE5LpQKqsap1ETFaZtC1r9p36h5ieUJnWTxCTpB7XIsU9muMTt7MMt8x0E5apS47QIQ==
-
 "@graphile/lru@4.8.0-rc.0":
   version "4.8.0-rc.0"
   resolved "https://registry.yarnpkg.com/@graphile/lru/-/lru-4.8.0-rc.0.tgz#37af487cfe6081c85aff997d16f722bfe8309172"
@@ -10679,7 +10674,7 @@ graceful-fs@^4.2.4:
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.4.tgz#2256bde14d3632958c465ebc96dc467ca07a29fb"
   integrity sha512-WjKPNJF79dtJAVniUlGGWHYGz2jWxT6VhN/4m1NdkbZ2nOsEF+cI1Edgql5zCRhs/VsQYRvrXctxktVXZUkixw==
 
-graphile-build-pg@4.8.0:
+graphile-build-pg@4.8.0, graphile-build-pg@^4.8.0:
   version "4.8.0"
   resolved "https://registry.yarnpkg.com/graphile-build-pg/-/graphile-build-pg-4.8.0.tgz#1c00297e2747f6c52e2920a57d3dee02d8e327d0"
   integrity sha512-zCvFag/x2PZZlQGaKU4F6H+d3Iq/ELCay8aULxQiFePePN00Q1vRKW46FgiW5bz7xOyq87G82a0qVQFx8mInUA==
@@ -10694,37 +10689,6 @@ graphile-build-pg@4.8.0:
     lru-cache ">=4 <5"
     pg-sql2 "4.8.0"
     postgres-interval "^1.2.0"
-
-graphile-build-pg@^4.7.0:
-  version "4.7.0"
-  resolved "https://registry.yarnpkg.com/graphile-build-pg/-/graphile-build-pg-4.7.0.tgz#6ee86e0623bad433c61812119ac22aa420788841"
-  integrity sha512-dwGV+wUoPbly9RP9WgShs6yPv8A4N/xhdHGFu9sxYn49qkwJaAEdFehgsdCl12ZvJYpe/eDyK/6jR5PQOhJDbw==
-  dependencies:
-    "@graphile/lru" "4.5.0"
-    chalk "^2.4.2"
-    debug "^4.1.1"
-    graphile-build "4.7.0"
-    graphql-iso-date "^3.6.0"
-    jsonwebtoken "^8.5.1"
-    lodash ">=4 <5"
-    lru-cache ">=4 <5"
-    pg-sql2 "4.7.0"
-    postgres-interval "^1.2.0"
-
-graphile-build@4.7.0:
-  version "4.7.0"
-  resolved "https://registry.yarnpkg.com/graphile-build/-/graphile-build-4.7.0.tgz#138ebd706f6418dcec08b7301c769267bf242a24"
-  integrity sha512-zoh5KItIj40bZnHLEh1G6zAN6C0hmJkKVYsQUEZUeX4Ex80YoX9eFO8rI7LwMumPASJf4nmjlziksLY1+1cn6g==
-  dependencies:
-    "@graphile/lru" "4.5.0"
-    chalk "^2.4.2"
-    debug "^4.1.1"
-    graphql-parse-resolve-info "4.7.0"
-    iterall "^1.2.2"
-    lodash ">=4 <5"
-    lru-cache "^5.0.0"
-    pluralize "^7.0.0"
-    semver "^6.0.0"
 
 graphile-build@4.8.0:
   version "4.8.0"
@@ -10786,13 +10750,6 @@ graphql-iso-date@^3.6.0:
   version "3.6.1"
   resolved "https://registry.yarnpkg.com/graphql-iso-date/-/graphql-iso-date-3.6.1.tgz#bd2d0dc886e0f954cbbbc496bbf1d480b57ffa96"
   integrity sha512-AwFGIuYMJQXOEAgRlJlFL4H1ncFM8n8XmoVDTNypNOZyQ8LFDG2ppMFlsS862BSTCDcSUfHp8PD3/uJhv7t59Q==
-
-graphql-parse-resolve-info@4.7.0:
-  version "4.7.0"
-  resolved "https://registry.yarnpkg.com/graphql-parse-resolve-info/-/graphql-parse-resolve-info-4.7.0.tgz#0f769684f5430f9d14964fb7dea56fbfaf54953f"
-  integrity sha512-vrfvITs1vQCmzasAnfpzjTnImfo1gSwBijJEo6PF+0ZP3cLgJsmsNBvc9VJaiXxdjShS6sWI4V7HTrlz+UjGGw==
-  dependencies:
-    debug "^4.1.1"
 
 graphql-parse-resolve-info@4.8.0-rc.0:
   version "4.8.0-rc.0"
@@ -15203,15 +15160,6 @@ pg-protocol@^1.2.3:
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/pg-protocol/-/pg-protocol-1.2.3.tgz#711764fff0584943229eddfe60c0ba0aefabc6ea"
   integrity sha512-erHFURS0mPmTbq18cn/zNL3Y4IzNCrU4sgCim0qy7zAPe3Vc0rvK5cImJR6lDvIaz3fJU2R1R9FNOlnUtyF10Q==
-
-pg-sql2@4.7.0:
-  version "4.7.0"
-  resolved "https://registry.yarnpkg.com/pg-sql2/-/pg-sql2-4.7.0.tgz#2e4964bc0d94b8a81e4bc13651379a6436f8e370"
-  integrity sha512-/9YtclLJW7nIehd4RPxCECz9+mOAmQ5tkDRLbefzCxgctkKj31tsF6Xu1+Rwnnv7/hKyzH+ShzOJrxPRF8jEAw==
-  dependencies:
-    "@graphile/lru" "4.5.0"
-    "@types/pg" ">=6 <8"
-    debug ">=3 <5"
 
 pg-sql2@4.8.0:
   version "4.8.0"
