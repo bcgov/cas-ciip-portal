@@ -2506,10 +2506,10 @@
   dependencies:
     prop-types "^15.7.2"
 
-"@graphile-contrib/pg-many-to-many@^1.0.0-beta.13":
-  version "1.0.0-beta.13"
-  resolved "https://registry.yarnpkg.com/@graphile-contrib/pg-many-to-many/-/pg-many-to-many-1.0.0-beta.13.tgz#1093409d541df918fcf1bf72f60e0400b9ea9832"
-  integrity sha512-gmawC6WtCzwDwzL+E2/DJpfiH84430PB5ApbbfcAhB3qLld/pN1RDwZ8XjiWYzxrKIBoRCv9VL8mF7YhI4dkMw==
+"@graphile-contrib/pg-many-to-many@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@graphile-contrib/pg-many-to-many/-/pg-many-to-many-1.0.0.tgz#93f12f9d68724523bef1c833ea24e9f646c257af"
+  integrity sha512-y8DiptnJBDW8mrI9btQi/q/nYVYxG92P5QGBsKW6WdYiSKLvrhnnnqm0Qi2VrWIiRVxj22v0NKRmvZ8c6EIiZg==
 
 "@graphile/lru@4.8.0-rc.0":
   version "4.8.0-rc.0"
