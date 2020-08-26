@@ -174,3 +174,4 @@ computed_columns/application_revision_ciip_incentive [computed_columns/applicati
 views/ciip_admin [tables/form_result] 2020-08-11T18:03:30Z Dylan Leard <dylan@button.is> # View for admin data collected from ciip
 computed_columns/application_revision_ciip_incentive [computed_columns/application_revision_ciip_incentive@v1.4.1] 2020-08-10T17:21:46Z Dylan Leard <dylan@button.is> # Migration: handle possible divide by zero
 @v1.5.0 2020-08-12T19:08:56Z Dylan Leard <dylan@button.is> # release v1.5.0
+@v1.6.0 2020-08-26T14:53:04Z Matthieu Foucault <matthieu@button.is> # release v1.6.0
