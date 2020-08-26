@@ -96,11 +96,14 @@ export const CertificationSignature: React.FunctionComponent<Props> = ({
           {submitted ? (
             <span style={{color: 'green'}}>Signed Successfully!</span>
           ) : (
-            <input
-              accept="image/*"
-              type="file"
-              onChange={(e) => readImage(e)}
-            />
+            <label>
+              Upload an existing signature image:
+              <input
+                accept="image/*"
+                type="file"
+                onChange={(e) => readImage(e)}
+              />
+            </label>
           )}
         </Col>
         <Col md={{offset: 2, span: 3}}>
