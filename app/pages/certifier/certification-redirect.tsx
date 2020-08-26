@@ -88,7 +88,7 @@ class CertificationRedirect extends Component<Props> {
         {certificationUrl ? (
           <Row>
             <Col md={{offset: 3, span: 6}}>
-              <h3 className="blue">Your certification is requested.</h3>
+              <h2 className="blue">Your certification is requested.</h2>
               <p>
                 <strong>{`${firstName} ${lastName}`}</strong> on behalf of{' '}
                 <strong>{organisationName}</strong>, for facility{' '}
@@ -133,6 +133,11 @@ class CertificationRedirect extends Component<Props> {
         ) : (
           'Invalid certification URL'
         )}
+        <style>{`
+          h2 {
+            margin-bottom: 20px;
+          }
+        `}</style>
       </DefaultLayout>
     );
   }

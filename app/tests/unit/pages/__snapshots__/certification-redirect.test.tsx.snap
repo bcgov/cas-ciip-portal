@@ -25,11 +25,11 @@ exports[`Login redirect page It matches the last accepted Snapshot 1`] = `
         }
       }
     >
-      <h3
+      <h2
         className="blue"
       >
         Your certification is requested.
-      </h3>
+      </h2>
       <p>
         <strong>
           Old MacDonald
@@ -69,5 +69,12 @@ exports[`Login redirect page It matches the last accepted Snapshot 1`] = `
       </Col>
     </Col>
   </Row>
+  <style>
+    
+          h2 {
+            margin-bottom: 20px;
+          }
+        
+  </style>
 </Relay(DefaultLayout)>
 `;
