@@ -2,6 +2,48 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.6.0](https://github.com/bcgov/cas-ciip-portal/compare/v1.5.0...v1.6.0) (2020-08-26)
+
+
+### Features
+
+* add 'pending certification' to a draft application's status if a certification request has been sent ([fdd58ac](https://github.com/bcgov/cas-ciip-portal/commit/fdd58ac447a80797c9a575893315cc7fd7010a3a))
+* Add instruction text just above digital signature pad ([7275627](https://github.com/bcgov/cas-ciip-portal/commit/727562711c8124e5e9848b2eae70360a8ad68e93))
+* add saving indicator to application forms ([b4a3e6f](https://github.com/bcgov/cas-ciip-portal/commit/b4a3e6f53abcdf9d29b5ad1c6bc0adbff71369c4))
+* Color contrast accessiblity, reporter scope ([5a5618c](https://github.com/bcgov/cas-ciip-portal/commit/5a5618c6e84da2c6f301666003255d95bb6103e0))
+* create common function & show explicit error messages for format errors ([782fd61](https://github.com/bcgov/cas-ciip-portal/commit/782fd616f20c9dd5d2d3f3a5bd3e4f746d17dc08))
+* Form input (label) accessibility ([de947e9](https://github.com/bcgov/cas-ciip-portal/commit/de947e909698c39291f7f2d18a8e5a885935f5a0))
+* Form label accessibility for SearchBox ([12624aa](https://github.com/bcgov/cas-ciip-portal/commit/12624aaa8f7cf54f71c7c1ba35ddbdaf70ff0c88))
+* Headings accessibility, reporter scope ([6302e29](https://github.com/bcgov/cas-ciip-portal/commit/6302e294deea5647e4d2de36c4797156329c613f))
+* implement debounce without clientMutationIds ([f50dc6a](https://github.com/bcgov/cas-ciip-portal/commit/f50dc6ab8dbb56d4d224e3a8f5111b2cdf37253a))
+* List accessibility in PaginationBar ([67ebb7f](https://github.com/bcgov/cas-ciip-portal/commit/67ebb7f82a71660f5a03472d4ba11cf132dc1f66))
+* mutation debounce middleware short-circuits the debounced mutation ([12100ac](https://github.com/bcgov/cas-ciip-portal/commit/12100acefd72e30049a3bcd66d82ecd698f1c4cb))
+* Nav landmark accessibility ([429d1c1](https://github.com/bcgov/cas-ciip-portal/commit/429d1c169ad5e1e1dbfad4a9420b8881f5a76548))
+* set default debounce timeout to 250ms ([284ee1d](https://github.com/bcgov/cas-ciip-portal/commit/284ee1da749e393c671f02eaeafc5287f0800ff2))
+* show a message in search tables if there are no results ([6647662](https://github.com/bcgov/cas-ciip-portal/commit/66476620e7960aab12ca36ff1d33388cf60a854e))
+* update confirmation message in ApplicationWizardConfirmation ([2189ad1](https://github.com/bcgov/cas-ciip-portal/commit/2189ad1b7610af352ab0c3a0e0b9c3bec45589ff))
+* Update program website URL to (hopefully) permanent content URL ([9699b33](https://github.com/bcgov/cas-ciip-portal/commit/9699b338362746f060e1ac512c3e613e93293395))
+* update snowplow analytics script to vE.2.14.0 ([cb6376d](https://github.com/bcgov/cas-ciip-portal/commit/cb6376dbe4a4063b6a9e6e28e24a7d2dc546c1de))
+* use a debounceKey and call dispose() on debounced mutations ([32fef24](https://github.com/bcgov/cas-ciip-portal/commit/32fef24cea82b59d9df815dcc122f9ee1966f58f))
+
+
+### Bug Fixes
+
+* add a role & label to title div (fixes missing landmark violation) ([61710c6](https://github.com/bcgov/cas-ciip-portal/commit/61710c62aff066ffa6f3d39520862366e349e382))
+* add alt text for all images (fixes no-alt violation) & increase h tag sizes (fixes header-order violation) ([e56a7ae](https://github.com/bcgov/cas-ciip-portal/commit/e56a7ae11eed97a1f0928bd2a82624f053d1291a))
+* change contrast for contact/copyright pages (fixes color-contrast violation) ([8fc1078](https://github.com/bcgov/cas-ciip-portal/commit/8fc1078d55744dde20512475b369ca01723e9fad))
+* change contrast in privacy page (fixes color contrast violation) ([d0e6980](https://github.com/bcgov/cas-ciip-portal/commit/d0e6980e863e28735b97c47e8f090f4bb991da89))
+* ids should be unique on page for comments (view) fields ([d093dd0](https://github.com/bcgov/cas-ciip-portal/commit/d093dd08b4e262727a0f25ae7fe50ec55f5d4f14))
+* increase contrast for a tags (fixes contrast violation) ([4f988c6](https://github.com/bcgov/cas-ciip-portal/commit/4f988c61f22b5b35e9f7d27a42a634846c5d52f4))
+* increase size of first h tag to h1 (fixes no-header violation) ([80ea16e](https://github.com/bcgov/cas-ciip-portal/commit/80ea16e9a31d4a9299b5b7112ecb690087dc2ff5))
+* Input label accessibility for application certifier email ([1dd72a3](https://github.com/bcgov/cas-ciip-portal/commit/1dd72a37ec73525d4c79262ed9fe68bbb05e2e48))
+* make subheader & sitewide notice children of Header ([67467dc](https://github.com/bcgov/cas-ciip-portal/commit/67467dc5653e5b32c224d8d6e1bea24d28a1fdae))
+* remove extra html tag ([3024b8e](https://github.com/bcgov/cas-ciip-portal/commit/3024b8ea9a8bc474405f857e9d1555588c0f1652))
+* sort out some sizing issues after changing heading sizes ([5853ee1](https://github.com/bcgov/cas-ciip-portal/commit/5853ee1c7db02485b96d2d1560d33b67b88ec855))
+* sqitch-check-immutable-files does not fail when a tag is added ([9181c67](https://github.com/bcgov/cas-ciip-portal/commit/9181c67ad657d141b6128b9312286d83ddd6b5e9))
+* sqitch-check-immutable-files has to be run from the repo root ([bd4e476](https://github.com/bcgov/cas-ciip-portal/commit/bd4e47660a2e78d4ef70b2a56c7a0c969356312d))
+* wrap page-content container in a div with role=main (satisfies 'Main Landmark' violation) ([2f553f6](https://github.com/bcgov/cas-ciip-portal/commit/2f553f6fc4ff22525c66818bd88583f34f2a068f))
+
 ## [1.5.0](https://github.com/bcgov/cas-ciip-portal/compare/v1.4.1...v1.5.0) (2020-08-12)
 
 
