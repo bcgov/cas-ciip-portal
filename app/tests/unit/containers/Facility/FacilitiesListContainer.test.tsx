@@ -24,6 +24,9 @@ describe('FacilitiesListContainer', () => {
         ]
       },
       allFacilities: {totalCount: 20},
+      allReportingYears: {
+        edges: []
+      },
       organisation: {id: 'abc', rowId: 1}
     };
     const useRouter = jest.spyOn(require('next/router'), 'useRouter');
@@ -40,6 +43,7 @@ describe('FacilitiesListContainer', () => {
         searchValue={null}
         offsetValue={1}
         handleEvent={jest.fn()}
+        selectedReportingYear={new Date().getFullYear() - 1}
       />
     );
     expect(r).toMatchSnapshot();
