@@ -42,6 +42,9 @@ class FacilitiesList extends Component<Props> {
         session {
           ...defaultLayout_session
         }
+        nextReportingYear {
+          reportingYear
+        }
       }
     }
   `;
@@ -53,19 +56,22 @@ class FacilitiesList extends Component<Props> {
         direction: 'ASC',
         offsetValue: 0,
         maxResultsPerPage: 10,
-        reportingYear: 2019
+        reportingYear: 2018
       }
     };
   }
 
   render() {
     const {session} = this.props.query;
+    const defaultReportingYear =
+      this.props.query.nextReportingYear.reportingYear - 1;
     return (
       <DefaultLayout showSubheader session={session} title="Facilities">
         <SearchTable
           query={this.props.query}
           defaultOrderByField="facility_name"
           defaultOrderByDisplay="Facility Name"
+          defaultReportingYear={defaultReportingYear}
         >
           {(props) => <FacilitiesListContainer {...props} />}
         </SearchTable>

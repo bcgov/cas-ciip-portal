@@ -5,6 +5,7 @@ interface Props {
   defaultOrderByField: string;
   defaultOrderByDisplay: string;
   children: (props) => JSX.Element;
+  defaultReportingYear?: number;
 }
 class SearchTableComponent extends Component<Props> {
   state = {
@@ -12,7 +13,8 @@ class SearchTableComponent extends Component<Props> {
     direction: 'ASC',
     searchField: null,
     searchValue: null,
-    searchDisplay: 'Search by: '
+    searchDisplay: 'Search by: ',
+    selectedReportingYear: this.props.defaultReportingYear
   };
 
   toggleDirection = () => {
@@ -42,6 +44,12 @@ class SearchTableComponent extends Component<Props> {
     }
   };
 
+  selectReportingYear = (year) => {
+    this.setState({
+      selectedReportingYear: year
+    });
+  };
+
   handleEvent = (action, value, column) => {
     this[action](value, column);
   };
@@ -57,7 +65,8 @@ class SearchTableComponent extends Component<Props> {
       searchField: this.state.searchField,
       searchValue: this.state.searchValue,
       searchDisplay: this.state.searchDisplay,
-      handleEvent: this.handleEvent
+      handleEvent: this.handleEvent,
+      selectedReportingYear: this.state.selectedReportingYear
     });
   }
 }

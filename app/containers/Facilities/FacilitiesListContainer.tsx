@@ -12,6 +12,7 @@ interface Props {
   searchValue: string;
   offsetValue: number;
   handleEvent: (...args: any[]) => void;
+  selectedReportingYear: number;
   query: FacilitiesListContainer_query;
   relay: RelayRefetchProp;
 }
@@ -22,14 +23,21 @@ export const FacilitiesList: React.FunctionComponent<Props> = ({
   searchField,
   searchValue,
   handleEvent,
+  selectedReportingYear,
   relay,
   query
 }) => {
+  const reportingYears = query.allReportingYears.edges;
+  const nextReportingYear = query.nextReportingYear.reportingYear;
+  const selectableReportingYears = [];
+  reportingYears.forEach(({node}) => {
+    if (node.reportingYear < nextReportingYear)
+      selectableReportingYears.push(node.reportingYear);
+  });
   const {edges} = query.searchAllFacilities;
   const [offsetValue, setOffset] = useState(0);
   const [activePage, setActivePage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
-  const reportingYear = 2019;
   const maxResultsPerPage = 10;
   useEffect(() => {
     const refetchVariables = {
@@ -39,13 +47,21 @@ export const FacilitiesList: React.FunctionComponent<Props> = ({
       direction,
       maxResultsPerPage,
       offsetValue,
-      reportingYear
+      reportingYear: selectedReportingYear
     };
     setIsLoading(true);
     relay.refetch(refetchVariables, undefined, () => {
       setIsLoading(false);
     });
-  }, [searchField, searchValue, orderByField, direction, offsetValue, relay]);
+  }, [
+    searchField,
+    searchValue,
+    orderByField,
+    direction,
+    offsetValue,
+    relay,
+    selectedReportingYear
+  ]);
 
   const displayNameToColumnNameMap = {
     'Organisation Name': 'organisation_name',
@@ -79,6 +95,8 @@ export const FacilitiesList: React.FunctionComponent<Props> = ({
         displayNameToColumnNameMap={displayNameToColumnNameMap}
         handleEvent={handleEvent}
         isLoading={isLoading}
+        selectableReportingYears={selectableReportingYears}
+        selectedReportingYear={selectedReportingYear}
       />
       <PaginationBar
         setOffset={setOffset}
@@ -127,6 +145,16 @@ export default createRefetchContainer(
               ...FacilitiesRowItemContainer_facilitySearchResult
             }
           }
+        }
+        allReportingYears {
+          edges {
+            node {
+              reportingYear
+            }
+          }
+        }
+        nextReportingYear {
+          reportingYear
         }
       }
     `
