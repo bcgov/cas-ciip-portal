@@ -4,6 +4,7 @@ import {graphql, createRefetchContainer, RelayRefetchProp} from 'react-relay';
 import SearchTableLayout from 'components/SearchTableLayout';
 import {FacilitiesListContainer_query} from 'FacilitiesListContainer_query.graphql';
 import FacilitiesRowItemContainer from './FacilitiesRowItemContainer';
+import SelectReportingYearDropDown from 'components/SelectReportingYearDropdown';
 
 interface Props {
   direction: string;
@@ -28,10 +29,9 @@ export const FacilitiesList: React.FunctionComponent<Props> = ({
   query
 }) => {
   const reportingYears = query.allReportingYears.edges;
-  const nextReportingYear = query.nextReportingYear.reportingYear;
   const selectableReportingYears = [];
   reportingYears.forEach(({node}) => {
-    if (node.reportingYear < nextReportingYear)
+    if (node.reportingYear < new Date().getFullYear())
       selectableReportingYears.push(node.reportingYear);
   });
   const {edges} = query.searchAllFacilities;
@@ -88,6 +88,14 @@ export const FacilitiesList: React.FunctionComponent<Props> = ({
   const totalFacilityCount =
     query?.searchAllFacilities?.edges[0]?.node?.totalFacilityCount || 0;
 
+  const extraControls = (
+    <SelectReportingYearDropDown
+      selectableReportingYears={selectableReportingYears}
+      handleEvent={handleEvent}
+      selectedReportingYear={selectedReportingYear}
+    />
+  );
+
   return (
     <>
       <SearchTableLayout
@@ -95,8 +103,7 @@ export const FacilitiesList: React.FunctionComponent<Props> = ({
         displayNameToColumnNameMap={displayNameToColumnNameMap}
         handleEvent={handleEvent}
         isLoading={isLoading}
-        selectableReportingYears={selectableReportingYears}
-        selectedReportingYear={selectedReportingYear}
+        extraControls={extraControls}
       />
       <PaginationBar
         setOffset={setOffset}
@@ -152,9 +159,6 @@ export default createRefetchContainer(
               reportingYear
             }
           }
-        }
-        nextReportingYear {
-          reportingYear
         }
       }
     `

@@ -19,7 +19,6 @@ const SelectReportingYearDropDownComponent: React.FunctionComponent<Props> = ({
   handleEvent,
   selectedReportingYear
 }) => {
-  console.log(selectedReportingYear);
   const yearSchema: JSONSchema6 = {
     type: 'object',
     properties: {

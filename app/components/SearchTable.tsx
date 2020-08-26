@@ -5,7 +5,6 @@ interface Props {
   defaultOrderByField: string;
   defaultOrderByDisplay: string;
   children: (props) => JSX.Element;
-  defaultReportingYear?: number;
 }
 class SearchTableComponent extends Component<Props> {
   state = {
@@ -14,7 +13,7 @@ class SearchTableComponent extends Component<Props> {
     searchField: null,
     searchValue: null,
     searchDisplay: 'Search by: ',
-    selectedReportingYear: this.props.defaultReportingYear
+    selectedReportingYear: new Date().getFullYear() - 1
   };
 
   toggleDirection = () => {

@@ -2,7 +2,6 @@ import React from 'react';
 import {Container, Row, Col, Table, Alert} from 'react-bootstrap';
 import SortableTableHeader from 'components/SortableTableHeader';
 import SearchBox from 'components/SearchBox';
-import SelectReportingYearDropDown from 'components/SelectReportingYearDropdown';
 
 interface Props {
   handleEvent: (
@@ -15,8 +14,7 @@ interface Props {
   displayNameToColumnNameMap: any;
   body: JSX.Element;
   isLoading?: boolean;
-  selectableReportingYears?: number[];
-  selectedReportingYear?: number;
+  extraControls?: JSX.Element;
 }
 export const SearchTableLayoutComponent: React.FunctionComponent<Props> = (
   props
@@ -28,8 +26,7 @@ export const SearchTableLayoutComponent: React.FunctionComponent<Props> = (
     displayNameToColumnNameMap,
     body,
     isLoading,
-    selectableReportingYears,
-    selectedReportingYear
+    extraControls
   } = props;
 
   const noSearchResults =
@@ -44,15 +41,7 @@ export const SearchTableLayoutComponent: React.FunctionComponent<Props> = (
     <>
       <Container>
         <Row>
-          <Col md={{offset: 2, span: 2}}>
-            {selectableReportingYears && (
-              <SelectReportingYearDropDown
-                selectableReportingYears={selectableReportingYears}
-                handleEvent={handleEvent}
-                selectedReportingYear={selectedReportingYear}
-              />
-            )}
-          </Col>
+          <Col md={{offset: 2, span: 2}}>{extraControls}</Col>
           <Col md={{span: 8}} className="no-pad">
             <SearchBox
               dropdownSortItems={Object.keys(displayNameToColumnNameMap)}
