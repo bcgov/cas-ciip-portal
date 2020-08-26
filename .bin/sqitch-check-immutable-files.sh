@@ -6,8 +6,12 @@
 set -euo pipefail
 # gets the list of modified files via git diff, and removes the schema/(deploy|revert|verify) prefix, and the .sql suffix to match the sqitch plan change name
 modified_changes=$(git diff --name-only "${2}" -- "${1}"/deploy "${1}"/revert "${1}"/verify | sed -e "s/.*\/\(deploy\|verify\|revert\)\///g; s/@.*//g; s/\.sql$//g")
-# reads the sqitch.plan from the end and stop at the first line starting with @ (exclusive), only inclue the change name
-changes_after_last_tag=$(tac "${1}"/sqitch.plan | sed '/^@/Q' | cut -d' ' -f1)
+
+# finds the last tag in the sqitch plan in the base branch
+last_tag_on_base_branch=$(git show "${2}":"${1}"/sqitch.plan | tac | sed '/^@/q' | cut -d' ' -f1 )
+
+# reads the sqitch.plan from the end and stops at the last tag that was on the base branch
+changes_after_last_tag=$(tac "${1}"/sqitch.plan | sed "/^$last_tag_on_base_branch/Q" | cut -d' ' -f1)
 
 # comm compares two ordered files and returns three columns "-23" suppresses colums 2 and 3,
 # so it only returns the first column (the lines unique to file 1)
