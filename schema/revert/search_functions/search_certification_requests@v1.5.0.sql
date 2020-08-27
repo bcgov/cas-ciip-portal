@@ -69,9 +69,7 @@ begin;
                     )
                     select searchResult.*, total_count.total_request_count from searchResult, total_count';
 
-        if user_email is null then
-          return query execute search_query || ' limit 0';
-        elsif search_field[1] is null then
+        if search_field[1] is null then
           return query execute
             search_query || ' where certifier_email = ' || quote_literal(user_email) || ' ' || order_by_string || ' limit '|| max_results_per_page ||' offset ' || offset_value;
         else
