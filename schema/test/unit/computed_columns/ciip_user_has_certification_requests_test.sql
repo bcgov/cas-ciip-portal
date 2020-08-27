@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(3);
+select plan(4);
 
 truncate ggircs_portal.certification_url restart identity;
 alter table ggircs_portal.certification_url disable trigger _certification_request_email;
@@ -32,6 +32,17 @@ select is(
   ),
   'true'::boolean,
   'ciip_user_has_certification_requests returns true if certification requests exist for the user passed to the function'
+);
+
+update ggircs_portal.ciip_user set email_address = 'CERTIFIER@certi.fy' where email_address = 'certifier@certi.fy';
+
+select is(
+  (
+    with record as (select row(ciip_user.*)::ggircs_portal.ciip_user from ggircs_portal.ciip_user where email_address = 'CERTIFIER@certi.fy')
+    select ggircs_portal.ciip_user_has_certification_requests((select * from record))
+  ),
+  'true'::boolean,
+  'ciip_user_has_certification_requests is case insensitive'
 );
 
 select finish();
