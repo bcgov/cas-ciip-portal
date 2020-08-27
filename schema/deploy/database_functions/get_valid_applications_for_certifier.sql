@@ -10,7 +10,7 @@ begin;
       join ggircs_portal.certification_url cer
         on a.id = cer.application_id
       join ggircs_portal.ciip_user cu
-        on cer.certifier_email = cu.email_address
+        on lower(cer.certifier_email) = lower(cu.email_address)
         and cu.uuid = (select sub from ggircs_portal.session());
   $fn$ language sql strict stable security definer;
 

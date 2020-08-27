@@ -175,3 +175,9 @@ views/ciip_admin [tables/form_result] 2020-08-11T18:03:30Z Dylan Leard <dylan@bu
 computed_columns/application_revision_ciip_incentive [computed_columns/application_revision_ciip_incentive@v1.4.1] 2020-08-10T17:21:46Z Dylan Leard <dylan@button.is> # Migration: handle possible divide by zero
 @v1.5.0 2020-08-12T19:08:56Z Dylan Leard <dylan@button.is> # release v1.5.0
 @v1.6.0 2020-08-26T14:53:04Z Matthieu Foucault <matthieu@button.is> # release v1.6.0
+computed_columns/ciip_user_has_certification_requests [computed_columns/ciip_user_has_certification_requests@v1.5.0] 2020-08-27T19:17:01Z Dylan Leard <dylan@button.is> # Migration: make certifier email comparison case insensitive
+database_functions/get_valid_applications_for_certifier [database_functions/get_valid_applications_for_certifier@v1.5.0] 2020-08-27T19:19:07Z Dylan Leard <dylan@button.is> # Migration: make certifier email comparison case insensitive
+policies/application_policies [policies/application_policies@v1.5.0] 2020-08-27T19:22:26Z Dylan Leard <dylan@button.is> # Migration: make certifier email comparison case insensitive
+policies/certification_url_policies [policies/certification_url_policies@v1.5.0] 2020-08-27T19:24:00Z Dylan Leard <dylan@button.is> # Migration: make certifier email comparison case insensitive
+search_functions/search_certification_requests [search_functions/search_certification_requests@v1.5.0] 2020-08-27T19:25:37Z Dylan Leard <dylan@button.is> # Migration: make certifier email comparison case insensitive
+policies/facility_policies [policies/facility_policies@v1.5.0] 2020-08-27T20:57:07Z Dylan Leard <dylan@button.is> # Migration: make certifier_email comparison case insensitive
