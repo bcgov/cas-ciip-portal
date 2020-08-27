@@ -15,16 +15,12 @@ describe('When the reporter is viewing a list of facilities & applications', () 
   it('The reporter should be able to filter results by reporting period', () => {
     cy.visit('/reporter/facilities');
     cy.url().should('include', '/reporter/facilities');
-    cy.get('#root_reportingYear').should('contain', 2019);
+    cy.get('#root_reportingYear').should('have.value', 2019);
     cy.get(':nth-child(1) > :nth-child(7) > .btn').should(
       'have.prop',
       'disabled',
       false
     );
-    cy.get('#page-content').happoScreenshot({
-      component: 'Facility Search Table',
-      variant: 'current year'
-    });
     cy.get(':nth-child(1) > :nth-child(7) > .btn').should('contain', 'Resume');
     cy.get('#root_reportingYear').select('2018');
     cy.get('tbody > :nth-child(1) > :nth-child(6)').should(
