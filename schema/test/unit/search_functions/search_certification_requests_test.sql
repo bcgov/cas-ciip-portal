@@ -6,6 +6,7 @@ begin;
 select plan(3);
 
 truncate ggircs_portal.certification_url restart identity;
+truncate ggircs_portal.ciip_user_organisation restart identity;
 alter table ggircs_portal.certification_url disable trigger _certification_request_email;
 set jwt.claims.sub to '00000000-0000-0000-0000-000000000000';
 
