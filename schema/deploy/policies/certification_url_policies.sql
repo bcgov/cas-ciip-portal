@@ -18,7 +18,7 @@ $policy$
 
     -- statement for select using & insert with check
     industry_user_statement := 'application_id in (select ggircs_portal_private.get_valid_applications_for_reporter())';
-    certifier_user_statement := 'certifier_email = ((select email_address from ggircs_portal.ciip_user where ciip_user.uuid = (select sub from ggircs_portal.session())))';
+    certifier_user_statement := 'lower(certifier_email) = (lower((select email_address from ggircs_portal.ciip_user where ciip_user.uuid = (select sub from ggircs_portal.session()))))';
 
     -- ciip_industry_user RLS
     perform ggircs_portal_private.upsert_policy('ciip_industry_user_select_certification_url', 'certification_url', 'select', 'ciip_industry_user', industry_user_statement);
