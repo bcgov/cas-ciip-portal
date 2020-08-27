@@ -24,7 +24,7 @@ $fn$
     join ggircs_portal.certification_url cer
       on a.id = cer.application_id
     join ggircs_portal.ciip_user cu
-      on cu.email_address = cer.certifier_email
+      on lower(cu.email_address) = lower(cer.certifier_email)
       and cu.uuid = (select sub from ggircs_portal.session());
 $fn$ language sql strict stable security definer;
 /** This function is set as security definer due to a circular access control issue with get_valid_application_facilities()
