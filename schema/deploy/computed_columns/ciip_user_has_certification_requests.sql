@@ -13,7 +13,7 @@ begin;
   $body$
     declare
     begin
-      if (select count(*) from ggircs_portal.certification_url where certifier_email = ciip_user.email_address) = 0 then
+      if (select count(*) from ggircs_portal.certification_url where lower(certifier_email) = lower(ciip_user.email_address)) = 0 then
         return false;
       else
         return true;
