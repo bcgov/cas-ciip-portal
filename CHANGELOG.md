@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.6.1](https://github.com/bcgov/cas-ciip-portal/compare/v1.6.0...v1.6.1) (2020-08-28)
+
+
+### Bug Fixes
+
+* make application_policies case insensitive ([c3b369d](https://github.com/bcgov/cas-ciip-portal/commit/c3b369d2f235c44f1765636afe26b9e3003eb64c))
+* make certification_url_policies case insensitive ([6b1259d](https://github.com/bcgov/cas-ciip-portal/commit/6b1259d9169bde5364d17d4d72c60ef59babcdf3))
+* make ciip_user_has_certifiation_requests case insensitive ([29c1ee0](https://github.com/bcgov/cas-ciip-portal/commit/29c1ee033be06a7d5c051b6b9763b25bdaadc5c8))
+* Make facility_policies case insensitive ([71b0b59](https://github.com/bcgov/cas-ciip-portal/commit/71b0b59416df371a1e59e3bde814fd320bdebee0))
+* make get_valid_applications_for_certifier case insensitive ([731ee02](https://github.com/bcgov/cas-ciip-portal/commit/731ee02e2681bfd1bd6a3efb897a00dee0eff10b))
+* make search_certification_requests case insensitive ([23fdf3a](https://github.com/bcgov/cas-ciip-portal/commit/23fdf3af617afd0f835a50aaf3dcfdef62547deb))
+
 ## [1.6.0](https://github.com/bcgov/cas-ciip-portal/compare/v1.5.0...v1.6.0) (2020-08-26)
 
 
