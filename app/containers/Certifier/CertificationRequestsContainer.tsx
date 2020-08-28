@@ -136,6 +136,7 @@ export const CertificationRequestsComponent: React.FunctionComponent<Props> = ({
               <label>
                 {!node.certifiedAt && (
                   <input
+                    aria-label="Select for certification"
                     type="checkbox"
                     checked={selections.includes(
                       node.certificationUrlByCertificationUrlId.id

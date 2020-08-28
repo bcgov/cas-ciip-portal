@@ -36,12 +36,17 @@ exports[`The Confirmation Component matches the snapshot 1`] = `
     <Col
       md={6}
     >
-      <input
-        accept="image/*"
+      <label
         className="jsx-2877110858"
-        onChange={[Function]}
-        type="file"
-      />
+      >
+        Upload an existing signature image:
+        <input
+          accept="image/*"
+          className="jsx-2877110858"
+          onChange={[Function]}
+          type="file"
+        />
+      </label>
     </Col>
     <Col
       md={
