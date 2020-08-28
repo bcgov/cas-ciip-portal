@@ -46,6 +46,7 @@ exports[`FacilitiesListContainer should match the previous snapshot 1`] = `
               },
             }
           }
+          reportingYear={2019}
         />
       </tbody>
     }

@@ -1,4 +1,4 @@
-import React, {useState, useCallback} from 'react';
+import React, {useState, useMemo} from 'react';
 import {Button, Modal} from 'react-bootstrap';
 import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
 import Link from 'next/link';
@@ -7,6 +7,7 @@ import createApplicationMutation from 'mutations/application/createApplicationMu
 import {ApplyButtonContainer_applyButtonDetails} from 'ApplyButtonContainer_applyButtonDetails.graphql';
 import {ApplyButtonContainer_query} from 'ApplyButtonContainer_query.graphql';
 interface Props {
+  reportingYear: number;
   relay: RelayProp;
   applyButtonDetails: ApplyButtonContainer_applyButtonDetails;
   query: ApplyButtonContainer_query;
@@ -15,7 +16,8 @@ interface Props {
 export const ApplyButton: React.FunctionComponent<Props> = ({
   applyButtonDetails,
   query,
-  relay
+  relay,
+  reportingYear
 }) => {
   const {
     facilityByFacilityId,
@@ -29,8 +31,8 @@ export const ApplyButton: React.FunctionComponent<Props> = ({
 
   const router = useRouter();
 
-  const canOpenApplication = useCallback(() => {
-    if (query.openedReportingYear?.reportingYear) return true;
+  const canOpenApplication = useMemo(() => {
+    if (query.openedReportingYear?.reportingYear === reportingYear) return true;
 
     // The application was not started yet
     if (!applicationId) return false;
@@ -50,7 +52,7 @@ export const ApplyButton: React.FunctionComponent<Props> = ({
     query.openedReportingYear?.reportingYear
   ]);
 
-  if (!canOpenApplication()) {
+  if (!canOpenApplication) {
     return (
       <Button disabled variant="info">
         The application window is closed

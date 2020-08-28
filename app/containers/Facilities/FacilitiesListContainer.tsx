@@ -79,6 +79,7 @@ export const FacilitiesList: React.FunctionComponent<Props> = ({
         <FacilitiesRowItemContainer
           key={edge.node.rowId}
           facilitySearchResult={edge.node}
+          reportingYear={selectedReportingYear}
           query={query}
         />
       ))}
