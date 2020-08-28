@@ -181,3 +181,4 @@ policies/application_policies [policies/application_policies@v1.5.0] 2020-08-27T
 policies/certification_url_policies [policies/certification_url_policies@v1.5.0] 2020-08-27T19:24:00Z Dylan Leard <dylan@button.is> # Migration: make certifier email comparison case insensitive
 search_functions/search_certification_requests [search_functions/search_certification_requests@v1.5.0] 2020-08-27T19:25:37Z Dylan Leard <dylan@button.is> # Migration: make certifier email comparison case insensitive
 policies/facility_policies [policies/facility_policies@v1.5.0] 2020-08-27T20:57:07Z Dylan Leard <dylan@button.is> # Migration: make certifier_email comparison case insensitive
+@v1.6.1 2020-08-28T16:58:22Z Matthieu Foucault <matthieu@button.is> # release v1.6.1
