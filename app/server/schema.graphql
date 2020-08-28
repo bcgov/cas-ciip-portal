@@ -11529,6 +11529,7 @@ type Query implements Node {
     offsetValue: Int
     orderByField: String
     organisationRowId: String
+    reportingYear: Int
     searchField: String
     searchValue: String
   ): FacilitySearchResultsConnection!

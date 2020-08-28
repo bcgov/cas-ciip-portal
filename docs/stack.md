@@ -209,6 +209,9 @@ We explored two alternatives to Percy:
 
 #### Data setup and teardown
 
+#### Known Issues
+
+- Cypress has an open issue[https://github.com/cypress-io/cypress/issues/4443] regarding dom snapshots and select tags where the value of the select is lost.
 
 
 ## Version Control

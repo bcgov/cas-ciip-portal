@@ -2,13 +2,19 @@ import React from 'react';
 import {Container, Row, Col, Table, Alert} from 'react-bootstrap';
 import SortableTableHeader from 'components/SortableTableHeader';
 import SearchBox from 'components/SearchBox';
+
 interface Props {
-  handleEvent: (action: string, value?: string, column?: string) => any;
+  handleEvent: (
+    action: string,
+    value?: string | number,
+    column?: string
+  ) => any;
   handleSelectAll?: (...args: any[]) => void;
   allSelected?: boolean;
   displayNameToColumnNameMap: any;
   body: JSX.Element;
   isLoading?: boolean;
+  extraControls?: JSX.Element;
 }
 export const SearchTableLayoutComponent: React.FunctionComponent<Props> = (
   props
@@ -19,7 +25,8 @@ export const SearchTableLayoutComponent: React.FunctionComponent<Props> = (
     allSelected = false,
     displayNameToColumnNameMap,
     body,
-    isLoading
+    isLoading,
+    extraControls
   } = props;
 
   const noSearchResults =
@@ -34,7 +41,8 @@ export const SearchTableLayoutComponent: React.FunctionComponent<Props> = (
     <>
       <Container>
         <Row>
-          <Col md={{span: 12}} className="no-pad">
+          <Col md={{offset: 2, span: 2}}>{extraControls}</Col>
+          <Col md={{span: 8}} className="no-pad">
             <SearchBox
               dropdownSortItems={Object.keys(displayNameToColumnNameMap)}
               handleEvent={handleEvent}

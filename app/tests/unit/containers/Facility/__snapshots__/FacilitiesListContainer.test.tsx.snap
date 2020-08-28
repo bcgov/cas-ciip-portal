@@ -24,6 +24,9 @@ exports[`FacilitiesListContainer should match the previous snapshot 1`] = `
               "allFacilities": Object {
                 "totalCount": 20,
               },
+              "allReportingYears": Object {
+                "edges": Array [],
+              },
               "organisation": Object {
                 "id": "abc",
                 "rowId": 1,
@@ -56,6 +59,13 @@ exports[`FacilitiesListContainer should match the previous snapshot 1`] = `
         "Reporting period of last SWRS report": "last_swrs_reporting_year",
         "Status": "application_revision_status",
       }
+    }
+    extraControls={
+      <SelectReportingYearDropDownComponent
+        handleEvent={[MockFunction]}
+        selectableReportingYears={Array []}
+        selectedReportingYear={2019}
+      />
     }
     handleEvent={[MockFunction]}
     isLoading={false}

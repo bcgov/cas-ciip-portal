@@ -12,7 +12,8 @@ class SearchTableComponent extends Component<Props> {
     direction: 'ASC',
     searchField: null,
     searchValue: null,
-    searchDisplay: 'Search by: '
+    searchDisplay: 'Search by: ',
+    selectedReportingYear: new Date().getFullYear() - 1
   };
 
   toggleDirection = () => {
@@ -42,6 +43,12 @@ class SearchTableComponent extends Component<Props> {
     }
   };
 
+  selectReportingYear = (year) => {
+    this.setState({
+      selectedReportingYear: year
+    });
+  };
+
   handleEvent = (action, value, column) => {
     this[action](value, column);
   };
@@ -57,7 +64,8 @@ class SearchTableComponent extends Component<Props> {
       searchField: this.state.searchField,
       searchValue: this.state.searchValue,
       searchDisplay: this.state.searchDisplay,
-      handleEvent: this.handleEvent
+      handleEvent: this.handleEvent,
+      selectedReportingYear: this.state.selectedReportingYear
     });
   }
 }

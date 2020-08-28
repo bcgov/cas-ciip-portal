@@ -4,6 +4,7 @@ import {graphql, createRefetchContainer, RelayRefetchProp} from 'react-relay';
 import SearchTableLayout from 'components/SearchTableLayout';
 import {FacilitiesListContainer_query} from 'FacilitiesListContainer_query.graphql';
 import FacilitiesRowItemContainer from './FacilitiesRowItemContainer';
+import SelectReportingYearDropDown from 'components/SelectReportingYearDropdown';
 
 interface Props {
   direction: string;
@@ -12,6 +13,7 @@ interface Props {
   searchValue: string;
   offsetValue: number;
   handleEvent: (...args: any[]) => void;
+  selectedReportingYear: number;
   query: FacilitiesListContainer_query;
   relay: RelayRefetchProp;
 }
@@ -22,9 +24,16 @@ export const FacilitiesList: React.FunctionComponent<Props> = ({
   searchField,
   searchValue,
   handleEvent,
+  selectedReportingYear,
   relay,
   query
 }) => {
+  const reportingYears = query.allReportingYears.edges;
+  const selectableReportingYears = [];
+  reportingYears.forEach(({node}) => {
+    if (node.reportingYear < new Date().getFullYear())
+      selectableReportingYears.push(node.reportingYear);
+  });
   const {edges} = query.searchAllFacilities;
   const [offsetValue, setOffset] = useState(0);
   const [activePage, setActivePage] = useState(1);
@@ -37,13 +46,22 @@ export const FacilitiesList: React.FunctionComponent<Props> = ({
       orderByField,
       direction,
       maxResultsPerPage,
-      offsetValue
+      offsetValue,
+      reportingYear: selectedReportingYear
     };
     setIsLoading(true);
     relay.refetch(refetchVariables, undefined, () => {
       setIsLoading(false);
     });
-  }, [searchField, searchValue, orderByField, direction, offsetValue, relay]);
+  }, [
+    searchField,
+    searchValue,
+    orderByField,
+    direction,
+    offsetValue,
+    relay,
+    selectedReportingYear
+  ]);
 
   const displayNameToColumnNameMap = {
     'Organisation Name': 'organisation_name',
@@ -70,6 +88,14 @@ export const FacilitiesList: React.FunctionComponent<Props> = ({
   const totalFacilityCount =
     query?.searchAllFacilities?.edges[0]?.node?.totalFacilityCount || 0;
 
+  const extraControls = (
+    <SelectReportingYearDropDown
+      selectableReportingYears={selectableReportingYears}
+      handleEvent={handleEvent}
+      selectedReportingYear={selectedReportingYear}
+    />
+  );
+
   return (
     <>
       <SearchTableLayout
@@ -77,6 +103,7 @@ export const FacilitiesList: React.FunctionComponent<Props> = ({
         displayNameToColumnNameMap={displayNameToColumnNameMap}
         handleEvent={handleEvent}
         isLoading={isLoading}
+        extraControls={extraControls}
       />
       <PaginationBar
         setOffset={setOffset}
@@ -105,6 +132,7 @@ export default createRefetchContainer(
           organisationRowId: {type: "String"}
           offsetValue: {type: "Int"}
           maxResultsPerPage: {type: "Int"}
+          reportingYear: {type: "Int"}
         ) {
         ...FacilitiesRowItemContainer_query
         searchAllFacilities(
@@ -115,12 +143,20 @@ export default createRefetchContainer(
           direction: $direction
           offsetValue: $offsetValue
           maxResultsPerPage: $maxResultsPerPage
+          reportingYear: $reportingYear
         ) {
           edges {
             node {
               rowId
               totalFacilityCount
               ...FacilitiesRowItemContainer_facilitySearchResult
+            }
+          }
+        }
+        allReportingYears {
+          edges {
+            node {
+              reportingYear
             }
           }
         }
@@ -136,6 +172,7 @@ export default createRefetchContainer(
       $organisationRowId: String
       $offsetValue: Int
       $maxResultsPerPage: Int
+      $reportingYear: Int
     ) {
       query {
         ...FacilitiesListContainer_query
@@ -147,6 +184,7 @@ export default createRefetchContainer(
             organisationRowId: $organisationRowId
             offsetValue: $offsetValue
             maxResultsPerPage: $maxResultsPerPage
+            reportingYear: $reportingYear
           )
       }
     }
