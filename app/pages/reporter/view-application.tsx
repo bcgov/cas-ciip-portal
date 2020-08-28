@@ -89,10 +89,7 @@ class ViewApplication extends Component<Props> {
         <Row>
           {query?.application?.applicationRevisionStatus
             ?.applicationRevisionStatus === 'REQUESTED_CHANGES' ? (
-            <ReviseApplicationButton
-              application={query.application}
-              query={query}
-            />
+            <ReviseApplicationButton application={query.application} />
           ) : null}
         </Row>
       </DefaultLayout>
