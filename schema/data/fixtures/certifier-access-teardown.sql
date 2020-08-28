@@ -1,5 +1,7 @@
 begin;
 
+-- Re-populate products table, which was truncated in test setup:
+\i ../schema/data/dev/product.sql
 
 delete from ggircs_portal.certification_url where application_id=1;
 
