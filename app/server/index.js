@@ -229,7 +229,19 @@ app.prepare().then(() => {
     keycloak.middleware({
       logout: '/logout',
       admin: '/'
-    })
+    }),
+    async (req, res, next) => {
+      if (req.kauth && req.kauth.grant) {
+        try {
+          const grant = await keycloak.getGrant(req, res);
+          await keycloak.grantManager.ensureFreshness(grant);
+        } catch (error) {
+          return next(error);
+        }
+      }
+
+      next();
+    }
   );
 
   // Use consola for logging instead of default logger
