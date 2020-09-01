@@ -32,8 +32,22 @@ exports[`landing It matches the last accepted Snapshot 1`] = `
         As the price of carbon rises, the CleanBC Program for Industry will support competitiveness and facilitate emission reductions using revenues from the carbon tax that industry pays above $30 per tonne carbon dioxide equivalent (tCO2e).
       </p>
     </Col>
-    <RegistrationLoginButtons
-      applicationDeadline="December 30, 2019"
+    <Relay(RegistrationLoginButtonsComponent)
+      query={
+        Object {
+          "nextReportingYear": Object {
+            "applicationCloseTime": "2019-12-30 14:49:54.191757-07",
+            "applicationOpenTime": "2019-04-01 14:49:54.191757-07",
+            "swrsDeadline": "2019-06-01 11:59:59.999-07",
+          },
+          "openedReportingYear": Object {
+            "applicationCloseTime": "2019-12-30 14:49:54.191757-07",
+            "applicationOpenTime": "2019-04-01 14:49:54.191757-07",
+            "swrsDeadline": "2019-06-01 11:59:59.999-07",
+          },
+          "session": null,
+        }
+      }
     />
   </Row>
   <Row
@@ -151,67 +165,23 @@ exports[`landing It matches the last accepted Snapshot 1`] = `
         }
       }
     >
-      <h3
-        className="jsx-138781645 blue"
-      >
-        Key Dates
-      </h3>
-      <ForwardRef
-        bordered={true}
-        hover={true}
-        striped={true}
-      >
-        <thead
-          className="jsx-138781645"
-        >
-          <tr
-            className="jsx-138781645"
-          >
-            <th
-              className="jsx-138781645"
-            >
-              Date
-            </th>
-            <th
-              className="jsx-138781645"
-            />
-          </tr>
-        </thead>
-        <tbody
-          className="jsx-138781645"
-        >
-          <tr
-            key="j87kj39uhf8930"
-          >
-            <td>
-              Apr 1, 2019
-            </td>
-            <td>
-              CIIP application forms open
-            </td>
-          </tr>
-          <tr
-            key="848tfh282740jd"
-          >
-            <td>
-              Jun 1, 2019
-            </td>
-            <td>
-              Industrial GHG reporting deadline
-            </td>
-          </tr>
-          <tr
-            key="kd9393hd8sy273"
-          >
-            <td>
-              Dec 30, 2019
-            </td>
-            <td>
-              CIIP application form due
-            </td>
-          </tr>
-        </tbody>
-      </ForwardRef>
+      <Relay(KeyDatesComponent)
+        query={
+          Object {
+            "nextReportingYear": Object {
+              "applicationCloseTime": "2019-12-30 14:49:54.191757-07",
+              "applicationOpenTime": "2019-04-01 14:49:54.191757-07",
+              "swrsDeadline": "2019-06-01 11:59:59.999-07",
+            },
+            "openedReportingYear": Object {
+              "applicationCloseTime": "2019-12-30 14:49:54.191757-07",
+              "applicationOpenTime": "2019-04-01 14:49:54.191757-07",
+              "swrsDeadline": "2019-06-01 11:59:59.999-07",
+            },
+            "session": null,
+          }
+        }
+      />
       <Card
         body={false}
         className="ciip-card"

@@ -1,0 +1,135 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The RegistrationLoginButtons component should render a message about the application window being closed 1`] = `
+<Col
+  md={
+    Object {
+      "offset": 1,
+      "span": 5,
+    }
+  }
+>
+  <Card
+    body={false}
+    style={
+      Object {
+        "margin": "30px 0",
+        "width": "100%",
+      }
+    }
+  >
+    <CardBody>
+      <CardTitle
+        className="blue"
+      >
+        Apply for the CleanBC Industrial Incentive Program (CIIP)
+      </CardTitle>
+      <CardText
+        style={
+          Object {
+            "padding": "10px 0 10px 0",
+          }
+        }
+      >
+        The due date for CIIP application forms has passed. 
+        <br />
+        You may still log in to view your submitted CIIP applications and submit any changes requested by the Climate Action Secretariat.
+      </CardText>
+      <a
+        className="jsx-43491111 full-width btn btn-primary btn-lg"
+        href="/register"
+        style={
+          Object {
+            "display": "block",
+            "padding": "15px",
+          }
+        }
+      >
+        Register and Apply
+      </a>
+    </CardBody>
+  </Card>
+  <LoginForm>
+    <Button
+      active={false}
+      className="login-link"
+      disabled={false}
+      type="submit"
+      variant="outline-dark"
+    >
+      Already have an account? Click here to login.
+    </Button>
+  </LoginForm>
+  <JSXStyle
+    id="43491111"
+  >
+    .login-link{padding:20px;width:100%;-webkit-text-decoration:underline;text-decoration:underline;}
+  </JSXStyle>
+</Col>
+`;
+
+exports[`The RegistrationLoginButtons component should render the date where the current application window closes 1`] = `
+<Col
+  md={
+    Object {
+      "offset": 1,
+      "span": 5,
+    }
+  }
+>
+  <Card
+    body={false}
+    style={
+      Object {
+        "margin": "30px 0",
+        "width": "100%",
+      }
+    }
+  >
+    <CardBody>
+      <CardTitle
+        className="blue"
+      >
+        Apply for the CleanBC Industrial Incentive Program (CIIP)
+      </CardTitle>
+      <CardText
+        style={
+          Object {
+            "padding": "10px 0 10px 0",
+          }
+        }
+      >
+        Operators must submit a CIIP application form by January 01, 2020. As part of the application, information about the operation’s energy use, emissions, and production is required.
+      </CardText>
+      <a
+        className="jsx-43491111 full-width btn btn-primary btn-lg"
+        href="/register"
+        style={
+          Object {
+            "display": "block",
+            "padding": "15px",
+          }
+        }
+      >
+        Register and Apply
+      </a>
+    </CardBody>
+  </Card>
+  <LoginForm>
+    <Button
+      active={false}
+      className="login-link"
+      disabled={false}
+      type="submit"
+      variant="outline-dark"
+    >
+      Already have an account? Click here to login.
+    </Button>
+  </LoginForm>
+  <JSXStyle
+    id="43491111"
+  >
+    .login-link{padding:20px;width:100%;-webkit-text-decoration:underline;text-decoration:underline;}
+  </JSXStyle>
+</Col>
+`;

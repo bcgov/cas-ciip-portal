@@ -1,16 +1,14 @@
 import React, {Component} from 'react';
-import {Row, Col, Card, Table} from 'react-bootstrap';
+import {Row, Col, Card} from 'react-bootstrap';
 import {graphql} from 'react-relay';
 import {pagesQueryResponse} from 'pagesQuery.graphql';
 import {CiipPageComponentProps} from 'next-env';
-import moment from 'moment-timezone';
 import DefaultLayout from 'layouts/default-layout';
-import RegistrationLoginButtons from 'components/RegistrationLoginButtons';
+import RegistrationLoginButtons from 'containers/RegistrationLoginButtons';
 import {GUEST} from 'data/group-constants';
+import KeyDates from 'containers/KeyDates';
 
 const ALLOWED_GROUPS = [GUEST];
-const TIME_ZONE = 'America/Vancouver';
-const DATE_FORMAT = 'MMM D, YYYY';
 
 interface Props extends CiipPageComponentProps {
   query: pagesQueryResponse['query'];
@@ -23,69 +21,15 @@ export default class Index extends Component<Props> {
         session {
           ...defaultLayout_session
         }
-        openedReportingYear {
-          swrsDeadline
-          applicationOpenTime
-          applicationCloseTime
-        }
-        nextReportingYear {
-          swrsDeadline
-          applicationOpenTime
-          applicationCloseTime
-        }
+        ...KeyDates_query
+        ...RegistrationLoginButtons_query
       }
     }
   `;
 
   render() {
-    const {openedReportingYear, nextReportingYear, session} =
-      this.props.query || {};
-
-    const startDate = moment.tz(
-      openedReportingYear?.applicationOpenTime ??
-        nextReportingYear?.applicationOpenTime,
-      TIME_ZONE
-    );
-    const endDate = moment.tz(
-      openedReportingYear?.applicationCloseTime ??
-        nextReportingYear?.applicationCloseTime,
-      TIME_ZONE
-    );
-    const swrsDeadline = moment.tz(
-      openedReportingYear?.swrsDeadline ?? nextReportingYear?.swrsDeadline,
-      TIME_ZONE
-    );
-
-    const keyDates = [
-      {
-        date: swrsDeadline,
-        description: 'Industrial GHG reporting deadline',
-        key: '848tfh282740jd'
-      },
-      {
-        date: startDate,
-        description: 'CIIP application forms open',
-        key: 'j87kj39uhf8930'
-      },
-      {
-        date: endDate,
-        description: 'CIIP application form due',
-        key: 'kd9393hd8sy273'
-      }
-    ];
-
-    const keyDatesRows = keyDates
-      .sort((a: any, b: any) =>
-        a.date.isBefore(b.date) ? -1 : a.date.isSame(b.date) ? 0 : 1
-      )
-      .map((d) => {
-        return (
-          <tr key={d.key}>
-            <td>{d.date.format(DATE_FORMAT)}</td>
-            <td>{d.description}</td>
-          </tr>
-        );
-      });
+    const {query} = this.props;
+    const {session} = query || {};
 
     return (
       <DefaultLayout showSubheader={false} session={session}>
@@ -112,9 +56,7 @@ export default class Index extends Component<Props> {
               per tonne carbon dioxide equivalent (tCO2e).
             </p>
           </Col>
-          <RegistrationLoginButtons
-            applicationDeadline={endDate.format('MMMM DD, YYYY')}
-          />
+          <RegistrationLoginButtons query={query} />
         </Row>
 
         <Row style={{marginTop: '100px'}} id="value-props">
@@ -177,18 +119,7 @@ export default class Index extends Component<Props> {
             />
           </Col>
           <Col md={{span: 5}}>
-            <h3 className="blue">Key Dates</h3>
-
-            <Table striped bordered hover>
-              <thead>
-                <tr>
-                  <th>Date</th>
-                  <th />
-                </tr>
-              </thead>
-              <tbody>{keyDatesRows}</tbody>
-            </Table>
-
+            <KeyDates query={query} />
             <Card
               className="ciip-card"
               style={{
