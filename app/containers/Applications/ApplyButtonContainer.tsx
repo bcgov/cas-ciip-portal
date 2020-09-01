@@ -53,7 +53,7 @@ export const ApplyButton: React.FunctionComponent<Props> = ({
   ]);
 
   if (!canOpenApplication) {
-    return null;
+    return <div style={{minWidth: '9.7em'}} />;
   }
 
   if (!applicationId) {
