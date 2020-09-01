@@ -40,13 +40,13 @@ export const ApplyButton: React.FunctionComponent<Props> = ({
     // The first version of the application was started but not submitted before the deadline
     if (
       applicationRevisionStatus === 'DRAFT' &&
-      applicationByApplicationId?.latestDraftRevision.versionNumber <= 1
+      applicationByApplicationId?.latestDraftRevision?.versionNumber <= 1
     )
       return false;
 
     return true;
   }, [
-    applicationByApplicationId?.latestDraftRevision.versionNumber,
+    applicationByApplicationId?.latestDraftRevision?.versionNumber,
     applicationId,
     applicationRevisionStatus,
     query.openedReportingYear?.reportingYear
