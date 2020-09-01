@@ -53,11 +53,7 @@ export const ApplyButton: React.FunctionComponent<Props> = ({
   ]);
 
   if (!canOpenApplication) {
-    return (
-      <Button disabled variant="info">
-        The application window is closed
-      </Button>
-    );
+    return null;
   }
 
   if (!applicationId) {

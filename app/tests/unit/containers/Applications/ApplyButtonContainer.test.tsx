@@ -63,7 +63,7 @@ describe('The apply button', () => {
     );
   });
 
-  it('should render a disabled button if no applicationByApplicationId exists and the application window is closed', () => {
+  it('should not render anything if no applicationByApplicationId exists and the application window is closed', () => {
     const r = shallow(
       <ApplyButton
         relay={null}
@@ -84,13 +84,10 @@ describe('The apply button', () => {
       />
     );
 
-    expect(r).toMatchSnapshot();
-    expect(r.exists('Button')).toBe(true);
-    expect(r.find('Button').prop('disabled')).toBe(true);
-    expect(r.find('Button').text()).toBe('The application window is closed');
+    expect(r).toEqual({});
   });
 
-  it('should render a disabled button if no applicationByApplicationId exists and query.openedReportingYear.reportingYear !== reportingYear', () => {
+  it('should not render anything if no applicationByApplicationId exists and query.openedReportingYear.reportingYear !== reportingYear', () => {
     const r = shallow(
       <ApplyButton
         relay={null}
@@ -113,10 +110,7 @@ describe('The apply button', () => {
       />
     );
 
-    expect(r).toMatchSnapshot();
-    expect(r.exists('Button')).toBe(true);
-    expect(r.find('Button').prop('disabled')).toBe(true);
-    expect(r.find('Button').text()).toBe('The application window is closed');
+    expect(r).toEqual({});
   });
 
   it('should render a Resume Application button if an application revision exists with draft status and the application window is open', () => {
@@ -155,7 +149,7 @@ describe('The apply button', () => {
     expect(r.find('Button').text()).toBe('Resume CIIP application');
   });
 
-  it('should render a disabled button if an application revision exists with draft status, its versionNumber is 1, and the application window is closed', () => {
+  it('should not render anything if an application revision exists with draft status, its versionNumber is 1, and the application window is closed', () => {
     const r = shallow(
       <ApplyButton
         relay={null}
@@ -184,13 +178,10 @@ describe('The apply button', () => {
       />
     );
 
-    expect(r).toMatchSnapshot();
-    expect(r.exists('Button')).toBe(true);
-    expect(r.find('Button').prop('disabled')).toBe(true);
-    expect(r.find('Button').text()).toBe('The application window is closed');
+    expect(r).toEqual({});
   });
 
-  it('should render a disabled button if an application revision exists with draft status, its versionNumber is > 1, and the application window is closed', () => {
+  it('should not render anything if an application revision exists with draft status, its versionNumber is > 1, and the application window is closed', () => {
     const r = shallow(
       <ApplyButton
         relay={null}
@@ -219,9 +210,7 @@ describe('The apply button', () => {
       />
     );
 
-    expect(r).toMatchSnapshot();
-    expect(r.exists('Button')).toBe(true);
-    expect(r.find('Button').text()).toBe('Resume CIIP application');
+    expect(r).toEqual({});
   });
 
   it('should render a View Application button if an application revision exists with submitted status', () => {
