@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(6);
+select plan(8);
 
 select has_function(
   'ggircs_portal_private', 'ensure_window_open_submit_application_status',
@@ -33,6 +33,16 @@ select throws_ok(
   $$insert into ggircs_portal.application_revision_status(application_id, version_number, application_revision_status) values (1, 1, 'submitted')$$,
   'You cannot submit an application when the application window is closed',
   'The trigger throws an error if submitting an application when the application window is closed '
+);
+
+select lives_ok(
+  $$insert into ggircs_portal.application_revision_status(application_id, version_number, application_revision_status) values (1, 2, 'draft')$$,
+  'The trigger does not throw an error if starting a draft for a version > 1 when the application window is closed'
+);
+
+select lives_ok(
+  $$insert into ggircs_portal.application_revision_status(application_id, version_number, application_revision_status) values (1, 2, 'submitted')$$,
+  'The trigger does not throw an error if submitting an application for a version > 1 when the application window is closed '
 );
 
 select lives_ok(

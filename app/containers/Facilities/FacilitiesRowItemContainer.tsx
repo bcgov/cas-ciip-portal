@@ -7,8 +7,10 @@ import {
 } from 'FacilitiesRowItemContainer_facilitySearchResult.graphql';
 import {FacilitiesRowItemContainer_query} from 'FacilitiesRowItemContainer_query.graphql';
 import ApplyButtonContainer from 'containers/Applications/ApplyButtonContainer';
+
 interface Props {
   facilitySearchResult: FacilitiesRowItemContainer_facilitySearchResult;
+  reportingYear: number;
   query: FacilitiesRowItemContainer_query;
 }
 const statusBadgeColor: Record<
@@ -23,7 +25,8 @@ const statusBadgeColor: Record<
 };
 export const FacilitiesRowItemComponent: React.FunctionComponent<Props> = ({
   facilitySearchResult,
-  query
+  query,
+  reportingYear
 }) => {
   const {applicationRevisionStatus} = facilitySearchResult;
   const hasCertificationUrl = Boolean(
@@ -61,6 +64,7 @@ export const FacilitiesRowItemComponent: React.FunctionComponent<Props> = ({
       <td>
         <ApplyButtonContainer
           applyButtonDetails={facilitySearchResult}
+          reportingYear={reportingYear}
           query={query}
         />
       </td>

@@ -77,8 +77,9 @@ export const FacilitiesList: React.FunctionComponent<Props> = ({
     <tbody>
       {edges.map((edge) => (
         <FacilitiesRowItemContainer
-          key={edge.node.rowId}
+          key={`${edge.node.rowId}-${selectedReportingYear}`}
           facilitySearchResult={edge.node}
+          reportingYear={selectedReportingYear}
           query={query}
         />
       ))}

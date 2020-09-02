@@ -104,28 +104,6 @@ exports[`The apply button should render a View Application button if an applicat
 </Link>
 `;
 
-exports[`The apply button should render a disabled button if an application revision exists with draft status and the application window is closed 1`] = `
-<Button
-  active={false}
-  disabled={true}
-  type="button"
-  variant="info"
->
-  The application window is closed
-</Button>
-`;
-
-exports[`The apply button should render a disabled button if no applicationByApplicationId exists and the application window is closed 1`] = `
-<Button
-  active={false}
-  disabled={true}
-  type="button"
-  variant="info"
->
-  The application window is closed
-</Button>
-`;
-
 exports[`The apply button should render a warning modal if no swrs report exists 1`] = `
 <Fragment>
   <Bootstrap(Modal)

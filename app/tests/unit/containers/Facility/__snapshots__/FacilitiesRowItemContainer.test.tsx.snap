@@ -42,7 +42,7 @@ exports[`FacilitiesRowItem should match the previous snapshot 1`] = `
           "applicationByApplicationId": Object {
             "latestDraftRevision": Object {
               "certificationUrl": Object {
-                "id": "abc",
+                "__typename": "certificationUrl",
               },
             },
           },
@@ -62,6 +62,7 @@ exports[`FacilitiesRowItem should match the previous snapshot 1`] = `
           " $refType": "FacilitiesRowItemContainer_query",
         }
       }
+      reportingYear={2019}
     />
   </td>
 </tr>
@@ -127,6 +128,7 @@ exports[`FacilitiesRowItem should not show Pending Certification in the status i
           " $refType": "FacilitiesRowItemContainer_query",
         }
       }
+      reportingYear={2019}
     />
   </td>
 </tr>
@@ -174,7 +176,7 @@ exports[`FacilitiesRowItem should not show Pending Certification in the status i
           "applicationByApplicationId": Object {
             "latestDraftRevision": Object {
               "certificationUrl": Object {
-                "id": "abc",
+                "__typename": "certificationUrl",
               },
             },
           },
@@ -194,6 +196,7 @@ exports[`FacilitiesRowItem should not show Pending Certification in the status i
           " $refType": "FacilitiesRowItemContainer_query",
         }
       }
+      reportingYear={2019}
     />
   </td>
 </tr>
@@ -242,7 +245,7 @@ exports[`FacilitiesRowItem should show Pending Certification in the status if th
           "applicationByApplicationId": Object {
             "latestDraftRevision": Object {
               "certificationUrl": Object {
-                "id": "abc",
+                "__typename": "certificationUrl",
               },
             },
           },
@@ -262,6 +265,7 @@ exports[`FacilitiesRowItem should show Pending Certification in the status if th
           " $refType": "FacilitiesRowItemContainer_query",
         }
       }
+      reportingYear={2019}
     />
   </td>
 </tr>

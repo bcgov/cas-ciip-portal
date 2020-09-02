@@ -22,6 +22,7 @@ describe('The apply button', () => {
             reportingYear: 2018
           }
         }}
+        reportingYear={2018}
       />
     );
 
@@ -51,6 +52,7 @@ describe('The apply button', () => {
             reportingYear: 2018
           }
         }}
+        reportingYear={2018}
       />
     );
 
@@ -61,7 +63,7 @@ describe('The apply button', () => {
     );
   });
 
-  it('should render a disabled button if no applicationByApplicationId exists and the application window is closed', () => {
+  it('should render an empty div if no applicationByApplicationId exists and the application window is closed', () => {
     const r = shallow(
       <ApplyButton
         relay={null}
@@ -78,13 +80,38 @@ describe('The apply button', () => {
           ' $refType': 'ApplyButtonContainer_query',
           openedReportingYear: null
         }}
+        reportingYear={2018}
       />
     );
 
-    expect(r).toMatchSnapshot();
-    expect(r.exists('Button')).toBe(true);
-    expect(r.find('Button').prop('disabled')).toBe(true);
-    expect(r.find('Button').text()).toBe('The application window is closed');
+    expect(r.at(0).type()).toBe('div');
+    expect(r.at(0).children().length).toBe(0);
+  });
+
+  it('should render an empty div if no applicationByApplicationId exists and query.openedReportingYear.reportingYear !== reportingYear', () => {
+    const r = shallow(
+      <ApplyButton
+        relay={null}
+        applyButtonDetails={{
+          ' $refType': 'ApplyButtonContainer_applyButtonDetails',
+          applicationByApplicationId: null,
+          applicationRevisionStatus: null,
+          facilityByFacilityId: {
+            rowId: 1,
+            hasSwrsReport: true
+          }
+        }}
+        query={{
+          ' $refType': 'ApplyButtonContainer_query',
+          openedReportingYear: {
+            reportingYear: 2019
+          }
+        }}
+        reportingYear={2018}
+      />
+    );
+
+    expect(r).toEqual({});
   });
 
   it('should render a Resume Application button if an application revision exists with draft status and the application window is open', () => {
@@ -114,6 +141,7 @@ describe('The apply button', () => {
             reportingYear: 2018
           }
         }}
+        reportingYear={2018}
       />
     );
 
@@ -122,7 +150,7 @@ describe('The apply button', () => {
     expect(r.find('Button').text()).toBe('Resume CIIP application');
   });
 
-  it('should render a disabled button if an application revision exists with draft status and the application window is closed', () => {
+  it('should render an empty div if an application revision exists with draft status, its versionNumber is 1, and the application window is closed', () => {
     const r = shallow(
       <ApplyButton
         relay={null}
@@ -147,13 +175,44 @@ describe('The apply button', () => {
           ' $refType': 'ApplyButtonContainer_query',
           openedReportingYear: null
         }}
+        reportingYear={2018}
       />
     );
 
-    expect(r).toMatchSnapshot();
+    expect(r.at(0).type()).toBe('div');
+    expect(r.at(0).children().length).toBe(0);
+  });
+
+  it('should render a resume button if an application revision exists with draft status, its versionNumber is > 1, and the application window is closed', () => {
+    const r = shallow(
+      <ApplyButton
+        relay={null}
+        applyButtonDetails={{
+          ' $refType': 'ApplyButtonContainer_applyButtonDetails',
+          applicationByApplicationId: {
+            id: 'foo',
+            latestDraftRevision: {
+              id: 'bar',
+              legalDisclaimerAccepted: false,
+              versionNumber: 2
+            },
+            latestSubmittedRevision: null
+          },
+          applicationRevisionStatus: 'DRAFT',
+          facilityByFacilityId: {
+            rowId: 1,
+            hasSwrsReport: true
+          }
+        }}
+        query={{
+          ' $refType': 'ApplyButtonContainer_query',
+          openedReportingYear: null
+        }}
+        reportingYear={2018}
+      />
+    );
     expect(r.exists('Button')).toBe(true);
-    expect(r.find('Button').prop('disabled')).toBe(true);
-    expect(r.find('Button').text()).toBe('The application window is closed');
+    expect(r.find('Button').text()).toBe('Resume CIIP application');
   });
 
   it('should render a View Application button if an application revision exists with submitted status', () => {
@@ -184,6 +243,7 @@ describe('The apply button', () => {
           ' $refType': 'ApplyButtonContainer_query',
           openedReportingYear: null
         }}
+        reportingYear={2018}
       />
     );
 
@@ -220,6 +280,7 @@ describe('The apply button', () => {
           ' $refType': 'ApplyButtonContainer_query',
           openedReportingYear: null
         }}
+        reportingYear={2018}
       />
     );
 
@@ -256,6 +317,7 @@ describe('The apply button', () => {
           ' $refType': 'ApplyButtonContainer_query',
           openedReportingYear: null
         }}
+        reportingYear={2018}
       />
     );
 
@@ -292,6 +354,7 @@ describe('The apply button', () => {
           ' $refType': 'ApplyButtonContainer_query',
           openedReportingYear: null
         }}
+        reportingYear={2018}
       />
     );
 

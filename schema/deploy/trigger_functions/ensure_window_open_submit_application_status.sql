@@ -5,7 +5,7 @@ begin;
 create or replace function ggircs_portal_private.ensure_window_open_submit_application_status()
   returns trigger as $$
     begin
-      if (select reporting_year from ggircs_portal.opened_reporting_year()) is null then
+      if (select reporting_year from ggircs_portal.opened_reporting_year()) is null and new.version_number <= 1 then
         if (new.application_revision_status = 'submitted') then
           raise exception 'You cannot submit an application when the application window is closed';
         end if;
@@ -19,6 +19,6 @@ create or replace function ggircs_portal_private.ensure_window_open_submit_appli
 
 grant execute on function ggircs_portal_private.ensure_window_open_submit_application_status to ciip_administrator, ciip_analyst, ciip_industry_user;
 
-comment on function ggircs_portal_private.ensure_window_open_submit_application_status is 'a trigger function that throws an exception if the application window is not opened and the new status is either "draft" or "submitted"';
+comment on function ggircs_portal_private.ensure_window_open_submit_application_status is 'a trigger function that throws an exception if the application window is not opened, the application version number is <= 1, and the new status is either "draft" or "submitted"';
 
 commit;

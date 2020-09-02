@@ -20,7 +20,7 @@ describe('FacilitiesRowItem', () => {
       applicationByApplicationId: {
         latestDraftRevision: {
           certificationUrl: {
-            id: 'abc'
+            __typename: 'certificationUrl'
           }
         }
       }
@@ -36,6 +36,7 @@ describe('FacilitiesRowItem', () => {
       <FacilitiesRowItemComponent
         facilitySearchResult={facilitySearchResult}
         query={query}
+        reportingYear={2019}
       />
     );
     expect(r).toMatchSnapshot();
@@ -56,7 +57,7 @@ describe('FacilitiesRowItem', () => {
       applicationByApplicationId: {
         latestDraftRevision: {
           certificationUrl: {
-            id: 'abc'
+            __typename: 'certificationUrl'
           }
         }
       }
@@ -72,6 +73,7 @@ describe('FacilitiesRowItem', () => {
       <FacilitiesRowItemComponent
         facilitySearchResult={facilitySearchResult}
         query={query}
+        reportingYear={2019}
       />
     );
     expect(r).toMatchSnapshot();
@@ -107,6 +109,7 @@ describe('FacilitiesRowItem', () => {
       <FacilitiesRowItemComponent
         facilitySearchResult={facilitySearchResult}
         query={query}
+        reportingYear={2019}
       />
     );
     expect(r).toMatchSnapshot();
@@ -128,7 +131,7 @@ describe('FacilitiesRowItem', () => {
       applicationByApplicationId: {
         latestDraftRevision: {
           certificationUrl: {
-            id: 'abc'
+            __typename: 'certificationUrl'
           }
         }
       }
@@ -144,6 +147,7 @@ describe('FacilitiesRowItem', () => {
       <FacilitiesRowItemComponent
         facilitySearchResult={facilitySearchResult}
         query={query}
+        reportingYear={2019}
       />
     );
     expect(r).toMatchSnapshot();

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useMemo} from 'react';
 import {Button, Modal} from 'react-bootstrap';
 import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
 import Link from 'next/link';
@@ -7,6 +7,7 @@ import createApplicationMutation from 'mutations/application/createApplicationMu
 import {ApplyButtonContainer_applyButtonDetails} from 'ApplyButtonContainer_applyButtonDetails.graphql';
 import {ApplyButtonContainer_query} from 'ApplyButtonContainer_query.graphql';
 interface Props {
+  reportingYear: number;
   relay: RelayProp;
   applyButtonDetails: ApplyButtonContainer_applyButtonDetails;
   query: ApplyButtonContainer_query;
@@ -15,7 +16,8 @@ interface Props {
 export const ApplyButton: React.FunctionComponent<Props> = ({
   applyButtonDetails,
   query,
-  relay
+  relay,
+  reportingYear
 }) => {
   const {
     facilityByFacilityId,
@@ -23,20 +25,35 @@ export const ApplyButton: React.FunctionComponent<Props> = ({
     applicationByApplicationId
   } = applyButtonDetails;
   const {hasSwrsReport, rowId} = facilityByFacilityId;
-  const applicationId = applyButtonDetails?.applicationByApplicationId?.id;
+  const applicationId = applicationByApplicationId?.id;
   const [showMissingReportModal, setShowMissingReportModal] = useState(false);
   const [applyButtonClicked, setApplyButtonClicked] = useState(false);
 
   const router = useRouter();
 
-  if (!query.openedReportingYear?.reportingYear) {
-    if (!applicationId || applicationRevisionStatus === 'DRAFT') {
-      return (
-        <Button disabled variant="info">
-          The application window is closed
-        </Button>
-      );
-    }
+  const canOpenApplication = useMemo(() => {
+    if (query.openedReportingYear?.reportingYear === reportingYear) return true;
+
+    // The application was not started yet
+    if (!applicationId) return false;
+
+    // The first version of the application was started but not submitted before the deadline
+    if (
+      applicationRevisionStatus === 'DRAFT' &&
+      applicationByApplicationId?.latestDraftRevision?.versionNumber <= 1
+    )
+      return false;
+
+    return true;
+  }, [
+    applicationByApplicationId?.latestDraftRevision?.versionNumber,
+    applicationId,
+    applicationRevisionStatus,
+    query.openedReportingYear?.reportingYear
+  ]);
+
+  if (!canOpenApplication) {
+    return <div style={{minWidth: '9.7em'}} />;
   }
 
   if (!applicationId) {
