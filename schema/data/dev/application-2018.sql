@@ -18,8 +18,8 @@ $$ language sql;
 
    -- Create applications
   select 'Calling ggircs_portal.create_application_mutation_chain: ';
-  select ggircs_portal.create_application_mutation_chain(1);
   select ggircs_portal.create_application_mutation_chain(2);
+  select ggircs_portal.create_application_mutation_chain(3);
 
   insert into ggircs_portal.certification_url(id, application_id, version_number)
   overriding system value
