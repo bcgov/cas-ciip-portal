@@ -185,3 +185,4 @@ policies/facility_policies [policies/facility_policies@v1.5.0] 2020-08-27T20:57:
 search_functions/search_all_facilities [search_functions/search_all_facilities@v1.5.0] 2020-08-24T20:55:30Z Dylan Leard <dylan@button.is> # Migration: allow function to filter on different reporting years
 trigger_functions/ensure_window_open_submit_application_status [trigger_functions/ensure_window_open_submit_application_status@v1.5.0] 2020-08-24T17:54:35Z Matthieu Foucault <matthieu@button.is> # Applications can be started or submitted when the window is closed if version > 1
 mutations/create_application_revision_mutation_chain [mutations/create_application_revision_mutation_chain@v1.5.0] 2020-08-24T18:28:33Z Matthieu Foucault <matthieu@button.is> # allow revisions to be created when the window is closed if version_number > 1
+@v1.7.0 2020-09-02T20:36:02Z Matthieu Foucault <matthieu@button.is> # release v1.7.0

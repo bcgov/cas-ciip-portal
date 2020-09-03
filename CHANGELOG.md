@@ -2,6 +2,30 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.7.0](https://github.com/bcgov/cas-ciip-portal/compare/v1.6.1...v1.7.0) (2020-09-02)
+
+
+### Features
+
+* add UI for selecting a reporting year ([26515c7](https://github.com/bcgov/cas-ciip-portal/commit/26515c729ae518a9e7f87276e50d8f3b9b75715c))
+* ApplyButton is disabled for new applis when viewing past years ([5fe787d](https://github.com/bcgov/cas-ciip-portal/commit/5fe787d72695ca0807176044a22f7c1c6250bae5))
+* ApplyButton is not shown when the reporting window is closed ([09e1292](https://github.com/bcgov/cas-ciip-portal/commit/09e1292e5f5d7ac5e92579da08ea2a2f81fb4fa5))
+* Heading landmark accessibility on certification redirect page ([00ebf3d](https://github.com/bcgov/cas-ciip-portal/commit/00ebf3d118f38e323be5c19ad4140695f935236f))
+* Input label accessibility for batch certification checkbox inputs ([64aba20](https://github.com/bcgov/cas-ciip-portal/commit/64aba2094f14ebe09328748453ef61a6d0ea2259))
+* Input label accessibility for signature image upload ([9861335](https://github.com/bcgov/cas-ciip-portal/commit/9861335fca4700f17a23e57beebb24b10c20aca5))
+* revise application and apply button allow revisions after deadline ([2c0032b](https://github.com/bcgov/cas-ciip-portal/commit/2c0032b491f12eb3211aa9b2f72ccd24a54fcd5b))
+* **db:** allow creation of new application revisions when window closed ([d994824](https://github.com/bcgov/cas-ciip-portal/commit/d994824691c6872cee5838062ac0305c728eb35f))
+* rework function to allow for filtering on reporting year ([67ca5b9](https://github.com/bcgov/cas-ciip-portal/commit/67ca5b9e8fbef8115ad16ee0c847eb86aeeee4c4))
+* update relay query variables ([943d32f](https://github.com/bcgov/cas-ciip-portal/commit/943d32f76df489edeef2fbba31d9ab6070f44aee))
+
+
+### Bug Fixes
+
+* ApplyButtonContainer should not crash if application is not draft ([f280c3d](https://github.com/bcgov/cas-ciip-portal/commit/f280c3d5f2fc288be8be6c3948cbe4e0c1734481))
+* FacilitiesRowItemContainer key should include the selected year ([fca6986](https://github.com/bcgov/cas-ciip-portal/commit/fca698675e35a848e38f5041557c53cb0829393a))
+* RegistrationLoginButtons + KeyDates handle closed reporting period ([b24b7ed](https://github.com/bcgov/cas-ciip-portal/commit/b24b7ed6174ac4420a79a49337386e43f58c6b89))
+* render an empty div instead of no apply button to preserve column ([45defac](https://github.com/bcgov/cas-ciip-portal/commit/45defacbb685ef7a8f5250fa7387cc2638a17ad6))
+
 ### [1.6.1](https://github.com/bcgov/cas-ciip-portal/compare/v1.6.0...v1.6.1) (2020-08-28)
 
 
