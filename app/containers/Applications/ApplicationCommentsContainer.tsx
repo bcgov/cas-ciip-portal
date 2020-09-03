@@ -57,8 +57,8 @@ export const ApplicationCommentsComponent: React.FunctionComponent<Props> = (
                   if (
                     !review &&
                     formResult.applicationByApplicationId
-                      .applicationRevisionStatus.applicationRevisionStatus !==
-                      'REQUESTED_CHANGES'
+                      .applicationRevisionStatus.applicationRevisionStatus ===
+                      'SUBMITTED'
                   )
                     return null;
                   return (
@@ -88,8 +88,8 @@ export const ApplicationCommentsComponent: React.FunctionComponent<Props> = (
                   if (
                     !review &&
                     formResult.applicationByApplicationId
-                      .applicationRevisionStatus.applicationRevisionStatus !==
-                      'REQUESTED_CHANGES'
+                      .applicationRevisionStatus.applicationRevisionStatus ===
+                      'SUBMITTED'
                   )
                     return null;
                   return (
