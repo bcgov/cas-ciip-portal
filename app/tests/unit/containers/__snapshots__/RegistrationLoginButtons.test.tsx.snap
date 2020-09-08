@@ -99,7 +99,7 @@ exports[`The RegistrationLoginButtons component should render the date where the
           }
         }
       >
-        Operators must submit a CIIP application form by January 01, 2020. As part of the application, information about the operation’s energy use, emissions, and production is required.
+        As part of the application, information about the operation’s energy use, emissions, and production is required.
       </CardText>
       <a
         className="jsx-43491111 full-width btn btn-primary btn-lg"

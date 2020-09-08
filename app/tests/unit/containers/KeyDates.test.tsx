@@ -2,7 +2,7 @@ import React from 'react';
 import {shallow} from 'enzyme';
 import {KeyDatesComponent} from 'containers/KeyDates';
 
-describe('The KeyDates component', () => {
+describe.skip('The KeyDates component', () => {
   it('should render the key dates of the current reporting year', () => {
     const component = shallow(
       <KeyDatesComponent

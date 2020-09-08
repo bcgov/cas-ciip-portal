@@ -21,32 +21,33 @@ export const KeyDatesComponent: React.FunctionComponent<Props> = ({query}) => {
       nextReportingYear?.applicationOpenTime,
     TIME_ZONE
   );
-  const endDate = moment.tz(
-    openedReportingYear?.applicationCloseTime ??
-      nextReportingYear?.applicationCloseTime,
-    TIME_ZONE
-  );
-  const swrsDeadline = moment.tz(
-    openedReportingYear?.swrsDeadline ?? nextReportingYear?.swrsDeadline,
-    TIME_ZONE
-  );
+  // Const endDate = moment.tz(
+  //   openedReportingYear?.applicationCloseTime ??
+  //     nextReportingYear?.applicationCloseTime,
+  //   TIME_ZONE
+  // );
+  // const swrsDeadline = moment.tz(
+  //   openedReportingYear?.swrsDeadline ?? nextReportingYear?.swrsDeadline,
+  //   TIME_ZONE
+  // );
 
   const keyDates = [
-    {
-      date: swrsDeadline,
-      description: 'Industrial GHG reporting deadline',
-      key: '848tfh282740jd'
-    },
+    // {
+    //   date: swrsDeadline,
+    //   description: 'Industrial GHG reporting deadline',
+    //   key: '848tfh282740jd'
+    // },
     {
       date: startDate,
       description: 'CIIP application forms open',
       key: 'j87kj39uhf8930'
-    },
-    {
-      date: endDate,
-      description: 'CIIP application form due',
-      key: 'kd9393hd8sy273'
     }
+    // ,
+    // {
+    //   date: endDate,
+    //   description: 'CIIP application form due',
+    //   key: 'kd9393hd8sy273'
+    // }
   ];
 
   const keyDatesRows = keyDates
