@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.7.1](https://github.com/bcgov/cas-ciip-portal/compare/v1.7.0...v1.7.1) (2020-09-08)
+
+
+### Bug Fixes
+
+* Always show reviewer comments regardless of revision status ([373776c](https://github.com/bcgov/cas-ciip-portal/commit/373776c3b11d940abacec1a8729b1c7f78a176f7))
+
 ## [1.7.0](https://github.com/bcgov/cas-ciip-portal/compare/v1.6.1...v1.7.0) (2020-09-02)
 
 
