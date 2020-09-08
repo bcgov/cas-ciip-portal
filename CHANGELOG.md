@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.8.0](https://github.com/bcgov/cas-ciip-portal/compare/v1.7.1...v1.8.0) (2020-09-08)
+
+
+### Features
+
+* Don't show application close time on front page ([e966e91](https://github.com/bcgov/cas-ciip-portal/commit/e966e91f3ed56983f0f92969c0a6e3a2b9d38766))
+
+
+### Bug Fixes
+
+* increase cores for prod patroni ([4486d2c](https://github.com/bcgov/cas-ciip-portal/commit/4486d2cb9158bcba2c7a310eb2b4a7c147676f02))
+
 ### [1.7.1](https://github.com/bcgov/cas-ciip-portal/compare/v1.7.0...v1.7.1) (2020-09-08)
 
 
