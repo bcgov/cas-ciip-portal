@@ -13,6 +13,13 @@ fider:
 cas-postgres:
   patroni:
     replicaCount: 4
+    resources:
+      limits:
+        cpu: 3000m
+        memory: 2Gi
+      requests:
+        cpu: 15m
+        memory: 600Mi
     walE:
       enable: true
       # the GCS bucket name should be {{ namespace }}-{{ gcs.bucketSuffix }}
