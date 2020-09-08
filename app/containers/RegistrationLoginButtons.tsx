@@ -3,24 +3,25 @@ import {Col, Card, Button} from 'react-bootstrap';
 import LoginButton from '../components/LoginButton';
 import {createFragmentContainer, graphql} from 'react-relay';
 import {RegistrationLoginButtons_query} from 'RegistrationLoginButtons_query.graphql';
-import moment from 'moment-timezone';
+// Import moment from 'moment-timezone';
 
 interface Props {
   query: RegistrationLoginButtons_query;
 }
 
-const TIME_ZONE = 'America/Vancouver';
+// Const TIME_ZONE = 'America/Vancouver';
 
 export const RegistrationLoginButtonsComponent: React.FunctionComponent<Props> = ({
   query
 }) => {
   const applicationCloseTime = query?.openedReportingYear?.applicationCloseTime;
-  const applicationDeadline =
-    applicationCloseTime &&
-    moment.tz(applicationCloseTime, TIME_ZONE).format('MMMM DD, YYYY');
+  // Const applicationDeadline =
+  //   applicationCloseTime &&
+  //   moment.tz(applicationCloseTime, TIME_ZONE).format('MMMM DD, YYYY');
 
   const cardText = applicationCloseTime ? (
-    `Operators must submit a CIIP application form by ${applicationDeadline}. As part of the application, information about the operation’s energy use, emissions, and production is required.`
+    // `Operators must submit a CIIP application form by ${applicationDeadline}.
+    'As part of the application, information about the operation’s energy use, emissions, and production is required.'
   ) : (
     <>
       The due date for CIIP application forms has passed. <br />
