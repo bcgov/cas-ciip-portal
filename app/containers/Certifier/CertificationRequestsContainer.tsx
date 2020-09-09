@@ -10,7 +10,9 @@ import {CertificationRequestsContainer_query} from '__generated__/CertificationR
 const TIME_ZONE = 'America/Vancouver';
 
 function formatListViewDate(date) {
-  return date ? moment.tz(date, TIME_ZONE).format('MMM D, YYYY') : '';
+  return date
+    ? moment.tz(date, TIME_ZONE).format('MMM D, YYYY HH:mm:ss (z)')
+    : '';
 }
 
 function getCertifiableRequestIds(query) {

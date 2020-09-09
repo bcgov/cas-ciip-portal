@@ -3,6 +3,7 @@ import {Button, Badge} from 'react-bootstrap';
 import {graphql, createFragmentContainer} from 'react-relay';
 import {CiipApplicationRevisionStatus} from 'ApplicationRowItemContainer_applicationSearchResult.graphql';
 import Link from 'next/link';
+import moment from 'moment-timezone';
 
 const statusBadgeColor: Record<
   CiipApplicationRevisionStatus,
@@ -15,15 +16,21 @@ const statusBadgeColor: Record<
   REQUESTED_CHANGES: 'secondary'
 };
 
+const TIME_ZONE = 'America/Vancouver';
+const DATE_FORMAT = 'MMM DD, YYYY HH:mm:ss (z)';
+
 export const ApplicationRowItem = (props) => {
   const {applicationSearchResult = {}} = props;
+  const readableSubmissionDate = moment
+    .tz(applicationSearchResult.submissionDate, TIME_ZONE)
+    .format(DATE_FORMAT);
   return (
     <tr>
       <td>{applicationSearchResult.applicationId}</td>
       <td>{applicationSearchResult.operatorName}</td>
       <td>{applicationSearchResult.facilityName}</td>
       <td>{applicationSearchResult.reportingYear}</td>
-      <td>{applicationSearchResult.submissionDate}</td>
+      <td>{readableSubmissionDate}</td>
       <td>
         <Badge
           pill
