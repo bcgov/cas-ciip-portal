@@ -15,9 +15,7 @@ interface Props {
   query: ReportingYearTable_query;
 }
 
-function formatListViewDate(date: string, displayTime?: boolean) {
-  if (displayTime)
-    return moment.tz(date, TIME_ZONE).format('MMM D, YYYY HH:mm (z)');
+function formatListViewDate(date: string) {
   return moment.tz(date, TIME_ZONE).format('MMM D, YYYY');
 }
 
@@ -105,8 +103,8 @@ export const ReportingYearTableComponent: React.FunctionComponent<Props> = (
                 <td>{formatListViewDate(node.reportingPeriodStart)}</td>
                 <td>{formatListViewDate(node.reportingPeriodEnd)}</td>
                 <td>{formatListViewDate(node.swrsDeadline)}</td>
-                <td>{formatListViewDate(node.applicationOpenTime, true)}</td>
-                <td>{formatListViewDate(node.applicationCloseTime, true)}</td>
+                <td>{formatListViewDate(node.applicationOpenTime)}</td>
+                <td>{formatListViewDate(node.applicationCloseTime)}</td>
                 <td>
                   {!isDatePast(node.applicationCloseTime) && (
                     <Button onClick={() => editYear(node)}>Edit</Button>

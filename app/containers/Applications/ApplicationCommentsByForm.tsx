@@ -75,7 +75,10 @@ export const ApplicationCommentsByForm: React.FunctionComponent<Props> = (
             <small style={{color: '#777'}}>
               {reviewComment?.ciipUserByCreatedBy?.firstName}{' '}
               {reviewComment?.ciipUserByCreatedBy?.lastName} (
-              {moment(reviewComment.createdAt).format('MMM Do YYYY, h:mm a')})
+              {moment
+                .tz(reviewComment.createdAt, 'America/Vancouver')
+                .format('MMM DD, YYYY HH:mm:ss z')}
+              )
             </small>
           </div>
         </td>
