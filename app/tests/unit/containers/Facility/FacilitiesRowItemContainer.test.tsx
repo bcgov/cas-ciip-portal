@@ -20,7 +20,7 @@ describe('FacilitiesRowItem', () => {
       applicationByApplicationId: {
         latestDraftRevision: {
           certificationUrl: {
-            __typename: 'certificationUrl'
+            certifiedBy: 1
           }
         }
       }
@@ -57,7 +57,7 @@ describe('FacilitiesRowItem', () => {
       applicationByApplicationId: {
         latestDraftRevision: {
           certificationUrl: {
-            __typename: 'certificationUrl'
+            certifiedBy: null
           }
         }
       }
@@ -78,6 +78,44 @@ describe('FacilitiesRowItem', () => {
     );
     expect(r).toMatchSnapshot();
     expect(r.find('Badge').text()).toBe('DRAFT (Pending Certification)');
+  });
+
+  it('should show Certified in the status if the application is in draft and has been certified', async () => {
+    const facilitySearchResult: FacilitiesRowItemContainer_facilitySearchResult = {
+      ' $fragmentRefs': {
+        ApplyButtonContainer_applyButtonDetails: true
+      },
+      ' $refType': 'FacilitiesRowItemContainer_facilitySearchResult',
+      facilityName: 'fac',
+      facilityType: 'EIO',
+      facilityBcghgid: '123',
+      lastSwrsReportingYear: 2019,
+      applicationRevisionStatus: 'DRAFT',
+      organisationName: 'org',
+      applicationByApplicationId: {
+        latestDraftRevision: {
+          certificationUrl: {
+            certifiedBy: 1
+          }
+        }
+      }
+    };
+    const query: FacilitiesRowItemContainer_query = {
+      ' $fragmentRefs': {
+        ApplyButtonContainer_query: true
+      },
+      ' $refType': 'FacilitiesRowItemContainer_query'
+    };
+
+    const r = shallow(
+      <FacilitiesRowItemComponent
+        facilitySearchResult={facilitySearchResult}
+        query={query}
+        reportingYear={2019}
+      />
+    );
+    expect(r).toMatchSnapshot();
+    expect(r.find('Badge').text()).toBe('DRAFT (Certified)');
   });
 
   it('should not show Pending Certification in the status if the application is in draft but a certificationUrl does not exist', async () => {
@@ -131,7 +169,7 @@ describe('FacilitiesRowItem', () => {
       applicationByApplicationId: {
         latestDraftRevision: {
           certificationUrl: {
-            __typename: 'certificationUrl'
+            certifiedBy: null
           }
         }
       }
