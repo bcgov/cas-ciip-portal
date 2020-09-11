@@ -24,7 +24,7 @@ export const ApplicationList = (props) => {
   });
 
   const displayNameToColumnNameMap = {
-    'Application Id': 'id',
+    'Application Id': 'application_id',
     'Operator Name': 'operator_name',
     'Facility Name': 'facility_name',
     'Reporting Year': 'reporting_year',
