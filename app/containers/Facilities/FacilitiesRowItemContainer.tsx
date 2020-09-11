@@ -33,11 +33,17 @@ export const FacilitiesRowItemComponent: React.FunctionComponent<Props> = ({
     facilitySearchResult?.applicationByApplicationId?.latestDraftRevision
       ?.certificationUrl
   );
+  const isCertified = Boolean(
+    facilitySearchResult?.applicationByApplicationId?.latestDraftRevision
+      ?.certificationUrl?.certifiedBy
+  );
 
-  const pendingCertification =
-    hasCertificationUrl && applicationRevisionStatus === 'DRAFT'
-      ? ' (Pending Certification)'
-      : null;
+  let certificationStatus = null;
+
+  if (applicationRevisionStatus === 'DRAFT' && isCertified)
+    certificationStatus = ' (Certified)';
+  else if (applicationRevisionStatus === 'DRAFT' && hasCertificationUrl)
+    certificationStatus = ' (Pending Certification)';
 
   return (
     <tr>
@@ -55,7 +61,7 @@ export const FacilitiesRowItemComponent: React.FunctionComponent<Props> = ({
             variant={statusBadgeColor[applicationRevisionStatus]}
           >
             {applicationRevisionStatus}
-            {pendingCertification}
+            {certificationStatus}
           </Badge>
         ) : (
           <>Application not started</>
@@ -85,7 +91,7 @@ export default createFragmentContainer(FacilitiesRowItemComponent, {
       applicationByApplicationId {
         latestDraftRevision {
           certificationUrl {
-            __typename
+            certifiedBy
           }
         }
       }
