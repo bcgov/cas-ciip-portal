@@ -42,7 +42,7 @@ exports[`FacilitiesRowItem should match the previous snapshot 1`] = `
           "applicationByApplicationId": Object {
             "latestDraftRevision": Object {
               "certificationUrl": Object {
-                "__typename": "certificationUrl",
+                "certifiedBy": 1,
               },
             },
           },
@@ -176,11 +176,80 @@ exports[`FacilitiesRowItem should not show Pending Certification in the status i
           "applicationByApplicationId": Object {
             "latestDraftRevision": Object {
               "certificationUrl": Object {
-                "__typename": "certificationUrl",
+                "certifiedBy": null,
               },
             },
           },
           "applicationRevisionStatus": "APPROVED",
+          "facilityBcghgid": "123",
+          "facilityName": "fac",
+          "facilityType": "EIO",
+          "lastSwrsReportingYear": 2019,
+          "organisationName": "org",
+        }
+      }
+      query={
+        Object {
+          " $fragmentRefs": Object {
+            "ApplyButtonContainer_query": true,
+          },
+          " $refType": "FacilitiesRowItemContainer_query",
+        }
+      }
+      reportingYear={2019}
+    />
+  </td>
+</tr>
+`;
+
+exports[`FacilitiesRowItem should show Certified in the status if the application is in draft and has been certified 1`] = `
+<tr>
+  <td>
+    org
+  </td>
+  <td>
+    fac
+  </td>
+  <td>
+    EIO
+  </td>
+  <td>
+    123
+  </td>
+  <td>
+    2019
+  </td>
+  <td>
+     
+    <Badge
+      pill={true}
+      style={
+        Object {
+          "width": "100%",
+        }
+      }
+      variant="warning"
+    >
+      DRAFT
+       (Certified)
+    </Badge>
+  </td>
+  <td>
+    <Relay(ApplyButton)
+      applyButtonDetails={
+        Object {
+          " $fragmentRefs": Object {
+            "ApplyButtonContainer_applyButtonDetails": true,
+          },
+          " $refType": "FacilitiesRowItemContainer_facilitySearchResult",
+          "applicationByApplicationId": Object {
+            "latestDraftRevision": Object {
+              "certificationUrl": Object {
+                "certifiedBy": 1,
+              },
+            },
+          },
+          "applicationRevisionStatus": "DRAFT",
           "facilityBcghgid": "123",
           "facilityName": "fac",
           "facilityType": "EIO",
@@ -245,7 +314,7 @@ exports[`FacilitiesRowItem should show Pending Certification in the status if th
           "applicationByApplicationId": Object {
             "latestDraftRevision": Object {
               "certificationUrl": Object {
-                "__typename": "certificationUrl",
+                "certifiedBy": null,
               },
             },
           },
