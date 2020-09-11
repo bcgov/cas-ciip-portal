@@ -174,7 +174,7 @@ install_pgtap: pgtap
 install_cpanm:
 ifeq ($(shell which $(word 1,$(CPANM))),)
 	# install cpanm
-	@@$(CPAN) App:cpanminus
+	@@$(CPAN) App::cpanminus
 endif
 
 .PHONY: install_cpandeps
