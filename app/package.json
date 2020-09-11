@@ -221,7 +221,7 @@
     "json-schema": "^0.2.5",
     "json-schema-faker": "^0.5.0-rc23",
     "nock": "^9.6.1",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "react-docgen-typescript-loader": "^3.7.2",
     "react-test-renderer": "^16.12.0",
     "relay-compiler": "^9.1.0",
@@ -241,7 +241,8 @@
     "**/elliptic": ">=6.5.3",
     "serialize-javascript": "^3.1.0",
     "standard-version/**/dot-prop": "5.1.1",
-    "**/@types/relay-runtime": "^9.1.6"
+    "**/@types/relay-runtime": "^9.1.6",
+    "**/node-fetch": "^2.6.1"
   },
   "jest": {
     "testMatch": [
