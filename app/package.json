@@ -142,7 +142,7 @@
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "graphile-build-pg": "^4.8.0",
-    "graphile-worker": "^0.6.0",
+    "graphile-worker": "^0.8.0",
     "graphql": "^14.6.0",
     "graphql-voyager": "^1.0.0-rc.30",
     "isomorphic-fetch": "^2.2.1",
