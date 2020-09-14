@@ -29,9 +29,15 @@ export const CertificationSignature: React.FunctionComponent<Props> = ({
     const file = e.target.files[0];
     const reader = new FileReader();
     reader.readAsDataURL(file);
+    const canvasWidth = sigCanvas?.current?._canvas?.width;
+    const canvasHeight = sigCanvas?.current?._canvas?.height;
     reader.onloadend = () => {
       const base64 = reader.result;
-      sigCanvas.current.fromDataURL(base64);
+      // Ensure signature file does not exceed size of the canvas
+      sigCanvas.current.fromDataURL(base64, {
+        width: canvasWidth * 0.75 || 500,
+        height: canvasHeight * 0.75 || 200
+      });
     };
   };
 
