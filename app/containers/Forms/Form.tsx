@@ -262,7 +262,7 @@ export const FormComponent: React.FunctionComponent<Props> = ({
           </Alert>
         )}
         <div className="form-submit">
-          <Row>
+          <Row className="form-nav">
             <Button size="lg" variant="primary" type="submit">
               Save &amp; Continue
             </Button>

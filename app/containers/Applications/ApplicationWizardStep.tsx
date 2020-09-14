@@ -10,7 +10,6 @@ import ApplicationWizardConfirmation from './ApplicationWizardConfirmation';
 interface Props {
   query: ApplicationWizardStep_query;
   onStepComplete: () => void;
-  onStepBack: () => void;
   confirmationPage: boolean;
   relay: RelayProp;
 }
@@ -22,7 +21,6 @@ interface Props {
 const ApplicationWizardStep: React.FunctionComponent<Props> = ({
   query,
   onStepComplete,
-  onStepBack,
   confirmationPage,
   relay
 }) => {
@@ -77,7 +75,6 @@ const ApplicationWizardStep: React.FunctionComponent<Props> = ({
       isSaved={isSaved}
       onComplete={onComplete}
       onValueChanged={onValueChanged}
-      onBack={onStepBack}
     />
   );
 
