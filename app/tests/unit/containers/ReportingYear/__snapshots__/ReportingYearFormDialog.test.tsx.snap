@@ -129,7 +129,7 @@ exports[`ReportingYearFormDialog Should match last accepted snapshot: no inputs 
     </ModalBody>
   </Bootstrap(Modal)>
   <JSXStyle
-    id="841285729"
+    id="2362864946"
   >
     .
     r
@@ -353,8 +353,11 @@ exports[`ReportingYearFormDialog Should match last accepted snapshot: no inputs 
     :
     #
     e
+    0
     e
+    0
     e
+    0
     ;
     b
     o
@@ -583,6 +586,78 @@ exports[`ReportingYearFormDialog Should match last accepted snapshot: no inputs 
     i
     n
     g
+    :
+    5
+    p
+    x
+    ;
+    }
+    .
+    e
+    x
+    i
+    t
+    -
+    b
+    u
+    t
+    t
+    o
+    n
+    {
+    b
+    a
+    c
+    k
+    g
+    r
+    o
+    u
+    n
+    d
+    :
+    w
+    h
+    i
+    t
+    e
+     
+    !
+    i
+    m
+    p
+    o
+    r
+    t
+    a
+    n
+    t
+    ;
+    c
+    o
+    l
+    o
+    r
+    :
+    #
+    0
+    0
+    3
+    3
+    6
+    6
+    ;
+    m
+    a
+    r
+    g
+    i
+    n
+    -
+    l
+    e
+    f
+    t
     :
     5
     p
@@ -722,7 +797,7 @@ exports[`ReportingYearFormDialog Should match last accepted snapshot: some past 
     </ModalBody>
   </Bootstrap(Modal)>
   <JSXStyle
-    id="841285729"
+    id="2362864946"
   >
     .
     r
@@ -946,8 +1021,11 @@ exports[`ReportingYearFormDialog Should match last accepted snapshot: some past 
     :
     #
     e
+    0
     e
+    0
     e
+    0
     ;
     b
     o
@@ -1176,6 +1254,78 @@ exports[`ReportingYearFormDialog Should match last accepted snapshot: some past 
     i
     n
     g
+    :
+    5
+    p
+    x
+    ;
+    }
+    .
+    e
+    x
+    i
+    t
+    -
+    b
+    u
+    t
+    t
+    o
+    n
+    {
+    b
+    a
+    c
+    k
+    g
+    r
+    o
+    u
+    n
+    d
+    :
+    w
+    h
+    i
+    t
+    e
+     
+    !
+    i
+    m
+    p
+    o
+    r
+    t
+    a
+    n
+    t
+    ;
+    c
+    o
+    l
+    o
+    r
+    :
+    #
+    0
+    0
+    3
+    3
+    6
+    6
+    ;
+    m
+    a
+    r
+    g
+    i
+    n
+    -
+    l
+    e
+    f
+    t
     :
     5
     p

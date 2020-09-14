@@ -998,52 +998,24 @@ exports[`Form should match the snapshot with the administration form 1`] = `
       className="form-submit"
     >
       <div
-        className="row"
+        className="form-nav row"
       >
-        <div
-          className="col-md-3"
-          style={
-            Object {
-              "lineHeight": "48px",
-            }
-          }
+        <button
+          className="btn btn-primary btn-lg"
+          disabled={false}
+          type="submit"
         >
-          <a
-            href="/reporter"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-          >
-            Save & Exit
-          </a>
-        </div>
-        <div
-          className="form-nav col-md-9"
-          style={
-            Object {
-              "textAlign": "right",
-            }
-          }
+          Save & Continue
+        </button>
+        <button
+          className="exit-button btn btn-primary btn-lg"
+          disabled={false}
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          type="button"
         >
-          <button
-            className="btn btn-secondary btn-lg"
-            disabled={false}
-            style={
-              Object {
-                "marginRight": "10px",
-              }
-            }
-            type="button"
-          >
-            Back
-          </button>
-          <button
-            className="btn btn-primary btn-lg"
-            disabled={false}
-            type="submit"
-          >
-            Next Page
-          </button>
-        </div>
+          Save & Exit
+        </button>
       </div>
     </div>
   </form>
@@ -1885,52 +1857,24 @@ exports[`Form should match the snapshot with the emission form 1`] = `
       className="form-submit"
     >
       <div
-        className="row"
+        className="form-nav row"
       >
-        <div
-          className="col-md-3"
-          style={
-            Object {
-              "lineHeight": "48px",
-            }
-          }
+        <button
+          className="btn btn-primary btn-lg"
+          disabled={false}
+          type="submit"
         >
-          <a
-            href="/reporter"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-          >
-            Save & Exit
-          </a>
-        </div>
-        <div
-          className="form-nav col-md-9"
-          style={
-            Object {
-              "textAlign": "right",
-            }
-          }
+          Save & Continue
+        </button>
+        <button
+          className="exit-button btn btn-primary btn-lg"
+          disabled={false}
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          type="button"
         >
-          <button
-            className="btn btn-secondary btn-lg"
-            disabled={false}
-            style={
-              Object {
-                "marginRight": "10px",
-              }
-            }
-            type="button"
-          >
-            Back
-          </button>
-          <button
-            className="btn btn-primary btn-lg"
-            disabled={false}
-            type="submit"
-          >
-            Next Page
-          </button>
-        </div>
+          Save & Exit
+        </button>
       </div>
     </div>
   </form>
@@ -2223,52 +2167,24 @@ exports[`Form should match the snapshot with the fuel form 1`] = `
       className="form-submit"
     >
       <div
-        className="row"
+        className="form-nav row"
       >
-        <div
-          className="col-md-3"
-          style={
-            Object {
-              "lineHeight": "48px",
-            }
-          }
+        <button
+          className="btn btn-primary btn-lg"
+          disabled={false}
+          type="submit"
         >
-          <a
-            href="/reporter"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-          >
-            Save & Exit
-          </a>
-        </div>
-        <div
-          className="form-nav col-md-9"
-          style={
-            Object {
-              "textAlign": "right",
-            }
-          }
+          Save & Continue
+        </button>
+        <button
+          className="exit-button btn btn-primary btn-lg"
+          disabled={false}
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          type="button"
         >
-          <button
-            className="btn btn-secondary btn-lg"
-            disabled={false}
-            style={
-              Object {
-                "marginRight": "10px",
-              }
-            }
-            type="button"
-          >
-            Back
-          </button>
-          <button
-            className="btn btn-primary btn-lg"
-            disabled={false}
-            type="submit"
-          >
-            Next Page
-          </button>
-        </div>
+          Save & Exit
+        </button>
       </div>
     </div>
   </form>
@@ -2710,52 +2626,24 @@ exports[`Form should match the snapshot with the production form 1`] = `
       className="form-submit"
     >
       <div
-        className="row"
+        className="form-nav row"
       >
-        <div
-          className="col-md-3"
-          style={
-            Object {
-              "lineHeight": "48px",
-            }
-          }
+        <button
+          className="btn btn-primary btn-lg"
+          disabled={false}
+          type="submit"
         >
-          <a
-            href="/reporter"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-          >
-            Save & Exit
-          </a>
-        </div>
-        <div
-          className="form-nav col-md-9"
-          style={
-            Object {
-              "textAlign": "right",
-            }
-          }
+          Save & Continue
+        </button>
+        <button
+          className="exit-button btn btn-primary btn-lg"
+          disabled={false}
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          type="button"
         >
-          <button
-            className="btn btn-secondary btn-lg"
-            disabled={false}
-            style={
-              Object {
-                "marginRight": "10px",
-              }
-            }
-            type="button"
-          >
-            Back
-          </button>
-          <button
-            className="btn btn-primary btn-lg"
-            disabled={false}
-            type="submit"
-          >
-            Next Page
-          </button>
-        </div>
+          Save & Exit
+        </button>
       </div>
     </div>
   </form>
