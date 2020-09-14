@@ -14,7 +14,7 @@ export default css.global`
   .form-submit {
     border: 1px solid #bbb;
     padding: 30px;
-    background: #eee;
+    background: #e0e0e0;
     border-radius: 6px;
   }
   .errors {
@@ -32,5 +32,10 @@ export default css.global`
     background: #ce5c5c;
     color: white !important;
     padding: 5px;
+  }
+  .exit-button {
+    background: white !important;
+    color: #003366;
+    margin-left: 5px;
   }
 `;
