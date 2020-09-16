@@ -153,7 +153,7 @@ exports[`NewReportingYearFormDialog Should match last accepted snapshot 1`] = `
     </ModalBody>
   </Bootstrap(Modal)>
   <JSXStyle
-    id="2362864946"
+    id="3364523561"
   >
     .
     r
@@ -629,34 +629,6 @@ exports[`NewReportingYearFormDialog Should match last accepted snapshot 1`] = `
     o
     n
     {
-    b
-    a
-    c
-    k
-    g
-    r
-    o
-    u
-    n
-    d
-    :
-    w
-    h
-    i
-    t
-    e
-     
-    !
-    i
-    m
-    p
-    o
-    r
-    t
-    a
-    n
-    t
-    ;
     c
     o
     l
@@ -686,6 +658,100 @@ exports[`NewReportingYearFormDialog Should match last accepted snapshot 1`] = `
     5
     p
     x
+    ;
+    b
+    o
+    r
+    d
+    e
+    r
+    -
+    c
+    o
+    l
+    o
+    r
+    :
+    #
+    0
+    0
+    3
+    3
+    6
+    6
+    ;
+    }
+    .
+    e
+    x
+    i
+    t
+    -
+    b
+    u
+    t
+    t
+    o
+    n
+    :
+    h
+    o
+    v
+    e
+    r
+    {
+    c
+    o
+    l
+    o
+    r
+    :
+    w
+    h
+    i
+    t
+    e
+     
+    !
+    i
+    m
+    p
+    o
+    r
+    t
+    a
+    n
+    t
+    ;
+    b
+    a
+    c
+    k
+    g
+    r
+    o
+    u
+    n
+    d
+    :
+    #
+    0
+    0
+    7
+    b
+    f
+    f
+     
+    !
+    i
+    m
+    p
+    o
+    r
+    t
+    a
+    n
+    t
     ;
     }
   </JSXStyle>

@@ -1008,10 +1008,15 @@ exports[`Form should match the snapshot with the administration form 1`] = `
           Save & Continue
         </button>
         <button
-          className="exit-button btn btn-primary btn-lg"
+          className="exit-button btn btn-outline-secondary btn-lg"
           disabled={false}
           onClick={[Function]}
           onMouseEnter={[Function]}
+          style={
+            Object {
+              "background": "white",
+            }
+          }
           type="button"
         >
           Save & Exit
@@ -1867,10 +1872,15 @@ exports[`Form should match the snapshot with the emission form 1`] = `
           Save & Continue
         </button>
         <button
-          className="exit-button btn btn-primary btn-lg"
+          className="exit-button btn btn-outline-secondary btn-lg"
           disabled={false}
           onClick={[Function]}
           onMouseEnter={[Function]}
+          style={
+            Object {
+              "background": "white",
+            }
+          }
           type="button"
         >
           Save & Exit
@@ -2177,10 +2187,15 @@ exports[`Form should match the snapshot with the fuel form 1`] = `
           Save & Continue
         </button>
         <button
-          className="exit-button btn btn-primary btn-lg"
+          className="exit-button btn btn-outline-secondary btn-lg"
           disabled={false}
           onClick={[Function]}
           onMouseEnter={[Function]}
+          style={
+            Object {
+              "background": "white",
+            }
+          }
           type="button"
         >
           Save & Exit
@@ -2636,10 +2651,15 @@ exports[`Form should match the snapshot with the production form 1`] = `
           Save & Continue
         </button>
         <button
-          className="exit-button btn btn-primary btn-lg"
+          className="exit-button btn btn-outline-secondary btn-lg"
           disabled={false}
           onClick={[Function]}
           onMouseEnter={[Function]}
+          style={
+            Object {
+              "background": "white",
+            }
+          }
           type="button"
         >
           Save & Exit
