@@ -34,8 +34,12 @@ export default css.global`
     padding: 5px;
   }
   .exit-button {
-    background: white !important;
     color: #003366;
     margin-left: 5px;
+    border-color: #003366;
+  }
+  .exit-button:hover {
+    color: white !important;
+    background: #007bff !important;
   }
 `;

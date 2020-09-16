@@ -271,7 +271,12 @@ export const FormComponent: React.FunctionComponent<Props> = ({
                 pathname: '/reporter'
               }}
             >
-              <Button className="exit-button" size="lg">
+              <Button
+                variant="outline-secondary"
+                className="exit-button"
+                style={{background: 'white'}}
+                size="lg"
+              >
                 Save &amp; Exit
               </Button>
             </Link>
