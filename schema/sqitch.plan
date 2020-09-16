@@ -188,3 +188,4 @@ mutations/create_application_revision_mutation_chain [mutations/create_applicati
 @v1.7.0 2020-09-02T20:36:02Z Matthieu Foucault <matthieu@button.is> # release v1.7.0
 @v1.7.1 2020-09-08T16:20:14Z Matthieu Foucault <matthieu@button.is> # release v1.7.1
 @v1.8.0 2020-09-08T23:39:34Z Matthieu Foucault <matthieu@button.is> # release v1.8.0
+@v1.8.1 2020-09-16T16:16:22Z Matthieu Foucault <matthieu@button.is> # release v1.8.1
