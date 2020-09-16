@@ -15,7 +15,7 @@ exports[`ApplicationRowItem should render the application 1`] = `
     2018
   </td>
   <td>
-    Sep 02, 2020 11:14:08 (PDT)
+    Sep 2, 2020 11:14:08 AM (PDT)
   </td>
   <td>
     <Badge
