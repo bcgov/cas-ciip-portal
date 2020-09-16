@@ -1,5 +1,4 @@
 import React from 'react';
-import moment from 'moment-timezone';
 import {Modal, Container, Button} from 'react-bootstrap';
 import globalFormStyles from '../../Forms/FormSharedStyles';
 import JsonSchemaForm from 'react-jsonschema-form';
@@ -10,15 +9,14 @@ import reportingYearSchema from './edit_reporting_year.json';
 import AltDateInput from 'components/Forms/AltDateInput';
 import AltDateTimeInput from 'components/Forms/AltDateTimeInput';
 import {validateApplicationDates} from './reportingYearValidation';
-
-const TIME_ZONE = 'America/Vancouver';
+import {nowMoment, defaultMoment} from 'functions/formatDates';
 
 function transformUiSchema(json, formFields) {
   if (!formFields) return;
-  const now = moment.tz(TIME_ZONE);
+  const now = nowMoment();
 
   Object.keys(json).forEach((field) => {
-    const d = moment.tz(formFields[field], TIME_ZONE);
+    const d = defaultMoment(formFields[field]);
     const thisYear = Number(now.year());
 
     json[field]['ui:disabled'] = d < now;

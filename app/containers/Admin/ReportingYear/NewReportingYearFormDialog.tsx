@@ -1,5 +1,4 @@
 import React from 'react';
-import moment from 'moment-timezone';
 import {Modal, Container, Button} from 'react-bootstrap';
 import globalFormStyles from '../../Forms/FormSharedStyles';
 import JsonSchemaForm from 'react-jsonschema-form';
@@ -10,11 +9,10 @@ import newReportingYearSchema from './create_reporting_year.json';
 import AltDateInput from 'components/Forms/AltDateInput';
 import AltDateTimeInput from 'components/Forms/AltDateTimeInput';
 import {validateAllDates, validateUniqueKey} from './reportingYearValidation';
-
-const TIME_ZONE = 'America/Vancouver';
+import {nowMoment} from 'functions/formatDates';
 
 function transformUiSchema(json) {
-  const now = moment.tz(TIME_ZONE);
+  const now = nowMoment();
   const thisYear = Number(now.year());
 
   Object.keys(json).forEach((field) => {

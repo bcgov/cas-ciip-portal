@@ -9,7 +9,6 @@ import {CiipProductState} from 'updateProductMutation.graphql';
 import updateBenchmarkMutation from 'mutations/benchmark/updateBenchmarkMutation';
 import createBenchmarkMutation from 'mutations/benchmark/createBenchmarkMutation';
 import benchmarkSchemaFunction from './benchmark-schema';
-import moment from 'moment-timezone';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {
   faTachometerAlt,
@@ -20,6 +19,7 @@ import createLinkedProductMutation from 'mutations/linked_product/createLinkedPr
 import updateLinkedProductMutation from 'mutations/linked_product/updateLinkedProductMutation';
 import InnerModal from './InnerProductBenchmarkModal';
 import LinkedProductModal from './LinkedProductModal';
+import {dateTimeFormat} from 'functions/formatDates';
 
 interface Props {
   relay: RelayProp;
@@ -281,7 +281,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
     <>
       <tr>
         <td>{product.productName}</td>
-        <td>{moment(product.updatedAt).format('DD-MM-YYYY')}</td>
+        <td>{dateTimeFormat(product.updatedAt, 'days_numbered')}</td>
         <td>{currentBenchmark?.benchmark ?? null}</td>
         <td>{currentBenchmark?.eligibilityThreshold ?? null}</td>
         <td>{product.requiresEmissionAllocation ? 'Yes' : 'No'}</td>

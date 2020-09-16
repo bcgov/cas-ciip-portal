@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
 import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
-import moment from 'moment-timezone';
 import {Modal, Button} from 'react-bootstrap';
 import {ApplicationCommentsByForm_reviewComment} from 'ApplicationCommentsByForm_reviewComment.graphql';
 import updateReviewCommentMutation from 'mutations/application/updateReviewCommentMutation';
 import deleteReviewCommentMutation from 'mutations/application/deleteReviewCommentMutation';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faTrashAlt} from '@fortawesome/free-solid-svg-icons';
+import {nowMoment, dateTimeFormat} from 'functions/formatDates';
 /*
  * The ApplicationComments renders all the comments on the various sections of the application
  */
@@ -48,9 +48,7 @@ export const ApplicationCommentsByForm: React.FunctionComponent<Props> = (
       input: {
         id: reviewComment.id,
         reviewCommentPatch: {
-          deletedAt: moment
-            .tz('America/Vancouver')
-            .format('YYYY-MM-DDTHH:mm:ss'),
+          deletedAt: nowMoment().format('YYYY-MM-DDTHH:mm:ss'),
           commentType: reviewComment.commentType
         }
       },
@@ -75,10 +73,7 @@ export const ApplicationCommentsByForm: React.FunctionComponent<Props> = (
             <small style={{color: '#777'}}>
               {reviewComment?.ciipUserByCreatedBy?.firstName}{' '}
               {reviewComment?.ciipUserByCreatedBy?.lastName} (
-              {moment
-                .tz(reviewComment.createdAt, 'America/Vancouver')
-                .format('MMM DD, YYYY HH:mm:ss z')}
-              )
+              {dateTimeFormat(reviewComment.createdAt, 'minutes')})
             </small>
           </div>
         </td>

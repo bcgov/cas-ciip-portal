@@ -1,10 +1,9 @@
 import React from 'react';
 import {Table} from 'react-bootstrap';
 import {createFragmentContainer, graphql} from 'react-relay';
-import moment from 'moment-timezone';
 import {KeyDates_query} from '__generated__/KeyDates_query.graphql';
+import {defaultMoment} from 'functions/formatDates';
 
-const TIME_ZONE = 'America/Vancouver';
 const DATE_FORMAT = 'MMM D, YYYY';
 
 interface Props {
@@ -16,19 +15,16 @@ export const KeyDatesComponent: React.FunctionComponent<Props> = ({query}) => {
 
   if (!openedReportingYear && !nextReportingYear) return null;
 
-  const startDate = moment.tz(
+  const startDate = defaultMoment(
     openedReportingYear?.applicationOpenTime ??
-      nextReportingYear?.applicationOpenTime,
-    TIME_ZONE
+      nextReportingYear?.applicationOpenTime
   );
-  // Const endDate = moment.tz(
+  // Const endDate = defaultMoment(
   //   openedReportingYear?.applicationCloseTime ??
-  //     nextReportingYear?.applicationCloseTime,
-  //   TIME_ZONE
+  //     nextReportingYear?.applicationCloseTime
   // );
-  // const swrsDeadline = moment.tz(
-  //   openedReportingYear?.swrsDeadline ?? nextReportingYear?.swrsDeadline,
-  //   TIME_ZONE
+  // const swrsDeadline = defaultMoment(
+  //   openedReportingYear?.swrsDeadline ?? nextReportingYear?.swrsDeadline
   // );
 
   const keyDates = [

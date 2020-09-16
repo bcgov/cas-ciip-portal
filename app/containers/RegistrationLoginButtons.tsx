@@ -3,13 +3,11 @@ import {Col, Card, Button} from 'react-bootstrap';
 import LoginButton from '../components/LoginButton';
 import {createFragmentContainer, graphql} from 'react-relay';
 import {RegistrationLoginButtons_query} from 'RegistrationLoginButtons_query.graphql';
-// Import moment from 'moment-timezone';
+// Import {dateTimeFormat} from 'functions/formatDates';
 
 interface Props {
   query: RegistrationLoginButtons_query;
 }
-
-// Const TIME_ZONE = 'America/Vancouver';
 
 export const RegistrationLoginButtonsComponent: React.FunctionComponent<Props> = ({
   query
@@ -17,7 +15,7 @@ export const RegistrationLoginButtonsComponent: React.FunctionComponent<Props> =
   const applicationCloseTime = query?.openedReportingYear?.applicationCloseTime;
   // Const applicationDeadline =
   //   applicationCloseTime &&
-  //   moment.tz(applicationCloseTime, TIME_ZONE).format('MMMM DD, YYYY');
+  //   dateTimeFormat(applicationCloseTime, 'days_string');
 
   const cardText = applicationCloseTime ? (
     // `Operators must submit a CIIP application form by ${applicationDeadline}.
