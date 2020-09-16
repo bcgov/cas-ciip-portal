@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.8.1](https://github.com/bcgov/cas-ciip-portal/compare/v1.8.0...v1.8.1) (2020-09-16)
+
+
+### Bug Fixes
+
+* define width/height of uploaded signature file ([7172c7b](https://github.com/bcgov/cas-ciip-portal/commit/7172c7b91f76ab2b94a7db2f3d1ca5b30178038b))
+* Hide gases button shouldn't overlap 'saving' indicator ([94dfec3](https://github.com/bcgov/cas-ciip-portal/commit/94dfec36829c6fcddd594c1c2083769f99b95d5e))
+* search/sort by application id instead of id of search return row ([87c5b82](https://github.com/bcgov/cas-ciip-portal/commit/87c5b82331bb98e141202c59fe9835f0cbe5c23e))
+* update draft status notification to reflect current certification status ([34af518](https://github.com/bcgov/cas-ciip-portal/commit/34af5185f4e7cac513ca32c6aa4c9075e819126f))
+
 ## [1.8.0](https://github.com/bcgov/cas-ciip-portal/compare/v1.7.1...v1.8.0) (2020-09-08)
 
 
