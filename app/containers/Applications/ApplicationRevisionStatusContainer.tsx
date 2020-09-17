@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Row, Col, Dropdown, Button, Modal} from 'react-bootstrap';
+import {Row, Col, Dropdown, Button, Badge, Modal} from 'react-bootstrap';
 import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
 import DropdownMenuItemComponent from 'components/DropdownMenuItemComponent';
 import createApplicationRevisionStatusMutation from 'mutations/application/createApplicationRevisionStatusMutation';
@@ -111,7 +111,9 @@ export const ApplicationRevisionStatusComponent: React.FunctionComponent<Props> 
           <Col md={2}>
             <Dropdown style={{width: '100%'}}>
               <Dropdown.Toggle
-                style={{width: '100%', textTransform: 'capitalize'}}
+                pill
+                as={Badge}
+                style={{padding: '0.6em 1em', fontSize: '1em'}}
                 variant={
                   statusBadgeColor[
                     props.applicationRevisionStatus.applicationRevisionStatus

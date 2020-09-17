@@ -139,11 +139,22 @@ exports[`ApplicationRevisionStatusItem should render the application status in a
         }
       >
         <DropdownToggle
+          as={
+            Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "defaultProps": Object {
+                "pill": false,
+              },
+              "displayName": "Badge",
+              "render": [Function],
+            }
+          }
           id="dropdown"
+          pill={true}
           style={
             Object {
-              "textTransform": "capitalize",
-              "width": "100%",
+              "fontSize": "1em",
+              "padding": "0.6em 1em",
             }
           }
           variant="info"
