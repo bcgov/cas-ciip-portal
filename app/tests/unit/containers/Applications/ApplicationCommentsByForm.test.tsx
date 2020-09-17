@@ -73,9 +73,7 @@ describe('ApplicationCommentsComponent', () => {
         }}
       />
     );
-    expect(renderer.find('small').text()).toBe(
-      'Test Test (Dec 12th 2019, 12:00 am)'
-    );
+    expect(renderer.find('small').text()).toContain('Test Test (Dec 12, 2019');
   });
   it('should not render the resolve button if review prop is false', async () => {
     const renderer = shallow(

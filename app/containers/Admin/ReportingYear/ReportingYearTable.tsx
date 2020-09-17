@@ -1,27 +1,25 @@
 import React, {useState} from 'react';
 import {Table, Button} from 'react-bootstrap';
-import moment from 'moment-timezone';
 import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
 import {ReportingYearTable_query} from '__generated__/ReportingYearTable_query.graphql';
 import updateReportingYearMutation from 'mutations/reporting_year/updateReportingYearMutation';
 import createReportingYearMutation from 'mutations/reporting_year/createReportingYearMutation';
 import ReportingYearFormDialog from './ReportingYearFormDialog';
 import NewReportingYearFormDialog from './NewReportingYearFormDialog';
-
-const TIME_ZONE = 'America/Vancouver';
+import {nowMoment, defaultMoment, dateTimeFormat} from 'functions/formatDates';
 
 interface Props {
   relay: RelayProp;
   query: ReportingYearTable_query;
 }
 
-function formatListViewDate(date) {
-  return moment.tz(date, TIME_ZONE).format('MMM D, YYYY');
+function formatListViewDate(date: string) {
+  return dateTimeFormat(date, 'days_string');
 }
 
-function isDatePast(date) {
-  const d = moment.tz(date, TIME_ZONE);
-  const now = moment.tz(TIME_ZONE);
+function isDatePast(date: string) {
+  const d = defaultMoment(date);
+  const now = nowMoment();
   return d.isBefore(now);
 }
 

@@ -1,5 +1,4 @@
-import moment from 'moment-timezone';
-const TIME_ZONE = 'America/Vancouver';
+import {nowMoment, defaultMoment} from 'functions/formatDates';
 
 const ERRORS = {
   CLOSE_BEFORE_OPEN_DATE:
@@ -15,23 +14,23 @@ const ERRORS = {
 };
 
 function isPastDate(date) {
-  const now = moment.tz(TIME_ZONE);
+  const now = nowMoment();
   return date.isBefore(now);
 }
 
 function validateApplicationDates(existingData, formData, errors, uiSchema) {
   const openDate = formData.applicationOpenTime
-    ? moment.tz(formData.applicationOpenTime, TIME_ZONE)
+    ? defaultMoment(formData.applicationOpenTime)
     : undefined;
   const closeDate = formData.applicationCloseTime
-    ? moment.tz(formData.applicationCloseTime, TIME_ZONE)
+    ? defaultMoment(formData.applicationCloseTime)
     : undefined;
 
   const reportingEnd =
     'reportingPeriodEnd' in formData
-      ? moment.tz(formData.reportingPeriodEnd, TIME_ZONE)
+      ? defaultMoment(formData.reportingPeriodEnd)
       : 'reportingPeriodEnd' in existingData
-      ? moment.tz(existingData.reportingPeriodEnd, TIME_ZONE)
+      ? defaultMoment(existingData.reportingPeriodEnd)
       : null;
 
   if (
@@ -75,8 +74,8 @@ function validateReportingDates(formData, errors) {
 
   if (!reportingRangeExists) return errors;
 
-  const reportingStart = moment.tz(formData.reportingPeriodStart, TIME_ZONE);
-  const reportingEnd = moment.tz(formData.reportingPeriodEnd, TIME_ZONE);
+  const reportingStart = defaultMoment(formData.reportingPeriodStart);
+  const reportingEnd = defaultMoment(formData.reportingPeriodEnd);
 
   if (reportingEnd.isBefore(reportingStart)) {
     errors.addError(ERRORS.END_BEFORE_START);

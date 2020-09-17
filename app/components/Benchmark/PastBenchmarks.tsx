@@ -1,6 +1,6 @@
 import React from 'react';
 import {Table} from 'react-bootstrap';
-import moment from 'moment-timezone';
+import {dateTimeFormat} from 'functions/formatDates';
 
 interface Props {
   pastBenchmarks: any;
@@ -11,7 +11,7 @@ const PastBenchmarksComponent: React.FunctionComponent<Props> = (props) => {
 
   const renderPastBenchmarks = pastBenchmarks.map(({node}) => (
     <tr key={node.id}>
-      <td>{moment(node.createdAt).format('DD-MM-YYYY')}</td>
+      <td>{dateTimeFormat(node.createdAt, 'days_numbered')}</td>
       <td>{node.benchmark}</td>
       <td>{node.startReportingYear}</td>
       <td>{node.endReportingYear}</td>

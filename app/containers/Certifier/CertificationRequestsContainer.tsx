@@ -1,16 +1,14 @@
 import React, {useEffect, useState, useRef} from 'react';
 import {Button} from 'react-bootstrap';
-import moment from 'moment-timezone';
+import {dateTimeFormat} from 'functions/formatDates';
 import Link from 'next/link';
 import {graphql, createRefetchContainer, RelayRefetchProp} from 'react-relay';
 import SearchTableLayout from 'components/SearchTableLayout';
 import PaginationBar from 'components/PaginationBar';
 import {CertificationRequestsContainer_query} from '__generated__/CertificationRequestsContainer_query.graphql';
 
-const TIME_ZONE = 'America/Vancouver';
-
 function formatListViewDate(date) {
-  return date ? moment.tz(date, TIME_ZONE).format('MMM D, YYYY') : '';
+  return date ? dateTimeFormat(date, 'days_string') : '';
 }
 
 function getCertifiableRequestIds(query) {

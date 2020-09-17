@@ -12,7 +12,7 @@ describe('ApplicationRowItem', () => {
       applicationRevisionStatus: 'SUBMITTED',
       reportingYear: 2018,
       bcghgid: 123456789,
-      submissionDate: 'Monday',
+      submissionDate: '2020-09-02T11:14:08.254553-07:00',
       applicationByApplicationId: {
         id: 'abc',
         latestSubmittedRevision: {

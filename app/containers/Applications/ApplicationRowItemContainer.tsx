@@ -3,6 +3,7 @@ import {Button, Badge} from 'react-bootstrap';
 import {graphql, createFragmentContainer} from 'react-relay';
 import {CiipApplicationRevisionStatus} from 'ApplicationRowItemContainer_applicationSearchResult.graphql';
 import Link from 'next/link';
+import {dateTimeFormat} from 'functions/formatDates';
 
 const statusBadgeColor: Record<
   CiipApplicationRevisionStatus,
@@ -17,13 +18,18 @@ const statusBadgeColor: Record<
 
 export const ApplicationRowItem = (props) => {
   const {applicationSearchResult = {}} = props;
+  const readableSubmissionDate = dateTimeFormat(
+    applicationSearchResult.submissionDate,
+    'seconds'
+  );
+
   return (
     <tr>
       <td>{applicationSearchResult.applicationId}</td>
       <td>{applicationSearchResult.operatorName}</td>
       <td>{applicationSearchResult.facilityName}</td>
       <td>{applicationSearchResult.reportingYear}</td>
-      <td>{applicationSearchResult.submissionDate}</td>
+      <td>{readableSubmissionDate}</td>
       <td>
         <Badge
           pill
