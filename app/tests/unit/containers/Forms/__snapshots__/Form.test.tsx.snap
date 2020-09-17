@@ -40,7 +40,9 @@ exports[`The Form Component should match the snapshot 1`] = `
     <Col
       md={4}
     >
-      <SavingIndicator />
+      <SavingIndicator
+        isSaved={true}
+      />
     </Col>
   </Row>
   <Form
@@ -74,6 +76,9 @@ exports[`The Form Component should match the snapshot 1`] = `
             "ProductRowIdField_query": true,
           },
           " $refType": "Form_query",
+          "products": Object {
+            "edges": Array [],
+          },
           "result": Object {
             "formJsonByFormId": Object {
               "ciipApplicationWizardByFormId": Object {
@@ -109,65 +114,46 @@ exports[`The Form Component should match the snapshot 1`] = `
       className="form-submit"
     >
       <Row
+        className="form-nav"
         noGutters={false}
       >
-        <Col
-          md={3}
-          style={
-            Object {
-              "lineHeight": "48px",
-            }
-          }
+        <Button
+          active={false}
+          disabled={false}
+          size="lg"
+          type="submit"
+          variant="primary"
         >
-          <Link
-            href={
-              Object {
-                "pathname": "/reporter",
-              }
-            }
-          >
-            Save & Exit
-          </Link>
-        </Col>
-        <Col
-          className="form-nav"
-          md={9}
-          style={
+          Save & Continue
+        </Button>
+        <Link
+          href={
             Object {
-              "textAlign": "right",
+              "pathname": "/reporter",
             }
           }
         >
           <Button
             active={false}
+            className="exit-button"
             disabled={false}
-            onClick={[MockFunction]}
             size="lg"
             style={
               Object {
-                "marginRight": "10px",
+                "background": "white",
               }
             }
             type="button"
-            variant="secondary"
+            variant="outline-secondary"
           >
-            Back
+            Save & Exit
           </Button>
-          <Button
-            active={false}
-            disabled={false}
-            size="lg"
-            type="submit"
-            variant="primary"
-          >
-            Next Page
-          </Button>
-        </Col>
+        </Link>
       </Row>
     </div>
   </Form>
   <JSXStyle
-    id="841285729"
+    id="3364523561"
   >
     .
     r
@@ -391,8 +377,11 @@ exports[`The Form Component should match the snapshot 1`] = `
     :
     #
     e
+    0
     e
+    0
     e
+    0
     ;
     b
     o
@@ -625,6 +614,144 @@ exports[`The Form Component should match the snapshot 1`] = `
     5
     p
     x
+    ;
+    }
+    .
+    e
+    x
+    i
+    t
+    -
+    b
+    u
+    t
+    t
+    o
+    n
+    {
+    c
+    o
+    l
+    o
+    r
+    :
+    #
+    0
+    0
+    3
+    3
+    6
+    6
+    ;
+    m
+    a
+    r
+    g
+    i
+    n
+    -
+    l
+    e
+    f
+    t
+    :
+    5
+    p
+    x
+    ;
+    b
+    o
+    r
+    d
+    e
+    r
+    -
+    c
+    o
+    l
+    o
+    r
+    :
+    #
+    0
+    0
+    3
+    3
+    6
+    6
+    ;
+    }
+    .
+    e
+    x
+    i
+    t
+    -
+    b
+    u
+    t
+    t
+    o
+    n
+    :
+    h
+    o
+    v
+    e
+    r
+    {
+    c
+    o
+    l
+    o
+    r
+    :
+    w
+    h
+    i
+    t
+    e
+     
+    !
+    i
+    m
+    p
+    o
+    r
+    t
+    a
+    n
+    t
+    ;
+    b
+    a
+    c
+    k
+    g
+    r
+    o
+    u
+    n
+    d
+    :
+    #
+    0
+    0
+    7
+    b
+    f
+    f
+     
+    !
+    i
+    m
+    p
+    o
+    r
+    t
+    a
+    n
+    t
     ;
     }
   </JSXStyle>
@@ -671,7 +798,9 @@ exports[`The Form Component should not render an alert reminder to check the gui
     <Col
       md={4}
     >
-      <SavingIndicator />
+      <SavingIndicator
+        isSaved={true}
+      />
     </Col>
   </Row>
   <Form
@@ -705,6 +834,9 @@ exports[`The Form Component should not render an alert reminder to check the gui
             "ProductRowIdField_query": true,
           },
           " $refType": "Form_query",
+          "products": Object {
+            "edges": Array [],
+          },
           "result": Object {
             "formJsonByFormId": Object {
               "ciipApplicationWizardByFormId": Object {
@@ -750,65 +882,46 @@ exports[`The Form Component should not render an alert reminder to check the gui
       className="form-submit"
     >
       <Row
+        className="form-nav"
         noGutters={false}
       >
-        <Col
-          md={3}
-          style={
-            Object {
-              "lineHeight": "48px",
-            }
-          }
+        <Button
+          active={false}
+          disabled={false}
+          size="lg"
+          type="submit"
+          variant="primary"
         >
-          <Link
-            href={
-              Object {
-                "pathname": "/reporter",
-              }
-            }
-          >
-            Save & Exit
-          </Link>
-        </Col>
-        <Col
-          className="form-nav"
-          md={9}
-          style={
+          Save & Continue
+        </Button>
+        <Link
+          href={
             Object {
-              "textAlign": "right",
+              "pathname": "/reporter",
             }
           }
         >
           <Button
             active={false}
+            className="exit-button"
             disabled={false}
-            onClick={[MockFunction]}
             size="lg"
             style={
               Object {
-                "marginRight": "10px",
+                "background": "white",
               }
             }
             type="button"
-            variant="secondary"
+            variant="outline-secondary"
           >
-            Back
+            Save & Exit
           </Button>
-          <Button
-            active={false}
-            disabled={false}
-            size="lg"
-            type="submit"
-            variant="primary"
-          >
-            Next Page
-          </Button>
-        </Col>
+        </Link>
       </Row>
     </div>
   </Form>
   <JSXStyle
-    id="841285729"
+    id="3364523561"
   >
     .
     r
@@ -1032,8 +1145,11 @@ exports[`The Form Component should not render an alert reminder to check the gui
     :
     #
     e
+    0
     e
+    0
     e
+    0
     ;
     b
     o
@@ -1268,6 +1384,144 @@ exports[`The Form Component should not render an alert reminder to check the gui
     x
     ;
     }
+    .
+    e
+    x
+    i
+    t
+    -
+    b
+    u
+    t
+    t
+    o
+    n
+    {
+    c
+    o
+    l
+    o
+    r
+    :
+    #
+    0
+    0
+    3
+    3
+    6
+    6
+    ;
+    m
+    a
+    r
+    g
+    i
+    n
+    -
+    l
+    e
+    f
+    t
+    :
+    5
+    p
+    x
+    ;
+    b
+    o
+    r
+    d
+    e
+    r
+    -
+    c
+    o
+    l
+    o
+    r
+    :
+    #
+    0
+    0
+    3
+    3
+    6
+    6
+    ;
+    }
+    .
+    e
+    x
+    i
+    t
+    -
+    b
+    u
+    t
+    t
+    o
+    n
+    :
+    h
+    o
+    v
+    e
+    r
+    {
+    c
+    o
+    l
+    o
+    r
+    :
+    w
+    h
+    i
+    t
+    e
+     
+    !
+    i
+    m
+    p
+    o
+    r
+    t
+    a
+    n
+    t
+    ;
+    b
+    a
+    c
+    k
+    g
+    r
+    o
+    u
+    n
+    d
+    :
+    #
+    0
+    0
+    7
+    b
+    f
+    f
+     
+    !
+    i
+    m
+    p
+    o
+    r
+    t
+    a
+    n
+    t
+    ;
+    }
   </JSXStyle>
 </div>
 `;
@@ -1312,7 +1566,9 @@ exports[`The Form Component should render alert reminder to check the guidance i
     <Col
       md={4}
     >
-      <SavingIndicator />
+      <SavingIndicator
+        isSaved={true}
+      />
     </Col>
   </Row>
   <Form
@@ -1346,6 +1602,9 @@ exports[`The Form Component should render alert reminder to check the guidance i
             "ProductRowIdField_query": true,
           },
           " $refType": "Form_query",
+          "products": Object {
+            "edges": Array [],
+          },
           "result": Object {
             "formJsonByFormId": Object {
               "ciipApplicationWizardByFormId": Object {
@@ -1415,65 +1674,46 @@ exports[`The Form Component should render alert reminder to check the guidance i
       className="form-submit"
     >
       <Row
+        className="form-nav"
         noGutters={false}
       >
-        <Col
-          md={3}
-          style={
-            Object {
-              "lineHeight": "48px",
-            }
-          }
+        <Button
+          active={false}
+          disabled={false}
+          size="lg"
+          type="submit"
+          variant="primary"
         >
-          <Link
-            href={
-              Object {
-                "pathname": "/reporter",
-              }
-            }
-          >
-            Save & Exit
-          </Link>
-        </Col>
-        <Col
-          className="form-nav"
-          md={9}
-          style={
+          Save & Continue
+        </Button>
+        <Link
+          href={
             Object {
-              "textAlign": "right",
+              "pathname": "/reporter",
             }
           }
         >
           <Button
             active={false}
+            className="exit-button"
             disabled={false}
-            onClick={[MockFunction]}
             size="lg"
             style={
               Object {
-                "marginRight": "10px",
+                "background": "white",
               }
             }
             type="button"
-            variant="secondary"
+            variant="outline-secondary"
           >
-            Back
+            Save & Exit
           </Button>
-          <Button
-            active={false}
-            disabled={false}
-            size="lg"
-            type="submit"
-            variant="primary"
-          >
-            Next Page
-          </Button>
-        </Col>
+        </Link>
       </Row>
     </div>
   </Form>
   <JSXStyle
-    id="841285729"
+    id="3364523561"
   >
     .
     r
@@ -1697,8 +1937,11 @@ exports[`The Form Component should render alert reminder to check the guidance i
     :
     #
     e
+    0
     e
+    0
     e
+    0
     ;
     b
     o
@@ -1933,6 +2176,144 @@ exports[`The Form Component should render alert reminder to check the guidance i
     x
     ;
     }
+    .
+    e
+    x
+    i
+    t
+    -
+    b
+    u
+    t
+    t
+    o
+    n
+    {
+    c
+    o
+    l
+    o
+    r
+    :
+    #
+    0
+    0
+    3
+    3
+    6
+    6
+    ;
+    m
+    a
+    r
+    g
+    i
+    n
+    -
+    l
+    e
+    f
+    t
+    :
+    5
+    p
+    x
+    ;
+    b
+    o
+    r
+    d
+    e
+    r
+    -
+    c
+    o
+    l
+    o
+    r
+    :
+    #
+    0
+    0
+    3
+    3
+    6
+    6
+    ;
+    }
+    .
+    e
+    x
+    i
+    t
+    -
+    b
+    u
+    t
+    t
+    o
+    n
+    :
+    h
+    o
+    v
+    e
+    r
+    {
+    c
+    o
+    l
+    o
+    r
+    :
+    w
+    h
+    i
+    t
+    e
+     
+    !
+    i
+    m
+    p
+    o
+    r
+    t
+    a
+    n
+    t
+    ;
+    b
+    a
+    c
+    k
+    g
+    r
+    o
+    u
+    n
+    d
+    :
+    #
+    0
+    0
+    7
+    b
+    f
+    f
+     
+    !
+    i
+    m
+    p
+    o
+    r
+    t
+    a
+    n
+    t
+    ;
+    }
   </JSXStyle>
 </div>
 `;
@@ -1977,7 +2358,9 @@ exports[`The Form Component should render an alert reminder to report any missin
     <Col
       md={4}
     >
-      <SavingIndicator />
+      <SavingIndicator
+        isSaved={true}
+      />
     </Col>
   </Row>
   <Alert
@@ -2130,65 +2513,46 @@ exports[`The Form Component should render an alert reminder to report any missin
       className="form-submit"
     >
       <Row
+        className="form-nav"
         noGutters={false}
       >
-        <Col
-          md={3}
-          style={
-            Object {
-              "lineHeight": "48px",
-            }
-          }
+        <Button
+          active={false}
+          disabled={false}
+          size="lg"
+          type="submit"
+          variant="primary"
         >
-          <Link
-            href={
-              Object {
-                "pathname": "/reporter",
-              }
-            }
-          >
-            Save & Exit
-          </Link>
-        </Col>
-        <Col
-          className="form-nav"
-          md={9}
-          style={
+          Save & Continue
+        </Button>
+        <Link
+          href={
             Object {
-              "textAlign": "right",
+              "pathname": "/reporter",
             }
           }
         >
           <Button
             active={false}
+            className="exit-button"
             disabled={false}
-            onClick={[MockFunction]}
             size="lg"
             style={
               Object {
-                "marginRight": "10px",
+                "background": "white",
               }
             }
             type="button"
-            variant="secondary"
+            variant="outline-secondary"
           >
-            Back
+            Save & Exit
           </Button>
-          <Button
-            active={false}
-            disabled={false}
-            size="lg"
-            type="submit"
-            variant="primary"
-          >
-            Next Page
-          </Button>
-        </Col>
+        </Link>
       </Row>
     </div>
   </Form>
   <JSXStyle
-    id="841285729"
+    id="3364523561"
   >
     .
     r
@@ -2412,8 +2776,11 @@ exports[`The Form Component should render an alert reminder to report any missin
     :
     #
     e
+    0
     e
+    0
     e
+    0
     ;
     b
     o
@@ -2646,6 +3013,144 @@ exports[`The Form Component should render an alert reminder to report any missin
     5
     p
     x
+    ;
+    }
+    .
+    e
+    x
+    i
+    t
+    -
+    b
+    u
+    t
+    t
+    o
+    n
+    {
+    c
+    o
+    l
+    o
+    r
+    :
+    #
+    0
+    0
+    3
+    3
+    6
+    6
+    ;
+    m
+    a
+    r
+    g
+    i
+    n
+    -
+    l
+    e
+    f
+    t
+    :
+    5
+    p
+    x
+    ;
+    b
+    o
+    r
+    d
+    e
+    r
+    -
+    c
+    o
+    l
+    o
+    r
+    :
+    #
+    0
+    0
+    3
+    3
+    6
+    6
+    ;
+    }
+    .
+    e
+    x
+    i
+    t
+    -
+    b
+    u
+    t
+    t
+    o
+    n
+    :
+    h
+    o
+    v
+    e
+    r
+    {
+    c
+    o
+    l
+    o
+    r
+    :
+    w
+    h
+    i
+    t
+    e
+     
+    !
+    i
+    m
+    p
+    o
+    r
+    t
+    a
+    n
+    t
+    ;
+    b
+    a
+    c
+    k
+    g
+    r
+    o
+    u
+    n
+    d
+    :
+    #
+    0
+    0
+    7
+    b
+    f
+    f
+     
+    !
+    i
+    m
+    p
+    o
+    r
+    t
+    a
+    n
+    t
     ;
     }
   </JSXStyle>

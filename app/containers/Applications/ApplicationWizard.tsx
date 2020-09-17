@@ -68,18 +68,6 @@ const ApplicationWizard = ({query}) => {
     }
   };
 
-  const onStepBack = () => {
-    for (let i = 0; i < orderedFormResults.length; i++) {
-      if (orderedFormResults[i].node.id === formResultId) {
-        setRouterQueryParam(
-          router,
-          'formResultId',
-          orderedFormResults[i - 1].node.id
-        );
-      }
-    }
-  };
-
   return (
     <>
       <ApplicationFormNavbar
@@ -92,7 +80,6 @@ const ApplicationWizard = ({query}) => {
         query={query}
         confirmationPage={confirmationPage}
         onStepComplete={onStepComplete}
-        onStepBack={onStepBack}
       />
     </>
   );

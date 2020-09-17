@@ -27,7 +27,6 @@ import SavingIndicator from 'components/helpers/SavingIndicator';
 interface Props {
   query: Form_query;
   onComplete: (e: IChangeEvent) => void;
-  onBack: () => void;
   onValueChanged?: (e: IChangeEvent, es?: ErrorSchema) => void;
   isSaved: boolean;
 }
@@ -59,7 +58,6 @@ export const FormComponent: React.FunctionComponent<Props> = ({
   query,
   isSaved,
   onComplete,
-  onBack,
   onValueChanged
 }) => {
   const [hasErrors, setHasErrors] = useState(false);
@@ -264,32 +262,24 @@ export const FormComponent: React.FunctionComponent<Props> = ({
           </Alert>
         )}
         <div className="form-submit">
-          <Row>
-            <Col md={3} style={{lineHeight: '48px'}}>
-              <Link
-                href={{
-                  pathname: '/reporter'
-                }}
+          <Row className="form-nav">
+            <Button size="lg" variant="primary" type="submit">
+              Save &amp; Continue
+            </Button>
+            <Link
+              href={{
+                pathname: '/reporter'
+              }}
+            >
+              <Button
+                variant="outline-secondary"
+                className="exit-button"
+                style={{background: 'white'}}
+                size="lg"
               >
                 Save &amp; Exit
-              </Link>
-            </Col>
-            <Col className="form-nav" md={9} style={{textAlign: 'right'}}>
-              {ciipApplicationWizardByFormId?.formPosition > 0 && (
-                <Button
-                  size="lg"
-                  type="button"
-                  style={{marginRight: '10px'}}
-                  variant="secondary"
-                  onClick={onBack}
-                >
-                  Back
-                </Button>
-              )}
-              <Button size="lg" type="submit">
-                Next Page
               </Button>
-            </Col>
+            </Link>
           </Row>
         </div>
       </JsonSchemaForm>
