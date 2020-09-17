@@ -4,10 +4,8 @@ const TIMEZONE = 'America/Vancouver';
 const FORMAT_TYPE = {
   seconds: 'MMM D, YYYY hh:mm:ss A (z)',
   minutes: 'MMM D, YYYY hh:mm A (z)',
-  hours: 'MMM D, YYYY hh A (z)',
   days_numbered: 'DD-MM-YYYY',
-  days_string: 'MMM Do, YYYY',
-  database_timestamp: 'YYYY-MM-DDTHH:mm:ss'
+  days_string: 'MMM Do, YYYY'
 };
 
 export const dateTimeFormat = (dateTime: string, format: string) => {
