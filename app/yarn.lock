@@ -2327,10 +2327,10 @@
     "@types/json-schema" "*"
     "@types/react" "*"
 
-"@types/react-relay@^7.0.8":
-  version "7.0.8"
-  resolved "https://registry.yarnpkg.com/@types/react-relay/-/react-relay-7.0.8.tgz#928e91d7c7b58844738d6a7b18aa224ab564c98c"
-  integrity sha512-cs1dqvSzlZI4Gxm4gUalL/f8uRozLCOAaoHmMWIRS7ggDCkF/gaua86sAbRr5/5GeBCDcLAZDUzmAxzS9exrlA==
+"@types/react-relay@^7.0.10":
+  version "7.0.10"
+  resolved "https://registry.yarnpkg.com/@types/react-relay/-/react-relay-7.0.10.tgz#f91d3d41a847153308d124c916308d5c8c1f271c"
+  integrity sha512-EGBS9NTOibf/jf3WJhlMCYM3A6bo0uKKbZkiWqbbYulGqP8L+f/AfKnGkR9lFkH1bxHioGvi8DLtB0pcFqSKrg==
   dependencies:
     "@types/react" "*"
     "@types/relay-runtime" "*"
