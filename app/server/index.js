@@ -240,7 +240,6 @@ app.prepare().then(() => {
       return res.json(null);
     }
 
-    console.log(req.kauth.grant);
     const grant = await keycloak.getGrant(req, res);
     return res.json(
       Math.round(grant.refresh_token.content.exp - Date.now() / 1000)
