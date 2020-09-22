@@ -181,7 +181,10 @@ Snake case. Don&#39;t use reserved words (c.f. style test)
 
 ### \*status properties
 
-Use an enum, keep status rows immutables, add a status computed field
+When an entity has a 'status' context we create a new table (with a foreign key to the associated entity), type and computed_column function for the status.
+- A separate table for the status allows us to keep the status rows immutable and create an audit trail that can be traced backwards to follow all the states an entity passed through as each status change is logged as a new row in the status table. Previous rows in the status table are immutable ensuring historical integrity.
+- Creating a type associated with the status allows us to define an enum with only the pre-defined statuses as acceptable values.
+- Since a new row in the status table is created on each status change, we use a computed column on the associated entity's table to return the latest status row for that entity. The computed column is an SQL function that receives an entity as a parameter and returns either a query (set of values) or a value. Relay then uses this function to add the results of the computed column to the shape of the entity. This results in an easily accessible status column on the entity whose value is derived from the status table and is always the current status.
 
 ### Organize next.js pages according to roles
 
