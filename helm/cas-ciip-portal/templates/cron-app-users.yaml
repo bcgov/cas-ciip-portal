@@ -91,5 +91,5 @@ spec:
                     grant ciip_administrator,ciip_analyst,ciip_industry_user,ciip_guest to $(PORTAL_APP_USER);
                     grant usage on schema swrs to ciip_administrator, ciip_analyst, ciip_industry_user;
                     grant select on all tables in schema swrs to ciip_administrator, ciip_analyst, ciip_industry_user;
-                    select ggircs_portal_private.read_only_user_policies('$(PORTAL_READONLY_USER)');
+                    select ggircs_portal_private.read_only_user_policies(\'$(PORTAL_READONLY_USER)\');
                   EOF
