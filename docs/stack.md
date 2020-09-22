@@ -79,8 +79,18 @@ We are using Yarn for package management as opposed to NPM. One of the advantage
 
 ### Authentication and Authorization
 
+Authentication is performed using the Red Hat SSO provider (Keycloak). We use the [`keycloak-connect`](https://github.com/keycloak/keycloak-nodejs-connect) package to manage authentication from our application server.
 
+#### Session expiry
 
+> In order to minimize the time period an attacker can launch attacks over active sessions and hijack them, it is mandatory to set expiration timeouts for every session, establishing the amount of time a session will remain active.
+-- [OWASP cheatsheet](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Session_Management_Cheat_Sheet.md#session-expiration)
+
+Keycloak session timeouts are dictated by the `SSO Session Idle`, `SSO Session Max` and `Access Token Lifespan` configured in the keycloak realm. The keycloak session will automatically expire if there is no activity for the time specified in `SSO Session Idle`.
+
+Our application client uses the `/session-idle-remaining-time` endpoint to check whether the session has automatically expired due to inactivity, and redirects the user to a login page, indicating that their session expired. Without that feature, the user would encounter an error on their next interaction with the page, as they would potentially trigger a request that requires them to be authenticated.
+
+For every request, Our application server uses the `Grant.ensureFreshness` method to extend the session and ensures it does not idle. That method will only use the refresh token (and thus bump the `SSO Session Idle` timeout) if the access token is expired, which means that our idle timeout is technically `(SSO Session Idle) - (Access Token Lifespan)`.
 
 ## Documentation
 
