@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.9.1](https://github.com/bcgov/cas-ciip-portal/compare/v1.9.0...v1.9.1) (2020-09-23)
+
+
+### Bug Fixes
+
+* remove escape characters from bash function call ([bd63065](https://github.com/bcgov/cas-ciip-portal/commit/bd630658b44ecbc7e05d5b4be97989e4d60b562e))
+
 ## [1.9.0](https://github.com/bcgov/cas-ciip-portal/compare/v1.8.1...v1.9.0) (2020-09-23)
 
 
