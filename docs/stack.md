@@ -90,8 +90,6 @@ We are using Yarn for package management as opposed to NPM. One of the advantage
 
 #### Mutation Chains
 
-
-
 - Individual mutations can be chained on the front-end, but this approach does not effectively cover transactionality.
 - To make all actions transactional (succeed as one block or fail as one block), Whenever a mutation has cascading effect we have written some custom mutation chains in the database
 - For example: creating a new application in the ggircs\_portal schema also requires (among other. things) the creation of a row in the application\_status table.
@@ -134,7 +132,30 @@ There are a couple of important features with our debounce middleware implementa
 
 Smart comments
 
-### Custom search functions
+### Custom Search Functions
+
+We implemented some custom SQL search functions in the database in order to be able to filter & sort on substrings via relay, as relay's out-of-box filtering did not meet our needs. These search functions are recognized as a `query` type by `Relay`
+
+*Parameters*
+The basic parameters passed to all search functions are:
+- search_field (the column)
+- search_value (the data value)
+- order_by_field (field to order by)
+- direction (asc or desc)
+Some, but not all search functions have extra parameters for pagination:
+- offset_value(row id to start returning from)
+- max_results_per_page(limit)
+The search functions also have some parameters that are specific to the function (ex: a row id).
+
+*Custom Types*
+Some of the SQL search functions require a new type to be created in order for `Relay` to recognize the query return object.
+- Any search functions that return all of, or a subset of ONE table (ex: search_products.sql) do not require a new type, as the return object is recognized as the type of that table (ex: product).
+- Search functions that return an object that is a composite of more than one table need a new type created as `Relay` has no reference to what the object is that is being returned. For example, search_all_facilities.sql returns values that are from tables: facility, organisation and application_revision_status, so the type facility_search_result.sql is needed to inform `Relay` of the shape of the query return object. The return type must exactly represent what is returned by the query. The name and type of the columns must match, and even the order in which those columns are returned by the search function must the reflected in the type.
+
+*Bugs & Future development*
+- The current implementation of the custom search functions causes a 'double render' on load. `Relay` requires that the parameter values being passed to the search functions exist from the start, so stand-in values are passed by the rendering page (first render) and then the actual default values are then passed from the component (second render). This is obviously inefficient.
+- The way the custom search functions are set up breaks `Relay`'s conventions resulting in the behaviour above. In breaking those conventions the search functions also cannot make use of some `Relay` functionality like cursors. We have investigative work planned regarding Postgraphile's [@filterable](https://www.graphile.org/postgraphile/smart-tags/) that may alleviate some of the discord between our custom search functions and Relay.
+
 
 ### Json schema forms
 
