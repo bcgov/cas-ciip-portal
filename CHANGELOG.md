@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.9.0](https://github.com/bcgov/cas-ciip-portal/compare/v1.8.1...v1.9.0) (2020-09-23)
+
+
+### Features
+
+* add re-usable functions for date manipulation ([bb3208c](https://github.com/bcgov/cas-ciip-portal/commit/bb3208c13d9d2337cae4230e98feabda1d30f97b))
+* align comment date format with rest of application ([6015391](https://github.com/bcgov/cas-ciip-portal/commit/601539107d237ca2f2300bcd254930aeb6fd7397))
+* convert UTC dates to readable format ([e9e236d](https://github.com/bcgov/cas-ciip-portal/commit/e9e236d1afe38fe376388ecf7af049b89998eb55))
+* remove instances of moment & replace with new functions (except AltDateInput.tsx) ([8b7200d](https://github.com/bcgov/cas-ciip-portal/commit/8b7200df68af720ac10e9f8b367a9ac8c8f9bce9))
+* remove unused onStepBack function/props ([0523547](https://github.com/bcgov/cas-ciip-portal/commit/0523547f8548fffa79411b2fce2e724bd5358823))
+* update form button styles ([feabebb](https://github.com/bcgov/cas-ciip-portal/commit/feabebb98ea69c66bae6ad21eeedfb51b90ef486))
+
+
+### Bug Fixes
+
+* add quotes to PORTAL_READONLY_USER paramter in cmd line sql function call ([aa53429](https://github.com/bcgov/cas-ciip-portal/commit/aa53429704553ca54ad03c338706456dcdfac0ff))
+* escape quotes in bash command ([14fe1ee](https://github.com/bcgov/cas-ciip-portal/commit/14fe1eeca60bf0dad58ba8f79ffbfbf397c7e704))
+* Status indicators should appear as a pill badge ([dfbb19c](https://github.com/bcgov/cas-ciip-portal/commit/dfbb19ca4771273f717e67a42812b220afe0b1bf))
+
 ### [1.8.1](https://github.com/bcgov/cas-ciip-portal/compare/v1.8.0...v1.8.1) (2020-09-16)
 
 
