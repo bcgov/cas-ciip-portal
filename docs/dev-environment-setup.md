@@ -5,8 +5,7 @@ Tools and environment
 BC Gov Mac doc: https://apps.nrs.gov.bc.ca/int/confluence/display/DEVGUILD/One-time+Setup?
 
 - `>$ pip3 install pre-commit`
-- `>$ pre-commit run --all-files
-
+- `>$ pre-commit run --all-files`
 - `>$ make install_asdf_tools`
 
 ### Start & configure psql server
@@ -60,10 +59,10 @@ To reseed the database after a branch change
 
 Frontend
 ========
-    - `cd app`
-    - `yarn --dev`
-    - `yarn dev AS_REPORTER` // member of the public, who is going to apply on behalf of the facility (operational representative)
-        - `AS_ADMIN` // analyst's boss - can do analyst + setting deadlines, sett
-        - `AS_ANALYST` // internal BC GOV - CAS reviewer, can create organizations for reporters, and put the reporter on the allow list for that org
-        - `AS_CERTIFIER` // similar to reporter, responsible for the financial, signs off on the data
+- `cd app`
+- `yarn --dev`
+- `yarn dev AS_REPORTER` // member of the public, who is going to apply on behalf of the facility (operational representative)
+    - `AS_ADMIN` // analyst's boss - can do analyst + setting deadlines, sett
+    - `AS_ANALYST` // internal BC GOV - CAS reviewer, can create organizations for reporters, and put the reporter on the allow list for that org
+    - `AS_CERTIFIER` // similar to reporter, responsible for the financial, signs off on the data
 
