@@ -7,3 +7,6 @@ deploy:
         timeout: 2460
 review:
   checklist: []
+ci:
+  hide:
+    - "ci/circleci:release/release_approval"
