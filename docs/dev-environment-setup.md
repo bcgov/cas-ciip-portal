@@ -195,9 +195,23 @@ yarn format
 
 ## 10. Commit Something
 
+### Commit Message Conventions
+
 This project follows the commit message conventions outlined by [Convential Commits](https://www.conventionalcommits.org/). Besides the standard commit types (message prefixes) **feat** and **fix**, we use some other types described there based on the Angular convention; some common ones among those are **test**, **docs**, **chore** and **refactor**.
 
 These facilitate the automated creation of [changelogs](../CHANGELOG.md).
+
+We also extend this prefix convention to the naming of **branches**, eg: `docs/add-readme` or `feat/some-feature`.
+
+### Victory Lap
+
+Using the above conventions, make a branch with your name called `feat/my-name-onboarding` and add a high five somewhere in the README:
+
+```
+🙌
+```
+
+Make a **draft** pull request against the default branch, and request another developer for review. This will not be merged, but pushing to GitHub and running CircleCI steps will help verify you have all the correct permissions and signed commits.
 
 <!-- ### Start & configure psql server
 - https://www.postgresql.org/download/macosx/ for an installer
