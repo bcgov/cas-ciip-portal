@@ -3,6 +3,7 @@
 ## 1. Repository and Version Control
 
 - Ensure you have push access (most likely by being added to the **@bcgov/cas-developers** GitHub team) to [bcgov/cas-ciip-portal](https://github.com/bcgov/cas-ciip-portal).
+  * If you will be making pull requests to the repository, you'll also need to be added to the **@bcgov/cas** GitHub team for the CircleCI security context needed to run some jobs which need access to our OpenShift cluster.
 - Ensure you have [GPG commit signing](https://docs.github.com/en/github/authenticating-to-github/signing-commits) set up on your local environment.
   * First, ensure your `git config user.email` is set to the email address you want to use for signing.
   * You can verify it's working when you commit to a branch and the signature is indicated by `git log --show-signature`. Once pushed, a "Verified" badge appears next to your commits on GitHub.
@@ -163,6 +164,8 @@ cd app && yarn test
 Front-end unit tests are heavily snapshot-based. Work that changes the DOM will result in a diff from the last accepted snapshot and cause related tests to fail. You can update the snapshots and review / accept the diff with `yarn test -u`.
 
 ### End-to-end Tests with Cypress
+
+Ensure the web app is running (`cd app && yarn dev`) *without* bypassing authentication using `AS_REPORTER` or similar flags, then:
 
 ```
 cd app && yarn cypress
