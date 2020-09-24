@@ -190,6 +190,12 @@ If you are impatient and your work is isolated to Javascript, it may be faster t
 yarn format
 ```
 
+## 10. Commit Something
+
+This project follows the commit message conventions outlined by [Convential Commits](https://www.conventionalcommits.org/). Besides the standard commit types (message prefixes) **feat** and **fix**, we use some other types described there based on the Angular convention; some common ones among those are **test**, **docs**, **chore** and **refactor**.
+
+These facilitate the automated creation of [changelogs](../CHANGELOG.md).
+
 <!-- ### Start & configure psql server
 - https://www.postgresql.org/download/macosx/ for an installer
 - `>$ pg_ctl start`
