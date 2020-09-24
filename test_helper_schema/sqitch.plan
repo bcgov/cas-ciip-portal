@@ -1,0 +1,4 @@
+%syntax-version=1.0.0
+%project=test_helpers
+
+schema_test_helper 2020-09-24T20:39:13Z Dylan Leard <dylan@button.is> # schema to house test helper functions
