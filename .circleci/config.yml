@@ -391,7 +391,7 @@ jobs:
       - run:
           name: Check that the sqitch.plan file ends with a tag
           command: |
-            if ! ~/cas-ciip-portal/.bin/sqitch-last-change-is-tag.sh; then
+            if ! ~/cas-ciip-portal/.bin/sqitch-last-change-is-tag.sh ~/cas-ciip-portal/schema; then
               echo "Deployment to the test and prod environments require that the sqitch.plan ends with a tag"
               exit 1
             fi
@@ -433,11 +433,6 @@ workflows:
       - e2e-snapshots:
           requires:
             - compile
-      - sqitch-plan-ends-with-tag:
-          filters:
-            branches:
-              only:
-                - master
       - sqitch-files-before-tag-are-immutable
       - build_image:
           name: build_schema
@@ -453,10 +448,20 @@ workflows:
           dockerfile: app/Dockerfile
       - pathfinder_lint:
           context: cas-pipeline
-      # - test-local-cluster:
-      #     context: cas-pipeline
-      #     requires:
-      #       - lint
+      - release_approval:
+          type: approval
+          filters:
+            branches:
+              only:
+                - develop
+      - sqitch-plan-ends-with-tag:
+          requires:
+            - release_approval
+          filters:
+            branches:
+              only:
+                - develop
+
 
   nightly:
     triggers:
