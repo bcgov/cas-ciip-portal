@@ -225,12 +225,43 @@ app.prepare().then(() => {
     next();
   });
 
+  // Retrieves keycloak grant for the session
   server.use(
     keycloak.middleware({
       logout: '/logout',
       admin: '/'
     })
   );
+
+  // Returns the time, in seconds, before the refresh_token expires.
+  // This corresponds to the SSO idle timeout configured in keycloak.
+  server.get('/session-idle-remaining-time', async (req, res) => {
+    if (!req.kauth || !req.kauth.grant) {
+      return res.json(null);
+    }
+
+    const grant = await keycloak.getGrant(req, res);
+    return res.json(
+      Math.round(grant.refresh_token.content.exp - Date.now() / 1000)
+    );
+  });
+
+  // For any request (other than getting the remaining idle time), refresh the grant
+  // if needed. If the access token is expired (defaults to 5min in keycloak),
+  // the refresh token will be used to get a new access token, and the refresh token expiry will be updated.
+  server.use(async (req, res, next) => {
+    if (req.path === '/session-idle-remaining-time') return next();
+    if (req.kauth && req.kauth.grant) {
+      try {
+        const grant = await keycloak.getGrant(req, res);
+        await keycloak.grantManager.ensureFreshness(grant);
+      } catch (error) {
+        return next(error);
+      }
+    }
+
+    next();
+  });
 
   // Use consola for logging instead of default logger
   const pluginHook = makePluginHook([PostgraphileLogConsola]);

@@ -86,6 +86,38 @@ const PageRedirectHandler: React.FunctionComponent<Props> = ({
     checkSessionAndGroups();
   }, [pageComponent, router, environment]);
 
+  useEffect(() => {
+    let timeoutId;
+
+    const checkSessionIdle = async () => {
+      const {isAccessProtected} = pageComponent;
+      if (isAccessProtected) {
+        const response = await fetch('/session-idle-remaining-time');
+        if (response.ok) {
+          const timeout = Number(await response.json());
+          if (timeout) {
+            timeoutId = setTimeout(checkSessionIdle, (timeout + 1) * 1000);
+          } else {
+            router.push({
+              pathname: '/login-redirect',
+              query: {
+                redirectTo: router.asPath,
+                sessionIdled: true
+              }
+            });
+          }
+        }
+      }
+    };
+
+    checkSessionIdle();
+
+    // Return cleanup function
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [router, pageComponent]);
+
   // eslint-disable-next-line react/jsx-no-useless-fragment
   if (shouldRender) return <>{children}</>;
 
