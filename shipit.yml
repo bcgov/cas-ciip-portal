@@ -9,4 +9,4 @@ review:
   checklist: []
 ci:
   hide:
-    - "ci/circleci:release/release_approval"
+    - "ci/circleci: release/release_approval"
