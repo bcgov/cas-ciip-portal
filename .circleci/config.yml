@@ -448,6 +448,8 @@ workflows:
           dockerfile: app/Dockerfile
       - pathfinder_lint:
           context: cas-pipeline
+  release:
+    jobs:
       - release_approval:
           type: approval
           filters:
@@ -461,7 +463,6 @@ workflows:
             branches:
               only:
                 - develop
-
 
   nightly:
     triggers:
