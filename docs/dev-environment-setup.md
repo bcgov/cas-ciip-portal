@@ -8,7 +8,7 @@
   * You can verify it's working when you commit to a branch and the signature is indicated by `git log --show-signature`. Once pushed, a "Verified" badge appears next to your commits on GitHub.
 - Clone a local copy of [bcgov/cas-ciip-portal](https://github.com/bcgov/cas-ciip-portal).
 - This project uses Git submodules to incorporate other CAS-maintained repositories. Configuring a [post-checkout Git hook](https://ttboj.wordpress.com/2014/05/06/keeping-git-submodules-in-sync-with-your-branches/) in your local repository can help smooth the experience of using submodules.
-- From the project root, run `git submodule init` - one time only - to initialize the submodules, then `git submodule update` to clone them and checkout the appropriate state based on the specifications in [`.gitmodules`](../.gitmodules).
+- From the project root, run `git submodule update --init` to initialize the submodules and checkout the appropriate state based on the specifications in [`.gitmodules`](../.gitmodules).
 
 ## 2. Package Management
 
@@ -20,6 +20,7 @@
   * the script also attempts to install Postgres `--with-libxml` via asdf to include a database plugin for XML. Your system will need `libxml2` installed for this.
   * lastly, it installs `pip` dependencies that relate to `pre-commit`, which helps us run linters to keep things tidy.
   * you can verify pre-commit works by running: `pre-commit run --all-files` from the project root.
+  * troubleshooting: `make install_asdf_tools --dry-run` can be helpful to see what is being run.
 - You may need to troubleshoot individual steps in `make install_asdf_tools` on your system; in that case, find this target in the [root `Makefile`](../Makefile) and run the steps individually.
 - `asdf reshim` should be run after asdf installations to update symlinks for the installed packages.
 - Set the version of Postgres installed by asdf [as the global version](https://asdf-vm.com/#/core-manage-versions?id=set-current-version), necessary to prevent later problems installing Sqitch, our database migration tool.
