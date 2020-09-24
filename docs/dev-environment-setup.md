@@ -15,16 +15,16 @@
 [asdf](https://asdf-vm.com/#/) is a universal package manager used in this project to install and manage versions of the tools listed in [`.tool-versions`](../.tool-versions). To do this, several asdf plugins will be installed as well.
 
 - [Install asdf](https://asdf-vm.com/#/core-manage-asdf) using your system's package manager
-- From the project root, run `make install_asdf_tools`, which installs the [additional asdf plugins](https://asdf-vm.com/#/plugins-all) needed to manage the various tools in `.tool-versions`.
+- From the project root, run `make install_asdf_tools`, which installs the [additional asdf plugins](https://asdf-vm.com/#/plugins-all) needed to manage the various tools in [`.tool-versions`](../.tool-versions).
   * this script also [imports the Node.js release team's OpenPGP keys](https://xscode.com/asdf-vm/asdf-nodejs) for checksum verification.
   * the script also attempts to install Postgres `--with-libxml` via asdf to include a database plugin for XML. Your system will need `libxml2` installed for this.
   * lastly, it installs `pip` dependencies that relate to `pre-commit`, which helps us run linters to keep things tidy.
   * you can verify pre-commit works by running: `pre-commit run --all-files` from the project root.
-- You may need to troubleshoot individual steps in `make install_asdf_tools` on your system; in that case, find this target in the root `Makefile` and run the steps individually.
+- You may need to troubleshoot individual steps in `make install_asdf_tools` on your system; in that case, find this target in the [root `Makefile`](../Makefile) and run the steps individually.
 - `asdf reshim` should be run after asdf installations to update symlinks for the installed packages.
 - Set the version of Postgres installed by asdf [as the global version](https://asdf-vm.com/#/core-manage-versions?id=set-current-version), necessary to prevent later problems installing Sqitch, our database migration tool.
 - `psql --version` should verify the installed version of Postgres.
-- [Yarn](https://yarnpkg.com/) is used as the Javascript package manager, and was installed in this step by asdf from the `.tool-versions`. All `yarn` commands must be run from the same directory as the `package.json` (within `app/`).
+- [Yarn](https://yarnpkg.com/) is used as the Javascript package manager, and was installed in this step by asdf from the [`.tool-versions`](../.tool-versions). All `yarn` commands must be run from the same directory as the `package.json` (within `app/`).
 
 **If you're on Linux**, you can now skip to [Step 4](#4-set-up-a-working-perl-5-environment).
 
@@ -70,7 +70,7 @@ Although Perl is not specifically used in this project, our database migration t
     - it must be installed somewhere with **regular user permissions** such as `/usr/local/Cellar/` - not somewhere like `/Library/` that requires unsafe root permissions to install further Perl modules.
     - Homebrew will install perl in the appropriate location by default.
 - From the project root, run `make install_perl_tools`. This invokes the `install` target in `schema/Makefile`.
-  * You may again need to troubleshoot individual steps in `make install_perl_tools` on your system; in that case, find the `install` target in `schema/Makefile` and run the steps individually.
+  * You may again need to troubleshoot individual steps in `make install_perl_tools` on your system; in that case, find the `install` target in [`schema/Makefile`](../schema/Makefile) and run the steps individually.
   * This script installs the Perl package manager [cpanm](https://metacpan.org/pod/distribution/App-cpanminus/bin/cpanm) (_aka._ cpanminus) and then invokes it to install Perl dependencies from the `schema/cpanfile`. Namely, these dependencies are:
     * the Postgres database driver for Perl, [DBD::Pg](https://metacpan.org/pod/DBD::Pg)
     * the database migration tool, [Sqitch](https://sqitch.org)
