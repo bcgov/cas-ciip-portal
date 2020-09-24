@@ -82,6 +82,16 @@ Although Perl is not specifically used in this project, our database migration t
     - Ensure the version of Postgres installed by asdf in Step 2 was set [as the global version](https://asdf-vm.com/#/core-manage-versions?id=set-current-version) using `asdf global` _before_ installing Sqitch; otherwise, Sqitch may install a separate instance of Postgres.
     - Sqitch can alternatively be installed on MacOS with `brew tap sqitchers/sqitch && brew install sqitch`.
     - If you're on **MacOS** and having trouble with Perl libraries ignoring your newly installed (and thus, properly functioning) Perl in favour of an older system Perl, you can use the [`$PERL5LIB` environment variable](http://mvp.kablamo.org/dependencies/perl5lib/) to point it to the desired location. For example, point it to the new Perl you installed with non-root / regular user permissions instead of the root-installed system Perl.
+    - `local::lib` may need some help finding its local configuration and paths, these can be set through environment variables.
+    More information in the documentation: https://metacpan.org/pod/release/GETTY/local-lib-1.006007/lib/local/lib.pm
+    ```bash
+     ~/.bashrc:
+         export PERL5LIB=~/lib/perl5/lib/perl5/
+
+         PERL_LOCAL_LIB_ROOT="/Users/pbastian/lib/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+         PERL_MB_OPT="--install_base \"/Users/pbastian/lib/perl5\""; export PERL_MB_OPT;
+         PERL_MM_OPT="INSTALL_BASE=/Users/pbastian/lib/perl5"; export PERL_MM_OPT;
+    ```
 
 ## 5. Install pgTAP
 
