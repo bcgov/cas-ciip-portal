@@ -67,10 +67,11 @@ Although Perl is not specifically used in this project, our database migration t
 **NOTE**: As the Perl ecosystem hasn't kept pace with the conveniences of modern times, for most people this tends to be the most problematic step.
 
 - Use your system package manager to install Perl, ensure the version is >= 5, and add this perl to your `$PATH`.
+  * Alternatively, you can try using [Perlbrew](https://perlbrew.pl/) to install, which helps to manage multiple local Perl versions.
   * **If using MacOS**: Unfortunately, the pre-installed system Perl cannot be relied upon; certain critical headers are missing. **Use Homebrew to re-install Perl 5 and ensure that is the perl in your `$PATH`**.
-    - `brew update && brew install perl`
+    - Use [Perlbrew](https://perlbrew.pl/) if you might switch between multiple Perl versions, or: `brew update && brew install perl`
     - it must be installed somewhere with **regular user permissions** such as `/usr/local/Cellar/` - not somewhere like `/Library/` that requires unsafe root permissions to install further Perl modules.
-    - Homebrew will install perl in the appropriate location by default.
+    - Homebrew should install perl in the appropriate location by default.
 - From the project root, run `make install_perl_tools`. This invokes the `install` target in `schema/Makefile`.
   * You may again need to troubleshoot individual steps in `make install_perl_tools` on your system; in that case, find the `install` target in [`schema/Makefile`](../schema/Makefile) and run the steps individually.
   * This script installs the Perl package manager [cpanm](https://metacpan.org/pod/distribution/App-cpanminus/bin/cpanm) (_aka._ cpanminus) and then invokes it to install Perl dependencies from the `schema/cpanfile`. Namely, these dependencies are:
@@ -85,7 +86,7 @@ Although Perl is not specifically used in this project, our database migration t
     - Sqitch can alternatively be installed on MacOS with `brew tap sqitchers/sqitch && brew install sqitch`.
     - If you're on **MacOS** and having trouble with Perl libraries ignoring your newly installed (and thus, properly functioning) Perl in favour of an older system Perl, you can use the [`$PERL5LIB` environment variable](http://mvp.kablamo.org/dependencies/perl5lib/) to point it to the desired location. For example, point it to the new Perl you installed with non-root / regular user permissions instead of the root-installed system Perl.
     - `local::lib` may need some help finding its local configuration and paths, these can be set through environment variables.
-    More information in the documentation: https://metacpan.org/pod/release/GETTY/local-lib-1.006007/lib/local/lib.pm
+    [More information in that documentation](https://metacpan.org/pod/release/GETTY/local-lib-1.006007/lib/local/lib.pm).
     ```bash
      ~/.bashrc:
          export PERL5LIB=~/lib/perl5/lib/perl5/
@@ -211,7 +212,7 @@ Using the above conventions, make a branch with your name called `feat/my-name-o
 🙌
 ```
 
-Make a **draft** pull request against the default branch, and request another developer for review. This will not be merged, but pushing to GitHub and running CircleCI steps will help verify you have all the correct permissions and signed commits.
+Make a **draft** pull request against the default branch, and request another developer's review. This will not be merged, but pushing to GitHub and running CircleCI steps will help verify you have all the correct permissions and signed commits.
 
 <!-- ### Start & configure psql server
 - https://www.postgresql.org/download/macosx/ for an installer
