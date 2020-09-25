@@ -90,9 +90,9 @@ Although Perl is not specifically used in this project, our database migration t
      ~/.bashrc:
          export PERL5LIB=~/lib/perl5/lib/perl5/
 
-         PERL_LOCAL_LIB_ROOT="/Users/pbastian/lib/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
-         PERL_MB_OPT="--install_base \"/Users/pbastian/lib/perl5\""; export PERL_MB_OPT;
-         PERL_MM_OPT="INSTALL_BASE=/Users/pbastian/lib/perl5"; export PERL_MM_OPT;
+         PERL_LOCAL_LIB_ROOT="/Users/$(whoami)/lib/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+         PERL_MB_OPT="--install_base \"/Users/$(whoami)/lib/perl5\""; export PERL_MB_OPT;
+         PERL_MM_OPT="INSTALL_BASE=/Users/$(whoami)/lib/perl5"; export PERL_MM_OPT;
     ```
 
 ## 5. Install pgTAP
