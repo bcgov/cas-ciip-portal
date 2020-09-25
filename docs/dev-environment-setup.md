@@ -1,5 +1,9 @@
 # Setting up the Development Environment
 
+## Purpose
+
+The purpose of this exercise is to enable a developer new to the project to get a local environment fully set up on their machine and ready to start contributing to the repository.
+
 ## 1. Repository and Version Control
 
 - Ensure you have push access (most likely by being added to the **@bcgov/cas-developers** GitHub team) to [bcgov/cas-ciip-portal](https://github.com/bcgov/cas-ciip-portal).
