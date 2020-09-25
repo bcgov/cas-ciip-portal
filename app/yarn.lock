@@ -5028,6 +5028,11 @@ crypto-browserify@^3.11.0:
     randombytes "^2.0.0"
     randomfill "^1.0.3"
 
+crypto-js@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/crypto-js/-/crypto-js-4.0.0.tgz#2904ab2677a9d042856a2ea2ef80de92e4a36dcc"
+  integrity sha512-bzHZN8Pn+gS7DQA6n+iUmBfl0hO5DJq++QP3U6uTucDtk/0iGpXd/Gg7CGR0p8tJhofJyaKoWBuJI4eAO00BBg==
+
 crypto-random-string@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/crypto-random-string/-/crypto-random-string-2.0.0.tgz#ef2a7a966ec11083388369baa02ebead229b30d5"
@@ -7991,12 +7996,13 @@ handlebars@^4.7.6:
   optionalDependencies:
     uglify-js "^3.1.4"
 
-happo-cypress@^1.7.3:
-  version "1.7.3"
-  resolved "https://registry.yarnpkg.com/happo-cypress/-/happo-cypress-1.7.3.tgz#bc73035ac44ede5435bea38b6b32cfa9f83106b2"
-  integrity sha512-h2wdG+iir7uocITHOpI1xN7m/qnzbIY3t62ZVEGJzxGXa0PqCArOeR8DeHOaxeOzTIfsdOdyJd7kq1BPujBuCA==
+happo-cypress@^1.9.1:
+  version "1.9.1"
+  resolved "https://registry.yarnpkg.com/happo-cypress/-/happo-cypress-1.9.1.tgz#8a5a5420615ac657561317b1311b57ccccf830ed"
+  integrity sha512-aqf76OWynFZhR2B4dYPgGn1Wdml3M5wVZRwtDSlrqyWUVU9AF/J79zIqXgP93M5P/9/sn4LuuyaL6bcU2YewIw==
   dependencies:
     archiver "^3.1.1"
+    crypto-js "^4.0.0"
     https-proxy-agent "^5.0.0"
     node-fetch "^2.6.0"
     parse-srcset "^1.0.2"
