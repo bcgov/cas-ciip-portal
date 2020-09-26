@@ -122,12 +122,32 @@ Rather than interacting with Sqitch directly, we use a [custom script](../schema
 
 From the project root, run `.bin/deploy-data.sh --help` to see possible options. In development, this is most commonly run with `.bin/deploy-data.sh -d -dev` to drop the current database and redeploy after pulling down database-changing work from the remote or tampering with the database.
 
-## 7. Install and Run the Web Application
+## 7. Running the Web Application
+
+### App Environment Variables
+
+Create an `app/.env` file and copy the contents of [`app/.env.example`](../app/.env.example) into it. Ask a teammate for example values.
+
+### (optional) SMTP Server
+
+It's not necessary for every development task, but in order to run the full suite of end-to-end tests or to view or develop transactional emails triggered by the application, a local SMTP server is required. This is most quickly done using Docker to run MailHog.
+
+Ensure [Docker is installed](https://www.docker.com/get-started) and running, then:
+
+```
+sudo docker run -d -p 1025:1025 -p 8025:8025 mailhog/mailhog
+```
+
+This uses SMTP port 1025 to start a MailHog server on `localhost:8025` where you can view emails. It can be stopped by using `docker ps` to get the container ID and `docker stop <id>`.
+
+### Install Javascript Dependencies
 
 Install the `node_modules` including `devDependencies` from the `package.json`:
 ```
 cd app && yarn --dev
 ```
+
+### Run the Server
 
 Run the development server with `yarn dev` and navigate in your browser to `localhost:3004`.
 
@@ -168,18 +188,48 @@ cd app && yarn test
 ```
 Front-end unit tests are heavily snapshot-based. Work that changes the DOM will result in a diff from the last accepted snapshot and cause related tests to fail. You can update the snapshots and review / accept the diff with `yarn test -u`.
 
+### Database Unit Tests with pgTAP
+
+```
+cd schema && make unit
+```
+
 ### End-to-end Tests with Cypress
 
-Ensure the web app is running (`cd app && yarn dev`) *without* bypassing authentication using `AS_REPORTER` or similar flags, then:
+#### Cypress Environment
+
+Ask a teammate for the `app/cypress.env.json`, which specifies some preset usernames and passwords required by the tests.
+
+#### Test Email Server
+
+A local SMTP server is a precondition for running the email specs (for example, if running the entire suite), for which you can [use Docker to run MailHog](#optional-smtp-server).
+
+#### Run Cypress Specs
+
+First, ensure the web app is running (`cd app && yarn dev`) *without* bypassing authentication using `AS_REPORTER` or similar auth flags. Running the app with the following flags will prevent certain asynchronously rendered components from causing spurious failures:
+
+```
+cd app
+
+NO_PDF=true NO_MATHJAX=true yarn dev
+```
+
+For test error debugging and to observe tests' behavior in the browser as they run:
 
 ```
 cd app && yarn cypress
 ```
 
-### Database Unit Tests with pgTAP
+To run the tests more efficiently in a headless mode:
 
 ```
-cd schema && make unit
+cd app && yarn test:e2e
+```
+
+[Options](https://docs.cypress.io/guides/guides/command-line.html#cypress-run) can be passed to Cypress through this command, for example to run an individual test or subset:
+
+```
+cd app && yarn test:e2e --spec cypress/integration/accessibility/*
 ```
 
 ## 9. Tidy Your Work
