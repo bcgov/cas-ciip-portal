@@ -6138,10 +6138,10 @@ enzyme-shallow-equal@^1.0.1:
     has "^1.0.3"
     object-is "^1.0.2"
 
-enzyme-to-json@^3.4.4:
-  version "3.4.4"
-  resolved "https://registry.yarnpkg.com/enzyme-to-json/-/enzyme-to-json-3.4.4.tgz#b30726c59091d273521b6568c859e8831e94d00e"
-  integrity sha512-50LELP/SCPJJGic5rAARvU7pgE3m1YaNj7JLM+Qkhl5t7PAs6fiyc8xzc50RnkKPFQCv0EeFVjEWdIFRGPWMsA==
+enzyme-to-json@^3.6.0:
+  version "3.6.0"
+  resolved "https://registry.yarnpkg.com/enzyme-to-json/-/enzyme-to-json-3.6.0.tgz#574b504499b2aa682d20aa23e533312c26b0f9e3"
+  integrity sha512-kr/tgEDNd9qp0vH8oTUt/1pOo4pOiERYEtofr4YENAxTrL38QU6o2jXl1RQYHRoRjc4yDN+Y0JOxyblgcNWzhA==
   dependencies:
     lodash "^4.17.15"
     react-is "^16.12.0"
