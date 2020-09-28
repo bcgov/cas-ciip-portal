@@ -108,3 +108,4 @@ The materials published include:
 ## Contributors
 
 - [Developers](https://github.com/bcgov/cas-ciip-portal/graphs/contributors)
+- [Code of Conduct](docs/CODE_OF_CONDUCT.md)
