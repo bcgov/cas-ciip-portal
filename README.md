@@ -26,6 +26,16 @@ CIIP requires an application form to be submitted annually. CIIP is a voluntary 
 
 ## Notes
 
+### Supported Browsers
+
+- Safari: 10+
+- Edge: All versions. Note: All versions of IE are currently unsupported.
+- Firefox: 61+ 
+- Chrome desktop: 68+
+- iOS: 10+
+- Samsung Internet: 5+
+- Chrome on Android: 4.3+
+
 ### Backend
 
 - Sqitch
