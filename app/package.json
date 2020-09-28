@@ -145,7 +145,7 @@
     "graphile-worker": "^0.6.0",
     "graphql": "^14.6.0",
     "graphql-voyager": "^1.0.0-rc.30",
-    "isomorphic-fetch": "^2.2.1",
+    "isomorphic-fetch": "^3.0.0",
     "keycloak-connect": "^10.0.0",
     "moment-timezone": "^0.5.31",
     "morgan": "^1.10.0",
