@@ -30,7 +30,7 @@ CIIP requires an application form to be submitted annually. CIIP is a voluntary 
 
 - Safari: 10+
 - Edge: All versions. Note: All versions of IE are currently unsupported.
-- Firefox: 61+ 
+- Firefox: 61+
 - Chrome desktop: 68+
 - iOS: 10+
 - Samsung Internet: 5+
