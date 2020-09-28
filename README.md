@@ -91,7 +91,7 @@ The materials published include:
 
 ## Documentation
 
-- [Developer and Application Documentation](./docs/index.md)
+- [Developer and Application Documentation](./docs/README.md)
 
 - [Support Documentation for Reporters](./docs/reporting-guide.md)
 

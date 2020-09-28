@@ -6,4 +6,5 @@
   * [Docs](./docs.md)
   * [Button stack](./stack.md)
   * [Use of JSON schemas](./json-schema.md)
+  * [Application release process](./release.md)
 - [Support documentation for reporters](./reporting-guide.md)
