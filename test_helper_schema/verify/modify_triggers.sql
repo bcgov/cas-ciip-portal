@@ -3,5 +3,6 @@
 begin;
 
 select pg_get_functiondef('test_helper.modify_triggers(text)'::regprocedure);
+select pg_get_functiondef('test_helper.modify_triggers(text, json)'::regprocedure);
 
 rollback;

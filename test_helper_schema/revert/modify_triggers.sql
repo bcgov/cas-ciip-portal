@@ -2,6 +2,7 @@
 
 begin;
 
+drop function test_helper.modify_triggers(text, json);
 drop function test_helper.modify_triggers(text);
 
 commit;
