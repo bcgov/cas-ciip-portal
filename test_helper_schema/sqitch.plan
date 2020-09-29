@@ -2,3 +2,4 @@
 %project=test_helpers
 
 schema_test_helper 2020-09-24T20:39:13Z Dylan Leard <dylan@button.is> # schema to house test helper functions
+modify_triggers [schema_test_helper] 2020-09-29T17:16:23Z Dylan Leard <dylan@button.is> # function enables/disables triggers for test setup
