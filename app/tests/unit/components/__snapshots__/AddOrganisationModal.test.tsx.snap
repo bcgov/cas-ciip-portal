@@ -2,7 +2,7 @@
 
 exports[`AddOrganisationFacility Component should match the last snapshot 1`] = `
 Array [
-  <span
+  <p
     style={
       Object {
         "marginTop": "20px",
@@ -10,8 +10,7 @@ Array [
     }
   >
     Operator not in the list?
-  </span>,
-  <br />,
+  </p>,
   <Button
     active={false}
     disabled={false}
