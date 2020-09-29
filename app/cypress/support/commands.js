@@ -44,3 +44,7 @@ ${fixture}
 EOF`)
   );
 });
+
+Cypress.Commands.add('deployProdData', () => {
+  cy.exec('pushd ../ && ./.bin/deploy-data.sh -prod && popd');
+});
