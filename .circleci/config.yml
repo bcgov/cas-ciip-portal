@@ -374,6 +374,9 @@ jobs:
             ADMIN_EMAIL: GHG Regulator <GHGRegulator@gov.bc.ca>
           command: |
             source ~/.asdf/asdf.sh
+            pushd test_helper_schema
+            sqitch deploy
+            popd
             pushd app
             NO_MATHJAX=true yarn start & yarn wait-on http://localhost:3004
             yarn test:e2e-snapshots
