@@ -33,8 +33,7 @@ const AddOrganisationModal: React.FunctionComponent<Props> = (props) => {
 
   return (
     <>
-      <span style={{marginTop: '20px'}}>Operator not in the list?</span>
-      <br />
+      <p style={{marginTop: '20px'}}>Operator not in the list?</p>
       <Button
         variant="outline-primary"
         onClick={() => setModalVisible(!isModalVisible)}

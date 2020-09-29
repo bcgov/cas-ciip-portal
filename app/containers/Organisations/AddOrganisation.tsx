@@ -69,7 +69,13 @@ export const AddOrganisationComponent: React.FunctionComponent<Props> = (
             </Dropdown.Menu>
           </Dropdown>
           {props.selectedOrg !== null && (
-            <Table style={{textAlign: 'center', marginTop: '10px'}}>
+            <Table
+              style={{
+                textAlign: 'center',
+                margin: '10px 0 2em 0',
+                borderBottom: '1px solid rgb(0,0,0,0.1)'
+              }}
+            >
               <thead>
                 <tr>
                   <th>Operator Name</th>
@@ -88,7 +94,6 @@ export const AddOrganisationComponent: React.FunctionComponent<Props> = (
               </tbody>
             </Table>
           )}
-          <hr />
           <AddOrganisationModal onAddOrganisation={handleAddOrganisation} />
           <style jsx>
             {`
@@ -96,6 +101,11 @@ export const AddOrganisationComponent: React.FunctionComponent<Props> = (
                 max-height: 250px;
                 overflow: hidden;
                 overflow-y: scroll;
+              }
+
+              thead {
+                background: #036;
+                color: #fff;
               }
             `}
           </style>

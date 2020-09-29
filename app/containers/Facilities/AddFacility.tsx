@@ -82,7 +82,13 @@ export const AddFacilityComponent: React.FunctionComponent<Props> = (props) => {
             </Dropdown.Menu>
           </Dropdown>
           {props.selectedFacility !== null && (
-            <Table style={{textAlign: 'center', marginTop: '10px'}}>
+            <Table
+              style={{
+                textAlign: 'center',
+                marginTop: '10px',
+                borderBottom: '1px solid rgb(0,0,0,0.1)'
+              }}
+            >
               <thead>
                 <tr>
                   <th>Operator Name</th>
@@ -103,7 +109,6 @@ export const AddFacilityComponent: React.FunctionComponent<Props> = (props) => {
               </tbody>
             </Table>
           )}
-          <hr />
           <AddFacilityModal query={query} onAddFacility={handleAddFacility} />
           <style jsx>
             {`
@@ -111,6 +116,11 @@ export const AddFacilityComponent: React.FunctionComponent<Props> = (props) => {
                 max-height: 250px;
                 overflow: hidden;
                 overflow-y: scroll;
+              }
+
+              thead {
+                background: #036;
+                color: #fff;
               }
             `}
           </style>
