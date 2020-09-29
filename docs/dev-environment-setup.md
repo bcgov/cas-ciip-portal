@@ -175,6 +175,7 @@ AS_REPORTER
 AS_CERTIFIER
 AS_ANALYST
 AS_ADMIN
+AS_PENDING
 ```
 
 [Learn more here](./all-views-inventory.md) about the functionality available to each user type.

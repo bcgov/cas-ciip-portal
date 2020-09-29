@@ -96,8 +96,10 @@ The application requires users to be authenticated using keycloak. Authenticatio
 ### Additional Flags
 
 `AS_REPORTER`: Automatically log in as our test reporter
+`AS_CERTIFIER`: Automatically log in as our test certifier
 `AS_ANALYST`: Automatically log in as our test analyst
 `AS_ADMIN`: Automatically log in as our test admin
+`AS_PENDING`: Automatically log in as a pending analyst (pending approval via the Keycloak console to become an analyst)
 `NO_MAIL`: Ignore all outgoing mail functionality (can be run by itself, or along with any other auth flags ie `yarn dev NO_AUTH NO_MAIL`)
 
 
