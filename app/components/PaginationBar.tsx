@@ -21,6 +21,8 @@ export const PaginationBarComponent: React.FunctionComponent<Props> = (
     totalCount
   } = props;
 
+  const maxPages = Math.ceil(totalCount / maxResultsPerPage);
+
   const previousTenPagination = () => {
     if (offsetValue > 0) {
       setOffset(offsetValue - maxResultsPerPage);
@@ -40,8 +42,6 @@ export const PaginationBarComponent: React.FunctionComponent<Props> = (
     setOffset((pageNumber - 1) * maxResultsPerPage);
     setActivePage(pageNumber);
   };
-
-  const maxPages = Math.ceil(totalCount / maxResultsPerPage);
 
   let startPage;
   let endPage;

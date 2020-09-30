@@ -25,13 +25,13 @@ const router = {
 };
 
 describe('Interstitial application legal disclaimer page', () => {
-  it('It matches the last accepted Snapshot', () => {
+  it('matches the last accepted Snapshot', () => {
     const wrapper = shallow(
       <NewApplicationDisclaimer query={query} router={router} />
     );
     expect(wrapper).toMatchSnapshot();
   });
-  it('It passes an application to the ApplicationConsent component', () => {
+  it('passes an application to the ApplicationConsent component', () => {
     const wrapper = shallow(
       <NewApplicationDisclaimer query={query} router={router} />
     );

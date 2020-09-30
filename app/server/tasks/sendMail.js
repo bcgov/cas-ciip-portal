@@ -1,4 +1,5 @@
 const nodemailer = require('nodemailer');
+const dotenv = require('dotenv');
 const createWelcomeMail = require('../emailTemplates/welcome.js');
 const createConfirmationMail = require('../emailTemplates/confirmation.js');
 const createApplicationDecisionMail = require('../emailTemplates/applicationDecision.js');
@@ -12,7 +13,6 @@ const createNotifyAdminApplicationSubmittedMail = require('../emailTemplates/not
 const createNotifyAdminAccessRequestMail = require('../emailTemplates/notifyAdminOrganisationAccess');
 const createDraftApplicationStartedMail = require('../emailTemplates/draftApplicationStarted');
 const getEmailShortForm = require('../helpers/getEmailShortForm');
-const dotenv = require('dotenv');
 dotenv.config();
 
 const ADMIN_EMAIL_SHORT = getEmailShortForm(process.env.ADMIN_EMAIL);

@@ -14,7 +14,9 @@ const HeaderLayout = ({isLoggedIn = false, isRegistered = false, children}) => {
    */
   try {
     mediaMatch = window.matchMedia(DESKTOP_BREAKPOINT_QUERY);
-  } catch (error) {}
+  } catch (error) {
+    console.error(error);
+  }
 
   const desktopMediaQuery = useRef(mediaMatch);
   const [navMenuHidden, setNavMenuHidden] = useState(

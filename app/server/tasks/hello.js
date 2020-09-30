@@ -1,6 +1,6 @@
 // This is a sample task
-const createWelcomeMail = require('../emailTemplates/welcome.js');
 const dotenv = require('dotenv');
+const createWelcomeMail = require('../emailTemplates/welcome.js');
 dotenv.config();
 
 module.exports = async (payload, helpers) => {

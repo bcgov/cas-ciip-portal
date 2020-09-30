@@ -12,7 +12,7 @@ const query: copyrightQueryResponse['query'] = {
 };
 
 describe('BCGov core copyright page', () => {
-  it('It matches the last accepted Snapshot', () => {
+  it('matches the last accepted Snapshot', () => {
     const wrapper = shallow(<Copyright query={query} />);
     expect(wrapper).toMatchSnapshot();
   });

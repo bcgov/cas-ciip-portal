@@ -3,7 +3,7 @@ import {shallow} from 'enzyme';
 import Index from 'pages';
 
 describe('landing', () => {
-  it('It matches the last accepted Snapshot', () => {
+  it('matches the last accepted Snapshot', () => {
     const wrapper = shallow(
       <Index
         query={{

@@ -35,16 +35,16 @@ export default class BaseMutation<T extends BaseMutationType = never> {
     updater?: (...args: any[]) => any,
     debounceKey?: string
   ) {
-    const success_message = variables.messages?.success
+    const successMessage = variables.messages?.success
       ? variables.messages.success
       : '';
-    const failure_message = variables.messages?.failure
+    const failureMessage = variables.messages?.failure
       ? variables.messages.failure
       : 'Oops! Seems like something went wrong';
 
     const {configs, mutationName} = this;
     async function commitMutation(
-      environment,
+      commitEnvironment,
       options: {
         mutation: GraphQLTaggedNode;
         variables: T['variables'];
@@ -63,7 +63,7 @@ export default class BaseMutation<T extends BaseMutationType = never> {
           }
         }
 
-        const disposable = commitMutationDefault<T>(environment, {
+        const disposable = commitMutationDefault<T>(commitEnvironment, {
           ...options,
           configs,
           cacheConfig: {debounceKey},
@@ -73,8 +73,8 @@ export default class BaseMutation<T extends BaseMutationType = never> {
             }
 
             reject(error);
-            if (failure_message) {
-              toast(failure_message, {
+            if (failureMessage) {
+              toast(failureMessage, {
                 className: 'mutation-toast Toastify__toast--error',
                 autoClose: false,
                 position: 'bottom-right',
@@ -89,8 +89,8 @@ export default class BaseMutation<T extends BaseMutationType = never> {
             }
 
             errors ? reject(errors) : resolve(response);
-            if (success_message) {
-              toast(success_message, {
+            if (successMessage) {
+              toast(successMessage, {
                 className: 'mutation-toast Toastify__toast--success',
                 autoClose: 5000,
                 position: 'bottom-right'

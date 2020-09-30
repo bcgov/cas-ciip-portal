@@ -199,7 +199,7 @@ export const ApplicationDetailsPdf: React.FunctionComponent<Props> = (
 export default createFragmentContainer(ApplicationDetailsPdf, {
   application: graphql`
     fragment ApplicationDetailsPdf_application on Application
-      @argumentDefinitions(version: {type: "String!"}) {
+    @argumentDefinitions(version: {type: "String!"}) {
       applicationRevisionStatus(versionNumberInput: $version) {
         applicationRevisionStatus
       }

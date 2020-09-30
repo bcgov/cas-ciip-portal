@@ -12,7 +12,7 @@ const query: privacyQueryResponse['query'] = {
 };
 
 describe('BCGov core privacy page', () => {
-  it('It matches the last accepted Snapshot', () => {
+  it('matches the last accepted Snapshot', () => {
     const wrapper = shallow(<Privacy query={query} />);
     expect(wrapper).toMatchSnapshot();
   });

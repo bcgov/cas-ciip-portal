@@ -1,9 +1,3 @@
-const DASHBOARD_URLS = {
-  admin: '/admin',
-  analyst: '/analyst',
-  reporter: '/reporter'
-};
-
 const REQUIRED_QUERY_PARAMS = {
   facilities: '?organisationRowId=200',
   application: `?applicationId=${encodeURIComponent(

@@ -88,11 +88,11 @@ const ApplicationWizard = ({query}) => {
 export default createFragmentContainer(ApplicationWizard, {
   query: graphql`
     fragment ApplicationWizard_query on Query
-      @argumentDefinitions(
-        formResultId: {type: "ID!"}
-        applicationId: {type: "ID!"}
-        version: {type: "String!"}
-      ) {
+    @argumentDefinitions(
+      formResultId: {type: "ID!"}
+      applicationId: {type: "ID!"}
+      version: {type: "String!"}
+    ) {
       application(id: $applicationId) {
         id
         currentUserCanEdit

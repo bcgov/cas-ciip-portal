@@ -88,13 +88,13 @@ export default createRefetchContainer(
   {
     query: graphql`
       fragment ProductListContainer_query on Query
-        @argumentDefinitions(
-          searchField: {type: "String"}
-          searchValue: {type: "String"}
-          orderByField: {type: "String"}
-          direction: {type: "String"}
-          productCount: {type: "Int"}
-        ) {
+      @argumentDefinitions(
+        searchField: {type: "String"}
+        searchValue: {type: "String"}
+        orderByField: {type: "String"}
+        direction: {type: "String"}
+        productCount: {type: "Int"}
+      ) {
         ...ProductRowItemContainer_query
         searchProducts(
           first: 2147483647

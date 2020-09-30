@@ -12,7 +12,7 @@ const query: applicationDisclaimerQueryResponse['query'] = {
 };
 
 describe('Program application-specific disclaimer page', () => {
-  it('It matches the last accepted Snapshot', () => {
+  it('matches the last accepted Snapshot', () => {
     const wrapper = shallow(<ApplicationDisclaimer query={query} />);
     expect(wrapper).toMatchSnapshot();
   });

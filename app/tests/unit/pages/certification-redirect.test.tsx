@@ -36,7 +36,7 @@ const query: certificationRedirectQueryResponse['query'] = {
 };
 
 describe('Login redirect page', () => {
-  it('It matches the last accepted Snapshot', () => {
+  it('matches the last accepted Snapshot', () => {
     const wrapper = shallow(
       <CertificationRedirect query={query} router={null} />
     );

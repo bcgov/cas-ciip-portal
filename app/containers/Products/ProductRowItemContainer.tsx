@@ -53,6 +53,10 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
 
   /** Mutation functions **/
 
+  const handleUpdateProductCount = (newCount) => {
+    updateProductCount(newCount);
+  };
+
   // Change a product status
   const updateStatus = async (state: CiipProductState) => {
     const variables = {
@@ -138,10 +142,6 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
     handleUpdateProductCount((productCount += 1));
     setBenchmarkModalShow(false);
     console.log(response);
-  };
-
-  const handleUpdateProductCount = (newCount) => {
-    updateProductCount(newCount);
   };
 
   const createLinkedProduct = async (newLink: number) => {

@@ -10,7 +10,7 @@ import HeaderWidget from 'components/HeaderWidget';
 import PastBenchmarks from 'components/Benchmark/PastBenchmarks';
 import {ProductRowItemContainer_product} from 'ProductRowItemContainer_product.graphql';
 
-interface benchmark {
+interface Benchmark {
   id: string;
   rowId: number;
   benchmark: string;
@@ -23,19 +23,19 @@ interface benchmark {
   createdAt: string;
 }
 
-interface pastBenchmark {
-  node: benchmark;
+interface PastBenchmark {
+  node: Benchmark;
 }
 
 interface Props {
   updateStatus: (...args: any[]) => void;
   product: ProductRowItemContainer_product;
   benchmarkSchema: any;
-  currentBenchmark: benchmark;
+  currentBenchmark: Benchmark;
   editProduct: (IChangeEvent) => void;
   editBenchmark: (IChangeEvent) => void;
   createBenchmark: (IChangeEvent) => void;
-  pastBenchmarks: pastBenchmark[];
+  pastBenchmarks: PastBenchmark[];
   isProduct: boolean;
 }
 

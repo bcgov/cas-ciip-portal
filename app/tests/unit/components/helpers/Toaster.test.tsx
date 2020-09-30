@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {mount} from 'enzyme';
 import ToastHelper from 'components/helpers/Toaster';
 import {act} from 'react-dom/test-utils';
@@ -6,13 +6,13 @@ import {graphql} from 'react-relay';
 import BaseMutation from 'mutations/BaseMutation';
 import RelayModernEnvironment from 'relay-runtime/lib/store/RelayModernEnvironment';
 
-type fakeMutationVariables = {
+type FakeMutationVariables = {
   input: Record<string, unknown>;
 };
-type fakeMutationResponse = Record<string, unknown>;
-type fakeMutationType = {
-  readonly response: fakeMutationResponse;
-  readonly variables: fakeMutationVariables;
+type FakeMutationResponse = Record<string, unknown>;
+type FakeMutationType = {
+  readonly response: FakeMutationResponse;
+  readonly variables: FakeMutationVariables;
 };
 
 /*
@@ -30,9 +30,9 @@ const mutation = graphql`
 
 const fakeMutation = async (
   environment: RelayModernEnvironment,
-  variables: fakeMutationVariables
+  variables: FakeMutationVariables
 ) => {
-  return new BaseMutation<fakeMutationType>('fake-mutation').performMutation(
+  return new BaseMutation<FakeMutationType>('fake-mutation').performMutation(
     environment,
     mutation,
     variables
@@ -68,15 +68,12 @@ describe('Toaster', () => {
   jest.useFakeTimers();
 
   it('correctly renders a failure notification when a failure notification is defined', () => {
-    class App extends Component {
-      render() {
-        return (
-          <div>
-            <ToastHelper />
-          </div>
-        );
-      }
-    }
+    const App = () => (
+      <div>
+        <ToastHelper />
+      </div>
+    );
+
     const wrapper = mount(<App />);
     rejectToast();
     act(() => jest.advanceTimersByTime(1000));

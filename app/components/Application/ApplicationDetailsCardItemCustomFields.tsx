@@ -49,11 +49,11 @@ const customFields = (
           return (
             <>
               <span id={id && `${id}-diffFrom`} className="diffFrom">
-                {prevValue ? prevValue : <i>[No Data Entered]</i>}
+                {prevValue ?? <i>[No Data Entered]</i>}
               </span>
               &nbsp;---&gt;&nbsp;
               <span id={id && `${id}-diffTo`} className="diffTo">
-                {currentValue ? currentValue : <i>[No Data Entered]</i>}
+                {currentValue ?? <i>[No Data Entered]</i>}
               </span>
             </>
           );

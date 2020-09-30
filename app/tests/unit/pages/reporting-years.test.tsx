@@ -15,12 +15,12 @@ const query: reportingYearsQueryResponse['query'] = {
 };
 
 describe('admin', () => {
-  it('It matches the last accepted Snapshot', () => {
+  it('matches the last accepted Snapshot', () => {
     const wrapper = shallow(<ReportingYears query={query} />);
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('It passes a query to the ReportingYearTable component', () => {
+  it('passes a query to the ReportingYearTable component', () => {
     const wrapper = shallow(<ReportingYears query={query} />);
     expect(
       wrapper.find('Relay(ReportingYearTableComponent)').first().prop('query')

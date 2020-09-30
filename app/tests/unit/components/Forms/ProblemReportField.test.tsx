@@ -3,7 +3,7 @@ import {shallow} from 'enzyme';
 import ProblemReportField from 'components/Forms/ProblemReportField';
 import {JSONSchema6TypeName} from 'json-schema';
 
-describe('The ProblemReportField component ', () => {
+describe('The ProblemReportField component', () => {
   const defaultProps = {
     schema: {
       type: 'string' as JSONSchema6TypeName
