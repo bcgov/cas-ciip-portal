@@ -37,6 +37,10 @@ values
 (26, 'Coal','tonnes','published', true, true),
 (29, 'Other Pulp (Mechanical pulp, paper, newsprint)', 'bone-dry tonnes','published', true, true);
 
+select test_helper.initialize_form_result(1,1);
+select test_helper.initialize_form_result(2,1);
+
+/*
 -- Ensure all form results contain no errors
 update ggircs_portal.form_result set form_result = '{
 "facility": {
@@ -687,6 +691,8 @@ update ggircs_portal.form_result set form_result = '[
     }
   ]'
   where application_id=2 and version_number=1 and form_id=4;
+
+*/
 
 insert into ggircs_portal.certification_url(id, certifier_url, created_by, application_id, version_number, send_certification_request, certifier_email)
 overriding system value
