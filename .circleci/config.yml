@@ -114,12 +114,12 @@ jobs:
       - run:
           name: Build tools Docker image
           command: >-
-              docker build --cache-from=<< parameters.image_name >>
-              -t << parameters.image_name >>:latest
-              -t gcr.io/${GOOGLE_PROJECT_ID}/<< parameters.image_name >>:latest
-              -t gcr.io/${GOOGLE_PROJECT_ID}/<< parameters.image_name >>:<< parameters.image_tag >>
-              -f << parameters.dockerfile >>
-              .
+            docker build --cache-from=<< parameters.image_name >>
+            -t << parameters.image_name >>:latest
+            -t gcr.io/${GOOGLE_PROJECT_ID}/<< parameters.image_name >>:latest
+            -t gcr.io/${GOOGLE_PROJECT_ID}/<< parameters.image_name >>:<< parameters.image_tag >>
+            -f << parameters.dockerfile >>
+            .
       - run:
           name: Save Docker image layer cache
           command: |
@@ -148,19 +148,14 @@ jobs:
       - attach_workspace:
           at: ~/
       - run:
-          name: Run XO via Yarn
-          command: |
-            source ~/.asdf/asdf.sh
-            yarn format
-      - run:
-          name: Check if there is some unformatted code
-          command: git diff --exit-code || (echo 'These files are not formatted correctly. Did you forget to \"yarn format\"?' && false)
-      - run:
           name: Verify style with pre-commit
           command: |
             source ~/.asdf/asdf.sh
             asdf reshim
             pre-commit run --all-files
+      - run:
+          name: Check if there is some unformatted code
+          command: git diff --exit-code || (echo 'These files are not formatted correctly. Did you forget to \"yarn format\"?' && false)
 
   unit:
     machine:
