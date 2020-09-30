@@ -12,7 +12,7 @@ const query: disclaimerQueryResponse['query'] = {
 };
 
 describe('BCGov core disclaimer page', () => {
-  it('It matches the last accepted Snapshot', () => {
+  it('matches the last accepted Snapshot', () => {
     const wrapper = shallow(<Disclaimer query={query} />);
     expect(wrapper).toMatchSnapshot();
   });

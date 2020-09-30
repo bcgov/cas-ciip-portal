@@ -78,7 +78,6 @@ databaseURL += '/';
 databaseURL += process.env.PGDATABASE || 'ciip_portal_dev';
 
 // True if the host has been configured to use https
-// eslint-disable-next-line unicorn/prefer-starts-ends-with, @typescript-eslint/prefer-string-starts-ends-with
 const secure = /^https/.test(process.env.HOST);
 
 // Ensure we properly crypt our cookie session store with a pre-shared key in a secure environment

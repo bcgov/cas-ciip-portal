@@ -1,4 +1,9 @@
-/* eslint-disable react/no-deprecated, react/state-in-constructor, no-negated-condition, @typescript-eslint/restrict-plus-operands, react/no-array-index-key, @typescript-eslint/no-unused-vars-experimental, @typescript-eslint/require-array-sort-compare */
+/* eslint-disable
+react/no-deprecated, react/state-in-constructor,
+ no-negated-condition, @typescript-eslint/restrict-plus-operands,
+ react/no-array-index-key, @typescript-eslint/no-unused-vars-experimental, @typescript-eslint/require-array-sort-compare,
+ @typescript-eslint/no-use-before-define, react/static-property-placement, react/sort-comp, @typescript-eslint/no-unused-vars
+*/
 /**
  * AltDateWidget modified from rjsf-team/react-jsonschema-form licensed under Apache 2.0:
  *

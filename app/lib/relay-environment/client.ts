@@ -15,7 +15,7 @@ const oneMinute = 60 * 1000;
 let storeEnvironment = null;
 
 export default {
-  createEnvironment: (_) => {
+  createEnvironment: () => {
     storeEnvironment = new Environment({
       // @ts-ignore
       network: new RelayNetworkLayer([

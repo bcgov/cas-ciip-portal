@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`BCGov core copyright page It matches the last accepted Snapshot 1`] = `
+exports[`BCGov core copyright page matches the last accepted Snapshot 1`] = `
 <Relay(DefaultLayout)
   session={
     Object {

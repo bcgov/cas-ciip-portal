@@ -61,12 +61,12 @@ export default createRefetchContainer(
   {
     query: graphql`
       fragment ApplicationListContainer_query on Query
-        @argumentDefinitions(
-          searchField: {type: "String"}
-          searchValue: {type: "String"}
-          orderByField: {type: "String"}
-          direction: {type: "String"}
-        ) {
+      @argumentDefinitions(
+        searchField: {type: "String"}
+        searchValue: {type: "String"}
+        orderByField: {type: "String"}
+        direction: {type: "String"}
+      ) {
         searchApplicationList(
           searchField: $searchField
           searchValue: $searchValue

@@ -1,10 +1,11 @@
 {
-  "presets": [
-    "next/babel"
-  ],
+  "presets": ["next/babel"],
   "plugins": [
     ["relay"],
-    ["module-resolver", {"root": [".", ".."], "extensions": [".js", ".jsx",".ts", ".tsx"]}],
+    [
+      "module-resolver",
+      {"root": [".", ".."], "extensions": [".js", ".jsx", ".ts", ".tsx"]}
+    ],
     "macros"
   ]
 }

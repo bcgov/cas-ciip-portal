@@ -44,12 +44,12 @@ describe('The application-review page', () => {
     }
   };
 
-  it('It matches the last accepted Snapshot', () => {
+  it('matches the last accepted Snapshot', () => {
     const wrapper = shallow(<ApplicationReview router={null} query={query} />);
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('It passes the applicationRevision prop to the IncentiveCalculator', () => {
+  it('passes the applicationRevision prop to the IncentiveCalculator', () => {
     const wrapper = shallow(<ApplicationReview router={null} query={query} />);
     expect(
       wrapper
@@ -59,7 +59,7 @@ describe('The application-review page', () => {
     ).toBe(query.applicationRevision);
   });
 
-  it('It renders the ApplicationOverrideNotification component if an override has been set', () => {
+  it('renders the ApplicationOverrideNotification component if an override has been set', () => {
     const overrideQuery: applicationReviewQueryResponse['query'] = {
       session: {
         ' $fragmentRefs': {
@@ -103,9 +103,7 @@ describe('The application-review page', () => {
       <ApplicationReview router={null} query={overrideQuery} />
     );
     expect(
-      wrapper
-        .find('ApplicationOverrideNotification')
-        .props('overrideJustification')
+      wrapper.find('ApplicationOverrideNotification').props()
     ).toStrictEqual({overrideJustification: 'oops'});
   });
 });

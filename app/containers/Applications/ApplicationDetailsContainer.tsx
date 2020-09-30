@@ -169,11 +169,11 @@ export default createRefetchContainer(
   {
     query: graphql`
       fragment ApplicationDetailsContainer_query on Query
-        @argumentDefinitions(
-          applicationId: {type: "ID!"}
-          newVersion: {type: "String"}
-          oldVersion: {type: "String"}
-        ) {
+      @argumentDefinitions(
+        applicationId: {type: "ID!"}
+        newVersion: {type: "String"}
+        oldVersion: {type: "String"}
+      ) {
         query {
           ...ApplicationDetailsCardItem_query
         }
@@ -210,7 +210,7 @@ export default createRefetchContainer(
     `,
     application: graphql`
       fragment ApplicationDetailsContainer_application on Application
-        @argumentDefinitions(version: {type: "String!"}) {
+      @argumentDefinitions(version: {type: "String!"}) {
         id
         orderedFormResults(versionNumberInput: $version) {
           edges {

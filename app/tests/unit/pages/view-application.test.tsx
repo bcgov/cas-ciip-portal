@@ -36,12 +36,12 @@ const query: viewApplicationQueryResponse['query'] = {
 };
 
 // It matches the last accepted Snapshot
-it('It matches the last accepted Snapshot', () => {
+it('matches the last accepted Snapshot', () => {
   const wrapper = shallow(<ViewApplication query={query} router={null} />);
   expect(wrapper).toMatchSnapshot();
 });
 
-it('It passes a query to the ApplicationDetailsComponent component', () => {
+it('passes a query to the ApplicationDetailsComponent component', () => {
   const wrapper = shallow(<ViewApplication query={query} router={null} />);
   expect(
     wrapper.find('Relay(ApplicationDetailsComponent)').first().prop('query')

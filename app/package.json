@@ -19,104 +19,8 @@
     "build:relay": "relay-compiler --verbose",
     "build:next": "next build",
     "start": "NODE_ENV=production node --unhandled-rejections=strict server",
-    "format": "xo --fix",
-    "lint": "xo"
-  },
-  "xo": {
-    "extends": [
-      "xo-typescript",
-      "xo-react",
-      "plugin:jest/recommended",
-      "plugin:relay/recommended"
-    ],
-    "plugins": [
-      "jest",
-      "relay",
-      "shopify"
-    ],
-    "envs": [
-      "node",
-      "browser",
-      "jest"
-    ],
-    "extensions": [
-      "ts",
-      "tsx"
-    ],
-    "space": true,
-    "prettier": true,
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-      "project": "./tsconfig.json"
-    },
-    "rules": {
-      "@typescript-eslint/indent": 0,
-      "@typescript-eslint/semi": 0,
-      "@typescript-eslint/no-var-requires": 0,
-      "@typescript-eslint/explicit-function-return-type": 0,
-      "@typescript-eslint/camelcase": 0,
-      "react/jsx-uses-vars": 1,
-      "shopify/react-no-multiple-render-methods": 1,
-      "unicorn/filename-case": 0,
-      "unicorn/prevent-abbreviations": 0,
-      "import/no-unassigned-import": 0,
-      "@typescript-eslint/no-untyped-public-signature": 0,
-      "@typescript-eslint/restrict-template-expressions": 0,
-      "@typescript-eslint/no-unused-vars": 0,
-      "@typescript-eslint/no-unused-vars-experimental": 2,
-      "@typescript-eslint/prefer-readonly-parameter-types": 0,
-      "@typescript-eslint/no-unsafe-member-access": 0,
-      "@typescript-eslint/no-unsafe-call": 0,
-      "@typescript-eslint/no-unsafe-return": 0,
-      "@typescript-eslint/quotes": [
-        1,
-        "single",
-        {
-          "avoidEscape": true
-        }
-      ],
-      "@typescript-eslint/no-unused-expressions": [
-        1,
-        {
-          "allowTernary": true
-        }
-      ],
-      "import/extensions": [
-        "error",
-        "never",
-        {
-          "graphql": "always",
-          "json": "always"
-        }
-      ],
-      "react/prop-types": 0,
-      "max-depth": [
-        1,
-        {
-          "max": 8
-        }
-      ],
-      "jest/expect-expect": 0
-    },
-    "overrides": [
-      {
-        "files": [
-          "cypress/**/*.js"
-        ],
-        "extends": [
-          "plugin:cypress/recommended"
-        ],
-        "parserOptions": {
-          "project": "cypress/tsconfig.json"
-        },
-        "rules": {
-          "jest/valid-expect-in-promise": 0,
-          "promise/prefer-await-to-then": 0,
-          "no-unused-expressions": 0,
-          "cypress/no-unnecessary-waiting": 0
-        }
-      }
-    ]
+    "format": "prettier --write .",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx ."
   },
   "engines": {
     "node": "12.16.1",
@@ -146,6 +50,7 @@
     "graphql": "^14.6.0",
     "graphql-voyager": "^1.0.0-rc.30",
     "isomorphic-fetch": "^3.0.0",
+    "json-schema": "^0.2.5",
     "keycloak-connect": "^10.0.0",
     "moment-timezone": "^0.5.31",
     "morgan": "^1.10.0",
@@ -168,6 +73,7 @@
     "react-signature-canvas": "^1.0.3",
     "react-toastify": "^6.0.5",
     "relay-runtime": "^9.0.0",
+    "remove": "^0.1.5",
     "sinon": "^9.0.2",
     "standard-version": "^8.0.2",
     "styled-jsx": "^3.2.5"
@@ -179,8 +85,8 @@
     "@types/react-jsonschema-form": "^1.7.2",
     "@types/react-relay": "^7.0.8",
     "@types/relay-runtime": "^9.1.6",
-    "@typescript-eslint/eslint-plugin": "^2.34.0",
-    "@typescript-eslint/parser": "^2.34.0",
+    "@typescript-eslint/eslint-plugin": "^4.3.0",
+    "@typescript-eslint/parser": "^4.3.0",
     "axe-core": "^3.5.5",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
@@ -198,16 +104,16 @@
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "enzyme-to-json": "^3.4.4",
-    "eslint": "^6.5.1",
-    "eslint-config-xo": "^0.29.1",
-    "eslint-config-xo-react": "^0.23.0",
-    "eslint-config-xo-typescript": "^0.27.0",
-    "eslint-plugin-cypress": "^2.11.1",
-    "eslint-plugin-jest": "^23.13.2",
-    "eslint-plugin-react": "^7.20.0",
-    "eslint-plugin-react-hooks": "^4.0.4",
-    "eslint-plugin-relay": "^1.7.1",
-    "eslint-plugin-shopify": "^35.0.0",
+    "eslint": "^7.10.0",
+    "eslint-config-airbnb-typescript": "^11.0.0",
+    "eslint-config-prettier": "^6.12.0",
+    "eslint-plugin-cypress": "^2.11.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jest": "^24.0.2",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-react": "^7.21.2",
+    "eslint-plugin-react-hooks": "^4.1.2",
+    "eslint-plugin-relay": "^1.8.1",
     "graphql-query-test-mock": "^0.12.0",
     "graphql-tag-pluck": "^0.8.5",
     "happo-cypress": "^1.9.1",
@@ -218,10 +124,10 @@
     "jest-extended": "^0.11.5",
     "jest-mock-random": "^1.0.2",
     "jest-raw-loader": "^1.0.1",
-    "json-schema": "^0.2.5",
     "json-schema-faker": "^0.5.0-rc23",
     "nock": "^9.6.1",
     "node-fetch": "^2.6.1",
+    "prettier": "^2.1.2",
     "react-docgen-typescript-loader": "^3.7.2",
     "react-test-renderer": "^16.12.0",
     "relay-compiler": "^9.1.0",
@@ -231,8 +137,7 @@
     "require-context.macro": "^1.2.2",
     "typescript": "3.9.3",
     "wait-on": "^5.0.0",
-    "webpack": "^4.43.0",
-    "xo": "^0.30.0"
+    "webpack": "^4.43.0"
   },
   "resolutions": {
     "**/minimist": "1.2.5",
@@ -259,7 +164,7 @@
       "react-syntax-highlighter/dist/esm/(.*)": "react-syntax-highlighter/dist/cjs/$1"
     },
     "setupFilesAfterEnv": [
-      "<rootDir>lib/setupTests.ts",
+      "<rootDir>tests/setupTests.ts",
       "jest-canvas-mock",
       "jest-extended"
     ],

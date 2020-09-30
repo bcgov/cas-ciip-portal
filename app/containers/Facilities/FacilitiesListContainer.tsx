@@ -125,16 +125,16 @@ export default createRefetchContainer(
   {
     query: graphql`
       fragment FacilitiesListContainer_query on Query
-        @argumentDefinitions(
-          searchField: {type: "String"}
-          searchValue: {type: "String"}
-          orderByField: {type: "String"}
-          direction: {type: "String"}
-          organisationRowId: {type: "String"}
-          offsetValue: {type: "Int"}
-          maxResultsPerPage: {type: "Int"}
-          reportingYear: {type: "Int"}
-        ) {
+      @argumentDefinitions(
+        searchField: {type: "String"}
+        searchValue: {type: "String"}
+        orderByField: {type: "String"}
+        direction: {type: "String"}
+        organisationRowId: {type: "String"}
+        offsetValue: {type: "Int"}
+        maxResultsPerPage: {type: "Int"}
+        reportingYear: {type: "Int"}
+      ) {
         ...FacilitiesRowItemContainer_query
         searchAllFacilities(
           searchField: $searchField

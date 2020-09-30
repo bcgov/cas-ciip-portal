@@ -24,12 +24,12 @@ const query = {
 };
 
 // It matches the last accepted Snapshot
-it('It matches the last accepted Snapshot', () => {
+it('matches the last accepted Snapshot', () => {
   const wrapper = shallow(<Application query={query} />);
   expect(wrapper).toMatchSnapshot();
 });
 
-it('It passes a query to the ApplicationWizard component', () => {
+it('passes a query to the ApplicationWizard component', () => {
   const wrapper = shallow(<Application query={query} />);
   expect(wrapper.find('Relay(ApplicationWizard)').prop('query')).toBe(query);
 });

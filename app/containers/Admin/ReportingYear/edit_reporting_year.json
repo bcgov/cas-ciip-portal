@@ -15,11 +15,7 @@
         "type": "string"
       }
     },
-    "required": [
-      "swrsDeadline",
-      "applicationOpenTime",
-      "applicationCloseTime"
-    ]
+    "required": ["swrsDeadline", "applicationOpenTime", "applicationCloseTime"]
   },
   "uiSchema": {
     "swrsDeadline": {

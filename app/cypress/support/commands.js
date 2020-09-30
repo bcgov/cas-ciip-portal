@@ -10,10 +10,10 @@ Cypress.Commands.add('login', (username, password) => {
       retryOnStatusCodeFailure: true
     })
     .then((response) => {
-      const _el = document.createElement('html');
-      _el.innerHTML = response.body;
+      const el = document.createElement('html');
+      el.innerHTML = response.body;
       // This should be more strict depending on your login page template.
-      const loginForm = _el.querySelectorAll('form');
+      const loginForm = el.querySelectorAll('form');
       const isAlreadyLoggedIn = !loginForm.length;
       if (isAlreadyLoggedIn) {
         return;

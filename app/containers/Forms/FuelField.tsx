@@ -11,11 +11,6 @@ interface Props extends FieldProps {
 const FuelField: React.FunctionComponent<Props> = (props) => {
   const {formData, query, onChange} = props;
 
-  const handleChange = (fuel) => {
-    if (formData.fuelRowId === fuel.fuelRowId) onChange(fuel);
-    else handlefuelChange(fuel.fuelRowId);
-  };
-
   const handlefuelChange = (fuelRowId: number) => {
     const fuel = query.allFuels.edges.find(({node}) => node.rowId === fuelRowId)
       ?.node;
@@ -24,6 +19,11 @@ const FuelField: React.FunctionComponent<Props> = (props) => {
       fuelRowId,
       fuelUnits: fuel?.units
     });
+  };
+
+  const handleChange = (fuel) => {
+    if (formData.fuelRowId === fuel.fuelRowId) onChange(fuel);
+    else handlefuelChange(fuel.fuelRowId);
   };
 
   return <ObjectField {...props} onChange={handleChange} />;

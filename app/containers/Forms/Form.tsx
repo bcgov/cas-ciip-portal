@@ -293,7 +293,7 @@ export const FormComponent: React.FunctionComponent<Props> = ({
 export default createFragmentContainer(FormComponent, {
   query: graphql`
     fragment Form_query on Query
-      @argumentDefinitions(formResultId: {type: "ID!"}) {
+    @argumentDefinitions(formResultId: {type: "ID!"}) {
       ...FuelField_query
       ...FuelRowIdField_query
       ...ProductField_query

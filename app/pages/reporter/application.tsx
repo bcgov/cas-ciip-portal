@@ -25,7 +25,6 @@ class Application extends Component<Props> {
       query {
         application(id: $applicationId) {
           id
-          currentUserCanEdit
           latestDraftRevision {
             versionNumber
             legalDisclaimerAccepted

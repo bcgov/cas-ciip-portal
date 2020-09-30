@@ -93,11 +93,11 @@ const ApplicationWizardStep: React.FunctionComponent<Props> = ({
 export default createFragmentContainer(ApplicationWizardStep, {
   query: graphql`
     fragment ApplicationWizardStep_query on Query
-      @argumentDefinitions(
-        formResultId: {type: "ID!"}
-        applicationId: {type: "ID!"}
-        version: {type: "String!"}
-      ) {
+    @argumentDefinitions(
+      formResultId: {type: "ID!"}
+      applicationId: {type: "ID!"}
+      version: {type: "String!"}
+    ) {
       ...Form_query @arguments(formResultId: $formResultId)
       ...ApplicationWizardConfirmation_query
 

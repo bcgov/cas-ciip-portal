@@ -214,15 +214,15 @@ export default createRefetchContainer(
   {
     query: graphql`
       fragment CertificationRequestsContainer_query on Query
-        @argumentDefinitions(
-          searchField: {type: "[String]"}
-          searchValue: {type: "[String]"}
-          orderByField: {type: "String"}
-          direction: {type: "String"}
-          offsetValue: {type: "Int"}
-          forceRefetch: {type: "Int"}
-          maxResultsPerPage: {type: "Int"}
-        ) {
+      @argumentDefinitions(
+        searchField: {type: "[String]"}
+        searchValue: {type: "[String]"}
+        orderByField: {type: "String"}
+        direction: {type: "String"}
+        offsetValue: {type: "Int"}
+        forceRefetch: {type: "Int"}
+        maxResultsPerPage: {type: "Int"}
+      ) {
         searchCertificationRequests(
           searchField: $searchField
           searchValue: $searchValue

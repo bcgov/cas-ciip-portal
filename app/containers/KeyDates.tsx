@@ -66,7 +66,7 @@ export const KeyDatesComponent: React.FunctionComponent<Props> = ({query}) => {
         <thead>
           <tr>
             <th>Date</th>
-            <th />
+            <th aria-label="Description" />
           </tr>
         </thead>
         <tbody>{keyDatesRows}</tbody>

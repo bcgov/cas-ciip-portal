@@ -4,10 +4,12 @@ import {NextRouter} from 'next/router';
 import {ComponentClass} from 'react';
 import {
   FormProps as OriginalFromProps,
-  ErrorSchema
+  ErrorSchema,
+  UiSchema,
+  IdSchema
 } from 'react-jsonschema-form';
 import {CacheConfig} from 'react-relay-network-modern/node8';
-import 'jest-extended'; // Allows Typescript to recognize the functions from jest-extended
+import {JSONSchema6} from 'json-schema';
 
 interface CiipPageInitialProps {
   pageProps: {

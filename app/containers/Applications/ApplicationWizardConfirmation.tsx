@@ -377,7 +377,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
 export default createFragmentContainer(ApplicationWizardConfirmationComponent, {
   application: graphql`
     fragment ApplicationWizardConfirmation_application on Application
-      @argumentDefinitions(version: {type: "String!"}) {
+    @argumentDefinitions(version: {type: "String!"}) {
       id
       rowId
       ...SubmitApplication_application

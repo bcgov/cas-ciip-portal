@@ -4,7 +4,7 @@ import Footer from 'components/Layout/Footer';
 
 // It renders the Footer
 
-it('It matches the last accepted Snapshot', () => {
+it('matches the last accepted Snapshot', () => {
   const wrapper = render(<Footer />);
   expect(wrapper).toMatchSnapshot();
 });

@@ -36,11 +36,6 @@ export const ProductFieldComponent: React.FunctionComponent<Props> = (
     return false;
   };
 
-  const handleChange = (product: FormData) => {
-    if (formData.productRowId === product.productRowId) onChange(product);
-    else handleProductChange(product.productRowId);
-  };
-
   const handleProductChange = (productRowId: number) => {
     const product = query.allProducts.edges.find(
       ({node}) => node.rowId === productRowId
@@ -63,6 +58,11 @@ export const ProductFieldComponent: React.FunctionComponent<Props> = (
       subtractGeneratedHeatEmissions: product?.subtractGeneratedHeatEmissions,
       addEmissionsFromEios: product?.addEmissionsFromEios
     });
+  };
+
+  const handleChange = (product: FormData) => {
+    if (formData.productRowId === product.productRowId) onChange(product);
+    else handleProductChange(product.productRowId);
   };
 
   return productIsPublished(formData, query) ? (

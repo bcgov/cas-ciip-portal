@@ -37,24 +37,24 @@ describe('The certify page', () => {
   };
 
   // It matches the last accepted Snapshot
-  it('It matches the last accepted Snapshot', () => {
+  it('matches the last accepted Snapshot', () => {
     const wrapper = shallow(<Certify query={query} />);
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('It loads the summary component & passes it the application prop if hashMatches is true', () => {
+  it('loads the summary component & passes it the application prop if hashMatches is true', () => {
     const wrapper = shallow(<Certify query={query} />);
     expect(
       wrapper.find('Relay(ApplicationDetailsComponent)').prop('application')
     ).toBe(query.application);
   });
 
-  it('It renders an application certified message instead of the ApplicationSignature component if certification signature is valid', () => {
+  it('renders an application certified message instead of the ApplicationSignature component if certification signature is valid', () => {
     const wrapper = shallow(<Certify query={query} />);
     expect(wrapper.find('Alert').text()).toBe('Application has been certified');
   });
 
-  it('It renders ApplicationRecertificationContainer if hashMatches is false', () => {
+  it('renders ApplicationRecertificationContainer if hashMatches is false', () => {
     query.application.latestDraftRevision.certificationUrl.hashMatches = false;
     const wrapper = shallow(<Certify query={query} />);
     expect(wrapper).toMatchSnapshot();
@@ -63,7 +63,7 @@ describe('The certify page', () => {
     ).toBe(query.application.latestDraftRevision.certificationUrl);
   });
 
-  it('It renders the ApplicationOverrideNotification component if an override has been set', () => {
+  it('renders the ApplicationOverrideNotification component if an override has been set', () => {
     const overrideQuery = {
       session: {
         ciipUserBySub: {
@@ -97,9 +97,7 @@ describe('The certify page', () => {
     };
     const wrapper = shallow(<Certify query={overrideQuery} />);
     expect(
-      wrapper
-        .find('ApplicationOverrideNotification')
-        .props('overrideJustification')
+      wrapper.find('ApplicationOverrideNotification').props()
     ).toStrictEqual({overrideJustification: 'oops'});
   });
 });

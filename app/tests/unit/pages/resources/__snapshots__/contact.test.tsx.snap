@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Contact page It matches the last accepted Snapshot 1`] = `
+exports[`Contact page matches the last accepted Snapshot 1`] = `
 <Relay(DefaultLayout)
   session={
     Object {

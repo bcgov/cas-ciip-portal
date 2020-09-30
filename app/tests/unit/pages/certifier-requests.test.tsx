@@ -15,12 +15,12 @@ const query: requestsQueryResponse['query'] = {
 };
 
 describe('certifier requests list page', () => {
-  it('It matches the last accepted Snapshot', () => {
+  it('matches the last accepted Snapshot', () => {
     const wrapper = shallow(<CertifierRequests query={query} router={null} />);
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('It passes a query to the CertificationRequestsContainer', () => {
+  it('passes a query to the CertificationRequestsContainer', () => {
     const wrapper = shallow(<CertifierRequests query={query} router={null} />);
     expect(wrapper.find('SearchTableComponent').prop('query')).toBe(query);
   });

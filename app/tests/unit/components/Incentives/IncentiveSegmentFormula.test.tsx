@@ -4,7 +4,7 @@ import IncentiveSegmentFormula from 'components/Incentives/IncentiveSegmentFormu
 
 // It renders the formula
 
-it('It matches the last accepted Snapshot', () => {
+it('matches the last accepted Snapshot', () => {
   const wrapper = render(<IncentiveSegmentFormula />);
   expect(wrapper).toMatchSnapshot();
 });
