@@ -3,29 +3,31 @@
 
 begin;
 
-alter table ggircs_portal.ciip_user_organisation
-  disable trigger _set_user_id;
-alter table ggircs_portal.ciip_user_organisation
-  disable trigger _send_request_for_access_email;
-alter table ggircs_portal.ciip_user_organisation
-  disable trigger _send_access_approved_email;
+-- alter table ggircs_portal.ciip_user_organisation
+--   disable trigger _set_user_id;
+-- alter table ggircs_portal.ciip_user_organisation
+--   disable trigger _send_request_for_access_email;
+-- alter table ggircs_portal.ciip_user_organisation
+--   disable trigger _send_access_approved_email;
 
-alter table ggircs_portal.application
-  disable trigger _send_draft_application_email;
+-- alter table ggircs_portal.application
+--   disable trigger _send_draft_application_email;
 
-alter table ggircs_portal.form_result
-  disable trigger _100_timestamps;
+-- alter table ggircs_portal.form_result
+--   disable trigger _100_timestamps;
 
--- Make it possible to set our own certification_url id:
-alter table ggircs_portal.certification_url
-  disable trigger _random_id;
--- Disable certification emails:
-alter table ggircs_portal.certification_url
-  disable trigger _certification_request_email;
-alter table ggircs_portal.certification_url
-  disable trigger _signed_by_certifier_email;
-alter table ggircs_portal.certification_url
-  disable trigger _recertification_request;
+-- -- Make it possible to set our own certification_url id:
+-- alter table ggircs_portal.certification_url
+--   disable trigger _random_id;
+-- -- Disable certification emails:
+-- alter table ggircs_portal.certification_url
+--   disable trigger _certification_request_email;
+-- alter table ggircs_portal.certification_url
+--   disable trigger _signed_by_certifier_email;
+-- alter table ggircs_portal.certification_url
+--   disable trigger _recertification_request;
+
+select test_helper.modify_triggers('disable');
 
 -- Truncate any existing applications in order to create our own with known ids:
 truncate ggircs_portal.application restart identity cascade;
