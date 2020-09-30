@@ -364,6 +364,7 @@ jobs:
             source ~/.bashrc
             ./.bin/deploy-data.sh -dev
             pushd test_helper_schema
+            SQITCH_TARGET="ciip_portal_dev" sqitch deploy
             sqitch deploy
             popd
       - run:
