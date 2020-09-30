@@ -4,3 +4,4 @@
 schema_test_helper 2020-09-24T20:39:13Z Dylan Leard <dylan@button.is> # schema to house test helper functions
 modify_triggers [schema_test_helper] 2020-09-29T17:16:23Z Dylan Leard <dylan@button.is> # function enables/disables triggers for test setup
 truncate_function [schema_test_helper] 2020-09-29T20:31:57Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # function truncates all tables in the ggircs_portal schema, and reenables all triggers\nEffectively returning the db to a blank state
+initialize_form_result_table_helper [schema_test_helper] 2020-09-30T20:33:31Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # Inserts a helper function that allows a user to insert a starting form result, given an application id and a version number and a form id.\nInserts another helper function that allows a user to specify the form_result json field too.
