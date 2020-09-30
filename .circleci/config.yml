@@ -363,6 +363,9 @@ jobs:
           command: |
             source ~/.bashrc
             ./.bin/deploy-data.sh -dev
+            pushd test_helper_schema
+            sqitch deploy
+            popd
       - run:
           name: Create Mailhog server via docker image
           command: docker run -d -p 1025:1025 -p 8025:8025 mailhog/mailhog
@@ -374,9 +377,6 @@ jobs:
             ADMIN_EMAIL: GHG Regulator <GHGRegulator@gov.bc.ca>
           command: |
             source ~/.asdf/asdf.sh
-            pushd test_helper_schema
-            sqitch deploy
-            popd
             pushd app
             NO_MATHJAX=true yarn start & yarn wait-on http://localhost:3004
             yarn test:e2e-snapshots
