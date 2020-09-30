@@ -164,7 +164,7 @@
       "react-syntax-highlighter/dist/esm/(.*)": "react-syntax-highlighter/dist/cjs/$1"
     },
     "setupFilesAfterEnv": [
-      "<rootDir>lib/setupTests.ts",
+      "<rootDir>tests/setupTests.ts",
       "jest-canvas-mock",
       "jest-extended"
     ],

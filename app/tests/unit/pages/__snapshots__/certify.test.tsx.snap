@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`The certify page It matches the last accepted Snapshot 1`] = `
+exports[`The certify page matches the last accepted Snapshot 1`] = `
 <Relay(DefaultLayout)
   session={
     Object {
@@ -102,7 +102,7 @@ exports[`The certify page It matches the last accepted Snapshot 1`] = `
 </Relay(DefaultLayout)>
 `;
 
-exports[`The certify page It renders ApplicationRecertificationContainer if hashMatches is false 1`] = `
+exports[`The certify page renders ApplicationRecertificationContainer if hashMatches is false 1`] = `
 <Relay(DefaultLayout)
   session={
     Object {

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`The ProblemReportField component  Should match the snapshot 1`] = `
+exports[`The ProblemReportField component Should match the snapshot 1`] = `
 <Fragment>
   <JSXStyle
     id="977984390"

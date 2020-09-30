@@ -7,7 +7,7 @@ import adminForm from 'schema/data/prod/form_json/administration.json';
 import emissionForm from 'schema/data/prod/form_json/emission.json';
 import fuelForm from 'schema/data/prod/form_json/fuel.json';
 import productionForm from 'schema/data/prod/form_json/production.json';
-import {generateFakeSchemaData} from '../../../integration/json-schema-utils';
+import {generateFakeSchemaData} from 'tests/json-schema-utils';
 
 describe('ApplicationDetailsPdf', () => {
   beforeEach(() => {
