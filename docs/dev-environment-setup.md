@@ -253,7 +253,7 @@ pre-commit run --all-files
 If you are impatient and your work is isolated to Javascript, it may be faster to run only the linter and formatter (`eslint` and `prettier`), but it may not catch everything (such as the end-of-file fixer and trailing whitespace):
 
 ```
-yarn format
+yarn lint && yarn format
 ```
 
 ## 10. Commit Something
