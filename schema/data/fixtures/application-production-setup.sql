@@ -5,14 +5,8 @@
 
 begin;
 
-alter table ggircs_portal.ciip_user_organisation
-  disable trigger _set_user_id;
-alter table ggircs_portal.ciip_user_organisation
-  disable trigger _send_request_for_access_email;
-alter table ggircs_portal.ciip_user_organisation
-  disable trigger _send_access_approved_email;
-alter table ggircs_portal.application
-  disable trigger _send_draft_application_email;
+select test_helper.modify_triggers('disable');
+
 delete from ggircs_portal.ciip_user_organisation where user_id=6 and organisation_id=7;
 insert into ggircs_portal.ciip_user_organisation(user_id, organisation_id, status) values (6, 7, 'approved');
 truncate ggircs_portal.application restart identity cascade;
