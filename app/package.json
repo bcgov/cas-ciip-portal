@@ -137,7 +137,6 @@
   "resolutions": {
     "easygraphql-tester/**/lodash": "4.17.19",
     "serialize-javascript": "^3.1.0",
-    "standard-version/**/dot-prop": "5.1.1",
     "**/@types/relay-runtime": "^9.1.6",
     "**/node-fetch": "^2.6.1"
   },
