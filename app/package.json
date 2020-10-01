@@ -135,7 +135,6 @@
     "webpack": "^4.43.0"
   },
   "resolutions": {
-    "**/yargs-parser": "18.1.2",
     "**/lodash": "4.17.19",
     "**/elliptic": ">=6.5.3",
     "serialize-javascript": "^3.1.0",
