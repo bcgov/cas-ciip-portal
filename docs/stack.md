@@ -108,6 +108,8 @@ For every request, Our application server uses the `Grant.ensureFreshness` metho
 
 #### Optimistic Updates
 
+Optimistic update is functionality provided by relay that boosts the perceived responsiveness of mutations. The data sent to the server is used to optimistically update the local relay store before receiving a response from the server in order to more quickly display the mutation effects in a way that assumes the mutation will succeed. Once a response is returned from the server, if the mutation results in an error the optimistic update that was applied to the local store is rolled back. If the mutation succeeds, any temporary optimistic data (ie IDs) will be replaced with the proper data from the server response. Details on how to configure updater and optimisticUpdater functions are detailed in the [Relay docs](https://relay.dev/docs/en/mutations#using-updater-and-optimisticupdater).
+
 #### Debouncing Mutations
 
 Idempotent mutations, for instance mutations that update an object, are candidates for being debounced.
