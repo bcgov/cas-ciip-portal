@@ -1,6 +1,7 @@
 const express = require('express');
 const http = require('http');
 const https = require('https');
+const Bowser = require('bowser');
 const morgan = require('morgan');
 const fs = require('fs');
 const {postgraphile, makePluginHook} = require('postgraphile');
@@ -27,6 +28,7 @@ const {
   getAllGroups,
   getPriorityGroup
 } = require('../lib/user-groups');
+const UNSUPPORTED_BROWSERS = require('../data/unsupported-browsers');
 const {run} = require('graphile-worker');
 const path = require('path');
 const namespaceMap = require('../data/kc-namespace-map');
@@ -178,6 +180,15 @@ app.prepare().then(() => {
     }
 
     next();
+  });
+
+  // Renders a static info page on unsupported browsers.
+  // Files in /static/ are excluded.
+  server.use(/^(?!\/static\/.+$).*/gi, (req, res, next) => {
+    const browser = Bowser.getParser(req.get('User-Agent'));
+    const isUnsupported = browser.satisfies(UNSUPPORTED_BROWSERS);
+    if (isUnsupported) res.redirect('/static/update-browser.html');
+    else next();
   });
 
   const store = new PgSession({
