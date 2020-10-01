@@ -5,21 +5,8 @@
 
 begin;
 
-do \$$
-begin
-create or replace function ggircs_portal.current_timestamp() returns timestamptz as
-\$s$
-  select application_open_time
-  from ggircs_portal.reporting_year
-  where reporting_year = 2019
-\$s$ language sql;
-
-insert into ggircs_portal.reporting_year(reporting_year, reporting_period_start, reporting_period_end, swrs_deadline, application_open_time, application_close_time)
-overriding system value
-values
-(2019, '2019-01-01 00:00:00.0-08', '2019-12-31 23:59:59.0-08', '2020-07-31 00:00:00.000000-07', '2020-07-03 00:00:00.000000-07', '2020-08-31 23:59:59.999999-07');
-
-perform test_helper.modify_triggers('disable');
+select test_helper.mock_open_window();
+select test_helper.modify_triggers('disable');
 
 -- Create test users
 insert into ggircs_portal.ciip_user (id, uuid, first_name, last_name, email_address, occupation, phone_number)
@@ -51,10 +38,9 @@ values
 
 
 
-perform ggircs_portal.create_application_mutation_chain(1);
-perform ggircs_portal.create_application_mutation_chain(2);
+select ggircs_portal.create_application_mutation_chain(1);
+select ggircs_portal.create_application_mutation_chain(2);
 end;
-\$$;
 
 -- *2* CERTIFICATION_URL
 
