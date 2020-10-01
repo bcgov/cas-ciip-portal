@@ -135,7 +135,7 @@
     "webpack": "^4.43.0"
   },
   "resolutions": {
-    "**/lodash": "4.17.19",
+    "easygraphql-tester/**/lodash": "4.17.19",
     "**/elliptic": ">=6.5.3",
     "serialize-javascript": "^3.1.0",
     "standard-version/**/dot-prop": "5.1.1",
