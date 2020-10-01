@@ -17,7 +17,6 @@ Enzyme.configure({adapter: new Adapter()});
 // global.shallow = shallow;
 // global.render = render;
 // global.mount = mount;
-// global.sinon = sinon;
 
 jest.setTimeout(30000);
 
