@@ -156,10 +156,6 @@ deploy_test_data: $(call make_help,deploy_data,deploys database schemas and data
 deploy_test_data:
 	@bash ./.bin/deploy-data.sh --drop-db --dev-data
 
-.PHONY: commit
-commit:
-	@@app/node_modules/.bin/git-cz
-
 .PHONY: release
 release:
 	@@app/node_modules/.bin/standard-version
