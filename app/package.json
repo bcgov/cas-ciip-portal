@@ -74,7 +74,6 @@
     "relay-runtime": "^9.0.0",
     "remove": "^0.1.5",
     "sinon": "^9.0.2",
-    "standard-version": "^8.0.2",
     "styled-jsx": "^3.2.5"
   },
   "devDependencies": {
@@ -98,7 +97,6 @@
     "cypress": "^4.12.1",
     "cypress-axe": "^0.8.1",
     "cypress-plugin-retries": "^1.5.2",
-    "cz-conventional-changelog": "3.2.0",
     "easygraphql-tester": "^5.1.6",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
@@ -134,12 +132,12 @@
     "relay-config": "^9.1.0",
     "relay-test-utils": "^9.1.0",
     "require-context.macro": "^1.2.2",
+    "standard-version": "^9.0.0",
     "typescript": "3.9.3",
     "wait-on": "^5.0.0",
     "webpack": "^4.43.0"
   },
   "resolutions": {
-    "**/minimist": "1.2.5",
     "**/yargs-parser": "18.1.2",
     "**/lodash": "4.17.19",
     "**/elliptic": ">=6.5.3",
