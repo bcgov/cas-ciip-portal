@@ -35,6 +35,6 @@ update ggircs_portal.application_revision set created_by = 6 where application_i
 
 -- Ensure all form results contain no errors by initializing them
 -- application ID is 2 and version number is 1
-select test_helper.initialize_form_result(2,1);
+select test_helper.initialize_all_form_result_data(2,1);
 
 commit;

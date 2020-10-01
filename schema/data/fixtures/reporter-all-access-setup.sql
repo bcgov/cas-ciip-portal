@@ -42,6 +42,6 @@ values
 (29, 'Other Pulp (Mechanical pulp, paper, newsprint)', 'bone-dry tonnes','published', true, true);
 
 -- Ensure all form results contain no errors
-select test_helper.initialize_form_result(2,1);
+select test_helper.initialize_all_form_result_data(2,1);
 
 commit;
