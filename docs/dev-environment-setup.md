@@ -260,9 +260,11 @@ yarn lint && yarn format
 
 ### Commit Message Conventions
 
-This project follows the commit message conventions outlined by [Convential Commits](https://www.conventionalcommits.org/). Besides the standard commit types (message prefixes) **feat** and **fix**, we use some other types described there based on the Angular convention; some common ones among those are **test**, **docs**, **chore** and **refactor**.
+We use [gitlint](https://jorisroovers.com/gitlint/) to check commit message formatting. You can enable it by using `pre-commit install --hook-type commit-msg`.
 
-These facilitate the automated creation of [changelogs](../CHANGELOG.md).
+This project follows the commit message conventions outlined by [Convential Commits](https://www.conventionalcommits.org/). Besides the standard commit types (message prefixes) **feat** and **fix**, we use some other types described there based on the Angular convention; some common ones among those are **test**, **docs**, **chore** and **refactor**. You can find the configuration details in the [.gitlint](../gitlint) file
+
+These facilitate the automated creation of [changelogs](../CHANGELOG.md), using the [standard-version](https://github.com/conventional-changelog/standard-version) utility.
 
 We also extend this prefix convention to the naming of **branches**, eg: `docs/add-readme` or `feat/some-feature`.
 

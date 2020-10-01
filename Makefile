@@ -104,32 +104,6 @@ install:
 install_test: OC_PROJECT=$(OC_TEST_PROJECT)
 install_test: install
 
-.PHONY: watch
-watch: $(call make_help,watch,configure and start the watchers & dev servers)
-watch:
-	watchman watch-project .
-	watchman -j < .watch-schema-data.json
-	watchman -j < .watch-status-schema.json
-	watchman -j < .watch-app-yarn.json
-	watchman -j < .watch-app-relay.json
-	watchman -j < .watch-db.json
-	watchman -j < .watch-server.json
-
-.PHONY: unwatch
-unwatch: $(call make_help,unwatch,shut down the watchers but leave the dev servers running)
-unwatch:
-	watchman watch-del-all
-	watchman shutdown-server
-	if command -v launchctl; then launchctl unload ~/Library/LaunchAgents/com.github.facebook.watchman.plist; fi
-	kill -9 $(shell cat log/server.pid) || true # stop the watched app server
-	pg_ctl stop || true # stop the watched database server
-
-# TODO: delete this target
-# ...but maybe it's helpful for debugging watchman itself on a mac?
-.PHONY: watch_log
-watch_log:
-	tail -f /usr/local/var/run/watchman/$(shell whoami)-state/log
-
 # Might need to install the bundle containing DB-Pg on a Mac
 # perl -MCPAN -e 'install Bundle::DBD::Pg'
 .PHONY: install_perl_tools
@@ -155,23 +129,3 @@ install_dev_tools: install_asdf_tools install_perl_tools
 deploy_test_data: $(call make_help,deploy_data,deploys database schemas and data)
 deploy_test_data:
 	@bash ./.bin/deploy-data.sh --drop-db --dev-data
-
-.PHONY: commit
-commit:
-	@@app/node_modules/.bin/git-cz
-
-.PHONY: release
-release:
-	@@app/node_modules/.bin/standard-version
-
-.PHONY: release-alpha
-release-alpha:
-	@@app/node_modules/.bin/standard-version --prerelease alpha
-
-.PHONY: release-beta
-release-beta:
-	@@app/node_modules/.bin/standard-version --prerelease beta
-
-.PHONY: release-rc
-release-rc:
-	@@app/node_modules/.bin/standard-version --prerelease rc
