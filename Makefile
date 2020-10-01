@@ -129,19 +129,3 @@ install_dev_tools: install_asdf_tools install_perl_tools
 deploy_test_data: $(call make_help,deploy_data,deploys database schemas and data)
 deploy_test_data:
 	@bash ./.bin/deploy-data.sh --drop-db --dev-data
-
-.PHONY: release
-release:
-	@@app/node_modules/.bin/standard-version
-
-.PHONY: release-alpha
-release-alpha:
-	@@app/node_modules/.bin/standard-version --prerelease alpha
-
-.PHONY: release-beta
-release-beta:
-	@@app/node_modules/.bin/standard-version --prerelease beta
-
-.PHONY: release-rc
-release-rc:
-	@@app/node_modules/.bin/standard-version --prerelease rc
