@@ -56,7 +56,6 @@
     "next": "^9.4.4",
     "nodemailer": "^6.4.8",
     "pg": "^8.2.0",
-    "popper.js": "^1.15.0",
     "postgraphile": "^4.8.0",
     "postgraphile-log-consola": "^1.0.1",
     "react": "^16.13.0",
