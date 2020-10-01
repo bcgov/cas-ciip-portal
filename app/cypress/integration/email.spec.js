@@ -1,5 +1,10 @@
 /* eslint-disable jest/valid-expect */
 
+/*
+   IF RUNNING THIS LOCALLY: you'll need your own mailhog instance
+  `sudo docker run -d -p 1025:1025 -p 8025:8025 mailhog/mailhog`
+*/
+
 if (Cypress.env('NO_MAIL')) {
   describe('No tests run', () => {
     it('NO_MAIL flag was set', () => {
