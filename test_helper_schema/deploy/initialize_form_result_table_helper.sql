@@ -26,7 +26,7 @@ $function$
 
     -- We make sure that the requested form_id exists
     if not exists ( select 1 from ggircs_portal.form_result as fr where fr.form_id=$3 )
-    then  
+    then
       raise exception 'There is no form_result with form_id % in the database', $3;
     end if;
 
@@ -34,7 +34,7 @@ $function$
 $function$ language plpgsql volatile;
 
 
-create or replace function test_helper.initialize_form_result_data(application_id int, version_number int, form_id int)
+create or replace function test_helper.initialize_form_result_data(application_id int, version_number int, form_id int, seed int default 0)
 returns void as
 $function$
   declare
@@ -49,7 +49,7 @@ $function$
             "name": "Changed",
             "naics": "12345",
             "tradeName": "trade",
-            "bcCorporateRegistryNumber": "HK8394024",
+            "bcCorporateRegistryNumber": "HK' || 8394024 + seed || '",
             "mailingAddress": {
               "city": "Victoria",
               "province": "British Columbia",
@@ -70,13 +70,14 @@ $function$
             }
           }
         }';
+
     form_result_data_2 constant jsonb := '{
           "sourceTypes": [{
             "gases": [{
               "gwp": 2,
               "gasType": "CO2nonbio",
               "annualCO2e": 5,
-              "annualEmission": 6,
+              "annualEmission": '|| 6 + seed ||',
               "gasDescription": "Carbon dioxide from non-biomass"
             }, {
               "gwp": 1,
@@ -326,19 +327,19 @@ $function$
     form_result_data_3 constant jsonb := '[
           {
             "fuelRowId": 11,
-            "quantity": 10,
+            "quantity": ' || 10 + seed || ',
             "fuelUnits": "t",
             "emissionCategoryRowId": 1
           }, {
             "fuelRowId": 13,
-            "quantity": 40120,
+            "quantity": ' || 40120 + seed || ',
             "fuelUnits": "kL",
             "emissionCategoryRowId": 1
           }]
           ';
     form_result_data_4 constant jsonb := '[
             {
-              "productAmount": 87600,
+              "productAmount": ' || 87600 + seed || ',
               "productRowId": 29,
               "productUnits": "MWh",
               "additionalData": {
@@ -367,7 +368,7 @@ $function$
               "importedElectricityAllocationFactor": 20,
               "importedHeatAllocationFactor": 20
             }, {
-              "productAmount": 12000,
+              "productAmount": ' || 12000 + seed || ',
               "productRowId": 26,
               "productUnits": "t",
               "additionalData": {
@@ -385,7 +386,7 @@ $function$
           ]' ;
     form_result_data_selected jsonb;
   begin
-    --validate call 
+    --validate call
     perform test_helper.validate_form_result_data($1, $2, $3);
 
     case $3
@@ -402,21 +403,21 @@ $function$
       end case;
 
     -- We insert the data
-    update ggircs_portal.form_result as fr 
+    update ggircs_portal.form_result as fr
     set form_result=form_result_data_selected
     where fr.application_id=$1 and fr.version_number=$2 and fr.form_id=$3;
-    
+
   end;
 $function$ language plpgsql volatile;
 
-create or replace function test_helper.initialize_all_form_result_data(application_id int, version_number int)
+create or replace function test_helper.initialize_all_form_result_data(application_id int, version_number int, seed int default 0)
 returns void as
 $function$
   begin
-    perform test_helper.initialize_form_result_data($1, $2, 1);
-    perform test_helper.initialize_form_result_data($1, $2, 2);
-    perform test_helper.initialize_form_result_data($1, $2, 3);
-    perform test_helper.initialize_form_result_data($1, $2, 4);
+    perform test_helper.initialize_form_result_data($1, $2, 1, $3);
+    perform test_helper.initialize_form_result_data($1, $2, 2, $3);
+    perform test_helper.initialize_form_result_data($1, $2, 3, $3);
+    perform test_helper.initialize_form_result_data($1, $2, 4, $3);
   end;
 $function$ language plpgsql volatile;
 
