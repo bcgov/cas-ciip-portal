@@ -184,7 +184,9 @@ app.prepare().then(() => {
 
   // Renders a static info page on unsupported browsers.
   // Files in /static/ are excluded.
-  server.use(/^(?!\/static\/.+$).*/gi, (req, res, next) => {
+  server.use('/', (req, res, next) => {
+    if (req.path.startsWith('/static/')) return next();
+
     const browser = Bowser.getParser(req.get('User-Agent'));
     const isUnsupported = browser.satisfies(UNSUPPORTED_BROWSERS);
     if (isUnsupported) res.redirect('/static/update-browser.html');
