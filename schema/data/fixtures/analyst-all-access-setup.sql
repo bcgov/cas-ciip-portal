@@ -5,6 +5,7 @@
 
 begin;
 
+select test_helper.clean_ggircs_portal_schema();
 select test_helper.mock_open_window();
 select test_helper.modify_triggers('disable');
 
@@ -20,27 +21,7 @@ values
   (6, '809217a1-34b8-4179-95bc-6b4410b4fe16', 'Cypress', 'Reporter', 'ciip-reporter@mailinator.com', 'Cypress Reporter', '123456789'),
   (7, '15a21af2-ce88-42e6-ac90-0a5e24260ec6', 'Cypress', 'Certifier', 'certifier@certi.fy', 'Cypress Certifier', '123456789');
 
--- *1* CIIP_USER_ORGANISATION
-insert into ggircs_portal.organisation(id, report_id, swrs_report_id, swrs_organisation_id, operator_name, cra_business_number)
-overriding system value
-values
-(7, 3, 562237, 8469, 'Fvothac Tdazlefag Ltd.', 670654234),
-(8,2,841830,9308,'Nckgmvysf, Inc.',856930160);
-
-insert into ggircs_portal.ciip_user_organisation(user_id, organisation_id, status) values (6, 7, 'approved');
--- end *1*
-
-insert into ggircs_portal.facility(id, organisation_id, facility_name, bcghgid)
-overriding system value
-values
-(1,8,'Ftavhrcsu',43680338846),
-(2,7,'Aafjfj',95333895918);
-
-
-
-select ggircs_portal.create_application_mutation_chain(1);
-select ggircs_portal.create_application_mutation_chain(2);
-end;
+select test_helper.create_applications(2, False);
 
 insert into ggircs_portal.application_revision_status(application_id, version_number, application_revision_status)
   values (2,1,'submitted');
