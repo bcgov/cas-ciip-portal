@@ -2,8 +2,8 @@
 
 module.exports = {
   ie: '<=11',
-  safari: '<10',
+  safari: '<11',
   firefox: '<61',
-  samsung_internet: '<5',
+  samsung_internet: '<10',
   chrome: '<68'
 };
