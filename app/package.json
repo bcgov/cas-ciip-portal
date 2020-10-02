@@ -47,7 +47,7 @@
     "graphile-build": "^4.5.0",
     "graphile-build-pg": "^4.8.0",
     "graphile-worker": "^0.6.0",
-    "graphql": "^14.6.0",
+    "graphql": "^14.7.0",
     "graphql-voyager": "^1.0.0-rc.30",
     "isomorphic-fetch": "^3.0.0",
     "json-schema": "^0.2.5",
