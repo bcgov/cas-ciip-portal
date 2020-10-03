@@ -289,7 +289,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
   return (
     <>
       <tr>
-        <td>{product.productName}</td>
+        <td className="text-left">{product.productName}</td>
         <td>{dateTimeFormat(product.updatedAt, 'days_numbered')}</td>
         <td>{currentBenchmark?.benchmark ?? null}</td>
         <td>{currentBenchmark?.eligibilityThreshold ?? null}</td>
