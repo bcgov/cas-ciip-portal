@@ -389,6 +389,9 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
           opacity: 0.5;
           cursor: pointer;
         }
+        .table td {
+          vertical-align: middle;
+        }
         `}
       </style>
     </>
