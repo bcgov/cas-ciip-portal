@@ -7447,16 +7447,17 @@ handlebars@^4.7.6:
   optionalDependencies:
     uglify-js "^3.1.4"
 
-happo-cypress@^1.9.1:
-  version "1.9.1"
-  resolved "https://registry.yarnpkg.com/happo-cypress/-/happo-cypress-1.9.1.tgz#8a5a5420615ac657561317b1311b57ccccf830ed"
-  integrity sha512-aqf76OWynFZhR2B4dYPgGn1Wdml3M5wVZRwtDSlrqyWUVU9AF/J79zIqXgP93M5P/9/sn4LuuyaL6bcU2YewIw==
+happo-cypress@^1.9.2:
+  version "1.9.2"
+  resolved "https://registry.yarnpkg.com/happo-cypress/-/happo-cypress-1.9.2.tgz#916424263b89346bff11d3e4bad59c7266858d8b"
+  integrity sha512-iKqLGyOAUIB6fIqlOenMbf4Ifb0KGdl3mrL95pTnQQiNQ+E1+3qZdMRZAZ6mUQruVdqm/397NPNIVtdHQcTXiA==
   dependencies:
     archiver "^3.1.1"
     crypto-js "^4.0.0"
     https-proxy-agent "^5.0.0"
     node-fetch "^2.6.0"
     parse-srcset "^1.0.2"
+    string.prototype.replaceall "^1.0.3"
 
 happo.io@^5.6.3:
   version "5.6.3"
@@ -13372,6 +13373,17 @@ string.prototype.repeat@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/string.prototype.repeat/-/string.prototype.repeat-0.2.0.tgz#aba36de08dcee6a5a337d49b2ea1da1b28fc0ecf"
   integrity sha1-q6Nt4I3O5qWjN9SbLqHaGyj8Ds8=
+
+string.prototype.replaceall@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/string.prototype.replaceall/-/string.prototype.replaceall-1.0.3.tgz#f7839a016a290b60769138f4d4938238cbb5a809"
+  integrity sha512-GF8JS9jtHSDkIsVMsYBPR4dItwaU6xOSPsMcRGTAbBr12ZDfyKMtgxdC2HDFbsMogGel29pmwxioJoXeu9ztIg==
+  dependencies:
+    define-properties "^1.1.3"
+    es-abstract "^1.17.0-next.1"
+    function-bind "^1.1.1"
+    has-symbols "^1.0.1"
+    is-regex "^1.0.4"
 
 string.prototype.trim@^1.2.1:
   version "1.2.1"
