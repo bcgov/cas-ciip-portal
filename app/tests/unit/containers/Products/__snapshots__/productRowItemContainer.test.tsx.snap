@@ -3,45 +3,50 @@
 exports[`ProductList should match the previous snaphshot 1`] = `
 <Fragment>
   <tr
-    className="jsx-1533842756"
+    className="jsx-3501624252"
   >
     <td
-      className="jsx-1533842756"
+      className="jsx-3501624252 text-left"
     >
       test product
     </td>
     <td
-      className="jsx-1533842756"
+      className="jsx-3501624252"
     >
       06-05-2020
     </td>
     <td
-      className="jsx-1533842756"
+      className="jsx-3501624252"
     >
       1
     </td>
     <td
-      className="jsx-1533842756"
+      className="jsx-3501624252"
     >
       10
     </td>
     <td
-      className="jsx-1533842756"
+      className="jsx-3501624252"
     >
       Yes
     </td>
     <td
-      className="jsx-1533842756"
+      className="jsx-3501624252"
     >
-      PUBLISHED
+      <Badge
+        pill={true}
+        variant="success"
+      >
+        PUBLISHED
+      </Badge>
     </td>
     <td
-      className="jsx-1533842756"
+      className="jsx-3501624252"
     >
       Yes
     </td>
     <td
-      className="jsx-1533842756"
+      className="jsx-3501624252"
     >
       <OverlayTrigger
         defaultShow={false}
@@ -97,7 +102,7 @@ exports[`ProductList should match the previous snaphshot 1`] = `
        
     </td>
     <td
-      className="jsx-1533842756"
+      className="jsx-3501624252"
     >
       <OverlayTrigger
         defaultShow={false}
@@ -606,9 +611,9 @@ exports[`ProductList should match the previous snaphshot 1`] = `
     setLinkProductModalShow={[Function]}
   />
   <JSXStyle
-    id="1533842756"
+    id="3501624252"
   >
-    .hidden-title label{display:none;}.editIcon:hover{color:red;cursor:pointer;}.editIcon-disabled{opacity:0.5;}.editIcon-disabled:hover{color:red;opacity:0.5;cursor:pointer;}
+    .hidden-title label{display:none;}.editIcon:hover{color:red;cursor:pointer;}.editIcon-disabled{opacity:0.5;}.editIcon-disabled:hover{color:red;opacity:0.5;cursor:pointer;}.table td{vertical-align:middle;}
   </JSXStyle>
 </Fragment>
 `;
