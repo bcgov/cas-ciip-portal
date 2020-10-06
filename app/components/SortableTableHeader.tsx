@@ -16,13 +16,20 @@ const SortableTableHeader: React.FunctionComponent<Props> = ({
 }) => {
   const {columnName, displayName} = headerVariables;
   return (
-    <th
-      style={{background: '#003366', color: 'white'}}
-      onClick={() => sort('sortColumn', columnName)}
-    >
-      {displayName}
-      <br />
-      {displayName && <FontAwesomeIcon color="white" icon={faSort} />}
+    <th onClick={() => sort('sortColumn', columnName)}>
+      <span>{displayName}</span>
+      <span style={{height: '100%', position: 'absolute', right: '0.75em'}}>
+        {displayName && <FontAwesomeIcon color="white" icon={faSort} />}
+      </span>
+      <style>{`
+        .table thead th {
+          background: #003366;
+          color: white;
+          position: relative;
+          padding-right: calc(1em + 10px);
+          cursor: pointer;
+        }
+      `}</style>
     </th>
   );
 };
