@@ -1,6 +1,6 @@
 import React, {useMemo} from 'react';
 import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
-import {Modal, OverlayTrigger, Tooltip} from 'react-bootstrap';
+import {Modal, Badge, OverlayTrigger, Tooltip} from 'react-bootstrap';
 import {IChangeEvent} from 'react-jsonschema-form';
 import {ProductRowItemContainer_product} from 'ProductRowItemContainer_product.graphql';
 import {ProductRowItemContainer_query} from 'ProductRowItemContainer_query.graphql';
@@ -277,15 +277,28 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
     </Modal>
   );
 
+  const statusBadgeColor: Record<
+    CiipProductState,
+    'warning' | 'success' | 'secondary'
+  > = {
+    DRAFT: 'warning',
+    PUBLISHED: 'success',
+    ARCHIVED: 'secondary'
+  };
+
   return (
     <>
       <tr>
-        <td>{product.productName}</td>
+        <td className="text-left">{product.productName}</td>
         <td>{dateTimeFormat(product.updatedAt, 'days_numbered')}</td>
         <td>{currentBenchmark?.benchmark ?? null}</td>
         <td>{currentBenchmark?.eligibilityThreshold ?? null}</td>
         <td>{product.requiresEmissionAllocation ? 'Yes' : 'No'}</td>
-        <td>{product.productState}</td>
+        <td>
+          <Badge pill variant={statusBadgeColor[product.productState]}>
+            {product.productState}
+          </Badge>
+        </td>
         <td>{product.isCiipProduct ? 'Yes' : 'No'}</td>
         <td>
           <OverlayTrigger
@@ -375,6 +388,9 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
           color: red;
           opacity: 0.5;
           cursor: pointer;
+        }
+        .table td {
+          vertical-align: middle;
         }
         `}
       </style>

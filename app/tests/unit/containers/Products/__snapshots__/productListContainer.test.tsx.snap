@@ -39,7 +39,7 @@ exports[`ProductList should render the product list 1`] = `
     Object {
       "Allocation of Emissions": "requires_emission_allocation",
       "Benchmark": "benchmark",
-      "Ciip Benchmarked": "is_ciip_product",
+      "CIIP Benchmarked": "is_ciip_product",
       "Edit/View": null,
       "Eligibility Threshold": "eligibility_threshold",
       "Link": null,
