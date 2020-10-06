@@ -64,7 +64,6 @@ export const SearchTableLayoutComponent: React.FunctionComponent<Props> = (
               <th className="master-select">
                 <label>
                   Select All
-                  <br />
                   <input
                     type="checkbox"
                     checked={allSelected}
@@ -100,6 +99,7 @@ export const SearchTableLayoutComponent: React.FunctionComponent<Props> = (
         }
         .master-select label {
           margin-bottom: 0;
+          padding-right: 24px;
           width: 100%;
           display: flex;
           flex-direction: column;
@@ -110,6 +110,11 @@ export const SearchTableLayoutComponent: React.FunctionComponent<Props> = (
           right: 0;
           bottom: 0;
           left: 0;
+        }
+        .master-select input[type='checkbox'] {
+          position: absolute;
+          right: 10px;
+          top: calc(50% - 6px);
         }
         .search-table.loading td {
           opacity: 0;
