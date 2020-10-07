@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.10.0](https://github.com/bcgov/cas-ciip-portal/compare/v1.9.1...v1.10.0) (2020-10-07)
+
+
+### Features
+
+* Add Bowser to project for browser detection ([4d4ef68](https://github.com/bcgov/cas-ciip-portal/commit/4d4ef683a6f04494411892a75761e263e4801435))
+* Backwards-compatible browser info page ([4d4f770](https://github.com/bcgov/cas-ciip-portal/commit/4d4f7702f098baf876e92642cefa8be3f096239b))
+* PageRedirectHandler redirects user when session idles ([372ba33](https://github.com/bcgov/cas-ciip-portal/commit/372ba3362817e6335adb51e4da6a936def2cbfcb))
+* Render static info page for unsupported browsers ([f60e055](https://github.com/bcgov/cas-ciip-portal/commit/f60e055d9a6857c537725f5a9516423271391da3))
+
+
+### Bug Fixes
+
+* Capitalize 'CIIP Benchmarked' table header ([9cfe03a](https://github.com/bcgov/cas-ciip-portal/commit/9cfe03a3241f406851cce3a6c20bedbd5797ba80))
+* Correct unsupported browsers ([78fb442](https://github.com/bcgov/cas-ciip-portal/commit/78fb442f3839c6d578e1f6599dca45926a0c9fc8))
+* keycloak access token is refreshed when needed ([a43c618](https://github.com/bcgov/cas-ciip-portal/commit/a43c61841a11a46179926b1cb5a43ff72d21d4f8))
+* session-idle-remaining-time route should handle dev flags ([af4965b](https://github.com/bcgov/cas-ciip-portal/commit/af4965be93c8ef880c2bf79fd1dd3e89789fb3b9))
+
 ### [1.9.1](https://github.com/bcgov/cas-ciip-portal/compare/v1.9.0...v1.9.1) (2020-09-23)
 
 
