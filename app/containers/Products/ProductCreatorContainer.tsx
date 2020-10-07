@@ -84,7 +84,11 @@ export const ProductCreator: React.FunctionComponent<Props> = ({
               onSubmit={saveProduct}
             >
               <Button type="submit">Add Product</Button>
-              <Button variant="danger" onClick={toggleShowCreateForm}>
+              <Button
+                variant="secondary"
+                style={{marginLeft: '0.5em'}}
+                onClick={toggleShowCreateForm}
+              >
                 Close
               </Button>
             </JsonSchemaForm>
