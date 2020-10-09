@@ -5,15 +5,13 @@ begin;
 
 drop function if exists ggircs_portal.facility_has_swrs_report;
 
-create or replace function ggircs_portal.facility_has_swrs_report(facility ggircs_portal.facility)
+create or replace function ggircs_portal.facility_has_swrs_report(facility ggircs_portal.facility, reporting_year integer)
   returns boolean
 as
 $function$
 declare
-  current_year int;
 begin
-  current_year = (select reporting_year from ggircs_portal.opened_reporting_year());
-  return (select count(*) from swrs.report where swrs_facility_id = facility.swrs_facility_id and reporting_period_duration = current_year);
+  return (select count(*) from ggircs_portal.get_swrs_facility_data(facility.swrs_facility_id, reporting_year) where report_id is not null);
 end;
 
 $function$

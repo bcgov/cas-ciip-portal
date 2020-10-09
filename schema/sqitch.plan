@@ -192,3 +192,4 @@ mutations/create_application_revision_mutation_chain [mutations/create_applicati
 @v1.9.0 2020-09-23T16:37:38Z Matthieu Foucault <matthieu@button.is> # release v1.9.0
 @v1.9.1 2020-09-23T21:50:05Z Dylan Leard <dylan@button.is> # release v1.9.1
 @v1.10.0 2020-10-07T16:21:01Z Matthieu Foucault <matthieu@button.is> # release v1.10.0
+computed_columns/facility_has_swrs_report [computed_columns/facility_has_swrs_report@v1.7.0] 2020-10-09T20:52:04Z Matthieu Foucault <matthieu@button.is> # improve performance of has_swrs_report
