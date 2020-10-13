@@ -184,8 +184,6 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
         -- Determine the payment allocation factor.
         if (select array_length(reported_ciip_products, 1)) = 1 then
           payment_allocation_factor = 1;
-        elsif (select sum(p.product_emissions) from unnest(reported_ciip_products) p) = 0 then
-          payment_allocation_factor = 0;
         else
           payment_allocation_factor = em_product / (select sum(p.product_emissions) from unnest(reported_ciip_products) p) ;
         end if;

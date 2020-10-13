@@ -39,9 +39,9 @@ values
   true, false, true, false, false, false, false, false, false, false, true),
   (4, 'Purchased heat', 'published',
   true, false, true, false, false, false, false, false, false, false, true),
-  (5, 'Electricity generated on site', 'published',
+  (5, 'Generated electricity', 'published',
   true, false, true, false, false, false, false, false, false, false, true),
-  (6, 'Heat generated on site', 'published',
+  (6, 'Generated heat', 'published',
   true, false, true, false, false, false, false, false, false, false, true),
   (7, 'Emissions from EIOs', 'published',
   true, false, true, false, false, false, false, false, false, false, true),
@@ -462,6 +462,112 @@ select lives_ok(
     )
   $$,
   'does not throw an exception if a product requires sold heat and it is not present'
+);
+
+-- Report a product with no allocation of emissions which requires "Generated electricity" to be reported
+update ggircs_portal.form_result
+set form_result = '[
+  {
+    "productRowId": 16,
+    "productAmount": 100
+  },
+  {
+    "productRowId": 5,
+    "productAmount": 42,
+    "productEmissions": 14
+  }
+]'
+where application_id = 1 and version_number = 1 and form_id = 4;
+
+select is(
+  (
+    with record as (
+      select row(application_revision.*)::ggircs_portal.application_revision
+      from ggircs_portal.application_revision where application_id = 1 and version_number = 1
+    )
+    select product_emissions
+    from ggircs_portal.application_revision_ciip_incentive(
+      (select * from record)
+    ) where product_id = 16
+  ),
+  36.0,
+  'generated electricity emissions are removed from the facility emissions for products that require it'
+);
+
+update ggircs_portal.form_result
+set form_result = '[
+  {
+    "productRowId": 16,
+    "productAmount": 100
+  }
+]'
+where application_id = 1 and version_number = 1 and form_id = 4;
+
+select lives_ok(
+  $$
+
+    with record as (
+      select row(application_revision.*)::ggircs_portal.application_revision
+      from ggircs_portal.application_revision where application_id = 1 and version_number = 1
+    )
+    select * from ggircs_portal.application_revision_ciip_incentive(
+      (select * from record)
+    )
+  $$,
+  'does not throw an exception if a product requires generated electricity and it is not present'
+);
+
+-- Report a product with no allocation of emissions which requires "Generated electricity" to be reported
+update ggircs_portal.form_result
+set form_result = '[
+  {
+    "productRowId": 17,
+    "productAmount": 100
+  },
+  {
+    "productRowId": 6,
+    "productAmount": 42,
+    "productEmissions": 14
+  }
+]'
+where application_id = 1 and version_number = 1 and form_id = 4;
+
+select is(
+  (
+    with record as (
+      select row(application_revision.*)::ggircs_portal.application_revision
+      from ggircs_portal.application_revision where application_id = 1 and version_number = 1
+    )
+    select product_emissions
+    from ggircs_portal.application_revision_ciip_incentive(
+      (select * from record)
+    ) where product_id = 17
+  ),
+  36.0,
+  'generated heat emissions are removed from the facility emissions for products that require it'
+);
+
+update ggircs_portal.form_result
+set form_result = '[
+  {
+    "productRowId": 17,
+    "productAmount": 100
+  }
+]'
+where application_id = 1 and version_number = 1 and form_id = 4;
+
+select lives_ok(
+  $$
+
+    with record as (
+      select row(application_revision.*)::ggircs_portal.application_revision
+      from ggircs_portal.application_revision where application_id = 1 and version_number = 1
+    )
+    select * from ggircs_portal.application_revision_ciip_incentive(
+      (select * from record)
+    )
+  $$,
+  'does not throw an exception if a product requires generated heat and it is not present'
 );
 
 -- Report a product with no allocation of emissions which requires "EIO Emissions" to be reported
