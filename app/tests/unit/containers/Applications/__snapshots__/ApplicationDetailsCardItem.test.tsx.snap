@@ -68,6 +68,7 @@ exports[`ApplicationDetailsCardItemComponent should render the individual summar
           Object {
             "BooleanField": [Function],
             "NumberField": [Function],
+            "ProblemReportField": [Function],
             "StringField": [Function],
             "TitleField": [Function],
             "emissionCategoryRowId": [Function],
