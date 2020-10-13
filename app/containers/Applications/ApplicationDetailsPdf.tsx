@@ -14,6 +14,7 @@ import {createFragmentContainer, graphql} from 'react-relay';
 import {ApplicationDetailsPdf_application} from 'ApplicationDetailsPdf_application.graphql';
 import PdfEmissionGasFieldTemplate from 'containers/Pdf/PdfEmissionGasFieldTemplate';
 import PdfProductionFieldsTemplate from 'containers/Pdf/PdfProductionFieldsTemplate';
+import PdfFuelFieldsTemplate from 'containers/Pdf/PdfFuelFieldsTemplate';
 import PdfFieldTemplate from 'containers/Pdf/PdfFieldTemplate';
 import PdfArrayFieldTemplate from 'containers/Pdf/PdfArrayFieldTemplate';
 import PdfObjectFieldTemplate from 'containers/Pdf/PdfObjectFieldTemplate';
@@ -64,6 +65,10 @@ const CUSTOM_FIELDS = {
     </Text>
   ),
   emissionGas: (props) => <PdfEmissionGasFieldTemplate {...props} />,
+  fuel: (props) => {
+    console.log(props);
+    return <PdfFuelFieldsTemplate query={props.formContext.query} {...props} />;
+  },
   product: (props) => {
     return (
       <PdfProductionFieldsTemplate query={props.formContext.query} {...props} />
@@ -228,6 +233,22 @@ export default createFragmentContainer(ApplicationDetailsPdf, {
           node {
             rowId
             productName
+          }
+        }
+      }
+      allFuels(condition: {state: "active"}) {
+        edges {
+          node {
+            rowId
+            name
+          }
+        }
+      }
+      allEmissionCategories {
+        edges {
+          node {
+            rowId
+            displayName
           }
         }
       }
