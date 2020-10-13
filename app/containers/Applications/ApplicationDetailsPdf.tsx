@@ -66,7 +66,6 @@ const CUSTOM_FIELDS = {
   ),
   emissionGas: (props) => <PdfEmissionGasFieldTemplate {...props} />,
   fuel: (props) => {
-    console.log(props);
     return <PdfFuelFieldsTemplate query={props.formContext.query} {...props} />;
   },
   product: (props) => {
