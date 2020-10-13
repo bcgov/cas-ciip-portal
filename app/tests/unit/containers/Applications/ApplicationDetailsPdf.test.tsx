@@ -16,7 +16,7 @@ describe('ApplicationDetailsPdf', () => {
     mockRandom([0.1, 0.2, 0.3, 0.4, 0.5]);
   });
 
-  it('should render application pdf donwload link', async () => {
+  it('should render application pdf download link', async () => {
     const renderer = shallow(
       <ApplicationDetailsPdf
         application={{
@@ -26,12 +26,7 @@ describe('ApplicationDetailsPdf', () => {
           },
           reportingYear: 2019,
           facilityByFacilityId: {
-            facilityName: 'Forest Floor',
-            facilityMailingAddress: 'Evergreen Street Northwest',
-            facilityCity: 'Oak Grove',
-            facilityCountry: 'Canada',
-            facilityProvince: 'British Columbia',
-            facilityPostalCode: 'V1C6T8'
+            facilityName: 'Forest Floor'
           },
           orderedFormResults: {
             edges: [
@@ -83,13 +78,45 @@ describe('ApplicationDetailsPdf', () => {
               {
                 node: {
                   rowId: 1,
-                  name: 'foo'
+                  productName: 'foo'
                 }
               },
               {
                 node: {
                   rowId: 2,
-                  name: 'simpleFoo'
+                  productName: 'simpleFoo'
+                }
+              }
+            ]
+          },
+          allFuels: {
+            edges: [
+              {
+                node: {
+                  rowId: 1,
+                  name: 'bar'
+                }
+              },
+              {
+                node: {
+                  rowId: 2,
+                  name: 'simpleBar'
+                }
+              }
+            ]
+          },
+          allEmissionCategories: {
+            edges: [
+              {
+                node: {
+                  rowId: 1,
+                  displayName: 'baz'
+                }
+              },
+              {
+                node: {
+                  rowId: 2,
+                  displayName: 'simpleBaz'
                 }
               }
             ]
