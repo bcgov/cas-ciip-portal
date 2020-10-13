@@ -10,27 +10,31 @@ const styles = StyleSheet.create({
 const PdfFieldTemplate: React.FunctionComponent<FieldTemplateProps> = (
   props
 ) => {
+  const getLocalLabel = (props: FieldTemplateProps) => {
+    if (props.label === 'comments') {
+      return null;
+    } // taken care of by the custom field.
+    if (props.label === 'gases' || props.label === 'sourceTypeName')
+      return null;
+
+    if (props.classNames.includes('field-object'))
+      return (
+        <Text
+          style={{fontSize: 15, letterSpacing: 2}}
+        >{`\n\n${props.label}: `}</Text>
+      );
+
+    return <Text>{`\n${props.label}: `}</Text>;
+  };
+
+  const localChildren = props.children ? (
+    <Text style={styles.fields}>{props.children}</Text>
+  ) : null;
+
   return (
     <>
-      {props.label && (
-        <View style={styles.label}>
-          {/* In order to properly display gas labels we need to check:
-          if label has 'field-object' class then add two new lines and style as subtitle
-          otherwise just add one new line
-          */}
-          {props.label === 'gases' ||
-          props.label === 'sourceTypeName' ? null : props.classNames.includes(
-              'field-object'
-            ) ? (
-            <Text style={{fontSize: 15, letterSpacing: 2}}>
-              {`\n\n${props.label}: `}
-            </Text>
-          ) : (
-            <Text>{`\n${props.label}: `}</Text>
-          )}
-        </View>
-      )}
-      {props.children && <Text style={styles.fields}>{props.children}</Text>}
+      {props.label && <View style={styles.label}>{getLocalLabel(props)}</View>}
+      {localChildren}
     </>
   );
 };

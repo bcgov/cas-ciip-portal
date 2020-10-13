@@ -16,6 +16,13 @@ export const PdfProductionFieldsTemplate: React.FunctionComponent<Props> = ({
       <Text style={{fontSize: 15, letterSpacing: 2}}>
         {'\n'}Production:{'\n'}
       </Text>
+      {formData.comments ? (
+        <Text style={{marginBottom: 2, marginTop: 2}}>
+          {`comments: ${formData.comments}`}
+          {'\n'}
+        </Text>
+      ) : null}
+
       <Text>
         Product or Service:{' '}
         {formData.productRowId

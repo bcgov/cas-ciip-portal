@@ -56,6 +56,8 @@ const styles = StyleSheet.create({
 });
 
 const CUSTOM_FIELDS = {
+  ProblemReportField: (props) =>
+    props.formData ? <Text>{`\ncomments: ${props.formData}`}</Text> : null,
   StringField: (props) => <Text>{props.formData ?? '[Not Entered]'}</Text>,
   emissionSource: (props) => (
     <Text style={{fontSize: 13}}>
@@ -149,30 +151,34 @@ export const ApplicationDetailsPdf: React.FunctionComponent<Props> = (
             </Column>
           </Row>
 
-          {formResults.map(({node}) => (
-            <View key={node.formJsonByFormId.name} style={styles.formFields}>
-              <Text style={{borderBottom: 1, paddingBottom: 10, fontSize: 16}}>
-                {'\n'}
-                {node.formJsonByFormId.name}
-              </Text>
-              <JsonSchemaForm
-                omitExtraData
-                ArrayFieldTemplate={PdfArrayFieldTemplate}
-                FieldTemplate={PdfFieldTemplate}
-                ObjectFieldTemplate={PdfObjectFieldTemplate}
-                showErrorList={false}
-                fields={CUSTOM_FIELDS}
-                schema={node.formJsonByFormId.formJson.schema}
-                uiSchema={node.formJsonByFormId.formJson.uiSchema}
-                formData={node.formResult}
-                tagName={'VIEW' as any}
-                widgets={customWidget}
-                formContext={{query}}
-              >
-                <View />
-              </JsonSchemaForm>
-            </View>
-          ))}
+          {formResults.map(({node}) => {
+            return (
+              <View key={node.formJsonByFormId.name} style={styles.formFields}>
+                <Text
+                  style={{borderBottom: 1, paddingBottom: 10, fontSize: 16}}
+                >
+                  {'\n'}
+                  {node.formJsonByFormId.name}
+                </Text>
+                <JsonSchemaForm
+                  omitExtraData
+                  ArrayFieldTemplate={PdfArrayFieldTemplate}
+                  FieldTemplate={PdfFieldTemplate}
+                  ObjectFieldTemplate={PdfObjectFieldTemplate}
+                  showErrorList={false}
+                  fields={CUSTOM_FIELDS}
+                  schema={node.formJsonByFormId.formJson.schema}
+                  uiSchema={node.formJsonByFormId.formJson.uiSchema}
+                  formData={node.formResult}
+                  tagName={'VIEW' as any}
+                  widgets={customWidget}
+                  formContext={{query}}
+                >
+                  <View />
+                </JsonSchemaForm>
+              </View>
+            );
+          })}
         </Body>
         <Text
           fixed
