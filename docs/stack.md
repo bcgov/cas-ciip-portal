@@ -142,7 +142,9 @@ There are a couple of important features with our debounce middleware implementa
 
 ### Database Views and PostGraphile
 
-Smart comments
+We use PostGraphile [smart comments](https://www.graphile.org/postgraphile/smart-comments/#constraints) in order to add constraints like primary and foreign keys to views (and types where necessary). Adding a primary key to a view or type via a smart comment makes views more 'table like', allowing postgraphile to add a [nodeId](https://www.graphile.org/postgraphile/node-id/) to that entity. This ID in turn is used by Relay's [GraphQL Global Object Identification Specification](https://relay.dev/graphql/objectidentification.htm) to uniquely identify, cache and refetch data.
+
+Note: We use the PostGraphile `--classic-ids` flag to rename `nodeId` to `id` and the database `id` column to `rowId` as required by the Relay specification. Details [here](https://www.graphile.org/postgraphile/node-id/).
 
 ### Custom Search Functions
 
