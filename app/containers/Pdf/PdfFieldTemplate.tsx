@@ -7,25 +7,28 @@ const styles = StyleSheet.create({
   fields: {lineHeight: 1.5}
 });
 
+const getLocalLabel = (props: FieldTemplateProps) => {
+  if (props.label === 'gases' || props.label === 'sourceTypeName') return null;
+
+  if (props.classNames.includes('field-object'))
+    return (
+      <Text
+        style={{fontSize: 15, letterSpacing: 2}}
+      >{`\n\n${props.label}: `}</Text>
+    );
+
+  return <Text>{`\n${props.label}: `}</Text>;
+};
+
 const PdfFieldTemplate: React.FunctionComponent<FieldTemplateProps> = (
   props
 ) => {
-  const getLocalLabel = (props: FieldTemplateProps) => {
-    if (props.label === 'comments') {
-      return null;
-    } // taken care of by the custom field.
-    if (props.label === 'gases' || props.label === 'sourceTypeName')
-      return null;
-
-    if (props.classNames.includes('field-object'))
-      return (
-        <Text
-          style={{fontSize: 15, letterSpacing: 2}}
-        >{`\n\n${props.label}: `}</Text>
-      );
-
-    return <Text>{`\n${props.label}: `}</Text>;
-  };
+  if (
+    props.uiSchema['ui:options']?.disableRenderingIfEmpty &&
+    !props.children[0]?.props?.formData
+  ) {
+    return null;
+  }
 
   const localChildren = props.children ? (
     <Text style={styles.fields}>{props.children}</Text>

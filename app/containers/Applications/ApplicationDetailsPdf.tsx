@@ -56,12 +56,7 @@ const styles = StyleSheet.create({
 });
 
 const CUSTOM_FIELDS = {
-  ProblemReportField: (props) => (
-    <Text>
-      {'\n'}
-      {props.formData ? `\ncomments: ${props.formData}` : null}
-    </Text>
-  ),
+  ProblemReportField: (props) => <Text>{props.formData}</Text>,
   StringField: (props) => <Text>{props.formData ?? '[Not Entered]'}</Text>,
   emissionSource: (props) => (
     <Text style={{fontSize: 13}}>
