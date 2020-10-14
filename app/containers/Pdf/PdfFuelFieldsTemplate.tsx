@@ -16,6 +16,13 @@ export const PdfFuelFieldsTemplate: React.FunctionComponent<Props> = ({
       <Text style={{fontSize: 15, letterSpacing: 2}}>
         {'\n'}Fuel:{'\n'}
       </Text>
+      {formData.comments ? (
+        <Text style={{marginBottom: 2, marginTop: 2}}>
+          {`comments: ${formData.comments}`}
+          {'\n'}
+        </Text>
+      ) : null}
+
       <Text>
         Fuel Name:{' '}
         {formData.fuelRowId
