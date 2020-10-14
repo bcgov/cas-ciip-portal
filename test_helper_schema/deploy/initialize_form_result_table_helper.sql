@@ -46,7 +46,7 @@ $function$
             "facilityType": "L_c"
           },
           "operator": {
-            "name": "Changed",
+            "name": "Changed_' || seed || '",
             "naics": "12345",
             "tradeName": "trade",
             "bcCorporateRegistryNumber": "HK' || 8394024 + seed || '",
@@ -366,7 +366,10 @@ $function$
               "paymentAllocationFactor": 5,
               "productEmissions": 5,
               "importedElectricityAllocationFactor": 20,
-              "importedHeatAllocationFactor": 20
+              "importedHeatAllocationFactor": 20,
+              "requiresEmissionAllocation": true,
+              "requiresProductAmount": true,
+              "isCiipProduct": true
             }, {
               "productAmount": ' || 12000 + seed || ',
               "productRowId": 26,
@@ -381,7 +384,10 @@ $function$
               "paymentAllocationFactor": 41,
               "productEmissions": 1,
               "importedElectricityAllocationFactor": 20,
-              "importedHeatAllocationFactor": 20
+              "importedHeatAllocationFactor": 20,
+              "requiresEmissionAllocation": true,
+              "requiresProductAmount": true,
+              "isCiipProduct": true
             }
           ]' ;
     form_result_data_selected jsonb;
