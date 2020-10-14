@@ -16,8 +16,14 @@ $function$
 
   insert into ggircs_portal.reporting_year(reporting_year, reporting_period_start, reporting_period_end, swrs_deadline, application_open_time, application_close_time)
   overriding system value
-  values
-  (2019, '2019-01-01 00:00:00.0-08', '2019-12-31 23:59:59.0-08', '2020-07-31 00:00:00.000000-07', '2020-07-03 00:00:00.000000-07', '2020-08-31 23:59:59.999999-07');
+  values(
+    (select date_part('year', now()- interval '1 year')::int),
+    (select concat((select date_part('year', now()- interval '1 year')::text), '-01-01 00:00:00.0-08')::timestamptz),
+    (select concat((select date_part('year', now()- interval '1 year')::text), '-12-31 23:59:59.0-08')::timestamptz),
+    (select concat((select date_part('year', now())::text), '-07-31 00:00:00.000000-07')::timestamptz),
+    (select now() - interval '1 day'),
+    (select now() + interval '1 day')
+  );
 
 $function$ language sql;
 
