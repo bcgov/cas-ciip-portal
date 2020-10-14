@@ -424,6 +424,7 @@ exports[`ApplicationDetailsPdf should render application pdf download link 1`] =
                     "ui:col-md": 12,
                     "ui:field": "ProblemReportField",
                     "ui:options": Object {
+                      "disableRenderingIfEmpty": true,
                       "label": false,
                     },
                   },
@@ -745,6 +746,7 @@ exports[`ApplicationDetailsPdf should render application pdf download link 1`] =
                     "ui:col-md": 12,
                     "ui:field": "ProblemReportField",
                     "ui:options": Object {
+                      "disableRenderingIfEmpty": true,
                       "label": false,
                     },
                   },
@@ -964,6 +966,7 @@ exports[`ApplicationDetailsPdf should render application pdf download link 1`] =
                       "ui:col-md": 12,
                       "ui:field": "ProblemReportField",
                       "ui:options": Object {
+                        "disableRenderingIfEmpty": true,
                         "label": false,
                       },
                     },
@@ -1230,6 +1233,7 @@ exports[`ApplicationDetailsPdf should render application pdf download link 1`] =
                       "ui:col-md": 12,
                       "ui:field": "ProblemReportField",
                       "ui:options": Object {
+                        "disableRenderingIfEmpty": true,
                         "label": false,
                       },
                     },
