@@ -21,7 +21,7 @@ values
   (6, '809217a1-34b8-4179-95bc-6b4410b4fe16', 'Cypress', 'Reporter', 'ciip-reporter@mailinator.com', 'Cypress Reporter', '123456789'),
   (7, '15a21af2-ce88-42e6-ac90-0a5e24260ec6', 'Cypress', 'Certifier', 'certifier@certi.fy', 'Cypress Certifier', '123456789');
 
-select test_helper.create_applications(2, False);
+select test_helper.create_applications(2, False, True);
 
 insert into ggircs_portal.application_revision_status(application_id, version_number, application_revision_status)
   values (2,1,'submitted');

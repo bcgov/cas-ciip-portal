@@ -2,6 +2,6 @@
 
 begin;
 
-select pg_get_functiondef('test_helper.create_applications(int, boolean)'::regprocedure);
+select pg_get_functiondef('test_helper.create_applications(int, boolean, boolean)'::regprocedure);
 
 rollback;
