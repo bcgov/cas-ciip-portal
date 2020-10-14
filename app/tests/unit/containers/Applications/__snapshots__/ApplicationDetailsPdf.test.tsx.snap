@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] = `
+exports[`ApplicationDetailsPdf should render application pdf download link 1`] = `
 <PDFDownloadLink
   className="btn btn-primary"
   document={
@@ -158,6 +158,7 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                   "StringField": [Function],
                   "emissionGas": [Function],
                   "emissionSource": [Function],
+                  "fuel": [Function],
                   "product": [Function],
                 }
               }
@@ -165,17 +166,49 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                 Object {
                   "query": Object {
                     " $refType": "ApplicationDetailsPdf_query",
-                    "allProducts": Object {
+                    "allEmissionCategories": Object {
                       "edges": Array [
                         Object {
                           "node": Object {
-                            "name": "foo",
+                            "displayName": "baz",
                             "rowId": 1,
                           },
                         },
                         Object {
                           "node": Object {
-                            "name": "simpleFoo",
+                            "displayName": "simpleBaz",
+                            "rowId": 2,
+                          },
+                        },
+                      ],
+                    },
+                    "allFuels": Object {
+                      "edges": Array [
+                        Object {
+                          "node": Object {
+                            "name": "bar",
+                            "rowId": 1,
+                          },
+                        },
+                        Object {
+                          "node": Object {
+                            "name": "simpleBar",
+                            "rowId": 2,
+                          },
+                        },
+                      ],
+                    },
+                    "allProducts": Object {
+                      "edges": Array [
+                        Object {
+                          "node": Object {
+                            "productName": "foo",
+                            "rowId": 1,
+                          },
+                        },
+                        Object {
+                          "node": Object {
+                            "productName": "simpleFoo",
                             "rowId": 2,
                           },
                         },
@@ -502,6 +535,7 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                   "StringField": [Function],
                   "emissionGas": [Function],
                   "emissionSource": [Function],
+                  "fuel": [Function],
                   "product": [Function],
                 }
               }
@@ -509,17 +543,49 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                 Object {
                   "query": Object {
                     " $refType": "ApplicationDetailsPdf_query",
-                    "allProducts": Object {
+                    "allEmissionCategories": Object {
                       "edges": Array [
                         Object {
                           "node": Object {
-                            "name": "foo",
+                            "displayName": "baz",
                             "rowId": 1,
                           },
                         },
                         Object {
                           "node": Object {
-                            "name": "simpleFoo",
+                            "displayName": "simpleBaz",
+                            "rowId": 2,
+                          },
+                        },
+                      ],
+                    },
+                    "allFuels": Object {
+                      "edges": Array [
+                        Object {
+                          "node": Object {
+                            "name": "bar",
+                            "rowId": 1,
+                          },
+                        },
+                        Object {
+                          "node": Object {
+                            "name": "simpleBar",
+                            "rowId": 2,
+                          },
+                        },
+                      ],
+                    },
+                    "allProducts": Object {
+                      "edges": Array [
+                        Object {
+                          "node": Object {
+                            "productName": "foo",
+                            "rowId": 1,
+                          },
+                        },
+                        Object {
+                          "node": Object {
+                            "productName": "simpleFoo",
                             "rowId": 2,
                           },
                         },
@@ -761,6 +827,7 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                   "StringField": [Function],
                   "emissionGas": [Function],
                   "emissionSource": [Function],
+                  "fuel": [Function],
                   "product": [Function],
                 }
               }
@@ -768,17 +835,49 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                 Object {
                   "query": Object {
                     " $refType": "ApplicationDetailsPdf_query",
-                    "allProducts": Object {
+                    "allEmissionCategories": Object {
                       "edges": Array [
                         Object {
                           "node": Object {
-                            "name": "foo",
+                            "displayName": "baz",
                             "rowId": 1,
                           },
                         },
                         Object {
                           "node": Object {
-                            "name": "simpleFoo",
+                            "displayName": "simpleBaz",
+                            "rowId": 2,
+                          },
+                        },
+                      ],
+                    },
+                    "allFuels": Object {
+                      "edges": Array [
+                        Object {
+                          "node": Object {
+                            "name": "bar",
+                            "rowId": 1,
+                          },
+                        },
+                        Object {
+                          "node": Object {
+                            "name": "simpleBar",
+                            "rowId": 2,
+                          },
+                        },
+                      ],
+                    },
+                    "allProducts": Object {
+                      "edges": Array [
+                        Object {
+                          "node": Object {
+                            "productName": "foo",
+                            "rowId": 1,
+                          },
+                        },
+                        Object {
+                          "node": Object {
+                            "productName": "simpleFoo",
                             "rowId": 2,
                           },
                         },
@@ -937,6 +1036,7 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                   "StringField": [Function],
                   "emissionGas": [Function],
                   "emissionSource": [Function],
+                  "fuel": [Function],
                   "product": [Function],
                 }
               }
@@ -944,17 +1044,49 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                 Object {
                   "query": Object {
                     " $refType": "ApplicationDetailsPdf_query",
-                    "allProducts": Object {
+                    "allEmissionCategories": Object {
                       "edges": Array [
                         Object {
                           "node": Object {
-                            "name": "foo",
+                            "displayName": "baz",
                             "rowId": 1,
                           },
                         },
                         Object {
                           "node": Object {
-                            "name": "simpleFoo",
+                            "displayName": "simpleBaz",
+                            "rowId": 2,
+                          },
+                        },
+                      ],
+                    },
+                    "allFuels": Object {
+                      "edges": Array [
+                        Object {
+                          "node": Object {
+                            "name": "bar",
+                            "rowId": 1,
+                          },
+                        },
+                        Object {
+                          "node": Object {
+                            "name": "simpleBar",
+                            "rowId": 2,
+                          },
+                        },
+                      ],
+                    },
+                    "allProducts": Object {
+                      "edges": Array [
+                        Object {
+                          "node": Object {
+                            "productName": "foo",
+                            "rowId": 1,
+                          },
+                        },
+                        Object {
+                          "node": Object {
+                            "productName": "simpleFoo",
                             "rowId": 2,
                           },
                         },
