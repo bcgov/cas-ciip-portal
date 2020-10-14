@@ -48,3 +48,9 @@ EOF`)
 Cypress.Commands.add('deployProdData', () => {
   cy.exec('pushd ../ && ./.bin/deploy-data.sh -prod && popd');
 });
+
+Cypress.Commands.add('cleanSchema', () => {
+  cy.exec(
+    `psql -d ciip_portal_dev -c 'select test_helper.clean_ggircs_portal_schema()'`
+  );
+});

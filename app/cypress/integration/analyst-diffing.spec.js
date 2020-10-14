@@ -1,5 +1,6 @@
 describe('When reviewing a submitted application as an analyst', () => {
   beforeEach(() => {
+    cy.cleanSchema();
     cy.sqlFixture('fixtures/analyst-diffing-setup');
     cy.login(
       Cypress.env('TEST_ANALYST_USERNAME'),

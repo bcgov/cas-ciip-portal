@@ -1,7 +1,6 @@
 begin;
 
 -- Init test environment
-select test_helper.clean_ggircs_portal_schema();
 select test_helper.mock_open_window();
 select test_helper.modify_triggers('disable');
 
