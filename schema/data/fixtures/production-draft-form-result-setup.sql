@@ -4,10 +4,6 @@
 
 begin;
 
-select test_helper.modify_triggers('disable');
-
-insert into ggircs_portal.ciip_user_organisation(user_id, organisation_id, status) values (6, 7, 'approved');
-
-update ggircs_portal.form_result set form_result = '[{}]' where id=12;
+update ggircs_portal.form_result set form_result = '[{}]' where id=4;
 
 commit;
