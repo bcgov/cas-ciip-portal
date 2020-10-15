@@ -7,7 +7,7 @@ begin;
         id int default 0,
         product_name text default 'Test Product',
         units text default 'angstrom per squared fhqwhgads',
-        product_state text default 'draft', -- needs to be any of draft, published, archived to match the enum defined in ggircs_portal.ciip_product_state
+        product_state ggircs_portal.ciip_product_state default 'draft', -- needs to be any of draft, published, archived to match the enum defined in ggircs_portal.ciip_product_state
         is_ciip_product boolean default true,
         requires_emission_allocation boolean default true,
         requires_product_amount boolean default true,
