@@ -13,7 +13,7 @@ begin;
       if (same_organisation) then
         if (create_dependencies) then
         insert into ggircs_portal.organisation(report_id, swrs_report_id, swrs_organisation_id, operator_name, cra_business_number)
-          values (1, 1, 1, (select concat('test_organisation')), 100000000);
+          values (1, 1, 1, 'test_organisation', 100000000);
         end if;
         for x in 1..app_count
           loop
