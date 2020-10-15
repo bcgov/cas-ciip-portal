@@ -1,5 +1,7 @@
 describe('When the reporter is viewing a list of facilities & applications', () => {
   beforeEach(() => {
+    cy.cleanSchema();
+    cy.deployProdData();
     cy.sqlFixture('fixtures/reporter-all-access-setup');
     cy.login(
       Cypress.env('TEST_REPORTER_USERNAME'),
@@ -27,6 +29,5 @@ describe('When the reporter is viewing a list of facilities & applications', () 
       'contain',
       'not started'
     );
-    //   Cy.get(':nth-child(1) > :nth-child(7) > .btn').should('have.prop', 'disabled', true);
   });
 });

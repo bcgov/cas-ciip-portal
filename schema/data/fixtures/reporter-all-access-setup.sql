@@ -28,6 +28,12 @@ select test_helper.create_applications(2, True, True);
 -- Create approved user-organisation connection
 insert into ggircs_portal.ciip_user_organisation(user_id, organisation_id, status) values (6, 1, 'approved');
 
+-- Create 2018 reporting year
+insert into ggircs_portal.reporting_year(reporting_year, reporting_period_start, reporting_period_end, swrs_deadline, application_open_time, application_close_time)
+overriding system value
+values
+(2018, '2018-01-01 00:00:00.0-08', '2018-12-31 23:59:59.0-08', '2019-06-01 00:00:00.000000-07', '2019-04-01 14:49:54.191757-07', '2019-12-30 14:49:54.191757-08');
+
 -- Ensure products referenced in form_result are in the database
 select test_helper.create_product(id => 26, product_name => 'Coal', units => 'tonnes', product_state => 'published');
 select test_helper.create_product(id => 29, product_name => 'Other Pulp (Mechanical pulp, paper, newsprint)', units => 'bone-dry tonnes', product_state => 'published');
