@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.10.1](https://github.com/bcgov/cas-ciip-portal/compare/v1.10.0...v1.10.1) (2020-10-15)
+
+
+### Bug Fixes
+
+* parse fuelRowId & emissionCatetoryRowId integers to named values ([db41e01](https://github.com/bcgov/cas-ciip-portal/commit/db41e01bc15b8a092966686c37089006e5257837))
+* remove debugging console log ([6dfa7a7](https://github.com/bcgov/cas-ciip-portal/commit/6dfa7a712d65da28d38b7f20d989eb9ba0acaa25))
+* subtract generated heat/elec in incentive function ([9367b05](https://github.com/bcgov/cas-ciip-portal/commit/9367b05da61db5cc6c1b30a07eff22306a36c0b6))
+
 ## [1.10.0](https://github.com/bcgov/cas-ciip-portal/compare/v1.9.1...v1.10.0) (2020-10-07)
 
 
