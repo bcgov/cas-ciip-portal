@@ -35,6 +35,7 @@ export const EmissionFieldComponent: React.FunctionComponent<FieldProps> = (
         {`
           .emission-toggle {
             text-align: right;
+            margin: 1.5em 0 0.5em 0;
           }
           .emission .zero-emission,
           .emission-form .zero-emission {
