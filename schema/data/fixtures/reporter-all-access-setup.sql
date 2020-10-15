@@ -35,11 +35,8 @@ update ggircs_portal.application_revision set legal_disclaimer_accepted = false 
 -- Ensure products referenced in form_result are in the database
 truncate ggircs_portal.product restart identity cascade;
 
-insert into ggircs_portal.product(id, product_name, units, product_state, requires_emission_allocation, requires_product_amount)
-overriding system value
-values
-(26, 'Coal','tonnes','published', true, true),
-(29, 'Other Pulp (Mechanical pulp, paper, newsprint)', 'bone-dry tonnes','published', true, true);
+select test_helper.create_product(id => 26, product_name => 'Coal', units => 'tonnes', product_state => 'published');
+select test_helper.create_product(id => 29, product_name => 'Other Pulp (Mechanical pulp, paper, newsprint)', units => 'bone-dry tonnes', product_state => 'published');
 
 -- Ensure all form results contain no errors
 select test_helper.initialize_all_form_result_data(2,1);
