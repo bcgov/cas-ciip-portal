@@ -5,30 +5,10 @@ begin;
 
 truncate ggircs_portal.product cascade;
 
-insert into ggircs_portal.product(
-  id,
-  product_name,
-  units,
-  product_state,
-  is_ciip_product,
-  requires_emission_allocation,
-  requires_product_amount,
-  subtract_exported_electricity_emissions,
-  add_purchased_electricity_emissions,
-  subtract_exported_heat_emissions,
-  add_purchased_heat_emissions,
-  subtract_generated_electricity_emissions,
-  subtract_generated_heat_emissions,
-  add_emissions_from_eios,
-  is_read_only,
-  updated_at
-)
-overriding system value
-values
-(11, 'Product A', 'tonnes','draft', true, true, true, true, true, true, true, true, true, true, false, '2018-01-01'),
-(12, 'Product B', 'cubic meters', 'published', true, true, true, true, true, true, true, true, true, true, false, '2018-01-01'),
-(13, 'Product C', 'unicorns per million', 'archived', true, true, true, true, true, true, true, true, true, true, true, '2018-01-01'),
-(14, 'Product D', 'kilolitres', 'published', true, true, true, true, true, true, true, true, true, true, true, '2018-01-01');
+select test_helper.create_product(id => 11, product_name => 'Product A', units => 'tonnes', is_read_only => false);
+select test_helper.create_product(id => 12, product_name => 'Product B', units => 'cubic meters', product_state => 'published', is_read_only => false);
+select test_helper.create_product(id => 13, product_name => 'Product C', units => 'unicorns per million', product_state => 'archived');
+select test_helper.create_product(id => 14, product_name => 'Product D', units => 'kilolitres', product_state => 'published');
 
 insert into ggircs_portal.benchmark(
   id,
