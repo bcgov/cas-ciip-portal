@@ -1,6 +1,8 @@
 describe('When an applicaiton has errors', () => {
   before(() => {
     cy.logout();
+    cy.cleanSchema();
+    cy.deployProdData();
     cy.sqlFixture('fixtures/override-justification-setup');
     cy.login(
       Cypress.env('TEST_REPORTER_USERNAME'),
@@ -13,7 +15,7 @@ describe('When an applicaiton has errors', () => {
     cy.sqlFixture('fixtures/override-justification-teardown');
   });
 
-  it('The reporter should be able to create, edit and delete an override justification for the errors in the applicaiton', () => {
+  it('The reporter should be able to create, edit and delete an override justification for the errors in the application', () => {
     const applicationId = window.btoa('["applications", 1]');
     cy.visit(
       `/reporter/application?applicationId=${applicationId}&confirmationPage=true&version=1`
@@ -106,6 +108,8 @@ describe('When an applicaiton has errors', () => {
 describe('When an applicaiton does not have errors', () => {
   beforeEach(() => {
     cy.logout();
+    cy.cleanSchema();
+    cy.deployProdData();
     cy.sqlFixture('fixtures/reporter-all-access-setup');
     cy.sqlFixture('fixtures/set-legal-disclaimer-true');
     cy.login(

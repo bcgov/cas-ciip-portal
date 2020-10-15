@@ -1,13 +1,7 @@
--- disable unnecessary triggers
--- add ciip_user_organisation connection if not set
--- refresh application data with truncate & create_application_mutation_chain
--- set legal-disclaimer to false to trigger legal checkbox pages
--- update form_result data so that there are no errors & reporter can move through all pages
-
 begin;
 
-delete from ggircs_portal.certification_url where application_id=2;
-
+-- Init test
+select test_helper.mock_open_window();
 select test_helper.modify_triggers('enable');
 
 do \$$
@@ -25,20 +19,20 @@ do \$$
   end;
 \$$;
 
-delete from ggircs_portal.ciip_user_organisation where user_id=6 and organisation_id=7;
-insert into ggircs_portal.ciip_user_organisation(user_id, organisation_id, status) values (6, 7, 'approved');
-truncate ggircs_portal.application restart identity cascade;
-select ggircs_portal.create_application_mutation_chain(1);
-select ggircs_portal.create_application_mutation_chain(2);
-update ggircs_portal.application_revision set legal_disclaimer_accepted = false where application_id=2 and version_number=1;
+-- Create test users
+select test_helper.create_test_users();
+
+-- Create applications (and necessary facilities/organisations)
+select test_helper.create_applications(2, True, True);
+
+-- Create approved user-organisation connection
+insert into ggircs_portal.ciip_user_organisation(user_id, organisation_id, status) values (6, 1, 'approved');
 
 -- Ensure products referenced in form_result are in the database
-truncate ggircs_portal.product restart identity cascade;
-
 select test_helper.create_product(id => 26, product_name => 'Coal', units => 'tonnes', product_state => 'published');
 select test_helper.create_product(id => 29, product_name => 'Other Pulp (Mechanical pulp, paper, newsprint)', units => 'bone-dry tonnes', product_state => 'published');
 
--- Ensure all form results contain no errors
+-- Ensure all form results contain no errors in application with ID 2
 select test_helper.initialize_all_form_result_data(2,1);
 
 commit;
