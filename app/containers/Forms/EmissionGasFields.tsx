@@ -51,7 +51,6 @@ const EmissionGasFields: React.FunctionComponent<FieldProps> = ({
             style={{
               margin: 0,
               padding: 0,
-              color: '#797676',
               lineHeight: '17px'
             }}
           >
