@@ -60,6 +60,8 @@ function testRedirectsForScopedPages(scope, pages) {
 
 describe('Successful redirection of authenticated pages through login', () => {
   beforeEach(() => {
+    cy.cleanSchema();
+    cy.deployProdData();
     cy.logout();
     cy.sqlFixture('fixtures/login-redirects-setup');
   });
