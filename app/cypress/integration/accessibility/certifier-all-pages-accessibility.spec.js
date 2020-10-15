@@ -10,7 +10,6 @@ describe('When logged in as a certifier(reporter)', () => {
 
   afterEach(() => {
     cy.logout();
-    cy.sqlFixture('fixtures/certifier-access-teardown');
   });
 
   it('The certifier redirect page has no detectable ally violations on load', () => {

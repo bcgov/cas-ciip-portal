@@ -12,7 +12,6 @@ describe('When logged in as a reporter', () => {
 
   afterEach(() => {
     cy.logout();
-    cy.sqlFixture('fixtures/reporter-all-access-teardown');
   });
 
   it('The reporter should be able to load all pages within their access scope', () => {

@@ -10,7 +10,6 @@ describe('When logged in as a reporter', () => {
 
   afterEach(() => {
     cy.logout();
-    cy.sqlFixture('fixtures/reporter-all-access-teardown');
   });
 
   it('The reporter dashboard has no detectable ally violations on load', () => {

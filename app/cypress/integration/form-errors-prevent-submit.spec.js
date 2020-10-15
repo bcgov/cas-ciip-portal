@@ -10,10 +10,6 @@ describe('When logged in as a reporter', () => {
     cy.sqlFixture('fixtures/form-errors-prevent-submit-setup');
   });
 
-  afterEach(() => {
-    cy.sqlFixture('fixtures/form-errors-prevent-submit-teardown');
-  });
-
   it('The reporter should not be able to send an application for certification if there are errors', () => {
     const applicationId = window.btoa('["applications", 1]');
     cy.visit(

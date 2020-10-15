@@ -12,7 +12,6 @@ describe('When an applicaiton has errors', () => {
 
   after(() => {
     cy.logout();
-    cy.sqlFixture('fixtures/override-justification-teardown');
   });
 
   it('The reporter should be able to create, edit and delete an override justification for the errors in the application', () => {
@@ -120,7 +119,6 @@ describe('When an applicaiton does not have errors', () => {
 
   afterEach(() => {
     cy.logout();
-    cy.sqlFixture('fixtures/reporter-all-access-teardown');
   });
 
   it('The override justification box should not appear', () => {

@@ -12,7 +12,6 @@ describe('The products and benchmark page', () => {
   });
 
   afterEach(() => {
-    cy.sqlFixture('fixtures/products-benchmarks-teardown');
     cy.logout();
   });
 
@@ -44,7 +43,6 @@ describe('The benchmark modal', () => {
   });
 
   afterEach(() => {
-    cy.sqlFixture('fixtures/products-benchmarks-teardown');
     cy.logout();
   });
 
@@ -114,7 +112,6 @@ describe('The linking modal', () => {
   });
 
   afterEach(() => {
-    cy.sqlFixture('fixtures/products-benchmarks-teardown');
     cy.logout();
   });
 
@@ -157,7 +154,6 @@ describe('The Create Product modal', () => {
   });
 
   afterEach(() => {
-    cy.sqlFixture('fixtures/products-benchmarks-teardown');
     cy.logout();
   });
 

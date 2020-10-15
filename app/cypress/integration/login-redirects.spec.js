@@ -67,7 +67,6 @@ describe('Successful redirection of authenticated pages through login', () => {
   });
   afterEach(() => {
     cy.logout();
-    cy.sqlFixture('fixtures/login-redirects-teardown');
   });
 
   Object.keys(AUTHENTICATED_PAGES).forEach((scope) =>

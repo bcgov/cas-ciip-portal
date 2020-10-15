@@ -10,7 +10,6 @@ describe('When logged in as an analyst', () => {
 
   afterEach(() => {
     cy.logout();
-    cy.sqlFixture('fixtures/analyst-all-access-teardown');
   });
 
   it('The analyst should be able to load all pages within their access scope', () => {

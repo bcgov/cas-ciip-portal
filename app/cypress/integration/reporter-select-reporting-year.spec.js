@@ -11,7 +11,6 @@ describe('When the reporter is viewing a list of facilities & applications', () 
 
   afterEach(() => {
     cy.logout();
-    cy.sqlFixture('fixtures/reporter-all-access-teardown');
   });
 
   it('The reporter should be able to filter results by reporting period', () => {

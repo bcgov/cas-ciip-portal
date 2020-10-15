@@ -29,7 +29,6 @@ describe('When reviewing a submitted application as an analyst', () => {
 
   afterEach(() => {
     cy.logout();
-    cy.sqlFixture('fixtures/form-validation-teardown');
   });
 
   it('The application admin form shows validation errors', () => {
