@@ -10,4 +10,3 @@ create_applications [schema_test_helper] 2020-10-01T22:33:07Z Dylan Leard <dylan
 create_test_users [schema_test_helper] 2020-10-14T19:07:52Z Dylan Leard <dylan@button.is> # Function creates a pre-defined set of test users
 certify_application [schema_test_helper] 2020-10-14T20:14:15Z Dylan Leard <dylan@button.is> # Function signs an application by creating and updating all necessary fields in the certification_url table
 create_products [schema_test_helper] 2020-10-14T22:40:42Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # Adding a function to easily create products in the database
-
