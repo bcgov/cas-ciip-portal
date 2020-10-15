@@ -17,7 +17,7 @@ exports[`Form Edit User should render the snapshot 1`] = `
         class="col-12"
       >
         <span
-          class="font-italic text-muted"
+          class="font-italic"
         />
       </div>
       <div
@@ -39,7 +39,7 @@ exports[`Form Edit User should render the snapshot 1`] = `
           value="Test"
         />
         <span
-          class="font-italic text-muted"
+          class="font-italic"
         />
       </div>
       <div
@@ -61,7 +61,7 @@ exports[`Form Edit User should render the snapshot 1`] = `
           value="Test"
         />
         <span
-          class="font-italic text-muted"
+          class="font-italic"
         />
       </div>
       <div
@@ -83,7 +83,7 @@ exports[`Form Edit User should render the snapshot 1`] = `
           value="Test@test.com"
         />
         <span
-          class="font-italic text-muted"
+          class="font-italic"
         />
       </div>
       <div
@@ -105,7 +105,7 @@ exports[`Form Edit User should render the snapshot 1`] = `
           value=""
         />
         <span
-          class="font-italic text-muted"
+          class="font-italic"
         />
       </div>
       <div
@@ -127,7 +127,7 @@ exports[`Form Edit User should render the snapshot 1`] = `
           value=""
         />
         <span
-          class="font-italic text-muted"
+          class="font-italic"
         />
       </div>
     </div>

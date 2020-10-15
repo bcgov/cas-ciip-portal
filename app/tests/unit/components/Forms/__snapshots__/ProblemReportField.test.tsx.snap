@@ -3,12 +3,12 @@
 exports[`The ProblemReportField component Should match the snapshot 1`] = `
 <Fragment>
   <JSXStyle
-    id="977984390"
+    id="2736636148"
   >
-    .title.jsx-977984390,.report-field.jsx-977984390 .controls.jsx-977984390{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;width:100%;-webkit-box-pack:end;-webkit-justify-content:flex-end;-ms-flex-pack:end;justify-content:flex-end;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}.report-field.jsx-977984390 .controls.jsx-977984390{margin-top:16px;}.report-field.jsx-977984390{background-color:#fcf8e2;border:2px solid #fbf4dc;padding:16px;margin-top:16px;}
+    .title.jsx-2736636148,.report-field.jsx-2736636148 .controls.jsx-2736636148{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;width:100%;-webkit-box-pack:end;-webkit-justify-content:flex-end;-ms-flex-pack:end;justify-content:flex-end;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}.report-field.jsx-2736636148 .controls.jsx-2736636148{margin-top:16px;}.report-field.jsx-2736636148{background-color:#fcf8e2;border:1px solid #ccc;border-radius:4px;padding:16px;margin-top:16px;}
   </JSXStyle>
   <span
-    className="jsx-977984390 title"
+    className="jsx-2736636148 title"
   >
     <Button
       active={false}
@@ -53,18 +53,18 @@ exports[`The ProblemReportField component Should match the snapshot 1`] = `
     </Button>
   </span>
   <div
-    className="jsx-977984390 report-field"
+    className="jsx-2736636148 report-field"
   >
     <p
-      className="jsx-977984390"
+      className="jsx-2736636148"
     >
       Please leave a detailed message below explaining any issues encountered on this page.
       <br
-        className="jsx-977984390"
+        className="jsx-2736636148"
       />
       This message will be sent with your application when it is submitted.
       <br
-        className="jsx-977984390"
+        className="jsx-2736636148"
       />
       A representative from the Climate Action Secretariat may contact you for further clarification.
     </p>
@@ -75,7 +75,7 @@ exports[`The ProblemReportField component Should match the snapshot 1`] = `
       value="Some text"
     />
     <div
-      className="jsx-977984390 controls"
+      className="jsx-2736636148 controls"
     >
       <Button
         active={false}

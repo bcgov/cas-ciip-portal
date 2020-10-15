@@ -2,7 +2,7 @@
 
 exports[`The Form Component should match the snapshot 1`] = `
 <div
-  className=""
+  className="jsx-1245585032 "
 >
   <Alert
     closeLabel="Close alert"
@@ -25,97 +25,110 @@ exports[`The Form Component should match the snapshot 1`] = `
   >
     Note: Your form input will be saved automatically as you type.
   </Alert>
-  <Row
-    noGutters={false}
-  >
-    <Col
-      md={8}
-    >
-      <h1
-        className="form-title"
-      >
-        Foo
-      </h1>
-    </Col>
-    <Col
-      md={4}
-    >
-      <SavingIndicator
-        isSaved={true}
-      />
-    </Col>
-  </Row>
-  <Form
-    ArrayFieldTemplate={[Function]}
-    ErrorList={[Function]}
-    FieldTemplate={[Function]}
-    ObjectFieldTemplate={[Function]}
-    disabled={false}
-    fields={
-      Object {
-        "NumberField": [Function],
-        "ProblemReportField": [Function],
-        "emission": [Function],
-        "emissionCategoryRowId": [Function],
-        "emissionGas": [Function],
-        "emissionSource": [Function],
-        "fuel": [Function],
-        "fuelRowId": [Function],
-        "product": [Function],
-        "productRowId": [Function],
-      }
-    }
-    formContext={
-      Object {
-        "query": Object {
-          " $fragmentRefs": Object {
-            "EmissionCategoryRowIdField_query": true,
-            "FuelField_query": true,
-            "FuelRowIdField_query": true,
-            "ProductField_query": true,
-            "ProductRowIdField_query": true,
-          },
-          " $refType": "Form_query",
-          "products": Object {
-            "edges": Array [],
-          },
-          "result": Object {
-            "formJsonByFormId": Object {
-              "ciipApplicationWizardByFormId": Object {
-                "formPosition": 1,
-              },
-              "formJson": Object {},
-              "name": "Foo",
-            },
-            "formResult": Object {},
-          },
-        },
-      }
-    }
-    formData={Object {}}
-    liveValidate={false}
-    noHtml5Validate={true}
-    noValidate={false}
-    omitExtraData={false}
-    onError={[Function]}
-    onSubmit={[MockFunction]}
-    safeRenderCompletion={true}
-    showErrorList={false}
-    transformErrors={[Function]}
-    uiSchema={Object {}}
-    validate={[Function]}
-    widgets={
-      Object {
-        "SearchWidget": [Function],
-      }
-    }
+  <div
+    className="jsx-1245585032 card"
   >
     <div
-      className="form-submit"
+      className="jsx-1245585032 card-header"
     >
       <Row
-        className="form-nav"
         noGutters={false}
+      >
+        <Col
+          md={8}
+        >
+          <h1
+            className="jsx-1245585032"
+          >
+            Foo
+          </h1>
+        </Col>
+        <Col
+          md={4}
+        >
+          <SavingIndicator
+            isSaved={true}
+            style={
+              Object {
+                "lineHeight": "2.25em",
+              }
+            }
+          />
+        </Col>
+      </Row>
+    </div>
+    <div
+      className="jsx-1245585032"
+      style={
+        Object {
+          "padding": "0 2em 2em 2em",
+        }
+      }
+    >
+      <Form
+        ArrayFieldTemplate={[Function]}
+        ErrorList={[Function]}
+        FieldTemplate={[Function]}
+        ObjectFieldTemplate={[Function]}
+        disabled={false}
+        fields={
+          Object {
+            "NumberField": [Function],
+            "ProblemReportField": [Function],
+            "emission": [Function],
+            "emissionCategoryRowId": [Function],
+            "emissionGas": [Function],
+            "emissionSource": [Function],
+            "fuel": [Function],
+            "fuelRowId": [Function],
+            "product": [Function],
+            "productRowId": [Function],
+          }
+        }
+        formContext={
+          Object {
+            "query": Object {
+              " $fragmentRefs": Object {
+                "EmissionCategoryRowIdField_query": true,
+                "FuelField_query": true,
+                "FuelRowIdField_query": true,
+                "ProductField_query": true,
+                "ProductRowIdField_query": true,
+              },
+              " $refType": "Form_query",
+              "products": Object {
+                "edges": Array [],
+              },
+              "result": Object {
+                "formJsonByFormId": Object {
+                  "ciipApplicationWizardByFormId": Object {
+                    "formPosition": 1,
+                  },
+                  "formJson": Object {},
+                  "name": "Foo",
+                },
+                "formResult": Object {},
+              },
+            },
+          }
+        }
+        formData={Object {}}
+        liveValidate={false}
+        noHtml5Validate={true}
+        noValidate={false}
+        omitExtraData={false}
+        onError={[Function]}
+        onSubmit={[MockFunction]}
+        safeRenderCompletion={true}
+        showErrorList={false}
+        transformErrors={[Function]}
+        uiSchema={Object {}}
+        validate={[Function]}
+        widgets={
+          Object {
+            "SearchWidget": [Function],
+          }
+        }
       >
         <Button
           active={false}
@@ -149,11 +162,11 @@ exports[`The Form Component should match the snapshot 1`] = `
             Save & Exit
           </Button>
         </Link>
-      </Row>
+      </Form>
     </div>
-  </Form>
+  </div>
   <JSXStyle
-    id="3364523561"
+    id="2037158273"
   >
     .
     r
@@ -317,115 +330,29 @@ exports[`The Form Component should match the snapshot 1`] = `
     ;
     }
     .
-    f
-    o
-    r
-    m
-    -
-    s
-    u
-    b
-    m
-    i
-    t
-    {
-    b
-    o
-    r
-    d
     e
     r
+    r
+    o
+    r
+    s
+    {
+    m
+    a
+    r
+    g
+    i
+    n
     :
     1
-    p
-    x
-     
-    s
-    o
-    l
-    i
-    d
-     
-    #
-    b
-    b
-    b
-    ;
-    p
-    a
-    d
-    d
-    i
-    n
-    g
-    :
-    3
-    0
-    p
-    x
-    ;
-    b
-    a
-    c
-    k
-    g
-    r
-    o
-    u
-    n
-    d
-    :
-    #
     e
-    0
-    e
-    0
-    e
-    0
-    ;
-    b
-    o
-    r
-    d
-    e
-    r
-    -
-    r
-    a
-    d
-    i
-    u
-    s
-    :
-    6
-    p
-    x
-    ;
-    }
-    .
-    e
-    r
-    r
-    o
-    r
-    s
-    {
     m
-    a
-    r
-    g
-    i
-    n
-    -
-    l
-    e
-    f
-    t
-    :
-    2
+     
     0
-    p
-    x
+     
+    0
+     
+    0
     ;
     p
     a
@@ -754,13 +681,18 @@ exports[`The Form Component should match the snapshot 1`] = `
     t
     ;
     }
+  </JSXStyle>
+  <JSXStyle
+    id="1245585032"
+  >
+    .card.jsx-1245585032{border-color:#a4a4a4;background-color:#f4f4f4;}.card-header.jsx-1245585032{background-color:#036;color:#fff;}.card-header.jsx-1245585032 h1.jsx-1245585032{margin-bottom:0;}
   </JSXStyle>
 </div>
 `;
 
 exports[`The Form Component should not render an alert reminder to check the guidance if no product requires emission allocation 1`] = `
 <div
-  className=""
+  className="jsx-1245585032 "
 >
   <Alert
     closeLabel="Close alert"
@@ -783,107 +715,120 @@ exports[`The Form Component should not render an alert reminder to check the gui
   >
     Note: Your form input will be saved automatically as you type.
   </Alert>
-  <Row
-    noGutters={false}
-  >
-    <Col
-      md={8}
-    >
-      <h1
-        className="form-title"
-      >
-        Foo
-      </h1>
-    </Col>
-    <Col
-      md={4}
-    >
-      <SavingIndicator
-        isSaved={true}
-      />
-    </Col>
-  </Row>
-  <Form
-    ArrayFieldTemplate={[Function]}
-    ErrorList={[Function]}
-    FieldTemplate={[Function]}
-    ObjectFieldTemplate={[Function]}
-    disabled={false}
-    fields={
-      Object {
-        "NumberField": [Function],
-        "ProblemReportField": [Function],
-        "emission": [Function],
-        "emissionCategoryRowId": [Function],
-        "emissionGas": [Function],
-        "emissionSource": [Function],
-        "fuel": [Function],
-        "fuelRowId": [Function],
-        "product": [Function],
-        "productRowId": [Function],
-      }
-    }
-    formContext={
-      Object {
-        "query": Object {
-          " $fragmentRefs": Object {
-            "EmissionCategoryRowIdField_query": true,
-            "FuelField_query": true,
-            "FuelRowIdField_query": true,
-            "ProductField_query": true,
-            "ProductRowIdField_query": true,
-          },
-          " $refType": "Form_query",
-          "products": Object {
-            "edges": Array [],
-          },
-          "result": Object {
-            "formJsonByFormId": Object {
-              "ciipApplicationWizardByFormId": Object {
-                "formPosition": 3,
-              },
-              "formJson": Object {},
-              "name": "Foo",
-            },
-            "formResult": Array [
-              Object {
-                "requiresEmissionAllocation": false,
-              },
-            ],
-          },
-        },
-      }
-    }
-    formData={
-      Array [
-        Object {
-          "requiresEmissionAllocation": false,
-        },
-      ]
-    }
-    liveValidate={false}
-    noHtml5Validate={true}
-    noValidate={false}
-    omitExtraData={false}
-    onError={[Function]}
-    onSubmit={[MockFunction]}
-    safeRenderCompletion={true}
-    showErrorList={false}
-    transformErrors={[Function]}
-    uiSchema={Object {}}
-    validate={[Function]}
-    widgets={
-      Object {
-        "SearchWidget": [Function],
-      }
-    }
+  <div
+    className="jsx-1245585032 card"
   >
     <div
-      className="form-submit"
+      className="jsx-1245585032 card-header"
     >
       <Row
-        className="form-nav"
         noGutters={false}
+      >
+        <Col
+          md={8}
+        >
+          <h1
+            className="jsx-1245585032"
+          >
+            Foo
+          </h1>
+        </Col>
+        <Col
+          md={4}
+        >
+          <SavingIndicator
+            isSaved={true}
+            style={
+              Object {
+                "lineHeight": "2.25em",
+              }
+            }
+          />
+        </Col>
+      </Row>
+    </div>
+    <div
+      className="jsx-1245585032"
+      style={
+        Object {
+          "padding": "0 2em 2em 2em",
+        }
+      }
+    >
+      <Form
+        ArrayFieldTemplate={[Function]}
+        ErrorList={[Function]}
+        FieldTemplate={[Function]}
+        ObjectFieldTemplate={[Function]}
+        disabled={false}
+        fields={
+          Object {
+            "NumberField": [Function],
+            "ProblemReportField": [Function],
+            "emission": [Function],
+            "emissionCategoryRowId": [Function],
+            "emissionGas": [Function],
+            "emissionSource": [Function],
+            "fuel": [Function],
+            "fuelRowId": [Function],
+            "product": [Function],
+            "productRowId": [Function],
+          }
+        }
+        formContext={
+          Object {
+            "query": Object {
+              " $fragmentRefs": Object {
+                "EmissionCategoryRowIdField_query": true,
+                "FuelField_query": true,
+                "FuelRowIdField_query": true,
+                "ProductField_query": true,
+                "ProductRowIdField_query": true,
+              },
+              " $refType": "Form_query",
+              "products": Object {
+                "edges": Array [],
+              },
+              "result": Object {
+                "formJsonByFormId": Object {
+                  "ciipApplicationWizardByFormId": Object {
+                    "formPosition": 3,
+                  },
+                  "formJson": Object {},
+                  "name": "Foo",
+                },
+                "formResult": Array [
+                  Object {
+                    "requiresEmissionAllocation": false,
+                  },
+                ],
+              },
+            },
+          }
+        }
+        formData={
+          Array [
+            Object {
+              "requiresEmissionAllocation": false,
+            },
+          ]
+        }
+        liveValidate={false}
+        noHtml5Validate={true}
+        noValidate={false}
+        omitExtraData={false}
+        onError={[Function]}
+        onSubmit={[MockFunction]}
+        safeRenderCompletion={true}
+        showErrorList={false}
+        transformErrors={[Function]}
+        uiSchema={Object {}}
+        validate={[Function]}
+        widgets={
+          Object {
+            "SearchWidget": [Function],
+          }
+        }
       >
         <Button
           active={false}
@@ -917,11 +862,11 @@ exports[`The Form Component should not render an alert reminder to check the gui
             Save & Exit
           </Button>
         </Link>
-      </Row>
+      </Form>
     </div>
-  </Form>
+  </div>
   <JSXStyle
-    id="3364523561"
+    id="2037158273"
   >
     .
     r
@@ -1085,115 +1030,29 @@ exports[`The Form Component should not render an alert reminder to check the gui
     ;
     }
     .
-    f
-    o
-    r
-    m
-    -
-    s
-    u
-    b
-    m
-    i
-    t
-    {
-    b
-    o
-    r
-    d
     e
     r
+    r
+    o
+    r
+    s
+    {
+    m
+    a
+    r
+    g
+    i
+    n
     :
     1
-    p
-    x
-     
-    s
-    o
-    l
-    i
-    d
-     
-    #
-    b
-    b
-    b
-    ;
-    p
-    a
-    d
-    d
-    i
-    n
-    g
-    :
-    3
-    0
-    p
-    x
-    ;
-    b
-    a
-    c
-    k
-    g
-    r
-    o
-    u
-    n
-    d
-    :
-    #
     e
-    0
-    e
-    0
-    e
-    0
-    ;
-    b
-    o
-    r
-    d
-    e
-    r
-    -
-    r
-    a
-    d
-    i
-    u
-    s
-    :
-    6
-    p
-    x
-    ;
-    }
-    .
-    e
-    r
-    r
-    o
-    r
-    s
-    {
     m
-    a
-    r
-    g
-    i
-    n
-    -
-    l
-    e
-    f
-    t
-    :
-    2
+     
     0
-    p
-    x
+     
+    0
+     
+    0
     ;
     p
     a
@@ -1522,13 +1381,18 @@ exports[`The Form Component should not render an alert reminder to check the gui
     t
     ;
     }
+  </JSXStyle>
+  <JSXStyle
+    id="1245585032"
+  >
+    .card.jsx-1245585032{border-color:#a4a4a4;background-color:#f4f4f4;}.card-header.jsx-1245585032{background-color:#036;color:#fff;}.card-header.jsx-1245585032 h1.jsx-1245585032{margin-bottom:0;}
   </JSXStyle>
 </div>
 `;
 
 exports[`The Form Component should render alert reminder to check the guidance if any product requires emission allocation 1`] = `
 <div
-  className=""
+  className="jsx-1245585032 "
 >
   <Alert
     closeLabel="Close alert"
@@ -1551,132 +1415,145 @@ exports[`The Form Component should render alert reminder to check the guidance i
   >
     Note: Your form input will be saved automatically as you type.
   </Alert>
-  <Row
-    noGutters={false}
+  <div
+    className="jsx-1245585032 card"
   >
-    <Col
-      md={8}
-    >
-      <h1
-        className="form-title"
-      >
-        Foo
-      </h1>
-    </Col>
-    <Col
-      md={4}
-    >
-      <SavingIndicator
-        isSaved={true}
-      />
-    </Col>
-  </Row>
-  <Form
-    ArrayFieldTemplate={[Function]}
-    ErrorList={[Function]}
-    FieldTemplate={[Function]}
-    ObjectFieldTemplate={[Function]}
-    disabled={false}
-    fields={
-      Object {
-        "NumberField": [Function],
-        "ProblemReportField": [Function],
-        "emission": [Function],
-        "emissionCategoryRowId": [Function],
-        "emissionGas": [Function],
-        "emissionSource": [Function],
-        "fuel": [Function],
-        "fuelRowId": [Function],
-        "product": [Function],
-        "productRowId": [Function],
-      }
-    }
-    formContext={
-      Object {
-        "query": Object {
-          " $fragmentRefs": Object {
-            "EmissionCategoryRowIdField_query": true,
-            "FuelField_query": true,
-            "FuelRowIdField_query": true,
-            "ProductField_query": true,
-            "ProductRowIdField_query": true,
-          },
-          " $refType": "Form_query",
-          "products": Object {
-            "edges": Array [],
-          },
-          "result": Object {
-            "formJsonByFormId": Object {
-              "ciipApplicationWizardByFormId": Object {
-                "formPosition": 3,
-              },
-              "formJson": Object {},
-              "name": "Foo",
-            },
-            "formResult": Array [
-              Object {
-                "requiresEmissionAllocation": true,
-              },
-            ],
-          },
-        },
-      }
-    }
-    formData={
-      Array [
-        Object {
-          "requiresEmissionAllocation": true,
-        },
-      ]
-    }
-    liveValidate={false}
-    noHtml5Validate={true}
-    noValidate={false}
-    omitExtraData={false}
-    onError={[Function]}
-    onSubmit={[MockFunction]}
-    safeRenderCompletion={true}
-    showErrorList={false}
-    transformErrors={[Function]}
-    uiSchema={Object {}}
-    validate={[Function]}
-    widgets={
-      Object {
-        "SearchWidget": [Function],
-      }
-    }
-  >
-    <Alert
-      closeLabel="Close alert"
-      show={true}
-      transition={
-        Object {
-          "$$typeof": Symbol(react.forward_ref),
-          "defaultProps": Object {
-            "appear": false,
-            "in": false,
-            "mountOnEnter": false,
-            "timeout": 300,
-            "unmountOnExit": false,
-          },
-          "displayName": "Fade",
-          "render": [Function],
-        }
-      }
-      variant="info"
-    >
-      <AlertHeading>
-        Before you proceed:
-      </AlertHeading>
-      Please refer to the guidance documents to calculate the emission allocations for each product or service, and ensure that you report all the necessary product or services
-    </Alert>
     <div
-      className="form-submit"
+      className="jsx-1245585032 card-header"
     >
       <Row
-        className="form-nav"
         noGutters={false}
       >
+        <Col
+          md={8}
+        >
+          <h1
+            className="jsx-1245585032"
+          >
+            Foo
+          </h1>
+        </Col>
+        <Col
+          md={4}
+        >
+          <SavingIndicator
+            isSaved={true}
+            style={
+              Object {
+                "lineHeight": "2.25em",
+              }
+            }
+          />
+        </Col>
+      </Row>
+    </div>
+    <div
+      className="jsx-1245585032"
+      style={
+        Object {
+          "padding": "0 2em 2em 2em",
+        }
+      }
+    >
+      <Form
+        ArrayFieldTemplate={[Function]}
+        ErrorList={[Function]}
+        FieldTemplate={[Function]}
+        ObjectFieldTemplate={[Function]}
+        disabled={false}
+        fields={
+          Object {
+            "NumberField": [Function],
+            "ProblemReportField": [Function],
+            "emission": [Function],
+            "emissionCategoryRowId": [Function],
+            "emissionGas": [Function],
+            "emissionSource": [Function],
+            "fuel": [Function],
+            "fuelRowId": [Function],
+            "product": [Function],
+            "productRowId": [Function],
+          }
+        }
+        formContext={
+          Object {
+            "query": Object {
+              " $fragmentRefs": Object {
+                "EmissionCategoryRowIdField_query": true,
+                "FuelField_query": true,
+                "FuelRowIdField_query": true,
+                "ProductField_query": true,
+                "ProductRowIdField_query": true,
+              },
+              " $refType": "Form_query",
+              "products": Object {
+                "edges": Array [],
+              },
+              "result": Object {
+                "formJsonByFormId": Object {
+                  "ciipApplicationWizardByFormId": Object {
+                    "formPosition": 3,
+                  },
+                  "formJson": Object {},
+                  "name": "Foo",
+                },
+                "formResult": Array [
+                  Object {
+                    "requiresEmissionAllocation": true,
+                  },
+                ],
+              },
+            },
+          }
+        }
+        formData={
+          Array [
+            Object {
+              "requiresEmissionAllocation": true,
+            },
+          ]
+        }
+        liveValidate={false}
+        noHtml5Validate={true}
+        noValidate={false}
+        omitExtraData={false}
+        onError={[Function]}
+        onSubmit={[MockFunction]}
+        safeRenderCompletion={true}
+        showErrorList={false}
+        transformErrors={[Function]}
+        uiSchema={Object {}}
+        validate={[Function]}
+        widgets={
+          Object {
+            "SearchWidget": [Function],
+          }
+        }
+      >
+        <Alert
+          closeLabel="Close alert"
+          show={true}
+          transition={
+            Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "defaultProps": Object {
+                "appear": false,
+                "in": false,
+                "mountOnEnter": false,
+                "timeout": 300,
+                "unmountOnExit": false,
+              },
+              "displayName": "Fade",
+              "render": [Function],
+            }
+          }
+          variant="info"
+        >
+          <AlertHeading>
+            Before you proceed:
+          </AlertHeading>
+          Please refer to the guidance documents to calculate the emission allocations for each product or service, and ensure that you report all the necessary product or services
+        </Alert>
         <Button
           active={false}
           disabled={false}
@@ -1709,11 +1586,11 @@ exports[`The Form Component should render alert reminder to check the guidance i
             Save & Exit
           </Button>
         </Link>
-      </Row>
+      </Form>
     </div>
-  </Form>
+  </div>
   <JSXStyle
-    id="3364523561"
+    id="2037158273"
   >
     .
     r
@@ -1877,115 +1754,29 @@ exports[`The Form Component should render alert reminder to check the guidance i
     ;
     }
     .
-    f
-    o
-    r
-    m
-    -
-    s
-    u
-    b
-    m
-    i
-    t
-    {
-    b
-    o
-    r
-    d
     e
     r
+    r
+    o
+    r
+    s
+    {
+    m
+    a
+    r
+    g
+    i
+    n
     :
     1
-    p
-    x
-     
-    s
-    o
-    l
-    i
-    d
-     
-    #
-    b
-    b
-    b
-    ;
-    p
-    a
-    d
-    d
-    i
-    n
-    g
-    :
-    3
-    0
-    p
-    x
-    ;
-    b
-    a
-    c
-    k
-    g
-    r
-    o
-    u
-    n
-    d
-    :
-    #
     e
-    0
-    e
-    0
-    e
-    0
-    ;
-    b
-    o
-    r
-    d
-    e
-    r
-    -
-    r
-    a
-    d
-    i
-    u
-    s
-    :
-    6
-    p
-    x
-    ;
-    }
-    .
-    e
-    r
-    r
-    o
-    r
-    s
-    {
     m
-    a
-    r
-    g
-    i
-    n
-    -
-    l
-    e
-    f
-    t
-    :
-    2
+     
     0
-    p
-    x
+     
+    0
+     
+    0
     ;
     p
     a
@@ -2315,12 +2106,17 @@ exports[`The Form Component should render alert reminder to check the guidance i
     ;
     }
   </JSXStyle>
+  <JSXStyle
+    id="1245585032"
+  >
+    .card.jsx-1245585032{border-color:#a4a4a4;background-color:#f4f4f4;}.card-header.jsx-1245585032{background-color:#036;color:#fff;}.card-header.jsx-1245585032 h1.jsx-1245585032{margin-bottom:0;}
+  </JSXStyle>
 </div>
 `;
 
 exports[`The Form Component should render an alert reminder to report any missing linked products 1`] = `
 <div
-  className=""
+  className="jsx-1245585032 "
 >
   <Alert
     closeLabel="Close alert"
@@ -2343,178 +2139,191 @@ exports[`The Form Component should render an alert reminder to report any missin
   >
     Note: Your form input will be saved automatically as you type.
   </Alert>
-  <Row
-    noGutters={false}
-  >
-    <Col
-      md={8}
-    >
-      <h1
-        className="form-title"
-      >
-        Foo
-      </h1>
-    </Col>
-    <Col
-      md={4}
-    >
-      <SavingIndicator
-        isSaved={true}
-      />
-    </Col>
-  </Row>
-  <Alert
-    closeLabel="Close alert"
-    show={true}
-    transition={
-      Object {
-        "$$typeof": Symbol(react.forward_ref),
-        "defaultProps": Object {
-          "appear": false,
-          "in": false,
-          "mountOnEnter": false,
-          "timeout": 300,
-          "unmountOnExit": false,
-        },
-        "displayName": "Fade",
-        "render": [Function],
-      }
-    }
-    variant="warning"
-  >
-    <h5>
-      Some required products are missing from your application:
-    </h5>
-  </Alert>
-  <Alert
-    closeLabel="Close alert"
-    key="2"
-    show={true}
-    transition={
-      Object {
-        "$$typeof": Symbol(react.forward_ref),
-        "defaultProps": Object {
-          "appear": false,
-          "in": false,
-          "mountOnEnter": false,
-          "timeout": 300,
-          "unmountOnExit": false,
-        },
-        "displayName": "Fade",
-        "render": [Function],
-      }
-    }
-    variant="warning"
-  >
-    foo
-     requires reporting of: 
-    bar
-  </Alert>
-  <Form
-    ArrayFieldTemplate={[Function]}
-    ErrorList={[Function]}
-    FieldTemplate={[Function]}
-    ObjectFieldTemplate={[Function]}
-    disabled={false}
-    fields={
-      Object {
-        "NumberField": [Function],
-        "ProblemReportField": [Function],
-        "emission": [Function],
-        "emissionCategoryRowId": [Function],
-        "emissionGas": [Function],
-        "emissionSource": [Function],
-        "fuel": [Function],
-        "fuelRowId": [Function],
-        "product": [Function],
-        "productRowId": [Function],
-      }
-    }
-    formContext={
-      Object {
-        "query": Object {
-          " $fragmentRefs": Object {
-            "EmissionCategoryRowIdField_query": true,
-            "FuelField_query": true,
-            "FuelRowIdField_query": true,
-            "ProductField_query": true,
-            "ProductRowIdField_query": true,
-          },
-          " $refType": "Form_query",
-          "products": Object {
-            "edges": Array [
-              Object {
-                "node": Object {
-                  "linkedProduct": Object {
-                    "edges": Array [
-                      Object {
-                        "node": Object {
-                          "linkedProductId": 3,
-                          "productName": "bar",
-                          "rowId": 2,
-                        },
-                      },
-                    ],
-                  },
-                  "productName": "foo",
-                  "rowId": 1,
-                },
-              },
-            ],
-          },
-          "result": Object {
-            "formJsonByFormId": Object {
-              "ciipApplicationWizardByFormId": Object {
-                "formPosition": 3,
-              },
-              "formJson": Object {},
-              "name": "Foo",
-            },
-            "formResult": Array [
-              Object {
-                "productRowId": 1,
-              },
-              Object {
-                "requiresEmissionAllocation": false,
-              },
-            ],
-          },
-        },
-      }
-    }
-    formData={
-      Array [
-        Object {
-          "productRowId": 1,
-        },
-        Object {
-          "requiresEmissionAllocation": false,
-        },
-      ]
-    }
-    liveValidate={false}
-    noHtml5Validate={true}
-    noValidate={false}
-    omitExtraData={false}
-    onError={[Function]}
-    onSubmit={[MockFunction]}
-    safeRenderCompletion={true}
-    showErrorList={false}
-    transformErrors={[Function]}
-    uiSchema={Object {}}
-    validate={[Function]}
-    widgets={
-      Object {
-        "SearchWidget": [Function],
-      }
-    }
+  <div
+    className="jsx-1245585032 card"
   >
     <div
-      className="form-submit"
+      className="jsx-1245585032 card-header"
     >
       <Row
-        className="form-nav"
         noGutters={false}
+      >
+        <Col
+          md={8}
+        >
+          <h1
+            className="jsx-1245585032"
+          >
+            Foo
+          </h1>
+        </Col>
+        <Col
+          md={4}
+        >
+          <SavingIndicator
+            isSaved={true}
+            style={
+              Object {
+                "lineHeight": "2.25em",
+              }
+            }
+          />
+        </Col>
+      </Row>
+    </div>
+    <div
+      className="jsx-1245585032"
+      style={
+        Object {
+          "padding": "0 2em 2em 2em",
+        }
+      }
+    >
+      <Alert
+        closeLabel="Close alert"
+        show={true}
+        transition={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "defaultProps": Object {
+              "appear": false,
+              "in": false,
+              "mountOnEnter": false,
+              "timeout": 300,
+              "unmountOnExit": false,
+            },
+            "displayName": "Fade",
+            "render": [Function],
+          }
+        }
+        variant="warning"
+      >
+        <h5>
+          Some required products are missing from your application:
+        </h5>
+      </Alert>
+      <Alert
+        closeLabel="Close alert"
+        key="2"
+        show={true}
+        transition={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "defaultProps": Object {
+              "appear": false,
+              "in": false,
+              "mountOnEnter": false,
+              "timeout": 300,
+              "unmountOnExit": false,
+            },
+            "displayName": "Fade",
+            "render": [Function],
+          }
+        }
+        variant="warning"
+      >
+        foo
+         requires reporting of: 
+        bar
+      </Alert>
+      <Form
+        ArrayFieldTemplate={[Function]}
+        ErrorList={[Function]}
+        FieldTemplate={[Function]}
+        ObjectFieldTemplate={[Function]}
+        disabled={false}
+        fields={
+          Object {
+            "NumberField": [Function],
+            "ProblemReportField": [Function],
+            "emission": [Function],
+            "emissionCategoryRowId": [Function],
+            "emissionGas": [Function],
+            "emissionSource": [Function],
+            "fuel": [Function],
+            "fuelRowId": [Function],
+            "product": [Function],
+            "productRowId": [Function],
+          }
+        }
+        formContext={
+          Object {
+            "query": Object {
+              " $fragmentRefs": Object {
+                "EmissionCategoryRowIdField_query": true,
+                "FuelField_query": true,
+                "FuelRowIdField_query": true,
+                "ProductField_query": true,
+                "ProductRowIdField_query": true,
+              },
+              " $refType": "Form_query",
+              "products": Object {
+                "edges": Array [
+                  Object {
+                    "node": Object {
+                      "linkedProduct": Object {
+                        "edges": Array [
+                          Object {
+                            "node": Object {
+                              "linkedProductId": 3,
+                              "productName": "bar",
+                              "rowId": 2,
+                            },
+                          },
+                        ],
+                      },
+                      "productName": "foo",
+                      "rowId": 1,
+                    },
+                  },
+                ],
+              },
+              "result": Object {
+                "formJsonByFormId": Object {
+                  "ciipApplicationWizardByFormId": Object {
+                    "formPosition": 3,
+                  },
+                  "formJson": Object {},
+                  "name": "Foo",
+                },
+                "formResult": Array [
+                  Object {
+                    "productRowId": 1,
+                  },
+                  Object {
+                    "requiresEmissionAllocation": false,
+                  },
+                ],
+              },
+            },
+          }
+        }
+        formData={
+          Array [
+            Object {
+              "productRowId": 1,
+            },
+            Object {
+              "requiresEmissionAllocation": false,
+            },
+          ]
+        }
+        liveValidate={false}
+        noHtml5Validate={true}
+        noValidate={false}
+        omitExtraData={false}
+        onError={[Function]}
+        onSubmit={[MockFunction]}
+        safeRenderCompletion={true}
+        showErrorList={false}
+        transformErrors={[Function]}
+        uiSchema={Object {}}
+        validate={[Function]}
+        widgets={
+          Object {
+            "SearchWidget": [Function],
+          }
+        }
       >
         <Button
           active={false}
@@ -2548,11 +2357,11 @@ exports[`The Form Component should render an alert reminder to report any missin
             Save & Exit
           </Button>
         </Link>
-      </Row>
+      </Form>
     </div>
-  </Form>
+  </div>
   <JSXStyle
-    id="3364523561"
+    id="2037158273"
   >
     .
     r
@@ -2716,115 +2525,29 @@ exports[`The Form Component should render an alert reminder to report any missin
     ;
     }
     .
-    f
-    o
-    r
-    m
-    -
-    s
-    u
-    b
-    m
-    i
-    t
-    {
-    b
-    o
-    r
-    d
     e
     r
+    r
+    o
+    r
+    s
+    {
+    m
+    a
+    r
+    g
+    i
+    n
     :
     1
-    p
-    x
-     
-    s
-    o
-    l
-    i
-    d
-     
-    #
-    b
-    b
-    b
-    ;
-    p
-    a
-    d
-    d
-    i
-    n
-    g
-    :
-    3
-    0
-    p
-    x
-    ;
-    b
-    a
-    c
-    k
-    g
-    r
-    o
-    u
-    n
-    d
-    :
-    #
     e
-    0
-    e
-    0
-    e
-    0
-    ;
-    b
-    o
-    r
-    d
-    e
-    r
-    -
-    r
-    a
-    d
-    i
-    u
-    s
-    :
-    6
-    p
-    x
-    ;
-    }
-    .
-    e
-    r
-    r
-    o
-    r
-    s
-    {
     m
-    a
-    r
-    g
-    i
-    n
-    -
-    l
-    e
-    f
-    t
-    :
-    2
+     
     0
-    p
-    x
+     
+    0
+     
+    0
     ;
     p
     a
@@ -3153,6 +2876,11 @@ exports[`The Form Component should render an alert reminder to report any missin
     t
     ;
     }
+  </JSXStyle>
+  <JSXStyle
+    id="1245585032"
+  >
+    .card.jsx-1245585032{border-color:#a4a4a4;background-color:#f4f4f4;}.card-header.jsx-1245585032{background-color:#036;color:#fff;}.card-header.jsx-1245585032 h1.jsx-1245585032{margin-bottom:0;}
   </JSXStyle>
 </div>
 `;
