@@ -46,7 +46,7 @@ EOF`)
 });
 
 Cypress.Commands.add('deployProdData', () => {
-  cy.exec('pushd ../ && ./.bin/deploy-data.sh -prod && popd');
+  cy.exec('pushd ../ && ./.bin/deploy-data.sh -test && popd');
 });
 
 Cypress.Commands.add('cleanSchema', () => {
