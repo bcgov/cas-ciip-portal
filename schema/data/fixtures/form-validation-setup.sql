@@ -5,12 +5,25 @@
 
 begin;
 
+-- Init test
+select test_helper.mock_open_window();
 select test_helper.modify_triggers('disable');
 
-delete from ggircs_portal.ciip_user_organisation where user_id=6 and organisation_id=7;
-insert into ggircs_portal.ciip_user_organisation(user_id, organisation_id, status) values (6, 7, 'approved');
-truncate ggircs_portal.application restart identity cascade;
-select ggircs_portal.create_application_mutation_chain(2);
+-- Create test users
+select test_helper.create_test_users();
+
+-- Create applications (and necessary facilities/organisations)
+select test_helper.create_applications(1, True, True);
+
+-- Create approved user-organisationm connection
+insert into ggircs_portal.ciip_user_organisation(user_id, organisation_id, status) values (6, 1, 'approved');
+
+-- set legal disclaimer true
 update ggircs_portal.application_revision set legal_disclaimer_accepted=true where application_id=1 and version_number=1;
+
+-- Create products to be tested
+insert into ggircs_portal.product(product_name, units, product_state, requires_emission_allocation, requires_product_amount)
+  values
+    ('Aluminum Smelting','tonnes of aluminum produced','published', true, true);
 
 commit;

@@ -18,6 +18,8 @@ describe('When reviewing a submitted application as an analyst', () => {
   const summaryPageUrl = `${applicationUrl}&confirmationPage=true}`;
 
   beforeEach(() => {
+    cy.cleanSchema();
+    cy.deployProdData();
     cy.sqlFixture('fixtures/form-validation-setup');
     cy.login(
       Cypress.env('TEST_REPORTER_USERNAME'),
