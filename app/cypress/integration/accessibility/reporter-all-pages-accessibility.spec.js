@@ -1,6 +1,8 @@
 describe('When logged in as a reporter', () => {
   beforeEach(() => {
     cy.logout();
+    cy.cleanSchema();
+    cy.deployProdData();
     cy.sqlFixture('fixtures/reporter-all-access-setup');
     cy.login(
       Cypress.env('TEST_REPORTER_USERNAME'),

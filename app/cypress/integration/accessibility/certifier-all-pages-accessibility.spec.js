@@ -1,6 +1,8 @@
 describe('When logged in as a certifier(reporter)', () => {
   beforeEach(() => {
     cy.logout();
+    cy.cleanSchema();
+    cy.deployProdData();
     cy.sqlFixture('fixtures/certifier-access-setup');
     cy.login(
       Cypress.env('TEST_CERTIFIER_USERNAME'),
