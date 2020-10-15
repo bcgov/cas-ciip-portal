@@ -6,6 +6,8 @@
 
 begin;
 
+-- Init test
+select test_helper.mock_open_window();
 select test_helper.modify_triggers('enable');
 
 do \$$
@@ -23,25 +25,24 @@ do \$$
   end;
 \$$;
 
-truncate ggircs_portal.certification_url restart identity cascade;
-truncate ggircs_portal.application restart identity cascade;
-select ggircs_portal.create_application_mutation_chain(1);
-select ggircs_portal.create_application_mutation_chain(2);
+-- Create test users
+select test_helper.create_test_users();
 
--- Ensure products referenced in form_result are in the database
-truncate ggircs_portal.product restart identity cascade;
+-- Create applications (and necessary facilities/organisations)
+select test_helper.create_applications(2, True, True);
 
-
+-- Create products for testing
 select test_helper.create_product(id => 26, product_name => 'Coal', units => 'tonnes', product_state => 'published');
 select test_helper.create_product(id => 29, product_name => 'Other Pulp (Mechanical pulp, paper, newsprint)', units => 'bone-dry tonnes', product_state => 'published');
 
+-- Init form results with data
 select test_helper.initialize_all_form_result_data(1,1);
 select test_helper.initialize_all_form_result_data(2,1);
 
+-- Create certification urls for the applications
 insert into ggircs_portal.certification_url(id, certifier_url, created_by, application_id, version_number, send_certification_request, certifier_email)
 overriding system value
 values ('testpage', 'localhost:3004/certifier/certification-redirect?rowId=testpage', 6, 1, 1, false, 'CERTIFIER@certi.fy');
-
 insert into ggircs_portal.certification_url(id, certifier_url, created_by, application_id, version_number, send_certification_request, certifier_email)
 overriding system value
 values ('anothertest', 'localhost:3004/certifier/certification-redirect?rowId=anothertest', 6, 2, 1, false, 'CERTIFIER@certi.fy');
