@@ -67,7 +67,7 @@ const ApplicationFormNavbarComponent: React.FunctionComponent<Props> = (
             padding: 30px;
             background: #eee;
             border-radius: 6px;
-            margin-bottom: 60px;
+            margin-bottom: 36px;
           }
           .nav-guide.nav-pills {
             border: 1px solid #00336675;
