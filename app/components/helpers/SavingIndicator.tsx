@@ -4,11 +4,12 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
 interface Props {
   isSaved?: boolean;
+  style?: object;
 }
 
-const SavingIndicator: React.FunctionComponent<Props> = ({isSaved}) => {
+const SavingIndicator: React.FunctionComponent<Props> = ({isSaved, style}) => {
   return (
-    <div className="text-secondary">
+    <div style={{...style}}>
       <FontAwesomeIcon icon={isSaved ? faCheck : faSync} />
       <span>{isSaved ? 'Form input saved' : 'Saving form input...'}</span>
       <style jsx>

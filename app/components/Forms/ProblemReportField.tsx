@@ -44,7 +44,8 @@ const ProblemReportField: React.FunctionComponent<FieldProps<string>> = (
 
         .report-field {
           background-color: #fcf8e2;
-          border: 2px solid #fbf4dc;
+          border: 1px solid #ccc;
+          border-radius: 4px;
           padding: 16px;
           margin-top: 16px;
         }
