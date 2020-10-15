@@ -66,7 +66,7 @@ describe('The Form Component', () => {
         onComplete={jest.fn()}
       />
     );
-    expect(wrapper.find('.form-nav').find('Button')).toHaveLength(2);
+    expect(wrapper.find('Button')).toHaveLength(2);
     expect(wrapper.find('Button').at(0).text()).toBe('Save & Continue');
     expect(wrapper.find('Button').at(1).text()).toBe('Save & Exit');
   });

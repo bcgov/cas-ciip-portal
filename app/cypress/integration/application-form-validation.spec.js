@@ -79,7 +79,7 @@ describe('When reviewing a submitted application as an analyst', () => {
     cy.get('#root_facility_facilityType').select('LFO');
     cy.get('#root_facility_bcghgid').clear().type('abcd');
 
-    cy.get('div.text-secondary').contains('Form input saved');
+    cy.get('div.card-header').contains('Form input saved');
     cy.contains('Continue').click();
     cy.get('#root_facility_bcghgid +div .error-detail').contains(
       'BCGHGID code should be numeric'
@@ -138,7 +138,7 @@ describe('When reviewing a submitted application as an analyst', () => {
       .clear()
       .type('LLC1234567');
 
-    cy.get('div.text-secondary').contains('Form input saved');
+    cy.get('div.card-header').contains('Form input saved');
     cy.contains('Continue').click();
     cy.get('#page-content h1').contains('Emission');
     cy.visit(summaryPageUrl);
@@ -153,7 +153,7 @@ describe('When reviewing a submitted application as an analyst', () => {
     cy.visit(emissionFormUrl);
     cy.wait(1000);
     cy.get('#root_sourceTypes_0_gases_0_annualEmission').clear();
-    cy.get('div.text-secondary').contains('Form input saved');
+    cy.get('div.card-header').contains('Form input saved');
     cy.contains('Continue').click(); // Try to submit the form
     cy.get(
       '#root_sourceTypes_0_gases_0_annualEmission +div .error-detail'
@@ -169,7 +169,7 @@ describe('When reviewing a submitted application as an analyst', () => {
     // Fix invalid data
     cy.get('#root_sourceTypes_0_gases_0_annualEmission').type('42');
     cy.get('form.rjsf').happoScreenshot({component: 'Emissions form'});
-    cy.get('div.text-secondary').contains('Form input saved');
+    cy.get('div.card-header').contains('Form input saved');
     cy.contains('Continue').click();
     cy.get('#page-content h1').contains('Fuel');
     cy.visit(summaryPageUrl);
@@ -183,7 +183,7 @@ describe('When reviewing a submitted application as an analyst', () => {
     // Fuel Form
     cy.visit(fuelFormUrl);
     cy.contains('Add a fuel').click();
-    cy.get('div.text-secondary').contains('Form input saved');
+    cy.get('div.card-header').contains('Form input saved');
     cy.contains('Continue').click();
     cy.get('#root_0_quantity +div .error-detail').contains(
       'is a required property'
@@ -207,7 +207,7 @@ describe('When reviewing a submitted application as an analyst', () => {
       'General Stationary Combustion'
     );
     cy.get('form.rjsf').happoScreenshot({component: 'Fuels Form'});
-    cy.get('div.text-secondary').contains('Form input saved');
+    cy.get('div.card-header').contains('Form input saved');
     cy.contains('Continue').click();
     cy.get('#page-content h1').contains('Production');
     cy.visit(summaryPageUrl);
@@ -220,12 +220,12 @@ describe('When reviewing a submitted application as an analyst', () => {
   it('The application production form shows validation errors', () => {
     // Production Form
     cy.visit(productionFormUrl);
-    cy.get('div.text-secondary').contains('Form input saved');
+    cy.get('div.card-header').contains('Form input saved');
     cy.contains('Continue').click();
     cy.get('.rbt +div .error-detail').contains('is a required property');
     cy.get('#root_0_productRowId').click();
     cy.get('#root_0_productRowId-item-0 > .dropdown-item').click();
-    cy.get('div.text-secondary').contains('Form input saved');
+    cy.get('div.card-header').contains('Form input saved');
     cy.contains('Continue').click();
     cy.get('#root_0_productAmount +div .error-detail').contains(
       'is a required property'
@@ -250,7 +250,7 @@ describe('When reviewing a submitted application as an analyst', () => {
     cy.get('form.rjsf').happoScreenshot({
       component: 'Products and Energy Form'
     });
-    cy.get('div.text-secondary').contains('Form input saved');
+    cy.get('div.card-header').contains('Form input saved');
     cy.contains('Continue').click();
     cy.get('#page-content h1').contains('Summary');
     cy.get('.production.summary-card').happoScreenshot({
