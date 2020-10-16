@@ -57,7 +57,6 @@ const styles = StyleSheet.create({
 });
 
 const CUSTOM_FIELDS = {
-  ProblemReportField: (props) => <Text>{props.formData}</Text>,
   StringField: (props) => <Text>{props.formData ?? '[Not Entered]'}</Text>,
   emissionSource: (props) => (
     <Text style={{fontSize: 13}}>
@@ -155,6 +154,7 @@ export const ApplicationDetailsPdf: React.FunctionComponent<Props> = (
           </Row>
 
           {formResults.map(({node}) => {
+            console.log(node);
             return (
               <View key={node.formJsonByFormId.name} style={styles.formFields}>
                 <Text

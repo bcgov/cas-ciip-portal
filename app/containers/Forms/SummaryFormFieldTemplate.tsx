@@ -16,7 +16,8 @@ const FormFieldTemplate: React.FunctionComponent<FieldTemplateProps> = ({
 
   if (
     uiSchema['ui:options']?.disableRenderingIfEmpty &&
-    !children[0]?.props?.formData
+    (children[0]?.props?.formData === null ||
+      children[0]?.props?.formData === undefined)
   )
     return null;
 

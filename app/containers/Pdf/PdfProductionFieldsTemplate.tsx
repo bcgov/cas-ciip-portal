@@ -2,26 +2,24 @@ import React from 'react';
 import {View, Text} from '@react-pdf/renderer';
 import {FieldProps} from 'react-jsonschema-form';
 import {ApplicationDetailsPdf_query} from 'ApplicationDetailsPdf_query.graphql';
+import {PdfCommentsField} from './PdfCommentsField';
 
 interface Props extends FieldProps {
   query: ApplicationDetailsPdf_query;
 }
 
-export const PdfProductionFieldsTemplate: React.FunctionComponent<Props> = ({
-  formData,
-  query
-}) => {
+export const PdfProductionFieldsTemplate: React.FunctionComponent<Props> = (
+  props
+) => {
+  const {formData, query} = props;
+
   return (
     <View>
       <Text style={{fontSize: 15, letterSpacing: 2}}>
         {'\n'}Production:{'\n'}
       </Text>
-      {formData.comments ? (
-        <Text style={{marginBottom: 2, marginTop: 2}}>
-          {`comments: ${formData.comments}`}
-          {'\n'}
-        </Text>
-      ) : null}
+
+      <PdfCommentsField comments={formData.comments} />
 
       <Text>
         Product or Service:{' '}

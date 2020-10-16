@@ -29,9 +29,6 @@ const customFields = (
   };
 
   const CUSTOM_FIELDS: Record<string, React.FunctionComponent<FieldProps>> = {
-    ProblemReportField: (props) => (
-      <span id={props.idSchema?.$id}>{props.formData ?? null}</span>
-    ),
     TitleField: (props) => <h3>{props.title}</h3>,
     StringField: (props) => {
       const errorIcon: object = setErrorIcon(props);

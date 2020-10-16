@@ -25,7 +25,8 @@ const PdfFieldTemplate: React.FunctionComponent<FieldTemplateProps> = (
 ) => {
   if (
     props.uiSchema['ui:options']?.disableRenderingIfEmpty &&
-    !props.children[0]?.props?.formData
+    (props.children[0]?.props?.formData === null ||
+      props.children[0]?.props?.formData === undefined)
   ) {
     return null;
   }
