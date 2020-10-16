@@ -211,10 +211,10 @@ app.prepare().then(() => {
   // Keycloak instantiation for dev/test/prod
   const kcNamespace = process.env.NAMESPACE
     ? namespaceMap[process.env.NAMESPACE]
-    : '-dev';
+    : 'dev.';
   const kcConfig = {
     realm: 'pisrwwhx',
-    'auth-server-url': `https://sso${kcNamespace}.pathfinder.gov.bc.ca/auth`,
+    'auth-server-url': `https://${kcNamespace}oidc.gov.bc.ca`,
     'ssl-required': 'external',
     resource: 'cas-ciip-portal',
     'public-client': true,
