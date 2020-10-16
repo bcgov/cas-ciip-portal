@@ -11,14 +11,8 @@ export default css.global`
   .no-col-padding .form-row > [class*='col-'] {
     padding: 0;
   }
-  .form-submit {
-    border: 1px solid #bbb;
-    padding: 30px;
-    background: #e0e0e0;
-    border-radius: 6px;
-  }
   .errors {
-    margin-left: 20px;
+    margin: 1em 0 0 0;
     padding: 20px;
     background: #ce5c5c;
     color: white;

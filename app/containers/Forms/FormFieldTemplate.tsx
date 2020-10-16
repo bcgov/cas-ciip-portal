@@ -27,7 +27,7 @@ const FormFieldTemplate: React.FunctionComponent<FieldTemplateProps> = ({
       {help}
     </a>
   ) : (
-    <span className="font-italic text-muted">{help}</span>
+    <span className="font-italic">{help}</span>
   );
 
   if (schema.type === 'array')

@@ -3,7 +3,7 @@ import {graphql, createFragmentContainer} from 'react-relay';
 import {IChangeEvent, ErrorSchema, AjvError} from 'react-jsonschema-form';
 import JsonSchemaForm from 'components/Forms/Form';
 import {Form_query} from 'Form_query.graphql';
-import {Button, Row, Col, Alert} from 'react-bootstrap';
+import {Button, Row, Col, Alert, Card} from 'react-bootstrap';
 import globalFormStyles from './FormSharedStyles';
 import Link from 'next/link';
 import {FormJson} from 'next-env';
@@ -220,49 +220,53 @@ export const FormComponent: React.FunctionComponent<Props> = ({
       <Alert variant="info">
         Note: Your form input will be saved automatically as you type.
       </Alert>
-      <Row>
-        <Col md={8}>
-          <h1 className="form-title">{name}</h1>
-        </Col>
-        <Col md={4}>
-          <SavingIndicator isSaved={isSaved} />
-        </Col>
-      </Row>
-
-      {hasErrors && (
-        <div className="errors">Please correct the errors below.</div>
-      )}
-      {showMissingProducts()}
-      <JsonSchemaForm
-        safeRenderCompletion
-        noHtml5Validate
-        validate={customValidation}
-        showErrorList={false}
-        ArrayFieldTemplate={FormArrayFieldTemplate}
-        FieldTemplate={FormFieldTemplate}
-        formContext={{query}}
-        formData={formResult}
-        fields={CUSTOM_FIELDS}
-        widgets={{SearchWidget: SearchDropdownWidget}}
-        customFormats={customFormats}
-        schema={schema}
-        uiSchema={uiSchema}
-        ObjectFieldTemplate={FormObjectFieldTemplate}
-        transformErrors={transformErrors}
-        onError={onError}
-        onSubmit={onComplete}
-        onChange={onValueChanged}
-      >
-        {showAllocationReminder && (
-          <Alert variant="info">
-            <Alert.Heading>Before you proceed:</Alert.Heading>
-            Please refer to the guidance documents to calculate the emission
-            allocations for each product or service, and ensure that you report
-            all the necessary product or services
-          </Alert>
-        )}
-        <div className="form-submit">
-          <Row className="form-nav">
+      <div className="card">
+        <div className="card-header">
+          <Row>
+            <Col md={8}>
+              <h1>{name}</h1>
+            </Col>
+            <Col md={4}>
+              <SavingIndicator
+                isSaved={isSaved}
+                style={{lineHeight: '2.25em'}}
+              />
+            </Col>
+          </Row>
+        </div>
+        <div style={{padding: '0 2em 2em 2em'}}>
+          {hasErrors && (
+            <div className="errors">Please correct the errors below.</div>
+          )}
+          {showMissingProducts()}
+          <JsonSchemaForm
+            safeRenderCompletion
+            noHtml5Validate
+            validate={customValidation}
+            showErrorList={false}
+            ArrayFieldTemplate={FormArrayFieldTemplate}
+            FieldTemplate={FormFieldTemplate}
+            formContext={{query}}
+            formData={formResult}
+            fields={CUSTOM_FIELDS}
+            widgets={{SearchWidget: SearchDropdownWidget}}
+            customFormats={customFormats}
+            schema={schema}
+            uiSchema={uiSchema}
+            ObjectFieldTemplate={FormObjectFieldTemplate}
+            transformErrors={transformErrors}
+            onError={onError}
+            onSubmit={onComplete}
+            onChange={onValueChanged}
+          >
+            {showAllocationReminder && (
+              <Alert variant="info">
+                <Alert.Heading>Before you proceed:</Alert.Heading>
+                Please refer to the guidance documents to calculate the emission
+                allocations for each product or service, and ensure that you
+                report all the necessary product or services
+              </Alert>
+            )}
             <Button size="lg" variant="primary" type="submit">
               Save &amp; Continue
             </Button>
@@ -280,12 +284,25 @@ export const FormComponent: React.FunctionComponent<Props> = ({
                 Save &amp; Exit
               </Button>
             </Link>
-          </Row>
+          </JsonSchemaForm>
         </div>
-      </JsonSchemaForm>
+      </div>
       <style jsx global>
         {globalFormStyles}
       </style>
+      <style jsx>{`
+        .card {
+          border-color: #a4a4a4;
+          background-color: #f4f4f4;
+        }
+        .card-header {
+          background-color: #036;
+          color: #fff;
+        }
+        .card-header h1 {
+          margin-bottom: 0;
+        }
+      `}</style>
     </div>
   );
 };

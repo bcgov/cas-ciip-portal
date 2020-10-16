@@ -59,10 +59,18 @@ export const ProductCreator: React.FunctionComponent<Props> = ({
 
   return (
     <>
-      <div>
-        <Card style={{marginTop: '10px'}}>
-          <Card.Header as="h5">Create a Product</Card.Header>
-          <Card.Body>
+      <div style={{marginBottom: '50px'}}>
+        <Card
+          style={{
+            marginTop: '10px',
+            borderColor: '#a4a4a4',
+            backgroundColor: '#f4f4f4'
+          }}
+        >
+          <Card.Header as="h5" style={{backgroundColor: '#036', color: '#fff'}}>
+            Create a Product
+          </Card.Header>
+          <Card.Body style={{padding: '2em'}}>
             <JsonSchemaForm
               omitExtraData
               liveOmit
@@ -76,21 +84,17 @@ export const ProductCreator: React.FunctionComponent<Props> = ({
               onSubmit={saveProduct}
             >
               <Button type="submit">Add Product</Button>
-              <Button variant="danger" onClick={toggleShowCreateForm}>
+              <Button
+                variant="secondary"
+                style={{marginLeft: '0.5em'}}
+                onClick={toggleShowCreateForm}
+              >
                 Close
               </Button>
             </JsonSchemaForm>
           </Card.Body>
         </Card>
       </div>
-      <style jsx>{`
-        .hidden-title label {
-          display: none;
-        }
-        div {
-          margin-bottom: 50px;
-        }
-      `}</style>
     </>
   );
 };

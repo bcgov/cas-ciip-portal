@@ -20,11 +20,7 @@ export const EmissionFieldComponent: React.FunctionComponent<FieldProps> = (
   return (
     <div className={hideZeroEmissions}>
       <Col md={12} className="emission-toggle">
-        <Button
-          variant="outline-secondary"
-          size="sm"
-          onClick={toggleZeroEmissions}
-        >
+        <Button variant="outline-dark" size="sm" onClick={toggleZeroEmissions}>
           {hideZeroEmissions === ''
             ? 'Show gases with no reported emissions'
             : 'Hide gases with no reported emissions'}
@@ -35,6 +31,7 @@ export const EmissionFieldComponent: React.FunctionComponent<FieldProps> = (
         {`
           .emission-toggle {
             text-align: right;
+            margin: 1.5em 0 0.5em 0;
           }
           .emission .zero-emission,
           .emission-form .zero-emission {
