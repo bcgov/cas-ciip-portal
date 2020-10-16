@@ -214,7 +214,7 @@ app.prepare().then(() => {
     : 'dev.';
   const kcConfig = {
     realm: 'pisrwwhx',
-    'auth-server-url': `https://${kcNamespace}oidc.gov.bc.ca`,
+    'auth-server-url': `https://${kcNamespace}oidc.gov.bc.ca/auth`,
     'ssl-required': 'external',
     resource: 'cas-ciip-portal',
     'public-client': true,
