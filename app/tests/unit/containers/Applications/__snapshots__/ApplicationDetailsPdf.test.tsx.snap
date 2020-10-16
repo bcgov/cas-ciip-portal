@@ -154,7 +154,6 @@ exports[`ApplicationDetailsPdf should render application pdf download link 1`] =
               disabled={false}
               fields={
                 Object {
-                  "ProblemReportField": [Function],
                   "StringField": [Function],
                   "emissionGas": [Function],
                   "emissionSource": [Function],
@@ -532,7 +531,6 @@ exports[`ApplicationDetailsPdf should render application pdf download link 1`] =
               disabled={false}
               fields={
                 Object {
-                  "ProblemReportField": [Function],
                   "StringField": [Function],
                   "emissionGas": [Function],
                   "emissionSource": [Function],
@@ -825,7 +823,6 @@ exports[`ApplicationDetailsPdf should render application pdf download link 1`] =
               disabled={false}
               fields={
                 Object {
-                  "ProblemReportField": [Function],
                   "StringField": [Function],
                   "emissionGas": [Function],
                   "emissionSource": [Function],
@@ -1035,7 +1032,6 @@ exports[`ApplicationDetailsPdf should render application pdf download link 1`] =
               disabled={false}
               fields={
                 Object {
-                  "ProblemReportField": [Function],
                   "StringField": [Function],
                   "emissionGas": [Function],
                   "emissionSource": [Function],
