@@ -82,7 +82,7 @@
     "@types/enzyme": "^3.10.5",
     "@types/jest": "^25.2.1",
     "@types/react-jsonschema-form": "^1.7.2",
-    "@types/react-relay": "^7.0.8",
+    "@types/react-relay": "^7.0.13",
     "@types/relay-runtime": "^9.1.6",
     "@typescript-eslint/eslint-plugin": "^4.3.0",
     "@typescript-eslint/parser": "^4.3.0",
