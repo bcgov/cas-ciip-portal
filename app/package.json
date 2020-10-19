@@ -55,7 +55,7 @@
     "keycloak-connect": "^10.0.0",
     "moment-timezone": "^0.5.31",
     "morgan": "^1.10.0",
-    "next": "^9.4.4",
+    "next": "^9.5.5",
     "nodemailer": "^6.4.8",
     "pg": "^8.2.0",
     "postgraphile": "^4.8.0",
@@ -142,7 +142,8 @@
     "easygraphql-tester/**/lodash": "4.17.19",
     "serialize-javascript": "^3.1.0",
     "**/@types/relay-runtime": "^9.1.6",
-    "**/node-fetch": "^2.6.1"
+    "**/node-fetch": "^2.6.1",
+    "next/resolve-url-loader/adjust-sourcemap-loader/object-path": "0.11.5"
   },
   "jest": {
     "testMatch": [
