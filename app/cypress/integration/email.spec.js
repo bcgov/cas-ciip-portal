@@ -21,10 +21,8 @@ function decoded(emailEncoded) {
 
 describe('When a user is created', () => {
   before(() => {
+    cy.cleanSchema();
     cy.sqlFixture('fixtures/add-user');
-  });
-  after(() => {
-    cy.sqlFixture('fixtures/remove-user');
   });
 
   it('should send an automatic email upon registration', () => {
@@ -56,6 +54,7 @@ function requestAccessToOrg() {
 
 describe('Organisation access request emails', () => {
   beforeEach(() => {
+    cy.cleanSchema();
     cy.sqlFixture('fixtures/email/org-access-setup');
     cy.login(
       Cypress.env('TEST_REPORTER_USERNAME'),
@@ -65,7 +64,6 @@ describe('Organisation access request emails', () => {
   });
   afterEach(() => {
     cy.logout();
-    cy.sqlFixture('fixtures/email/org-access-teardown');
   });
   it('sends the reporter an email when they request organisation access', () => {
     requestAccessToOrg();
@@ -135,6 +133,8 @@ describe('Organisation access request emails', () => {
 
 describe('Draft application started email', () => {
   beforeEach(() => {
+    cy.cleanSchema();
+    cy.deployProdData();
     cy.sqlFixture('fixtures/email/draft-application-setup');
     cy.login(
       Cypress.env('TEST_REPORTER_USERNAME'),
@@ -145,7 +145,6 @@ describe('Draft application started email', () => {
   });
   afterEach(() => {
     cy.logout();
-    cy.sqlFixture('fixtures/email/draft-application-teardown');
   });
   it('emails the reporter when they start a new application', () => {
     const organisationId = window.btoa('["organisations", 200]');
@@ -176,6 +175,9 @@ describe('Draft application started email', () => {
 
 describe('Certification & Confirmation emails', () => {
   before(() => {
+    cy.wait(500);
+    cy.cleanSchema();
+    cy.deployProdData();
     cy.sqlFixture('fixtures/email-setup');
   });
   beforeEach(() => {
@@ -187,12 +189,11 @@ describe('Certification & Confirmation emails', () => {
   after(() => {
     cy.wait(1000);
     cy.logout();
-    cy.sqlFixture('fixtures/email-teardown');
   });
 
   it('should send notification emails to the certifier when the reporter sends a request, and to the reporter if the data is out of date', () => {
     cy.request('DELETE', 'localhost:8025/api/v1/messages');
-    const applicationId = window.btoa('["applications", 2]');
+    const applicationId = window.btoa('["applications", 1]');
     cy.visit(
       `/reporter/application?applicationId=${applicationId}&confirmationPage=true&version=1`
     );
@@ -227,7 +228,7 @@ describe('Certification & Confirmation emails', () => {
   });
 
   it('should send a notification email to the reporter when application has been certified', () => {
-    const applicationId = window.btoa('["applications", 2]');
+    const applicationId = window.btoa('["applications", 1]');
     cy.visit(
       `/reporter/application?applicationId=${applicationId}&confirmationPage=true&version=1`
     );
@@ -262,7 +263,7 @@ describe('Certification & Confirmation emails', () => {
       });
   });
   it('should send an email to the reporter and to the admin when application has been submitted', () => {
-    const applicationId = window.btoa('["applications", 2]');
+    const applicationId = window.btoa('["applications", 1]');
     cy.visit(
       `/reporter/application?applicationId=${applicationId}&confirmationPage=true&version=1`
     );
@@ -304,6 +305,8 @@ describe('Certification & Confirmation emails', () => {
 
 describe('Certification email opt-out', () => {
   before(() => {
+    cy.cleanSchema();
+    cy.deployProdData();
     cy.sqlFixture('fixtures/email-setup');
   });
   beforeEach(() => {
@@ -318,7 +321,7 @@ describe('Certification email opt-out', () => {
     cy.sqlFixture('fixtures/email-teardown');
   });
   it('should not send a notification email to the certifier if the reporter opts out', () => {
-    const applicationId = window.btoa('["applications", 2]');
+    const applicationId = window.btoa('["applications", 1]');
     cy.request('DELETE', 'localhost:8025/api/v1/messages');
     cy.visit(
       `/reporter/application?applicationId=${applicationId}&confirmationPage=true&version=1`
@@ -355,6 +358,8 @@ function makeApplicationDecision(decision) {
 
 describe('Application status change emails', () => {
   beforeEach(() => {
+    cy.cleanSchema();
+    cy.deployProdData();
     cy.sqlFixture('fixtures/email/status-change-setup');
     cy.request('DELETE', 'localhost:8025/api/v1/messages');
     cy.login(
@@ -365,7 +370,6 @@ describe('Application status change emails', () => {
   });
   afterEach(() => {
     cy.logout();
-    cy.sqlFixture('fixtures/email/status-change-teardown');
   });
 
   it('should send the reporter an email when their application has been approved', () => {
@@ -379,8 +383,8 @@ describe('Application status change emails', () => {
         (msg) =>
           msg.includes('Your CIIP Application') &&
           msg.includes('approved') &&
-          msg.includes('MacDonalds Agriculture, Ltd.') &&
-          msg.includes('Farm')
+          msg.includes('test_organisation') &&
+          msg.includes('test_organisation_facility')
       );
     });
   });
@@ -395,8 +399,8 @@ describe('Application status change emails', () => {
         (msg) =>
           msg.includes('Your CIIP Application') &&
           msg.includes('rejected') &&
-          msg.includes('MacDonalds Agriculture, Ltd.') &&
-          msg.includes('Farm')
+          msg.includes('test_organisation') &&
+          msg.includes('test_organisation_facility')
       );
     });
   });
@@ -410,8 +414,8 @@ describe('Application status change emails', () => {
       expect(decoded(message.Content.Body)).to.satisfy(
         (msg) =>
           msg.includes('Changes are requested to your CIIP application') &&
-          msg.includes('MacDonalds Agriculture, Ltd.') &&
-          msg.includes('Farm')
+          msg.includes('test_organisation') &&
+          msg.includes('test_organisation_facility')
       );
     });
   });
