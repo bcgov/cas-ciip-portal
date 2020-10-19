@@ -18,9 +18,13 @@ describe('The Subheader', () => {
       .mockImplementationOnce(() => ({
         asPath: '/reporter'
       }))
-      .mockImplementationOnce(() => ({
-        asPath: '/reporter/facilities'
-      }));
+      .mockImplementation(() => {
+        // ideally we would use mockImplementationOnce (and did until upgrating to next 9.5.5),
+        // but now the function is called multiple times for each render, not sure why
+        return {
+          asPath: '/reporter/facilities'
+        };
+      });
     let wrapper = render(<Subheader />);
     expect(wrapper.find('.active a').text()).toBe('My Dashboard');
     wrapper = render(<Subheader />);
