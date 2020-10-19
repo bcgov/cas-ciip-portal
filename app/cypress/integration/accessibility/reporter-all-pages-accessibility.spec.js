@@ -42,7 +42,7 @@ describe('When logged in as a reporter', () => {
   it('The application admin tab has no detectable ally violations on load', () => {
     cy.sqlFixture('fixtures/set-legal-disclaimer-true');
     const applicationId = window.btoa('["applications", 2]');
-    const formResultId = window.btoa('["form_results",9]');
+    const formResultId = window.btoa('["form_results",5]');
     cy.visit(
       `/reporter/application?applicationId=${applicationId}&&version=1&formResultId=${formResultId}`
     );
@@ -56,7 +56,7 @@ describe('When logged in as a reporter', () => {
   it('The application emissions tab has no detectable ally violations on load', () => {
     cy.sqlFixture('fixtures/set-legal-disclaimer-true');
     const applicationId = window.btoa('["applications", 2]');
-    const formResultId = window.btoa('["form_results",10]');
+    const formResultId = window.btoa('["form_results",6]');
     cy.visit(
       `/reporter/application?applicationId=${applicationId}&&version=1&formResultId=${formResultId}`
     );
@@ -70,7 +70,7 @@ describe('When logged in as a reporter', () => {
   it('The application fuel tab has no detectable ally violations on load', () => {
     cy.sqlFixture('fixtures/set-legal-disclaimer-true');
     const applicationId = window.btoa('["applications", 2]');
-    const formResultId = window.btoa('["form_results",11]');
+    const formResultId = window.btoa('["form_results",7]');
     cy.visit(
       `/reporter/application?applicationId=${applicationId}&&version=1&formResultId=${formResultId}`
     );
@@ -84,7 +84,7 @@ describe('When logged in as a reporter', () => {
   it('The application production tab has no detectable ally violations on load', () => {
     cy.sqlFixture('fixtures/set-legal-disclaimer-true');
     const applicationId = window.btoa('["applications", 2]');
-    const formResultId = window.btoa('["form_results",12]');
+    const formResultId = window.btoa('["form_results",8]');
     cy.visit(
       `/reporter/application?applicationId=${applicationId}&&version=1&formResultId=${formResultId}`
     );
