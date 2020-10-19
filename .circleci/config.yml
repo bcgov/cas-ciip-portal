@@ -112,6 +112,9 @@ jobs:
             set +o pipefail
             docker load -i /tmp/<< parameters.image_name >>.tar | true
       - run:
+          name: Log in to DockerHub
+          command: echo $DOCKERHUB_PASSWORD | docker login -u $DOCKERHUB_USER --password-stdin registry.hub.docker.com
+      - run:
           name: Build tools Docker image
           command: >-
             docker build --cache-from=<< parameters.image_name >>
