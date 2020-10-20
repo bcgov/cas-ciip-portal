@@ -43,14 +43,15 @@ Create a defined number of applications. If `create_dependencies` is false, then
 **create_dependencies (boolean)**: If set to true, creates the necessary parent organisation(s) and facilities.
 
 #### Example Usage
-`select test_helper.create_applications(4, True, True)`
-- This will create 4 applications for 4 facilities under 1 organisation.
-`select test_helper.create_applications(4, False, True)`
-- This will create 4 applications for 4 facilities under 4 organisations.
-`select test_helper.create_applications(4, True, False)`
-- This will require that 1 organisation and 4 facilities have already been created.
-`select test_helper.create_applications(4, False, False)`
-- This will require that 4 organisations and 4 facilities have already been created.
+
+- `select test_helper.create_applications(4, True, True)`
+  will create 4 applications for 4 facilities under 1 organisation.
+- `select test_helper.create_applications(4, False, True)`
+  will create 4 applications for 4 facilities under 4 organisations.
+- `select test_helper.create_applications(4, True, False)`
+  will require that 1 organisation and 4 facilities have already been created.
+- `select test_helper.create_applications(4, False, False)`
+  will require that 4 organisations and 4 facilities have already been created.
 
 
 ### CREATE_PRODUCT
@@ -59,12 +60,14 @@ Create a defined number of applications. If `create_dependencies` is false, then
 Create a row in the product table with a defined id.
 
 #### Parameters
-Takes all parameters for columns in the ggircs_portal.product table. Only id is required.
-(id, product_name, units, product_state, is_ciip_product, requres_emission_allocation, requires_product_amount, subtract_exported_electricity_emissions, add_purchased_electricity_emissions, subtract_exported_heat_emissions, add_purchased_heat_emissions, subtract_generated_electricity_emissions, subtract_generated_heat_emissions, add_emissions_from_eios, is_read_only, updated_at)
+Takes all parameters for columns in the ggircs_portal.product table. 
+- `id` is optional, but required when not using the named parameters syntax. Using a value of 0 will just use the regular postgres sequence to create the id.
+- Boolean parameters default to `True`
+- Fields are: (id, product_name, units, product_state, is_ciip_product, requres_emission_allocation, requires_product_amount, subtract_exported_electricity_emissions, add_purchased_electricity_emissions, subtract_exported_heat_emissions, add_purchased_heat_emissions, subtract_generated_electricity_emissions, subtract_generated_heat_emissions, add_emissions_from_eios, is_read_only, updated_at)
 
 #### Example Usage
-`select test_helper.create_product(id => 11, product_name => 'Product A', units => 'tonnes', is_read_only => false)`
-- Will create a product with id=11 named 'Product A'
+- `select test_helper.create_product(id => 11, product_name => 'Product A', units => 'tonnes', is_read_only => false)`
+  <br> will create a non-read-only product with id=11 named 'Product A'
 
 
 ### CREATE_TEST_USERS
@@ -85,14 +88,14 @@ None
 Mutates data in the ggircs_portal.form_result table for individual forms. Based on a seed, data can be changed.
 
 #### Parameters
-**application_id (int)**: The application ID of the form result to modify.
-**version_number (int)**: The version_number of the form result to modify.
-**form_id (int)**: The form_id of the form result to modify.
-**seed (int)**: Use this value to modify the data in the form_result table.
+**application_id (int)**: The application ID of the form result to modify. 
+**version_number (int)**: The version_number of the form result to modify. 
+**form_id (int)**: The form_id of the form result to modify. 
+**seed (int)**: Use this value to modify the data in the form_result table. 
 
 #### Example Usage
-`select test_helper.initialize_form_result_data(1, 1, 1, 1);`
-- Would modify the data for form_result with application_id=1, version_number=1 and form_id=1
+`select test_helper.initialize_form_result_data(1, 1, 1, 99);`
+- Would modify the data for form_result with application_id=1, version_number=1 and form_id=1, and use 99 as seed value.
 
 
 ### INITIALIZE_ALL_FORM_RESULT_DATA
@@ -106,8 +109,8 @@ Mutates data in all the forms (Admin, Emission, Fuel & Production). Helpful when
 **seed (int)**: Use this value to modify the data in the form_result table.
 
 #### Example Usage
-`select test_helper.initialize_form_result_data(1, 1, 1, 1);`
-- Would populate all the forms for application_id=1, version_number=1
+`select test_helper.initialize_form_result_data(1, 1, 1);`
+- Would populate all the forms for application_id=1, version_number=1, and use seed value 1.
 
 
 ### MOCK_OPEN_WINDOW
@@ -132,7 +135,5 @@ Enable or disable triggers on the tables in the ggircs_portal schema. This is an
 **trigger_data (json)**: A JSON object containing a set of tables that each contain a list of triggers to be enabled or disabled.
 
 #### Example Usage
-`select test_helper.modify_triggers('disable')`
-- This will disable all triggers on all tables in the ggircs_portal database.
-`select test_helper.modify_triggers('disable', '{"table_1":["trigger_1","trigger_2",...], "table_2":["trigger_1, ...]}')`
-- This will disable only the triggers on the tables defined in the JSON object.
+- `select test_helper.modify_triggers('disable')` <br> will disable all triggers on all tables in the ggircs_portal database.
+- `select test_helper.modify_triggers('disable', '{"table_1":["trigger_1","trigger_2",...], "table_2":["trigger_1, ...]}')` <br> will disable only the triggers on the tables defined in the JSON object.
