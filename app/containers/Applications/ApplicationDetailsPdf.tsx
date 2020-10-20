@@ -154,7 +154,6 @@ export const ApplicationDetailsPdf: React.FunctionComponent<Props> = (
           </Row>
 
           {formResults.map(({node}) => {
-            console.log(node);
             return (
               <View key={node.formJsonByFormId.name} style={styles.formFields}>
                 <Text
