@@ -105,8 +105,6 @@ The form tab (ie: Emissions, etc.) initially displayed on loading this page is c
 
 Form validation helps ensure the integrity of data entered before submission; however, this can be overridden by the reporter with a message justifying their reasons for not being able to fix the validation errors.
 
-The current state of the application can be downloaded as PDF from the Summary tab.
-
 \* Required query parameters:
 - `applicationId`
 - `version`
@@ -127,7 +125,7 @@ Interstitial page shown after submitting an application, which confirms the appl
 
 ### View Submitted Application page: `/reporter/view-application`\*
 
-View a submitted application, including comments made by the analyst who reviewed the applications. The application can be downloaded as PDF.
+View a submitted application, including comments made by the analyst who reviewed the applications.
 
 \* Required query parameters:
 - `applicationId`
@@ -153,7 +151,7 @@ As with all other pages requiring login, certifiers following the link in their 
 
 ### Application Certification page `/certifier/certify`\*
 
-Displays the detailed data submitted in the application to be certified and provides a signature interface with legal disclaimer (displayed in a scrollable area) that is agreed to when certifying the application. A link is provided to expand the disclaimer text as full page in a new tab. The signature interface can be used by clicking and dragging the pointer within the signature box, or by uploading a signature image. The application can be downloaded as PDF.
+Displays the detailed data submitted in the application to be certified and provides a signature interface with legal disclaimer (displayed in a scrollable area) that is agreed to when certifying the application. A link is provided to expand the disclaimer text as full page in a new tab. The signature interface can be used by clicking and dragging the pointer within the signature box, or by uploading a signature image.
 
 \* Required query parameters:
 - `applicationId`
@@ -249,7 +247,6 @@ Review a submitted application, section by section.
 - Delete comments or mark comments as resolved
 - Make a decision to approve or reject an application, or request that the reporter make changes
   * these decisions trigger an email to the reporter
-- Download the application as PDF
 
 \* Required query parameters:
 - `applicationId`
