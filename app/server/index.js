@@ -46,11 +46,8 @@ const AS_CERTIFIER = process.argv.includes('AS_CERTIFIER');
 const AS_ANALYST = process.argv.includes('AS_ANALYST');
 const AS_ADMIN = process.argv.includes('AS_ADMIN');
 const AS_PENDING = process.argv.includes('AS_PENDING');
-const NO_PDF = process.argv.includes('NO_PDF');
 const NO_MATHJAX = process.argv.includes('NO_MATHJAX');
 const NO_MAIL = process.argv.includes('NO_MAIL');
-
-if (NO_PDF) process.env.NO_PDF = true;
 
 if (NO_MATHJAX) process.env.NO_MATHJAX = true;
 
