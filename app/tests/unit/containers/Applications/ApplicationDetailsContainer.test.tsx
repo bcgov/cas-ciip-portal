@@ -10,9 +10,6 @@ describe('ApplicationDetailsComponent', () => {
         relay={null}
         query={{
           ' $refType': 'ApplicationDetailsContainer_query',
-          ' $fragmentRefs': {
-            ApplicationDetailsPdf_query: true
-          },
           query: {
             ' $fragmentRefs': {
               ApplicationDetailsCardItem_query: true
@@ -80,9 +77,6 @@ describe('ApplicationDetailsComponent', () => {
                 }
               }
             ]
-          },
-          ' $fragmentRefs': {
-            ApplicationDetailsPdf_application: true
           }
         }}
       />
@@ -96,9 +90,6 @@ describe('ApplicationDetailsComponent', () => {
         relay={null}
         query={{
           ' $refType': 'ApplicationDetailsContainer_query',
-          ' $fragmentRefs': {
-            ApplicationDetailsPdf_query: true
-          },
           query: {
             ' $fragmentRefs': {
               ApplicationDetailsCardItem_query: true
@@ -166,9 +157,6 @@ describe('ApplicationDetailsComponent', () => {
                 }
               }
             ]
-          },
-          ' $fragmentRefs': {
-            ApplicationDetailsPdf_application: true
           }
         }}
       />
@@ -182,9 +170,6 @@ describe('ApplicationDetailsComponent', () => {
         relay={null}
         query={{
           ' $refType': 'ApplicationDetailsContainer_query',
-          ' $fragmentRefs': {
-            ApplicationDetailsPdf_query: true
-          },
           query: {
             ' $fragmentRefs': {
               ApplicationDetailsCardItem_query: true
@@ -252,9 +237,6 @@ describe('ApplicationDetailsComponent', () => {
                 }
               }
             ]
-          },
-          ' $fragmentRefs': {
-            ApplicationDetailsPdf_application: true
           }
         }}
       />
