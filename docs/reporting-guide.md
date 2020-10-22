@@ -193,6 +193,6 @@ At the bottom of each screen you will find a Continue and/or Back button, but yo
 2. **Emission** - Details on various emission processes are provided for calculating the tonnes of CO<sub>2</sub>e.
 3. **Fuel** - Add a new fuel or remove an existing one for your facility. Pay special attention to units to ensure accuracy. All fields in this form are required.
 4. **Production** - Add a new product or service, or remove an existing one from your facility.
-5. **Summary** - This page will display any errors that must be fixed before submission.
+5. **Summary** - This page will display any errors that must be fixed before submission. Additionally, a Download button at the bottom of the page allows you to save a PDF copy of the application as-is.
 
    Once all errors have been corrected, you can submit the application and include any comments necessary. At any time you can [contact CAS](mailto:ghgregulator@gov.bc.ca) for assistance.
