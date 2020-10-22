@@ -227,7 +227,8 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
           justify-content: space-between;
         }
         @media print {
-          button {
+          button,
+          .btn {
             display: none !important;
           }
         }
