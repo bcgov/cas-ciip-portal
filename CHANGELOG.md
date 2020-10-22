@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.11.0](https://github.com/bcgov/cas-ciip-portal/compare/v1.10.1...v1.11.0) (2020-10-22)
+
+
+### Features
+
+* add missing /auth back into the url ([1b73e50](https://github.com/bcgov/cas-ciip-portal/commit/1b73e50ebe250be9838a052391655fc035f277f0))
+* update keycloak url for dev-test-prod ([0caa3c8](https://github.com/bcgov/cas-ciip-portal/commit/0caa3c88c17a120cb109e73b36422ad972b44c8c))
+
+
+### Bug Fixes
+
+* remove all instances of the NO_PDF flag & update docs ([d365dfb](https://github.com/bcgov/cas-ciip-portal/commit/d365dfb1b3168f9839cde494dbcd020195bf1b01))
+* remove all pdf-related files ([130209f](https://github.com/bcgov/cas-ciip-portal/commit/130209fb61d329a8c84898404a7a4afa6ac98be4))
+* remove react-pdf packages ([6cc5f7f](https://github.com/bcgov/cas-ciip-portal/commit/6cc5f7fabf35e2e85cff1a3af0b85602ac285d8f))
+
 ### [1.10.1](https://github.com/bcgov/cas-ciip-portal/compare/v1.10.0...v1.10.1) (2020-10-15)
 
 
