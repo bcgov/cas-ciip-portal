@@ -99,5 +99,10 @@ exports[`matches the last accepted Snapshot 1`] = `
   <Row
     noGutters={false}
   />
+  <JSXStyle
+    id="2162832555"
+  >
+    @media print{header,footer{display:none !important;}}
+  </JSXStyle>
 </Relay(DefaultLayout)>
 `;

@@ -92,6 +92,14 @@ class ViewApplication extends Component<Props> {
             <ReviseApplicationButton application={query.application} />
           ) : null}
         </Row>
+        <style jsx global>{`
+          @media print {
+            header,
+            footer {
+              display: none !important;
+            }
+          }
+        `}</style>
       </DefaultLayout>
     );
   }
