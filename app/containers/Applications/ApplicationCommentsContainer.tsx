@@ -144,6 +144,11 @@ export const ApplicationCommentsComponent: React.FunctionComponent<Props> = (
         .comments-header th {
           border: 0;
         }
+        @media print {
+          i[aria-label='Collapse or expand comment'] {
+            display: none !important;
+          }
+        }
       `}</style>
     </>
   );
