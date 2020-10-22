@@ -12,7 +12,7 @@ exports[`ApplicationCommentsComponent should match the snapshot with the Applica
       ddd
        
       <i
-        aria-label="toggle-card-open"
+        aria-label="Collapse or expand comment"
         className="jsx-2344769289"
         onClick={[Function]}
         style={
@@ -21,7 +21,7 @@ exports[`ApplicationCommentsComponent should match the snapshot with the Applica
             "marginRight": "10px",
           }
         }
-        title="expand or collapse the card"
+        title="Collapse or expand comment"
       >
         <FontAwesomeIcon
           border={false}

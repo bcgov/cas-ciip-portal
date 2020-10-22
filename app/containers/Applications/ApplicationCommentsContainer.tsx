@@ -28,8 +28,8 @@ export const ApplicationCommentsComponent: React.FunctionComponent<Props> = (
         <h3>
           {formResult.formJsonByFormId.name}{' '}
           <i
-            aria-label="toggle-card-open"
-            title="expand or collapse the card"
+            aria-label="Collapse or expand comment"
+            title="Collapse or expand comment"
             style={{float: 'right', marginRight: '10px'}}
             onClick={() => setIsOpen(!isOpen)}
           >
