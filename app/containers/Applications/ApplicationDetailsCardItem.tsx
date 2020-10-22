@@ -226,6 +226,11 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
         .summary-form-header > .row {
           justify-content: space-between;
         }
+        @media print {
+          button {
+            display: none !important;
+          }
+        }
       `}</style>
     </Card>
   );
