@@ -143,6 +143,14 @@ export const CertificationSignature: React.FunctionComponent<Props> = ({
             #signature-component {
               display: none !important;
             }
+            .card-text a {
+              display: none !important;
+            }
+            .card-text::after {
+              content: '(full text available at: ${window.location
+                .protocol}//${window.location
+                .host}/resources/application-disclaimer)';
+            }
           }
         `}
       </style>
