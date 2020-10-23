@@ -75,6 +75,13 @@ class Application extends Component<Props> {
     return (
       <DefaultLayout session={session}>
         <ApplicationWizard query={query} />
+        <style jsx global>{`
+          @media print {
+            .nav-guide-container {
+              display: none !important;
+            }
+          }
+        `}</style>
       </DefaultLayout>
     );
   }
