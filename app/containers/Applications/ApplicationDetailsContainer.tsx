@@ -152,9 +152,21 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = (
           />
         ))}
       </div>
-      <a href={`/print-pdf?url=${encodeURIComponent(router.asPath)}`}>
+      <a
+        className="btn btn-primary"
+        href={`/print-pdf?url=${encodeURIComponent(router.asPath)}`}
+        style={{marginBottom: '0.5em'}}
+      >
         Download PDF
       </a>
+      <style jsx global>{`
+        @media print {
+          header,
+          footer {
+            display: none !important;
+          }
+        }
+      `}</style>
     </>
   );
 };
