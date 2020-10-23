@@ -2,6 +2,7 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const puppeteer = require('puppeteer');
 const router = express.Router();
+const consola = require('consola');
 const PORT = Number.parseInt(process.env.PORT, 10) || 3004;
 
 const launchBrowser = async () => {
@@ -39,6 +40,7 @@ module.exports = async () => {
 
       await page.waitForSelector('#page-content');
 
+      consola.info(`generating pdf for url ${req.query.url}`);
       const pdfFile = await page.pdf({
         format: 'letter',
         printBackground: true
@@ -52,13 +54,13 @@ module.exports = async () => {
 
       res.send(pdfFile);
     } catch (e) {
-      console.error(e);
+      consola.error(e);
       res.sendStatus(500);
     } finally {
       try {
         if (page) await page.close();
       } catch (ee) {
-        console.error(ee);
+        consola.error(ee);
       }
     }
   });
