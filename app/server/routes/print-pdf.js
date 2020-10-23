@@ -2,53 +2,65 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const puppeteer = require('puppeteer');
 const router = express.Router();
+const PORT = Number.parseInt(process.env.PORT, 10) || 3004;
 
-router.use(cookieParser());
-router.get('/', async (req, res) => {
-  let browser;
-  try {
-    browser = await puppeteer.launch({
-      headless: true,
-      args: ['--disable-dev-shm-usage']
-    });
+const launchBrowser = async () => {
+  browser = await puppeteer.launch({
+    headless: true,
+    args: ['--disable-dev-shm-usage', '--incognito']
+  });
 
-    const page = await browser.newPage();
-    await page.setCookie({
-      name: 'connect.sid',
-      value: req.cookies['connect.sid'],
-      domain: 'localhost',
-      httpOnly: true
-    });
+  browser.on('disconnected', launchBrowser);
+  return browser;
+};
 
-    page.setViewport({
-      width: 1920,
-      height: 1080
-    });
+module.exports = async () => {
+  const browser = await launchBrowser();
+  router.use(cookieParser());
+  router.get('/', async (req, res) => {
+    let page;
+    try {
+      page = await browser.newPage();
+      await page.setCookie({
+        name: 'connect.sid',
+        value: req.cookies['connect.sid'],
+        domain: 'localhost',
+        httpOnly: true
+      });
 
-    console.log(`http://localhost:3004${req.query.url}`);
-    page.goto(`http://localhost:3004${req.query.url}`, {
-      waitUntil: 'networkidle2'
-    });
+      page.setViewport({
+        width: 1920,
+        height: 1080
+      });
 
-    await page.waitForSelector('#page-content');
+      await page.goto(`${process.env.HOST}:${PORT}${req.query.url}`, {
+        waitUntil: 'networkidle2'
+      });
 
-    const pdfFile = await page.pdf({
-      format: 'letter',
-      printBackground: true
-    });
+      await page.waitForSelector('#page-content');
 
-    res.set({
-      'Content-Type': 'application/pdf',
-      'Content-Length': pdfFile.length
-    });
+      const pdfFile = await page.pdf({
+        format: 'letter',
+        printBackground: true
+      });
 
-    res.send(pdfFile);
-  } catch (e) {
-    console.error(e);
-    res.sendStatus(500);
-  } finally {
-    await browser.close();
-  }
-});
+      res.set({
+        'Content-Type': 'application/pdf',
+        'Content-Length': pdfFile.length,
+        'Content-Disposition': 'attachment; filename=CIIP_Application.pdf'
+      });
 
-module.exports = router;
+      res.send(pdfFile);
+    } catch (e) {
+      console.error(e);
+      res.sendStatus(500);
+    } finally {
+      try {
+        if (page) await page.close();
+      } catch (ee) {
+        console.error(ee);
+      }
+    }
+  });
+  return router;
+};

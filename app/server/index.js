@@ -157,7 +157,7 @@ const getRedirectURL = (req) => {
   return getUserGroupLandingRoute(groups);
 };
 
-app.prepare().then(() => {
+app.prepare().then(async () => {
   const server = express();
 
   server.use(morgan('combined'));
@@ -445,7 +445,7 @@ app.prepare().then(() => {
 
   server.get('/register', ({res}) => res.redirect(302, kcRegistrationUrl));
 
-  server.use('/print-pdf', printPdf);
+  server.use('/print-pdf', await printPdf());
 
   server.get('*', async (req, res) => {
     return handle(req, res);
