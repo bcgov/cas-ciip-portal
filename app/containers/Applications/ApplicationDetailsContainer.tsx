@@ -156,6 +156,8 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = (
         className="btn btn-primary"
         href={`/print-pdf?url=${encodeURIComponent(router.asPath)}`}
         style={{marginBottom: '0.5em'}}
+        target="_blank"
+        rel="noopener noreferrer"
       >
         Download PDF
       </a>
