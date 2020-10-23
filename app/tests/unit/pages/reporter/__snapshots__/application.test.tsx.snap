@@ -40,5 +40,10 @@ exports[`matches the last accepted Snapshot 1`] = `
       }
     }
   />
+  <JSXStyle
+    id="3438383081"
+  >
+    @media print{.nav-guide-container{display:none !important;}}
+  </JSXStyle>
 </Relay(DefaultLayout)>
 `;

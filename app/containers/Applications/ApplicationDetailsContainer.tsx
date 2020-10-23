@@ -159,6 +159,14 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = (
       >
         Download PDF
       </a>
+      <style jsx global>{`
+        @media print {
+          header,
+          footer {
+            display: none !important;
+          }
+        }
+      `}</style>
     </>
   );
 };
