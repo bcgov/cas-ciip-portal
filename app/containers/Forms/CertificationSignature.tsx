@@ -78,7 +78,7 @@ export const CertificationSignature: React.FunctionComponent<Props> = ({
   };
 
   return (
-    <Container>
+    <Container id="signature-component">
       <h3>Certifier Signature:</h3>
       <p>
         To create a digital signature, click, hold and drag your pointer within
@@ -138,6 +138,11 @@ export const CertificationSignature: React.FunctionComponent<Props> = ({
             background: #eee;
             border-radius: 6px;
             margin-bottom: 60px;
+          }
+          @media print {
+            #signature-component {
+              display: none !important;
+            }
           }
         `}
       </style>
