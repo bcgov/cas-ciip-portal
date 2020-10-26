@@ -44,7 +44,7 @@
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "graphile-build": "^4.5.0",
-    "graphile-build-pg": "^4.8.0",
+    "graphile-build-pg": "^4.9.2",
     "graphile-worker": "^0.8.1",
     "graphql": "^14.7.0",
     "graphql-voyager": "^1.0.0-rc.30",

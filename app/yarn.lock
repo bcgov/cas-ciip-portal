@@ -7718,7 +7718,7 @@ graceful-fs@^4.2.4:
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.4.tgz#2256bde14d3632958c465ebc96dc467ca07a29fb"
   integrity sha512-WjKPNJF79dtJAVniUlGGWHYGz2jWxT6VhN/4m1NdkbZ2nOsEF+cI1Edgql5zCRhs/VsQYRvrXctxktVXZUkixw==
 
-graphile-build-pg@4.8.0, graphile-build-pg@^4.8.0:
+graphile-build-pg@4.8.0:
   version "4.8.0"
   resolved "https://registry.yarnpkg.com/graphile-build-pg/-/graphile-build-pg-4.8.0.tgz#1c00297e2747f6c52e2920a57d3dee02d8e327d0"
   integrity sha512-zCvFag/x2PZZlQGaKU4F6H+d3Iq/ELCay8aULxQiFePePN00Q1vRKW46FgiW5bz7xOyq87G82a0qVQFx8mInUA==
@@ -7733,6 +7733,21 @@ graphile-build-pg@4.8.0, graphile-build-pg@^4.8.0:
     lru-cache ">=4 <5"
     pg-sql2 "4.8.0"
     postgres-interval "^1.2.0"
+
+graphile-build-pg@^4.9.2:
+  version "4.9.2"
+  resolved "https://registry.yarnpkg.com/graphile-build-pg/-/graphile-build-pg-4.9.2.tgz#5a56b01076814e0df8da8d63f1e8efecce77c345"
+  integrity sha512-Am9FV7/XQx1Al3xuiRiCLUmR5wAa/TZosaHvIJzEjc9UjIGRq+to96L16RP2SGWqjXdEuAeR8jWzda0lC825Hg==
+  dependencies:
+    "@graphile/lru" "4.9.0"
+    chalk "^2.4.2"
+    debug "^4.1.1"
+    graphile-build "4.9.0"
+    graphql-iso-date "^3.6.0"
+    jsonwebtoken "^8.5.1"
+    lodash ">=4 <5"
+    lru-cache ">=4 <5"
+    pg-sql2 "4.9.0"
 
 graphile-build@4.8.0:
   version "4.8.0"
@@ -7749,7 +7764,7 @@ graphile-build@4.8.0:
     pluralize "^7.0.0"
     semver "^6.0.0"
 
-graphile-build@^4.5.0:
+graphile-build@4.9.0, graphile-build@^4.5.0:
   version "4.9.0"
   resolved "https://registry.yarnpkg.com/graphile-build/-/graphile-build-4.9.0.tgz#547da79ceb2526a55691d41f8cd79e3361f99300"
   integrity sha512-OEM9wfHuA1i7ZYd2k9TfHtFUm+uy805E/bnQo1dyJh165BywI6zvOmle7oYbK1y83qSDvS3z9gh4f4JYY5LEBA==
@@ -9945,12 +9960,12 @@ lodash.union@^4.6.0:
   resolved "https://registry.yarnpkg.com/lodash.union/-/lodash.union-4.6.0.tgz#48bb5088409f16f1821666641c44dd1aaae3cd88"
   integrity sha1-SLtQiECfFvGCFmZkHETdGqrjzYg=
 
-lodash@4.17.15, lodash@4.17.19, "lodash@>=4 <5", lodash@^4.15.0, lodash@^4.17.10, lodash@^4.17.11, lodash@^4.17.13, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.19, lodash@^4.17.4:
+lodash@4.17.15, lodash@4.17.19:
   version "4.17.19"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.19.tgz#e48ddedbe30b3321783c5b4301fbd353bc1e4a4b"
   integrity sha512-JNvd8XER9GQX0v2qJgsaN/mzFCNA5BRe/j8JN9d+tWyGLSodKQHKFicdwNYzWwI3wjRnaKPsGj1XkBjx/F96DQ==
 
-lodash@^4.17.5:
+"lodash@>=4 <5", lodash@^4.15.0, lodash@^4.17.10, lodash@^4.17.11, lodash@^4.17.13, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.19, lodash@^4.17.4, lodash@^4.17.5:
   version "4.17.20"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.20.tgz#b44a9b6297bcb698f1c51a3545a2b3b368d59c52"
   integrity sha512-PlhdFcillOINfeV7Ni6oF1TAEayyZBoZ8bcshTHqOYJYlrqzRK5hagpagky5o4HfCzzd1TRkXPMFq6cKk9rGmA==
@@ -11316,6 +11331,16 @@ pg-sql2@4.8.0:
     "@types/pg" ">=6 <8"
     debug ">=3 <5"
     tslib "^1.13.0"
+
+pg-sql2@4.9.0:
+  version "4.9.0"
+  resolved "https://registry.yarnpkg.com/pg-sql2/-/pg-sql2-4.9.0.tgz#e46d4267192af69ac861e38e64b0df9632b1169c"
+  integrity sha512-buNlFvR1Sq/7UY90CnxfKHcs21/J6CyN+iqAxFHy1Ppbc4uUSIdqwIEhB4y19yBsrqcIMa+pt0i+wJ0ecm4aXg==
+  dependencies:
+    "@graphile/lru" "4.9.0"
+    "@types/pg" ">=6 <8"
+    debug ">=3 <5"
+    tslib "^2.0.1"
 
 pg-types@^2.1.0:
   version "2.2.0"
