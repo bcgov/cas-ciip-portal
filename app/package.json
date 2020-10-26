@@ -112,7 +112,7 @@
     "eslint-plugin-relay": "^1.8.1",
     "graphql-query-test-mock": "^0.12.0",
     "graphql-tag-pluck": "^0.8.5",
-    "happo-cypress": "^1.9.1",
+    "happo-cypress": "^1.9.3",
     "happo.io": "^5.6.3",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^26.5.3",
