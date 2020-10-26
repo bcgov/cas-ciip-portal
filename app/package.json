@@ -56,7 +56,7 @@
     "next": "^9.5.5",
     "nodemailer": "^6.4.8",
     "pg": "^8.2.0",
-    "postgraphile": "^4.8.0",
+    "postgraphile": "^4.9.2",
     "postgraphile-log-consola": "^1.0.1",
     "prop-types": "^15.5.8",
     "react": "^16.13.0",
