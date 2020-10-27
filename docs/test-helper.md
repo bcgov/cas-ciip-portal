@@ -60,7 +60,7 @@ Create a defined number of applications. If `create_dependencies` is false, then
 Create a row in the product table with a defined id.
 
 #### Parameters
-Takes all parameters for columns in the ggircs_portal.product table. 
+Takes all parameters for columns in the ggircs_portal.product table.
 - `id` is optional, but required when not using the named parameters syntax. Using a value of 0 will just use the regular postgres sequence to create the id.
 - Boolean parameters default to `True`
 - Fields are: (id, product_name, units, product_state, is_ciip_product, requres_emission_allocation, requires_product_amount, subtract_exported_electricity_emissions, add_purchased_electricity_emissions, subtract_exported_heat_emissions, add_purchased_heat_emissions, subtract_generated_electricity_emissions, subtract_generated_heat_emissions, add_emissions_from_eios, is_read_only, updated_at)
@@ -88,10 +88,10 @@ None
 Mutates data in the ggircs_portal.form_result table for individual forms. Based on a seed, data can be changed.
 
 #### Parameters
-**application_id (int)**: The application ID of the form result to modify. 
-**version_number (int)**: The version_number of the form result to modify. 
-**form_id (int)**: The form_id of the form result to modify. 
-**seed (int)**: Use this value to modify the data in the form_result table. 
+**application_id (int)**: The application ID of the form result to modify.
+**version_number (int)**: The version_number of the form result to modify.
+**form_id (int)**: The form_id of the form result to modify.
+**seed (int)**: Use this value to modify the data in the form_result table.
 
 #### Example Usage
 `select test_helper.initialize_form_result_data(1, 1, 1, 99);`
