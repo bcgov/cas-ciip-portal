@@ -219,7 +219,7 @@ First, ensure the web app is running (`cd app && yarn dev`) _without_ bypassing 
 ```
 cd app
 
-NO_PDF=true NO_MATHJAX=true yarn dev
+NO_MATHJAX=true yarn dev
 ```
 
 For test error debugging and to observe tests' behavior in the browser as they run:
