@@ -1,5 +1,6 @@
 describe('When logged in as an admin', () => {
   beforeEach(() => {
+    cy.cleanSchema();
     // The admin spec uses the same setup as the analyst
     cy.sqlFixture('fixtures/analyst-all-access-setup');
     cy.login(
@@ -10,8 +11,6 @@ describe('When logged in as an admin', () => {
 
   afterEach(() => {
     cy.logout();
-    // The admin spec uses the same setup as the analyst
-    cy.sqlFixture('fixtures/analyst-all-access-teardown');
   });
 
   it('The admin should be able to load all pages within their access scope', () => {

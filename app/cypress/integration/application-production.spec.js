@@ -1,7 +1,8 @@
 describe('The production tab', () => {
   before(() => {
+    cy.cleanSchema();
+    cy.deployProdData();
     cy.sqlFixture('fixtures/application-production-setup');
-    cy.sqlFixture('dev/product');
   });
   beforeEach(() => {
     cy.sqlFixture('fixtures/production-draft-form-result-setup');
@@ -9,20 +10,15 @@ describe('The production tab', () => {
       Cypress.env('TEST_REPORTER_USERNAME'),
       Cypress.env('TEST_REPORTER_PASSWORD')
     );
-    const applicationId = window.btoa('["applications", 2]');
-    const formResultId = window.btoa('["form_results", 12]');
+    const applicationId = window.btoa('["applications", 1]');
+    const formResultId = window.btoa('["form_results", 4]');
     cy.visit(
       `/reporter/application?formResultId=${formResultId}&applicationId=${applicationId}&version=1`
     );
   });
 
   afterEach(() => {
-    cy.sqlFixture('fixtures/production-draft-form-result-teardown');
     cy.logout();
-  });
-
-  after(() => {
-    cy.sqlFixture('fixtures/application-production-teardown');
   });
 
   it('Should render the aluminum product', () => {

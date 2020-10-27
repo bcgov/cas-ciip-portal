@@ -1,5 +1,7 @@
 describe('When logged in as an analyst', () => {
   beforeEach(() => {
+    cy.cleanSchema();
+    cy.deployProdData();
     cy.sqlFixture('fixtures/analyst-all-access-setup');
     cy.login(
       Cypress.env('TEST_ANALYST_USERNAME'),
@@ -9,7 +11,6 @@ describe('When logged in as an analyst', () => {
 
   afterEach(() => {
     cy.logout();
-    cy.sqlFixture('fixtures/analyst-all-access-teardown');
   });
 
   it('The analyst dashboard has no detectable ally violations on load', () => {

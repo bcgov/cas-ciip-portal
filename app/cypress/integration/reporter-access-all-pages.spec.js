@@ -1,6 +1,8 @@
 describe('When logged in as a reporter', () => {
   beforeEach(() => {
     cy.logout();
+    cy.cleanSchema();
+    cy.deployProdData();
     cy.sqlFixture('fixtures/reporter-all-access-setup');
     cy.login(
       Cypress.env('TEST_REPORTER_USERNAME'),
@@ -10,7 +12,6 @@ describe('When logged in as a reporter', () => {
 
   afterEach(() => {
     cy.logout();
-    cy.sqlFixture('fixtures/reporter-all-access-teardown');
   });
 
   it('The reporter should be able to load all pages within their access scope', () => {
@@ -20,7 +21,7 @@ describe('When logged in as a reporter', () => {
     cy.contains('View Facilities').click();
     cy.url().should('include', '/reporter/facilities');
     cy.get('tr');
-    cy.contains('Resume').click();
+    cy.get(':nth-child(2) > :nth-child(7) > .btn').click();
     cy.url().should('include', '/reporter/new-application-disclaimer');
     cy.contains('Consent and continue').click();
     cy.url().should('include', '/reporter/application');
@@ -40,6 +41,7 @@ describe('When logged in as a reporter', () => {
         cy.url().should('include', '/certifier/certification-redirect');
         cy.get('#page-content');
         cy.contains('Continue').click();
+        cy.wait(500);
         cy.url().should('include', '/certifier');
         cy.get('.admin');
         cy.get('input').click({multiple: true});
@@ -50,7 +52,7 @@ describe('When logged in as a reporter', () => {
         cy.contains('View Facilities').click();
         cy.url().should('include', '/reporter/facilities');
         cy.get('tr');
-        cy.contains('Resume').click();
+        cy.get(':nth-child(2) > :nth-child(7) > .btn').click();
         cy.url().should('include', '/reporter/application');
         cy.get('.nav-link');
         cy.contains('Summary').click();

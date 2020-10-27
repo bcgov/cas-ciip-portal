@@ -137,6 +137,10 @@ while [[ "$1" =~ ^- && ! "$1" == "--" ]]; do case $1 in
     # prod data should be deployed in both test and prod openshift environments
     actions+=('deployProd')
     ;;
+  -test | --test-data)
+    # test data includes all prod data except organisations/facilities
+    actions+=('deployTest')
+    ;;
   -dev | --dev-data | --oc-project=*-dev )
     actions+=('deployDev')
     ;;
@@ -158,6 +162,17 @@ deployProdData() {
   _psql -f "./prod/fuel.sql"
   _psql -f "./prod/energy_product.sql"
   _psql -f "./prod/organisation_and_facility.sql"
+  _psql -f "./prod/emission.sql"
+  _psql -f "./prod/gas.sql"
+  _psql -f "./prod/emission_gas.sql"
+  return 0;
+}
+
+deployTestData() {
+  _psql -f "./prod/form_json.sql"
+  _psql -f "./prod/ciip_application_wizard.sql"
+  _psql -f "./prod/fuel.sql"
+  _psql -f "./prod/energy_product.sql"
   _psql -f "./prod/emission.sql"
   _psql -f "./prod/gas.sql"
   _psql -f "./prod/emission_gas.sql"
@@ -198,6 +213,10 @@ deployPortal
 if [[ " ${actions[*]} " =~ " deployProd " ]]; then
   echo 'Deploying production data'
   deployProdData
+fi
+if [[ " ${actions[*]} " =~ " deployTest " ]]; then
+  echo 'Deploying test production data'
+  deployTestData
 fi
 if [[ " ${actions[*]} " =~ " deployDev " ]]; then
   echo 'Deploying development data'

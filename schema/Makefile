@@ -24,7 +24,7 @@ DEPLOY_DEFAULT_DATA=deploy_dev_data
 test: | test_deploy_revert test_data prove_unit prove_style dropdb
 
 .PHONY: unit
-unit: | $(DEPLOY_DEFAULT_DATA) prove_unit
+unit: | $(DEPLOY_DEFAULT_DATA) deploy_test_helpers prove_unit
 
 .PHONY: test_data
 test_data: | deploy_prod_data prove_prod_data deploy_dev_data prove_dev_data
@@ -38,6 +38,11 @@ deploy_prod_data:
 deploy_dev_data:
 	# Deploy dev data in $(TEST_DB)
 	@@SQITCH_TARGET="db:pg:" PGHOST=localhost PGDATABASE=$(TEST_DB) ./data/deploy-data.sh -d -dev
+
+.PHONY: deploy_test_helpers
+deploy_test_helpers:
+	# Deploy test_helper schema & functions in $(TEST_DB)
+	pushd ../test_helper_schema && SQITCH_TARGET="db:pg:" PGHOST=localhost PGDATABASE=$(TEST_DB) sqitch deploy && popd
 
 .PHONY: test_deploy_revert
 # Test sqitch deploy sqitch revert

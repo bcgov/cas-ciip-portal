@@ -1,6 +1,7 @@
 describe('The products and benchmark page', () => {
   beforeEach(() => {
     cy.logout();
+    cy.cleanSchema();
     cy.sqlFixture('fixtures/products-benchmarks-setup');
     cy.login(
       Cypress.env('TEST_ADMIN_USERNAME'),
@@ -11,7 +12,6 @@ describe('The products and benchmark page', () => {
   });
 
   afterEach(() => {
-    cy.sqlFixture('fixtures/products-benchmarks-teardown');
     cy.logout();
   });
 
@@ -32,6 +32,7 @@ describe('The products and benchmark page', () => {
 describe('The benchmark modal', () => {
   beforeEach(() => {
     cy.logout();
+    cy.cleanSchema();
     cy.sqlFixture('fixtures/products-benchmarks-setup');
     cy.login(
       Cypress.env('TEST_ADMIN_USERNAME'),
@@ -42,7 +43,6 @@ describe('The benchmark modal', () => {
   });
 
   afterEach(() => {
-    cy.sqlFixture('fixtures/products-benchmarks-teardown');
     cy.logout();
   });
 
@@ -101,6 +101,7 @@ describe('The benchmark modal', () => {
 describe('The linking modal', () => {
   beforeEach(() => {
     cy.logout();
+    cy.cleanSchema();
     cy.sqlFixture('fixtures/products-benchmarks-setup');
     cy.login(
       Cypress.env('TEST_ADMIN_USERNAME'),
@@ -111,7 +112,6 @@ describe('The linking modal', () => {
   });
 
   afterEach(() => {
-    cy.sqlFixture('fixtures/products-benchmarks-teardown');
     cy.logout();
   });
 
@@ -154,7 +154,6 @@ describe('The Create Product modal', () => {
   });
 
   afterEach(() => {
-    cy.sqlFixture('fixtures/products-benchmarks-teardown');
     cy.logout();
   });
 

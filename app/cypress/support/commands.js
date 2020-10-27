@@ -44,3 +44,13 @@ ${fixture}
 EOF`)
   );
 });
+
+Cypress.Commands.add('deployProdData', () => {
+  cy.exec('pushd ../ && ./.bin/deploy-data.sh -test && popd');
+});
+
+Cypress.Commands.add('cleanSchema', () => {
+  cy.exec(
+    `psql -d ciip_portal_dev -c 'select test_helper.clean_ggircs_portal_schema()'`
+  );
+});

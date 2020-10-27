@@ -1,32 +1,16 @@
--- disable unnecessary triggers
--- add ciip_user_organisation connection if not set
--- refresh application data with truncate & create_application_mutation_chain
--- create a 'submitted' application for the analyst to view
-
 begin;
 
-alter table ggircs_portal.ciip_user_organisation
-  disable trigger _set_user_id;
-alter table ggircs_portal.ciip_user_organisation
-  disable trigger _send_request_for_access_email;
-alter table ggircs_portal.ciip_user_organisation
-  disable trigger _send_access_approved_email;
-alter table ggircs_portal.application_revision_status
-  disable trigger _status_change_email;
-alter table ggircs_portal.certification_url
-  disable trigger _certification_request_email;
-alter table ggircs_portal.certification_url
-  disable trigger _signed_by_certifier_email;
-alter table ggircs_portal.application_revision_status
-  disable trigger _check_certification_signature_md5;
-alter table ggircs_portal.application
-  disable trigger _send_draft_application_email;
-delete from ggircs_portal.ciip_user_organisation where user_id=6 and organisation_id=7;
-insert into ggircs_portal.ciip_user_organisation(user_id, organisation_id, status) values (6, 7, 'approved');
-truncate ggircs_portal.application restart identity cascade;
-select ggircs_portal.create_application_mutation_chain(1);
-select ggircs_portal.create_application_mutation_chain(2);
-update ggircs_portal.certification_url set certification_signature = 'signed' where application_id=2;
+-- Init test environment
+select test_helper.mock_open_window();
+select test_helper.modify_triggers('disable');
+
+-- Create test users
+select test_helper.create_test_users();
+
+-- Create applications (and necessary facilities/organisations)
+select test_helper.create_applications(2, False, True);
+
+-- Modify application #2 to be 'submitted'
 insert into ggircs_portal.application_revision_status(application_id, version_number, application_revision_status)
   values (2,1,'submitted');
 
