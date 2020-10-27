@@ -60,11 +60,13 @@ exports[`ApplicationDetailsComponent should match the snapshot with the Applicat
   <a
     className="jsx-3086474478 btn btn-primary"
     href="/print-pdf?url=%2Fpath-to-application"
+    rel="noopener noreferrer"
     style={
       Object {
         "marginBottom": "0.5em",
       }
     }
+    target="_blank"
   >
     Download PDF
   </a>
