@@ -210,6 +210,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
     <Row>
       <Col md={6}>
         <input
+          className="print-hide"
           ref={copyArea}
           readOnly
           value={revision?.certificationUrl?.certifierUrl ?? url}
@@ -234,7 +235,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
                 Your request for certification has now been sent to your
                 certifier via email.
               </p>
-              <p>
+              <p className="print-hide">
                 You may copy the direct link to the certification page below.
               </p>
             </Card.Text>
@@ -245,7 +246,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
                 opted not to notify them by email, but your request will still
                 be visible via their dashboard.
               </p>
-              <p>
+              <p className="print-hide">
                 You may copy the direct link to the certification page below.
               </p>
             </Card.Text>
@@ -271,7 +272,9 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
             you indicated. You will be notified when they have certified the
             application, at which time it can be submitted.
           </p>
-          <p>You may copy the direct link to the certification page below.</p>
+          <p className="print-hide">
+            You may copy the direct link to the certification page below.
+          </p>
         </Card.Body>
         <Card.Footer>
           <span style={{color: 'green'}}>{copySuccess}</span> {copyUrl}
@@ -359,7 +362,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
       ) : (
         certificationMessage
       )}
-      <style jsx>
+      <style jsx global>
         {`
           .errors {
             margin-left: 20px;
@@ -367,6 +370,11 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
             background: #ce5c5c;
             color: white;
             font-size: 20px;
+          }
+          @media print {
+            .print-hide {
+              display: none !important;
+            }
           }
         `}
       </style>
