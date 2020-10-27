@@ -65,7 +65,8 @@
     "comments": {
       "ui:field": "ProblemReportField",
       "ui:options": {
-        "label": false
+        "label": false,
+        "disableRenderingIfEmpty" : true
       },
       "ui:col-md": 12
     },

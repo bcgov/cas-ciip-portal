@@ -205,6 +205,7 @@ exports[`The ProductionFields Component with archived product should match the s
             "ui:col-md": 12,
             "ui:field": "ProblemReportField",
             "ui:options": Object {
+              "disableRenderingIfEmpty": true,
               "label": false,
             },
           },
@@ -431,6 +432,7 @@ exports[`The ProductionFields Component with published product should match the 
           "ui:col-md": 12,
           "ui:field": "ProblemReportField",
           "ui:options": Object {
+            "disableRenderingIfEmpty": true,
             "label": false,
           },
         },
