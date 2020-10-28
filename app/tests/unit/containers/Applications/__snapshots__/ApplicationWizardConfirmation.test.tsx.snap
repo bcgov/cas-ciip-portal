@@ -93,6 +93,7 @@ exports[`The Confirmation Component match the snapshot 1`] = `
         Once you have reviewed the application and ensured all the data is correct, the application has to be certified.
       </CardText>
       <Form
+        className="print-hide"
         inline={false}
         onSubmit={[Function]}
       >
@@ -260,6 +261,7 @@ exports[`The Confirmation Component should render the override justification com
         Once you have reviewed the application and ensured all the data is correct, the application has to be certified.
       </CardText>
       <Form
+        className="print-hide"
         inline={false}
         onSubmit={[Function]}
       >
@@ -427,6 +429,7 @@ exports[`The Confirmation Component should render the override justification com
         Once you have reviewed the application and ensured all the data is correct, the application has to be certified.
       </CardText>
       <Form
+        className="print-hide"
         inline={false}
         onSubmit={[Function]}
       >
@@ -619,6 +622,7 @@ exports[`The Confirmation Component should show a "data has changed" dialogue wh
         Once you have reviewed the application and ensured all the data is correct, the application has to be certified.
       </CardText>
       <Form
+        className="print-hide"
         inline={false}
         onSubmit={[Function]}
       >
