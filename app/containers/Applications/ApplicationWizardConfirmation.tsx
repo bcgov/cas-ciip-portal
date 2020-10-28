@@ -165,7 +165,10 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
             Once you have reviewed the application and ensured all the data is
             correct, the application has to be certified.
           </Card.Text>
-          <Form onSubmit={handleClickGenerateCertificationUrl}>
+          <Form
+            className="print-hide"
+            onSubmit={handleClickGenerateCertificationUrl}
+          >
             <Form.Row>
               <Form.Group as={Col} md="4" controlId="certifierEmail">
                 <Form.Label>Certifier Email Address:</Form.Label>
