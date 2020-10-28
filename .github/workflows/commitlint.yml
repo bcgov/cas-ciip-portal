@@ -1,0 +1,14 @@
+name: Lint Commit Messages
+
+on:
+  push
+
+jobs:
+  # see https://github.com/marketplace/actions/commit-linter
+  commitlint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: wagoid/commitlint-github-action@v2
