@@ -163,7 +163,8 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = (
       </a>
       <style jsx global>{`
         @media print {
-          header,
+          header .header-right,
+          #navbar,
           footer {
             display: none !important;
           }
