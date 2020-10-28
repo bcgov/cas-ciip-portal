@@ -4,6 +4,7 @@ on:
   push
 
 jobs:
+  # https://github.com/marketplace/actions/commit-linter
   commitlint:
     runs-on: ubuntu-latest
     steps:
