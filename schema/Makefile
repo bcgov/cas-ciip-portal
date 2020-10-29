@@ -24,7 +24,7 @@ DEPLOY_DEFAULT_DATA=deploy_dev_data
 test: | test_deploy_revert test_data prove_unit prove_style dropdb
 
 .PHONY: unit
-unit: | $(DEPLOY_DEFAULT_DATA) deploy_test_helpers prove_unit
+unit: | $(DEPLOY_DEFAULT_DATA) deploy_test_helpers deploy_mocks_schema prove_unit
 
 .PHONY: test_data
 test_data: | deploy_prod_data prove_prod_data deploy_dev_data prove_dev_data
@@ -43,6 +43,11 @@ deploy_dev_data:
 deploy_test_helpers:
 	# Deploy test_helper schema & functions in $(TEST_DB)
 	pushd ../test_helper_schema && SQITCH_TARGET="db:pg:" PGHOST=localhost PGDATABASE=$(TEST_DB) sqitch deploy && popd
+
+.PHONY: deploy_mocks_schema
+deploy_mocks_schema:
+	# Deploy mocks schema & mocked functions in $(TEST_DB)
+	pushd ../mocks_schema && SQITCH_TARGET="db:pg:" PGHOST=localhost PGDATABASE=$(TEST_DB) sqitch deploy && popd
 
 .PHONY: test_deploy_revert
 # Test sqitch deploy sqitch revert
@@ -71,7 +76,7 @@ prove_style:
 .PHONY: prove_unit
 prove_unit:
 	# Run unit test suite using pg_prove
-	@@$(PG_PROVE) --failures -d $(TEST_DB) test/unit/*/*_test.sql
+	@@$(PG_PROVE) --failures -d $(TEST_DB) test/unit/*/*_test.sql ../mocks_schema/test/*_test.sql
 
 .PHONY: prove_prod_data
 prove_prod_data:
