@@ -32,6 +32,7 @@ const UNSUPPORTED_BROWSERS = require('../data/unsupported-browsers');
 const {run} = require('graphile-worker');
 const path = require('path');
 const namespaceMap = require('../data/kc-namespace-map');
+const printPdf = require('./routes/print-pdf');
 
 /**
  * Override keycloak accessDenied handler to redirect to our 403 page
@@ -156,7 +157,7 @@ const getRedirectURL = (req) => {
   return getUserGroupLandingRoute(groups);
 };
 
-app.prepare().then(() => {
+app.prepare().then(async () => {
   const server = express();
 
   server.use(morgan('combined'));
@@ -443,6 +444,8 @@ app.prepare().then(() => {
   server.get('/login', (req, res) => res.redirect(302, getRedirectURL(req)));
 
   server.get('/register', ({res}) => res.redirect(302, kcRegistrationUrl));
+
+  server.use('/print-pdf', await printPdf());
 
   server.get('*', async (req, res) => {
     return handle(req, res);

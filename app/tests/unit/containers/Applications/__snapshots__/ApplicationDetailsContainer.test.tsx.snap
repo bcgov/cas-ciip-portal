@@ -14,8 +14,12 @@ exports[`ApplicationDetailsComponent should match the snapshot with the Applicat
       }
     />
   </Row>
-  <br />
-  <div>
+  <br
+    className="jsx-2472284510"
+  />
+  <div
+    className="jsx-2472284510"
+  >
     <Relay(ApplicationDetailsCardItemComponent)
       diffToResults={
         Array [
@@ -41,6 +45,7 @@ exports[`ApplicationDetailsComponent should match the snapshot with the Applicat
         }
       }
       key="WyJmb3JtX3Jlc3VsdHMiLDExXQ=="
+      liveValidate={false}
       query={
         Object {
           " $fragmentRefs": Object {
@@ -52,5 +57,23 @@ exports[`ApplicationDetailsComponent should match the snapshot with the Applicat
       showDiff={false}
     />
   </div>
+  <a
+    className="jsx-2472284510 btn btn-primary"
+    href="/print-pdf?url=%2Fpath-to-application"
+    rel="noopener noreferrer"
+    style={
+      Object {
+        "marginBottom": "0.5em",
+      }
+    }
+    target="_blank"
+  >
+    Download PDF
+  </a>
+  <JSXStyle
+    id="2472284510"
+  >
+    @media print{header .header-right,#navbar,footer{display:none !important;}}
+  </JSXStyle>
 </Fragment>
 `;

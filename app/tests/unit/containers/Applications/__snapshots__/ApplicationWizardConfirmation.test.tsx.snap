@@ -3,12 +3,12 @@
 exports[`The Confirmation Component match the snapshot 1`] = `
 <Fragment>
   <h1
-    className="jsx-1753635690"
+    className="jsx-733094270"
   >
     Summary of your application:
   </h1>
   <p
-    className="jsx-1753635690"
+    className="jsx-733094270"
     style={
       Object {
         "fontSize": "1.25rem",
@@ -19,7 +19,7 @@ exports[`The Confirmation Component match the snapshot 1`] = `
     Please review the information you have provided before continuing.
   </p>
   <br
-    className="jsx-1753635690"
+    className="jsx-733094270"
   />
   <Relay(ApplicationOverrideJustificationComponent)
     applicationDetailsRendered={false}
@@ -62,11 +62,12 @@ exports[`The Confirmation Component match the snapshot 1`] = `
     setHasErrors={[Function]}
   />
   <br
-    className="jsx-1753635690"
+    className="jsx-733094270"
   />
   <br />
   <Card
     body={false}
+    id="next-step"
   >
     <CardHeader>
       Application Certification
@@ -93,6 +94,7 @@ exports[`The Confirmation Component match the snapshot 1`] = `
         Once you have reviewed the application and ensured all the data is correct, the application has to be certified.
       </CardText>
       <Form
+        className="print-hide"
         inline={false}
         onSubmit={[Function]}
       >
@@ -160,9 +162,9 @@ exports[`The Confirmation Component match the snapshot 1`] = `
     <CardFooter />
   </Card>
   <JSXStyle
-    id="1753635690"
+    id="733094270"
   >
-    .errors.jsx-1753635690{margin-left:20px;padding:20px;background:#ce5c5c;color:white;font-size:20px;}
+    .errors{margin-left:20px;padding:20px;background:#ce5c5c;color:white;font-size:20px;}@media print{.print-hide{display:none !important;}}
   </JSXStyle>
 </Fragment>
 `;
@@ -170,12 +172,12 @@ exports[`The Confirmation Component match the snapshot 1`] = `
 exports[`The Confirmation Component should render the override justification component with the right props if an override is currently set 1`] = `
 <Fragment>
   <h1
-    className="jsx-1753635690"
+    className="jsx-733094270"
   >
     Summary of your application:
   </h1>
   <p
-    className="jsx-1753635690"
+    className="jsx-733094270"
     style={
       Object {
         "fontSize": "1.25rem",
@@ -186,7 +188,7 @@ exports[`The Confirmation Component should render the override justification com
     Please review the information you have provided before continuing.
   </p>
   <br
-    className="jsx-1753635690"
+    className="jsx-733094270"
   />
   <Relay(ApplicationOverrideJustificationComponent)
     applicationDetailsRendered={false}
@@ -229,11 +231,12 @@ exports[`The Confirmation Component should render the override justification com
     setHasErrors={[Function]}
   />
   <br
-    className="jsx-1753635690"
+    className="jsx-733094270"
   />
   <br />
   <Card
     body={false}
+    id="next-step"
   >
     <CardHeader>
       Application Certification
@@ -260,6 +263,7 @@ exports[`The Confirmation Component should render the override justification com
         Once you have reviewed the application and ensured all the data is correct, the application has to be certified.
       </CardText>
       <Form
+        className="print-hide"
         inline={false}
         onSubmit={[Function]}
       >
@@ -327,9 +331,9 @@ exports[`The Confirmation Component should render the override justification com
     <CardFooter />
   </Card>
   <JSXStyle
-    id="1753635690"
+    id="733094270"
   >
-    .errors.jsx-1753635690{margin-left:20px;padding:20px;background:#ce5c5c;color:white;font-size:20px;}
+    .errors{margin-left:20px;padding:20px;background:#ce5c5c;color:white;font-size:20px;}@media print{.print-hide{display:none !important;}}
   </JSXStyle>
 </Fragment>
 `;
@@ -337,12 +341,12 @@ exports[`The Confirmation Component should render the override justification com
 exports[`The Confirmation Component should render the override justification component with the right props if no override is currently set 1`] = `
 <Fragment>
   <h1
-    className="jsx-1753635690"
+    className="jsx-733094270"
   >
     Summary of your application:
   </h1>
   <p
-    className="jsx-1753635690"
+    className="jsx-733094270"
     style={
       Object {
         "fontSize": "1.25rem",
@@ -353,7 +357,7 @@ exports[`The Confirmation Component should render the override justification com
     Please review the information you have provided before continuing.
   </p>
   <br
-    className="jsx-1753635690"
+    className="jsx-733094270"
   />
   <Relay(ApplicationOverrideJustificationComponent)
     applicationDetailsRendered={false}
@@ -396,11 +400,12 @@ exports[`The Confirmation Component should render the override justification com
     setHasErrors={[Function]}
   />
   <br
-    className="jsx-1753635690"
+    className="jsx-733094270"
   />
   <br />
   <Card
     body={false}
+    id="next-step"
   >
     <CardHeader>
       Application Certification
@@ -427,6 +432,7 @@ exports[`The Confirmation Component should render the override justification com
         Once you have reviewed the application and ensured all the data is correct, the application has to be certified.
       </CardText>
       <Form
+        className="print-hide"
         inline={false}
         onSubmit={[Function]}
       >
@@ -494,9 +500,9 @@ exports[`The Confirmation Component should render the override justification com
     <CardFooter />
   </Card>
   <JSXStyle
-    id="1753635690"
+    id="733094270"
   >
-    .errors.jsx-1753635690{margin-left:20px;padding:20px;background:#ce5c5c;color:white;font-size:20px;}
+    .errors{margin-left:20px;padding:20px;background:#ce5c5c;color:white;font-size:20px;}@media print{.print-hide{display:none !important;}}
   </JSXStyle>
 </Fragment>
 `;
@@ -504,12 +510,12 @@ exports[`The Confirmation Component should render the override justification com
 exports[`The Confirmation Component should show a "data has changed" dialogue when hashMatches is false but a signature exists 1`] = `
 <Fragment>
   <h1
-    className="jsx-1753635690"
+    className="jsx-733094270"
   >
     Summary of your application:
   </h1>
   <p
-    className="jsx-1753635690"
+    className="jsx-733094270"
     style={
       Object {
         "fontSize": "1.25rem",
@@ -520,7 +526,7 @@ exports[`The Confirmation Component should show a "data has changed" dialogue wh
     Please review the information you have provided before continuing.
   </p>
   <br
-    className="jsx-1753635690"
+    className="jsx-733094270"
   />
   <Relay(ApplicationOverrideJustificationComponent)
     applicationDetailsRendered={false}
@@ -568,11 +574,12 @@ exports[`The Confirmation Component should show a "data has changed" dialogue wh
     setHasErrors={[Function]}
   />
   <br
-    className="jsx-1753635690"
+    className="jsx-733094270"
   />
   <Card
     body={false}
     className="text-center"
+    id="next-step"
   >
     <CardHeader>
       Error
@@ -593,6 +600,7 @@ exports[`The Confirmation Component should show a "data has changed" dialogue wh
   <br />
   <Card
     body={false}
+    id="next-step"
   >
     <CardHeader>
       Application Certification
@@ -619,6 +627,7 @@ exports[`The Confirmation Component should show a "data has changed" dialogue wh
         Once you have reviewed the application and ensured all the data is correct, the application has to be certified.
       </CardText>
       <Form
+        className="print-hide"
         inline={false}
         onSubmit={[Function]}
       >
@@ -686,9 +695,9 @@ exports[`The Confirmation Component should show a "data has changed" dialogue wh
     <CardFooter />
   </Card>
   <JSXStyle
-    id="1753635690"
+    id="733094270"
   >
-    .errors.jsx-1753635690{margin-left:20px;padding:20px;background:#ce5c5c;color:white;font-size:20px;}
+    .errors{margin-left:20px;padding:20px;background:#ce5c5c;color:white;font-size:20px;}@media print{.print-hide{display:none !important;}}
   </JSXStyle>
 </Fragment>
 `;
@@ -696,12 +705,12 @@ exports[`The Confirmation Component should show a "data has changed" dialogue wh
 exports[`The Confirmation Component should show a certifier has not yet signed message when hashMatches is true but certificationSignature is null 1`] = `
 <Fragment>
   <h1
-    className="jsx-1753635690"
+    className="jsx-733094270"
   >
     Summary of your application:
   </h1>
   <p
-    className="jsx-1753635690"
+    className="jsx-733094270"
     style={
       Object {
         "fontSize": "1.25rem",
@@ -712,7 +721,7 @@ exports[`The Confirmation Component should show a certifier has not yet signed m
     Please review the information you have provided before continuing.
   </p>
   <br
-    className="jsx-1753635690"
+    className="jsx-733094270"
   />
   <Relay(ApplicationOverrideJustificationComponent)
     applicationDetailsRendered={false}
@@ -760,11 +769,12 @@ exports[`The Confirmation Component should show a certifier has not yet signed m
     setHasErrors={[Function]}
   />
   <br
-    className="jsx-1753635690"
+    className="jsx-733094270"
   />
   <Card
     body={false}
     className="text-center"
+    id="next-step"
   >
     <CardHeader>
       Pending Certification
@@ -773,7 +783,9 @@ exports[`The Confirmation Component should show a certifier has not yet signed m
       <p>
         Your application is pending verification by the certifying official you indicated. You will be notified when they have certified the application, at which time it can be submitted.
       </p>
-      <p>
+      <p
+        className="print-hide"
+      >
         You may copy the direct link to the certification page below.
       </p>
     </CardBody>
@@ -793,6 +805,7 @@ exports[`The Confirmation Component should show a certifier has not yet signed m
           md={6}
         >
           <input
+            className="print-hide"
             readOnly={true}
             style={
               Object {
@@ -826,9 +839,9 @@ exports[`The Confirmation Component should show a certifier has not yet signed m
     </CardFooter>
   </Card>
   <JSXStyle
-    id="1753635690"
+    id="733094270"
   >
-    .errors.jsx-1753635690{margin-left:20px;padding:20px;background:#ce5c5c;color:white;font-size:20px;}
+    .errors{margin-left:20px;padding:20px;background:#ce5c5c;color:white;font-size:20px;}@media print{.print-hide{display:none !important;}}
   </JSXStyle>
 </Fragment>
 `;

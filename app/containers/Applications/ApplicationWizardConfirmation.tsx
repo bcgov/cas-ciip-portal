@@ -134,7 +134,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
   const generateCertification = (
     <>
       <br />
-      <Card>
+      <Card id="next-step">
         <Card.Header>Application Certification</Card.Header>
         <Card.Body>
           <Card.Text>
@@ -165,7 +165,10 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
             Once you have reviewed the application and ensured all the data is
             correct, the application has to be certified.
           </Card.Text>
-          <Form onSubmit={handleClickGenerateCertificationUrl}>
+          <Form
+            className="print-hide"
+            onSubmit={handleClickGenerateCertificationUrl}
+          >
             <Form.Row>
               <Form.Group as={Col} md="4" controlId="certifierEmail">
                 <Form.Label>Certifier Email Address:</Form.Label>
@@ -210,6 +213,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
     <Row>
       <Col md={6}>
         <input
+          className="print-hide"
           ref={copyArea}
           readOnly
           value={revision?.certificationUrl?.certifierUrl ?? url}
@@ -225,7 +229,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
 
   if (!revision.certificationUrl) {
     certificationMessage = url ? (
-      <Card className="text-center">
+      <Card id="next-step" className="text-center">
         <Card.Header>Ready for Certification</Card.Header>
         <Card.Body>
           {isChecked ? (
@@ -234,7 +238,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
                 Your request for certification has now been sent to your
                 certifier via email.
               </p>
-              <p>
+              <p className="print-hide">
                 You may copy the direct link to the certification page below.
               </p>
             </Card.Text>
@@ -245,7 +249,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
                 opted not to notify them by email, but your request will still
                 be visible via their dashboard.
               </p>
-              <p>
+              <p className="print-hide">
                 You may copy the direct link to the certification page below.
               </p>
             </Card.Text>
@@ -263,7 +267,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
     revision.certificationUrl.hashMatches
   ) {
     certificationMessage = (
-      <Card className="text-center">
+      <Card id="next-step" className="text-center">
         <Card.Header>Pending Certification</Card.Header>
         <Card.Body>
           <p>
@@ -271,7 +275,9 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
             you indicated. You will be notified when they have certified the
             application, at which time it can be submitted.
           </p>
-          <p>You may copy the direct link to the certification page below.</p>
+          <p className="print-hide">
+            You may copy the direct link to the certification page below.
+          </p>
         </Card.Body>
         <Card.Footer>
           <span style={{color: 'green'}}>{copySuccess}</span> {copyUrl}
@@ -281,7 +287,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
   } else {
     certificationMessage = (
       <>
-        <Card className="text-center">
+        <Card id="next-step" className="text-center">
           <Card.Header>Error</Card.Header>
           <Card.Body>
             <Card.Title>The data has changed</Card.Title>
@@ -339,7 +345,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
         </div>
       ) : revision.certificationSignatureIsValid ? (
         <>
-          <Card>
+          <Card id="next-step">
             <Card.Header>
               <h5>Before you submit</h5>
             </Card.Header>
@@ -359,7 +365,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
       ) : (
         certificationMessage
       )}
-      <style jsx>
+      <style jsx global>
         {`
           .errors {
             margin-left: 20px;
@@ -367,6 +373,11 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
             background: #ce5c5c;
             color: white;
             font-size: 20px;
+          }
+          @media print {
+            .print-hide {
+              display: none !important;
+            }
           }
         `}
       </style>

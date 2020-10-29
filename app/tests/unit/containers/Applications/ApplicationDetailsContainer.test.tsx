@@ -2,10 +2,16 @@ import React from 'react';
 import {shallow} from 'enzyme';
 import {ApplicationDetailsComponent} from 'containers/Applications/ApplicationDetailsContainer';
 
+const useRouter = jest.spyOn(require('next/router'), 'useRouter');
+useRouter.mockImplementation(() => ({
+  asPath: '/path-to-application'
+}));
+
 describe('ApplicationDetailsComponent', () => {
   it('should match the snapshot with the ApplicationDetails component', async () => {
     const renderer = shallow(
       <ApplicationDetailsComponent
+        liveValidate={false}
         review={false}
         relay={null}
         query={{
@@ -86,6 +92,7 @@ describe('ApplicationDetailsComponent', () => {
   it('should not render the `show diff` checkbox if review=false', async () => {
     const renderer = shallow(
       <ApplicationDetailsComponent
+        liveValidate={false}
         review={false}
         relay={null}
         query={{
@@ -167,6 +174,7 @@ describe('ApplicationDetailsComponent', () => {
     const renderer = shallow(
       <ApplicationDetailsComponent
         review
+        liveValidate={false}
         relay={null}
         query={{
           ' $refType': 'ApplicationDetailsContainer_query',

@@ -13,7 +13,7 @@ LABEL summary="$SUMMARY" \
       maintainer="Matthieu Foucault <matthieu@button.is>"
 
 RUN apt-get update && \
-    apt-get install -y git gnupg curl && \
+    apt-get install -y git gnupg curl chromium && \
     apt-get clean
 
 ENV USER_ID=1001

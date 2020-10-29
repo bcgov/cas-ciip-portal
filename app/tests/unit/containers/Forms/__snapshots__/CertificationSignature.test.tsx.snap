@@ -3,14 +3,15 @@
 exports[`The Confirmation Component matches the snapshot 1`] = `
 <Container
   fluid={false}
+  id="signature-component"
 >
   <h3
-    className="jsx-2877110858"
+    className="jsx-1666427015"
   >
     Certifier Signature:
   </h3>
   <p
-    className="jsx-2877110858"
+    className="jsx-1666427015"
   >
     To create a digital signature, click, hold and drag your pointer within the box to draw your signature. Use the Clear button below the signature box to delete the signature and start again. Alternatively, you can select "Choose File" to upload an existing signature image file from your computer (.png, .jpg, .jpeg). When you're ready to submit your certification, click "Sign" below the signature box.
   </p>
@@ -37,12 +38,12 @@ exports[`The Confirmation Component matches the snapshot 1`] = `
       md={6}
     >
       <label
-        className="jsx-2877110858"
+        className="jsx-1666427015"
       >
         Upload an existing signature image:
         <input
           accept="image/*"
-          className="jsx-2877110858"
+          className="jsx-1666427015"
           onChange={[Function]}
           type="file"
         />
@@ -82,9 +83,9 @@ exports[`The Confirmation Component matches the snapshot 1`] = `
     </Col>
   </Row>
   <JSXStyle
-    id="2877110858"
+    id="1666427015"
   >
-    .signatureCanvas{border:1px solid #bbb;padding:30px;width:80%;background:#eee;border-radius:6px;margin-bottom:60px;}
+    .signatureCanvas{border:1px solid #bbb;padding:30px;width:80%;background:#eee;border-radius:6px;margin-bottom:60px;}@media print{#signature-component{display:none !important;}.card-text a{display:none !important;}.card-text::after{content:'(full text available at: http://localhost/resources/application-disclaimer)';}}
   </JSXStyle>
 </Container>
 `;

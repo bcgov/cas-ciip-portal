@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Dropdown, Form, Row, Col} from 'react-bootstrap';
+import {useRouter} from 'next/router';
 import DropdownMenuItemComponent from 'components/DropdownMenuItemComponent';
 import {createRefetchContainer, graphql, RelayRefetchProp} from 'react-relay';
 import {ApplicationDetailsContainer_query} from 'ApplicationDetailsContainer_query.graphql';
@@ -39,6 +40,8 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = (
     props.application.orderedFormResults.edges[0].node.versionNumber.toString()
   );
   const [showDiff, setShowDiff] = useState(false);
+
+  const router = useRouter();
 
   useEffect(() => {
     const refetchVariables = {
@@ -149,6 +152,24 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = (
           />
         ))}
       </div>
+      <a
+        className="btn btn-primary"
+        href={`/print-pdf?url=${encodeURIComponent(router.asPath)}`}
+        style={{marginBottom: '0.5em'}}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Download PDF
+      </a>
+      <style jsx global>{`
+        @media print {
+          header .header-right,
+          #navbar,
+          footer {
+            display: none !important;
+          }
+        }
+      `}</style>
     </>
   );
 };
