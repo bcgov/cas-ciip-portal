@@ -125,10 +125,7 @@ describe('When an applicaiton does not have errors', () => {
       `/reporter/application?applicationId=${applicationId}&confirmationPage=true&version=1`
     );
     cy.url().should('include', '/reporter/application');
-    cy.get(':nth-child(10) > .card-header').should(
-      'contain',
-      'Application Certification'
-    );
+    cy.get('#next-step').contains('Application Certification');
     cy.get('.override-accordion > .btn').should('not.exist');
   });
 
