@@ -13,6 +13,9 @@ BEGIN;
           current_setting('mocks.mocked_timestamp', true),
           pg_catalog.now()::text
       );
+    exception
+      when others then
+        return pg_catalog.now();
     end;
   $function$ language plpgsql volatile;
 
