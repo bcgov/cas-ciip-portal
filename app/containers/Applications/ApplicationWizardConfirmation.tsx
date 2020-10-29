@@ -134,7 +134,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
   const generateCertification = (
     <>
       <br />
-      <Card>
+      <Card id="next-step">
         <Card.Header>Application Certification</Card.Header>
         <Card.Body>
           <Card.Text>
@@ -229,7 +229,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
 
   if (!revision.certificationUrl) {
     certificationMessage = url ? (
-      <Card className="text-center">
+      <Card id="next-step" className="text-center">
         <Card.Header>Ready for Certification</Card.Header>
         <Card.Body>
           {isChecked ? (
@@ -267,7 +267,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
     revision.certificationUrl.hashMatches
   ) {
     certificationMessage = (
-      <Card className="text-center">
+      <Card id="next-step" className="text-center">
         <Card.Header>Pending Certification</Card.Header>
         <Card.Body>
           <p>
@@ -287,7 +287,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
   } else {
     certificationMessage = (
       <>
-        <Card className="text-center">
+        <Card id="next-step" className="text-center">
           <Card.Header>Error</Card.Header>
           <Card.Body>
             <Card.Title>The data has changed</Card.Title>
@@ -345,7 +345,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
         </div>
       ) : revision.certificationSignatureIsValid ? (
         <>
-          <Card>
+          <Card id="next-step">
             <Card.Header>
               <h5>Before you submit</h5>
             </Card.Header>

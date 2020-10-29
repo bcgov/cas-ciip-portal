@@ -67,6 +67,7 @@ exports[`The Confirmation Component match the snapshot 1`] = `
   <br />
   <Card
     body={false}
+    id="next-step"
   >
     <CardHeader>
       Application Certification
@@ -235,6 +236,7 @@ exports[`The Confirmation Component should render the override justification com
   <br />
   <Card
     body={false}
+    id="next-step"
   >
     <CardHeader>
       Application Certification
@@ -403,6 +405,7 @@ exports[`The Confirmation Component should render the override justification com
   <br />
   <Card
     body={false}
+    id="next-step"
   >
     <CardHeader>
       Application Certification
@@ -576,6 +579,7 @@ exports[`The Confirmation Component should show a "data has changed" dialogue wh
   <Card
     body={false}
     className="text-center"
+    id="next-step"
   >
     <CardHeader>
       Error
@@ -596,6 +600,7 @@ exports[`The Confirmation Component should show a "data has changed" dialogue wh
   <br />
   <Card
     body={false}
+    id="next-step"
   >
     <CardHeader>
       Application Certification
@@ -769,6 +774,7 @@ exports[`The Confirmation Component should show a certifier has not yet signed m
   <Card
     body={false}
     className="text-center"
+    id="next-step"
   >
     <CardHeader>
       Pending Certification
