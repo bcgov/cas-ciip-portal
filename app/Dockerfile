@@ -13,7 +13,7 @@ LABEL summary="$SUMMARY" \
       maintainer="Matthieu Foucault <matthieu@button.is>"
 
 RUN apt-get update && \
-    apt-get install -y git gnupg curl chromium && \
+    apt-get install -y git gnupg curl && \
     apt-get clean
 
 ENV USER_ID=1001
@@ -42,7 +42,7 @@ RUN asdf install
 RUN asdf reshim
 
 ENV NODE_ENV=production
-RUN PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=1 CYPRESS_INSTALL_BINARY=0 \
+RUN CYPRESS_INSTALL_BINARY=0 \
     yarn install --frozen-lockfile --production=false && \
     yarn build:relay && \
     yarn build:next && \
