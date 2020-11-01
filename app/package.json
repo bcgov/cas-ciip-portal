@@ -61,7 +61,7 @@
     "postgraphile": "^4.8.0",
     "postgraphile-log-consola": "^1.0.1",
     "prop-types": "^15.5.8",
-    "puppeteer": "^5.3.1",
+    "puppeteer": "^5.4.1",
     "react": "^16.13.0",
     "react-bootstrap": "^1.0.1",
     "react-bootstrap-typeahead": "^4.2.3",
