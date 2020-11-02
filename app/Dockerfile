@@ -12,9 +12,17 @@ LABEL summary="$SUMMARY" \
       version="1" \
       maintainer="Matthieu Foucault <matthieu@button.is>"
 
-RUN apt-get update && \
-    apt-get install -y git gnupg curl && \
-    apt-get clean
+# Install latest chrome dev package and fonts to support major charsets (Chinese, Japanese, Arabic, Hebrew, Thai and a few others)
+# Note: this installs the necessary libs to make the bundled version of Chromium that Puppeteer
+# installs, work.
+RUN apt-get update \
+    && apt-get install -y git wget curl gnupg \
+    && wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
+    && sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list' \
+    && apt-get update \
+    && apt-get install -y google-chrome-stable fonts-ipafont-gothic fonts-wqy-zenhei fonts-thai-tlwg fonts-kacst fonts-freefont-ttf libxss1 \
+      --no-install-recommends \
+    && rm -rf /var/lib/apt/lists/*
 
 ENV USER_ID=1001
 ENV CIIP_HOME=/root
@@ -41,21 +49,24 @@ RUN ~/.asdf/plugins/nodejs/bin/import-release-team-keyring
 RUN asdf install
 RUN asdf reshim
 
+COPY .bin/docker-entrypoint.sh ${CIIP_HOME}
+ADD https://github.com/Yelp/dumb-init/releases/download/v1.2.0/dumb-init_1.2.0_amd64 /usr/local/bin/dumb-init
+RUN chmod +x /usr/local/bin/dumb-init
+ENTRYPOINT ["dumb-init", "--", "./docker-entrypoint.sh"]
+
 ENV NODE_ENV=production
 RUN CYPRESS_INSTALL_BINARY=0 \
     yarn install --frozen-lockfile --production=false && \
     yarn build:relay && \
     yarn build:next && \
     yarn install --frozen-lockfile --production=true && \
-    yarn cache clean
-
-COPY .bin/docker-entrypoint.sh ${CIIP_HOME}
-
-# Make everything in the home group-writable, to accomodate anyuid (in OpenShift)
-# /etc/passwd needs to be group-writable too -_-
-# Needs to be done as root to chown
-RUN useradd -ms /bin/bash -d ${CIIP_HOME} --uid ${USER_ID} ciip
-RUN chown -R ciip:0 ${CIIP_HOME} && \
+    yarn cache clean && \
+    # Make everything in the home group-writable to support OpenShift's restricted SCC
+    # Needs to be done as root to chown
+    # same layer as yarn install to keep re-chowned files from using up several hundred MBs more space
+    useradd -ms /bin/bash -d ${CIIP_HOME} --uid ${USER_ID} -g root -G audio,video ciip && \
+    mkdir -p ${CIIP_HOME}/Downloads && \
+    chown -R ciip:0 ${CIIP_HOME} && \
     chmod g=u /etc/passwd && \
     chmod -R g+rwX ${CIIP_HOME}
 
@@ -63,5 +74,4 @@ EXPOSE 3000
 USER ${USER_ID}
 WORKDIR ${CIIP_HOME}
 
-ENTRYPOINT ["./docker-entrypoint.sh"]
 CMD ["yarn", "start"]
