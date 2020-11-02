@@ -4,6 +4,7 @@ const puppeteer = require('puppeteer');
 const router = express.Router();
 const consola = require('consola');
 const PORT = Number.parseInt(process.env.PORT, 10) || 3004;
+const HOST = process.env.HOST || 'http://localhost';
 
 const launchBrowser = async () => {
   browser = await puppeteer.launch({
@@ -34,7 +35,7 @@ module.exports = async () => {
         height: 1080
       });
 
-      await page.goto(`${process.env.HOST}:${PORT}${req.query.url}`, {
+      await page.goto(`${HOST}:${PORT}${req.query.url}`, {
         waitUntil: 'networkidle2'
       });
 
