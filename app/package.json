@@ -51,6 +51,7 @@
     "graphql": "^14.7.0",
     "graphql-voyager": "^1.0.0-rc.30",
     "isomorphic-fetch": "^3.0.0",
+    "js-file-download": "^0.4.12",
     "json-schema": "^0.2.5",
     "keycloak-connect": "^10.0.0",
     "moment-timezone": "^0.5.31",

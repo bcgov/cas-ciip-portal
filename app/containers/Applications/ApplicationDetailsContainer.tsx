@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import {Dropdown, Form, Row, Col} from 'react-bootstrap';
-import {useRouter} from 'next/router';
+import {Dropdown, Form, Row, Col, Button} from 'react-bootstrap';
 import DropdownMenuItemComponent from 'components/DropdownMenuItemComponent';
 import {createRefetchContainer, graphql, RelayRefetchProp} from 'react-relay';
 import {ApplicationDetailsContainer_query} from 'ApplicationDetailsContainer_query.graphql';
 import {ApplicationDetailsContainer_application} from 'ApplicationDetailsContainer_application.graphql';
 import ApplicationDetailsCardItem from './ApplicationDetailsCardItem';
+import FileDownload from 'js-file-download';
 
 /*
  * The ApplicationDetails renders a summary of the data submitted in the application,
@@ -41,8 +41,6 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = (
   );
   const [showDiff, setShowDiff] = useState(false);
 
-  const router = useRouter();
-
   useEffect(() => {
     const refetchVariables = {
       oldVersion: oldDiffVersion,
@@ -51,6 +49,18 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = (
     };
     props.relay.refetch(refetchVariables);
   }, [oldDiffVersion, newDiffVersion, props.application.id, props.relay]);
+
+  const handleDownloadPdf = async () => {
+    const response = await fetch('/print-pdf', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({html: document.documentElement.outerHTML})
+    });
+    const blob = await response.blob();
+    FileDownload(blob, 'CIIP_Application.pdf');
+  };
 
   if (props.setApplicationDetailsRendered)
     props.setApplicationDetailsRendered(true);
@@ -152,15 +162,9 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = (
           />
         ))}
       </div>
-      <a
-        className="btn btn-primary"
-        href={`/print-pdf?url=${encodeURIComponent(router.asPath)}`}
-        style={{marginBottom: '0.5em'}}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+      <Button variant="primary" onClick={handleDownloadPdf}>
         Download PDF
-      </a>
+      </Button>
       <style jsx global>{`
         @media print {
           header .header-right,
