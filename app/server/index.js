@@ -33,6 +33,7 @@ const {run} = require('graphile-worker');
 const path = require('path');
 const namespaceMap = require('../data/kc-namespace-map');
 const printPdf = require('./routes/print-pdf');
+const cookieParser = require('cookie-parser');
 
 /**
  * Override keycloak accessDenied handler to redirect to our 403 page
@@ -311,14 +312,23 @@ app.prepare().then(async () => {
     };
   }
 
+  server.use(cookieParser());
+
   server.use(
     postgraphile(pgPool, process.env.DATABASE_SCHEMA || 'ggircs_portal', {
       ...postgraphileOptions,
       pgSettings(req) {
+        console.log(req.cookies);
+        // const mockTimesampSetting = {'mocks.mocked_timestamp': req.cookies["mocks.mocked_timestamp"]};
+        const mockTimesampSetting = {
+          'mocks.mocked_timestamp': '1999-05-05 09:00:00.000000-07'
+        };
+
         if (NO_AUTH) {
           const groups = getAllGroups();
           const priorityGroup = getPriorityGroup(groups);
           return {
+            ...mockTimesampSetting,
             'jwt.claims.sub': '00000000-0000-0000-0000-000000000000',
             'jwt.claims.user_groups': groups.join(','),
             'jwt.claims.priority_group': priorityGroup,
@@ -328,6 +338,7 @@ app.prepare().then(async () => {
 
         if (AS_CERTIFIER) {
           return {
+            ...mockTimesampSetting,
             'jwt.claims.sub': '15a21af2-ce88-42e6-ac90-0a5e24260ec6',
             'jwt.claims.user_groups': 'User',
             'jwt.claims.priority_group': 'User',
@@ -337,6 +348,7 @@ app.prepare().then(async () => {
 
         if (AS_REPORTER) {
           return {
+            ...mockTimesampSetting,
             'jwt.claims.sub': '809217a1-34b8-4179-95bc-6b4410b4fe16',
             'jwt.claims.user_groups': 'User',
             'jwt.claims.priority_group': 'User',
@@ -355,6 +367,7 @@ app.prepare().then(async () => {
 
         if (AS_ADMIN) {
           return {
+            ...mockTimesampSetting,
             'jwt.claims.sub': 'eabdeef2-f95a-4dd5-9908-883b45d213ba',
             'jwt.claims.user_groups': 'Incentive Administrator',
             'jwt.claims.priority_group': 'Incentive Administrator',
@@ -364,6 +377,7 @@ app.prepare().then(async () => {
 
         if (AS_PENDING) {
           return {
+            ...mockTimesampSetting,
             'jwt.claims.sub': '00000000-0000-0000-0000-000000000000',
             'jwt.claims.user_groups': 'Pending Analyst',
             'jwt.claims.priority_group': 'Pending Analyst',
@@ -419,7 +433,11 @@ app.prepare().then(async () => {
         properties.forEach((property) => {
           claims[`jwt.claims.${property}`] = token[property];
         });
-        return claims;
+
+        return {
+          ...mockTimesampSetting,
+          ...claims
+        };
       }
     })
   );

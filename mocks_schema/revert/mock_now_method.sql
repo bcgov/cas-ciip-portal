@@ -2,7 +2,6 @@
 
 BEGIN;
 
-SET search_path = "$user",public;
 drop function mocks.now;
 
 COMMIT;

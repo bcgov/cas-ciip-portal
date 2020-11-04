@@ -8,6 +8,7 @@ import Footer from 'components/Layout/Footer';
 import Subheader from 'components/Layout/Subheader';
 import Help from 'components/helpers/Help';
 import SiteNoticeBanner from 'components/Layout/SiteNoticeBanner';
+import CookieDayPickerInput from 'components/helpers/CookieDayPickerInput';
 
 const SITEWIDE_NOTICE = getConfig()?.publicRuntimeConfig.SITEWIDE_NOTICE;
 
@@ -37,6 +38,7 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
         isRegistered={Boolean(session?.ciipUserBySub)}
       >
         {SITEWIDE_NOTICE && <SiteNoticeBanner content={SITEWIDE_NOTICE} />}
+        <CookieDayPickerInput />
         {showSubheader && <Subheader />}
       </Header>
       <main>
