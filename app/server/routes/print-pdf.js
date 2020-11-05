@@ -1,69 +1,44 @@
+require('isomorphic-fetch');
 const express = require('express');
-const cookieParser = require('cookie-parser');
-const puppeteer = require('puppeteer');
 const router = express.Router();
 const consola = require('consola');
-const PORT = Number.parseInt(process.env.PORT, 10) || 3004;
-const HOST = process.env.HOST || 'http://localhost';
-
-const launchBrowser = async () => {
-  browser = await puppeteer.launch({
-    headless: true,
-    args: ['--disable-dev-shm-usage', '--incognito']
-  });
-
-  browser.on('disconnected', launchBrowser);
-  return browser;
-};
-
+const fs = require('fs');
+const WEASYPRINT_HOST = process.env.WEASYPRINT_HOST || 'http://localhost';
+const WEASYPRINT_PORT = process.env.WEASYPRINT_PORT || '5001';
 module.exports = async () => {
-  const browser = await launchBrowser();
-  router.use(cookieParser());
-  router.get('/', async (req, res) => {
-    let page;
+  router.post('/', async (req, res) => {
     try {
-      page = await browser.newPage();
-      await page.setCookie({
-        name: 'connect.sid',
-        value: req.cookies['connect.sid'],
-        domain: 'localhost',
-        httpOnly: true
-      });
+      fs.writeFileSync(
+        'test.html',
+        req.body.html
+          .replace(/href=\s*"\//, 'href="http://localhost:3004/')
+          .replace(/src=\s*"\//, 'src="http://localhost:3004/')
+      );
+      const weasyprintRes = await fetch(
+        `${WEASYPRINT_HOST}:${WEASYPRINT_PORT}/pdf`,
+        {
+          method: 'POST',
+          body: req.body.html
+            .replace(/href=\s*"\//, 'href="http://localhost:3004/')
+            .replace(/src=\s*"\//, 'src="http://localhost:3004/')
+        }
+      );
 
-      page.setViewport({
-        width: 1920,
-        height: 1080
-      });
+      res.setHeader('content-type', 'application/pdf');
+      res.setHeader(
+        'content-length',
+        weasyprintRes.headers.get('content-length')
+      );
+      res.setHeader(
+        'content-disposition',
+        weasyprintRes.headers.get('content-disposition')
+      );
 
-      await page.goto(`${HOST}:${PORT}${req.query.url}`, {
-        waitUntil: 'networkidle2'
-      });
-
-      await page.waitForSelector('#page-content');
-
-      consola.info(`generating pdf for url ${req.query.url}`);
-      const pdfFile = await page.pdf({
-        format: 'letter',
-        printBackground: true
-      });
-
-      res.set({
-        'Content-Type': 'application/pdf',
-        'Content-Length': pdfFile.length,
-        'Content-Disposition': 'attachment; filename=CIIP_Application.pdf'
-      });
-
-      res.send(pdfFile);
+      weasyprintRes.body.pipe(res);
     } catch (e) {
       consola.error(e);
-      res.sendStatus(500);
-    } finally {
-      try {
-        if (page) await page.close();
-      } catch (ee) {
-        consola.error(ee);
-      }
     }
   });
+
   return router;
 };

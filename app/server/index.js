@@ -168,7 +168,7 @@ app.prepare().then(async () => {
     '/.well-known',
     express.static(path.resolve(__dirname, '../.well-known'))
   );
-  server.use(bodyParser.json());
+  server.use(bodyParser.json({limit: '50mb'}));
   server.use(cors());
 
   // Tell search + crawlers not to index non-production environments:
