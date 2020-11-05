@@ -12,7 +12,7 @@ analytics:
   enable: true
 
 sitewide_notice:
-  content: <div class="alert alert-warning">This is the TEST environment. All emails will be sent to <a href="https://cas-mailhog-wksv3k-test.pathfinder.gov.bc.ca">the test inbox</a> instead of the real recipients. Please use <strong>testreporter1</strong> for testing instead of creating a new account.</div>
+  content: <div class="alert alert-warning">This is the TEST environment. All emails will be sent to <a href="https://cas-mailhog-wksv3k-test.pathfinder.gov.bc.ca">the test inbox</a> instead of the real recipients. Please use <strong>testreporter</strong> for testing instead of creating a new account.</div>
 
 dag:
   # cleanup the test db before deploying to test
