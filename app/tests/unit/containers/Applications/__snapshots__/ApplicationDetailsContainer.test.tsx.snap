@@ -57,19 +57,6 @@ exports[`ApplicationDetailsComponent should match the snapshot with the Applicat
       showDiff={false}
     />
   </div>
-  <a
-    className="jsx-2472284510 btn btn-primary"
-    href="/print-pdf?url=%2Fpath-to-application"
-    rel="noopener noreferrer"
-    style={
-      Object {
-        "marginBottom": "0.5em",
-      }
-    }
-    target="_blank"
-  >
-    Download PDF
-  </a>
   <JSXStyle
     id="2472284510"
   >
