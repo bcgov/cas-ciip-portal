@@ -12,17 +12,9 @@ LABEL summary="$SUMMARY" \
       version="1" \
       maintainer="Matthieu Foucault <matthieu@button.is>"
 
-# Install latest chrome dev package and fonts to support major charsets (Chinese, Japanese, Arabic, Hebrew, Thai and a few others)
-# Note: this installs the necessary libs to make the bundled version of Chromium that Puppeteer
-# installs, work.
-RUN apt-get update \
-    && apt-get install -y git wget curl gnupg \
-    && wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
-    && sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list' \
-    && apt-get update \
-    && apt-get install -y google-chrome-stable fonts-ipafont-gothic fonts-wqy-zenhei fonts-thai-tlwg fonts-kacst fonts-freefont-ttf libxss1 \
-      --no-install-recommends \
-    && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && \
+    apt-get install -y git gnupg curl && \
+    apt-get clean
 
 ENV USER_ID=1001
 ENV CIIP_HOME=/root
@@ -55,7 +47,7 @@ RUN chmod +x /usr/local/bin/dumb-init
 ENTRYPOINT ["dumb-init", "--", "./docker-entrypoint.sh"]
 
 ENV NODE_ENV=production
-RUN CYPRESS_INSTALL_BINARY=0 \
+RUN PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=1 CYPRESS_INSTALL_BINARY=0 \
     yarn install --frozen-lockfile --production=false && \
     yarn build:relay && \
     yarn build:next && \
@@ -64,8 +56,7 @@ RUN CYPRESS_INSTALL_BINARY=0 \
     # Make everything in the home group-writable to support OpenShift's restricted SCC
     # Needs to be done as root to chown
     # same layer as yarn install to keep re-chowned files from using up several hundred MBs more space
-    useradd -ms /bin/bash -d ${CIIP_HOME} --uid ${USER_ID} -g root -G audio,video ciip && \
-    mkdir -p ${CIIP_HOME}/Downloads && \
+    useradd -ms /bin/bash -d ${CIIP_HOME} --uid ${USER_ID} -g root ciip && \
     chown -R ciip:0 ${CIIP_HOME} && \
     chmod g=u /etc/passwd && \
     chmod -R g+rwX ${CIIP_HOME}
