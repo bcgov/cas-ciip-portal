@@ -2,6 +2,7 @@ import moment from 'moment-timezone';
 
 const TIMEZONE = 'America/Vancouver';
 const FORMAT_TYPE = {
+  date_year_first: 'YYYY-MM-DD',
   seconds: 'MMM D, YYYY hh:mm:ss A (z)',
   minutes: 'MMM D, YYYY hh:mm A (z)',
   days_numbered: 'DD-MM-YYYY',
