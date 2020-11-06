@@ -31,4 +31,7 @@ BEGIN;
     end;
   $function$ language plpgsql volatile;
 
+  grant execute on function mocks.now to ciip_administrator, ciip_analyst, ciip_industry_user, ciip_guest;
+
+
 COMMIT;
