@@ -1,7 +1,7 @@
 import React from 'react';
 import {Button, Container, Row, Col} from 'react-bootstrap';
-import DayPickerInput from 'react-day-picker/DayPickerInput';
-import 'react-day-picker/lib/style.css';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 import {useCookies} from 'react-cookie';
 
 interface CookieProps {
@@ -37,7 +37,7 @@ class InternalCookieDayPickerInput extends React.Component<CookieProps> {
   }
 
   handleDayChange(day: Date): void {
-    if (day === undefined) {
+    if (day === undefined || day === null) {
       this.reset();
       return;
     }
@@ -69,16 +69,19 @@ class InternalCookieDayPickerInput extends React.Component<CookieProps> {
     return (
       <Container fluid>
         <Row>
-          <Col className="text-right">
+          <Col className="text-right align-self-center">
             {selectedDay && (
-              <span>Mocked database date: {selectedDay.toISOString()}</span>
+              <>Mocked database date: {selectedDay.toISOString()}</>
             )}
-            {!selectedDay && <span>Database date: today</span>}
-            <span>&nbsp;&nbsp;</span>
-            <DayPickerInput
-              onDayChange={this.handleDayChange}
-              value={selectedDay}
+            {!selectedDay && <>Database date: today</>}
+          </Col>
+          <Col xs="auto">
+            <DatePicker
+              onChange={this.handleDayChange}
+              selected={selectedDay}
             />
+          </Col>
+          <Col xs="auto">
             <Button onClick={this.reset} size="sm">
               Reset
             </Button>
