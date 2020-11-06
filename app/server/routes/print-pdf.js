@@ -2,18 +2,18 @@ require('isomorphic-fetch');
 const express = require('express');
 const router = express.Router();
 const consola = require('consola');
-const fs = require('fs');
+// const fs = require('fs');
 const WEASYPRINT_HOST = process.env.WEASYPRINT_HOST || 'http://localhost';
 const WEASYPRINT_PORT = process.env.WEASYPRINT_PORT || '5001';
 module.exports = async () => {
   router.post('/', async (req, res) => {
     try {
-      fs.writeFileSync(
-        'test.html',
-        req.body.html
-          .replace(/href=\s*"\//, 'href="http://localhost:3004/')
-          .replace(/src=\s*"\//, 'src="http://localhost:3004/')
-      );
+      // fs.writeFileSync(
+      //   'test.html',
+      //   req.body.html
+      //     .replace(/href=\s*"\//, 'href="http://localhost:3004/')
+      //     .replace(/src=\s*"\//, 'src="http://localhost:3004/')
+      // );
       const weasyprintRes = await fetch(
         `${WEASYPRINT_HOST}:${WEASYPRINT_PORT}/pdf`,
         {
