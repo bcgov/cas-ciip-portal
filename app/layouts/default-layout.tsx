@@ -10,7 +10,7 @@ import Help from 'components/helpers/Help';
 import SiteNoticeBanner from 'components/Layout/SiteNoticeBanner';
 import CookieDayPickerInput from 'components/helpers/CookieDayPickerInput';
 
-const runtimeConfig = getConfig()?.publicRuntimeConfig;
+const runtimeConfig = getConfig()?.publicRuntimeConfig ?? {};
 
 interface Props {
   title?: string | JSX.Element;
