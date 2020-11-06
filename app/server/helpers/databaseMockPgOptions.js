@@ -13,7 +13,7 @@ const generateDatabaseMockOptions = (cookies, fields) => {
   if (process.env.ENABLE_DB_MOCKS !== 'true') return {};
 
   return {
-    ...buildForwardedCookieOptions(cookies, fields),
+    ...generateForwardedCookieOptions(cookies, fields),
     search_path: 'mocks,pg_catalog,public'
   };
 };
