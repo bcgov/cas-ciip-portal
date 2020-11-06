@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AltDateInput Should match last accepted snapshot: AltDateTime (both date and time) 1`] = `
+exports[`DatePickerWidget Should match last accepted snapshot: DatePickerWidget 1`] = `
 <form
   className="rjsf"
   noValidate={true}
@@ -42,13 +42,13 @@ exports[`AltDateInput Should match last accepted snapshot: AltDateTime (both dat
         },
         "formContext": Object {},
         "widgets": Object {
-          "AltDateTimeInput": [Function],
           "AltDateTimeWidget": [Function],
           "AltDateWidget": [Function],
           "BaseInput": [Function],
           "CheckboxWidget": [Function],
           "CheckboxesWidget": [Function],
           "ColorWidget": [Function],
+          "DatePickerWidget": [Function],
           "DateTimeWidget": [Function],
           "DateWidget": [Function],
           "EmailWidget": [Function],
@@ -77,11 +77,7 @@ exports[`AltDateInput Should match last accepted snapshot: AltDateTime (both dat
     uiSchema={
       Object {
         "applicationOpenTime": Object {
-          "ui:options": Object {
-            "hideClearButton": true,
-            "hideNowButton": true,
-          },
-          "ui:widget": "AltDateTimeInput",
+          "ui:widget": "DatePickerWidget",
         },
       }
     }

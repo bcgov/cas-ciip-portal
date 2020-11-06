@@ -6,10 +6,9 @@ import {JSONSchema6} from 'json-schema';
 import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
 import FormFieldTemplate from 'containers/Forms/FormFieldTemplate';
 import reportingYearSchema from './edit_reporting_year.json';
-import AltDateInput from 'components/Forms/AltDateInput';
-import AltDateTimeInput from 'components/Forms/AltDateTimeInput';
+import DatePickerWidget from 'components/Forms/DatePickerWidget';
 import {validateApplicationDates} from './reportingYearValidation';
-import {nowMoment, defaultMoment} from 'functions/formatDates';
+import {defaultMoment, nowMoment, ensureFullTimestamp} from 'functions/formatDates';
 
 function transformUiSchema(json, formFields) {
   if (!formFields) return;
@@ -17,10 +16,7 @@ function transformUiSchema(json, formFields) {
 
   Object.keys(json).forEach((field) => {
     const d = defaultMoment(formFields[field]);
-    const thisYear = Number(now.year());
-
     json[field]['ui:disabled'] = d < now;
-    json[field]['ui:options'].yearsRange = [thisYear, thisYear + 10];
   });
 
   return json;
@@ -44,14 +40,29 @@ const ReportingYearFormDialog: React.FunctionComponent<Props> = ({
   const uiSchema = transformUiSchema(reportingYearSchema.uiSchema, formFields);
 
   const handleSubmit = (e) => {
+    const beginningOfDay = {hour: 0, minute: 0, second: 0, millisecond: 0};
+    const endOfDay = {hour: 11, minute: 59, second: 59, millisecond: 999};
+    const formData = {
+      ...e.formData,
+      applicationOpenTime: ensureFullTimestamp(
+        e.formData.applicationOpenTime, beginningOfDay
+      ),
+      applicationCloseTime: ensureFullTimestamp(
+        e.formData.applicationCloseTime, endOfDay
+      ),
+      swrsDeadline: ensureFullTimestamp(
+        e.formData.swrsDeadline, endOfDay
+      )
+    };
+
     if (e.errors.length === 0) {
-      saveReportingYear(e);
+      saveReportingYear(formData);
     }
   };
 
   return (
     <>
-      <Modal centered size="xl" show={show} onHide={clearForm}>
+      <Modal centered size="lg" show={show} onHide={clearForm}>
         <Modal.Header closeButton>
           <Modal.Title>Edit Reporting Year {year}</Modal.Title>
         </Modal.Header>
@@ -66,10 +77,15 @@ const ReportingYearFormDialog: React.FunctionComponent<Props> = ({
               formData={formFields}
               FieldTemplate={FormFieldTemplate}
               ObjectFieldTemplate={FormObjectFieldTemplate}
-              widgets={{AltDateInput, AltDateTimeInput}}
+              widgets={{DatePickerWidget}}
               showErrorList={false}
               validate={(formData, errors) =>
-                validateApplicationDates(formFields, formData, errors, uiSchema)
+                validateApplicationDates(
+                  formFields,
+                  formData,
+                  errors,
+                  uiSchema
+                )
               }
               onSubmit={handleSubmit}
             >

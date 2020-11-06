@@ -19,25 +19,13 @@
   },
   "uiSchema": {
     "swrsDeadline": {
-      "ui:widget": "AltDateInput",
-      "ui:options": {
-        "hideNowButton": true,
-        "hideClearButton": true
-      }
+      "ui:widget": "DatePickerWidget"
     },
     "applicationOpenTime": {
-      "ui:widget": "AltDateTimeInput",
-      "ui:options": {
-        "hideNowButton": true,
-        "hideClearButton": true
-      }
+      "ui:widget": "DatePickerWidget"
     },
     "applicationCloseTime": {
-      "ui:widget": "AltDateTimeInput",
-      "ui:options": {
-        "hideNowButton": true,
-        "hideClearButton": true
-      }
+      "ui:widget": "DatePickerWidget"
     }
   }
 }

@@ -6,7 +6,7 @@ exports[`ReportingYearFormDialog Should match last accepted snapshot: no inputs 
     centered={true}
     onHide={[MockFunction]}
     show={true}
-    size="xl"
+    size="lg"
   >
     <ModalHeader
       closeButton={true}
@@ -72,47 +72,22 @@ exports[`ReportingYearFormDialog Should match last accepted snapshot: no inputs 
             Object {
               "applicationCloseTime": Object {
                 "ui:disabled": false,
-                "ui:options": Object {
-                  "hideClearButton": true,
-                  "hideNowButton": true,
-                  "yearsRange": Array [
-                    2020,
-                    2030,
-                  ],
-                },
-                "ui:widget": "AltDateTimeInput",
+                "ui:widget": "DatePickerWidget",
               },
               "applicationOpenTime": Object {
                 "ui:disabled": false,
-                "ui:options": Object {
-                  "hideClearButton": true,
-                  "hideNowButton": true,
-                  "yearsRange": Array [
-                    2020,
-                    2030,
-                  ],
-                },
-                "ui:widget": "AltDateTimeInput",
+                "ui:widget": "DatePickerWidget",
               },
               "swrsDeadline": Object {
                 "ui:disabled": false,
-                "ui:options": Object {
-                  "hideClearButton": true,
-                  "hideNowButton": true,
-                  "yearsRange": Array [
-                    2020,
-                    2030,
-                  ],
-                },
-                "ui:widget": "AltDateInput",
+                "ui:widget": "DatePickerWidget",
               },
             }
           }
           validate={[Function]}
           widgets={
             Object {
-              "AltDateInput": [Function],
-              "AltDateTimeInput": [Function],
+              "DatePickerWidget": [Function],
             }
           }
         >
@@ -654,7 +629,7 @@ exports[`ReportingYearFormDialog Should match last accepted snapshot: some past 
     centered={true}
     onHide={[MockFunction]}
     show={true}
-    size="xl"
+    size="lg"
   >
     <ModalHeader
       closeButton={true}
@@ -720,47 +695,22 @@ exports[`ReportingYearFormDialog Should match last accepted snapshot: some past 
             Object {
               "applicationCloseTime": Object {
                 "ui:disabled": false,
-                "ui:options": Object {
-                  "hideClearButton": true,
-                  "hideNowButton": true,
-                  "yearsRange": Array [
-                    2020,
-                    2030,
-                  ],
-                },
-                "ui:widget": "AltDateTimeInput",
+                "ui:widget": "DatePickerWidget",
               },
               "applicationOpenTime": Object {
                 "ui:disabled": false,
-                "ui:options": Object {
-                  "hideClearButton": true,
-                  "hideNowButton": true,
-                  "yearsRange": Array [
-                    2020,
-                    2030,
-                  ],
-                },
-                "ui:widget": "AltDateTimeInput",
+                "ui:widget": "DatePickerWidget",
               },
               "swrsDeadline": Object {
                 "ui:disabled": false,
-                "ui:options": Object {
-                  "hideClearButton": true,
-                  "hideNowButton": true,
-                  "yearsRange": Array [
-                    2020,
-                    2030,
-                  ],
-                },
-                "ui:widget": "AltDateInput",
+                "ui:widget": "DatePickerWidget",
               },
             }
           }
           validate={[Function]}
           widgets={
             Object {
-              "AltDateInput": [Function],
-              "AltDateTimeInput": [Function],
+              "DatePickerWidget": [Function],
             }
           }
         >

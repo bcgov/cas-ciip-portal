@@ -48,7 +48,7 @@ export const ReportingYearTableComponent: React.FunctionComponent<Props> = (
     setDialogMode('edit');
   };
 
-  const saveReportingYear = async ({formData}) => {
+  const saveReportingYear = async (formData) => {
     await updateReportingYearMutation(relay.environment, {
       input: {
         id: editingYear.id,
@@ -60,7 +60,7 @@ export const ReportingYearTableComponent: React.FunctionComponent<Props> = (
     clearForm();
   };
 
-  const createReportingYear = async ({formData}) => {
+  const createReportingYear = async (formData) => {
     await createReportingYearMutation(relay.environment, {
       input: {
         reportingYear: {

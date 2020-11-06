@@ -6,28 +6,9 @@ import {JSONSchema6} from 'json-schema';
 import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
 import FormFieldTemplate from 'containers/Forms/FormFieldTemplate';
 import newReportingYearSchema from './create_reporting_year.json';
-import AltDateInput from 'components/Forms/AltDateInput';
-import AltDateTimeInput from 'components/Forms/AltDateTimeInput';
+import DatePickerWidget from 'components/Forms/DatePickerWidget';
 import {validateAllDates, validateUniqueKey} from './reportingYearValidation';
-import {nowMoment} from 'functions/formatDates';
-
-function transformUiSchema(json) {
-  const now = nowMoment();
-  const thisYear = Number(now.year());
-
-  Object.keys(json).forEach((field) => {
-    if (field.includes('reportingPeriod')) {
-      json[field]['ui:options'].yearsRange = [thisYear - 2, thisYear + 10];
-    } else if (
-      field.includes('application') ||
-      field.includes('swrsDeadline')
-    ) {
-      json[field]['ui:options'].yearsRange = [thisYear, thisYear + 10];
-    }
-  });
-
-  return json;
-}
+import {ensureFullTimestamp} from 'functions/formatDates';
 
 interface Props {
   show: boolean;
@@ -42,17 +23,38 @@ const NewReportingYearFormDialog: React.FunctionComponent<Props> = ({
   createReportingYear,
   existingYearKeys
 }) => {
-  const uiSchema = transformUiSchema(newReportingYearSchema.uiSchema);
-
   const handleSubmit = (e) => {
+    const beginningOfDay = {hour: 0, minute: 0, second: 0, millisecond: 0};
+    const endOfDay = {hour: 11, minute: 59, second: 59, millisecond: 999};
+    const formData = {
+      ...e.formData,
+      reportingPeriodStart: ensureFullTimestamp(
+        e.formData.reportingPeriodStart,
+        beginningOfDay
+      ),
+      reportingPeriodEnd: ensureFullTimestamp(
+        e.formData.reportingPeriodEnd,
+        endOfDay
+      ),
+      applicationOpenTime: ensureFullTimestamp(
+        e.formData.applicationOpenTime,
+        beginningOfDay
+      ),
+      applicationCloseTime: ensureFullTimestamp(
+        e.formData.applicationCloseTime,
+        endOfDay
+      ),
+      swrsDeadline: ensureFullTimestamp(e.formData.swrsDeadline, endOfDay)
+    };
+
     if (e.errors.length === 0) {
-      createReportingYear(e);
+      createReportingYear(formData);
     }
   };
 
   return (
     <>
-      <Modal centered size="xl" show={show} onHide={clearForm}>
+      <Modal centered size="lg" show={show} onHide={clearForm}>
         <Modal.Header closeButton>
           <Modal.Title>New Reporting Year</Modal.Title>
         </Modal.Header>
@@ -63,11 +65,11 @@ const NewReportingYearFormDialog: React.FunctionComponent<Props> = ({
               liveOmit
               noHtml5Validate
               schema={newReportingYearSchema.schema as JSONSchema6}
-              uiSchema={uiSchema}
+              uiSchema={newReportingYearSchema.uiSchema}
               formData={{}}
               FieldTemplate={FormFieldTemplate}
               ObjectFieldTemplate={FormObjectFieldTemplate}
-              widgets={{AltDateInput, AltDateTimeInput}}
+              widgets={{DatePickerWidget}}
               showErrorList={false}
               validate={(formData, errors) => {
                 validateUniqueKey(existingYearKeys, formData, errors);
@@ -88,7 +90,12 @@ const NewReportingYearFormDialog: React.FunctionComponent<Props> = ({
         </Modal.Body>
       </Modal>
       <style jsx global>
-        {globalFormStyles}
+        {`
+          ${globalFormStyles}
+          #root_reportingYear {
+            width: 12em;
+          }
+        `}
       </style>
     </>
   );

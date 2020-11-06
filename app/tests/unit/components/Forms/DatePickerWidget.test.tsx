@@ -3,12 +3,12 @@ import {shallow} from 'enzyme';
 
 import JsonSchemaForm from 'react-jsonschema-form';
 import {JSONSchema6} from 'json-schema';
-import AltDateTimeInput from 'components/Forms/AltDateTimeInput';
+import DatePickerWidget from 'components/Forms/DatePickerWidget';
 import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
 import FormFieldTemplate from 'containers/Forms/FormFieldTemplate';
 
-describe('AltDateInput', () => {
-  it('Should match last accepted snapshot: AltDateTime (both date and time)', async () => {
+describe('DatePickerWidget', () => {
+  it('Should match last accepted snapshot: DatePickerWidget', async () => {
     const schema = {
       applicationOpenTime: {
         title: 'Application Open Time',
@@ -17,11 +17,7 @@ describe('AltDateInput', () => {
     };
     const uiSchema = {
       applicationOpenTime: {
-        'ui:widget': 'AltDateTimeInput',
-        'ui:options': {
-          hideNowButton: true,
-          hideClearButton: true
-        }
+        'ui:widget': 'DatePickerWidget'
       }
     };
     const r = shallow(
@@ -34,7 +30,7 @@ describe('AltDateInput', () => {
         formData={{}}
         FieldTemplate={FormFieldTemplate}
         ObjectFieldTemplate={FormObjectFieldTemplate}
-        widgets={{AltDateTimeInput}}
+        widgets={{DatePickerWidget}}
         showErrorList={false}
       />
     );
