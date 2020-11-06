@@ -46,6 +46,7 @@ env:
   smtpConnectionString: smtp://apps.smtp.gov.bc.ca/?port=25&ignoreTLS=true&secure=false
   senderEmail: BCCAS <no-reply.cas@gov.bc.ca>
   adminEmail: GHG Regulator <GHGRegulator@gov.bc.ca>
+  enableDbMocks: false
 
 # NOTE: To be displayed properly, content must be an HTML Bootstrap alert, ie: <div class="alert alert-info">Message</div>
 sitewide_notice:
