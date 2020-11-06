@@ -1,25 +1,33 @@
 import React from 'react';
+import {Button, Container, Row, Col} from 'react-bootstrap';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
 import {useCookies} from 'react-cookie';
 
-interface Props {
+interface CookieProps {
   cookies: {[name: string]: any};
   setCookie: (name: string, value: any, options?: any) => void;
+  removeCookie: (name: string, options?: any) => void;
 }
 
-class InternalCookieDayPickerInput extends React.Component<Props> {
-  static mockTimeCookieIdentifier = 'mocks.mocked_timestamp';
+class InternalCookieDayPickerInput extends React.Component<CookieProps> {
+  static CookieOptions = {
+    path: '/',
+    secure: true,
+    sameSite: 'strict'
+  };
+  static MockTimeCookieIdentifier = 'mocks.mocked_timestamp';
 
   state = {
     selectedDay: InternalCookieDayPickerInput.getCookieValue(
-      this.props.cookies[InternalCookieDayPickerInput.mockTimeCookieIdentifier]
+      this.props.cookies[InternalCookieDayPickerInput.MockTimeCookieIdentifier]
     )
   };
 
   constructor(props) {
     super(props);
     this.handleDayChange = this.handleDayChange.bind(this);
+    this.reset = this.reset.bind(this);
   }
 
   // retrieves the unix epoch in the cookie and spits out a Date object - or undefined if not set
@@ -29,36 +37,68 @@ class InternalCookieDayPickerInput extends React.Component<Props> {
   }
 
   handleDayChange(day: Date): void {
+    if (day === undefined) {
+      this.reset();
+      return;
+    }
+
     const unixEpoch = day.getTime() / 1000;
     this.props.setCookie(
-      InternalCookieDayPickerInput.mockTimeCookieIdentifier,
-      unixEpoch
+      InternalCookieDayPickerInput.MockTimeCookieIdentifier,
+      unixEpoch,
+      InternalCookieDayPickerInput.CookieOptions
     );
 
     this.setState({selectedDay: day});
+    //No need to refresh as the cookies will be transmitted next time there is a request to the server
+  }
 
-    //TODO: send cookies to server through ajax request instead
-    window.location.reload(false);
+  reset(): void {
+    this.props.removeCookie(
+      InternalCookieDayPickerInput.MockTimeCookieIdentifier,
+      InternalCookieDayPickerInput.CookieOptions
+    );
+    delete this.props.cookies[
+      InternalCookieDayPickerInput.MockTimeCookieIdentifier
+    ];
+    this.setState({selectedDay: undefined});
   }
 
   render() {
     const {selectedDay} = this.state;
     return (
-      <div>
-        {selectedDay && <p>Mocked day: {selectedDay.toISOString()}</p>}
-        {!selectedDay && <p>Choose a day</p>}
-        <DayPickerInput onDayChange={this.handleDayChange} />
-      </div>
+      <Container fluid>
+        <Row>
+          <Col className="text-right">
+            {selectedDay && (
+              <span>Mocked database date: {selectedDay.toISOString()}</span>
+            )}
+            {!selectedDay && <span>Database date: today</span>}
+            <span>&nbsp;&nbsp;</span>
+            <DayPickerInput
+              onDayChange={this.handleDayChange}
+              value={selectedDay}
+            />
+            <Button onClick={this.reset} size="sm">
+              Reset
+            </Button>
+          </Col>
+        </Row>
+      </Container>
     );
   }
 }
 
 const CookieDayPickerInput = () => {
-  const [cookies, setCookie] = useCookies([
-    InternalCookieDayPickerInput.mockTimeCookieIdentifier
+  const [cookies, setCookie, removeCookie] = useCookies([
+    InternalCookieDayPickerInput.MockTimeCookieIdentifier
   ]);
   return (
-    <InternalCookieDayPickerInput cookies={cookies} setCookie={setCookie} />
+    <InternalCookieDayPickerInput
+      cookies={cookies}
+      setCookie={setCookie}
+      removeCookie={removeCookie}
+    />
   );
 };
 

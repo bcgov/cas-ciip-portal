@@ -4,10 +4,13 @@ const https = require('https');
 const Bowser = require('bowser');
 const morgan = require('morgan');
 const fs = require('fs');
-const {postgraphile, makePluginHook} = require('postgraphile');
+const {postgraphile} = require('postgraphile');
+const postgraphileOptions = require('./postgraphile/postgraphileOptions');
+const authenticationPgSettings = require('./postgraphile/authenticationPgSettings');
+const {
+  generateDatabaseMockOptions
+} = require('./helpers/databaseMockPgOptions');
 const nextjs = require('next');
-const PgManyToManyPlugin = require('@graphile-contrib/pg-many-to-many');
-const PostgraphileLogConsola = require('postgraphile-log-consola');
 const crypto = require('crypto');
 const pg = require('pg');
 const port = Number.parseInt(process.env.PORT, 10) || 3004;
@@ -21,13 +24,7 @@ const Keycloak = require('keycloak-connect');
 const cors = require('cors');
 const voyagerMiddleware = require('graphql-voyager/middleware').express;
 const groupConstants = require('../data/group-constants');
-const groupData = require('../data/groups');
-const {
-  compactGroups,
-  getUserGroupLandingRoute,
-  getAllGroups,
-  getPriorityGroup
-} = require('../lib/user-groups');
+const {compactGroups, getUserGroupLandingRoute} = require('../lib/user-groups');
 const UNSUPPORTED_BROWSERS = require('../data/unsupported-browsers');
 const {run} = require('graphile-worker');
 const path = require('path');
@@ -285,159 +282,19 @@ app.prepare().then(async () => {
     next();
   });
 
-  // Use consola for logging instead of default logger
-  const pluginHook = makePluginHook([PostgraphileLogConsola]);
-  let postgraphileOptions = {
-    pluginHook,
-    appendPlugins: [PgManyToManyPlugin],
-    classicIds: true,
-    enableQueryBatching: true,
-    dynamicJson: true
-  };
-
-  if (process.env.NODE_ENV === 'production') {
-    postgraphileOptions = {
-      ...postgraphileOptions,
-      retryOnInitFail: true,
-      extendedErrors: ['errcode']
-    };
-  } else {
-    postgraphileOptions = {
-      ...postgraphileOptions,
-      graphiql: true,
-      enhanceGraphiql: true,
-      allowExplain: true,
-      extendedErrors: ['hint', 'detail', 'errcode'],
-      showErrorStack: 'json'
-    };
-  }
-
   server.use(cookieParser());
 
   server.use(
     postgraphile(pgPool, process.env.DATABASE_SCHEMA || 'ggircs_portal', {
-      ...postgraphileOptions,
-      pgSettings(req) {
-        console.log(req.cookies);
-        // const mockTimesampSetting = {'mocks.mocked_timestamp': req.cookies["mocks.mocked_timestamp"]};
-        const mockTimesampSetting = {
-          'mocks.mocked_timestamp': '1999-05-05 09:00:00.000000-07'
+      ...postgraphileOptions(),
+      pgSettings: (req) => {
+        const opts = {
+          ...authenticationPgSettings(req),
+          ...generateDatabaseMockOptions(req.cookies, [
+            'mocks.mocked_timestamp'
+          ])
         };
-
-        if (NO_AUTH) {
-          const groups = getAllGroups();
-          const priorityGroup = getPriorityGroup(groups);
-          return {
-            ...mockTimesampSetting,
-            'jwt.claims.sub': '00000000-0000-0000-0000-000000000000',
-            'jwt.claims.user_groups': groups.join(','),
-            'jwt.claims.priority_group': priorityGroup,
-            role: NO_AUTH_POSTGRES_ROLE
-          };
-        }
-
-        if (AS_CERTIFIER) {
-          return {
-            ...mockTimesampSetting,
-            'jwt.claims.sub': '15a21af2-ce88-42e6-ac90-0a5e24260ec6',
-            'jwt.claims.user_groups': 'User',
-            'jwt.claims.priority_group': 'User',
-            role: 'ciip_industry_user'
-          };
-        }
-
-        if (AS_REPORTER) {
-          return {
-            ...mockTimesampSetting,
-            'jwt.claims.sub': '809217a1-34b8-4179-95bc-6b4410b4fe16',
-            'jwt.claims.user_groups': 'User',
-            'jwt.claims.priority_group': 'User',
-            role: 'ciip_industry_user'
-          };
-        }
-
-        if (AS_ANALYST) {
-          return {
-            'jwt.claims.sub': '9e96cf52-9316-434e-878d-2d926a80ac8f',
-            'jwt.claims.user_groups': 'Incentive Analyst',
-            'jwt.claims.priority_group': 'Incentive Analyst',
-            role: 'ciip_analyst'
-          };
-        }
-
-        if (AS_ADMIN) {
-          return {
-            ...mockTimesampSetting,
-            'jwt.claims.sub': 'eabdeef2-f95a-4dd5-9908-883b45d213ba',
-            'jwt.claims.user_groups': 'Incentive Administrator',
-            'jwt.claims.priority_group': 'Incentive Administrator',
-            role: 'ciip_administrator'
-          };
-        }
-
-        if (AS_PENDING) {
-          return {
-            ...mockTimesampSetting,
-            'jwt.claims.sub': '00000000-0000-0000-0000-000000000000',
-            'jwt.claims.user_groups': 'Pending Analyst',
-            'jwt.claims.priority_group': 'Pending Analyst',
-            role: 'ciip_guest'
-          };
-        }
-
-        const groups = getUserGroups(req);
-        const priorityGroup = getPriorityGroup(groups);
-
-        const claims = {
-          role: groupData[priorityGroup].pgRole
-        };
-        if (
-          !req.kauth ||
-          !req.kauth.grant ||
-          !req.kauth.grant.id_token ||
-          !req.kauth.grant.id_token.content
-        )
-          return claims;
-
-        // TODOx: actually map jwt realms to postgres roles
-        // @see https://www.postgresql.org/docs/current/default-roles.html
-        // claims['role'] = 'pg_monitor';
-        const token = req.kauth.grant.id_token.content;
-
-        token.user_groups = groups.join(',');
-        token.priority_group = priorityGroup;
-
-        const properties = [
-          'jti',
-          'exp',
-          'nbf',
-          'iat',
-          'iss',
-          'aud',
-          'sub',
-          'typ',
-          'azp',
-          'auth_time',
-          'session_state',
-          'acr',
-          'email_verified',
-          'name',
-          'preferred_username',
-          'given_name',
-          'family_name',
-          'email',
-          'broker_session_id',
-          'user_groups',
-          'priority_group'
-        ];
-        properties.forEach((property) => {
-          claims[`jwt.claims.${property}`] = token[property];
-        });
-
-        return {
-          ...mockTimesampSetting,
-          ...claims
-        };
+        return opts;
       }
     })
   );

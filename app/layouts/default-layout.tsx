@@ -10,7 +10,7 @@ import Help from 'components/helpers/Help';
 import SiteNoticeBanner from 'components/Layout/SiteNoticeBanner';
 import CookieDayPickerInput from 'components/helpers/CookieDayPickerInput';
 
-const SITEWIDE_NOTICE = getConfig()?.publicRuntimeConfig.SITEWIDE_NOTICE;
+const runtimeConfig = getConfig()?.publicRuntimeConfig;
 
 interface Props {
   title?: string | JSX.Element;
@@ -37,8 +37,10 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
         isLoggedIn={Boolean(session)}
         isRegistered={Boolean(session?.ciipUserBySub)}
       >
-        {SITEWIDE_NOTICE && <SiteNoticeBanner content={SITEWIDE_NOTICE} />}
-        <CookieDayPickerInput />
+        {runtimeConfig.SITEWIDE_NOTICE && (
+          <SiteNoticeBanner content={runtimeConfig.SITEWIDE_NOTICE} />
+        )}
+        {runtimeConfig.ENABLE_DB_MOCKS === 'true' && <CookieDayPickerInput />}
         {showSubheader && <Subheader />}
       </Header>
       <main>
