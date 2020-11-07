@@ -1,7 +1,7 @@
 import React from 'react';
 import {Modal, Container, Button} from 'react-bootstrap';
 import globalFormStyles from '../../Forms/FormSharedStyles';
-import JsonSchemaForm from 'react-jsonschema-form';
+import JsonSchemaForm, {FormValidation} from 'react-jsonschema-form';
 import {JSONSchema6} from 'json-schema';
 import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
 import FormFieldTemplate from 'containers/Forms/FormFieldTemplate';
@@ -15,13 +15,19 @@ interface Props {
   clearForm: () => void;
   createReportingYear: ({formData}) => void;
   existingYearKeys: number[];
+  validateExclusiveApplicationWindow: (
+    year: number,
+    formData: object,
+    errors: object
+  ) => FormValidation;
 }
 
 const NewReportingYearFormDialog: React.FunctionComponent<Props> = ({
   show,
   clearForm,
   createReportingYear,
-  existingYearKeys
+  existingYearKeys,
+  validateExclusiveApplicationWindow
 }) => {
   const handleSubmit = (e) => {
     const beginningOfDay = {hour: 0, minute: 0, second: 0, millisecond: 0};
@@ -73,11 +79,16 @@ const NewReportingYearFormDialog: React.FunctionComponent<Props> = ({
               showErrorList={false}
               validate={(formData, errors) => {
                 validateUniqueKey(existingYearKeys, formData, errors);
-                return validateAllDates(
+                validateAllDates(
                   null,
                   formData,
                   errors,
                   newReportingYearSchema.uiSchema
+                );
+                return validateExclusiveApplicationWindow(
+                  null,
+                  formData,
+                  errors
                 );
               }}
               onSubmit={handleSubmit}

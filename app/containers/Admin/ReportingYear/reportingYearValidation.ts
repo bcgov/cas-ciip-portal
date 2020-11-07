@@ -1,6 +1,8 @@
 import {nowMoment, defaultMoment} from 'functions/formatDates';
 
 const ERRORS = {
+  APPLICATION_WINDOW_OVERLAPS:
+    'Application open and close dates must not overlap with those of another reporting period.',
   CLOSE_BEFORE_OPEN_DATE:
     'Application close time must occur after the open time',
   CLOSE_BEFORE_REPORTING_END:
@@ -16,6 +18,32 @@ const ERRORS = {
 function isPastDate(date) {
   const now = nowMoment();
   return date.isBefore(now);
+}
+
+function validateExclusiveApplicationWindow(
+  year,
+  existingYears,
+  {applicationOpenTime, applicationCloseTime},
+  errors
+) {
+  const doesOverlap = existingYears.some((edge) => {
+    // Allow the year currently being edited to overlap with itself:
+    if (edge.node.reportingYear === year) return false;
+
+    const open = defaultMoment(edge.node.applicationOpenTime);
+    const close = defaultMoment(edge.node.applicationCloseTime);
+    const openDateFallsWithin =
+      defaultMoment(applicationOpenTime).isSameOrAfter(open) &&
+      defaultMoment(applicationOpenTime).isSameOrBefore(close);
+    const closeDateFallsWithin =
+      defaultMoment(applicationCloseTime).isSameOrAfter(open) &&
+      defaultMoment(applicationCloseTime).isSameOrBefore(close);
+    return openDateFallsWithin || closeDateFallsWithin;
+  });
+  if (doesOverlap) {
+    errors.addError(ERRORS.APPLICATION_WINDOW_OVERLAPS);
+  }
+  return errors;
 }
 
 function validateApplicationDates(existingData, formData, errors, uiSchema) {
@@ -109,4 +137,9 @@ function validateUniqueKey(existingKeys, formData, errors) {
   }
 }
 
-export {validateApplicationDates, validateAllDates, validateUniqueKey};
+export {
+  validateApplicationDates,
+  validateAllDates,
+  validateUniqueKey,
+  validateExclusiveApplicationWindow
+};

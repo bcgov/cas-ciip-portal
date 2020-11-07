@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useMemo} from 'react';
 import {Table, Button} from 'react-bootstrap';
 import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
 import {ReportingYearTable_query} from '__generated__/ReportingYearTable_query.graphql';
@@ -7,6 +7,7 @@ import createReportingYearMutation from 'mutations/reporting_year/createReportin
 import ReportingYearFormDialog from './ReportingYearFormDialog';
 import NewReportingYearFormDialog from './NewReportingYearFormDialog';
 import {nowMoment, defaultMoment, dateTimeFormat} from 'functions/formatDates';
+import {validateExclusiveApplicationWindow} from 'containers/Admin/ReportingYear/reportingYearValidation';
 
 interface Props {
   relay: RelayProp;
@@ -37,6 +38,17 @@ export const ReportingYearTableComponent: React.FunctionComponent<Props> = (
   const existingYearKeys = query.allReportingYears.edges.map((edge) => {
     return edge.node.reportingYear;
   });
+
+  const applicationWindowValidator = useMemo(() => {
+    return (year, formData, errors) => {
+      return validateExclusiveApplicationWindow(
+        year,
+        props.query.allReportingYears.edges,
+        formData,
+        errors
+      );
+    };
+  }, [props.query.allReportingYears]);
 
   const clearForm = () => {
     setDialogMode(null);
@@ -118,6 +130,7 @@ export const ReportingYearTableComponent: React.FunctionComponent<Props> = (
         createReportingYear={createReportingYear}
         clearForm={clearForm}
         existingYearKeys={existingYearKeys}
+        validateExclusiveApplicationWindow={applicationWindowValidator}
       />
       <ReportingYearFormDialog
         show={dialogMode === 'edit'}
@@ -125,6 +138,7 @@ export const ReportingYearTableComponent: React.FunctionComponent<Props> = (
         formFields={editingYear}
         clearForm={clearForm}
         saveReportingYear={saveReportingYear}
+        validateExclusiveApplicationWindow={applicationWindowValidator}
       />
     </>
   );

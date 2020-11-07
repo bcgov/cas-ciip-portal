@@ -1,7 +1,7 @@
 import React from 'react';
 import {Modal, Container, Button} from 'react-bootstrap';
 import globalFormStyles from '../../Forms/FormSharedStyles';
-import JsonSchemaForm from 'react-jsonschema-form';
+import JsonSchemaForm, {FormValidation} from 'react-jsonschema-form';
 import {JSONSchema6} from 'json-schema';
 import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
 import FormFieldTemplate from 'containers/Forms/FormFieldTemplate';
@@ -28,6 +28,11 @@ interface Props {
   formFields: object;
   clearForm: () => void;
   saveReportingYear: ({formData}) => void;
+  validateExclusiveApplicationWindow: (
+    year: number,
+    formData: object,
+    errors: object
+  ) => FormValidation;
 }
 
 const ReportingYearFormDialog: React.FunctionComponent<Props> = ({
@@ -35,7 +40,8 @@ const ReportingYearFormDialog: React.FunctionComponent<Props> = ({
   year,
   formFields,
   clearForm,
-  saveReportingYear
+  saveReportingYear,
+  validateExclusiveApplicationWindow
 }) => {
   const uiSchema = transformUiSchema(reportingYearSchema.uiSchema, formFields);
 
@@ -45,14 +51,14 @@ const ReportingYearFormDialog: React.FunctionComponent<Props> = ({
     const formData = {
       ...e.formData,
       applicationOpenTime: ensureFullTimestamp(
-        e.formData.applicationOpenTime, beginningOfDay
+        e.formData.applicationOpenTime,
+        beginningOfDay
       ),
       applicationCloseTime: ensureFullTimestamp(
-        e.formData.applicationCloseTime, endOfDay
+        e.formData.applicationCloseTime,
+        endOfDay
       ),
-      swrsDeadline: ensureFullTimestamp(
-        e.formData.swrsDeadline, endOfDay
-      )
+      swrsDeadline: ensureFullTimestamp(e.formData.swrsDeadline, endOfDay)
     };
 
     if (e.errors.length === 0) {
@@ -79,14 +85,19 @@ const ReportingYearFormDialog: React.FunctionComponent<Props> = ({
               ObjectFieldTemplate={FormObjectFieldTemplate}
               widgets={{DatePickerWidget}}
               showErrorList={false}
-              validate={(formData, errors) =>
+              validate={(formData, errors) => {
                 validateApplicationDates(
                   formFields,
                   formData,
                   errors,
                   uiSchema
-                )
-              }
+                );
+                return validateExclusiveApplicationWindow(
+                  year,
+                  formData,
+                  errors
+                );
+              }}
               onSubmit={handleSubmit}
             >
               <Button type="submit" variant="primary">
