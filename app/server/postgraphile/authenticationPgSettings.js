@@ -1,4 +1,5 @@
 const {getAllGroups, getPriorityGroup} = require('../../lib/user-groups');
+const {getUserGroups} = require('../helpers/userGroupAuthentication');
 const groupData = require('../../data/groups');
 
 const NO_AUTH = process.argv.includes('NO_AUTH');

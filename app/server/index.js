@@ -23,8 +23,8 @@ const bodyParser = require('body-parser');
 const Keycloak = require('keycloak-connect');
 const cors = require('cors');
 const voyagerMiddleware = require('graphql-voyager/middleware').express;
-const groupConstants = require('../data/group-constants');
-const {compactGroups, getUserGroupLandingRoute} = require('../lib/user-groups');
+const {getUserGroupLandingRoute} = require('../lib/user-groups');
+const {getUserGroups} = require('./helpers/userGroupAuthentication');
 const UNSUPPORTED_BROWSERS = require('../data/unsupported-browsers');
 const {run} = require('graphile-worker');
 const path = require('path');
@@ -117,35 +117,6 @@ worker().catch((error) => {
     throw error;
   }
 });
-
-const removeFirstLetter = (str) => str.slice(1);
-
-const getUserGroups = (req) => {
-  if (
-    !req.kauth ||
-    !req.kauth.grant ||
-    !req.kauth.grant.id_token ||
-    !req.kauth.grant.id_token.content ||
-    !req.kauth.grant.id_token.content.groups
-  )
-    return [groupConstants.GUEST];
-
-  const brokerSessionId = req.kauth.grant.id_token.content.broker_session_id;
-  const {groups} = req.kauth.grant.id_token.content;
-
-  const processedGroups = groups.map((value) => removeFirstLetter(value));
-  const validGroups = compactGroups(processedGroups);
-
-  if (validGroups.length === 0) {
-    return brokerSessionId &&
-      brokerSessionId.length === 41 &&
-      brokerSessionId.startsWith('idir.')
-      ? [groupConstants.PENDING_ANALYST]
-      : [groupConstants.USER];
-  }
-
-  return validGroups;
-};
 
 const getRedirectURL = (req) => {
   if (req.query.redirectTo) return req.query.redirectTo;
