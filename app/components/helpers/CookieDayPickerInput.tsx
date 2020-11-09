@@ -79,6 +79,8 @@ class InternalCookieDayPickerInput extends React.Component<CookieProps> {
             <DatePicker
               onChange={this.handleDayChange}
               selected={selectedDay}
+              showMonthDropdown
+              showYearDropdown
             />
           </Col>
           <Col xs="auto">

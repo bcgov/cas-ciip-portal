@@ -10,14 +10,6 @@ const AS_ADMIN = process.argv.includes('AS_ADMIN');
 const AS_PENDING = process.argv.includes('AS_PENDING');
 
 const authenticationPgSettings = (req) => {
-  // if(process.env.ENABLE_DB_MOCKS === 'true'){
-  //   // important is that the mocks schema gets resolved before pg_catalog
-  //   mockTimestampOptions.search_path = 'mocks,pg_catalog,public';
-
-  //   if(req.cookies['mocks.mocked_timestamp'] !== undefined)
-  //     mockTimestampOptions['mocks.mocked_timestamp'] = req.cookies['mocks.mocked_timestamp'];
-  // }
-
   if (NO_AUTH) {
     const groups = getAllGroups();
     const priorityGroup = getPriorityGroup(groups);
@@ -90,9 +82,6 @@ const authenticationPgSettings = (req) => {
       ...claims
     };
 
-  // TODOx: actually map jwt realms to postgres roles
-  // @see https://www.postgresql.org/docs/current/default-roles.html
-  // claims['role'] = 'pg_monitor';
   const token = req.kauth.grant.id_token.content;
 
   token.user_groups = groups.join(',');
