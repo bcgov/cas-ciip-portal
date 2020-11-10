@@ -40,7 +40,9 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
         {runtimeConfig.SITEWIDE_NOTICE && (
           <SiteNoticeBanner content={runtimeConfig.SITEWIDE_NOTICE} />
         )}
-        {runtimeConfig.ENABLE_DB_MOCKS === 'true' && <CookieDayPickerInput />}
+        {runtimeConfig.ENABLE_DB_MOCKS === 'true' && (
+          <CookieDayPickerInput id="mock-database-date-picker" />
+        )}
         {showSubheader && <Subheader />}
       </Header>
       <main>

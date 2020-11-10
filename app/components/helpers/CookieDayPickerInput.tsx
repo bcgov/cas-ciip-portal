@@ -8,6 +8,7 @@ interface CookieProps {
   cookies: {[name: string]: any};
   setCookie: (name: string, value: any, options?: any) => void;
   removeCookie: (name: string, options?: any) => void;
+  id: string;
 }
 
 class InternalCookieDayPickerInput extends React.Component<CookieProps> {
@@ -67,7 +68,7 @@ class InternalCookieDayPickerInput extends React.Component<CookieProps> {
   render() {
     const {selectedDay} = this.state;
     return (
-      <Container fluid>
+      <Container fluid id={this.props.id}>
         <Row>
           <Col className="text-right align-self-center">
             {selectedDay && (
@@ -94,7 +95,7 @@ class InternalCookieDayPickerInput extends React.Component<CookieProps> {
   }
 }
 
-const CookieDayPickerInput = () => {
+const CookieDayPickerInput = (props) => {
   const [cookies, setCookie, removeCookie] = useCookies([
     InternalCookieDayPickerInput.MockTimeCookieIdentifier
   ]);
@@ -103,6 +104,7 @@ const CookieDayPickerInput = () => {
       cookies={cookies}
       setCookie={setCookie}
       removeCookie={removeCookie}
+      id={props.id}
     />
   );
 };

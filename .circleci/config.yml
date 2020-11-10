@@ -381,6 +381,25 @@ jobs:
             NO_MATHJAX=true yarn start & yarn wait-on http://localhost:3004
             yarn test:e2e-snapshots
             popd
+      - run:
+          name: deploy mocks schema
+          command: |
+            source ~/.bashrc
+            pushd mocks_schema
+            SQITCH_TARGET="ciip_portal_dev" sqitch deploy
+            popd
+      - run:
+          name: run end-to-en tests with mocks
+          environment:
+            ENABLE_DB_MOCKS: "true"
+          command: |
+            source ~/.asdf/asdf.sh
+            pushd app
+            NO_MATHJAX=true yarn start & yarn wait-on http://localhost:3004
+            yarn test:e2e-with-mocks
+            popd
+
+
 
   sqitch-plan-ends-with-tag:
     machine:

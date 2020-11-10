@@ -9,6 +9,7 @@
     "test:e2e-snapshots": "yarn happo-cypress -- -- cypress run",
     "pretest:e2e": "node cypress/support/listAuthenticatedPages.js",
     "test:e2e": "cypress run",
+    "test:e2e-with-mocks": "cypress run --config-file cypress-mocks.json",
     "precypress": "node cypress/support/listAuthenticatedPages.js",
     "cypress": "cypress open",
     "cucumber:pretty": "cucumber-js --format node_modules/cucumber-pretty --format-options '{\"descriptionEnabled\":true}'",
