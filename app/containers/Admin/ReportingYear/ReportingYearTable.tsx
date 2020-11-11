@@ -7,7 +7,7 @@ import createReportingYearMutation from 'mutations/reporting_year/createReportin
 import ReportingYearFormDialog from './ReportingYearFormDialog';
 import NewReportingYearFormDialog from './NewReportingYearFormDialog';
 import {nowMoment, defaultMoment, dateTimeFormat} from 'functions/formatDates';
-import {validateExclusiveApplicationWindow} from 'containers/Admin/ReportingYear/reportingYearValidation';
+import {validateExclusiveDateRanges} from 'containers/Admin/ReportingYear/reportingYearValidation';
 
 interface Props {
   relay: RelayProp;
@@ -39,9 +39,9 @@ export const ReportingYearTableComponent: React.FunctionComponent<Props> = (
     return edge.node.reportingYear;
   });
 
-  const applicationWindowValidator = useMemo(() => {
+  const exclusiveDateRangesValidator = useMemo(() => {
     return (year, formData, errors) => {
-      return validateExclusiveApplicationWindow(
+      return validateExclusiveDateRanges(
         year,
         props.query.allReportingYears.edges,
         formData,
@@ -130,7 +130,7 @@ export const ReportingYearTableComponent: React.FunctionComponent<Props> = (
         createReportingYear={createReportingYear}
         clearForm={clearForm}
         existingYearKeys={existingYearKeys}
-        validateExclusiveApplicationWindow={applicationWindowValidator}
+        validateExclusiveDateRanges={exclusiveDateRangesValidator}
       />
       <ReportingYearFormDialog
         show={dialogMode === 'edit'}
@@ -138,7 +138,7 @@ export const ReportingYearTableComponent: React.FunctionComponent<Props> = (
         formFields={editingYear}
         clearForm={clearForm}
         saveReportingYear={saveReportingYear}
-        validateExclusiveApplicationWindow={applicationWindowValidator}
+        validateExclusiveDateRanges={exclusiveDateRangesValidator}
       />
     </>
   );

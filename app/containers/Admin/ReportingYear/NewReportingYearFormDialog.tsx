@@ -15,7 +15,7 @@ interface Props {
   clearForm: () => void;
   createReportingYear: ({formData}) => void;
   existingYearKeys: number[];
-  validateExclusiveApplicationWindow: (
+  validateExclusiveDateRanges: (
     year: number,
     formData: object,
     errors: object
@@ -27,7 +27,7 @@ const NewReportingYearFormDialog: React.FunctionComponent<Props> = ({
   clearForm,
   createReportingYear,
   existingYearKeys,
-  validateExclusiveApplicationWindow
+  validateExclusiveDateRanges
 }) => {
   const handleSubmit = (e) => {
     const beginningOfDay = {hour: 0, minute: 0, second: 0, millisecond: 0};
@@ -85,7 +85,7 @@ const NewReportingYearFormDialog: React.FunctionComponent<Props> = ({
                   errors,
                   newReportingYearSchema.uiSchema
                 );
-                return validateExclusiveApplicationWindow(
+                return validateExclusiveDateRanges(
                   null,
                   formData,
                   errors

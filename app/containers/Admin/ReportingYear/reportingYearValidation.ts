@@ -3,6 +3,8 @@ import {nowMoment, defaultMoment} from 'functions/formatDates';
 const ERRORS = {
   APPLICATION_WINDOW_OVERLAPS:
     'Application open and close dates must not overlap with those of another reporting period.',
+  REPORTING_PERIOD_OVERLAPS:
+    'Reporting period start and end dates must not overlap with those of another reporting period.',
   CLOSE_BEFORE_OPEN_DATE:
     'Application close time must occur after the open time',
   CLOSE_BEFORE_REPORTING_END:
@@ -20,28 +22,62 @@ function isPastDate(date) {
   return date.isBefore(now);
 }
 
-function validateExclusiveApplicationWindow(
+function doesRangeOverlap(
   year,
   existingYears,
-  {applicationOpenTime, applicationCloseTime},
-  errors
+  proposedBeginDate,
+  proposedEndDate,
+  existingBeginDateName,
+  existingEndDateName
 ) {
-  const doesOverlap = existingYears.some((edge) => {
+  return existingYears.some((edge) => {
     // Allow the year currently being edited to overlap with itself:
     if (edge.node.reportingYear === year) return false;
 
-    const open = defaultMoment(edge.node.applicationOpenTime);
-    const close = defaultMoment(edge.node.applicationCloseTime);
-    const openDateFallsWithin =
-      defaultMoment(applicationOpenTime).isSameOrAfter(open) &&
-      defaultMoment(applicationOpenTime).isSameOrBefore(close);
-    const closeDateFallsWithin =
-      defaultMoment(applicationCloseTime).isSameOrAfter(open) &&
-      defaultMoment(applicationCloseTime).isSameOrBefore(close);
-    return openDateFallsWithin || closeDateFallsWithin;
+    const begin = defaultMoment(edge.node[existingBeginDateName]);
+    const end = defaultMoment(edge.node[existingEndDateName]);
+    const beginDateFallsWithin =
+      defaultMoment(proposedBeginDate).isSameOrAfter(begin) &&
+      defaultMoment(proposedBeginDate).isSameOrBefore(end);
+    const endDateFallsWithin =
+      defaultMoment(proposedEndDate).isSameOrAfter(begin) &&
+      defaultMoment(proposedEndDate).isSameOrBefore(end);
+    return beginDateFallsWithin || endDateFallsWithin;
   });
-  if (doesOverlap) {
+}
+
+function validateExclusiveDateRanges(
+  year,
+  existingYears,
+  {
+    applicationOpenTime,
+    applicationCloseTime,
+    reportingPeriodStart,
+    reportingPeriodEnd
+  },
+  errors
+) {
+  const doesApplicationWindowOverlap = doesRangeOverlap(
+    year,
+    existingYears,
+    applicationOpenTime,
+    applicationCloseTime,
+    'applicationOpenTime',
+    'applicationCloseTime'
+  );
+  const doesReportingPeriodOverlap = doesRangeOverlap(
+    year,
+    existingYears,
+    reportingPeriodStart,
+    reportingPeriodEnd,
+    'reportingPeriodStart',
+    'reportingPeriodEnd'
+  );
+  if (doesApplicationWindowOverlap) {
     errors.addError(ERRORS.APPLICATION_WINDOW_OVERLAPS);
+  }
+  if (doesReportingPeriodOverlap) {
+    errors.addError(ERRORS.REPORTING_PERIOD_OVERLAPS);
   }
   return errors;
 }
@@ -141,5 +177,5 @@ export {
   validateApplicationDates,
   validateAllDates,
   validateUniqueKey,
-  validateExclusiveApplicationWindow
+  validateExclusiveDateRanges
 };
