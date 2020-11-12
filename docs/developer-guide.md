@@ -20,9 +20,12 @@ The script itself can be run from the ciip portal root directory with:
 
 Run `./.bin/deploy-data.sh --help` to learn about available options.
 
-### `ggircs_portal.current_timestamp()` in development and test mode
+### Mocking application date/time in development and test mode with the `mocks.now()` method
 
-When deploying the `test` or `dev` data, the `ggircs_portal.current_timestamp()` function, which usually calls the `current_timestamp` Postgres function, if replaced by a mock that always return the timestamp where the 2018 CIIP application window opens. This allows developers and testers to test the application process even though the window is not open.
+When deploying the `test` or `dev` data (or if the ENABLE_DB_MOCKS environment variable is set to 'true'):
+- the `mocks` schema is deployed. It contains a mock for the now() method that is being used instead of the default postgres implementation and rerouted through the `search_path` setting.
+- The UI injects a small control in the top part of each page to control that date value.
+
 
 ## Code style and Linting
 

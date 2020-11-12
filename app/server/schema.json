@@ -29144,7 +29144,7 @@
             },
             {
               "name": "currentTimestamp",
-              "description": "Calculates the md5 hash in bytea format of the concactenated form results for an application revision",
+              "description": "Returns the current date and time with time zone.\nThis should be used instead of the native current_timestamp function to allow for mocking in test and development settings",
               "args": [
                 {
                   "name": "input",

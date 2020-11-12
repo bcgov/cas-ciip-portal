@@ -3,7 +3,7 @@
 
 begin;
 
-create or replace function ggircs_portal.current_timestamp() returns timestamptz as
+create function ggircs_portal.current_timestamp() returns timestamptz as
 $$
   select current_timestamp;
 $$ language sql;

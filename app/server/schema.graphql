@@ -8859,7 +8859,8 @@ type Mutation {
   ): CreateReviewCommentMutationChainPayload
 
   """
-  Calculates the md5 hash in bytea format of the concactenated form results for an application revision
+  Returns the current date and time with time zone.
+  This should be used instead of the native current_timestamp function to allow for mocking in test and development settings
   """
   currentTimestamp(
     """

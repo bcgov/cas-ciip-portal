@@ -1,0 +1,5 @@
+%syntax-version=1.0.0
+%project=mocks
+
+schema_mocks 2020-10-28T17:42:06Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # Creating schema for mocked functions
+mock_now_method [schema_mocks] 2020-10-28T17:59:38Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # Mock method to override the default now() behaviour

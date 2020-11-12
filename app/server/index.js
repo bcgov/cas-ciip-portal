@@ -4,10 +4,13 @@ const https = require('https');
 const Bowser = require('bowser');
 const morgan = require('morgan');
 const fs = require('fs');
-const {postgraphile, makePluginHook} = require('postgraphile');
+const {postgraphile} = require('postgraphile');
+const postgraphileOptions = require('./postgraphile/postgraphileOptions');
+const authenticationPgSettings = require('./postgraphile/authenticationPgSettings');
+const {
+  generateDatabaseMockOptions
+} = require('./helpers/databaseMockPgOptions');
 const nextjs = require('next');
-const PgManyToManyPlugin = require('@graphile-contrib/pg-many-to-many');
-const PostgraphileLogConsola = require('postgraphile-log-consola');
 const crypto = require('crypto');
 const pg = require('pg');
 const port = Number.parseInt(process.env.PORT, 10) || 3004;
@@ -20,19 +23,14 @@ const bodyParser = require('body-parser');
 const Keycloak = require('keycloak-connect');
 const cors = require('cors');
 const voyagerMiddleware = require('graphql-voyager/middleware').express;
-const groupConstants = require('../data/group-constants');
-const groupData = require('../data/groups');
-const {
-  compactGroups,
-  getUserGroupLandingRoute,
-  getAllGroups,
-  getPriorityGroup
-} = require('../lib/user-groups');
+const {getUserGroupLandingRoute} = require('../lib/user-groups');
+const {getUserGroups} = require('./helpers/userGroupAuthentication');
 const UNSUPPORTED_BROWSERS = require('../data/unsupported-browsers');
 const {run} = require('graphile-worker');
 const path = require('path');
 const namespaceMap = require('../data/kc-namespace-map');
 const printPdf = require('./routes/print-pdf');
+const cookieParser = require('cookie-parser');
 
 /**
  * Override keycloak accessDenied handler to redirect to our 403 page
@@ -119,35 +117,6 @@ worker().catch((error) => {
     throw error;
   }
 });
-
-const removeFirstLetter = (str) => str.slice(1);
-
-const getUserGroups = (req) => {
-  if (
-    !req.kauth ||
-    !req.kauth.grant ||
-    !req.kauth.grant.id_token ||
-    !req.kauth.grant.id_token.content ||
-    !req.kauth.grant.id_token.content.groups
-  )
-    return [groupConstants.GUEST];
-
-  const brokerSessionId = req.kauth.grant.id_token.content.broker_session_id;
-  const {groups} = req.kauth.grant.id_token.content;
-
-  const processedGroups = groups.map((value) => removeFirstLetter(value));
-  const validGroups = compactGroups(processedGroups);
-
-  if (validGroups.length === 0) {
-    return brokerSessionId &&
-      brokerSessionId.length === 41 &&
-      brokerSessionId.startsWith('idir.')
-      ? [groupConstants.PENDING_ANALYST]
-      : [groupConstants.USER];
-  }
-
-  return validGroups;
-};
 
 const getRedirectURL = (req) => {
   if (req.query.redirectTo) return req.query.redirectTo;
@@ -284,142 +253,19 @@ app.prepare().then(async () => {
     next();
   });
 
-  // Use consola for logging instead of default logger
-  const pluginHook = makePluginHook([PostgraphileLogConsola]);
-  let postgraphileOptions = {
-    pluginHook,
-    appendPlugins: [PgManyToManyPlugin],
-    classicIds: true,
-    enableQueryBatching: true,
-    dynamicJson: true
-  };
-
-  if (process.env.NODE_ENV === 'production') {
-    postgraphileOptions = {
-      ...postgraphileOptions,
-      retryOnInitFail: true,
-      extendedErrors: ['errcode']
-    };
-  } else {
-    postgraphileOptions = {
-      ...postgraphileOptions,
-      graphiql: true,
-      enhanceGraphiql: true,
-      allowExplain: true,
-      extendedErrors: ['hint', 'detail', 'errcode'],
-      showErrorStack: 'json'
-    };
-  }
+  server.use(cookieParser());
 
   server.use(
     postgraphile(pgPool, process.env.DATABASE_SCHEMA || 'ggircs_portal', {
-      ...postgraphileOptions,
-      pgSettings(req) {
-        if (NO_AUTH) {
-          const groups = getAllGroups();
-          const priorityGroup = getPriorityGroup(groups);
-          return {
-            'jwt.claims.sub': '00000000-0000-0000-0000-000000000000',
-            'jwt.claims.user_groups': groups.join(','),
-            'jwt.claims.priority_group': priorityGroup,
-            role: NO_AUTH_POSTGRES_ROLE
-          };
-        }
-
-        if (AS_CERTIFIER) {
-          return {
-            'jwt.claims.sub': '15a21af2-ce88-42e6-ac90-0a5e24260ec6',
-            'jwt.claims.user_groups': 'User',
-            'jwt.claims.priority_group': 'User',
-            role: 'ciip_industry_user'
-          };
-        }
-
-        if (AS_REPORTER) {
-          return {
-            'jwt.claims.sub': '809217a1-34b8-4179-95bc-6b4410b4fe16',
-            'jwt.claims.user_groups': 'User',
-            'jwt.claims.priority_group': 'User',
-            role: 'ciip_industry_user'
-          };
-        }
-
-        if (AS_ANALYST) {
-          return {
-            'jwt.claims.sub': '9e96cf52-9316-434e-878d-2d926a80ac8f',
-            'jwt.claims.user_groups': 'Incentive Analyst',
-            'jwt.claims.priority_group': 'Incentive Analyst',
-            role: 'ciip_analyst'
-          };
-        }
-
-        if (AS_ADMIN) {
-          return {
-            'jwt.claims.sub': 'eabdeef2-f95a-4dd5-9908-883b45d213ba',
-            'jwt.claims.user_groups': 'Incentive Administrator',
-            'jwt.claims.priority_group': 'Incentive Administrator',
-            role: 'ciip_administrator'
-          };
-        }
-
-        if (AS_PENDING) {
-          return {
-            'jwt.claims.sub': '00000000-0000-0000-0000-000000000000',
-            'jwt.claims.user_groups': 'Pending Analyst',
-            'jwt.claims.priority_group': 'Pending Analyst',
-            role: 'ciip_guest'
-          };
-        }
-
-        const groups = getUserGroups(req);
-        const priorityGroup = getPriorityGroup(groups);
-
-        const claims = {
-          role: groupData[priorityGroup].pgRole
+      ...postgraphileOptions(),
+      pgSettings: (req) => {
+        const opts = {
+          ...authenticationPgSettings(req),
+          ...generateDatabaseMockOptions(req.cookies, [
+            'mocks.mocked_timestamp'
+          ])
         };
-        if (
-          !req.kauth ||
-          !req.kauth.grant ||
-          !req.kauth.grant.id_token ||
-          !req.kauth.grant.id_token.content
-        )
-          return claims;
-
-        // TODOx: actually map jwt realms to postgres roles
-        // @see https://www.postgresql.org/docs/current/default-roles.html
-        // claims['role'] = 'pg_monitor';
-        const token = req.kauth.grant.id_token.content;
-
-        token.user_groups = groups.join(',');
-        token.priority_group = priorityGroup;
-
-        const properties = [
-          'jti',
-          'exp',
-          'nbf',
-          'iat',
-          'iss',
-          'aud',
-          'sub',
-          'typ',
-          'azp',
-          'auth_time',
-          'session_state',
-          'acr',
-          'email_verified',
-          'name',
-          'preferred_username',
-          'given_name',
-          'family_name',
-          'email',
-          'broker_session_id',
-          'user_groups',
-          'priority_group'
-        ];
-        properties.forEach((property) => {
-          claims[`jwt.claims.${property}`] = token[property];
-        });
-        return claims;
+        return opts;
       }
     })
   );

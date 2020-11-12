@@ -67,4 +67,11 @@ spec:
                 - /usr/bin/env
                 - bash
                 - -c
-                - data/deploy-data.sh --oc-project=$(NAMESPACE)
+                - |
+                  set -euo pipefail;
+                  data/deploy-data.sh --oc-project=$(NAMESPACE);
+                  if {{ .Values.enableDbMocks }}; then
+                    pushd ../mocks_schema;
+                    sqitch deploy;
+                    popd;
+                  fi;

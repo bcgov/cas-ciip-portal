@@ -24,6 +24,7 @@ module.exports = {
     NO_MATHJAX: process.env.NO_MATHJAX,
     FEEDBACK_SITE_URL: process.env.FEEDBACK_SITE_URL,
     ENABLE_ANALYTICS: process.env.ENABLE_ANALYTICS,
-    SITEWIDE_NOTICE: process.env.SITEWIDE_NOTICE
+    SITEWIDE_NOTICE: process.env.SITEWIDE_NOTICE,
+    ENABLE_DB_MOCKS: process.env.ENABLE_DB_MOCKS
   }
 };

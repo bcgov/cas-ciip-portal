@@ -12,4 +12,11 @@ describe('The index page', () => {
     );
     cy.get('#page-content').happoScreenshot({component: 'Index Page'});
   });
+
+  it('does not contain the mocked database field', () => {
+    cy.visit('/');
+    cy.get('header').contains('Mocked database date:').should('not.exist');
+    cy.get('header').contains('Database date').should('not.exist');
+    cy.get('header').contains('Reset').should('not.exist');
+  });
 });

@@ -72,6 +72,8 @@ spec:
               fieldRef:
                 apiVersion: v1
                 fieldPath: metadata.namespace
+          - name: ENABLE_DB_MOCKS
+            value: {{ .Values.enableDbMocks | quote }}
         ports:
         - containerPort: {{ .Values.port }}
           protocol: TCP
