@@ -5,6 +5,7 @@ ENV USER_ID=1001
 ENV CIIP_HOME=/root
 ENV HOME=/root
 COPY schema/ ${HOME}/
+COPY mocks_schema/ ${HOME}/mocks_schema/
 WORKDIR ${HOME}
 
 # jq is used by trigger-airflow-dag.sh
