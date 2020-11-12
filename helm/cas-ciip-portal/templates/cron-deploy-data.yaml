@@ -70,7 +70,7 @@ spec:
                 - |
                   set -euo pipefail;
                   data/deploy-data.sh --oc-project=$(NAMESPACE);
-                  if {{ .Values.enableDbMocks }}; then
+                  if {{ .Values.env.enableDbMocks }}; then
                     pushd ../mocks_schema;
                     sqitch deploy;
                     popd;
