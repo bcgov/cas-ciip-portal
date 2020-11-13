@@ -8,6 +8,7 @@ describe('When logged in as a certifier(reporter)', () => {
       Cypress.env('TEST_CERTIFIER_USERNAME'),
       Cypress.env('TEST_CERTIFIER_PASSWORD')
     );
+    cy.useMockedTime(new Date(2020, 5, 10, 9, 0, 0, 0)); //May 10th at 9am
   });
 
   afterEach(() => {

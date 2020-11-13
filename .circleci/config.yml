@@ -366,6 +366,9 @@ jobs:
             pushd test_helper_schema
             SQITCH_TARGET="ciip_portal_dev" sqitch deploy
             popd
+            pushd mocks_schema
+            SQITCH_TARGET="ciip_portal_dev" sqitch deploy
+            popd
       - run:
           name: Create Mailhog server via docker image
           command: docker run -d -p 1025:1025 -p 8025:8025 mailhog/mailhog
@@ -375,6 +378,7 @@ jobs:
             SMTP_CONNECTION_STRING: smtp://@localhost:1025
             SENDER_EMAIL: BCCAS <example@cas.com>
             ADMIN_EMAIL: GHG Regulator <GHGRegulator@gov.bc.ca>
+            ENABLE_DB_MOCKS_COOKIES_ONLY: true # Allow cookies to be set by cypress
           command: |
             source ~/.asdf/asdf.sh
             pushd app
@@ -382,14 +386,7 @@ jobs:
             yarn test:e2e-snapshots
             popd
       - run:
-          name: deploy mocks schema
-          command: |
-            source ~/.bashrc
-            pushd mocks_schema
-            SQITCH_TARGET="ciip_portal_dev" sqitch deploy
-            popd
-      - run:
-          name: run end-to-en tests with mocks
+          name: run end-to-en tests with mocks environment variable set
           environment:
             ENABLE_DB_MOCKS: "true"
           command: |
