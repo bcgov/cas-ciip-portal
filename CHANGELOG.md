@@ -2,6 +2,49 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.12.0](https://github.com/bcgov/cas-ciip-portal/compare/v1.11.0...v1.12.0) (2020-11-16)
+
+
+### Features
+
+* add missing /auth back into the url ([18b9a44](https://github.com/bcgov/cas-ciip-portal/commit/18b9a4433115033ce919033909489453a27f0a16))
+* add print-pdf route ([c4d45e5](https://github.com/bcgov/cas-ciip-portal/commit/c4d45e550f076f3bd8fcba80f29e2ace2e12eb85))
+* adding comment rendering in the fuels section of the PDF ([fa4fd97](https://github.com/bcgov/cas-ciip-portal/commit/fa4fd97b18d6b8c1153b5db3c421b882cdbee9eb))
+* adding deployment of mocks schema in helm template ([a036fbc](https://github.com/bcgov/cas-ciip-portal/commit/a036fbcd88b958b7a245a74e88255f4d9c29aaae))
+* adding env variable for mocked date without UI ([06cef93](https://github.com/bcgov/cas-ciip-portal/commit/06cef933eaa346a6ed70d32571a58c0fc0e9fe4e))
+* adding front-end component to set the mocked date ([3c115e2](https://github.com/bcgov/cas-ciip-portal/commit/3c115e28491726b342436b06d74bb42d505f8451))
+* basic UI control to set the mocked date in the database ([3bfe714](https://github.com/bcgov/cas-ciip-portal/commit/3bfe71451d65c256851e4d1d7e7a0cd0e7489a3e))
+* creating schema for mocked database functions ([a64d9a6](https://github.com/bcgov/cas-ciip-portal/commit/a64d9a67a7fca195f3e93795632e03d94f7a1ea7))
+* Creating schema for mocks, adding mock now() method ([e7e009c](https://github.com/bcgov/cas-ciip-portal/commit/e7e009c1565be4a3cd67ca670b07387e5be969d2))
+* datepicker allows user to pick year and month ([ec9ce5b](https://github.com/bcgov/cas-ciip-portal/commit/ec9ce5b43db36ea68b214c11e3da50670c4ab320))
+* docker image supports puppeteer ([0556516](https://github.com/bcgov/cas-ciip-portal/commit/0556516d4ba8d317e19256e4fd4ae327a6513c52))
+* Ensure PDF download opens in new tab ([75cabf5](https://github.com/bcgov/cas-ciip-portal/commit/75cabf5702af3ee344d898f80949d4484f84789d))
+* helm values to only set the ENABLE_DB_MOCKS in dev and test ([37cfc40](https://github.com/bcgov/cas-ciip-portal/commit/37cfc403824a858870f5ec7b92f0beeec73262ca))
+* keep browser alive and properly await commands ([606d839](https://github.com/bcgov/cas-ciip-portal/commit/606d8398233930f41212fc1664278aae765d72d1))
+* rendering the comment field on the production items on the PDF ([cd1cfb2](https://github.com/bcgov/cas-ciip-portal/commit/cd1cfb224d09644c186932ad9367f2b3d6a2b71e))
+* reworking ggircs_portal.current_timestamp() to use now() instead ([672dd02](https://github.com/bcgov/cas-ciip-portal/commit/672dd0234eb86077b8c00e1acdd4ae2ff9fd1744))
+* update keycloak url for dev-test-prod ([f5674eb](https://github.com/bcgov/cas-ciip-portal/commit/f5674eb792e4c3675dc80dc48f0ad78c1cb9db7b))
+* updating permissions on the mocks schema ([56f36af](https://github.com/bcgov/cas-ciip-portal/commit/56f36af3ae645c6aa6b1ef7556ba9fb06f17e9e6))
+* updating the ui_schema: rendering of the empty fields ([8a19216](https://github.com/bcgov/cas-ciip-portal/commit/8a19216cf2478a9ac447a98f86bb9082c73f3023))
+
+
+### Bug Fixes
+
+* Accuracy and more readable aria-label for expand/collapse comments ([253da10](https://github.com/bcgov/cas-ciip-portal/commit/253da1083181ea9e818dfebef7345a7f32d5b62f))
+* add copy command in dockerfile for mocks schema ([918f5d7](https://github.com/bcgov/cas-ciip-portal/commit/918f5d79ad0afdccee7d29943bae8226d8cda747))
+* add quotes to relative pushd path ([fe37366](https://github.com/bcgov/cas-ciip-portal/commit/fe37366cdc740cada5ae24e0e06a166642426588))
+* correcting path to helm template value ([39e14f5](https://github.com/bcgov/cas-ciip-portal/commit/39e14f5eace5a796e2fb478438cca0005c73e003))
+* end of file ([6e8eb7a](https://github.com/bcgov/cas-ciip-portal/commit/6e8eb7a8f86e199cfaf4dc3bed7d12cb9b6aead0))
+* fixing reference to env Value ([a8fe220](https://github.com/bcgov/cas-ciip-portal/commit/a8fe220e5676da9ab7c9bac439f156663433096a))
+* formatting of the comment field on the application summary and PDF ([f4d0220](https://github.com/bcgov/cas-ciip-portal/commit/f4d022023ebf23618eea8a94cd5c1566f6ff68d0))
+* linter issues ([abdc682](https://github.com/bcgov/cas-ciip-portal/commit/abdc6821529bdf28bf3801e2bfa1bf778e97d77f))
+* puppeteer should download its bundled browser when installing ([0012510](https://github.com/bcgov/cas-ciip-portal/commit/0012510107ce265bc4461361b884e2c13541f2a6))
+* remove puppeteer & chrome from dockerfile ([2f60ad6](https://github.com/bcgov/cas-ciip-portal/commit/2f60ad6548d61e4ce0d80984a376270484991f70))
+* removing forgotten console.log call ([e6526aa](https://github.com/bcgov/cas-ciip-portal/commit/e6526aa876550b88cd9299e9816475bb03a35ced))
+* update cronjob with new path ([b072176](https://github.com/bcgov/cas-ciip-portal/commit/b072176aafe846a260f0ba2c37dd2f1a059b0511))
+* update name of test reporter username for test env in banner ([dc0ede4](https://github.com/bcgov/cas-ciip-portal/commit/dc0ede434b240f024398e2da3e294ec089f2d292))
+* wrong function call in the database mocking options ([5c8f227](https://github.com/bcgov/cas-ciip-portal/commit/5c8f227c4e9721c99afd47444061bf995801e0d8))
+
 ## [1.11.0](https://github.com/bcgov/cas-ciip-portal/compare/v1.10.1...v1.11.0) (2020-10-22)
 
 
