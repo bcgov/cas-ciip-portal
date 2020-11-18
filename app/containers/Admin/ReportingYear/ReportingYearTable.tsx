@@ -18,10 +18,28 @@ function formatListViewDate(date: string) {
   return dateTimeFormat(date, 'days_string');
 }
 
-function isDatePast(date: string) {
-  const d = defaultMoment(date);
+function getMostRecentlyClosedYear(query) {
+  const orderedByCloseTimeDesc = query.allReportingYears.edges
+    .slice()
+    .sort((yearA, yearB) => {
+      const yearACloseTime = defaultMoment(yearA.node.applicationCloseTime);
+      const yearBCloseTime = defaultMoment(yearB.node.applicationCloseTime);
+
+      return yearACloseTime.isBefore(yearBCloseTime)
+        ? 1
+        : yearBCloseTime.isBefore(yearACloseTime)
+        ? -1
+        : 0;
+    });
+  // Can edit only the most recently closed reporting period
+  // (unless the next application window has already opened - prevents overlap):
   const now = nowMoment();
-  return d.isBefore(now);
+  const mostRecentlyClosedYear = query.openedReportingYear
+    ? null
+    : orderedByCloseTimeDesc.find((y) =>
+        defaultMoment(y.node.applicationCloseTime).isSameOrBefore(now)
+      ).node;
+  return mostRecentlyClosedYear;
 }
 
 export const ReportingYearTableComponent: React.FunctionComponent<Props> = (
@@ -38,6 +56,18 @@ export const ReportingYearTableComponent: React.FunctionComponent<Props> = (
   const existingYearKeys = query.allReportingYears.edges.map((edge) => {
     return edge.node.reportingYear;
   });
+
+  const mostRecentlyClosedYear = getMostRecentlyClosedYear(props.query);
+
+  const isYearEditable = (year, openedReportingYear) => {
+    const closeTime = defaultMoment(year.applicationCloseTime);
+    const mostRecentEditableCloseTime = defaultMoment(
+      openedReportingYear
+        ? openedReportingYear.applicationCloseTime
+        : mostRecentlyClosedYear.applicationCloseTime
+    );
+    return closeTime.isSameOrAfter(mostRecentEditableCloseTime);
+  };
 
   const exclusiveDateRangesValidator = useMemo(() => {
     return (year, formData, errors) => {
@@ -116,7 +146,7 @@ export const ReportingYearTableComponent: React.FunctionComponent<Props> = (
                 <td>{formatListViewDate(node.applicationOpenTime)}</td>
                 <td>{formatListViewDate(node.applicationCloseTime)}</td>
                 <td>
-                  {!isDatePast(node.applicationCloseTime) && (
+                  {isYearEditable(node, props.query.openedReportingYear) && (
                     <Button onClick={() => editYear(node)}>Edit</Button>
                   )}
                 </td>
@@ -159,6 +189,11 @@ export default createFragmentContainer(ReportingYearTableComponent, {
             applicationCloseTime
           }
         }
+      }
+      openedReportingYear {
+        reportingYear
+        applicationOpenTime
+        applicationCloseTime
       }
     }
   `
