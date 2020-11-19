@@ -47,18 +47,10 @@ const SearchBox: React.FunctionComponent<Props> = ({
 
   const uiSchema = {
     searchField: {
-      'ui:col-md': 5,
-      'ui:placeholder': 'Search By:',
-      'ui:options': {
-        label: false
-      }
+      'ui:col-md': 5
     },
     searchValue: {
-      'ui:col-md': 7,
-      'ui:placeholder': 'Search Term',
-      'ui:options': {
-        label: false
-      }
+      'ui:col-md': 7
     }
   };
 
@@ -72,7 +64,7 @@ const SearchBox: React.FunctionComponent<Props> = ({
         ObjectFieldTemplate={FormObjectFieldTemplate}
         onSubmit={handleSubmit}
       >
-        <div className="search-actions" style={{textAlign: 'right'}}>
+        <div className="search-actions">
           <ButtonGroup>
             <Button variant="success" type="submit">
               Search
@@ -83,6 +75,13 @@ const SearchBox: React.FunctionComponent<Props> = ({
           </ButtonGroup>
         </div>
       </JsonSchemaForm>
+
+      <style jsx global>{`
+        .search-actions {
+          text-align: right;
+          margin-top: 32px;
+        }
+      `}</style>
     </div>
   );
 };
