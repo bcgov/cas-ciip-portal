@@ -16,7 +16,10 @@ function transformUiSchema(json, formFields) {
 
   Object.keys(json).forEach((field) => {
     const d = defaultMoment(formFields[field]);
-    json[field]['ui:disabled'] = d < now;
+    // Disable editing past dates, except for applicationCloseTime to enable them to extend it
+    // (interface is only displayed for the most recent period):
+    json[field]['ui:disabled'] =
+      field === 'applicationCloseTime' ? false : d.isBefore(now);
   });
 
   return json;
@@ -92,11 +95,7 @@ const ReportingYearFormDialog: React.FunctionComponent<Props> = ({
                   errors,
                   uiSchema
                 );
-                return validateExclusiveDateRanges(
-                  year,
-                  formData,
-                  errors
-                );
+                return validateExclusiveDateRanges(year, formData, errors);
               }}
               onSubmit={handleSubmit}
             >

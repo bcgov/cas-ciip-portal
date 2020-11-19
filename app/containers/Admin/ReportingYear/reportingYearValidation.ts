@@ -82,7 +82,15 @@ function validateExclusiveDateRanges(
   return errors;
 }
 
-function validateApplicationDates(existingData, formData, errors, uiSchema) {
+function validateApplicationDates(
+  existingData,
+  formData,
+  errors,
+  uiSchema,
+  // only the validation for creating new reporting periods sets this to true
+  // (so closed application windows can be re-opened by editing the reporting period):
+  validateFutureApplicationClose = false
+) {
   const openDate = formData.applicationOpenTime
     ? defaultMoment(formData.applicationOpenTime)
     : undefined;
@@ -105,10 +113,12 @@ function validateApplicationDates(existingData, formData, errors, uiSchema) {
     errors.addError(`${ERRORS.PAST_DATE} Application open time`);
   }
 
+  const closeDateIsPast =
+    validateFutureApplicationClose && isPastDate(closeDate);
   if (
     Boolean(closeDate) &&
-    isPastDate(closeDate) &&
-    !uiSchema.applicationCloseTime['ui:disabled']
+    !uiSchema.applicationCloseTime['ui:disabled'] &&
+    closeDateIsPast
   ) {
     errors.addError(`${ERRORS.PAST_DATE} Application close time`);
   }
@@ -161,7 +171,7 @@ function validateReportingDates(formData, errors) {
 
 function validateAllDates(existingData, formData, errors, uiSchema) {
   return (
-    validateApplicationDates(existingData, formData, errors, uiSchema) &&
+    validateApplicationDates(existingData, formData, errors, uiSchema, true) &&
     validateReportingDates(formData, errors)
   );
 }
