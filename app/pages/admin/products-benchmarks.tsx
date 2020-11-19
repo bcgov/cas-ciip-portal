@@ -116,9 +116,7 @@ class ProductsBenchmarks extends Component<Props> {
         </Row>
         <Row>
           <Col>
-            <Button onClick={this.toggleShowCreateForm}>
-              Create a product
-            </Button>
+            <Button onClick={this.toggleShowCreateForm}>New Product</Button>
           </Col>
         </Row>
         <Row>
