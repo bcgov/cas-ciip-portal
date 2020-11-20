@@ -97,8 +97,16 @@ class ProductsBenchmarks extends Component<Props> {
   render() {
     const {query} = this.props;
     const {totalProductCount} = this.state;
+    const newProductButton = (
+      <Button onClick={this.toggleShowCreateForm}>New Product</Button>
+    );
+
     return (
-      <DefaultLayout session={query.session} title="Manage Products">
+      <DefaultLayout
+        session={query.session}
+        title="Manage Products"
+        titleControls={newProductButton}
+      >
         <Row>
           <Col md={{span: 4, offset: 4}}>
             <Toast
@@ -112,11 +120,6 @@ class ProductsBenchmarks extends Component<Props> {
               </Toast.Body>
             </Toast>
             <br />
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <Button onClick={this.toggleShowCreateForm}>New Product</Button>
           </Col>
         </Row>
         <Row>

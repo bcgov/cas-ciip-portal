@@ -1,5 +1,5 @@
 import React from 'react';
-import {Container} from 'react-bootstrap';
+import {Container, Row, Col} from 'react-bootstrap';
 import {graphql, createFragmentContainer} from 'react-relay';
 import {defaultLayout_session} from '__generated__/defaultLayout_session.graphql';
 import getConfig from 'next/config';
@@ -14,6 +14,7 @@ const runtimeConfig = getConfig()?.publicRuntimeConfig ?? {};
 
 interface Props {
   title?: string | JSX.Element;
+  titleControls?: JSX.Element;
   showSubheader?: boolean;
   session: defaultLayout_session;
   width?: 'narrow' | 'wide';
@@ -26,6 +27,7 @@ interface Props {
 const DefaultLayout: React.FunctionComponent<Props> = ({
   children,
   title,
+  titleControls,
   showSubheader,
   session,
   width = 'narrow',
@@ -49,10 +51,15 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
         {title ? (
           <div className="page-title">
             <Container className={width}>
-              <h1>{title}</h1>
-              {help && (
-                <Help title={help.title} helpMessage={help.helpMessage} />
-              )}
+              <Row>
+                <Col>
+                  <h1>{title}</h1>
+                  {help && (
+                    <Help title={help.title} helpMessage={help.helpMessage} />
+                  )}
+                </Col>
+                <Col xs="auto">{titleControls}</Col>
+              </Row>
             </Container>
           </div>
         ) : null}
