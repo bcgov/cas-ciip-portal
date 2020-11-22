@@ -10742,10 +10742,10 @@ node-releases@^1.1.58, node-releases@^1.1.61:
   resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-1.1.63.tgz#db6dbb388544c31e888216304e8fd170efee3ff5"
   integrity sha512-ukW3iCfQaoxJkSPN+iK7KznTeqDGVJatAEuXsJERYHa9tn/KaT5lBdIyxQjLEVTzSkyjJEuQ17/vaEjrOauDkg==
 
-nodemailer@^6.4.8:
-  version "6.4.8"
-  resolved "https://registry.yarnpkg.com/nodemailer/-/nodemailer-6.4.8.tgz#aca52886e4e56f71f6b8a65f5ca6b767ca751fc7"
-  integrity sha512-UbJD0+g5e2H20bWv7Rpj3B+N3TMMJ0MLoLwaGVJ0k3Vo8upq0UltwHJ5BJfrpST1vFa91JQ8cf7cICK5DSIo1Q==
+nodemailer@^6.4.16:
+  version "6.4.16"
+  resolved "https://registry.yarnpkg.com/nodemailer/-/nodemailer-6.4.16.tgz#5cb6391b1d79ab7eff32d6f9f48366b5a7117293"
+  integrity sha512-68K0LgZ6hmZ7PVmwL78gzNdjpj5viqBdFqKrTtr9bZbJYj6BRj5W6WGkxXrEnUl3Co3CBXi3CZBUlpV/foGnOQ==
 
 normalize-html-whitespace@1.0.0:
   version "1.0.0"
@@ -12019,6 +12019,15 @@ react-context-toolbox@^2.0.2:
   resolved "https://registry.yarnpkg.com/react-context-toolbox/-/react-context-toolbox-2.0.2.tgz#35637287cb23f801e6ed802c2bb7a97e1f04e3fb"
   integrity sha512-tY4j0imkYC3n5ZlYSgFkaw7fmlCp3IoQQ6DxpqeNHzcD0hf+6V+/HeJxviLUZ1Rv1Yn3N3xyO2EhkkZwHn0m1A==
 
+react-cookie@^4.0.3:
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/react-cookie/-/react-cookie-4.0.3.tgz#ba8e5ea0047c916516e1181a3ad394c9b7580b56"
+  integrity sha512-cmi6IpdVgTSvjqssqIEvo779Gfqc4uPGHRrKMEdHcqkmGtPmxolGfsyKj95bhdLEKqMdbX8MLBCwezlnhkHK0g==
+  dependencies:
+    "@types/hoist-non-react-statics" "^3.0.1"
+    hoist-non-react-statics "^3.0.0"
+    universal-cookie "^4.0.0"
+
 react-datepicker@^3.3.0:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/react-datepicker/-/react-datepicker-3.3.0.tgz#38dec531fd7c8e0de6860a55dfbc3a8ff803d43c"
@@ -12029,15 +12038,6 @@ react-datepicker@^3.3.0:
     prop-types "^15.7.2"
     react-onclickoutside "^6.9.0"
     react-popper "^1.3.4"
-
-react-cookie@^4.0.3:
-  version "4.0.3"
-  resolved "https://registry.yarnpkg.com/react-cookie/-/react-cookie-4.0.3.tgz#ba8e5ea0047c916516e1181a3ad394c9b7580b56"
-  integrity sha512-cmi6IpdVgTSvjqssqIEvo779Gfqc4uPGHRrKMEdHcqkmGtPmxolGfsyKj95bhdLEKqMdbX8MLBCwezlnhkHK0g==
-  dependencies:
-    "@types/hoist-non-react-statics" "^3.0.1"
-    hoist-non-react-statics "^3.0.0"
-    universal-cookie "^4.0.0"
 
 react-docgen-typescript-loader@^3.7.2:
   version "3.7.2"
