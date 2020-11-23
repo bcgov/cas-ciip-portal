@@ -65,7 +65,7 @@ const SearchBox: React.FunctionComponent<Props> = ({
         onSubmit={handleSubmit}
       >
         <div className="search-actions">
-          <ButtonGroup style={{marginLeft: '20px'}}>
+          <ButtonGroup>
             <Button variant="success" type="submit">
               Search
             </Button>
@@ -75,6 +75,13 @@ const SearchBox: React.FunctionComponent<Props> = ({
           </ButtonGroup>
         </div>
       </JsonSchemaForm>
+
+      <style jsx global>{`
+        .search-actions {
+          text-align: right;
+          margin-top: 32px;
+        }
+      `}</style>
     </div>
   );
 };

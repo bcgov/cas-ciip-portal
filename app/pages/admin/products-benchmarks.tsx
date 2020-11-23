@@ -44,7 +44,6 @@ class ProductsBenchmarks extends Component<Props> {
   state = {
     formData: {formId: '', formJson: ''},
     mode: 'view',
-    confirmationModalOpen: false,
     expandCreateForm: false,
     totalProductCount: 0,
     showProductCreatedToast: false
@@ -88,14 +87,6 @@ class ProductsBenchmarks extends Component<Props> {
       : this.setState({mode: 'view'});
   };
 
-  openConfirmationWindow = () => {
-    this.setState({confirmationModalOpen: true});
-  };
-
-  closeConfirmationWindow = () => {
-    this.setState({confirmationModalOpen: false});
-  };
-
   formIdHandler = (formId, formJson) => {
     this.setState({formData: {formId, formJson}});
     console.log('form-builder.js > formIdHandler state', this.state);
@@ -106,17 +97,16 @@ class ProductsBenchmarks extends Component<Props> {
   render() {
     const {query} = this.props;
     const {totalProductCount} = this.state;
-    return (
-      <DefaultLayout session={query.session} title="Manage Products">
-        <div style={{textAlign: 'right'}}>
-          <Button
-            style={{marginTop: '-220px'}}
-            onClick={this.toggleShowCreateForm}
-          >
-            New Product
-          </Button>
-        </div>
+    const newProductButton = (
+      <Button onClick={this.toggleShowCreateForm}>New Product</Button>
+    );
 
+    return (
+      <DefaultLayout
+        session={query.session}
+        title="Manage Products"
+        titleControls={newProductButton}
+      >
         <Row>
           <Col md={{span: 4, offset: 4}}>
             <Toast
