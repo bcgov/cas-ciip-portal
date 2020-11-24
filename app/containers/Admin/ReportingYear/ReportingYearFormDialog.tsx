@@ -14,13 +14,11 @@ function transformUiSchema(json, formFields) {
   if (!formFields) return;
   const now = nowMoment();
 
-  Object.keys(json).forEach((field) => {
-    const d = defaultMoment(formFields[field]);
-    // Disable editing past dates, except for applicationCloseTime to enable them to extend it
-    // (interface is only displayed for the most recent period):
-    json[field]['ui:disabled'] =
-      field === 'applicationCloseTime' ? false : d.isBefore(now);
-  });
+  // Dates that are past should not be editable - with the exception of applicationCloseTime:
+  const swrsDeadline = defaultMoment(formFields.swrsDeadline);
+  json.swrsDeadline['ui:disabled'] = swrsDeadline.isBefore(now);
+  const applicationOpen = defaultMoment(formFields.applicationOpenTime);
+  json.applicationOpenTime['ui:disabled'] = applicationOpen.isBefore(now);
 
   return json;
 }

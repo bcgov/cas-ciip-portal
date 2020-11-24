@@ -57,27 +57,31 @@ function validateExclusiveDateRanges(
   },
   errors
 ) {
-  const doesApplicationWindowOverlap = doesRangeOverlap(
-    year,
-    existingYears,
-    applicationOpenTime,
-    applicationCloseTime,
-    'applicationOpenTime',
-    'applicationCloseTime'
-  );
-  const doesReportingPeriodOverlap = doesRangeOverlap(
-    year,
-    existingYears,
-    reportingPeriodStart,
-    reportingPeriodEnd,
-    'reportingPeriodStart',
-    'reportingPeriodEnd'
-  );
-  if (doesApplicationWindowOverlap) {
-    errors.addError(ERRORS.APPLICATION_WINDOW_OVERLAPS);
+  if  (applicationOpenTime && applicationCloseTime) {
+    const doesApplicationWindowOverlap = doesRangeOverlap(
+      year,
+      existingYears,
+      applicationOpenTime,
+      applicationCloseTime,
+      'applicationOpenTime',
+      'applicationCloseTime'
+    );
+    if (doesApplicationWindowOverlap) {
+      errors.addError(ERRORS.APPLICATION_WINDOW_OVERLAPS);
+    }
   }
-  if (doesReportingPeriodOverlap) {
-    errors.addError(ERRORS.REPORTING_PERIOD_OVERLAPS);
+  if (reportingPeriodStart && reportingPeriodEnd) {
+    const doesReportingPeriodOverlap = doesRangeOverlap(
+      year,
+      existingYears,
+      reportingPeriodStart,
+      reportingPeriodEnd,
+      'reportingPeriodStart',
+      'reportingPeriodEnd'
+    );
+    if (doesReportingPeriodOverlap) {
+      errors.addError(ERRORS.REPORTING_PERIOD_OVERLAPS);
+    }
   }
   return errors;
 }
