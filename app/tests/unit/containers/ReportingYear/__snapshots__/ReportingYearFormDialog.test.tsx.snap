@@ -71,7 +71,6 @@ exports[`ReportingYearFormDialog Should match last accepted snapshot: no inputs 
           uiSchema={
             Object {
               "applicationCloseTime": Object {
-                "ui:disabled": false,
                 "ui:widget": "DatePickerWidget",
               },
               "applicationOpenTime": Object {
@@ -694,7 +693,6 @@ exports[`ReportingYearFormDialog Should match last accepted snapshot: some past 
           uiSchema={
             Object {
               "applicationCloseTime": Object {
-                "ui:disabled": false,
                 "ui:widget": "DatePickerWidget",
               },
               "applicationOpenTime": Object {
