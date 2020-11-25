@@ -33,7 +33,7 @@ select results_eq(
 select lives_ok(
   $$
     insert into ggircs_portal.reporting_year (reporting_year, reporting_period_start, reporting_period_end, swrs_deadline, application_open_time, application_close_time) overriding system value
-    values (3000, now(), now(), now(), now(), now());
+    values (3000, now() + interval '20 years', now() + interval '21 years', now() + interval '20 years', now() + interval '20 years', now() + interval '21 years');
   $$,
     'ciip_administrator can insert data in reporting_year table'
 );
