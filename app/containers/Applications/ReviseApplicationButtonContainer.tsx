@@ -15,6 +15,14 @@ export const ReviseApplicationButton: React.FunctionComponent<Props> = ({
   relay
 }) => {
   const router = useRouter();
+  const newerDraftExists =
+    application.latestDraftRevision.versionNumber > application.latestSubmittedRevision.versionNumber;
+  const newerDraftURL = `/reporter/application?applicationId=${
+    encodeURIComponent(application.id)
+  }&version=${
+    application.latestDraftRevision.versionNumber
+  }`;
+
   const handleClick = async () => {
     const variables = {
       input: {
@@ -48,9 +56,20 @@ export const ReviseApplicationButton: React.FunctionComponent<Props> = ({
 
   return (
     <Col>
-      <Button variant="success" onClick={handleClick}>
-        Revise Application
-      </Button>
+      {newerDraftExists ?
+        <>
+          <p style={{margin: '1rem 0'}}>
+            <strong>Note:</strong> This application has been revised in a more recent draft:
+          </p>
+          <a href={newerDraftURL}>
+            <Button>Resume latest draft</Button>
+          </a>
+        </>
+        :
+        <Button variant="success" onClick={handleClick}>
+          Revise Application
+        </Button>
+      }
     </Col>
   );
 };
@@ -60,6 +79,9 @@ export default createFragmentContainer(ReviseApplicationButton, {
     fragment ReviseApplicationButtonContainer_application on Application {
       id
       rowId
+      latestDraftRevision {
+        versionNumber
+      }
       latestSubmittedRevision {
         versionNumber
       }
