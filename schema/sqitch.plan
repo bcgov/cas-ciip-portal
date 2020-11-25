@@ -197,4 +197,5 @@ computed_columns/application_revision_ciip_incentive [computed_columns/applicati
 @v1.10.1 2020-10-15T17:41:54Z Matthieu Foucault <matthieu@button.is> # release v1.10.1
 @v1.11.0 2020-10-22T00:27:09Z Dylan Leard <dylan@button.is> # release v1.11.0
 function_current_timestamp [function_current_timestamp@v1.10.1] 2020-10-30T23:15:30Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # Change ggircs_portal.current_timestamp() to use the mockable now() call instead
-@v1.12.0 2020-11-16T16:53:25Z Dylan Leard,,, <dleard@dleard-Aspire-V5-591G> # release v1.12.0
+@v1.12.0 2020-11-16T16:53:25Z Dylan Leard <dylan@button.is> # release v1.12.0
+trigger_functions/protect_date_overlap [schema_ggircs_portal_private] 2020-11-25T19:17:30Z Dylan Leard <dylan@button.is> # Trigger function to deny changes if a date range overlaps another
