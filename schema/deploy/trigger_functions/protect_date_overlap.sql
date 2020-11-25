@@ -12,7 +12,7 @@ begin;
     for temp_row in
       select * from ggircs_portal.reporting_year
     loop
-      if (new.reporting_year != temp_row.year) then
+      if (new.reporting_year != temp_row.reporting_year) then
         if ((new.reporting_period_start between temp_row.reporting_period_start and temp_row.reporting_period_end)
         or (new.reporting_period_end between temp_row.reporting_period_start and temp_row.reporting_period_end)
         or (new.application_open_time between temp_row.application_open_time and temp_row.application_close_time)
