@@ -14,9 +14,14 @@ begin;
     loop
       if (new.reporting_year != temp_row.reporting_year) then
         if ((new.reporting_period_start between temp_row.reporting_period_start and temp_row.reporting_period_end)
+        or (temp_row.reporting_period_start between new.reporting_period_start and new.reporting_period_end)
         or (new.reporting_period_end between temp_row.reporting_period_start and temp_row.reporting_period_end)
+        or (temp_row.reporting_period_end between new.reporting_period_start and new.reporting_period_end)
         or (new.application_open_time between temp_row.application_open_time and temp_row.application_close_time)
-        or (new.application_close_time between temp_row.application_open_time and temp_row.application_close_time)) then
+        or (temp_row.application_open_time between new.application_open_time and new.application_close_time)
+        or (new.application_close_time between temp_row.application_open_time and temp_row.application_close_time)
+        or (temp_row.application_close_time between new.application_open_time and new.application_close_time))
+        then
           raise exception 'New date range entry overlaps with date range for reporting year %', temp_row.reporting_year;
         end if;
       end if;
