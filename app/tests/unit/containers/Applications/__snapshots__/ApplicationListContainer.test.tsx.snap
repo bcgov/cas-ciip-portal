@@ -8,6 +8,7 @@ exports[`ApplicationList should render the application list 1`] = `
         applicationSearchResult={
           Object {
             "id": "ciip-application-1",
+            "rowId": "1",
           }
         }
       />

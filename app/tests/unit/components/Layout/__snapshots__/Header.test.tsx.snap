@@ -86,7 +86,7 @@ exports[`matches the last accepted Snapshot 1`] = `
         className="jsx-2584110530 header-right"
         style={
           Object {
-            "display": "flex",
+            "display": "none",
           }
         }
       >
