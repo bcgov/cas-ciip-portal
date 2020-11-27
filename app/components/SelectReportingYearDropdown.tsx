@@ -33,7 +33,8 @@ const SelectReportingYearDropDownComponent: React.FunctionComponent<Props> = ({
 
   const yearUISchema = {
     reportingYear: {
-      'ui:col-md': 12
+      classNames: 'ml-auto',
+      'ui:col-md': 'auto'
     }
   };
 
