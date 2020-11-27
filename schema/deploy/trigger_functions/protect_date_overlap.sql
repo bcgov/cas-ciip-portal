@@ -13,14 +13,10 @@ begin;
       select * from ggircs_portal.reporting_year
     loop
       if (new.reporting_year != temp_row.reporting_year) then
-        if ((new.reporting_period_start between temp_row.reporting_period_start and temp_row.reporting_period_end)
-        or (temp_row.reporting_period_start between new.reporting_period_start and new.reporting_period_end)
-        or (new.reporting_period_end between temp_row.reporting_period_start and temp_row.reporting_period_end)
-        or (temp_row.reporting_period_end between new.reporting_period_start and new.reporting_period_end)
-        or (new.application_open_time between temp_row.application_open_time and temp_row.application_close_time)
-        or (temp_row.application_open_time between new.application_open_time and new.application_close_time)
-        or (new.application_close_time between temp_row.application_open_time and temp_row.application_close_time)
-        or (temp_row.application_close_time between new.application_open_time and new.application_close_time))
+        if (
+          ((new.reporting_period_start, new.reporting_period_end) overlaps (temp_row.reporting_period_start, temp_row.reporting_period_end))
+        or
+          ((new.application_open_time, new.application_close_time) overlaps (temp_row.application_open_time, temp_row.application_close_time)))
         then
           raise exception 'New date range entry overlaps with date range for reporting year %', temp_row.reporting_year;
         end if;
