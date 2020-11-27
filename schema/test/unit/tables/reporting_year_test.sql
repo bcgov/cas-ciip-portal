@@ -48,14 +48,14 @@ select results_eq(
 
 select lives_ok(
   $$
-    update ggircs_portal.reporting_year set reporting_period_end='2000-01-01 23:00:00-08' where reporting_year=3000;
+    update ggircs_portal.reporting_year set reporting_period_end='3001-01-01 23:00:00-08' where reporting_year=3000;
   $$,
     'ciip_administrator can change data in reporting_year table'
 );
 
 select results_eq(
   $$
-    select count(*) from ggircs_portal.reporting_year where reporting_period_end='2000-01-01 23:00:00-08'
+    select count(*) from ggircs_portal.reporting_year where reporting_period_end='3001-01-01 23:00:00-08'
   $$,
     ARRAY[1::bigint],
     'Data was changed by ciip_administrator'
