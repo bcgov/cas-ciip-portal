@@ -24,12 +24,9 @@ function getMostRecentlyClosedYear(query) {
     .sort((yearA, yearB) => {
       const yearACloseTime = defaultMoment(yearA.node.applicationCloseTime);
       const yearBCloseTime = defaultMoment(yearB.node.applicationCloseTime);
-
-      return yearACloseTime.isBefore(yearBCloseTime)
-        ? 1
-        : yearBCloseTime.isBefore(yearACloseTime)
-        ? -1
-        : 0;
+      let sortOrder = yearACloseTime === yearBCloseTime ? 0 : 1;
+      if (yearBCloseTime.isBefore(yearACloseTime)) sortOrder *= -1;
+      return sortOrder;
     });
   // Can edit only the most recently closed reporting period
   // (unless the next application window has already opened - prevents overlap):
