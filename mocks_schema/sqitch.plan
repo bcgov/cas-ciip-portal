@@ -3,3 +3,4 @@
 
 schema_mocks 2020-10-28T17:42:06Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # Creating schema for mocked functions
 mock_now_method [schema_mocks] 2020-10-28T17:59:38Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # Mock method to override the default now() behaviour
+set_mocked_time_in_transaction [mock_now_method] 2020-12-04T16:51:59Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # Function to set the proper configuration to use the mocked now() method. Only impacts the current transaction.
