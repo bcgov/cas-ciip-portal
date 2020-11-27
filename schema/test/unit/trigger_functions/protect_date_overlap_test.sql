@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(7);
+select plan(8);
 
 select has_function(
   'ggircs_portal_private', 'protect_date_overlap',
@@ -52,6 +52,15 @@ select throws_like(
   $$,
   'New date range entry overlaps%',
   'Throws when application_close_time falls within another range'
+);
+
+select throws_like(
+  $$
+  insert into ggircs_portal.reporting_year (reporting_year, reporting_period_start, reporting_period_end, swrs_deadline, application_open_time, application_close_time) overriding system value
+  values (3001, '2999-01-01 00:00:00-08', '3001-12-30 23:59:59-08', '3002-06-01 00:00:00-07', '3002-04-01 14:49:54.191757-07', '3001-12-29 14:49:54.191757-08')
+  $$,
+  'New date range entry overlaps%',
+  'Throws when new range entry contains the range of an existing entry'
 );
 
 -- Create new valid entry
