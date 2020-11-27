@@ -33,7 +33,7 @@ select results_eq(
 select lives_ok(
   $$
     insert into ggircs_portal.reporting_year (reporting_year, reporting_period_start, reporting_period_end, swrs_deadline, application_open_time, application_close_time) overriding system value
-    values (3000, now(), now(), now(), now(), now());
+    values (3000, now() + interval '20 years', now() + interval '21 years', now() + interval '20 years', now() + interval '20 years', now() + interval '21 years');
   $$,
     'ciip_administrator can insert data in reporting_year table'
 );
@@ -48,14 +48,14 @@ select results_eq(
 
 select lives_ok(
   $$
-    update ggircs_portal.reporting_year set reporting_period_end='2000-01-01 23:00:00-08' where reporting_year=3000;
+    update ggircs_portal.reporting_year set reporting_period_end='3001-01-01 23:00:00-08' where reporting_year=3000;
   $$,
     'ciip_administrator can change data in reporting_year table'
 );
 
 select results_eq(
   $$
-    select count(*) from ggircs_portal.reporting_year where reporting_period_end='2000-01-01 23:00:00-08'
+    select count(*) from ggircs_portal.reporting_year where reporting_period_end='3001-01-01 23:00:00-08'
   $$,
     ARRAY[1::bigint],
     'Data was changed by ciip_administrator'
