@@ -82,7 +82,7 @@
     "styled-jsx": "^3.2.5"
   },
   "devDependencies": {
-    "@babel/core": "^7.10.3",
+    "@babel/core": "^7.12.9",
     "@types/enzyme": "^3.10.5",
     "@types/jest": "^25.2.1",
     "@types/react-jsonschema-form": "^1.7.2",
