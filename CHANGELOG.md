@@ -2,6 +2,32 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.13.0](https://github.com/bcgov/cas-ciip-portal/compare/v1.12.0...v1.13.0) (2020-11-30)
+
+
+### Features
+
+* add date range trigger to reporting_year table ([28544c6](https://github.com/bcgov/cas-ciip-portal/commit/28544c63b313c0ac172ab27606d804e7792d5847))
+* add function to protect date ranges in reporting_year table ([1b5542a](https://github.com/bcgov/cas-ciip-portal/commit/1b5542a8543a77f44271b1d06c395b2b0fe0eb19))
+* admin form validation ensures non-overlapping application windows ([c867285](https://github.com/bcgov/cas-ciip-portal/commit/c867285c8debc9d6021b6f5159fa46fbca030ff2))
+* also validate non-overlapping reporting periods in admin ([df28b90](https://github.com/bcgov/cas-ciip-portal/commit/df28b90c76cbe30c051da3b23eea86ea4e9ec6bd))
+* default layout supports user controls in title banner ([45610ea](https://github.com/bcgov/cas-ciip-portal/commit/45610eac4fb7c81d49c1615ed20d757aca46e545))
+* don't validate reporting start/end when editing application dates ([eb908bc](https://github.com/bcgov/cas-ciip-portal/commit/eb908bc924f39d404ac37d7dcdecab0406d41f6f))
+* remove validation enforcing edited applicationClose to not be past ([95f5832](https://github.com/bcgov/cas-ciip-portal/commit/95f58323851c9c497573a14c4e347dcd081f0f03))
+* show edit button only for the most recently closed year+ ([115ff32](https://github.com/bcgov/cas-ciip-portal/commit/115ff327280df9692beaa8da6ee63dd640660904))
+* update function to include 'contains range' edge case ([64099c4](https://github.com/bcgov/cas-ciip-portal/commit/64099c4c50aef58d4d3c0effb7e633b53d53420a))
+
+
+### Bug Fixes
+
+* ensure errors are returned to continue built-in validation ([508b903](https://github.com/bcgov/cas-ciip-portal/commit/508b903fbd67ee470917366e2a779757f4ab895b))
+* labels for accessibility, style with local CSS ([0047155](https://github.com/bcgov/cas-ciip-portal/commit/004715509f2f9a8a40e6c8a689c7a3968f4a713d))
+* moving the create product button down and left ([7473ea3](https://github.com/bcgov/cas-ciip-portal/commit/7473ea3b417bd672377e56f34890afbb30ef348e))
+* only validate past application dates if non-empty ([2c52762](https://github.com/bcgov/cas-ciip-portal/commit/2c52762ffabbed7ab54ac1ec6daeb310d313520f))
+* replace quinary expression with a variable re-assignment ([cbac6f8](https://github.com/bcgov/cas-ciip-portal/commit/cbac6f8a644caabfcd2815894086ad8bc7607e17))
+* reporting period dropdown alignment on bootstrap md width ([7ab2001](https://github.com/bcgov/cas-ciip-portal/commit/7ab20019ff565b8349125641693ba319a58ca3f6))
+* tweak vertical positioning of 'create new' reporting year button ([97c06b1](https://github.com/bcgov/cas-ciip-portal/commit/97c06b17d6d169cc83ffdcbd1c2cdab94331c524))
+
 ## [1.12.0](https://github.com/bcgov/cas-ciip-portal/compare/v1.11.0...v1.12.0) (2020-11-16)
 
 
