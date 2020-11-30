@@ -1,6 +1,10 @@
 import {nowMoment, defaultMoment} from 'functions/formatDates';
 
 const ERRORS = {
+  APPLICATION_WINDOW_OVERLAPS:
+    'Application open and close dates must not overlap with those of another reporting period.',
+  REPORTING_PERIOD_OVERLAPS:
+    'Reporting period start and end dates must not overlap with those of another reporting period.',
   CLOSE_BEFORE_OPEN_DATE:
     'Application close time must occur after the open time',
   CLOSE_BEFORE_REPORTING_END:
@@ -18,7 +22,78 @@ function isPastDate(date) {
   return date.isBefore(now);
 }
 
-function validateApplicationDates(existingData, formData, errors, uiSchema) {
+function doesRangeOverlap(
+  year,
+  existingYears,
+  proposedBeginDate,
+  proposedEndDate,
+  existingBeginDateName,
+  existingEndDateName
+) {
+  return existingYears.some((edge) => {
+    // Allow the year currently being edited to overlap with itself:
+    const sameAsYearEdited = edge.node.reportingYear === year;
+    const begin = defaultMoment(edge.node[existingBeginDateName]);
+    const end = defaultMoment(edge.node[existingEndDateName]);
+    const beginDateFallsWithin =
+      defaultMoment(proposedBeginDate).isSameOrAfter(begin) &&
+      defaultMoment(proposedBeginDate).isSameOrBefore(end);
+    const endDateFallsWithin =
+      defaultMoment(proposedEndDate).isSameOrAfter(begin) &&
+      defaultMoment(proposedEndDate).isSameOrBefore(end);
+      return !sameAsYearEdited && (beginDateFallsWithin || endDateFallsWithin);
+  });
+}
+
+function validateExclusiveDateRanges(
+  year,
+  existingYears,
+  {
+    applicationOpenTime,
+    applicationCloseTime,
+    reportingPeriodStart,
+    reportingPeriodEnd
+  },
+  errors
+) {
+  if  (applicationOpenTime && applicationCloseTime) {
+    const doesApplicationWindowOverlap = doesRangeOverlap(
+      year,
+      existingYears,
+      applicationOpenTime,
+      applicationCloseTime,
+      'applicationOpenTime',
+      'applicationCloseTime'
+    );
+    if (doesApplicationWindowOverlap) {
+      errors.addError(ERRORS.APPLICATION_WINDOW_OVERLAPS);
+    }
+  }
+  if (reportingPeriodStart && reportingPeriodEnd) {
+    const doesReportingPeriodOverlap = doesRangeOverlap(
+      year,
+      existingYears,
+      reportingPeriodStart,
+      reportingPeriodEnd,
+      'reportingPeriodStart',
+      'reportingPeriodEnd'
+    );
+    if (doesReportingPeriodOverlap) {
+      errors.addError(ERRORS.REPORTING_PERIOD_OVERLAPS);
+    }
+  }
+  return errors;
+}
+
+function validateApplicationDates(
+  existingData,
+  formData,
+  errors,
+  uiSchema,
+  // only the validation for creating new reporting periods sets this to true
+  // (so closed application windows can be re-opened by editing the reporting period):
+  validateFutureApplicationClose = false
+) {
   const openDate = formData.applicationOpenTime
     ? defaultMoment(formData.applicationOpenTime)
     : undefined;
@@ -43,8 +118,9 @@ function validateApplicationDates(existingData, formData, errors, uiSchema) {
 
   if (
     Boolean(closeDate) &&
-    isPastDate(closeDate) &&
-    !uiSchema.applicationCloseTime['ui:disabled']
+    !uiSchema.applicationCloseTime['ui:disabled'] &&
+    validateFutureApplicationClose &&
+    isPastDate(closeDate)
   ) {
     errors.addError(`${ERRORS.PAST_DATE} Application close time`);
   }
@@ -52,6 +128,7 @@ function validateApplicationDates(existingData, formData, errors, uiSchema) {
   if (
     Boolean(closeDate) &&
     Boolean(openDate) &&
+    !uiSchema.applicationCloseTime['ui:disabled'] &&
     closeDate.isSameOrBefore(openDate)
   ) {
     errors.addError(ERRORS.CLOSE_BEFORE_OPEN_DATE);
@@ -60,6 +137,7 @@ function validateApplicationDates(existingData, formData, errors, uiSchema) {
   if (
     Boolean(closeDate) &&
     Boolean(reportingEnd) &&
+    !uiSchema.applicationCloseTime['ui:disabled'] &&
     closeDate.isBefore(reportingEnd)
   ) {
     errors.addError(ERRORS.CLOSE_BEFORE_REPORTING_END);
@@ -97,7 +175,7 @@ function validateReportingDates(formData, errors) {
 
 function validateAllDates(existingData, formData, errors, uiSchema) {
   return (
-    validateApplicationDates(existingData, formData, errors, uiSchema) &&
+    validateApplicationDates(existingData, formData, errors, uiSchema, true) &&
     validateReportingDates(formData, errors)
   );
 }
@@ -107,6 +185,16 @@ function validateUniqueKey(existingKeys, formData, errors) {
   if (existingKeys.includes(formData.reportingYear)) {
     errors.addError(ERRORS.NON_UNIQUE_KEY);
   }
+  return errors;
 }
 
-export {validateApplicationDates, validateAllDates, validateUniqueKey};
+export {
+  validateApplicationDates,
+  validateAllDates,
+  validateUniqueKey,
+  validateExclusiveDateRanges,
+  // Note: The below exports are only used directly by unit tests:
+  ERRORS,
+  doesRangeOverlap,
+  validateReportingDates
+};

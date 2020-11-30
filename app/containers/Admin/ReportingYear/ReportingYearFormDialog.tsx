@@ -1,7 +1,7 @@
 import React from 'react';
 import {Modal, Container, Button} from 'react-bootstrap';
 import globalFormStyles from '../../Forms/FormSharedStyles';
-import JsonSchemaForm from 'react-jsonschema-form';
+import JsonSchemaForm, {FormValidation} from 'react-jsonschema-form';
 import {JSONSchema6} from 'json-schema';
 import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
 import FormFieldTemplate from 'containers/Forms/FormFieldTemplate';
@@ -14,10 +14,11 @@ function transformUiSchema(json, formFields) {
   if (!formFields) return;
   const now = nowMoment();
 
-  Object.keys(json).forEach((field) => {
-    const d = defaultMoment(formFields[field]);
-    json[field]['ui:disabled'] = d < now;
-  });
+  // Dates that are past should not be editable - with the exception of applicationCloseTime:
+  const swrsDeadline = defaultMoment(formFields.swrsDeadline);
+  json.swrsDeadline['ui:disabled'] = swrsDeadline.isBefore(now);
+  const applicationOpen = defaultMoment(formFields.applicationOpenTime);
+  json.applicationOpenTime['ui:disabled'] = applicationOpen.isBefore(now);
 
   return json;
 }
@@ -28,6 +29,11 @@ interface Props {
   formFields: object;
   clearForm: () => void;
   saveReportingYear: ({formData}) => void;
+  validateExclusiveDateRanges: (
+    year: number,
+    formData: object,
+    errors: object
+  ) => FormValidation;
 }
 
 const ReportingYearFormDialog: React.FunctionComponent<Props> = ({
@@ -35,7 +41,8 @@ const ReportingYearFormDialog: React.FunctionComponent<Props> = ({
   year,
   formFields,
   clearForm,
-  saveReportingYear
+  saveReportingYear,
+  validateExclusiveDateRanges
 }) => {
   const uiSchema = transformUiSchema(reportingYearSchema.uiSchema, formFields);
 
@@ -45,14 +52,14 @@ const ReportingYearFormDialog: React.FunctionComponent<Props> = ({
     const formData = {
       ...e.formData,
       applicationOpenTime: ensureFullTimestamp(
-        e.formData.applicationOpenTime, beginningOfDay
+        e.formData.applicationOpenTime,
+        beginningOfDay
       ),
       applicationCloseTime: ensureFullTimestamp(
-        e.formData.applicationCloseTime, endOfDay
+        e.formData.applicationCloseTime,
+        endOfDay
       ),
-      swrsDeadline: ensureFullTimestamp(
-        e.formData.swrsDeadline, endOfDay
-      )
+      swrsDeadline: ensureFullTimestamp(e.formData.swrsDeadline, endOfDay)
     };
 
     if (e.errors.length === 0) {
@@ -79,14 +86,16 @@ const ReportingYearFormDialog: React.FunctionComponent<Props> = ({
               ObjectFieldTemplate={FormObjectFieldTemplate}
               widgets={{DatePickerWidget}}
               showErrorList={false}
-              validate={(formData, errors) =>
+              validate={(formData, errors) => {
                 validateApplicationDates(
                   formFields,
                   formData,
                   errors,
                   uiSchema
-                )
-              }
+                );
+                validateExclusiveDateRanges(year, formData, errors);
+                return errors;
+              }}
               onSubmit={handleSubmit}
             >
               <Button type="submit" variant="primary">

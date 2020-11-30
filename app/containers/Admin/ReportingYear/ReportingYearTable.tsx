@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useMemo} from 'react';
 import {Table, Button} from 'react-bootstrap';
 import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
 import {ReportingYearTable_query} from '__generated__/ReportingYearTable_query.graphql';
@@ -7,6 +7,7 @@ import createReportingYearMutation from 'mutations/reporting_year/createReportin
 import ReportingYearFormDialog from './ReportingYearFormDialog';
 import NewReportingYearFormDialog from './NewReportingYearFormDialog';
 import {nowMoment, defaultMoment, dateTimeFormat} from 'functions/formatDates';
+import {validateExclusiveDateRanges} from 'containers/Admin/ReportingYear/reportingYearValidation';
 
 interface Props {
   relay: RelayProp;
@@ -17,10 +18,25 @@ function formatListViewDate(date: string) {
   return dateTimeFormat(date, 'days_string');
 }
 
-function isDatePast(date: string) {
-  const d = defaultMoment(date);
+function getMostRecentlyClosedYear(query) {
+  const orderedByCloseTimeDesc = query.allReportingYears.edges
+    .slice()
+    .sort((yearA, yearB) => {
+      const yearACloseTime = defaultMoment(yearA.node.applicationCloseTime);
+      const yearBCloseTime = defaultMoment(yearB.node.applicationCloseTime);
+      let sortOrder = yearACloseTime === yearBCloseTime ? 0 : 1;
+      if (yearBCloseTime.isBefore(yearACloseTime)) sortOrder *= -1;
+      return sortOrder;
+    });
+  // Can edit only the most recently closed reporting period
+  // (unless the next application window has already opened - prevents overlap):
   const now = nowMoment();
-  return d.isBefore(now);
+  const mostRecentlyClosedYear = query.openedReportingYear
+    ? null
+    : orderedByCloseTimeDesc.find((y) =>
+        defaultMoment(y.node.applicationCloseTime).isSameOrBefore(now)
+      ).node;
+  return mostRecentlyClosedYear;
 }
 
 export const ReportingYearTableComponent: React.FunctionComponent<Props> = (
@@ -37,6 +53,29 @@ export const ReportingYearTableComponent: React.FunctionComponent<Props> = (
   const existingYearKeys = query.allReportingYears.edges.map((edge) => {
     return edge.node.reportingYear;
   });
+
+  const mostRecentlyClosedYear = getMostRecentlyClosedYear(props.query);
+
+  const isYearEditable = (year, openedReportingYear) => {
+    const closeTime = defaultMoment(year.applicationCloseTime);
+    const mostRecentEditableCloseTime = defaultMoment(
+      openedReportingYear
+        ? openedReportingYear.applicationCloseTime
+        : mostRecentlyClosedYear.applicationCloseTime
+    );
+    return closeTime.isSameOrAfter(mostRecentEditableCloseTime);
+  };
+
+  const exclusiveDateRangesValidator = useMemo(() => {
+    return (year, formData, errors) => {
+      return validateExclusiveDateRanges(
+        year,
+        props.query.allReportingYears.edges,
+        formData,
+        errors
+      );
+    };
+  }, [props.query.allReportingYears]);
 
   const clearForm = () => {
     setDialogMode(null);
@@ -75,7 +114,7 @@ export const ReportingYearTableComponent: React.FunctionComponent<Props> = (
     <>
       <div style={{textAlign: 'right'}}>
         <Button
-          style={{marginTop: '-220px'}}
+          style={{marginTop: '-100px'}}
           onClick={() => setDialogMode('create')}
         >
           New Reporting Year
@@ -104,7 +143,7 @@ export const ReportingYearTableComponent: React.FunctionComponent<Props> = (
                 <td>{formatListViewDate(node.applicationOpenTime)}</td>
                 <td>{formatListViewDate(node.applicationCloseTime)}</td>
                 <td>
-                  {!isDatePast(node.applicationCloseTime) && (
+                  {isYearEditable(node, props.query.openedReportingYear) && (
                     <Button onClick={() => editYear(node)}>Edit</Button>
                   )}
                 </td>
@@ -118,6 +157,7 @@ export const ReportingYearTableComponent: React.FunctionComponent<Props> = (
         createReportingYear={createReportingYear}
         clearForm={clearForm}
         existingYearKeys={existingYearKeys}
+        validateExclusiveDateRanges={exclusiveDateRangesValidator}
       />
       <ReportingYearFormDialog
         show={dialogMode === 'edit'}
@@ -125,6 +165,7 @@ export const ReportingYearTableComponent: React.FunctionComponent<Props> = (
         formFields={editingYear}
         clearForm={clearForm}
         saveReportingYear={saveReportingYear}
+        validateExclusiveDateRanges={exclusiveDateRangesValidator}
       />
     </>
   );
@@ -145,6 +186,11 @@ export default createFragmentContainer(ReportingYearTableComponent, {
             applicationCloseTime
           }
         }
+      }
+      openedReportingYear {
+        reportingYear
+        applicationOpenTime
+        applicationCloseTime
       }
     }
   `
