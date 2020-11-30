@@ -32,8 +32,7 @@ function doesRangeOverlap(
 ) {
   return existingYears.some((edge) => {
     // Allow the year currently being edited to overlap with itself:
-    if (edge.node.reportingYear === year) return false;
-
+    const sameAsYearEdited = edge.node.reportingYear === year;
     const begin = defaultMoment(edge.node[existingBeginDateName]);
     const end = defaultMoment(edge.node[existingEndDateName]);
     const beginDateFallsWithin =
@@ -42,7 +41,7 @@ function doesRangeOverlap(
     const endDateFallsWithin =
       defaultMoment(proposedEndDate).isSameOrAfter(begin) &&
       defaultMoment(proposedEndDate).isSameOrBefore(end);
-    return beginDateFallsWithin || endDateFallsWithin;
+      return !sameAsYearEdited && (beginDateFallsWithin || endDateFallsWithin);
   });
 }
 
@@ -130,6 +129,7 @@ function validateApplicationDates(
   if (
     Boolean(closeDate) &&
     Boolean(openDate) &&
+    !uiSchema.applicationCloseTime['ui:disabled'] &&
     closeDate.isSameOrBefore(openDate)
   ) {
     errors.addError(ERRORS.CLOSE_BEFORE_OPEN_DATE);
@@ -138,6 +138,7 @@ function validateApplicationDates(
   if (
     Boolean(closeDate) &&
     Boolean(reportingEnd) &&
+    !uiSchema.applicationCloseTime['ui:disabled'] &&
     closeDate.isBefore(reportingEnd)
   ) {
     errors.addError(ERRORS.CLOSE_BEFORE_REPORTING_END);
@@ -185,11 +186,16 @@ function validateUniqueKey(existingKeys, formData, errors) {
   if (existingKeys.includes(formData.reportingYear)) {
     errors.addError(ERRORS.NON_UNIQUE_KEY);
   }
+  return errors;
 }
 
 export {
   validateApplicationDates,
   validateAllDates,
   validateUniqueKey,
-  validateExclusiveDateRanges
+  validateExclusiveDateRanges,
+  // Note: The below exports are only used directly by unit tests:
+  ERRORS,
+  doesRangeOverlap,
+  validateReportingDates
 };
