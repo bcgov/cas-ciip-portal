@@ -93,7 +93,8 @@ const ReportingYearFormDialog: React.FunctionComponent<Props> = ({
                   errors,
                   uiSchema
                 );
-                return validateExclusiveDateRanges(year, formData, errors);
+                validateExclusiveDateRanges(year, formData, errors);
+                return errors;
               }}
               onSubmit={handleSubmit}
             >

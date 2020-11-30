@@ -85,11 +85,8 @@ const NewReportingYearFormDialog: React.FunctionComponent<Props> = ({
                   errors,
                   newReportingYearSchema.uiSchema
                 );
-                return validateExclusiveDateRanges(
-                  null,
-                  formData,
-                  errors
-                );
+                validateExclusiveDateRanges(null, formData, errors);
+                return errors;
               }}
               onSubmit={handleSubmit}
             >
