@@ -116,12 +116,11 @@ function validateApplicationDates(
     errors.addError(`${ERRORS.PAST_DATE} Application open time`);
   }
 
-  const closeDateIsPast =
-    validateFutureApplicationClose && isPastDate(closeDate);
   if (
     Boolean(closeDate) &&
     !uiSchema.applicationCloseTime['ui:disabled'] &&
-    closeDateIsPast
+    validateFutureApplicationClose &&
+    isPastDate(closeDate)
   ) {
     errors.addError(`${ERRORS.PAST_DATE} Application close time`);
   }
