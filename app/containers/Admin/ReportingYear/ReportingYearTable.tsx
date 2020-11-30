@@ -114,7 +114,7 @@ export const ReportingYearTableComponent: React.FunctionComponent<Props> = (
     <>
       <div style={{textAlign: 'right'}}>
         <Button
-          style={{marginTop: '-220px'}}
+          style={{marginTop: '-100px'}}
           onClick={() => setDialogMode('create')}
         >
           New Reporting Year
