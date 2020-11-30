@@ -104,7 +104,9 @@ exports[`The Form Component should match the snapshot 1`] = `
                   "ciipApplicationWizardByFormId": Object {
                     "formPosition": 1,
                   },
-                  "formJson": Object {},
+                  "formJson": Object {
+                    "schema": Object {},
+                  },
                   "name": "Foo",
                 },
                 "formResult": Object {},
@@ -120,6 +122,7 @@ exports[`The Form Component should match the snapshot 1`] = `
         onError={[Function]}
         onSubmit={[MockFunction]}
         safeRenderCompletion={true}
+        schema={Object {}}
         showErrorList={false}
         transformErrors={[Function]}
         uiSchema={Object {}}
@@ -794,7 +797,9 @@ exports[`The Form Component should not render an alert reminder to check the gui
                   "ciipApplicationWizardByFormId": Object {
                     "formPosition": 3,
                   },
-                  "formJson": Object {},
+                  "formJson": Object {
+                    "schema": Object {},
+                  },
                   "name": "Foo",
                 },
                 "formResult": Array [
@@ -820,6 +825,7 @@ exports[`The Form Component should not render an alert reminder to check the gui
         onError={[Function]}
         onSubmit={[MockFunction]}
         safeRenderCompletion={true}
+        schema={Object {}}
         showErrorList={false}
         transformErrors={[Function]}
         uiSchema={Object {}}
@@ -1494,7 +1500,9 @@ exports[`The Form Component should render alert reminder to check the guidance i
                   "ciipApplicationWizardByFormId": Object {
                     "formPosition": 3,
                   },
-                  "formJson": Object {},
+                  "formJson": Object {
+                    "schema": Object {},
+                  },
                   "name": "Foo",
                 },
                 "formResult": Array [
@@ -1520,6 +1528,7 @@ exports[`The Form Component should render alert reminder to check the guidance i
         onError={[Function]}
         onSubmit={[MockFunction]}
         safeRenderCompletion={true}
+        schema={Object {}}
         showErrorList={false}
         transformErrors={[Function]}
         uiSchema={Object {}}
@@ -2283,7 +2292,9 @@ exports[`The Form Component should render an alert reminder to report any missin
                   "ciipApplicationWizardByFormId": Object {
                     "formPosition": 3,
                   },
-                  "formJson": Object {},
+                  "formJson": Object {
+                    "schema": Object {},
+                  },
                   "name": "Foo",
                 },
                 "formResult": Array [
@@ -2315,6 +2326,7 @@ exports[`The Form Component should render an alert reminder to report any missin
         onError={[Function]}
         onSubmit={[MockFunction]}
         safeRenderCompletion={true}
+        schema={Object {}}
         showErrorList={false}
         transformErrors={[Function]}
         uiSchema={Object {}}

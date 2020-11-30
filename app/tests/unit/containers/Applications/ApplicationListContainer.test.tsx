@@ -6,7 +6,7 @@ describe('ApplicationList', () => {
   it('should render the application list', async () => {
     const query = {
       searchApplicationList: {
-        edges: [{node: {id: 'ciip-application-1'}}]
+        edges: [{node: {id: 'ciip-application-1', rowId: '1'}}]
       }
     };
     const r = shallow(<ApplicationList query={query} />);

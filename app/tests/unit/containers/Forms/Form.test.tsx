@@ -19,7 +19,7 @@ describe('The Form Component', () => {
           result: {
             formResult: {},
             formJsonByFormId: {
-              formJson: {},
+              formJson: {schema: {}},
               ciipApplicationWizardByFormId: {
                 formPosition: 1
               },
@@ -52,7 +52,7 @@ describe('The Form Component', () => {
           result: {
             formResult: {},
             formJsonByFormId: {
-              formJson: {},
+              formJson: {schema: {}},
               ciipApplicationWizardByFormId: {
                 formPosition: 0
               },
@@ -87,7 +87,7 @@ describe('The Form Component', () => {
           result: {
             formResult: [{requiresEmissionAllocation: false}],
             formJsonByFormId: {
-              formJson: {},
+              formJson: {schema: {}},
               ciipApplicationWizardByFormId: {
                 formPosition: 3
               },
@@ -121,7 +121,7 @@ describe('The Form Component', () => {
           result: {
             formResult: [{requiresEmissionAllocation: true}],
             formJsonByFormId: {
-              formJson: {},
+              formJson: {schema: {}},
               ciipApplicationWizardByFormId: {
                 formPosition: 3
               },
@@ -158,7 +158,7 @@ describe('The Form Component', () => {
               {requiresEmissionAllocation: false}
             ],
             formJsonByFormId: {
-              formJson: {},
+              formJson: {schema: {}},
               ciipApplicationWizardByFormId: {
                 formPosition: 3
               },

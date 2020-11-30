@@ -1,3 +1,4 @@
+import '../helpers/matchMedia.mock';
 import React from 'react';
 import {shallow} from 'enzyme';
 import HeaderLayout from 'components/Layout/Header';
