@@ -116,6 +116,40 @@ spec:
                     grant connect on database ciip to $PORTAL_APP_USER;
                     create user $PORTAL_READONLY_USER;
                     grant connect on database ciip to $PORTAL_READONLY_USER;
+                    do
+                    \$do\$
+                    begin
+                      if not exists (
+                          select true
+                          from   pg_catalog.pg_roles
+                          where  rolname = 'ciip_administrator') then
+
+                          create role ciip_administrator;
+                      end if;
+                      if not exists (
+                          select true
+                          from   pg_catalog.pg_roles
+                          where  rolname = 'ciip_analyst') then
+
+                          create role ciip_analyst;
+                      end if;
+                      if not exists (
+                          select true
+                          from   pg_catalog.pg_roles
+                          where  rolname = 'ciip_industry_user') then
+
+                          create role ciip_industry_user;
+                      end if;
+                      if not exists (
+                          select true
+                          from   pg_catalog.pg_roles
+                          where  rolname = 'ciip_guest') then
+
+                          create role ciip_guest;
+                      end if;
+
+                    end
+                    \$do\$;
                   EOF
                   echo RESTORING TO TEST...
                   pg_dump --no-password --format=custom --schema=sqitch --schema=graphile_worker --schema=ggircs_portal --schema=ggircs_portal_private --schema=swrs ciip |
