@@ -138,3 +138,22 @@ At the bottom of each screen you will find a Continue and/or Back button, but yo
 5. **Summary** - This page will display any errors that must be fixed before submission. Additionally, a Download button at the bottom of the page allows you to save a PDF copy of the application as-is.
 
    Once all errors have been corrected, you can submit the application and include any comments necessary. At any time you can [contact CAS](mailto:ghgregulator@gov.bc.ca) for assistance.
+
+
+## How to approve an application for submission as a Certifying Official
+
+You may receive an email certification request on behalf of an Operation Representative applying for CIIP for a given Reporting Operation. Each Reporting Operation will have its own application, each of which must be approved by a Certifying Official before it can finally be submitted.
+
+As a Certifying Official, you will first need to register for an account on the [CIIP application website](https://ciip.gov.bc.ca), which you can do when visiting the link in the certification request email. If you already have an account, you may simply log in.
+
+By visiting the link in the certification request email, you can review the data that will be submitted in the CIIP application for the Reporting Operation and ensure that you are ready to approve the application. After reviewing the [terms](https://ciip.gov.bc.ca/resources/application-disclaimer) at the bottom of the application summary, you can agree to the terms and approve the application for submission by adding your digital signature and clicking "Sign".
+
+To create a digital signature, click, hold and drag your pointer within the box at the bottom of the application summary to draw your signature. Use the Clear button below the signature box to delete the signature and start again. Alternatively, you can select "Choose File" to upload an existing signature image file from your computer (.png, .jpg, .jpeg). When you're ready to submit your certification, click "Sign" below the signature box to approve the application for submission. The Operation Representative who made the application will be automatically notified of your signature so they may submit the application.
+
+<img src="images/signature-interface.png" height="400" alt="certification signature interface" />
+
+You may review a list of certification requests, including a record of applications you've certified, via the ["View all certification requests"](https://ciip.gov.bc.ca/certifier/requests) link at the top of the [site dashboard](https://ciip.gov.bc.ca/reporter). This list is searchable by facility, organisation, and certification details. If you have many similar applications to certify, you can certify multiple applications at once by selecting them and using the signature interface that will appear on the page beneath.
+
+ **Note**: By certifying multiple applications in this manner, you agree to the same [terms](https://ciip.gov.bc.ca/resources/application-disclaimer) noted above, indicating you are aware of the contents of the selected applications and, as the Certifying Official, are approving them for submission.
+
+ <img src="images/batch-signature-interface.png" height="500" alt="batch certification signature interface"/>
