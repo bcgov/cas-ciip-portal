@@ -152,7 +152,13 @@ To create a digital signature, click, hold and drag your pointer within the box 
 
 <img src="images/signature-interface.png" height="400" alt="certification signature interface" />
 
-You may review a list of certification requests, including a record of applications you've certified, via the ["View all certification requests"](https://ciip.gov.bc.ca/certifier/requests) link at the top of the [site dashboard](https://ciip.gov.bc.ca/reporter). This list is searchable by facility, organisation, and certification details. If you have many similar applications to certify, you can certify multiple applications at once by selecting them and using the signature interface that will appear on the page beneath.
+### Viewing a list of certification requests
+
+You may review a list of certification requests, including a record of applications you've certified, via the ["View all certification requests"](https://ciip.gov.bc.ca/certifier/requests) link at the top of the [site dashboard](https://ciip.gov.bc.ca/reporter). This list is searchable by facility, organisation, and certification details. 
+
+### Certifying multiple applications
+
+If you have many similar applications to certify, you can certify multiple applications at once by selecting them and using the signature interface that will appear on the page beneath.
 
  **Note**: By certifying multiple applications in this manner, you agree to the same [terms](https://ciip.gov.bc.ca/resources/application-disclaimer) noted above, indicating you are aware of the contents of the selected applications and, as the Certifying Official, are approving them for submission.
 
