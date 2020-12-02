@@ -59,7 +59,7 @@ For additional guidance materials on quantifying facility emissions and producti
 
 ### The Certifying Official:
 
-- **Has permissions to: **Certify an application.
+- **Has permissions to:** Certify an application.
 - **Is defined as:**
   1. the person who approves this application on behalf of the Operator. The Certifying Official warrants and represents that the Certifying Official has the authority to, on behalf of the Operator, enter into the following terms and provide the following consents and certifications for the CIIP.
 
