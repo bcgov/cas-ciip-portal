@@ -9,3 +9,4 @@
   * [Use of JSON schemas](./json-schema.md)
   * [Application release process](./release.md)
 - [Support documentation for reporters](./reporting-guide.md)
+- [Support documentation for internal CAS admins/analysts](./admin-analyst-guide.md)
