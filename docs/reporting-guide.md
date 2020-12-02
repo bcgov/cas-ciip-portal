@@ -154,7 +154,7 @@ To create a digital signature, click, hold and drag your pointer within the box 
 
 ### Viewing a list of certification requests
 
-You may review a list of certification requests, including a record of applications you've certified, via the ["View all certification requests"](https://ciip.gov.bc.ca/certifier/requests) link at the top of the [site dashboard](https://ciip.gov.bc.ca/reporter). This list is searchable by facility, organisation, and certification details. 
+You may review a list of certification requests, including a record of applications you've certified, via the ["View all certification requests"](https://ciip.gov.bc.ca/certifier/requests) link at the top of the [site dashboard](https://ciip.gov.bc.ca/reporter). This list is searchable by facility, organisation, and certification details.
 
 ### Certifying multiple applications
 
