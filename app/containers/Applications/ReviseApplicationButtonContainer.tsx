@@ -1,5 +1,6 @@
 import React from 'react';
 import {useRouter} from 'next/router';
+import Link from 'next/link';
 import {Button, Col} from 'react-bootstrap';
 import createApplicationRevisionMutation from 'mutations/application/createApplicationRevisionMutation';
 import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
@@ -15,6 +16,26 @@ export const ReviseApplicationButton: React.FunctionComponent<Props> = ({
   relay
 }) => {
   const router = useRouter();
+  const thisVersion = Number(router.query.version);
+  const newerSubmissionExists =
+    application.latestSubmittedRevision.versionNumber > thisVersion;
+  const latestSubmissionURL = `/reporter/view-application?applicationId=${
+    encodeURIComponent(application.id)
+  }&version=${application.latestSubmittedRevision.versionNumber}`;
+  const viewLatestSubmissionButton = (
+    <>
+      <p style={{margin: '1rem 0'}}>
+        <strong>Note:</strong> There is a more recently submitted version of
+        this application.
+      </p>
+      <Link href={latestSubmissionURL}>
+        <a>
+          <Button>View most recent submission</Button>
+        </a>
+      </Link>
+    </>
+  );
+
   const newerDraftExists =
     application.latestDraftRevision.versionNumber > application.latestSubmittedRevision.versionNumber;
   const newerDraftURL = `/reporter/application?applicationId=${
@@ -22,6 +43,19 @@ export const ReviseApplicationButton: React.FunctionComponent<Props> = ({
   }&version=${
     application.latestDraftRevision.versionNumber
   }`;
+  const resumeLatestDraftButton = (
+    <>
+      <p style={{margin: '1rem 0'}}>
+        <strong>Note:</strong> This application has been revised in a more
+        recent draft.
+      </p>
+      <Link href={newerDraftURL}>
+        <a>
+          <Button>Resume latest draft</Button>
+        </a>
+      </Link>
+    </>
+  );
 
   const handleClick = async () => {
     const variables = {
@@ -56,20 +90,14 @@ export const ReviseApplicationButton: React.FunctionComponent<Props> = ({
 
   return (
     <Col>
-      {newerDraftExists ?
-        <>
-          <p style={{margin: '1rem 0'}}>
-            <strong>Note:</strong> This application has been revised in a more recent draft:
-          </p>
-          <a href={newerDraftURL}>
-            <Button>Resume latest draft</Button>
-          </a>
-        </>
-        :
+      {newerSubmissionExists ? viewLatestSubmissionButton :
+      newerDraftExists ? (
+        resumeLatestDraftButton
+      ) : (
         <Button variant="success" onClick={handleClick}>
           Revise Application
         </Button>
-      }
+      )}
     </Col>
   );
 };
