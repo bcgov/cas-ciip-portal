@@ -396,8 +396,6 @@ jobs:
             yarn test:e2e-with-mocks
             popd
 
-
-
   sqitch-plan-ends-with-tag:
     machine:
       image: ubuntu-1604:201903-01
@@ -484,7 +482,7 @@ workflows:
   nightly:
     triggers:
       - schedule:
-          cron: "0 0 * * *"
+          cron: "0 8 * * *"
           filters:
             branches:
               only:
