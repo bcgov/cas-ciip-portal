@@ -144,7 +144,7 @@ At the bottom of each screen you will find a Continue and/or Back button, but yo
 
 You may receive an email certification request on behalf of an Operation Representative applying for CIIP for a given Reporting Operation. Each Reporting Operation will have its own application, each of which must be approved by a Certifying Official before it can finally be submitted.
 
-As a Certifying Official, you will first need to register for an account on the [CIIP application website](https://ciip.gov.bc.ca), which you can do when visiting the link in the certification request email. If you already have an account, you may simply log in.
+As a Certifying Official, you will first need to register for an account on the [CIIP application website](https://ciip.gov.bc.ca), which you can do when visiting the link in the certification request email. If you already have an account, you may simply log in. **Note**: If you have been identified in an application as a Certifying Official, you do not need to request access to that organisation.
 
 By visiting the link in the certification request email, you can review the data that will be submitted in the CIIP application for the Reporting Operation and ensure that you are ready to approve the application. After reviewing the [terms](https://ciip.gov.bc.ca/resources/application-disclaimer) at the bottom of the application summary, you can agree to the terms and approve the application for submission by adding your digital signature and clicking "Sign".
 
