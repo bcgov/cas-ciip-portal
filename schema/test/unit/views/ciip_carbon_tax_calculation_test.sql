@@ -6,6 +6,8 @@ reset client_min_messages;
 begin;
 select plan(3);
 
+select test_helper.modify_triggers('disable', '{"form_result": ["_immutable_form_result"]}');
+
 update ggircs_portal.application set reporting_year = 2018 where id = 1;
 
 -- View should exist
