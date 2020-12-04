@@ -8,16 +8,20 @@ create or replace function ggircs_portal.application_revision_is_immutable(appli
 as
 $function$
 declare
-  result boolean;
+  app_status ggircs_portal.application_revision_status;
 begin
 
   with record as (
     select row(application.*)::ggircs_portal.application
     from ggircs_portal.application where id = application_revision.application_id
   )
-  select into result from ggircs_portal.application_application_revision_status((select * from record), application_revision.version_number::text);
+  select application_revision_status into app_status from ggircs_portal.application_application_revision_status((select * from record), application_revision.version_number::text);
 
-  return result;
+  if (app_status !='draft') then
+    return false;
+  end if;
+
+  return true;
 
 end;
 $function$ language 'plpgsql' stable;
