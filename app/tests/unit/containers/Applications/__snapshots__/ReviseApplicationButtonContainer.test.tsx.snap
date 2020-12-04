@@ -1,6 +1,37 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`The ReviseApplicationButton should render an button 1`] = `
+exports[`The ReviseApplicationButton should render a "Resume latest draft" button when a new draft exists (but has not yet been submitted) 1`] = `
+<Col>
+  <p
+    style={
+      Object {
+        "margin": "1rem 0",
+      }
+    }
+  >
+    <strong>
+      Note:
+    </strong>
+     This application has been revised in a more recent draft.
+  </p>
+  <Link
+    href="/reporter/application?applicationId=foo&version=2"
+  >
+    <a>
+      <Button
+        active={false}
+        disabled={false}
+        type="button"
+        variant="primary"
+      >
+        Resume latest draft
+      </Button>
+    </a>
+  </Link>
+</Col>
+`;
+
+exports[`The ReviseApplicationButton should render a "Revise" button when the version being viewed === the latest draft version (there is not yet a newer draft) 1`] = `
 <Col>
   <Button
     active={false}
@@ -11,5 +42,36 @@ exports[`The ReviseApplicationButton should render an button 1`] = `
   >
     Revise Application
   </Button>
+</Col>
+`;
+
+exports[`The ReviseApplicationButton should render a "View most recent submission" button when viewing an older submission (viewed version < last submitted version) 1`] = `
+<Col>
+  <p
+    style={
+      Object {
+        "margin": "1rem 0",
+      }
+    }
+  >
+    <strong>
+      Note:
+    </strong>
+     There is a more recently submitted version of this application.
+  </p>
+  <Link
+    href="/reporter/view-application?applicationId=foo&version=2"
+  >
+    <a>
+      <Button
+        active={false}
+        disabled={false}
+        type="button"
+        variant="primary"
+      >
+        View most recent submission
+      </Button>
+    </a>
+  </Link>
 </Col>
 `;
