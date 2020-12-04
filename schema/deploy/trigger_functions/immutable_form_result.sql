@@ -12,7 +12,6 @@ begin;
       from ggircs_portal.application_revision_status ars
       where ars.application_id = new.application_id
       and ars.version_number = new.version_number
-      and ars.version_number != 0
       order by created_at desc limit 1;
 
     if (app_status='submitted') then

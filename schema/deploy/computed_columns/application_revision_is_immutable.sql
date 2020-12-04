@@ -15,7 +15,7 @@ begin
     select row(application.*)::ggircs_portal.application
     from ggircs_portal.application where id = application_revision.application_id
   )
-  select application_revision_status into app_status from ggircs_portal.application_application_revision_status((select * from record), application_revision.version_number::text);
+  select application_revision_status::text into app_status from ggircs_portal.application_application_revision_status((select * from record), application_revision.version_number::text);
 
   if (app_status !='draft') then
     return false;
