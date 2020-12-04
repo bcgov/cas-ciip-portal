@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {useRouter} from 'next/router';
 import Link from 'next/link';
 import {Button, Col} from 'react-bootstrap';
@@ -17,11 +17,16 @@ export const ReviseApplicationButton: React.FunctionComponent<Props> = ({
 }) => {
   const router = useRouter();
   const thisVersion = Number(router.query.version);
-  const newerSubmissionExists =
-    application.latestSubmittedRevision.versionNumber > thisVersion;
-  const latestSubmissionURL = `/reporter/view-application?applicationId=${
-    encodeURIComponent(application.id)
-  }&version=${application.latestSubmittedRevision.versionNumber}`;
+  const [latestSubmittedRevision] = useState(
+    application.latestSubmittedRevision.versionNumber
+  );
+  const [latestDraftRevision] = useState(
+    application.latestDraftRevision.versionNumber
+  );
+  const newerSubmissionExists = latestSubmittedRevision > thisVersion;
+  const latestSubmissionURL = `/reporter/view-application?applicationId=${encodeURIComponent(
+    application.id
+  )}&version=${latestSubmittedRevision}`;
   const viewLatestSubmissionButton = (
     <>
       <p style={{margin: '1rem 0'}}>
@@ -36,13 +41,10 @@ export const ReviseApplicationButton: React.FunctionComponent<Props> = ({
     </>
   );
 
-  const newerDraftExists =
-    application.latestDraftRevision.versionNumber > application.latestSubmittedRevision.versionNumber;
-  const newerDraftURL = `/reporter/application?applicationId=${
-    encodeURIComponent(application.id)
-  }&version=${
-    application.latestDraftRevision.versionNumber
-  }`;
+  const newerDraftExists = latestDraftRevision > latestSubmittedRevision;
+  const newerDraftURL = `/reporter/application?applicationId=${encodeURIComponent(
+    application.id
+  )}&version=${latestDraftRevision}`;
   const resumeLatestDraftButton = (
     <>
       <p style={{margin: '1rem 0'}}>
@@ -61,7 +63,7 @@ export const ReviseApplicationButton: React.FunctionComponent<Props> = ({
     const variables = {
       input: {
         applicationIdInput: application.rowId,
-        lastRevisionIdInput: application.latestSubmittedRevision.versionNumber
+        lastRevisionIdInput: latestSubmittedRevision
       }
     };
 
