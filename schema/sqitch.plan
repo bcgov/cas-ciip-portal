@@ -203,3 +203,4 @@ tables/reporting_year_001 [tables/reporting_year trigger_functions/protect_date_
 @v1.13.0 2020-11-30T22:27:39Z Dylan Leard <dylan@button.is> # release v1.13.0
 
 trigger_functions/immutable_form_result [schema_ggircs_portal_private] 2020-12-04T20:34:19Z Dylan Leard <dylan@button.is> # Trigger makes form_result immutable if submitted
+tables/form_result_001 [tables/form_result trigger_functions/immutable_form_result] 2020-12-04T20:46:48Z Dylan Leard <dylan@button.is> # Migration: add immutable_form_result trigger to table
