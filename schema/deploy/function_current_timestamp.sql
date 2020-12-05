@@ -3,14 +3,6 @@
 
 begin;
 
-create or replace function ggircs_portal.current_timestamp() returns timestamptz as
-$$
-  select now();
-$$ language sql;
-
-grant execute on function ggircs_portal.current_timestamp to ciip_administrator, ciip_analyst, ciip_industry_user, ciip_guest;
+drop function ggircs_portal.current_timestamp();
 
 commit;
-
-comment on function ggircs_portal.current_timestamp is 'Returns the current date and time with time zone.
-This should be used instead of the native current_timestamp function to allow for mocking in test and development settings';
