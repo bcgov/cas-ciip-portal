@@ -5504,6 +5504,18 @@
               "deprecationReason": null
             },
             {
+              "name": "isImmutable",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "legalDisclaimerAccepted",
               "description": "Whether or not reporter agreed the legal disclaimer",
               "args": [],
@@ -5592,6 +5604,29 @@
           "name": "Application",
           "description": "The application data",
           "fields": [
+            {
+              "name": "applicationRevisionByStringVersionNumber",
+              "description": null,
+              "args": [
+                {
+                  "name": "versionNumberInput",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "ApplicationRevision",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
             {
               "name": "applicationRevisionsByApplicationId",
               "description": "Reads and enables pagination through a set of `ApplicationRevision`.",
@@ -5689,7 +5724,7 @@
             },
             {
               "name": "applicationRevisionStatus",
-              "description": "Computed column for graphql to traverse to an application_revision_status from application",
+              "description": "Computed column to determine whether a revision is immutable (submitted)",
               "args": [
                 {
                   "name": "versionNumberInput",
@@ -6053,7 +6088,7 @@
             },
             {
               "name": "latestDraftRevision",
-              "description": "Computed column for graphql to traverse to the latest application_revision with status \"draft\" from application",
+              "description": "Computed column for graphql to retrieve a given application_revision when given a version number as String (e.g. from a router query)",
               "args": [],
               "type": {
                 "kind": "OBJECT",

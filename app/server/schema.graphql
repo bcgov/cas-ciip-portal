@@ -1,5 +1,7 @@
 """The application data"""
 type Application implements Node {
+  applicationRevisionByStringVersionNumber(versionNumberInput: String): ApplicationRevision
+
   """Reads and enables pagination through a set of `ApplicationRevision`."""
   applicationRevisionsByApplicationId(
     """Read all values in the set after (below) this cursor."""
@@ -30,7 +32,7 @@ type Application implements Node {
   ): ApplicationRevisionsConnection!
 
   """
-  Computed column for graphql to traverse to an application_revision_status from application
+  Computed column to determine whether a revision is immutable (submitted)
   """
   applicationRevisionStatus(versionNumberInput: String): ApplicationRevisionStatus
 
@@ -138,7 +140,8 @@ type Application implements Node {
   id: ID!
 
   """
-  Computed column for graphql to traverse to the latest application_revision with status "draft" from application
+  Computed column for graphql to retrieve a given application_revision when
+  given a version number as String (e.g. from a router query)
   """
   latestDraftRevision: ApplicationRevision
 
@@ -449,6 +452,7 @@ type ApplicationRevision implements Node {
   Computed column indicates if a revision is the current version of the application
   """
   isCurrentVersion: Boolean
+  isImmutable: Boolean
 
   """Whether or not reporter agreed the legal disclaimer"""
   legalDisclaimerAccepted: Boolean!

@@ -2,6 +2,7 @@ import React from 'react';
 import {useRouter} from 'next/router';
 import {graphql, createFragmentContainer} from 'react-relay';
 import ApplicationFormNavbar from 'components/Forms/ApplicationFormNavbar';
+import {ApplicationWizard_query} from 'ApplicationWizard_query.graphql';
 import ApplicationWizardStep from './ApplicationWizardStep';
 
 const setRouterQueryParam = (router, key, value, replace = false) => {
@@ -16,17 +17,26 @@ const setRouterQueryParam = (router, key, value, replace = false) => {
   else router.push(newUrl, newUrl, {shallow: true});
 };
 
+interface Props {
+  query: ApplicationWizard_query;
+}
+
 /*
  * The ApplicationWizard container retrieves the ordered list of forms to render in the
  * application process. Each ApplicationWizardStep is rendered, and at the end the
  * ApplicationWizardConfirmation is rendered.
  */
-const ApplicationWizard = ({query}) => {
+const ApplicationWizard: React.FunctionComponent<Props> = ({query}) => {
   const {application} = query || {};
   const router = useRouter();
   const {formResultId} = router.query;
   const confirmationPage = Boolean(router.query.confirmationPage);
-  const orderedFormResults = application.orderedFormResults.edges;
+  const {
+    orderedFormResults: {edges: orderedFormResults},
+    latestDraftRevision,
+    latestSubmittedRevision,
+    applicationRevisionByStringVersionNumber: applicationRevision
+  } = application;
 
   // Redirect a certifier given a bad link to the certify page for the application
   if (!application.currentUserCanEdit) {
@@ -37,6 +47,30 @@ const ApplicationWizard = ({query}) => {
         version: router.query.version
       }
     });
+    return null;
+  }
+
+  // Redirect a reporter trying to edit an application revision that was already submitted
+  if (applicationRevision.isImmutable) {
+    console.log('redirecting');
+    if (
+      latestDraftRevision.versionNumber > latestSubmittedRevision.versionNumber
+    )
+      router.replace({
+        pathname: router.pathname,
+        query: {
+          ...router.query,
+          version: latestDraftRevision.versionNumber
+        }
+      });
+    else
+      router.replace({
+        pathname: '/reporter/view-application',
+        query: {
+          ...router.query,
+          version: latestDraftRevision.versionNumber
+        }
+      });
     return null;
   }
 
@@ -103,6 +137,16 @@ export default createFragmentContainer(ApplicationWizard, {
             }
           }
         }
+        latestDraftRevision {
+          versionNumber
+        }
+        latestSubmittedRevision {
+          versionNumber
+        }
+        applicationRevisionByStringVersionNumber(versionNumberInput: $version) {
+          isImmutable
+        }
+
         ...ApplicationFormNavbar_application
       }
       ...ApplicationWizardStep_query
