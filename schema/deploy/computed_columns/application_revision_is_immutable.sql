@@ -8,7 +8,7 @@ create or replace function ggircs_portal.application_revision_is_immutable(appli
 as
 $function$
 declare
-  app_status ggircs_portal.application_revision_status;
+  app_status text;
 begin
 
   with record as (
@@ -17,7 +17,7 @@ begin
   )
   select application_revision_status::text into app_status from ggircs_portal.application_application_revision_status((select * from record), application_revision.version_number::text);
 
-  if (app_status !='draft') then
+  if (app_status = 'draft') then
     return false;
   end if;
 
