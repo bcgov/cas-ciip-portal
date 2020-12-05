@@ -6,12 +6,7 @@ begin;
 select * from no_plan();
 
 -- Set the timestamp to the start of the 2018 reporting year reporting window
-create or replace function ggircs_portal.current_timestamp() returns timestamptz as
-$$
-  select application_open_time
-  from ggircs_portal.reporting_year
-  where reporting_year = 2018;
-$$ language sql;
+select mocks.set_mocked_time_in_transaction('2019-04-01 14:49:54.191757-07'::timestamptz);
 
 -- setup products and benchmarks
 truncate ggircs_portal.product, ggircs_portal.application restart identity cascade;

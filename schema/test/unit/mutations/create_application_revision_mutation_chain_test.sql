@@ -6,27 +6,15 @@ begin;
 
 create or replace function open_application_window() returns void as
 $fun$
-  create or replace function ggircs_portal.current_timestamp() returns timestamptz as
-  $$
-    select application_open_time
-    from ggircs_portal.reporting_year
-    order by reporting_year
-    limit 1
-    offset 2;
-  $$ language sql;
+  -- 2020 open date
+  select mocks.set_mocked_time_in_transaction('2021-04-01 14:49:54.191757-07'::timestamptz);
 $fun$language sql;
 
 create or replace function close_application_window() returns void as
 $fun$
   -- Set the timestamp to a time where the application window is closed
-  create or replace function ggircs_portal.current_timestamp() returns timestamptz as
-  $$
-    select application_open_time - interval '1 second'
-    from ggircs_portal.reporting_year
-    order by reporting_year
-    limit 1
-    offset 2;
-  $$ language sql;
+  -- 2020 open date minus one second
+  select mocks.set_mocked_time_in_transaction('2021-04-01 14:49:54.191757-07'::timestamptz - interval '1 second');
 $fun$language sql;
 
 select plan(10);

@@ -1,7 +1,7 @@
 begin;
 
   -- Set the current reporting year to 2018, application open
-  select mocks.set_mocked_time_in_transaction('2019-04-01 14:49:54.191757-07'::timestamptz)
+  select mocks.set_mocked_time_in_transaction('2019-04-01 14:49:54.191757-07'::timestamptz);
 
   alter table ggircs_portal.application disable trigger _send_draft_application_email;
   alter table ggircs_portal.application_revision_status disable trigger _status_change_email;
@@ -41,6 +41,6 @@ begin;
   alter table ggircs_portal.certification_url enable trigger _signed_by_certifier_email;
 
   -- Set the current reporting year to 2019
-  select mocks.set_mocked_time_in_transaction('2020-07-03 00:00:00.000000-07'::timestamptz)
+  select mocks.set_mocked_time_in_transaction('2020-07-03 00:00:00.000000-07'::timestamptz);
 
 commit;
