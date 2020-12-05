@@ -1,4 +1,4 @@
--- Deploy ggircs-portal:computed_columns/application_application_revision_by_string_version_number.sql to pg
+-- Deploy ggircs-portal:computed_columns/application_application_revision_by_string_version_number to pg
 
 begin;
 
@@ -6,10 +6,14 @@ create or replace function ggircs_portal.application_application_revision_by_str
   application ggircs_portal.application, version_number_input text
 ) returns ggircs_portal.application_revision
 as $function$
+  declare
+    result ggircs_portal.application_revision;
   begin
-    return (select r.* from ggircs_portal.application_revision r
+    select r.* from ggircs_portal.application_revision r
       where r.application_id = application_id
-      and r.version_number = version_number_input::int);
+      and r.version_number = version_number_input::int
+      into result;
+    return result;
   end;
 $function$ language 'plpgsql' stable;
 

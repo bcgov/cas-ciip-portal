@@ -1,4 +1,4 @@
--- Revert ggircs-portal:computed_columns/application_application_revision_by_string_version_number.sql from pg
+-- Revert ggircs-portal:computed_columns/application_application_revision_by_string_version_number from pg
 
 begin;
 

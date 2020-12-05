@@ -52,7 +52,6 @@ const ApplicationWizard: React.FunctionComponent<Props> = ({query}) => {
 
   // Redirect a reporter trying to edit an application revision that was already submitted
   if (applicationRevision.isImmutable) {
-    console.log('redirecting');
     if (
       latestDraftRevision.versionNumber > latestSubmittedRevision.versionNumber
     )
