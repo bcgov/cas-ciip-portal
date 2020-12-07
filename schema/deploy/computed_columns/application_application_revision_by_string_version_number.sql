@@ -10,7 +10,7 @@ as $function$
     result ggircs_portal.application_revision;
   begin
     select r.* from ggircs_portal.application_revision r
-      where r.application_id = application_id
+      where r.application_id = application.id
       and r.version_number = version_number_input::int
       into result;
     return result;
