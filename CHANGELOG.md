@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.13.1](https://github.com/bcgov/cas-ciip-portal/compare/v1.13.0...v1.13.1) (2020-12-07)
+
+
+### Bug Fixes
+
+* 'revise application' btn --> 'resume latest draft' if newer draft ([0834e1f](https://github.com/bcgov/cas-ciip-portal/commit/0834e1f69e16882583b5235fb66d246664a73dda))
+* 'revise'-->view most recent submission if viewing older submission ([04c91d2](https://github.com/bcgov/cas-ciip-portal/commit/04c91d2ce8e04a89fa3c72ec808a903e9f134ed8))
+* add computed column application_revision_is_immutable ([c893b4d](https://github.com/bcgov/cas-ciip-portal/commit/c893b4d5a093949bceda4c9c7cbc8fde69ef603c))
+* add immutable_form_result trigger function ([bfde612](https://github.com/bcgov/cas-ciip-portal/commit/bfde612d5a3eab530c5b87ed6cf6a3683752ef45))
+* add trigger to form_result table ([3eb2a1b](https://github.com/bcgov/cas-ciip-portal/commit/3eb2a1b3308f1e650b606733d4e509b8985c3149))
+* applicationRevisionByStringVersionNumber returns correct app ([3bc9e17](https://github.com/bcgov/cas-ciip-portal/commit/3bc9e17459688493b3ae3995183a4e1bf9fb6ccb))
+* fix wrong return value in function ([620ac76](https://github.com/bcgov/cas-ciip-portal/commit/620ac768071bacddd9db7e6468600a5c5afbb396))
+* logic fix ([9427f68](https://github.com/bcgov/cas-ciip-portal/commit/9427f68c1f383c1f96d5254b3dce30c811d24a51))
+* minor syntax/logic fixes ([b490bd0](https://github.com/bcgov/cas-ciip-portal/commit/b490bd0b5c4e6518b4961640034c4d746db42f27))
+* pg_restore in test should ignore errors ([272d876](https://github.com/bcgov/cas-ciip-portal/commit/272d8766c56ca268c906cb4bb73635bf0623a391))
+* prod-backup-pvc should not be deleted after install ([d276b3c](https://github.com/bcgov/cas-ciip-portal/commit/d276b3cc953ece9e50c8e5fb13e904ba2b3ed507))
+* prod-test-restore creates roles as they do not exist on install ([6a3ef38](https://github.com/bcgov/cas-ciip-portal/commit/6a3ef386f09355b0a36a7fa8058e562a2b9ad5fa))
+* redirect the reporter when trying to access immutable application ([b0f7208](https://github.com/bcgov/cas-ciip-portal/commit/b0f72082516739265f60090cb043e1bf75465d33))
+* revert sqitch.plan bug introduced in 1b5542 ([151021a](https://github.com/bcgov/cas-ciip-portal/commit/151021a9cdd21f1af2778287d5fa60db8bba8beb))
+* run CI nightly job at midnight PST (UTC-8) ([b03af0b](https://github.com/bcgov/cas-ciip-portal/commit/b03af0bb54bc2010b0fa5780f620d0f824e5cb94))
+* useState for mutation-altered props that shouldn't cause rerender ([0be7bc3](https://github.com/bcgov/cas-ciip-portal/commit/0be7bc3155dafa8b3cba38714f2e2e122cbe70ca))
+
 ## [1.13.0](https://github.com/bcgov/cas-ciip-portal/compare/v1.12.0...v1.13.0) (2020-11-30)
 
 
