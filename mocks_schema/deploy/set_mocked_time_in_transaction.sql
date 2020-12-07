@@ -3,12 +3,17 @@
 
 BEGIN;
 
-  create or replace function mocks.set_mocked_time_in_transaction(mocked_timestamp timestamptz)
+  -- Takes a unit epoch
+  -- `timestamptz` can be converted with `extract(epoch from value::timestamptz)`
+  create or replace function mocks.set_mocked_time_in_transaction(mocked_timestamp int)
   returns void as
   $function$
+    begin
 
-    set search_path=mocks,"$user",public;
-    set_config('mocks.mocked_timestamp', mocked_timestamp, true);
+      set search_path to mocks,public,pg_catalog;
+      perform set_config('mocks.mocked_timestamp', mocked_timestamp::text, true);
+
+    end;
 
   $function$ language plpgsql volatile;
 
