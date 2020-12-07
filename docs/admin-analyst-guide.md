@@ -8,7 +8,7 @@ The Dashboard is a central overview page giving access to all the main tools the
 
 You can view all user information here including their name, occupation, and contact details.
 
-To grant or revoke access to an IDIR user, a Keycloak Realm admin must first log in to the administration console to make those adjustments.
+To grant or revoke access to an IDIR user, a Keycloak Realm administrator must first log in to the administration console to make those adjustments.
 
 
 
