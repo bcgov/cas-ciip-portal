@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`matches the last accepted Snapshot 1`] = `
+exports[`The /reporter/application page matches the last accepted Snapshot 1`] = `
 <Relay(DefaultLayout)
   session={
     Object {
@@ -10,23 +10,14 @@ exports[`matches the last accepted Snapshot 1`] = `
     }
   }
 >
-  <Relay(ApplicationWizard)
+  <Relay(ApplicationWizardComponent)
     query={
       Object {
         " $fragmentRefs": Object {
-          "applicationWizard_query": true,
-        },
-        "allFormJsons": Object {
-          "edges": Array [
-            Object {
-              "node": Object {
-                "id": "form-1",
-              },
-            },
-          ],
+          "ApplicationWizard_query": true,
         },
         "application": Object {
-          "id": 1,
+          "id": "1",
           "latestDraftRevision": Object {
             "legalDisclaimerAccepted": true,
             "versionNumber": 1,

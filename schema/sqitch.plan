@@ -201,3 +201,7 @@ function_current_timestamp [function_current_timestamp@v1.10.1] 2020-10-30T23:15
 trigger_functions/protect_date_overlap [schema_ggircs_portal_private] 2020-11-25T19:17:30Z Dylan Leard <dylan@button.is> # Trigger function to deny changes if a date range overlaps another
 tables/reporting_year_001 [tables/reporting_year trigger_functions/protect_date_overlap] 2020-11-25T19:38:33Z Dylan Leard <dylan@button.is> # Migration: add trigger to reporting_year table
 @v1.13.0 2020-11-30T22:27:39Z Dylan Leard <dylan@button.is> # release v1.13.0
+computed_columns/application_revision_is_immutable [computed_columns/application_application_revision_status] 2020-12-04T22:47:50Z Dylan Leard <dylan@button.is> # Computer column determines if a revision is immutable (has been submitted)
+trigger_functions/immutable_form_result [computed_columns/application_revision_is_immutable] 2020-12-04T20:34:19Z Dylan Leard <dylan@button.is> # Trigger makes form_result immutable if submitted
+tables/form_result_001 [tables/form_result trigger_functions/immutable_form_result] 2020-12-04T20:46:48Z Dylan Leard <dylan@button.is> # Migration: add immutable_form_result trigger to table
+computed_columns/application_application_revision_by_string_version_number 2020-12-04T23:47:35Z Matthieu Foucault <matthieu@button.is> # Add application_application_revision_by_string_version_number computed column
