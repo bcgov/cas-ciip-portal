@@ -4,7 +4,7 @@ reset client_min_messages;
 
 begin;
 
-select plan(3);
+select plan(4);
 
 
 -- writing this test on Oct 28th, 2020
@@ -34,6 +34,13 @@ select is(
   'now() occurs after october 28th 2020 at 17:20'
 );
 
+-- 4) We verify that fractional epochs are supported
+select set_config('mocks.mocked_timestamp', '925920000.01', true);
+select is(
+  mocks.now(),
+  '1999-05-05 09:00:00.010000-07'::timestamptz,
+  'now() occurs on may 5th, 1999 as set in config value'
+);
 
 select finish();
 
