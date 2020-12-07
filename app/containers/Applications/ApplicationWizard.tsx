@@ -26,7 +26,9 @@ interface Props {
  * application process. Each ApplicationWizardStep is rendered, and at the end the
  * ApplicationWizardConfirmation is rendered.
  */
-const ApplicationWizard: React.FunctionComponent<Props> = ({query}) => {
+export const ApplicationWizardComponent: React.FunctionComponent<Props> = ({
+  query
+}) => {
   const {application} = query || {};
   const router = useRouter();
   const {formResultId} = router.query;
@@ -67,7 +69,7 @@ const ApplicationWizard: React.FunctionComponent<Props> = ({query}) => {
         pathname: '/reporter/view-application',
         query: {
           ...router.query,
-          version: latestDraftRevision.versionNumber
+          version: latestSubmittedRevision.versionNumber
         }
       });
     return null;
@@ -118,7 +120,7 @@ const ApplicationWizard: React.FunctionComponent<Props> = ({query}) => {
   );
 };
 
-export default createFragmentContainer(ApplicationWizard, {
+export default createFragmentContainer(ApplicationWizardComponent, {
   query: graphql`
     fragment ApplicationWizard_query on Query
     @argumentDefinitions(
