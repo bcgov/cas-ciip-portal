@@ -59,7 +59,7 @@ For additional guidance materials on quantifying facility emissions and producti
 
 ### The Certifying Official:
 
-- **Has permissions to: **Certify an application.
+- **Has permissions to:** Certify an application.
 - **Is defined as:**
   1. the person who approves this application on behalf of the Operator. The Certifying Official warrants and represents that the Certifying Official has the authority to, on behalf of the Operator, enter into the following terms and provide the following consents and certifications for the CIIP.
 
@@ -109,64 +109,6 @@ Next, on your Dashboard, request access to apply for the CIIP on behalf of a Rep
 
 
 
-### The CIIP Dashboard
-
-The Dashboard is a central overview page giving access to all the main tools the business will need to manage their application details. (Note: Depending on your permission level, some of the tools may or may not be visible.)
-
-![dashboard](images/dashboard.png)
-
-#### User Management
-
-You can view all user information here including their name, occupation, and contact details.
-
-To grant or revoke access to an IDIR user, a Keycloak Realm admin must first log in to the administration console to make those adjustments.
-
-
-
-#### Application Management
-
-All applications, organizations and access requests, and facilities are managed here.
-
-##### Organizations and Facilities
-
-The GHG Regulator can add a new facility or organisation here by searching for an existing one or adding a new one. Note, however, that manually adding an organisation or facility via these pages has the potential to create duplicate and SWRS-orphaned organisations and facilities in the data.
-
-
-
-#### Program and Data Management
-
-##### Products
-
-Access, create and edit each product for your facilities from this area. On the product table, the box icon at the far right is for editing or viewing products, with a greyed out icon indicating that the product is already approved (and therefore uneditable).
-
-![product-editing](images/product-editing.png)
-
-##### Benchmarks
-
-Greenhouse gas (GHG) emissions benchmarks include items such as the start end end reporting years, eligibility thresholds and the incentive multipliers needed to calculate emissions accurately. On the product table, the benchmarks are identified by the dial icon.
-
-![benchmark-editing](images/benchmark-editing.png)
-
-##### Product Association Linking
-
-The use of a product may invariably involve the use of another product. In order to report on the emissions of these, it is advisable to link them to ensure related items are fully accountable. Further instructions for how to create or edit these associations is displayed on the pop-up page 'Product Associations', found by clicking the icon illustrated below.
-
-![product-association-link](images/product-association-link.png)
-
-##### Reporting Periods
-
-This list is a reference for past and future (up to two years) reporting periods and may be editable depending on your role and permissions.
-
-
-
-##### Data and Insights
-
-A visual data table of metrics provided by [Metabase](https://www.metabase.com/) is available to internal BC Government users, which can allow for easy access to see, for example, which products are emitting the highest emissions of a certain type. Clicking this link will take you to an external but secure site to access the BC Government's managed instance of Metabase.
-
-![metabase-example](images/metabase-example.png)
-
-
-
 ### Filling in Form Data on the Application
 
 As noted at the top of this document, there is an auto-save feature always active on the CIIP web application, which saves your data every few seconds in order to prevent any loss of information. Additionally, the system will log you out after a period of inactivity.
@@ -196,3 +138,28 @@ At the bottom of each screen you will find a Continue and/or Back button, but yo
 5. **Summary** - This page will display any errors that must be fixed before submission. Additionally, a Download button at the bottom of the page allows you to save a PDF copy of the application as-is.
 
    Once all errors have been corrected, you can submit the application and include any comments necessary. At any time you can [contact CAS](mailto:ghgregulator@gov.bc.ca) for assistance.
+
+
+## How to approve an application for submission as a Certifying Official
+
+You may receive an email certification request on behalf of an Operation Representative applying for CIIP for a given Reporting Operation. Each Reporting Operation will have its own application, each of which must be approved by a Certifying Official before it can finally be submitted.
+
+As a Certifying Official, you will first need to register for an account on the [CIIP application website](https://ciip.gov.bc.ca), which you can do when visiting the link in the certification request email. If you already have an account, you may simply log in. **Note**: If you have been identified in an application as a Certifying Official, you do not need to request access to that organisation.
+
+By visiting the link in the certification request email, you can review the data that will be submitted in the CIIP application for the Reporting Operation and ensure that you are ready to approve the application. After reviewing the [terms](https://ciip.gov.bc.ca/resources/application-disclaimer) at the bottom of the application summary, you can agree to the terms and approve the application for submission by adding your digital signature and clicking "Sign".
+
+To create a digital signature, click, hold and drag your pointer within the box at the bottom of the application summary to draw your signature. Use the Clear button below the signature box to delete the signature and start again. Alternatively, you can select "Choose File" to upload an existing signature image file from your computer (.png, .jpg, .jpeg). When you're ready to submit your certification, click "Sign" below the signature box to approve the application for submission. The Operation Representative who made the application will be automatically notified of your signature so they may submit the application.
+
+<img src="images/signature-interface.png" height="400" alt="certification signature interface" />
+
+### Viewing a list of certification requests
+
+You may review a list of certification requests, including a record of applications you've certified, via the ["View all certification requests"](https://ciip.gov.bc.ca/certifier/requests) link at the top of the [site dashboard](https://ciip.gov.bc.ca/reporter). This list is searchable by facility, organisation, and certification details.
+
+### Certifying multiple applications
+
+If you have many similar applications to certify, you can certify multiple applications at once by selecting them and using the signature interface that will appear on the page beneath.
+
+ **Note**: By certifying multiple applications in this manner, you agree to the same [terms](https://ciip.gov.bc.ca/resources/application-disclaimer) noted above, indicating you are aware of the contents of the selected applications and, as the Certifying Official, are approving them for submission.
+
+ <img src="images/batch-signature-interface.png" height="500" alt="batch certification signature interface"/>

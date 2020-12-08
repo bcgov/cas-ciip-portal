@@ -93,6 +93,8 @@ The materials published include:
 
 - [Support Documentation for Reporters](./docs/reporting-guide.md)
 
+- [Support Documentation for Internal CAS Admins/Analysts](./docs/admin-analyst-guide.md)
+
 - [CleanBC Program for Industry](https://www2.gov.bc.ca/gov/content/environment/climate-change/industry/cleanbc-program-for-industry)
 
 - [CleanBC Industrial Incentive Program](https://www2.gov.bc.ca/gov/content?id=6F748A4DD83447C59B8B9361882FF9A3)
