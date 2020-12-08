@@ -206,6 +206,6 @@ trigger_functions/immutable_form_result [computed_columns/application_revision_i
 tables/form_result_001 [tables/form_result trigger_functions/immutable_form_result] 2020-12-04T20:46:48Z Dylan Leard <dylan@button.is> # Migration: add immutable_form_result trigger to table
 computed_columns/application_application_revision_by_string_version_number 2020-12-04T23:47:35Z Matthieu Foucault <matthieu@button.is> # Add application_application_revision_by_string_version_number computed column
 @v1.13.1 2020-12-07T23:15:52Z Matthieu Foucault <matthieu@button.is> # release v1.13.1
-function_current_timestamp [function_current_timestamp@v1.13.0] 2020-12-05T00:12:09Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # Removing the function since it's not needed anymore
 function_next_reporting_year [function_next_reporting_year@v1.13.0] 2020-12-05T00:23:05Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # Refactoring next_reporting_year() to use the default now() that can be mocked if needed
 function_opened_reporting_year [function_opened_reporting_year@v1.13.0] 2020-12-05T00:27:10Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # Refactoring to use now() instead of current_timestamp()
+function_current_timestamp [function_current_timestamp@v1.13.0] 2020-12-05T00:12:09Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # Removing the function since it's not needed anymore
