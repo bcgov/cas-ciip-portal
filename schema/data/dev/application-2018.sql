@@ -40,7 +40,4 @@ begin;
   alter table ggircs_portal.certification_url enable trigger _certification_request_email;
   alter table ggircs_portal.certification_url enable trigger _signed_by_certifier_email;
 
-  -- Set the current reporting year to 2019
-  select mocks.set_mocked_time_in_transaction('2020-07-03 00:00:00.000000-07'::timestamptz);
-
 commit;

@@ -5,9 +5,14 @@ reset client_min_messages;
 begin;
 
 select plan(4);
+
 truncate ggircs_portal.application restart identity cascade;
 alter table ggircs_portal.application
   disable trigger _send_draft_application_email;
+
+-- Set time where application is open, reporting year 2019
+select mocks.set_mocked_time_in_transaction('2020-07-03 00:00:00.000000-07'::timestamptz);
+
 select ggircs_portal.create_application_mutation_chain(1);
 update ggircs_portal.form_result
   set form_result = '{"facility": {"bcghgid": "985", "facilityName": "Test Facility", "facilityType": "EIO"}, "operator": {"name": "Testy Tester", "naics": "1000", "tradeName": "Trade Test", "mailingAddress": {"city": "Victoria", "province": "BC", "postalCode": "h0h0h0", "streetAddress": "123 outtamy way"}, "bcCorporateRegistryNumber": "abc1231231"}, "operationalRepresentative": {"email": "test@test.com", "phone": "1234567890", "lastName": "Sedin", "position": "Captain", "firstName": "Henrik", "mailingAddress": {"city": "Vancouver", "province": "BC", "postalCode": "h0h0h1", "streetAddress": "555 evergreen terrace"}}}'

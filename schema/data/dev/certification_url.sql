@@ -5,6 +5,9 @@
 
 begin;
 
+-- Application window is open
+select mocks.set_mocked_time_in_transaction('2020-07-03 00:00:00.000000-07'::timestamptz);
+
 alter table ggircs_portal.certification_url disable trigger _certification_request_email;
 alter table ggircs_portal.certification_url disable trigger _signed_by_certifier_email;
 
@@ -23,6 +26,7 @@ update ggircs_portal.certification_url set certification_signature = 'signed' wh
 
 alter table ggircs_portal.application_revision_status disable trigger _status_change_email;
 alter table ggircs_portal.application_revision_status disable trigger _read_only_status_for_non_current_version;
+
 -- Update the status of application with id=1 to be 'submitted'
   insert into ggircs_portal.application_revision_status(application_id, version_number, application_revision_status)
     values (1,1,'submitted');

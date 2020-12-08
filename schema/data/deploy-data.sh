@@ -76,6 +76,18 @@ sqitch_revert() {
   return 0;
 }
 
+deployMocks() {
+  echo "Deploying the mocks schema to $database"
+  if [ ! -f ../../mocks_schema/sqitch.plan ]; then
+    echo "Could not find sqitch plan in mocks_schema/"
+    exit 1
+  fi
+  pushd ../../mocks_schema
+  sqitch_revert
+  _sqitch deploy
+  popd
+}
+
 deploySwrs() {
   echo "Deploying the swrs schema to $database"
   if [ ! -f ../.cas-ggircs/sqitch.plan ]; then
@@ -142,7 +154,7 @@ while [[ "$1" =~ ^- && ! "$1" == "--" ]]; do case $1 in
     actions+=('deployTest')
     ;;
   -dev | --dev-data | --oc-project=*-dev )
-    actions+=('deployDev')
+    actions+=('deployMocks' 'deployDev')
     ;;
   -p | --deploy-portal-schema )
     actions+=('deployPortal')
@@ -183,7 +195,6 @@ deployDevData() {
   deployProdData
   _psql -f "./dev/facility.sql"
   _psql -f "./dev/reporting_year.sql"
-  _psql -f "./dev/mock_current_timestamp.sql"
   _psql -f "./dev/product.sql"
   _psql -f "./dev/benchmark.sql"
   _psql -f "./dev/user.sql"
@@ -204,6 +215,9 @@ createdb
 
 if [[ " ${actions[*]} " =~ " deploySwrs " ]]; then
   deploySwrs
+fi
+if [[ " ${actions[*]} " =~ " deployMocks " ]]; then
+  deployMocks
 fi
 if [[ " ${actions[*]} " =~ " deployPortal " ]]; then
   revertPortal

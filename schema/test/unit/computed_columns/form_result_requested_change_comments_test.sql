@@ -13,6 +13,9 @@ select has_function(
 alter table ggircs_portal.application
   disable trigger _send_draft_application_email;
 
+-- Set time where application is open, reporting year 2019
+select mocks.set_mocked_time_in_transaction('2020-07-03 00:00:00.000000-07'::timestamptz);
+
 insert into ggircs_portal.organisation(operator_name) values ('test org');
 insert into ggircs_portal.facility(organisation_id, facility_name) values (1, 'test facility');
 
