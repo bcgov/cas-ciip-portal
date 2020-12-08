@@ -45,7 +45,7 @@ Adding the following setting to your VSCode workspace settings is required for t
 
 ## Testing
 
-Tests on the database uses pg_prove, make sure pgtap is installed to run them or install with `make install pgtap` or `sudo apt install libtap-parser-sourcehandler-pgtap-perl`.
+Tests on the database uses pg_prove, make sure pgtap is installed to run them or install with `make install_pgtap` or `sudo apt install libtap-parser-sourcehandler-pgtap-perl`.
 
 ## User Authentication
 
