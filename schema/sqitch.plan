@@ -205,3 +205,4 @@ computed_columns/application_revision_is_immutable [computed_columns/application
 trigger_functions/immutable_form_result [computed_columns/application_revision_is_immutable] 2020-12-04T20:34:19Z Dylan Leard <dylan@button.is> # Trigger makes form_result immutable if submitted
 tables/form_result_001 [tables/form_result trigger_functions/immutable_form_result] 2020-12-04T20:46:48Z Dylan Leard <dylan@button.is> # Migration: add immutable_form_result trigger to table
 computed_columns/application_application_revision_by_string_version_number 2020-12-04T23:47:35Z Matthieu Foucault <matthieu@button.is> # Add application_application_revision_by_string_version_number computed column
+@v1.13.1 2020-12-07T23:15:52Z Matthieu Foucault <matthieu@button.is> # release v1.13.1
