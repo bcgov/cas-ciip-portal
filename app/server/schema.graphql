@@ -4819,6 +4819,30 @@ type CreateReviewCommentPayload {
   ): ReviewCommentsEdge
 }
 
+"""All input for the `currentTimestamp` mutation."""
+input CurrentTimestampInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+}
+
+"""The output of our `currentTimestamp` mutation."""
+type CurrentTimestampPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+  datetime: Datetime
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
 """A location in a connection that can be used for resuming pagination."""
 scalar Cursor
 
@@ -8837,6 +8861,17 @@ type Mutation {
     """
     input: CreateReviewCommentMutationChainInput!
   ): CreateReviewCommentMutationChainPayload
+
+  """
+  Returns the current date and time with time zone.
+  This should be used instead of the native current_timestamp function to allow for mocking in test and development settings
+  """
+  currentTimestamp(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CurrentTimestampInput!
+  ): CurrentTimestampPayload
 
   """Deletes a single `Application` using its globally unique id."""
   deleteApplication(
