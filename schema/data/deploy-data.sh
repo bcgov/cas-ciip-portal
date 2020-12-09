@@ -151,10 +151,13 @@ while [[ "$1" =~ ^- && ! "$1" == "--" ]]; do case $1 in
     ;;
   -test | --test-data)
     # test data includes all prod data except organisations/facilities
-    actions+=('deployTest')
+    actions+=('deployMocks' 'deployTest')
     ;;
   -dev | --dev-data | --oc-project=*-dev )
-    actions+=('deployDev')
+    actions+=('deployMocks' 'deployDev')
+    ;;
+  -mocks | --deploy-mocks-schema )
+    actions+=('deployMocks')
     ;;
   -p | --deploy-portal-schema )
     actions+=('deployPortal')
@@ -193,7 +196,6 @@ deployTestData() {
 
 deployDevData() {
   deployProdData
-  deployMocks
   _psql -f "./dev/facility.sql"
   _psql -f "./dev/reporting_year.sql"
   _psql -f "./dev/product.sql"
@@ -217,13 +219,16 @@ createdb
 if [[ " ${actions[*]} " =~ " deploySwrs " ]]; then
   deploySwrs
 fi
-if [[ " ${actions[*]} " =~ " deployMocks " ]]; then
-  deployMocks
-fi
 if [[ " ${actions[*]} " =~ " deployPortal " ]]; then
   revertPortal
 fi
+
 deployPortal
+
+if [[ " ${actions[*]} " =~ " deployMocks " ]]; then
+  echo "Deploying mocks schema"
+  deployMocks
+fi
 
 if [[ " ${actions[*]} " =~ " deployProd " ]]; then
   echo 'Deploying production data'
