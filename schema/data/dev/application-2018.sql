@@ -2,7 +2,8 @@ begin;
 
   -- Set the current reporting year to 2018, application open
   select mocks.set_mocked_time_in_transaction(
-    select application_open_time
+    (
+      select application_open_time
       from ggircs_portal.reporting_year
       where reporting_year = 2018
     )

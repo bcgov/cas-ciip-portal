@@ -7,9 +7,10 @@ begin;
 
 -- Application window is open, year 2019
 select mocks.set_mocked_time_in_transaction(
-  select application_open_time
-      from ggircs_portal.reporting_year
-      where reporting_year = 2019
+  (
+    select application_open_time
+    from ggircs_portal.reporting_year
+    where reporting_year = 2019
   )
 );
 
@@ -38,10 +39,12 @@ insert into ggircs_portal.application_revision_status(application_id, version_nu
 
 -- Moving timestamp one second forward to avoid revisions being submitted at the same time
 select mocks.set_mocked_time_in_transaction(
-  select application_open_time
-      from ggircs_portal.reporting_year
-      where reporting_year = 2019
-  ) + interval '1 second'
+  (
+    select application_open_time
+    from ggircs_portal.reporting_year
+    where reporting_year = 2019
+  )
+  + interval '1 second'
 );
 
 insert into ggircs_portal.application_revision_status(application_id, version_number, application_revision_status)
