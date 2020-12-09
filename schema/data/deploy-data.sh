@@ -154,7 +154,7 @@ while [[ "$1" =~ ^- && ! "$1" == "--" ]]; do case $1 in
     actions+=('deployTest')
     ;;
   -dev | --dev-data | --oc-project=*-dev )
-    actions+=('deployMocks' 'deployDev')
+    actions+=('deployDev')
     ;;
   -p | --deploy-portal-schema )
     actions+=('deployPortal')
@@ -193,6 +193,7 @@ deployTestData() {
 
 deployDevData() {
   deployProdData
+  deployMocks
   _psql -f "./dev/facility.sql"
   _psql -f "./dev/reporting_year.sql"
   _psql -f "./dev/product.sql"
