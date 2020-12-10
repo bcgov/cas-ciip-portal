@@ -18,7 +18,7 @@ BEGIN;
       if mockedValue is null then
         returnValue := pg_catalog.now()::timestamptz;
       else
-        returnValue := to_timestamp(mockedValue::integer)::timestamptz;
+        returnValue := to_timestamp(mockedValue::decimal)::timestamptz;
       end if;
 
       return returnValue;

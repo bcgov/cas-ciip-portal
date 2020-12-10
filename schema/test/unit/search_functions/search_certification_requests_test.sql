@@ -10,6 +10,9 @@ truncate ggircs_portal.ciip_user_organisation restart identity;
 alter table ggircs_portal.certification_url disable trigger _certification_request_email;
 set jwt.claims.sub to '00000000-0000-0000-0000-000000000000';
 
+-- Set time where application is open, reporting year 2019
+select mocks.set_mocked_time_in_transaction('2020-07-03 00:00:00.000000-07'::timestamptz);
+
 select has_function(
   'ggircs_portal', 'search_certification_requests', array['text[]', 'text[]', 'text', 'text', 'int','int'],
   'Function ggircs_portal.search_certification_requests should exist'

@@ -12,14 +12,8 @@ select has_function(
   'Function next_reporting_year should exist'
 );
 
-create or replace function ggircs_portal.current_timestamp() returns timestamptz as
-$$
-  select application_open_time
-  from ggircs_portal.reporting_year
-  order by reporting_year
-  limit 1
-  offset 2;
-$$ language sql;
+-- 2020 open date
+select mocks.set_mocked_time_in_transaction('2021-04-01 14:49:54.191757-07'::timestamptz);
 
 select results_eq(
   'select * from ggircs_portal.next_reporting_year()',
@@ -27,14 +21,8 @@ select results_eq(
   'The opened_reporting_year function returns the reporting year after the current one if the window is opened'
 );
 
-create or replace function ggircs_portal.current_timestamp() returns timestamptz as
-$$
-  select application_open_time - interval '1 second'
-  from ggircs_portal.reporting_year
-  order by reporting_year
-  limit 1
-  offset 2;
-$$ language sql;
+-- 2020 open date minus one second
+select mocks.set_mocked_time_in_transaction('2021-04-01 14:49:54.191757-07'::timestamptz - interval '1 second');
 
 select results_eq(
   'select * from ggircs_portal.next_reporting_year()',

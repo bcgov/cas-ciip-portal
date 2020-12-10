@@ -5,6 +5,9 @@ reset client_min_messages;
 begin;
 select plan(3);
 
+-- Application window is open, year 2019
+select mocks.set_mocked_time_in_transaction('2020-07-03 00:00:00.000000-07'::timestamptz);
+
 select has_function(
   'ggircs_portal_private', 'immutable_form_result',
   'Function immutable_form_result should exist'

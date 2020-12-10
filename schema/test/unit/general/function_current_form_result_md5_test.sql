@@ -16,6 +16,9 @@ alter table ggircs_portal.application
   disable trigger _send_draft_application_email;
 truncate ggircs_portal.application cascade;
 
+-- Set time where application is open, reporting year 2019
+select mocks.set_mocked_time_in_transaction('2020-07-03 00:00:00.000000-07'::timestamptz);
+
 -- Call create application_mutation_chain to create a test application
 select ggircs_portal.create_application_mutation_chain(1);
 

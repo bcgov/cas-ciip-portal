@@ -14,14 +14,9 @@ alter table ggircs_portal.application_revision_status disable trigger _status_ch
 alter table ggircs_portal.application_revision_status disable trigger _read_only_status_for_non_current_version;
 
 -- Set the timestamp to a time where the application window is closed
-create or replace function ggircs_portal.current_timestamp() returns timestamptz as
-$$
-  select application_open_time - interval '1 second'
-  from ggircs_portal.reporting_year
-  order by reporting_year
-  limit 1
-  offset 2;
-$$ language sql;
+-- 2020 open date minus one second
+select mocks.set_mocked_time_in_transaction('2021-04-01 14:49:54.191757-07'::timestamptz - interval '1 second');
+
 
 select throws_ok(
   $$insert into ggircs_portal.application_revision_status(application_id, version_number, application_revision_status) values (1, 1, 'draft')$$,

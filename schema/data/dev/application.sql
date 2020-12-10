@@ -6,6 +6,9 @@
 
 begin;
 
+  -- Set time where application is open, reporting year 2019
+  select mocks.set_mocked_time_in_transaction('2020-07-03 00:00:00.000000-07'::timestamptz);
+
   select 'Dropping old application data: ';
   truncate ggircs_portal.application restart identity cascade;
 

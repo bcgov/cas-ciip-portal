@@ -1,12 +1,13 @@
 begin;
 
--- Set the current reporting year to 2018
-create or replace function ggircs_portal.current_timestamp() returns timestamptz as
-$$
-  select application_open_time
-  from ggircs_portal.reporting_year
-  where reporting_year = 2018
-$$ language sql;
+  -- Set the current reporting year to 2018, application open
+  select mocks.set_mocked_time_in_transaction(
+    (
+      select application_open_time
+      from ggircs_portal.reporting_year
+      where reporting_year = 2018
+    )
+  );
 
   alter table ggircs_portal.application disable trigger _send_draft_application_email;
   alter table ggircs_portal.application_revision_status disable trigger _status_change_email;
@@ -44,12 +45,5 @@ $$ language sql;
   alter table ggircs_portal.application enable trigger _send_draft_application_email;
   alter table ggircs_portal.certification_url enable trigger _certification_request_email;
   alter table ggircs_portal.certification_url enable trigger _signed_by_certifier_email;
-  -- Set the current reporting year to 2019
-  create or replace function ggircs_portal.current_timestamp() returns timestamptz as
-  $$
-    select application_open_time
-    from ggircs_portal.reporting_year
-    where reporting_year = 2019
-  $$ language sql;
 
 commit;

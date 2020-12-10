@@ -13,14 +13,9 @@ select has_function(
 alter table ggircs_portal.application_revision_status disable trigger _status_change_email;
 
 -- Set the timesamp to a time where the application window is open
-create or replace function ggircs_portal.current_timestamp() returns timestamptz as
-$$
-  select application_open_time
-  from ggircs_portal.reporting_year
-  order by reporting_year
-  limit 1
-  offset 2;
-$$ language sql;
+-- 2020 open date
+select mocks.set_mocked_time_in_transaction('2021-04-01 14:49:54.191757-07'::timestamptz);
+
 
 alter table ggircs_portal.application
   disable trigger _send_draft_application_email;

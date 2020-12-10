@@ -13,6 +13,9 @@ select has_function(
 
 set jwt.claims.sub to '00000000-0000-0000-0000-000000000000';
 
+-- Set time where application is open, reporting year 2019
+select mocks.set_mocked_time_in_transaction('2020-07-03 00:00:00.000000-07'::timestamptz);
+
 select is(
   (select count(*) from ggircs_portal.search_all_facilities(null, null, 'id', 'asc', null, 0, 10000, 2019)),
   (select count(*) from ggircs_portal.facility f

@@ -7,8 +7,8 @@ returns ggircs_portal.reporting_year
 as $function$
   select *
   from ggircs_portal.reporting_year as _reporting_year
-  where ggircs_portal.current_timestamp() >= application_open_time
-  and ggircs_portal.current_timestamp() <= application_close_time;
+  where now() >= application_open_time
+  and now() <= application_close_time;
 $function$ language sql stable;
 
 grant execute on function ggircs_portal.opened_reporting_year to ciip_administrator, ciip_analyst, ciip_industry_user, ciip_guest;

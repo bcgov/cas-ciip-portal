@@ -5,7 +5,7 @@ begin;
 
 create or replace function ggircs_portal.current_timestamp() returns timestamptz as
 $$
-  select now();
+  select current_timestamp;
 $$ language sql;
 
 grant execute on function ggircs_portal.current_timestamp to ciip_administrator, ciip_analyst, ciip_industry_user, ciip_guest;

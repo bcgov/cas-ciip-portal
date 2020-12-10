@@ -24,7 +24,7 @@ DEPLOY_DEFAULT_DATA=deploy_dev_data
 test: | test_deploy_revert test_data deploy_test_helpers deploy_mocks_schema prove_unit prove_style dropdb
 
 .PHONY: unit
-unit: | $(DEPLOY_DEFAULT_DATA) deploy_test_helpers deploy_mocks_schema prove_unit
+unit: | $(DEPLOY_DEFAULT_DATA) deploy_test_helpers prove_unit
 
 .PHONY: test_data
 test_data: | deploy_prod_data prove_prod_data deploy_dev_data prove_dev_data

@@ -7,7 +7,7 @@ returns ggircs_portal.reporting_year
 as $function$
   select *
   from ggircs_portal.reporting_year as _reporting_year
-  where ggircs_portal.current_timestamp() < application_open_time
+  where now() < application_open_time
   order by reporting_year
   limit 1;
 $function$ language sql stable;
