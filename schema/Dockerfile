@@ -4,9 +4,9 @@ FROM perl:5.26
 ENV USER_ID=1001
 ENV CIIP_HOME=/root
 ENV HOME=/root
-COPY schema/ ${HOME}/
+COPY schema/ ${HOME}/schema/
 COPY mocks_schema/ ${HOME}/mocks_schema/
-WORKDIR ${HOME}
+WORKDIR ${HOME}/schema
 
 # jq is used by trigger-airflow-dag.sh
 RUN apt-get update && \
