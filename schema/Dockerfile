@@ -13,7 +13,8 @@ RUN apt-get update && \
   apt-get install -y postgresql-client jq && \
   apt-get clean
 
-RUN cpanm --notest -l extlib --installdeps .
+# CPAN needs to install dependencies for all schemas, one directory up
+RUN cpanm --notest --local-lib ../extlib --installdeps .
 
 # CPAN can install scripts. They should be available from mod_perl too.
 ENV PATH="$PATH:$HOME/extlib/bin"
