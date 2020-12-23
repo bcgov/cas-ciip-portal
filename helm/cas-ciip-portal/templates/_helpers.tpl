@@ -66,6 +66,13 @@ Create the name of the service account to use
 
 
 {{/*
+Gets the prefix of the namespace. (09269b, ... )
+*/}}
+{{- define "cas-ciip-portal.namespacePrefix" }}
+{{- (split "-" .Release.Namespace)._0 | trim -}}
+{{- end }}
+
+{{/*
 Gets the suffix of the namespace. (-dev, -tools, ... )
 */}}
 {{- define "cas-ciip-portal.namespaceSuffix" }}

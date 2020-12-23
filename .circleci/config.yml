@@ -303,7 +303,7 @@ jobs:
             git submodule update --init
       - redhat-openshift/login-and-update-kubeconfig:
           insecure-skip-tls-verify: true
-          openshift-platform-version: 3.x
+          openshift-platform-version: 4.x
           server-address: $OC_SILVER_SERVER_ADDRESS
           token: $OC_SILVER_TOKEN
       - run:

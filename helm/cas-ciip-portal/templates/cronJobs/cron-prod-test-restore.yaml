@@ -57,11 +57,11 @@ spec:
                   valueFrom:
                     secretKeyRef:
                       key: credentials.json
-                      name: gcp-wksv3k-prod-ciip-backup-read-only-service-account-key
+                      name: gcp-{{ template "cas-ciip-portal.namespacePrefix" . }}-prod-ciip-backup-read-only-service-account-key
                 - name: WALG_GS_PREFIX
-                  value: "gs://wksv3k-prod-ciip-backups/wal"
+                  value: "gs://{{ template "cas-ciip-portal.namespacePrefix" . }}-prod-ciip-backups/wal"
                 - name: WALE_GS_PREFIX
-                  value: "gs://wksv3k-prod-ciip-backups/wal"
+                  value: "gs://{{ template "cas-ciip-portal.namespacePrefix" . }}-prod-ciip-backups/wal"
               name: {{ template "cas-ciip-portal.fullname" . }}-prod-test-restore
               image: {{ .Values.image.psql.repository }}:{{ .Values.image.psql.tag }}
               resources:
