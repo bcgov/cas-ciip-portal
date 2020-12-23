@@ -22,6 +22,9 @@ resources:
     cpu: 10m
     memory: 124Mi
 
+networkSecurityPolicies:
+  enable: true
+
 route:
   # route.host defines the host name for the route template,
   # and the HOST env variable for the app deployment
@@ -41,6 +44,7 @@ dag:
   # a command to be executed at the beginning of the init-db job, running in the psql image abov
   preInitDb: ""
   name: "ciip_deploy_db"
+  enable: true
 
 env:
   smtpConnectionString: smtp://apps.smtp.gov.bc.ca/?port=25&ignoreTLS=true&secure=false

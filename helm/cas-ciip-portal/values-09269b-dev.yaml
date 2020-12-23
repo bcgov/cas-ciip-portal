@@ -1,0 +1,65 @@
+replicas: 2
+route:
+  host: ciip-dev.apps.silver.devops.gov.bc.ca
+  insecure: true
+
+image:
+  schema:
+    tag: latest
+    pullPolicy: Always
+  app:
+    tag: latest
+    pullPolicy: Always
+  psql:
+    pullPolicy: Always
+    tag: "0.2.0"
+
+dag:
+  preInitDb: |
+    psql<<EOF
+      select pg_terminate_backend(pid) from pg_stat_activity where
+      -- don't kill my own connection!
+      pid <> pg_backend_pid()
+      -- don't kill the connections to other databases
+      and datname = '$(PORTAL_DATABASE)';
+      drop database if exists $(PORTAL_DATABASE);
+      drop user if exists $(PORTAL_USER);
+      drop user if exists ciip_portal;
+      drop user if exists ciip_readonly;
+    EOF
+
+# dropping users shouldn't be necessary, but the create-user-db script does not
+# restore ownership or grants connect privilege if the role exists
+
+env:
+  smtpConnectionString: smtp://cas-ciip-portal-mailhog:1025
+  senderEmail: BC Climate Action Secretariat <no-reply-dev.cas@gov.bc.ca>
+  adminEmail: CIIP Admin, BC Climate Action Secretariat <admin@ciip.dev>
+  enableDbMocks: true
+
+sitewide_notice:
+  content: <div class="alert alert-warning">This is the DEV environment. All emails will be sent to <a href="https://cas-mailhog-wksv3k-dev.pathfinder.gov.bc.ca">the dev inbox</a> instead of the real recipients.</div>
+
+fider:
+  host: # TODO move fider template in this repo
+
+mailhog:
+  enable: true
+  securityContext:
+    runAsUser: 1009900000
+    fsGroup: 1009900000
+    runAsNonRoot: true
+  host: cas-mailhog-dev.apps.silver.devops.gov.bc.ca
+
+cas-postgres:
+  patroni:
+    walE:
+      enable: true
+      # the GCS bucket name should be {{ namespace }}-{{ gcs.bucketSuffix }}
+      gcsBucket: 09269b-dev-ciip-backups
+      # kubernetesSecret should be gcp-{{ namespace }}-{{ gcs.bucketSuffix }}-service-account-key
+      kubernetesSecret: gcp-09269b-dev-ciip-backups-service-account-key # pragma: allowlist secret
+    # options below are required if walE.enable is true
+  namespace: 09269b-dev
+  gcs:
+    bucketSuffix: ciip-backups
