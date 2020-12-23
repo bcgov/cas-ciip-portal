@@ -8,7 +8,7 @@ endif
 # see https://blog.jgc.org/2007/06/escaping-comma-and-space-in-gnu-make.html
 , := ,
 
-PATHFINDER_PREFIX := wksv3k
+PATHFINDER_PREFIX := 09269b
 PROJECT_PREFIX := cas-ciip-
 
 THIS_FILE := $(lastword $(MAKEFILE_LIST))
@@ -37,9 +37,9 @@ lint: whoami
 lint:
 	@set -euo pipefail; \
 	helm dep up ./helm/cas-ciip-portal; \
-	helm template -f ./helm/cas-ciip-portal/values-wksv3k-dev.yaml cas-ciip-portal ./helm/cas-ciip-portal --validate; \
-	helm template -f ./helm/cas-ciip-portal/values-wksv3k-test.yaml cas-ciip-portal ./helm/cas-ciip-portal --validate;
-	helm template -f ./helm/cas-ciip-portal/values-wksv3k-prod.yaml cas-ciip-portal ./helm/cas-ciip-portal --validate;
+	helm template -f ./helm/cas-ciip-portal/values-$(OC_DEV_PROJECT).yaml cas-ciip-portal ./helm/cas-ciip-portal --validate; \
+	helm template -f ./helm/cas-ciip-portal/values-$(OC_TEST_PROJECT).yaml cas-ciip-portal ./helm/cas-ciip-portal --validate;
+	helm template -f ./helm/cas-ciip-portal/values-$(OC_PROD_PROJECT).yaml cas-ciip-portal ./helm/cas-ciip-portal --validate;
 
 .PHONY: configure
 configure: $(call make_help,configure,Configures the tools project namespace for a build)
