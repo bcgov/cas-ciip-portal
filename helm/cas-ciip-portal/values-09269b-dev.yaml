@@ -1,3 +1,7 @@
+
+ggircs:
+  namespace: 9212c9-dev
+
 replicas: 2
 route:
   host: ciip-dev.apps.silver.devops.gov.bc.ca

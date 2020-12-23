@@ -25,6 +25,11 @@ resources:
 networkSecurityPolicies:
   enable: true
 
+# Will tell which target to use when building the NSP for communication with the GGIRCS app
+ggircs:
+  namespace: ~
+  service: cas-ggircs-patroni
+
 route:
   # route.host defines the host name for the route template,
   # and the HOST env variable for the app deployment
