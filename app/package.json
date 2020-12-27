@@ -55,7 +55,7 @@
     "js-file-download": "^0.4.12",
     "json-schema": "^0.2.5",
     "keycloak-connect": "^10.0.0",
-    "moment-timezone": "^0.5.31",
+    "moment-timezone": "^0.5.32",
     "morgan": "^1.10.0",
     "next": "^9.5.5",
     "nodemailer": "^6.4.8",
