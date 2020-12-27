@@ -9125,10 +9125,10 @@ jest-message-util@^26.5.2:
     slash "^3.0.0"
     stack-utils "^2.0.2"
 
-jest-mock-random@^1.0.2:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/jest-mock-random/-/jest-mock-random-1.0.3.tgz#9d2aad3e8cf822f68d402f7bc3eab1a09a82cbdb"
-  integrity sha512-2wVQFxQsRPBiui6NjuhsximKZjmOckw9ZpoNtNjFAGgT8RT8zEo8JbhSrqiZeXP9DjUa74did+78/n7ek3TSrQ==
+jest-mock-random@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/jest-mock-random/-/jest-mock-random-1.1.1.tgz#2435e6691e677dd6ecb8a349033c41cf2b203aaa"
+  integrity sha512-eLduwHIZeepHCHWTgx6MGr8k4CWxTG39SN76tszzgCjX8GNu6M/05WcXMci73z1GUVqYQAsw6inz6ndgr3Gmqw==
 
 jest-mock@^26.5.2:
   version "26.5.2"
