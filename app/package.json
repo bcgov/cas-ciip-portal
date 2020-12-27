@@ -104,7 +104,7 @@
     "cypress-plugin-retries": "^1.5.2",
     "easygraphql-tester": "^5.1.6",
     "enzyme": "^3.10.0",
-    "enzyme-adapter-react-16": "^1.14.0",
+    "enzyme-adapter-react-16": "^1.15.5",
     "enzyme-to-json": "^3.4.4",
     "eslint": "^7.10.0",
     "eslint-config-airbnb-typescript": "^11.0.0",
