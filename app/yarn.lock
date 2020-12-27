@@ -2998,6 +2998,11 @@
   resolved "https://registry.yarnpkg.com/@types/relay-runtime/-/relay-runtime-9.1.6.tgz#5a9afc37552d7e5b7966779d33ab26dce7da6771"
   integrity sha512-rdylQOGAoqjDjtzC2uKdjIqeDRcAvUsjONQB+FZld3cAP9qU4eEwTfMKJ7MdZSw2YbWRcTphczT4OpKKlLxY3Q==
 
+"@types/relay-runtime@^10.1.6":
+  version "10.1.6"
+  resolved "https://registry.yarnpkg.com/@types/relay-runtime/-/relay-runtime-10.1.6.tgz#fba34fdb5ce836de6522d1502ff68657408bce74"
+  integrity sha512-B5REuBaGMlsXTAyX15D9NawGywVDzNAGPhsU74/gWNDzKEXRCO2rI0Pd1mtSpBVISHCe8SQlrO8qpXfLt3ZdXA==
+
 "@types/serve-static@*":
   version "1.13.3"
   resolved "https://registry.yarnpkg.com/@types/serve-static/-/serve-static-1.13.3.tgz#eb7e1c41c4468272557e897e9171ded5e2ded9d1"
