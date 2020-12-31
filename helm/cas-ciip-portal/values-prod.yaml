@@ -6,10 +6,6 @@ route:
 analytics:
   enable: true
 
-fider:
-  host: https://ciip-feedback.pathfinder.gov.bc.ca/
-# TODO move fider template in this repo
-
 cas-postgres:
   patroni:
     replicaCount: 4

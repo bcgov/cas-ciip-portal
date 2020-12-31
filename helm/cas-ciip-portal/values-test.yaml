@@ -32,12 +32,8 @@ dag:
   # this airflow dag runs the prod-test-restor cron job instead of the swrs import
   name: "ciip_deploy_db_test"
 
-fider:
-  host: https://ciip-portal-09269b-test-feedback.pathfinder.gov.bc.ca/
-# TODO move fider template in this repo
-
 restoreFromProd:
-  enable: true
+  enable: false # TODO enable once prod is deployed
 
 mailhog:
   enable: true

@@ -41,50 +41,11 @@ lint:
 	helm template -f ./helm/cas-ciip-portal/values-$(OC_TEST_PROJECT).yaml cas-ciip-portal ./helm/cas-ciip-portal --validate;
 	helm template -f ./helm/cas-ciip-portal/values-$(OC_PROD_PROJECT).yaml cas-ciip-portal ./helm/cas-ciip-portal --validate;
 
-.PHONY: configure
-configure: $(call make_help,configure,Configures the tools project namespace for a build)
-configure: OC_PROJECT=$(OC_TOOLS_PROJECT)
-configure: whoami
-	$(call oc_configure)
-
-
-TOOLS_HASH=$(shell md5sum .tool-versions Dockerfile | md5sum | cut -d' ' -f1)
-OC_TEMPLATE_VARS += TOOLS_HASH=$(TOOLS_HASH)
-.PHONY: build_tools
-build_tools: $(call make_help,build_schema,Builds a tools image in the tools openshift namespace)
-build_tools: OC_PROJECT=$(OC_TOOLS_PROJECT)
-build_tools: whoami
-ifeq ($(shell $(OC) -n $(OC_TOOLS_PROJECT) get istag/$(PROJECT_PREFIX)portal-tools:$(TOOLS_HASH) --ignore-not-found -o name),)
-	$(call oc_build,$(PROJECT_PREFIX)portal-tools)
-else
-	@echo "The $(PROJECT_PREFIX)portal-tools:$(TOOLS_HASH) tag already exists. Skipping build_tools."
-endif
-
-.PHONY: build_schema
-build_schema: $(call make_help,build_schema,Builds the schema source into an image in the tools project namespace)
-build_schema: OC_PROJECT=$(OC_TOOLS_PROJECT)
-build_schema: whoami
-	$(call oc_build,$(PROJECT_PREFIX)portal-schema)
-
-
-.PHONY: build_app
-build_app: $(call make_help,build_app,Builds the app source into an image in the tools project namespace)
-build_app: OC_PROJECT=$(OC_TOOLS_PROJECT)
-build_app: whoami
-	$(call oc_build,$(PROJECT_PREFIX)portal-app)
-
-.PHONY: build
-build: $(call make_help,build,Builds the source into an image in the tools project namespace)
-build: build_tools build_schema build_app
-
-.PHONY: clean_old_tags
-clean_old_tags: $(call make_help,clean_old_tags,Cleans old image tags from the tools project namespace)
-	$(call oc_clean_tools_istags,$(PROJECT_PREFIX)portal-app)
-	$(call oc_clean_tools_istags,$(PROJECT_PREFIX)portal-schema)
-	$(call oc_clean_tools_istags,$(PROJECT_PREFIX)portal-tools)
 
 .PHONY: install
 install: whoami
+install: OC_PROJECT=$(CIIP_NAMESPACE_PREFIX)-$(ENVIRONMENT)
+install: GGIRCS_PROJECT=$(GGIRCS_NAMESPACE_PREFIX)-$(ENVIRONMENT)
 install:
 	@set -euo pipefail; \
 	helm dep up ./helm/cas-ciip-portal; \
@@ -92,12 +53,14 @@ install:
 		helm install --atomic --timeout 2400s --namespace $(OC_PROJECT) \
 		--set route.insecure=true \
 		--set image.schema.tag=$(GIT_SHA1) --set image.app.tag=$(GIT_SHA1) \
-		--values ./helm/cas-ciip-portal/values-$(OC_PROJECT).yaml \
+		--set ggircs.namespace=$(GGIRCS_PROJECT) \
+		--values ./helm/cas-ciip-portal/values-$(ENVIRONMENT).yaml \
 		cas-ciip-portal ./helm/cas-ciip-portal; \
 	fi; \
 	helm upgrade --install --atomic --timeout 2400s --namespace $(OC_PROJECT) \
 	--set image.schema.tag=$(GIT_SHA1) --set image.app.tag=$(GIT_SHA1) \
-	--values ./helm/cas-ciip-portal/values-$(OC_PROJECT).yaml \
+	--set ggircs.namespace=$(GGIRCS_PROJECT) \
+	--values ./helm/cas-ciip-portal/values-$(ENVIRONMENT).yaml \
 	cas-ciip-portal ./helm/cas-ciip-portal;
 
 .PHONY: install_test

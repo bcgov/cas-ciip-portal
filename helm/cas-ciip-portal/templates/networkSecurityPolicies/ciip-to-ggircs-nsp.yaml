@@ -12,5 +12,5 @@ spec:
       - release={{ .Release.Name }}
   destination:
     - - $namespace={{ .Values.ggircs.namespace }}
-      - service={{ .Values.ggircs.service }}
+      - release={{ .Values.ggircs.instanceName }}
 {{- end }}

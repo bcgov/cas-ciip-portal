@@ -29,6 +29,7 @@ networkSecurityPolicies:
 ggircs:
   namespace: ~
   service: cas-ggircs-patroni
+  instanceName: cas-ggircs
 
 route:
   # route.host defines the host name for the route template,

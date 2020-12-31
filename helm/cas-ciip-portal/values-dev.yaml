@@ -1,4 +1,3 @@
-
 ggircs:
   namespace: 9212c9-dev
 
@@ -44,15 +43,13 @@ env:
 sitewide_notice:
   content: <div class="alert alert-warning">This is the DEV environment. All emails will be sent to <a href="https://cas-mailhog-09269b-dev.pathfinder.gov.bc.ca">the dev inbox</a> instead of the real recipients.</div>
 
-fider:
-  host: # TODO move fider template in this repo
-
 mailhog:
   enable: true
   securityContext:
-    runAsUser: 1009900000
-    fsGroup: 1009900000
-    runAsNonRoot: true
+    {}
+    # runAsUser: 1009900000
+    # fsGroup: 1009900000
+    # runAsNonRoot: true
   host: cas-mailhog-dev.apps.silver.devops.gov.bc.ca
 
 cas-postgres:
