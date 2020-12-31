@@ -91,7 +91,7 @@ cas-postgres:
         cpu: 15m
         memory: 600Mi
     persistentVolume:
-      size: 20Gi
+      size: 10Gi
       storageClass: netapp-block-standard
     replicaCount: 3
     env:
