@@ -4,7 +4,6 @@ ggircs:
 replicas: 2
 route:
   host: ciip-dev.apps.silver.devops.gov.bc.ca
-  insecure: true
 
 image:
   schema:
@@ -46,10 +45,9 @@ sitewide_notice:
 mailhog:
   enable: true
   securityContext:
-    {}
-    # runAsUser: 1009900000
-    # fsGroup: 1009900000
-    # runAsNonRoot: true
+    runAsUser: 1001650000
+    fsGroup: 1001650000
+    runAsNonRoot: true
   host: cas-mailhog-dev.apps.silver.devops.gov.bc.ca
 
 cas-postgres:

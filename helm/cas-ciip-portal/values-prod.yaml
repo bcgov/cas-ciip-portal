@@ -1,7 +1,6 @@
 replicas: 3
 route:
-  host: ciip.gov.bc.ca
-  insecure: false # cert has been issued
+  host: ciip.apps.silver.devops.gov.bc.ca
 
 analytics:
   enable: true

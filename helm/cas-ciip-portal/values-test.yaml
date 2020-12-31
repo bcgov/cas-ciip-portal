@@ -1,7 +1,6 @@
 replicas: 2
 route:
-  host: test.ciip.gov.bc.ca
-  insecure: false # cert has been issued
+  host: ciip-test.apps.silver.devops.gov.bc.ca
 
 env:
   smtpConnectionString: smtp://cas-ciip-portal-mailhog:1025
@@ -33,13 +32,13 @@ dag:
   name: "ciip_deploy_db_test"
 
 restoreFromProd:
-  enable: false # TODO enable once prod is deployed
+  enable: true
 
 mailhog:
   enable: true
   securityContext:
-    runAsUser: 1009960000
-    fsGroup: 1009960000
+    runAsUser: 1001660000
+    fsGroup: 1001660000
     runAsNonRoot: true
   host: cas-mailhog-09269b-test.pathfinder.gov.bc.ca
 
