@@ -73,6 +73,8 @@ restoreFromProd:
 
 mailhog:
   enable: false
+  image:
+    repository: gcr.io/ggl-cas-storage/mailhog
   resources:
     limits:
       cpu: 100m
