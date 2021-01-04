@@ -6,7 +6,7 @@ metadata:
   labels:
 {{ include "cas-ciip-portal.labels" . | indent 4 }}
   annotations:
-    "helm.sh/hook": "pre-upgrade,pre-install"
+    "helm.sh/hook": "pre-install"
     "helm.sh/hook-delete-policy": "keep"
     "helm.sh/hook-weight": "-5"
 spec:
