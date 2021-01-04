@@ -46,7 +46,7 @@ exports[`FacilitiesListContainer should match the previous snapshot 1`] = `
               },
             }
           }
-          reportingYear={2019}
+          reportingYear={2020}
         />
       </tbody>
     }
@@ -65,7 +65,7 @@ exports[`FacilitiesListContainer should match the previous snapshot 1`] = `
       <SelectReportingYearDropDownComponent
         handleEvent={[MockFunction]}
         selectableReportingYears={Array []}
-        selectedReportingYear={2019}
+        selectedReportingYear={2020}
       />
     }
     handleEvent={[MockFunction]}
