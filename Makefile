@@ -31,15 +31,14 @@ project: $(call make_help,project,Switches to the desired $$OC_PROJECT namespace
 	$(call oc_project)
 
 .PHONY: lint
-lint: $(call make_help,lint,Checks the configured yml template definitions against the remote schema using the tools namespace)
-lint: OC_PROJECT=$(OC_TOOLS_PROJECT)
+lint: $(call make_help,lint,Checks the configured yml template definitions against the remote schema)
 lint: whoami
 lint:
 	@set -euo pipefail; \
 	helm dep up ./helm/cas-ciip-portal; \
-	helm template -f ./helm/cas-ciip-portal/values-$(OC_DEV_PROJECT).yaml cas-ciip-portal ./helm/cas-ciip-portal --validate; \
-	helm template -f ./helm/cas-ciip-portal/values-$(OC_TEST_PROJECT).yaml cas-ciip-portal ./helm/cas-ciip-portal --validate;
-	helm template -f ./helm/cas-ciip-portal/values-$(OC_PROD_PROJECT).yaml cas-ciip-portal ./helm/cas-ciip-portal --validate;
+	helm template -f ./helm/cas-ciip-portal/values-dev.yaml cas-ciip-portal ./helm/cas-ciip-portal --validate; \
+	helm template -f ./helm/cas-ciip-portal/values-test.yaml cas-ciip-portal ./helm/cas-ciip-portal --validate;
+	helm template -f ./helm/cas-ciip-portal/values-prod.yaml cas-ciip-portal ./helm/cas-ciip-portal --validate;
 
 
 .PHONY: install

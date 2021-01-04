@@ -293,7 +293,7 @@ jobs:
           command: make install-prod
           name: Deploy to prod
 
-  pathfinder_lint:
+  helm_lint:
     executor: redhat-openshift/default
     steps:
       - checkout
@@ -461,7 +461,7 @@ workflows:
           image_name: cas-ciip-portal-app
           image_tag: ${CIRCLE_SHA1}
           dockerfile: app/Dockerfile
-      - pathfinder_lint:
+      - helm_lint:
           context: cas-pipeline
   release:
     jobs:
