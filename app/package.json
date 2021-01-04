@@ -66,8 +66,8 @@
     "react": "^16.13.0",
     "react-bootstrap": "^1.0.1",
     "react-bootstrap-typeahead": "^4.2.3",
-    "react-datepicker": "^3.3.0",
     "react-cookie": "^4.0.3",
+    "react-datepicker": "^3.3.0",
     "react-dom": "^16.12.0",
     "react-jsonschema-form": "^1.8.1",
     "react-mathjax2": "^0.0.2",
@@ -147,7 +147,8 @@
     "serialize-javascript": "^3.1.0",
     "**/@types/relay-runtime": "^9.1.6",
     "**/node-fetch": "^2.6.1",
-    "next/resolve-url-loader/adjust-sourcemap-loader/object-path": "0.11.5"
+    "next/resolve-url-loader/adjust-sourcemap-loader/object-path": "0.11.5",
+    "**/axios": "^0.21.1"
   },
   "jest": {
     "testMatch": [
