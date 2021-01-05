@@ -53,7 +53,7 @@ class FacilitiesList extends Component<Props> {
         direction: 'ASC',
         offsetValue: 0,
         maxResultsPerPage: 10,
-        reportingYear: new Date().getFullYear() - 1
+        reportingYear: 2019
       }
     };
   }
