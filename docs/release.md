@@ -7,8 +7,8 @@ When merging to the `develop` branch, the CIIP application is continuously deplo
 - 1.1 Create a chore/release branch
 - 1.2 From the root of the repository, run `./app/node_modules/.bin/standard-version`. This will generate the [changelog](../CHANGELOG.md), increase the version number following [semantic versioning](https://semver.org/), commit the changes and tag that commit.
 - 1.3 note the version number printed by standard-version (referred to as &`<version>` below)
-- 1.4 run `cd schema/ && sqitch tag v<version>  -m "release v<version>"`
-- 1.5 In helm/cas-ciip-portal/Chart.yaml, set `appVersion` to `<version>`, and increas the `version` patch number.
+- 1.4 run `cd schema/ && sqitch tag v<version> -m "release v<version>"`
+- 1.5 In helm/cas-ciip-portal/Chart.yaml, set `appVersion` to `<version>`, and increase the `version` patch number.
 - 1.6 Commit with the chore(release) commit type.
 - 1.7 Push using `git push --follow-tags`
 - 1.8 Create a pull request from chore/release to develop.
