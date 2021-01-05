@@ -144,6 +144,7 @@ describe('The linking modal', () => {
 describe('The Create Product modal', () => {
   beforeEach(() => {
     cy.logout();
+    cy.cleanSchema();
     cy.sqlFixture('fixtures/products-benchmarks-setup');
     cy.login(
       Cypress.env('TEST_ADMIN_USERNAME'),
