@@ -39,7 +39,7 @@ Cypress.Commands.add('logout', () => {
 
 Cypress.Commands.add('sqlFixture', (fixtureName) => {
   cy.fixture(`${fixtureName}.sql`).then((fixture) =>
-    cy.exec(`psql -d ciip_portal_dev << EOF
+    cy.exec(`psql --set ON_ERROR_STOP=1 -d ciip_portal_dev<< EOF
 ${fixture}
 EOF`)
   );
@@ -61,6 +61,6 @@ Cypress.Commands.add('deployProdData', () => {
 
 Cypress.Commands.add('cleanSchema', () => {
   cy.exec(
-    `psql -d ciip_portal_dev -c 'select test_helper.clean_ggircs_portal_schema()'`
+    `psql --set ON_ERROR_STOP=1 -d ciip_portal_dev -c 'select test_helper.clean_ggircs_portal_schema()'`
   );
 });

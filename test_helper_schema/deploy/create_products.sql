@@ -4,7 +4,7 @@
 begin;
 
   create or replace function test_helper.create_product(
-        id int default 0,
+        product_id int default 0,
         product_name text default 'Test Product',
         units text default 'angstrom per squared fhqwhgads',
         product_state ggircs_portal.ciip_product_state default 'draft', -- needs to be any of draft, published, archived to match the enum defined in ggircs_portal.ciip_product_state
@@ -44,7 +44,23 @@ begin;
           updated_at
         )
         overriding system value
-          values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16);
+          values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16)
+        on conflict(id) do update set
+          product_name=excluded.product_name,
+          units=excluded.units,
+          product_state=excluded.product_state,
+          is_ciip_product=excluded.is_ciip_product,
+          requires_emission_allocation=excluded.requires_emission_allocation,
+          requires_product_amount=excluded.requires_product_amount,
+          subtract_exported_electricity_emissions=excluded.subtract_exported_electricity_emissions,
+          add_purchased_electricity_emissions=excluded.add_purchased_electricity_emissions,
+          subtract_exported_heat_emissions=excluded.subtract_exported_heat_emissions,
+          add_purchased_heat_emissions=excluded.add_purchased_heat_emissions,
+          subtract_generated_electricity_emissions=excluded.subtract_generated_electricity_emissions,
+          subtract_generated_heat_emissions=excluded.subtract_generated_heat_emissions,
+          add_emissions_from_eios=excluded.add_emissions_from_eios,
+          is_read_only=excluded.is_read_only,
+          updated_at=excluded.updated_at;
       else -- No ID has been provided (or requested to be zero) so we let the DB handle it
         insert into ggircs_portal.product(
           product_name,
@@ -63,8 +79,7 @@ begin;
           is_read_only,
           updated_at
         )
-        overriding system value
-          values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15);
+        values ($2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16);
       end if;
 
     end;

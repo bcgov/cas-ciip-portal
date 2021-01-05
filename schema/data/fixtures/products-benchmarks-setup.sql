@@ -9,10 +9,10 @@ select test_helper.modify_triggers('disable');
 select test_helper.create_test_users();
 
 -- Create products to be tested
-select test_helper.create_product(id => 11, product_name => 'Product A', units => 'tonnes', is_read_only => false);
-select test_helper.create_product(id => 12, product_name => 'Product B', units => 'cubic meters', product_state => 'published', is_read_only => false);
-select test_helper.create_product(id => 13, product_name => 'Product C', units => 'unicorns per million', product_state => 'archived');
-select test_helper.create_product(id => 14, product_name => 'Product D', units => 'kilolitres', product_state => 'published');
+select test_helper.create_product(product_id => 11, product_name => 'Product A', units => 'tonnes', is_read_only => false);
+select test_helper.create_product(product_id => 12, product_name => 'Product B', units => 'cubic meters', product_state => 'published', is_read_only => false);
+select test_helper.create_product(product_id => 13, product_name => 'Product C', units => 'unicorns per million', product_state => 'archived');
+select test_helper.create_product(product_id => 14, product_name => 'Product D', units => 'kilolitres', product_state => 'published');
 
 -- Add reporting years for benchmark inserts
 insert into ggircs_portal.reporting_year(reporting_year, reporting_period_start, reporting_period_end, swrs_deadline, application_open_time, application_close_time)
