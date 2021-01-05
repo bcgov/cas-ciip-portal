@@ -7,12 +7,13 @@ create or replace function test_helper.mock_open_window()
 returns void as
 $function$
 
-  create or replace function ggircs_portal.opened_reporting_year() returns ggircs_portal.reporting_year as
+  create or replace function ggircs_portal.opened_reporting_year()
+  returns ggircs_portal.reporting_year as
   $$
     select *
     from ggircs_portal.reporting_year
     where reporting_year = 2019
-  $$ language sql;
+  $$ language sql stable;
 
   insert into ggircs_portal.reporting_year(reporting_year, reporting_period_start, reporting_period_end, swrs_deadline, application_open_time, application_close_time)
   overriding system value
