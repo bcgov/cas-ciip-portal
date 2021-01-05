@@ -35,6 +35,7 @@ Create chart name and version as used by the chart label.
 Common labels
 */}}
 {{- define "cas-ciip-portal.labels" -}}
+release: {{ .Release.Name }}
 helm.sh/chart: {{ include "cas-ciip-portal.chart" . }}
 {{ include "cas-ciip-portal.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
@@ -60,4 +61,20 @@ Create the name of the service account to use
 {{- else }}
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
+{{- end }}
+
+
+
+{{/*
+Gets the prefix of the namespace. (09269b, ... )
+*/}}
+{{- define "cas-ciip-portal.namespacePrefix" }}
+{{- (split "-" .Release.Namespace)._0 | trim -}}
+{{- end }}
+
+{{/*
+Gets the suffix of the namespace. (-dev, -tools, ... )
+*/}}
+{{- define "cas-ciip-portal.namespaceSuffix" }}
+{{- (split "-" .Release.Namespace)._1 | trim -}}
 {{- end }}

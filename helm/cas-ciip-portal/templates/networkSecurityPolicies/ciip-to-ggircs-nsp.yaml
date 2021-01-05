@@ -1,0 +1,16 @@
+{{- if .Values.networkSecurityPolicies.enable }}
+kind: NetworkSecurityPolicy
+apiVersion: security.devops.gov.bc.ca/v1alpha1
+metadata:
+  name: {{ .Release.Name }}-ciip-to-ggircs
+  labels:
+{{ include "cas-ciip-portal.labels" . | nindent 4 }}
+spec:
+  description: allow ciip and ggircs apps to talk
+  source:
+    - - $namespace={{ .Release.Namespace }}
+      - release={{ .Release.Name }}
+  destination:
+    - - $namespace={{ .Values.ggircs.namespace }}
+      - release={{ .Values.ggircs.instanceName }}
+{{- end }}

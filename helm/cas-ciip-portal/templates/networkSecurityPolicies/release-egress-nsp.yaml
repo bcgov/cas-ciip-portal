@@ -1,0 +1,15 @@
+{{- if .Values.networkSecurityPolicies.enable }}
+kind: NetworkSecurityPolicy
+apiVersion: security.devops.gov.bc.ca/v1alpha1
+metadata:
+  name: {{ .Release.Name }}-egress
+  labels:
+{{ include "cas-ciip-portal.labels" . | nindent 4 }}
+spec:
+  description: allow the trigger pod to talk to do REST requests on airflow public URLs
+  source:
+    - - $namespace={{ .Release.Namespace }}
+      - release={{ .Release.Name }}
+  destination:
+    - - 'ext:network=any'
+{{- end }}

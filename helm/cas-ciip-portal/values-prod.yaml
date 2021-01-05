@@ -1,14 +1,9 @@
 replicas: 3
 route:
-  host: ciip.gov.bc.ca
-  insecure: false # cert has been issued
+  host: ciip.apps.silver.devops.gov.bc.ca
 
 analytics:
   enable: true
-
-fider:
-  host: https://ciip-feedback.pathfinder.gov.bc.ca/
-# TODO move fider template in this repo
 
 cas-postgres:
   patroni:
@@ -23,10 +18,10 @@ cas-postgres:
     walE:
       enable: true
       # the GCS bucket name should be {{ namespace }}-{{ gcs.bucketSuffix }}
-      gcsBucket: wksv3k-prod-ciip-backups
+      gcsBucket: 09269b-prod-ciip-backups
       # kubernetesSecret should be gcp-{{ namespace }}-{{ gcs.bucketSuffix }}-service-account-key
-      kubernetesSecret: gcp-wksv3k-prod-ciip-backups-service-account-key # pragma: allowlist secret
+      kubernetesSecret: gcp-09269b-prod-ciip-backups-service-account-key # pragma: allowlist secret
     # options below are required if walE.enable is true
-  namespace: wksv3k-prod
+  namespace: 09269b-prod
   gcs:
     bucketSuffix: ciip-backups

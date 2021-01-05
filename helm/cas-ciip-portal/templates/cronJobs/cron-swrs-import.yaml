@@ -61,7 +61,7 @@ spec:
                 - name: GGIRCS_PORT
                   value: "5432"
                 - name: GGIRCS_HOST
-                  value: cas-ggircs-patroni
+                  value: "{{ .Values.ggircs.service }}.{{ .Values.ggircs.namespace }}"
               name: {{ template "cas-ciip-portal.fullname" . }}-swrs-import
               image: {{ .Values.image.psql.repository }}:{{ .Values.image.psql.tag }}
               resources:

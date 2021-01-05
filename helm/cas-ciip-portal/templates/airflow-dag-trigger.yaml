@@ -1,3 +1,4 @@
+{{- if .Values.dag.enable }}
 apiVersion: batch/v1
 kind: Job
 metadata:
@@ -40,22 +41,17 @@ spec:
         imagePullPolicy: {{ .Values.image.schema.pullPolicy }}
         env:
           - name: AIRFLOW_USERNAME
-            valueFrom:
-              secretKeyRef:
-                key: username
-                name: cas-airflow-admin
+            value: cas-airflow-admin
           - name: AIRFLOW_PASSWORD
             valueFrom:
               secretKeyRef:
-                key: password
-                name: cas-airflow-admin
-          - name: NAMESPACE
-            valueFrom:
-              fieldRef:
-                apiVersion: v1
-                fieldPath: metadata.namespace
+                key: default-user-pass
+                name: airflow-default-user-password
+          - name: RELEASE_SUFFIX
+            value: {{ include "cas-ciip-portal.namespaceSuffix" . }}
         command:
           - /usr/bin/env
           - bash
           - -c
           - ./trigger-airflow-dag.sh {{ .Values.dag.name }}
+{{- end }}

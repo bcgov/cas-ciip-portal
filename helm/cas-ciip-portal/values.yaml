@@ -22,6 +22,15 @@ resources:
     cpu: 10m
     memory: 124Mi
 
+networkSecurityPolicies:
+  enable: true
+
+# Will tell which target to use when building the NSP for communication with the GGIRCS app
+ggircs:
+  namespace: ~
+  service: cas-ggircs-patroni
+  instanceName: cas-ggircs
+
 route:
   # route.host defines the host name for the route template,
   # and the HOST env variable for the app deployment
@@ -41,6 +50,7 @@ dag:
   # a command to be executed at the beginning of the init-db job, running in the psql image abov
   preInitDb: ""
   name: "ciip_deploy_db"
+  enable: true
 
 env:
   smtpConnectionString: smtp://apps.smtp.gov.bc.ca/?port=25&ignoreTLS=true&secure=false
@@ -63,6 +73,8 @@ restoreFromProd:
 
 mailhog:
   enable: false
+  image:
+    repository: gcr.io/ggl-cas-storage/mailhog
   resources:
     limits:
       cpu: 100m
@@ -81,7 +93,8 @@ cas-postgres:
         cpu: 15m
         memory: 600Mi
     persistentVolume:
-      size: 20Gi
+      size: 10Gi
+      storageClass: netapp-block-standard
     replicaCount: 3
     env:
       ALLOW_NOSSL: true

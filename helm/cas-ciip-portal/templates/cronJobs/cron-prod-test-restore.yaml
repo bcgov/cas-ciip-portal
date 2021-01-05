@@ -57,11 +57,11 @@ spec:
                   valueFrom:
                     secretKeyRef:
                       key: credentials.json
-                      name: gcp-wksv3k-prod-ciip-backup-read-only-service-account-key
+                      name: gcp-{{ template "cas-ciip-portal.namespacePrefix" . }}-prod-ciip-backup-read-only-service-account-key
                 - name: WALG_GS_PREFIX
-                  value: "gs://wksv3k-prod-ciip-backups/wal"
+                  value: "gs://{{ template "cas-ciip-portal.namespacePrefix" . }}-prod-ciip-backups/wal"
                 - name: WALE_GS_PREFIX
-                  value: "gs://wksv3k-prod-ciip-backups/wal"
+                  value: "gs://{{ template "cas-ciip-portal.namespacePrefix" . }}-prod-ciip-backups/wal"
               name: {{ template "cas-ciip-portal.fullname" . }}-prod-test-restore
               image: {{ .Values.image.psql.repository }}:{{ .Values.image.psql.tag }}
               resources:
@@ -156,9 +156,9 @@ spec:
                   PGPASSFILE=".pgpass" pg_restore --no-password -d $PORTAL_DATABASE -h $PORTAL_HOST -p $PORTAL_PORT -U $PORTAL_USER
               volumeMounts:
                 - mountPath: /home/postgres/
-                  name: prod-backup
+                  name: prod-restore
           volumes:
-            - name: prod-backup
+            - name: prod-restore
               persistentVolumeClaim:
-                claimName: {{ template "cas-ciip-portal.fullname" . }}-prod-backup
+                claimName: {{ template "cas-ciip-portal.fullname" . }}-prod-restore
 {{- end }}

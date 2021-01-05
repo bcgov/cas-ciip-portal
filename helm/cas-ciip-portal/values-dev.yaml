@@ -1,7 +1,20 @@
+ggircs:
+  namespace: 9212c9-dev
+
 replicas: 2
 route:
-  host: dev.ciip.gov.bc.ca
-  insecure: false # cert has been issued
+  host: ciip-dev.apps.silver.devops.gov.bc.ca
+
+image:
+  schema:
+    tag: latest
+    pullPolicy: Always
+  app:
+    tag: latest
+    pullPolicy: Always
+  psql:
+    pullPolicy: Always
+    tag: "0.2.0"
 
 dag:
   preInitDb: |
@@ -27,28 +40,25 @@ env:
   enableDbMocks: true
 
 sitewide_notice:
-  content: <div class="alert alert-warning">This is the DEV environment. All emails will be sent to <a href="https://cas-mailhog-wksv3k-dev.pathfinder.gov.bc.ca">the dev inbox</a> instead of the real recipients.</div>
-
-fider:
-  host: # TODO move fider template in this repo
+  content: <div class="alert alert-warning">This is the DEV environment. All emails will be sent to <a href="https://cas-mailhog-09269b-dev.pathfinder.gov.bc.ca">the dev inbox</a> instead of the real recipients.</div>
 
 mailhog:
   enable: true
   securityContext:
-    runAsUser: 1009900000
-    fsGroup: 1009900000
+    runAsUser: 1001650000
+    fsGroup: 1001650000
     runAsNonRoot: true
-  host: cas-mailhog-wksv3k-dev.pathfinder.gov.bc.ca
+  host: cas-mailhog-dev.apps.silver.devops.gov.bc.ca
 
 cas-postgres:
   patroni:
     walE:
       enable: true
       # the GCS bucket name should be {{ namespace }}-{{ gcs.bucketSuffix }}
-      gcsBucket: wksv3k-dev-ciip-backups
+      gcsBucket: 09269b-dev-ciip-backups
       # kubernetesSecret should be gcp-{{ namespace }}-{{ gcs.bucketSuffix }}-service-account-key
-      kubernetesSecret: gcp-wksv3k-dev-ciip-backups-service-account-key # pragma: allowlist secret
+      kubernetesSecret: gcp-09269b-dev-ciip-backups-service-account-key # pragma: allowlist secret
     # options below are required if walE.enable is true
-  namespace: wksv3k-dev
+  namespace: 09269b-dev
   gcs:
     bucketSuffix: ciip-backups
