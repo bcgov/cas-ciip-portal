@@ -10,9 +10,6 @@ select test_helper.modify_triggers('disable');
 -- Create test users
 select test_helper.create_test_users();
 
--- Create approved user-organisationm connection
-insert into ggircs_portal.ciip_user_organisation(user_id, organisation_id, status) values (6, 200, 'approved');
-
 -- Create applications (and necessary facilities/organisations)
 select test_helper.create_applications(3, True, True);
 

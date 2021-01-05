@@ -32,8 +32,8 @@ select test_helper.create_test_users();
 select test_helper.create_applications(2, True, True);
 
 -- Create products for testing
-select test_helper.create_product(id => 26, product_name => 'Coal', units => 'tonnes', product_state => 'published');
-select test_helper.create_product(id => 29, product_name => 'Other Pulp (Mechanical pulp, paper, newsprint)', units => 'bone-dry tonnes', product_state => 'published');
+select test_helper.create_product(product_id => 26, product_name => 'Coal', units => 'tonnes', product_state => 'published');
+select test_helper.create_product(product_id => 29, product_name => 'Other Pulp (Mechanical pulp, paper, newsprint)', units => 'bone-dry tonnes', product_state => 'published');
 
 -- Init form results with data
 select test_helper.initialize_all_form_result_data(1,1);

@@ -13,7 +13,7 @@ class SearchTableComponent extends Component<Props> {
     searchField: null,
     searchValue: null,
     searchDisplay: 'Search by: ',
-    selectedReportingYear: new Date().getFullYear() - 1
+    selectedReportingYear: 2019
   };
 
   toggleDirection = () => {
