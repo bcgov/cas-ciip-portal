@@ -2,6 +2,42 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.14.0](https://github.com/bcgov/cas-ciip-portal/compare/v1.13.1...v1.14.0) (2021-01-05)
+
+
+### Features
+
+* correcting namespaces ([1ad5243](https://github.com/bcgov/cas-ciip-portal/commit/1ad5243ed2f4c3f708acb52e34dc08d4d09d4eee))
+* correcting namespaces ([5e9dfa1](https://github.com/bcgov/cas-ciip-portal/commit/5e9dfa16414d2e1c1537bf677f268f37d3405432))
+* function to mock the time inside a transaction ([c711fb6](https://github.com/bcgov/cas-ciip-portal/commit/c711fb605e3a64c4de5656a188dc38bab39c556e))
+* nsps and values for ocp4-dev ([699e700](https://github.com/bcgov/cas-ciip-portal/commit/699e700dcc7c2e4485b7408bf32c8b76042a7fa4))
+* remove values files for old namespaces ([0d209cf](https://github.com/bcgov/cas-ciip-portal/commit/0d209cf7983c2526f8ec662f8e24f53460b73ea3))
+* time travel supports fractional epochs ([e6f6b6b](https://github.com/bcgov/cas-ciip-portal/commit/e6f6b6bb710bfc922a79f65bd5d755506bb17fe8))
+* update mailhog chart version and image repository ([ee056a6](https://github.com/bcgov/cas-ciip-portal/commit/ee056a655248fa3e2bcac634b2e79c0de15a37a6))
+* update routes with temporary host names ([4eb98ba](https://github.com/bcgov/cas-ciip-portal/commit/4eb98bab9fec4be747cbcb56ff6d9dd927812580))
+* updating graphql schema ([dcf0de9](https://github.com/bcgov/cas-ciip-portal/commit/dcf0de9a5010dec595346a2d69f0d68e228af1f4))
+* updating graphql schema ([d4a3bc3](https://github.com/bcgov/cas-ciip-portal/commit/d4a3bc31c307e926a7e39ff68220da58b6257748))
+* values files for test and prod ([861a56e](https://github.com/bcgov/cas-ciip-portal/commit/861a56e7d27e76b228e4db25e445b20ef4a4938c))
+
+
+### Bug Fixes
+
+* cpan installs the dependencies for all schemas ([5e80404](https://github.com/bcgov/cas-ciip-portal/commit/5e80404cb836521cf8e54c9d4c98fad56316026c))
+* don't attempt to delete prod-restore PVC ([7c4ead0](https://github.com/bcgov/cas-ciip-portal/commit/7c4ead0e44980a445a53e49df8c8bf295de2155d))
+* fix NSP and update makefile to support generic environment names ([a61efc7](https://github.com/bcgov/cas-ciip-portal/commit/a61efc743ddc775526a2f0cdca5ac415ab446059))
+* hardcode default reporting year in table to 2019 ([402ca2e](https://github.com/bcgov/cas-ciip-portal/commit/402ca2eb82c24f9baa7e4622856c17ad50d7f7cf))
+* linting on OCP4 ([95cda7a](https://github.com/bcgov/cas-ciip-portal/commit/95cda7a1fc613586bd1c864fb8341dca55c26eda))
+* mocks schema needs to be deployed to deploy dev data ([f765d16](https://github.com/bcgov/cas-ciip-portal/commit/f765d168d2c2de89ddf63b6d5cfb03a37414d8f3))
+* remove duplicate deployment of mock schema ([aefac80](https://github.com/bcgov/cas-ciip-portal/commit/aefac80f5d37cb63a90b1c2e71c8b8be7169ec0c))
+* remove ie from happo config targets ([b6353cb](https://github.com/bcgov/cas-ciip-portal/commit/b6353cba0f0ccfd4f684a28372d4aa78586aa98f))
+* schema deploying order and dev data dependency ([29a7af2](https://github.com/bcgov/cas-ciip-portal/commit/29a7af2e66cb8636ec4437287f7a42ef85aed1df))
+* schema Docker container directory structure needs to match repo ([cdbeba7](https://github.com/bcgov/cas-ciip-portal/commit/cdbeba742e3a8df4dfff50d42cfcac4bb76e4b68))
+* sqitch plan reordering ([671a0a7](https://github.com/bcgov/cas-ciip-portal/commit/671a0a78711222db5319ac3326e457e3b948ba0e))
+* sql syntax ([92bd664](https://github.com/bcgov/cas-ciip-portal/commit/92bd664e600aa99c3ef0ccbc7d3f10e528a4b1f8))
+* typo in developer guide documentation ([4de5ba3](https://github.com/bcgov/cas-ciip-portal/commit/4de5ba3835ffd26333b75de8c07bf08170c7cc1b))
+* update axios to fix security advisory ([6a057da](https://github.com/bcgov/cas-ciip-portal/commit/6a057da4dc21a0c0f4e7e51fa3f1f8fe21f9a7c2))
+* update dockerfile workdir ([b4eb9da](https://github.com/bcgov/cas-ciip-portal/commit/b4eb9da62ed9548cd13a89bbda8b3122ed6cc5c3))
+
 ### [1.13.1](https://github.com/bcgov/cas-ciip-portal/compare/v1.13.0...v1.13.1) (2020-12-07)
 
 
