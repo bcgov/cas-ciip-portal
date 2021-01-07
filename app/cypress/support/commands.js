@@ -37,8 +37,8 @@ Cypress.Commands.add('logout', () => {
   cy.request('/logout');
 });
 
-Cypress.Commands.add('analystLogin', () => {
-  cy.sqlFixture('fixtures/auth/analyst-login');
+Cypress.Commands.add('mockLogin', (roleName) => {
+  cy.setCookie('mocks.auth', roleName);
 });
 
 Cypress.Commands.add('sqlFixture', (fixtureName) => {

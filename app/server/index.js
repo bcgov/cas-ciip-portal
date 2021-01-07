@@ -47,6 +47,7 @@ const AS_ADMIN = process.argv.includes('AS_ADMIN');
 const AS_PENDING = process.argv.includes('AS_PENDING');
 const NO_MATHJAX = process.argv.includes('NO_MATHJAX');
 const NO_MAIL = process.argv.includes('NO_MAIL');
+const AS_CYPRESS = process.argv.includes('AS_CYPRESS');
 
 if (NO_MATHJAX) process.env.NO_MATHJAX = true;
 
@@ -221,7 +222,8 @@ app.prepare().then(async () => {
       AS_ANALYST ||
       AS_PENDING ||
       AS_REPORTER ||
-      AS_CERTIFIER
+      AS_CERTIFIER ||
+      AS_CYPRESS
     ) {
       return res.json(3600);
     }
@@ -278,7 +280,14 @@ app.prepare().then(async () => {
     })
   );
 
-  if (NO_AUTH || AS_ANALYST || AS_REPORTER || AS_CERTIFIER || AS_ADMIN)
+  if (
+    NO_AUTH ||
+    AS_ANALYST ||
+    AS_REPORTER ||
+    AS_CERTIFIER ||
+    AS_ADMIN ||
+    AS_CYPRESS
+  )
     server.post('/login', (req, res) => res.redirect(302, getRedirectURL(req)));
   else
     server.post('/login', keycloak.protect(), (req, res) =>

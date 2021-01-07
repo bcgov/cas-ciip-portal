@@ -2,7 +2,7 @@ describe('When logged in as an analyst', () => {
   beforeEach(() => {
     cy.cleanSchema();
     cy.sqlFixture('fixtures/analyst-all-access-setup');
-    cy.analystLogin();
+    cy.mockLogin('analyst');
   });
 
   afterEach(() => {
