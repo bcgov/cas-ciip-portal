@@ -37,6 +37,10 @@ Cypress.Commands.add('logout', () => {
   cy.request('/logout');
 });
 
+Cypress.Commands.add('analystLogin', () => {
+  cy.sqlFixture('fixtures/auth/analyst-login');
+});
+
 Cypress.Commands.add('sqlFixture', (fixtureName) => {
   cy.fixture(`${fixtureName}.sql`).then((fixture) =>
     cy.exec(`psql --set ON_ERROR_STOP=1 -d ciip_portal_dev<< EOF
