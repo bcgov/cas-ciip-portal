@@ -3,10 +3,7 @@ describe('When logged in as a reporter', () => {
     cy.cleanSchema();
     cy.deployProdData();
     cy.logout();
-    cy.login(
-      Cypress.env('TEST_REPORTER_USERNAME'),
-      Cypress.env('TEST_REPORTER_PASSWORD')
-    );
+    cy.mockLogin('reporter');
     cy.sqlFixture('fixtures/form-errors-prevent-submit-setup');
   });
 

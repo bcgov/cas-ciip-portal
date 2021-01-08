@@ -56,10 +56,7 @@ describe('Organisation access request emails', () => {
   beforeEach(() => {
     cy.cleanSchema();
     cy.sqlFixture('fixtures/email/org-access-setup');
-    cy.login(
-      Cypress.env('TEST_REPORTER_USERNAME'),
-      Cypress.env('TEST_REPORTER_PASSWORD')
-    );
+    cy.mockLogin('reporter');
     cy.request('DELETE', 'localhost:8025/api/v1/messages');
   });
   afterEach(() => {
@@ -136,10 +133,7 @@ describe('Draft application started email', () => {
     cy.cleanSchema();
     cy.deployProdData();
     cy.sqlFixture('fixtures/email/draft-application-setup');
-    cy.login(
-      Cypress.env('TEST_REPORTER_USERNAME'),
-      Cypress.env('TEST_REPORTER_PASSWORD')
-    );
+    cy.mockLogin('reporter');
     cy.request('DELETE', 'localhost:8025/api/v1/messages');
     cy.wait(500);
   });
@@ -181,10 +175,7 @@ describe('Certification & Confirmation emails', () => {
     cy.sqlFixture('fixtures/email-setup');
   });
   beforeEach(() => {
-    cy.login(
-      Cypress.env('TEST_REPORTER_USERNAME'),
-      Cypress.env('TEST_REPORTER_PASSWORD')
-    );
+    cy.mockLogin('reporter');
   });
   after(() => {
     cy.wait(1000);
@@ -310,10 +301,7 @@ describe('Certification email opt-out', () => {
     cy.sqlFixture('fixtures/email-setup');
   });
   beforeEach(() => {
-    cy.login(
-      Cypress.env('TEST_REPORTER_USERNAME'),
-      Cypress.env('TEST_REPORTER_PASSWORD')
-    );
+    cy.mockLogin('reporter');
   });
   after(() => {
     cy.wait(1000);
@@ -362,10 +350,7 @@ describe('Application status change emails', () => {
     cy.deployProdData();
     cy.sqlFixture('fixtures/email/status-change-setup');
     cy.request('DELETE', 'localhost:8025/api/v1/messages');
-    cy.login(
-      Cypress.env('TEST_ANALYST_USERNAME'),
-      Cypress.env('TEST_ANALYST_PASSWORD')
-    );
+    cy.mockLogin('analyst');
     cy.wait(500);
   });
   afterEach(() => {

@@ -3,10 +3,7 @@ describe('When logged in as an analyst', () => {
     cy.cleanSchema();
     cy.deployProdData();
     cy.sqlFixture('fixtures/analyst-all-access-setup');
-    cy.login(
-      Cypress.env('TEST_ANALYST_USERNAME'),
-      Cypress.env('TEST_ANALYST_PASSWORD')
-    );
+    cy.mockLogin('analyst');
   });
 
   afterEach(() => {

@@ -63,7 +63,7 @@ const authenticationPgSettings = (req) => {
     };
   }
 
-  if (AS_PENDING || allowCypressForRole('pending', req)) {
+  if (AS_PENDING || allowCypressForRole('user', req)) {
     return {
       'jwt.claims.sub': '00000000-0000-0000-0000-000000000000',
       'jwt.claims.user_groups': 'Pending Analyst',

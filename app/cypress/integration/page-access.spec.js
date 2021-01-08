@@ -2,10 +2,7 @@ describe('When logged in as a reporter', () => {
   beforeEach(() => {
     cy.cleanSchema();
     cy.sqlFixture('dev/user');
-    cy.login(
-      Cypress.env('TEST_REPORTER_USERNAME'),
-      Cypress.env('TEST_REPORTER_PASSWORD')
-    );
+    cy.mockLogin('reporter');
   });
 
   afterEach(() => cy.logout());
@@ -19,10 +16,7 @@ describe('When logged in as a reporter', () => {
 
 describe('When logged in as an analyst', () => {
   before(() => {
-    cy.login(
-      Cypress.env('TEST_ANALYST_USERNAME'),
-      Cypress.env('TEST_ANALYST_PASSWORD')
-    );
+    cy.mockLogin('analyst');
   });
 
   after(() => cy.logout());
@@ -36,10 +30,7 @@ describe('When logged in as an analyst', () => {
 
 describe('When logged in as an admin', () => {
   before(() => {
-    cy.login(
-      Cypress.env('TEST_ADMIN_USERNAME'),
-      Cypress.env('TEST_ADMIN_PASSWORD')
-    );
+    cy.mockLogin('admin');
   });
 
   after(() => cy.logout());

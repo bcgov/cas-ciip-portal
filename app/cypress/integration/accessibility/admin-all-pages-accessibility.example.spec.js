@@ -4,10 +4,7 @@ describe('When logged in as an admin', () => {
     cy.deployProdData();
     // The admin spec uses the same setup as the analyst
     cy.sqlFixture('fixtures/analyst-all-access-setup');
-    cy.login(
-      Cypress.env('TEST_ADMIN_USERNAME'),
-      Cypress.env('TEST_ADMIN_PASSWORD')
-    );
+    cy.mockLogin('admin');
   });
 
   afterEach(() => {

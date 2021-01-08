@@ -45,10 +45,7 @@ function testRedirectsForScopedPages(scope, pages) {
       cy.url().should('include', '/login-redirect');
       cy.url().should('include', `?redirectTo=${encodeURIComponent(url)}`);
 
-      cy.login(
-        Cypress.env[`TEST_${scope.toUpperCase()}_USERNAME`],
-        Cypress.env[`TEST_${scope.toUpperCase()}_PASSWORD`]
-      );
+      cy.mockLogin(scope);
 
       // As the SSO login page won't open in a frame in Cypress, the final redirect must be
       // tested indirectly as though we're following the auth callback:

@@ -6,10 +6,7 @@ describe('The production tab', () => {
   });
   beforeEach(() => {
     cy.sqlFixture('fixtures/production-draft-form-result-setup');
-    cy.login(
-      Cypress.env('TEST_REPORTER_USERNAME'),
-      Cypress.env('TEST_REPORTER_PASSWORD')
-    );
+    cy.mockLogin('reporter');
     const applicationId = window.btoa('["applications", 1]');
     const formResultId = window.btoa('["form_results", 4]');
     cy.visit(

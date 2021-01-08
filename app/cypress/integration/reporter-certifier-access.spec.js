@@ -4,10 +4,7 @@ describe('When logged in as a certifier(reporter)', () => {
     cy.cleanSchema();
     cy.deployProdData();
     cy.sqlFixture('fixtures/certifier-access-setup');
-    cy.login(
-      Cypress.env('TEST_CERTIFIER_USERNAME'),
-      Cypress.env('TEST_CERTIFIER_PASSWORD')
-    );
+    cy.mockLogin('certifier');
     cy.useMockedTime(new Date(2020, 5, 10, 9, 0, 0, 0)); //May 10th at 9am
   });
 

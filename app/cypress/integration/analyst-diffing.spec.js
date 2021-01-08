@@ -3,10 +3,7 @@ describe('When reviewing a submitted application as an analyst', () => {
     cy.cleanSchema();
     cy.deployProdData();
     cy.sqlFixture('fixtures/analyst-diffing-setup');
-    cy.login(
-      Cypress.env('TEST_ANALYST_USERNAME'),
-      Cypress.env('TEST_ANALYST_PASSWORD')
-    );
+    cy.mockLogin('analyst');
     cy.visit(
       '/analyst/application-review?applicationId=WyJhcHBsaWNhdGlvbnMiLDFd&applicationRevisionId=WyJhcHBsaWNhdGlvbl9yZXZpc2lvbnMiLDEsMl0%3D&version=2'
     );
