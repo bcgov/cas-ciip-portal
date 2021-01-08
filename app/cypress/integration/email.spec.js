@@ -345,10 +345,12 @@ function makeApplicationDecision(decision) {
 }
 
 describe('Application status change emails', () => {
-  beforeEach(() => {
+  before(() => {
     cy.cleanSchema();
     cy.deployProdData();
     cy.sqlFixture('fixtures/email/status-change-setup');
+  });
+  beforeEach(() => {
     cy.request('DELETE', 'localhost:8025/api/v1/messages');
     cy.mockLogin('analyst');
     cy.wait(500);
