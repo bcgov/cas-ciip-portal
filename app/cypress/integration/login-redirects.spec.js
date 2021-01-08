@@ -56,7 +56,7 @@ function testRedirectsForScopedPages(scope, pages) {
 }
 
 describe('Successful redirection of authenticated pages through login', () => {
-  beforeEach(() => {
+  before(() => {
     cy.cleanSchema();
     cy.deployProdData();
     cy.logout();
