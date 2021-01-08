@@ -1,11 +1,20 @@
+/*
+  This set of e2e tests test the real login function,
+  and doesn't mock the login
+*/
+
 describe('When logged in as a reporter', () => {
-  beforeEach(() => {
+  before(() => {
+    cy.logout();
     cy.cleanSchema();
     cy.sqlFixture('dev/user');
-    cy.mockLogin('reporter');
+    cy.login(
+      Cypress.env('TEST_REPORTER_USERNAME'),
+      Cypress.env('TEST_REPORTER_PASSWORD')
+    );
   });
 
-  afterEach(() => cy.logout());
+  after(() => cy.logout());
 
   it('The index page redirects to the reporter dashboard', () => {
     cy.visit('/');
@@ -16,7 +25,10 @@ describe('When logged in as a reporter', () => {
 
 describe('When logged in as an analyst', () => {
   before(() => {
-    cy.mockLogin('analyst');
+    cy.login(
+      Cypress.env('TEST_ANALYST_USERNAME'),
+      Cypress.env('TEST_ANALYST_PASSWORD')
+    );
   });
 
   after(() => cy.logout());
@@ -30,7 +42,10 @@ describe('When logged in as an analyst', () => {
 
 describe('When logged in as an admin', () => {
   before(() => {
-    cy.mockLogin('admin');
+    cy.login(
+      Cypress.env('TEST_ADMIN_USERNAME'),
+      Cypress.env('TEST_ADMIN_PASSWORD')
+    );
   });
 
   after(() => cy.logout());
