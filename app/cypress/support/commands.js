@@ -34,6 +34,7 @@ Cypress.Commands.add('login', (username, password) => {
 });
 
 Cypress.Commands.add('logout', () => {
+  cy.clearCookie('mocks.auth');
   cy.request('/logout');
 });
 
