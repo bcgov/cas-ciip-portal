@@ -1,4 +1,6 @@
-describe('When not logged in', () => {
+// Verify integration with keycloak
+
+describe('When not logged in, and with the real logging method available', () => {
   before(() => {
     cy.cleanSchema();
     cy.sqlFixture('fixtures/create-test-users');
