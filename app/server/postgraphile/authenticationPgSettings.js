@@ -1,6 +1,7 @@
 const {getAllGroups, getPriorityGroup} = require('../../lib/user-groups');
 const {getUserGroups} = require('../helpers/userGroupAuthentication');
 const groupData = require('../../data/groups');
+const databaseConnectionService = require('../db/databaseConnectionService');
 
 const AUTH_BYPASS_COOKIE = 'mocks.auth';
 const NO_AUTH = process.argv.includes('NO_AUTH');
@@ -23,7 +24,7 @@ const authenticationPgSettings = (req) => {
       'jwt.claims.sub': '00000000-0000-0000-0000-000000000000',
       'jwt.claims.user_groups': groups.join(','),
       'jwt.claims.priority_group': priorityGroup,
-      role: 'ciip_guest'
+      role: databaseConnectionService.NO_AUTH_POSTGRES_ROLE
     };
   }
 
