@@ -1,13 +1,13 @@
+/*
+  Skipped for now as it is not industry facing
+*/
+
 describe('When logged in as an analyst', () => {
   beforeEach(() => {
     cy.cleanSchema();
     cy.deployProdData();
     cy.sqlFixture('fixtures/analyst-all-access-setup');
     cy.mockLogin('analyst');
-  });
-
-  afterEach(() => {
-    cy.logout();
   });
 
   it('The analyst dashboard has no detectable ally violations on load', () => {

@@ -1,14 +1,13 @@
 describe('When logged in as a reporter', () => {
-  beforeEach(() => {
-    cy.logout();
+  before(() => {
     cy.cleanSchema();
     cy.deployProdData();
     cy.sqlFixture('fixtures/reporter-all-access-setup');
-    cy.mockLogin('reporter');
   });
 
-  afterEach(() => {
+  beforeEach(() => {
     cy.logout();
+    cy.mockLogin('reporter');
   });
 
   it('The reporter dashboard has no detectable ally violations on load', () => {

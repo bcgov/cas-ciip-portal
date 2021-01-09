@@ -7,10 +7,6 @@ describe('When logged in as an admin', () => {
     cy.mockLogin('admin');
   });
 
-  afterEach(() => {
-    cy.logout();
-  });
-
   it('The admin dashboard has no detectable ally violations on load', () => {
     cy.visit('/admin');
     cy.url().should('include', '/admin');
