@@ -3,10 +3,7 @@ describe('When the reporter is viewing a list of facilities & applications', () 
     cy.cleanSchema();
     cy.deployProdData();
     cy.sqlFixture('fixtures/reporter-all-access-setup');
-    cy.login(
-      Cypress.env('TEST_REPORTER_USERNAME'),
-      Cypress.env('TEST_REPORTER_PASSWORD')
-    );
+    cy.mockLogin('reporter');
   });
 
   afterEach(() => {

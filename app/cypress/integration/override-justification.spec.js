@@ -4,10 +4,7 @@ describe('When an applicaiton has errors', () => {
     cy.cleanSchema();
     cy.deployProdData();
     cy.sqlFixture('fixtures/override-justification-setup');
-    cy.login(
-      Cypress.env('TEST_REPORTER_USERNAME'),
-      Cypress.env('TEST_REPORTER_PASSWORD')
-    );
+    cy.mockLogin('reporter');
   });
 
   after(() => {
@@ -54,10 +51,7 @@ describe('When an applicaiton has errors', () => {
   });
 
   it('The certifier should see the override notification', () => {
-    cy.login(
-      Cypress.env('TEST_CERTIFIER_USERNAME'),
-      Cypress.env('TEST_CERTIFIER_PASSWORD')
-    );
+    cy.mockLogin('certifier');
     const applicationId = window.btoa('["applications", 1]');
     cy.visit(`/certifier/certify?applicationId=${applicationId}&version=1`);
     cy.url().should('include', '/certifier/certify');
@@ -69,10 +63,7 @@ describe('When an applicaiton has errors', () => {
   });
 
   it('The reporter should see their override justification and be able to submit', () => {
-    cy.login(
-      Cypress.env('TEST_REPORTER_USERNAME'),
-      Cypress.env('TEST_REPORTER_PASSWORD')
-    );
+    cy.mockLogin('reporter');
     const applicationId = window.btoa('["applications", 1]');
     cy.visit(
       `/reporter/application?applicationId=${applicationId}&confirmationPage=true&version=1`
@@ -86,10 +77,7 @@ describe('When an applicaiton has errors', () => {
   });
 
   it('The analyst should see the override notification', () => {
-    cy.login(
-      Cypress.env('TEST_ANALYST_USERNAME'),
-      Cypress.env('TEST_ANALYST_PASSWORD')
-    );
+    cy.mockLogin('analyst');
     const applicationRevisionId = window.btoa(
       '["application_revisions", 1, 1]'
     );
@@ -111,10 +99,7 @@ describe('When an applicaiton does not have errors', () => {
     cy.deployProdData();
     cy.sqlFixture('fixtures/reporter-all-access-setup');
     cy.sqlFixture('fixtures/set-legal-disclaimer-true');
-    cy.login(
-      Cypress.env('TEST_REPORTER_USERNAME'),
-      Cypress.env('TEST_REPORTER_PASSWORD')
-    );
+    cy.mockLogin('reporter');
   });
 
   afterEach(() => {

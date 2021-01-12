@@ -1,16 +1,13 @@
+/*
+  Skipped for now as it is not industry facing
+*/
+
 describe('When logged in as an analyst', () => {
   beforeEach(() => {
     cy.cleanSchema();
     cy.deployProdData();
     cy.sqlFixture('fixtures/analyst-all-access-setup');
-    cy.login(
-      Cypress.env('TEST_ANALYST_USERNAME'),
-      Cypress.env('TEST_ANALYST_PASSWORD')
-    );
-  });
-
-  afterEach(() => {
-    cy.logout();
+    cy.mockLogin('analyst');
   });
 
   it('The analyst dashboard has no detectable ally violations on load', () => {

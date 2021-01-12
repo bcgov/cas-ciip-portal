@@ -1,5 +1,11 @@
+/*
+  This set of e2e tests test the real login function,
+  and doesn't mock the login
+*/
+
 describe('When logged in as a reporter', () => {
-  beforeEach(() => {
+  before(() => {
+    cy.logout();
     cy.cleanSchema();
     cy.sqlFixture('dev/user');
     cy.login(
@@ -8,7 +14,7 @@ describe('When logged in as a reporter', () => {
     );
   });
 
-  afterEach(() => cy.logout());
+  after(() => cy.logout());
 
   it('The index page redirects to the reporter dashboard', () => {
     cy.visit('/');

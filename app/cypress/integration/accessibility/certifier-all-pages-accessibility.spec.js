@@ -1,18 +1,14 @@
 describe('When logged in as a certifier(reporter)', () => {
-  beforeEach(() => {
-    cy.logout();
+  before(() => {
     cy.cleanSchema();
     cy.deployProdData();
     cy.sqlFixture('fixtures/certifier-access-setup');
-    cy.login(
-      Cypress.env('TEST_CERTIFIER_USERNAME'),
-      Cypress.env('TEST_CERTIFIER_PASSWORD')
-    );
-    cy.useMockedTime(new Date(2020, 5, 10, 9, 0, 0, 0)); //May 10th at 9am
   });
 
-  afterEach(() => {
+  beforeEach(() => {
     cy.logout();
+    cy.mockLogin('certifier');
+    cy.useMockedTime(new Date(2020, 5, 10, 9, 0, 0, 0)); //May 10th at 9am
   });
 
   it('The certifier redirect page has no detectable ally violations on load', () => {

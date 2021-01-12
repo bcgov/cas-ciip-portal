@@ -12,7 +12,6 @@ const {
 } = require('./helpers/databaseMockPgOptions');
 const nextjs = require('next');
 const crypto = require('crypto');
-const pg = require('pg');
 const port = Number.parseInt(process.env.PORT, 10) || 3004;
 const dev = process.env.NODE_ENV !== 'production';
 const app = nextjs({dev});
@@ -31,13 +30,12 @@ const path = require('path');
 const namespaceMap = require('../data/kc-namespace-map');
 const printPdf = require('./routes/print-pdf');
 const cookieParser = require('cookie-parser');
+const databaseConnectionService = require('./db/databaseConnectionService');
 
 /**
  * Override keycloak accessDenied handler to redirect to our 403 page
  */
 Keycloak.prototype.accessDenied = ({res}) => res.redirect('/403');
-
-let databaseURL = 'postgres://';
 
 const NO_AUTH = process.argv.includes('NO_AUTH');
 const AS_REPORTER = process.argv.includes('AS_REPORTER');
@@ -47,33 +45,11 @@ const AS_ADMIN = process.argv.includes('AS_ADMIN');
 const AS_PENDING = process.argv.includes('AS_PENDING');
 const NO_MATHJAX = process.argv.includes('NO_MATHJAX');
 const NO_MAIL = process.argv.includes('NO_MAIL');
+const AS_CYPRESS = process.argv.includes('AS_CYPRESS');
 
 if (NO_MATHJAX) process.env.NO_MATHJAX = true;
 
 if (NO_MAIL) process.env.NO_MAIL = true;
-
-// If authentication is disabled, this superuser is used for postgraphile queries
-const NO_AUTH_POSTGRES_ROLE = process.env.NO_AUTH_POSTGRES_ROLE || 'postgres';
-// If authentication is disabled use the user above to connect to the database
-// Otherwise, use the PGUSER env variable, or default to portal_app
-const PGUSER = NO_AUTH
-  ? NO_AUTH_POSTGRES_ROLE
-  : process.env.PGUSER || 'portal_app';
-
-databaseURL += PGUSER;
-if (process.env.PGPASSWORD) {
-  databaseURL += `:${process.env.PGPASSWORD}`;
-}
-
-databaseURL += '@';
-
-databaseURL += process.env.PGHOST || 'localhost';
-if (process.env.PGPORT) {
-  databaseURL += `:${process.env.PGPORT}`;
-}
-
-databaseURL += '/';
-databaseURL += process.env.PGDATABASE || 'ciip_portal_dev';
 
 // True if the host has been configured to use https
 const secure = /^https/.test(process.env.HOST);
@@ -87,7 +63,7 @@ if (!process.env.SESSION_SECRET)
   console.warn('SESSION_SECRET missing from environment');
 const secret = process.env.SESSION_SECRET || crypto.randomBytes(32).toString();
 
-const pgPool = new pg.Pool({connectionString: databaseURL});
+const pgPool = databaseConnectionService.createConnectionPool();
 
 // Graphile-worker function
 async function worker() {
@@ -221,7 +197,8 @@ app.prepare().then(async () => {
       AS_ANALYST ||
       AS_PENDING ||
       AS_REPORTER ||
-      AS_CERTIFIER
+      AS_CERTIFIER ||
+      AS_CYPRESS
     ) {
       return res.json(3600);
     }

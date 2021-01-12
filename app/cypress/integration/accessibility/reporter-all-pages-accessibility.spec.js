@@ -1,17 +1,13 @@
 describe('When logged in as a reporter', () => {
-  beforeEach(() => {
-    cy.logout();
+  before(() => {
     cy.cleanSchema();
     cy.deployProdData();
     cy.sqlFixture('fixtures/reporter-all-access-setup');
-    cy.login(
-      Cypress.env('TEST_REPORTER_USERNAME'),
-      Cypress.env('TEST_REPORTER_PASSWORD')
-    );
   });
 
-  afterEach(() => {
+  beforeEach(() => {
     cy.logout();
+    cy.mockLogin('reporter');
   });
 
   it('The reporter dashboard has no detectable ally violations on load', () => {

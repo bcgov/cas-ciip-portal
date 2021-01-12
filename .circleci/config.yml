@@ -382,7 +382,7 @@ jobs:
           command: |
             source ~/.asdf/asdf.sh
             pushd app
-            NO_MATHJAX=true yarn start & yarn wait-on http://localhost:3004
+            NO_MATHJAX=true yarn start AS_CYPRESS & yarn wait-on http://localhost:3004
             yarn test:e2e-snapshots
             popd
       - run:
@@ -392,7 +392,7 @@ jobs:
           command: |
             source ~/.asdf/asdf.sh
             pushd app
-            NO_MATHJAX=true yarn start & yarn wait-on http://localhost:3004
+            NO_MATHJAX=true yarn start AS_CYPRESS & yarn wait-on http://localhost:3004
             yarn test:e2e-with-mocks
             popd
 

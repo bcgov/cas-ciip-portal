@@ -3,10 +3,7 @@ describe('The products and benchmark page', () => {
     cy.logout();
     cy.cleanSchema();
     cy.sqlFixture('fixtures/products-benchmarks-setup');
-    cy.login(
-      Cypress.env('TEST_ADMIN_USERNAME'),
-      Cypress.env('TEST_ADMIN_PASSWORD')
-    );
+    cy.mockLogin('admin');
     cy.visit('/admin/products-benchmarks');
     cy.get('#page-content');
   });
@@ -34,10 +31,7 @@ describe('The benchmark modal', () => {
     cy.logout();
     cy.cleanSchema();
     cy.sqlFixture('fixtures/products-benchmarks-setup');
-    cy.login(
-      Cypress.env('TEST_ADMIN_USERNAME'),
-      Cypress.env('TEST_ADMIN_PASSWORD')
-    );
+    cy.mockLogin('admin');
     cy.visit('/admin/products-benchmarks');
     cy.get('#page-content');
   });
@@ -103,10 +97,7 @@ describe('The linking modal', () => {
     cy.logout();
     cy.cleanSchema();
     cy.sqlFixture('fixtures/products-benchmarks-setup');
-    cy.login(
-      Cypress.env('TEST_ADMIN_USERNAME'),
-      Cypress.env('TEST_ADMIN_PASSWORD')
-    );
+    cy.mockLogin('admin');
     cy.visit('/admin/products-benchmarks');
     cy.get('#page-content');
   });
@@ -146,10 +137,7 @@ describe('The Create Product modal', () => {
     cy.logout();
     cy.cleanSchema();
     cy.sqlFixture('fixtures/products-benchmarks-setup');
-    cy.login(
-      Cypress.env('TEST_ADMIN_USERNAME'),
-      Cypress.env('TEST_ADMIN_PASSWORD')
-    );
+    cy.mockLogin('admin');
     cy.visit('/admin/products-benchmarks');
     cy.get('#page-content');
   });

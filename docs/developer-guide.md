@@ -58,6 +58,7 @@ The application requires users to be authenticated using keycloak. Authenticatio
 `AS_ANALYST`: Automatically log in as our test analyst
 `AS_ADMIN`: Automatically log in as our test admin
 `AS_PENDING`: Automatically log in as a pending analyst (pending approval via the Keycloak console to become an analyst)
+`AS_CYPRESS`: Used by e2e tests, the flag enables automatic login as any test user, that can be specified in the `mocks.auth` cookie
 `NO_MAIL`: Ignore all outgoing mail functionality (can be run by itself, or along with any other auth flags ie `yarn dev NO_AUTH NO_MAIL`)
 
 ## Unit and Integration Testing
