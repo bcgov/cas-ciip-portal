@@ -13,6 +13,8 @@ describe('When logged in as a reporter', () => {
     );
   });
 
+  after(() => cy.logout());
+
   it('The index page redirects to the reporter dashboard', () => {
     cy.visit('/');
     cy.get('#page-content');
@@ -22,11 +24,15 @@ describe('When logged in as a reporter', () => {
 
 describe('When logged in as an analyst', () => {
   before(() => {
+    cy.cleanSchema();
+    cy.sqlFixture('dev/user');
     cy.login(
       Cypress.env('TEST_ANALYST_USERNAME'),
       Cypress.env('TEST_ANALYST_PASSWORD')
     );
   });
+
+  after(() => cy.logout());
 
   it('The index page redirects to the analyst dashboard', () => {
     cy.visit('/');
@@ -37,11 +43,15 @@ describe('When logged in as an analyst', () => {
 
 describe('When logged in as an admin', () => {
   before(() => {
+    cy.cleanSchema();
+    cy.sqlFixture('dev/user');
     cy.login(
       Cypress.env('TEST_ADMIN_USERNAME'),
       Cypress.env('TEST_ADMIN_PASSWORD')
     );
   });
+
+  after(() => cy.logout());
 
   it('The index page redirects to the admin dashboard', () => {
     cy.visit('/');
