@@ -1,15 +1,10 @@
 describe('The products and benchmark page', () => {
   beforeEach(() => {
-    cy.logout();
     cy.cleanSchema();
     cy.sqlFixture('fixtures/products-benchmarks-setup');
     cy.mockLogin('admin');
     cy.visit('/admin/products-benchmarks');
     cy.get('#page-content');
-  });
-
-  afterEach(() => {
-    cy.logout();
   });
 
   it('Displays the list of all products', () => {
@@ -28,16 +23,11 @@ describe('The products and benchmark page', () => {
 
 describe('The benchmark modal', () => {
   beforeEach(() => {
-    cy.logout();
     cy.cleanSchema();
     cy.sqlFixture('fixtures/products-benchmarks-setup');
     cy.mockLogin('admin');
     cy.visit('/admin/products-benchmarks');
     cy.get('#page-content');
-  });
-
-  afterEach(() => {
-    cy.logout();
   });
 
   it('Opens & displays the correct data in the benchmark modal', () => {
@@ -94,16 +84,11 @@ describe('The benchmark modal', () => {
 
 describe('The linking modal', () => {
   beforeEach(() => {
-    cy.logout();
     cy.cleanSchema();
     cy.sqlFixture('fixtures/products-benchmarks-setup');
     cy.mockLogin('admin');
     cy.visit('/admin/products-benchmarks');
     cy.get('#page-content');
-  });
-
-  afterEach(() => {
-    cy.logout();
   });
 
   it('Can add and remove product links', () => {
@@ -134,16 +119,11 @@ describe('The linking modal', () => {
 
 describe('The Create Product modal', () => {
   beforeEach(() => {
-    cy.logout();
     cy.cleanSchema();
     cy.sqlFixture('fixtures/products-benchmarks-setup');
     cy.mockLogin('admin');
     cy.visit('/admin/products-benchmarks');
     cy.get('#page-content');
-  });
-
-  afterEach(() => {
-    cy.logout();
   });
 
   it('Creates & displays a new product', () => {

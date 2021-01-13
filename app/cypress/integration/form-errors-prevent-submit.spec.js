@@ -2,7 +2,6 @@ describe('When logged in as a reporter', () => {
   beforeEach(() => {
     cy.cleanSchema();
     cy.deployProdData();
-    cy.logout();
     cy.mockLogin('reporter');
     cy.sqlFixture('fixtures/form-errors-prevent-submit-setup');
   });

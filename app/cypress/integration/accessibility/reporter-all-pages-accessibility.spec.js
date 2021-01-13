@@ -6,7 +6,6 @@ describe('When logged in as a reporter', () => {
   });
 
   beforeEach(() => {
-    cy.logout();
     cy.mockLogin('reporter');
   });
 

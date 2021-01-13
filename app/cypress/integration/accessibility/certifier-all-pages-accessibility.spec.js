@@ -6,7 +6,6 @@ describe('When logged in as a certifier(reporter)', () => {
   });
 
   beforeEach(() => {
-    cy.logout();
     cy.mockLogin('certifier');
     cy.useMockedTime(new Date(2020, 5, 10, 9, 0, 0, 0)); //May 10th at 9am
   });

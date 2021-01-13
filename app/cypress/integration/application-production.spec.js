@@ -4,6 +4,7 @@ describe('The production tab', () => {
     cy.deployProdData();
     cy.sqlFixture('fixtures/application-production-setup');
   });
+
   beforeEach(() => {
     cy.sqlFixture('fixtures/production-draft-form-result-setup');
     cy.mockLogin('reporter');
@@ -12,10 +13,6 @@ describe('The production tab', () => {
     cy.visit(
       `/reporter/application?formResultId=${formResultId}&applicationId=${applicationId}&version=1`
     );
-  });
-
-  afterEach(() => {
-    cy.logout();
   });
 
   it('Should render the aluminum product', () => {

@@ -1,15 +1,10 @@
 describe('When logged in as a certifier(reporter)', () => {
   beforeEach(() => {
-    cy.logout();
     cy.cleanSchema();
     cy.deployProdData();
     cy.sqlFixture('fixtures/certifier-access-setup');
     cy.mockLogin('certifier');
     cy.useMockedTime(new Date(2020, 5, 10, 9, 0, 0, 0)); //May 10th at 9am
-  });
-
-  afterEach(() => {
-    cy.logout();
   });
 
   it('The certifier should be able to load all pages within their access scope', () => {

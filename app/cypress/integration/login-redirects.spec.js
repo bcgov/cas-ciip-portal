@@ -59,11 +59,7 @@ describe('Successful redirection of authenticated pages through login', () => {
   before(() => {
     cy.cleanSchema();
     cy.deployProdData();
-    cy.logout();
     cy.sqlFixture('fixtures/login-redirects-setup');
-  });
-  afterEach(() => {
-    cy.logout();
   });
 
   Object.keys(AUTHENTICATED_PAGES).forEach((scope) =>

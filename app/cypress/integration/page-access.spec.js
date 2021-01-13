@@ -5,7 +5,6 @@
 
 describe('When logged in as a reporter', () => {
   before(() => {
-    cy.logout();
     cy.cleanSchema();
     cy.sqlFixture('dev/user');
     cy.login(
@@ -13,8 +12,6 @@ describe('When logged in as a reporter', () => {
       Cypress.env('TEST_REPORTER_PASSWORD')
     );
   });
-
-  after(() => cy.logout());
 
   it('The index page redirects to the reporter dashboard', () => {
     cy.visit('/');
@@ -31,8 +28,6 @@ describe('When logged in as an analyst', () => {
     );
   });
 
-  after(() => cy.logout());
-
   it('The index page redirects to the analyst dashboard', () => {
     cy.visit('/');
     cy.get('#page-content');
@@ -47,8 +42,6 @@ describe('When logged in as an admin', () => {
       Cypress.env('TEST_ADMIN_PASSWORD')
     );
   });
-
-  after(() => cy.logout());
 
   it('The index page redirects to the admin dashboard', () => {
     cy.visit('/');

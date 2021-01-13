@@ -6,10 +6,6 @@ describe('When logged in as an admin', () => {
     cy.mockLogin('admin');
   });
 
-  afterEach(() => {
-    cy.logout();
-  });
-
   it('The admin should be able to load all pages within their access scope', () => {
     cy.visit('/admin');
     cy.url().should('include', '/admin');

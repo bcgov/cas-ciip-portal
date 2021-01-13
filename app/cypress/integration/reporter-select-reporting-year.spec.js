@@ -6,10 +6,6 @@ describe('When the reporter is viewing a list of facilities & applications', () 
     cy.mockLogin('reporter');
   });
 
-  afterEach(() => {
-    cy.logout();
-  });
-
   it('The reporter should be able to filter results by reporting period', () => {
     cy.visit('/reporter/facilities');
     cy.url().should('include', '/reporter/facilities');
