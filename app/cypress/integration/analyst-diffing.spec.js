@@ -9,8 +9,6 @@ describe('When reviewing a submitted application as an analyst', () => {
     );
   });
 
-  afterEach(() => cy.logout());
-
   it('The summary page properly displays the diffs when showDiff is selected', () => {
     // Before showDiff checkbox is checked (showDiff = false)
     cy.get('#page-content');

@@ -24,10 +24,6 @@ describe('When reviewing a submitted application as an analyst', () => {
     cy.mockLogin('reporter');
   });
 
-  afterEach(() => {
-    cy.logout();
-  });
-
   it('The application admin form shows validation errors', () => {
     cy.visit(adminFormUrl);
     cy.get('#page-content');

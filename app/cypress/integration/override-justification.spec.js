@@ -1,14 +1,9 @@
 describe('When an applicaiton has errors', () => {
   before(() => {
-    cy.logout();
     cy.cleanSchema();
     cy.deployProdData();
     cy.sqlFixture('fixtures/override-justification-setup');
     cy.mockLogin('reporter');
-  });
-
-  after(() => {
-    cy.logout();
   });
 
   it('The reporter should be able to create, edit and delete an override justification for the errors in the application', () => {
@@ -46,8 +41,6 @@ describe('When an applicaiton has errors', () => {
       'contain',
       'Ready for Certification'
     );
-    cy.wait(500);
-    cy.logout();
   });
 
   it('The certifier should see the override notification', () => {
@@ -59,7 +52,6 @@ describe('When an applicaiton has errors', () => {
     cy.get('.btn-success').click();
     cy.wait(500);
     cy.get('.page-title').should('contain', 'Certification Requests');
-    cy.logout();
   });
 
   it('The reporter should see their override justification and be able to submit', () => {
@@ -72,8 +64,6 @@ describe('When an applicaiton has errors', () => {
     cy.get('.alert-secondary').should('contain', 'justified');
     cy.get('.btn').contains('Submit').click();
     cy.url().should('include', '/reporter/complete-submit');
-    cy.wait(500);
-    cy.logout();
   });
 
   it('The analyst should see the override notification', () => {
@@ -94,16 +84,11 @@ describe('When an applicaiton has errors', () => {
 
 describe('When an applicaiton does not have errors', () => {
   beforeEach(() => {
-    cy.logout();
     cy.cleanSchema();
     cy.deployProdData();
     cy.sqlFixture('fixtures/reporter-all-access-setup');
     cy.sqlFixture('fixtures/set-legal-disclaimer-true');
     cy.mockLogin('reporter');
-  });
-
-  afterEach(() => {
-    cy.logout();
   });
 
   it('The override justification box should not appear', () => {

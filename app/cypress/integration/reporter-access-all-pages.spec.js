@@ -1,14 +1,9 @@
 describe('When logged in as a reporter', () => {
   beforeEach(() => {
-    cy.logout();
     cy.cleanSchema();
     cy.deployProdData();
     cy.sqlFixture('fixtures/reporter-all-access-setup');
     cy.mockLogin('reporter');
-  });
-
-  afterEach(() => {
-    cy.logout();
   });
 
   it('The reporter should be able to load all pages within their access scope', () => {

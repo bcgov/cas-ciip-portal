@@ -5,10 +5,6 @@ describe('When logged in as an analyst', () => {
     cy.mockLogin('analyst');
   });
 
-  afterEach(() => {
-    cy.logout();
-  });
-
   it('The analyst should be able to load all pages within their access scope', () => {
     cy.visit('/analyst');
     cy.url().should('include', '/analyst');

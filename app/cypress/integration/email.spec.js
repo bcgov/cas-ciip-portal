@@ -59,9 +59,7 @@ describe('Organisation access request emails', () => {
     cy.mockLogin('reporter');
     cy.request('DELETE', 'localhost:8025/api/v1/messages');
   });
-  afterEach(() => {
-    cy.logout();
-  });
+
   it('sends the reporter an email when they request organisation access', () => {
     requestAccessToOrg();
     cy.request('localhost:8025/api/v1/messages').then((response) => {
@@ -137,9 +135,7 @@ describe('Draft application started email', () => {
     cy.request('DELETE', 'localhost:8025/api/v1/messages');
     cy.wait(500);
   });
-  afterEach(() => {
-    cy.logout();
-  });
+
   it('emails the reporter when they start a new application', () => {
     const organisationId = window.btoa('["organisations", 200]');
     cy.visit(
@@ -176,10 +172,6 @@ describe('Certification & Confirmation emails', () => {
   });
   beforeEach(() => {
     cy.mockLogin('reporter');
-  });
-  after(() => {
-    cy.wait(1000);
-    cy.logout();
   });
 
   it('should send notification emails to the certifier when the reporter sends a request, and to the reporter if the data is out of date', () => {
@@ -303,11 +295,7 @@ describe('Certification email opt-out', () => {
   beforeEach(() => {
     cy.mockLogin('reporter');
   });
-  after(() => {
-    cy.wait(1000);
-    cy.logout();
-    cy.sqlFixture('fixtures/email-teardown');
-  });
+
   it('should not send a notification email to the certifier if the reporter opts out', () => {
     const applicationId = window.btoa('["applications", 1]');
     cy.request('DELETE', 'localhost:8025/api/v1/messages');
@@ -354,9 +342,6 @@ describe('Application status change emails', () => {
     cy.request('DELETE', 'localhost:8025/api/v1/messages');
     cy.mockLogin('analyst');
     cy.wait(500);
-  });
-  afterEach(() => {
-    cy.logout();
   });
 
   it('should send the reporter an email when their application has been approved', () => {
