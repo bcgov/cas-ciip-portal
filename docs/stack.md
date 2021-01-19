@@ -171,7 +171,26 @@ Some of the SQL search functions require a new type to be created in order for `
 - The way the custom search functions are set up breaks `Relay`'s conventions resulting in the behaviour above. In breaking those conventions the search functions also cannot make use of some `Relay` functionality like cursors. We have investigative work planned regarding Postgraphile's [@filterable](https://www.graphile.org/postgraphile/smart-tags/) that may alleviate some of the discord between our custom search functions and Relay.
 
 
-### Json schema forms
+### React JsonSchema Forms
+[rjsf documentation](https://react-jsonschema-form.readthedocs.io/en/latest/)
+
+We use the react-jsonschema-form library to render many of our more complicated forms. The rjsf library makes our forms highly customizable. We override the default behaviour of the form components in several places to tailor the templated layouts and internal logic to our specific needs.
+
+#### Custom template example
+[custom templates](https://react-jsonschema-form.readthedocs.io/en/latest/advanced-customization/custom-templates/)
+Example: app/containers/Forms/SummaryFormArrayFieldTemplate.tsx
+
+Overriding a template is done by creating a new component with the appropriate rjsf props (in the example above, ArrayFieldTemplateProps) and redefining the template to suit specific needs. In the example above, we have rewritten the template to customize how each field in an array should be displayed when shown on the Summary page. We use some logic in the custom template to add display:none css to each field that has a value of zero to block those fields from rendering on the Summary page.
+
+The custom template is applied by defining it in the props where the JsonSchemaForm is instantiated (see app/containers/Applications/ApplicationDetailsCardItem.tsx for where the example custom template above is applied).
+
+#### Custom field example
+[custom fields](https://react-jsonschema-form.readthedocs.io/en/latest/advanced-customization/custom-widgets-fields/)
+Example: app/containers/Forms/FuelRowIdField.tsx
+
+Overriding a field is done the same way as a template, by creating a new component with the appropriate rjsf props (in the example above we extend FieldProps). In the example we have customized the behaviour of the RowId field. This field is a numeric ID that corresponds to an enumerated list of fuel names. Our custom field makes use of [useMemo()](https://reactjs.org/docs/hooks-reference.html#usememo) to only render values when necessary and matches the ID with the corresponding name, rendering the name of the fuel in the list rather than the numerical ID.
+
+A custom field is applied in the same way as the template, defining it in the props where the JsonSchemaForm is instantiated. This FuelRowId example is one of several custom fields we apply to this form, so we have wrapped all the customized fields in one component (see app/components/Application/ApplicationDetailsCardItemCustomFields.tsx) and passed that wrapper to be defined in the props (see app/containers/Applications/ApplicationDetailsCardItem for where this wrapper is applied).
 
 ## Style Guide
 
