@@ -9,22 +9,29 @@ begin;
         form_result.version_number,
         (form_result.form_result ->> 'facility')::json as facility_data,
         (form_result.form_result ->> 'operator')::json as operator_data,
-        (form_result.form_result ->> 'operationalRepresentative')::json as operational_representative_data
+        (form_result.form_result ->> 'operationalRepresentative')::json as operational_representative_data,
+        (form_result.form_result ->> 'certifyingOfficial')::json as certifying_official_data,
+        (form_result.form_result ->> 'applicationMetadata')::json as application_metadata
       from ggircs_portal.form_result
       join ggircs_portal.form_json
       on form_result.form_id = form_json.id
-      and form_json.slug = 'admin'
+      and form_json.slug in ('admin', 'admin-2018')
     )
     select
        x.application_id,
        x.version_number,
+       (select reporting_year from ggircs_portal.application where id = application_id) as reporting_year,
        (x.facility_data ->> 'bcghgid')::varchar(1000) as bcghgid,
        (x.facility_data ->> 'facilityName')::varchar(1000) as facility_name,
        (x.facility_data ->> 'facilityType')::varchar(1000) as facility_type,
+       (x.facility_data ->> 'facilityDescription')::varchar(1000) as facility_description,
        (x.operator_data ->> 'name')::varchar(1000) as operator_name,
        (x.operator_data ->> 'naics')::varchar(1000) as naics,
        (x.operator_data ->> 'tradeName')::varchar(1000) as operator_trade_name,
        (x.operator_data ->> 'bcCorporateRegistryNumber')::varchar(1000) as bc_corporate_registry_number,
+       (x.operator_data ->> 'isBcCorpRegNumberValid')::varchar(1000) as is_bc_corporate_registry_number_valid,
+       (x.operator_data ->> 'orgBookLegalName')::varchar(1000) as org_book_legal_name,
+       (x.operator_data ->> 'duns')::varchar(1000) as duns,
        ((x.operator_data ->> 'mailingAddress')::json ->> 'city')::varchar(1000) as operator_city,
        ((x.operator_data ->> 'mailingAddress')::json ->> 'province')::varchar(1000) as operator_province,
        ((x.operator_data ->> 'mailingAddress')::json ->> 'postalCode')::varchar(1000) as operator_postal_code,
@@ -37,7 +44,21 @@ begin;
        ((x.operational_representative_data ->> 'mailingAddress')::json ->> 'city')::varchar(1000) as operational_representative_city,
        ((x.operational_representative_data ->> 'mailingAddress')::json ->> 'province')::varchar(1000) as operational_representative_province,
        ((x.operational_representative_data ->> 'mailingAddress')::json ->> 'postalCode')::varchar(1000) as operational_representative_postal_code,
-       ((x.operational_representative_data ->> 'mailingAddress')::json ->> 'streetAddress')::varchar(1000) as operational_representative_street_address
+       ((x.operational_representative_data ->> 'mailingAddress')::json ->> 'streetAddress')::varchar(1000) as operational_representative_street_address,
+       (x.certifying_official_data ->> 'email')::varchar(1000) as certifying_official_email,
+       (x.certifying_official_data ->> 'phone')::varchar(1000) as certifying_official_phone,
+       (x.certifying_official_data ->> 'lastName')::varchar(1000) as certifying_official_last_name,
+       (x.certifying_official_data ->> 'firstName')::varchar(1000) as certifying_official_first_name,
+       (x.certifying_official_data ->> 'position')::varchar(1000) as certifying_official_position,
+       ((x.certifying_official_data ->> 'mailingAddress')::json ->> 'city')::varchar(1000) as certifying_official_city,
+       ((x.certifying_official_data ->> 'mailingAddress')::json ->> 'province')::varchar(1000) as certifying_official_province,
+       ((x.certifying_official_data ->> 'mailingAddress')::json ->> 'postalCode')::varchar(1000) as certifying_official_postal_code,
+       ((x.certifying_official_data ->> 'mailingAddress')::json ->> 'streetAddress')::varchar(1000) as certifying_official_street_address,
+       (x.application_metadata ->> 'sourceFileName')::varchar(1000) as application_source_filename,
+       (x.application_metadata ->> 'sourceSHA1')::varchar(1000) as application_source_sha1,
+       (x.application_metadata ->> 'importedAt')::timestamptz as application_imported_at,
+       (x.application_metadata ->> 'applicationType')::varchar(1000) as application_type,
+       (x.application_metadata ->> 'applicationSignatureDate')::timestamptz as application_signature_date
     from x
  );
 
