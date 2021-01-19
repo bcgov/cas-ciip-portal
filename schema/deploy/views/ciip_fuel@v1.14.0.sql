@@ -11,7 +11,7 @@ begin;
       from ggircs_portal.form_result
       join ggircs_portal.form_json
       on form_result.form_id = form_json.id
-      and form_json.slug in ('fuel', 'fuel-2018')
+      and form_json.slug = 'fuel'
     )
     select
        x.application_id,
@@ -19,11 +19,7 @@ begin;
        (x.fuel_data ->> 'quantity')::numeric as quantity,
        (x.fuel_data ->> 'fuelRowId')::integer as fuel_id,
        (x.fuel_data ->> 'fuelUnits')::varchar(1000) as fuel_units,
-       (x.fuel_data ->> 'emissionCategoryRowId')::numeric as emission_category_id,
-       (x.fuel_data ->> 'fuelType')::varchar(1000) as fuel_type,
-       (x.fuel_data ->> 'fuelTypeAlt')::varchar(1000) as fuel_type_alt,
-       (x.fuel_data ->> 'fuelDescription')::varchar(10000) as fuel_description,
-       (x.fuel_data ->> 'associatedEmissions')::numeric as associated_emissions
+       (x.fuel_data ->> 'emissionCategoryRowId')::numeric as emission_category_id
     from x
  );
 
@@ -36,9 +32,5 @@ comment on column ggircs_portal.ciip_fuel.quantity is 'The fuel quantity';
 comment on column ggircs_portal.ciip_fuel.fuel_units is 'The fuel units';
 comment on column ggircs_portal.ciip_fuel.fuel_id is 'The id of the fuel';
 comment on column ggircs_portal.ciip_fuel.emission_category_id is 'The foreign key to the emission_category table, defines what emission category the fuel belongs to';
-comment on column ggircs_portal.ciip_fuel.emission_category_id is 'The type(name) of fuel combusted';
-comment on column ggircs_portal.ciip_fuel.emission_category_id is 'Alternative name for type of fuel combusted';
-comment on column ggircs_portal.ciip_fuel.emission_category_id is 'A description of the fuel comubsted';
-comment on column ggircs_portal.ciip_fuel.emission_category_id is 'The quantity of emissions associated with the fuel combusted';
 
 commit;
