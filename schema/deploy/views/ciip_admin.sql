@@ -2,6 +2,7 @@
 -- requires: tables/form_result
 
 begin;
+  drop view ggircs_portal.ciip_admin;
   create or replace view ggircs_portal.ciip_admin as (
     with x as (
       select

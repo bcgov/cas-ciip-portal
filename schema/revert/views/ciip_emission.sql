@@ -2,8 +2,7 @@
 -- requires: table_application
 
 begin;
-drop ggircs_portal.ciip_emission;
-create view ggircs_portal.ciip_emission as
+create or replace view ggircs_portal.ciip_emission as
 (
 with source_types as (
   select application_id, version_number, json_array_elements((form_result.form_result ->> 'sourceTypes')::json) as source_type
