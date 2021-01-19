@@ -7,9 +7,7 @@ create view ggircs_portal.ciip_emission as
 with source_types as (
   select application_id, version_number, json_array_elements((form_result.form_result ->> 'sourceTypes')::json) as source_type
   from ggircs_portal.form_result
-  join ggircs_portal.form_json
-    on form_result.form_id = form_json.id
-    and form_json.slug in ('emission', 'emission-2018')
+  where form_id = 2
 ),
      gases as (
        select application_id, version_number,

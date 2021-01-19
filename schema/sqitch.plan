@@ -215,3 +215,4 @@ mutations/create_application_revision_mutation_chain [mutations/create_applicati
 @v1.15.0 2021-02-01T21:26:33Z Matthieu Foucault <matthieu@button.is> # release v1.15.0
 views/ciip_admin [views/ciip_admin@v1.14.0] 2021-01-19T19:16:19Z Dylan Leard <dylan@button.is> # Migration: include ciip_2018 data
 views/ciip_fuel [views/ciip_fuel@v1.14.0] 2021-01-19T21:08:48Z Dylan Leard <dylan@button.is> # Migration: handle 2018 ciip data
+views/ciip_emission [views/ciip_emission@v1.14.0] 2021-01-19T21:25:56Z Dylan Leard <dylan@button.is> # Migration: handle ciip_2018 data
