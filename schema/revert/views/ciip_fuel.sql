@@ -2,8 +2,7 @@
 -- requires: table_form_result
 
 begin;
-  drop view ggircs_portal.ciip_fuel;
-  create view ggircs_portal.ciip_fuel as (
+  create or replace view ggircs_portal.ciip_fuel as (
     with x as (
       select
         form_result.application_id,
