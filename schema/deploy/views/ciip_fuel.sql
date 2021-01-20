@@ -36,9 +36,10 @@ comment on column ggircs_portal.ciip_fuel.quantity is 'The fuel quantity';
 comment on column ggircs_portal.ciip_fuel.fuel_units is 'The fuel units';
 comment on column ggircs_portal.ciip_fuel.fuel_id is 'The id of the fuel';
 comment on column ggircs_portal.ciip_fuel.emission_category_id is 'The foreign key to the emission_category table, defines what emission category the fuel belongs to';
-comment on column ggircs_portal.ciip_fuel.emission_category_id is 'The type(name) of fuel combusted';
-comment on column ggircs_portal.ciip_fuel.emission_category_id is 'Alternative name for type of fuel combusted';
-comment on column ggircs_portal.ciip_fuel.emission_category_id is 'A description of the fuel comubsted';
-comment on column ggircs_portal.ciip_fuel.emission_category_id is 'The quantity of emissions associated with the fuel combusted';
+comment on column ggircs_portal.ciip_fuel.fuel_type is 'The type(name) of fuel combusted';
+comment on column ggircs_portal.ciip_fuel.fuel_type_alt is 'Alternative name for type of fuel combusted';
+comment on column ggircs_portal.ciip_fuel.fuel_description is 'A description of the fuel comubsted';
+comment on column ggircs_portal.ciip_fuel.associated_emissions is 'The quantity of emissions associated with the fuel combusted';
+
 
 commit;

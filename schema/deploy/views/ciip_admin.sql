@@ -68,13 +68,18 @@ grant select on table ggircs_portal.ciip_admin to ciip_administrator, ciip_analy
 comment on view ggircs_portal.ciip_admin is E'@omit\n The view for admin data reported in the application';
 comment on column ggircs_portal.ciip_admin.application_id is 'The application id';
 comment on column ggircs_portal.ciip_admin.version_number is 'The application revision number';
+comment on column ggircs_portal.ciip_admin.reporting_year is 'The reporting year this data was submitted for'
 comment on column ggircs_portal.ciip_admin.bcghgid is 'The facility bcghgid';
 comment on column ggircs_portal.ciip_admin.facility_name is 'The name of the facility';
 comment on column ggircs_portal.ciip_admin.facility_type is 'The type of the facility';
+comment on column ggircs_portal.ciip_admin.facility_description is 'A description of the facility'
 comment on column ggircs_portal.ciip_admin.operator_name is 'The name of the operator';
 comment on column ggircs_portal.ciip_admin.naics is 'The operators naics code';
 comment on column ggircs_portal.ciip_admin.operator_trade_name is 'The operators trade name';
 comment on column ggircs_portal.ciip_admin.bc_corporate_registry_number is 'The operators bc corporate registry number';
+comment on column ggircs_portal.ciip_admin.is_bc_corporate_registry_number_valid is 'Boolean value indicates if the bc corporate registry number is a valid bc corp reg number',
+comment on column ggircs_portal.ciip_admin.org_book_legal_name is 'The legal name according to BCGov orgbook',
+comment on column ggircs_portal.ciip_admin.duns is 'The duns number attributed to this organisation',
 comment on column ggircs_portal.ciip_admin.operator_city is 'The operators city';
 comment on column ggircs_portal.ciip_admin.operator_province is 'The operators province';
 comment on column ggircs_portal.ciip_admin.operator_postal_code is 'The operators postal code';
@@ -88,6 +93,20 @@ comment on column ggircs_portal.ciip_admin.operational_representative_city is 'T
 comment on column ggircs_portal.ciip_admin.operational_representative_province is 'The operational representatives province';
 comment on column ggircs_portal.ciip_admin.operational_representative_postal_code is 'The operational representatives postal code';
 comment on column ggircs_portal.ciip_admin.operational_representative_street_address is 'The operational representatives street address';
+comment on column ggircs_portal.ciip_admin.operational_representative_email is 'The certifying officials email address';
+comment on column ggircs_portal.ciip_admin.certifying_official_phone is 'The certifying officials phone number';
+comment on column ggircs_portal.ciip_admin.certifying_official_last_name is 'The certifying officials last name';
+comment on column ggircs_portal.ciip_admin.certifying_official_first_name is 'The certifying officials first name';
+comment on column ggircs_portal.ciip_admin.certifying_official_position is 'The certifying officials position';
+comment on column ggircs_portal.ciip_admin.certifying_official_city is 'The certifying officials city';
+comment on column ggircs_portal.ciip_admin.certifying_official_province is 'The certifying officials province';
+comment on column ggircs_portal.ciip_admin.certifying_official_postal_code is 'The certifying officials postal code';
+comment on column ggircs_portal.ciip_admin.certifying_official_street_address is 'The certifying officials street address';
+comment on column ggircs_portal.ciip_admin.application_source_filename is 'The name of the file this application was parsed from';
+comment on column ggircs_portal.ciip_admin.application_source_sha1 is 'The sha1 of this (2018) application';
+comment on column ggircs_portal.ciip_admin.application_imported_at is 'The date this application was imported from swrs';
+comment on column ggircs_portal.ciip_admin.application_type is 'The type of the application (found in 2018 data only, application_type = facility_type)';
+comment on column ggircs_portal.ciip_admin.application_signature_date is 'The date this application was signed off on';
 
 
 commit;
