@@ -10,20 +10,17 @@ begin;
       from ggircs_portal.form_result
       join ggircs_portal.form_json
       on form_result.form_id = form_json.id
-      and form_json.slug in ('production', 'production-2018')
+      and form_json.slug = 'production'
     )
     select
        x.application_id,
        x.version_number,
-       coalesce((x.production_data ->> 'productAmount')::numeric, (x.production_data ->> 'quantity')::numeric) as product_amount,
+       (x.production_data ->> 'productAmount')::numeric as product_amount,
        (x.production_data ->> 'productRowId')::integer as product_id,
-       coalesce((x.production_data ->> 'productUnits')::varchar(1000), (x.production_data ->> 'units')::varchar(1000)) as product_units,
+       (x.production_data ->> 'productUnits')::varchar(1000) as product_units,
        (x.production_data ->> 'productEmissions')::numeric as product_emissions,
        (x.production_data ->> 'requiresEmissionAllocation')::boolean as requires_emission_allocation,
-       (x.production_data ->> 'isEnergyProduct')::boolean as is_energy_product,
-       (x.production_data ->> 'productName')::varchar(1000) as product_name,
-       (x.production_data ->> 'associatedEmissions')::numeric as associated_emissions
-
+       (x.production_data ->> 'isEnergyProduct')::boolean as is_energy_product
     from x
  );
 
