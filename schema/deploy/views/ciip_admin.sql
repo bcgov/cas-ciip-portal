@@ -93,7 +93,7 @@ comment on column ggircs_portal.ciip_admin.operational_representative_city is 'T
 comment on column ggircs_portal.ciip_admin.operational_representative_province is 'The operational representatives province';
 comment on column ggircs_portal.ciip_admin.operational_representative_postal_code is 'The operational representatives postal code';
 comment on column ggircs_portal.ciip_admin.operational_representative_street_address is 'The operational representatives street address';
-comment on column ggircs_portal.ciip_admin.operational_representative_email is 'The certifying officials email address';
+comment on column ggircs_portal.ciip_admin.certifying_official_email is 'The certifying officials email address';
 comment on column ggircs_portal.ciip_admin.certifying_official_phone is 'The certifying officials phone number';
 comment on column ggircs_portal.ciip_admin.certifying_official_last_name is 'The certifying officials last name';
 comment on column ggircs_portal.ciip_admin.certifying_official_first_name is 'The certifying officials first name';
