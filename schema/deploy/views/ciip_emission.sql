@@ -6,7 +6,10 @@ begin;
 create or replace view ggircs_portal.ciip_emission as
 (
 with source_types as (
-  select application_id, version_number, json_array_elements((form_result.form_result ->> 'sourceTypes')::json) as source_type
+  select application_id,
+         version_number,
+         json_array_elements((form_result.form_result ->> 'sourceTypes')::json) as source_type,
+         (form_result.form_result ->> 'comments')::varchar(10000) as comments
   from ggircs_portal.form_result
   join ggircs_portal.form_json
     on form_result.form_id = form_json.id
@@ -15,7 +18,8 @@ with source_types as (
      gases as (
        select application_id, version_number,
               (source_type ->> 'sourceTypeName')::varchar(1000)    as source_type_name,
-              json_array_elements((source_type ->> 'gases')::json) as gases
+              json_array_elements((source_type ->> 'gases')::json) as gases,
+              comments
        from source_types
      )
 select application_id, version_number,
@@ -24,7 +28,8 @@ select application_id, version_number,
        (gases ->> 'gasType')::varchar(1000)  as gas_type,
        (gases ->> 'annualCO2e')::numeric     as annual_co2e,
        (gases ->> 'annualEmission')::numeric as annual_emission,
-       (gases ->> 'gasDescription')::varchar(1000) as gas_description
+       (gases ->> 'gasDescription')::varchar(1000) as gas_description,
+       comments
 from gases
   );
 
@@ -39,5 +44,6 @@ comment on column ggircs_portal.ciip_emission.gwp is 'The gas'' global warming p
 comment on column ggircs_portal.ciip_emission.annual_co2e is 'The CO2 equivalent (in tonnes) emitted (annual_emission * gwp)';
 comment on column ggircs_portal.ciip_emission.annual_emission is 'The amount of gas emitted (in tonnes)';
 comment on column ggircs_portal.ciip_emission.gas_description is 'The description of the gas';
+comment on column ggircs_portal.ciip_emission.comments is 'Any comments the reporter added to this form while filling it out';
 
 commit;

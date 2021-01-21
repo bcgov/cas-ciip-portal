@@ -12,7 +12,8 @@ begin;
         (form_result.form_result ->> 'operator')::json as operator_data,
         (form_result.form_result ->> 'operationalRepresentative')::json as operational_representative_data,
         (form_result.form_result ->> 'certifyingOfficial')::json as certifying_official_data,
-        (form_result.form_result ->> 'applicationMetadata')::json as application_metadata
+        (form_result.form_result ->> 'applicationMetadata')::json as application_metadata,
+        (form_result.form_result ->> 'comments')::varchar(10000) as comments
       from ggircs_portal.form_result
       join ggircs_portal.form_json
       on form_result.form_id = form_json.id
@@ -59,7 +60,8 @@ begin;
        (x.application_metadata ->> 'sourceSHA1')::varchar(1000) as application_source_sha1,
        (x.application_metadata ->> 'importedAt')::timestamptz as application_imported_at,
        (x.application_metadata ->> 'applicationType')::varchar(1000) as application_type,
-       (x.application_metadata ->> 'applicationSignatureDate')::timestamptz as application_signature_date
+       (x.application_metadata ->> 'applicationSignatureDate')::timestamptz as application_signature_date,
+       x.comments
     from x
  );
 
@@ -107,6 +109,7 @@ comment on column ggircs_portal.ciip_admin.application_source_sha1 is 'The sha1 
 comment on column ggircs_portal.ciip_admin.application_imported_at is 'The date this application was imported from swrs';
 comment on column ggircs_portal.ciip_admin.application_type is 'The type of the application (found in 2018 data only, application_type = facility_type)';
 comment on column ggircs_portal.ciip_admin.application_signature_date is 'The date this application was signed off on';
+comment on column ggircs_portal.ciip_admin.comments is 'Any comments the reporter added to this form while filling it out';
 
 
 commit;

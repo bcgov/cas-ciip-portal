@@ -6,7 +6,8 @@ begin;
     with x as (
       select
          application_id, version_number,
-         json_array_elements((form_result)::json) as production_data
+         json_array_elements((form_result)::json) as production_data,
+         (form_result.form_result ->> 'comments')::varchar(10000) as comments
       from ggircs_portal.form_result
       join ggircs_portal.form_json
       on form_result.form_id = form_json.id
@@ -22,7 +23,8 @@ begin;
        (x.production_data ->> 'requiresEmissionAllocation')::boolean as requires_emission_allocation,
        (x.production_data ->> 'isEnergyProduct')::boolean as is_energy_product,
        (x.production_data ->> 'productName')::varchar(1000) as product_name,
-       (x.production_data ->> 'associatedEmissions')::numeric as associated_emissions
+       (x.production_data ->> 'associatedEmissions')::numeric as associated_emissions,
+       x.comments
 
     from x
  );
@@ -40,5 +42,6 @@ comment on column ggircs_portal.ciip_production.requires_emission_allocation is 
 comment on column ggircs_portal.ciip_production.is_energy_product is 'Boolean value indicates if the product is an energy product that is reported alongside other products';
 comment on column ggircs_portal.ciip_production.product_name is 'The name of the product';
 comment on column ggircs_portal.ciip_production.associated_emissions is 'The emissions associated with the manufacturing of this product';
+comment on column ggircs_portal.ciip_production.comments is 'Any comments the reporter added to this form while filling it out';
 
 commit;

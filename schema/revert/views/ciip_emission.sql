@@ -2,6 +2,7 @@
 -- requires: table_application
 
 begin;
+drop view ggircs_portal.ciip_emission;
 create or replace view ggircs_portal.ciip_emission as
 (
 with source_types as (
