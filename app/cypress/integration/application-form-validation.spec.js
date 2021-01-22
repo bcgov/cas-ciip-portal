@@ -136,6 +136,7 @@ describe('When reviewing a submitted application as an analyst', () => {
     cy.contains('Continue').click();
     cy.get('#page-content h1').contains('Emission');
     cy.visit(summaryPageUrl);
+    cy.contains('Administration Data');
     cy.get('body').happoScreenshot({
       component: 'Admin Summary Card',
       variant: 'no errors'
@@ -154,6 +155,7 @@ describe('When reviewing a submitted application as an analyst', () => {
     ).contains('is a required property');
 
     cy.visit(summaryPageUrl);
+    cy.contains('Emission');
     cy.get('body').happoScreenshot({
       component: 'Emission Summary Card',
       variant: 'with errors'
@@ -167,6 +169,7 @@ describe('When reviewing a submitted application as an analyst', () => {
     cy.contains('Continue').click();
     cy.get('#page-content h1').contains('Fuel');
     cy.visit(summaryPageUrl);
+    cy.contains('Emission');
     cy.get('body').happoScreenshot({
       component: 'Emission Summary Card',
       variant: 'no errors'
@@ -187,6 +190,7 @@ describe('When reviewing a submitted application as an analyst', () => {
     );
 
     cy.visit(summaryPageUrl);
+    cy.contains('Fuel');
     cy.get('body').happoScreenshot({
       component: 'Fuel Summary Card',
       variant: 'with errors'
@@ -205,6 +209,7 @@ describe('When reviewing a submitted application as an analyst', () => {
     cy.contains('Continue').click();
     cy.get('#page-content h1').contains('Production');
     cy.visit(summaryPageUrl);
+    cy.contains('Fuel');
     cy.get('body').happoScreenshot({
       component: 'Fuel Summary Card',
       variant: 'no errors'
@@ -229,6 +234,7 @@ describe('When reviewing a submitted application as an analyst', () => {
     );
 
     cy.visit(summaryPageUrl);
+    cy.contains('Production');
     cy.get('body').happoScreenshot({
       component: 'Production Summary Card',
       variant: 'with errors'

@@ -29,12 +29,14 @@ describe('When logged in as a certifier(reporter)', () => {
     cy.contains('Legal Disclaimer');
     cy.contains('View').click();
     cy.url().should('include', '/certifier/certify');
+    cy.contains('Certifier Signature');
     cy.get('body').happoScreenshot({
       component: 'Certification Page'
     });
     cy.visit('/reporter');
     cy.get('.alert-link').contains('View all certification requests.').click();
     cy.url().should('include', '/certifier/requests');
+    cy.contains('View');
     cy.get('body').happoScreenshot({
       component: 'Batch certification page',
       variant: 'Nothing selected'
