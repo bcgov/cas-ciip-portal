@@ -71,12 +71,6 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
       <Footer />
       <style jsx global>
         {`
-          html,
-          body,
-          #__next,
-          .page-wrap {
-            height: 100%;
-          }
           a {
             color: #0053b3;
           }
