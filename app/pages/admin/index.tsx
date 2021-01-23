@@ -5,9 +5,8 @@ import {CiipPageComponentProps} from 'next-env';
 import {adminQueryResponse} from 'adminQuery.graphql';
 import DefaultLayout from 'layouts/default-layout';
 import UserManagement from 'components/Dashboard/userManagement';
-import ApplicationManagement from 'components/Dashboard/applicationManagement';
-import ProgramDataManagement from 'components/Dashboard/programDataManagement';
-import DevOpsManagement from 'components/Dashboard/devopsManagement';
+import ReportingOperations from 'components/Dashboard/reportingOperations';
+import ProgramAdministration from 'components/Dashboard/programAdministration';
 import {ADMIN_GROUP} from 'data/group-constants';
 
 const ALLOWED_GROUPS = ADMIN_GROUP;
@@ -36,10 +35,9 @@ class Admin extends Component<Props> {
       <DefaultLayout session={session} title="Administrator Dashboard">
         <div>
           <Row>
+            <ProgramAdministration />
+            <ReportingOperations />
             <UserManagement />
-            <ApplicationManagement />
-            <ProgramDataManagement />
-            <DevOpsManagement />
           </Row>
 
           <style global jsx>

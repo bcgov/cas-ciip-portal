@@ -4,8 +4,8 @@ import {graphql} from 'react-relay';
 import {CiipPageComponentProps} from 'next-env';
 import {analystQueryResponse} from 'analystQuery.graphql';
 import DefaultLayout from 'layouts/default-layout';
-import ApplicationManagement from 'components/Dashboard/applicationManagement';
-import ProgramDataManagement from 'components/Dashboard/programDataManagement';
+import ReportingOperations from 'components/Dashboard/reportingOperations';
+import ProgramAdministration from 'components/Dashboard/programAdministration';
 import {INCENTIVE_ANALYST} from 'data/group-constants';
 
 const ALLOWED_GROUPS = [INCENTIVE_ANALYST];
@@ -34,8 +34,8 @@ class Analyst extends Component<Props> {
       <DefaultLayout session={session} title="Analyst Dashboard">
         <div>
           <Row>
-            <ApplicationManagement />
-            <ProgramDataManagement viewOnly />
+            <ProgramAdministration viewOnly />
+            <ReportingOperations />
           </Row>
 
           <style global jsx>
