@@ -7,6 +7,8 @@ import DefaultLayout from 'layouts/default-layout';
 import UserManagement from 'components/Dashboard/userManagement';
 import ReportingOperations from 'components/Dashboard/reportingOperations';
 import ProgramAdministration from 'components/Dashboard/programAdministration';
+import ReportAProblem from 'components/Dashboard/reportAProblem';
+import getConfig from 'next/config';
 import {ADMIN_GROUP} from 'data/group-constants';
 
 const ALLOWED_GROUPS = ADMIN_GROUP;
@@ -31,6 +33,7 @@ class Admin extends Component<Props> {
     const {
       query: {session}
     } = this.props;
+    const feedbackUrl = getConfig()?.publicRuntimeConfig.FEEDBACK_SITE_URL;
     return (
       <DefaultLayout session={session} title="Administrator Dashboard">
         <div>
@@ -38,6 +41,7 @@ class Admin extends Component<Props> {
             <ProgramAdministration />
             <ReportingOperations />
             <UserManagement />
+            <ReportAProblem serviceUrl={feedbackUrl || '#'} />
           </Row>
 
           <style global jsx>

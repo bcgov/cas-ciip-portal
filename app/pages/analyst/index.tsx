@@ -6,6 +6,8 @@ import {analystQueryResponse} from 'analystQuery.graphql';
 import DefaultLayout from 'layouts/default-layout';
 import ReportingOperations from 'components/Dashboard/reportingOperations';
 import ProgramAdministration from 'components/Dashboard/programAdministration';
+import ReportAProblem from 'components/Dashboard/reportAProblem';
+import getConfig from 'next/config';
 import {INCENTIVE_ANALYST} from 'data/group-constants';
 
 const ALLOWED_GROUPS = [INCENTIVE_ANALYST];
@@ -30,12 +32,14 @@ class Analyst extends Component<Props> {
     const {
       query: {session}
     } = this.props;
+    const feedbackUrl = getConfig()?.publicRuntimeConfig.FEEDBACK_SITE_URL;
     return (
       <DefaultLayout session={session} title="Analyst Dashboard">
         <div>
           <Row>
             <ProgramAdministration viewOnly />
             <ReportingOperations />
+            <ReportAProblem serviceUrl={feedbackUrl || '#'} />
           </Row>
 
           <style global jsx>
