@@ -8,7 +8,11 @@ import FormFieldTemplate from 'containers/Forms/FormFieldTemplate';
 import reportingYearSchema from './edit_reporting_year.json';
 import DatePickerWidget from 'components/Forms/DatePickerWidget';
 import {validateApplicationDates} from './reportingYearValidation';
-import {defaultMoment, nowMoment, ensureFullTimestamp} from 'functions/formatDates';
+import {
+  defaultMoment,
+  nowMoment,
+  ensureFullTimestamp
+} from 'functions/formatDates';
 
 function transformUiSchema(json, formFields) {
   if (!formFields) return;

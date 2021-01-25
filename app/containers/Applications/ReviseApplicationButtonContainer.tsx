@@ -92,8 +92,9 @@ export const ReviseApplicationButton: React.FunctionComponent<Props> = ({
 
   return (
     <Col>
-      {newerSubmissionExists ? viewLatestSubmissionButton :
-      newerDraftExists ? (
+      {newerSubmissionExists ? (
+        viewLatestSubmissionButton
+      ) : newerDraftExists ? (
         resumeLatestDraftButton
       ) : (
         <Button variant="success" onClick={handleClick}>

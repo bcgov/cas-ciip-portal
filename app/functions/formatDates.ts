@@ -14,16 +14,17 @@ const FORMAT_TYPE = {
 // (date strings returned by DatePickerWidget are 10 chars)
 export const ensureFullTimestamp = (
   dateStr: string,
-  time: {hour: number, minute: number, second: number, millisecond: number}
+  time: {hour: number; minute: number; second: number; millisecond: number}
 ) => {
-  const fullTimestamp = dateStr.length > 10 ?
-    dateStr :
-    moment(dateStr)
-      .hour(time.hour)
-      .minute(time.minute)
-      .second(time.second)
-      .millisecond(time.millisecond)
-      .format(FORMAT_TYPE.timestamptz);
+  const fullTimestamp =
+    dateStr.length > 10
+      ? dateStr
+      : moment(dateStr)
+          .hour(time.hour)
+          .minute(time.minute)
+          .second(time.second)
+          .millisecond(time.millisecond)
+          .format(FORMAT_TYPE.timestamptz);
   return fullTimestamp;
 };
 

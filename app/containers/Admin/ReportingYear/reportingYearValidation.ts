@@ -41,7 +41,7 @@ function doesRangeOverlap(
     const endDateFallsWithin =
       defaultMoment(proposedEndDate).isSameOrAfter(begin) &&
       defaultMoment(proposedEndDate).isSameOrBefore(end);
-      return !sameAsYearEdited && (beginDateFallsWithin || endDateFallsWithin);
+    return !sameAsYearEdited && (beginDateFallsWithin || endDateFallsWithin);
   });
 }
 
@@ -56,7 +56,7 @@ function validateExclusiveDateRanges(
   },
   errors
 ) {
-  if  (applicationOpenTime && applicationCloseTime) {
+  if (applicationOpenTime && applicationCloseTime) {
     const doesApplicationWindowOverlap = doesRangeOverlap(
       year,
       existingYears,
