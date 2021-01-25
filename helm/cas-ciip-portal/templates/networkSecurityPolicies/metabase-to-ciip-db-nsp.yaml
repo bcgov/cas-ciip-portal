@@ -1,0 +1,18 @@
+{{- if .Values.networkSecurityPolicies.enable }}
+kind: NetworkSecurityPolicy
+apiVersion: security.devops.gov.bc.ca/v1alpha1
+metadata:
+  name: metabase-to-ciip-db
+  labels: {{ include "cas-ciip-portal.labels" . | nindent 4 }}
+spec:
+  description: allow metabase to communicate with the CIIP application
+  source:
+    - - $namespace={{ .Values.ggircs.namespace }}
+      - app.kubernetes.io/instance={{ .Values.metabase.instanceName }}
+
+  destination:
+    - - $namespace={{ .Release.Namespace }}
+      - app.kubernetes.io/instance={{ .Release.Name }}
+    - - $namespace={{ .Release.Namespace }}
+      - release={{ .Release.Name}}
+{{- end }}
