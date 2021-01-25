@@ -7,12 +7,12 @@ metadata:
 spec:
   description: allow metabase to communicate with the CIIP application
   source:
-    - - $namespace={{ .Release.Namespace }}
-      - app.kubernetes.io/instance={{ include "cas-metabase.name" . }}
+    - - $namespace={{ .Values.ggircs.namespace }}
+      - app.kubernetes.io/instance={{ .Values.metabase.instanceName }}
 
   destination:
-    - - $namespace={{ .Values.ggircs.namespace }}
-      - app.kubernetes.io/instance=cas-metabase
-    - - $namespace={{ .Values.ggircs.namespace }}
-      - release=cas-metabase
+    - - $namespace={{ .Release.Namespace }}
+      - app.kubernetes.io/instance={{ .Release.Name }}
+    - - $namespace={{ .Release.Namespace }}
+      - release={{ .Release.Name}}
 {{- end }}

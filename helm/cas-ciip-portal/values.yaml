@@ -31,6 +31,9 @@ ggircs:
   service: cas-ggircs-patroni
   instanceName: cas-ggircs
 
+metabase:
+  instanceName: cas-metabase
+
 route:
   # route.host defines the host name for the route template,
   # and the HOST env variable for the app deployment
