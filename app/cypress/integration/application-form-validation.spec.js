@@ -114,7 +114,8 @@ describe('When reviewing a submitted application as an analyst', () => {
       variant: 'open'
     });
     cy.get('#overrideJustification').clear().type('justification goes here');
-    cy.get('.btn-success').click();
+    cy.get('.btn-success').contains('Save').click();
+    cy.contains('You have chosen to override');
     cy.get('body').happoScreenshot({
       component: 'Override Justification',
       variant: 'override active'
