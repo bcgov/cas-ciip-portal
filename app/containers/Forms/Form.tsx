@@ -3,7 +3,7 @@ import {graphql, createFragmentContainer} from 'react-relay';
 import {IChangeEvent, ErrorSchema, AjvError} from 'react-jsonschema-form';
 import JsonSchemaForm from 'components/Forms/Form';
 import {Form_query} from 'Form_query.graphql';
-import {Button, Row, Col, Alert, Card} from 'react-bootstrap';
+import {Button, Row, Col, Alert} from 'react-bootstrap';
 import globalFormStyles from './FormSharedStyles';
 import Link from 'next/link';
 import {FormJson} from 'next-env';
