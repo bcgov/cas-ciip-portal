@@ -2,27 +2,35 @@
 
 The Dashboard is a central overview page giving access to all the main tools the business will need to manage their application details. (Note: Depending on your permission level, some of the tools may or may not be visible.)
 
-![dashboard](images/dashboard.png)
+<img alt="Administrator Dashboard" src="images/dashboard.png" width=650/>
+
+#### Program Administration
+
+Review applications, access [data insights](#data-insights), and manage program-specific settings like products, benchmarks and reporting periods.
+
+##### Reporting Operations
+
+Create, search and manage access requests, operators and facilities.
+
+The GHG Regulator can add a new facility or organisation here by searching for an existing one or adding a new one. Note, however, that manually adding an organisation or facility via these pages has the potential to create duplicate and SWRS-orphaned organisations and facilities in the data.
 
 #### User Management
 
 You can view all user information here including their name, occupation, and contact details.
 
-To grant or revoke access to an IDIR user, a Keycloak Realm administrator must first log in to the administration console to make those adjustments.
+To grant or revoke access to an IDIR user, a Keycloak Realm administrator must first log in to the Keycloak administration console to make those adjustments.
 
+#### Problem Reporting
 
-
-#### Application Management
-
-All applications, organizations and access requests, and facilities are managed here.
-
-##### Organizations and Facilities
-
-The GHG Regulator can add a new facility or organisation here by searching for an existing one or adding a new one. Note, however, that manually adding an organisation or facility via these pages has the potential to create duplicate and SWRS-orphaned organisations and facilities in the data.
-
-
+Follow the link to report a problem to the development team.
 
 #### Program and Data Management
+
+##### Data Insights
+
+A visual data table of metrics provided by [Metabase](https://www.metabase.com/) is available to internal BC Government users, which can allow for easy access to see, for example, which products are emitting the highest emissions of a certain type. Clicking this link will take you to an external but secure site to access the BC Government's managed instance of Metabase.
+
+![metabase-example](images/metabase-example.png)
 
 ##### Products
 
@@ -45,11 +53,3 @@ The use of a product may invariably involve the use of another product. In order
 ##### Reporting Periods
 
 This list is a reference for past and future (up to two years) reporting periods and may be editable depending on your role and permissions.
-
-
-
-##### Data and Insights
-
-A visual data table of metrics provided by [Metabase](https://www.metabase.com/) is available to internal BC Government users, which can allow for easy access to see, for example, which products are emitting the highest emissions of a certain type. Clicking this link will take you to an external but secure site to access the BC Government's managed instance of Metabase.
-
-![metabase-example](images/metabase-example.png)

@@ -200,6 +200,7 @@ Displayed to users logged in with IDIR but who have not had analyst access grant
 
 Links to all pages accessible from this scope (analyst and admin views), including external links to:
 - Metabase for data insights, aka. business intelligence
+- Issue tracker for reporting problems to the development team
 
 <a id="add-organisation"></a>
 
@@ -276,9 +277,8 @@ Admin users have access to all the views listed under the analyst scope, plus th
 ### Admin Dashboard `/admin`
 
 Links to all pages accessible from this scope (analyst and admin views), including external links to:
-- Shipit for deployment
-- Airflow for DevOps orchestration
 - Metabase for data insights, aka. business intelligence
+- Issue tracker for reporting problems to the development team
 
 <a id="admin-users"></a>
 
