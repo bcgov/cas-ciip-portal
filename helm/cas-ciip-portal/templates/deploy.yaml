@@ -80,7 +80,7 @@ spec:
         readinessProbe:
           failureThreshold: 3
           httpGet:
-            path: /
+            path: /health
             port: {{ .Values.port }}
             scheme: HTTP{{ if not .Values.route.insecure }}S{{ end }}
           periodSeconds: 10

@@ -270,6 +270,17 @@ app.prepare().then(async () => {
 
   server.use('/print-pdf', await printPdf());
 
+  // Endpoint /health sends a 500 status if there is an error connecting to the database or if the database is in recovery mode (result.rowAsArray === true)
+  server.get('/health', ({res}) => {
+    pgPool.query('SELECT pg_is_in_recovery();', [], (err, result) => {
+      if (err || result.rowAsArray) {
+        res.sendStatus(500);
+      } else {
+        res.sendStatus(200);
+      }
+    });
+  });
+
   server.get('*', async (req, res) => {
     return handle(req, res);
   });
