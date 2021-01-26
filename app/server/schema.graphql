@@ -1682,6 +1682,11 @@ type CiipApplicationWizard implements Node {
   A globally unique identifier. Can be used in various places throughout the system to identify this single value.
   """
   id: ID!
+
+  """
+  Boolean value indicates whether the form is currently in use or has been archived
+  """
+  isActive: Boolean
 }
 
 """
@@ -1694,6 +1699,9 @@ input CiipApplicationWizardCondition {
 
   """Checks for equality with the object’s `formPosition` field."""
   formPosition: Int
+
+  """Checks for equality with the object’s `isActive` field."""
+  isActive: Boolean
 }
 
 """An input for mutations affecting `CiipApplicationWizard`"""
@@ -1703,6 +1711,11 @@ input CiipApplicationWizardInput {
 
   """The zero-indexed position of the form in the wizard"""
   formPosition: Int!
+
+  """
+  Boolean value indicates whether the form is currently in use or has been archived
+  """
+  isActive: Boolean
 }
 
 """
@@ -1714,6 +1727,11 @@ input CiipApplicationWizardPatch {
 
   """The zero-indexed position of the form in the wizard"""
   formPosition: Int
+
+  """
+  Boolean value indicates whether the form is currently in use or has been archived
+  """
+  isActive: Boolean
 }
 
 """A connection to a list of `CiipApplicationWizard` values."""
@@ -1750,6 +1768,8 @@ enum CiipApplicationWizardsOrderBy {
   FORM_ID_DESC
   FORM_POSITION_ASC
   FORM_POSITION_DESC
+  IS_ACTIVE_ASC
+  IS_ACTIVE_DESC
   NATURAL
   PRIMARY_KEY_ASC
   PRIMARY_KEY_DESC
@@ -1899,6 +1919,54 @@ enum CiipCarbonTaxCalculationsOrderBy {
   UNITS_DESC
   VERSION_NUMBER_ASC
   VERSION_NUMBER_DESC
+}
+
+type CiipCarbonTaxCalculator {
+  column: String
+}
+
+"""
+A condition to be used against `CiipCarbonTaxCalculator` object types. All
+fields are tested for equality and combined with a logical ‘and.’
+"""
+input CiipCarbonTaxCalculatorCondition {
+  """Checks for equality with the object’s `column` field."""
+  column: String
+}
+
+"""A connection to a list of `CiipCarbonTaxCalculator` values."""
+type CiipCarbonTaxCalculatorsConnection {
+  """
+  A list of edges which contains the `CiipCarbonTaxCalculator` and cursor to aid in pagination.
+  """
+  edges: [CiipCarbonTaxCalculatorsEdge!]!
+
+  """A list of `CiipCarbonTaxCalculator` objects."""
+  nodes: [CiipCarbonTaxCalculator]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """
+  The count of *all* `CiipCarbonTaxCalculator` you could get from the connection.
+  """
+  totalCount: Int!
+}
+
+"""A `CiipCarbonTaxCalculator` edge in the connection."""
+type CiipCarbonTaxCalculatorsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `CiipCarbonTaxCalculator` at the end of the edge."""
+  node: CiipCarbonTaxCalculator
+}
+
+"""Methods to use when ordering `CiipCarbonTaxCalculator`."""
+enum CiipCarbonTaxCalculatorsOrderBy {
+  COLUMN_ASC
+  COLUMN_DESC
+  NATURAL
 }
 
 enum CiipFormResultStatus {
@@ -10763,6 +10831,37 @@ type Query implements Node {
     """The method to use when ordering `CiipCarbonTaxCalculation`."""
     orderBy: [CiipCarbonTaxCalculationsOrderBy!] = [NATURAL]
   ): CiipCarbonTaxCalculationsConnection
+
+  """
+  Reads and enables pagination through a set of `CiipCarbonTaxCalculator`.
+  """
+  allCiipCarbonTaxCalculators(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CiipCarbonTaxCalculatorCondition
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `CiipCarbonTaxCalculator`."""
+    orderBy: [CiipCarbonTaxCalculatorsOrderBy!] = [NATURAL]
+  ): CiipCarbonTaxCalculatorsConnection
 
   """Reads and enables pagination through a set of `CiipUserOrganisation`."""
   allCiipUserOrganisations(
