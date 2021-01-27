@@ -11,17 +11,17 @@ const ApplicationManagement: React.FunctionComponent = () => {
       </Card.Body>
       <ListGroup variant="flush">
         <ListGroup.Item>
-          <Link href="/analyst/organisation-requests">
+          <Link href="/analyst/organisation-requests" passHref>
             <Card.Link href="#">Access Requests</Card.Link>
           </Link>
         </ListGroup.Item>
         <ListGroup.Item>
-          <Link href="/analyst/add-organisation">
+          <Link href="/analyst/add-organisation" passHref>
             <Card.Link href="#">Operators</Card.Link>
           </Link>
         </ListGroup.Item>
         <ListGroup.Item>
-          <Link href="/analyst/add-facility">
+          <Link href="/analyst/add-facility" passHref>
             <Card.Link href="#">Facilities</Card.Link>
           </Link>
         </ListGroup.Item>

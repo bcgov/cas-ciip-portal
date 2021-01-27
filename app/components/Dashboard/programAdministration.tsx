@@ -15,12 +15,12 @@ const ProgramDataManagement: React.FunctionComponent<Props> = ({
     EditableItems = (
       <>
         <ListGroup.Item>
-          <Link href="/admin/products-benchmarks">
+          <Link href="/admin/products-benchmarks" passHref>
             <Card.Link href="#">Products and Benchmarks</Card.Link>
           </Link>
         </ListGroup.Item>
         <ListGroup.Item>
-          <Link href="/admin/reporting-years">
+          <Link href="/admin/reporting-years" passHref>
             <Card.Link href="#">Reporting Periods</Card.Link>
           </Link>
         </ListGroup.Item>
@@ -38,7 +38,7 @@ const ProgramDataManagement: React.FunctionComponent<Props> = ({
       </Card.Body>
       <ListGroup variant="flush">
         <ListGroup.Item>
-          <Link href="/analyst/applications">
+          <Link href="/analyst/applications" passHref>
             <Card.Link href="#">Submitted applications</Card.Link>
           </Link>
         </ListGroup.Item>
