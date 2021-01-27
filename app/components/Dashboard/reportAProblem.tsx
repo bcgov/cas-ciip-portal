@@ -2,7 +2,7 @@ import React from 'react';
 import {Card} from 'react-bootstrap';
 
 interface Props {
-  serviceUrl?: string;
+  serviceUrl: string;
 }
 
 const ReportAProblem: React.FunctionComponent<Props> = ({serviceUrl}) => {
