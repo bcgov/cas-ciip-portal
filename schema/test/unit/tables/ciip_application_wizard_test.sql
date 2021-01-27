@@ -3,12 +3,44 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(15);
+select plan(17);
+
+-- Setup
+insert into ggircs_portal.form_json(
+name,
+slug,
+short_name,
+description,
+form_json,
+prepopulate_from_ciip,
+prepopulate_from_swrs
+) values
+('admin', 'admin-2018', 'admin', 'admin', '{}', false, false);
 
 -- Table exists
 select has_table(
   'ggircs_portal', 'ciip_application_wizard',
   'ggircs_portal.ciip_application_wizard should exist, and be a table'
+);
+
+-- All columns exist
+SELECT columns_are(
+    'ggircs_portal',
+    'ciip_application_wizard',
+    ARRAY[ 'form_id', 'form_position', 'is_active' ],
+    'ggircs_portal.ciip_application_wizard has all necessary columns'
+);
+
+insert into ggircs_portal.ciip_application_wizard(form_id, form_position)
+values ((select id from ggircs_portal.form_json order by id desc limit 1), 0);
+
+-- Column is_active defaults to true
+select results_eq(
+  $$
+    select is_active from ggircs_portal.ciip_application_wizard order by form_id desc limit 1
+  $$,
+  ARRAY['true'::boolean],
+  'is_active column defaults to true'
 );
 
 -- Row level security tests --
