@@ -10,7 +10,7 @@ describe('The index page', () => {
     cy.get('#page-content').contains(
       'Already have an account? Click here to login.'
     );
-    cy.get('#page-content').happoScreenshot({component: 'Index Page'});
+    cy.get('body').happoScreenshot({component: 'Index Page'});
   });
 
   it('does not contain the mocked database field', () => {

@@ -41,7 +41,7 @@ describe('The benchmark modal', () => {
     cy.get('#root_minimumIncentiveRatio').should('have.value', '0');
     cy.get('#root_maximumIncentiveRatio').should('have.value', '1');
     cy.get('.rjsf > .btn').contains('Save');
-    cy.get('.modal-body > .container').happoScreenshot({
+    cy.get('body').happoScreenshot({
       component: 'Benchmark Modal'
     });
     cy.get('.close > [aria-hidden="true"]').click();
@@ -111,7 +111,7 @@ describe('The linking modal', () => {
     cy.get('.modal-body > .container')
       .contains('Product B')
       .should('not.exist');
-    cy.get('.modal-body > .container').happoScreenshot({
+    cy.get('body').happoScreenshot({
       component: 'Link Product Modal'
     });
   });
@@ -160,7 +160,7 @@ describe('The Create Product modal', () => {
     cy.get(
       '#root_subtractGeneratedHeatEmissions > :nth-child(1) > label > :nth-child(1) > input'
     ).click();
-    cy.get('.card-body').happoScreenshot({
+    cy.get('body').happoScreenshot({
       component: 'Create Product Modal'
     });
     cy.contains('Add Product').click();

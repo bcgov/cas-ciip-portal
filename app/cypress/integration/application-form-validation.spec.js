@@ -27,7 +27,7 @@ describe('When reviewing a submitted application as an analyst', () => {
   it('The application admin form shows validation errors', () => {
     cy.visit(adminFormUrl);
     cy.get('#page-content');
-    cy.get('form.rjsf').happoScreenshot({component: 'Administration Form'});
+    cy.get('body').happoScreenshot({component: 'Administration Form'});
 
     // Operator details
     cy.get('#root_operator_name').clear().type('John Smith');
@@ -104,18 +104,19 @@ describe('When reviewing a submitted application as an analyst', () => {
     });
 
     // Override Justification screenshots
-    cy.get('.fade').happoScreenshot({
+    cy.get('body').happoScreenshot({
       component: 'Override Justification',
       variant: 'closed'
     });
     cy.get('.override-accordion > .btn').click();
-    cy.get('.fade').happoScreenshot({
+    cy.get('body').happoScreenshot({
       component: 'Override Justification',
       variant: 'open'
     });
     cy.get('#overrideJustification').clear().type('justification goes here');
-    cy.get('.btn-success').click();
-    cy.get('.alert-secondary').happoScreenshot({
+    cy.get('.btn-success').contains('Save').click();
+    cy.contains('You have chosen to override');
+    cy.get('body').happoScreenshot({
       component: 'Override Justification',
       variant: 'override active'
     });
@@ -136,6 +137,7 @@ describe('When reviewing a submitted application as an analyst', () => {
     cy.contains('Continue').click();
     cy.get('#page-content h1').contains('Emission');
     cy.visit(summaryPageUrl);
+    cy.contains('Administration Data');
     cy.get('.admin.summary-card').happoScreenshot({
       component: 'Admin Summary Card',
       variant: 'no errors'
@@ -154,6 +156,7 @@ describe('When reviewing a submitted application as an analyst', () => {
     ).contains('is a required property');
 
     cy.visit(summaryPageUrl);
+    cy.contains('Emission');
     cy.get('.emission.summary-card').happoScreenshot({
       component: 'Emission Summary Card',
       variant: 'with errors'
@@ -162,11 +165,12 @@ describe('When reviewing a submitted application as an analyst', () => {
 
     // Fix invalid data
     cy.get('#root_sourceTypes_0_gases_0_annualEmission').type('42');
-    cy.get('form.rjsf').happoScreenshot({component: 'Emissions form'});
+    cy.get('body').happoScreenshot({component: 'Emissions form'});
     cy.get('div.card-header').contains('Form input saved');
     cy.contains('Continue').click();
     cy.get('#page-content h1').contains('Fuel');
     cy.visit(summaryPageUrl);
+    cy.contains('Emission');
     cy.get('.emission.summary-card').happoScreenshot({
       component: 'Emission Summary Card',
       variant: 'no errors'
@@ -187,6 +191,7 @@ describe('When reviewing a submitted application as an analyst', () => {
     );
 
     cy.visit(summaryPageUrl);
+    cy.contains('Fuel');
     cy.get('.fuel.summary-card').happoScreenshot({
       component: 'Fuel Summary Card',
       variant: 'with errors'
@@ -200,11 +205,12 @@ describe('When reviewing a submitted application as an analyst', () => {
     cy.get('#root_0_emissionCategoryRowId').select(
       'General Stationary Combustion'
     );
-    cy.get('form.rjsf').happoScreenshot({component: 'Fuels Form'});
+    cy.get('body').happoScreenshot({component: 'Fuels Form'});
     cy.get('div.card-header').contains('Form input saved');
     cy.contains('Continue').click();
     cy.get('#page-content h1').contains('Production');
     cy.visit(summaryPageUrl);
+    cy.contains('Fuel');
     cy.get('.fuel.summary-card').happoScreenshot({
       component: 'Fuel Summary Card',
       variant: 'no errors'
@@ -229,6 +235,7 @@ describe('When reviewing a submitted application as an analyst', () => {
     );
 
     cy.visit(summaryPageUrl);
+    cy.contains('Production');
     cy.get('.production.summary-card').happoScreenshot({
       component: 'Production Summary Card',
       variant: 'with errors'
@@ -241,7 +248,7 @@ describe('When reviewing a submitted application as an analyst', () => {
     cy.get('#root_0_productAmount').type('123');
     cy.get('#root_0_productEmissions').type('456');
 
-    cy.get('form.rjsf').happoScreenshot({
+    cy.get('body').happoScreenshot({
       component: 'Products and Energy Form'
     });
     cy.get('div.card-header').contains('Form input saved');
