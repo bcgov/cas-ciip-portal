@@ -67,7 +67,14 @@ export const ProductCreator: React.FunctionComponent<Props> = ({
             backgroundColor: '#f4f4f4'
           }}
         >
-          <Card.Header as="h5" style={{backgroundColor: '#036', color: '#fff'}}>
+          <Card.Header
+            as="h2"
+            style={{
+              backgroundColor: '#036',
+              color: '#fff',
+              fontSize: '1.5rem'
+            }}
+          >
             Create a Product
           </Card.Header>
           <Card.Body style={{padding: '2em'}}>

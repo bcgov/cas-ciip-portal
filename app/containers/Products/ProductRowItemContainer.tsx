@@ -1,6 +1,6 @@
 import React, {useMemo} from 'react';
 import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
-import {Modal, Badge, OverlayTrigger, Tooltip} from 'react-bootstrap';
+import {Modal, Badge, Dropdown, Button} from 'react-bootstrap';
 import {IChangeEvent} from 'react-jsonschema-form';
 import {ProductRowItemContainer_product} from 'ProductRowItemContainer_product.graphql';
 import {ProductRowItemContainer_query} from 'ProductRowItemContainer_query.graphql';
@@ -10,11 +10,7 @@ import updateBenchmarkMutation from 'mutations/benchmark/updateBenchmarkMutation
 import createBenchmarkMutation from 'mutations/benchmark/createBenchmarkMutation';
 import benchmarkSchemaFunction from './benchmark-schema';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {
-  faTachometerAlt,
-  faCube,
-  faShareAlt
-} from '@fortawesome/free-solid-svg-icons';
+import {faCog} from '@fortawesome/free-solid-svg-icons';
 import createLinkedProductMutation from 'mutations/linked_product/createLinkedProductMutation';
 import updateLinkedProductMutation from 'mutations/linked_product/updateLinkedProductMutation';
 import InnerModal from './InnerProductBenchmarkModal';
@@ -290,75 +286,40 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
     <>
       <tr>
         <td className="text-left">{product.productName}</td>
+        <td>
+          <Dropdown>
+            <Dropdown.Toggle
+              id={`dropdown-${product.id}`}
+              variant="light"
+              as={Button}
+              aria-label="Product Settings"
+              title="Product Settings"
+              style={{background: 'transparent', border: 'none'}}
+            >
+              <FontAwesomeIcon size="lg" icon={faCog} />
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              <Dropdown.Item onClick={() => setProductModalShow(true)}>
+                Product details
+              </Dropdown.Item>
+              <Dropdown.Item onClick={() => setBenchmarkModalShow(true)}>
+                Benchmark
+              </Dropdown.Item>
+              <Dropdown.Item onClick={() => setLinkProductModalShow(true)}>
+                Linked products
+              </Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+        </td>
         <td>{dateTimeFormat(product.updatedAt, 'days_numbered')}</td>
         <td>{currentBenchmark?.benchmark ?? null}</td>
         <td>{currentBenchmark?.eligibilityThreshold ?? null}</td>
         <td>{product.requiresEmissionAllocation ? 'Yes' : 'No'}</td>
+        <td>{product.isCiipProduct ? 'Yes' : 'No'}</td>
         <td>
           <Badge pill variant={statusBadgeColor[product.productState]}>
             {product.productState}
           </Badge>
-        </td>
-        <td>{product.isCiipProduct ? 'Yes' : 'No'}</td>
-        <td>
-          <OverlayTrigger
-            placement="bottom"
-            overlay={<Tooltip id="link-product">Link Products</Tooltip>}
-          >
-            <FontAwesomeIcon
-              className={
-                product.productState === 'ARCHIVED'
-                  ? 'editIcon-disabled'
-                  : 'editIcon'
-              }
-              icon={faShareAlt}
-              onClick={() => setLinkProductModalShow(true)}
-            />
-          </OverlayTrigger>
-          &emsp;
-        </td>
-        <td>
-          <OverlayTrigger
-            placement="bottom"
-            overlay={
-              <Tooltip id="benchmark">
-                {product.productState === 'ARCHIVED' ? 'View' : 'Edit'}{' '}
-                Benchmark
-              </Tooltip>
-            }
-          >
-            <FontAwesomeIcon
-              className={
-                product.productState === 'ARCHIVED'
-                  ? 'editIcon-disabled'
-                  : 'editIcon'
-              }
-              icon={faTachometerAlt}
-              onClick={() => setBenchmarkModalShow(true)}
-            />
-          </OverlayTrigger>
-          &emsp;
-          <OverlayTrigger
-            placement="bottom"
-            overlay={
-              <Tooltip id="product">
-                {product.productState === 'DRAFT' && !product.isReadOnly
-                  ? 'Edit'
-                  : 'View'}{' '}
-                Product
-              </Tooltip>
-            }
-          >
-            <FontAwesomeIcon
-              className={
-                product.productState === 'DRAFT' && !product.isReadOnly
-                  ? 'editIcon'
-                  : 'editIcon-disabled'
-              }
-              icon={faCube}
-              onClick={() => setProductModalShow(true)}
-            />
-          </OverlayTrigger>
         </td>
       </tr>
       {editProductModal}

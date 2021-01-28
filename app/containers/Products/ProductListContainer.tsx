@@ -45,14 +45,13 @@ export const ProductList: React.FunctionComponent<Props> = ({
 
     const displayNameToColumnNameMap = {
       Product: 'product_name',
+      Settings: null,
       'Modified (D/M/Y)': 'updated_at',
       Benchmark: 'benchmark',
       'Eligibility Threshold': 'eligibility_threshold',
       'Allocation of Emissions': 'requires_emission_allocation',
-      Status: 'product_state',
       'CIIP Benchmarked': 'is_ciip_product',
-      Link: null,
-      'Edit/View': null
+      Status: 'product_state'
     };
     const body = (
       <tbody>
