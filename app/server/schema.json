@@ -20393,6 +20393,18 @@
               },
               "isDeprecated": false,
               "deprecationReason": null
+            },
+            {
+              "name": "isActive",
+              "description": "Boolean value indicates whether the form is currently in use or has been archived",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
             }
           ],
           "inputFields": null,
@@ -20431,6 +20443,16 @@
                 "ofType": null
               },
               "defaultValue": null
+            },
+            {
+              "name": "isActive",
+              "description": "Checks for equality with the object’s `isActive` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
             }
           ],
           "interfaces": null,
@@ -20465,6 +20487,18 @@
             },
             {
               "name": "FORM_POSITION_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "IS_ACTIVE_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "IS_ACTIVE_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -33479,6 +33513,16 @@
                 }
               },
               "defaultValue": null
+            },
+            {
+              "name": "isActive",
+              "description": "Boolean value indicates whether the form is currently in use or has been archived",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
             }
           ],
           "interfaces": null,
@@ -44293,6 +44337,16 @@
               "type": {
                 "kind": "SCALAR",
                 "name": "Int",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "isActive",
+              "description": "Boolean value indicates whether the form is currently in use or has been archived",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
                 "ofType": null
               },
               "defaultValue": null

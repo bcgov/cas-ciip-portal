@@ -17,13 +17,9 @@ $fun$
   select mocks.set_mocked_time_in_transaction('2021-04-01 14:49:54.191757-07'::timestamptz - interval '1 second');
 $fun$language sql;
 
-select plan(10);
+select plan(11);
 
-select has_function(
-  'ggircs_portal', 'create_application_revision_mutation_chain', array['integer', 'integer'],
-  'Function create_application_revision_mutation_chain should exist'
-);
-
+-- Setup
 alter table ggircs_portal.application_revision_status disable trigger _status_change_email;
 alter table ggircs_portal.application
   disable trigger _send_draft_application_email;
@@ -35,6 +31,36 @@ insert into ggircs_portal.facility(organisation_id, facility_name) values (1, 't
 truncate ggircs_portal.application_revision restart identity cascade;
 
 select ggircs_portal.create_application_mutation_chain((select id from ggircs_portal.facility where facility_name = 'test facility'));
+
+-- 2018 data test setup
+-- insert into ggircs_portal.application(facility_id, reporting_year)
+-- values ((select id from ggircs_portal.facility where facility_name = 'test facility'), 2018);
+
+insert into ggircs_portal.form_json(
+name,
+slug,
+short_name,
+description,
+form_json,
+prepopulate_from_ciip,
+prepopulate_from_swrs
+) values
+('admin', 'admin-2018', 'admin', 'admin', '{}', false, false);
+
+insert into ggircs_portal.ciip_application_wizard(form_id, form_position, is_active)
+values ((select id from ggircs_portal.form_json order by id desc limit 1), 0, false);
+
+select has_function(
+  'ggircs_portal', 'create_application_revision_mutation_chain', array['integer', 'integer'],
+  'Function create_application_revision_mutation_chain should exist'
+);
+
+select is_empty(
+  $$
+    select * from ggircs_portal.form_result where form_id=(select id from ggircs_portal.form_json order by id desc limit 1)
+  $$,
+  'ggircs_portal.create_application_revision_mutation_chain should ignore inactive form_jsons'
+);
 
 select results_eq(
   $$
@@ -76,7 +102,7 @@ select results_eq(
     and facility_name = 'test facility'
   $$,
   $$
-    select count(form_id) from ggircs_portal.ciip_application_wizard
+    select count(form_id) from ggircs_portal.ciip_application_wizard where is_active=true
   $$,
   'create_application_revision_mutation_chain creates statuses for each form result when being called from create_application_mutation_chain (starting an application)'
 );
@@ -95,7 +121,7 @@ select results_eq(
     and facility_name = 'test facility'
   $$,
   $$
-    select count(form_id) from ggircs_portal.ciip_application_wizard
+    select count(form_id) from ggircs_portal.ciip_application_wizard where is_active=true
   $$,
   'create_application_revision_mutation_chain does not create extra statuses for each form result when being called on its own (creating a revision)'
 );
