@@ -210,3 +210,6 @@ function_next_reporting_year [function_next_reporting_year@v1.13.0] 2020-12-05T0
 function_opened_reporting_year [function_opened_reporting_year@v1.13.0] 2020-12-05T00:27:10Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # Refactoring to use now() instead of current_timestamp()
 function_current_timestamp [function_current_timestamp@v1.13.0] 2020-12-05T00:12:09Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # Removing the function since it's not needed anymore
 @v1.14.0 2021-01-05T23:06:03Z Matthieu Foucault <matthieu@button.is> # release v1.14.0
+tables/ciip_application_wizard_001 [tables/ciip_application_wizard] 2021-01-26T18:30:43Z Dylan Leard <dylan@button.is> # Migration: add boolean column that shows whether a form is currently in use (active)
+mutations/create_application_revision_mutation_chain [mutations/create_application_revision_mutation_chain@v1.14.0] 2021-01-26T18:40:02Z Dylan Leard <dylan@button.is> # Migration: ignore inactive forms in the ciip_application_wizard table
+database_functions/create_portal_app_user [database_functions/create_portal_app_user@v1.14.0] 2021-01-29T21:37:08Z Dylan Leard <dylan@button.is> # Migration: drop portal_app_user (obsolete)
