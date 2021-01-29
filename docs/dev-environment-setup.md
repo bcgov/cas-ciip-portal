@@ -66,13 +66,13 @@ POSTGRES_EXTRA_CONFIGURE_OPTIONS='--with-libxml' asdf install postgres 11.4
 
 posgresql.org also advises to turn off SIP on macOS if this is a possibility, since it prevents passing library linking targets around.
 
-### d. make order path
+### d. postgres make order
 
 If all else fails, running `make install` before `make check` in the postgres compilation should fix the SIP incompatibility.
 To make this work with asdf:
 
 - Find out where postgres is being downloaded by asdf (something like `/var/folders/6w/8rt8tgzd5p9bk8kb98hpmwqmvj3393/T/postgresql-11.4.tar.gz`)
-- Alternatively, mess with the download path in the asdf plugin install script `~/.asdf/plugins/postgres/bin/install`
+- Alternatively, change the download path in the asdf plugin install script `~/.asdf/plugins/postgres/bin/install`
 - Untar the file `gunzip -c postgresql-11.4.tar.gz | tar xopf -`
 - Edit the makefile to execute `install` befoore `check`
   - `$ cd postgresql-11.4`
@@ -81,7 +81,7 @@ To make this work with asdf:
       becomes <br>
     - `all install check installdirs installcheck installcheck-parallel uninstall ...`
 - Rezip the archive `tar -zcvf postgresql-11.4.tar.gz postgresql-11.4`
-- Finally, compile postgres with asdf
+- Finally, compile postgres with asdf:
 
 ```bash
 POSTGRES_EXTRA_CONFIGURE_OPTIONS='--with-libxml' asdf install postgres 11.4
