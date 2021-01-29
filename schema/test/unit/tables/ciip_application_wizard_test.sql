@@ -24,7 +24,7 @@ select has_table(
 );
 
 -- All columns exist
-SELECT columns_are(
+select columns_are(
     'ggircs_portal',
     'ciip_application_wizard',
     ARRAY[ 'form_id', 'form_position', 'is_active' ],
