@@ -2,6 +2,6 @@
 
 begin;
 
-select false from pg_roles where rolname='portal_app';
+select true from pg_roles where rolname='portal_app';
 
 rollback;
