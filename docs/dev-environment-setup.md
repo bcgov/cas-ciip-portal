@@ -52,13 +52,16 @@ export SDKROOT="/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/"
 
 ### b. sysroot path
 
-Postgres often needs PG_SYSROOT to be specified
+Postgres often needs PG_SYSROOT to be specified. <br>
 See "macOS" section: https://www.postgresql.org/docs/current/installation-platform-notes.html#INSTALLATION-NOTES-MACOS
 
 Something like:
 
 ```bash
 export PG_SYSROOT="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk"
+```
+Then retry installing postgres:
+```bash
 POSTGRES_EXTRA_CONFIGURE_OPTIONS='--with-libxml' asdf install postgres 11.4
 ```
 
@@ -75,7 +78,7 @@ To make this work with asdf:
 - Alternatively, change the download path in the asdf plugin install script `~/.asdf/plugins/postgres/bin/install`
 - Untar the file `gunzip -c postgresql-11.4.tar.gz | tar xopf -`
 - Edit the makefile to execute `install` befoore `check`
-  - `$ cd postgresql-11.4`
+  - open `postgresql-11.4/Makefile`
   - edit the following line:
     - `all check install installdirs installcheck installcheck-parallel uninstall ...` <br>
       becomes <br>
