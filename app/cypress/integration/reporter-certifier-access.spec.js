@@ -63,6 +63,6 @@ describe('When logged in as a certifier(reporter) they should be able to load al
       variant: 'Multiple certification requests selected'
     });
     cy.get('.btn-success').contains('Sign').click();
-    cy.should('not.contain', 'Certifier Signature');
+    cy.get('body').should('not.contain', 'Certifier Signature');
   });
 });

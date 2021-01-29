@@ -1,5 +1,7 @@
 describe('The index page', () => {
   it('contains the login buttons ', () => {
+    cy.useMockedTime(new Date(2021, 1, 29, 11, 11, 0, 0)); // Jan 29, 2021 11:11am
+
     cy.visit('/');
     cy.get('#page-content');
     cy.get('header').contains('Register');
