@@ -2,10 +2,10 @@ import React from 'react';
 import {Card} from 'react-bootstrap';
 
 interface Props {
-  serviceUrl: string;
+  supportUrl: string;
 }
 
-const ReportAProblem: React.FunctionComponent<Props> = ({serviceUrl}) => {
+const ReportAProblem: React.FunctionComponent<Props> = ({supportUrl}) => {
   return (
     <Card className="admin-control-card">
       <Card.Body
@@ -22,7 +22,7 @@ const ReportAProblem: React.FunctionComponent<Props> = ({serviceUrl}) => {
           </span>{' '}
           Something wrong?
           <br />
-          <a href={serviceUrl}>Report a problem</a> to the development team.
+          <a href={supportUrl}>Report a problem</a> to the development team.
         </p>
       </Card.Body>
       <style jsx>{`

@@ -33,7 +33,7 @@ class Admin extends Component<Props> {
     const {
       query: {session}
     } = this.props;
-    const feedbackUrl = getConfig()?.publicRuntimeConfig.FEEDBACK_SITE_URL;
+    const supportUrl = getConfig()?.publicRuntimeConfig.SUPPORT_EMAIL;
     return (
       <DefaultLayout session={session} title="Administrator Dashboard">
         <div>
@@ -41,7 +41,11 @@ class Admin extends Component<Props> {
             <ProgramAdministration />
             <ReportingOperations />
             <UserManagement />
-            <ReportAProblem serviceUrl={feedbackUrl || '#'} />
+            <ReportAProblem
+              supportUrl={
+                `mailto:${supportUrl}?subject=Internal Support Request` || '#'
+              }
+            />
           </Row>
 
           <style global jsx>

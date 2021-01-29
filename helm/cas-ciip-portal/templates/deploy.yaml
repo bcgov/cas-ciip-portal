@@ -59,8 +59,8 @@ spec:
             value: {{ .Values.env.senderEmail }}
           - name: ADMIN_EMAIL
             value: {{ .Values.env.adminEmail }}
-          - name: FEEDBACK_SITE_URL
-            value: {{ .Values.fider.host }}
+          - name: SUPPORT_EMAIL
+            value: {{ .Values.env.supportEmail }}
           - name: ENABLE_ANALYTICS
             value: {{ .Values.analytics.enable | quote }}
           - name: SITEWIDE_NOTICE

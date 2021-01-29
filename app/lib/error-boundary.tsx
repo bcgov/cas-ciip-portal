@@ -21,19 +21,18 @@ class ErrorBoundary extends Component {
 
   render() {
     if (this.state.hasError) {
-      const feedbackUrl = getConfig()?.publicRuntimeConfig.FEEDBACK_SITE_URL;
+      const supportEmail = getConfig()?.publicRuntimeConfig.SUPPORT_EMAIL;
+      const mailtoLink = `mailto:${supportEmail}?subject=Support Request: CIIP Website Server Error`;
       // You can render any custom fallback UI
       return (
         <DefaultLayoutComponent session={null}>
           <Alert variant="danger">
             <Alert.Heading>An unexpected error has occured</Alert.Heading>
             <p>
-              Please consider reporting this error on our{' '}
-              <Alert.Link href={feedbackUrl}>feedback site</Alert.Link>, by
-              either creating a new post or commenting on an existing post if
-              this error was already reported. Copying the error details below
-              when submitting a bug report will help us understand what
-              happened.
+              Please consider reporting this error to our development team at{' '}
+              <Alert.Link href={mailtoLink}>{supportEmail}</Alert.Link>. Copying
+              the error details below when submitting a bug report will help us
+              understand what happened.
             </p>
           </Alert>
 

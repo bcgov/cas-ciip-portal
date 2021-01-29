@@ -380,7 +380,7 @@ Temporary page to handle a specific issue with newly registered users sometimes 
 
 ### Unknown Error page, _aka._ ErrorBoundary `(any URL)`
 
-Displays an error message directing users to report the error on the [fider feedback site](https://ciip-feedback.pathfinder.gov.bc.ca/). Some error details are provided, which the user can copy into their bug report.
+Displays an error message directing users to report the error to the development team at **ggircs@gov.bc.ca**. Some error details are provided, which the user can copy into their bug report.
 
 Unlike the other error pages which handle HTTP error status codes (network-level errors), this handles errors that may have originated on either client or server. It's not truly a page, but rather a component that may be displayed on any other page when an error that breaks the client-side code is triggered.
 
