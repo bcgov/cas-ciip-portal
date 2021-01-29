@@ -1,6 +1,6 @@
 describe('The index page', () => {
   it('contains the login buttons ', () => {
-    cy.useMockedTime(new Date(2021, 1, 29, 11, 11, 0, 0)); // Jan 29, 2021 11:11am
+    cy.useMockedTime(new Date('January 29, 1994 11:11:00'));
 
     cy.visit('/');
     cy.get('#page-content');
@@ -12,6 +12,7 @@ describe('The index page', () => {
     cy.get('#page-content').contains(
       'Already have an account? Click here to login.'
     );
+    cy.contains('Jan 29, 1994');
     cy.get('body').happoScreenshot({component: 'Index Page'});
   });
 

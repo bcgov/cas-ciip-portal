@@ -4,7 +4,7 @@ describe('When logged in as a certifier(reporter) they should be able to load al
     cy.deployProdData();
     cy.sqlFixture('fixtures/certifier-access-setup');
     cy.mockLogin('certifier');
-    cy.useMockedTime(new Date(2020, 5, 10, 9, 0, 0, 0)); //May 10th at 9am
+    cy.useMockedTime(new Date('June 10, 2020 09:00:00'));
   });
 
   it('can access the certification-redirect page (ie: from an email link) and go on to certify an application', () => {
@@ -64,5 +64,6 @@ describe('When logged in as a certifier(reporter) they should be able to load al
     });
     cy.get('.btn-success').contains('Sign').click();
     cy.get('body').should('not.contain', 'Certifier Signature');
+    cy.contains('Jun 10th, 2020');
   });
 });

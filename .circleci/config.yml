@@ -434,42 +434,42 @@ workflows:
   test:
     jobs:
       - tools
-      - lint:
-          requires:
-            - tools
-      - unit:
-          requires:
-            - tools
-      - audit:
-          requires:
-            - tools
-      - schema:
-          requires:
-            - tools
-      - test_database:
-          requires:
-            - tools
+      # - lint:
+      #     requires:
+      #       - tools
+      # - unit:
+      #     requires:
+      #       - tools
+      # - audit:
+      #     requires:
+      #       - tools
+      # - schema:
+      #     requires:
+      #       - tools
+      # - test_database:
+      #     requires:
+      #       - tools
       - compile:
           requires:
             - tools
       - e2e-snapshots:
           requires:
             - compile
-      - sqitch-files-before-tag-are-immutable
-      - build_image:
-          name: build_schema
-          context: cas-pipeline
-          image_name: cas-ciip-portal-schema
-          image_tag: ${CIRCLE_SHA1}
-          dockerfile: schema/Dockerfile
-      - build_image:
-          name: build_app
-          context: cas-pipeline
-          image_name: cas-ciip-portal-app
-          image_tag: ${CIRCLE_SHA1}
-          dockerfile: app/Dockerfile
-      - helm_lint:
-          context: cas-pipeline
+      # - sqitch-files-before-tag-are-immutable
+      # - build_image:
+      #     name: build_schema
+      #     context: cas-pipeline
+      #     image_name: cas-ciip-portal-schema
+      #     image_tag: ${CIRCLE_SHA1}
+      #     dockerfile: schema/Dockerfile
+      # - build_image:
+      #     name: build_app
+      #     context: cas-pipeline
+      #     image_name: cas-ciip-portal-app
+      #     image_tag: ${CIRCLE_SHA1}
+      #     dockerfile: app/Dockerfile
+      # - helm_lint:
+      #     context: cas-pipeline
   release:
     jobs:
       - release_approval:

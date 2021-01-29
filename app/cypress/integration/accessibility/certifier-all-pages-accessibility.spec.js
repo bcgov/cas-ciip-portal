@@ -7,7 +7,7 @@ describe('When logged in as a certifier(reporter)', () => {
 
   beforeEach(() => {
     cy.mockLogin('certifier');
-    cy.useMockedTime(new Date(2020, 5, 10, 9, 0, 0, 0)); //May 10th at 9am
+    cy.useMockedTime(new Date('June 10, 2020 09:00:00'));
   });
 
   it('The certifier redirect page has no detectable ally violations on load', () => {
