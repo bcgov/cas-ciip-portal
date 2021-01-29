@@ -36,6 +36,8 @@ The purpose of this exercise is to enable a developer new to the project to get 
 
 ## 2.5 MacOS-Specific Troubleshooting
 
+### a. SDK root
+
 If your MacOS command line tools were installed before upgrading to Catalina and haven't already been fixed afterward, you will need to do so now. Outstanding problems installing Postgres due to errors in compiling C libraries in the previous step could indicate this. [Read more about the problem here](https://stackoverflow.com/questions/58278260/cant-compile-a-c-program-on-a-mac-after-upgrading-to-catalina-10-15/58278392#58278392).
 
 The full version of XCode (> 20GB) downloaded from the App Store reportedly works as intended, but if you prefer to use the smaller subset of command line tools installed via `xcode-select --install` (or manually downloaded and installed from the [Apple Developer support page](https://developer.apple.com/download/more/?=command%20line%20tools)), then you can set the `SDKROOT` environment variable in your `~/.bash_profile`:
@@ -47,6 +49,43 @@ export SDKROOT="/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/"
 ...making sure to replace the above path with the actual location and version of your command line tools. Note you will need to manually update this path / version number whenever the command line tools are updated.
 
 `source ~/.bash_profile` and re-attempt the Postgres installation above.
+
+### b. sysroot path
+
+Postgres often needs PG_SYSROOT to be specified
+See "macOS" section: https://www.postgresql.org/docs/current/installation-platform-notes.html#INSTALLATION-NOTES-MACOS
+
+Something like:
+
+```bash
+export PG_SYSROOT="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk"
+POSTGRES_EXTRA_CONFIGURE_OPTIONS='--with-libxml' asdf install postgres 11.4
+```
+
+### c. System Integrity Protection on macOS
+
+posgresql.org also advises to turn off SIP on macOS if this is a possibility, since it prevents passing library linking targets around.
+
+### d. make order path
+
+If all else fails, running `make install` before `make check` in the postgres compilation should fix the SIP incompatibility.
+To make this work with asdf:
+
+- Find out where postgres is being downloaded by asdf (something like `/var/folders/6w/8rt8tgzd5p9bk8kb98hpmwqmvj3393/T/postgresql-11.4.tar.gz`)
+- Alternatively, mess with the download path in the asdf plugin install script `~/.asdf/plugins/postgres/bin/install`
+- Untar the file `gunzip -c postgresql-11.4.tar.gz | tar xopf -`
+- Edit the makefile to execute `install` befoore `check`
+  - `$ cd postgresql-11.4`
+  - edit the following line:
+    - `all check install installdirs installcheck installcheck-parallel uninstall ...` <br>
+      becomes <br>
+    - `all install check installdirs installcheck installcheck-parallel uninstall ...`
+- Rezip the archive `tar -zcvf postgresql-11.4.tar.gz postgresql-11.4`
+- Finally, compile postgres with asdf
+
+```bash
+POSTGRES_EXTRA_CONFIGURE_OPTIONS='--with-libxml' asdf install postgres 11.4
+```
 
 ## 3. Configure Postgres on MacOS
 
