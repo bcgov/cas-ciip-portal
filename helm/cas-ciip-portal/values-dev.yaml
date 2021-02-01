@@ -3,7 +3,7 @@ ggircs:
 
 replicas: 2
 route:
-  host: ciip-dev.apps.silver.devops.gov.bc.ca
+  host: dev.ciip.gov.bc.ca
 
 image:
   schema:
@@ -40,7 +40,7 @@ env:
   enableDbMocks: true
 
 sitewide_notice:
-  content: <div class="alert alert-warning">This is the DEV environment. All emails will be sent to <a href="https://cas-mailhog-09269b-dev.pathfinder.gov.bc.ca">the dev inbox</a> instead of the real recipients.</div>
+  content: <div class="alert alert-warning">This is the DEV environment. All emails will be sent to <a href="https://cas-mailhog-dev.apps.silver.devops.gov.bc.ca/">the dev inbox</a> instead of the real recipients.</div>
 
 mailhog:
   enable: true

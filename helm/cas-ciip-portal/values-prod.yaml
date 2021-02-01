@@ -1,6 +1,6 @@
 replicas: 3
 route:
-  host: ciip.apps.silver.devops.gov.bc.ca
+  host: ciip.gov.bc.ca
 
 analytics:
   enable: true
