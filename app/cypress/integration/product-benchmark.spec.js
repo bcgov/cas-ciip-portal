@@ -4,7 +4,6 @@ describe('The products and benchmark page', () => {
     cy.sqlFixture('fixtures/products-benchmarks-setup');
     cy.mockLogin('admin');
     cy.visit('/admin/products-benchmarks');
-    cy.get('#page-content');
   });
 
   it('Displays the list of all products', () => {
