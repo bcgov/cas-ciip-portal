@@ -2,6 +2,37 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.15.0](https://github.com/bcgov/cas-ciip-portal/compare/v1.14.0...v1.15.0) (2021-02-01)
+
+
+### Features
+
+* add a /health endpoint & use in readiness probe ([ef7c66c](https://github.com/bcgov/cas-ciip-portal/commit/ef7c66ca734673064c7b46b6b0db4b487f5e7c83))
+* add data-migrate helm chart ([64195fa](https://github.com/bcgov/cas-ciip-portal/commit/64195fa9eb8605e26f696a95c2cfede724e8a898))
+* add is_active column to ciip_application_wizard table ([167a559](https://github.com/bcgov/cas-ciip-portal/commit/167a5595091ae6b093b5e3008fc0ddaf56562bfb))
+* cypress flag added to circleci ([7e31add](https://github.com/bcgov/cas-ciip-portal/commit/7e31add3a5cd2dce9c787cb1927d62e460d1967f))
+* e2e test that actually tests the logins ([8fd9a31](https://github.com/bcgov/cas-ciip-portal/commit/8fd9a31ac396f860375e205af47f0699fe2ac0ca))
+* fixture to override jwt auth for analyst role ([6e5028e](https://github.com/bcgov/cas-ciip-portal/commit/6e5028e3343196c49939026b3ed1163a5c905dc0))
+* ignore inactive ciip_application_wizard rows ([f0b1d8c](https://github.com/bcgov/cas-ciip-portal/commit/f0b1d8cfc491b98c20dbe884a3bf41c243b421d6))
+* mock login takes the same code path as AS_XXX ([e9a4fcd](https://github.com/bcgov/cas-ciip-portal/commit/e9a4fcda36fbd3cf0a2a60da4e3f816dc6f0eb76))
+* refactoring e2e tests to use mock login ([31b19de](https://github.com/bcgov/cas-ciip-portal/commit/31b19ded502eb19262953a4bf8c2737dead99cc8))
+* remove uniqueness constraint on form_position ([0d1a57a](https://github.com/bcgov/cas-ciip-portal/commit/0d1a57a72d32cee911a0e1e309f3e5086de479ba))
+* set new column to default true ([bc59e32](https://github.com/bcgov/cas-ciip-portal/commit/bc59e3258cac32188fd2c207b5662a52fc17a929))
+* update ciip URLs to be *.gov.bc.ca ([1bfc6ac](https://github.com/bcgov/cas-ciip-portal/commit/1bfc6ac8ee2d3980ccf2edff0ed318cdcd2ac8f4))
+* update schema ([bb974f5](https://github.com/bcgov/cas-ciip-portal/commit/bb974f501104cd53798ea6946eb96646a11adc3f))
+
+
+### Bug Fixes
+
+* add nsp in ciip-portal ns for metabase->ciip-db ([4056428](https://github.com/bcgov/cas-ciip-portal/commit/405642851b7b693a9af9dc8a98ebb54886229c41))
+* as_cypress doesn't bypass the login page ([4d7b8db](https://github.com/bcgov/cas-ciip-portal/commit/4d7b8dba84c750ee7fe5481f8da45c285549e561))
+* assert that mock login cookie has been set ([8b158d8](https://github.com/bcgov/cas-ciip-portal/commit/8b158d829c683c891473af9b916b0099d5a27e91))
+* existing page access spec tests the real login ([4f50dc7](https://github.com/bcgov/cas-ciip-portal/commit/4f50dc712c9e385fd3ec6e28a473dfa0fea9c5a4))
+* redirect spec only deploys data once ([cf8e581](https://github.com/bcgov/cas-ciip-portal/commit/cf8e581615f84c52a62cb8d81951640d95952267))
+* source/destination swap ([da52563](https://github.com/bcgov/cas-ciip-portal/commit/da52563f0712f6ef049ffdf520e9653bf25ba574))
+* update schema ([e540db0](https://github.com/bcgov/cas-ciip-portal/commit/e540db0d7c56216b0d993b63e8ddad814b29b583))
+* upgrade nodejs to 12.20.1 ([a660288](https://github.com/bcgov/cas-ciip-portal/commit/a66028871ee02474f36f9aeb3b147ba48524d465))
+
 ## [1.14.0](https://github.com/bcgov/cas-ciip-portal/compare/v1.13.1...v1.14.0) (2021-01-05)
 
 

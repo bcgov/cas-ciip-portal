@@ -212,3 +212,4 @@ function_current_timestamp [function_current_timestamp@v1.13.0] 2020-12-05T00:12
 @v1.14.0 2021-01-05T23:06:03Z Matthieu Foucault <matthieu@button.is> # release v1.14.0
 tables/ciip_application_wizard_001 [tables/ciip_application_wizard] 2021-01-26T18:30:43Z Dylan Leard <dylan@button.is> # Migration: add boolean column that shows whether a form is currently in use (active)
 mutations/create_application_revision_mutation_chain [mutations/create_application_revision_mutation_chain@v1.14.0] 2021-01-26T18:40:02Z Dylan Leard <dylan@button.is> # Migration: ignore inactive forms in the ciip_application_wizard table
+@v1.15.0 2021-02-01T21:26:33Z Matthieu Foucault <matthieu@button.is> # release v1.15.0
