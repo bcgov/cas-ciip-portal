@@ -1,6 +1,7 @@
 describe('The index page', () => {
   it('contains the login buttons ', () => {
-    cy.useMockedTime(new Date('January 29, 1994 11:11:00'));
+    cy.cleanSchema();
+    cy.sqlFixture('/fixtures/index-setup');
 
     cy.visit('/');
     cy.get('#page-content');
@@ -12,7 +13,8 @@ describe('The index page', () => {
     cy.get('#page-content').contains(
       'Already have an account? Click here to login.'
     );
-    cy.contains('Jan 29, 1994');
+
+    cy.contains('Jan 23, 1991');
     cy.get('body').happoScreenshot({component: 'Index Page'});
   });
 
