@@ -109,10 +109,12 @@ app.prepare().then(async () => {
   // Enable serving ACME HTTP-01 challenge response written to disk by acme.sh
   // https://letsencrypt.org/docs/challenge-types/#http-01-challenge
   // https://github.com/acmesh-official/acme.sh
-  server.use(
-    '/.well-known',
-    express.static(path.resolve(__dirname, '../.well-known'))
-  );
+  if (!secure) {
+    server.use(
+      '/.well-known',
+      express.static(path.resolve(__dirname, '../.well-known'))
+    );
+  }
   server.use(bodyParser.json({limit: '50mb'}));
   server.use(cors());
 
