@@ -4,8 +4,10 @@ import {graphql} from 'react-relay';
 import {CiipPageComponentProps} from 'next-env';
 import {analystQueryResponse} from 'analystQuery.graphql';
 import DefaultLayout from 'layouts/default-layout';
-import ApplicationManagement from 'components/Dashboard/applicationManagement';
-import ProgramDataManagement from 'components/Dashboard/programDataManagement';
+import ReportingOperations from 'components/Dashboard/reportingOperations';
+import ProgramAdministration from 'components/Dashboard/programAdministration';
+import ReportAProblem from 'components/Dashboard/reportAProblem';
+import getConfig from 'next/config';
 import {INCENTIVE_ANALYST} from 'data/group-constants';
 
 const ALLOWED_GROUPS = [INCENTIVE_ANALYST];
@@ -30,12 +32,18 @@ class Analyst extends Component<Props> {
     const {
       query: {session}
     } = this.props;
+    const supportUrl = getConfig()?.publicRuntimeConfig.SUPPORT_EMAIL;
     return (
       <DefaultLayout session={session} title="Analyst Dashboard">
         <div>
           <Row>
-            <ApplicationManagement />
-            <ProgramDataManagement viewOnly />
+            <ProgramAdministration viewOnly />
+            <ReportingOperations />
+            <ReportAProblem
+              supportUrl={
+                `mailto:${supportUrl}?subject=Internal Support Request` || '#'
+              }
+            />
           </Row>
 
           <style global jsx>

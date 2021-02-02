@@ -13,7 +13,7 @@ describe('When logged in as an analyst', () => {
     cy.url().should('include', '/analyst/organisation-requests');
     cy.get('tr');
     cy.visit('/analyst');
-    cy.contains('View all applications').click();
+    cy.contains('Submitted applications').click();
     cy.url().should('include', '/analyst/applications');
     cy.get('tr');
     cy.contains('View Application').click();
@@ -21,12 +21,12 @@ describe('When logged in as an analyst', () => {
     cy.visit('/analyst');
     cy.url().should('include', '/analyst');
     cy.get('.card-body');
-    cy.contains('Add new organisation').click();
+    cy.contains('Operators').click();
     cy.url().should('include', '/analyst/add-organisation');
     cy.visit('/analyst');
     cy.url().should('include', '/analyst');
     cy.get('.card-body');
-    cy.contains('Add new facility').click();
+    cy.contains('Facilities').click();
     cy.url().should('include', '/analyst/add-facility');
     cy.visit('/analyst');
     cy.url().should('include', '/analyst');

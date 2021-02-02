@@ -3,7 +3,8 @@ import Link from 'next/link';
 import getConfig from 'next/config';
 
 const Footer = () => {
-  const feedbackUrl = getConfig()?.publicRuntimeConfig.FEEDBACK_SITE_URL;
+  const supportEmail = getConfig()?.publicRuntimeConfig.SUPPORT_EMAIL;
+  const mailtoLink = `mailto:${supportEmail}?subject=Feedback: CIIP Website`;
   return (
     <footer className="footer">
       <div className="container">
@@ -32,7 +33,7 @@ const Footer = () => {
           <li>
             <Link href="/resources/contact">Contact Us</Link>
           </li>
-          <li>{feedbackUrl && <a href={feedbackUrl}>Feedback</a>}</li>
+          <li>{supportEmail && <a href={mailtoLink}>Feedback</a>}</li>
         </ul>
       </div>
       <style jsx>

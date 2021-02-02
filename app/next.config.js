@@ -22,7 +22,7 @@ module.exports = {
   },
   publicRuntimeConfig: {
     NO_MATHJAX: process.env.NO_MATHJAX,
-    FEEDBACK_SITE_URL: process.env.FEEDBACK_SITE_URL,
+    SUPPORT_EMAIL: process.env.SUPPORT_EMAIL,
     ENABLE_ANALYTICS: process.env.ENABLE_ANALYTICS,
     SITEWIDE_NOTICE: process.env.SITEWIDE_NOTICE,
     ENABLE_DB_MOCKS: process.env.ENABLE_DB_MOCKS

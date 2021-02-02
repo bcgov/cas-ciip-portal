@@ -5,9 +5,10 @@ import {CiipPageComponentProps} from 'next-env';
 import {adminQueryResponse} from 'adminQuery.graphql';
 import DefaultLayout from 'layouts/default-layout';
 import UserManagement from 'components/Dashboard/userManagement';
-import ApplicationManagement from 'components/Dashboard/applicationManagement';
-import ProgramDataManagement from 'components/Dashboard/programDataManagement';
-import DevOpsManagement from 'components/Dashboard/devopsManagement';
+import ReportingOperations from 'components/Dashboard/reportingOperations';
+import ProgramAdministration from 'components/Dashboard/programAdministration';
+import ReportAProblem from 'components/Dashboard/reportAProblem';
+import getConfig from 'next/config';
 import {ADMIN_GROUP} from 'data/group-constants';
 
 const ALLOWED_GROUPS = ADMIN_GROUP;
@@ -32,14 +33,19 @@ class Admin extends Component<Props> {
     const {
       query: {session}
     } = this.props;
+    const supportUrl = getConfig()?.publicRuntimeConfig.SUPPORT_EMAIL;
     return (
       <DefaultLayout session={session} title="Administrator Dashboard">
         <div>
           <Row>
+            <ProgramAdministration />
+            <ReportingOperations />
             <UserManagement />
-            <ApplicationManagement />
-            <ProgramDataManagement />
-            <DevOpsManagement />
+            <ReportAProblem
+              supportUrl={
+                `mailto:${supportUrl}?subject=Internal Support Request` || '#'
+              }
+            />
           </Row>
 
           <style global jsx>

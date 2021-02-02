@@ -5,7 +5,8 @@ import Link from 'next/link';
 import getConfig from 'next/config';
 
 export default () => {
-  const feedbackUrl = getConfig()?.publicRuntimeConfig.FEEDBACK_SITE_URL;
+  const supportEmail = getConfig()?.publicRuntimeConfig.SUPPORT_EMAIL;
+  const mailtoLink = `mailto:${supportEmail}?subject=Support Request`;
 
   return (
     <>
@@ -22,10 +23,8 @@ export default () => {
               log in with the credentials you entered in the registration form.
             </p>
             <p>
-              For all other issues, please consider reporting this error at{' '}
-              <a href={feedbackUrl}>{feedbackUrl}</a>, by either creating a new
-              post or commenting on an existing post if this error was already
-              reported.
+              For all other issues, please consider reporting this error to our
+              development team at <a href={mailtoLink}>{supportEmail}</a>.
             </p>
             <p>
               <Link href="/">

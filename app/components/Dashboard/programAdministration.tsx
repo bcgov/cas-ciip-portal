@@ -15,13 +15,13 @@ const ProgramDataManagement: React.FunctionComponent<Props> = ({
     EditableItems = (
       <>
         <ListGroup.Item>
-          <Link href="/admin/products-benchmarks">
-            <Card.Link href="#">Edit Products and Benchmarks</Card.Link>
+          <Link href="/admin/products-benchmarks" passHref>
+            <Card.Link href="#">Products and Benchmarks</Card.Link>
           </Link>
         </ListGroup.Item>
         <ListGroup.Item>
-          <Link href="/admin/reporting-years">
-            <Card.Link href="#">Edit Reporting Period Details</Card.Link>
+          <Link href="/admin/reporting-years" passHref>
+            <Card.Link href="#">Reporting Periods</Card.Link>
           </Link>
         </ListGroup.Item>
       </>
@@ -31,21 +31,26 @@ const ProgramDataManagement: React.FunctionComponent<Props> = ({
   return (
     <Card className="admin-control-card">
       <Card.Body>
-        <Card.Title>Program and Data management</Card.Title>
+        <Card.Title>Program Administration</Card.Title>
         <Card.Text>
-          Update program parameters, view program insights etc.
+          Review applications and administer program details:
         </Card.Text>
       </Card.Body>
       <ListGroup variant="flush">
-        {EditableItems}
+        <ListGroup.Item>
+          <Link href="/analyst/applications" passHref>
+            <Card.Link href="#">Submitted applications</Card.Link>
+          </Link>
+        </ListGroup.Item>
         <ListGroup.Item>
           <Card.Link
             target="_blank"
             href="https://cas-metabase.pathfinder.gov.bc.ca/"
           >
-            Data and Insights (Metabase)
+            Data Insights (Metabase)
           </Card.Link>
         </ListGroup.Item>
+        {EditableItems}
       </ListGroup>
     </Card>
   );
