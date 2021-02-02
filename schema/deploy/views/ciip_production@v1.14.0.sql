@@ -6,26 +6,21 @@ begin;
     with x as (
       select
          application_id, version_number,
-         json_array_elements((form_result)::json) as production_data,
-         (form_result.form_result ->> 'comments')::varchar(10000) as comments
+         json_array_elements((form_result)::json) as production_data
       from ggircs_portal.form_result
       join ggircs_portal.form_json
       on form_result.form_id = form_json.id
-      and form_json.slug in ('production', 'production-2018')
+      and form_json.slug = 'production'
     )
     select
        x.application_id,
        x.version_number,
-       coalesce((x.production_data ->> 'productAmount')::numeric, (x.production_data ->> 'quantity')::numeric) as product_amount,
+       (x.production_data ->> 'productAmount')::numeric as product_amount,
        (x.production_data ->> 'productRowId')::integer as product_id,
-       coalesce((x.production_data ->> 'productUnits')::varchar(1000), (x.production_data ->> 'units')::varchar(1000)) as product_units,
+       (x.production_data ->> 'productUnits')::varchar(1000) as product_units,
        (x.production_data ->> 'productEmissions')::numeric as product_emissions,
        (x.production_data ->> 'requiresEmissionAllocation')::boolean as requires_emission_allocation,
-       (x.production_data ->> 'isEnergyProduct')::boolean as is_energy_product,
-       (x.production_data ->> 'productName')::varchar(1000) as product_name,
-       (x.production_data ->> 'associatedEmissions')::numeric as associated_emissions,
-       x.comments
-
+       (x.production_data ->> 'isEnergyProduct')::boolean as is_energy_product
     from x
  );
 
@@ -40,8 +35,5 @@ comment on column ggircs_portal.ciip_production.product_units is 'The units for 
 comment on column ggircs_portal.ciip_production.product_emissions is 'The amount of emissions, in tCO2e, allocated to the product';
 comment on column ggircs_portal.ciip_production.requires_emission_allocation is 'Whether or not the product requires reporting an emission allocation';
 comment on column ggircs_portal.ciip_production.is_energy_product is 'Boolean value indicates if the product is an energy product that is reported alongside other products';
-comment on column ggircs_portal.ciip_production.product_name is 'The name of the product';
-comment on column ggircs_portal.ciip_production.associated_emissions is 'The emissions associated with the manufacturing of this product';
-comment on column ggircs_portal.ciip_production.comments is 'Any comments the reporter added to this form while filling it out';
 
 commit;
