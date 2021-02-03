@@ -2,6 +2,57 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.16.0](https://github.com/bcgov/cas-ciip-portal/compare/v1.14.0...v1.16.0) (2021-02-03)
+
+
+### Features
+
+* add a /health endpoint & use in readiness probe ([ef7c66c](https://github.com/bcgov/cas-ciip-portal/commit/ef7c66ca734673064c7b46b6b0db4b487f5e7c83))
+* add a column for reporter comments to all views ([ab86124](https://github.com/bcgov/cas-ciip-portal/commit/ab86124a6a6642505eac50b1483d2d22287ef099))
+* add data-migrate helm chart ([64195fa](https://github.com/bcgov/cas-ciip-portal/commit/64195fa9eb8605e26f696a95c2cfede724e8a898))
+* add is_active column to ciip_application_wizard table ([167a559](https://github.com/bcgov/cas-ciip-portal/commit/167a5595091ae6b093b5e3008fc0ddaf56562bfb))
+* add link to report a problem in dashboard ([bdf2d7f](https://github.com/bcgov/cas-ciip-portal/commit/bdf2d7f21dd4e90f6603db946c1cb6b80993c813))
+* add missing column descriptions in views ([c13289e](https://github.com/bcgov/cas-ciip-portal/commit/c13289ec840769d1145987d7032cd4077ba91169))
+* add new support email as a variable; use temporarily for reports ([a4f2fe6](https://github.com/bcgov/cas-ciip-portal/commit/a4f2fe6c3ccd56c8b6ea1e3a7f2eb8b3cb2c4b4a))
+* add test for ciip_fuel view ([bdb0a96](https://github.com/bcgov/cas-ciip-portal/commit/bdb0a96a39877cc0de400043b818271433bc36f5))
+* cypress flag added to circleci ([7e31add](https://github.com/bcgov/cas-ciip-portal/commit/7e31add3a5cd2dce9c787cb1927d62e460d1967f))
+* e2e test that actually tests the logins ([8fd9a31](https://github.com/bcgov/cas-ciip-portal/commit/8fd9a31ac396f860375e205af47f0699fe2ac0ca))
+* fixture to override jwt auth for analyst role ([6e5028e](https://github.com/bcgov/cas-ciip-portal/commit/6e5028e3343196c49939026b3ed1163a5c905dc0))
+* ignore inactive ciip_application_wizard rows ([f0b1d8c](https://github.com/bcgov/cas-ciip-portal/commit/f0b1d8cfc491b98c20dbe884a3bf41c243b421d6))
+* mock login takes the same code path as AS_XXX ([e9a4fcd](https://github.com/bcgov/cas-ciip-portal/commit/e9a4fcda36fbd3cf0a2a60da4e3f816dc6f0eb76))
+* re-group dashboard links navigation and simplify language ([9010908](https://github.com/bcgov/cas-ciip-portal/commit/90109086a4784179f1633c93fd01c730cc4eb7cf))
+* refactoring e2e tests to use mock login ([31b19de](https://github.com/bcgov/cas-ciip-portal/commit/31b19ded502eb19262953a4bf8c2737dead99cc8))
+* remove uniqueness constraint on form_position ([0d1a57a](https://github.com/bcgov/cas-ciip-portal/commit/0d1a57a72d32cee911a0e1e309f3e5086de479ba))
+* set new column to default true ([bc59e32](https://github.com/bcgov/cas-ciip-portal/commit/bc59e3258cac32188fd2c207b5662a52fc17a929))
+* update ciip URLs to be *.gov.bc.ca ([1bfc6ac](https://github.com/bcgov/cas-ciip-portal/commit/1bfc6ac8ee2d3980ccf2edff0ed318cdcd2ac8f4))
+* update ciip_admin view to handle 2018 data ([3673564](https://github.com/bcgov/cas-ciip-portal/commit/3673564a28a69fe8e0d8da1cb76f1d59f8ffaa88))
+* update ciip_emission view to handle ciip 2018 data ([c2e31f7](https://github.com/bcgov/cas-ciip-portal/commit/c2e31f76f8bc25f9c70f85ddc8ac207a581fc075))
+* update ciip_fuel view to handle 2018 data ([b93f622](https://github.com/bcgov/cas-ciip-portal/commit/b93f622941526ae622237e6792c1098a3fd8e414))
+* update ciip_production view to handle ciip_2018 data ([eb248b9](https://github.com/bcgov/cas-ciip-portal/commit/eb248b96ec2070904dd3ae88f51bcaed5854e237))
+* update schema ([bb974f5](https://github.com/bcgov/cas-ciip-portal/commit/bb974f501104cd53798ea6946eb96646a11adc3f))
+* use create or replace when creating views ([62e9d26](https://github.com/bcgov/cas-ciip-portal/commit/62e9d2672798e3d74d2c33248722228966bbfe56))
+
+
+### Bug Fixes
+
+* ACME http challenge should only be accessible on port 80 ([0361186](https://github.com/bcgov/cas-ciip-portal/commit/0361186e4928905fc62c1f57e40695e17e50cbd6))
+* add nsp in ciip-portal ns for metabase->ciip-db ([4056428](https://github.com/bcgov/cas-ciip-portal/commit/405642851b7b693a9af9dc8a98ebb54886229c41))
+* as_cypress doesn't bypass the login page ([4d7b8db](https://github.com/bcgov/cas-ciip-portal/commit/4d7b8dba84c750ee7fe5481f8da45c285549e561))
+* assert that mock login cookie has been set ([8b158d8](https://github.com/bcgov/cas-ciip-portal/commit/8b158d829c683c891473af9b916b0099d5a27e91))
+* ciip_fuel cannot drop columns in revert file ([40a66eb](https://github.com/bcgov/cas-ciip-portal/commit/40a66eb873649ad55dca7133278edf615f9954e7))
+* drop portal_app user & create ciip_portal user if not exists ([f2b2943](https://github.com/bcgov/cas-ciip-portal/commit/f2b2943be7f5d869a024f32a1b2ead4dc1b54099))
+* existing page access spec tests the real login ([4f50dc7](https://github.com/bcgov/cas-ciip-portal/commit/4f50dc712c9e385fd3ec6e28a473dfa0fea9c5a4))
+* one more missing column description ([52ffad1](https://github.com/bcgov/cas-ciip-portal/commit/52ffad1c50992d194aa826d1f1f967dea817abdb))
+* pass href all the way down to anchor tag for accurate links ([1818edc](https://github.com/bcgov/cas-ciip-portal/commit/1818edcc1231d7523440a53b2c28d4e0e6967389))
+* redirect spec only deploys data once ([cf8e581](https://github.com/bcgov/cas-ciip-portal/commit/cf8e581615f84c52a62cb8d81951640d95952267))
+* require serviceUrl prop for Report a Problem link component ([434449a](https://github.com/bcgov/cas-ciip-portal/commit/434449ae3d5a3644c515d63102ad43c1f02069b2))
+* source/destination swap ([da52563](https://github.com/bcgov/cas-ciip-portal/commit/da52563f0712f6ef049ffdf520e9653bf25ba574))
+* syntax error ([e11ce99](https://github.com/bcgov/cas-ciip-portal/commit/e11ce994909dfa9a5629b741f6519ae8526e3210))
+* update schema ([e540db0](https://github.com/bcgov/cas-ciip-portal/commit/e540db0d7c56216b0d993b63e8ddad814b29b583))
+* upgrade nodejs to 12.20.1 ([a660288](https://github.com/bcgov/cas-ciip-portal/commit/a66028871ee02474f36f9aeb3b147ba48524d465))
+* use create or replace in ciip_fuel revert ([e17fd50](https://github.com/bcgov/cas-ciip-portal/commit/e17fd50a9784c4e031b55be8ed9295e9f2ada02b))
+* verify file properly verifies exist/not exist of roles ([578be0c](https://github.com/bcgov/cas-ciip-portal/commit/578be0cf4f0ac5e8d9f01ccee482df084bc3cf7a))
+
 ## [1.15.0](https://github.com/bcgov/cas-ciip-portal/compare/v1.14.0...v1.15.0) (2021-02-01)
 
 
