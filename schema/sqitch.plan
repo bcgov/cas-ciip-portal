@@ -217,3 +217,4 @@ views/ciip_admin [views/ciip_admin@v1.14.0] 2021-01-19T19:16:19Z Dylan Leard <dy
 views/ciip_fuel [views/ciip_fuel@v1.14.0] 2021-01-19T21:08:48Z Dylan Leard <dylan@button.is> # Migration: handle 2018 ciip data
 views/ciip_emission [views/ciip_emission@v1.14.0] 2021-01-19T21:25:56Z Dylan Leard <dylan@button.is> # Migration: handle ciip_2018 data
 views/ciip_production [views/ciip_production@v1.14.0] 2021-01-19T23:39:49Z Dylan Leard <dylan@button.is> # Migration: handle ciip_2018 data
+database_functions/create_portal_app_user [database_functions/create_portal_app_user@v1.14.0] 2021-01-29T22:47:30Z Dylan Leard <dylan@button.is> # Migration: drop portal_app user (obsolete) and create ciip_portal user if it does not already exist

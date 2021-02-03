@@ -13,10 +13,10 @@ const NO_AUTH_POSTGRES_ROLE = process.env.NO_AUTH_POSTGRES_ROLE || 'postgres';
 
 const getDatabaseUrl = () => {
   // If authentication is disabled use the user above to connect to the database
-  // Otherwise, use the PGUSER env variable, or default to portal_app
+  // Otherwise, use the PGUSER env variable
   const PGUSER = NO_AUTH
     ? NO_AUTH_POSTGRES_ROLE
-    : process.env.PGUSER || 'portal_app';
+    : process.env.PGUSER || 'ciip_portal';
 
   let databaseURL = 'postgres://';
 

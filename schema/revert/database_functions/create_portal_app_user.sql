@@ -1,9 +1,24 @@
--- Revert ggircs-portal:database_functions/create_portal_app_user from pg
+-- Deploy ggircs-portal:database_functions/create_portal_app_user to pg
+-- requires: database_functions/create_roles
 
 begin;
+do $$
+  begin
+    execute format('revoke all privileges on database %I from ciip_portal', current_database());
 
--- The create roles affects the server globally. Cannot drop the roles once created.
--- This affects development enviroments, where dev and test databases are in the same postgres instance
-select true;
+    if not exists (
+    select true
+    from   pg_catalog.pg_roles
+    where  rolname = 'portal_app') then
+
+    create user portal_app;
+    end if;
+
+    grant ciip_administrator, ciip_analyst, ciip_industry_user, ciip_guest to portal_app;
+    execute format('grant create, connect on database %I to portal_app', current_database());
+  end;
+$$;
+
+drop user ciip_portal;
 
 commit;
