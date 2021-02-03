@@ -1,3 +1,23 @@
+function openProductSettings(row) {
+  cy.get(
+    `tbody > :nth-child(${row}) .dropdown [aria-label="Product Settings"]`
+  ).click();
+}
+
+function openBenchmarkModal(row) {
+  openProductSettings(row);
+  cy.get(`tbody > :nth-child(${row}) .dropdown-menu.show`)
+    .contains('Benchmark')
+    .click();
+}
+
+function openLinkedProducts(row) {
+  openProductSettings(row);
+  cy.get(`tbody > :nth-child(${row}) .dropdown-menu.show`)
+    .contains('Linked products')
+    .click();
+}
+
 describe('The products and benchmark page', () => {
   beforeEach(() => {
     cy.cleanSchema();
@@ -14,9 +34,13 @@ describe('The products and benchmark page', () => {
   });
 
   it('Displays the proper statuses for each product', () => {
-    cy.get('tbody > :nth-child(1) > :nth-child(6)').contains('DRAFT');
-    cy.get('tbody > :nth-child(2) > :nth-child(6)').contains('PUBLISHED');
-    cy.get('tbody > :nth-child(3) > :nth-child(6)').contains('ARCHIVED');
+    cy.get('tbody > :nth-child(1) .badge-pill.badge-warning').contains('DRAFT');
+    cy.get('tbody > :nth-child(2) .badge-pill.badge-success').contains(
+      'PUBLISHED'
+    );
+    cy.get('tbody > :nth-child(3) .badge-pill.badge-secondary').contains(
+      'ARCHIVED'
+    );
   });
 });
 
@@ -30,7 +54,7 @@ describe('The benchmark modal', () => {
   });
 
   it('Opens & displays the correct data in the benchmark modal', () => {
-    cy.get(':nth-child(1) > :nth-child(9) > .fa-tachometer-alt > path').click();
+    openBenchmarkModal(1);
     cy.get('#root_benchmark').should('have.prop', 'disabled', false);
     cy.get('#root_benchmark').should('have.value', '0.12');
     cy.get('#root_startReportingYear').should('have.value', '2018');
@@ -47,34 +71,34 @@ describe('The benchmark modal', () => {
   });
 
   it('Allows editing a benchmark for a draft product', () => {
-    cy.get(':nth-child(1) > :nth-child(9) > .fa-tachometer-alt > path').click();
+    openBenchmarkModal(1);
     cy.get('#root_benchmark').should('have.prop', 'disabled', false);
     cy.get('#root_benchmark').clear().type('12');
     cy.get('.rjsf > .btn').contains('Save');
     cy.get('.rjsf > .btn').click();
-    cy.get('tbody > :nth-child(1) > :nth-child(3)').contains('12');
+    cy.get('tbody > :nth-child(1) > :nth-child(4)').contains('12');
   });
 
   it('Allows editing a benchmark for a published product', () => {
-    cy.get(':nth-child(2) > :nth-child(9) > .fa-tachometer-alt > path').click();
+    openBenchmarkModal(2);
     cy.get('#root_benchmark').should('have.prop', 'disabled', false);
     cy.get('#root_benchmark').clear().type('10');
     cy.get('.rjsf > .btn').contains('Save');
     cy.get('.rjsf > .btn').click();
-    cy.get('tbody > :nth-child(2) > :nth-child(3)').contains('10');
+    cy.get('tbody > :nth-child(2) > :nth-child(4)').contains('10');
   });
 
   it('Allows editing a benchmark for a published (read-only) product', () => {
-    cy.get(':nth-child(4) > :nth-child(9) > .fa-tachometer-alt > path').click();
+    openBenchmarkModal(4);
     cy.get('#root_benchmark').should('have.prop', 'disabled', false);
     cy.get('#root_benchmark').clear().type('10');
     cy.get('.rjsf > .btn').contains('Save');
     cy.get('.rjsf > .btn').click();
-    cy.get('tbody > :nth-child(4) > :nth-child(3)').contains('10');
+    cy.get('tbody > :nth-child(4) > :nth-child(4)').contains('10');
   });
 
   it('Does not allow editing a benchmark for an archived product', () => {
-    cy.get(':nth-child(3) > :nth-child(9) > .fa-tachometer-alt > path').click();
+    openBenchmarkModal(3);
     cy.get('#root_benchmark').should('have.prop', 'disabled', true);
     cy.get('.rjsf > .btn').should('have.class', 'hidden-button');
     cy.get('.close > [aria-hidden="true"]').click();
@@ -92,21 +116,15 @@ describe('The linking modal', () => {
 
   it('Can add and remove product links', () => {
     cy.get('#page-content');
-    cy.get(
-      'tbody > :nth-child(1) > :nth-child(8) > .svg-inline--fa > path'
-    ).click({force: true});
+    openLinkedProducts(1);
     cy.get('#root-add').click();
     cy.get('#root_0_productRowId').clear().type('Product B');
-    cy.get('.dropdown-item').click();
+    cy.get('.dropdown-item').contains('Product B').click();
     cy.get('.save-button').click();
-    cy.get(
-      'tbody > :nth-child(1) > :nth-child(8) > .svg-inline--fa > path'
-    ).click({force: true});
+    openLinkedProducts(1);
     cy.get('.remove-button-container > .btn').click();
     cy.get('.save-button').click();
-    cy.get(
-      'tbody > :nth-child(1) > :nth-child(8) > .svg-inline--fa > path'
-    ).click({force: true});
+    openLinkedProducts(1);
     cy.get('.modal-body > .container')
       .contains('Product B')
       .should('not.exist');
@@ -164,6 +182,6 @@ describe('The Create Product modal', () => {
     });
     cy.contains('Add Product').click();
     cy.get('tr').its('length').should('be.gte', 5);
-    cy.get('tbody > :nth-child(1) > :nth-child(6)').contains('DRAFT');
+    cy.get('tbody > :nth-child(1) .badge-pill.badge-warning').contains('DRAFT');
   });
 });

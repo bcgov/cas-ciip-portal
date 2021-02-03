@@ -23,7 +23,7 @@ describe('When logged in as an admin', () => {
     cy.checkA11y();
   });
 
-  it.skip('The products & benchmarks page has no detectable ally violations on load', () => {
+  it('The products & benchmarks page has no detectable ally violations on load', () => {
     cy.visit('/admin/products-benchmarks');
     cy.url().should('include', '/admin/products-benchmarks');
     cy.injectAxe();
@@ -31,10 +31,10 @@ describe('When logged in as an admin', () => {
     cy.checkA11y();
   });
 
-  it.skip('The products & benchmarks new product modal has no detectable ally violations on open', () => {
+  it('The products & benchmarks new product modal has no detectable ally violations on open', () => {
     cy.visit('/admin/products-benchmarks');
     cy.url().should('include', '/admin/products-benchmarks');
-    cy.get('[style="text-align: right;"] > .btn').click();
+    cy.contains('New Product').click();
     cy.injectAxe();
     cy.get('#page-content');
     cy.checkA11y();
@@ -43,7 +43,12 @@ describe('When logged in as an admin', () => {
   it.skip('The products & benchmarks linking modal has no detectable ally violations on open', () => {
     cy.visit('/admin/products-benchmarks');
     cy.url().should('include', '/admin/products-benchmarks');
-    cy.get('tbody > :nth-child(1) > :nth-child(8) > .svg-inline--fa').click();
+    cy.get(
+      'tbody > :nth-child(1) .dropdown [aria-label="Product Settings"]'
+    ).click();
+    cy.get('tbody > :nth-child(1) .dropdown-menu.show')
+      .contains('Linked products')
+      .click();
     cy.injectAxe();
     cy.get('#page-content');
     cy.checkA11y();
@@ -52,7 +57,12 @@ describe('When logged in as an admin', () => {
   it.skip('The products & benchmarks product modal has no detectable ally violations on open', () => {
     cy.visit('/admin/products-benchmarks');
     cy.url().should('include', '/admin/products-benchmarks');
-    cy.get(':nth-child(1) > :nth-child(9) > .fa-tachometer-alt > path').click();
+    cy.get(
+      'tbody > :nth-child(1) .dropdown [aria-label="Product Settings"]'
+    ).click();
+    cy.get('tbody > :nth-child(1) .dropdown-menu.show')
+      .contains('Product details')
+      .click();
     cy.injectAxe();
     cy.get('#page-content');
     cy.checkA11y();
@@ -61,7 +71,12 @@ describe('When logged in as an admin', () => {
   it.skip('The products & benchmarks benchmark modal has no detectable ally violations on open', () => {
     cy.visit('/admin/products-benchmarks');
     cy.url().should('include', '/admin/products-benchmarks');
-    cy.get(':nth-child(1) > :nth-child(9) > .fa-cube > path').click();
+    cy.get(
+      'tbody > :nth-child(1) .dropdown [aria-label="Product Settings"]'
+    ).click();
+    cy.get('tbody > :nth-child(1) .dropdown-menu.show')
+      .contains('Benchmark')
+      .click();
     cy.injectAxe();
     cy.get('#page-content');
     cy.checkA11y();
