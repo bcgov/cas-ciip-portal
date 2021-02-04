@@ -90,8 +90,7 @@ describe('When logged in as a certifier(reporter) they should be able to load al
     cy.get('table.search-table:not(.loading) > tbody > tr > td').contains(
       'Cypress Certifier'
     );
-    // This cannot be used until we understand why the mocked timestamp doesn't work in this particular case, on circleCI
-    cy.get('main').happoScreenshot({
+    cy.get('body').happoScreenshot({
       component: 'Batch certification page',
       variant: 'Multiple certification requests executed'
     });
