@@ -48,7 +48,7 @@ describe('When logged in as a certifier(reporter) they should be able to load al
       `http://localhost:3004/reporter/application?formResultId=${formResultId}&applicationId=${applicationId}&version=1`
     );
     cy.get('body').contains('Submission Certification');
-    cy.url().should('include', `/certifier/certify?applicationId=`);
+    cy.url().should('include', '/certifier/certify?applicationId=');
   });
 
   it('can access the certification requests page via a link on the reporter dash', () => {
