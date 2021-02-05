@@ -1,5 +1,8 @@
 describe('The index page', () => {
   it('contains the login buttons ', () => {
+    cy.cleanSchema();
+    cy.sqlFixture('/fixtures/index-setup');
+
     cy.visit('/');
     cy.get('#page-content');
     cy.get('header').contains('Register');
@@ -10,6 +13,8 @@ describe('The index page', () => {
     cy.get('#page-content').contains(
       'Already have an account? Click here to login.'
     );
+
+    cy.contains('Jan 23, 1991');
     cy.get('body').happoScreenshot({component: 'Index Page'});
   });
 

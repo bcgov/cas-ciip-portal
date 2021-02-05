@@ -378,7 +378,7 @@ jobs:
             SMTP_CONNECTION_STRING: smtp://@localhost:1025
             SENDER_EMAIL: BCCAS <example@cas.com>
             ADMIN_EMAIL: GHG Regulator <GHGRegulator@gov.bc.ca>
-            ENABLE_DB_MOCKS_COOKIES_ONLY: true # Allow cookies to be set by cypress
+            ENABLE_DB_MOCKS_COOKIES_ONLY: "true" # Allow cookies to be set by cypress
           command: |
             source ~/.asdf/asdf.sh
             pushd app
@@ -395,6 +395,7 @@ jobs:
       - run:
           name: run end-to-en tests with mocks environment variable set
           environment:
+            SMTP_CONNECTION_STRING: smtp://@localhost:1025
             ENABLE_DB_MOCKS: "true"
           command: |
             source ~/.asdf/asdf.sh
