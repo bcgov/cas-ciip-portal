@@ -33,9 +33,12 @@ describe('When logged in as a certifier(reporter) they should be able to load th
 });
 
 describe('When logged in as a certifier(reporter) they should be able to load all other certification related pages', () => {
-  beforeEach(() => {
+  before(() => {
     cy.cleanSchema();
     cy.deployProdData();
+  });
+
+  beforeEach(() => {
     cy.sqlFixture('fixtures/certifier-access-setup');
     cy.mockLogin('certifier');
     cy.useMockedTime(new Date('June 10, 2020 09:00:00'));
