@@ -145,9 +145,12 @@ while [[ "$1" =~ ^- && ! "$1" == "--" ]]; do case $1 in
   -d | --drop-db )
     actions+=('dropdb' 'deploySwrs' 'deployPortal')
     ;;
-  -prod | --prod-data | --oc-project=*-prod | --oc-project=*-test)
-    # prod data should be deployed in both test and prod openshift environments
+  -prod | --prod-data | --oc-project=*-prod)
     actions+=('deployProd')
+    ;;
+  --oc-project=*-test)
+    # in the test (QA) openshift environment, we need to deploy the prod data, including organisations/facilities
+    actions+=('deployMocks' 'deployProd')
     ;;
   -test | --test-data)
     # test data includes all prod data except organisations/facilities
