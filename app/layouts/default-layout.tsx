@@ -69,6 +69,18 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
         </Container>
       </main>
       <Footer />
+      <style jsx>
+        {`
+          .page-wrap {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+          }
+          main {
+            flex-grow: 1;
+          }
+        `}
+      </style>
       <style jsx global>
         {`
           a {
@@ -76,10 +88,6 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
           }
           .btn-link {
             color: #0053b3;
-          }
-          .page-wrap {
-            display: flex;
-            flex-direction: column;
           }
           .content {
             padding-top: 50px;
