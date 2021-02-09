@@ -1,5 +1,5 @@
 import React from 'react';
-import {shallow} from 'enzyme';
+import {shallow, mount} from 'enzyme';
 import {ProductRowItemComponent} from 'containers/Products/ProductRowItemContainer';
 
 describe('ProductList', () => {
@@ -62,7 +62,7 @@ describe('ProductList', () => {
       ]
     }
   };
-  it('should match the previous snaphshot', async () => {
+  it('should match the previous snapshot', async () => {
     const r = shallow(
       <ProductRowItemComponent product={product} query={query} />
     );
@@ -70,53 +70,85 @@ describe('ProductList', () => {
   });
 
   it('should allow benchmark editing when the product is PUBLISHED', async () => {
-    const r = shallow(
+    const r = mount(
       <ProductRowItemComponent product={product} query={query} />
     );
-    expect(
-      r.find('OverlayTrigger').at(1).prop('overlay').props.children.join('')
-    ).toEqual('Edit Benchmark');
-    expect(r.find('FontAwesomeIcon').at(1).prop('className')).toBe('editIcon');
+    r.find('DropdownToggle').simulate('click');
+    r.find('DropdownMenu DropdownItem').at(1).simulate('click');
+    const benchmarkModal = r
+      .find('ProductBenchmarkInnerModal')
+      .findWhere((n) => !n.prop('isProduct'));
+    const input = benchmarkModal
+      .find('BaseInput')
+      .findWhere((n) => n.prop('id') === 'root_benchmark')
+      .first();
+    expect(input.prop('disabled')).toBe(false);
   });
 
   it('should not allow product editing when the product is PUBLISHED', async () => {
-    const r = shallow(
+    const r = mount(
       <ProductRowItemComponent product={product} query={query} />
     );
-    expect(
-      r.find('OverlayTrigger').last().prop('overlay').props.children.join('')
-    ).toEqual('View Product');
-    expect(r.find('FontAwesomeIcon').at(2).prop('className')).toBe(
-      'editIcon-disabled'
-    );
+    r.find('DropdownToggle').simulate('click');
+    r.find('DropdownMenu DropdownItem').at(0).simulate('click');
+    const productModal = r
+      .find('ProductBenchmarkInnerModal')
+      .findWhere((n) => n.prop('isProduct'));
+    const input = productModal
+      .find('BaseInput')
+      .findWhere((n) => n.prop('id') === 'root_productName')
+      .first();
+    expect(input.prop('disabled')).toBe(true);
   });
 
-  it('should allow benchmark and product editing when the product is DRAFT', async () => {
-    product.productState = 'DRAFT';
-    const r = shallow(
-      <ProductRowItemComponent product={product} query={query} />
+  it('should allow benchmark editing when the product is DRAFT', async () => {
+    const testProduct = {...product, productState: 'DRAFT'};
+    const r = mount(
+      <ProductRowItemComponent product={testProduct} query={query} />
     );
-    expect(
-      r.find('OverlayTrigger').last().prop('overlay').props.children.join('')
-    ).toEqual('Edit Product');
-    expect(r.find('FontAwesomeIcon').at(1).prop('className')).toBe('editIcon');
-    expect(
-      r.find('OverlayTrigger').at(1).prop('overlay').props.children.join('')
-    ).toEqual('Edit Benchmark');
-    expect(r.find('FontAwesomeIcon').at(1).prop('className')).toBe('editIcon');
+    r.find('DropdownToggle').simulate('click');
+    r.find('DropdownMenu DropdownItem').at(1).simulate('click');
+    const benchmarkModal = r
+      .find('ProductBenchmarkInnerModal')
+      .findWhere((n) => !n.prop('isProduct'));
+    const benchmarkInput = benchmarkModal
+      .find('BaseInput')
+      .findWhere((n) => n.prop('id') === 'root_benchmark')
+      .first();
+    expect(benchmarkInput.prop('disabled')).toBe(false);
+  });
+
+  it('should allow product editing when the product is DRAFT', async () => {
+    const testProduct = {...product, productState: 'DRAFT'};
+    const r = mount(
+      <ProductRowItemComponent product={testProduct} query={query} />
+    );
+    r.find('DropdownToggle').simulate('click');
+    r.find('DropdownMenu DropdownItem').at(0).simulate('click');
+    const productModal = r
+      .find('ProductBenchmarkInnerModal')
+      .findWhere((n) => n.prop('isProduct'));
+    const input = productModal
+      .find('BaseInput')
+      .findWhere((n) => n.prop('id') === 'root_productName')
+      .first();
+    expect(input.prop('disabled')).toBe(false);
   });
 
   it('should not allow product editing when the product is read-only', async () => {
-    product.productState = 'DRAFT';
-    product.isReadOnly = true;
-    const r = shallow(
-      <ProductRowItemComponent product={product} query={query} />
+    const testProduct = {...product, productState: 'DRAFT', isReadOnly: true};
+    const r = mount(
+      <ProductRowItemComponent product={testProduct} query={query} />
     );
-    expect(
-      r.find('OverlayTrigger').at(2).prop('overlay').props.children.join('')
-    ).toEqual('View Product');
-    expect(r.find('FontAwesomeIcon').at(2).prop('className')).toEqual(
-      'editIcon-disabled'
-    );
+    r.find('DropdownToggle').simulate('click');
+    r.find('DropdownMenu DropdownItem').at(0).simulate('click');
+    const productModal = r
+      .find('ProductBenchmarkInnerModal')
+      .findWhere((n) => n.prop('isProduct'));
+    const input = productModal
+      .find('BaseInput')
+      .findWhere((n) => n.prop('id') === 'root_productName')
+      .first();
+    expect(input.prop('disabled')).toBe(true);
   });
 });

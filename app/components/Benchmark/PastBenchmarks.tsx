@@ -44,6 +44,11 @@ const PastBenchmarksComponent: React.FunctionComponent<Props> = (props) => {
         </thead>
         <tbody>{renderPastBenchmarks}</tbody>
       </Table>
+      <style jsx>{`
+        h5 {
+          font-size: 1.5rem;
+        }
+      `}</style>
     </>
   );
 };

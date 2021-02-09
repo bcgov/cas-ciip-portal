@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ProductList should match the previous snaphshot 1`] = `
+exports[`ProductList should match the previous snapshot 1`] = `
 <Fragment>
   <tr
     className="jsx-3501624252"
@@ -9,6 +9,115 @@ exports[`ProductList should match the previous snaphshot 1`] = `
       className="jsx-3501624252 text-left"
     >
       test product
+    </td>
+    <td
+      className="jsx-3501624252"
+    >
+      <Dropdown
+        navbar={false}
+      >
+        <DropdownToggle
+          aria-label="Product Settings"
+          as={
+            Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "defaultProps": Object {
+                "active": false,
+                "disabled": false,
+                "type": "button",
+                "variant": "primary",
+              },
+              "displayName": "Button",
+              "render": [Function],
+            }
+          }
+          id="dropdown-abc"
+          style={
+            Object {
+              "background": "transparent",
+              "border": "none",
+            }
+          }
+          title="Product Settings"
+          variant="light"
+        >
+          <FontAwesomeIcon
+            border={false}
+            className=""
+            fixedWidth={false}
+            flip={null}
+            icon={
+              Object {
+                "icon": Array [
+                  512,
+                  512,
+                  Array [],
+                  "f013",
+                  "M487.4 315.7l-42.6-24.6c4.3-23.2 4.3-47 0-70.2l42.6-24.6c4.9-2.8 7.1-8.6 5.5-14-11.1-35.6-30-67.8-54.7-94.6-3.8-4.1-10-5.1-14.8-2.3L380.8 110c-17.9-15.4-38.5-27.3-60.8-35.1V25.8c0-5.6-3.9-10.5-9.4-11.7-36.7-8.2-74.3-7.8-109.2 0-5.5 1.2-9.4 6.1-9.4 11.7V75c-22.2 7.9-42.8 19.8-60.8 35.1L88.7 85.5c-4.9-2.8-11-1.9-14.8 2.3-24.7 26.7-43.6 58.9-54.7 94.6-1.7 5.4.6 11.2 5.5 14L67.3 221c-4.3 23.2-4.3 47 0 70.2l-42.6 24.6c-4.9 2.8-7.1 8.6-5.5 14 11.1 35.6 30 67.8 54.7 94.6 3.8 4.1 10 5.1 14.8 2.3l42.6-24.6c17.9 15.4 38.5 27.3 60.8 35.1v49.2c0 5.6 3.9 10.5 9.4 11.7 36.7 8.2 74.3 7.8 109.2 0 5.5-1.2 9.4-6.1 9.4-11.7v-49.2c22.2-7.9 42.8-19.8 60.8-35.1l42.6 24.6c4.9 2.8 11 1.9 14.8-2.3 24.7-26.7 43.6-58.9 54.7-94.6 1.5-5.5-.7-11.3-5.6-14.1zM256 336c-44.1 0-80-35.9-80-80s35.9-80 80-80 80 35.9 80 80-35.9 80-80 80z",
+                ],
+                "iconName": "cog",
+                "prefix": "fas",
+              }
+            }
+            inverse={false}
+            listItem={false}
+            mask={null}
+            pull={null}
+            pulse={false}
+            rotation={null}
+            size="lg"
+            spin={false}
+            swapOpacity={false}
+            symbol={false}
+            title=""
+            transform={null}
+          />
+        </DropdownToggle>
+        <DropdownMenu
+          alignRight={false}
+          flip={true}
+        >
+          <DropdownItem
+            as={
+              Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "displayName": "SafeAnchor",
+                "render": [Function],
+              }
+            }
+            disabled={false}
+            onClick={[Function]}
+          >
+            Product details
+          </DropdownItem>
+          <DropdownItem
+            as={
+              Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "displayName": "SafeAnchor",
+                "render": [Function],
+              }
+            }
+            disabled={false}
+            onClick={[Function]}
+          >
+            Benchmark
+          </DropdownItem>
+          <DropdownItem
+            as={
+              Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "displayName": "SafeAnchor",
+                "render": [Function],
+              }
+            }
+            disabled={false}
+            onClick={[Function]}
+          >
+            Linked products
+          </DropdownItem>
+        </DropdownMenu>
+      </Dropdown>
     </td>
     <td
       className="jsx-3501624252"
@@ -33,184 +142,17 @@ exports[`ProductList should match the previous snaphshot 1`] = `
     <td
       className="jsx-3501624252"
     >
+      Yes
+    </td>
+    <td
+      className="jsx-3501624252"
+    >
       <Badge
         pill={true}
         variant="success"
       >
         PUBLISHED
       </Badge>
-    </td>
-    <td
-      className="jsx-3501624252"
-    >
-      Yes
-    </td>
-    <td
-      className="jsx-3501624252"
-    >
-      <OverlayTrigger
-        defaultShow={false}
-        overlay={
-          <Tooltip
-            id="link-product"
-            placement="right"
-          >
-            Link Products
-          </Tooltip>
-        }
-        placement="bottom"
-        trigger={
-          Array [
-            "hover",
-            "focus",
-          ]
-        }
-      >
-        <FontAwesomeIcon
-          border={false}
-          className="editIcon"
-          fixedWidth={false}
-          flip={null}
-          icon={
-            Object {
-              "icon": Array [
-                448,
-                512,
-                Array [],
-                "f1e0",
-                "M352 320c-22.608 0-43.387 7.819-59.79 20.895l-102.486-64.054a96.551 96.551 0 0 0 0-41.683l102.486-64.054C308.613 184.181 329.392 192 352 192c53.019 0 96-42.981 96-96S405.019 0 352 0s-96 42.981-96 96c0 7.158.79 14.13 2.276 20.841L155.79 180.895C139.387 167.819 118.608 160 96 160c-53.019 0-96 42.981-96 96s42.981 96 96 96c22.608 0 43.387-7.819 59.79-20.895l102.486 64.054A96.301 96.301 0 0 0 256 416c0 53.019 42.981 96 96 96s96-42.981 96-96-42.981-96-96-96z",
-              ],
-              "iconName": "share-alt",
-              "prefix": "fas",
-            }
-          }
-          inverse={false}
-          listItem={false}
-          mask={null}
-          onClick={[Function]}
-          pull={null}
-          pulse={false}
-          rotation={null}
-          size={null}
-          spin={false}
-          swapOpacity={false}
-          symbol={false}
-          title=""
-          transform={null}
-        />
-      </OverlayTrigger>
-       
-    </td>
-    <td
-      className="jsx-3501624252"
-    >
-      <OverlayTrigger
-        defaultShow={false}
-        overlay={
-          <Tooltip
-            id="benchmark"
-            placement="right"
-          >
-            Edit
-             
-            Benchmark
-          </Tooltip>
-        }
-        placement="bottom"
-        trigger={
-          Array [
-            "hover",
-            "focus",
-          ]
-        }
-      >
-        <FontAwesomeIcon
-          border={false}
-          className="editIcon"
-          fixedWidth={false}
-          flip={null}
-          icon={
-            Object {
-              "icon": Array [
-                576,
-                512,
-                Array [],
-                "f3fd",
-                "M288 32C128.94 32 0 160.94 0 320c0 52.8 14.25 102.26 39.06 144.8 5.61 9.62 16.3 15.2 27.44 15.2h443c11.14 0 21.83-5.58 27.44-15.2C561.75 422.26 576 372.8 576 320c0-159.06-128.94-288-288-288zm0 64c14.71 0 26.58 10.13 30.32 23.65-1.11 2.26-2.64 4.23-3.45 6.67l-9.22 27.67c-5.13 3.49-10.97 6.01-17.64 6.01-17.67 0-32-14.33-32-32S270.33 96 288 96zM96 384c-17.67 0-32-14.33-32-32s14.33-32 32-32 32 14.33 32 32-14.33 32-32 32zm48-160c-17.67 0-32-14.33-32-32s14.33-32 32-32 32 14.33 32 32-14.33 32-32 32zm246.77-72.41l-61.33 184C343.13 347.33 352 364.54 352 384c0 11.72-3.38 22.55-8.88 32H232.88c-5.5-9.45-8.88-20.28-8.88-32 0-33.94 26.5-61.43 59.9-63.59l61.34-184.01c4.17-12.56 17.73-19.45 30.36-15.17 12.57 4.19 19.35 17.79 15.17 30.36zm14.66 57.2l15.52-46.55c3.47-1.29 7.13-2.23 11.05-2.23 17.67 0 32 14.33 32 32s-14.33 32-32 32c-11.38-.01-20.89-6.28-26.57-15.22zM480 384c-17.67 0-32-14.33-32-32s14.33-32 32-32 32 14.33 32 32-14.33 32-32 32z",
-              ],
-              "iconName": "tachometer-alt",
-              "prefix": "fas",
-            }
-          }
-          inverse={false}
-          listItem={false}
-          mask={null}
-          onClick={[Function]}
-          pull={null}
-          pulse={false}
-          rotation={null}
-          size={null}
-          spin={false}
-          swapOpacity={false}
-          symbol={false}
-          title=""
-          transform={null}
-        />
-      </OverlayTrigger>
-       
-      <OverlayTrigger
-        defaultShow={false}
-        overlay={
-          <Tooltip
-            id="product"
-            placement="right"
-          >
-            View
-             
-            Product
-          </Tooltip>
-        }
-        placement="bottom"
-        trigger={
-          Array [
-            "hover",
-            "focus",
-          ]
-        }
-      >
-        <FontAwesomeIcon
-          border={false}
-          className="editIcon-disabled"
-          fixedWidth={false}
-          flip={null}
-          icon={
-            Object {
-              "icon": Array [
-                512,
-                512,
-                Array [],
-                "f1b2",
-                "M239.1 6.3l-208 78c-18.7 7-31.1 25-31.1 45v225.1c0 18.2 10.3 34.8 26.5 42.9l208 104c13.5 6.8 29.4 6.8 42.9 0l208-104c16.3-8.1 26.5-24.8 26.5-42.9V129.3c0-20-12.4-37.9-31.1-44.9l-208-78C262 2.2 250 2.2 239.1 6.3zM256 68.4l192 72v1.1l-192 78-192-78v-1.1l192-72zm32 356V275.5l160-65v133.9l-160 80z",
-              ],
-              "iconName": "cube",
-              "prefix": "fas",
-            }
-          }
-          inverse={false}
-          listItem={false}
-          mask={null}
-          onClick={[Function]}
-          pull={null}
-          pulse={false}
-          rotation={null}
-          size={null}
-          spin={false}
-          swapOpacity={false}
-          symbol={false}
-          title=""
-          transform={null}
-        />
-      </OverlayTrigger>
     </td>
   </tr>
   <Bootstrap(Modal)
