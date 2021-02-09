@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ProductList should match the previous snaphshot 1`] = `
+exports[`ProductList should match the previous snapshot 1`] = `
 <Fragment>
   <tr
     className="jsx-3501624252"
@@ -31,6 +31,7 @@ exports[`ProductList should match the previous snaphshot 1`] = `
               "render": [Function],
             }
           }
+          id="dropdown-abc"
           style={
             Object {
               "background": "transparent",
