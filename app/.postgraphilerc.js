@@ -1,7 +1,8 @@
 module.exports = {
   options: {
     graphileBuildOptions: {
-      connectionFilterRelations: true
+      connectionFilterRelations: true,
+      connectionFilterAllowNullInput: true
     }
   }
 };
