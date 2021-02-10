@@ -1,7 +1,9 @@
 import React from 'react';
 import {Container, Row, Col, Table, Alert} from 'react-bootstrap';
 import SortableTableHeader from 'components/SortableTableHeader';
-import SearchBox from 'components/SearchBox';
+// import SearchBox from 'components/SearchBox';
+import SearchTableHeaders from './SearchTableHeaders';
+import SearchBox from './SearchBox';
 
 interface Props {
   handleEvent: (
@@ -85,6 +87,10 @@ export const SearchTableLayoutComponent: React.FunctionComponent<Props> = (
               />
             ))}
           </tr>
+          <SearchTableHeaders
+            handleEvent={handleEvent}
+            displayNameToColumnNameMap={displayNameToColumnNameMap}
+          />
         </thead>
         {body}
       </Table>
