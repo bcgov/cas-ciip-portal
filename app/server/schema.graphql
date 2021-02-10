@@ -731,16 +731,47 @@ type Application implements Node {
     orderBy: [FacilitiesOrderBy!] = [PRIMARY_KEY_ASC]
   ): ApplicationFacilitiesByFacilitySearchResultApplicationIdAndFacilityIdManyToManyConnection!
 
+  """Reads and enables pagination through a set of `Facility`."""
+  facility(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: FacilityFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+  ): FacilitiesConnection!
+
   """Reads a single `Facility` that is related to this `Application`."""
   facilityByFacilityId: Facility
 
   """The foreign key to ggircs_portal.facility, references id"""
   facilityId: Int!
 
+<<<<<<< 13b58afa7c717ca15701491a7acaf641d9df6608
   """
   This function is a wrapper to return facility_name from the facility object
   """
   facilityName: String
+=======
+  """This function is a wrapper to return facility_name as a scalar"""
+  facilityWrapperFacilityName: String
+>>>>>>> feat: application-facility_name wrapper
 
   """Reads and enables pagination through a set of `FormJson`."""
   formJsonsByFormResultApplicationIdAndFormId(
@@ -2501,6 +2532,9 @@ input ApplicationFilter {
   """Some related `facilitySearchResultsByApplicationId` exist."""
   facilitySearchResultsByApplicationIdExist: Boolean
 
+  """Filter by the object’s `facilityWrapperFacilityName` field."""
+  facilityWrapperFacilityName: StringFilter
+
   """Filter by the object’s `formResultsByApplicationId` relation."""
   formResultsByApplicationId: ApplicationToManyFormResultFilter
 
@@ -3863,8 +3897,29 @@ input ApplicationRevisionFilter {
   """Filter by the object’s `legalDisclaimerAccepted` field."""
   legalDisclaimerAccepted: BooleanFilter
 
+<<<<<<< 13b58afa7c717ca15701491a7acaf641d9df6608
   """Negates the expression."""
   not: ApplicationRevisionFilter
+=======
+"""Methods to use when ordering `Application`."""
+enum ApplicationsOrderBy {
+  APPLICATION_REVISION_STATUS_WRAPPER_STATUS_ASC
+  APPLICATION_REVISION_STATUS_WRAPPER_STATUS_DESC
+  FACILITY_ID_ASC
+  FACILITY_ID_DESC
+  FACILITY_WRAPPER_FACILITY_NAME_ASC
+  FACILITY_WRAPPER_FACILITY_NAME_DESC
+  ID_ASC
+  ID_DESC
+  NATURAL
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+  REPORT_ID_ASC
+  REPORT_ID_DESC
+  REPORTING_YEAR_ASC
+  REPORTING_YEAR_DESC
+}
+>>>>>>> feat: application-facility_name wrapper
 
   """Checks for any expressions in this list."""
   or: [ApplicationRevisionFilter!]
