@@ -697,11 +697,40 @@ type Application implements Node {
     orderBy: [FacilitiesOrderBy!] = [PRIMARY_KEY_ASC]
   ): ApplicationFacilitiesByFacilitySearchResultApplicationIdAndFacilityIdManyToManyConnection!
 
+  """Reads and enables pagination through a set of `Facility`."""
+  facility(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: FacilityFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+  ): FacilitiesConnection!
+
   """Reads a single `Facility` that is related to this `Application`."""
   facilityByFacilityId: Facility
 
   """The foreign key to ggircs_portal.facility, references id"""
   facilityId: Int!
+
+  """This function is a wrapper to return facility_name as a scalar"""
+  facilityWrapperFacilityName: String
 
   """Reads and enables pagination through a set of `FormJson`."""
   formJsonsByFormResultApplicationIdAndFormId(
@@ -2134,6 +2163,9 @@ input ApplicationFilter {
   """Some related `facilitySearchResultsByApplicationId` exist."""
   facilitySearchResultsByApplicationIdExist: Boolean
 
+  """Filter by the object’s `facilityWrapperFacilityName` field."""
+  facilityWrapperFacilityName: StringFilter
+
   """Filter by the object’s `formResultsByApplicationId` relation."""
   formResultsByApplicationId: ApplicationToManyFormResultFilter
 
@@ -3287,6 +3319,8 @@ enum ApplicationsOrderBy {
   APPLICATION_REVISION_STATUS_WRAPPER_STATUS_DESC
   FACILITY_ID_ASC
   FACILITY_ID_DESC
+  FACILITY_WRAPPER_FACILITY_NAME_ASC
+  FACILITY_WRAPPER_FACILITY_NAME_DESC
   ID_ASC
   ID_DESC
   NATURAL
