@@ -41,6 +41,11 @@ type Application implements Node {
   """
   applicationRevisionStatus(versionNumberInput: String): ApplicationRevisionStatus
 
+  """
+  This function is a wrapper to return application_revision_status as a scalar
+  """
+  applicationRevisionStatusWrapperStatus: String
+
   """Reads and enables pagination through a set of `CertificationUrl`."""
   certificationUrlsByApplicationId(
     """Read all values in the set after (below) this cursor."""
@@ -2095,6 +2100,9 @@ input ApplicationFilter {
   """Some related `applicationRevisionsByApplicationId` exist."""
   applicationRevisionsByApplicationIdExist: Boolean
 
+  """Filter by the object’s `applicationRevisionStatusWrapperStatus` field."""
+  applicationRevisionStatusWrapperStatus: StringFilter
+
   """
   Filter by the object’s `applicationSearchResultsByApplicationId` relation.
   """
@@ -3275,6 +3283,8 @@ type ApplicationsEdge {
 
 """Methods to use when ordering `Application`."""
 enum ApplicationsOrderBy {
+  APPLICATION_REVISION_STATUS_WRAPPER_STATUS_ASC
+  APPLICATION_REVISION_STATUS_WRAPPER_STATUS_DESC
   FACILITY_ID_ASC
   FACILITY_ID_DESC
   ID_ASC
