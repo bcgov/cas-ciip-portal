@@ -1,6 +1,6 @@
 import React from 'react';
 import {Button, ButtonGroup} from 'react-bootstrap';
-import JsonSchemaForm, {IChangeEvent} from 'react-jsonschema-form';
+import JsonSchema, {IChangeEvent} from 'react-jsonschema-form';
 import {JSONSchema6} from 'json-schema';
 import FormFieldTemplate from 'containers/Forms/FormFieldTemplate';
 import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
@@ -56,7 +56,7 @@ const SearchBox: React.FunctionComponent<Props> = ({
 
   return (
     <div className="search-form">
-      <JsonSchemaForm
+      <JsonSchema
         schema={schema}
         uiSchema={uiSchema}
         showErrorList={false}
@@ -74,7 +74,7 @@ const SearchBox: React.FunctionComponent<Props> = ({
             </Button>
           </ButtonGroup>
         </div>
-      </JsonSchemaForm>
+      </JsonSchema>
 
       <style jsx global>{`
         .search-actions {
