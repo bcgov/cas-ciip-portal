@@ -1,4 +1,5 @@
 -- Deploy ggircs-portal:computed_columns/application_facility_name to pg
+<<<<<<< 5e03bffc791d3b8ea6110dd750b51f5d99f86f40
 -- requires: tables/application
 
 begin;
