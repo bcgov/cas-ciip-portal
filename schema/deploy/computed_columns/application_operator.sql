@@ -4,7 +4,7 @@
 begin;
 
 create or replace function ggircs_portal.application_operator(app ggircs_portal.application)
-returns setof ggircs_portal.facility
+returns setof ggircs_portal.organisation
 as $$
   begin
 
