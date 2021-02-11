@@ -1,38 +1,70 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Button, ButtonGroup, Form} from 'react-bootstrap';
 import SearchProps from './Interfaces/SearchProps';
+import {useRouter} from 'next/router';
 
 const SearchTableHeaders: React.FunctionComponent<SearchProps> = (props) => {
-  const clearForm = () => {
-    props.handleEvent('applySearch', undefined, undefined);
-  };
+  const router = useRouter();
+
+  const [searchFilters, setSearchFilters] = useState({});
 
   const handleFilterChange = (value, column) => {
-    props.handleEvent('applySearch', column, value);
+    setSearchFilters({
+      ...searchFilters,
+      [column]: value
+    });
+  };
+
+  const applySearch = (searchData) => {
+    const newQuery = {...router.query};
+    Object.values(props.displayNameToColumnNameMap).forEach((key) => {
+      if (key !== null) {
+        if (
+          searchData[key] !== '' &&
+          searchData[key] !== null &&
+          searchData[key] !== undefined
+        )
+          newQuery[key] = searchData[key];
+        else delete newQuery[key];
+      }
+    });
+
+    const url = {
+      pathname: router.pathname,
+      query: newQuery
+    };
+
+    router.replace(url, url, {shallow: true});
+  };
+
+  const clearForm = () => {
+    setSearchFilters({});
+    applySearch({});
   };
 
   return (
     <tr>
       {Object.keys(props.displayNameToColumnNameMap)
         .filter((x) => x !== '')
-        .map((key) => (
-          <td>
-            <Form.Control
-              key={key}
-              placeholder={props.displayNameToColumnNameMap[key]}
-              name={key}
-              onChange={(evt) =>
-                handleFilterChange(
-                  evt.target.value,
-                  props.displayNameToColumnNameMap[key]
-                )
-              }
-            />
-          </td>
-        ))}
+        .map((key) => {
+          const column = props.displayNameToColumnNameMap[key];
+
+          return (
+            <td key={column}>
+              <Form.Control
+                placeholder={column}
+                name={key}
+                value={searchFilters[column] ?? router.query[column] ?? ''}
+                onChange={(evt) => handleFilterChange(evt.target.value, column)}
+              />
+            </td>
+          );
+        })}
       <td>
         <ButtonGroup>
-          <Button variant="success">Search</Button>
+          <Button variant="success" onClick={() => applySearch(searchFilters)}>
+            Search
+          </Button>
           <Button variant="danger" onClick={clearForm}>
             Reset
           </Button>

@@ -6,12 +6,10 @@ interface Props {
   defaultOrderByDisplay: string;
   children: (props) => JSX.Element;
 }
-class SearchTableComponent extends Component<Props> {
+class SearchTable extends Component<Props> {
   state = {
     orderByField: this.props.defaultOrderByField,
     direction: 'ASC',
-    searchField: null,
-    searchValue: null,
     searchDisplay: 'Search by: ',
     selectedReportingYear: 2019
   };
@@ -27,20 +25,6 @@ class SearchTableComponent extends Component<Props> {
     this.setState({
       orderByField: column
     });
-  };
-
-  applySearch = (column, value) => {
-    if (column)
-      this.setState({
-        searchField: column,
-        searchValue: value
-      });
-    else {
-      this.setState({
-        searchField: undefined,
-        searchValue: undefined
-      });
-    }
   };
 
   selectReportingYear = (year) => {
@@ -61,8 +45,6 @@ class SearchTableComponent extends Component<Props> {
       query,
       orderByField: this.state.orderByField,
       direction: this.state.direction,
-      searchField: this.state.searchField,
-      searchValue: this.state.searchValue,
       searchDisplay: this.state.searchDisplay,
       handleEvent: this.handleEvent,
       selectedReportingYear: this.state.selectedReportingYear
@@ -70,4 +52,4 @@ class SearchTableComponent extends Component<Props> {
   }
 }
 
-export default SearchTableComponent;
+export default SearchTable;
