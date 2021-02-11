@@ -1,6 +1,7 @@
 const {makePluginHook} = require('postgraphile');
 const PgManyToManyPlugin = require('@graphile-contrib/pg-many-to-many');
 const PostgraphileLogConsola = require('postgraphile-log-consola');
+const ConnectionFilterPlugin = require('postgraphile-plugin-connection-filter');
 
 const postgraphileOptions = () => {
   // Use consola for logging instead of default logger
@@ -8,7 +9,7 @@ const postgraphileOptions = () => {
 
   let postgraphileOptions = {
     pluginHook,
-    appendPlugins: [PgManyToManyPlugin],
+    appendPlugins: [PgManyToManyPlugin, ConnectionFilterPlugin],
     classicIds: true,
     enableQueryBatching: true,
     dynamicJson: true

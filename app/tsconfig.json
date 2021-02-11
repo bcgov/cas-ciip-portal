@@ -20,5 +20,5 @@
     "downlevelIteration": true
   },
   "exclude": [".next", "node_modules", "static", "cypress"],
-  "include": ["./**/*", "./.eslintrc.js"]
+  "include": ["./**/*", "./.eslintrc.js", ".postgraphilerc.js"]
 }
