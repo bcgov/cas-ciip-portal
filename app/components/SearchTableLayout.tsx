@@ -1,11 +1,10 @@
 import React from 'react';
-import {Container, Row, Col, Table, Alert} from 'react-bootstrap';
+import {Col, Table, Alert} from 'react-bootstrap';
 import SortableTableHeader from 'components/SortableTableHeader';
-// import SearchBox from 'components/SearchBox';
 import SearchTableHeaders from './SearchTableHeaders';
-import SearchBox from './SearchBox';
+import {SearchProps} from './Interfaces/SearchProps';
 
-interface Props {
+interface Props extends SearchProps {
   handleEvent: (
     action: string,
     value?: string | number,
@@ -13,7 +12,6 @@ interface Props {
   ) => any;
   handleSelectAll?: (...args: any[]) => void;
   allSelected?: boolean;
-  displayNameToColumnNameMap: any;
   body: JSX.Element;
   isLoading?: boolean;
   extraControls?: JSX.Element;
@@ -22,13 +20,11 @@ export const SearchTableLayoutComponent: React.FunctionComponent<Props> = (
   props
 ) => {
   const {
-    handleEvent,
     handleSelectAll,
     allSelected = false,
-    displayNameToColumnNameMap,
+    searchOptions,
     body,
-    isLoading,
-    extraControls
+    isLoading
   } = props;
 
   const noSearchResults =
@@ -41,7 +37,7 @@ export const SearchTableLayoutComponent: React.FunctionComponent<Props> = (
 
   return (
     <>
-      <Container>
+      {/* <Container>
         <Row>
           <Col md={{span: 4}} className="no-pad">
             {extraControls}
@@ -54,7 +50,7 @@ export const SearchTableLayoutComponent: React.FunctionComponent<Props> = (
             />
           </Col>
         </Row>
-      </Container>
+      </Container> */}
 
       <Table
         striped
@@ -76,19 +72,17 @@ export const SearchTableLayoutComponent: React.FunctionComponent<Props> = (
                 </label>
               </th>
             )}
-            {Object.keys(displayNameToColumnNameMap).map((key) => (
+            {searchOptions.map((option) => (
               <SortableTableHeader
-                key={key}
+                key={option.columnName}
                 headerVariables={{
-                  columnName: displayNameToColumnNameMap[key],
-                  displayName: key
+                  columnName: option.columnName,
+                  displayName: option.displayName
                 }}
               />
             ))}
           </tr>
-          <SearchTableHeaders
-            displayNameToColumnNameMap={displayNameToColumnNameMap}
-          />
+          <SearchTableHeaders searchOptions={searchOptions} />
         </thead>
         {body}
       </Table>

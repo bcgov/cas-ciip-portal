@@ -1,7 +1,9 @@
 import React, {useState} from 'react';
 import {Button, ButtonGroup, Form} from 'react-bootstrap';
-import SearchProps from './Interfaces/SearchProps';
+import {SearchProps} from './Interfaces/SearchProps';
 import {useRouter} from 'next/router';
+
+const NONE_VALUES = ['', null, undefined];
 
 const SearchTableHeaders: React.FunctionComponent<SearchProps> = (props) => {
   const router = useRouter();
@@ -17,15 +19,13 @@ const SearchTableHeaders: React.FunctionComponent<SearchProps> = (props) => {
 
   const applySearch = (searchData) => {
     const newQuery = {...router.query};
-    Object.values(props.displayNameToColumnNameMap).forEach((key) => {
-      if (key !== null) {
-        if (
-          searchData[key] !== '' &&
-          searchData[key] !== null &&
-          searchData[key] !== undefined
-        )
-          newQuery[key] = searchData[key];
-        else delete newQuery[key];
+    props.searchOptions.forEach((option) => {
+      const column = option.columnName;
+
+      if (option.isSearchEnabled) {
+        if (!NONE_VALUES.includes(searchData[column]))
+          newQuery[column] = searchData[column];
+        else delete newQuery[column];
       }
     });
 
@@ -44,22 +44,23 @@ const SearchTableHeaders: React.FunctionComponent<SearchProps> = (props) => {
 
   return (
     <tr>
-      {Object.keys(props.displayNameToColumnNameMap)
-        .filter((x) => x !== '')
-        .map((key) => {
-          const column = props.displayNameToColumnNameMap[key];
-
+      {props.searchOptions.map((option) => {
+        if (option.isSearchEnabled) {
+          const column = option.columnName;
           return (
             <td key={column}>
               <Form.Control
-                placeholder={column}
-                name={key}
+                placeholder="Search"
+                name={column}
                 value={searchFilters[column] ?? router.query[column] ?? ''}
                 onChange={(evt) => handleFilterChange(evt.target.value, column)}
               />
             </td>
           );
-        })}
+        }
+        if (option.removeSearchHeader) return;
+        return <td />;
+      })}
       <td>
         <ButtonGroup>
           <Button variant="success" onClick={() => applySearch(searchFilters)}>
