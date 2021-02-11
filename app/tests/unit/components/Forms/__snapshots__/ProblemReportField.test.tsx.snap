@@ -14,7 +14,6 @@ exports[`The ProblemReportField component Should match the snapshot 1`] = `
       active={false}
       disabled={false}
       onClick={[Function]}
-      type="button"
       variant="link"
     >
       <FontAwesomeIcon
@@ -81,7 +80,6 @@ exports[`The ProblemReportField component Should match the snapshot 1`] = `
         active={false}
         disabled={false}
         onClick={[Function]}
-        type="button"
         variant="outline-dark"
       >
         Cancel
@@ -95,7 +93,6 @@ exports[`The ProblemReportField component Should match the snapshot 1`] = `
             "marginLeft": 16,
           }
         }
-        type="button"
         variant="success"
       >
         Save Note

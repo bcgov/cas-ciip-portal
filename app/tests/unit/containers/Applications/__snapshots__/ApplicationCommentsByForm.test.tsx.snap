@@ -34,9 +34,22 @@ exports[`ApplicationCommentsComponent should match the snapshot with the Applica
       </div>
     </td>
   </tr>
-  <Bootstrap(Modal)
+  <Modal
+    animation={true}
+    autoFocus={true}
+    backdrop={true}
     centered={true}
+    dialogAs={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "displayName": "ModalDialog",
+        "render": [Function],
+      }
+    }
+    enforceFocus={true}
+    keyboard={true}
     onHide={[Function]}
+    restoreFocus={true}
     show={false}
   >
     <ModalHeader
@@ -61,7 +74,6 @@ exports[`ApplicationCommentsComponent should match the snapshot with the Applica
         active={false}
         disabled={false}
         onClick={[Function]}
-        type="button"
         variant="secondary"
       >
         No, keep it
@@ -70,13 +82,12 @@ exports[`ApplicationCommentsComponent should match the snapshot with the Applica
         active={false}
         disabled={false}
         onClick={[Function]}
-        type="button"
         variant="danger"
       >
         Yes, delete this comment
       </Button>
     </ModalFooter>
-  </Bootstrap(Modal)>
+  </Modal>
   <JSXStyle
     id="4122187344"
   >

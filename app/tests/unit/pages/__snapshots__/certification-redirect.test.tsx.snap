@@ -61,7 +61,6 @@ exports[`Login redirect page matches the last accepted Snapshot 1`] = `
           active={false}
           disabled={false}
           onClick={[Function]}
-          type="button"
           variant="primary"
         >
           Continue

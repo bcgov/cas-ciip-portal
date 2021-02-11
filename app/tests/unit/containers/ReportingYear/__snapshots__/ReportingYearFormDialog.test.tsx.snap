@@ -2,9 +2,22 @@
 
 exports[`ReportingYearFormDialog Should match last accepted snapshot: no inputs disabled as all dates are in future 1`] = `
 <Fragment>
-  <Bootstrap(Modal)
+  <Modal
+    animation={true}
+    autoFocus={true}
+    backdrop={true}
     centered={true}
+    dialogAs={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "displayName": "ModalDialog",
+        "render": [Function],
+      }
+    }
+    enforceFocus={true}
+    keyboard={true}
     onHide={[MockFunction]}
+    restoreFocus={true}
     show={true}
     size="lg"
   >
@@ -101,7 +114,7 @@ exports[`ReportingYearFormDialog Should match last accepted snapshot: no inputs 
         </Form>
       </Container>
     </ModalBody>
-  </Bootstrap(Modal)>
+  </Modal>
   <JSXStyle
     id="2037158273"
   >
@@ -624,9 +637,22 @@ exports[`ReportingYearFormDialog Should match last accepted snapshot: no inputs 
 
 exports[`ReportingYearFormDialog Should match last accepted snapshot: some past dates are disabled 1`] = `
 <Fragment>
-  <Bootstrap(Modal)
+  <Modal
+    animation={true}
+    autoFocus={true}
+    backdrop={true}
     centered={true}
+    dialogAs={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "displayName": "ModalDialog",
+        "render": [Function],
+      }
+    }
+    enforceFocus={true}
+    keyboard={true}
     onHide={[MockFunction]}
+    restoreFocus={true}
     show={true}
     size="lg"
   >
@@ -723,7 +749,7 @@ exports[`ReportingYearFormDialog Should match last accepted snapshot: some past 
         </Form>
       </Container>
     </ModalBody>
-  </Bootstrap(Modal)>
+  </Modal>
   <JSXStyle
     id="2037158273"
   >

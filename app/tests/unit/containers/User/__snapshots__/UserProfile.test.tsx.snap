@@ -12,7 +12,6 @@ exports[`UserDetail matches snapshot 1`] = `
         "width": "75px",
       }
     }
-    type="button"
     variant="primary"
   >
     Edit

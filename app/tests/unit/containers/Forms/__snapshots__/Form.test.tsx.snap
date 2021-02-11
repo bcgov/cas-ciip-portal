@@ -159,7 +159,6 @@ exports[`The Form Component should match the snapshot 1`] = `
                 "background": "white",
               }
             }
-            type="button"
             variant="outline-secondary"
           >
             Save & Exit
@@ -862,7 +861,6 @@ exports[`The Form Component should not render an alert reminder to check the gui
                 "background": "white",
               }
             }
-            type="button"
             variant="outline-secondary"
           >
             Save & Exit
@@ -1589,7 +1587,6 @@ exports[`The Form Component should render alert reminder to check the guidance i
                 "background": "white",
               }
             }
-            type="button"
             variant="outline-secondary"
           >
             Save & Exit
@@ -2363,7 +2360,6 @@ exports[`The Form Component should render an alert reminder to report any missin
                 "background": "white",
               }
             }
-            type="button"
             variant="outline-secondary"
           >
             Save & Exit

@@ -56,9 +56,8 @@ exports[`ApplicationCommentsComponent should match the snapshot with the Applica
         />
       </i>
     </h3>
-    <Collapse
+    <ForwardRef
       appear={false}
-      dimension="height"
       getDimensionValue={[Function]}
       in={true}
       mountOnEnter={false}
@@ -149,13 +148,12 @@ exports[`ApplicationCommentsComponent should match the snapshot with the Applica
               "textDecoration": "none",
             }
           }
-          type="button"
           variant="link"
         >
           Show Resolved
         </Button>
       </div>
-    </Collapse>
+    </ForwardRef>
   </div>
   <JSXStyle
     id="58188979"

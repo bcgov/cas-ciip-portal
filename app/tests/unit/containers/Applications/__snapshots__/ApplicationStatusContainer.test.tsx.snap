@@ -12,8 +12,21 @@ exports[`ApplicationRevisionStatusItem should render the application status in a
         Application Status*: 
       </h3>
     </Col>
-    <Bootstrap(Modal)
+    <Modal
+      animation={true}
+      autoFocus={true}
+      backdrop={true}
+      dialogAs={
+        Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "displayName": "ModalDialog",
+          "render": [Function],
+        }
+      }
+      enforceFocus={true}
+      keyboard={true}
       onHide={[Function]}
+      restoreFocus={true}
       show={false}
     >
       <ModalHeader
@@ -34,7 +47,6 @@ exports[`ApplicationRevisionStatusItem should render the application status in a
           active={false}
           disabled={false}
           onClick={[Function]}
-          type="button"
           variant="success"
         >
           Confirm
@@ -43,20 +55,18 @@ exports[`ApplicationRevisionStatusItem should render the application status in a
           active={false}
           disabled={false}
           onClick={[Function]}
-          type="button"
           variant="secondary"
         >
           Cancel
         </Button>
       </ModalFooter>
-    </Bootstrap(Modal)>
+    </Modal>
     <Col
       md={2}
     >
       <Button
         active={false}
         disabled={true}
-        type="button"
         variant="info"
       >
         SUBMITTED
@@ -89,8 +99,21 @@ exports[`ApplicationRevisionStatusItem should render the application status in a
         Application Status*: 
       </h3>
     </Col>
-    <Bootstrap(Modal)
+    <Modal
+      animation={true}
+      autoFocus={true}
+      backdrop={true}
+      dialogAs={
+        Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "displayName": "ModalDialog",
+          "render": [Function],
+        }
+      }
+      enforceFocus={true}
+      keyboard={true}
       onHide={[Function]}
+      restoreFocus={true}
       show={false}
     >
       <ModalHeader
@@ -111,7 +134,6 @@ exports[`ApplicationRevisionStatusItem should render the application status in a
           active={false}
           disabled={false}
           onClick={[Function]}
-          type="button"
           variant="success"
         >
           Confirm
@@ -120,13 +142,12 @@ exports[`ApplicationRevisionStatusItem should render the application status in a
           active={false}
           disabled={false}
           onClick={[Function]}
-          type="button"
           variant="secondary"
         >
           Cancel
         </Button>
       </ModalFooter>
-    </Bootstrap(Modal)>
+    </Modal>
     <Col
       md={2}
     >
@@ -162,6 +183,7 @@ exports[`ApplicationRevisionStatusItem should render the application status in a
           SUBMITTED
         </DropdownToggle>
         <DropdownMenu
+          align="left"
           alignRight={false}
           flip={true}
           style={
