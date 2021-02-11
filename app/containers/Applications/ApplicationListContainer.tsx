@@ -2,20 +2,56 @@ import React from 'react';
 import {graphql, createFragmentContainer} from 'react-relay';
 import SearchTableLayout from 'components/SearchTableLayout';
 import ApplicationRowItemContainer from './ApplicationRowItemContainer';
+import {
+  SearchOption,
+  SearchOptionType,
+  NoHeaderSearchOption
+} from 'components/Interfaces/SearchProps';
 
 export const ApplicationList = (props) => {
   const {handleEvent} = props;
   const {edges} = props.query.allApplications;
 
-  const displayNameToColumnNameMap = {
-    'Application Id': 'id',
-    'Operator Name': 'operator_name',
-    'Facility Name': 'facility_name',
-    'Reporting Year': 'reporting_year',
-    'Submission Date': 'submission_date',
-    Status: 'status',
-    '': null
-  };
+  const searchOptions: SearchOption[] = [
+    {
+      displayName: 'Application Id',
+      columnName: 'id',
+      isSearchEnabled: false,
+      searchOptionType: SearchOptionType.Freeform
+    },
+    {
+      displayName: 'Operator Name',
+      columnName: 'operator_name',
+      isSearchEnabled: true,
+      searchOptionType: SearchOptionType.Freeform
+    },
+    {
+      displayName: 'Facility Name',
+      columnName: 'facility_name',
+      isSearchEnabled: true,
+      searchOptionType: SearchOptionType.Freeform
+    },
+    {
+      displayName: 'Reporting Year',
+      columnName: 'reporting_year',
+      isSearchEnabled: true,
+      searchOptionType: SearchOptionType.Freeform
+    },
+    {
+      displayName: 'Submission Date',
+      columnName: 'submission_date',
+      isSearchEnabled: true,
+      searchOptionType: SearchOptionType.Freeform
+    },
+    {
+      displayName: 'Status',
+      columnName: 'status',
+      isSearchEnabled: true,
+      searchOptionType: SearchOptionType.Freeform
+    },
+    NoHeaderSearchOption
+  ];
+
   const body = (
     <tbody>
       {edges.map((edge) => (
@@ -30,7 +66,7 @@ export const ApplicationList = (props) => {
   return (
     <SearchTableLayout
       body={body}
-      displayNameToColumnNameMap={displayNameToColumnNameMap}
+      searchOptions={searchOptions}
       handleEvent={handleEvent}
     />
   );
@@ -44,7 +80,7 @@ export default createFragmentContainer(ApplicationList, {
   query: graphql`
     fragment ApplicationListContainer_query on Query
     @argumentDefinitions(
-      row_id: {type: "Int"}
+      id: {type: "Int"}
       operator_name: {type: "String"}
       facility_name: {type: "String"}
       reporting_year: {type: "Int"}
@@ -54,7 +90,7 @@ export default createFragmentContainer(ApplicationList, {
     ) {
       allApplications(
         filter: {
-          rowId: {equalTo: $row_id}
+          rowId: {equalTo: $id}
           operatorName: {includesInsensitive: $operator_name}
           facilityName: {includesInsensitive: $facility_name}
           reportingYear: {equalTo: $reporting_year}
