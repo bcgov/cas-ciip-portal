@@ -6,14 +6,26 @@ exports[`ApplicationReview should match the snapshot with the ApplicationReview 
     active={false}
     disabled={false}
     onClick={[Function]}
-    type="button"
     variant="outline-primary"
   >
     IN REVIEW
   </Button>
-  <Bootstrap(Modal)
+  <Modal
+    animation={true}
+    autoFocus={true}
+    backdrop={true}
     className="review-modal"
+    dialogAs={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "displayName": "ModalDialog",
+        "render": [Function],
+      }
+    }
+    enforceFocus={true}
+    keyboard={true}
     onHide={[Function]}
+    restoreFocus={true}
     show={false}
     size="lg"
   >
@@ -203,6 +215,7 @@ exports[`ApplicationReview should match the snapshot with the ApplicationReview 
               IN_REVIEW
             </DropdownToggle>
             <DropdownMenu
+              align="left"
               alignRight={false}
               flip={true}
               style={
@@ -245,13 +258,12 @@ exports[`ApplicationReview should match the snapshot with the ApplicationReview 
         active={false}
         disabled={false}
         onClick={[Function]}
-        type="button"
         variant="secondary"
       >
         Close
       </Button>
     </ModalFooter>
-  </Bootstrap(Modal)>
+  </Modal>
   <JSXStyle
     id="1106837452"
   >

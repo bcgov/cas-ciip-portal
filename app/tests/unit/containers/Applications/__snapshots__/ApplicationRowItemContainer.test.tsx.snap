@@ -46,7 +46,6 @@ exports[`ApplicationRowItem should render the application 1`] = `
       <Button
         active={false}
         disabled={false}
-        type="button"
         variant="primary"
       >
         View Application

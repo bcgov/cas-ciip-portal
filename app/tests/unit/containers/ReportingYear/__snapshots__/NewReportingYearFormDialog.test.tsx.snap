@@ -2,9 +2,22 @@
 
 exports[`NewReportingYearFormDialog Should match last accepted snapshot 1`] = `
 <Fragment>
-  <Bootstrap(Modal)
+  <Modal
+    animation={true}
+    autoFocus={true}
+    backdrop={true}
     centered={true}
+    dialogAs={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "displayName": "ModalDialog",
+        "render": [Function],
+      }
+    }
+    enforceFocus={true}
+    keyboard={true}
     onHide={[MockFunction]}
+    restoreFocus={true}
     show={true}
     size="lg"
   >
@@ -110,7 +123,7 @@ exports[`NewReportingYearFormDialog Should match last accepted snapshot 1`] = `
         </Form>
       </Container>
     </ModalBody>
-  </Bootstrap(Modal)>
+  </Modal>
   <JSXStyle
     dynamic={
       Array [

@@ -15,7 +15,6 @@ Array [
     active={false}
     disabled={false}
     onClick={[Function]}
-    type="button"
     variant="outline-primary"
   >
     <button
@@ -27,9 +26,22 @@ Array [
       Add Operator +
     </button>
   </Button>,
-  <Bootstrap(Modal)
+  <Modal
+    animation={true}
+    autoFocus={true}
+    backdrop={true}
     centered={true}
+    dialogAs={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "displayName": "ModalDialog",
+        "render": [Function],
+      }
+    }
+    enforceFocus={true}
+    keyboard={true}
     onHide={[Function]}
+    restoreFocus={true}
     show={false}
     size="lg"
   >
@@ -37,34 +49,31 @@ Array [
       autoFocus={true}
       backdrop={true}
       backdropTransition={[Function]}
-      className="modal"
       containerClassName="modal-open"
       enforceFocus={true}
       keyboard={true}
       manager={
         BootstrapModalManager {
-          "adjustAndStore": [Function],
           "containers": Array [],
           "data": Array [],
           "handleContainerOverflow": true,
           "hideSiblingNodes": true,
           "modals": Array [],
-          "restore": [Function],
           "scrollbarSize": 0,
         }
       }
-      onClick={[Function]}
       onEnter={[Function]}
       onEntering={[Function]}
+      onEscapeKeyDown={[Function]}
+      onExit={[Function]}
       onExited={[Function]}
       onHide={[Function]}
-      onMouseUp={[Function]}
       renderBackdrop={[Function]}
+      renderDialog={[Function]}
       restoreFocus={true}
       show={false}
-      style={Object {}}
       transition={[Function]}
     />
-  </Bootstrap(Modal)>,
+  </Modal>,
 ]
 `;

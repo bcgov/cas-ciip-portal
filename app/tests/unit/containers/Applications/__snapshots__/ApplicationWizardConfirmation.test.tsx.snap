@@ -137,13 +137,8 @@ exports[`The Confirmation Component match the snapshot 1`] = `
             <FormCheck
               checked={true}
               className="text-muted"
-              disabled={false}
-              inline={false}
-              isInvalid={false}
-              isValid={false}
               name="sendEmailChecked"
               onChange={[Function]}
-              title=""
               type="checkbox"
             />
             Notify certifier via email that this application is ready for certification
@@ -306,13 +301,8 @@ exports[`The Confirmation Component should render the override justification com
             <FormCheck
               checked={true}
               className="text-muted"
-              disabled={false}
-              inline={false}
-              isInvalid={false}
-              isValid={false}
               name="sendEmailChecked"
               onChange={[Function]}
-              title=""
               type="checkbox"
             />
             Notify certifier via email that this application is ready for certification
@@ -475,13 +465,8 @@ exports[`The Confirmation Component should render the override justification com
             <FormCheck
               checked={true}
               className="text-muted"
-              disabled={false}
-              inline={false}
-              isInvalid={false}
-              isValid={false}
               name="sendEmailChecked"
               onChange={[Function]}
-              title=""
               type="checkbox"
             />
             Notify certifier via email that this application is ready for certification
@@ -670,13 +655,8 @@ exports[`The Confirmation Component should show a "data has changed" dialogue wh
             <FormCheck
               checked={true}
               className="text-muted"
-              disabled={false}
-              inline={false}
-              isInvalid={false}
-              isValid={false}
               name="sendEmailChecked"
               onChange={[Function]}
-              title=""
               type="checkbox"
             />
             Notify certifier via email that this application is ready for certification
@@ -822,7 +802,6 @@ exports[`The Confirmation Component should show a certifier has not yet signed m
             active={false}
             disabled={false}
             onClick={[Function]}
-            type="button"
             variant="primary"
           >
             Copy Link

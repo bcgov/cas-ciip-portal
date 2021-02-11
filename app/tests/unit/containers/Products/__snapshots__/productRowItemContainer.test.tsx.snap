@@ -24,7 +24,6 @@ exports[`ProductList should match the previous snapshot 1`] = `
               "defaultProps": Object {
                 "active": false,
                 "disabled": false,
-                "type": "button",
                 "variant": "primary",
               },
               "displayName": "Button",
@@ -74,6 +73,7 @@ exports[`ProductList should match the previous snapshot 1`] = `
           />
         </DropdownToggle>
         <DropdownMenu
+          align="left"
           alignRight={false}
           flip={true}
         >
@@ -155,9 +155,22 @@ exports[`ProductList should match the previous snapshot 1`] = `
       </Badge>
     </td>
   </tr>
-  <Bootstrap(Modal)
+  <Modal
+    animation={true}
+    autoFocus={true}
+    backdrop={true}
     centered={true}
+    dialogAs={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "displayName": "ModalDialog",
+        "render": [Function],
+      }
+    }
+    enforceFocus={true}
+    keyboard={true}
     onHide={[Function]}
+    restoreFocus={true}
     show={false}
     size="xl"
   >
@@ -318,10 +331,23 @@ exports[`ProductList should match the previous snapshot 1`] = `
       }
       updateStatus={[Function]}
     />
-  </Bootstrap(Modal)>
-  <Bootstrap(Modal)
+  </Modal>
+  <Modal
+    animation={true}
+    autoFocus={true}
+    backdrop={true}
     centered={true}
+    dialogAs={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "displayName": "ModalDialog",
+        "render": [Function],
+      }
+    }
+    enforceFocus={true}
+    keyboard={true}
     onHide={[Function]}
+    restoreFocus={true}
     show={false}
     size="xl"
   >
@@ -482,7 +508,7 @@ exports[`ProductList should match the previous snapshot 1`] = `
       }
       updateStatus={[Function]}
     />
-  </Bootstrap(Modal)>
+  </Modal>
   <LinkedProductModalComponent
     linkData={Array []}
     linkProductModalShow={false}

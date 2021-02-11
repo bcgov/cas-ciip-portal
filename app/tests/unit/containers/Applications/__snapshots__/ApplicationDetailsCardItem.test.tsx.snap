@@ -40,7 +40,6 @@ exports[`ApplicationDetailsCardItemComponent should render the individual summar
           disabled={false}
           onClick={[Function]}
           title="expand or collapse the card"
-          type="button"
           variant="outline-dark"
         >
           -
@@ -48,9 +47,8 @@ exports[`ApplicationDetailsCardItemComponent should render the individual summar
       </Col>
     </Row>
   </CardHeader>
-  <Collapse
+  <ForwardRef
     appear={false}
-    dimension="height"
     getDimensionValue={[Function]}
     in={true}
     mountOnEnter={false}
@@ -111,7 +109,7 @@ exports[`ApplicationDetailsCardItemComponent should render the individual summar
         uiSchema={Object {}}
       />
     </CardBody>
-  </Collapse>
+  </ForwardRef>
   <JSXStyle
     id="2766932351"
   >
