@@ -4,9 +4,13 @@ begin;
 
 do $$
   begin
-    assert (
-      select true from pg_catalog.pg_type where typname = 'application_search_result'
-    ), 'type "application_search_result" is not defined';
+
+    if (select exists (select * from pg_catalog.pg_type where typname = 'application_search_result')) then
+      raise exception 'Type: application_search_result" exists when it should not';
+    else
+      perform true;
+    end if;
+
   end;
 $$;
 
