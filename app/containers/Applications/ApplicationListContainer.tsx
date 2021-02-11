@@ -1,27 +1,11 @@
-import React, {useEffect} from 'react';
-import {graphql, createRefetchContainer} from 'react-relay';
+import React from 'react';
+import {graphql, createFragmentContainer} from 'react-relay';
 import SearchTableLayout from 'components/SearchTableLayout';
 import ApplicationRowItemContainer from './ApplicationRowItemContainer';
 
 export const ApplicationList = (props) => {
-  const {
-    direction,
-    orderByField,
-    searchField,
-    searchValue,
-    handleEvent
-  } = props;
+  const {handleEvent} = props;
   const {edges} = props.query.searchApplicationList;
-
-  useEffect(() => {
-    const refetchVariables = {
-      searchField,
-      searchValue,
-      orderByField,
-      direction
-    };
-    props.relay.refetch(refetchVariables);
-  });
 
   const displayNameToColumnNameMap = {
     'Application Id': 'application_id',
@@ -56,49 +40,28 @@ export const ApplicationList = (props) => {
 // and also for relay to refetch
 // @see https://facebook.github.io/relay/graphql/objectidentification.htm#sec-Node-Interface
 // TODO: Several entitites do not have graphql ID's because they are views
-export default createRefetchContainer(
-  ApplicationList,
-  {
-    query: graphql`
-      fragment ApplicationListContainer_query on Query
-      @argumentDefinitions(
-        searchField: {type: "String"}
-        searchValue: {type: "String"}
-        orderByField: {type: "String"}
-        direction: {type: "String"}
+export default createFragmentContainer(ApplicationList, {
+  query: graphql`
+    fragment ApplicationListContainer_query on Query
+    @argumentDefinitions(
+      searchField: {type: "String"}
+      searchValue: {type: "String"}
+      orderByField: {type: "String"}
+      direction: {type: "String"}
+    ) {
+      searchApplicationList(
+        searchField: $searchField
+        searchValue: $searchValue
+        orderByField: $orderByField
+        direction: $direction
       ) {
-        searchApplicationList(
-          searchField: $searchField
-          searchValue: $searchValue
-          orderByField: $orderByField
-          direction: $direction
-        ) {
-          edges {
-            node {
-              rowId
-              ...ApplicationRowItemContainer_applicationSearchResult
-            }
+        edges {
+          node {
+            rowId
+            ...ApplicationRowItemContainer_applicationSearchResult
           }
         }
       }
-    `
-  },
-  graphql`
-    query ApplicationListContainerRefetchQuery(
-      $searchField: String
-      $searchValue: String
-      $orderByField: String
-      $direction: String
-    ) {
-      query {
-        ...ApplicationListContainer_query
-          @arguments(
-            searchField: $searchField
-            searchValue: $searchValue
-            orderByField: $orderByField
-            direction: $direction
-          )
-      }
     }
   `
-);
+});
