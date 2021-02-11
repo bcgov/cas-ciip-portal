@@ -2125,14 +2125,6 @@ input ApplicationFilter {
   """Some related `applicationRevisionsByApplicationId` exist."""
   applicationRevisionsByApplicationIdExist: Boolean
 
-  """
-  Filter by the object’s `applicationSearchResultsByApplicationId` relation.
-  """
-  applicationSearchResultsByApplicationId: ApplicationToManyApplicationSearchResultFilter
-
-  """Some related `applicationSearchResultsByApplicationId` exist."""
-  applicationSearchResultsByApplicationIdExist: Boolean
-
   """Filter by the object’s `bcghgid` field."""
   bcghgid: StringFilter
 
@@ -3222,93 +3214,6 @@ type ApplicationsConnection {
   totalCount: Int!
 }
 
-type ApplicationSearchResult {
-  """
-  Reads a single `Application` that is related to this `ApplicationSearchResult`.
-  """
-  applicationByApplicationId: Application
-  applicationId: Int
-  applicationRevisionStatus: CiipApplicationRevisionStatus
-  bcghgid: String
-  facilityName: String
-  operatorName: String
-  reportingYear: Int
-  rowId: BigInt
-  submissionDate: Datetime
-}
-
-"""
-A filter to be used against `ApplicationSearchResult` object types. All fields are combined with a logical ‘and.’
-"""
-input ApplicationSearchResultFilter {
-  """Checks for all expressions in this list."""
-  and: [ApplicationSearchResultFilter!]
-
-  """Filter by the object’s `applicationByApplicationId` relation."""
-  applicationByApplicationId: ApplicationFilter
-
-  """A related `applicationByApplicationId` exists."""
-  applicationByApplicationIdExists: Boolean
-
-  """Filter by the object’s `applicationId` field."""
-  applicationId: IntFilter
-
-  """Filter by the object’s `applicationRevisionStatus` field."""
-  applicationRevisionStatus: CiipApplicationRevisionStatusFilter
-
-  """Filter by the object’s `bcghgid` field."""
-  bcghgid: StringFilter
-
-  """Filter by the object’s `facilityName` field."""
-  facilityName: StringFilter
-
-  """Negates the expression."""
-  not: ApplicationSearchResultFilter
-
-  """Filter by the object’s `operatorName` field."""
-  operatorName: StringFilter
-
-  """Checks for any expressions in this list."""
-  or: [ApplicationSearchResultFilter!]
-
-  """Filter by the object’s `reportingYear` field."""
-  reportingYear: IntFilter
-
-  """Filter by the object’s `rowId` field."""
-  rowId: BigIntFilter
-
-  """Filter by the object’s `submissionDate` field."""
-  submissionDate: DatetimeFilter
-}
-
-"""A connection to a list of `ApplicationSearchResult` values."""
-type ApplicationSearchResultsConnection {
-  """
-  A list of edges which contains the `ApplicationSearchResult` and cursor to aid in pagination.
-  """
-  edges: [ApplicationSearchResultsEdge!]!
-
-  """A list of `ApplicationSearchResult` objects."""
-  nodes: [ApplicationSearchResult]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """
-  The count of *all* `ApplicationSearchResult` you could get from the connection.
-  """
-  totalCount: Int!
-}
-
-"""A `ApplicationSearchResult` edge in the connection."""
-type ApplicationSearchResultsEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `ApplicationSearchResult` at the end of the edge."""
-  node: ApplicationSearchResult
-}
-
 """A `Application` edge in the connection."""
 type ApplicationsEdge {
   """A cursor for use in pagination."""
@@ -3361,26 +3266,6 @@ input ApplicationToManyApplicationRevisionFilter {
   Some related `ApplicationRevision` matches the filter criteria. All fields are combined with a logical ‘and.’
   """
   some: ApplicationRevisionFilter
-}
-
-"""
-A filter to be used against many `ApplicationSearchResult` object types. All fields are combined with a logical ‘and.’
-"""
-input ApplicationToManyApplicationSearchResultFilter {
-  """
-  Every related `ApplicationSearchResult` matches the filter criteria. All fields are combined with a logical ‘and.’
-  """
-  every: ApplicationSearchResultFilter
-
-  """
-  No related `ApplicationSearchResult` matches the filter criteria. All fields are combined with a logical ‘and.’
-  """
-  none: ApplicationSearchResultFilter
-
-  """
-  Some related `ApplicationSearchResult` matches the filter criteria. All fields are combined with a logical ‘and.’
-  """
-  some: ApplicationSearchResultFilter
 }
 
 """
@@ -34193,38 +34078,6 @@ type Query implements Node {
     searchField: String
     searchValue: String
   ): FacilitySearchResultsConnection!
-
-  """
-  Reads and enables pagination through a set of `ApplicationSearchResult`.
-  """
-  searchApplicationList(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-    direction: String
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: ApplicationSearchResultFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-    orderByField: String
-    searchField: String
-    searchValue: String
-  ): ApplicationSearchResultsConnection!
 
   """
   Search function returns data related to certification requests associated with the current user
