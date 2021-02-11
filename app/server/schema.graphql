@@ -731,32 +731,6 @@ type Application implements Node {
     orderBy: [FacilitiesOrderBy!] = [PRIMARY_KEY_ASC]
   ): ApplicationFacilitiesByFacilitySearchResultApplicationIdAndFacilityIdManyToManyConnection!
 
-  """Reads and enables pagination through a set of `Facility`."""
-  facility(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: FacilityFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-  ): FacilitiesConnection!
-
   """Reads a single `Facility` that is related to this `Application`."""
   facilityByFacilityId: Facility
 
@@ -1103,6 +1077,7 @@ type Application implements Node {
 
   """
   This function is a wrapper to return operator_name from the organisation object
+<<<<<<< 55a2b1c4ea607350098522183b711139b5c060ec
   """
   operatorName: String
 =======
@@ -1144,6 +1119,8 @@ type Application implements Node {
 
   """
   Computed column for graphql to traverse to the previous application_revision with status "submitted" from application
+=======
+>>>>>>> refactor: remove unnecessary computed columns
   """
   previousSubmittedRevision: ApplicationRevision
 <<<<<<< 36e37673c5b0b3342da0a78cf3d53e5666fe5994
