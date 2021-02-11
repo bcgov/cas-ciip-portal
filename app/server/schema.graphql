@@ -42,9 +42,10 @@ type Application implements Node {
   applicationRevisionStatus(versionNumberInput: String): ApplicationRevisionStatus
 
   """
-  This function is a wrapper to return application_revision_status as a scalar
+  This function is a wrapper to return bcghgid as a scalar from the composite
+  return of the application_facility computed column
   """
-  applicationRevisionStatusWrapperStatus: String
+  bcghgid: String
 
   """Reads and enables pagination through a set of `CertificationUrl`."""
   certificationUrlsByApplicationId(
@@ -729,8 +730,11 @@ type Application implements Node {
   """The foreign key to ggircs_portal.facility, references id"""
   facilityId: Int!
 
-  """This function is a wrapper to return facility_name as a scalar"""
-  facilityWrapperFacilityName: String
+  """
+  This function is a wrapper to return facility_name as a scalar from the
+  composite return of the application_facility computed column
+  """
+  facilityName: String
 
   """Reads and enables pagination through a set of `FormJson`."""
   formJsonsByFormResultApplicationIdAndFormId(
@@ -885,6 +889,40 @@ type Application implements Node {
   latestSubmittedRevision: ApplicationRevision
 
   """
+  Computed column returns an operator object that is the parent of the application passed in via parameter
+  """
+  operator(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: OrganisationFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+  ): OrganisationsConnection!
+
+  """
+  This function is a wrapper to return operator_name as a scalar from the
+  composite return of the application_operator computed column
+  """
+  operatorName: String
+
+  """
   Computed column for graphql to traverse to a set of form results ordered by the application wizard from application
   """
   orderedFormResults(
@@ -967,6 +1005,20 @@ type Application implements Node {
 
   """The application id used for reference and join"""
   rowId: Int!
+
+  """
+  This function is a wrapper to return application_revision_status as a scalar
+  from the composite return of the application_application_revision_status
+  computed column
+  """
+  status: String
+
+  """
+  This function is a wrapper to return created_at (as submission_date) as a
+  scalar from the composite return of the
+  application_application_revision_status computed column
+  """
+  submissionDate: Datetime
 }
 
 """
@@ -2129,9 +2181,6 @@ input ApplicationFilter {
   """Some related `applicationRevisionsByApplicationId` exist."""
   applicationRevisionsByApplicationIdExist: Boolean
 
-  """Filter by the object’s `applicationRevisionStatusWrapperStatus` field."""
-  applicationRevisionStatusWrapperStatus: StringFilter
-
   """
   Filter by the object’s `applicationSearchResultsByApplicationId` relation.
   """
@@ -2139,6 +2188,9 @@ input ApplicationFilter {
 
   """Some related `applicationSearchResultsByApplicationId` exist."""
   applicationSearchResultsByApplicationIdExist: Boolean
+
+  """Filter by the object’s `bcghgid` field."""
+  bcghgid: StringFilter
 
   """Filter by the object’s `certificationUrlsByApplicationId` relation."""
   certificationUrlsByApplicationId: ApplicationToManyCertificationUrlFilter
@@ -2155,6 +2207,9 @@ input ApplicationFilter {
   """Filter by the object’s `facilityId` field."""
   facilityId: IntFilter
 
+  """Filter by the object’s `facilityName` field."""
+  facilityName: StringFilter
+
   """
   Filter by the object’s `facilitySearchResultsByApplicationId` relation.
   """
@@ -2162,9 +2217,6 @@ input ApplicationFilter {
 
   """Some related `facilitySearchResultsByApplicationId` exist."""
   facilitySearchResultsByApplicationIdExist: Boolean
-
-  """Filter by the object’s `facilityWrapperFacilityName` field."""
-  facilityWrapperFacilityName: StringFilter
 
   """Filter by the object’s `formResultsByApplicationId` relation."""
   formResultsByApplicationId: ApplicationToManyFormResultFilter
@@ -2180,6 +2232,9 @@ input ApplicationFilter {
 
   """Negates the expression."""
   not: ApplicationFilter
+
+  """Filter by the object’s `operatorName` field."""
+  operatorName: StringFilter
 
   """Checks for any expressions in this list."""
   or: [ApplicationFilter!]
@@ -2212,6 +2267,12 @@ input ApplicationFilter {
 
   """Some related `searchCertificationUrlResultsByApplicationId` exist."""
   searchCertificationUrlResultsByApplicationIdExist: Boolean
+
+  """Filter by the object’s `status` field."""
+  status: StringFilter
+
+  """Filter by the object’s `submissionDate` field."""
+  submissionDate: DatetimeFilter
 }
 
 """
@@ -3315,21 +3376,27 @@ type ApplicationsEdge {
 
 """Methods to use when ordering `Application`."""
 enum ApplicationsOrderBy {
-  APPLICATION_REVISION_STATUS_WRAPPER_STATUS_ASC
-  APPLICATION_REVISION_STATUS_WRAPPER_STATUS_DESC
+  BCGHGID_ASC
+  BCGHGID_DESC
   FACILITY_ID_ASC
   FACILITY_ID_DESC
-  FACILITY_WRAPPER_FACILITY_NAME_ASC
-  FACILITY_WRAPPER_FACILITY_NAME_DESC
+  FACILITY_NAME_ASC
+  FACILITY_NAME_DESC
   ID_ASC
   ID_DESC
   NATURAL
+  OPERATOR_NAME_ASC
+  OPERATOR_NAME_DESC
   PRIMARY_KEY_ASC
   PRIMARY_KEY_DESC
   REPORT_ID_ASC
   REPORT_ID_DESC
   REPORTING_YEAR_ASC
   REPORTING_YEAR_DESC
+  STATUS_ASC
+  STATUS_DESC
+  SUBMISSION_DATE_ASC
+  SUBMISSION_DATE_DESC
 }
 
 """

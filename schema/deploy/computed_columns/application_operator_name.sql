@@ -1,6 +1,8 @@
 -- Deploy ggircs-portal:computed_columns/application_operator_name to pg
 -- requires: computed_columns/application_operator
 
+begin;
+
 create or replace function ggircs_portal.application_operator_name(app ggircs_portal.application)
   returns varchar
   as $$
