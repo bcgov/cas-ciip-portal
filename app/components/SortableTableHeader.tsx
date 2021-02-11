@@ -22,13 +22,17 @@ const SortableTableHeader: React.FunctionComponent<Props> = ({
 }) => {
   const router = useRouter();
   const sortDirectionIndex = SORT_DIRECTION.indexOf(
-    router.query.direction.toString()
+    router.query.direction?.toString()
   );
   const [currentSortDirection, setCurrentSortDirection] = useState(
     Math.max(sortDirectionIndex, 0)
   );
 
-  const triggerSort = (columName) => {
+  const getOrderbyString = (columnName, sortDirection) => {
+    return columnName.toUpperCase() + '_' + SORT_DIRECTION[sortDirection];
+  };
+
+  const triggerSort = (columnName) => {
     //Cycle
     const sortDirection = (currentSortDirection + 1) % 2;
     setCurrentSortDirection(sortDirection);
@@ -37,8 +41,7 @@ const SortableTableHeader: React.FunctionComponent<Props> = ({
       pathname: router.pathname,
       query: {
         ...router.query,
-        orderByField: columName,
-        direction: SORT_DIRECTION[sortDirection]
+        order_by: getOrderbyString(columnName, sortDirection)
       }
     };
 
@@ -54,7 +57,8 @@ const SortableTableHeader: React.FunctionComponent<Props> = ({
           <FontAwesomeIcon
             color="white"
             icon={
-              router.query.orderByField === columnName && router.query.direction
+              router.query.order_by ===
+              getOrderbyString(columnName, currentSortDirection)
                 ? SORT_ICONS[currentSortDirection]
                 : faSort
             }
