@@ -20,7 +20,7 @@ class Applications extends Component<Props> {
   // I didn't fully understand how to make this work, so I moved on with the way I did.
   static query = graphql`
     query applicationsQuery(
-      $row_id: Int
+      $id: Int
       $operator_name: String
       $facility_name: String
       $reporting_year: Int
@@ -34,7 +34,7 @@ class Applications extends Component<Props> {
         }
         ...ApplicationListContainer_query
           @arguments(
-            row_id: $row_id
+            id: $id
             operator_name: $operator_name
             facility_name: $facility_name
             reporting_year: $reporting_year
