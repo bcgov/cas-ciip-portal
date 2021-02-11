@@ -79,7 +79,6 @@ export const SearchTableLayoutComponent: React.FunctionComponent<Props> = (
             {Object.keys(displayNameToColumnNameMap).map((key) => (
               <SortableTableHeader
                 key={key}
-                sort={handleEvent}
                 headerVariables={{
                   columnName: displayNameToColumnNameMap[key],
                   displayName: key
@@ -88,7 +87,6 @@ export const SearchTableLayoutComponent: React.FunctionComponent<Props> = (
             ))}
           </tr>
           <SearchTableHeaders
-            handleEvent={handleEvent}
             displayNameToColumnNameMap={displayNameToColumnNameMap}
           />
         </thead>
