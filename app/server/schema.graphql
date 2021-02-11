@@ -698,32 +698,6 @@ type Application implements Node {
     orderBy: [FacilitiesOrderBy!] = [PRIMARY_KEY_ASC]
   ): ApplicationFacilitiesByFacilitySearchResultApplicationIdAndFacilityIdManyToManyConnection!
 
-  """Reads and enables pagination through a set of `Facility`."""
-  facility(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: FacilityFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-  ): FacilitiesConnection!
-
   """Reads a single `Facility` that is related to this `Application`."""
   facilityByFacilityId: Facility
 
@@ -731,8 +705,7 @@ type Application implements Node {
   facilityId: Int!
 
   """
-  This function is a wrapper to return facility_name as a scalar from the
-  composite return of the application_facility computed column
+  This function is a wrapper to return facility_name from the facility object
   """
   facilityName: String
 
@@ -889,36 +862,7 @@ type Application implements Node {
   latestSubmittedRevision: ApplicationRevision
 
   """
-  Computed column returns an operator object that is the parent of the application passed in via parameter
-  """
-  operator(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: OrganisationFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-  ): OrganisationsConnection!
-
-  """
-  This function is a wrapper to return operator_name as a scalar from the
-  composite return of the application_operator computed column
+  This function is a wrapper to return operator_name from the organisation object
   """
   operatorName: String
 
