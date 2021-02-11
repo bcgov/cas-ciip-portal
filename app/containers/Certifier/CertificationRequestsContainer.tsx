@@ -1,8 +1,8 @@
-import React, {useEffect, useState, useRef} from 'react';
+import React, {useState, useRef} from 'react';
 import {Button} from 'react-bootstrap';
 import {dateTimeFormat} from 'functions/formatDates';
 import Link from 'next/link';
-import {graphql, createRefetchContainer, RelayRefetchProp} from 'react-relay';
+import {graphql, createFragmentContainer} from 'react-relay';
 import SearchTableLayout from 'components/SearchTableLayout';
 import PaginationBar from 'components/PaginationBar';
 import {CertificationRequestsContainer_query} from '__generated__/CertificationRequestsContainer_query.graphql';
@@ -31,65 +31,20 @@ interface Props {
   selections: string[];
   handleEvent: (...args: any[]) => void;
   notifySelections: (selectedIds: string[]) => void;
-  relay: RelayRefetchProp;
   query: CertificationRequestsContainer_query;
 }
 
 export const CertificationRequestsComponent: React.FunctionComponent<Props> = ({
-  direction,
-  orderByField,
-  searchField,
-  searchValue,
   selections,
-  forceRefetch = 0,
   handleEvent,
   notifySelections,
-  relay,
   query
 }) => {
   const certifiableRequestIds = useRef(getCertifiableRequestIds(query));
-  const refetchQueryInitialized = useRef(false);
 
   const [offsetValue, setOffset] = useState(0);
   const [activePage, setActivePage] = useState(1);
-  const [isLoading, setIsLoading] = useState(false);
   const maxResultsPerPage = 20;
-
-  useEffect(() => {
-    const refetchVariables = {
-      searchField,
-      searchValue,
-      orderByField,
-      direction,
-      offsetValue,
-      maxResultsPerPage,
-      forceRefetch
-    };
-    setIsLoading(true);
-    relay.refetch(refetchVariables, undefined, (error) => {
-      if (error) return;
-      setIsLoading(false);
-      certifiableRequestIds.current = getCertifiableRequestIds(query);
-
-      if (refetchQueryInitialized.current) {
-        const resolvedSelections = selections.filter((id) =>
-          certifiableRequestIds.current.includes(id)
-        );
-        notifySelections(resolvedSelections);
-      }
-
-      refetchQueryInitialized.current = true;
-    });
-  }, [
-    searchField,
-    searchValue,
-    orderByField,
-    direction,
-    offsetValue,
-    maxResultsPerPage,
-    forceRefetch,
-    query
-  ]);
 
   const displayNameToColumnNameMap = {
     Facility: 'facility_name',
@@ -195,7 +150,6 @@ export const CertificationRequestsComponent: React.FunctionComponent<Props> = ({
         displayNameToColumnNameMap={displayNameToColumnNameMap}
         handleEvent={handleEvent}
         handleSelectAll={(selectAll) => onSelectAll(selectAll)}
-        isLoading={isLoading}
       />
       <PaginationBar
         setOffset={setOffset}
@@ -209,77 +163,50 @@ export const CertificationRequestsComponent: React.FunctionComponent<Props> = ({
   );
 };
 
-export default createRefetchContainer(
-  CertificationRequestsComponent,
-  {
-    query: graphql`
-      fragment CertificationRequestsContainer_query on Query
-      @argumentDefinitions(
-        searchField: {type: "[String]"}
-        searchValue: {type: "[String]"}
-        orderByField: {type: "String"}
-        direction: {type: "String"}
-        offsetValue: {type: "Int"}
-        forceRefetch: {type: "Int"}
-        maxResultsPerPage: {type: "Int"}
+export default createFragmentContainer(CertificationRequestsComponent, {
+  query: graphql`
+    fragment CertificationRequestsContainer_query on Query
+    @argumentDefinitions(
+      searchField: {type: "[String]"}
+      searchValue: {type: "[String]"}
+      orderByField: {type: "String"}
+      direction: {type: "String"}
+      offsetValue: {type: "Int"}
+      forceRefetch: {type: "Int"}
+      maxResultsPerPage: {type: "Int"}
+    ) {
+      searchCertificationRequests(
+        searchField: $searchField
+        searchValue: $searchValue
+        orderByField: $orderByField
+        direction: $direction
+        offsetValue: $offsetValue
+        maxResultsPerPage: $maxResultsPerPage
       ) {
-        searchCertificationRequests(
-          searchField: $searchField
-          searchValue: $searchValue
-          orderByField: $orderByField
-          direction: $direction
-          offsetValue: $offsetValue
-          maxResultsPerPage: $maxResultsPerPage
-        ) {
-          edges {
-            node {
-              applicationId
-              versionNumber
-              certifiedAt
-              certifierEmail
-              facilityName
-              operatorName
-              applicationRevisionStatus
-              certifiedByFirstName
-              certifiedByLastName
-              totalRequestCount
-              applicationByApplicationId {
-                id
-              }
-              certificationUrlByCertificationUrlId {
-                id
-              }
+        edges {
+          node {
+            applicationId
+            versionNumber
+            certifiedAt
+            certifierEmail
+            facilityName
+            operatorName
+            applicationRevisionStatus
+            certifiedByFirstName
+            certifiedByLastName
+            totalRequestCount
+            applicationByApplicationId {
+              id
+            }
+            certificationUrlByCertificationUrlId {
+              id
             }
           }
         }
-        allCertificationUrls(first: $forceRefetch) {
-          totalCount
-        }
       }
-    `
-  },
-  graphql`
-    query CertificationRequestsContainerRefetchQuery(
-      $searchField: [String]
-      $searchValue: [String]
-      $orderByField: String
-      $direction: String
-      $offsetValue: Int
-      $forceRefetch: Int
-      $maxResultsPerPage: Int
-    ) {
-      query {
-        ...CertificationRequestsContainer_query
-          @arguments(
-            orderByField: $orderByField
-            direction: $direction
-            searchField: $searchField
-            searchValue: $searchValue
-            offsetValue: $offsetValue
-            forceRefetch: $forceRefetch
-            maxResultsPerPage: $maxResultsPerPage
-          )
+      allCertificationUrls(first: $forceRefetch) {
+        totalCount
       }
     }
   `
-);
+});
