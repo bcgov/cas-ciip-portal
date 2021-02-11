@@ -54,7 +54,7 @@ const SortableTableHeader: React.FunctionComponent<Props> = ({
           <FontAwesomeIcon
             color="white"
             icon={
-              router.query.orderByField === columnName
+              router.query.orderByField === columnName && router.query.direction
                 ? SORT_ICONS[currentSortDirection]
                 : faSort
             }
