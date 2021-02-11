@@ -1,20 +1,16 @@
 import React from 'react';
 import {Button, Badge} from 'react-bootstrap';
 import {graphql, createFragmentContainer} from 'react-relay';
-import {CiipApplicationRevisionStatus} from 'ApplicationRowItemContainer_application.graphql';
 import Link from 'next/link';
 import {dateTimeFormat} from 'functions/formatDates';
 import {getUserFriendlyStatusLabel} from 'lib/text-transforms';
 
-const statusBadgeColor: Record<
-  CiipApplicationRevisionStatus,
-  'info' | 'danger' | 'success' | 'warning' | 'primary' | 'secondary'
-> = {
-  DRAFT: 'warning',
-  SUBMITTED: 'info',
-  REJECTED: 'danger',
-  APPROVED: 'success',
-  REQUESTED_CHANGES: 'secondary'
+const statusBadgeColor = {
+  draft: 'warning',
+  submitted: 'info',
+  rejected: 'danger',
+  approved: 'success',
+  'requested changes': 'secondary'
 };
 
 export const ApplicationRowItem = (props) => {
