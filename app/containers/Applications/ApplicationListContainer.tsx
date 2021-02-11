@@ -5,15 +5,15 @@ import ApplicationRowItemContainer from './ApplicationRowItemContainer';
 
 export const ApplicationList = (props) => {
   const {handleEvent} = props;
-  const {edges} = props.query.searchApplicationList;
+  const {edges} = props.query.allApplications;
 
   const displayNameToColumnNameMap = {
-    'Application Id': 'application_id',
+    'Application Id': 'id',
     'Operator Name': 'operator_name',
     'Facility Name': 'facility_name',
     'Reporting Year': 'reporting_year',
     'Submission Date': 'submission_date',
-    Status: 'application_revision_status',
+    Status: 'status',
     '': null
   };
   const body = (
@@ -21,7 +21,7 @@ export const ApplicationList = (props) => {
       {edges.map((edge) => (
         <ApplicationRowItemContainer
           key={edge.node.rowId}
-          applicationSearchResult={edge.node}
+          application={edge.node}
         />
       ))}
     </tbody>
@@ -44,21 +44,29 @@ export default createFragmentContainer(ApplicationList, {
   query: graphql`
     fragment ApplicationListContainer_query on Query
     @argumentDefinitions(
-      searchField: {type: "String"}
-      searchValue: {type: "String"}
-      orderByField: {type: "String"}
-      direction: {type: "String"}
+      row_id: {type: "Int"}
+      operator_name: {type: "String"}
+      facility_name: {type: "String"}
+      reporting_year: {type: "Int"}
+      submission_date: {type: "Datetime"}
+      status: {type: "String"}
+      order_by: {type: "[ApplicationsOrderBy!]"}
     ) {
-      searchApplicationList(
-        searchField: $searchField
-        searchValue: $searchValue
-        orderByField: $orderByField
-        direction: $direction
+      allApplications(
+        filter: {
+          rowId: {equalTo: $row_id}
+          operatorName: {includesInsensitive: $operator_name}
+          facilityName: {includesInsensitive: $facility_name}
+          reportingYear: {equalTo: $reporting_year}
+          submissionDate: {equalTo: $submission_date}
+          status: {includesInsensitive: $status}
+        }
+        orderBy: $order_by
       ) {
         edges {
           node {
             rowId
-            ...ApplicationRowItemContainer_applicationSearchResult
+            ...ApplicationRowItemContainer_application
           }
         }
       }

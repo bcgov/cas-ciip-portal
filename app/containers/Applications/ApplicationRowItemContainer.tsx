@@ -1,7 +1,7 @@
 import React from 'react';
 import {Button, Badge} from 'react-bootstrap';
 import {graphql, createFragmentContainer} from 'react-relay';
-import {CiipApplicationRevisionStatus} from 'ApplicationRowItemContainer_applicationSearchResult.graphql';
+import {CiipApplicationRevisionStatus} from 'ApplicationRowItemContainer_application.graphql';
 import Link from 'next/link';
 import {dateTimeFormat} from 'functions/formatDates';
 import {getUserFriendlyStatusLabel} from 'lib/text-transforms';
@@ -18,29 +18,29 @@ const statusBadgeColor: Record<
 };
 
 export const ApplicationRowItem = (props) => {
-  const {applicationSearchResult = {}} = props;
+  const {application = {}} = props;
   const readableSubmissionDate = dateTimeFormat(
-    applicationSearchResult.submissionDate,
+    application.submissionDate,
     'seconds'
   );
 
   return (
     <tr>
-      <td>{applicationSearchResult.applicationId}</td>
-      <td>{applicationSearchResult.operatorName}</td>
-      <td>{applicationSearchResult.facilityName}</td>
-      <td>{applicationSearchResult.reportingYear}</td>
+      <td>{application.rowId}</td>
+      <td>{application.operatorName}</td>
+      <td>{application.facilityName}</td>
+      <td>{application.reportingYear}</td>
       <td>{readableSubmissionDate}</td>
       <td>
         <Badge
           pill
           style={{width: '100%', textTransform: 'uppercase'}}
           variant={
-            statusBadgeColor[applicationSearchResult.applicationRevisionStatus]
+            statusBadgeColor[application.status]
           }
         >
           {getUserFriendlyStatusLabel(
-            applicationSearchResult.applicationRevisionStatus
+            application.status
           )}
         </Badge>
       </td>
@@ -49,14 +49,9 @@ export const ApplicationRowItem = (props) => {
           href={{
             pathname: '/analyst/application-review',
             query: {
-              applicationId:
-                applicationSearchResult.applicationByApplicationId.id,
-              applicationRevisionId:
-                applicationSearchResult.applicationByApplicationId
-                  .latestSubmittedRevision.id,
-              version:
-                applicationSearchResult.applicationByApplicationId
-                  .latestSubmittedRevision.versionNumber
+              applicationId: application.id,
+              applicationRevisionId: application.latestSubmittedRevision?.id,
+              version: application.latestSubmittedRevision?.versionNumber
             }
           }}
         >
@@ -68,23 +63,19 @@ export const ApplicationRowItem = (props) => {
 };
 
 export default createFragmentContainer(ApplicationRowItem, {
-  applicationSearchResult: graphql`
-    fragment ApplicationRowItemContainer_applicationSearchResult on ApplicationSearchResult {
+  application: graphql`
+    fragment ApplicationRowItemContainer_application on Application {
+      id
       rowId
-      applicationId
       operatorName
       facilityName
-      applicationRevisionStatus
+      status
       reportingYear
       bcghgid
       submissionDate
-      applicationByApplicationId {
+      latestSubmittedRevision {
         id
-        rowId
-        latestSubmittedRevision {
-          id
-          versionNumber
-        }
+        versionNumber
       }
     }
   `
