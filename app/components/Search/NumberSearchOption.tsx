@@ -1,5 +1,5 @@
-import {BaseSearchOption} from './ISearchOption';
+import {BaseSearchOption} from './BaseSearchOption';
 
-export class NumberSearchOption extends BaseSearchOption {
-  parse = (input) => Number(input);
+export class NumberSearchOption extends BaseSearchOption<Number> {
+  parseValue = (input) => Number(input);
 }

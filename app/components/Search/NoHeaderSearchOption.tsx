@@ -5,6 +5,5 @@ export const NoHeaderSearchOption: ISearchOption = {
   title: null,
   columnName: null,
   isSearchEnabled: false,
-  removeSearchHeader: true,
-  parse: null
+  removeSearchHeader: true
 };
