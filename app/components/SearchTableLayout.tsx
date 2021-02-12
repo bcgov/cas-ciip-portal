@@ -2,9 +2,9 @@ import React from 'react';
 import {Col, Table, Alert} from 'react-bootstrap';
 import SortableTableHeader from 'components/SortableTableHeader';
 import SearchTableHeaders from './SearchTableHeaders';
-import {SearchProps} from './Interfaces/SearchProps';
+import {ISearchProps} from './Search/SearchProps';
 
-interface Props extends SearchProps {
+interface Props extends ISearchProps {
   handleEvent: (
     action: string,
     value?: string | number,
@@ -77,7 +77,7 @@ export const SearchTableLayoutComponent: React.FunctionComponent<Props> = (
                 key={option.columnName}
                 headerVariables={{
                   columnName: option.columnName,
-                  displayName: option.displayName
+                  displayName: option.title
                 }}
               />
             ))}

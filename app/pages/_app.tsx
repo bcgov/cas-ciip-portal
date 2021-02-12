@@ -51,6 +51,10 @@ export default class App extends NextApp<AppProps> {
       })
     );
 
+    const relayVars = router.query.relayVars
+      ? JSON.parse(String(router.query.relayVars))
+      : {};
+
     return (
       <ErrorBoundary>
         <PageRedirectHandler
@@ -61,7 +65,7 @@ export default class App extends NextApp<AppProps> {
             environment={environment}
             fetchPolicy="store-and-network"
             query={Component.query}
-            variables={{...variables, ...router.query}}
+            variables={{...variables, ...router.query, ...relayVars}}
             render={({error, props}: {error: any; props: any}) => {
               if (error !== null) throw error; // Let the ErrorBoundary above render the error nicely
               if (props) {
