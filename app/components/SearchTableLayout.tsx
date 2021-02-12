@@ -37,21 +37,6 @@ export const SearchTableLayoutComponent: React.FunctionComponent<Props> = (
 
   return (
     <>
-      {/* <Container>
-        <Row>
-          <Col md={{span: 4}} className="no-pad">
-            {extraControls}
-          </Col>
-          <Col md={{span: 8}} className="no-pad">
-            <SearchBox
-              dropdownSortItems={Object.keys(displayNameToColumnNameMap)}
-              handleEvent={handleEvent}
-              displayNameToColumnNameMap={displayNameToColumnNameMap}
-            />
-          </Col>
-        </Row>
-      </Container> */}
-
       <Table
         striped
         bordered
