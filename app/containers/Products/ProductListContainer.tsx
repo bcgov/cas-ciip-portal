@@ -4,6 +4,11 @@ import {ProductListContainer_query} from 'ProductListContainer_query.graphql';
 import SearchTableLayout from 'components/SearchTableLayout';
 import LoadingSpinner from 'components/LoadingSpinner';
 import ProductRowItemContainer from './ProductRowItemContainer';
+import {
+  SearchOption,
+  SearchOptionType,
+  NoHeaderSearchOption
+} from 'components/Interfaces/SearchProps';
 
 interface Props {
   query: ProductListContainer_query;
@@ -26,16 +31,57 @@ export const ProductList: React.FunctionComponent<Props> = ({
   if (query?.searchProducts?.edges) {
     const allProducts = query.searchProducts.edges;
 
-    const displayNameToColumnNameMap = {
-      Product: 'product_name',
-      Settings: null,
-      'Modified (D/M/Y)': 'updated_at',
-      Benchmark: 'benchmark',
-      'Eligibility Threshold': 'eligibility_threshold',
-      'Allocation of Emissions': 'requires_emission_allocation',
-      'CIIP Benchmarked': 'is_ciip_product',
-      Status: 'product_state'
-    };
+    const searchOptions: SearchOption[] = [
+      {
+        displayName: 'Product',
+        columnName: 'product_name',
+        isSearchEnabled: true,
+        searchOptionType: SearchOptionType.Freeform
+      },
+      {
+        displayName: 'Settings',
+        columnName: 'null',
+        isSearchEnabled: true,
+        searchOptionType: SearchOptionType.Freeform
+      },
+      {
+        displayName: 'Modified (D/M/Y)',
+        columnName: 'updated_at',
+        isSearchEnabled: true,
+        searchOptionType: SearchOptionType.Freeform
+      },
+      {
+        displayName: 'Benchmark',
+        columnName: 'benchmark',
+        isSearchEnabled: true,
+        searchOptionType: SearchOptionType.Freeform
+      },
+      {
+        displayName: 'Eligibility Threshold',
+        columnName: 'eligibility_threshold',
+        isSearchEnabled: true,
+        searchOptionType: SearchOptionType.Freeform
+      },
+      {
+        displayName: 'Allocation of Emissions',
+        columnName: 'requires_emission_allocation',
+        isSearchEnabled: true,
+        searchOptionType: SearchOptionType.Freeform
+      },
+      {
+        displayName: 'CIIP Benchmarked',
+        columnName: 'is_ciip_product',
+        isSearchEnabled: true,
+        searchOptionType: SearchOptionType.Freeform
+      },
+      {
+        displayName: 'Status',
+        columnName: 'product_state',
+        isSearchEnabled: true,
+        searchOptionType: SearchOptionType.Freeform
+      },
+      NoHeaderSearchOption
+    ];
     const body = (
       <tbody>
         {allProducts.map(({node}) => (
@@ -52,7 +98,7 @@ export const ProductList: React.FunctionComponent<Props> = ({
     return (
       <SearchTableLayout
         body={body}
-        displayNameToColumnNameMap={displayNameToColumnNameMap}
+        searchOptions={searchOptions}
         handleEvent={handleEvent}
       />
     );
