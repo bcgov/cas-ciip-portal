@@ -7,6 +7,7 @@ import ProductRowItemContainer from './ProductRowItemContainer';
 import {ISearchOption} from 'components/Search/ISearchOption';
 import {NoHeaderSearchOption} from 'components/Search/NoHeaderSearchOption';
 import {TextSearchOption} from 'components/Search/TextSearchOption';
+import {DisabledSearchOption} from 'components/Search/DisabledSearchOption';
 
 interface Props {
   query: ProductListContainer_query;
@@ -31,16 +32,8 @@ export const ProductList: React.FunctionComponent<Props> = ({
 
     const searchOptions: ISearchOption[] = [
       new TextSearchOption('Product', 'product_name'),
-      {
-        title: 'Settings',
-        columnName: 'null',
-        isSearchEnabled: false
-      },
-      {
-        title: 'Modified (D/M/Y)',
-        columnName: 'updated_at',
-        isSearchEnabled: false
-      },
+      new DisabledSearchOption('Settings'),
+      new DisabledSearchOption('Modified (D/M/Y)'),
       new TextSearchOption('Benchmark', 'benchmark'),
       new TextSearchOption('Eligibility Threshold', 'eligibility_threshold'),
       new TextSearchOption(
