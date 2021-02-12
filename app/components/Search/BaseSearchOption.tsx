@@ -12,6 +12,7 @@ export abstract class BaseSearchOption<T> implements ISearchOption {
   abstract parseValue?: (string) => T;
 
   isSearchEnabled = true;
+  isSortEnabled = true;
   removeSearchHeader = false;
   searchOptionType = SearchOptionType.Freeform;
 }

@@ -3,6 +3,10 @@ import {graphql, createFragmentContainer} from 'react-relay';
 import {OrganisationRequestsTable_query} from 'OrganisationRequestsTable_query.graphql';
 import SearchTableLayout from 'components/SearchTableLayout';
 import OrganisationRequestsTableRow from './OrganisationRequestsTableRow';
+import {ISearchOption} from 'components/Search/ISearchOption';
+import {NoHeaderSearchOption} from 'components/Search/NoHeaderSearchOption';
+import {TextSearchOption} from 'components/Search/TextSearchOption';
+import {NumberSearchOption} from 'components/Search/NumberSearchOption';
 interface Props {
   query: OrganisationRequestsTable_query;
   orderByField?: string;
@@ -18,15 +22,15 @@ export const OrganisationRequestsTableComponent: React.FunctionComponent<Props> 
 ) => {
   const {handleEvent} = props;
 
-  const displayNameToColumnNameMap = {
-    'User ID': 'user_id',
-    'First Name': 'first_name',
-    'Last Name': 'last_name',
-    Email: 'email_address',
-    Operator: 'operator_name',
-    Status: 'status',
-    '': null
-  };
+  const searchOptions: ISearchOption[] = [
+    new NumberSearchOption('User ID', 'user_id'),
+    new TextSearchOption('First Name', 'first_name'),
+    new TextSearchOption('Last Name', 'last_name'),
+    new TextSearchOption('Email', 'email_address'),
+    new TextSearchOption('Operator', 'operator_name'),
+    new TextSearchOption('Status', 'status'),
+    NoHeaderSearchOption
+  ];
 
   const {edges} = props.query.searchCiipUserOrganisation;
 
@@ -43,7 +47,7 @@ export const OrganisationRequestsTableComponent: React.FunctionComponent<Props> 
   return (
     <SearchTableLayout
       body={body}
-      displayNameToColumnNameMap={displayNameToColumnNameMap}
+      searchOptions={searchOptions}
       handleEvent={handleEvent}
     />
   );

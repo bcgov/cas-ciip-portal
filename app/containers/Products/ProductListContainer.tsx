@@ -5,9 +5,11 @@ import SearchTableLayout from 'components/SearchTableLayout';
 import LoadingSpinner from 'components/LoadingSpinner';
 import ProductRowItemContainer from './ProductRowItemContainer';
 import {ISearchOption} from 'components/Search/ISearchOption';
-import {NoHeaderSearchOption} from 'components/Search/NoHeaderSearchOption';
 import {TextSearchOption} from 'components/Search/TextSearchOption';
-import {DisabledSearchOption} from 'components/Search/DisabledSearchOption';
+import {SortOnlyOption} from 'components/Search/SortOnlyOption';
+import {NoHeaderSearchOption} from 'components/Search/NoHeaderSearchOption';
+import {DisplayOnlyOption} from 'components/Search/DisplayOnlyOption';
+import {NumberSearchOption} from 'components/Search/NumberSearchOption';
 
 interface Props {
   query: ProductListContainer_query;
@@ -32,10 +34,10 @@ export const ProductList: React.FunctionComponent<Props> = ({
 
     const searchOptions: ISearchOption[] = [
       new TextSearchOption('Product', 'product_name'),
-      new DisabledSearchOption('Settings'),
-      new DisabledSearchOption('Modified (D/M/Y)'),
-      new TextSearchOption('Benchmark', 'benchmark'),
-      new TextSearchOption('Eligibility Threshold', 'eligibility_threshold'),
+      new DisplayOnlyOption('Settings'),
+      new SortOnlyOption('Modified (D/M/Y)', 'date_modified'),
+      new NumberSearchOption('Benchmark', 'benchmark'),
+      new NumberSearchOption('Eligibility Threshold', 'eligibility_threshold'),
       new TextSearchOption(
         'Allocation of Emissions',
         'requires_emission_allocation'
