@@ -1,7 +1,7 @@
 import React from 'react';
-import {FieldProps} from 'react-jsonschema-form';
+import {FieldProps} from '@rjsf/core';
 import {Form, Col} from 'react-bootstrap';
-import {JSONSchema6} from 'json-schema';
+import {JSONSchema7} from 'json-schema';
 import {Decimal} from 'decimal.js-light';
 import ErrorList from 'components/Forms/ErrorList';
 
@@ -24,14 +24,14 @@ const EmissionGasFields: React.FunctionComponent<FieldProps> = ({
       annualEmission: annualEmissionSchema,
       annualCO2e: annualCO2eSchema
     }
-  } = schema as {properties: Record<string, JSONSchema6>};
+  } = schema as {properties: Record<string, JSONSchema7>};
 
   const {
     FieldTemplate
   }: {
     FieldTemplate: React.FunctionComponent<any>;
   } = registry as any;
-  // Not using the types defined in @types/react-jsonschema-form as they are out of date
+  // Not using the types defined in @types/@rjsf/core as they are out of date
 
   const hideRow = formData.annualEmission === 0 ? 'zero-emission' : '';
 

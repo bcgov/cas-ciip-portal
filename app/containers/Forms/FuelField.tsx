@@ -1,8 +1,8 @@
 import React from 'react';
-import {FieldProps} from 'react-jsonschema-form';
+import {FieldProps} from '@rjsf/core';
 import {createFragmentContainer, graphql} from 'react-relay';
 import {FuelField_query} from 'FuelField_query.graphql';
-import ObjectField from 'react-jsonschema-form/lib/components/fields/ObjectField';
+import ObjectField from '@rjsf/core/dist/cjs/components/fields/ObjectField';
 
 interface Props extends FieldProps {
   query: FuelField_query;

@@ -1,6 +1,6 @@
 import React from 'react';
-import JsonSchemaForm, {IChangeEvent} from 'react-jsonschema-form';
-import {JSONSchema6} from 'json-schema';
+import JsonSchemaForm, {IChangeEvent} from '@rjsf/core';
+import {JSONSchema7} from 'json-schema';
 import FormFieldTemplate from 'containers/Forms/FormFieldTemplate';
 import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
 
@@ -19,7 +19,7 @@ const SelectReportingYearDropDownComponent: React.FunctionComponent<Props> = ({
   handleEvent,
   selectedReportingYear
 }) => {
-  const yearSchema: JSONSchema6 = {
+  const yearSchema: JSONSchema7 = {
     type: 'object',
     properties: {
       reportingYear: {

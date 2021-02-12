@@ -1,7 +1,7 @@
 import React from 'react';
 import {Alert} from 'react-bootstrap';
-import {FieldProps} from 'react-jsonschema-form';
-import ObjectField from 'react-jsonschema-form/lib/components/fields/ObjectField';
+import {FieldProps} from '@rjsf/core';
+import ObjectField from '@rjsf/core/dist/cjs/components/fields/ObjectField';
 import {createFragmentContainer, graphql} from 'react-relay';
 import {ProductField_query} from 'ProductField_query.graphql';
 

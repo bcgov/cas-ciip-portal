@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {graphql, createFragmentContainer} from 'react-relay';
 import {AddFacilityModal_query} from 'AddFacilityModal_query.graphql';
 import {Button, Modal, Card} from 'react-bootstrap';
-import JsonSchemaForm, {IChangeEvent} from 'react-jsonschema-form';
+import JsonSchemaForm, {IChangeEvent} from '@rjsf/core';
 import FormFieldTemplate from 'containers/Forms/FormFieldTemplate';
 import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
 import addFacilitySchema from 'components/facility/addFacilitySchema';

@@ -41,6 +41,12 @@ exports[`DatePickerWidget Should match last accepted snapshot: DatePickerWidget 
           "UnsupportedField": [Function],
         },
         "formContext": Object {},
+        "rootSchema": Object {
+          "applicationOpenTime": Object {
+            "title": "Application Open Time",
+            "type": "string",
+          },
+        },
         "widgets": Object {
           "AltDateTimeWidget": [Function],
           "AltDateWidget": [Function],
@@ -65,7 +71,6 @@ exports[`DatePickerWidget Should match last accepted snapshot: DatePickerWidget 
         },
       }
     }
-    safeRenderCompletion={false}
     schema={
       Object {
         "applicationOpenTime": Object {

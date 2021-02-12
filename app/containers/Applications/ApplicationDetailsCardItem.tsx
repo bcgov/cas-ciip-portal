@@ -1,7 +1,7 @@
 import React, {useState, useMemo} from 'react';
 import {Button, Card, Collapse, Col, Row} from 'react-bootstrap';
 import {createFragmentContainer, graphql} from 'react-relay';
-import JsonSchemaForm, {FieldProps, AjvError} from 'react-jsonschema-form';
+import JsonSchemaForm, {FieldProps, AjvError} from '@rjsf/core';
 import {FormJson} from 'next-env';
 import {ApplicationDetailsCardItem_formResult} from '__generated__/ApplicationDetailsCardItem_formResult.graphql';
 import {ApplicationDetailsCardItem_query} from '__generated__/ApplicationDetailsCardItem_query.graphql';

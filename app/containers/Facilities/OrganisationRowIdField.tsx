@@ -1,5 +1,5 @@
 import React, {useMemo} from 'react';
-import {FieldProps} from 'react-jsonschema-form';
+import {FieldProps} from '@rjsf/core';
 import {createFragmentContainer, graphql} from 'react-relay';
 import {OrganisationRowIdField_query} from 'OrganisationRowIdField_query.graphql';
 

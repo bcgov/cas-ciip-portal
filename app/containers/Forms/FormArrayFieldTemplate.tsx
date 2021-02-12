@@ -1,5 +1,5 @@
 import React from 'react';
-import {ArrayFieldTemplateProps} from 'react-jsonschema-form';
+import {ArrayFieldTemplateProps} from '@rjsf/core';
 import {Form, Button, Col} from 'react-bootstrap';
 
 const FormArrayFieldTemplate: React.FunctionComponent<ArrayFieldTemplateProps> = ({

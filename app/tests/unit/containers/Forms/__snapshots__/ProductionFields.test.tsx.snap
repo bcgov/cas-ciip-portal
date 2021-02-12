@@ -80,7 +80,7 @@ exports[`The ProductionFields Component with archived product should match the s
           "DescriptionField": [Function],
           "NullField": [Function],
           "NumberField": [Function],
-          "ObjectField": [Function],
+          "ObjectField": undefined,
           "OneOfField": [Function],
           "SchemaField": [Function],
           "StringField": [Function],
@@ -88,6 +88,7 @@ exports[`The ProductionFields Component with archived product should match the s
           "UnsupportedField": [Function],
         },
         "formContext": Object {},
+        "rootSchema": Object {},
         "widgets": Object {
           "AltDateTimeWidget": [Function],
           "AltDateWidget": [Function],
@@ -307,7 +308,7 @@ exports[`The ProductionFields Component with published product should match the 
         "DescriptionField": [Function],
         "NullField": [Function],
         "NumberField": [Function],
-        "ObjectField": [Function],
+        "ObjectField": undefined,
         "OneOfField": [Function],
         "SchemaField": [Function],
         "StringField": [Function],
@@ -315,6 +316,7 @@ exports[`The ProductionFields Component with published product should match the 
         "UnsupportedField": [Function],
       },
       "formContext": Object {},
+      "rootSchema": Object {},
       "widgets": Object {
         "AltDateTimeWidget": [Function],
         "AltDateWidget": [Function],

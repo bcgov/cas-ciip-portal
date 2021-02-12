@@ -1,7 +1,7 @@
 import React from 'react';
 import NumberFormat from 'react-number-format';
-import {FieldProps} from 'react-jsonschema-form';
-import {getWidget} from 'react-jsonschema-form/lib/utils';
+import {FieldProps} from '@rjsf/core';
+import {getWidget} from '@rjsf/core/dist/cjs/utils';
 
 const NumberField: React.FunctionComponent<FieldProps> = ({
   formData,

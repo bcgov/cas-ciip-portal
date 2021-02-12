@@ -1,7 +1,7 @@
 import React from 'react';
 import {Button, ButtonGroup} from 'react-bootstrap';
-import JsonSchemaForm, {IChangeEvent} from 'react-jsonschema-form';
-import {JSONSchema6} from 'json-schema';
+import JsonSchemaForm, {IChangeEvent} from '@rjsf/core';
+import {JSONSchema7} from 'json-schema';
 import FormFieldTemplate from 'containers/Forms/FormFieldTemplate';
 import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
 
@@ -30,7 +30,7 @@ const SearchBox: React.FunctionComponent<Props> = ({
     handleEvent('applySearch', undefined, undefined);
   };
 
-  const schema: JSONSchema6 = {
+  const schema: JSONSchema7 = {
     type: 'object',
     properties: {
       searchField: {

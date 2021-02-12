@@ -1,6 +1,6 @@
 import React from 'react';
 import {Col, Form} from 'react-bootstrap';
-import {FieldTemplateProps} from 'react-jsonschema-form';
+import {FieldTemplateProps} from '@rjsf/core';
 
 const FormFieldTemplate: React.FunctionComponent<FieldTemplateProps> = ({
   id,

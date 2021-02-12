@@ -1,6 +1,6 @@
 import React from 'react';
 import {Col} from 'react-bootstrap';
-import {ObjectFieldTemplateProps} from 'react-jsonschema-form';
+import {ObjectFieldTemplateProps} from '@rjsf/core';
 
 const FormObjectFieldTemplate: React.FunctionComponent<ObjectFieldTemplateProps> = ({
   idSchema,

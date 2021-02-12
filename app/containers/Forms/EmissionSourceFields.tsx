@@ -1,5 +1,5 @@
 import React from 'react';
-import {FieldProps} from 'react-jsonschema-form';
+import {FieldProps} from '@rjsf/core';
 import {Col, Row} from 'react-bootstrap';
 
 const EmissionSourceFields: React.FunctionComponent<FieldProps> = ({

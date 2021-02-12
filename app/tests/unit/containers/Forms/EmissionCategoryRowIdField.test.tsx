@@ -4,7 +4,7 @@ import {
   EmissionCategoryRowIdFieldComponent,
   Props
 } from 'containers/Forms/EmissionCategoryRowIdField';
-import {getDefaultRegistry} from 'react-jsonschema-form/lib/utils';
+import {getDefaultRegistry} from '@rjsf/core/dist/cjs/utils';
 
 describe('The EmissionCategoryRowIdField component', () => {
   it('injects the category ids and names in the json schema', () => {

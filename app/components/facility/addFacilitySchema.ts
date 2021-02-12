@@ -1,6 +1,6 @@
-import {JSONSchema6} from 'json-schema';
+import {JSONSchema7} from 'json-schema';
 
-const addFacilitySchema: JSONSchema6 = {
+const addFacilitySchema: JSONSchema7 = {
   type: 'object',
   properties: {
     facilityName: {
