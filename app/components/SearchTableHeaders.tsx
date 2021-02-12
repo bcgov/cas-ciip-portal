@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Button, ButtonGroup, Form} from 'react-bootstrap';
-import {ISearchProps} from './Interfaces/SearchProps';
 import {useRouter} from 'next/router';
+import {ISearchProps} from './Search/SearchProps';
 
 const NONE_VALUES = ['', null, undefined];
 
@@ -61,7 +61,11 @@ const SearchTableHeaders: React.FunctionComponent<ISearchProps> = (props) => {
                 name={column}
                 value={searchFilters[column] ?? router.query[column] ?? ''}
                 onChange={(evt) =>
-                  handleFilterChange(evt.target.value, column, option.parse)
+                  handleFilterChange(
+                    evt.target.value,
+                    column,
+                    option.parseValue
+                  )
                 }
               />
             </td>

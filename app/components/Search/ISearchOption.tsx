@@ -9,6 +9,7 @@ export interface ISearchOption {
   columnName: string;
   title: string;
   isSearchEnabled: boolean;
+  isSortEnabled: boolean;
   removeSearchHeader?: boolean;
   searchOptionType?: SearchOptionType;
   searchOptionValues?: string[];

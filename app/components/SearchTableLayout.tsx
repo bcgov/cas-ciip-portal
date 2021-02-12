@@ -62,7 +62,8 @@ export const SearchTableLayoutComponent: React.FunctionComponent<Props> = (
                 key={option.columnName}
                 headerVariables={{
                   columnName: option.columnName,
-                  displayName: option.title
+                  displayName: option.title,
+                  sortable: option.isSortEnabled
                 }}
               />
             ))}

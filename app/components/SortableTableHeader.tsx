@@ -11,6 +11,7 @@ interface Props {
   headerVariables: {
     columnName: string;
     displayName: string;
+    sortable: boolean;
   };
 }
 
@@ -48,12 +49,12 @@ const SortableTableHeader: React.FunctionComponent<Props> = ({
     router.replace(url, url, {shallow: true});
   };
 
-  const {columnName, displayName} = headerVariables;
+  const {columnName, displayName, sortable} = headerVariables;
   return (
     <th onClick={() => triggerSort(columnName)}>
       <span>{displayName}</span>
-      <span style={{height: '100%', position: 'absolute', right: '0.75em'}}>
-        {displayName && (
+      {sortable && (
+        <span style={{height: '100%', position: 'absolute', right: '0.75em'}}>
           <FontAwesomeIcon
             color="white"
             icon={
@@ -63,8 +64,8 @@ const SortableTableHeader: React.FunctionComponent<Props> = ({
                 : faSort
             }
           />
-        )}
-      </span>
+        </span>
+      )}
       <style>{`
         .table thead th {
           background: #003366;

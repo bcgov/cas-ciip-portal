@@ -1,10 +1,11 @@
 import {ISearchOption} from './ISearchOption';
 
-export class DisabledSearchOption implements ISearchOption {
+export class DisplayOnlyOption implements ISearchOption {
   constructor(title) {
     this.title = title;
   }
   columnName: string;
   title: string;
   isSearchEnabled = false;
+  isSortEnabled = false;
 }
