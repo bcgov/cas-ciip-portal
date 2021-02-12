@@ -1,24 +1,26 @@
 import React, {useState} from 'react';
 import {Button, ButtonGroup, Form} from 'react-bootstrap';
-import {SearchProps} from './Interfaces/SearchProps';
+import {ISearchProps} from './Interfaces/SearchProps';
 import {useRouter} from 'next/router';
 
 const NONE_VALUES = ['', null, undefined];
 
-const SearchTableHeaders: React.FunctionComponent<SearchProps> = (props) => {
+const SearchTableHeaders: React.FunctionComponent<ISearchProps> = (props) => {
   const router = useRouter();
 
   const [searchFilters, setSearchFilters] = useState({});
 
-  const handleFilterChange = (value, column) => {
+  const handleFilterChange = (value, column, parseMethod) => {
     setSearchFilters({
       ...searchFilters,
-      [column]: value
+      [column]: parseMethod ? parseMethod(value) : value
     });
   };
 
   const applySearch = (searchData) => {
-    const newQuery = {...router.query};
+    const newQuery = router.query.relayVars
+      ? JSON.parse(String(router.query.relayVars))
+      : {};
     props.searchOptions.forEach((option) => {
       const column = option.columnName;
 
@@ -29,9 +31,14 @@ const SearchTableHeaders: React.FunctionComponent<SearchProps> = (props) => {
       }
     });
 
+    const queryString = JSON.stringify(newQuery);
+
     const url = {
       pathname: router.pathname,
-      query: newQuery
+      query: {
+        ...router.query,
+        relayVars: queryString
+      }
     };
 
     router.replace(url, url, {shallow: true});
@@ -53,7 +60,9 @@ const SearchTableHeaders: React.FunctionComponent<SearchProps> = (props) => {
                 placeholder="Search"
                 name={column}
                 value={searchFilters[column] ?? router.query[column] ?? ''}
-                onChange={(evt) => handleFilterChange(evt.target.value, column)}
+                onChange={(evt) =>
+                  handleFilterChange(evt.target.value, column, option.parse)
+                }
               />
             </td>
           );

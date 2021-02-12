@@ -4,11 +4,9 @@ import {ProductListContainer_query} from 'ProductListContainer_query.graphql';
 import SearchTableLayout from 'components/SearchTableLayout';
 import LoadingSpinner from 'components/LoadingSpinner';
 import ProductRowItemContainer from './ProductRowItemContainer';
-import {
-  SearchOption,
-  SearchOptionType,
-  NoHeaderSearchOption
-} from 'components/Interfaces/SearchProps';
+import {ISearchOption} from 'components/Search/ISearchOption';
+import {NoHeaderSearchOption} from 'components/Search/NoHeaderSearchOption';
+import {TextSearchOption} from 'components/Search/TextSearchOption';
 
 interface Props {
   query: ProductListContainer_query;
@@ -31,55 +29,26 @@ export const ProductList: React.FunctionComponent<Props> = ({
   if (query?.searchProducts?.edges) {
     const allProducts = query.searchProducts.edges;
 
-    const searchOptions: SearchOption[] = [
+    const searchOptions: ISearchOption[] = [
+      new TextSearchOption('Product', 'product_name'),
       {
-        displayName: 'Product',
-        columnName: 'product_name',
-        isSearchEnabled: true,
-        searchOptionType: SearchOptionType.Freeform
-      },
-      {
-        displayName: 'Settings',
+        title: 'Settings',
         columnName: 'null',
-        isSearchEnabled: true,
-        searchOptionType: SearchOptionType.Freeform
+        isSearchEnabled: false
       },
       {
-        displayName: 'Modified (D/M/Y)',
+        title: 'Modified (D/M/Y)',
         columnName: 'updated_at',
-        isSearchEnabled: true,
-        searchOptionType: SearchOptionType.Freeform
+        isSearchEnabled: false
       },
-      {
-        displayName: 'Benchmark',
-        columnName: 'benchmark',
-        isSearchEnabled: true,
-        searchOptionType: SearchOptionType.Freeform
-      },
-      {
-        displayName: 'Eligibility Threshold',
-        columnName: 'eligibility_threshold',
-        isSearchEnabled: true,
-        searchOptionType: SearchOptionType.Freeform
-      },
-      {
-        displayName: 'Allocation of Emissions',
-        columnName: 'requires_emission_allocation',
-        isSearchEnabled: true,
-        searchOptionType: SearchOptionType.Freeform
-      },
-      {
-        displayName: 'CIIP Benchmarked',
-        columnName: 'is_ciip_product',
-        isSearchEnabled: true,
-        searchOptionType: SearchOptionType.Freeform
-      },
-      {
-        displayName: 'Status',
-        columnName: 'product_state',
-        isSearchEnabled: true,
-        searchOptionType: SearchOptionType.Freeform
-      },
+      new TextSearchOption('Benchmark', 'benchmark'),
+      new TextSearchOption('Eligibility Threshold', 'eligibility_threshold'),
+      new TextSearchOption(
+        'Allocation of Emissions',
+        'requires_emission_allocation'
+      ),
+      new TextSearchOption('CIIP Benchmarked', 'is_ciip_product'),
+      new TextSearchOption('Status', 'product_state'),
       NoHeaderSearchOption
     ];
     const body = (

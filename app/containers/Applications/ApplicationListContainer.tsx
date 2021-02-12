@@ -2,53 +2,26 @@ import React from 'react';
 import {graphql, createFragmentContainer} from 'react-relay';
 import SearchTableLayout from 'components/SearchTableLayout';
 import ApplicationRowItemContainer from './ApplicationRowItemContainer';
-import {
-  SearchOption,
-  SearchOptionType,
-  NoHeaderSearchOption
-} from 'components/Interfaces/SearchProps';
+import {ISearchOption} from 'components/Search/ISearchOption';
+import {NumberSearchOption} from 'components/Search/NumberSearchOption';
+import {NoHeaderSearchOption} from 'components/Search/NoHeaderSearchOption';
+import {TextSearchOption} from 'components/Search/TextSearchOption';
 
 export const ApplicationList = (props) => {
   const {handleEvent} = props;
   const {edges} = props.query.allApplications;
 
-  const searchOptions: SearchOption[] = [
+  const searchOptions: ISearchOption[] = [
+    new NumberSearchOption('Application Id', 'id'),
+    new TextSearchOption('Operator Name', 'operator_name'),
+    new TextSearchOption('Facility Name', 'facility_name'),
+    new NumberSearchOption('Reporting Year', 'reporting_year'),
     {
-      displayName: 'Application Id',
-      columnName: 'id',
-      isSearchEnabled: false,
-      searchOptionType: SearchOptionType.Freeform
-    },
-    {
-      displayName: 'Operator Name',
-      columnName: 'operator_name',
-      isSearchEnabled: true,
-      searchOptionType: SearchOptionType.Freeform
-    },
-    {
-      displayName: 'Facility Name',
-      columnName: 'facility_name',
-      isSearchEnabled: true,
-      searchOptionType: SearchOptionType.Freeform
-    },
-    {
-      displayName: 'Reporting Year',
-      columnName: 'reporting_year',
-      isSearchEnabled: true,
-      searchOptionType: SearchOptionType.Freeform
-    },
-    {
-      displayName: 'Submission Date',
+      title: 'Submission Date',
       columnName: 'submission_date',
-      isSearchEnabled: true,
-      searchOptionType: SearchOptionType.Freeform
+      isSearchEnabled: false
     },
-    {
-      displayName: 'Status',
-      columnName: 'status',
-      isSearchEnabled: true,
-      searchOptionType: SearchOptionType.Freeform
-    },
+    new TextSearchOption('Status', 'status'),
     NoHeaderSearchOption
   ];
 
