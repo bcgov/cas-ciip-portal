@@ -23,12 +23,13 @@ exports[`FacilitiesRowItem should match the previous snapshot 1`] = `
       pill={true}
       style={
         Object {
+          "textTransform": "uppercase",
           "width": "100%",
         }
       }
       variant="info"
     >
-      SUBMITTED
+      Submitted
     </Badge>
   </td>
   <td>
@@ -91,12 +92,13 @@ exports[`FacilitiesRowItem should not show Pending Certification in the status i
       pill={true}
       style={
         Object {
+          "textTransform": "uppercase",
           "width": "100%",
         }
       }
       variant="warning"
     >
-      DRAFT
+      Draft
     </Badge>
   </td>
   <td>
@@ -157,12 +159,13 @@ exports[`FacilitiesRowItem should not show Pending Certification in the status i
       pill={true}
       style={
         Object {
+          "textTransform": "uppercase",
           "width": "100%",
         }
       }
       variant="success"
     >
-      APPROVED
+      Approved
     </Badge>
   </td>
   <td>
@@ -225,12 +228,13 @@ exports[`FacilitiesRowItem should show Certified in the status if the applicatio
       pill={true}
       style={
         Object {
+          "textTransform": "uppercase",
           "width": "100%",
         }
       }
       variant="warning"
     >
-      DRAFT
+      Draft
        (Certified)
     </Badge>
   </td>
@@ -294,12 +298,13 @@ exports[`FacilitiesRowItem should show Pending Certification in the status if th
       pill={true}
       style={
         Object {
+          "textTransform": "uppercase",
           "width": "100%",
         }
       }
       variant="warning"
     >
-      DRAFT
+      Draft
        (Pending Certification)
     </Badge>
   </td>

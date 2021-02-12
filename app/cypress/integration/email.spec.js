@@ -1,5 +1,7 @@
 /* eslint-disable jest/valid-expect */
 
+import {getUserFriendlyStatusLabel} from '../../lib/text-transforms';
+
 /*
    IF RUNNING THIS LOCALLY: you'll need your own mailhog instance
   `sudo docker run -d -p 1025:1025 -p 8025:8025 mailhog/mailhog`
@@ -327,7 +329,7 @@ function makeApplicationDecision(decision) {
   );
   cy.get('#dropdown').click();
   cy.wait(500);
-  cy.contains(decision).click();
+  cy.contains(getUserFriendlyStatusLabel(decision)).click();
   cy.get('.btn-success').click();
   cy.wait(500);
 }

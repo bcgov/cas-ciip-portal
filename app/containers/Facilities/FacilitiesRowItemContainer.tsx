@@ -7,6 +7,7 @@ import {
 } from 'FacilitiesRowItemContainer_facilitySearchResult.graphql';
 import {FacilitiesRowItemContainer_query} from 'FacilitiesRowItemContainer_query.graphql';
 import ApplyButtonContainer from 'containers/Applications/ApplyButtonContainer';
+import {getUserFriendlyStatusLabel} from 'lib/text-transforms';
 
 interface Props {
   facilitySearchResult: FacilitiesRowItemContainer_facilitySearchResult;
@@ -57,10 +58,10 @@ export const FacilitiesRowItemComponent: React.FunctionComponent<Props> = ({
         {applicationRevisionStatus ? (
           <Badge
             pill
-            style={{width: '100%'}}
+            style={{width: '100%', textTransform: 'uppercase'}}
             variant={statusBadgeColor[applicationRevisionStatus]}
           >
-            {applicationRevisionStatus}
+            {getUserFriendlyStatusLabel(applicationRevisionStatus)}
             {certificationStatus}
           </Badge>
         ) : (

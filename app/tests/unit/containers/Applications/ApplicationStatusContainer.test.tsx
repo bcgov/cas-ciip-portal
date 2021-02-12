@@ -20,7 +20,7 @@ describe('ApplicationRevisionStatusItem', () => {
       />
     );
     expect(r.exists('Dropdown')).toBe(true);
-    expect(r.find('DropdownToggle').text()).toBe('SUBMITTED');
+    expect(r.find('DropdownToggle').text()).toBe('Submitted');
     expect(r).toMatchSnapshot();
   });
 

@@ -4,6 +4,7 @@ import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
 import DropdownMenuItemComponent from 'components/DropdownMenuItemComponent';
 import createApplicationRevisionStatusMutation from 'mutations/application/createApplicationRevisionStatusMutation';
 import {CiipApplicationRevisionStatus} from 'ApplicationRowItemContainer_applicationSearchResult.graphql';
+import {getUserFriendlyStatusLabel} from 'lib/text-transforms';
 
 interface Props {
   applicationRevisionStatus;
@@ -113,7 +114,11 @@ export const ApplicationRevisionStatusComponent: React.FunctionComponent<Props> 
               <Dropdown.Toggle
                 pill
                 as={Badge}
-                style={{padding: '0.6em 1em', fontSize: '1em'}}
+                style={{
+                  padding: '0.6em 1em',
+                  fontSize: '1em',
+                  textTransform: 'uppercase'
+                }}
                 variant={
                   statusBadgeColor[
                     props.applicationRevisionStatus.applicationRevisionStatus
@@ -121,7 +126,9 @@ export const ApplicationRevisionStatusComponent: React.FunctionComponent<Props> 
                 }
                 id="dropdown"
               >
-                {props.applicationRevisionStatus.applicationRevisionStatus}
+                {getUserFriendlyStatusLabel(
+                  props.applicationRevisionStatus.applicationRevisionStatus
+                )}
               </Dropdown.Toggle>
               <Dropdown.Menu style={{width: '100%'}}>
                 {Object.keys(statusBadgeColor)
@@ -134,7 +141,7 @@ export const ApplicationRevisionStatusComponent: React.FunctionComponent<Props> 
                       key={status}
                       itemEventKey={status}
                       itemFunc={renderStatusConfirmationModal}
-                      itemTitle={status}
+                      itemTitle={getUserFriendlyStatusLabel(status)}
                     />
                   ))}
               </Dropdown.Menu>
@@ -158,8 +165,13 @@ export const ApplicationRevisionStatusComponent: React.FunctionComponent<Props> 
       <Row>
         <Col md={12}>
           <p>
-            * Status changes will be immediately confirmed by email
-            notification.
+            * Status changes will be immediately confirmed to the applicant by
+            email notification.
+            <br />
+            <span style={{marginLeft: '0.7em'}}>
+              General comments will become visible to the applicant once the
+              application status is updated.
+            </span>
           </p>
         </Col>
       </Row>
