@@ -1,4 +1,4 @@
-import {ISearchOption, SearchOptionType} from './ISearchOption';
+import {ISearchOption} from './ISearchOption';
 
 export abstract class BaseSearchOption<T> implements ISearchOption {
   constructor(display, column) {
@@ -14,5 +14,4 @@ export abstract class BaseSearchOption<T> implements ISearchOption {
   isSearchEnabled = true;
   isSortEnabled = true;
   removeSearchHeader = false;
-  searchOptionType = SearchOptionType.Freeform;
 }
