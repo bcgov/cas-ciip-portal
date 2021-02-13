@@ -10,6 +10,7 @@ import {SortOnlyOption} from 'components/Search/SortOnlyOption';
 import {NoHeaderSearchOption} from 'components/Search/NoHeaderSearchOption';
 import {DisplayOnlyOption} from 'components/Search/DisplayOnlyOption';
 import {NumberSearchOption} from 'components/Search/NumberSearchOption';
+import {YesNoSearchOption} from 'components/Search/YesNoSearchOption';
 
 interface Props {
   query: ProductListContainer_query;
@@ -38,7 +39,7 @@ export const ProductList: React.FunctionComponent<Props> = ({
       new SortOnlyOption('Modified (D/M/Y)', 'date_modified'),
       new NumberSearchOption('Benchmark', 'benchmark'),
       new NumberSearchOption('Eligibility Threshold', 'eligibility_threshold'),
-      new TextSearchOption(
+      new YesNoSearchOption(
         'Allocation of Emissions',
         'requires_emission_allocation'
       ),
