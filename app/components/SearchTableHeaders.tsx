@@ -52,11 +52,32 @@ const SearchTableHeaders: React.FunctionComponent<ISearchProps> = (props) => {
   return (
     <tr>
       {props.searchOptions.map((option) => {
+        const column = option.columnName;
+        const key = option.columnName + option.title;
         if (option.isSearchEnabled) {
-          const column = option.columnName;
+          if (!option.searchOptionValues) {
+            return (
+              <td key={key}>
+                <Form.Control
+                  placeholder="Search"
+                  name={column}
+                  value={searchFilters[column] ?? router.query[column] ?? ''}
+                  onChange={(evt) =>
+                    handleFilterChange(
+                      evt.target.value,
+                      column,
+                      option.parseValue
+                    )
+                  }
+                />
+              </td>
+            );
+          }
+
           return (
-            <td key={column}>
+            <td key={key}>
               <Form.Control
+                as="select"
                 placeholder="Search"
                 name={column}
                 value={searchFilters[column] ?? router.query[column] ?? ''}
@@ -67,12 +88,21 @@ const SearchTableHeaders: React.FunctionComponent<ISearchProps> = (props) => {
                     option.parseValue
                   )
                 }
-              />
+              >
+                <option key={column + '-placeholder'} value="">
+                  ...
+                </option>
+                {option.searchOptionValues.map((val) => (
+                  <option key={column + '-' + val} value={val}>
+                    {val}
+                  </option>
+                ))}
+              </Form.Control>
             </td>
           );
         }
         if (option.removeSearchHeader) return;
-        return <td />;
+        return <td key={key} />;
       })}
       <td>
         <ButtonGroup>
