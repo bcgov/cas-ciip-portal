@@ -52,13 +52,9 @@ export default class App extends NextApp<AppProps> {
       })
     );
 
-    console.log(router.query.relayVars);
-
     const relayVars = router.query.relayVars
       ? parseRelayVars(String(router.query.relayVars))
       : {};
-
-    console.log(relayVars);
 
     return (
       <ErrorBoundary>
