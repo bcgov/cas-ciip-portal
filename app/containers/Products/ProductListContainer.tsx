@@ -41,7 +41,7 @@ export const ProductList: React.FunctionComponent<Props> = ({
         'Allocation of Emissions',
         'requires_emission_allocation'
       ),
-      new TextSearchOption('CIIP Benchmarked', 'is_ciip_product'),
+      new YesNoSearchOption('CIIP Benchmarked', 'is_ciip_product'),
       new EnumSearchOption<CiipProductState>('Status', 'product_state', [
         'ARCHIVED',
         'DRAFT',
