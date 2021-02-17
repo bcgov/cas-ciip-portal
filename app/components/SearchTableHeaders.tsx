@@ -18,9 +18,7 @@ const SearchTableHeaders: React.FunctionComponent<ISearchProps> = (props) => {
   };
 
   const applySearch = (searchData) => {
-    const newQuery = router.query.relayVars
-      ? JSON.parse(String(router.query.relayVars))
-      : {};
+    const newQuery = {};
     props.searchOptions.forEach((option) => {
       const column = option.columnName;
 
@@ -49,17 +47,21 @@ const SearchTableHeaders: React.FunctionComponent<ISearchProps> = (props) => {
     applySearch({});
   };
 
+  // We load the URL
+  const parsedUrl = router.query.relayVars
+    ? JSON.parse(String(router.query.relayVars))
+    : {};
+  Object.keys(parsedUrl).forEach((key) => {
+    if (NONE_VALUES.includes(searchFilters[key]))
+      searchFilters[key] = parsedUrl[key];
+  });
+
   return (
     <tr>
       {props.searchOptions.map((option) => {
         const column = option.columnName;
         const key = option.columnName + option.title;
-
-        let initialValue = searchFilters[column];
-        if (NONE_VALUES.includes(initialValue) && router.query.relayVars)
-          initialValue = !NONE_VALUES.includes(router.query.relayVars[column])
-            ? router.query.relayVars[column]
-            : '';
+        const initialValue = searchFilters[column] ?? '';
 
         if (option.isSearchEnabled) {
           if (!option.searchOptionValues) {
@@ -88,7 +90,7 @@ const SearchTableHeaders: React.FunctionComponent<ISearchProps> = (props) => {
                   handleFilterChange(evt.target.value, column, option.toUrl)
                 }
               >
-                <option key={column + '-placeholder'} value={null}>
+                <option key={column + '-placeholder'} value="">
                   ...
                 </option>
                 {option.searchOptionValues.map((kvp) => (
