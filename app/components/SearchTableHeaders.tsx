@@ -54,6 +54,13 @@ const SearchTableHeaders: React.FunctionComponent<ISearchProps> = (props) => {
       {props.searchOptions.map((option) => {
         const column = option.columnName;
         const key = option.columnName + option.title;
+
+        let initialValue = searchFilters[column];
+        if (NONE_VALUES.includes(initialValue) && router.query.relayVars)
+          initialValue = !NONE_VALUES.includes(router.query.relayVars[column])
+            ? router.query.relayVars[column]
+            : '';
+
         if (option.isSearchEnabled) {
           if (!option.searchOptionValues) {
             return (
@@ -61,13 +68,9 @@ const SearchTableHeaders: React.FunctionComponent<ISearchProps> = (props) => {
                 <Form.Control
                   placeholder="Search"
                   name={column}
-                  value={searchFilters[column] ?? router.query[column] ?? ''}
+                  value={initialValue}
                   onChange={(evt) =>
-                    handleFilterChange(
-                      evt.target.value,
-                      column,
-                      option.parseValue
-                    )
+                    handleFilterChange(evt.target.value, column, option.toUrl)
                   }
                 />
               </td>
@@ -80,21 +83,17 @@ const SearchTableHeaders: React.FunctionComponent<ISearchProps> = (props) => {
                 as="select"
                 placeholder="Search"
                 name={column}
-                value={searchFilters[column] ?? router.query[column] ?? ''}
+                value={initialValue}
                 onChange={(evt) =>
-                  handleFilterChange(
-                    evt.target.value,
-                    column,
-                    option.parseValue
-                  )
+                  handleFilterChange(evt.target.value, column, option.toUrl)
                 }
               >
-                <option key={column + '-placeholder'} value="">
+                <option key={column + '-placeholder'} value={null}>
                   ...
                 </option>
-                {option.searchOptionValues.map((val) => (
-                  <option key={column + '-' + val} value={val}>
-                    {val}
+                {option.searchOptionValues.map((kvp) => (
+                  <option key={column + '-' + kvp.display} value={kvp.value}>
+                    {kvp.display}
                   </option>
                 ))}
               </Form.Control>
