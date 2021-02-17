@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Button, ButtonGroup, Form} from 'react-bootstrap';
-import {ISearchProps} from './Interfaces/SearchProps';
 import {useRouter} from 'next/router';
+import {ISearchProps} from './Search/SearchProps';
 
-const NONE_VALUES = ['', null, undefined];
+const NONE_VALUES = [null, undefined];
 
 const SearchTableHeaders: React.FunctionComponent<ISearchProps> = (props) => {
   const router = useRouter();
@@ -18,9 +18,7 @@ const SearchTableHeaders: React.FunctionComponent<ISearchProps> = (props) => {
   };
 
   const applySearch = (searchData) => {
-    const newQuery = router.query.relayVars
-      ? JSON.parse(String(router.query.relayVars))
-      : {};
+    const newQuery = {};
     props.searchOptions.forEach((option) => {
       const column = option.columnName;
 
@@ -49,26 +47,64 @@ const SearchTableHeaders: React.FunctionComponent<ISearchProps> = (props) => {
     applySearch({});
   };
 
+  useEffect(() => {
+    const parsedUrl = router.query.relayVars
+      ? JSON.parse(String(router.query.relayVars))
+      : {};
+    Object.keys(parsedUrl).forEach((key) => {
+      if (NONE_VALUES.includes(searchFilters[key]))
+        searchFilters[key] = parsedUrl[key];
+    });
+  }, []);
+
   return (
     <tr>
       {props.searchOptions.map((option) => {
+        const column = option.columnName;
+        const key = option.columnName + option.title;
+        const initialValue = searchFilters[column] ?? '';
+
         if (option.isSearchEnabled) {
-          const column = option.columnName;
+          if (!option.searchOptionValues) {
+            return (
+              <td key={key}>
+                <Form.Control
+                  placeholder="Search"
+                  name={column}
+                  value={initialValue}
+                  onChange={(evt) =>
+                    handleFilterChange(evt.target.value, column, option.toUrl)
+                  }
+                />
+              </td>
+            );
+          }
+
           return (
-            <td key={column}>
+            <td key={key}>
               <Form.Control
+                as="select"
                 placeholder="Search"
                 name={column}
-                value={searchFilters[column] ?? router.query[column] ?? ''}
+                value={initialValue}
                 onChange={(evt) =>
-                  handleFilterChange(evt.target.value, column, option.parse)
+                  handleFilterChange(evt.target.value, column, option.toUrl)
                 }
-              />
+              >
+                <option key={column + '-placeholder'} value="">
+                  ...
+                </option>
+                {option.searchOptionValues.map((kvp) => (
+                  <option key={column + '-' + kvp.display} value={kvp.value}>
+                    {kvp.display}
+                  </option>
+                ))}
+              </Form.Control>
             </td>
           );
         }
         if (option.removeSearchHeader) return;
-        return <td />;
+        return <td key={key} />;
       })}
       <td>
         <ButtonGroup>

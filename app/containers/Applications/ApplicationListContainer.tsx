@@ -6,6 +6,7 @@ import {ISearchOption} from 'components/Search/ISearchOption';
 import {NumberSearchOption} from 'components/Search/NumberSearchOption';
 import {NoHeaderSearchOption} from 'components/Search/NoHeaderSearchOption';
 import {TextSearchOption} from 'components/Search/TextSearchOption';
+import {SortOnlyOption} from 'components/Search/SortOnlyOption';
 
 export const ApplicationList = (props) => {
   const {handleEvent} = props;
@@ -16,11 +17,7 @@ export const ApplicationList = (props) => {
     new TextSearchOption('Operator Name', 'operator_name'),
     new TextSearchOption('Facility Name', 'facility_name'),
     new NumberSearchOption('Reporting Year', 'reporting_year'),
-    {
-      title: 'Submission Date',
-      columnName: 'submission_date',
-      isSearchEnabled: false
-    },
+    new SortOnlyOption('Submission Date', 'submission_date'),
     new TextSearchOption('Status', 'status'),
     NoHeaderSearchOption
   ];

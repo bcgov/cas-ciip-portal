@@ -19961,7 +19961,7 @@ type CiipUserOrganisation implements Node {
   emailAddress: String
 
   """
-  This function is a wrapper to return firist_name from the ciip_user object
+  This function is a wrapper to return first_name from the ciip_user object as a scalar
   """
   firstName: String
 

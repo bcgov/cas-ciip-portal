@@ -59,10 +59,11 @@ export const SearchTableLayoutComponent: React.FunctionComponent<Props> = (
             )}
             {searchOptions.map((option) => (
               <SortableTableHeader
-                key={option.columnName}
+                key={option.title + '-sortHeader'}
                 headerVariables={{
                   columnName: option.columnName,
-                  displayName: option.title
+                  displayName: option.title,
+                  sortable: option.isSortEnabled
                 }}
               />
             ))}

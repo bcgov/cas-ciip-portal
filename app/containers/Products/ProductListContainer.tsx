@@ -5,8 +5,14 @@ import SearchTableLayout from 'components/SearchTableLayout';
 import LoadingSpinner from 'components/LoadingSpinner';
 import ProductRowItemContainer from './ProductRowItemContainer';
 import {ISearchOption} from 'components/Search/ISearchOption';
-import {NoHeaderSearchOption} from 'components/Search/NoHeaderSearchOption';
 import {TextSearchOption} from 'components/Search/TextSearchOption';
+import {SortOnlyOption} from 'components/Search/SortOnlyOption';
+import {NoHeaderSearchOption} from 'components/Search/NoHeaderSearchOption';
+import {DisplayOnlyOption} from 'components/Search/DisplayOnlyOption';
+import {NumberSearchOption} from 'components/Search/NumberSearchOption';
+import {YesNoSearchOption} from 'components/Search/YesNoSearchOption';
+import {EnumSearchOption} from 'components/Search/EnumSearchOption';
+import {CiipProductState} from 'createProductMutation.graphql';
 
 interface Props {
   query: ProductListContainer_query;
@@ -31,24 +37,20 @@ export const ProductList: React.FunctionComponent<Props> = ({
 
     const searchOptions: ISearchOption[] = [
       new TextSearchOption('Product', 'product_name'),
-      {
-        title: 'Settings',
-        columnName: 'null',
-        isSearchEnabled: false
-      },
-      {
-        title: 'Modified (D/M/Y)',
-        columnName: 'updated_at',
-        isSearchEnabled: false
-      },
-      new TextSearchOption('Benchmark', 'benchmark'),
-      new TextSearchOption('Eligibility Threshold', 'eligibility_threshold'),
-      new TextSearchOption(
+      new DisplayOnlyOption('Settings'),
+      new SortOnlyOption('Modified (D/M/Y)', 'date_modified'),
+      new NumberSearchOption('Benchmark', 'benchmark'),
+      new NumberSearchOption('Eligibility Threshold', 'eligibility_threshold'),
+      new YesNoSearchOption(
         'Allocation of Emissions',
         'requires_emission_allocation'
       ),
       new TextSearchOption('CIIP Benchmarked', 'is_ciip_product'),
-      new TextSearchOption('Status', 'product_state'),
+      new EnumSearchOption<CiipProductState>('Status', 'product_state', [
+        'ARCHIVED',
+        'DRAFT',
+        'PUBLISHED'
+      ]),
       NoHeaderSearchOption
     ];
     const body = (
