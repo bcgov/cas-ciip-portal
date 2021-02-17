@@ -3,8 +3,8 @@ import {Row, Col, Dropdown, Button, Badge, Modal} from 'react-bootstrap';
 import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
 import DropdownMenuItemComponent from 'components/DropdownMenuItemComponent';
 import createApplicationRevisionStatusMutation from 'mutations/application/createApplicationRevisionStatusMutation';
-import {CiipApplicationRevisionStatus} from 'ApplicationRowItemContainer_applicationSearchResult.graphql';
 import {getUserFriendlyStatusLabel} from 'lib/text-transforms';
+import {CiipApplicationRevisionStatus} from 'createApplicationRevisionStatusMutation.graphql';
 
 interface Props {
   applicationRevisionStatus;
