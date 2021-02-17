@@ -9,7 +9,7 @@ export abstract class BaseSearchOption<T> implements ISearchOption {
   columnName = '';
   title = '';
 
-  abstract parseValue?: (string) => T;
+  abstract toUrl?: (string) => T;
 
   isSearchEnabled = true;
   isSortEnabled = true;
