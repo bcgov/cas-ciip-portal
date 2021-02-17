@@ -46,10 +46,10 @@ export const OrganisationRequestsTableRowComponent: React.FunctionComponent<Prop
   return (
     <tr>
       <td>{userOrganisation.userId}</td>
-      <td>{userOrganisation.ciipUserByUserId.firstName}</td>
-      <td>{userOrganisation.ciipUserByUserId.lastName}</td>
-      <td>{userOrganisation.ciipUserByUserId.emailAddress}</td>
-      <td>{userOrganisation.organisationByOrganisationId.operatorName}</td>
+      <td>{userOrganisation.firstName}</td>
+      <td>{userOrganisation.lastName}</td>
+      <td>{userOrganisation.emailAddress}</td>
+      <td>{userOrganisation.operatorName}</td>
       <td>
         <Badge
           pill
@@ -96,16 +96,12 @@ export default createFragmentContainer(OrganisationRequestsTableRowComponent, {
   userOrganisation: graphql`
     fragment OrganisationRequestsTableRow_userOrganisation on CiipUserOrganisation {
       id
+      firstName
+      lastName
+      emailAddress
       status
       userId
-      ciipUserByUserId {
-        firstName
-        lastName
-        emailAddress
-      }
-      organisationByOrganisationId {
-        operatorName
-      }
+      operatorName
     }
   `
 });

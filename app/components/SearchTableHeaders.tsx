@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Button, ButtonGroup, Form} from 'react-bootstrap';
 import {useRouter} from 'next/router';
 import {ISearchProps} from './Search/SearchProps';
 
-const NONE_VALUES = ['', null, undefined];
+const NONE_VALUES = [null, undefined];
 
 const SearchTableHeaders: React.FunctionComponent<ISearchProps> = (props) => {
   const router = useRouter();
@@ -47,14 +47,15 @@ const SearchTableHeaders: React.FunctionComponent<ISearchProps> = (props) => {
     applySearch({});
   };
 
-  // We load the URL
-  const parsedUrl = router.query.relayVars
-    ? JSON.parse(String(router.query.relayVars))
-    : {};
-  Object.keys(parsedUrl).forEach((key) => {
-    if (NONE_VALUES.includes(searchFilters[key]))
-      searchFilters[key] = parsedUrl[key];
-  });
+  useEffect(() => {
+    const parsedUrl = router.query.relayVars
+      ? JSON.parse(String(router.query.relayVars))
+      : {};
+    Object.keys(parsedUrl).forEach((key) => {
+      if (NONE_VALUES.includes(searchFilters[key]))
+        searchFilters[key] = parsedUrl[key];
+    });
+  }, []);
 
   return (
     <tr>

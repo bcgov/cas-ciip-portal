@@ -1,20 +1,19 @@
 import React from 'react';
 import {graphql, createFragmentContainer} from 'react-relay';
 import {OrganisationRequestsTable_query} from 'OrganisationRequestsTable_query.graphql';
+import {CiipUserOrganisationStatus} from 'OrganisationRequestsTableRow_userOrganisation.graphql';
 import SearchTableLayout from 'components/SearchTableLayout';
 import OrganisationRequestsTableRow from './OrganisationRequestsTableRow';
 import {ISearchOption} from 'components/Search/ISearchOption';
 import {NoHeaderSearchOption} from 'components/Search/NoHeaderSearchOption';
 import {TextSearchOption} from 'components/Search/TextSearchOption';
 import {NumberSearchOption} from 'components/Search/NumberSearchOption';
+import {EnumSearchOption} from 'components/Search/EnumSearchOption';
 interface Props {
   query: OrganisationRequestsTable_query;
   orderByField?: string;
   orderByDisplay?: string;
-  searchField?: string;
-  searchValue?: string;
   direction?: string;
-  searchDisplay?: string;
   handleEvent: (...args: any[]) => void;
 }
 export const OrganisationRequestsTableComponent: React.FunctionComponent<Props> = (
@@ -28,11 +27,15 @@ export const OrganisationRequestsTableComponent: React.FunctionComponent<Props> 
     new TextSearchOption('Last Name', 'last_name'),
     new TextSearchOption('Email', 'email_address'),
     new TextSearchOption('Operator', 'operator_name'),
-    new TextSearchOption('Status', 'status'),
+    new EnumSearchOption<CiipUserOrganisationStatus>('Status', 'status', [
+      'APPROVED',
+      'PENDING',
+      'REJECTED'
+    ]),
     NoHeaderSearchOption
   ];
 
-  const {edges} = props.query.searchCiipUserOrganisation;
+  const {edges} = props.query.allCiipUserOrganisations;
 
   const body = (
     <tbody>
@@ -57,16 +60,24 @@ export default createFragmentContainer(OrganisationRequestsTableComponent, {
   query: graphql`
     fragment OrganisationRequestsTable_query on Query
     @argumentDefinitions(
-      searchField: {type: "String"}
-      searchValue: {type: "String"}
-      orderByField: {type: "String"}
-      direction: {type: "String"}
+      user_id: {type: "Int"}
+      first_name: {type: "String"}
+      last_name: {type: "String"}
+      email_address: {type: "String"}
+      operator_name: {type: "String"}
+      status: {type: "CiipUserOrganisationStatus"}
+      order_by: {type: "[CiipUserOrganisationsOrderBy!]"}
     ) {
-      searchCiipUserOrganisation(
-        searchField: $searchField
-        searchValue: $searchValue
-        orderByField: $orderByField
-        direction: $direction
+      allCiipUserOrganisations(
+        filter: {
+          userId: {equalTo: $user_id}
+          firstName: {includesInsensitive: $first_name}
+          lastName: {includesInsensitive: $last_name}
+          emailAddress: {includesInsensitive: $email_address}
+          operatorName: {includesInsensitive: $operator_name}
+          status: {equalTo: $status}
+        }
+        orderBy: $order_by
       ) {
         edges {
           node {
