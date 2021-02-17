@@ -17,30 +17,26 @@ import {CiipProductState} from 'createProductMutation.graphql';
 interface Props {
   query: ProductListContainer_query;
   orderByField?: string;
-  orderByDisplay?: string;
-  searchField?: string;
-  searchValue?: string;
   direction?: string;
-  productCount: number;
-  updateProductCount: (...args: any[]) => void;
   handleEvent: (...args: any[]) => void;
 }
 
 export const ProductList: React.FunctionComponent<Props> = ({
   query,
-  handleEvent,
-  productCount,
-  updateProductCount
+  handleEvent
 }) => {
-  if (query?.searchProducts?.edges) {
-    const allProducts = query.searchProducts.edges;
+  if (query?.allProducts?.edges) {
+    const allProducts = query.allProducts.edges;
 
     const searchOptions: ISearchOption[] = [
       new TextSearchOption('Product', 'product_name'),
       new DisplayOnlyOption('Settings'),
       new SortOnlyOption('Modified (D/M/Y)', 'date_modified'),
-      new NumberSearchOption('Benchmark', 'benchmark'),
-      new NumberSearchOption('Eligibility Threshold', 'eligibility_threshold'),
+      new NumberSearchOption('Benchmark', 'current_benchmark'),
+      new NumberSearchOption(
+        'Eligibility Threshold',
+        'current_eligibility_threshold'
+      ),
       new YesNoSearchOption(
         'Allocation of Emissions',
         'requires_emission_allocation'
@@ -56,13 +52,7 @@ export const ProductList: React.FunctionComponent<Props> = ({
     const body = (
       <tbody>
         {allProducts.map(({node}) => (
-          <ProductRowItemContainer
-            key={node.id}
-            product={node}
-            query={query}
-            updateProductCount={updateProductCount}
-            productCount={productCount}
-          />
+          <ProductRowItemContainer key={node.id} product={node} query={query} />
         ))}
       </tbody>
     );
@@ -86,31 +76,33 @@ export default createFragmentContainer(ProductList, {
   query: graphql`
     fragment ProductListContainer_query on Query
     @argumentDefinitions(
-      searchField: {type: "String"}
-      searchValue: {type: "String"}
-      orderByField: {type: "String"}
-      direction: {type: "String"}
-      productCount: {type: "Int"}
+      product_name: {type: "String"}
+      current_benchmark: {type: "BigFloat"}
+      current_eligibility_threshold: {type: "BigFloat"}
+      requires_emission_allocation: {type: "Boolean"}
+      is_ciip_product: {type: "Boolean"}
+      product_state: {type: "CiipProductState"}
+      order_by: {type: "[ProductsOrderBy!]"}
     ) {
       ...ProductRowItemContainer_query
-      searchProducts(
+      allProducts(
         first: 2147483647
-        searchField: $searchField
-        searchValue: $searchValue
-        orderByField: $orderByField
-        direction: $direction
-      ) @connection(key: "ProductListContainer_searchProducts") {
+        filter: {
+          productName: {includesInsensitive: $product_name}
+          currentBenchmark: {equalTo: $current_benchmark}
+          currentEligibilityThreshold: {equalTo: $current_eligibility_threshold}
+          requiresEmissionAllocation: {equalTo: $requires_emission_allocation}
+          isCiipProduct: {equalTo: $is_ciip_product}
+          productState: {equalTo: $product_state}
+        }
+        orderBy: $order_by
+      ) @connection(key: "ProductListContainer_allProducts") {
         edges {
           node {
             id
             ...ProductRowItemContainer_product
           }
         }
-      }
-      # TODO: This is here to trigger a refactor as updating the edge / running the query in the mutation is not triggering a refresh
-      # Find a way to not pull the totalcount?
-      allProducts(first: $productCount) {
-        totalCount
       }
     }
   `
