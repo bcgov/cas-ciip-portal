@@ -31502,6 +31502,16 @@ type Product implements Node {
   """Creator of row"""
   createdBy: Int
 
+  """
+  Computed column returns the current benchmark value for the product passed in via function parameter
+  """
+  currentBenchmark: BigFloat
+
+  """
+  Computed column returns the current eligibility_threshold value for the product passed in via function parameter
+  """
+  currentEligibilityThreshold: BigFloat
+
   """Date of deletion"""
   deletedAt: Datetime
 
@@ -32508,6 +32518,12 @@ input ProductFilter {
   """Filter by the object’s `createdBy` field."""
   createdBy: IntFilter
 
+  """Filter by the object’s `currentBenchmark` field."""
+  currentBenchmark: BigFloatFilter
+
+  """Filter by the object’s `currentEligibilityThreshold` field."""
+  currentEligibilityThreshold: BigFloatFilter
+
   """Filter by the object’s `deletedAt` field."""
   deletedAt: DatetimeFilter
 
@@ -33076,6 +33092,10 @@ enum ProductsOrderBy {
   CREATED_AT_DESC
   CREATED_BY_ASC
   CREATED_BY_DESC
+  CURRENT_BENCHMARK_ASC
+  CURRENT_BENCHMARK_DESC
+  CURRENT_ELIGIBILITY_THRESHOLD_ASC
+  CURRENT_ELIGIBILITY_THRESHOLD_DESC
   DELETED_AT_ASC
   DELETED_AT_DESC
   DELETED_BY_ASC
