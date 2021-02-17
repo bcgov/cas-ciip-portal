@@ -11,6 +11,8 @@ import {NoHeaderSearchOption} from 'components/Search/NoHeaderSearchOption';
 import {DisplayOnlyOption} from 'components/Search/DisplayOnlyOption';
 import {NumberSearchOption} from 'components/Search/NumberSearchOption';
 import {YesNoSearchOption} from 'components/Search/YesNoSearchOption';
+import {EnumSearchOption} from 'components/Search/EnumSearchOption';
+import {CiipProductState} from 'createProductMutation.graphql';
 
 interface Props {
   query: ProductListContainer_query;
@@ -44,7 +46,11 @@ export const ProductList: React.FunctionComponent<Props> = ({
         'requires_emission_allocation'
       ),
       new TextSearchOption('CIIP Benchmarked', 'is_ciip_product'),
-      new TextSearchOption('Status', 'product_state'),
+      new EnumSearchOption<CiipProductState>('Status', 'product_state', [
+        'ARCHIVED',
+        'DRAFT',
+        'PUBLISHED'
+      ]),
       NoHeaderSearchOption
     ];
     const body = (
