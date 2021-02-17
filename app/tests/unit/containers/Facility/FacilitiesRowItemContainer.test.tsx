@@ -77,7 +77,7 @@ describe('FacilitiesRowItem', () => {
       />
     );
     expect(r).toMatchSnapshot();
-    expect(r.find('Badge').text()).toBe('DRAFT (Pending Certification)');
+    expect(r.find('Badge').text()).toBe('Draft (Pending Certification)');
   });
 
   it('should show Certified in the status if the application is in draft and has been certified', async () => {
@@ -115,7 +115,7 @@ describe('FacilitiesRowItem', () => {
       />
     );
     expect(r).toMatchSnapshot();
-    expect(r.find('Badge').text()).toBe('DRAFT (Certified)');
+    expect(r.find('Badge').text()).toBe('Draft (Certified)');
   });
 
   it('should not show Pending Certification in the status if the application is in draft but a certificationUrl does not exist', async () => {
@@ -151,7 +151,7 @@ describe('FacilitiesRowItem', () => {
       />
     );
     expect(r).toMatchSnapshot();
-    expect(r.find('Badge').text()).toBe('DRAFT');
+    expect(r.find('Badge').text()).toBe('Draft');
   });
 
   it('should not show Pending Certification in the status if the application is not in draft state and a certificationUrl exists', async () => {
@@ -189,6 +189,6 @@ describe('FacilitiesRowItem', () => {
       />
     );
     expect(r).toMatchSnapshot();
-    expect(r.find('Badge').text()).toBe('APPROVED');
+    expect(r.find('Badge').text()).toBe('Approved');
   });
 });

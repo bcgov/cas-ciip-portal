@@ -22,12 +22,13 @@ exports[`ApplicationRowItem should render the application 1`] = `
       pill={true}
       style={
         Object {
+          "textTransform": "uppercase",
           "width": "100%",
         }
       }
       variant="info"
     >
-      SUBMITTED
+      Submitted
     </Badge>
   </td>
   <td>

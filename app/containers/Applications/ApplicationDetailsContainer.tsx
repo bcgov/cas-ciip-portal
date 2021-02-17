@@ -67,10 +67,10 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = (
   return (
     <>
       <Row>
-        <Col md={{offset: 2, span: 2}}>
+        <Col md={{offset: 2}}>
           {diffFromResults ? (
             <Form.Check
-              label="Show Diff?"
+              label="Compare data between versions"
               checked={showDiff}
               type="checkbox"
               onChange={() => setShowDiff(!showDiff)}

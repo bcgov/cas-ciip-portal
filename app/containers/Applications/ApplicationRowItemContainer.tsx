@@ -4,6 +4,7 @@ import {graphql, createFragmentContainer} from 'react-relay';
 import {CiipApplicationRevisionStatus} from 'ApplicationRowItemContainer_applicationSearchResult.graphql';
 import Link from 'next/link';
 import {dateTimeFormat} from 'functions/formatDates';
+import {getUserFriendlyStatusLabel} from 'lib/text-transforms';
 
 const statusBadgeColor: Record<
   CiipApplicationRevisionStatus,
@@ -33,12 +34,14 @@ export const ApplicationRowItem = (props) => {
       <td>
         <Badge
           pill
-          style={{width: '100%'}}
+          style={{width: '100%', textTransform: 'uppercase'}}
           variant={
             statusBadgeColor[applicationSearchResult.applicationRevisionStatus]
           }
         >
-          {applicationSearchResult.applicationRevisionStatus}
+          {getUserFriendlyStatusLabel(
+            applicationSearchResult.applicationRevisionStatus
+          )}
         </Badge>
       </td>
       <td>
