@@ -31,13 +31,9 @@ export const ApplicationRowItem = (props) => {
         <Badge
           pill
           style={{width: '100%', textTransform: 'uppercase'}}
-          variant={
-            statusBadgeColor[application.status]
-          }
+          variant={statusBadgeColor[application.status]}
         >
-          {getUserFriendlyStatusLabel(
-            application.status
-          )}
+          {getUserFriendlyStatusLabel(application.status)}
         </Badge>
       </td>
       <td>
