@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {graphql, createFragmentContainer} from 'react-relay';
-import {IChangeEvent, ErrorSchema, AjvError} from 'react-jsonschema-form';
+import {IChangeEvent, ErrorSchema, AjvError} from '@rjsf/core';
 import JsonSchemaForm from 'components/Forms/Form';
 import {Form_query} from 'Form_query.graphql';
 import {Button, Row, Col, Alert} from 'react-bootstrap';
@@ -240,7 +240,6 @@ export const FormComponent: React.FunctionComponent<Props> = ({
           )}
           {showMissingProducts()}
           <JsonSchemaForm
-            safeRenderCompletion
             noHtml5Validate
             validate={customValidation}
             showErrorList={false}

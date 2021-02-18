@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
-import JsonSchemaForm, {IChangeEvent} from 'react-jsonschema-form';
-import {JSONSchema6} from 'json-schema';
+import JsonSchemaForm, {IChangeEvent} from '@rjsf/core';
+import {JSONSchema7} from 'json-schema';
 import {UserForm_user} from 'UserForm_user.graphql';
 import createUserMutation from 'mutations/user/createUserMutation';
 import updateUserMutation from 'mutations/user/updateUserMutation';
@@ -66,7 +66,7 @@ const UserForm: React.FunctionComponent<Props> = ({
     onSubmit();
   };
 
-  const [userSchema] = useState<JSONSchema6>({
+  const [userSchema] = useState<JSONSchema7>({
     type: 'object',
     properties: {
       firstName: {
@@ -106,7 +106,6 @@ const UserForm: React.FunctionComponent<Props> = ({
     <JsonSchemaForm
       omitExtraData
       liveOmit
-      safeRenderCompletion
       schema={userSchema}
       formData={user}
       showErrorList={false}

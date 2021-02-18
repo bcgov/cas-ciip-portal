@@ -1,8 +1,8 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import JsonSchemaForm from 'react-jsonschema-form';
-import {JSONSchema6} from 'json-schema';
+import JsonSchemaForm from '@rjsf/core';
+import {JSONSchema7} from 'json-schema';
 import DatePickerWidget from 'components/Forms/DatePickerWidget';
 import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
 import FormFieldTemplate from 'containers/Forms/FormFieldTemplate';
@@ -25,7 +25,7 @@ describe('DatePickerWidget', () => {
         omitExtraData
         liveOmit
         noHtml5Validate
-        schema={schema as JSONSchema6}
+        schema={schema as JSONSchema7}
         uiSchema={uiSchema}
         formData={{}}
         FieldTemplate={FormFieldTemplate}

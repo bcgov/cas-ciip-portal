@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import {WidgetProps} from 'react-jsonschema-form';
+import {WidgetProps} from '@rjsf/core';
 import {dateTimeFormat} from 'functions/formatDates';
 
 function getDateString(date) {

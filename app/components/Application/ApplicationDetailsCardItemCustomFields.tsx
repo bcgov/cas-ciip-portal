@@ -3,7 +3,7 @@ import EmissionGasFields from 'containers/Forms/EmissionGasFields';
 import EmissionSourceFields from 'containers/Forms/EmissionSourceFields';
 import ProductField from 'containers/Forms/ProductField';
 import ProductRowIdField from 'containers/Forms/ProductRowIdField';
-import {FieldProps} from 'react-jsonschema-form';
+import {FieldProps} from '@rjsf/core';
 import NumberFormat from 'react-number-format';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faExclamationTriangle} from '@fortawesome/free-solid-svg-icons';

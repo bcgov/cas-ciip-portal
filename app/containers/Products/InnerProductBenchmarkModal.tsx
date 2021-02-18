@@ -1,7 +1,7 @@
 import React from 'react';
 import {Button, Modal, Container} from 'react-bootstrap';
-import {JSONSchema6} from 'json-schema';
-import JsonSchemaForm from 'react-jsonschema-form';
+import {JSONSchema7} from 'json-schema';
+import JsonSchemaForm from '@rjsf/core';
 import FormArrayFieldTemplate from 'containers/Forms/FormArrayFieldTemplate';
 import FormFieldTemplate from 'containers/Forms/FormFieldTemplate';
 import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
@@ -109,8 +109,8 @@ export const ProductBenchmarkInnerModal: React.FunctionComponent<Props> = ({
             widgets={{header: HeaderWidget}}
             schema={
               isProduct
-                ? (productSchema.schema as JSONSchema6)
-                : (benchmarkSchema.schema as JSONSchema6)
+                ? (productSchema.schema as JSONSchema7)
+                : (benchmarkSchema.schema as JSONSchema7)
             }
             uiSchema={
               isProduct ? productSchema.uiSchema : benchmarkSchema.uiSchema

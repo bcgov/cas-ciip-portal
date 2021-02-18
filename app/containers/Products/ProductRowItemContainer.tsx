@@ -1,7 +1,7 @@
 import React, {useMemo} from 'react';
 import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
 import {Modal, Badge, Dropdown, Button} from 'react-bootstrap';
-import {IChangeEvent} from 'react-jsonschema-form';
+import {IChangeEvent} from '@rjsf/core';
 import {ProductRowItemContainer_product} from 'ProductRowItemContainer_product.graphql';
 import {ProductRowItemContainer_query} from 'ProductRowItemContainer_query.graphql';
 import updateProductMutation from 'mutations/product/updateProductMutation';

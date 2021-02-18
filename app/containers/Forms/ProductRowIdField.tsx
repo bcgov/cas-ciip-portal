@@ -1,6 +1,6 @@
 import React, {useMemo} from 'react';
 import {InputGroup} from 'react-bootstrap';
-import {FieldProps} from 'react-jsonschema-form';
+import {FieldProps} from '@rjsf/core';
 import {createFragmentContainer, graphql} from 'react-relay';
 import {ProductRowIdField_query} from 'ProductRowIdField_query.graphql';
 

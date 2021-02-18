@@ -55,7 +55,6 @@ exports[`ReportingYearFormDialog Should match last accepted snapshot: no inputs 
           noValidate={false}
           omitExtraData={true}
           onSubmit={[Function]}
-          safeRenderCompletion={false}
           schema={
             Object {
               "properties": Object {
@@ -690,7 +689,6 @@ exports[`ReportingYearFormDialog Should match last accepted snapshot: some past 
           noValidate={false}
           omitExtraData={true}
           onSubmit={[Function]}
-          safeRenderCompletion={false}
           schema={
             Object {
               "properties": Object {

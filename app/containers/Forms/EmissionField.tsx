@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import {FieldProps} from 'react-jsonschema-form';
-import ObjectField from 'react-jsonschema-form/lib/components/fields/ObjectField';
+import {FieldProps} from '@rjsf/core';
+import ObjectField from '@rjsf/core/dist/cjs/components/fields/ObjectField';
 import {Button, Col} from 'react-bootstrap';
 
 /**

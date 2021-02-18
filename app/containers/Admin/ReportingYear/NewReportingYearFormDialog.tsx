@@ -1,8 +1,8 @@
 import React from 'react';
 import {Modal, Container, Button} from 'react-bootstrap';
 import globalFormStyles from '../../Forms/FormSharedStyles';
-import JsonSchemaForm, {FormValidation} from 'react-jsonschema-form';
-import {JSONSchema6} from 'json-schema';
+import JsonSchemaForm, {FormValidation} from '@rjsf/core';
+import {JSONSchema7} from 'json-schema';
 import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
 import FormFieldTemplate from 'containers/Forms/FormFieldTemplate';
 import newReportingYearSchema from './create_reporting_year.json';
@@ -70,7 +70,7 @@ const NewReportingYearFormDialog: React.FunctionComponent<Props> = ({
               omitExtraData
               liveOmit
               noHtml5Validate
-              schema={newReportingYearSchema.schema as JSONSchema6}
+              schema={newReportingYearSchema.schema as JSONSchema7}
               uiSchema={newReportingYearSchema.uiSchema}
               formData={{}}
               FieldTemplate={FormFieldTemplate}

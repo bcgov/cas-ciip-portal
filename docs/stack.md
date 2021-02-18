@@ -33,7 +33,7 @@ In database change management tools, a migration is a set of SQL commands creati
 The mechanism used to define the migrations order is different for both tools.
 
 - Sqitch uses a &quot;plan&quot; file, listing the migrations names in the order in which they should be deployed, and their dependencies. The sqitch tag command allows to cut releases
-- Flyway uses version numbers, stored in the file name, e.g. _V1.44.23.76\_\_migration\_description.sql_ for &quot;versioned migrations&quot; and supports &quot;repeatable migrations&quot; (filename starting with &quot;R\_\_&quot;), which are executed after all the versioned migrations are deployed, in order of their descriptions (e.g. _R\_\_0001\_viewA.sql_, then _R\_\_0002\_viewB.sql_)
+- Flyway uses version numbers, stored in the file name, e.g. _V1.44.23.76\_\_migration_description.sql_ for &quot;versioned migrations&quot; and supports &quot;repeatable migrations&quot; (filename starting with &quot;R\_\_&quot;), which are executed after all the versioned migrations are deployed, in order of their descriptions (e.g. _R\_\_0001_viewA.sql_, then _R\_\_0002_viewB.sql_)
 
 #### Reverting migrations
 
@@ -61,21 +61,13 @@ Other tools such as alembic ([https://alembic.sqlalchemy.org/](https://alembic.s
 
 ### Next.js (incl. React)
 
-
-
 ### Relay
 
-
-
 ### Typescript
-
-
 
 ### Yarn
 
 We are using Yarn for package management as opposed to NPM. One of the advantages to using Yarn is the use of [resolutions](https://classic.yarnpkg.com/en/docs/selective-version-resolutions/). Resolutions can be used to specify package versions, which is helpful when addressing vulnerabilities in sub-dependencies. Using a glob pattern any package dependency or sub-dependency can be set to a specific version not affected by the vulnerability.
-
-
 
 ### Authentication and Authorization
 
@@ -84,7 +76,7 @@ Authentication is performed using the Red Hat SSO provider (Keycloak). We use th
 #### Session expiry
 
 > In order to minimize the time period an attacker can launch attacks over active sessions and hijack them, it is mandatory to set expiration timeouts for every session, establishing the amount of time a session will remain active.
--- [OWASP cheatsheet](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Session_Management_Cheat_Sheet.md#session-expiration)
+> -- [OWASP cheatsheet](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Session_Management_Cheat_Sheet.md#session-expiration)
 
 Keycloak session timeouts are dictated by the `SSO Session Idle`, `SSO Session Max` and `Access Token Lifespan` configured in the keycloak realm. The keycloak session will automatically expire if there is no activity for the time specified in `SSO Session Idle`.
 
@@ -96,14 +88,12 @@ For every request, Our application server uses the `Grant.ensureFreshness` metho
 
 ### Writing to the database using Relay mutations
 
-
-
 #### Mutation Chains
 
 - Individual mutations can be chained on the front-end, but this approach does not effectively cover transactionality.
 - To make all actions transactional (succeed as one block or fail as one block), Whenever a mutation has cascading effect we have written some custom mutation chains in the database
-- For example: creating a new application in the ggircs\_portal schema also requires (among other. things) the creation of a row in the application\_status table.
-- The creation of the row in the application table and the row in the application\_status table is completed in one transactional block in a custom defined mutation chain function written in sql, which can then be used in place of the front-end chained mutations.
+- For example: creating a new application in the ggircs_portal schema also requires (among other. things) the creation of a row in the application_status table.
+- The creation of the row in the application table and the row in the application_status table is completed in one transactional block in a custom defined mutation chain function written in sql, which can then be used in place of the front-end chained mutations.
 - Be careful to define the proper return type for any custom functions as an incorrect function return can cause the mutation to fail.
 
 #### Optimistic Updates
@@ -116,9 +106,10 @@ Idempotent mutations, for instance mutations that update an object, are candidat
 
 We implemented a middleware for the relay network layer which will ensure that mutations that are dispatched in quick succession (the default debounce timeout is `250ms`) are debounced if needed. In order for the network layer to know which mutations to debounce, the client code should provide a `debounceKey`, is passed as a parameter to `BaseMutation.performMutation()`, which identifies the set of mutations that should be debounced together.
 For instance, when updating our form results, we want to debounce the `update-form-result-mutation` based on the input `id`, which results in the following mutation code:
+
 ```ts
 const m = new BaseMutation<updateFormResultMutationType>(
-  'update-form-result-mutation'
+  "update-form-result-mutation"
 );
 
 return m.performMutation(
@@ -150,33 +141,37 @@ Note: We use the PostGraphile `--classic-ids` flag to rename `nodeId` to `id` an
 
 We implemented some custom SQL search functions in the database in order to be able to filter & sort on substrings via relay, as relay's out-of-box filtering did not meet our needs. These search functions are recognized as a `query` type by `Relay`
 
-*Parameters*
+_Parameters_
 The basic parameters passed to all search functions are:
+
 - search_field (the column)
 - search_value (the data value)
 - order_by_field (field to order by)
 - direction (asc or desc)
-Some, but not all search functions have extra parameters for pagination:
+  Some, but not all search functions have extra parameters for pagination:
 - offset_value(row id to start returning from)
 - max_results_per_page(limit)
-The search functions also have some parameters that are specific to the function (ex: a row id).
+  The search functions also have some parameters that are specific to the function (ex: a row id).
 
-*Custom Types*
+_Custom Types_
 Some of the SQL search functions require a new type to be created in order for `Relay` to recognize the query return object.
+
 - Any search functions that return all of, or a subset of ONE table (ex: search_products.sql) do not require a new type, as the return object is recognized as the type of that table (ex: product).
 - Search functions that return an object that is a composite of more than one table need a new type created as `Relay` has no reference to what the object is that is being returned. For example, search_all_facilities.sql returns values that are from tables: facility, organisation and application_revision_status, so the type facility_search_result.sql is needed to inform `Relay` of the shape of the query return object. The return type must exactly represent what is returned by the query. The name and type of the columns must match, and even the order in which those columns are returned by the search function must the reflected in the type.
 
-*Bugs & Future development*
+_Bugs & Future development_
+
 - The current implementation of the custom search functions causes a 'double render' on load. `Relay` requires that the parameter values being passed to the search functions exist from the start, so stand-in values are passed by the rendering page (first render) and then the actual default values are then passed from the component (second render). This is obviously inefficient.
 - The way the custom search functions are set up breaks `Relay`'s conventions resulting in the behaviour above. In breaking those conventions the search functions also cannot make use of some `Relay` functionality like cursors. We have investigative work planned regarding Postgraphile's [@filterable](https://www.graphile.org/postgraphile/smart-tags/) that may alleviate some of the discord between our custom search functions and Relay.
 
-
 ### React JsonSchema Forms
+
 [rjsf documentation](https://react-jsonschema-form.readthedocs.io/en/latest/)
 
 We use the react-jsonschema-form library to render many of our more complicated forms. The rjsf library makes our forms highly customizable. We override the default behaviour of the form components in several places to tailor the templated layouts and internal logic to our specific needs.
 
 #### Custom template example
+
 [custom templates](https://react-jsonschema-form.readthedocs.io/en/latest/advanced-customization/custom-templates/)
 Example: app/containers/Forms/SummaryFormArrayFieldTemplate.tsx
 
@@ -185,6 +180,7 @@ Overriding a template is done by creating a new component with the appropriate r
 The custom template is applied by defining it in the props where the JsonSchemaForm is instantiated (see app/containers/Applications/ApplicationDetailsCardItem.tsx for where the example custom template above is applied).
 
 #### Custom field example
+
 [custom fields](https://react-jsonschema-form.readthedocs.io/en/latest/advanced-customization/custom-widgets-fields/)
 Example: app/containers/Forms/FuelRowIdField.tsx
 
@@ -205,6 +201,7 @@ Snake case. Don&#39;t use reserved words (c.f. style test)
 ### \*status properties
 
 When an entity has a 'status' context we create a new table (with a foreign key to the associated entity), type and computed_column function for the status.
+
 - A separate table for the status allows us to keep the status rows immutable and create an audit trail that can be traced backwards to follow all the states an entity passed through as each status change is logged as a new row in the status table. Previous rows in the status table are immutable ensuring historical integrity.
 - Creating a type associated with the status allows us to define an enum with only the pre-defined statuses as acceptable values.
 - Since a new row in the status table is created on each status change, we use a computed column on the associated entity's table to return the latest status row for that entity. The computed column is an SQL function that receives an entity as a parameter and returns either a query (set of values) or a value. Relay then uses this function to add the results of the computed column to the shape of the entity. This results in an easily accessible status column on the entity whose value is derived from the status table and is always the current status.
@@ -238,7 +235,7 @@ Our end-to-end tests are written using Cypress, which allows us to interact with
 
 Cypress allows developers to write custom commands (defined in app/cypress/support/commands.js). Two such commands that we implemented are cy.login(username, password) and cy.logout() . They allow us to log in the application using the Keycloak single-sign-on server deployed on Pathfinder. We created three test accounts on the realm used in this application, one for each user role.
 
-A `cypress.env.json` file is available on the CAS Scrum team SharePoint (TODO: Should be moved to OpenShift). This file should be downloaded into the project&#39;s `app` folder. This file defines the username and passwords for the test users in environment variables, which can be retrieved using the cy.env(&#39;VAR\_NAME&#39;) function.
+A `cypress.env.json` file is available on the CAS Scrum team SharePoint (TODO: Should be moved to OpenShift). This file should be downloaded into the project&#39;s `app` folder. This file defines the username and passwords for the test users in environment variables, which can be retrieved using the cy.env(&#39;VAR_NAME&#39;) function.
 
 #### Running end-to-end tests
 
@@ -251,7 +248,7 @@ A `cypress.env.json` file is available on the CAS Scrum team SharePoint (TODO: S
 
 #### Visual testing with Percy
 
-Percy allow us to record screenshots of the application, using the `cy.percySnapshot()` method. Unless the tests are run using Percy, with `yarn test:e2e-snapshots`, which requires the PERCY\_TOKEN environment variable to be defined (see the project settings here: [https://percy.io/bcgov-cas/cas-ciip-portal/settings](https://percy.io/bcgov-cas/cas-ciip-portal/settings)). Percy will be run on the CI server, once the end-to-end tests are successful, so you do not need to run them locally. Until the Percy GitHub integration is added in the bcgov org, our pull request review process will include a manual approval (see the Version Control, Mandatory peer review section).
+Percy allow us to record screenshots of the application, using the `cy.percySnapshot()` method. Unless the tests are run using Percy, with `yarn test:e2e-snapshots`, which requires the PERCY_TOKEN environment variable to be defined (see the project settings here: [https://percy.io/bcgov-cas/cas-ciip-portal/settings](https://percy.io/bcgov-cas/cas-ciip-portal/settings)). Percy will be run on the CI server, once the end-to-end tests are successful, so you do not need to run them locally. Until the Percy GitHub integration is added in the bcgov org, our pull request review process will include a manual approval (see the Version Control, Mandatory peer review section).
 
 #### Alternatives to Percy
 
@@ -262,14 +259,11 @@ We explored two alternatives to Percy:
 
 #### What to test with cypress
 
-
-
 #### Data setup and teardown
 
 #### Known Issues
 
 - Cypress has an open issue[https://github.com/cypress-io/cypress/issues/4443] regarding dom snapshots and select tags where the value of the select is lost.
-
 
 ## Version Control
 

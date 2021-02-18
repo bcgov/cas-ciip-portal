@@ -1,13 +1,13 @@
 import React from 'react';
 import {createFragmentContainer, RelayProp} from 'react-relay';
-import JsonSchemaForm, {IChangeEvent} from 'react-jsonschema-form';
+import JsonSchemaForm, {IChangeEvent} from '@rjsf/core';
 import {Button, Card} from 'react-bootstrap';
 import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
 import FormArrayFieldTemplate from 'containers/Forms/FormArrayFieldTemplate';
 import FormFieldTemplate from 'containers/Forms/FormFieldTemplate';
 import createProductMutation from 'mutations/product/createProductMutation';
 import {CiipProductState} from 'createProductMutation.graphql';
-import {JSONSchema6} from 'json-schema';
+import {JSONSchema7} from 'json-schema';
 import productSchema from './product-schema.json';
 import HeaderWidget from 'components/HeaderWidget';
 
@@ -82,7 +82,7 @@ export const ProductCreator: React.FunctionComponent<Props> = ({
               omitExtraData
               liveOmit
               widgets={{header: HeaderWidget}}
-              schema={productSchema.schema as JSONSchema6}
+              schema={productSchema.schema as JSONSchema7}
               uiSchema={productSchema.uiSchema}
               showErrorList={false}
               ArrayFieldTemplate={FormArrayFieldTemplate}

@@ -45,7 +45,6 @@ exports[`NewReportingYearFormDialog Should match last accepted snapshot 1`] = `
           noValidate={false}
           omitExtraData={true}
           onSubmit={[Function]}
-          safeRenderCompletion={false}
           schema={
             Object {
               "properties": Object {

@@ -1,5 +1,5 @@
 import React, {useCallback} from 'react';
-import {WidgetProps} from 'react-jsonschema-form';
+import {WidgetProps} from '@rjsf/core';
 import SearchDropdown from 'components/SearchDropdown';
 
 const SearchDropdownWidget: React.FunctionComponent<WidgetProps> = ({

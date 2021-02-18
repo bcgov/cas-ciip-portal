@@ -1,7 +1,7 @@
 import React from 'react';
 import {Modal, Container, Col, Row, Button} from 'react-bootstrap';
-import {JSONSchema6} from 'json-schema';
-import JsonSchemaForm from 'react-jsonschema-form';
+import {JSONSchema7} from 'json-schema';
+import JsonSchemaForm from '@rjsf/core';
 import {ProductRowItemContainer_product} from 'ProductRowItemContainer_product.graphql';
 import SearchDropdownWidget from 'components/Forms/SearchDropdownWidget';
 import ProductRowIdField from 'containers/Forms/ProductRowIdField';
@@ -18,7 +18,7 @@ interface Props {
   linkData: any;
 }
 
-const linkSchema: JSONSchema6 = {
+const linkSchema: JSONSchema7 = {
   type: 'array',
   items: {
     $ref: '#/definitions/product'

@@ -1,6 +1,6 @@
-import {JSONSchema6} from 'json-schema';
+import {JSONSchema7} from 'json-schema';
 
-const addOperatorSchema: JSONSchema6 = {
+const addOperatorSchema: JSONSchema7 = {
   type: 'object',
   properties: {
     operatorName: {

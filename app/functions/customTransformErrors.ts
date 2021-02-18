@@ -1,4 +1,4 @@
-import {AjvError} from 'react-jsonschema-form';
+import {AjvError} from '@rjsf/core';
 import {FormJson} from 'next-env';
 
 export const customTransformErrors = (

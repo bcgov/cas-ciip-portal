@@ -1,5 +1,5 @@
-import JsonSchemaForm from 'react-jsonschema-form';
-import {toErrorList} from 'react-jsonschema-form/lib/validate';
+import JsonSchemaForm from '@rjsf/core';
+import {toErrorList} from '@rjsf/core/dist/cjs/validate';
 /**
  * Extends the Form class from 'react-jsonchema-form'
  * to enable validation on blur for all fields
@@ -47,10 +47,13 @@ export default class Form<T> extends JsonSchemaForm<T> {
         fieldPath[fieldPath.length - 1]
       ] = blurredFieldErrorSchema;
 
+      const errorList = toErrorList(mergedErrorSchema);
       this.setState(
         {
-          errors: toErrorList(mergedErrorSchema),
-          errorSchema: mergedErrorSchema
+          errors: errorList,
+          errorSchema: mergedErrorSchema,
+          schemaValidationErrors: errorList,
+          schemaValidationErrorSchema: mergedErrorSchema
         },
         () => {
           superOnBlur(id, value);

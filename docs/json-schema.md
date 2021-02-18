@@ -10,8 +10,5 @@ TODO: explain format of objects ({schema, uiSchema, customFormats, customErrors}
 
 ### TODO: support of formulas in forms
 
-
-
-
 [json schema specification]: https://json-schema.org/
 [react-jsonschema-form]: https://github.com/rjsf-team/react-jsonschema-form
