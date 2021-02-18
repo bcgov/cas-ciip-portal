@@ -1,16 +1,18 @@
 import {CiipProductState} from 'createProductMutation.graphql';
 
-const typeMappers = {
-  product_state: (x) => x as CiipProductState
-};
+class RelayVarsParser {
+  typeMappers: object = {
+    product_state: (x) => x as CiipProductState
+  };
 
-const mapTypes = (key, value) => {
-  if (typeMappers[key]) return typeMappers[key](value);
-  return value;
-};
+  parse = (relayVarsString) => {
+    return JSON.parse(relayVarsString, this.mapTypes);
+  };
 
-const parseRelayVars = (relayVarsString) => {
-  return JSON.parse(relayVarsString, mapTypes);
-};
+  private mapTypes = (key, value) => {
+    if (this.typeMappers[key]) return this.typeMappers[key](value);
+    return value;
+  };
+}
 
-export {parseRelayVars};
+export {RelayVarsParser};
