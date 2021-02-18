@@ -231,3 +231,4 @@ computed_columns/ciip_user_organisation_operator_name [tables/ciip_user_organisa
 computed_columns/product_current_benchmark [tables/benchmark] 2021-02-17T21:51:22Z Dylan Leard <dylan@button.is> # Computed column returns the current benchmark for a product as a scalar for filter/sort
 computed_columns/product_current_eligibility_threshold [tables/benchmark] 2021-02-17T21:52:01Z Dylan Leard <dylan@button.is> # Computed column returns the current eligibility threshold for a product for filter/sort
 search_functions/search_application_list [search_functions/search_application_list@v1.16.0] 2021-02-18T00:11:29Z Dylan Leard <dylan@button.is> # Remove search_application_list() deprecated
+search_functions/search_ciip_user_organisation [search_functions/search_ciip_user_organisation@v1.16.0] 2021-02-18T00:15:36Z Dylan Leard <dylan@button.is> # Remove search_ciip_user_organisation deprecated
