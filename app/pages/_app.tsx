@@ -10,9 +10,6 @@ import LoadingSpinner from 'components/LoadingSpinner';
 import ToasterHelper from 'components/helpers/Toaster';
 import 'react-toastify/dist/ReactToastify.min.css';
 import PageRedirectHandler from 'components/PageRedirectHandler';
-import {RelayVarsParser} from 'functions/customRelayUrlParser';
-
-const relayVarsParser = new RelayVarsParser();
 
 interface AppProps {
   pageProps: {
@@ -55,7 +52,7 @@ export default class App extends NextApp<AppProps> {
     );
 
     const relayVars = router.query.relayVars
-      ? relayVarsParser.parse(String(router.query.relayVars))
+      ? JSON.parse(String(router.query.relayVars))
       : {};
 
     return (
