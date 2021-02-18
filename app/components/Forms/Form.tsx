@@ -47,10 +47,13 @@ export default class Form<T> extends JsonSchemaForm<T> {
         fieldPath[fieldPath.length - 1]
       ] = blurredFieldErrorSchema;
 
+      const errorList = toErrorList(mergedErrorSchema);
       this.setState(
         {
-          errors: toErrorList(mergedErrorSchema),
-          errorSchema: mergedErrorSchema
+          errors: errorList,
+          errorSchema: mergedErrorSchema,
+          schemaValidationErrors: errorList,
+          schemaValidationErrorSchema: mergedErrorSchema
         },
         () => {
           superOnBlur(id, value);
