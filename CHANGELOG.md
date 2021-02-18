@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.17.0](https://github.com/bcgov/cas-ciip-portal/compare/v1.16.0...v1.17.0) (2021-02-18)
+
+
+### Features
+
+* default layout expands to the bottom of the viewport ([24ca839](https://github.com/bcgov/cas-ciip-portal/commit/24ca839edeb6246804245b537371cac97e9090db))
+* re-order products table, merge all product config into settings ([9a702b7](https://github.com/bcgov/cas-ciip-portal/commit/9a702b7fc6247ea870a6f6baf260a9b0778a0fc5))
+* removing data redeploy on certifier url tests ([4f725de](https://github.com/bcgov/cas-ciip-portal/commit/4f725de389b47ec8d780aed4c8c386c518bfca1d))
+* rename Flared Natural Gas CH4 to "Flared Natural Gas" ([312a4b5](https://github.com/bcgov/cas-ciip-portal/commit/312a4b5a5dc2bf452e5851bf721259505ef14c87))
+
+
+### Bug Fixes
+
+* cypress time mock and syntax ([927e19d](https://github.com/bcgov/cas-ciip-portal/commit/927e19dc29b62c478c81eb78a3aa937049d7b0a6))
+* deploy mocks schema in test openshift environment ([4c0e917](https://github.com/bcgov/cas-ciip-portal/commit/4c0e917515e38c02a3b592806722d097f4326adf))
+* no need for string interpolation ([7cb8caf](https://github.com/bcgov/cas-ciip-portal/commit/7cb8caf7ff49b20a3c5ca7b5e59c8fc733fd2c20))
+* user-friendly application status labels and spell things out ([8c72466](https://github.com/bcgov/cas-ciip-portal/commit/8c724668e38485cf8b4e538ece88141866c7cf33))
+
 ## [1.16.0](https://github.com/bcgov/cas-ciip-portal/compare/v1.14.0...v1.16.0) (2021-02-03)
 
 
