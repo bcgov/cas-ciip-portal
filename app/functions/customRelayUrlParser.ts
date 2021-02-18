@@ -6,6 +6,7 @@ class RelayVarsParser {
   };
 
   parse = (relayVarsString) => {
+    if (!relayVarsString) return null;
     return JSON.parse(relayVarsString, this.mapTypes);
   };
 
