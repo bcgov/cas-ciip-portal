@@ -55,11 +55,7 @@ class OrganisationRequests extends Component<Props> {
     const {query} = this.props;
     return (
       <DefaultLayout session={query.session} title="Organisation Requests">
-        <SearchTable
-          query={query}
-          defaultOrderByField="status"
-          defaultOrderByDisplay="Status"
-        >
+        <SearchTable query={query} defaultOrderByField="status">
           {(props) => <OrganisationRequestsTable {...props} />}
         </SearchTable>
       </DefaultLayout>

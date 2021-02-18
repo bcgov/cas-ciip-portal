@@ -59,11 +59,7 @@ class Applications extends Component<Props> {
     const {query} = this.props;
     return (
       <DefaultLayout title="Applications" session={query.session}>
-        <SearchTable
-          query={query}
-          defaultOrderByField="operator_name"
-          defaultOrderByDisplay="Operator Name"
-        >
+        <SearchTable query={query} defaultOrderByField="operator_name">
           {(props) => <ApplicationListContainer {...props} />}
         </SearchTable>
       </DefaultLayout>

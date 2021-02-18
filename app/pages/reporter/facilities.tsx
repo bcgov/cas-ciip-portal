@@ -65,7 +65,6 @@ class FacilitiesList extends Component<Props> {
         <SearchTable
           query={this.props.query}
           defaultOrderByField="facility_name"
-          defaultOrderByDisplay="Facility Name"
         >
           {(props) => <FacilitiesListContainer {...props} />}
         </SearchTable>

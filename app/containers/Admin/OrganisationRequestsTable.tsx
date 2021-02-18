@@ -12,7 +12,6 @@ import {EnumSearchOption} from 'components/Search/EnumSearchOption';
 interface Props {
   query: OrganisationRequestsTable_query;
   orderByField?: string;
-  orderByDisplay?: string;
   direction?: string;
   handleEvent: (...args: any[]) => void;
 }

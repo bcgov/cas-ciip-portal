@@ -131,11 +131,7 @@ class ProductsBenchmarks extends Component<Props> {
               />
             )}
 
-            <SearchTable
-              query={query}
-              defaultOrderByField="product_name"
-              defaultOrderByDisplay="Product"
-            >
+            <SearchTable query={query} defaultOrderByField="product_name">
               {(props) => <ProductListContainer {...props} />}
             </SearchTable>
           </Col>

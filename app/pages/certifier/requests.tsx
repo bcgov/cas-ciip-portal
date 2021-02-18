@@ -95,7 +95,6 @@ export default class CertifierRequests extends Component<Props> {
         <SearchTable
           query={this.props.query}
           defaultOrderByField="facility_name"
-          defaultOrderByDisplay="Facility"
         >
           {(props) => (
             <CertificationRequestsContainer

@@ -3,7 +3,6 @@ import {Component} from 'react';
 interface Props {
   query;
   defaultOrderByField: string;
-  defaultOrderByDisplay: string;
   children: (props) => JSX.Element;
 }
 class SearchTable extends Component<Props> {
