@@ -166,13 +166,13 @@ _Bugs & Future development_
 
 ### React JsonSchema Forms
 
-[rjsf documentation](https://@rjsf/core.readthedocs.io/en/latest/)
+[rjsf documentation](https://react-jsonschema-form.readthedocs.io/en/latest/)
 
-We use the @rjsf/core library to render many of our more complicated forms. The rjsf library makes our forms highly customizable. We override the default behaviour of the form components in several places to tailor the templated layouts and internal logic to our specific needs.
+We use the react-jsonschema-form library to render many of our more complicated forms. The rjsf library makes our forms highly customizable. We override the default behaviour of the form components in several places to tailor the templated layouts and internal logic to our specific needs.
 
 #### Custom template example
 
-[custom templates](https://@rjsf/core.readthedocs.io/en/latest/advanced-customization/custom-templates/)
+[custom templates](https://react-jsonschema-form.readthedocs.io/en/latest/advanced-customization/custom-templates/)
 Example: app/containers/Forms/SummaryFormArrayFieldTemplate.tsx
 
 Overriding a template is done by creating a new component with the appropriate rjsf props (in the example above, ArrayFieldTemplateProps) and redefining the template to suit specific needs. In the example above, we have rewritten the template to customize how each field in an array should be displayed when shown on the Summary page. We use some logic in the custom template to add display:none css to each field that has a value of zero to block those fields from rendering on the Summary page.
@@ -181,7 +181,7 @@ The custom template is applied by defining it in the props where the JsonSchemaF
 
 #### Custom field example
 
-[custom fields](https://@rjsf/core.readthedocs.io/en/latest/advanced-customization/custom-widgets-fields/)
+[custom fields](https://react-jsonschema-form.readthedocs.io/en/latest/advanced-customization/custom-widgets-fields/)
 Example: app/containers/Forms/FuelRowIdField.tsx
 
 Overriding a field is done the same way as a template, by creating a new component with the appropriate rjsf props (in the example above we extend FieldProps). In the example we have customized the behaviour of the RowId field. This field is a numeric ID that corresponds to an enumerated list of fuel names. Our custom field makes use of [useMemo()](https://reactjs.org/docs/hooks-reference.html#usememo) to only render values when necessary and matches the ID with the corresponding name, rendering the name of the fuel in the list rather than the numerical ID.
