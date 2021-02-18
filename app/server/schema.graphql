@@ -955,7 +955,7 @@ type Application implements Node {
   from the composite return of the application_application_revision_status
   computed column
   """
-  status: String
+  status: CiipApplicationRevisionStatus
 
   """
   This function is a wrapper to return created_at (as submission_date) as a
@@ -2205,7 +2205,7 @@ input ApplicationFilter {
   searchCertificationUrlResultsByApplicationIdExist: Boolean
 
   """Filter by the object’s `status` field."""
-  status: StringFilter
+  status: CiipApplicationRevisionStatusFilter
 
   """Filter by the object’s `submissionDate` field."""
   submissionDate: DatetimeFilter

@@ -25,7 +25,7 @@ class Applications extends Component<Props> {
       $facility_name: String
       $reporting_year: Int
       $submission_date: Datetime
-      $status: String
+      $status: CiipApplicationRevisionStatus
       $order_by: [ApplicationsOrderBy!]
     ) {
       query {

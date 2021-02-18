@@ -7,6 +7,8 @@ import {NumberSearchOption} from 'components/Search/NumberSearchOption';
 import {NoHeaderSearchOption} from 'components/Search/NoHeaderSearchOption';
 import {TextSearchOption} from 'components/Search/TextSearchOption';
 import {SortOnlyOption} from 'components/Search/SortOnlyOption';
+import {EnumSearchOption} from 'components/Search/EnumSearchOption';
+import {CiipApplicationRevisionStatus} from 'createApplicationRevisionStatusMutation.graphql';
 
 export const ApplicationList = (props) => {
   const {handleEvent} = props;
@@ -18,7 +20,12 @@ export const ApplicationList = (props) => {
     new TextSearchOption('Facility Name', 'facility_name'),
     new NumberSearchOption('Reporting Year', 'reporting_year'),
     new SortOnlyOption('Submission Date', 'submission_date'),
-    new TextSearchOption('Status', 'status'),
+    new EnumSearchOption<CiipApplicationRevisionStatus>('Status', 'status', [
+      'SUBMITTED',
+      'APPROVED',
+      'REJECTED',
+      'REQUESTED_CHANGES'
+    ]),
     NoHeaderSearchOption
   ];
 
@@ -55,7 +62,7 @@ export default createFragmentContainer(ApplicationList, {
       facility_name: {type: "String"}
       reporting_year: {type: "Int"}
       submission_date: {type: "Datetime"}
-      status: {type: "String"}
+      status: {type: "CiipApplicationRevisionStatus"}
       order_by: {type: "[ApplicationsOrderBy!]"}
     ) {
       allApplications(
@@ -65,7 +72,7 @@ export default createFragmentContainer(ApplicationList, {
           facilityName: {includesInsensitive: $facility_name}
           reportingYear: {equalTo: $reporting_year}
           submissionDate: {equalTo: $submission_date}
-          status: {includesInsensitive: $status}
+          status: {notEqualTo: DRAFT, equalTo: $status}
         }
         orderBy: $order_by
       ) {
