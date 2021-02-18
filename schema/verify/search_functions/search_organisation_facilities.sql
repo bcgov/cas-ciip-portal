@@ -2,6 +2,15 @@
 
 begin;
 
-select pg_get_functiondef('ggircs_portal.search_organisation_facilities(text, text, text, text, text)'::regprocedure);
+do $$
+  begin
+
+    if (select exists(select * from pg_proc where proname='ggircs_portal.search_organisation_facilities')) then
+      raise exception 'ggircs_portal.search_organisation_facilities exists when it should not';
+    else
+      perform true;
+    end if;
+
+  end; $$;
 
 rollback;
