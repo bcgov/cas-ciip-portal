@@ -4,10 +4,13 @@ begin;
 
 do $$
   begin
-    assert (
-      select true from pg_catalog.pg_type where typname = 'application_search_result'
-    ), 'type "application_search_result" is not defined';
-  end;
-$$;
+
+    if (select exists(select true from pg_catalog.pg_type where typname = 'application_search_result')) then
+      raise exception 'type ggircs_portal.application_search_result exists when it should not';
+    else
+      perform true;
+    end if;
+
+  end; $$;
 
 rollback;

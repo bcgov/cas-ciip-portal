@@ -234,3 +234,4 @@ search_functions/search_application_list [search_functions/search_application_li
 search_functions/search_ciip_user_organisation [search_functions/search_ciip_user_organisation@v1.16.0] 2021-02-18T00:15:36Z Dylan Leard <dylan@button.is> # Remove search_ciip_user_organisation deprecated
 search_functions/search_products [search_functions/search_products@v1.16.0] 2021-02-18T00:17:55Z Dylan Leard <dylan@button.is> # Remove search_products deprecated
 search_functions/search_organisation_facilities [search_functions/search_organisation_facilities@v1.16.0] 2021-02-18T00:20:51Z Dylan Leard <dylan@button.is> # Remove search_organisation_facilities deprecated
+types/application_search_result [types/application_search_result@v1.16.0] 2021-02-18T00:40:27Z Dylan Leard <dylan@button.is> # Remove type application_search_result deprecated
