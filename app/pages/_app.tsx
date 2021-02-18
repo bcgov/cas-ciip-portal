@@ -10,6 +10,7 @@ import LoadingSpinner from 'components/LoadingSpinner';
 import ToasterHelper from 'components/helpers/Toaster';
 import 'react-toastify/dist/ReactToastify.min.css';
 import PageRedirectHandler from 'components/PageRedirectHandler';
+import {parseRelayVars} from 'functions/customRelayUrlParser';
 
 interface AppProps {
   pageProps: {
@@ -33,6 +34,9 @@ export default class App extends NextApp<AppProps> {
     };
   };
 
+  prevComponentProps = null;
+  prevComponentClass = null;
+
   render() {
     const {
       Component,
@@ -48,6 +52,10 @@ export default class App extends NextApp<AppProps> {
       })
     );
 
+    const relayVars = router.query.relayVars
+      ? parseRelayVars(String(router.query.relayVars))
+      : {};
+
     return (
       <ErrorBoundary>
         <PageRedirectHandler
@@ -56,12 +64,25 @@ export default class App extends NextApp<AppProps> {
         >
           <QueryRenderer
             environment={environment}
+            fetchPolicy="store-and-network"
             query={Component.query}
-            variables={{...variables, ...router.query}}
+            variables={{...variables, ...router.query, ...relayVars}}
             render={({error, props}: {error: any; props: any}) => {
               if (error !== null) throw error; // Let the ErrorBoundary above render the error nicely
-              if (props)
+              if (props) {
+                this.prevComponentProps = props;
+                this.prevComponentClass = Component;
+
                 return <Component {...props} router={this.props.router} />;
+              }
+              if (Component === this.prevComponentClass)
+                return (
+                  <Component
+                    {...this.prevComponentProps}
+                    router={this.props.router}
+                  />
+                );
+
               return (
                 <div>
                   <LoadingSpinner />
