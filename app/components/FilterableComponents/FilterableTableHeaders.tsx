@@ -49,6 +49,7 @@ const FilterableTableHeaders: React.FunctionComponent<ISearchProps> = (
     applySearch({});
   };
 
+  // functional equivalent to componentDidMount()
   useEffect(() => {
     const parsedUrl = router.query.relayVars
       ? JSON.parse(String(router.query.relayVars))
