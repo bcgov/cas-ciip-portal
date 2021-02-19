@@ -11,8 +11,9 @@ export class EnumSearchOption<T> extends BaseSearchOption<string> {
     });
   }
 
-  toUrl? = (val: string) => {
-    return val;
+  toUrl? = (val) => {
+    if (this.enumValues.includes(val)) return val;
+    return null;
   };
 
   searchOptionValues: {display: T; value: T}[];

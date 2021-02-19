@@ -1,5 +1,5 @@
 import {BaseSearchOption} from './BaseSearchOption';
 
 export class NumberSearchOption extends BaseSearchOption<Number> {
-  toUrl = (input) => Number(input);
+  toUrl = (input) => Number(input) || null;
 }
