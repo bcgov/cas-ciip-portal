@@ -1,7 +1,7 @@
 import React from 'react';
 import {Col, Table, Alert} from 'react-bootstrap';
 import SortableTableHeader from './SortableTableHeader';
-import SearchTableHeaders from './FilterableTableHeaders';
+import FilterableTableHeaders from './FilterableTableHeaders';
 import {ISearchProps} from 'components/Search/SearchProps';
 
 interface Props extends ISearchProps {
@@ -68,7 +68,7 @@ export const SearchTableLayoutComponent: React.FunctionComponent<Props> = (
               />
             ))}
           </tr>
-          <SearchTableHeaders searchOptions={searchOptions} />
+          <FilterableTableHeaders searchOptions={searchOptions} />
         </thead>
         {body}
       </Table>

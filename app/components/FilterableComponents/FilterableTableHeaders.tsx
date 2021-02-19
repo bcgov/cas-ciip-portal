@@ -5,7 +5,9 @@ import {ISearchProps} from 'components/Search/SearchProps';
 
 const NONE_VALUES = [null, undefined];
 
-const SearchTableHeaders: React.FunctionComponent<ISearchProps> = (props) => {
+const FilterableTableHeaders: React.FunctionComponent<ISearchProps> = (
+  props
+) => {
   const router = useRouter();
 
   const [searchFilters, setSearchFilters] = useState({});
@@ -120,4 +122,4 @@ const SearchTableHeaders: React.FunctionComponent<ISearchProps> = (props) => {
   );
 };
 
-export default SearchTableHeaders;
+export default FilterableTableHeaders;
