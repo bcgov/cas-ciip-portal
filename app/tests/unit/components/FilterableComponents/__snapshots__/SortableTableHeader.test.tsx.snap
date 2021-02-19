@@ -1,0 +1,148 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The sortable table header displays the sort direction arrows if sortable is true 1`] = `
+<th
+  onClick={[Function]}
+>
+  <span>
+    testdisplay
+  </span>
+  <span
+    style={
+      Object {
+        "height": "100%",
+        "position": "absolute",
+        "right": "0.75em",
+      }
+    }
+  >
+    <FontAwesomeIcon
+      border={false}
+      className=""
+      color="white"
+      fixedWidth={false}
+      flip={null}
+      icon={
+        Object {
+          "icon": Array [
+            320,
+            512,
+            Array [],
+            "f0dc",
+            "M41 288h238c21.4 0 32.1 25.9 17 41L177 448c-9.4 9.4-24.6 9.4-33.9 0L24 329c-15.1-15.1-4.4-41 17-41zm255-105L177 64c-9.4-9.4-24.6-9.4-33.9 0L24 183c-15.1 15.1-4.4 41 17 41h238c21.4 0 32.1-25.9 17-41z",
+          ],
+          "iconName": "sort",
+          "prefix": "fas",
+        }
+      }
+      inverse={false}
+      listItem={false}
+      mask={null}
+      pull={null}
+      pulse={false}
+      rotation={null}
+      size={null}
+      spin={false}
+      swapOpacity={false}
+      symbol={false}
+      title=""
+      transform={null}
+    />
+  </span>
+  <style>
+    
+        .table thead th {
+          background: #003366;
+          color: white;
+          position: relative;
+          padding-right: calc(1em + 10px);
+          cursor: pointer;
+        }
+      
+  </style>
+</th>
+`;
+
+exports[`The sortable table header doesnt display the sort direction arrows if sortable is false 1`] = `
+<th
+  onClick={[Function]}
+>
+  <span>
+    testdisplay
+  </span>
+  <style>
+    
+        .table thead th {
+          background: #003366;
+          color: white;
+          position: relative;
+          padding-right: calc(1em + 10px);
+          cursor: pointer;
+        }
+      
+  </style>
+</th>
+`;
+
+exports[`The sortable table header gets the sort direction from the router 1`] = `
+<th
+  onClick={[Function]}
+>
+  <span>
+    test_display
+  </span>
+  <span
+    style={
+      Object {
+        "height": "100%",
+        "position": "absolute",
+        "right": "0.75em",
+      }
+    }
+  >
+    <FontAwesomeIcon
+      border={false}
+      className=""
+      color="white"
+      fixedWidth={false}
+      flip={null}
+      icon={
+        Object {
+          "icon": Array [
+            320,
+            512,
+            Array [],
+            "f0d7",
+            "M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z",
+          ],
+          "iconName": "caret-down",
+          "prefix": "fas",
+        }
+      }
+      inverse={false}
+      listItem={false}
+      mask={null}
+      pull={null}
+      pulse={false}
+      rotation={null}
+      size={null}
+      spin={false}
+      swapOpacity={false}
+      symbol={false}
+      title=""
+      transform={null}
+    />
+  </span>
+  <style>
+    
+        .table thead th {
+          background: #003366;
+          color: white;
+          position: relative;
+          padding-right: calc(1em + 10px);
+          cursor: pointer;
+        }
+      
+  </style>
+</th>
+`;
