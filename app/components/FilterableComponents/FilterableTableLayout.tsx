@@ -16,7 +16,7 @@ interface Props extends ISearchProps {
   isLoading?: boolean;
   extraControls?: JSX.Element;
 }
-export const SearchTableLayoutComponent: React.FunctionComponent<Props> = (
+export const FilterableTableLayoutComponent: React.FunctionComponent<Props> = (
   props
 ) => {
   const {
@@ -131,4 +131,4 @@ export const SearchTableLayoutComponent: React.FunctionComponent<Props> = (
   );
 };
 
-export default SearchTableLayoutComponent;
+export default FilterableTableLayoutComponent;
