@@ -1,0 +1,222 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The filterable table headers component only renders elements that are searchable 1`] = `
+<tr>
+  <td
+    key="testtest"
+  />
+  <td
+    key="test2test2"
+  />
+  <td
+    key="test3test3"
+  >
+    <FormControl
+      name="test3"
+      onChange={[Function]}
+      placeholder="Search"
+      value=""
+    />
+  </td>
+  <td>
+    <ButtonGroup
+      role="group"
+      toggle={false}
+      vertical={false}
+    >
+      <Button
+        active={false}
+        disabled={false}
+        onClick={[Function]}
+        variant="success"
+      >
+        Search
+      </Button>
+      <Button
+        active={false}
+        disabled={false}
+        onClick={[Function]}
+        variant="danger"
+      >
+        Reset
+      </Button>
+    </ButtonGroup>
+  </td>
+</tr>
+`;
+
+exports[`The filterable table headers component renders a option input if values are provided 1`] = `
+<tr>
+  <td
+    key="testtest"
+  >
+    <FormControl
+      as="select"
+      name="test"
+      onChange={[Function]}
+      placeholder="Search"
+      value=""
+    >
+      <option
+        key="test-placeholder"
+        value=""
+      >
+        ...
+      </option>
+      <option
+        key="test-option1"
+        value="optionvalue1"
+      >
+        option1
+      </option>
+      <option
+        key="test-option2"
+        value="optionvalue2"
+      >
+        option2
+      </option>
+    </FormControl>
+  </td>
+  <td>
+    <ButtonGroup
+      role="group"
+      toggle={false}
+      vertical={false}
+    >
+      <Button
+        active={false}
+        disabled={false}
+        onClick={[Function]}
+        variant="success"
+      >
+        Search
+      </Button>
+      <Button
+        active={false}
+        disabled={false}
+        onClick={[Function]}
+        variant="danger"
+      >
+        Reset
+      </Button>
+    </ButtonGroup>
+  </td>
+</tr>
+`;
+
+exports[`The filterable table headers component renders a text input if values are not provided 1`] = `
+<tr>
+  <td
+    key="testtest"
+  >
+    <FormControl
+      name="test"
+      onChange={[Function]}
+      placeholder="Search"
+      value=""
+    />
+  </td>
+  <td>
+    <ButtonGroup
+      role="group"
+      toggle={false}
+      vertical={false}
+    >
+      <Button
+        active={false}
+        disabled={false}
+        onClick={[Function]}
+        variant="success"
+      >
+        Search
+      </Button>
+      <Button
+        active={false}
+        disabled={false}
+        onClick={[Function]}
+        variant="danger"
+      >
+        Reset
+      </Button>
+    </ButtonGroup>
+  </td>
+</tr>
+`;
+
+exports[`The filterable table headers component renders as many td elements as search options, plus one for the search buttons 1`] = `
+<tr>
+  <td
+    key="testtest"
+  >
+    <FormControl
+      name="test"
+      onChange={[Function]}
+      placeholder="Search"
+      value=""
+    />
+  </td>
+  <td
+    key="test2test2"
+  >
+    <FormControl
+      name="test2"
+      onChange={[Function]}
+      placeholder="Search"
+      value=""
+    />
+  </td>
+  <td>
+    <ButtonGroup
+      role="group"
+      toggle={false}
+      vertical={false}
+    >
+      <Button
+        active={false}
+        disabled={false}
+        onClick={[Function]}
+        variant="success"
+      >
+        Search
+      </Button>
+      <Button
+        active={false}
+        disabled={false}
+        onClick={[Function]}
+        variant="danger"
+      >
+        Reset
+      </Button>
+    </ButtonGroup>
+  </td>
+</tr>
+`;
+
+exports[`The filterable table headers component renders search and reset buttons 1`] = `
+<tr>
+  <td>
+    <ButtonGroup
+      role="group"
+      toggle={false}
+      vertical={false}
+    >
+      <Button
+        active={false}
+        disabled={false}
+        onClick={[Function]}
+        variant="success"
+      >
+        Search
+      </Button>
+      <Button
+        active={false}
+        disabled={false}
+        onClick={[Function]}
+        variant="danger"
+      >
+        Reset
+      </Button>
+    </ButtonGroup>
+  </td>
+</tr>
+`;
