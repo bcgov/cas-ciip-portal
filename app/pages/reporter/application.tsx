@@ -74,7 +74,7 @@ class Application extends Component<Props> {
 
     return (
       <DefaultLayout session={session}>
-        <ApplicationWizard query={query} />
+        <ApplicationWizard query={query} loading={this.props.loading} />
         <style jsx global>{`
           @media print {
             .nav-guide-container {

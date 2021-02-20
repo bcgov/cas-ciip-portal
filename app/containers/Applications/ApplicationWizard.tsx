@@ -4,6 +4,7 @@ import {graphql, createFragmentContainer} from 'react-relay';
 import ApplicationFormNavbar from 'components/Forms/ApplicationFormNavbar';
 import {ApplicationWizard_query} from 'ApplicationWizard_query.graphql';
 import ApplicationWizardStep from './ApplicationWizardStep';
+import LoadingSpinner from 'components/LoadingSpinner';
 
 const setRouterQueryParam = (router, key, value, replace = false) => {
   const newUrl = {
@@ -19,6 +20,7 @@ const setRouterQueryParam = (router, key, value, replace = false) => {
 
 interface Props {
   query: ApplicationWizard_query;
+  loading: boolean;
 }
 
 /*
@@ -27,7 +29,8 @@ interface Props {
  * ApplicationWizardConfirmation is rendered.
  */
 export const ApplicationWizardComponent: React.FunctionComponent<Props> = ({
-  query
+  query,
+  loading
 }) => {
   const {application} = query || {};
   const router = useRouter();
@@ -94,10 +97,19 @@ export const ApplicationWizardComponent: React.FunctionComponent<Props> = ({
         const formResultId = goToConfirmation
           ? undefined
           : orderedFormResults[i + 1].node.id;
-        setRouterQueryParam(router, 'formResultId', formResultId);
-        if (goToConfirmation) {
-          router.query.formResultId = formResultId;
-          setRouterQueryParam(router, 'confirmationPage', true);
+
+        if (!goToConfirmation)
+          setRouterQueryParam(router, 'formResultId', formResultId);
+        else {
+          const url = {
+            pathName: router.pathname,
+            query: {
+              ...router.query,
+              formResultId: undefined,
+              confirmationPage: true
+            }
+          };
+          router.push(url, url, {shallow: true});
         }
       }
     }
@@ -111,11 +123,14 @@ export const ApplicationWizardComponent: React.FunctionComponent<Props> = ({
         confirmationPage={confirmationPage}
         version={router.query.version as string}
       />
-      <ApplicationWizardStep
-        query={query}
-        confirmationPage={confirmationPage}
-        onStepComplete={onStepComplete}
-      />
+      {!loading && (
+        <ApplicationWizardStep
+          query={query}
+          confirmationPage={confirmationPage}
+          onStepComplete={onStepComplete}
+        />
+      )}
+      {loading && <LoadingSpinner />}
     </>
   );
 };

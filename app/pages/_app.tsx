@@ -78,10 +78,10 @@ export default class App extends NextApp<AppProps> {
                 return (
                   <Component
                     {...this.prevComponentProps}
+                    loading
                     router={this.props.router}
                   />
                 );
-
               return (
                 <div>
                   <LoadingSpinner />
