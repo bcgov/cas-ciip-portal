@@ -9,6 +9,8 @@ import Subheader from 'components/Layout/Subheader';
 import Help from 'components/helpers/Help';
 import SiteNoticeBanner from 'components/Layout/SiteNoticeBanner';
 import CookieDayPickerInput from 'components/helpers/CookieDayPickerInput';
+import HelpButton from 'components/helpers/HelpButton';
+import {ADMIN_GROUP, INCENTIVE_ANALYST} from 'data/group-constants';
 
 const runtimeConfig = getConfig()?.publicRuntimeConfig ?? {};
 
@@ -33,6 +35,10 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
   width = 'narrow',
   help
 }) => {
+  const isInternalUser = [INCENTIVE_ANALYST, ...ADMIN_GROUP].some((role) => {
+    return session?.userGroups.includes(role);
+  });
+
   return (
     <div className="page-wrap">
       <Header
@@ -67,6 +73,9 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
         <Container id="page-content" className={`content ${width}`}>
           {children}
         </Container>
+        {Boolean(session) && isInternalUser && (
+          <HelpButton isInternalUser={isInternalUser} />
+        )}
       </main>
       <Footer />
       <style jsx>
@@ -171,6 +180,7 @@ export default createFragmentContainer(DefaultLayout, {
       ciipUserBySub {
         __typename
       }
+      userGroups
     }
   `
 });
