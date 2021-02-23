@@ -1,6 +1,6 @@
 import {BaseSearchOption} from './BaseSearchOption';
 
-export class YesNoSearchOption extends BaseSearchOption<Boolean> {
+export class YesNoSearchOption extends BaseSearchOption<boolean> {
   toUrl? = (v: string) => {
     if (v === 'true') return true;
     if (v === 'false') return false;
