@@ -1,0 +1,22 @@
+{{- if .Values.networkPolicies.enable }}
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: {{ .Release.Name }}-metabase-access
+  labels:
+    release: {{ .Release.Name }}
+{{ include "cas-ciip-portal.labels" . | nindent 4 }}
+spec:
+  podSelector:
+    matchLabels:
+      release: {{ .Release.Name }}
+  ingress:
+  - from:
+      namespaceSelector:
+        matchLabels:
+          name: {{ .Values.ggircs.prefix }}
+          environment: {{ .Values.ggircs.environment }}
+      podSelector:
+        matchLabels:
+          app.kubernetes.io/instance: {{ .Values.metabase.instanceName }}
+{{- end }}

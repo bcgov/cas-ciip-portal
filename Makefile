@@ -53,12 +53,16 @@ install:
 		--set route.insecure=true \
 		--set image.schema.tag=$(GIT_SHA1) --set image.app.tag=$(GIT_SHA1) \
 		--set ggircs.namespace=$(GGIRCS_PROJECT) \
+		--set ggircs.prefix=$(GGIRCS_NAMESPACE_PREFIX) \
+		--set ggircs.environment=$(ENVIRONMENT) \
 		--values ./helm/cas-ciip-portal/values-$(ENVIRONMENT).yaml \
 		cas-ciip-portal ./helm/cas-ciip-portal; \
 	fi; \
 	helm upgrade --install --atomic --timeout 2400s --namespace $(OC_PROJECT) \
 	--set image.schema.tag=$(GIT_SHA1) --set image.app.tag=$(GIT_SHA1) \
 	--set ggircs.namespace=$(GGIRCS_PROJECT) \
+	--set ggircs.prefix=$(GGIRCS_NAMESPACE_PREFIX) \
+	--set ggircs.environment=$(ENVIRONMENT) \
 	--values ./helm/cas-ciip-portal/values-$(ENVIRONMENT).yaml \
 	cas-ciip-portal ./helm/cas-ciip-portal;
 

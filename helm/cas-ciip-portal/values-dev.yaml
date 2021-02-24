@@ -1,5 +1,7 @@
 ggircs:
   namespace: 9212c9-dev
+  prefix: 9212c9
+  environment: dev
 
 replicas: 2
 route:
