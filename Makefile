@@ -36,9 +36,9 @@ lint: whoami
 lint:
 	@set -euo pipefail; \
 	helm dep up ./helm/cas-ciip-portal; \
-	helm template -f ./helm/cas-ciip-portal/values-dev.yaml cas-ciip-portal ./helm/cas-ciip-portal --validate; \
-	helm template -f ./helm/cas-ciip-portal/values-test.yaml cas-ciip-portal ./helm/cas-ciip-portal --validate;
-	helm template -f ./helm/cas-ciip-portal/values-prod.yaml cas-ciip-portal ./helm/cas-ciip-portal --validate;
+	helm template -f ./helm/cas-ciip-portal/values-dev.yaml --set ggircs.namespace=lint --set ggircs.environment=lint --set ggircs.prefix=lint cas-ciip-portal ./helm/cas-ciip-portal --validate; \
+	helm template -f ./helm/cas-ciip-portal/values-test.yaml --set ggircs.namespace=lint --set ggircs.environment=lint --set ggircs.prefix=lint cas-ciip-portal ./helm/cas-ciip-portal --validate;
+	helm template -f ./helm/cas-ciip-portal/values-prod.yaml --set ggircs.namespace=lint --set ggircs.environment=lint --set ggircs.prefix=lint cas-ciip-portal ./helm/cas-ciip-portal --validate;
 
 
 .PHONY: install
