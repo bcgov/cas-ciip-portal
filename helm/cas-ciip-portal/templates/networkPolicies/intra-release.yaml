@@ -12,7 +12,7 @@ spec:
       release: {{ .Release.Name }}
   ingress:
   - from:
-      podSelector:
+    - podSelector:
         matchLabels:
           release: {{ .Release.Name }}
 {{- end }}

@@ -12,7 +12,7 @@ spec:
       release: {{ .Release.Name }}
   ingress:
   - from:
-      namespaceSelector:
+    - namespaceSelector:
         matchLabels:
           name: {{ .Values.ggircs.prefix }}
           environment: {{ .Values.ggircs.environment }}
