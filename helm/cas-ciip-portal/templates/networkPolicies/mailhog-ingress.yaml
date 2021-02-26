@@ -9,8 +9,10 @@ spec:
     matchLabels:
       app.kubernetes.io/name: mailhog
   ingress:
-  - from:
-    - namespaceSelector:
-        matchLabels:
-          app.kubernetes.io/instance: {{ .Release.Name }}
+  - ports:
+      - port: 1025
+    from:
+      - podSelector:
+          matchLabels:
+            app.kubernetes.io/name: {{ .Release.Name }}
 {{- end }}
