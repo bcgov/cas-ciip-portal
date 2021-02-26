@@ -33,6 +33,9 @@ export default class App extends NextApp<AppProps> {
     };
   };
 
+  prevComponentProps = null;
+  prevComponentClass = null;
+
   render() {
     const {
       Component,
@@ -48,6 +51,14 @@ export default class App extends NextApp<AppProps> {
       })
     );
 
+    // This is part of our query infrastructure.
+    //
+    // The relayVars query string in the URL contains all filters to apply to the Relay query variables.
+    // It allows navigation to keep track of the query, so the form doesn't get reset.
+    const relayVars = router.query.relayVars
+      ? JSON.parse(String(router.query.relayVars))
+      : {};
+
     return (
       <ErrorBoundary>
         <PageRedirectHandler
@@ -56,12 +67,25 @@ export default class App extends NextApp<AppProps> {
         >
           <QueryRenderer
             environment={environment}
+            fetchPolicy="store-and-network"
             query={Component.query}
-            variables={{...variables, ...router.query}}
+            variables={{...variables, ...router.query, ...relayVars}}
             render={({error, props}: {error: any; props: any}) => {
               if (error !== null) throw error; // Let the ErrorBoundary above render the error nicely
-              if (props)
+              if (props) {
+                this.prevComponentProps = props;
+                this.prevComponentClass = Component;
+
                 return <Component {...props} router={this.props.router} />;
+              }
+              if (Component === this.prevComponentClass)
+                return (
+                  <Component
+                    {...this.prevComponentProps}
+                    loading
+                    router={this.props.router}
+                  />
+                );
               return (
                 <div>
                   <LoadingSpinner />

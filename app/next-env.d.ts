@@ -14,6 +14,7 @@ interface CiipPageInitialProps {
 interface CiipPageComponentProps {
   query?: any;
   router?: NextRouter;
+  loading?: boolean;
 }
 
 interface FormJson {
