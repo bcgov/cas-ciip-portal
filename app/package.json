@@ -63,6 +63,7 @@
     "pg": "^8.2.0",
     "postgraphile": "^4.8.0",
     "postgraphile-log-consola": "^1.0.1",
+    "postgraphile-plugin-connection-filter": "^2.1.1",
     "prop-types": "^15.5.8",
     "react": "^16.14.0",
     "react-bootstrap": "^1.4.3",

@@ -11892,6 +11892,11 @@ postgraphile-log-consola@^1.0.1:
     chalk "^2.4.2"
     consola "^2.4.1"
 
+postgraphile-plugin-connection-filter@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/postgraphile-plugin-connection-filter/-/postgraphile-plugin-connection-filter-2.1.1.tgz#590c650a79f7c551fa0950b0c6f8308930bae0d0"
+  integrity sha512-g2tInSqPFFKKf6jL5uL868HZm9//1L3HmOZAHc0QuRcV7jKMGuFivX1G3OXj8HBxbaSiCyxWUYjVdOYiNsJ4tQ==
+
 postgraphile@^4.8.0:
   version "4.8.0"
   resolved "https://registry.yarnpkg.com/postgraphile/-/postgraphile-4.8.0.tgz#222992e8aed62023c88f790a9d33ae6c7fd33243"
