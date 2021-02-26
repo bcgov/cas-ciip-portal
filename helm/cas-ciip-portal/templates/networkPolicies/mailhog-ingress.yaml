@@ -1,0 +1,18 @@
+{{- if .Values.mailhog.enable }}
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: {{ .Release.Name }}-mailhog-ingress
+  labels: {{ include "cas-ciip-portal.labels" . | nindent 4 }}
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/name: mailhog
+  ingress:
+  - ports:
+      - port: 1025
+    from:
+      - podSelector:
+          matchLabels:
+            app.kubernetes.io/name: {{ .Release.Name }}
+{{- end }}
