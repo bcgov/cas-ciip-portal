@@ -117,7 +117,7 @@ describe('The filterable table headers component', () => {
 
     expect(rendered.find('option').length).toBe(3);
     expect(rendered.find('option').at(0).text()).toContain('...');
-    expect(rendered.find('option').at(1).text()).toContain('option1');
-    expect(rendered.find('option').at(2).text()).toContain('option2');
+    expect(rendered.find('option').at(1).text()).toContain('Option1');
+    expect(rendered.find('option').at(2).text()).toContain('Option2');
   });
 });

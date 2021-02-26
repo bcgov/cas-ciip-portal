@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ApplicationList should render the application list 1`] = `
-<SearchTableLayoutComponent
+<FilterableTableLayoutComponent
   body={
     <tbody>
       <Relay(ApplicationRowItem)
-        applicationSearchResult={
+        application={
           Object {
             "id": "ciip-application-1",
             "rowId": "1",
@@ -14,16 +14,86 @@ exports[`ApplicationList should render the application list 1`] = `
       />
     </tbody>
   }
-  displayNameToColumnNameMap={
-    Object {
-      "": null,
-      "Application Id": "application_id",
-      "Facility Name": "facility_name",
-      "Operator Name": "operator_name",
-      "Reporting Year": "reporting_year",
-      "Status": "application_revision_status",
-      "Submission Date": "submission_date",
-    }
+  searchOptions={
+    Array [
+      NumberSearchOption {
+        "columnName": "id",
+        "isSearchEnabled": true,
+        "isSortEnabled": true,
+        "removeSearchHeader": false,
+        "title": "Application Id",
+        "toUrl": [Function],
+      },
+      TextSearchOption {
+        "columnName": "operator_name",
+        "isSearchEnabled": true,
+        "isSortEnabled": true,
+        "removeSearchHeader": false,
+        "title": "Operator Name",
+        "toUrl": [Function],
+      },
+      TextSearchOption {
+        "columnName": "facility_name",
+        "isSearchEnabled": true,
+        "isSortEnabled": true,
+        "removeSearchHeader": false,
+        "title": "Facility Name",
+        "toUrl": [Function],
+      },
+      NumberSearchOption {
+        "columnName": "reporting_year",
+        "isSearchEnabled": true,
+        "isSortEnabled": true,
+        "removeSearchHeader": false,
+        "title": "Reporting Year",
+        "toUrl": [Function],
+      },
+      SortOnlyOption {
+        "columnName": "submission_date",
+        "isSearchEnabled": false,
+        "isSortEnabled": true,
+        "title": "Submission Date",
+      },
+      EnumSearchOption {
+        "columnName": "status",
+        "enumValues": Array [
+          "APPROVED",
+          "REJECTED",
+          "REQUESTED_CHANGES",
+          "SUBMITTED",
+        ],
+        "isSearchEnabled": true,
+        "isSortEnabled": true,
+        "removeSearchHeader": false,
+        "searchOptionValues": Array [
+          Object {
+            "display": "APPROVED",
+            "value": "APPROVED",
+          },
+          Object {
+            "display": "REJECTED",
+            "value": "REJECTED",
+          },
+          Object {
+            "display": "REQUESTED_CHANGES",
+            "value": "REQUESTED_CHANGES",
+          },
+          Object {
+            "display": "SUBMITTED",
+            "value": "SUBMITTED",
+          },
+        ],
+        "title": "Status",
+        "toUrl": [Function],
+      },
+      Object {
+        "columnName": null,
+        "isSearchEnabled": false,
+        "isSortEnabled": false,
+        "removeSearchHeader": true,
+        "title": null,
+      },
+    ]
   }
 />
 `;

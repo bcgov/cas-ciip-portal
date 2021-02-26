@@ -4,11 +4,12 @@ import {ApplicationRowItem} from 'containers/Applications/ApplicationRowItemCont
 
 describe('ApplicationRowItem', () => {
   it('should render the application', () => {
-    const applicationSearchResult = {
+    const application = {
       rowId: 1,
       applicationId: 'abc',
       operatorName: 'blah',
       facilityName: 'foo',
+      status: 'APPROVED',
       applicationRevisionStatus: 'SUBMITTED',
       reportingYear: 2018,
       bcghgid: 123456789,
@@ -20,9 +21,7 @@ describe('ApplicationRowItem', () => {
         }
       }
     };
-    const render = shallow(
-      <ApplicationRowItem applicationSearchResult={applicationSearchResult} />
-    );
+    const render = shallow(<ApplicationRowItem application={application} />);
     expect(render).toMatchSnapshot();
   });
 });
