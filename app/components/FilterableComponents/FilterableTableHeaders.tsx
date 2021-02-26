@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {Button, ButtonGroup, Form} from 'react-bootstrap';
 import {useRouter} from 'next/router';
 import {ISearchProps} from 'components/Search/SearchProps';
+import {getUserFriendlyStatusLabel} from 'lib/text-transforms';
 
 const NONE_VALUES = [null, undefined];
 
@@ -99,7 +100,7 @@ const FilterableTableHeaders: React.FunctionComponent<ISearchProps> = (
                 </option>
                 {option.searchOptionValues.map((kvp) => (
                   <option key={column + '-' + kvp.display} value={kvp.value}>
-                    {kvp.display}
+                    {getUserFriendlyStatusLabel(kvp.display)}
                   </option>
                 ))}
               </Form.Control>
