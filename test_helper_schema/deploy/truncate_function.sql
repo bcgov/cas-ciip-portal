@@ -10,13 +10,13 @@ $function$
     table_name text;
 	truncate_statement text;
   begin
-    for table_name in
-        select pg_tables.tablename as table_name from pg_tables where schemaname = 'ggircs_portal'
-    loop
-        raise notice 'Truncating %', table_name;
-        truncate_statement:= format('truncate table ggircs_portal.%I restart identity cascade', table_name);
-        execute truncate_statement;
-    end loop;
+      for table_name in
+          select pg_tables.tablename as table_name from pg_tables where schemaname = 'ggircs_portal'
+      loop
+          raise notice 'Truncating %', table_name;
+          truncate_statement:= format('truncate table ggircs_portal.%I restart identity cascade', table_name);
+          execute truncate_statement;
+      end loop;
   end;
 
 $function$ language plpgsql volatile;

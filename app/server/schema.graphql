@@ -3222,21 +3222,6 @@ type ApplicationsConnection {
   totalCount: Int!
 }
 
-type ApplicationSearchResult {
-  """
-  Reads a single `Application` that is related to this `ApplicationSearchResult`.
-  """
-  applicationByApplicationId: Application
-  applicationId: Int
-  applicationRevisionStatus: CiipApplicationRevisionStatus
-  bcghgid: String
-  facilityName: String
-  operatorName: String
-  reportingYear: Int
-  rowId: BigInt
-  submissionDate: Datetime
-}
-
 """
 A filter to be used against `ApplicationSearchResult` object types. All fields are combined with a logical ‘and.’
 """
@@ -3279,34 +3264,6 @@ input ApplicationSearchResultFilter {
 
   """Filter by the object’s `submissionDate` field."""
   submissionDate: DatetimeFilter
-}
-
-"""A connection to a list of `ApplicationSearchResult` values."""
-type ApplicationSearchResultsConnection {
-  """
-  A list of edges which contains the `ApplicationSearchResult` and cursor to aid in pagination.
-  """
-  edges: [ApplicationSearchResultsEdge!]!
-
-  """A list of `ApplicationSearchResult` objects."""
-  nodes: [ApplicationSearchResult]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """
-  The count of *all* `ApplicationSearchResult` you could get from the connection.
-  """
-  totalCount: Int!
-}
-
-"""A `ApplicationSearchResult` edge in the connection."""
-type ApplicationSearchResultsEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `ApplicationSearchResult` at the end of the edge."""
-  node: ApplicationSearchResult
 }
 
 """A `Application` edge in the connection."""
@@ -34193,38 +34150,6 @@ type Query implements Node {
     searchField: String
     searchValue: String
   ): FacilitySearchResultsConnection!
-
-  """
-  Reads and enables pagination through a set of `ApplicationSearchResult`.
-  """
-  searchApplicationList(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-    direction: String
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: ApplicationSearchResultFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-    orderByField: String
-    searchField: String
-    searchValue: String
-  ): ApplicationSearchResultsConnection!
 
   """
   Search function returns data related to certification requests associated with the current user

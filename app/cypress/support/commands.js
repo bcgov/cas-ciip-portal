@@ -67,7 +67,7 @@ Cypress.Commands.add('deployProdData', () => {
 
 Cypress.Commands.add('cleanSchema', () => {
   cy.exec(
-    `psql --set ON_ERROR_STOP=1 -d ciip_portal_dev -c 'select test_helper.clean_ggircs_portal_schema()'`
+    `psql -d ciip_portal_dev -c 'select test_helper.clean_ggircs_portal_schema()'`
   );
 });
 
