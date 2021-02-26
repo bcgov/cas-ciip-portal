@@ -13,12 +13,13 @@ select has_function(
 with record as (select row(application.*)::ggircs_portal.application from ggircs_portal.application where id=1)
     select pg_typeof((select ggircs_portal.application_status((select * from record))));
 
+
 select results_eq (
   $$
     with record as (select row(application.*)::ggircs_portal.application from ggircs_portal.application where id=1)
     select pg_typeof((select ggircs_portal.application_status((select * from record))))
   $$,
-  ARRAY['character varying'::regtype],
+  ARRAY['ggircs_portal.ciip_application_revision_status'::regtype],
   'application_status returns scalar type varchar'
 );
 
@@ -28,7 +29,7 @@ select results_eq (
     select ggircs_portal.application_status((select * from record))
   $$,
   ARRAY[(with record as (select row(application.*)::ggircs_portal.application from ggircs_portal.application where id=1)
-    select application_revision_status from ggircs_portal.application_application_revision_status((select * from record), null))::varchar],
+    select application_revision_status from ggircs_portal.application_application_revision_status((select * from record), null))::ggircs_portal.ciip_application_revision_status],
   'application_status returns a status when passed an application object'
 );
 
