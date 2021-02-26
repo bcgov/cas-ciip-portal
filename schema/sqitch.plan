@@ -220,3 +220,4 @@ views/ciip_production [views/ciip_production@v1.14.0] 2021-01-19T23:39:49Z Dylan
 database_functions/create_portal_app_user [database_functions/create_portal_app_user@v1.14.0] 2021-01-29T22:47:30Z Dylan Leard <dylan@button.is> # Migration: drop portal_app user (obsolete) and create ciip_portal user if it does not already exist
 @v1.16.0 2021-02-03T19:12:15Z Dylan Leard <dylan@button.is> # release v1.16.0
 @v1.17.0 2021-02-18T18:12:46Z Matthieu Foucault <matthieu@button.is> # release v1.17.0
+@v1.18.0 2021-02-25T23:09:48Z Dylan Leard <dylan@button.is> # release v1.18.0
