@@ -1,55 +1,95 @@
 describe('When filtering applications', () => {
-  beforeEach(() => {
+  before(() => {
     cy.cleanSchema();
     cy.sqlFixture('fixtures/search-setup');
-    cy.mockLogin('analyst');
   });
 
   it('The application can be filtered by a numeric search', () => {
-    cy.visit('/analyst');
-    cy.get('#page-content');
+    cy.mockLogin('analyst');
     cy.visit('/analyst/applications');
     cy.get('#page-content');
-    cy.get(':nth-child(1) > .form-control').clear().type('1');
+    cy.get('table.search-table > tbody').find('tr').should('have.length', 3);
+    cy.get('thead > tr > td:nth-child(1) > input.form-control')
+      .clear()
+      .type('1');
     cy.contains('Search').click();
     cy.get('#page-content');
-    cy.get('tbody > tr > :nth-child(1)').contains('1');
+    cy.url().should(
+      'include',
+      '/analyst/applications?relayVars=%7B%22id%22%3A1%7D'
+    );
+    cy.get('table.search-table > tbody').find('tr').should('have.length', 1);
+    cy.get('tbody > tr > td:nth-child(1)').should('have.text', '1');
+    cy.contains('Reset').click();
+    cy.get('#page-content');
+    cy.get('table.search-table > tbody').find('tr').should('have.length', 3);
   });
 
   it('The application can be filtered by a text search', () => {
-    cy.visit('/analyst');
-    cy.get('#page-content');
+    cy.mockLogin('analyst');
     cy.visit('/analyst/applications');
     cy.get('#page-content');
-    cy.get(':nth-child(2) > .form-control').clear().type('1');
+    cy.get('thead > tr > td:nth-child(2) > input.form-control')
+      .clear()
+      .type('1');
     cy.contains('Search').click();
-    cy.get('tbody > tr > :nth-child(2)').contains('test_organisation 1');
+    cy.url().should(
+      'include',
+      '/analyst/applications?relayVars=%7B%22operator_name%22%3A%221%22%7D'
+    );
+    cy.get('table.search-table > tbody').find('tr').should('have.length', 1);
+    cy.get('tbody > tr > td:nth-child(2)').should(
+      'have.text',
+      'test_organisation 1'
+    );
     cy.contains('Reset').click();
   });
 
   it('The application can be filtered by an enum search', () => {
-    cy.visit('/analyst');
-    cy.get('#page-content');
+    cy.mockLogin('analyst');
     cy.visit('/analyst/applications');
     cy.get('#page-content');
-    cy.get(':nth-child(6) > .form-control').select('Submitted');
+    cy.get('thead > tr > td:nth-child(6) > select.form-control').select(
+      'Submitted'
+    );
     cy.contains('Search').click();
-    cy.get('tbody > :nth-child(1) > :nth-child(6)').contains('Submitted');
-    cy.get('tbody > :nth-child(2) > :nth-child(6)').contains('Submitted');
+    cy.url().should(
+      'include',
+      '/analyst/applications?relayVars=%7B%22status%22%3A%22SUBMITTED%22%7D'
+    );
+    cy.get('table.search-table > tbody').find('tr').should('have.length', 2);
+    cy.get('tbody > tr:nth-child(1) > td:nth-child(6)').should(
+      'have.text',
+      'Submitted'
+    );
+    cy.get('tbody > tr:nth-child(2) > td:nth-child(6)').should(
+      'have.text',
+      'Submitted'
+    );
     cy.contains('Reset').click();
   });
 
   it('The application can be filtered by multiple search fields', () => {
-    cy.visit('/analyst');
-    cy.get('#page-content');
+    cy.mockLogin('analyst');
     cy.visit('/analyst/applications');
     cy.get('#page-content');
-    cy.get(':nth-child(2) > .form-control').clear().type('1');
-    cy.get(':nth-child(6) > .form-control').select('Submitted');
+    cy.get('thead > tr > td:nth-child(2) > input.form-control')
+      .clear()
+      .type('1');
+    cy.get('thead > tr > td:nth-child(6) > select.form-control').select(
+      'Submitted'
+    );
     cy.contains('Search').click();
-    cy.get('tbody > tr > :nth-child(2)').contains('test_organisation 1');
-    cy.get('tbody > tr > :nth-child(6)').contains('Submitted');
-    cy.get('tbody > :nth-child(2)').should('not.exist');
+    cy.url().should(
+      'include',
+      '/analyst/applications?relayVars=%7B%22operator_name%22%3A%221%22%2C%22status%22%3A%22SUBMITTED%22%7D'
+    );
+    cy.get('table.search-table > tbody').find('tr').should('have.length', 1);
+    cy.get('tbody > tr > :nth-child(2)').should(
+      'have.text',
+      'test_organisation 1'
+    );
+    cy.get('tbody > tr > :nth-child(6)').should('have.text', 'Submitted');
     cy.contains('Reset').click();
   });
 });
