@@ -9,9 +9,13 @@ import {TextSearchOption} from 'components/Search/TextSearchOption';
 import {SortOnlyOption} from 'components/Search/SortOnlyOption';
 import {EnumSearchOption} from 'components/Search/EnumSearchOption';
 import {CiipApplicationRevisionStatus} from 'createApplicationRevisionStatusMutation.graphql';
+import {ApplicationListContainer_query} from 'ApplicationListContainer_query.graphql';
 
-export const ApplicationList = (props) => {
-  const {handleEvent} = props;
+interface Props {
+  query: ApplicationListContainer_query;
+}
+
+export const ApplicationList: React.FunctionComponent<Props> = (props) => {
   const {edges} = props.query.allApplications;
 
   const searchOptions: ISearchOption[] = [
@@ -40,13 +44,7 @@ export const ApplicationList = (props) => {
     </tbody>
   );
 
-  return (
-    <FilterableTableLayout
-      body={body}
-      searchOptions={searchOptions}
-      handleEvent={handleEvent}
-    />
-  );
+  return <FilterableTableLayout body={body} searchOptions={searchOptions} />;
 };
 
 // TODO(wenzowski): each search result node needs an ID both for react dom diffing as list key
