@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Button, ButtonGroup, Form} from 'react-bootstrap';
+import {Button, Form} from 'react-bootstrap';
 import {useRouter} from 'next/router';
 import {ISearchProps} from 'components/Search/SearchProps';
 import {getUserFriendlyStatusLabel} from 'lib/text-transforms';
@@ -110,16 +110,23 @@ const FilterableTableHeaders: React.FunctionComponent<ISearchProps> = (
         if (option.removeSearchHeader) return;
         return <td key={key} />;
       })}
-      <td>
-        <ButtonGroup>
-          <Button variant="success" onClick={() => applySearch(searchFilters)}>
-            Search
-          </Button>
-          <Button variant="danger" onClick={clearForm}>
-            Reset
-          </Button>
-        </ButtonGroup>
+      <td className="flex">
+        <Button variant="outline-secondary" onClick={clearForm}>
+          Clear
+        </Button>
+        <Button
+          style={{marginLeft: '5px'}}
+          variant="primary"
+          onClick={() => applySearch(searchFilters)}
+        >
+          Apply
+        </Button>
       </td>
+      <style jsx>{`
+        .flex {
+          display: flex;
+        }
+      `}</style>
     </tr>
   );
 };
