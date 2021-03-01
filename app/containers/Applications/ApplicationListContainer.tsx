@@ -47,10 +47,6 @@ export const ApplicationList: React.FunctionComponent<Props> = (props) => {
   return <FilterableTableLayout body={body} searchOptions={searchOptions} />;
 };
 
-// TODO(wenzowski): each search result node needs an ID both for react dom diffing as list key
-// and also for relay to refetch
-// @see https://facebook.github.io/relay/graphql/objectidentification.htm#sec-Node-Interface
-// TODO: Several entitites do not have graphql ID's because they are views
 export default createFragmentContainer(ApplicationList, {
   query: graphql`
     fragment ApplicationListContainer_query on Query
