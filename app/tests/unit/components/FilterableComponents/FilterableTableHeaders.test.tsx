@@ -19,17 +19,17 @@ describe('The filterable table headers component', () => {
     expect(
       rendered
         .find('Button')
-        .filterWhere((node) => node.props().variant === 'success')
+        .filterWhere((node) => node.props().variant === 'outline-secondary')
         .first()
         .text()
-    ).toBe('Search');
+    ).toBe('Clear');
     expect(
       rendered
         .find('Button')
-        .filterWhere((node) => node.props().variant === 'danger')
+        .filterWhere((node) => node.props().variant === 'primary')
         .first()
         .text()
-    ).toBe('Reset');
+    ).toBe('Apply');
   });
 
   it('renders as many td elements as search options, plus one for the search buttons', () => {
