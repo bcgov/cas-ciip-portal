@@ -1,7 +1,6 @@
 import React from 'react';
 import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
 import {useRouter} from 'next/router';
-import Link from 'next/link';
 import {Button} from 'react-bootstrap';
 import {CiipApplicationRevisionStatus} from 'createApplicationRevisionStatusMutation.graphql';
 import createApplicationRevisionStatusMutation from 'mutations/application/createApplicationRevisionStatusMutation';
@@ -38,20 +37,13 @@ export const SubmitApplicationComponent: React.FunctionComponent<Props> = (
   };
 
   return (
-    <Link
-      passHref
-      href={{
-        pathname: '/reporter/complete-submit'
-      }}
+    <Button
+      className="float-right"
+      style={{marginTop: '10px'}}
+      onClick={submitApplication}
     >
-      <Button
-        className="float-right"
-        style={{marginTop: '10px'}}
-        onClick={submitApplication}
-      >
-        Submit Application
-      </Button>
-    </Link>
+      Submit Application
+    </Button>
   );
 };
 
