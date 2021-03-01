@@ -4,17 +4,28 @@ import {graphql, createFragmentContainer} from 'react-relay';
 import Link from 'next/link';
 import {dateTimeFormat} from 'functions/formatDates';
 import {getUserFriendlyStatusLabel} from 'lib/text-transforms';
+import {
+  ApplicationRowItemContainer_application,
+  CiipApplicationRevisionStatus
+} from 'ApplicationRowItemContainer_application.graphql';
 
-const statusBadgeColor = {
-  draft: 'warning',
-  submitted: 'info',
-  rejected: 'danger',
-  approved: 'success',
-  'requested changes': 'secondary'
+interface Props {
+  application: ApplicationRowItemContainer_application;
+}
+
+const statusBadgeColor: Record<
+  CiipApplicationRevisionStatus,
+  'warning' | 'info' | 'danger' | 'success' | 'secondary'
+> = {
+  DRAFT: 'warning',
+  SUBMITTED: 'info',
+  REJECTED: 'danger',
+  APPROVED: 'success',
+  REQUESTED_CHANGES: 'secondary'
 };
 
-export const ApplicationRowItem = (props) => {
-  const {application = {}} = props;
+export const ApplicationRowItem: React.FunctionComponent<Props> = (props) => {
+  const {application} = props;
   const readableSubmissionDate = dateTimeFormat(
     application.submissionDate,
     'seconds'
@@ -63,7 +74,6 @@ export default createFragmentContainer(ApplicationRowItem, {
       facilityName
       status
       reportingYear
-      bcghgid
       submissionDate
       latestSubmittedRevision {
         id
