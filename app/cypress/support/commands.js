@@ -45,14 +45,9 @@ Cypress.Commands.add('mockLogin', (roleName) => {
 
 Cypress.Commands.add('sqlFixture', (fixtureName) => {
   cy.fixture(`${fixtureName}.sql`).then((fixture) =>
-    cy
-      .exec(
-        `psql -d ciip_portal_dev<< EOF
+    cy.exec(`psql -d ciip_portal_dev<< EOF
 ${fixture}
-EOF`
-      )
-      .its('code')
-      .should('eq', 0)
+EOF`)
   );
 });
 
@@ -72,10 +67,8 @@ Cypress.Commands.add('deployProdData', () => {
 
 Cypress.Commands.add('cleanSchema', () => {
   cy.exec(
-    `psql -d ciip_portal_dev -c 'select test_helper.clean_ggircs_portal_schema()'`
-  )
-    .its('code')
-    .should('eq', 0);
+    `psql --set ON_ERROR_STOP=1 -d ciip_portal_dev -c 'select test_helper.clean_ggircs_portal_schema()'`
+  );
 });
 
 Cypress.Commands.add('getCypressPath', () => {
