@@ -59,16 +59,15 @@ exports[`The ReviseApplicationButton should render a "View most recent submissio
   </p>
   <Link
     href="/reporter/view-application?applicationId=foo&version=2"
+    passHref={true}
   >
-    <a>
-      <Button
-        active={false}
-        disabled={false}
-        variant="primary"
-      >
-        View most recent submission
-      </Button>
-    </a>
+    <Button
+      active={false}
+      disabled={false}
+      variant="primary"
+    >
+      View most recent submission
+    </Button>
   </Link>
 </Col>
 `;

@@ -195,6 +195,7 @@ export const ApplyButton: React.FunctionComponent<Props> = ({
   ) {
     return (
       <Link
+        passHref
         href={{
           pathname: '/reporter/view-application',
           query: {
