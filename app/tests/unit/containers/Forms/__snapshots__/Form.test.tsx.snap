@@ -147,6 +147,7 @@ exports[`The Form Component should match the snapshot 1`] = `
               "pathname": "/reporter",
             }
           }
+          passHref={true}
         >
           <Button
             active={false}
@@ -848,6 +849,7 @@ exports[`The Form Component should not render an alert reminder to check the gui
               "pathname": "/reporter",
             }
           }
+          passHref={true}
         >
           <Button
             active={false}
@@ -1573,6 +1575,7 @@ exports[`The Form Component should render alert reminder to check the guidance i
               "pathname": "/reporter",
             }
           }
+          passHref={true}
         >
           <Button
             active={false}
@@ -2345,6 +2348,7 @@ exports[`The Form Component should render an alert reminder to report any missin
               "pathname": "/reporter",
             }
           }
+          passHref={true}
         >
           <Button
             active={false}

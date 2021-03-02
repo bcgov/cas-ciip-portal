@@ -156,6 +156,7 @@ export const CertificationRequestsComponent: React.FunctionComponent<Props> = ({
             <td>{formatListViewDate(node.certifiedAt)}</td>
             <td>
               <Link
+                passHref
                 href={`/certifier/certify?applicationId=${node.applicationByApplicationId.id}&version=${node.versionNumber}`}
               >
                 <Button className="w-100">View</Button>

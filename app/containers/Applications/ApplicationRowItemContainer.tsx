@@ -49,6 +49,7 @@ export const ApplicationRowItem: React.FunctionComponent<Props> = (props) => {
       </td>
       <td>
         <Link
+          passHref
           href={{
             pathname: '/analyst/application-review',
             query: {

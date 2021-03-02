@@ -41,6 +41,7 @@ class CompleteSubmit extends Component<Props> {
         }
       >
         <Link
+          passHref
           href={{
             pathname: '/reporter'
           }}

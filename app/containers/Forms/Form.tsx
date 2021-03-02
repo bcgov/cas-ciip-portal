@@ -270,6 +270,7 @@ export const FormComponent: React.FunctionComponent<Props> = ({
               Save &amp; Continue
             </Button>
             <Link
+              passHref
               href={{
                 pathname: '/reporter'
               }}

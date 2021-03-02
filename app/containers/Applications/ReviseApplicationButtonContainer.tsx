@@ -33,10 +33,8 @@ export const ReviseApplicationButton: React.FunctionComponent<Props> = ({
         <strong>Note:</strong> There is a more recently submitted version of
         this application.
       </p>
-      <Link href={latestSubmissionURL}>
-        <a>
-          <Button>View most recent submission</Button>
-        </a>
+      <Link passHref href={latestSubmissionURL}>
+        <Button>View most recent submission</Button>
       </Link>
     </>
   );
