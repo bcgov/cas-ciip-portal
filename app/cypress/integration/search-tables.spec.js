@@ -20,6 +20,10 @@ describe('When filtering applications', () => {
     );
     cy.get('table.search-table > tbody').find('tr').should('have.length', 1);
     cy.get('tbody > tr > td:nth-child(1)').should('have.text', '1');
+    cy.get('body').happoScreenshot({
+      component: 'Application List',
+      variant: 'Filtered By ID'
+    });
     cy.contains('Reset').click();
     cy.get('#page-content');
     cy.get('table.search-table > tbody').find('tr').should('have.length', 3);
