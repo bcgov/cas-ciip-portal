@@ -10,13 +10,14 @@ import {SortOnlyOption} from 'components/Search/SortOnlyOption';
 import {EnumSearchOption} from 'components/Search/EnumSearchOption';
 import {CiipApplicationRevisionStatus} from 'createApplicationRevisionStatusMutation.graphql';
 import {ApplicationListContainer_query} from 'ApplicationListContainer_query.graphql';
+import FilterableTablePagination from 'components/FilterableComponents/FilterableTablePagination';
 
 interface Props {
   query: ApplicationListContainer_query;
 }
 
 export const ApplicationList: React.FunctionComponent<Props> = (props) => {
-  const {edges} = props.query.allApplications;
+  const {edges, pageInfo} = props?.query?.allApplications;
 
   const searchOptions: ISearchOption[] = [
     new NumberSearchOption('Application Id', 'id'),
@@ -44,7 +45,12 @@ export const ApplicationList: React.FunctionComponent<Props> = (props) => {
     </tbody>
   );
 
-  return <FilterableTableLayout body={body} searchOptions={searchOptions} />;
+  return (
+    <>
+      <FilterableTableLayout body={body} searchOptions={searchOptions} />
+      <FilterableTablePagination pageInfo={pageInfo} />
+    </>
+  );
 };
 
 export default createFragmentContainer(ApplicationList, {
@@ -58,8 +64,16 @@ export default createFragmentContainer(ApplicationList, {
       submission_date: {type: "Datetime"}
       status: {type: "CiipApplicationRevisionStatus"}
       order_by: {type: "[ApplicationsOrderBy!]"}
+      after_cursor: {type: "Cursor"}
+      before_cursor: {type: "Cursor"}
+      num_forward: {type: "Int"}
+      num_back: {type: "Int"}
     ) {
       allApplications(
+        first: $num_forward
+        last: $num_back
+        before: $before_cursor
+        after: $after_cursor
         filter: {
           rowId: {equalTo: $id}
           operatorName: {includesInsensitive: $operator_name}
@@ -71,10 +85,17 @@ export default createFragmentContainer(ApplicationList, {
         orderBy: $order_by
       ) {
         edges {
+          cursor
           node {
             rowId
             ...ApplicationRowItemContainer_application
           }
+        }
+        pageInfo {
+          endCursor
+          startCursor
+          hasNextPage
+          hasPreviousPage
         }
       }
     }
