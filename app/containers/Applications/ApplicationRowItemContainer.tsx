@@ -1,14 +1,21 @@
 import React from 'react';
 import {Button, Badge} from 'react-bootstrap';
 import {graphql, createFragmentContainer} from 'react-relay';
-import {CiipApplicationRevisionStatus} from 'ApplicationRowItemContainer_applicationSearchResult.graphql';
 import Link from 'next/link';
 import {dateTimeFormat} from 'functions/formatDates';
 import {getUserFriendlyStatusLabel} from 'lib/text-transforms';
+import {
+  ApplicationRowItemContainer_application,
+  CiipApplicationRevisionStatus
+} from 'ApplicationRowItemContainer_application.graphql';
+
+interface Props {
+  application: ApplicationRowItemContainer_application;
+}
 
 const statusBadgeColor: Record<
   CiipApplicationRevisionStatus,
-  'info' | 'danger' | 'success' | 'warning' | 'primary' | 'secondary'
+  'warning' | 'info' | 'danger' | 'success' | 'secondary'
 > = {
   DRAFT: 'warning',
   SUBMITTED: 'info',
@@ -17,31 +24,27 @@ const statusBadgeColor: Record<
   REQUESTED_CHANGES: 'secondary'
 };
 
-export const ApplicationRowItem = (props) => {
-  const {applicationSearchResult = {}} = props;
+export const ApplicationRowItem: React.FunctionComponent<Props> = (props) => {
+  const {application} = props;
   const readableSubmissionDate = dateTimeFormat(
-    applicationSearchResult.submissionDate,
+    application.submissionDate,
     'seconds'
   );
 
   return (
     <tr>
-      <td>{applicationSearchResult.applicationId}</td>
-      <td>{applicationSearchResult.operatorName}</td>
-      <td>{applicationSearchResult.facilityName}</td>
-      <td>{applicationSearchResult.reportingYear}</td>
+      <td>{application.rowId}</td>
+      <td>{application.operatorName}</td>
+      <td>{application.facilityName}</td>
+      <td>{application.reportingYear}</td>
       <td>{readableSubmissionDate}</td>
       <td>
         <Badge
           pill
           style={{width: '100%', textTransform: 'uppercase'}}
-          variant={
-            statusBadgeColor[applicationSearchResult.applicationRevisionStatus]
-          }
+          variant={statusBadgeColor[application.status]}
         >
-          {getUserFriendlyStatusLabel(
-            applicationSearchResult.applicationRevisionStatus
-          )}
+          {getUserFriendlyStatusLabel(application.status)}
         </Badge>
       </td>
       <td>
@@ -49,14 +52,9 @@ export const ApplicationRowItem = (props) => {
           href={{
             pathname: '/analyst/application-review',
             query: {
-              applicationId:
-                applicationSearchResult.applicationByApplicationId.id,
-              applicationRevisionId:
-                applicationSearchResult.applicationByApplicationId
-                  .latestSubmittedRevision.id,
-              version:
-                applicationSearchResult.applicationByApplicationId
-                  .latestSubmittedRevision.versionNumber
+              applicationId: application.id,
+              applicationRevisionId: application.latestSubmittedRevision?.id,
+              version: application.latestSubmittedRevision?.versionNumber
             }
           }}
         >
@@ -68,23 +66,18 @@ export const ApplicationRowItem = (props) => {
 };
 
 export default createFragmentContainer(ApplicationRowItem, {
-  applicationSearchResult: graphql`
-    fragment ApplicationRowItemContainer_applicationSearchResult on ApplicationSearchResult {
+  application: graphql`
+    fragment ApplicationRowItemContainer_application on Application {
+      id
       rowId
-      applicationId
       operatorName
       facilityName
-      applicationRevisionStatus
+      status
       reportingYear
-      bcghgid
       submissionDate
-      applicationByApplicationId {
+      latestSubmittedRevision {
         id
-        rowId
-        latestSubmittedRevision {
-          id
-          versionNumber
-        }
+        versionNumber
       }
     }
   `

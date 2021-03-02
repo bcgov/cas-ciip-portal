@@ -20,10 +20,13 @@ class Applications extends Component<Props> {
   // I didn't fully understand how to make this work, so I moved on with the way I did.
   static query = graphql`
     query applicationsQuery(
-      $orderByField: String
-      $direction: String
-      $searchField: String
-      $searchValue: String
+      $id: Int
+      $operator_name: String
+      $facility_name: String
+      $reporting_year: Int
+      $submission_date: Datetime
+      $status: CiipApplicationRevisionStatus
+      $order_by: [ApplicationsOrderBy!]
     ) {
       query {
         session {
@@ -31,10 +34,13 @@ class Applications extends Component<Props> {
         }
         ...ApplicationListContainer_query
           @arguments(
-            orderByField: $orderByField
-            direction: $direction
-            searchField: $searchField
-            searchValue: $searchValue
+            id: $id
+            operator_name: $operator_name
+            facility_name: $facility_name
+            reporting_year: $reporting_year
+            submission_date: $submission_date
+            status: $status
+            order_by: $order_by
           )
       }
     }

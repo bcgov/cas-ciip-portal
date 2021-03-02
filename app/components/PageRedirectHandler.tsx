@@ -84,7 +84,7 @@ const PageRedirectHandler: React.FunctionComponent<Props> = ({
     };
 
     checkSessionAndGroups();
-  }, [pageComponent, router, environment]);
+  }, [pageComponent, router.pathname]);
 
   useEffect(() => {
     let timeoutId;

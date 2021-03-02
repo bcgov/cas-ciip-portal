@@ -237,6 +237,9 @@ app.prepare().then(async () => {
   server.use(
     postgraphile(pgPool, process.env.DATABASE_SCHEMA || 'ggircs_portal', {
       ...postgraphileOptions(),
+      graphileBuildOptions: {
+        connectionFilterAllowNullInput: true
+      },
       pgSettings: (req) => {
         const opts = {
           ...authenticationPgSettings(req),

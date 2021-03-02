@@ -5,13 +5,6 @@ import FilterableTableHeaders from './FilterableTableHeaders';
 import {ISearchProps} from 'components/Search/SearchProps';
 
 interface Props extends ISearchProps {
-  handleEvent: (
-    action: string,
-    value?: string | number,
-    column?: string
-  ) => any;
-  handleSelectAll?: (...args: any[]) => void;
-  allSelected?: boolean;
   body: JSX.Element;
   isLoading?: boolean;
   extraControls?: JSX.Element;
@@ -19,13 +12,7 @@ interface Props extends ISearchProps {
 export const FilterableTableLayoutComponent: React.FunctionComponent<Props> = (
   props
 ) => {
-  const {
-    handleSelectAll,
-    allSelected = false,
-    searchOptions,
-    body,
-    isLoading
-  } = props;
+  const {searchOptions, body, isLoading} = props;
 
   const noSearchResults =
     body.props.children.length === 0 ||
@@ -45,18 +32,6 @@ export const FilterableTableLayoutComponent: React.FunctionComponent<Props> = (
       >
         <thead>
           <tr>
-            {handleSelectAll && (
-              <th className="master-select">
-                <label>
-                  Select All
-                  <input
-                    type="checkbox"
-                    checked={allSelected}
-                    onChange={(e) => handleSelectAll(e.target.checked)}
-                  />
-                </label>
-              </th>
-            )}
             {searchOptions.map((option) => (
               <SortableTableHeader
                 key={option.title + '-sortHeader'}

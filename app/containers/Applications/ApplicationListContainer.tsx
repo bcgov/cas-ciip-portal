@@ -1,104 +1,82 @@
-import React, {useEffect} from 'react';
-import {graphql, createRefetchContainer} from 'react-relay';
-import SearchTableLayout from 'components/SearchTableLayout';
+import React from 'react';
+import {graphql, createFragmentContainer} from 'react-relay';
+import FilterableTableLayout from 'components/FilterableComponents/FilterableTableLayout';
 import ApplicationRowItemContainer from './ApplicationRowItemContainer';
+import {ISearchOption} from 'components/Search/ISearchOption';
+import {NumberSearchOption} from 'components/Search/NumberSearchOption';
+import {NoHeaderSearchOption} from 'components/Search/NoHeaderSearchOption';
+import {TextSearchOption} from 'components/Search/TextSearchOption';
+import {SortOnlyOption} from 'components/Search/SortOnlyOption';
+import {EnumSearchOption} from 'components/Search/EnumSearchOption';
+import {CiipApplicationRevisionStatus} from 'createApplicationRevisionStatusMutation.graphql';
+import {ApplicationListContainer_query} from 'ApplicationListContainer_query.graphql';
 
-export const ApplicationList = (props) => {
-  const {
-    direction,
-    orderByField,
-    searchField,
-    searchValue,
-    handleEvent
-  } = props;
-  const {edges} = props.query.searchApplicationList;
+interface Props {
+  query: ApplicationListContainer_query;
+}
 
-  useEffect(() => {
-    const refetchVariables = {
-      searchField,
-      searchValue,
-      orderByField,
-      direction
-    };
-    props.relay.refetch(refetchVariables);
-  });
+export const ApplicationList: React.FunctionComponent<Props> = (props) => {
+  const {edges} = props.query.allApplications;
 
-  const displayNameToColumnNameMap = {
-    'Application Id': 'application_id',
-    'Operator Name': 'operator_name',
-    'Facility Name': 'facility_name',
-    'Reporting Year': 'reporting_year',
-    'Submission Date': 'submission_date',
-    Status: 'application_revision_status',
-    '': null
-  };
+  const searchOptions: ISearchOption[] = [
+    new NumberSearchOption('Application Id', 'id'),
+    new TextSearchOption('Operator Name', 'operator_name'),
+    new TextSearchOption('Facility Name', 'facility_name'),
+    new NumberSearchOption('Reporting Year', 'reporting_year'),
+    new SortOnlyOption('Submission Date', 'submission_date'),
+    new EnumSearchOption<CiipApplicationRevisionStatus>('Status', 'status', [
+      'APPROVED',
+      'REJECTED',
+      'REQUESTED_CHANGES',
+      'SUBMITTED'
+    ]),
+    NoHeaderSearchOption
+  ];
+
   const body = (
     <tbody>
       {edges.map((edge) => (
         <ApplicationRowItemContainer
           key={edge.node.rowId}
-          applicationSearchResult={edge.node}
+          application={edge.node}
         />
       ))}
     </tbody>
   );
 
-  return (
-    <SearchTableLayout
-      body={body}
-      displayNameToColumnNameMap={displayNameToColumnNameMap}
-      handleEvent={handleEvent}
-    />
-  );
+  return <FilterableTableLayout body={body} searchOptions={searchOptions} />;
 };
 
-// TODO(wenzowski): each search result node needs an ID both for react dom diffing as list key
-// and also for relay to refetch
-// @see https://facebook.github.io/relay/graphql/objectidentification.htm#sec-Node-Interface
-// TODO: Several entitites do not have graphql ID's because they are views
-export default createRefetchContainer(
-  ApplicationList,
-  {
-    query: graphql`
-      fragment ApplicationListContainer_query on Query
-      @argumentDefinitions(
-        searchField: {type: "String"}
-        searchValue: {type: "String"}
-        orderByField: {type: "String"}
-        direction: {type: "String"}
+export default createFragmentContainer(ApplicationList, {
+  query: graphql`
+    fragment ApplicationListContainer_query on Query
+    @argumentDefinitions(
+      id: {type: "Int"}
+      operator_name: {type: "String"}
+      facility_name: {type: "String"}
+      reporting_year: {type: "Int"}
+      submission_date: {type: "Datetime"}
+      status: {type: "CiipApplicationRevisionStatus"}
+      order_by: {type: "[ApplicationsOrderBy!]"}
+    ) {
+      allApplications(
+        filter: {
+          rowId: {equalTo: $id}
+          operatorName: {includesInsensitive: $operator_name}
+          facilityName: {includesInsensitive: $facility_name}
+          reportingYear: {equalTo: $reporting_year}
+          submissionDate: {equalTo: $submission_date}
+          status: {notEqualTo: DRAFT, equalTo: $status}
+        }
+        orderBy: $order_by
       ) {
-        searchApplicationList(
-          searchField: $searchField
-          searchValue: $searchValue
-          orderByField: $orderByField
-          direction: $direction
-        ) {
-          edges {
-            node {
-              rowId
-              ...ApplicationRowItemContainer_applicationSearchResult
-            }
+        edges {
+          node {
+            rowId
+            ...ApplicationRowItemContainer_application
           }
         }
       }
-    `
-  },
-  graphql`
-    query ApplicationListContainerRefetchQuery(
-      $searchField: String
-      $searchValue: String
-      $orderByField: String
-      $direction: String
-    ) {
-      query {
-        ...ApplicationListContainer_query
-          @arguments(
-            searchField: $searchField
-            searchValue: $searchValue
-            orderByField: $orderByField
-            direction: $direction
-          )
-      }
     }
   `
-);
+});

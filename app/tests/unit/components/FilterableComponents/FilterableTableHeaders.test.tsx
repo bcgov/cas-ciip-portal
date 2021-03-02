@@ -19,17 +19,17 @@ describe('The filterable table headers component', () => {
     expect(
       rendered
         .find('Button')
-        .filterWhere((node) => node.props().variant === 'success')
+        .filterWhere((node) => node.props().variant === 'outline-secondary')
         .first()
         .text()
-    ).toBe('Search');
+    ).toBe('Clear');
     expect(
       rendered
         .find('Button')
-        .filterWhere((node) => node.props().variant === 'danger')
+        .filterWhere((node) => node.props().variant === 'primary')
         .first()
         .text()
-    ).toBe('Reset');
+    ).toBe('Apply');
   });
 
   it('renders as many td elements as search options, plus one for the search buttons', () => {
@@ -117,7 +117,7 @@ describe('The filterable table headers component', () => {
 
     expect(rendered.find('option').length).toBe(3);
     expect(rendered.find('option').at(0).text()).toContain('...');
-    expect(rendered.find('option').at(1).text()).toContain('option1');
-    expect(rendered.find('option').at(2).text()).toContain('option2');
+    expect(rendered.find('option').at(1).text()).toContain('Option1');
+    expect(rendered.find('option').at(2).text()).toContain('Option2');
   });
 });

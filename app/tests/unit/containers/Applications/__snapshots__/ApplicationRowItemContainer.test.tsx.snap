@@ -3,7 +3,7 @@
 exports[`ApplicationRowItem should render the application 1`] = `
 <tr>
   <td>
-    abc
+    1
   </td>
   <td>
     blah
@@ -26,9 +26,9 @@ exports[`ApplicationRowItem should render the application 1`] = `
           "width": "100%",
         }
       }
-      variant="info"
+      variant="success"
     >
-      Submitted
+      Approved
     </Badge>
   </td>
   <td>
@@ -37,9 +37,9 @@ exports[`ApplicationRowItem should render the application 1`] = `
         Object {
           "pathname": "/analyst/application-review",
           "query": Object {
-            "applicationId": "abc",
+            "applicationId": undefined,
             "applicationRevisionId": undefined,
-            "version": 1,
+            "version": undefined,
           },
         }
       }

@@ -1,14 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`The filterable table headers component only renders elements that are searchable 1`] = `
-<tr>
+<tr
+  className="jsx-870174952"
+>
   <td
+    className="jsx-870174952"
     key="testtest"
   />
   <td
+    className="jsx-870174952"
     key="test2test2"
   />
   <td
+    className="jsx-870174952"
     key="test3test3"
   >
     <FormControl
@@ -18,36 +23,45 @@ exports[`The filterable table headers component only renders elements that are s
       value=""
     />
   </td>
-  <td>
-    <ButtonGroup
-      role="group"
-      toggle={false}
-      vertical={false}
+  <td
+    className="jsx-870174952 flex"
+  >
+    <Button
+      active={false}
+      disabled={false}
+      onClick={[Function]}
+      variant="outline-secondary"
     >
-      <Button
-        active={false}
-        disabled={false}
-        onClick={[Function]}
-        variant="success"
-      >
-        Search
-      </Button>
-      <Button
-        active={false}
-        disabled={false}
-        onClick={[Function]}
-        variant="danger"
-      >
-        Reset
-      </Button>
-    </ButtonGroup>
+      Clear
+    </Button>
+    <Button
+      active={false}
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "marginLeft": "5px",
+        }
+      }
+      variant="primary"
+    >
+      Apply
+    </Button>
   </td>
+  <JSXStyle
+    id="870174952"
+  >
+    .flex.jsx-870174952{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;}
+  </JSXStyle>
 </tr>
 `;
 
 exports[`The filterable table headers component renders a option input if values are provided 1`] = `
-<tr>
+<tr
+  className="jsx-870174952"
+>
   <td
+    className="jsx-870174952"
     key="testtest"
   >
     <FormControl
@@ -58,55 +72,67 @@ exports[`The filterable table headers component renders a option input if values
       value=""
     >
       <option
+        className="jsx-870174952"
         key="test-placeholder"
         value=""
       >
         ...
       </option>
       <option
+        className="jsx-870174952"
         key="test-option1"
         value="optionvalue1"
       >
-        option1
+        Option1
       </option>
       <option
+        className="jsx-870174952"
         key="test-option2"
         value="optionvalue2"
       >
-        option2
+        Option2
       </option>
     </FormControl>
   </td>
-  <td>
-    <ButtonGroup
-      role="group"
-      toggle={false}
-      vertical={false}
+  <td
+    className="jsx-870174952 flex"
+  >
+    <Button
+      active={false}
+      disabled={false}
+      onClick={[Function]}
+      variant="outline-secondary"
     >
-      <Button
-        active={false}
-        disabled={false}
-        onClick={[Function]}
-        variant="success"
-      >
-        Search
-      </Button>
-      <Button
-        active={false}
-        disabled={false}
-        onClick={[Function]}
-        variant="danger"
-      >
-        Reset
-      </Button>
-    </ButtonGroup>
+      Clear
+    </Button>
+    <Button
+      active={false}
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "marginLeft": "5px",
+        }
+      }
+      variant="primary"
+    >
+      Apply
+    </Button>
   </td>
+  <JSXStyle
+    id="870174952"
+  >
+    .flex.jsx-870174952{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;}
+  </JSXStyle>
 </tr>
 `;
 
 exports[`The filterable table headers component renders a text input if values are not provided 1`] = `
-<tr>
+<tr
+  className="jsx-870174952"
+>
   <td
+    className="jsx-870174952"
     key="testtest"
   >
     <FormControl
@@ -116,36 +142,45 @@ exports[`The filterable table headers component renders a text input if values a
       value=""
     />
   </td>
-  <td>
-    <ButtonGroup
-      role="group"
-      toggle={false}
-      vertical={false}
+  <td
+    className="jsx-870174952 flex"
+  >
+    <Button
+      active={false}
+      disabled={false}
+      onClick={[Function]}
+      variant="outline-secondary"
     >
-      <Button
-        active={false}
-        disabled={false}
-        onClick={[Function]}
-        variant="success"
-      >
-        Search
-      </Button>
-      <Button
-        active={false}
-        disabled={false}
-        onClick={[Function]}
-        variant="danger"
-      >
-        Reset
-      </Button>
-    </ButtonGroup>
+      Clear
+    </Button>
+    <Button
+      active={false}
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "marginLeft": "5px",
+        }
+      }
+      variant="primary"
+    >
+      Apply
+    </Button>
   </td>
+  <JSXStyle
+    id="870174952"
+  >
+    .flex.jsx-870174952{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;}
+  </JSXStyle>
 </tr>
 `;
 
 exports[`The filterable table headers component renders as many td elements as search options, plus one for the search buttons 1`] = `
-<tr>
+<tr
+  className="jsx-870174952"
+>
   <td
+    className="jsx-870174952"
     key="testtest"
   >
     <FormControl
@@ -156,6 +191,7 @@ exports[`The filterable table headers component renders as many td elements as s
     />
   </td>
   <td
+    className="jsx-870174952"
     key="test2test2"
   >
     <FormControl
@@ -165,58 +201,72 @@ exports[`The filterable table headers component renders as many td elements as s
       value=""
     />
   </td>
-  <td>
-    <ButtonGroup
-      role="group"
-      toggle={false}
-      vertical={false}
+  <td
+    className="jsx-870174952 flex"
+  >
+    <Button
+      active={false}
+      disabled={false}
+      onClick={[Function]}
+      variant="outline-secondary"
     >
-      <Button
-        active={false}
-        disabled={false}
-        onClick={[Function]}
-        variant="success"
-      >
-        Search
-      </Button>
-      <Button
-        active={false}
-        disabled={false}
-        onClick={[Function]}
-        variant="danger"
-      >
-        Reset
-      </Button>
-    </ButtonGroup>
+      Clear
+    </Button>
+    <Button
+      active={false}
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "marginLeft": "5px",
+        }
+      }
+      variant="primary"
+    >
+      Apply
+    </Button>
   </td>
+  <JSXStyle
+    id="870174952"
+  >
+    .flex.jsx-870174952{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;}
+  </JSXStyle>
 </tr>
 `;
 
 exports[`The filterable table headers component renders search and reset buttons 1`] = `
-<tr>
-  <td>
-    <ButtonGroup
-      role="group"
-      toggle={false}
-      vertical={false}
+<tr
+  className="jsx-870174952"
+>
+  <td
+    className="jsx-870174952 flex"
+  >
+    <Button
+      active={false}
+      disabled={false}
+      onClick={[Function]}
+      variant="outline-secondary"
     >
-      <Button
-        active={false}
-        disabled={false}
-        onClick={[Function]}
-        variant="success"
-      >
-        Search
-      </Button>
-      <Button
-        active={false}
-        disabled={false}
-        onClick={[Function]}
-        variant="danger"
-      >
-        Reset
-      </Button>
-    </ButtonGroup>
+      Clear
+    </Button>
+    <Button
+      active={false}
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "marginLeft": "5px",
+        }
+      }
+      variant="primary"
+    >
+      Apply
+    </Button>
   </td>
+  <JSXStyle
+    id="870174952"
+  >
+    .flex.jsx-870174952{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;}
+  </JSXStyle>
 </tr>
 `;
