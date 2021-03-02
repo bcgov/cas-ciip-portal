@@ -12,7 +12,7 @@ describe('When filtering applications', () => {
     cy.get('thead > tr > td:nth-child(1) > input.form-control')
       .clear()
       .type('1');
-    cy.contains('Search').click();
+    cy.contains('Apply').click();
     cy.get('#page-content');
     cy.url().should(
       'include',
@@ -24,7 +24,7 @@ describe('When filtering applications', () => {
       component: 'Application List',
       variant: 'Filtered By ID'
     });
-    cy.contains('Reset').click();
+    cy.contains('Clear').click();
     cy.get('#page-content');
     cy.get('table.search-table > tbody').find('tr').should('have.length', 3);
   });
@@ -36,7 +36,7 @@ describe('When filtering applications', () => {
     cy.get('thead > tr > td:nth-child(2) > input.form-control')
       .clear()
       .type('1');
-    cy.contains('Search').click();
+    cy.contains('Apply').click();
     cy.url().should(
       'include',
       '/analyst/applications?relayVars=%7B%22operator_name%22%3A%221%22%7D'
@@ -46,7 +46,7 @@ describe('When filtering applications', () => {
       'have.text',
       'test_organisation 1'
     );
-    cy.contains('Reset').click();
+    cy.contains('Clear').click();
   });
 
   it('The application can be filtered by an enum search', () => {
@@ -56,7 +56,7 @@ describe('When filtering applications', () => {
     cy.get('thead > tr > td:nth-child(6) > select.form-control').select(
       'Submitted'
     );
-    cy.contains('Search').click();
+    cy.contains('Apply').click();
     cy.url().should(
       'include',
       '/analyst/applications?relayVars=%7B%22status%22%3A%22SUBMITTED%22%7D'
@@ -70,7 +70,7 @@ describe('When filtering applications', () => {
       'have.text',
       'Submitted'
     );
-    cy.contains('Reset').click();
+    cy.contains('Clear').click();
   });
 
   it('The application can be filtered by multiple search fields', () => {
@@ -83,7 +83,7 @@ describe('When filtering applications', () => {
     cy.get('thead > tr > td:nth-child(6) > select.form-control').select(
       'Submitted'
     );
-    cy.contains('Search').click();
+    cy.contains('Apply').click();
     cy.url().should(
       'include',
       '/analyst/applications?relayVars=%7B%22operator_name%22%3A%221%22%2C%22status%22%3A%22SUBMITTED%22%7D'
@@ -94,6 +94,6 @@ describe('When filtering applications', () => {
       'test_organisation 1'
     );
     cy.get('tbody > tr > :nth-child(6)').should('have.text', 'Submitted');
-    cy.contains('Reset').click();
+    cy.contains('Clear').click();
   });
 });
