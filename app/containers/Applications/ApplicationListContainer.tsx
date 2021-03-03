@@ -19,7 +19,6 @@ interface Props {
 
 export const ApplicationList: React.FunctionComponent<Props> = (props) => {
   const {edges, pageInfo, totalCount} = props?.query?.allApplications;
-  const firstEdgeCursor = props?.query?.firstEdge.pageInfo.startCursor;
   const {maxResultsPerPage} = props;
 
   const searchOptions: ISearchOption[] = [
@@ -54,7 +53,6 @@ export const ApplicationList: React.FunctionComponent<Props> = (props) => {
       <FilterableTablePagination
         totalCount={totalCount}
         pageInfo={pageInfo}
-        firstEdgeCursor={firstEdgeCursor}
         maxResultsPerPage={maxResultsPerPage}
       />
     </>
@@ -72,14 +70,12 @@ export default createFragmentContainer(ApplicationList, {
       submission_date: {type: "Datetime"}
       status: {type: "CiipApplicationRevisionStatus"}
       order_by: {type: "[ApplicationsOrderBy!]"}
-      after_cursor: {type: "Cursor"}
       max_results: {type: "Int"}
       offset: {type: "Int"}
     ) {
       allApplications(
         first: $max_results
         offset: $offset
-        after: $after_cursor
         filter: {
           rowId: {equalTo: $id}
           operatorName: {includesInsensitive: $operator_name}
@@ -101,22 +97,6 @@ export default createFragmentContainer(ApplicationList, {
           hasPreviousPage
         }
         totalCount
-      }
-      firstEdge: allApplications(
-        first: 1
-        filter: {
-          rowId: {equalTo: $id}
-          operatorName: {includesInsensitive: $operator_name}
-          facilityName: {includesInsensitive: $facility_name}
-          reportingYear: {equalTo: $reporting_year}
-          submissionDate: {equalTo: $submission_date}
-          status: {notEqualTo: DRAFT, equalTo: $status}
-        }
-        orderBy: $order_by
-      ) {
-        pageInfo {
-          startCursor
-        }
       }
     }
   `

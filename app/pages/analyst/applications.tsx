@@ -23,7 +23,6 @@ class Applications extends Component<Props> {
       $submission_date: Datetime
       $status: CiipApplicationRevisionStatus
       $order_by: [ApplicationsOrderBy!]
-      $after_cursor: Cursor
       $max_results: Int
       $offset: Int
     ) {
@@ -40,7 +39,6 @@ class Applications extends Component<Props> {
             submission_date: $submission_date
             status: $status
             order_by: $order_by
-            after_cursor: $after_cursor
             max_results: $max_results
             offset: $offset
           )

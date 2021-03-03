@@ -1,11 +1,10 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {useRouter} from 'next/router';
 import {Pagination} from 'react-bootstrap';
 
 interface Props {
   totalCount: number;
   maxResultsPerPage: number;
-  firstEdgeCursor: string;
   pageInfo: {
     hasNextPage: boolean;
     hasPreviousPage: boolean;
@@ -15,18 +14,22 @@ export const FilterableTablePaginationComponent: React.FunctionComponent<Props> 
   props
 ) => {
   const {hasNextPage, hasPreviousPage} = props.pageInfo;
-  const {totalCount, firstEdgeCursor, maxResultsPerPage} = props;
+  const {totalCount, maxResultsPerPage} = props;
   const router = useRouter();
-  const [activePage, setActivePage] = useState(1);
-
   const maxPages = Math.ceil(totalCount / maxResultsPerPage);
+
+  // Set the activePage by query string value. If no value exists, the activePage is the first page
+  let activePage = 1;
+  if (router?.query?.pageVars)
+    activePage =
+      JSON.parse(router?.query?.pageVars?.toString())?.activePage || 1;
 
   const items = [];
 
   const paginate = (pageNumber: number) => {
     const paginationObject = {
-      after_cursor: pageNumber > 1 ? firstEdgeCursor : null,
-      offset: pageNumber > 1 ? (pageNumber - 1) * maxResultsPerPage - 1 : 0
+      offset: (pageNumber - 1) * maxResultsPerPage,
+      activePage: pageNumber
     };
     const url = {
       pathname: router.pathname,
@@ -35,34 +38,10 @@ export const FilterableTablePaginationComponent: React.FunctionComponent<Props> 
         pageVars: JSON.stringify(paginationObject)
       }
     };
-    router.replace(url, url, {shallow: true});
+    router.push(url, url, {shallow: true});
   };
 
-  const paginateByNumber = (pageNumber) => {
-    setActivePage(pageNumber);
-    paginate(pageNumber);
-  };
-
-  const forwardOnePage = () => {
-    setActivePage(activePage + 1);
-    paginate(activePage + 1);
-  };
-
-  const backOnePage = () => {
-    setActivePage(activePage - 1);
-    paginate(activePage - 1);
-  };
-
-  const firstPage = () => {
-    setActivePage(1);
-    paginate(1);
-  };
-
-  const lastPage = () => {
-    setActivePage(maxPages);
-    paginate(maxPages);
-  };
-
+  // Determines what page numbers to render based on the location of the activePage
   let startPage;
   let endPage;
   if (maxPages <= 9) {
@@ -79,12 +58,13 @@ export const FilterableTablePaginationComponent: React.FunctionComponent<Props> 
     endPage = activePage + 4;
   }
 
+  // Populate the Pagination items with page numbers & functionality
   for (let pageNumber = startPage; pageNumber <= endPage; pageNumber++) {
     items.push(
       <Pagination.Item
         key={pageNumber}
         active={pageNumber === activePage}
-        onClick={() => paginateByNumber(pageNumber)}
+        onClick={() => paginate(pageNumber)}
       >
         {pageNumber}
       </Pagination.Item>
@@ -94,17 +74,17 @@ export const FilterableTablePaginationComponent: React.FunctionComponent<Props> 
   return (
     <>
       <Pagination>
-        <Pagination.First onClick={() => firstPage()} />
+        <Pagination.First onClick={() => paginate(1)} />
         <Pagination.Prev
-          onClick={() => (hasPreviousPage ? backOnePage() : null)}
+          onClick={() => (hasPreviousPage ? paginate(activePage - 1) : null)}
         />
         {startPage !== 1 && <Pagination.Ellipsis />}
         {items}
         {endPage !== maxPages && <Pagination.Ellipsis />}
         <Pagination.Next
-          onClick={() => (hasNextPage ? forwardOnePage() : null)}
+          onClick={() => (hasNextPage ? paginate(activePage + 1) : null)}
         />
-        <Pagination.Last onClick={() => lastPage()} />
+        <Pagination.Last onClick={() => paginate(maxPages)} />
       </Pagination>
     </>
   );
