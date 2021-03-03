@@ -1,50 +1,36 @@
-import React, {useEffect} from 'react';
-import {graphql, createRefetchContainer, RelayRefetchProp} from 'react-relay';
+import React from 'react';
+import {graphql, createFragmentContainer} from 'react-relay';
 import {OrganisationRequestsTable_query} from 'OrganisationRequestsTable_query.graphql';
-import SearchTableLayout from 'components/SearchTableLayout';
+import {CiipUserOrganisationStatus} from 'OrganisationRequestsTableRow_userOrganisation.graphql';
 import OrganisationRequestsTableRow from './OrganisationRequestsTableRow';
+import {ISearchOption} from 'components/Search/ISearchOption';
+import {NoHeaderSearchOption} from 'components/Search/NoHeaderSearchOption';
+import {TextSearchOption} from 'components/Search/TextSearchOption';
+import {NumberSearchOption} from 'components/Search/NumberSearchOption';
+import {EnumSearchOption} from 'components/Search/EnumSearchOption';
+import FilterableTableLayoutComponent from 'components/FilterableComponents/FilterableTableLayout';
 interface Props {
   query: OrganisationRequestsTable_query;
-  orderByField?: string;
-  orderByDisplay?: string;
-  searchField?: string;
-  searchValue?: string;
-  direction?: string;
-  searchDisplay?: string;
-  handleEvent: (...args: any[]) => void;
-  relay: RelayRefetchProp;
 }
 export const OrganisationRequestsTableComponent: React.FunctionComponent<Props> = (
   props
 ) => {
-  const {
-    orderByField,
-    searchField,
-    searchValue,
-    direction,
-    handleEvent
-  } = props;
+  const searchOptions: ISearchOption[] = [
+    new NumberSearchOption('User ID', 'user_id'),
+    new TextSearchOption('First Name', 'first_name'),
+    new TextSearchOption('Last Name', 'last_name'),
+    new TextSearchOption('Email', 'email_address'),
+    new TextSearchOption('Operator', 'operator_name'),
+    new EnumSearchOption<CiipUserOrganisationStatus>('Status', 'status', [
+      'APPROVED',
+      'PENDING',
+      'REJECTED'
+    ]),
+    NoHeaderSearchOption
+  ];
 
-  const displayNameToColumnNameMap = {
-    'User ID': 'user_id',
-    'First Name': 'first_name',
-    'Last Name': 'last_name',
-    Email: 'email_address',
-    Operator: 'operator_name',
-    Status: 'status',
-    '': null
-  };
+  const {edges} = props.query.allCiipUserOrganisations;
 
-  const {edges} = props.query.searchCiipUserOrganisation;
-  useEffect(() => {
-    const refetchVariables = {
-      searchField,
-      searchValue,
-      orderByField,
-      direction
-    };
-    props.relay.refetch(refetchVariables);
-  });
   const body = (
     <tbody>
       {edges.map((edge) => (
@@ -56,57 +42,40 @@ export const OrganisationRequestsTableComponent: React.FunctionComponent<Props> 
     </tbody>
   );
   return (
-    <SearchTableLayout
-      body={body}
-      displayNameToColumnNameMap={displayNameToColumnNameMap}
-      handleEvent={handleEvent}
-    />
+    <FilterableTableLayoutComponent body={body} searchOptions={searchOptions} />
   );
 };
 
-export default createRefetchContainer(
-  OrganisationRequestsTableComponent,
-  {
-    query: graphql`
-      fragment OrganisationRequestsTable_query on Query
-      @argumentDefinitions(
-        searchField: {type: "String"}
-        searchValue: {type: "String"}
-        orderByField: {type: "String"}
-        direction: {type: "String"}
+export default createFragmentContainer(OrganisationRequestsTableComponent, {
+  query: graphql`
+    fragment OrganisationRequestsTable_query on Query
+    @argumentDefinitions(
+      user_id: {type: "Int"}
+      first_name: {type: "String"}
+      last_name: {type: "String"}
+      email_address: {type: "String"}
+      operator_name: {type: "String"}
+      status: {type: "CiipUserOrganisationStatus"}
+      order_by: {type: "[CiipUserOrganisationsOrderBy!]"}
+    ) {
+      allCiipUserOrganisations(
+        filter: {
+          userId: {equalTo: $user_id}
+          firstName: {includesInsensitive: $first_name}
+          lastName: {includesInsensitive: $last_name}
+          emailAddress: {includesInsensitive: $email_address}
+          operatorName: {includesInsensitive: $operator_name}
+          status: {equalTo: $status}
+        }
+        orderBy: $order_by
       ) {
-        searchCiipUserOrganisation(
-          searchField: $searchField
-          searchValue: $searchValue
-          orderByField: $orderByField
-          direction: $direction
-        ) {
-          edges {
-            node {
-              id
-              ...OrganisationRequestsTableRow_userOrganisation
-            }
+        edges {
+          node {
+            id
+            ...OrganisationRequestsTableRow_userOrganisation
           }
         }
       }
-    `
-  },
-  graphql`
-    query OrganisationRequestsTableRefetchQuery(
-      $searchField: String
-      $searchValue: String
-      $orderByField: String
-      $direction: String
-    ) {
-      query {
-        ...OrganisationRequestsTable_query
-          @arguments(
-            searchField: $searchField
-            searchValue: $searchValue
-            orderByField: $orderByField
-            direction: $direction
-          )
-      }
     }
   `
-);
+});

@@ -16,10 +16,13 @@ class OrganisationRequests extends Component<Props> {
   static isAccessProtected = true;
   static query = graphql`
     query organisationRequestsQuery(
-      $orderByField: String
-      $direction: String
-      $searchField: String
-      $searchValue: String
+      $user_id: Int
+      $first_name: String
+      $last_name: String
+      $email_address: String
+      $operator_name: String
+      $status: CiipUserOrganisationStatus
+      $order_by: [CiipUserOrganisationsOrderBy!]
     ) {
       query {
         session {
@@ -27,10 +30,13 @@ class OrganisationRequests extends Component<Props> {
         }
         ...OrganisationRequestsTable_query
           @arguments(
-            orderByField: $orderByField
-            direction: $direction
-            searchField: $searchField
-            searchValue: $searchValue
+            user_id: $user_id
+            first_name: $first_name
+            last_name: $last_name
+            email_address: $email_address
+            operator_name: $operator_name
+            status: $status
+            order_by: $order_by
           )
       }
     }
