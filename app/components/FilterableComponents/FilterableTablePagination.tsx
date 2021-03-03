@@ -1,9 +1,8 @@
 import React from 'react';
 import {Button} from 'react-bootstrap';
-import {ISearchProps} from 'components/Search/SearchProps';
 import {useRouter} from 'next/router';
 
-interface Props extends ISearchProps {
+interface Props {
   pageInfo: {
     startCursor: string;
     endCursor: string;

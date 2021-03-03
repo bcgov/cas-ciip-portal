@@ -85,7 +85,6 @@ export default createFragmentContainer(ApplicationList, {
         orderBy: $order_by
       ) {
         edges {
-          cursor
           node {
             rowId
             ...ApplicationRowItemContainer_application
