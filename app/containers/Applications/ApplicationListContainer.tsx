@@ -14,10 +14,13 @@ import FilterableTablePagination from 'components/FilterableComponents/Filterabl
 
 interface Props {
   query: ApplicationListContainer_query;
+  maxResultsPerPage: number;
 }
 
 export const ApplicationList: React.FunctionComponent<Props> = (props) => {
-  const {edges, pageInfo} = props?.query?.allApplications;
+  const {edges, pageInfo, totalCount} = props?.query?.allApplications;
+  const firstEdgeCursor = props?.query?.firstEdge.pageInfo.startCursor;
+  const {maxResultsPerPage} = props;
 
   const searchOptions: ISearchOption[] = [
     new NumberSearchOption('Application Id', 'id'),
@@ -48,7 +51,12 @@ export const ApplicationList: React.FunctionComponent<Props> = (props) => {
   return (
     <>
       <FilterableTableLayout body={body} searchOptions={searchOptions} />
-      <FilterableTablePagination pageInfo={pageInfo} />
+      <FilterableTablePagination
+        totalCount={totalCount}
+        pageInfo={pageInfo}
+        firstEdgeCursor={firstEdgeCursor}
+        maxResultsPerPage={maxResultsPerPage}
+      />
     </>
   );
 };
@@ -65,14 +73,12 @@ export default createFragmentContainer(ApplicationList, {
       status: {type: "CiipApplicationRevisionStatus"}
       order_by: {type: "[ApplicationsOrderBy!]"}
       after_cursor: {type: "Cursor"}
-      before_cursor: {type: "Cursor"}
-      num_forward: {type: "Int"}
-      num_back: {type: "Int"}
+      max_results: {type: "Int"}
+      offset: {type: "Int"}
     ) {
       allApplications(
-        first: $num_forward
-        last: $num_back
-        before: $before_cursor
+        first: $max_results
+        offset: $offset
         after: $after_cursor
         filter: {
           rowId: {equalTo: $id}
@@ -91,10 +97,25 @@ export default createFragmentContainer(ApplicationList, {
           }
         }
         pageInfo {
-          endCursor
-          startCursor
           hasNextPage
           hasPreviousPage
+        }
+        totalCount
+      }
+      firstEdge: allApplications(
+        first: 1
+        filter: {
+          rowId: {equalTo: $id}
+          operatorName: {includesInsensitive: $operator_name}
+          facilityName: {includesInsensitive: $facility_name}
+          reportingYear: {equalTo: $reporting_year}
+          submissionDate: {equalTo: $submission_date}
+          status: {notEqualTo: DRAFT, equalTo: $status}
+        }
+        orderBy: $order_by
+      ) {
+        pageInfo {
+          startCursor
         }
       }
     }

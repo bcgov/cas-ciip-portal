@@ -1,11 +1,12 @@
-import React from 'react';
-import {Button} from 'react-bootstrap';
+import React, {useState} from 'react';
 import {useRouter} from 'next/router';
+import {Pagination} from 'react-bootstrap';
 
 interface Props {
+  totalCount: number;
+  maxResultsPerPage: number;
+  firstEdgeCursor: string;
   pageInfo: {
-    startCursor: string;
-    endCursor: string;
     hasNextPage: boolean;
     hasPreviousPage: boolean;
   };
@@ -13,24 +14,20 @@ interface Props {
 export const FilterableTablePaginationComponent: React.FunctionComponent<Props> = (
   props
 ) => {
-  const {startCursor, endCursor, hasNextPage, hasPreviousPage} = props.pageInfo;
+  const {hasNextPage, hasPreviousPage} = props.pageInfo;
+  const {totalCount, firstEdgeCursor, maxResultsPerPage} = props;
   const router = useRouter();
+  const [activePage, setActivePage] = useState(1);
 
-  const paginate = (forward: boolean, cursor: string) => {
-    const paginationObject = forward
-      ? {
-          after_cursor: cursor,
-          before_cursor: null,
-          num_forward: 10,
-          num_back: null
-        }
-      : {
-          after_cursor: null,
-          before_cursor: cursor,
-          num_forward: null,
-          num_back: 10
-        };
+  const maxPages = Math.ceil(totalCount / maxResultsPerPage);
 
+  const items = [];
+
+  const paginate = (pageNumber: number) => {
+    const paginationObject = {
+      after_cursor: pageNumber > 1 ? firstEdgeCursor : null,
+      offset: pageNumber > 1 ? (pageNumber - 1) * maxResultsPerPage - 1 : 0
+    };
     const url = {
       pathname: router.pathname,
       query: {
@@ -41,25 +38,74 @@ export const FilterableTablePaginationComponent: React.FunctionComponent<Props> 
     router.replace(url, url, {shallow: true});
   };
 
+  const paginateByNumber = (pageNumber) => {
+    setActivePage(pageNumber);
+    paginate(pageNumber);
+  };
+
+  const forwardOnePage = () => {
+    setActivePage(activePage + 1);
+    paginate(activePage + 1);
+  };
+
+  const backOnePage = () => {
+    setActivePage(activePage - 1);
+    paginate(activePage - 1);
+  };
+
+  const firstPage = () => {
+    setActivePage(1);
+    paginate(1);
+  };
+
+  const lastPage = () => {
+    setActivePage(maxPages);
+    paginate(maxPages);
+  };
+
+  let startPage;
+  let endPage;
+  if (maxPages <= 9) {
+    startPage = 1;
+    endPage = maxPages;
+  } else if (maxPages - activePage <= 4) {
+    startPage = maxPages - 8;
+    endPage = maxPages;
+  } else if (activePage <= 5) {
+    startPage = 1;
+    endPage = 9;
+  } else {
+    startPage = activePage - 4;
+    endPage = activePage + 4;
+  }
+
+  for (let pageNumber = startPage; pageNumber <= endPage; pageNumber++) {
+    items.push(
+      <Pagination.Item
+        key={pageNumber}
+        active={pageNumber === activePage}
+        onClick={() => paginateByNumber(pageNumber)}
+      >
+        {pageNumber}
+      </Pagination.Item>
+    );
+  }
+
   return (
     <>
-      {hasPreviousPage && (
-        <Button
-          variant="outline-primary"
-          style={{marginRight: '5px'}}
-          onClick={() => paginate(false, startCursor)}
-        >
-          &lt; Back
-        </Button>
-      )}
-      {hasNextPage && (
-        <Button
-          variant="outline-primary"
-          onClick={() => paginate(true, endCursor)}
-        >
-          Forward &gt;
-        </Button>
-      )}
+      <Pagination>
+        <Pagination.First onClick={() => firstPage()} />
+        <Pagination.Prev
+          onClick={() => (hasPreviousPage ? backOnePage() : null)}
+        />
+        {startPage !== 1 && <Pagination.Ellipsis />}
+        {items}
+        {endPage !== maxPages && <Pagination.Ellipsis />}
+        <Pagination.Next
+          onClick={() => (hasNextPage ? forwardOnePage() : null)}
+        />
+        <Pagination.Last onClick={() => lastPage()} />
+      </Pagination>
     </>
   );
 };

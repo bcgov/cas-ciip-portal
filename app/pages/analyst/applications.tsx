@@ -24,9 +24,8 @@ class Applications extends Component<Props> {
       $status: CiipApplicationRevisionStatus
       $order_by: [ApplicationsOrderBy!]
       $after_cursor: Cursor
-      $before_cursor: Cursor
-      $num_forward: Int
-      $num_back: Int
+      $max_results: Int
+      $offset: Int
     ) {
       query {
         session {
@@ -42,9 +41,8 @@ class Applications extends Component<Props> {
             status: $status
             order_by: $order_by
             after_cursor: $after_cursor
-            before_cursor: $before_cursor
-            num_forward: $num_forward
-            num_back: $num_back
+            max_results: $max_results
+            offset: $offset
           )
       }
     }
@@ -55,16 +53,25 @@ class Applications extends Component<Props> {
       variables: {
         orderByField: 'operator_name',
         direction: 'ASC',
-        num_forward: 10
+        max_results: 3,
+        offset: 0
       }
     };
   }
 
   render() {
     const {query} = this.props;
+    /** maxResultsPerPage matches the value of max_results in getInitialProps().
+     *  max_results is passed to the initial query via the router
+     *  maxResultsPerPage is passed as a prop to aid in rendering the correct number of pages in the FilterableTablePagination component
+     **/
+    const maxResultsPerPage = 3;
     return (
       <DefaultLayout title="Applications" session={query.session}>
-        <ApplicationListContainer query={query} />
+        <ApplicationListContainer
+          query={query}
+          maxResultsPerPage={maxResultsPerPage}
+        />
       </DefaultLayout>
     );
   }
