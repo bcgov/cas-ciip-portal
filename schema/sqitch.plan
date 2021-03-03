@@ -232,3 +232,4 @@ computed_columns/ciip_user_organisation_first_name [tables/ciip_user_organisatio
 computed_columns/ciip_user_organisation_last_name [tables/ciip_user_organisation] 2021-02-17T16:12:59Z Dylan Leard <dylan@button.is> # Computed column returns last_name from ciip_user as a scalar for filter/sort
 computed_columns/ciip_user_organisation_email_address [tables/ciip_user_organisation] 2021-02-17T16:17:21Z Dylan Leard <dylan@button.is> # Computed column returns email_address from ciip_user as a scalar for filter/sort
 computed_columns/ciip_user_organisation_operator_name [tables/ciip_user_organisation] 2021-02-17T16:21:07Z Dylan Leard <dylan@button.is> # Computed column returns operator_name as a scalar for filter/sort
+search_functions/search_ciip_user_organisation [search_functions/search_ciip_user_organisation@v1.16.0] 2021-03-03T21:18:43Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # Removing the custom search function since the filter plugin now takes care of it
