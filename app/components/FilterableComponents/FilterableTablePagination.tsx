@@ -4,28 +4,35 @@ import {Pagination} from 'react-bootstrap';
 
 interface Props {
   totalCount: number;
-  maxResultsPerPage: number;
 }
+
+export const DEFAULT_MAX_RESULTS = 20;
 
 export const FilterableTablePaginationComponent: React.FunctionComponent<Props> = (
   props
 ) => {
-  const {totalCount, maxResultsPerPage} = props;
+  const {totalCount} = props;
   const router = useRouter();
-  const maxPages = Math.ceil(totalCount / maxResultsPerPage);
 
-  // Set the activePage by query string value. If no value exists, the activePage is the first page
-  let activePage = 1;
-  if (router?.query?.pageVars)
-    activePage =
-      JSON.parse(router?.query?.pageVars?.toString())?.activePage || 1;
+  const getPageData = () => {
+    try {
+      return JSON.parse(router.query.pageVars?.toString());
+    } catch (e) {
+      return {};
+    }
+  };
+
+  const pageData = router.query.pageVars ? getPageData() : {};
+
+  const maxResultsPerPage = pageData?.maxResultsPerPage || DEFAULT_MAX_RESULTS;
+  const activePage = pageData?.offset / maxResultsPerPage + 1 || 1;
+  const maxPages = Math.ceil(totalCount / maxResultsPerPage);
 
   const items = [];
 
   const paginate = (pageNumber: number) => {
     const paginationObject = {
-      offset: (pageNumber - 1) * maxResultsPerPage,
-      activePage: pageNumber
+      offset: (pageNumber - 1) * maxResultsPerPage
     };
     const url = {
       pathname: router.pathname,

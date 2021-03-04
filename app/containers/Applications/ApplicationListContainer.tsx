@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import {graphql, createFragmentContainer} from 'react-relay';
 import FilterableTableLayout from 'components/FilterableComponents/FilterableTableLayout';
 import ApplicationRowItemContainer from './ApplicationRowItemContainer';
@@ -11,7 +11,6 @@ import {EnumSearchOption} from 'components/Search/EnumSearchOption';
 import {CiipApplicationRevisionStatus} from 'createApplicationRevisionStatusMutation.graphql';
 import {ApplicationListContainer_query} from 'ApplicationListContainer_query.graphql';
 import FilterableTablePagination from 'components/FilterableComponents/FilterableTablePagination';
-import Applications from 'pages/analyst/applications';
 
 interface Props {
   query: ApplicationListContainer_query;
@@ -19,17 +18,6 @@ interface Props {
 
 export const ApplicationList: React.FunctionComponent<Props> = (props) => {
   const {edges, totalCount} = props?.query?.allApplications;
-
-  const [maxResultsPerPage, setMaxResultsPerPage] = useState(null);
-
-  const getMaxResultsPerPage = async () => {
-    const initProps = await Applications.getInitialProps();
-    setMaxResultsPerPage(initProps.variables.max_results);
-  };
-
-  useEffect(() => {
-    if (!maxResultsPerPage) getMaxResultsPerPage();
-  }, []);
 
   const searchOptions: ISearchOption[] = [
     new NumberSearchOption('Application Id', 'id'),
@@ -60,10 +48,7 @@ export const ApplicationList: React.FunctionComponent<Props> = (props) => {
   return (
     <>
       <FilterableTableLayout body={body} searchOptions={searchOptions} />
-      <FilterableTablePagination
-        totalCount={totalCount}
-        maxResultsPerPage={maxResultsPerPage}
-      />
+      <FilterableTablePagination totalCount={totalCount} />
     </>
   );
 };

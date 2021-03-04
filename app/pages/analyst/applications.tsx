@@ -4,6 +4,7 @@ import {applicationsQueryResponse} from 'applicationsQuery.graphql';
 import ApplicationListContainer from 'containers/Applications/ApplicationListContainer';
 import DefaultLayout from 'layouts/default-layout';
 import {INCENTIVE_ANALYST, ADMIN_GROUP} from 'data/group-constants';
+import {DEFAULT_MAX_RESULTS} from 'components/FilterableComponents/FilterableTablePagination';
 
 const ALLOWED_GROUPS = [INCENTIVE_ANALYST, ...ADMIN_GROUP];
 
@@ -51,7 +52,7 @@ class Applications extends Component<Props> {
       variables: {
         orderByField: 'operator_name',
         direction: 'ASC',
-        max_results: 20,
+        max_results: DEFAULT_MAX_RESULTS,
         offset: 0
       }
     };
