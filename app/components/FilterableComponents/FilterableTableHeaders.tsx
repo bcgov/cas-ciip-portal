@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {Button, Form} from 'react-bootstrap';
 import {useRouter} from 'next/router';
 import {ISearchProps} from 'components/Search/SearchProps';
@@ -11,7 +11,9 @@ const FilterableTableHeaders: React.FunctionComponent<ISearchProps> = (
 ) => {
   const router = useRouter();
 
-  const [searchFilters, setSearchFilters] = useState({});
+  const [searchFilters, setSearchFilters] = useState(() =>
+    router.query.relayVars ? JSON.parse(String(router.query.relayVars)) : {}
+  );
 
   const handleFilterChange = (value, column, parseMethod) => {
     setSearchFilters({
@@ -49,17 +51,6 @@ const FilterableTableHeaders: React.FunctionComponent<ISearchProps> = (
     setSearchFilters({});
     applySearch({});
   };
-
-  // functional equivalent to componentDidMount()
-  useEffect(() => {
-    const parsedUrl = router.query.relayVars
-      ? JSON.parse(String(router.query.relayVars))
-      : {};
-    Object.keys(parsedUrl).forEach((key) => {
-      if (NONE_VALUES.includes(searchFilters[key]))
-        searchFilters[key] = parsedUrl[key];
-    });
-  }, []);
 
   return (
     <tr>
