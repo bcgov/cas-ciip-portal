@@ -1,7 +1,7 @@
 import React, {useMemo} from 'react';
 import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
 import {Modal, Badge, Dropdown, Button} from 'react-bootstrap';
-import {IChangeEvent} from '@rjsf/core';
+import {IChangeEvent} from 'react-jsonschema-form';
 import {ProductRowItemContainer_product} from 'ProductRowItemContainer_product.graphql';
 import {ProductRowItemContainer_query} from 'ProductRowItemContainer_query.graphql';
 import updateProductMutation from 'mutations/product/updateProductMutation';
@@ -21,16 +21,12 @@ interface Props {
   relay: RelayProp;
   product: ProductRowItemContainer_product;
   query: ProductRowItemContainer_query;
-  updateProductCount: (...args: any[]) => void;
-  productCount: number;
 }
 
 export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
   relay,
   product,
-  query,
-  updateProductCount,
-  productCount
+  query
 }) => {
   const [productModalShow, setProductModalShow] = React.useState(false);
   const [benchmarkModalShow, setBenchmarkModalShow] = React.useState(false);
@@ -49,10 +45,6 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
 
   /** Mutation functions **/
 
-  const handleUpdateProductCount = (newCount) => {
-    updateProductCount(newCount);
-  };
-
   // Change a product status
   const updateStatus = async (state: CiipProductState) => {
     const variables = {
@@ -64,7 +56,6 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
       }
     };
     const response = await updateProductMutation(relay.environment, variables);
-    handleUpdateProductCount((productCount += 1));
     setProductModalShow(false);
     console.log(response);
   };
@@ -98,7 +89,6 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
       }
     };
     const response = await updateProductMutation(relay.environment, variables);
-    handleUpdateProductCount((productCount += 1));
     setProductModalShow(false);
     console.log(response);
   };
@@ -117,7 +107,6 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
       relay.environment,
       variables
     );
-    handleUpdateProductCount((productCount += 1));
     setBenchmarkModalShow(false);
     console.log(response);
   };
@@ -135,7 +124,6 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
       relay.environment,
       variables
     );
-    handleUpdateProductCount((productCount += 1));
     setBenchmarkModalShow(false);
     console.log(response);
   };
@@ -155,7 +143,6 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
       relay.environment,
       variables
     );
-    handleUpdateProductCount((productCount += 1));
     console.log(response);
   };
 
@@ -178,7 +165,6 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
       relay.environment,
       variables
     );
-    handleUpdateProductCount((productCount += 1));
     console.log(response);
   };
 
@@ -232,7 +218,6 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
       show={productModalShow}
       onHide={() => {
         setProductModalShow(false);
-        handleUpdateProductCount((productCount += 1));
       }}
     >
       <InnerModal
@@ -256,7 +241,6 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
       show={benchmarkModalShow}
       onHide={() => {
         setBenchmarkModalShow(false);
-        handleUpdateProductCount((productCount += 1));
       }}
     >
       <InnerModal
@@ -379,7 +363,9 @@ export default createFragmentContainer(ProductRowItemComponent, {
       addEmissionsFromEios
       requiresProductAmount
       updatedAt
-      benchmarksByProductId(orderBy: CREATED_AT_DESC) {
+      currentBenchmark
+      currentEligibilityThreshold
+      benchmarksByProductId(orderBy: ID_DESC) {
         edges {
           node {
             id
