@@ -18,6 +18,18 @@ insert into ggircs_portal.application_revision_status(application_id, version_nu
 insert into ggircs_portal.application_revision_status(application_id, version_number, application_revision_status, created_at)
   values (3,1,'approved', now() + interval '1 minute');
 
+-- Create organisation access requests
+insert into ggircs_portal.ciip_user_organisation(user_id, organisation_id, status)
+  values (1, 1, 'approved');
+insert into ggircs_portal.ciip_user_organisation(user_id, organisation_id, status)
+  values (2, 1, 'rejected');
+insert into ggircs_portal.ciip_user_organisation(user_id, organisation_id, status)
+  values (2, 3, 'approved');
+insert into ggircs_portal.ciip_user_organisation(user_id, organisation_id, status)
+  values (6, 2, 'approved');
+insert into ggircs_portal.ciip_user_organisation(user_id, organisation_id, status)
+  values (6, 3, 'pending');
+
 select test_helper.modify_triggers('enable');
 
 commit;
