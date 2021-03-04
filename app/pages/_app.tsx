@@ -51,16 +51,25 @@ export default class App extends NextApp<AppProps> {
       })
     );
 
+    // Safely parse from URL query string, returns {} if query string is invalid JSON
+    const safeParse = (toParse) => {
+      try {
+        return JSON.parse(toParse as string);
+      } catch (e) {
+        return {};
+      }
+    };
+
     // This is part of our query infrastructure.
     //
     // The relayVars query string in the URL contains all filters to apply to the Relay query variables.
     // It allows navigation to keep track of the query, so the form doesn't get reset.
     const relayVars = router.query.relayVars
-      ? JSON.parse(String(router.query.relayVars))
+      ? safeParse(router.query.relayVars)
       : {};
 
     const pageVars = router.query.pageVars
-      ? JSON.parse(String(router.query.pageVars))
+      ? safeParse(router.query.pageVars)
       : {};
 
     return (
