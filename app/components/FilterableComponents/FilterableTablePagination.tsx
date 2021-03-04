@@ -8,7 +8,7 @@ interface Props {
 
 export const DEFAULT_MAX_RESULTS = 20;
 
-export const FilterableTablePaginationComponent: React.FunctionComponent<Props> = (
+const FilterableTablePaginationComponent: React.FunctionComponent<Props> = (
   props
 ) => {
   const {totalCount} = props;
@@ -30,7 +30,7 @@ export const FilterableTablePaginationComponent: React.FunctionComponent<Props> 
 
   const items = [];
 
-  const paginate = (pageNumber: number) => {
+  const handlePageChange = (pageNumber: number) => {
     const paginationObject = {
       offset: (pageNumber - 1) * maxResultsPerPage
     };
@@ -67,7 +67,7 @@ export const FilterableTablePaginationComponent: React.FunctionComponent<Props> 
       <Pagination.Item
         key={pageNumber}
         active={pageNumber === activePage}
-        onClick={() => paginate(pageNumber)}
+        onClick={() => handlePageChange(pageNumber)}
       >
         {pageNumber}
       </Pagination.Item>
@@ -76,19 +76,21 @@ export const FilterableTablePaginationComponent: React.FunctionComponent<Props> 
   if (maxPages > 1)
     return (
       <Pagination>
-        <Pagination.First onClick={() => paginate(1)} />
+        <Pagination.First onClick={() => handlePageChange(1)} />
         <Pagination.Prev
-          onClick={() => (activePage > 1 ? paginate(activePage - 1) : null)}
+          onClick={() =>
+            activePage > 1 ? handlePageChange(activePage - 1) : null
+          }
         />
         {startPage !== 1 && <Pagination.Ellipsis />}
         {items}
         {endPage !== maxPages && <Pagination.Ellipsis />}
         <Pagination.Next
           onClick={() =>
-            activePage !== maxPages ? paginate(activePage + 1) : null
+            activePage !== maxPages ? handlePageChange(activePage + 1) : null
           }
         />
-        <Pagination.Last onClick={() => paginate(maxPages)} />
+        <Pagination.Last onClick={() => handlePageChange(maxPages)} />
       </Pagination>
     );
   return null;
