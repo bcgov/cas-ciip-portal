@@ -127,6 +127,41 @@ exports[`PaginationBar should render the Pagination component if Math.ceil(total
   >
     2
   </PageItem>
+  <Next
+    onClick={[Function]}
+  />
+  <Last
+    onClick={[Function]}
+  />
+</ForwardRef>
+`;
+
+exports[`PaginationBar should still render if there is bad data in the querystring 1`] = `
+<ForwardRef>
+  <First
+    onClick={[Function]}
+  />
+  <Prev
+    onClick={[Function]}
+  />
+  <PageItem
+    active={true}
+    activeLabel="(current)"
+    disabled={false}
+    key="1"
+    onClick={[Function]}
+  >
+    1
+  </PageItem>
+  <PageItem
+    active={false}
+    activeLabel="(current)"
+    disabled={false}
+    key="2"
+    onClick={[Function]}
+  >
+    2
+  </PageItem>
   <PageItem
     active={false}
     activeLabel="(current)"
@@ -135,6 +170,42 @@ exports[`PaginationBar should render the Pagination component if Math.ceil(total
     onClick={[Function]}
   >
     3
+  </PageItem>
+  <PageItem
+    active={false}
+    activeLabel="(current)"
+    disabled={false}
+    key="4"
+    onClick={[Function]}
+  >
+    4
+  </PageItem>
+  <PageItem
+    active={false}
+    activeLabel="(current)"
+    disabled={false}
+    key="5"
+    onClick={[Function]}
+  >
+    5
+  </PageItem>
+  <PageItem
+    active={false}
+    activeLabel="(current)"
+    disabled={false}
+    key="6"
+    onClick={[Function]}
+  >
+    6
+  </PageItem>
+  <PageItem
+    active={false}
+    activeLabel="(current)"
+    disabled={false}
+    key="7"
+    onClick={[Function]}
+  >
+    7
   </PageItem>
   <Next
     onClick={[Function]}
