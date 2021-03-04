@@ -42,7 +42,7 @@ const FilterableTableHeaders: React.FunctionComponent<ISearchProps> = (
       }
     };
 
-    router.replace(url, url, {shallow: true});
+    router.push(url, url, {shallow: true});
   };
 
   const clearForm = () => {

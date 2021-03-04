@@ -51,7 +51,7 @@ class Applications extends Component<Props> {
       variables: {
         orderByField: 'operator_name',
         direction: 'ASC',
-        max_results: 10,
+        max_results: 20,
         offset: 0
       }
     };
@@ -59,17 +59,9 @@ class Applications extends Component<Props> {
 
   render() {
     const {query} = this.props;
-    /** maxResultsPerPage matches the value of max_results in getInitialProps().
-     *  max_results is passed to the initial query via the router
-     *  maxResultsPerPage is passed as a prop to aid in rendering the correct number of pages in the FilterableTablePagination component
-     **/
-    const maxResultsPerPage = 10;
     return (
       <DefaultLayout title="Applications" session={query.session}>
-        <ApplicationListContainer
-          query={query}
-          maxResultsPerPage={maxResultsPerPage}
-        />
+        <ApplicationListContainer query={query} />
       </DefaultLayout>
     );
   }

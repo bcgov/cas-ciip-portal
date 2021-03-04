@@ -5,15 +5,11 @@ import {Pagination} from 'react-bootstrap';
 interface Props {
   totalCount: number;
   maxResultsPerPage: number;
-  pageInfo: {
-    hasNextPage: boolean;
-    hasPreviousPage: boolean;
-  };
 }
+
 export const FilterableTablePaginationComponent: React.FunctionComponent<Props> = (
   props
 ) => {
-  const {hasNextPage, hasPreviousPage} = props.pageInfo;
   const {totalCount, maxResultsPerPage} = props;
   const router = useRouter();
   const maxPages = Math.ceil(totalCount / maxResultsPerPage);
@@ -72,21 +68,21 @@ export const FilterableTablePaginationComponent: React.FunctionComponent<Props> 
   }
 
   return (
-    <>
-      <Pagination>
-        <Pagination.First onClick={() => paginate(1)} />
-        <Pagination.Prev
-          onClick={() => (hasPreviousPage ? paginate(activePage - 1) : null)}
-        />
-        {startPage !== 1 && <Pagination.Ellipsis />}
-        {items}
-        {endPage !== maxPages && <Pagination.Ellipsis />}
-        <Pagination.Next
-          onClick={() => (hasNextPage ? paginate(activePage + 1) : null)}
-        />
-        <Pagination.Last onClick={() => paginate(maxPages)} />
-      </Pagination>
-    </>
+    <Pagination>
+      <Pagination.First onClick={() => paginate(1)} />
+      <Pagination.Prev
+        onClick={() => (activePage > 1 ? paginate(activePage - 1) : null)}
+      />
+      {startPage !== 1 && <Pagination.Ellipsis />}
+      {items}
+      {endPage !== maxPages && <Pagination.Ellipsis />}
+      <Pagination.Next
+        onClick={() =>
+          activePage !== maxPages ? paginate(activePage + 1) : null
+        }
+      />
+      <Pagination.Last onClick={() => paginate(maxPages)} />
+    </Pagination>
   );
 };
 

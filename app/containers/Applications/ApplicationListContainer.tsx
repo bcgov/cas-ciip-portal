@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {graphql, createFragmentContainer} from 'react-relay';
 import FilterableTableLayout from 'components/FilterableComponents/FilterableTableLayout';
 import ApplicationRowItemContainer from './ApplicationRowItemContainer';
@@ -11,15 +11,25 @@ import {EnumSearchOption} from 'components/Search/EnumSearchOption';
 import {CiipApplicationRevisionStatus} from 'createApplicationRevisionStatusMutation.graphql';
 import {ApplicationListContainer_query} from 'ApplicationListContainer_query.graphql';
 import FilterableTablePagination from 'components/FilterableComponents/FilterableTablePagination';
+import Applications from 'pages/analyst/applications';
 
 interface Props {
   query: ApplicationListContainer_query;
-  maxResultsPerPage: number;
 }
 
 export const ApplicationList: React.FunctionComponent<Props> = (props) => {
-  const {edges, pageInfo, totalCount} = props?.query?.allApplications;
-  const {maxResultsPerPage} = props;
+  const {edges, totalCount} = props?.query?.allApplications;
+
+  const [maxResultsPerPage, setMaxResultsPerPage] = useState(null);
+
+  const getMaxResultsPerPage = async () => {
+    const initProps = await Applications.getInitialProps();
+    setMaxResultsPerPage(initProps.variables.max_results);
+  };
+
+  useEffect(() => {
+    if (!maxResultsPerPage) getMaxResultsPerPage();
+  }, []);
 
   const searchOptions: ISearchOption[] = [
     new NumberSearchOption('Application Id', 'id'),
@@ -52,7 +62,6 @@ export const ApplicationList: React.FunctionComponent<Props> = (props) => {
       <FilterableTableLayout body={body} searchOptions={searchOptions} />
       <FilterableTablePagination
         totalCount={totalCount}
-        pageInfo={pageInfo}
         maxResultsPerPage={maxResultsPerPage}
       />
     </>
@@ -91,10 +100,6 @@ export default createFragmentContainer(ApplicationList, {
             rowId
             ...ApplicationRowItemContainer_application
           }
-        }
-        pageInfo {
-          hasNextPage
-          hasPreviousPage
         }
         totalCount
       }
