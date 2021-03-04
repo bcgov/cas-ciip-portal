@@ -56,4 +56,13 @@ describe('PaginationBar', () => {
     expect(r.find('Ellipsis').exists()).toBe(true);
     expect(r).toMatchSnapshot();
   });
+  it('should set the first item in the pagination bar to active by default', async () => {
+    const r = shallow(
+      <FilterableTablePaginationComponent
+        totalCount={130}
+        maxResultsPerPage={10}
+      />
+    );
+    expect(r.find('PageItem').at(0).prop('active')).toBe(true);
+  });
 });
