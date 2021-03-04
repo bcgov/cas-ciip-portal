@@ -66,24 +66,25 @@ export const FilterableTablePaginationComponent: React.FunctionComponent<Props> 
       </Pagination.Item>
     );
   }
-
-  return (
-    <Pagination>
-      <Pagination.First onClick={() => paginate(1)} />
-      <Pagination.Prev
-        onClick={() => (activePage > 1 ? paginate(activePage - 1) : null)}
-      />
-      {startPage !== 1 && <Pagination.Ellipsis />}
-      {items}
-      {endPage !== maxPages && <Pagination.Ellipsis />}
-      <Pagination.Next
-        onClick={() =>
-          activePage !== maxPages ? paginate(activePage + 1) : null
-        }
-      />
-      <Pagination.Last onClick={() => paginate(maxPages)} />
-    </Pagination>
-  );
+  if (maxPages > 1)
+    return (
+      <Pagination>
+        <Pagination.First onClick={() => paginate(1)} />
+        <Pagination.Prev
+          onClick={() => (activePage > 1 ? paginate(activePage - 1) : null)}
+        />
+        {startPage !== 1 && <Pagination.Ellipsis />}
+        {items}
+        {endPage !== maxPages && <Pagination.Ellipsis />}
+        <Pagination.Next
+          onClick={() =>
+            activePage !== maxPages ? paginate(activePage + 1) : null
+          }
+        />
+        <Pagination.Last onClick={() => paginate(maxPages)} />
+      </Pagination>
+    );
+  return null;
 };
 
 export default FilterableTablePaginationComponent;
