@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Organisations should render the user's requested organisations 1`] = `
-<SearchTableLayoutComponent
+<FilterableTableLayoutComponent
   body={
     <tbody>
       <Relay(OrganisationRequestsTableRowComponent)
@@ -16,17 +16,83 @@ exports[`Organisations should render the user's requested organisations 1`] = `
       />
     </tbody>
   }
-  displayNameToColumnNameMap={
-    Object {
-      "": null,
-      "Email": "email_address",
-      "First Name": "first_name",
-      "Last Name": "last_name",
-      "Operator": "operator_name",
-      "Status": "status",
-      "User ID": "user_id",
-    }
+  searchOptions={
+    Array [
+      NumberSearchOption {
+        "columnName": "user_id",
+        "isSearchEnabled": true,
+        "isSortEnabled": true,
+        "removeSearchHeader": false,
+        "title": "User ID",
+        "toUrl": [Function],
+      },
+      TextSearchOption {
+        "columnName": "first_name",
+        "isSearchEnabled": true,
+        "isSortEnabled": true,
+        "removeSearchHeader": false,
+        "title": "First Name",
+        "toUrl": [Function],
+      },
+      TextSearchOption {
+        "columnName": "last_name",
+        "isSearchEnabled": true,
+        "isSortEnabled": true,
+        "removeSearchHeader": false,
+        "title": "Last Name",
+        "toUrl": [Function],
+      },
+      TextSearchOption {
+        "columnName": "email_address",
+        "isSearchEnabled": true,
+        "isSortEnabled": true,
+        "removeSearchHeader": false,
+        "title": "Email",
+        "toUrl": [Function],
+      },
+      TextSearchOption {
+        "columnName": "operator_name",
+        "isSearchEnabled": true,
+        "isSortEnabled": true,
+        "removeSearchHeader": false,
+        "title": "Operator",
+        "toUrl": [Function],
+      },
+      EnumSearchOption {
+        "columnName": "status",
+        "enumValues": Array [
+          "APPROVED",
+          "PENDING",
+          "REJECTED",
+        ],
+        "isSearchEnabled": true,
+        "isSortEnabled": true,
+        "removeSearchHeader": false,
+        "searchOptionValues": Array [
+          Object {
+            "display": "APPROVED",
+            "value": "APPROVED",
+          },
+          Object {
+            "display": "PENDING",
+            "value": "PENDING",
+          },
+          Object {
+            "display": "REJECTED",
+            "value": "REJECTED",
+          },
+        ],
+        "title": "Status",
+        "toUrl": [Function],
+      },
+      Object {
+        "columnName": null,
+        "isSearchEnabled": false,
+        "isSortEnabled": false,
+        "removeSearchHeader": true,
+        "title": null,
+      },
+    ]
   }
-  handleEvent={[MockFunction]}
 />
 `;

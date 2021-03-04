@@ -7,7 +7,7 @@ describe('Organisations', () => {
   it("should render the user's requested organisations", async () => {
     const query: OrganisationRequestsTable_query = {
       ' $refType': 'OrganisationRequestsTable_query',
-      searchCiipUserOrganisation: {
+      allCiipUserOrganisations: {
         edges: [
           {
             node: {
@@ -20,14 +20,8 @@ describe('Organisations', () => {
         ]
       }
     };
-    const r = shallow(
-      <OrganisationRequestsTableComponent
-        relay={null}
-        handleEvent={jest.fn()}
-        query={query}
-      />
-    );
+    const r = shallow(<OrganisationRequestsTableComponent query={query} />);
     expect(r).toMatchSnapshot();
-    expect(r.exists('SearchTableLayoutComponent')).toBe(true);
+    expect(r.exists('FilterableTableLayoutComponent')).toBe(true);
   });
 });
