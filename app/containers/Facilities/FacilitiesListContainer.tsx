@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import PaginationBar from 'components/PaginationBar';
 import {graphql, createRefetchContainer, RelayRefetchProp} from 'react-relay';
 import SearchTableLayout from 'components/SearchTableLayout';
 import {FacilitiesListContainer_query} from 'FacilitiesListContainer_query.graphql';
@@ -35,8 +34,7 @@ export const FacilitiesList: React.FunctionComponent<Props> = ({
       selectableReportingYears.push(node.reportingYear);
   });
   const {edges} = query.searchAllFacilities;
-  const [offsetValue, setOffset] = useState(0);
-  const [activePage, setActivePage] = useState(1);
+  const offsetValue = 0;
   const [isLoading, setIsLoading] = useState(false);
   const maxResultsPerPage = 10;
   useEffect(() => {
@@ -86,9 +84,6 @@ export const FacilitiesList: React.FunctionComponent<Props> = ({
     </tbody>
   );
 
-  const totalFacilityCount =
-    query?.searchAllFacilities?.edges[0]?.node?.totalFacilityCount || 0;
-
   const extraControls = (
     <SelectReportingYearDropDown
       selectableReportingYears={selectableReportingYears}
@@ -105,14 +100,6 @@ export const FacilitiesList: React.FunctionComponent<Props> = ({
         handleEvent={handleEvent}
         isLoading={isLoading}
         extraControls={extraControls}
-      />
-      <PaginationBar
-        setOffset={setOffset}
-        setActivePage={setActivePage}
-        offsetValue={offsetValue}
-        activePage={activePage}
-        maxResultsPerPage={maxResultsPerPage}
-        totalCount={totalFacilityCount}
       />
       If you cannot find your facility in the list, please{' '}
       <a href="mailto:ghgregulator@gov.bc.ca">contact CAS</a> for assistance.

@@ -71,14 +71,6 @@ exports[`FacilitiesListContainer should match the previous snapshot 1`] = `
     handleEvent={[MockFunction]}
     isLoading={false}
   />
-  <PaginationBarComponent
-    activePage={1}
-    maxResultsPerPage={10}
-    offsetValue={0}
-    setActivePage={[Function]}
-    setOffset={[Function]}
-    totalCount={1}
-  />
   If you cannot find your facility in the list, please
    
   <a

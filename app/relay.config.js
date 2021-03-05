@@ -5,7 +5,8 @@ module.exports = {
   customScalars: {
     Datetime: 'String',
     JSON: 'any',
-    BigFloat: 'String'
+    BigFloat: 'String',
+    Cursor: 'String'
   },
   exclude: [
     '**/.next/**',

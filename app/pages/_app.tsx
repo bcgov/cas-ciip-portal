@@ -10,6 +10,7 @@ import LoadingSpinner from 'components/LoadingSpinner';
 import ToasterHelper from 'components/helpers/Toaster';
 import 'react-toastify/dist/ReactToastify.min.css';
 import PageRedirectHandler from 'components/PageRedirectHandler';
+import safeJsonParse from 'lib/safeJsonParse';
 
 interface AppProps {
   pageProps: {
@@ -55,9 +56,8 @@ export default class App extends NextApp<AppProps> {
     //
     // The relayVars query string in the URL contains all filters to apply to the Relay query variables.
     // It allows navigation to keep track of the query, so the form doesn't get reset.
-    const relayVars = router.query.relayVars
-      ? JSON.parse(String(router.query.relayVars))
-      : {};
+    const relayVars = safeJsonParse(router.query.relayVars as string);
+    const pageVars = safeJsonParse(router.query.pageVars as string);
 
     return (
       <ErrorBoundary>
@@ -69,7 +69,12 @@ export default class App extends NextApp<AppProps> {
             environment={environment}
             fetchPolicy="store-and-network"
             query={Component.query}
-            variables={{...variables, ...router.query, ...relayVars}}
+            variables={{
+              ...variables,
+              ...router.query,
+              ...relayVars,
+              ...pageVars
+            }}
             render={({error, props}: {error: any; props: any}) => {
               if (error !== null) throw error; // Let the ErrorBoundary above render the error nicely
               if (props) {

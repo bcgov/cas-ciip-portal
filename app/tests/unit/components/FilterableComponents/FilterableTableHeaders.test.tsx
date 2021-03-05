@@ -2,6 +2,7 @@ import React from 'react';
 import FilterableTableHeaders from 'components/FilterableComponents/FilterableTableHeaders';
 import {shallow} from 'enzyme';
 import {ISearchOption} from 'components/Search/ISearchOption';
+import * as nextRouter from 'next/router';
 
 const createMockSearchOption: (name: string) => ISearchOption = (name) => {
   return {
@@ -11,6 +12,15 @@ const createMockSearchOption: (name: string) => ISearchOption = (name) => {
     isSortEnabled: true
   };
 };
+
+nextRouter.useRouter = jest.fn();
+nextRouter.useRouter.mockImplementation(() => ({
+  route: '/',
+  query: {
+    relayVars: {},
+    pageVars: {}
+  }
+}));
 
 describe('The filterable table headers component', () => {
   it('renders search and reset buttons', () => {

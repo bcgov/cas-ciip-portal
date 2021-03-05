@@ -3,8 +3,8 @@ import {graphql} from 'react-relay';
 import {applicationsQueryResponse} from 'applicationsQuery.graphql';
 import ApplicationListContainer from 'containers/Applications/ApplicationListContainer';
 import DefaultLayout from 'layouts/default-layout';
-import SearchTable from 'components/SearchTable';
 import {INCENTIVE_ANALYST, ADMIN_GROUP} from 'data/group-constants';
+import {DEFAULT_MAX_RESULTS} from 'components/FilterableComponents/FilterableTablePagination';
 
 const ALLOWED_GROUPS = [INCENTIVE_ANALYST, ...ADMIN_GROUP];
 
@@ -15,9 +15,6 @@ interface Props {
 class Applications extends Component<Props> {
   static allowedGroups = ALLOWED_GROUPS;
   static isAccessProtected = true;
-  // In downstream component
-  // onClick={(event) => handleApplicationsAction({action: Applications.SORT_ACTION})})
-  // I didn't fully understand how to make this work, so I moved on with the way I did.
   static query = graphql`
     query applicationsQuery(
       $id: Int
@@ -27,6 +24,8 @@ class Applications extends Component<Props> {
       $submission_date: Datetime
       $status: CiipApplicationRevisionStatus
       $order_by: [ApplicationsOrderBy!]
+      $max_results: Int
+      $offset: Int
     ) {
       query {
         session {
@@ -41,6 +40,8 @@ class Applications extends Component<Props> {
             submission_date: $submission_date
             status: $status
             order_by: $order_by
+            max_results: $max_results
+            offset: $offset
           )
       }
     }
@@ -50,7 +51,9 @@ class Applications extends Component<Props> {
     return {
       variables: {
         orderByField: 'operator_name',
-        direction: 'ASC'
+        direction: 'ASC',
+        max_results: DEFAULT_MAX_RESULTS,
+        offset: 0
       }
     };
   }
@@ -59,13 +62,7 @@ class Applications extends Component<Props> {
     const {query} = this.props;
     return (
       <DefaultLayout title="Applications" session={query.session}>
-        <SearchTable
-          query={query}
-          defaultOrderByField="operator_name"
-          defaultOrderByDisplay="Operator Name"
-        >
-          {(props) => <ApplicationListContainer {...props} />}
-        </SearchTable>
+        <ApplicationListContainer query={query} />
       </DefaultLayout>
     );
   }

@@ -10,13 +10,14 @@ import {SortOnlyOption} from 'components/Search/SortOnlyOption';
 import {EnumSearchOption} from 'components/Search/EnumSearchOption';
 import {CiipApplicationRevisionStatus} from 'createApplicationRevisionStatusMutation.graphql';
 import {ApplicationListContainer_query} from 'ApplicationListContainer_query.graphql';
+import FilterableTablePagination from 'components/FilterableComponents/FilterableTablePagination';
 
 interface Props {
   query: ApplicationListContainer_query;
 }
 
 export const ApplicationList: React.FunctionComponent<Props> = (props) => {
-  const {edges} = props.query.allApplications;
+  const {edges, totalCount} = props.query.allApplications;
 
   const searchOptions: ISearchOption[] = [
     new NumberSearchOption('Application Id', 'id'),
@@ -44,7 +45,12 @@ export const ApplicationList: React.FunctionComponent<Props> = (props) => {
     </tbody>
   );
 
-  return <FilterableTableLayout body={body} searchOptions={searchOptions} />;
+  return (
+    <>
+      <FilterableTableLayout body={body} searchOptions={searchOptions} />
+      <FilterableTablePagination totalCount={totalCount} />
+    </>
+  );
 };
 
 export default createFragmentContainer(ApplicationList, {
@@ -58,8 +64,12 @@ export default createFragmentContainer(ApplicationList, {
       submission_date: {type: "Datetime"}
       status: {type: "CiipApplicationRevisionStatus"}
       order_by: {type: "[ApplicationsOrderBy!]"}
+      max_results: {type: "Int"}
+      offset: {type: "Int"}
     ) {
       allApplications(
+        first: $max_results
+        offset: $offset
         filter: {
           rowId: {equalTo: $id}
           operatorName: {includesInsensitive: $operator_name}
@@ -76,6 +86,7 @@ export default createFragmentContainer(ApplicationList, {
             ...ApplicationRowItemContainer_application
           }
         }
+        totalCount
       }
     }
   `
