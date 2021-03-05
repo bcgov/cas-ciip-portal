@@ -97,8 +97,6 @@ exports[`ApplicationList should render the application list 1`] = `
       ]
     }
   />
-  <FilterableTablePaginationComponent
-    maxResultsPerPage={null}
-  />
+  <FilterableTablePaginationComponent />
 </Fragment>
 `;
