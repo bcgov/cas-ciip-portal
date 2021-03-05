@@ -5,6 +5,6 @@ image:
   psql:
     repository: gcr.io/ggl-cas-storage/cas-postgres
     pullPolicy: Always
-    tag: "0.8.0"
+    tag: "0.2.0"
 
 existingGcpSecret: gcp-wksv3k-prod-read-only-service-account-key # pragma: allowlist secret
