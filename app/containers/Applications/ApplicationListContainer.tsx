@@ -17,7 +17,7 @@ interface Props {
 }
 
 export const ApplicationList: React.FunctionComponent<Props> = (props) => {
-  const {edges, totalCount} = props?.query?.allApplications;
+  const {edges, totalCount} = props.query.allApplications;
 
   const searchOptions: ISearchOption[] = [
     new NumberSearchOption('Application Id', 'id'),

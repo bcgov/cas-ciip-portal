@@ -15,9 +15,7 @@ const FilterableTablePaginationComponent: React.FunctionComponent<Props> = (
   const {totalCount} = props;
   const router = useRouter();
 
-  const pageData = router.query.pageVars
-    ? safeJsonParse(router.query.pageVars as string)
-    : {};
+  const pageData = safeJsonParse(router.query.pageVars as string);
 
   const maxResultsPerPage = pageData.max_results || DEFAULT_MAX_RESULTS;
   const activePage = pageData.offset / maxResultsPerPage + 1 || 1;

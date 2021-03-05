@@ -56,13 +56,8 @@ export default class App extends NextApp<AppProps> {
     //
     // The relayVars query string in the URL contains all filters to apply to the Relay query variables.
     // It allows navigation to keep track of the query, so the form doesn't get reset.
-    const relayVars = router.query.relayVars
-      ? safeJsonParse(router.query.relayVars as string)
-      : {};
-
-    const pageVars = router.query.pageVars
-      ? safeJsonParse(router.query.pageVars as string)
-      : {};
+    const relayVars = safeJsonParse(router.query.relayVars as string);
+    const pageVars = safeJsonParse(router.query.pageVars as string);
 
     return (
       <ErrorBoundary>

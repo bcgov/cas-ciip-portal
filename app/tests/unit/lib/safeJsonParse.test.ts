@@ -10,4 +10,8 @@ describe('The safeJsonParse function', () => {
     const testReturn = safeJsonParse(';;%%;234;');
     expect(testReturn).toEqual({});
   });
+  it('should return {} when passed undefined', async () => {
+    const testReturn = safeJsonParse(undefined);
+    expect(testReturn).toEqual({});
+  });
 });

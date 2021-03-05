@@ -12,15 +12,9 @@ const FilterableTableHeaders: React.FunctionComponent<ISearchProps> = (
 ) => {
   const router = useRouter();
 
-  const [searchFilters, setSearchFilters] = useState(() => {
-    try {
-      return router.query.relayVars
-        ? safeJsonParse(router.query.relayVars as string)
-        : {};
-    } catch (e) {
-      return {};
-    }
-  });
+  const [searchFilters, setSearchFilters] = useState(() =>
+    safeJsonParse(router.query.relayVars as string)
+  );
 
   const handleFilterChange = (value, column, parseMethod) => {
     setSearchFilters({
