@@ -17,8 +17,8 @@ nextRouter.useRouter = jest.fn();
 nextRouter.useRouter.mockImplementation(() => ({
   route: '/',
   query: {
-    relayVars: null,
-    pageVars: null
+    relayVars: {},
+    pageVars: {}
   }
 }));
 
