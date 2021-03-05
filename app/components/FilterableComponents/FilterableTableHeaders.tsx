@@ -3,6 +3,7 @@ import {Button, Form} from 'react-bootstrap';
 import {useRouter} from 'next/router';
 import {ISearchProps} from 'components/Search/SearchProps';
 import {getUserFriendlyStatusLabel} from 'lib/text-transforms';
+import safeJsonParse from 'lib/safeJsonParse';
 
 const NONE_VALUES = [null, undefined];
 
@@ -14,7 +15,7 @@ const FilterableTableHeaders: React.FunctionComponent<ISearchProps> = (
   const [searchFilters, setSearchFilters] = useState(() => {
     try {
       return router.query.relayVars
-        ? JSON.parse(router.query.relayVars as string)
+        ? safeJsonParse(router.query.relayVars as string)
         : {};
     } catch (e) {
       return {};
