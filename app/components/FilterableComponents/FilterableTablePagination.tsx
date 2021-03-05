@@ -98,20 +98,22 @@ const FilterableTablePaginationComponent: React.FunctionComponent<Props> = (
           </Dropdown.Toggle>
 
           <Dropdown.Menu>
-            <Dropdown.Item onClick={() => handleMaxResultsChange(2)}>
+            <Dropdown.Item onClick={() => handleMaxResultsChange(20)}>
               20
             </Dropdown.Item>
-            <Dropdown.Item onClick={() => handleMaxResultsChange(5)}>
+            <Dropdown.Item onClick={() => handleMaxResultsChange(50)}>
               50
             </Dropdown.Item>
-            <Dropdown.Item onClick={() => handleMaxResultsChange(10)}>
+            <Dropdown.Item onClick={() => handleMaxResultsChange(100)}>
               100
             </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
         {maxPages > 1 && (
           <Pagination style={{marginLeft: '15px'}}>
-            <Pagination.First onClick={() => handlePageChange(1)} />
+            <Pagination.First onClick={() => handlePageChange(1)}>
+              &lt;&lt; First Page
+            </Pagination.First>
             <Pagination.Prev
               onClick={() =>
                 activePage > 1 ? handlePageChange(activePage - 1) : null
@@ -127,7 +129,9 @@ const FilterableTablePaginationComponent: React.FunctionComponent<Props> = (
                   : null
               }
             />
-            <Pagination.Last onClick={() => handlePageChange(maxPages)} />
+            <Pagination.Last onClick={() => handlePageChange(maxPages)}>
+              Last Page &gt;&gt;
+            </Pagination.Last>
           </Pagination>
         )}
       </div>
