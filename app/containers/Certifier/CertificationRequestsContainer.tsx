@@ -4,7 +4,6 @@ import {dateTimeFormat} from 'functions/formatDates';
 import Link from 'next/link';
 import {graphql, createRefetchContainer, RelayRefetchProp} from 'react-relay';
 import SearchTableLayout from 'components/SearchTableLayout';
-import PaginationBar from 'components/PaginationBar';
 import {CertificationRequestsContainer_query} from '__generated__/CertificationRequestsContainer_query.graphql';
 
 function formatListViewDate(date) {
@@ -50,8 +49,7 @@ export const CertificationRequestsComponent: React.FunctionComponent<Props> = ({
   const certifiableRequestIds = useRef(getCertifiableRequestIds(query));
   const refetchQueryInitialized = useRef(false);
 
-  const [offsetValue, setOffset] = useState(0);
-  const [activePage, setActivePage] = useState(1);
+  const offsetValue = 0;
   const [isLoading, setIsLoading] = useState(false);
   const maxResultsPerPage = 20;
 
@@ -185,9 +183,6 @@ export const CertificationRequestsComponent: React.FunctionComponent<Props> = ({
     </tbody>
   );
 
-  const totalRequestCount =
-    query?.searchCertificationRequests?.edges[0]?.node?.totalRequestCount || 0;
-
   return (
     <>
       <SearchTableLayout
@@ -197,14 +192,6 @@ export const CertificationRequestsComponent: React.FunctionComponent<Props> = ({
         handleEvent={handleEvent}
         handleSelectAll={(selectAll) => onSelectAll(selectAll)}
         isLoading={isLoading}
-      />
-      <PaginationBar
-        setOffset={setOffset}
-        setActivePage={setActivePage}
-        offsetValue={offsetValue}
-        activePage={activePage}
-        maxResultsPerPage={maxResultsPerPage}
-        totalCount={totalRequestCount}
       />
     </>
   );
