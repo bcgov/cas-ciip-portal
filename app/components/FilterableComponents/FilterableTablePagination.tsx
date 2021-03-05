@@ -1,6 +1,7 @@
 import React from 'react';
 import {useRouter} from 'next/router';
 import {Pagination, Dropdown} from 'react-bootstrap';
+import safeJsonParse from 'lib/safeJsonParse';
 
 interface Props {
   totalCount: number;
@@ -14,15 +15,9 @@ const FilterableTablePaginationComponent: React.FunctionComponent<Props> = (
   const {totalCount} = props;
   const router = useRouter();
 
-  const getPageData = () => {
-    try {
-      return JSON.parse(router.query.pageVars?.toString());
-    } catch (e) {
-      return {};
-    }
-  };
-
-  const pageData = router.query.pageVars ? getPageData() : {};
+  const pageData = router.query.pageVars
+    ? safeJsonParse(router.query.pageVars as string)
+    : {};
 
   const maxResultsPerPage = pageData?.max_results || DEFAULT_MAX_RESULTS;
   const activePage = pageData?.offset / maxResultsPerPage + 1 || 1;
