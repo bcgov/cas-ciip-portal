@@ -110,6 +110,7 @@ describe('When filtering organisation requests', () => {
   before(() => {
     cy.cleanSchema();
     cy.sqlFixture('fixtures/search-setup');
+    cy.useMockedTime(new Date('June 10, 2020 09:00:00'));
   });
 
   it('can be filtered by a numeric search', () => {

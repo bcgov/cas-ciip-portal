@@ -1,5 +1,8 @@
 begin;
 
+-- Mock time for the test
+select mocks.set_mocked_time_in_transaction('2099-02-02 00:01:00.000000-07'::timestamptz);
+
 -- Init test environment
 select test_helper.mock_open_window();
 select test_helper.modify_triggers('disable');
@@ -17,6 +20,7 @@ insert into ggircs_portal.application_revision_status(application_id, version_nu
   values (2,1,'submitted', now() + interval '1 minute');
 insert into ggircs_portal.application_revision_status(application_id, version_number, application_revision_status, created_at)
   values (3,1,'approved', now() + interval '1 minute');
+
 
 -- Create organisation access requests
 insert into ggircs_portal.ciip_user_organisation(user_id, organisation_id, status)
