@@ -34,8 +34,10 @@ export const UserOrganisationComponent = (props) => {
             href={{
               pathname: '/reporter/facilities',
               query: {
-                organisationRowId:
-                  userOrganisation.organisationByOrganisationId.rowId
+                relayVars: JSON.stringify({
+                  organisationRowId:
+                    userOrganisation.organisationByOrganisationId.rowId
+                })
               }
             }}
           >

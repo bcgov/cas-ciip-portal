@@ -1,9 +1,20 @@
 import {ISearchOption} from './ISearchOption';
 
+interface ISearchOptionSettings {
+  filterable?: boolean;
+  sortable?: boolean;
+}
+
 export abstract class BaseSearchOption<T> implements ISearchOption {
-  constructor(display, column) {
+  constructor(
+    display,
+    column,
+    settings: ISearchOptionSettings = {filterable: true, sortable: true}
+  ) {
     this.title = display;
     this.columnName = column;
+    this.isSearchEnabled = settings.filterable ?? true;
+    this.isSortEnabled = settings.sortable ?? true;
   }
 
   columnName = '';

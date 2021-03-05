@@ -6,17 +6,13 @@ import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
 
 interface Props {
   selectableReportingYears: number[];
-  handleEvent: (
-    action: string,
-    value?: string | number,
-    column?: string
-  ) => any;
+  onChange: (value?: number) => any;
   selectedReportingYear: number;
 }
 
 const SelectReportingYearDropDownComponent: React.FunctionComponent<Props> = ({
   selectableReportingYears,
-  handleEvent,
+  onChange,
   selectedReportingYear
 }) => {
   const yearSchema: JSONSchema7 = {
@@ -39,7 +35,7 @@ const SelectReportingYearDropDownComponent: React.FunctionComponent<Props> = ({
   };
 
   const handleChange = (e: IChangeEvent) => {
-    handleEvent('selectReportingYear', e.formData.reportingYear);
+    onChange(e.formData.reportingYear);
   };
 
   return (
