@@ -235,3 +235,4 @@ computed_columns/ciip_user_organisation_operator_name [tables/ciip_user_organisa
 search_functions/search_ciip_user_organisation [search_functions/search_ciip_user_organisation@v1.16.0] 2021-03-03T21:18:43Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # Removing the custom search function since the filter plugin now takes care of it
 computed_columns/product_current_benchmark [tables/benchmark] 2021-02-17T21:51:22Z Dylan Leard <dylan@button.is> # Computed column returns the current benchmark for a product as a scalar for filter/sort
 computed_columns/product_current_eligibility_threshold [tables/benchmark] 2021-02-17T21:52:01Z Dylan Leard <dylan@button.is> # Computed column returns the current eligibility threshold for a product for filter/sort
+search_functions/search_products [search_functions/search_products@v1.16.0] 2021-03-08T19:38:56Z Dylan Leard <dylan@button.is> # Migration: remove deprecated search_products function
