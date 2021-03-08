@@ -164,6 +164,10 @@ describe('When filtering products', () => {
       'have.text',
       'Sold electricity'
     );
+    cy.get('body').happoScreenshot({
+      component: 'Product List',
+      variant: 'Filtered by productName & isCiipBenchmarked'
+    });
     cy.contains('Clear').click();
   });
 });
