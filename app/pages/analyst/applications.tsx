@@ -50,8 +50,7 @@ class Applications extends Component<Props> {
   static async getInitialProps() {
     return {
       variables: {
-        orderByField: 'operator_name',
-        direction: 'ASC',
+        order_by: 'OPERATOR_NAME_ASC',
         max_results: DEFAULT_MAX_RESULTS,
         offset: 0
       }

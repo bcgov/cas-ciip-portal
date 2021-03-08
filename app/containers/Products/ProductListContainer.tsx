@@ -13,16 +13,16 @@ import {NumberSearchOption} from 'components/Search/NumberSearchOption';
 import {YesNoSearchOption} from 'components/Search/YesNoSearchOption';
 import {EnumSearchOption} from 'components/Search/EnumSearchOption';
 import {CiipProductState} from 'createProductMutation.graphql';
+import FilterableTablePagination from 'components/FilterableComponents/FilterableTablePagination';
 
 interface Props {
   query: ProductListContainer_query;
-  orderByField?: string;
-  direction?: string;
 }
 
 export const ProductList: React.FunctionComponent<Props> = ({query}) => {
   if (query?.allProducts?.edges) {
     const allProducts = query.allProducts.edges;
+    const {totalCount} = query.allProducts;
 
     const searchOptions: ISearchOption[] = [
       new TextSearchOption('Product', 'product_name'),
@@ -52,16 +52,17 @@ export const ProductList: React.FunctionComponent<Props> = ({query}) => {
         ))}
       </tbody>
     );
-    return <FilterableTableLayout body={body} searchOptions={searchOptions} />;
+    return (
+      <>
+        <FilterableTableLayout body={body} searchOptions={searchOptions} />
+        <FilterableTablePagination totalCount={totalCount} />
+      </>
+    );
   }
 
   return <LoadingSpinner />;
 };
 
-// @connection on the two edge-returning queries supports downstream mutations
-// we need the first two billion edges to force graphql to return the right type
-// @see https://relay.dev/docs/en/pagination-container#connection
-// https://www.prisma.io/blog/relay-moderns-connection-directive-1ecd8322f5c8
 export default createFragmentContainer(ProductList, {
   query: graphql`
     fragment ProductListContainer_query on Query
@@ -73,10 +74,13 @@ export default createFragmentContainer(ProductList, {
       is_ciip_product: {type: "Boolean"}
       product_state: {type: "CiipProductState"}
       order_by: {type: "[ProductsOrderBy!]"}
+      max_results: {type: "Int"}
+      offset: {type: "Int"}
     ) {
       ...ProductRowItemContainer_query
       allProducts(
-        first: 2147483647
+        first: $max_results
+        offset: $offset
         filter: {
           productName: {includesInsensitive: $product_name}
           currentBenchmark: {equalTo: $current_benchmark}
@@ -93,6 +97,7 @@ export default createFragmentContainer(ProductList, {
             ...ProductRowItemContainer_product
           }
         }
+        totalCount
       }
     }
   `

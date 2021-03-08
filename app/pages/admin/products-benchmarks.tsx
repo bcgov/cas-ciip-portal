@@ -6,6 +6,7 @@ import DefaultLayout from 'layouts/default-layout';
 import ProductCreatorContainer from 'containers/Products/ProductCreatorContainer';
 import ProductListContainer from 'containers/Products/ProductListContainer';
 import {ADMIN_GROUP} from 'data/group-constants';
+import {DEFAULT_MAX_RESULTS} from 'components/FilterableComponents/FilterableTablePagination';
 
 const ALLOWED_GROUPS = ADMIN_GROUP;
 
@@ -25,6 +26,8 @@ class ProductsBenchmarks extends Component<Props> {
       $is_ciip_product: Boolean
       $product_state: CiipProductState
       $order_by: [ProductsOrderBy!]
+      $max_results: Int
+      $offset: Int
     ) {
       query {
         ...ProductListContainer_query
@@ -36,6 +39,8 @@ class ProductsBenchmarks extends Component<Props> {
             is_ciip_product: $is_ciip_product
             product_state: $product_state
             order_by: $order_by
+            max_results: $max_results
+            offset: $offset
           )
         session {
           ...defaultLayout_session
@@ -54,8 +59,9 @@ class ProductsBenchmarks extends Component<Props> {
   static async getInitialProps() {
     return {
       variables: {
-        orderByField: 'product_name',
-        direction: 'ASC'
+        order_by: 'PRODUCT_NAME_ASC',
+        max_results: DEFAULT_MAX_RESULTS,
+        offset: 0
       }
     };
   }
