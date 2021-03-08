@@ -41,7 +41,8 @@ const FilterableTableHeaders: React.FunctionComponent<ISearchProps> = (
       pathname: router.pathname,
       query: {
         ...router.query,
-        relayVars: queryString
+        relayVars: queryString,
+        pageVars: JSON.stringify({offset: 0})
       }
     };
 
