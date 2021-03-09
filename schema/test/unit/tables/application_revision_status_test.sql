@@ -75,7 +75,6 @@ alter table ggircs_portal.ciip_user_organisation
   disable trigger _set_user_id;
 alter table ggircs_portal.ciip_user disable trigger _welcome_email;
 alter table ggircs_portal.application_revision_status disable trigger _status_change_email;
-alter table ggircs_portal.application_revision_status disable trigger _check_certification_signature_md5;
 alter table ggircs_portal.application_revision_status disable trigger _read_only_status_for_non_current_version;
 alter table ggircs_portal.certification_url disable trigger _check_form_result_md5;
 alter table ggircs_portal.certification_url disable trigger _create_form_result_md5;
