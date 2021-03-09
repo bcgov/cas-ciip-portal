@@ -89,7 +89,7 @@ export const ReviseApplicationButton: React.FunctionComponent<Props> = ({
   };
 
   return (
-    <Col>
+    <>
       {newerSubmissionExists ? (
         viewLatestSubmissionButton
       ) : newerDraftExists ? (
@@ -99,7 +99,7 @@ export const ReviseApplicationButton: React.FunctionComponent<Props> = ({
           Revise Application
         </Button>
       )}
-    </Col>
+    </>
   );
 };
 
