@@ -2,11 +2,11 @@ apiVersion: v2
 name: cas-ciip-portal
 description: A Helm chart for the CIIP portal
 type: application
-version: 0.3.4
+version: 0.3.5
 appVersion: 1.18.0
 dependencies:
   - name: cas-postgres
-    version: "0.7.4"
+    version: "0.8.0"
     repository: https://bcgov.github.io/cas-postgres/
   - name: mailhog
     version: "3.3.0"
