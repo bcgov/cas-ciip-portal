@@ -244,4 +244,9 @@ tables/application_review_step [tables/application] 2021-03-10T00:00:08Z Dylan L
 policies/application_review_step_policies [tables/application_review_step] 2021-03-10T00:25:14Z Dylan Leard <dylan@button.is> # Row level security policy definitions for the application_review_step table
 trigger_functions/create_or_refresh_review_step [tables/application_review_step] 2021-03-10T00:33:49Z Dylan Leard <dylan@button.is> # Trigger function creates review steps on application submit if they do not exist, else refreshes the is_complete column
 tables/application_revision_status_002 [trigger_functions/create_or_refresh_review_step] 2021-03-10T19:46:57Z Dylan Leard <dylan@button.is> # Migration: add trigger to create or refresh application_review_step rows associated with the application
+types/facility_application 2021-03-09T00:34:17Z Matthieu Foucault <matthieu@button.is> # add composite type for a facility and its application for a given reporting period
 queries/facility_application_by_reporting_year 2021-03-03T21:10:13Z Matthieu Foucault <matthieu@button.is> # add a custom query returning facilities and their applications for a given reporting year
+computed_columns/facility_application_application_status 2021-03-09T00:41:16Z Matthieu Foucault <matthieu@button.is> # add computed column to retrieve current application status of a facility_application
+computed_columns/facility_application_last_swrs_reporting_year 2021-03-09T00:41:52Z Matthieu Foucault <matthieu@button.is> # add computed column to retrieve last swrs reporting year of a facility_application
+search_functions/search_all_facilities [search_functions/search_all_facilities@v1.16.0] 2021-03-09T00:52:12Z Matthieu Foucault <matthieu@button.is> # drop obsolete search function
+types/application_search_result [types/application_search_result@v1.16.0] 2021-03-09T00:56:14Z Matthieu Foucault <matthieu@button.is> # drop obsolete search result type

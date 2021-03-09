@@ -6,7 +6,7 @@ begin;
 
 drop function if exists ggircs_portal.search_all_facilities;
 
-create or replace function ggircs_portal.search_all_facilities(search_field text, search_value text, order_by_field text, direction text, organisation_row_id text, offset_value int, max_results_per_page int)
+create or replace function ggircs_portal.search_all_facilities(search_field text, search_value text, order_by_field text, direction text, organisation_row_id text, offset_value int, max_results_per_page int, reporting_year int)
 
   returns setof ggircs_portal.facility_search_result as
     $function$
@@ -39,7 +39,10 @@ create or replace function ggircs_portal.search_all_facilities(search_field text
           group by application_id) a
           on a.application_id = t.application_id
           and a.latest_version = t.version_number
-          and a.last_created = t.created_at),
+          and a.last_created = t.created_at
+          join ggircs_portal.application app
+          on a.application_id = app.id
+          and app.reporting_year = ' || reporting_year || '),
 
           applicationDetails as (
               select s.application_revision_status, a.id, a.facility_id

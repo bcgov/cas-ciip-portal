@@ -1,7 +1,7 @@
 -- Verify ggircs-portal:queries/facility_application_by_reporting_year on pg
 
-BEGIN;
+begin;
 
--- XXX Add verifications here.
+select pg_get_functiondef('ggircs_portal.facility_application_by_reporting_year(int)'::regprocedure);
 
-ROLLBACK;
+rollback;
