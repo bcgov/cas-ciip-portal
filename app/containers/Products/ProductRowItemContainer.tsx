@@ -55,9 +55,8 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
         }
       }
     };
-    const response = await updateProductMutation(relay.environment, variables);
+    await updateProductMutation(relay.environment, variables);
     setProductModalShow(false);
-    console.log(response);
   };
 
   // Save a product
@@ -88,9 +87,8 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
         }
       }
     };
-    const response = await updateProductMutation(relay.environment, variables);
+    await updateProductMutation(relay.environment, variables);
     setProductModalShow(false);
-    console.log(response);
   };
 
   const createBenchmark = async ({formData}: IChangeEvent) => {
@@ -100,15 +98,12 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
           ...formData,
           productId: product.rowId
         }
-      }
+      },
+      productId: product.id
     };
 
-    const response = await createBenchmarkMutation(
-      relay.environment,
-      variables
-    );
+    await createBenchmarkMutation(relay.environment, variables);
     setBenchmarkModalShow(false);
-    console.log(response);
   };
 
   const editBenchmark = async ({formData}: IChangeEvent) => {
@@ -120,12 +115,8 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
         }
       }
     };
-    const response = await updateBenchmarkMutation(
-      relay.environment,
-      variables
-    );
+    await updateBenchmarkMutation(relay.environment, variables);
     setBenchmarkModalShow(false);
-    console.log(response);
   };
 
   const createLinkedProduct = async (newLink: number) => {
@@ -136,14 +127,11 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
           linkedProductId: newLink,
           isDeleted: false
         }
-      }
+      },
+      productId: product.id
     };
 
-    const response = await createLinkedProductMutation(
-      relay.environment,
-      variables
-    );
-    console.log(response);
+    await createLinkedProductMutation(relay.environment, variables);
   };
 
   const removeLinkedProduct = async (removeLink: {
@@ -161,11 +149,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
       }
     };
 
-    const response = await updateLinkedProductMutation(
-      relay.environment,
-      variables
-    );
-    console.log(response);
+    await updateLinkedProductMutation(relay.environment, variables);
   };
 
   const getLinkData = () => {
@@ -195,15 +179,13 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
 
     newLinks.forEach(async (id) => {
       if (!previousLinks.includes(id)) {
-        const response = await createLinkedProduct(id);
-        console.log(response);
+        await createLinkedProduct(id);
       }
     });
 
     previousLinks.forEach(async (id, index) => {
       if (!newLinks.includes(id)) {
-        const response = await removeLinkedProduct(linkData[index]);
-        console.log(response);
+        await removeLinkedProduct(linkData[index]);
       }
     });
     setLinkProductModalShow(false);
