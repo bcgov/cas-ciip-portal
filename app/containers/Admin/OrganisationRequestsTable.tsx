@@ -9,6 +9,7 @@ import {TextSearchOption} from 'components/Search/TextSearchOption';
 import {NumberSearchOption} from 'components/Search/NumberSearchOption';
 import {EnumSearchOption} from 'components/Search/EnumSearchOption';
 import FilterableTableLayoutComponent from 'components/FilterableComponents/FilterableTableLayout';
+import FilterableTablePaginationComponent from 'components/FilterableComponents/FilterableTablePagination';
 interface Props {
   query: OrganisationRequestsTable_query;
 }
@@ -29,7 +30,7 @@ export const OrganisationRequestsTableComponent: React.FunctionComponent<Props> 
     NoHeaderSearchOption
   ];
 
-  const {edges} = props.query.allCiipUserOrganisations;
+  const {edges, totalCount} = props.query.allCiipUserOrganisations;
 
   const body = (
     <tbody>
@@ -42,7 +43,13 @@ export const OrganisationRequestsTableComponent: React.FunctionComponent<Props> 
     </tbody>
   );
   return (
-    <FilterableTableLayoutComponent body={body} searchOptions={searchOptions} />
+    <>
+      <FilterableTableLayoutComponent
+        body={body}
+        searchOptions={searchOptions}
+      />
+      <FilterableTablePaginationComponent totalCount={totalCount} />
+    </>
   );
 };
 
@@ -75,6 +82,7 @@ export default createFragmentContainer(OrganisationRequestsTableComponent, {
             ...OrganisationRequestsTableRow_userOrganisation
           }
         }
+        totalCount
       }
     }
   `
