@@ -4,8 +4,8 @@ import {graphql} from 'react-relay';
 import {CiipPageComponentProps} from 'next-env';
 import {viewApplicationQueryResponse} from 'viewApplicationQuery.graphql';
 import ApplicationDetails from 'containers/Applications/ApplicationDetailsContainer';
-import ApplicationComments from 'containers/Applications/ApplicationCommentsContainer';
 import ReviseApplicationButton from 'containers/Applications/ReviseApplicationButtonContainer';
+import ApplicationDecision from 'components/Application/ApplicationDecision';
 import DefaultLayout from 'layouts/default-layout';
 import {USER} from 'data/group-constants';
 
@@ -39,6 +39,17 @@ class ViewApplication extends Component<Props> {
           applicationRevisionStatus(versionNumberInput: $version) {
             applicationRevisionStatus
           }
+          reviewCommentsByApplicationId(
+            filter: {resolved: {isNull: true}, deletedBy: {isNull: true}}
+          ) {
+            edges {
+              node {
+                description
+                resolved
+                commentType
+              }
+            }
+          }
           orderedFormResults(versionNumberInput: $version) {
             edges {
               node {
@@ -59,7 +70,11 @@ class ViewApplication extends Component<Props> {
   render() {
     const {session} = this.props.query;
     const {query} = this.props;
-    const formResults = query.application.orderedFormResults.edges;
+    const reviewComments = query.application?.reviewCommentsByApplicationId.edges.map(
+      (result) => result.node.description
+    );
+    const status =
+      query?.application?.applicationRevisionStatus?.applicationRevisionStatus;
 
     return (
       <DefaultLayout
@@ -68,7 +83,16 @@ class ViewApplication extends Component<Props> {
         title="Summary of your application"
       >
         <Row>
-          <Col md={8}>
+          <Col md={12}>
+            <ApplicationDecision
+              changesRequested={status === 'REQUESTED_CHANGES'}
+              decision={status === 'REQUESTED_CHANGES' ? null : status}
+              reviewComments={reviewComments}
+            >
+              {status === 'REQUESTED_CHANGES' && (
+                <ReviseApplicationButton application={query.application} />
+              )}
+            </ApplicationDecision>
             <ApplicationDetails
               query={query}
               application={query.application}
@@ -76,21 +100,6 @@ class ViewApplication extends Component<Props> {
               liveValidate={false}
             />
           </Col>
-          <Col md={4}>
-            {formResults.map(({node}) => (
-              <ApplicationComments
-                key={node.id}
-                formResult={node}
-                review={false}
-              />
-            ))}
-          </Col>
-        </Row>
-        <Row>
-          {query?.application?.applicationRevisionStatus
-            ?.applicationRevisionStatus === 'REQUESTED_CHANGES' ? (
-            <ReviseApplicationButton application={query.application} />
-          ) : null}
         </Row>
       </DefaultLayout>
     );
