@@ -90,7 +90,7 @@ export default createFragmentContainer(ProductList, {
           productState: {equalTo: $product_state}
         }
         orderBy: $order_by
-      ) @connection(key: "ProductListContainer_allProducts") {
+      ) @connection(key: "ProductListContainer_allProducts", filters: []) {
         edges {
           node {
             id
