@@ -5,11 +5,14 @@ import {ISearchProps} from 'components/Search/SearchProps';
 import {getUserFriendlyStatusLabel} from 'lib/text-transforms';
 import safeJsonParse from 'lib/safeJsonParse';
 
-const NONE_VALUES = [null, undefined];
+interface Props extends ISearchProps {
+  onSubmit: (searchData: Record<string, string | number | boolean>) => void;
+}
 
-const FilterableTableHeaders: React.FunctionComponent<ISearchProps> = (
-  props
-) => {
+const FilterableTableHeaders: React.FunctionComponent<Props> = ({
+  onSubmit,
+  searchOptions
+}) => {
   const router = useRouter();
 
   const [searchFilters, setSearchFilters] = useState(() =>
@@ -23,40 +26,14 @@ const FilterableTableHeaders: React.FunctionComponent<ISearchProps> = (
     });
   };
 
-  const applySearch = (searchData) => {
-    const newQuery = {};
-    props.searchOptions.forEach((option) => {
-      const column = option.columnName;
-
-      if (option.isSearchEnabled) {
-        if (!NONE_VALUES.includes(searchData[column]))
-          newQuery[column] = searchData[column];
-        else delete newQuery[column];
-      }
-    });
-
-    const queryString = JSON.stringify(newQuery);
-
-    const url = {
-      pathname: router.pathname,
-      query: {
-        ...router.query,
-        relayVars: queryString,
-        pageVars: JSON.stringify({offset: 0})
-      }
-    };
-
-    router.push(url, url, {shallow: true});
-  };
-
   const clearForm = () => {
     setSearchFilters({});
-    applySearch({});
+    onSubmit({});
   };
 
   return (
     <tr>
-      {props.searchOptions.map((option) => {
+      {searchOptions.map((option) => {
         const column = option.columnName;
         const key = option.columnName + option.title;
         const initialValue = searchFilters[column] ?? '';
@@ -112,7 +89,7 @@ const FilterableTableHeaders: React.FunctionComponent<ISearchProps> = (
         <Button
           style={{marginLeft: '5px'}}
           variant="primary"
-          onClick={() => applySearch(searchFilters)}
+          onClick={() => onSubmit(searchFilters)}
         >
           Apply
         </Button>

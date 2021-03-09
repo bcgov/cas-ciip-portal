@@ -1,18 +1,56 @@
-import React from 'react';
+import React, {useMemo} from 'react';
 import {Col, Table, Alert} from 'react-bootstrap';
 import SortableTableHeader from './SortableTableHeader';
 import FilterableTableHeaders from './FilterableTableHeaders';
-import {ISearchProps} from 'components/Search/SearchProps';
+import {ISearchProps, ISearchExtraFilter} from 'components/Search/SearchProps';
+import {useRouter} from 'next/router';
+import safeJsonParse from 'lib/safeJsonParse';
 
 interface Props extends ISearchProps {
   body: JSX.Element;
   isLoading?: boolean;
-  extraControls?: JSX.Element;
+  extraFilters?: ISearchExtraFilter[];
 }
-export const FilterableTableLayoutComponent: React.FunctionComponent<Props> = (
-  props
-) => {
-  const {searchOptions, body, isLoading} = props;
+export const FilterableTableLayoutComponent: React.FunctionComponent<Props> = ({
+  searchOptions,
+  body,
+  isLoading,
+  extraFilters = []
+}) => {
+  const router = useRouter();
+  const relayVars = useMemo(
+    () => safeJsonParse(router.query.relayVars as string),
+    [router]
+  );
+
+  const applySearch = (
+    searchData: Record<string, string | number | boolean>
+  ) => {
+    const newQuery = {
+      ...relayVars,
+      ...searchData
+    };
+    searchOptions.forEach((option) => {
+      const column = option.columnName;
+
+      if (option.isSearchEnabled) {
+        newQuery[column] = searchData[column] ?? undefined;
+      }
+    });
+
+    const queryString = JSON.stringify(newQuery);
+
+    const url = {
+      pathname: router.pathname,
+      query: {
+        ...router.query,
+        relayVars: queryString,
+        pageVars: JSON.stringify({offset: 0})
+      }
+    };
+
+    router.push(url, url, {shallow: true});
+  };
 
   const noSearchResults =
     body.props.children.length === 0 ||
@@ -24,6 +62,18 @@ export const FilterableTableLayoutComponent: React.FunctionComponent<Props> = (
 
   return (
     <>
+      <div>
+        {extraFilters.map((f) => {
+          return (
+            <f.Component
+              onChange={(value) =>
+                applySearch({...relayVars, [f.argName]: value})
+              }
+              value={relayVars[f.argName]}
+            />
+          );
+        })}
+      </div>
       <Table
         striped
         bordered
@@ -43,7 +93,10 @@ export const FilterableTableLayoutComponent: React.FunctionComponent<Props> = (
               />
             ))}
           </tr>
-          <FilterableTableHeaders searchOptions={searchOptions} />
+          <FilterableTableHeaders
+            searchOptions={searchOptions}
+            onSubmit={applySearch}
+          />
         </thead>
         {body}
       </Table>

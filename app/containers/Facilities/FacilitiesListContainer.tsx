@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {useState} from 'react';
 import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
 import {Form} from 'react-bootstrap';
 import {FacilitiesListContainer_query} from 'FacilitiesListContainer_query.graphql';
@@ -13,6 +13,7 @@ import FilterableTableLayout from 'components/FilterableComponents/FilterableTab
 import FilterableTablePagination from 'components/FilterableComponents/FilterableTablePagination';
 import {useRouter} from 'next/router';
 import safeJsonParse from 'lib/safeJsonParse';
+import {ISearchExtraFilter} from 'components/Search/SearchProps';
 
 interface Props {
   query: FacilitiesListContainer_query;
@@ -45,7 +46,7 @@ export const FacilitiesList: React.FunctionComponent<Props> = ({query}) => {
   } = query;
 
   const router = useRouter();
-  const [selectedReportingYear, setSelectedReportingYear] = useState(
+  const [selectedReportingYear] = useState(
     () => safeJsonParse(router.query.relayVars as string).reportingYear || 2019
   );
 
@@ -68,42 +69,38 @@ export const FacilitiesList: React.FunctionComponent<Props> = ({query}) => {
       selectableReportingYears.push(node.reportingYear);
   });
 
-  const handleReportingYearChange = (e: ChangeEvent) => {
-    const reportingYear = Number((e.nativeEvent.target as any).value);
-    const newRelayVars = {
-      ...safeJsonParse(router.query.relayVars as string),
-      reportingYear
-    };
-
-    const url = {
-      pathname: router.pathname,
-      query: {
-        ...router.query,
-        relayVars: JSON.stringify(newRelayVars)
-      }
-    };
-    router.push(url, url, {shallow: true});
-    setSelectedReportingYear(reportingYear);
+  const reportingPeriodFilter: ISearchExtraFilter = {
+    argName: 'reportingYear',
+    Component: ({onChange, value}) => {
+      return (
+        <Form>
+          <Form.Group controlId="reportingYear">
+            <Form.Label>Reporting Period</Form.Label>
+            <Form.Control
+              as="select"
+              custom
+              value={Number(value || 2019)}
+              onChange={(e) =>
+                onChange(Number((e.nativeEvent.target as any).value))
+              }
+            >
+              {selectableReportingYears.map((y) => (
+                <option key={y}>{y}</option>
+              ))}
+            </Form.Control>
+          </Form.Group>
+        </Form>
+      );
+    }
   };
 
   return (
     <>
-      <Form>
-        <Form.Group controlId="reportingYear">
-          <Form.Label>Reporting Period</Form.Label>
-          <Form.Control
-            as="select"
-            custom
-            value={selectedReportingYear}
-            onChange={handleReportingYearChange}
-          >
-            {selectableReportingYears.map((y) => (
-              <option key={y}>{y}</option>
-            ))}
-          </Form.Control>
-        </Form.Group>
-      </Form>
-      <FilterableTableLayout body={body} searchOptions={searchOptions} />
+      <FilterableTableLayout
+        body={body}
+        searchOptions={searchOptions}
+        extraFilters={[reportingPeriodFilter]}
+      />
       <FilterableTablePagination totalCount={totalCount} />
       If you cannot find your facility in the list, please{' '}
       <a href="mailto:ghgregulator@gov.bc.ca">contact CAS</a> for assistance.
