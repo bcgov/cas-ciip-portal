@@ -6,7 +6,7 @@ begin;
 create table ggircs_portal.review_step (
   id integer primary key generated always as identity,
   application_id integer not null references ggircs_portal.application(id),
-  step_name ggircs_portal.review_step_name,
+  review_step_name_id integer not null references ggircs_portal.review_step_name(id),
   is_complete boolean default false,
   created_at timestamp with time zone not null default now(),
   created_by int references ggircs_portal.ciip_user(id),
@@ -17,6 +17,7 @@ create table ggircs_portal.review_step (
 );
 
 create index ggircs_portal_review_step_application_foreign_key on ggircs_portal.review_step(application_id);
+create index ggircs_portal_review_step_review_step_name_foreign_key on ggircs_portal.review_step(review_step_name_id);
 create index ggircs_portal_review_step_created_by_foreign_key on ggircs_portal.review_step(created_by);
 create index ggircs_portal_review_step_updated_by_foreign_key on ggircs_portal.review_step(updated_by);
 create index ggircs_portal_review_step_deleted_by_foreign_key on ggircs_portal.review_step(deleted_by);
@@ -47,8 +48,8 @@ alter table ggircs_portal.review_step enable row level security;
 
 comment on table ggircs_portal.review_step is 'Information about specific review steps and their state(is_complete). An application can not move out of a pending review without all required review_steps being complete.';
 comment on column ggircs_portal.review_step.id is 'Unique ID for the review_step';
-comment on column ggircs_portal.review_step.application_id is 'The ID of the application this review_step belings tod. Foreign Key to application(id';
-comment on column ggircs_portal.review_step.step_name is 'The name of the step this data relates to. Definedy by Enum review_step_name (administrative, technical, legacy)';
+comment on column ggircs_portal.review_step.application_id is 'The ID of the application this review_step belongs to. Foreign Key to application(id';
+comment on column ggircs_portal.review_step.review_step_name_id is 'The foreign key ID of the review_step_name to be applied to this review step';
 comment on column ggircs_portal.review_step.is_complete is 'The boolean completed state of this review_step';
 comment on column ggircs_portal.review_step.created_at is 'Timestamp of when this review_step was created';
 comment on column ggircs_portal.review_step.created_by is 'The ID of the user who created this review_step, references ciip_user.id';

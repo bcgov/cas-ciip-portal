@@ -2,6 +2,6 @@
 
 begin;
 
-drop type ggircs_portal.review_step_name;
+drop table ggircs_portal.review_step_name;
 
 commit;
