@@ -240,5 +240,6 @@ trigger_functions/update_timestamps [trigger_functions/update_timestamps@v1.16.0
 database_functions/upsert_timestamp_columns [trigger_functions/update_timestamps] 2021-03-11T20:56:27Z Dylan Leard <dylan@button.is> # Internal function adds the columns, trigger and indices to do with timestamps
 types/review_step_name [schema_ggircs_portal] 2021-03-09T22:42:29Z Dylan Leard <dylan@button.is> # Enum type review_step_name is the set of names a review_step can select from
 tables/review_step_name [schema_ggircs_portal] 2021-03-09T22:42:29Z Dylan Leard <dylan@button.is> # Table review_step_name is the set of names a review_step can select from and whether they are actively in use
+policies/review_step_name_policies [tables/review_step_name] 2021-03-10T19:00:05Z Dylan Leard <dylan@button.is> # RLS policies for table review_step_name
 tables/review_step [tables/application] 2021-03-10T00:00:08Z Dylan Leard <dylan@button.is> # review_step table contains data on each review_step an application must go through before a status change
 policies/review_step_policies [tables/review_step] 2021-03-10T00:25:14Z Dylan Leard <dylan@button.is> # Row level security policy definitions for the review_step table
