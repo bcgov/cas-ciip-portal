@@ -205,25 +205,7 @@ jobs:
           command: |
             source ~/.bashrc
             pushd schema
-            sqitch deploy
-            sqitch verify
-            popd
-      - run:
-          name: regenerate schema via introspection
-          command: |
-            source ~/.bashrc
-            pushd app
-            yarn build:schema
-            popd
-      - run:
-          name: check for inconsistency between schema ddl & graphql
-          command: git diff --exit-code || (echo 'The contents of the `schema` folder are out of sync with `app/server/schema.graphql`. Did you forget to \"yarn build:relay\"?' && false)
-      - run:
-          name: redeploy schema
-          command: |
-            source ~/.bashrc
-            pushd schema
-            sqitch rebase
+            ./data/deploy-data.sh
             sqitch verify
             popd
       - run:
