@@ -11,6 +11,10 @@ declare
 
 begin
 
+  if new.application_revision_status != 'submitted'::ggircs_portal.ciip_application_revision_status then
+    return new;
+  end if;
+
   for temp_row in
     select id, step_name from ggircs_portal.review_step_name where is_active = true
   loop
