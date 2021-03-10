@@ -11,7 +11,5 @@ select ggircs_portal_private.verify_grant('update', 'review_step_name', 'ciip_ad
 
 -- ciip_analyst Grants
 select ggircs_portal_private.verify_grant('select', 'review_step_name', 'ciip_analyst');
-select ggircs_portal_private.verify_grant('insert', 'review_step_name', 'ciip_analyst');
-select ggircs_portal_private.verify_grant('update', 'review_step_name', 'ciip_analyst');
 
 rollback;

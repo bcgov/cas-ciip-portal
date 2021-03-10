@@ -19,8 +19,6 @@ perform ggircs_portal_private.grant_permissions('update', 'review_step_name', 'c
 
 -- Grant ciip_analyst permissions
 perform ggircs_portal_private.grant_permissions('select', 'review_step_name', 'ciip_analyst');
-perform ggircs_portal_private.grant_permissions('insert', 'review_step_name', 'ciip_analyst');
-perform ggircs_portal_private.grant_permissions('update', 'review_step_name', 'ciip_analyst');
 
 end
 $grant$;
