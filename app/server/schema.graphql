@@ -19112,9 +19112,29 @@ type CiipUserOrganisation implements Node {
   ciipUserByUserId: CiipUser
 
   """
+  This function is a wrapper to return email_address from the ciip_user object as a scalar
+  """
+  emailAddress: String
+
+  """
+  This function is a wrapper to return first_name from the ciip_user object as a scalar
+  """
+  firstName: String
+
+  """
   A globally unique identifier. Can be used in various places throughout the system to identify this single value.
   """
   id: ID!
+
+  """
+  This function is a wrapper to return last_name from the ciip_user object as a scalar
+  """
+  lastName: String
+
+  """
+  This function is a wrapper to return operator_name from the organisation object as a scalar
+  """
+  operatorName: String
 
   """
   Reads a single `Organisation` that is related to this `CiipUserOrganisation`.
@@ -19159,8 +19179,20 @@ input CiipUserOrganisationFilter {
   """Checks for all expressions in this list."""
   and: [CiipUserOrganisationFilter!]
 
+  """Filter by the object’s `emailAddress` field."""
+  emailAddress: StringFilter
+
+  """Filter by the object’s `firstName` field."""
+  firstName: StringFilter
+
+  """Filter by the object’s `lastName` field."""
+  lastName: StringFilter
+
   """Negates the expression."""
   not: CiipUserOrganisationFilter
+
+  """Filter by the object’s `operatorName` field."""
+  operatorName: StringFilter
 
   """Checks for any expressions in this list."""
   or: [CiipUserOrganisationFilter!]
@@ -19299,9 +19331,17 @@ type CiipUserOrganisationsEdge {
 
 """Methods to use when ordering `CiipUserOrganisation`."""
 enum CiipUserOrganisationsOrderBy {
+  EMAIL_ADDRESS_ASC
+  EMAIL_ADDRESS_DESC
+  FIRST_NAME_ASC
+  FIRST_NAME_DESC
   ID_ASC
   ID_DESC
+  LAST_NAME_ASC
+  LAST_NAME_DESC
   NATURAL
+  OPERATOR_NAME_ASC
+  OPERATOR_NAME_DESC
   ORGANISATION_ID_ASC
   ORGANISATION_ID_DESC
   PRIMARY_KEY_ASC
@@ -32467,36 +32507,6 @@ type Query implements Node {
     searchField: [String]
     searchValue: [String]
   ): SearchCertificationUrlResultsConnection!
-
-  """Reads and enables pagination through a set of `CiipUserOrganisation`."""
-  searchCiipUserOrganisation(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-    direction: String
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: CiipUserOrganisationFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-    orderByField: String
-    searchField: String
-    searchValue: String
-  ): CiipUserOrganisationsConnection!
 
   """Reads and enables pagination through a set of `Facility`."""
   searchOrganisationFacilities(

@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Organisation request rows should render an organisation properly 1`] = `
+<tr>
+  <td>
+    1
+  </td>
+  <td>
+    First
+  </td>
+  <td>
+    Last
+  </td>
+  <td>
+    a@a.a
+  </td>
+  <td>
+    Company Inc
+  </td>
+  <td>
+    <Badge
+      pill={true}
+      style={
+        Object {
+          "padding": "8px",
+          "width": "100%",
+        }
+      }
+      variant="success"
+    >
+      APPROVED
+    </Badge>
+  </td>
+  <td>
+    <ButtonGroup
+      aria-label="Status change"
+      role="group"
+      toggle={false}
+      vertical={false}
+    >
+      <Button
+        active={false}
+        disabled={false}
+        onClick={[Function]}
+        variant="danger"
+      >
+        Reject
+      </Button>
+    </ButtonGroup>
+  </td>
+</tr>
+`;
