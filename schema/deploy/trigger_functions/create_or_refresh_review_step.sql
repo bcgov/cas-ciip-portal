@@ -24,7 +24,7 @@ begin
 
   return new;
 end;
-$$ language plpgsql volatile;
+$$ language plpgsql volatile security definer;
 
 grant execute on function ggircs_portal_private.create_or_refresh_review_step to ciip_administrator, ciip_analyst, ciip_industry_user;
 
