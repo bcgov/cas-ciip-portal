@@ -8,6 +8,7 @@ describe('Organisations', () => {
     const query: OrganisationRequestsTable_query = {
       ' $refType': 'OrganisationRequestsTable_query',
       allCiipUserOrganisations: {
+        totalCount: 1,
         edges: [
           {
             node: {
@@ -23,5 +24,6 @@ describe('Organisations', () => {
     const r = shallow(<OrganisationRequestsTableComponent query={query} />);
     expect(r).toMatchSnapshot();
     expect(r.exists('FilterableTableLayoutComponent')).toBe(true);
+    expect(r.exists('FilterableTablePaginationComponent')).toBe(true);
   });
 });

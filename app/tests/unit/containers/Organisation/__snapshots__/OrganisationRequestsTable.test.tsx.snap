@@ -1,98 +1,103 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Organisations should render the user's requested organisations 1`] = `
-<FilterableTableLayoutComponent
-  body={
-    <tbody>
-      <Relay(OrganisationRequestsTableRowComponent)
-        userOrganisation={
-          Object {
-            " $fragmentRefs": Object {
-              "OrganisationRequestsTableRow_userOrganisation": true,
-            },
-            "id": "abc",
+<Fragment>
+  <FilterableTableLayoutComponent
+    body={
+      <tbody>
+        <Relay(OrganisationRequestsTableRowComponent)
+          userOrganisation={
+            Object {
+              " $fragmentRefs": Object {
+                "OrganisationRequestsTableRow_userOrganisation": true,
+              },
+              "id": "abc",
+            }
           }
-        }
-      />
-    </tbody>
-  }
-  searchOptions={
-    Array [
-      NumberSearchOption {
-        "columnName": "user_id",
-        "isSearchEnabled": true,
-        "isSortEnabled": true,
-        "removeSearchHeader": false,
-        "title": "User ID",
-        "toUrl": [Function],
-      },
-      TextSearchOption {
-        "columnName": "first_name",
-        "isSearchEnabled": true,
-        "isSortEnabled": true,
-        "removeSearchHeader": false,
-        "title": "First Name",
-        "toUrl": [Function],
-      },
-      TextSearchOption {
-        "columnName": "last_name",
-        "isSearchEnabled": true,
-        "isSortEnabled": true,
-        "removeSearchHeader": false,
-        "title": "Last Name",
-        "toUrl": [Function],
-      },
-      TextSearchOption {
-        "columnName": "email_address",
-        "isSearchEnabled": true,
-        "isSortEnabled": true,
-        "removeSearchHeader": false,
-        "title": "Email",
-        "toUrl": [Function],
-      },
-      TextSearchOption {
-        "columnName": "operator_name",
-        "isSearchEnabled": true,
-        "isSortEnabled": true,
-        "removeSearchHeader": false,
-        "title": "Operator",
-        "toUrl": [Function],
-      },
-      EnumSearchOption {
-        "columnName": "status",
-        "enumValues": Array [
-          "APPROVED",
-          "PENDING",
-          "REJECTED",
-        ],
-        "isSearchEnabled": true,
-        "isSortEnabled": true,
-        "removeSearchHeader": false,
-        "searchOptionValues": Array [
-          Object {
-            "display": "APPROVED",
-            "value": "APPROVED",
-          },
-          Object {
-            "display": "PENDING",
-            "value": "PENDING",
-          },
-          Object {
-            "display": "REJECTED",
-            "value": "REJECTED",
-          },
-        ],
-        "title": "Status",
-        "toUrl": [Function],
-      },
-      Object {
-        "columnName": null,
-        "isSearchEnabled": false,
-        "isSortEnabled": false,
-        "removeSearchHeader": true,
-        "title": null,
-      },
-    ]
-  }
-/>
+        />
+      </tbody>
+    }
+    searchOptions={
+      Array [
+        NumberSearchOption {
+          "columnName": "user_id",
+          "isSearchEnabled": true,
+          "isSortEnabled": true,
+          "removeSearchHeader": false,
+          "title": "User ID",
+          "toUrl": [Function],
+        },
+        TextSearchOption {
+          "columnName": "first_name",
+          "isSearchEnabled": true,
+          "isSortEnabled": true,
+          "removeSearchHeader": false,
+          "title": "First Name",
+          "toUrl": [Function],
+        },
+        TextSearchOption {
+          "columnName": "last_name",
+          "isSearchEnabled": true,
+          "isSortEnabled": true,
+          "removeSearchHeader": false,
+          "title": "Last Name",
+          "toUrl": [Function],
+        },
+        TextSearchOption {
+          "columnName": "email_address",
+          "isSearchEnabled": true,
+          "isSortEnabled": true,
+          "removeSearchHeader": false,
+          "title": "Email",
+          "toUrl": [Function],
+        },
+        TextSearchOption {
+          "columnName": "operator_name",
+          "isSearchEnabled": true,
+          "isSortEnabled": true,
+          "removeSearchHeader": false,
+          "title": "Operator",
+          "toUrl": [Function],
+        },
+        EnumSearchOption {
+          "columnName": "status",
+          "enumValues": Array [
+            "APPROVED",
+            "PENDING",
+            "REJECTED",
+          ],
+          "isSearchEnabled": true,
+          "isSortEnabled": true,
+          "removeSearchHeader": false,
+          "searchOptionValues": Array [
+            Object {
+              "display": "APPROVED",
+              "value": "APPROVED",
+            },
+            Object {
+              "display": "PENDING",
+              "value": "PENDING",
+            },
+            Object {
+              "display": "REJECTED",
+              "value": "REJECTED",
+            },
+          ],
+          "title": "Status",
+          "toUrl": [Function],
+        },
+        Object {
+          "columnName": null,
+          "isSearchEnabled": false,
+          "isSortEnabled": false,
+          "removeSearchHeader": true,
+          "title": null,
+        },
+      ]
+    }
+  />
+  <FilterableTablePaginationComponent
+    totalCount={1}
+  />
+</Fragment>
 `;
