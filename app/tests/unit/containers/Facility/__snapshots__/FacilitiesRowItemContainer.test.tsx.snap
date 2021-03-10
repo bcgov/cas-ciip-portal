@@ -33,13 +33,16 @@ exports[`FacilitiesRowItem should match the previous snapshot 1`] = `
     </Badge>
   </td>
   <td>
+    42
+  </td>
+  <td>
     <Relay(ApplyButton)
       applyButtonDetails={
         Object {
           " $fragmentRefs": Object {
             "ApplyButtonContainer_applyButtonDetails": true,
           },
-          " $refType": "FacilitiesRowItemContainer_facilitySearchResult",
+          " $refType": "FacilitiesRowItemContainer_facilityApplication",
           "applicationByApplicationId": Object {
             "latestDraftRevision": Object {
               "certificationUrl": Object {
@@ -47,12 +50,13 @@ exports[`FacilitiesRowItem should match the previous snapshot 1`] = `
               },
             },
           },
-          "applicationRevisionStatus": "SUBMITTED",
+          "applicationId": 42,
+          "applicationStatus": "SUBMITTED",
           "facilityBcghgid": "123",
           "facilityName": "fac",
           "facilityType": "EIO",
           "lastSwrsReportingYear": 2019,
-          "organisationName": "org",
+          "operatorName": "org",
         }
       }
       query={
@@ -102,24 +106,28 @@ exports[`FacilitiesRowItem should not show Pending Certification in the status i
     </Badge>
   </td>
   <td>
+    42
+  </td>
+  <td>
     <Relay(ApplyButton)
       applyButtonDetails={
         Object {
           " $fragmentRefs": Object {
             "ApplyButtonContainer_applyButtonDetails": true,
           },
-          " $refType": "FacilitiesRowItemContainer_facilitySearchResult",
+          " $refType": "FacilitiesRowItemContainer_facilityApplication",
           "applicationByApplicationId": Object {
             "latestDraftRevision": Object {
               "certificationUrl": null,
             },
           },
-          "applicationRevisionStatus": "DRAFT",
+          "applicationId": 42,
+          "applicationStatus": "DRAFT",
           "facilityBcghgid": "123",
           "facilityName": "fac",
           "facilityType": "EIO",
           "lastSwrsReportingYear": 2019,
-          "organisationName": "org",
+          "operatorName": "org",
         }
       }
       query={
@@ -169,13 +177,16 @@ exports[`FacilitiesRowItem should not show Pending Certification in the status i
     </Badge>
   </td>
   <td>
+    42
+  </td>
+  <td>
     <Relay(ApplyButton)
       applyButtonDetails={
         Object {
           " $fragmentRefs": Object {
             "ApplyButtonContainer_applyButtonDetails": true,
           },
-          " $refType": "FacilitiesRowItemContainer_facilitySearchResult",
+          " $refType": "FacilitiesRowItemContainer_facilityApplication",
           "applicationByApplicationId": Object {
             "latestDraftRevision": Object {
               "certificationUrl": Object {
@@ -183,12 +194,13 @@ exports[`FacilitiesRowItem should not show Pending Certification in the status i
               },
             },
           },
-          "applicationRevisionStatus": "APPROVED",
+          "applicationId": 42,
+          "applicationStatus": "APPROVED",
           "facilityBcghgid": "123",
           "facilityName": "fac",
           "facilityType": "EIO",
           "lastSwrsReportingYear": 2019,
-          "organisationName": "org",
+          "operatorName": "org",
         }
       }
       query={
@@ -239,13 +251,16 @@ exports[`FacilitiesRowItem should show Certified in the status if the applicatio
     </Badge>
   </td>
   <td>
+    42
+  </td>
+  <td>
     <Relay(ApplyButton)
       applyButtonDetails={
         Object {
           " $fragmentRefs": Object {
             "ApplyButtonContainer_applyButtonDetails": true,
           },
-          " $refType": "FacilitiesRowItemContainer_facilitySearchResult",
+          " $refType": "FacilitiesRowItemContainer_facilityApplication",
           "applicationByApplicationId": Object {
             "latestDraftRevision": Object {
               "certificationUrl": Object {
@@ -253,12 +268,13 @@ exports[`FacilitiesRowItem should show Certified in the status if the applicatio
               },
             },
           },
-          "applicationRevisionStatus": "DRAFT",
+          "applicationId": 42,
+          "applicationStatus": "DRAFT",
           "facilityBcghgid": "123",
           "facilityName": "fac",
           "facilityType": "EIO",
           "lastSwrsReportingYear": 2019,
-          "organisationName": "org",
+          "operatorName": "org",
         }
       }
       query={
@@ -309,13 +325,16 @@ exports[`FacilitiesRowItem should show Pending Certification in the status if th
     </Badge>
   </td>
   <td>
+    42
+  </td>
+  <td>
     <Relay(ApplyButton)
       applyButtonDetails={
         Object {
           " $fragmentRefs": Object {
             "ApplyButtonContainer_applyButtonDetails": true,
           },
-          " $refType": "FacilitiesRowItemContainer_facilitySearchResult",
+          " $refType": "FacilitiesRowItemContainer_facilityApplication",
           "applicationByApplicationId": Object {
             "latestDraftRevision": Object {
               "certificationUrl": Object {
@@ -323,12 +342,13 @@ exports[`FacilitiesRowItem should show Pending Certification in the status if th
               },
             },
           },
-          "applicationRevisionStatus": "DRAFT",
+          "applicationId": 42,
+          "applicationStatus": "DRAFT",
           "facilityBcghgid": "123",
           "facilityName": "fac",
           "facilityType": "EIO",
           "lastSwrsReportingYear": 2019,
-          "organisationName": "org",
+          "operatorName": "org",
         }
       }
       query={

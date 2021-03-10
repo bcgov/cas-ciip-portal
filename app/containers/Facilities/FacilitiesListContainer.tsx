@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
+import {graphql, createFragmentContainer} from 'react-relay';
 import {Form} from 'react-bootstrap';
 import {FacilitiesListContainer_query} from 'FacilitiesListContainer_query.graphql';
 import FacilitiesRowItemContainer from './FacilitiesRowItemContainer';
@@ -16,7 +16,6 @@ import {ApplicationStatusSearchOption} from 'components/Search/ApplicationStatus
 
 interface Props {
   query: FacilitiesListContainer_query;
-  relay: RelayProp;
 }
 
 const searchOptions: ISearchOption[] = [

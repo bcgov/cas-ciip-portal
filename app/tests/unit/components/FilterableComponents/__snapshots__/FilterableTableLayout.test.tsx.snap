@@ -2,6 +2,9 @@
 
 exports[`The filterable table layout renders filter headers 1`] = `
 <Fragment>
+  <div
+    className="jsx-1046249322"
+  />
   <ForwardRef
     bordered={true}
     className="search-table"
@@ -36,6 +39,7 @@ exports[`The filterable table layout renders filter headers 1`] = `
         />
       </tr>
       <FilterableTableHeaders
+        onSubmit={[Function]}
         searchOptions={
           Array [
             TextSearchOption {
@@ -99,6 +103,9 @@ exports[`The filterable table layout renders filter headers 1`] = `
 
 exports[`The filterable table layout renders sort headers 1`] = `
 <Fragment>
+  <div
+    className="jsx-1046249322"
+  />
   <ForwardRef
     bordered={true}
     className="search-table"
@@ -133,6 +140,7 @@ exports[`The filterable table layout renders sort headers 1`] = `
         />
       </tr>
       <FilterableTableHeaders
+        onSubmit={[Function]}
         searchOptions={
           Array [
             TextSearchOption {
@@ -196,6 +204,9 @@ exports[`The filterable table layout renders sort headers 1`] = `
 
 exports[`The filterable table layout renders the table body 1`] = `
 <Fragment>
+  <div
+    className="jsx-1046249322"
+  />
   <ForwardRef
     bordered={true}
     className="search-table"
@@ -209,6 +220,7 @@ exports[`The filterable table layout renders the table body 1`] = `
         className="jsx-1046249322"
       />
       <FilterableTableHeaders
+        onSubmit={[Function]}
         searchOptions={Array []}
       />
     </thead>

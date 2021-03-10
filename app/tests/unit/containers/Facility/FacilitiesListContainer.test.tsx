@@ -10,42 +10,28 @@ describe('FacilitiesListContainer', () => {
         FacilitiesRowItemContainer_query: true
       },
       ' $refType': 'FacilitiesListContainer_query',
-      searchAllFacilities: {
+      facilityApplicationByReportingYear: {
+        totalCount: 1,
         edges: [
           {
             node: {
-              rowId: 1,
-              totalFacilityCount: 1,
-              ' $fragmentRefs ': {
-                FacilitiesRowItemContainer_facilitySearchResult: true
+              facilityId: 42,
+              ' $fragmentRefs': {
+                FacilitiesRowItemContainer_facilityApplication: true
               }
             }
           }
         ]
       },
-      allFacilities: {totalCount: 20},
       allReportingYears: {
         edges: []
-      },
-      organisation: {id: 'abc', rowId: 1}
+      }
     };
     const useRouter = jest.spyOn(require('next/router'), 'useRouter');
     useRouter.mockImplementationOnce(() => ({
       query: {}
     }));
-    const r = shallow(
-      <FacilitiesList
-        query={query}
-        relay={null}
-        direction="asc"
-        orderByField="id"
-        searchField={null}
-        searchValue={null}
-        offsetValue={1}
-        handleEvent={jest.fn()}
-        selectedReportingYear={new Date().getFullYear() - 1}
-      />
-    );
+    const r = shallow(<FacilitiesList query={query} />);
     expect(r).toMatchSnapshot();
   });
 });

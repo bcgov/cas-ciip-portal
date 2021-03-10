@@ -1,11 +1,18 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 import FilterableTableLayoutComponent from 'components/FilterableComponents/FilterableTableLayout';
+import * as nextRouter from 'next/router';
 
 import {TextSearchOption} from 'components/Search/TextSearchOption';
 import {DisplayOnlyOption} from 'components/Search/DisplayOnlyOption';
 
 describe('The filterable table layout', () => {
+  nextRouter.useRouter = jest.fn();
+  nextRouter.useRouter.mockImplementation(() => ({
+    route: '/',
+    query: ''
+  }));
+
   const emptyBody = <React.Component>{[]}</React.Component>;
 
   it('renders sort headers', () => {
@@ -17,7 +24,6 @@ describe('The filterable table layout', () => {
     const rendered = shallow(
       <FilterableTableLayoutComponent
         body={emptyBody}
-        handleEvent={() => {}}
         searchOptions={searchOptions}
       />
     );
@@ -49,7 +55,6 @@ describe('The filterable table layout', () => {
     const rendered = shallow(
       <FilterableTableLayoutComponent
         body={emptyBody}
-        handleEvent={() => {}}
         searchOptions={searchOptions}
       />
     );
@@ -70,11 +75,7 @@ describe('The filterable table layout', () => {
     );
 
     const rendered = shallow(
-      <FilterableTableLayoutComponent
-        body={body}
-        handleEvent={() => {}}
-        searchOptions={[]}
-      />
+      <FilterableTableLayoutComponent body={body} searchOptions={[]} />
     );
 
     expect(rendered).toMatchSnapshot();

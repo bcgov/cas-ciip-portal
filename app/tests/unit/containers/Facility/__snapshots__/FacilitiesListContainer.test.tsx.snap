@@ -2,17 +2,16 @@
 
 exports[`FacilitiesListContainer should match the previous snapshot 1`] = `
 <Fragment>
-  <SearchTableLayoutComponent
+  <FilterableTableLayoutComponent
     body={
       <tbody>
         <Relay(FacilitiesRowItemComponent)
-          facilitySearchResult={
+          facilityApplication={
             Object {
-              " $fragmentRefs ": Object {
-                "FacilitiesRowItemContainer_facilitySearchResult": true,
+              " $fragmentRefs": Object {
+                "FacilitiesRowItemContainer_facilityApplication": true,
               },
-              "rowId": 1,
-              "totalFacilityCount": 1,
+              "facilityId": 42,
             }
           }
           query={
@@ -21,55 +20,142 @@ exports[`FacilitiesListContainer should match the previous snapshot 1`] = `
                 "FacilitiesRowItemContainer_query": true,
               },
               " $refType": "FacilitiesListContainer_query",
-              "allFacilities": Object {
-                "totalCount": 20,
-              },
               "allReportingYears": Object {
                 "edges": Array [],
               },
-              "organisation": Object {
-                "id": "abc",
-                "rowId": 1,
-              },
-              "searchAllFacilities": Object {
+              "facilityApplicationByReportingYear": Object {
                 "edges": Array [
                   Object {
                     "node": Object {
-                      " $fragmentRefs ": Object {
-                        "FacilitiesRowItemContainer_facilitySearchResult": true,
+                      " $fragmentRefs": Object {
+                        "FacilitiesRowItemContainer_facilityApplication": true,
                       },
-                      "rowId": 1,
-                      "totalFacilityCount": 1,
+                      "facilityId": 42,
                     },
                   },
                 ],
+                "totalCount": 1,
               },
             }
           }
-          reportingYear={2020}
+          reportingYear={2019}
         />
       </tbody>
     }
-    displayNameToColumnNameMap={
-      Object {
-        "": null,
-        "BC GHG id": "facility_bcghgid",
-        "Facility Name": "facility_name",
-        "Facility Type": "facility_type",
-        "Organisation Name": "organisation_name",
-        "Reporting period of last SWRS report": "last_swrs_reporting_year",
-        "Status": "application_revision_status",
-      }
+    extraFilters={
+      Array [
+        Object {
+          "Component": [Function],
+          "argName": "reportingYear",
+        },
+      ]
     }
-    extraControls={
-      <SelectReportingYearDropDownComponent
-        handleEvent={[MockFunction]}
-        selectableReportingYears={Array []}
-        selectedReportingYear={2020}
-      />
+    searchOptions={
+      Array [
+        TextSearchOption {
+          "columnName": "operatorName",
+          "isSearchEnabled": true,
+          "isSortEnabled": false,
+          "removeSearchHeader": false,
+          "title": "Operator Name",
+          "toUrl": [Function],
+        },
+        TextSearchOption {
+          "columnName": "facilityName",
+          "isSearchEnabled": true,
+          "isSortEnabled": false,
+          "removeSearchHeader": false,
+          "title": "Facility Name",
+          "toUrl": [Function],
+        },
+        TextSearchOption {
+          "columnName": "facilityType",
+          "isSearchEnabled": true,
+          "isSortEnabled": false,
+          "removeSearchHeader": false,
+          "title": "Facility Type",
+          "toUrl": [Function],
+        },
+        TextSearchOption {
+          "columnName": "facilityBcghgid",
+          "isSearchEnabled": true,
+          "isSortEnabled": false,
+          "removeSearchHeader": false,
+          "title": "BC GHG id",
+          "toUrl": [Function],
+        },
+        NumberSearchOption {
+          "columnName": "lastSwrsReportingYear",
+          "isSearchEnabled": true,
+          "isSortEnabled": false,
+          "removeSearchHeader": false,
+          "title": "Reporting period of last SWRS report",
+          "toUrl": [Function],
+        },
+        ApplicationStatusSearchOption {
+          "Component": [Function],
+          "_nullValueArgName": "applicationIdIsNull",
+          "columnName": "applicationStatus",
+          "enumValues": Array [
+            "NOT_STARTED",
+            "DRAFT",
+            "SUBMITTED",
+            "REQUESTED_CHANGES",
+            "APPROVED",
+            "REJECTED",
+          ],
+          "isSearchEnabled": true,
+          "isSortEnabled": true,
+          "removeSearchHeader": false,
+          "searchOptionValues": Array [
+            Object {
+              "display": "NOT_STARTED",
+              "value": "NOT_STARTED",
+            },
+            Object {
+              "display": "DRAFT",
+              "value": "DRAFT",
+            },
+            Object {
+              "display": "SUBMITTED",
+              "value": "SUBMITTED",
+            },
+            Object {
+              "display": "REQUESTED_CHANGES",
+              "value": "REQUESTED_CHANGES",
+            },
+            Object {
+              "display": "APPROVED",
+              "value": "APPROVED",
+            },
+            Object {
+              "display": "REJECTED",
+              "value": "REJECTED",
+            },
+          ],
+          "title": "Application Status",
+          "toUrl": [Function],
+        },
+        NumberSearchOption {
+          "columnName": "applicationId",
+          "isSearchEnabled": true,
+          "isSortEnabled": false,
+          "removeSearchHeader": false,
+          "title": "Application #",
+          "toUrl": [Function],
+        },
+        Object {
+          "columnName": null,
+          "isSearchEnabled": false,
+          "isSortEnabled": false,
+          "removeSearchHeader": true,
+          "title": null,
+        },
+      ]
     }
-    handleEvent={[MockFunction]}
-    isLoading={false}
+  />
+  <FilterableTablePaginationComponent
+    totalCount={1}
   />
   If you cannot find your facility in the list, please
    
