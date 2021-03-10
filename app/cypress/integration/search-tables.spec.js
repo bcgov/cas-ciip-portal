@@ -142,6 +142,12 @@ describe('When filtering organisation requests', () => {
     cy.contains('Clear').click();
     cy.get('#page-content');
     cy.get('table.search-table > tbody').find('tr').should('have.length', 5);
+  });
+});
+
+//--------------------------------//
+//            Products            //
+//--------------------------------//
 
 describe('When filtering products', () => {
   before(() => {

@@ -20,47 +20,44 @@ interface Props {
 }
 
 export const ProductList: React.FunctionComponent<Props> = ({query}) => {
-  if (query?.allProducts?.edges) {
-    const allProducts = query.allProducts.edges;
-    const {totalCount} = query.allProducts;
+  if (!query?.allProducts?.edges) return <LoadingSpinner />;
+  const allProducts = query.allProducts.edges;
+  const {totalCount} = query.allProducts;
 
-    const searchOptions: ISearchOption[] = [
-      new TextSearchOption('Product', 'product_name'),
-      new DisplayOnlyOption('Settings'),
-      new SortOnlyOption('Modified (D/M/Y)', 'date_modified'),
-      new NumberSearchOption('Benchmark', 'current_benchmark'),
-      new NumberSearchOption(
-        'Eligibility Threshold',
-        'current_eligibility_threshold'
-      ),
-      new YesNoSearchOption(
-        'Allocation of Emissions',
-        'requires_emission_allocation'
-      ),
-      new YesNoSearchOption('CIIP Benchmarked', 'is_ciip_product'),
-      new EnumSearchOption<CiipProductState>('Status', 'product_state', [
-        'ARCHIVED',
-        'DRAFT',
-        'PUBLISHED'
-      ]),
-      NoHeaderSearchOption
-    ];
-    const body = (
-      <tbody>
-        {allProducts.map(({node}) => (
-          <ProductRowItemContainer key={node.id} product={node} query={query} />
-        ))}
-      </tbody>
-    );
-    return (
-      <>
-        <FilterableTableLayout body={body} searchOptions={searchOptions} />
-        <FilterableTablePagination totalCount={totalCount} />
-      </>
-    );
-  }
-
-  return <LoadingSpinner />;
+  const searchOptions: ISearchOption[] = [
+    new TextSearchOption('Product', 'product_name'),
+    new DisplayOnlyOption('Settings'),
+    new SortOnlyOption('Modified (D/M/Y)', 'date_modified'),
+    new NumberSearchOption('Benchmark', 'current_benchmark'),
+    new NumberSearchOption(
+      'Eligibility Threshold',
+      'current_eligibility_threshold'
+    ),
+    new YesNoSearchOption(
+      'Allocation of Emissions',
+      'requires_emission_allocation'
+    ),
+    new YesNoSearchOption('CIIP Benchmarked', 'is_ciip_product'),
+    new EnumSearchOption<CiipProductState>('Status', 'product_state', [
+      'ARCHIVED',
+      'DRAFT',
+      'PUBLISHED'
+    ]),
+    NoHeaderSearchOption
+  ];
+  const body = (
+    <tbody>
+      {allProducts.map(({node}) => (
+        <ProductRowItemContainer key={node.id} product={node} query={query} />
+      ))}
+    </tbody>
+  );
+  return (
+    <>
+      <FilterableTableLayout body={body} searchOptions={searchOptions} />
+      <FilterableTablePagination totalCount={totalCount} />
+    </>
+  );
 };
 
 export default createFragmentContainer(ProductList, {
