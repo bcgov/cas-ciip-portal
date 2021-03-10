@@ -27,7 +27,6 @@ export default class Reporter extends Component<Props> {
           ciipUserBySub {
             id
             rowId
-            hasCertificationRequests
           }
         }
       }
