@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select * from no_plan();
+select plan(15);
 
 -- Table exists
 select has_table(
@@ -109,10 +109,10 @@ select concat('current user is: ', (select current_user));
 
 select throws_like(
   $$
-    insert into ggircs_portal.review_step_name (step_name, is_active) values ('reporter_created', true);
+    select * from  ggircs_portal.review_step_name;
   $$,
   'permission denied%',
-    'reporter cannot update table review_step_name'
+    'reporter cannot view table review_step_name'
 );
 
 select throws_like(
