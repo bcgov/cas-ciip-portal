@@ -5,6 +5,7 @@ import FilterableTableHeaders from './FilterableTableHeaders';
 import {ISearchProps, ISearchExtraFilter} from 'components/Search/SearchProps';
 import {useRouter} from 'next/router';
 import safeJsonParse from 'lib/safeJsonParse';
+import {FilterArgs} from 'components/Search/ISearchOption';
 
 interface Props extends ISearchProps {
   body: JSX.Element;
@@ -23,10 +24,9 @@ export const FilterableTableLayoutComponent: React.FunctionComponent<Props> = ({
     [router]
   );
 
-  const applySearch = (
-    searchData: Record<string, string | number | boolean>
-  ) => {
+  const applySearch = (searchData: FilterArgs) => {
     const newQuery = {
+      // copy the vars from the query string, so that the args coming from extraFilters are not overriden
       ...relayVars,
       ...searchData
     };

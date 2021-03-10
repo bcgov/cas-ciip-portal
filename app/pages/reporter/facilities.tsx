@@ -20,6 +20,8 @@ class FacilitiesList extends Component<Props> {
       $operatorName: String
       $facilityName: String
       $applicationStatus: CiipApplicationRevisionStatus
+      $applicationIdIsNull: Boolean
+      $applicationId: Int
       $organisationRowId: Int
       $offset: Int
       $max_results: Int
@@ -33,6 +35,8 @@ class FacilitiesList extends Component<Props> {
             operatorName: $operatorName
             facilityName: $facilityName
             applicationStatus: $applicationStatus
+            applicationIdIsNull: $applicationIdIsNull
+            applicationId: $applicationId
             organisationRowId: $organisationRowId
             lastSwrsReportingYear: $lastSwrsReportingYear
             offset: $offset

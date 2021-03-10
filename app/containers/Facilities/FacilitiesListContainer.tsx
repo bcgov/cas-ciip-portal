@@ -2,18 +2,17 @@ import React, {useState} from 'react';
 import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
 import {Form} from 'react-bootstrap';
 import {FacilitiesListContainer_query} from 'FacilitiesListContainer_query.graphql';
-import {CiipApplicationRevisionStatus} from 'FacilitiesRowItemContainer_facilityApplication.graphql';
 import FacilitiesRowItemContainer from './FacilitiesRowItemContainer';
 import {ISearchOption} from 'components/Search/ISearchOption';
 import {NumberSearchOption} from 'components/Search/NumberSearchOption';
 import {TextSearchOption} from 'components/Search/TextSearchOption';
-import {EnumSearchOption} from 'components/Search/EnumSearchOption';
 import {NoHeaderSearchOption} from 'components/Search/NoHeaderSearchOption';
 import FilterableTableLayout from 'components/FilterableComponents/FilterableTableLayout';
 import FilterableTablePagination from 'components/FilterableComponents/FilterableTablePagination';
 import {useRouter} from 'next/router';
 import safeJsonParse from 'lib/safeJsonParse';
 import {ISearchExtraFilter} from 'components/Search/SearchProps';
+import {ApplicationStatusSearchOption} from 'components/Search/ApplicationStatusSearchOption';
 
 interface Props {
   query: FacilitiesListContainer_query;
@@ -30,10 +29,10 @@ const searchOptions: ISearchOption[] = [
     'lastSwrsReportingYear',
     {sortable: false}
   ),
-  new EnumSearchOption<CiipApplicationRevisionStatus>(
+  new ApplicationStatusSearchOption(
     'Application Status',
     'applicationStatus',
-    ['APPROVED', 'DRAFT', 'REJECTED', 'REQUESTED_CHANGES', 'SUBMITTED']
+    'applicationIdIsNull'
   ),
   new NumberSearchOption('Application #', 'applicationId', {sortable: false}),
   NoHeaderSearchOption
@@ -114,6 +113,8 @@ export default createFragmentContainer(FacilitiesList, {
     @argumentDefinitions(
       operatorName: {type: "String"}
       facilityName: {type: "String"}
+      applicationIdIsNull: {type: "Boolean"}
+      applicationId: {type: "Int"}
       facilityBcghgid: {type: "String"}
       lastSwrsReportingYear: {type: "Int"}
       applicationStatus: {type: "CiipApplicationRevisionStatus"}
@@ -133,6 +134,7 @@ export default createFragmentContainer(FacilitiesList, {
           operatorName: {includesInsensitive: $operatorName}
           facilityName: {includesInsensitive: $facilityName}
           applicationStatus: {equalTo: $applicationStatus}
+          applicationId: {isNull: $applicationIdIsNull, equalTo: $applicationId}
           facilityBcghgid: {equalTo: $facilityBcghgid}
           lastSwrsReportingYear: {equalTo: $lastSwrsReportingYear}
         }
