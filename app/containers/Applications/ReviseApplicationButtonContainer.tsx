@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import {useRouter} from 'next/router';
-import Link from 'next/link';
-import {Button, Col} from 'react-bootstrap';
+import {Button} from 'react-bootstrap';
 import createApplicationRevisionMutation from 'mutations/application/createApplicationRevisionMutation';
 import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
 import {ReviseApplicationButtonContainer_application} from 'ReviseApplicationButtonContainer_application.graphql';
@@ -16,45 +15,9 @@ export const ReviseApplicationButton: React.FunctionComponent<Props> = ({
   relay
 }) => {
   const router = useRouter();
-  const thisVersion = Number(router.query.version);
+
   const [latestSubmittedRevision] = useState(
     application.latestSubmittedRevision.versionNumber
-  );
-  const [latestDraftRevision] = useState(
-    application.latestDraftRevision.versionNumber
-  );
-  const newerSubmissionExists = latestSubmittedRevision > thisVersion;
-  const latestSubmissionURL = `/reporter/view-application?applicationId=${encodeURIComponent(
-    application.id
-  )}&version=${latestSubmittedRevision}`;
-  const viewLatestSubmissionButton = (
-    <>
-      <p style={{margin: '1rem 0'}}>
-        <strong>Note:</strong> There is a more recently submitted version of
-        this application.
-      </p>
-      <Link passHref href={latestSubmissionURL}>
-        <Button>View most recent submission</Button>
-      </Link>
-    </>
-  );
-
-  const newerDraftExists = latestDraftRevision > latestSubmittedRevision;
-  const newerDraftURL = `/reporter/application?applicationId=${encodeURIComponent(
-    application.id
-  )}&version=${latestDraftRevision}`;
-  const resumeLatestDraftButton = (
-    <>
-      <p style={{margin: '1rem 0'}}>
-        <strong>Note:</strong> This application has been revised in a more
-        recent draft.
-      </p>
-      <Link href={newerDraftURL}>
-        <a>
-          <Button>Resume latest draft</Button>
-        </a>
-      </Link>
-    </>
   );
 
   const handleClick = async () => {
@@ -69,7 +32,6 @@ export const ReviseApplicationButton: React.FunctionComponent<Props> = ({
       relay.environment,
       variables
     );
-    console.log(response);
 
     const newVersion =
       response.createApplicationRevisionMutationChain.applicationRevision
@@ -89,17 +51,9 @@ export const ReviseApplicationButton: React.FunctionComponent<Props> = ({
   };
 
   return (
-    <>
-      {newerSubmissionExists ? (
-        viewLatestSubmissionButton
-      ) : newerDraftExists ? (
-        resumeLatestDraftButton
-      ) : (
-        <Button variant="success" onClick={handleClick}>
-          Revise Application
-        </Button>
-      )}
-    </>
+    <Button variant="primary" onClick={handleClick}>
+      Revise Application
+    </Button>
   );
 };
 
@@ -108,9 +62,6 @@ export default createFragmentContainer(ReviseApplicationButton, {
     fragment ReviseApplicationButtonContainer_application on Application {
       id
       rowId
-      latestDraftRevision {
-        versionNumber
-      }
       latestSubmittedRevision {
         versionNumber
       }

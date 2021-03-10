@@ -1,18 +1,21 @@
 import React from 'react';
 import {Alert} from 'react-bootstrap';
+import {getUserFriendlyStatusLabel} from 'lib/text-transforms';
 
 interface Props {
-  changesRequested: Boolean;
-  decision?: string;
+  actionRequired: Boolean;
+  decision: string;
   reviewComments: string[];
 }
 
 const BS_ALERT = {
+  REQUESTED_CHANGES: 'warning',
   REJECTED: 'danger',
   APPROVED: 'success'
 };
 
 const DECISION_TEXT = {
+  REQUESTED_CHANGES: '',
   REJECTED:
     'Thank you for applying to the CIIP. Unfortunately this submission did not meet program requirements and a payment cannot be granted.',
   APPROVED:
@@ -20,30 +23,32 @@ const DECISION_TEXT = {
 };
 
 const ApplicationDecision: React.FunctionComponent<Props> = ({
-  changesRequested,
+  actionRequired,
   decision,
   reviewComments,
   children
 }) => {
-  const heading = changesRequested
+  const heading = actionRequired
     ? 'Action Required'
-    : `Decision: ${decision[0].toUpperCase()}${decision
-        .toLowerCase()
-        .slice(1)}`;
+    : decision === 'REQUESTED_CHANGES'
+    ? 'Changes Requested'
+    : `Decision: ${getUserFriendlyStatusLabel(decision)}`;
 
+  // Items will not be re-ordered after mounting, so using index is safe
   // eslint-disable-next-line react/no-array-index-key
   const items = reviewComments.map((c, i) => <li key={`comment-${i}`}>{c}</li>);
 
   return (
-    <Alert variant={changesRequested ? 'danger' : BS_ALERT[decision]}>
+    <Alert variant={actionRequired ? 'danger' : BS_ALERT[decision]}>
       <Alert.Heading>{heading}</Alert.Heading>
       <p>
-        {changesRequested
+        {actionRequired
           ? 'Changes to your application have been requested. Please read these review notes and gather the relevant information before revising your application.'
           : DECISION_TEXT[decision]}
       </p>
       {reviewComments.length > 0 && (
         <>
+          <hr />
           <p className="h5">Reviewer Notes:</p>
           <ul>{items}</ul>
         </>

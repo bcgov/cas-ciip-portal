@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
-import {Row, Col} from 'react-bootstrap';
+import {Row, Col, Button, Alert} from 'react-bootstrap';
 import {graphql} from 'react-relay';
 import {CiipPageComponentProps} from 'next-env';
 import {viewApplicationQueryResponse} from 'viewApplicationQuery.graphql';
 import ApplicationDetails from 'containers/Applications/ApplicationDetailsContainer';
 import ReviseApplicationButton from 'containers/Applications/ReviseApplicationButtonContainer';
 import ApplicationDecision from 'components/Application/ApplicationDecision';
+import Link from 'next/link';
 import DefaultLayout from 'layouts/default-layout';
 import {USER} from 'data/group-constants';
 
@@ -36,6 +37,12 @@ class ViewApplication extends Component<Props> {
           )
 
         application(id: $applicationId) {
+          latestDraftRevision {
+            versionNumber
+          }
+          latestSubmittedRevision {
+            versionNumber
+          }
           applicationRevisionStatus(versionNumberInput: $version) {
             applicationRevisionStatus
           }
@@ -75,6 +82,49 @@ class ViewApplication extends Component<Props> {
     );
     const status =
       query?.application?.applicationRevisionStatus?.applicationRevisionStatus;
+    const changesRequested = status === 'REQUESTED_CHANGES';
+    const hasBeenReviewed = status !== 'SUBMITTED' && status !== 'DRAFT';
+
+    const thisVersion = Number(this.props.router.query.version);
+    const latestSubmittedRevision =
+      query.application.latestSubmittedRevision?.versionNumber;
+    const latestDraftRevision =
+      query.application.latestDraftRevision?.versionNumber;
+
+    const newerSubmissionExists = latestSubmittedRevision > thisVersion;
+    const newerDraftExists = latestDraftRevision > latestSubmittedRevision;
+
+    const latestSubmissionURL = `/reporter/view-application?applicationId=${encodeURIComponent(
+      this.props.router.query.applicationId.toString()
+    )}&version=${latestSubmittedRevision}`;
+    const viewLatestSubmissionButton = (
+      <>
+        <p style={{margin: '1rem 0'}}>
+          <strong>Note:</strong> There is a more recently submitted version of
+          this application.
+        </p>
+        <Link passHref href={latestSubmissionURL}>
+          <Button variant="primary">View most recent submission</Button>
+        </Link>
+      </>
+    );
+
+    const newerDraftURL = `/reporter/application?applicationId=${encodeURIComponent(
+      this.props.router.query.applicationId.toString()
+    )}&version=${latestDraftRevision}`;
+    const resumeLatestDraftButton = (
+      <>
+        <p style={{margin: '1rem 0'}}>
+          <strong>Note:</strong> This application has been revised in a more
+          recent draft.
+        </p>
+        <Link href={newerDraftURL}>
+          <a>
+            <Button variant="primary">Resume latest draft</Button>
+          </a>
+        </Link>
+      </>
+    );
 
     return (
       <DefaultLayout
@@ -84,15 +134,31 @@ class ViewApplication extends Component<Props> {
       >
         <Row>
           <Col md={12}>
-            <ApplicationDecision
-              changesRequested={status === 'REQUESTED_CHANGES'}
-              decision={status === 'REQUESTED_CHANGES' ? null : status}
-              reviewComments={reviewComments}
-            >
-              {status === 'REQUESTED_CHANGES' && (
-                <ReviseApplicationButton application={query.application} />
-              )}
-            </ApplicationDecision>
+            {hasBeenReviewed && (
+              <>
+                {newerSubmissionExists && (
+                  <Alert variant="secondary">
+                    {newerSubmissionExists && viewLatestSubmissionButton}
+                  </Alert>
+                )}
+                <ApplicationDecision
+                  actionRequired={changesRequested && !newerSubmissionExists}
+                  decision={status}
+                  reviewComments={reviewComments}
+                >
+                  {changesRequested &&
+                    !newerSubmissionExists &&
+                    !newerDraftExists && (
+                      <ReviseApplicationButton
+                        application={query.application}
+                      />
+                    )}
+                  {newerDraftExists &&
+                    !newerSubmissionExists &&
+                    resumeLatestDraftButton}
+                </ApplicationDecision>
+              </>
+            )}
             <ApplicationDetails
               query={query}
               application={query.application}
