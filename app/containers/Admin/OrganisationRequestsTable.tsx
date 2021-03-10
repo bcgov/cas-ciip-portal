@@ -64,8 +64,12 @@ export default createFragmentContainer(OrganisationRequestsTableComponent, {
       operator_name: {type: "String"}
       status: {type: "CiipUserOrganisationStatus"}
       order_by: {type: "[CiipUserOrganisationsOrderBy!]"}
+      max_results: {type: "Int"}
+      offset: {type: "Int"}
     ) {
       allCiipUserOrganisations(
+        first: $max_results
+        offset: $offset
         filter: {
           userId: {equalTo: $user_id}
           firstName: {includesInsensitive: $first_name}

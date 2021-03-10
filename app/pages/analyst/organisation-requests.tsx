@@ -3,7 +3,6 @@ import {graphql} from 'react-relay';
 import {organisationRequestsQueryResponse} from 'organisationRequestsQuery.graphql';
 import DefaultLayout from 'layouts/default-layout';
 import OrganisationRequestsTable from 'containers/Admin/OrganisationRequestsTable';
-import SearchTable from 'components/SearchTable';
 import {INCENTIVE_ANALYST, ADMIN_GROUP} from 'data/group-constants';
 
 const ALLOWED_GROUPS = [INCENTIVE_ANALYST, ...ADMIN_GROUP];
@@ -23,6 +22,8 @@ class OrganisationRequests extends Component<Props> {
       $operator_name: String
       $status: CiipUserOrganisationStatus
       $order_by: [CiipUserOrganisationsOrderBy!]
+      $max_results: Int
+      $offset: Int
     ) {
       query {
         session {
@@ -37,31 +38,18 @@ class OrganisationRequests extends Component<Props> {
             operator_name: $operator_name
             status: $status
             order_by: $order_by
+            max_results: $max_results
+            offset: $offset
           )
       }
     }
   `;
 
-  static async getInitialProps() {
-    return {
-      variables: {
-        orderByField: 'status',
-        direction: 'ASC'
-      }
-    };
-  }
-
   render() {
     const {query} = this.props;
     return (
       <DefaultLayout session={query.session} title="Organisation Requests">
-        <SearchTable
-          query={query}
-          defaultOrderByField="status"
-          defaultOrderByDisplay="Status"
-        >
-          {(props) => <OrganisationRequestsTable {...props} />}
-        </SearchTable>
+        <OrganisationRequestsTable query={query} />
       </DefaultLayout>
     );
   }
