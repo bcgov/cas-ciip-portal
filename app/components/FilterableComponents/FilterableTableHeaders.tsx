@@ -1,24 +1,21 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Button, Form} from 'react-bootstrap';
-import {useRouter} from 'next/router';
 import {ISearchProps} from 'components/Search/SearchProps';
 import {getUserFriendlyStatusLabel} from 'lib/text-transforms';
-import safeJsonParse from 'lib/safeJsonParse';
 import {FilterArgs} from 'components/Search/ISearchOption';
 
 interface Props extends ISearchProps {
   onSubmit: (searchData: Record<string, string | number | boolean>) => void;
+  filterArgs: FilterArgs;
 }
 
 const FilterableTableHeaders: React.FunctionComponent<Props> = ({
   onSubmit,
+  filterArgs,
   searchOptions
 }) => {
-  const router = useRouter();
-
-  const [searchFilters, setSearchFilters] = useState<FilterArgs>(() =>
-    safeJsonParse(router.query.relayVars as string)
-  );
+  const [searchFilters, setSearchFilters] = useState(filterArgs);
+  useEffect(() => setSearchFilters(filterArgs), [filterArgs]); // reset the local state when the prop changes
 
   const handleFilterChange = (value, column, parseMethod) => {
     // using a state update with a callback ensures that we always have a reference to the latest searchFilters

@@ -94,6 +94,7 @@ export const FilterableTableLayoutComponent: React.FunctionComponent<Props> = ({
             ))}
           </tr>
           <FilterableTableHeaders
+            filterArgs={relayVars}
             searchOptions={searchOptions}
             onSubmit={applySearch}
           />

@@ -39,6 +39,7 @@ exports[`The filterable table layout renders filter headers 1`] = `
         />
       </tr>
       <FilterableTableHeaders
+        filterArgs={Object {}}
         onSubmit={[Function]}
         searchOptions={
           Array [
@@ -140,6 +141,7 @@ exports[`The filterable table layout renders sort headers 1`] = `
         />
       </tr>
       <FilterableTableHeaders
+        filterArgs={Object {}}
         onSubmit={[Function]}
         searchOptions={
           Array [
@@ -220,6 +222,7 @@ exports[`The filterable table layout renders the table body 1`] = `
         className="jsx-1046249322"
       />
       <FilterableTableHeaders
+        filterArgs={Object {}}
         onSubmit={[Function]}
         searchOptions={Array []}
       />

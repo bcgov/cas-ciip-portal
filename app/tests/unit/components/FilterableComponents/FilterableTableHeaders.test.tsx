@@ -2,7 +2,6 @@ import React from 'react';
 import FilterableTableHeaders from 'components/FilterableComponents/FilterableTableHeaders';
 import {shallow} from 'enzyme';
 import {ISearchOption} from 'components/Search/ISearchOption';
-import * as nextRouter from 'next/router';
 
 const createMockSearchOption: (name: string) => ISearchOption = (name) => {
   return {
@@ -13,18 +12,15 @@ const createMockSearchOption: (name: string) => ISearchOption = (name) => {
   };
 };
 
-nextRouter.useRouter = jest.fn();
-nextRouter.useRouter.mockImplementation(() => ({
-  route: '/',
-  query: {
-    relayVars: {},
-    pageVars: {}
-  }
-}));
-
 describe('The filterable table headers component', () => {
   it('renders search and reset buttons', () => {
-    const rendered = shallow(<FilterableTableHeaders searchOptions={[]} />);
+    const rendered = shallow(
+      <FilterableTableHeaders
+        searchOptions={[]}
+        onSubmit={jest.fn()}
+        filterArgs={{}}
+      />
+    );
     expect(rendered).toMatchSnapshot();
     expect(
       rendered
@@ -48,7 +44,11 @@ describe('The filterable table headers component', () => {
       createMockSearchOption('test2')
     ];
     const rendered = shallow(
-      <FilterableTableHeaders searchOptions={searchOptions} />
+      <FilterableTableHeaders
+        searchOptions={searchOptions}
+        onSubmit={jest.fn()}
+        filterArgs={{test: 'a', test2: 'b'}}
+      />
     );
 
     expect(rendered).toMatchSnapshot();
@@ -62,7 +62,11 @@ describe('The filterable table headers component', () => {
       {...createMockSearchOption('test3'), isSearchEnabled: true}
     ];
     const rendered = shallow(
-      <FilterableTableHeaders searchOptions={searchOptions} />
+      <FilterableTableHeaders
+        searchOptions={searchOptions}
+        onSubmit={jest.fn()}
+        filterArgs={{}}
+      />
     );
 
     expect(rendered).toMatchSnapshot();
@@ -73,7 +77,11 @@ describe('The filterable table headers component', () => {
   it('renders a text input if values are not provided', () => {
     const searchOptions = [createMockSearchOption('test')];
     const rendered = shallow(
-      <FilterableTableHeaders searchOptions={searchOptions} />
+      <FilterableTableHeaders
+        searchOptions={searchOptions}
+        onSubmit={jest.fn()}
+        filterArgs={{}}
+      />
     );
 
     expect(rendered).toMatchSnapshot();
@@ -108,7 +116,11 @@ describe('The filterable table headers component', () => {
       }
     ];
     const rendered = shallow(
-      <FilterableTableHeaders searchOptions={searchOptions} />
+      <FilterableTableHeaders
+        searchOptions={searchOptions}
+        onSubmit={jest.fn()}
+        filterArgs={{}}
+      />
     );
 
     expect(rendered).toMatchSnapshot();
