@@ -39,9 +39,6 @@ perform ggircs_portal_private.grant_permissions('select', 'review_step', 'ciip_a
 perform ggircs_portal_private.grant_permissions('insert', 'review_step', 'ciip_analyst');
 perform ggircs_portal_private.grant_permissions('update', 'review_step', 'ciip_analyst');
 
--- Grant ciip_industry_user permissions
-perform ggircs_portal_private.grant_permissions('select', 'review_step', 'ciip_industry_user');
-
 end
 $grant$;
 
