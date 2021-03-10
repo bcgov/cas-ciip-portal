@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`The Confirmation Component match the snapshot 1`] = `
+exports[`The Confirmation Component Match the snapshot and show the submit application button 1`] = `
 <Fragment>
   <h1
     className="jsx-733094270"
@@ -39,8 +39,6 @@ exports[`The Confirmation Component match the snapshot 1`] = `
         " $refType": "ApplicationWizardConfirmation_application",
         "id": "abc",
         "latestDraftRevision": Object {
-          "certificationSignatureIsValid": false,
-          "certificationUrl": undefined,
           "id": "abc",
           "overrideJustification": null,
           "versionNumber": 1,
@@ -64,98 +62,42 @@ exports[`The Confirmation Component match the snapshot 1`] = `
   <br
     className="jsx-733094270"
   />
-  <br />
   <Card
     body={false}
     id="next-step"
   >
     <CardHeader>
-      Application Certification
+      <h5
+        className="jsx-733094270"
+      >
+        Before you submit
+      </h5>
     </CardHeader>
     <CardBody>
-      <CardText>
-        Thank you for reviewing your application to the CleanBC Industrial Incentive Program.
-      </CardText>
-      <CardText>
-        Your application is almost complete.
-        <ul>
-          <li>
-            Please send the secure URL below to a Certifying Official in your organisation to approve the application. You will be notified via email when this step is complete.
-          </li>
-          <li>
-            Once you have received notification that the application has been certified, you will need to return here to submit the application.
-          </li>
-          <li>
-            Once submitted, you will be notified via email when your application has been approved or if any further information is required to process your application.
-          </li>
-        </ul>
-      </CardText>
-      <CardText>
-        Once you have reviewed the application and ensured all the data is correct, the application has to be certified.
-      </CardText>
-      <Form
-        className="print-hide"
-        inline={false}
-        onSubmit={[Function]}
-      >
-        <FormRow>
-          <FormGroup
-            as={
-              Object {
-                "$$typeof": Symbol(react.forward_ref),
-                "displayName": "Col",
-                "render": [Function],
-              }
-            }
-            controlId="certifierEmail"
-            md="4"
-          >
-            <FormLabel
-              column={false}
-              srOnly={false}
-            >
-              Certifier Email Address:
-            </FormLabel>
-            <FormControl
-              name="email"
-              onChange={[Function]}
-              onKeyDown={[Function]}
-              type="email"
-            />
-          </FormGroup>
-        </FormRow>
-        <FormGroup>
-          <FormLabel
-            column={false}
-            srOnly={false}
-            style={
-              Object {
-                "display": "inline-flex",
-              }
-            }
-          >
-            <FormCheck
-              checked={true}
-              className="text-muted"
-              name="sendEmailChecked"
-              onChange={[Function]}
-              type="checkbox"
-            />
-            Notify certifier via email that this application is ready for certification
-          </FormLabel>
-        </FormGroup>
-        <Button
-          active={false}
-          disabled={true}
-          type="submit"
-          variant="primary"
-        >
-          Submit for Certification
-        </Button>
-      </Form>
+      By submitting the application the applicant agrees that the information contained on this application, or information contained in emission reports under the Greenhouse Gas Industrial Reporting and Control Act, may be disclosed to British Columbia government employees, contractors and agencies for the purpose of administering the CleanBC Program for Industry or the Greenhouse Gas Industrial Reporting and Control Act.
     </CardBody>
-    <CardFooter />
   </Card>
+  <br
+    className="jsx-733094270"
+  />
+  <Relay(SubmitApplicationComponent)
+    application={
+      Object {
+        " $fragmentRefs": Object {
+          "ApplicationDetailsContainer_application": true,
+          "SubmitApplication_application": true,
+        },
+        " $refType": "ApplicationWizardConfirmation_application",
+        "id": "abc",
+        "latestDraftRevision": Object {
+          "id": "abc",
+          "overrideJustification": null,
+          "versionNumber": 1,
+        },
+        "rowId": 1,
+      }
+    }
+  />
   <JSXStyle
     id="733094270"
   >
@@ -203,8 +145,6 @@ exports[`The Confirmation Component should render the override justification com
         " $refType": "ApplicationWizardConfirmation_application",
         "id": "abc",
         "latestDraftRevision": Object {
-          "certificationSignatureIsValid": false,
-          "certificationUrl": undefined,
           "id": "abc",
           "overrideJustification": "I did a bad thing and I dont want to fix it",
           "versionNumber": 1,
@@ -228,98 +168,42 @@ exports[`The Confirmation Component should render the override justification com
   <br
     className="jsx-733094270"
   />
-  <br />
   <Card
     body={false}
     id="next-step"
   >
     <CardHeader>
-      Application Certification
+      <h5
+        className="jsx-733094270"
+      >
+        Before you submit
+      </h5>
     </CardHeader>
     <CardBody>
-      <CardText>
-        Thank you for reviewing your application to the CleanBC Industrial Incentive Program.
-      </CardText>
-      <CardText>
-        Your application is almost complete.
-        <ul>
-          <li>
-            Please send the secure URL below to a Certifying Official in your organisation to approve the application. You will be notified via email when this step is complete.
-          </li>
-          <li>
-            Once you have received notification that the application has been certified, you will need to return here to submit the application.
-          </li>
-          <li>
-            Once submitted, you will be notified via email when your application has been approved or if any further information is required to process your application.
-          </li>
-        </ul>
-      </CardText>
-      <CardText>
-        Once you have reviewed the application and ensured all the data is correct, the application has to be certified.
-      </CardText>
-      <Form
-        className="print-hide"
-        inline={false}
-        onSubmit={[Function]}
-      >
-        <FormRow>
-          <FormGroup
-            as={
-              Object {
-                "$$typeof": Symbol(react.forward_ref),
-                "displayName": "Col",
-                "render": [Function],
-              }
-            }
-            controlId="certifierEmail"
-            md="4"
-          >
-            <FormLabel
-              column={false}
-              srOnly={false}
-            >
-              Certifier Email Address:
-            </FormLabel>
-            <FormControl
-              name="email"
-              onChange={[Function]}
-              onKeyDown={[Function]}
-              type="email"
-            />
-          </FormGroup>
-        </FormRow>
-        <FormGroup>
-          <FormLabel
-            column={false}
-            srOnly={false}
-            style={
-              Object {
-                "display": "inline-flex",
-              }
-            }
-          >
-            <FormCheck
-              checked={true}
-              className="text-muted"
-              name="sendEmailChecked"
-              onChange={[Function]}
-              type="checkbox"
-            />
-            Notify certifier via email that this application is ready for certification
-          </FormLabel>
-        </FormGroup>
-        <Button
-          active={false}
-          disabled={true}
-          type="submit"
-          variant="primary"
-        >
-          Submit for Certification
-        </Button>
-      </Form>
+      By submitting the application the applicant agrees that the information contained on this application, or information contained in emission reports under the Greenhouse Gas Industrial Reporting and Control Act, may be disclosed to British Columbia government employees, contractors and agencies for the purpose of administering the CleanBC Program for Industry or the Greenhouse Gas Industrial Reporting and Control Act.
     </CardBody>
-    <CardFooter />
   </Card>
+  <br
+    className="jsx-733094270"
+  />
+  <Relay(SubmitApplicationComponent)
+    application={
+      Object {
+        " $fragmentRefs": Object {
+          "ApplicationDetailsContainer_application": true,
+          "SubmitApplication_application": true,
+        },
+        " $refType": "ApplicationWizardConfirmation_application",
+        "id": "abc",
+        "latestDraftRevision": Object {
+          "id": "abc",
+          "overrideJustification": "I did a bad thing and I dont want to fix it",
+          "versionNumber": 1,
+        },
+        "rowId": 1,
+      }
+    }
+  />
   <JSXStyle
     id="733094270"
   >
@@ -367,8 +251,6 @@ exports[`The Confirmation Component should render the override justification com
         " $refType": "ApplicationWizardConfirmation_application",
         "id": "abc",
         "latestDraftRevision": Object {
-          "certificationSignatureIsValid": false,
-          "certificationUrl": undefined,
           "id": "abc",
           "overrideJustification": null,
           "versionNumber": 1,
@@ -392,136 +274,25 @@ exports[`The Confirmation Component should render the override justification com
   <br
     className="jsx-733094270"
   />
-  <br />
   <Card
     body={false}
     id="next-step"
   >
     <CardHeader>
-      Application Certification
+      <h5
+        className="jsx-733094270"
+      >
+        Before you submit
+      </h5>
     </CardHeader>
     <CardBody>
-      <CardText>
-        Thank you for reviewing your application to the CleanBC Industrial Incentive Program.
-      </CardText>
-      <CardText>
-        Your application is almost complete.
-        <ul>
-          <li>
-            Please send the secure URL below to a Certifying Official in your organisation to approve the application. You will be notified via email when this step is complete.
-          </li>
-          <li>
-            Once you have received notification that the application has been certified, you will need to return here to submit the application.
-          </li>
-          <li>
-            Once submitted, you will be notified via email when your application has been approved or if any further information is required to process your application.
-          </li>
-        </ul>
-      </CardText>
-      <CardText>
-        Once you have reviewed the application and ensured all the data is correct, the application has to be certified.
-      </CardText>
-      <Form
-        className="print-hide"
-        inline={false}
-        onSubmit={[Function]}
-      >
-        <FormRow>
-          <FormGroup
-            as={
-              Object {
-                "$$typeof": Symbol(react.forward_ref),
-                "displayName": "Col",
-                "render": [Function],
-              }
-            }
-            controlId="certifierEmail"
-            md="4"
-          >
-            <FormLabel
-              column={false}
-              srOnly={false}
-            >
-              Certifier Email Address:
-            </FormLabel>
-            <FormControl
-              name="email"
-              onChange={[Function]}
-              onKeyDown={[Function]}
-              type="email"
-            />
-          </FormGroup>
-        </FormRow>
-        <FormGroup>
-          <FormLabel
-            column={false}
-            srOnly={false}
-            style={
-              Object {
-                "display": "inline-flex",
-              }
-            }
-          >
-            <FormCheck
-              checked={true}
-              className="text-muted"
-              name="sendEmailChecked"
-              onChange={[Function]}
-              type="checkbox"
-            />
-            Notify certifier via email that this application is ready for certification
-          </FormLabel>
-        </FormGroup>
-        <Button
-          active={false}
-          disabled={true}
-          type="submit"
-          variant="primary"
-        >
-          Submit for Certification
-        </Button>
-      </Form>
+      By submitting the application the applicant agrees that the information contained on this application, or information contained in emission reports under the Greenhouse Gas Industrial Reporting and Control Act, may be disclosed to British Columbia government employees, contractors and agencies for the purpose of administering the CleanBC Program for Industry or the Greenhouse Gas Industrial Reporting and Control Act.
     </CardBody>
-    <CardFooter />
   </Card>
-  <JSXStyle
-    id="733094270"
-  >
-    .errors{margin-left:20px;padding:20px;background:#ce5c5c;color:white;font-size:20px;}@media print{.print-hide{display:none !important;}}
-  </JSXStyle>
-</Fragment>
-`;
-
-exports[`The Confirmation Component should show a "data has changed" dialogue when hashMatches is false but a signature exists 1`] = `
-<Fragment>
-  <h1
-    className="jsx-733094270"
-  >
-    Summary of your application:
-  </h1>
-  <p
-    className="jsx-733094270"
-    style={
-      Object {
-        "fontSize": "1.25rem",
-        "fontWeight": 500,
-      }
-    }
-  >
-    Please review the information you have provided before continuing.
-  </p>
   <br
     className="jsx-733094270"
   />
-  <Relay(ApplicationOverrideJustificationComponent)
-    applicationDetailsRendered={false}
-    applicationOverrideJustification={null}
-    hasErrors={false}
-    overrideActive={false}
-    revisionId="abc"
-    setOverrideActive={[Function]}
-  />
-  <Relay(ApplicationDetailsComponent)
+  <Relay(SubmitApplicationComponent)
     application={
       Object {
         " $fragmentRefs": Object {
@@ -531,13 +302,6 @@ exports[`The Confirmation Component should show a "data has changed" dialogue wh
         " $refType": "ApplicationWizardConfirmation_application",
         "id": "abc",
         "latestDraftRevision": Object {
-          "certificationSignatureIsValid": false,
-          "certificationUrl": Object {
-            "certificationSignature": "signed",
-            "certifierUrl": "jkl",
-            "hashMatches": false,
-            "id": "abc",
-          },
           "id": "abc",
           "overrideJustification": null,
           "versionNumber": 1,
@@ -545,278 +309,7 @@ exports[`The Confirmation Component should show a "data has changed" dialogue wh
         "rowId": 1,
       }
     }
-    liveValidate={true}
-    query={
-      Object {
-        " $fragmentRefs": Object {
-          "ApplicationDetailsContainer_query": true,
-        },
-        " $refType": "ApplicationWizardConfirmation_query",
-      }
-    }
-    review={false}
-    setApplicationDetailsRendered={[Function]}
-    setHasErrors={[Function]}
   />
-  <br
-    className="jsx-733094270"
-  />
-  <Card
-    body={false}
-    className="text-center"
-    id="next-step"
-  >
-    <CardHeader>
-      Error
-    </CardHeader>
-    <CardBody>
-      <CardTitle>
-        The data has changed
-      </CardTitle>
-      <CardText>
-        The application data has been changed since the certifier added their signature.
-      </CardText>
-      <CardText>
-        Please generate and send a new certification URL.
-      </CardText>
-    </CardBody>
-    <CardFooter />
-  </Card>
-  <br />
-  <Card
-    body={false}
-    id="next-step"
-  >
-    <CardHeader>
-      Application Certification
-    </CardHeader>
-    <CardBody>
-      <CardText>
-        Thank you for reviewing your application to the CleanBC Industrial Incentive Program.
-      </CardText>
-      <CardText>
-        Your application is almost complete.
-        <ul>
-          <li>
-            Please send the secure URL below to a Certifying Official in your organisation to approve the application. You will be notified via email when this step is complete.
-          </li>
-          <li>
-            Once you have received notification that the application has been certified, you will need to return here to submit the application.
-          </li>
-          <li>
-            Once submitted, you will be notified via email when your application has been approved or if any further information is required to process your application.
-          </li>
-        </ul>
-      </CardText>
-      <CardText>
-        Once you have reviewed the application and ensured all the data is correct, the application has to be certified.
-      </CardText>
-      <Form
-        className="print-hide"
-        inline={false}
-        onSubmit={[Function]}
-      >
-        <FormRow>
-          <FormGroup
-            as={
-              Object {
-                "$$typeof": Symbol(react.forward_ref),
-                "displayName": "Col",
-                "render": [Function],
-              }
-            }
-            controlId="certifierEmail"
-            md="4"
-          >
-            <FormLabel
-              column={false}
-              srOnly={false}
-            >
-              Certifier Email Address:
-            </FormLabel>
-            <FormControl
-              name="email"
-              onChange={[Function]}
-              onKeyDown={[Function]}
-              type="email"
-            />
-          </FormGroup>
-        </FormRow>
-        <FormGroup>
-          <FormLabel
-            column={false}
-            srOnly={false}
-            style={
-              Object {
-                "display": "inline-flex",
-              }
-            }
-          >
-            <FormCheck
-              checked={true}
-              className="text-muted"
-              name="sendEmailChecked"
-              onChange={[Function]}
-              type="checkbox"
-            />
-            Notify certifier via email that this application is ready for certification
-          </FormLabel>
-        </FormGroup>
-        <Button
-          active={false}
-          disabled={true}
-          type="submit"
-          variant="primary"
-        >
-          Submit for Certification
-        </Button>
-      </Form>
-    </CardBody>
-    <CardFooter />
-  </Card>
-  <JSXStyle
-    id="733094270"
-  >
-    .errors{margin-left:20px;padding:20px;background:#ce5c5c;color:white;font-size:20px;}@media print{.print-hide{display:none !important;}}
-  </JSXStyle>
-</Fragment>
-`;
-
-exports[`The Confirmation Component should show a certifier has not yet signed message when hashMatches is true but certificationSignature is null 1`] = `
-<Fragment>
-  <h1
-    className="jsx-733094270"
-  >
-    Summary of your application:
-  </h1>
-  <p
-    className="jsx-733094270"
-    style={
-      Object {
-        "fontSize": "1.25rem",
-        "fontWeight": 500,
-      }
-    }
-  >
-    Please review the information you have provided before continuing.
-  </p>
-  <br
-    className="jsx-733094270"
-  />
-  <Relay(ApplicationOverrideJustificationComponent)
-    applicationDetailsRendered={false}
-    applicationOverrideJustification={null}
-    hasErrors={false}
-    overrideActive={false}
-    revisionId="abc"
-    setOverrideActive={[Function]}
-  />
-  <Relay(ApplicationDetailsComponent)
-    application={
-      Object {
-        " $fragmentRefs": Object {
-          "ApplicationDetailsContainer_application": true,
-          "SubmitApplication_application": true,
-        },
-        " $refType": "ApplicationWizardConfirmation_application",
-        "id": "abc",
-        "latestDraftRevision": Object {
-          "certificationSignatureIsValid": false,
-          "certificationUrl": Object {
-            "certificationSignature": undefined,
-            "certifierUrl": "jkl",
-            "hashMatches": true,
-            "id": "abc",
-          },
-          "id": "abc",
-          "overrideJustification": null,
-          "versionNumber": 1,
-        },
-        "rowId": 1,
-      }
-    }
-    liveValidate={true}
-    query={
-      Object {
-        " $fragmentRefs": Object {
-          "ApplicationDetailsContainer_query": true,
-        },
-        " $refType": "ApplicationWizardConfirmation_query",
-      }
-    }
-    review={false}
-    setApplicationDetailsRendered={[Function]}
-    setHasErrors={[Function]}
-  />
-  <br
-    className="jsx-733094270"
-  />
-  <Card
-    body={false}
-    className="text-center"
-    id="next-step"
-  >
-    <CardHeader>
-      Pending Certification
-    </CardHeader>
-    <CardBody>
-      <p>
-        Your application is pending verification by the certifying official you indicated. You will be notified when they have certified the application, at which time it can be submitted.
-      </p>
-      <p
-        className="print-hide"
-      >
-        You may copy the direct link to the certification page below.
-      </p>
-    </CardBody>
-    <CardFooter>
-      <span
-        style={
-          Object {
-            "color": "green",
-          }
-        }
-      />
-       
-      <Row
-        noGutters={false}
-      >
-        <Col
-          md={6}
-        >
-          <input
-            className="print-hide"
-            readOnly={true}
-            style={
-              Object {
-                "width": "100%",
-              }
-            }
-            value="jkl"
-          />
-        </Col>
-        <Col
-          md={2}
-        >
-          <Button
-            active={false}
-            disabled={false}
-            onClick={[Function]}
-            variant="primary"
-          >
-            Copy Link
-          </Button>
-          <span
-            style={
-              Object {
-                "color": "green",
-              }
-            }
-          />
-        </Col>
-      </Row>
-    </CardFooter>
-  </Card>
   <JSXStyle
     id="733094270"
   >
