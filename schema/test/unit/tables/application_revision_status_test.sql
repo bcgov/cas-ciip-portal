@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(43);
+select plan(46);
 
 -- Table exists
 select has_table(
