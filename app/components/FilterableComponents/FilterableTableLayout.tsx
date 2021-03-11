@@ -52,9 +52,10 @@ export const FilterableTableLayoutComponent: React.FunctionComponent<Props> = ({
     router.push(url, url, {shallow: true});
   };
 
+  const bodyLength =
+    body.props.children?.length ?? body.props.children?.[0]?.length ?? 0;
   const noSearchResults =
-    body.props.children.length === 0 ||
-    body?.props?.children[0]?.length === 0 ? (
+    bodyLength === 0 ? (
       <Alert variant="secondary" id="no-search-results">
         No matching results to show.
       </Alert>
@@ -66,6 +67,7 @@ export const FilterableTableLayoutComponent: React.FunctionComponent<Props> = ({
         {extraFilters.map((f) => {
           return (
             <f.Component
+              key={f.argName}
               onChange={(value) =>
                 applySearch({...relayVars, [f.argName]: value})
               }

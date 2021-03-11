@@ -1,5 +1,136 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`The filterable table layout renders extra filters 1`] = `
+Array [
+  <div
+    className="jsx-1046249322"
+  >
+    <input
+      name="myExtraFilter"
+      onChange={[Function]}
+    />
+  </div>,
+  <ForwardRef
+    bordered={true}
+    className="search-table"
+    hover={true}
+    striped={true}
+  >
+    <table
+      className="search-table table table-striped table-bordered table-hover"
+    >
+      <thead
+        className="jsx-1046249322"
+      >
+        <tr
+          className="jsx-1046249322"
+        />
+        <tr
+          className="jsx-870174952"
+        >
+          <td
+            className="jsx-870174952 flex"
+          >
+            <Button
+              active={false}
+              disabled={false}
+              onClick={[Function]}
+              variant="outline-secondary"
+            >
+              <button
+                className="btn btn-outline-secondary"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                Clear
+              </button>
+            </Button>
+            <Button
+              active={false}
+              disabled={false}
+              onClick={[Function]}
+              style={
+                Object {
+                  "marginLeft": "5px",
+                }
+              }
+              variant="primary"
+            >
+              <button
+                className="btn btn-primary"
+                disabled={false}
+                onClick={[Function]}
+                style={
+                  Object {
+                    "marginLeft": "5px",
+                  }
+                }
+                type="button"
+              >
+                Apply
+              </button>
+            </Button>
+          </td>
+        </tr>
+      </thead>
+      <tbody />
+    </table>
+  </ForwardRef>,
+  <Col
+    md={
+      Object {
+        "offset": 3,
+        "span": 6,
+      }
+    }
+  >
+    <div
+      className="col-md-6 offset-md-3"
+    >
+      <Alert
+        closeLabel="Close alert"
+        id="no-search-results"
+        show={true}
+        transition={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "defaultProps": Object {
+              "appear": false,
+              "in": false,
+              "mountOnEnter": false,
+              "timeout": 300,
+              "unmountOnExit": false,
+            },
+            "displayName": "Fade",
+            "render": [Function],
+          }
+        }
+        variant="secondary"
+      >
+        <Fade
+          appear={false}
+          id="no-search-results"
+          in={true}
+          mountOnEnter={false}
+          timeout={300}
+          unmountOnExit={true}
+        >
+          <div
+            className="fade alert alert-secondary show"
+            id="no-search-results"
+            role="alert"
+          >
+            No matching results to show.
+          </div>
+        </Fade>
+      </Alert>
+    </div>
+  </Col>,
+  "",
+]
+`;
+
 exports[`The filterable table layout renders filter headers 1`] = `
 <Fragment>
   <div
@@ -61,7 +192,7 @@ exports[`The filterable table layout renders filter headers 1`] = `
         }
       />
     </thead>
-    <Component />
+    <tbody />
   </ForwardRef>
   <Col
     md={
@@ -163,7 +294,7 @@ exports[`The filterable table layout renders sort headers 1`] = `
         }
       />
     </thead>
-    <Component />
+    <tbody />
   </ForwardRef>
   <Col
     md={
@@ -242,7 +373,30 @@ exports[`The filterable table layout renders the table body 1`] = `
         "span": 6,
       }
     }
-  />
+  >
+    <Alert
+      closeLabel="Close alert"
+      id="no-search-results"
+      show={true}
+      transition={
+        Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "defaultProps": Object {
+            "appear": false,
+            "in": false,
+            "mountOnEnter": false,
+            "timeout": 300,
+            "unmountOnExit": false,
+          },
+          "displayName": "Fade",
+          "render": [Function],
+        }
+      }
+      variant="secondary"
+    >
+      No matching results to show.
+    </Alert>
+  </Col>
   <JSXStyle
     id="1046249322"
   >
