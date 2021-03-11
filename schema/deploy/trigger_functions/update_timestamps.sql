@@ -3,7 +3,7 @@
 
 begin;
 
-create function ggircs_portal_private.update_timestamps()
+create or replace function ggircs_portal_private.update_timestamps()
   returns trigger as $$
 
 declare
@@ -14,16 +14,22 @@ begin
   user_sub := (select sub from ggircs_portal.session());
   ciip_user_id := (select id from ggircs_portal.ciip_user as cu where cu.uuid = user_sub);
   if tg_op = 'INSERT' then
-    new.created_at = now();
-    new.created_by = ciip_user_id;
-    new.updated_at = now();
-    new.updated_by = ciip_user_id;
+    if to_jsonb(new) ? 'created_at' then
+      new.created_at = now();
+      new.created_by = ciip_user_id;
+    end if;
+    if to_jsonb(new) ? 'updated_at' then
+      new.updated_at = now();
+      new.updated_by = ciip_user_id;
+    end if;
   elsif tg_op = 'UPDATE' then
-    if old.deleted_at is distinct from new.deleted_at then
-      new.deleted_at = now();
-      new.deleted_by = ciip_user_id;
-    else
-      new.created_at = old.created_at;
+    if to_jsonb(new) ? 'deleted_at' then
+      if old.deleted_at is distinct from new.deleted_at then
+        new.deleted_at = now();
+        new.deleted_by = ciip_user_id;
+      end if;
+    end if;
+    if to_jsonb(new) ? 'updated_at' then
       new.updated_at = greatest(now(), old.updated_at + interval '1 millisecond');
       new.updated_by = ciip_user_id;
     end if;

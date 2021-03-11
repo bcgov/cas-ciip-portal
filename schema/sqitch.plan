@@ -236,3 +236,4 @@ search_functions/search_ciip_user_organisation [search_functions/search_ciip_use
 computed_columns/product_current_benchmark [tables/benchmark] 2021-02-17T21:51:22Z Dylan Leard <dylan@button.is> # Computed column returns the current benchmark for a product as a scalar for filter/sort
 computed_columns/product_current_eligibility_threshold [tables/benchmark] 2021-02-17T21:52:01Z Dylan Leard <dylan@button.is> # Computed column returns the current eligibility threshold for a product for filter/sort
 search_functions/search_products [search_functions/search_products@v1.16.0] 2021-03-08T19:38:56Z Dylan Leard <dylan@button.is> # Migration: remove deprecated search_products function
+trigger_functions/update_timestamps [trigger_functions/update_timestamps@v1.16.0] 2021-03-11T18:53:14Z Dylan Leard <dylan@button.is> # Migration: allow subset of created/updated/deleted columns & ability to define what column triggers the deleted at/by columns
