@@ -67,11 +67,11 @@ exports[`The Confirmation Component Match the snapshot and show the submit appli
     id="next-step"
   >
     <CardHeader>
-      <h5
+      <h2
         className="jsx-733094270"
       >
         Before you submit
-      </h5>
+      </h2>
     </CardHeader>
     <CardBody>
       By submitting the application the applicant agrees that the information contained on this application, or information contained in emission reports under the Greenhouse Gas Industrial Reporting and Control Act, may be disclosed to British Columbia government employees, contractors and agencies for the purpose of administering the CleanBC Program for Industry or the Greenhouse Gas Industrial Reporting and Control Act.
@@ -173,11 +173,11 @@ exports[`The Confirmation Component should render the override justification com
     id="next-step"
   >
     <CardHeader>
-      <h5
+      <h2
         className="jsx-733094270"
       >
         Before you submit
-      </h5>
+      </h2>
     </CardHeader>
     <CardBody>
       By submitting the application the applicant agrees that the information contained on this application, or information contained in emission reports under the Greenhouse Gas Industrial Reporting and Control Act, may be disclosed to British Columbia government employees, contractors and agencies for the purpose of administering the CleanBC Program for Industry or the Greenhouse Gas Industrial Reporting and Control Act.
@@ -279,11 +279,11 @@ exports[`The Confirmation Component should render the override justification com
     id="next-step"
   >
     <CardHeader>
-      <h5
+      <h2
         className="jsx-733094270"
       >
         Before you submit
-      </h5>
+      </h2>
     </CardHeader>
     <CardBody>
       By submitting the application the applicant agrees that the information contained on this application, or information contained in emission reports under the Greenhouse Gas Industrial Reporting and Control Act, may be disclosed to British Columbia government employees, contractors and agencies for the purpose of administering the CleanBC Program for Industry or the Greenhouse Gas Industrial Reporting and Control Act.
