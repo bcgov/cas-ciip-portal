@@ -10,9 +10,6 @@ Link to each heading for details. Asterisk\* denotes pages that [require certain
 - [Application page: `/reporter/application`\*](#application)
 - [Submission Complete page: `/reporter/complete-submit`](#submission-complete)
 - [View Submitted Application page: `/reporter/view-application`\*](#view-application)
-- [Certification redirect page `/certifier/certification-redirect`\*](#certification-redirect)
-- [Application Certification page `/certifier/certify`\*](#certification)
-- [Certification Requests and Batch Certification page `/certifier/requests`](#certification-requests)
 
 ### [Analyst](#analyst-role)
 
@@ -53,7 +50,7 @@ Link to each heading for details. Asterisk\* denotes pages that [require certain
 
 ### [Globally shared components](#global-components)
 
-_______
+---
 
 <a id="industry-user-role"></a>
 
@@ -68,6 +65,7 @@ Industry users (reporters and certifiers) must log in using a user name or email
 View and request access to operators to apply for CIIP on behalf of.
 
 #### Shared components:
+
 - `Organisation` (dropdown item in organisation search)
 
 <a id="facilities"></a>
@@ -76,13 +74,14 @@ View and request access to operators to apply for CIIP on behalf of.
 
 View facilities for operators to which the user has access and on behalf of which they can apply for CIIP. The listings provide links to the following actions for each facility:
 
-  - a) start an application
-  - b) resume an in-progress application
-  - c) view a submitted application
+- a) start an application
+- b) resume an in-progress application
+- c) view a submitted application
 
 **Note:** When navigating to this page via "My Applications", all applications from all the user's facilities and operators are listed. Otherwise when navigating here by clicking on an individual operator, this page shows just the applications for the facilities belonging to that operator.
 
 #### Shared components:
+
 - `SearchTable`
 
 <a id="new-application-disclaimer"></a>
@@ -92,6 +91,7 @@ View facilities for operators to which the user has access and on behalf of whic
 Interstitial page that collects the reporter's consent before allowing a new application to be started.
 
 \* Required query parameters:
+
 - `applicationId`
 - `version`
 
@@ -108,12 +108,14 @@ Form validation helps ensure the integrity of data entered before submission; ho
 The current state of the application can be downloaded as PDF from the Summary tab.
 
 \* Required query parameters:
+
 - `applicationId`
 - `version`
 - `formResultId` (except when `confirmationPage` is present)
 - \[optional parameter for showing Summary tab\]: `confirmationPage=true`
 
 #### Shared components:
+
 - `FormSharedStyles`
 - `ApplicationDetailsContainer`
 
@@ -130,10 +132,12 @@ Interstitial page shown after submitting an application, which confirms the appl
 View a submitted application, including comments made by the analyst who reviewed the applications. The application can be downloaded as PDF.
 
 \* Required query parameters:
+
 - `applicationId`
 - `version`
 
 #### Shared components:
+
 - `ApplicationComments`
 - `ApplicationDetailsContainer`
 
@@ -146,6 +150,7 @@ Summarizes who is requesting that the user certify an application, and for which
 As with all other pages requiring login, certifiers following the link in their email who are not already logged in will first be redirected through login and back to this page.
 
 \* Required query parameters:
+
 - `rowId` (refers to the corresponding `certification_url`)
 - `id` (refers to the corresponding `application_revision`)
 
@@ -156,14 +161,16 @@ As with all other pages requiring login, certifiers following the link in their 
 Displays the detailed data submitted in the application to be certified and provides a signature interface with legal disclaimer (displayed in a scrollable area) that is agreed to when certifying the application. A link is provided to expand the disclaimer text as full page in a new tab. The signature interface can be used by clicking and dragging the pointer within the signature box, or by uploading a signature image. The application can be downloaded as PDF.
 
 \* Required query parameters:
+
 - `applicationId`
 - `version`
 
 #### Shared components:
+
 - `ApplicationDetailsContainer`
 - `CertificationSignature`
 - `SignatureDisclaimerCard`
-  * `LegalDisclaimerText`
+  - `LegalDisclaimerText`
 
 <a id="certification-requests"></a>
 
@@ -174,17 +181,19 @@ View requests made to certify applications addressed to the user's email address
 Once certified, the requests do not disappear, serving as a historical record of applications the user has certified.
 
 #### Shared components:
+
 - `CertificationSignature`
 - `SignatureDisclaimerCard`
-  * `LegalDisclaimerText`
+  - `LegalDisclaimerText`
 
-_______
+---
 
 <a id="analyst-role"></a>
 
 ## Analyst
 
 Analysts must log in with IDIR. To gain access to this scope, new analyst users must:
+
 - log in using IDIR
 - be specifically granted analyst access in Keycloak by an admin
 
@@ -199,6 +208,7 @@ Displayed to users logged in with IDIR but who have not had analyst access grant
 ### Analyst Dashboard `/analyst`
 
 Links to all pages accessible from this scope (analyst and admin views), including external links to:
+
 - Metabase for data insights, aka. business intelligence
 - Issue tracker for reporting problems to the development team
 
@@ -209,6 +219,7 @@ Links to all pages accessible from this scope (analyst and admin views), includi
 Add a new operator (aka. organisation). Search and sort the list of existing operators and view their details, such as CRA Business Number and SWRS Report ID.
 
 #### Shared components:
+
 - `Organisation` (dropdown item in organisation search)
 
 <a id="add-facility"></a>
@@ -227,6 +238,7 @@ Add a new facility belonging to an existing operator. Search and sort the list o
 - List of requests is searchable and sortable by various attributes pertaining to the user, operator and request status.
 
 #### Shared components:
+
 - `SearchTable`
 
 <a id="applications-admin"></a>
@@ -236,6 +248,7 @@ Add a new facility belonging to an existing operator. Search and sort the list o
 View all submitted applications. The list of applications is searchable and sortable by operator, facility, reporting year, submission date and status.
 
 #### Shared components:
+
 - `SearchTable`
 
 <a id="application-review"></a>
@@ -243,30 +256,34 @@ View all submitted applications. The list of applications is searchable and sort
 ### Application Review page `/analyst/application-review`\*
 
 Review a submitted application, section by section.
+
 - Compare the difference (diff) between application revisions and/or the imported data from SWRS
 - Enter comments by section for the reporter
-  * comments are not visible to the reporter until a decision is made on the application as a whole
+  - comments are not visible to the reporter until a decision is made on the application as a whole
 - Add internal comments by section and flag sections internally for further attention by analysts
 - Delete comments or mark comments as resolved
 - Make a decision to approve or reject an application, or request that the reporter make changes
-  * these decisions trigger an email to the reporter
+  - these decisions trigger an email to the reporter
 - Download the application as PDF
 
 \* Required query parameters:
+
 - `applicationId`
 - `applicationRevisionId`
 - `version`
 
 #### Shared components:
+
 - `ApplicationComments`
 
-_______
+---
 
 <a id="admin-role"></a>
 
 ## Admin
 
 Admins must log in with IDIR. To gain access to this scope, new admin users must:
+
 - log in using IDIR
 - be specifically granted admin access in Keycloak by an existing admin
 
@@ -277,6 +294,7 @@ Admin users have access to all the views listed under the analyst scope, plus th
 ### Admin Dashboard `/admin`
 
 Links to all pages accessible from this scope (analyst and admin views), including external links to:
+
 - Metabase for data insights, aka. business intelligence
 - Issue tracker for reporting problems to the development team
 
@@ -291,6 +309,7 @@ View a list of all users: their name, occupation, phone number and email address
 ### Products and Benchmarks admin page `/admin/products-benchmarks`
 
 View and edit a list of products, with benchmarks.
+
 - Search and sort the list by product attributes
 - Define links between products that should be reported together
 - View product details
@@ -300,6 +319,7 @@ View and edit a list of products, with benchmarks.
 - Archive published products
 
 #### Shared components:
+
 - `SearchTable`
 
 <a id="reporting-periods"></a>
@@ -309,9 +329,10 @@ View and edit a list of products, with benchmarks.
 View reporting periods and their key dates, edit future dates, and create new reporting years. To ensure an accurate historical record, dates and times cannot be edited once they are past. A reporting period cannot be deleted once created; however, it can be edited provided that the dates and times are not past.
 
 #### Shared components:
+
 - `FormSharedStyles`
 
-_______
+---
 
 <a id="all-roles"></a>
 
@@ -329,7 +350,7 @@ Shown after SSO registration (which occurs offsite on the BCGov Keycloak service
 
 View and change name, occupation, phone number and email address.
 
-_______
+---
 
 <a id="guest-role"></a>
 
@@ -342,8 +363,9 @@ _______
 Gives an overall introduction to CIIP, including key application dates and call to action to register and apply, or log in.
 
 #### Shared components:
+
 - `RegistrationLoginButtons`
-  * `LoginButton`
+  - `LoginButton`
 
 <a id="login-redirect"></a>
 
@@ -352,8 +374,9 @@ Gives an overall introduction to CIIP, including key application dates and call 
 \* Query parameters are not actually required here to prevent an error, but this page is intended to be used in conjunction with a `redirectTo` parameter indicating the URL to redirect to after login.
 
 #### Shared components:
+
 - `RegistrationLoginButtons`
-  * `LoginButton`
+  - `LoginButton`
 
 <a id="application-disclaimer"></a>
 
@@ -362,6 +385,7 @@ Gives an overall introduction to CIIP, including key application dates and call 
 Expanded view of the CIIP program-specific applicant disclaimer. Identical text is displayed in a scrollable area above the signature interface for certifiers. A link to this page is included in those views, and in the certification request email, for an easier reading experience.
 
 ##### Shared components:
+
 - `LegalDisclaimerText`
 
 <a id="page-404"></a>
@@ -390,7 +414,7 @@ Note: An exception is that client-side errors on outdated browsers unsupported b
 
 <a id="website-disclaimer"></a>
 
-####  BCGov-wide Website Disclaimer `/resources/disclaimer`
+#### BCGov-wide Website Disclaimer `/resources/disclaimer`
 
 Boilerplate website disclaimer obtained from DevHub.
 
@@ -412,11 +436,12 @@ Boilerplate website copyright statement obtained from DevHub.
 
 Provides basic contact information (CAS email address) for website and application support.
 
-_______
+---
 
 <a id="query-parameters"></a>
 
 ## Note on required query parameters:
+
 Asterisk\* denotes routes with required query parameters. Without certain parameters appended to the URL (providing some necessary data for the view) as key-value pairs, an error page will be shown. The expected parameters differ between pages, and multiple query parameters are separated by an `&` character. An example is the application page, which requires the following string to be appended to the end of the URL `/reporter/application`:
 
 `?applicationId=someID&version=1&formResultId=anotherID`
@@ -428,9 +453,9 @@ In the next iteration of CIIP we aim for better compliance with REST conventions
 ## Globally shared components
 
 - `DefaultLayout`
-  * `Header`
-  * `Subheader` (only on a subset of pages)
-  * `Footer`
+  - `Header`
+  - `Subheader` (only on a subset of pages)
+  - `Footer`
 - `LoadingSpinner`
 - `ToasterHelper`
 - `ErrorBoundary`
