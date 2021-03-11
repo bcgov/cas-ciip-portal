@@ -2,33 +2,6 @@
 
 exports[`Organisations should announce there are certification requests to view 1`] = `
 <Fragment>
-  <Alert
-    closeLabel="Close alert"
-    show={true}
-    transition={
-      Object {
-        "$$typeof": Symbol(react.forward_ref),
-        "defaultProps": Object {
-          "appear": false,
-          "in": false,
-          "mountOnEnter": false,
-          "timeout": 300,
-          "unmountOnExit": false,
-        },
-        "displayName": "Fade",
-        "render": [Function],
-      }
-    }
-    variant="info"
-  >
-    One or more reporting operations has requested that you certify an application.
-     
-    <AlertLink
-      href="/certifier/requests"
-    >
-      View all certification requests.
-    </AlertLink>
-  </Alert>
   <Card
     bg="light"
     body={false}
