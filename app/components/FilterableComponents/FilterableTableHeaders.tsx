@@ -69,6 +69,7 @@ const FilterableTableHeaders: React.FunctionComponent<ISearchProps> = (
                   placeholder="Search"
                   name={column}
                   value={initialValue}
+                  aria-label={`filter-by-${column}`}
                   onChange={(evt) =>
                     handleFilterChange(evt.target.value, column, option.toUrl)
                   }
@@ -84,6 +85,7 @@ const FilterableTableHeaders: React.FunctionComponent<ISearchProps> = (
                 placeholder="Search"
                 name={column}
                 value={initialValue}
+                aria-label={`filter-by-${column}`}
                 onChange={(evt) =>
                   handleFilterChange(evt.target.value, column, option.toUrl)
                 }

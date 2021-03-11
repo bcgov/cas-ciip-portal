@@ -137,32 +137,122 @@ We use PostGraphile [smart comments](https://www.graphile.org/postgraphile/smart
 
 Note: We use the PostGraphile `--classic-ids` flag to rename `nodeId` to `id` and the database `id` column to `rowId` as required by the Relay specification. Details [here](https://www.graphile.org/postgraphile/node-id/).
 
-### Custom Search Functions
+### @Connection Directive
 
-We implemented some custom SQL search functions in the database in order to be able to filter & sort on substrings via relay, as relay's out-of-box filtering did not meet our needs. These search functions are recognized as a `query` type by `Relay`
+The @Connection Directive is a helpful, but poorly documented feature of Relay that helps to 'live update' results in the UI. The best documentation is in [this blogpost](https://www.prisma.io/blog/relay-moderns-connection-directive-1ecd8322f5c8), though it is still a bit outdated and non-comprehensive. There are two different scenarios where @connection needs different implementations:
 
-_Parameters_
-The basic parameters passed to all search functions are:
+1) The @connection is defined on a CHILD of an entity.
+EXAMPLE:
 
-- search_field (the column)
-- search_value (the data value)
-- order_by_field (field to order by)
-- direction (asc or desc)
-  Some, but not all search functions have extra parameters for pagination:
-- offset_value(row id to start returning from)
-- max_results_per_page(limit)
-  The search functions also have some parameters that are specific to the function (ex: a row id).
+Fragment Definition:
+```ts
+export default createFragmentContainer(OrganisationsComponent, {
+  query: graphql`
+    fragment Organisations_query on Query {
+      session {
+        ciipUserBySub {
+          id
+          ciipUserOrganisationsByUserId(first: 2147483647)
+            @connection(key: "Organisations_ciipUserOrganisationsByUserId") {
+            edges {
+              node {
+                id
+              }
+            }
+          }
+        }
+      }
+  `
+});
+```
+- Notice that the @connection is defined on `ciipUserOrganisationByUserId` which is a child of the ciipUserBySub.
+- This means the connection has a ciipUser parent.
+- In this case the mutation configs needed to append to this connection can be defined as below.
 
-_Custom Types_
-Some of the SQL search functions require a new type to be created in order for `Relay` to recognize the query return object.
+Mutation definition:
+```ts
+const mutation = graphql`
+  mutation createUserOrganisationMutation(
+    $input: CreateCiipUserOrganisationInput!
+  ) {
+    createCiipUserOrganisation(input: $input) {
+      ciipUserOrganisationEdge {
+        node {
+          ...UserOrganisation_userOrganisation
+        }
+      }
+    }
+  }
+`;
+```
+- The return object inside the createCiipUserOrganisation is an object of ciipUserOrganisationEdge, that edge is used in the updater configs:
 
-- Any search functions that return all of, or a subset of ONE table (ex: search_products.sql) do not require a new type, as the return object is recognized as the type of that table (ex: product).
-- Search functions that return an object that is a composite of more than one table need a new type created as `Relay` has no reference to what the object is that is being returned. For example, search_all_facilities.sql returns values that are from tables: facility, organisation and application_revision_status, so the type facility_search_result.sql is needed to inform `Relay` of the shape of the query return object. The return type must exactly represent what is returned by the query. The name and type of the columns must match, and even the order in which those columns are returned by the search function must the reflected in the type.
+Mutation config definition:
+```ts
+const configs: DeclarativeMutationConfig[] = [
+    {
+      type: 'RANGE_ADD',
+      parentID: userId,
+      connectionInfo: [
+        {
+          key: 'Organisations_ciipUserOrganisationsByUserId',
+          rangeBehavior: 'append'
+        }
+      ],
+      edgeName: 'ciipUserOrganisationEdge'
+    }
+  ];
+```
+- The parentID is the ID of the parent ciipUser, which can be passed to the mutation as a parameter.
+- The key is the key defined in the @connection portion of the fragment.
+- type/rangeBehaviur is what to do with this edge (in this case, append).
+- The edgeName is the edge to add (defined above in the mutation definition).
 
-_Bugs & Future development_
+2) The @connection is defined at the root-level query:
+EXAMPLE:
 
-- The current implementation of the custom search functions causes a 'double render' on load. `Relay` requires that the parameter values being passed to the search functions exist from the start, so stand-in values are passed by the rendering page (first render) and then the actual default values are then passed from the component (second render). This is obviously inefficient.
-- The way the custom search functions are set up breaks `Relay`'s conventions resulting in the behaviour above. In breaking those conventions the search functions also cannot make use of some `Relay` functionality like cursors. We have investigative work planned regarding Postgraphile's [@filterable](https://www.graphile.org/postgraphile/smart-tags/) that may alleviate some of the discord between our custom search functions and Relay.
+Fragment Defintion:
+```ts
+export default createFragmentContainer(ProductList, {
+  query: graphql`
+    fragment ProductListContainer_query on Query{
+      allProducts(
+        first: $max_results
+      ) @connection(key: "ProductListContainer_allProducts", filters: []) {
+        edges {
+          node {
+            id
+            ...ProductRowItemContainer_product
+          }
+        }
+      }
+    }
+  `
+});
+```
+Some root-level @connection gotchas:
+- Here the @connection is on the root-level `allProducts` query & thus has no parent entity.
+- In this case, notice the @connection needs both the key AND a set of filters (which can be an empty array) in order to be found by relay.
+- In our implementation, we have `query` as the root level entity that everything else falls under. All `query` entities have an id of `query` (This is needed in the mutation `RANGE CONFIG`).
+
+The mutation definition remains unchanged from example 1. (productEdge will be the return object under createProductMutation).
+The difference is in the mutation config defintion, where we passed a userID as the parentID in example 1, the parentID for a root-level @connection is `query`.
+Mutation config definition:
+```ts
+const configs: DeclarativeMutationConfig[] = [
+    {
+      type: 'RANGE_ADD',
+      parentID: 'query',
+      connectionInfo: [
+        {
+          key: connectionKey,
+          rangeBehavior: 'append'
+        }
+      ],
+      edgeName: 'productEdge'
+    }
+  ];
+```
 
 ### React JsonSchema Forms
 

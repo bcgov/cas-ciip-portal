@@ -17,6 +17,7 @@ exports[`The filterable table headers component only renders elements that are s
     key="test3test3"
   >
     <FormControl
+      aria-label="filter-by-test3"
       name="test3"
       onChange={[Function]}
       placeholder="Search"
@@ -65,6 +66,7 @@ exports[`The filterable table headers component renders a option input if values
     key="testtest"
   >
     <FormControl
+      aria-label="filter-by-test"
       as="select"
       name="test"
       onChange={[Function]}
@@ -136,6 +138,7 @@ exports[`The filterable table headers component renders a text input if values a
     key="testtest"
   >
     <FormControl
+      aria-label="filter-by-test"
       name="test"
       onChange={[Function]}
       placeholder="Search"
@@ -184,6 +187,7 @@ exports[`The filterable table headers component renders as many td elements as s
     key="testtest"
   >
     <FormControl
+      aria-label="filter-by-test"
       name="test"
       onChange={[Function]}
       placeholder="Search"
@@ -195,6 +199,7 @@ exports[`The filterable table headers component renders as many td elements as s
     key="test2test2"
   >
     <FormControl
+      aria-label="filter-by-test2"
       name="test2"
       onChange={[Function]}
       placeholder="Search"

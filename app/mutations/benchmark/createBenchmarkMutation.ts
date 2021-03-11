@@ -7,7 +7,10 @@ import {
 import BaseMutation from 'mutations/BaseMutation';
 
 const mutation = graphql`
-  mutation createBenchmarkMutation($input: CreateBenchmarkInput!) {
+  mutation createBenchmarkMutation(
+    $input: CreateBenchmarkInput!
+    $productId: ID!
+  ) {
     createBenchmark(input: $input) {
       benchmark {
         id
@@ -15,8 +18,17 @@ const mutation = graphql`
         productId
         benchmark
         eligibilityThreshold
+        incentiveMultiplier
         startReportingYear
         endReportingYear
+        minimumIncentiveRatio
+        maximumIncentiveRatio
+        createdAt
+      }
+      query {
+        product(id: $productId) {
+          ...ProductRowItemContainer_product
+        }
       }
     }
   }

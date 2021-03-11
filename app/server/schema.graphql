@@ -29818,6 +29818,16 @@ type Product implements Node {
   """Creator of row"""
   createdBy: Int
 
+  """
+  Computed column returns the current benchmark value for the product passed in via function parameter
+  """
+  currentBenchmark: BigFloat
+
+  """
+  Computed column returns the current eligibility_threshold value for the product passed in via function parameter
+  """
+  currentEligibilityThreshold: BigFloat
+
   """Date of deletion"""
   deletedAt: Datetime
 
@@ -30800,6 +30810,12 @@ input ProductFilter {
   """Filter by the object’s `createdBy` field."""
   createdBy: IntFilter
 
+  """Filter by the object’s `currentBenchmark` field."""
+  currentBenchmark: BigFloatFilter
+
+  """Filter by the object’s `currentEligibilityThreshold` field."""
+  currentEligibilityThreshold: BigFloatFilter
+
   """Filter by the object’s `deletedAt` field."""
   deletedAt: DatetimeFilter
 
@@ -31356,6 +31372,10 @@ enum ProductsOrderBy {
   CREATED_AT_DESC
   CREATED_BY_ASC
   CREATED_BY_DESC
+  CURRENT_BENCHMARK_ASC
+  CURRENT_BENCHMARK_DESC
+  CURRENT_ELIGIBILITY_THRESHOLD_ASC
+  CURRENT_ELIGIBILITY_THRESHOLD_DESC
   DELETED_AT_ASC
   DELETED_AT_DESC
   DELETED_BY_ASC
@@ -32538,36 +32558,6 @@ type Query implements Node {
     searchField: String
     searchValue: String
   ): FacilitiesConnection!
-
-  """Reads and enables pagination through a set of `Product`."""
-  searchProducts(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-    direction: String
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: ProductFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-    orderByField: String
-    searchField: String
-    searchValue: String
-  ): ProductsConnection!
   session: JwtToken
 }
 

@@ -5,8 +5,8 @@ import {productsBenchmarksQueryResponse} from 'productsBenchmarksQuery.graphql';
 import DefaultLayout from 'layouts/default-layout';
 import ProductCreatorContainer from 'containers/Products/ProductCreatorContainer';
 import ProductListContainer from 'containers/Products/ProductListContainer';
-import SearchTable from 'components/SearchTable';
 import {ADMIN_GROUP} from 'data/group-constants';
+import {DEFAULT_MAX_RESULTS} from 'components/FilterableComponents/FilterableTablePagination';
 
 const ALLOWED_GROUPS = ADMIN_GROUP;
 
@@ -19,20 +19,28 @@ class ProductsBenchmarks extends Component<Props> {
   static isAccessProtected = true;
   static query = graphql`
     query productsBenchmarksQuery(
-      $orderByField: String
-      $direction: String
-      $searchField: String
-      $searchValue: String
-      $productCount: Int
+      $product_name: String
+      $current_benchmark: BigFloat
+      $current_eligibility_threshold: BigFloat
+      $requires_emission_allocation: Boolean
+      $is_ciip_product: Boolean
+      $product_state: CiipProductState
+      $order_by: [ProductsOrderBy!]
+      $max_results: Int
+      $offset: Int
     ) {
       query {
         ...ProductListContainer_query
           @arguments(
-            orderByField: $orderByField
-            direction: $direction
-            searchField: $searchField
-            searchValue: $searchValue
-            productCount: $productCount
+            product_name: $product_name
+            current_benchmark: $current_benchmark
+            current_eligibility_threshold: $current_eligibility_threshold
+            requires_emission_allocation: $requires_emission_allocation
+            is_ciip_product: $is_ciip_product
+            product_state: $product_state
+            order_by: $order_by
+            max_results: $max_results
+            offset: $offset
           )
         session {
           ...defaultLayout_session
@@ -45,25 +53,21 @@ class ProductsBenchmarks extends Component<Props> {
     formData: {formId: '', formJson: ''},
     mode: 'view',
     expandCreateForm: false,
-    totalProductCount: 0,
     showProductCreatedToast: false
   };
 
   static async getInitialProps() {
     return {
       variables: {
-        orderByField: 'product_name',
-        direction: 'ASC'
+        order_by: 'PRODUCT_NAME_ASC',
+        max_results: DEFAULT_MAX_RESULTS,
+        offset: 0
       }
     };
   }
 
   toggleShowProductCreatedToast = (show: boolean) => {
     this.setState({showProductCreatedToast: show});
-  };
-
-  updateProductCount = (count: number) => {
-    this.setState({totalProductCount: count});
   };
 
   toggleShowCreateForm = () => {
@@ -96,7 +100,6 @@ class ProductsBenchmarks extends Component<Props> {
 
   render() {
     const {query} = this.props;
-    const {totalProductCount} = this.state;
     const newProductButton = (
       <Button onClick={this.toggleShowCreateForm}>New Product</Button>
     );
@@ -126,27 +129,13 @@ class ProductsBenchmarks extends Component<Props> {
           <Col>
             {this.state.expandCreateForm && (
               <ProductCreatorContainer
-                updateProductCount={this.updateProductCount}
                 toggleShowCreateForm={this.toggleShowCreateForm}
                 toggleShowProductCreatedToast={
                   this.toggleShowProductCreatedToast
                 }
               />
             )}
-
-            <SearchTable
-              query={query}
-              defaultOrderByField="product_name"
-              defaultOrderByDisplay="Product"
-            >
-              {(props) => (
-                <ProductListContainer
-                  {...props}
-                  productCount={totalProductCount}
-                  updateProductCount={this.updateProductCount}
-                />
-              )}
-            </SearchTable>
+            <ProductListContainer query={query} />
           </Col>
         </Row>
       </DefaultLayout>

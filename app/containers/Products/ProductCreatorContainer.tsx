@@ -13,14 +13,12 @@ import HeaderWidget from 'components/HeaderWidget';
 
 interface Props {
   relay: RelayProp;
-  updateProductCount: (...args: any[]) => void;
   toggleShowCreateForm: (...args: any[]) => void;
   toggleShowProductCreatedToast: (...args: any[]) => void;
 }
 
 export const ProductCreator: React.FunctionComponent<Props> = ({
   relay,
-  updateProductCount,
   toggleShowCreateForm,
   toggleShowProductCreatedToast
 }) => {
@@ -51,7 +49,6 @@ export const ProductCreator: React.FunctionComponent<Props> = ({
     };
     const {environment} = relay;
     const response = await createProductMutation(environment, variables);
-    updateProductCount(response.createProduct.query.allProducts.totalCount);
     toggleShowCreateForm();
     if (response.createProduct) toggleShowProductCreatedToast(true);
     else console.log(response);

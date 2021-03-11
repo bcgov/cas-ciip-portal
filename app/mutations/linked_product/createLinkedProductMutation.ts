@@ -7,7 +7,10 @@ import RelayModernEnvironment from 'relay-runtime/lib/store/RelayModernEnvironme
 import BaseMutation from 'mutations/BaseMutation';
 
 const mutation = graphql`
-  mutation createLinkedProductMutation($input: CreateLinkedProductInput!) {
+  mutation createLinkedProductMutation(
+    $input: CreateLinkedProductInput!
+    $productId: ID!
+  ) {
     createLinkedProduct(input: $input) {
       linkedProduct {
         id
@@ -16,8 +19,8 @@ const mutation = graphql`
         linkedProductId
       }
       query {
-        allLinkedProducts {
-          totalCount
+        product(id: $productId) {
+          ...ProductRowItemContainer_product
         }
       }
     }

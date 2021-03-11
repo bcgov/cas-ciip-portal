@@ -144,3 +144,36 @@ describe('When filtering organisation requests', () => {
     cy.get('table.search-table > tbody').find('tr').should('have.length', 5);
   });
 });
+
+//--------------------------------//
+//            Products            //
+//--------------------------------//
+
+describe('When filtering products', () => {
+  before(() => {
+    cy.cleanSchema();
+    cy.deployProdData();
+    cy.sqlFixture('fixtures/search-setup');
+  });
+
+  it('The product list can be filtered by multiple search fields', () => {
+    cy.mockLogin('admin');
+    cy.visit('/admin/products-benchmarks');
+    cy.get('#page-content');
+    cy.get('thead > tr > td:nth-child(1) > input.form-control')
+      .clear()
+      .type('electricity');
+    cy.get('thead > tr > td:nth-child(7) > select.form-control').select('Yes');
+    cy.contains('Apply').click();
+    cy.get('table.search-table > tbody').find('tr').should('have.length', 1);
+    cy.get('tbody > tr > :nth-child(1)').should(
+      'have.text',
+      'Sold electricity'
+    );
+    cy.get('body').happoScreenshot({
+      component: 'Product List',
+      variant: 'Filtered by productName & isCiipBenchmarked'
+    });
+    cy.contains('Clear').click();
+  });
+});

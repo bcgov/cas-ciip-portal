@@ -11,6 +11,13 @@ const mutation = graphql`
     updateBenchmark(input: $input) {
       benchmark {
         id
+        benchmark
+        eligibilityThreshold
+        endReportingYear
+        incentiveMultiplier
+        maximumIncentiveRatio
+        minimumIncentiveRatio
+        startReportingYear
       }
     }
   }
