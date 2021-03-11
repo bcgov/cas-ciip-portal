@@ -659,6 +659,108 @@ type Application implements Node {
     orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
   ): ApplicationCiipUsersByReviewCommentApplicationIdAndUpdatedByManyToManyConnection!
 
+  """Reads and enables pagination through a set of `CiipUser`."""
+  ciipUsersByReviewStepApplicationIdAndCreatedBy(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CiipUserCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: CiipUserFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `CiipUser`."""
+    orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ApplicationCiipUsersByReviewStepApplicationIdAndCreatedByManyToManyConnection!
+
+  """Reads and enables pagination through a set of `CiipUser`."""
+  ciipUsersByReviewStepApplicationIdAndDeletedBy(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CiipUserCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: CiipUserFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `CiipUser`."""
+    orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ApplicationCiipUsersByReviewStepApplicationIdAndDeletedByManyToManyConnection!
+
+  """Reads and enables pagination through a set of `CiipUser`."""
+  ciipUsersByReviewStepApplicationIdAndUpdatedBy(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CiipUserCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: CiipUserFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `CiipUser`."""
+    orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ApplicationCiipUsersByReviewStepApplicationIdAndUpdatedByManyToManyConnection!
+
   """
   returns a boolean value based on whether the current user has edit permission on the application
   """
@@ -946,6 +1048,74 @@ type Application implements Node {
     """The method to use when ordering `ReviewComment`."""
     orderBy: [ReviewCommentsOrderBy!] = [PRIMARY_KEY_ASC]
   ): ReviewCommentsConnection!
+
+  """Reads and enables pagination through a set of `ReviewStepName`."""
+  reviewStepNamesByReviewStepApplicationIdAndReviewStepNameId(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ReviewStepNameCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: ReviewStepNameFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `ReviewStepName`."""
+    orderBy: [ReviewStepNamesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ApplicationReviewStepNamesByReviewStepApplicationIdAndReviewStepNameIdManyToManyConnection!
+
+  """Reads and enables pagination through a set of `ReviewStep`."""
+  reviewStepsByApplicationId(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ReviewStepCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: ReviewStepFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `ReviewStep`."""
+    orderBy: [ReviewStepsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ReviewStepsConnection!
 
   """The application id used for reference and join"""
   rowId: Int!
@@ -2039,6 +2209,192 @@ type ApplicationCiipUsersByReviewCommentApplicationIdAndUpdatedByManyToManyEdge 
 }
 
 """
+A connection to a list of `CiipUser` values, with data from `ReviewStep`.
+"""
+type ApplicationCiipUsersByReviewStepApplicationIdAndCreatedByManyToManyConnection {
+  """
+  A list of edges which contains the `CiipUser`, info from the `ReviewStep`, and the cursor to aid in pagination.
+  """
+  edges: [ApplicationCiipUsersByReviewStepApplicationIdAndCreatedByManyToManyEdge!]!
+
+  """A list of `CiipUser` objects."""
+  nodes: [CiipUser]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `CiipUser` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `CiipUser` edge in the connection, with data from `ReviewStep`."""
+type ApplicationCiipUsersByReviewStepApplicationIdAndCreatedByManyToManyEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `CiipUser` at the end of the edge."""
+  node: CiipUser
+
+  """Reads and enables pagination through a set of `ReviewStep`."""
+  reviewStepsByCreatedBy(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ReviewStepCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: ReviewStepFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `ReviewStep`."""
+    orderBy: [ReviewStepsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ReviewStepsConnection!
+}
+
+"""
+A connection to a list of `CiipUser` values, with data from `ReviewStep`.
+"""
+type ApplicationCiipUsersByReviewStepApplicationIdAndDeletedByManyToManyConnection {
+  """
+  A list of edges which contains the `CiipUser`, info from the `ReviewStep`, and the cursor to aid in pagination.
+  """
+  edges: [ApplicationCiipUsersByReviewStepApplicationIdAndDeletedByManyToManyEdge!]!
+
+  """A list of `CiipUser` objects."""
+  nodes: [CiipUser]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `CiipUser` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `CiipUser` edge in the connection, with data from `ReviewStep`."""
+type ApplicationCiipUsersByReviewStepApplicationIdAndDeletedByManyToManyEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `CiipUser` at the end of the edge."""
+  node: CiipUser
+
+  """Reads and enables pagination through a set of `ReviewStep`."""
+  reviewStepsByDeletedBy(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ReviewStepCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: ReviewStepFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `ReviewStep`."""
+    orderBy: [ReviewStepsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ReviewStepsConnection!
+}
+
+"""
+A connection to a list of `CiipUser` values, with data from `ReviewStep`.
+"""
+type ApplicationCiipUsersByReviewStepApplicationIdAndUpdatedByManyToManyConnection {
+  """
+  A list of edges which contains the `CiipUser`, info from the `ReviewStep`, and the cursor to aid in pagination.
+  """
+  edges: [ApplicationCiipUsersByReviewStepApplicationIdAndUpdatedByManyToManyEdge!]!
+
+  """A list of `CiipUser` objects."""
+  nodes: [CiipUser]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `CiipUser` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `CiipUser` edge in the connection, with data from `ReviewStep`."""
+type ApplicationCiipUsersByReviewStepApplicationIdAndUpdatedByManyToManyEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `CiipUser` at the end of the edge."""
+  node: CiipUser
+
+  """Reads and enables pagination through a set of `ReviewStep`."""
+  reviewStepsByUpdatedBy(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ReviewStepCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: ReviewStepFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `ReviewStep`."""
+    orderBy: [ReviewStepsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ReviewStepsConnection!
+}
+
+"""
 A condition to be used against `Application` object types. All fields are tested
 for equality and combined with a logical ‘and.’
 """
@@ -2312,6 +2668,70 @@ input ApplicationPatch {
   The foreign key to ggircs_portal.reporting_year, references reporting_year
   """
   reportingYear: Int
+}
+
+"""
+A connection to a list of `ReviewStepName` values, with data from `ReviewStep`.
+"""
+type ApplicationReviewStepNamesByReviewStepApplicationIdAndReviewStepNameIdManyToManyConnection {
+  """
+  A list of edges which contains the `ReviewStepName`, info from the `ReviewStep`, and the cursor to aid in pagination.
+  """
+  edges: [ApplicationReviewStepNamesByReviewStepApplicationIdAndReviewStepNameIdManyToManyEdge!]!
+
+  """A list of `ReviewStepName` objects."""
+  nodes: [ReviewStepName]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `ReviewStepName` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""
+A `ReviewStepName` edge in the connection, with data from `ReviewStep`.
+"""
+type ApplicationReviewStepNamesByReviewStepApplicationIdAndReviewStepNameIdManyToManyEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `ReviewStepName` at the end of the edge."""
+  node: ReviewStepName
+
+  """Reads and enables pagination through a set of `ReviewStep`."""
+  reviewStepsByReviewStepNameId(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ReviewStepCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: ReviewStepFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `ReviewStep`."""
+    orderBy: [ReviewStepsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ReviewStepsConnection!
 }
 
 """The application revision data"""
@@ -5494,6 +5914,108 @@ type CiipUser implements Node {
     """The method to use when ordering `Application`."""
     orderBy: [ApplicationsOrderBy!] = [PRIMARY_KEY_ASC]
   ): CiipUserApplicationsByReviewCommentUpdatedByAndApplicationIdManyToManyConnection!
+
+  """Reads and enables pagination through a set of `Application`."""
+  applicationsByReviewStepCreatedByAndApplicationId(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ApplicationCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: ApplicationFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `Application`."""
+    orderBy: [ApplicationsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CiipUserApplicationsByReviewStepCreatedByAndApplicationIdManyToManyConnection!
+
+  """Reads and enables pagination through a set of `Application`."""
+  applicationsByReviewStepDeletedByAndApplicationId(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ApplicationCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: ApplicationFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `Application`."""
+    orderBy: [ApplicationsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CiipUserApplicationsByReviewStepDeletedByAndApplicationIdManyToManyConnection!
+
+  """Reads and enables pagination through a set of `Application`."""
+  applicationsByReviewStepUpdatedByAndApplicationId(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ApplicationCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: ApplicationFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `Application`."""
+    orderBy: [ApplicationsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CiipUserApplicationsByReviewStepUpdatedByAndApplicationIdManyToManyConnection!
 
   """Reads and enables pagination through a set of `Benchmark`."""
   benchmarksByCreatedBy(
@@ -9109,6 +9631,210 @@ type CiipUser implements Node {
   ): CiipUserCiipUsersByReviewCommentUpdatedByAndDeletedByManyToManyConnection!
 
   """Reads and enables pagination through a set of `CiipUser`."""
+  ciipUsersByReviewStepCreatedByAndDeletedBy(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CiipUserCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: CiipUserFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `CiipUser`."""
+    orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CiipUserCiipUsersByReviewStepCreatedByAndDeletedByManyToManyConnection!
+
+  """Reads and enables pagination through a set of `CiipUser`."""
+  ciipUsersByReviewStepCreatedByAndUpdatedBy(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CiipUserCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: CiipUserFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `CiipUser`."""
+    orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CiipUserCiipUsersByReviewStepCreatedByAndUpdatedByManyToManyConnection!
+
+  """Reads and enables pagination through a set of `CiipUser`."""
+  ciipUsersByReviewStepDeletedByAndCreatedBy(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CiipUserCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: CiipUserFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `CiipUser`."""
+    orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CiipUserCiipUsersByReviewStepDeletedByAndCreatedByManyToManyConnection!
+
+  """Reads and enables pagination through a set of `CiipUser`."""
+  ciipUsersByReviewStepDeletedByAndUpdatedBy(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CiipUserCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: CiipUserFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `CiipUser`."""
+    orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CiipUserCiipUsersByReviewStepDeletedByAndUpdatedByManyToManyConnection!
+
+  """Reads and enables pagination through a set of `CiipUser`."""
+  ciipUsersByReviewStepUpdatedByAndCreatedBy(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CiipUserCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: CiipUserFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `CiipUser`."""
+    orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CiipUserCiipUsersByReviewStepUpdatedByAndCreatedByManyToManyConnection!
+
+  """Reads and enables pagination through a set of `CiipUser`."""
+  ciipUsersByReviewStepUpdatedByAndDeletedBy(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CiipUserCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: CiipUserFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `CiipUser`."""
+    orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CiipUserCiipUsersByReviewStepUpdatedByAndDeletedByManyToManyConnection!
+
+  """Reads and enables pagination through a set of `CiipUser`."""
   ciipUsersByUpdatedBy(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
@@ -11151,6 +11877,210 @@ type CiipUser implements Node {
     orderBy: [ReviewCommentsOrderBy!] = [PRIMARY_KEY_ASC]
   ): ReviewCommentsConnection!
 
+  """Reads and enables pagination through a set of `ReviewStepName`."""
+  reviewStepNamesByReviewStepCreatedByAndReviewStepNameId(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ReviewStepNameCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: ReviewStepNameFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `ReviewStepName`."""
+    orderBy: [ReviewStepNamesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CiipUserReviewStepNamesByReviewStepCreatedByAndReviewStepNameIdManyToManyConnection!
+
+  """Reads and enables pagination through a set of `ReviewStepName`."""
+  reviewStepNamesByReviewStepDeletedByAndReviewStepNameId(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ReviewStepNameCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: ReviewStepNameFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `ReviewStepName`."""
+    orderBy: [ReviewStepNamesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CiipUserReviewStepNamesByReviewStepDeletedByAndReviewStepNameIdManyToManyConnection!
+
+  """Reads and enables pagination through a set of `ReviewStepName`."""
+  reviewStepNamesByReviewStepUpdatedByAndReviewStepNameId(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ReviewStepNameCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: ReviewStepNameFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `ReviewStepName`."""
+    orderBy: [ReviewStepNamesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CiipUserReviewStepNamesByReviewStepUpdatedByAndReviewStepNameIdManyToManyConnection!
+
+  """Reads and enables pagination through a set of `ReviewStep`."""
+  reviewStepsByCreatedBy(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ReviewStepCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: ReviewStepFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `ReviewStep`."""
+    orderBy: [ReviewStepsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ReviewStepsConnection!
+
+  """Reads and enables pagination through a set of `ReviewStep`."""
+  reviewStepsByDeletedBy(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ReviewStepCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: ReviewStepFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `ReviewStep`."""
+    orderBy: [ReviewStepsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ReviewStepsConnection!
+
+  """Reads and enables pagination through a set of `ReviewStep`."""
+  reviewStepsByUpdatedBy(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ReviewStepCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: ReviewStepFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `ReviewStep`."""
+    orderBy: [ReviewStepsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ReviewStepsConnection!
+
   """Unique ID for the user"""
   rowId: Int!
 
@@ -12183,6 +13113,192 @@ type CiipUserApplicationsByReviewCommentUpdatedByAndApplicationIdManyToManyEdge 
     """The method to use when ordering `ReviewComment`."""
     orderBy: [ReviewCommentsOrderBy!] = [PRIMARY_KEY_ASC]
   ): ReviewCommentsConnection!
+}
+
+"""
+A connection to a list of `Application` values, with data from `ReviewStep`.
+"""
+type CiipUserApplicationsByReviewStepCreatedByAndApplicationIdManyToManyConnection {
+  """
+  A list of edges which contains the `Application`, info from the `ReviewStep`, and the cursor to aid in pagination.
+  """
+  edges: [CiipUserApplicationsByReviewStepCreatedByAndApplicationIdManyToManyEdge!]!
+
+  """A list of `Application` objects."""
+  nodes: [Application]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `Application` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `Application` edge in the connection, with data from `ReviewStep`."""
+type CiipUserApplicationsByReviewStepCreatedByAndApplicationIdManyToManyEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `Application` at the end of the edge."""
+  node: Application
+
+  """Reads and enables pagination through a set of `ReviewStep`."""
+  reviewStepsByApplicationId(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ReviewStepCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: ReviewStepFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `ReviewStep`."""
+    orderBy: [ReviewStepsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ReviewStepsConnection!
+}
+
+"""
+A connection to a list of `Application` values, with data from `ReviewStep`.
+"""
+type CiipUserApplicationsByReviewStepDeletedByAndApplicationIdManyToManyConnection {
+  """
+  A list of edges which contains the `Application`, info from the `ReviewStep`, and the cursor to aid in pagination.
+  """
+  edges: [CiipUserApplicationsByReviewStepDeletedByAndApplicationIdManyToManyEdge!]!
+
+  """A list of `Application` objects."""
+  nodes: [Application]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `Application` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `Application` edge in the connection, with data from `ReviewStep`."""
+type CiipUserApplicationsByReviewStepDeletedByAndApplicationIdManyToManyEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `Application` at the end of the edge."""
+  node: Application
+
+  """Reads and enables pagination through a set of `ReviewStep`."""
+  reviewStepsByApplicationId(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ReviewStepCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: ReviewStepFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `ReviewStep`."""
+    orderBy: [ReviewStepsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ReviewStepsConnection!
+}
+
+"""
+A connection to a list of `Application` values, with data from `ReviewStep`.
+"""
+type CiipUserApplicationsByReviewStepUpdatedByAndApplicationIdManyToManyConnection {
+  """
+  A list of edges which contains the `Application`, info from the `ReviewStep`, and the cursor to aid in pagination.
+  """
+  edges: [CiipUserApplicationsByReviewStepUpdatedByAndApplicationIdManyToManyEdge!]!
+
+  """A list of `Application` objects."""
+  nodes: [Application]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `Application` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `Application` edge in the connection, with data from `ReviewStep`."""
+type CiipUserApplicationsByReviewStepUpdatedByAndApplicationIdManyToManyEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `Application` at the end of the edge."""
+  node: Application
+
+  """Reads and enables pagination through a set of `ReviewStep`."""
+  reviewStepsByApplicationId(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ReviewStepCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: ReviewStepFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `ReviewStep`."""
+    orderBy: [ReviewStepsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ReviewStepsConnection!
 }
 
 """
@@ -18204,6 +19320,378 @@ type CiipUserCiipUsersByReviewCommentUpdatedByAndDeletedByManyToManyEdge {
 }
 
 """
+A connection to a list of `CiipUser` values, with data from `ReviewStep`.
+"""
+type CiipUserCiipUsersByReviewStepCreatedByAndDeletedByManyToManyConnection {
+  """
+  A list of edges which contains the `CiipUser`, info from the `ReviewStep`, and the cursor to aid in pagination.
+  """
+  edges: [CiipUserCiipUsersByReviewStepCreatedByAndDeletedByManyToManyEdge!]!
+
+  """A list of `CiipUser` objects."""
+  nodes: [CiipUser]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `CiipUser` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `CiipUser` edge in the connection, with data from `ReviewStep`."""
+type CiipUserCiipUsersByReviewStepCreatedByAndDeletedByManyToManyEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `CiipUser` at the end of the edge."""
+  node: CiipUser
+
+  """Reads and enables pagination through a set of `ReviewStep`."""
+  reviewStepsByDeletedBy(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ReviewStepCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: ReviewStepFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `ReviewStep`."""
+    orderBy: [ReviewStepsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ReviewStepsConnection!
+}
+
+"""
+A connection to a list of `CiipUser` values, with data from `ReviewStep`.
+"""
+type CiipUserCiipUsersByReviewStepCreatedByAndUpdatedByManyToManyConnection {
+  """
+  A list of edges which contains the `CiipUser`, info from the `ReviewStep`, and the cursor to aid in pagination.
+  """
+  edges: [CiipUserCiipUsersByReviewStepCreatedByAndUpdatedByManyToManyEdge!]!
+
+  """A list of `CiipUser` objects."""
+  nodes: [CiipUser]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `CiipUser` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `CiipUser` edge in the connection, with data from `ReviewStep`."""
+type CiipUserCiipUsersByReviewStepCreatedByAndUpdatedByManyToManyEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `CiipUser` at the end of the edge."""
+  node: CiipUser
+
+  """Reads and enables pagination through a set of `ReviewStep`."""
+  reviewStepsByUpdatedBy(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ReviewStepCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: ReviewStepFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `ReviewStep`."""
+    orderBy: [ReviewStepsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ReviewStepsConnection!
+}
+
+"""
+A connection to a list of `CiipUser` values, with data from `ReviewStep`.
+"""
+type CiipUserCiipUsersByReviewStepDeletedByAndCreatedByManyToManyConnection {
+  """
+  A list of edges which contains the `CiipUser`, info from the `ReviewStep`, and the cursor to aid in pagination.
+  """
+  edges: [CiipUserCiipUsersByReviewStepDeletedByAndCreatedByManyToManyEdge!]!
+
+  """A list of `CiipUser` objects."""
+  nodes: [CiipUser]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `CiipUser` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `CiipUser` edge in the connection, with data from `ReviewStep`."""
+type CiipUserCiipUsersByReviewStepDeletedByAndCreatedByManyToManyEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `CiipUser` at the end of the edge."""
+  node: CiipUser
+
+  """Reads and enables pagination through a set of `ReviewStep`."""
+  reviewStepsByCreatedBy(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ReviewStepCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: ReviewStepFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `ReviewStep`."""
+    orderBy: [ReviewStepsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ReviewStepsConnection!
+}
+
+"""
+A connection to a list of `CiipUser` values, with data from `ReviewStep`.
+"""
+type CiipUserCiipUsersByReviewStepDeletedByAndUpdatedByManyToManyConnection {
+  """
+  A list of edges which contains the `CiipUser`, info from the `ReviewStep`, and the cursor to aid in pagination.
+  """
+  edges: [CiipUserCiipUsersByReviewStepDeletedByAndUpdatedByManyToManyEdge!]!
+
+  """A list of `CiipUser` objects."""
+  nodes: [CiipUser]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `CiipUser` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `CiipUser` edge in the connection, with data from `ReviewStep`."""
+type CiipUserCiipUsersByReviewStepDeletedByAndUpdatedByManyToManyEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `CiipUser` at the end of the edge."""
+  node: CiipUser
+
+  """Reads and enables pagination through a set of `ReviewStep`."""
+  reviewStepsByUpdatedBy(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ReviewStepCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: ReviewStepFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `ReviewStep`."""
+    orderBy: [ReviewStepsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ReviewStepsConnection!
+}
+
+"""
+A connection to a list of `CiipUser` values, with data from `ReviewStep`.
+"""
+type CiipUserCiipUsersByReviewStepUpdatedByAndCreatedByManyToManyConnection {
+  """
+  A list of edges which contains the `CiipUser`, info from the `ReviewStep`, and the cursor to aid in pagination.
+  """
+  edges: [CiipUserCiipUsersByReviewStepUpdatedByAndCreatedByManyToManyEdge!]!
+
+  """A list of `CiipUser` objects."""
+  nodes: [CiipUser]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `CiipUser` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `CiipUser` edge in the connection, with data from `ReviewStep`."""
+type CiipUserCiipUsersByReviewStepUpdatedByAndCreatedByManyToManyEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `CiipUser` at the end of the edge."""
+  node: CiipUser
+
+  """Reads and enables pagination through a set of `ReviewStep`."""
+  reviewStepsByCreatedBy(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ReviewStepCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: ReviewStepFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `ReviewStep`."""
+    orderBy: [ReviewStepsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ReviewStepsConnection!
+}
+
+"""
+A connection to a list of `CiipUser` values, with data from `ReviewStep`.
+"""
+type CiipUserCiipUsersByReviewStepUpdatedByAndDeletedByManyToManyConnection {
+  """
+  A list of edges which contains the `CiipUser`, info from the `ReviewStep`, and the cursor to aid in pagination.
+  """
+  edges: [CiipUserCiipUsersByReviewStepUpdatedByAndDeletedByManyToManyEdge!]!
+
+  """A list of `CiipUser` objects."""
+  nodes: [CiipUser]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `CiipUser` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `CiipUser` edge in the connection, with data from `ReviewStep`."""
+type CiipUserCiipUsersByReviewStepUpdatedByAndDeletedByManyToManyEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `CiipUser` at the end of the edge."""
+  node: CiipUser
+
+  """Reads and enables pagination through a set of `ReviewStep`."""
+  reviewStepsByDeletedBy(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ReviewStepCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: ReviewStepFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `ReviewStep`."""
+    orderBy: [ReviewStepsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ReviewStepsConnection!
+}
+
+"""
 A condition to be used against `CiipUser` object types. All fields are tested
 for equality and combined with a logical ‘and.’
 """
@@ -20371,6 +21859,198 @@ type CiipUserReportingYearsByBenchmarkUpdatedByAndStartReportingYearManyToManyEd
   node: ReportingYear
 }
 
+"""
+A connection to a list of `ReviewStepName` values, with data from `ReviewStep`.
+"""
+type CiipUserReviewStepNamesByReviewStepCreatedByAndReviewStepNameIdManyToManyConnection {
+  """
+  A list of edges which contains the `ReviewStepName`, info from the `ReviewStep`, and the cursor to aid in pagination.
+  """
+  edges: [CiipUserReviewStepNamesByReviewStepCreatedByAndReviewStepNameIdManyToManyEdge!]!
+
+  """A list of `ReviewStepName` objects."""
+  nodes: [ReviewStepName]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `ReviewStepName` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""
+A `ReviewStepName` edge in the connection, with data from `ReviewStep`.
+"""
+type CiipUserReviewStepNamesByReviewStepCreatedByAndReviewStepNameIdManyToManyEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `ReviewStepName` at the end of the edge."""
+  node: ReviewStepName
+
+  """Reads and enables pagination through a set of `ReviewStep`."""
+  reviewStepsByReviewStepNameId(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ReviewStepCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: ReviewStepFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `ReviewStep`."""
+    orderBy: [ReviewStepsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ReviewStepsConnection!
+}
+
+"""
+A connection to a list of `ReviewStepName` values, with data from `ReviewStep`.
+"""
+type CiipUserReviewStepNamesByReviewStepDeletedByAndReviewStepNameIdManyToManyConnection {
+  """
+  A list of edges which contains the `ReviewStepName`, info from the `ReviewStep`, and the cursor to aid in pagination.
+  """
+  edges: [CiipUserReviewStepNamesByReviewStepDeletedByAndReviewStepNameIdManyToManyEdge!]!
+
+  """A list of `ReviewStepName` objects."""
+  nodes: [ReviewStepName]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `ReviewStepName` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""
+A `ReviewStepName` edge in the connection, with data from `ReviewStep`.
+"""
+type CiipUserReviewStepNamesByReviewStepDeletedByAndReviewStepNameIdManyToManyEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `ReviewStepName` at the end of the edge."""
+  node: ReviewStepName
+
+  """Reads and enables pagination through a set of `ReviewStep`."""
+  reviewStepsByReviewStepNameId(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ReviewStepCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: ReviewStepFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `ReviewStep`."""
+    orderBy: [ReviewStepsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ReviewStepsConnection!
+}
+
+"""
+A connection to a list of `ReviewStepName` values, with data from `ReviewStep`.
+"""
+type CiipUserReviewStepNamesByReviewStepUpdatedByAndReviewStepNameIdManyToManyConnection {
+  """
+  A list of edges which contains the `ReviewStepName`, info from the `ReviewStep`, and the cursor to aid in pagination.
+  """
+  edges: [CiipUserReviewStepNamesByReviewStepUpdatedByAndReviewStepNameIdManyToManyEdge!]!
+
+  """A list of `ReviewStepName` objects."""
+  nodes: [ReviewStepName]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `ReviewStepName` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""
+A `ReviewStepName` edge in the connection, with data from `ReviewStep`.
+"""
+type CiipUserReviewStepNamesByReviewStepUpdatedByAndReviewStepNameIdManyToManyEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `ReviewStepName` at the end of the edge."""
+  node: ReviewStepName
+
+  """Reads and enables pagination through a set of `ReviewStep`."""
+  reviewStepsByReviewStepNameId(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ReviewStepCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: ReviewStepFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `ReviewStep`."""
+    orderBy: [ReviewStepsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ReviewStepsConnection!
+}
+
 """A connection to a list of `CiipUser` values."""
 type CiipUsersConnection {
   """
@@ -21549,6 +23229,91 @@ type CreateReviewCommentPayload {
     """The method to use when ordering `ReviewComment`."""
     orderBy: [ReviewCommentsOrderBy!] = [PRIMARY_KEY_ASC]
   ): ReviewCommentsEdge
+}
+
+"""All input for the create `ReviewStep` mutation."""
+input CreateReviewStepInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `ReviewStep` to be created by this mutation."""
+  reviewStep: ReviewStepInput!
+}
+
+"""All input for the create `ReviewStepName` mutation."""
+input CreateReviewStepNameInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `ReviewStepName` to be created by this mutation."""
+  reviewStepName: ReviewStepNameInput!
+}
+
+"""The output of our create `ReviewStepName` mutation."""
+type CreateReviewStepNamePayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """The `ReviewStepName` that was created by this mutation."""
+  reviewStepName: ReviewStepName
+
+  """An edge for our `ReviewStepName`. May be used by Relay 1."""
+  reviewStepNameEdge(
+    """The method to use when ordering `ReviewStepName`."""
+    orderBy: [ReviewStepNamesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ReviewStepNamesEdge
+}
+
+"""The output of our create `ReviewStep` mutation."""
+type CreateReviewStepPayload {
+  """Reads a single `Application` that is related to this `ReviewStep`."""
+  applicationByApplicationId: Application
+
+  """Reads a single `CiipUser` that is related to this `ReviewStep`."""
+  ciipUserByCreatedBy: CiipUser
+
+  """Reads a single `CiipUser` that is related to this `ReviewStep`."""
+  ciipUserByDeletedBy: CiipUser
+
+  """Reads a single `CiipUser` that is related to this `ReviewStep`."""
+  ciipUserByUpdatedBy: CiipUser
+
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """The `ReviewStep` that was created by this mutation."""
+  reviewStep: ReviewStep
+
+  """An edge for our `ReviewStep`. May be used by Relay 1."""
+  reviewStepEdge(
+    """The method to use when ordering `ReviewStep`."""
+    orderBy: [ReviewStepsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ReviewStepsEdge
+
+  """Reads a single `ReviewStepName` that is related to this `ReviewStep`."""
+  reviewStepNameByReviewStepNameId: ReviewStepName
 }
 
 """A location in a connection that can be used for resuming pagination."""
@@ -22969,6 +24734,131 @@ type DeleteReviewCommentPayload {
     """The method to use when ordering `ReviewComment`."""
     orderBy: [ReviewCommentsOrderBy!] = [PRIMARY_KEY_ASC]
   ): ReviewCommentsEdge
+}
+
+"""All input for the `deleteReviewStepByRowId` mutation."""
+input DeleteReviewStepByRowIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """Unique ID for the review_step"""
+  rowId: Int!
+}
+
+"""All input for the `deleteReviewStep` mutation."""
+input DeleteReviewStepInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `ReviewStep` to be deleted.
+  """
+  id: ID!
+}
+
+"""All input for the `deleteReviewStepNameByRowId` mutation."""
+input DeleteReviewStepNameByRowIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  rowId: Int!
+}
+
+"""All input for the `deleteReviewStepNameByStepName` mutation."""
+input DeleteReviewStepNameByStepNameInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """Unique step_name to be included in during an application review"""
+  stepName: String!
+}
+
+"""All input for the `deleteReviewStepName` mutation."""
+input DeleteReviewStepNameInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `ReviewStepName` to be deleted.
+  """
+  id: ID!
+}
+
+"""The output of our delete `ReviewStepName` mutation."""
+type DeleteReviewStepNamePayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+  deletedReviewStepNameId: ID
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """The `ReviewStepName` that was deleted by this mutation."""
+  reviewStepName: ReviewStepName
+
+  """An edge for our `ReviewStepName`. May be used by Relay 1."""
+  reviewStepNameEdge(
+    """The method to use when ordering `ReviewStepName`."""
+    orderBy: [ReviewStepNamesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ReviewStepNamesEdge
+}
+
+"""The output of our delete `ReviewStep` mutation."""
+type DeleteReviewStepPayload {
+  """Reads a single `Application` that is related to this `ReviewStep`."""
+  applicationByApplicationId: Application
+
+  """Reads a single `CiipUser` that is related to this `ReviewStep`."""
+  ciipUserByCreatedBy: CiipUser
+
+  """Reads a single `CiipUser` that is related to this `ReviewStep`."""
+  ciipUserByDeletedBy: CiipUser
+
+  """Reads a single `CiipUser` that is related to this `ReviewStep`."""
+  ciipUserByUpdatedBy: CiipUser
+
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+  deletedReviewStepId: ID
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """The `ReviewStep` that was deleted by this mutation."""
+  reviewStep: ReviewStep
+
+  """An edge for our `ReviewStep`. May be used by Relay 1."""
+  reviewStepEdge(
+    """The method to use when ordering `ReviewStep`."""
+    orderBy: [ReviewStepsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ReviewStepsEdge
+
+  """Reads a single `ReviewStepName` that is related to this `ReviewStep`."""
+  reviewStepNameByReviewStepNameId: ReviewStepName
 }
 
 """A connection to a list of `EmissionCategory` values."""
@@ -28166,6 +30056,22 @@ type Mutation {
     input: CreateReviewCommentMutationChainInput!
   ): CreateReviewCommentMutationChainPayload
 
+  """Creates a single `ReviewStep`."""
+  createReviewStep(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateReviewStepInput!
+  ): CreateReviewStepPayload
+
+  """Creates a single `ReviewStepName`."""
+  createReviewStepName(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateReviewStepNameInput!
+  ): CreateReviewStepNamePayload
+
   """Deletes a single `Application` using its globally unique id."""
   deleteApplication(
     """
@@ -28511,6 +30417,46 @@ type Mutation {
     """
     input: DeleteReviewCommentByRowIdInput!
   ): DeleteReviewCommentPayload
+
+  """Deletes a single `ReviewStep` using its globally unique id."""
+  deleteReviewStep(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteReviewStepInput!
+  ): DeleteReviewStepPayload
+
+  """Deletes a single `ReviewStep` using a unique key."""
+  deleteReviewStepByRowId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteReviewStepByRowIdInput!
+  ): DeleteReviewStepPayload
+
+  """Deletes a single `ReviewStepName` using its globally unique id."""
+  deleteReviewStepName(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteReviewStepNameInput!
+  ): DeleteReviewStepNamePayload
+
+  """Deletes a single `ReviewStepName` using a unique key."""
+  deleteReviewStepNameByRowId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteReviewStepNameByRowIdInput!
+  ): DeleteReviewStepNamePayload
+
+  """Deletes a single `ReviewStepName` using a unique key."""
+  deleteReviewStepNameByStepName(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteReviewStepNameByStepNameInput!
+  ): DeleteReviewStepNamePayload
   importSwrsOrganisationFacility(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
@@ -28913,6 +30859,50 @@ type Mutation {
     """
     input: UpdateReviewCommentByRowIdInput!
   ): UpdateReviewCommentPayload
+
+  """
+  Updates a single `ReviewStep` using its globally unique id and a patch.
+  """
+  updateReviewStep(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateReviewStepInput!
+  ): UpdateReviewStepPayload
+
+  """Updates a single `ReviewStep` using a unique key and a patch."""
+  updateReviewStepByRowId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateReviewStepByRowIdInput!
+  ): UpdateReviewStepPayload
+
+  """
+  Updates a single `ReviewStepName` using its globally unique id and a patch.
+  """
+  updateReviewStepName(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateReviewStepNameInput!
+  ): UpdateReviewStepNamePayload
+
+  """Updates a single `ReviewStepName` using a unique key and a patch."""
+  updateReviewStepNameByRowId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateReviewStepNameByRowIdInput!
+  ): UpdateReviewStepNamePayload
+
+  """Updates a single `ReviewStepName` using a unique key and a patch."""
+  updateReviewStepNameByStepName(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateReviewStepNameByStepNameInput!
+  ): UpdateReviewStepNamePayload
 }
 
 """An object with a globally unique `ID`."""
@@ -32169,6 +34159,74 @@ type Query implements Node {
     orderBy: [ReviewCommentsOrderBy!] = [PRIMARY_KEY_ASC]
   ): ReviewCommentsConnection
 
+  """Reads and enables pagination through a set of `ReviewStepName`."""
+  allReviewStepNames(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ReviewStepNameCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: ReviewStepNameFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `ReviewStepName`."""
+    orderBy: [ReviewStepNamesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ReviewStepNamesConnection
+
+  """Reads and enables pagination through a set of `ReviewStep`."""
+  allReviewSteps(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ReviewStepCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: ReviewStepFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `ReviewStep`."""
+    orderBy: [ReviewStepsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ReviewStepsConnection
+
   """Reads a single `Application` using its globally unique `ID`."""
   application(
     """
@@ -32459,6 +34517,25 @@ type Query implements Node {
     id: ID!
   ): ReviewComment
   reviewCommentByRowId(rowId: Int!): ReviewComment
+
+  """Reads a single `ReviewStep` using its globally unique `ID`."""
+  reviewStep(
+    """
+    The globally unique `ID` to be used in selecting a single `ReviewStep`.
+    """
+    id: ID!
+  ): ReviewStep
+  reviewStepByRowId(rowId: Int!): ReviewStep
+
+  """Reads a single `ReviewStepName` using its globally unique `ID`."""
+  reviewStepName(
+    """
+    The globally unique `ID` to be used in selecting a single `ReviewStepName`.
+    """
+    id: ID!
+  ): ReviewStepName
+  reviewStepNameByRowId(rowId: Int!): ReviewStepName
+  reviewStepNameByStepName(stepName: String!): ReviewStepName
 
   """Reads and enables pagination through a set of `FacilitySearchResult`."""
   searchAllFacilities(
@@ -34223,6 +36300,827 @@ input ReviewCommentTypeFilter {
   notIn: [ReviewCommentType!]
 }
 
+"""
+Information about specific review steps and their state(is_complete). An
+application can not move out of a pending review without all required
+review_steps being complete.
+"""
+type ReviewStep implements Node {
+  """Reads a single `Application` that is related to this `ReviewStep`."""
+  applicationByApplicationId: Application
+
+  """
+  The ID of the application this review_step belongs to. Foreign Key to application(id
+  """
+  applicationId: Int!
+
+  """Reads a single `CiipUser` that is related to this `ReviewStep`."""
+  ciipUserByCreatedBy: CiipUser
+
+  """Reads a single `CiipUser` that is related to this `ReviewStep`."""
+  ciipUserByDeletedBy: CiipUser
+
+  """Reads a single `CiipUser` that is related to this `ReviewStep`."""
+  ciipUserByUpdatedBy: CiipUser
+
+  """Timestamp of when this review_step was created"""
+  createdAt: Datetime!
+
+  """
+  The ID of the user who created this review_step, references ciip_user.id
+  """
+  createdBy: Int
+
+  """Timestamp of when this review_step was deprecated"""
+  deletedAt: Datetime
+
+  """
+  The ID of the user who deprecated this review_step, references ciip_user.id
+  """
+  deletedBy: Int
+
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  id: ID!
+
+  """The boolean completed state of this review_step"""
+  isComplete: Boolean
+
+  """Reads a single `ReviewStepName` that is related to this `ReviewStep`."""
+  reviewStepNameByReviewStepNameId: ReviewStepName
+
+  """
+  The foreign key ID of the review_step_name to be applied to this review step
+  """
+  reviewStepNameId: Int!
+
+  """Unique ID for the review_step"""
+  rowId: Int!
+
+  """Timestamp of when this review_step was last updated"""
+  updatedAt: Datetime!
+
+  """
+  The ID of the user who last updated this review_step, references ciip_user.id
+  """
+  updatedBy: Int
+}
+
+"""
+A condition to be used against `ReviewStep` object types. All fields are tested
+for equality and combined with a logical ‘and.’
+"""
+input ReviewStepCondition {
+  """Checks for equality with the object’s `applicationId` field."""
+  applicationId: Int
+
+  """Checks for equality with the object’s `createdAt` field."""
+  createdAt: Datetime
+
+  """Checks for equality with the object’s `createdBy` field."""
+  createdBy: Int
+
+  """Checks for equality with the object’s `deletedAt` field."""
+  deletedAt: Datetime
+
+  """Checks for equality with the object’s `deletedBy` field."""
+  deletedBy: Int
+
+  """Checks for equality with the object’s `isComplete` field."""
+  isComplete: Boolean
+
+  """Checks for equality with the object’s `reviewStepNameId` field."""
+  reviewStepNameId: Int
+
+  """Checks for equality with the object’s `rowId` field."""
+  rowId: Int
+
+  """Checks for equality with the object’s `updatedAt` field."""
+  updatedAt: Datetime
+
+  """Checks for equality with the object’s `updatedBy` field."""
+  updatedBy: Int
+}
+
+"""
+A filter to be used against `ReviewStep` object types. All fields are combined with a logical ‘and.’
+"""
+input ReviewStepFilter {
+  """Checks for all expressions in this list."""
+  and: [ReviewStepFilter!]
+
+  """Filter by the object’s `applicationId` field."""
+  applicationId: IntFilter
+
+  """Filter by the object’s `createdAt` field."""
+  createdAt: DatetimeFilter
+
+  """Filter by the object’s `createdBy` field."""
+  createdBy: IntFilter
+
+  """Filter by the object’s `deletedAt` field."""
+  deletedAt: DatetimeFilter
+
+  """Filter by the object’s `deletedBy` field."""
+  deletedBy: IntFilter
+
+  """Filter by the object’s `isComplete` field."""
+  isComplete: BooleanFilter
+
+  """Negates the expression."""
+  not: ReviewStepFilter
+
+  """Checks for any expressions in this list."""
+  or: [ReviewStepFilter!]
+
+  """Filter by the object’s `reviewStepNameId` field."""
+  reviewStepNameId: IntFilter
+
+  """Filter by the object’s `rowId` field."""
+  rowId: IntFilter
+
+  """Filter by the object’s `updatedAt` field."""
+  updatedAt: DatetimeFilter
+
+  """Filter by the object’s `updatedBy` field."""
+  updatedBy: IntFilter
+}
+
+"""An input for mutations affecting `ReviewStep`"""
+input ReviewStepInput {
+  """
+  The ID of the application this review_step belongs to. Foreign Key to application(id
+  """
+  applicationId: Int!
+
+  """Timestamp of when this review_step was created"""
+  createdAt: Datetime
+
+  """
+  The ID of the user who created this review_step, references ciip_user.id
+  """
+  createdBy: Int
+
+  """Timestamp of when this review_step was deprecated"""
+  deletedAt: Datetime
+
+  """
+  The ID of the user who deprecated this review_step, references ciip_user.id
+  """
+  deletedBy: Int
+
+  """The boolean completed state of this review_step"""
+  isComplete: Boolean
+
+  """
+  The foreign key ID of the review_step_name to be applied to this review step
+  """
+  reviewStepNameId: Int!
+
+  """Timestamp of when this review_step was last updated"""
+  updatedAt: Datetime
+
+  """
+  The ID of the user who last updated this review_step, references ciip_user.id
+  """
+  updatedBy: Int
+}
+
+"""
+Table contains a unique step_name and a boolean is_active column to indicate if
+the step_name is currently in use when reviewing an application
+"""
+type ReviewStepName implements Node {
+  """Reads and enables pagination through a set of `Application`."""
+  applicationsByReviewStepReviewStepNameIdAndApplicationId(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ApplicationCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: ApplicationFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `Application`."""
+    orderBy: [ApplicationsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ReviewStepNameApplicationsByReviewStepReviewStepNameIdAndApplicationIdManyToManyConnection!
+
+  """Reads and enables pagination through a set of `CiipUser`."""
+  ciipUsersByReviewStepReviewStepNameIdAndCreatedBy(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CiipUserCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: CiipUserFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `CiipUser`."""
+    orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ReviewStepNameCiipUsersByReviewStepReviewStepNameIdAndCreatedByManyToManyConnection!
+
+  """Reads and enables pagination through a set of `CiipUser`."""
+  ciipUsersByReviewStepReviewStepNameIdAndDeletedBy(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CiipUserCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: CiipUserFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `CiipUser`."""
+    orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ReviewStepNameCiipUsersByReviewStepReviewStepNameIdAndDeletedByManyToManyConnection!
+
+  """Reads and enables pagination through a set of `CiipUser`."""
+  ciipUsersByReviewStepReviewStepNameIdAndUpdatedBy(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CiipUserCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: CiipUserFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `CiipUser`."""
+    orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ReviewStepNameCiipUsersByReviewStepReviewStepNameIdAndUpdatedByManyToManyConnection!
+
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  id: ID!
+
+  """
+  Boolean value indicates if the step is currently in use when reviewing an application
+  """
+  isActive: Boolean!
+
+  """Reads and enables pagination through a set of `ReviewStep`."""
+  reviewStepsByReviewStepNameId(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ReviewStepCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: ReviewStepFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `ReviewStep`."""
+    orderBy: [ReviewStepsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ReviewStepsConnection!
+  rowId: Int!
+
+  """Unique step_name to be included in during an application review"""
+  stepName: String!
+}
+
+"""
+A connection to a list of `Application` values, with data from `ReviewStep`.
+"""
+type ReviewStepNameApplicationsByReviewStepReviewStepNameIdAndApplicationIdManyToManyConnection {
+  """
+  A list of edges which contains the `Application`, info from the `ReviewStep`, and the cursor to aid in pagination.
+  """
+  edges: [ReviewStepNameApplicationsByReviewStepReviewStepNameIdAndApplicationIdManyToManyEdge!]!
+
+  """A list of `Application` objects."""
+  nodes: [Application]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `Application` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `Application` edge in the connection, with data from `ReviewStep`."""
+type ReviewStepNameApplicationsByReviewStepReviewStepNameIdAndApplicationIdManyToManyEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `Application` at the end of the edge."""
+  node: Application
+
+  """Reads and enables pagination through a set of `ReviewStep`."""
+  reviewStepsByApplicationId(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ReviewStepCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: ReviewStepFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `ReviewStep`."""
+    orderBy: [ReviewStepsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ReviewStepsConnection!
+}
+
+"""
+A connection to a list of `CiipUser` values, with data from `ReviewStep`.
+"""
+type ReviewStepNameCiipUsersByReviewStepReviewStepNameIdAndCreatedByManyToManyConnection {
+  """
+  A list of edges which contains the `CiipUser`, info from the `ReviewStep`, and the cursor to aid in pagination.
+  """
+  edges: [ReviewStepNameCiipUsersByReviewStepReviewStepNameIdAndCreatedByManyToManyEdge!]!
+
+  """A list of `CiipUser` objects."""
+  nodes: [CiipUser]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `CiipUser` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `CiipUser` edge in the connection, with data from `ReviewStep`."""
+type ReviewStepNameCiipUsersByReviewStepReviewStepNameIdAndCreatedByManyToManyEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `CiipUser` at the end of the edge."""
+  node: CiipUser
+
+  """Reads and enables pagination through a set of `ReviewStep`."""
+  reviewStepsByCreatedBy(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ReviewStepCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: ReviewStepFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `ReviewStep`."""
+    orderBy: [ReviewStepsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ReviewStepsConnection!
+}
+
+"""
+A connection to a list of `CiipUser` values, with data from `ReviewStep`.
+"""
+type ReviewStepNameCiipUsersByReviewStepReviewStepNameIdAndDeletedByManyToManyConnection {
+  """
+  A list of edges which contains the `CiipUser`, info from the `ReviewStep`, and the cursor to aid in pagination.
+  """
+  edges: [ReviewStepNameCiipUsersByReviewStepReviewStepNameIdAndDeletedByManyToManyEdge!]!
+
+  """A list of `CiipUser` objects."""
+  nodes: [CiipUser]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `CiipUser` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `CiipUser` edge in the connection, with data from `ReviewStep`."""
+type ReviewStepNameCiipUsersByReviewStepReviewStepNameIdAndDeletedByManyToManyEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `CiipUser` at the end of the edge."""
+  node: CiipUser
+
+  """Reads and enables pagination through a set of `ReviewStep`."""
+  reviewStepsByDeletedBy(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ReviewStepCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: ReviewStepFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `ReviewStep`."""
+    orderBy: [ReviewStepsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ReviewStepsConnection!
+}
+
+"""
+A connection to a list of `CiipUser` values, with data from `ReviewStep`.
+"""
+type ReviewStepNameCiipUsersByReviewStepReviewStepNameIdAndUpdatedByManyToManyConnection {
+  """
+  A list of edges which contains the `CiipUser`, info from the `ReviewStep`, and the cursor to aid in pagination.
+  """
+  edges: [ReviewStepNameCiipUsersByReviewStepReviewStepNameIdAndUpdatedByManyToManyEdge!]!
+
+  """A list of `CiipUser` objects."""
+  nodes: [CiipUser]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `CiipUser` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `CiipUser` edge in the connection, with data from `ReviewStep`."""
+type ReviewStepNameCiipUsersByReviewStepReviewStepNameIdAndUpdatedByManyToManyEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `CiipUser` at the end of the edge."""
+  node: CiipUser
+
+  """Reads and enables pagination through a set of `ReviewStep`."""
+  reviewStepsByUpdatedBy(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ReviewStepCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: ReviewStepFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `ReviewStep`."""
+    orderBy: [ReviewStepsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ReviewStepsConnection!
+}
+
+"""
+A condition to be used against `ReviewStepName` object types. All fields are
+tested for equality and combined with a logical ‘and.’
+"""
+input ReviewStepNameCondition {
+  """Checks for equality with the object’s `isActive` field."""
+  isActive: Boolean
+
+  """Checks for equality with the object’s `rowId` field."""
+  rowId: Int
+
+  """Checks for equality with the object’s `stepName` field."""
+  stepName: String
+}
+
+"""
+A filter to be used against `ReviewStepName` object types. All fields are combined with a logical ‘and.’
+"""
+input ReviewStepNameFilter {
+  """Checks for all expressions in this list."""
+  and: [ReviewStepNameFilter!]
+
+  """Filter by the object’s `isActive` field."""
+  isActive: BooleanFilter
+
+  """Negates the expression."""
+  not: ReviewStepNameFilter
+
+  """Checks for any expressions in this list."""
+  or: [ReviewStepNameFilter!]
+
+  """Filter by the object’s `rowId` field."""
+  rowId: IntFilter
+
+  """Filter by the object’s `stepName` field."""
+  stepName: StringFilter
+}
+
+"""An input for mutations affecting `ReviewStepName`"""
+input ReviewStepNameInput {
+  """
+  Boolean value indicates if the step is currently in use when reviewing an application
+  """
+  isActive: Boolean
+
+  """Unique step_name to be included in during an application review"""
+  stepName: String!
+}
+
+"""
+Represents an update to a `ReviewStepName`. Fields that are set will be updated.
+"""
+input ReviewStepNamePatch {
+  """
+  Boolean value indicates if the step is currently in use when reviewing an application
+  """
+  isActive: Boolean
+
+  """Unique step_name to be included in during an application review"""
+  stepName: String
+}
+
+"""A connection to a list of `ReviewStepName` values."""
+type ReviewStepNamesConnection {
+  """
+  A list of edges which contains the `ReviewStepName` and cursor to aid in pagination.
+  """
+  edges: [ReviewStepNamesEdge!]!
+
+  """A list of `ReviewStepName` objects."""
+  nodes: [ReviewStepName]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `ReviewStepName` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `ReviewStepName` edge in the connection."""
+type ReviewStepNamesEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `ReviewStepName` at the end of the edge."""
+  node: ReviewStepName
+}
+
+"""Methods to use when ordering `ReviewStepName`."""
+enum ReviewStepNamesOrderBy {
+  ID_ASC
+  ID_DESC
+  IS_ACTIVE_ASC
+  IS_ACTIVE_DESC
+  NATURAL
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+  STEP_NAME_ASC
+  STEP_NAME_DESC
+}
+
+"""
+Represents an update to a `ReviewStep`. Fields that are set will be updated.
+"""
+input ReviewStepPatch {
+  """
+  The ID of the application this review_step belongs to. Foreign Key to application(id
+  """
+  applicationId: Int
+
+  """Timestamp of when this review_step was created"""
+  createdAt: Datetime
+
+  """
+  The ID of the user who created this review_step, references ciip_user.id
+  """
+  createdBy: Int
+
+  """Timestamp of when this review_step was deprecated"""
+  deletedAt: Datetime
+
+  """
+  The ID of the user who deprecated this review_step, references ciip_user.id
+  """
+  deletedBy: Int
+
+  """The boolean completed state of this review_step"""
+  isComplete: Boolean
+
+  """
+  The foreign key ID of the review_step_name to be applied to this review step
+  """
+  reviewStepNameId: Int
+
+  """Timestamp of when this review_step was last updated"""
+  updatedAt: Datetime
+
+  """
+  The ID of the user who last updated this review_step, references ciip_user.id
+  """
+  updatedBy: Int
+}
+
+"""A connection to a list of `ReviewStep` values."""
+type ReviewStepsConnection {
+  """
+  A list of edges which contains the `ReviewStep` and cursor to aid in pagination.
+  """
+  edges: [ReviewStepsEdge!]!
+
+  """A list of `ReviewStep` objects."""
+  nodes: [ReviewStep]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `ReviewStep` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `ReviewStep` edge in the connection."""
+type ReviewStepsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `ReviewStep` at the end of the edge."""
+  node: ReviewStep
+}
+
+"""Methods to use when ordering `ReviewStep`."""
+enum ReviewStepsOrderBy {
+  APPLICATION_ID_ASC
+  APPLICATION_ID_DESC
+  CREATED_AT_ASC
+  CREATED_AT_DESC
+  CREATED_BY_ASC
+  CREATED_BY_DESC
+  DELETED_AT_ASC
+  DELETED_AT_DESC
+  DELETED_BY_ASC
+  DELETED_BY_DESC
+  ID_ASC
+  ID_DESC
+  IS_COMPLETE_ASC
+  IS_COMPLETE_DESC
+  NATURAL
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+  REVIEW_STEP_NAME_ID_ASC
+  REVIEW_STEP_NAME_ID_DESC
+  UPDATED_AT_ASC
+  UPDATED_AT_DESC
+  UPDATED_BY_ASC
+  UPDATED_BY_DESC
+}
+
 type SearchCertificationUrlResult {
   """
   Reads a single `Application` that is related to this `SearchCertificationUrlResult`.
@@ -35979,6 +38877,154 @@ type UpdateReviewCommentPayload {
     """The method to use when ordering `ReviewComment`."""
     orderBy: [ReviewCommentsOrderBy!] = [PRIMARY_KEY_ASC]
   ): ReviewCommentsEdge
+}
+
+"""All input for the `updateReviewStepByRowId` mutation."""
+input UpdateReviewStepByRowIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `ReviewStep` being updated.
+  """
+  reviewStepPatch: ReviewStepPatch!
+
+  """Unique ID for the review_step"""
+  rowId: Int!
+}
+
+"""All input for the `updateReviewStep` mutation."""
+input UpdateReviewStepInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `ReviewStep` to be updated.
+  """
+  id: ID!
+
+  """
+  An object where the defined keys will be set on the `ReviewStep` being updated.
+  """
+  reviewStepPatch: ReviewStepPatch!
+}
+
+"""All input for the `updateReviewStepNameByRowId` mutation."""
+input UpdateReviewStepNameByRowIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `ReviewStepName` being updated.
+  """
+  reviewStepNamePatch: ReviewStepNamePatch!
+  rowId: Int!
+}
+
+"""All input for the `updateReviewStepNameByStepName` mutation."""
+input UpdateReviewStepNameByStepNameInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `ReviewStepName` being updated.
+  """
+  reviewStepNamePatch: ReviewStepNamePatch!
+
+  """Unique step_name to be included in during an application review"""
+  stepName: String!
+}
+
+"""All input for the `updateReviewStepName` mutation."""
+input UpdateReviewStepNameInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `ReviewStepName` to be updated.
+  """
+  id: ID!
+
+  """
+  An object where the defined keys will be set on the `ReviewStepName` being updated.
+  """
+  reviewStepNamePatch: ReviewStepNamePatch!
+}
+
+"""The output of our update `ReviewStepName` mutation."""
+type UpdateReviewStepNamePayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """The `ReviewStepName` that was updated by this mutation."""
+  reviewStepName: ReviewStepName
+
+  """An edge for our `ReviewStepName`. May be used by Relay 1."""
+  reviewStepNameEdge(
+    """The method to use when ordering `ReviewStepName`."""
+    orderBy: [ReviewStepNamesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ReviewStepNamesEdge
+}
+
+"""The output of our update `ReviewStep` mutation."""
+type UpdateReviewStepPayload {
+  """Reads a single `Application` that is related to this `ReviewStep`."""
+  applicationByApplicationId: Application
+
+  """Reads a single `CiipUser` that is related to this `ReviewStep`."""
+  ciipUserByCreatedBy: CiipUser
+
+  """Reads a single `CiipUser` that is related to this `ReviewStep`."""
+  ciipUserByDeletedBy: CiipUser
+
+  """Reads a single `CiipUser` that is related to this `ReviewStep`."""
+  ciipUserByUpdatedBy: CiipUser
+
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """The `ReviewStep` that was updated by this mutation."""
+  reviewStep: ReviewStep
+
+  """An edge for our `ReviewStep`. May be used by Relay 1."""
+  reviewStepEdge(
+    """The method to use when ordering `ReviewStep`."""
+    orderBy: [ReviewStepsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ReviewStepsEdge
+
+  """Reads a single `ReviewStepName` that is related to this `ReviewStep`."""
+  reviewStepNameByReviewStepNameId: ReviewStepName
 }
 
 """
