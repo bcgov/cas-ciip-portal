@@ -60,7 +60,9 @@ Something like:
 ```bash
 export PG_SYSROOT="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk"
 ```
+
 Then retry installing postgres:
+
 ```bash
 POSTGRES_EXTRA_CONFIGURE_OPTIONS='--with-libxml' asdf install postgres 11.4
 ```
@@ -220,7 +222,6 @@ cd app && yarn dev <AS_USER>
 
 ```
 AS_REPORTER
-AS_CERTIFIER
 AS_ANALYST
 AS_ADMIN
 AS_PENDING

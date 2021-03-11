@@ -23,9 +23,9 @@ Run `./.bin/deploy-data.sh --help` to learn about available options.
 ### Mocking application date/time in development and test mode with the `mocks.now()` method
 
 When deploying the `test` or `dev` data (or if the ENABLE_DB_MOCKS environment variable is set to 'true'):
+
 - the `mocks` schema is deployed. It contains a mock for the now() method that is being used instead of the default postgres implementation and rerouted through the `search_path` setting.
 - The UI injects a small control in the top part of each page to control that date value.
-
 
 ## Code style and Linting
 
@@ -54,7 +54,6 @@ The application requires users to be authenticated using keycloak. Authenticatio
 ### Additional Flags
 
 `AS_REPORTER`: Automatically log in as our test reporter
-`AS_CERTIFIER`: Automatically log in as our test certifier
 `AS_ANALYST`: Automatically log in as our test analyst
 `AS_ADMIN`: Automatically log in as our test admin
 `AS_PENDING`: Automatically log in as a pending analyst (pending approval via the Keycloak console to become an analyst)
