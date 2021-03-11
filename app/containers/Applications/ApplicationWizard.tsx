@@ -43,18 +43,6 @@ export const ApplicationWizardComponent: React.FunctionComponent<Props> = ({
     applicationRevisionByStringVersionNumber: applicationRevision
   } = application;
 
-  // Redirect a certifier given a bad link to the certify page for the application
-  if (!application.currentUserCanEdit) {
-    router.push({
-      pathname: '/certifier/certify',
-      query: {
-        applicationId: application.id,
-        version: router.query.version
-      }
-    });
-    return null;
-  }
-
   // Redirect a reporter trying to edit an application revision that was already submitted
   if (applicationRevision.isImmutable) {
     if (
