@@ -65,7 +65,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
         <>
           <Card id="next-step">
             <Card.Header>
-              <h5>Before you submit</h5>
+              <h2>Before you submit</h2>
             </Card.Header>
             <Card.Body>
               By submitting the application the applicant agrees that the
