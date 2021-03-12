@@ -34,24 +34,27 @@ export class ApplicationStatusSearchOption extends EnumSearchOption<
     };
 
     return (
-      <Form.Control
-        as="select"
-        name={this.columnName}
-        value={
-          (filterArgs[this.columnName] as string) ??
-          (filterArgs[this._nullValueArgName] ? 'NOT_STARTED' : '')
-        }
-        onChange={handleChange}
-      >
-        <option key="no-filter" value="">
-          ...
-        </option>
-        {this.searchOptionValues.map((kvp) => (
-          <option key={kvp.display} value={kvp.value}>
-            {getUserFriendlyStatusLabel(kvp.display)}
+      <td>
+        <Form.Control
+          as="select"
+          name={this.columnName}
+          value={
+            (filterArgs[this.columnName] as string) ??
+            (filterArgs[this._nullValueArgName] ? 'NOT_STARTED' : '')
+          }
+          onChange={handleChange}
+          aria-label="Filter by application status"
+        >
+          <option key="no-filter" value="">
+            ...
           </option>
-        ))}
-      </Form.Control>
+          {this.searchOptionValues.map((kvp) => (
+            <option key={kvp.display} value={kvp.value}>
+              {getUserFriendlyStatusLabel(kvp.display)}
+            </option>
+          ))}
+        </Form.Control>
+      </td>
     );
   };
 }

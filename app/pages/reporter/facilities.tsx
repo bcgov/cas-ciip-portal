@@ -63,7 +63,12 @@ class FacilitiesList extends Component<Props> {
   render() {
     const {query} = this.props;
     return (
-      <DefaultLayout showSubheader session={query.session} title="Facilities">
+      <DefaultLayout
+        showSubheader
+        session={query.session}
+        title="Facilities"
+        width="wide"
+      >
         <FacilitiesListContainer query={query} />
       </DefaultLayout>
     );

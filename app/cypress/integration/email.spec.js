@@ -139,16 +139,11 @@ describe('Draft application started email', () => {
   });
 
   it('emails the reporter when they start a new application', () => {
-    const organisationId = window.btoa('["organisations", 200]');
-    cy.visit(
-      `/reporter/facilities?organisationId=${encodeURIComponent(
-        organisationId
-      )}&organisationRowId=200`
-    );
+    cy.visit('/reporter/facilities?relayVars={"organisationRowId"%3A200}');
     cy.get('#page-content');
 
     // Assumption: The first facility with an 'Apply' button is the one created in test setup
-    cy.contains('Apply').click();
+    cy.contains('Apply for CIIP').click();
     cy.contains('Begin').click();
     cy.wait(500);
     cy.request('localhost:8025/api/v1/messages').then((response) => {

@@ -78,6 +78,7 @@ export const FacilitiesList: React.FunctionComponent<Props> = ({query}) => {
               as="select"
               custom
               value={Number(value || 2019)}
+              aria-label="Select reporting period"
               onChange={(e) =>
                 onChange(Number((e.nativeEvent.target as any).value))
               }

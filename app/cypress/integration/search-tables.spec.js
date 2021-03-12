@@ -128,7 +128,7 @@ describe('When filtering organisation requests', () => {
     cy.get('#page-content');
     cy.url().should(
       'include',
-      'analyst/organisation-requests?relayVars=%7B%22last_name%22%3A%22Filch%22%2C%22status%22%3A%22APPROVED%22%7D'
+      'analyst/organisation-requests?relayVars=%7B%22status%22%3A%22APPROVED%22%2C%22last_name%22%3A%22Filch%22%7D'
     );
     cy.get('table.search-table > tbody').find('tr').should('have.length', 1);
     cy.get('tbody > tr:nth-child(1) > td:nth-child(5)').should(
