@@ -3,6 +3,6 @@
 
 begin;
 
-create type ggircs_portal.ciip_form_result_status as enum ('approved', 'in review', 'changes requested', 'needs attention');
+drop type ggircs_portal.ciip_form_result_status;
 
 commit;

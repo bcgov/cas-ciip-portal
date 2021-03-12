@@ -256,3 +256,4 @@ mutations/create_review_comment_mutation_chain [mutations/create_review_comment_
 trigger_functions/checksum_form_results [trigger_functions/checksum_form_results@v1.16.0] 2021-03-12T23:02:03Z Dylan Leard <dylan@button.is> # Migration: remove form_result_status insert
 policies/form_result_status_policies [policies/form_result_status_policies@v1.16.0] 2021-03-12T23:04:17Z Dylan Leard <dylan@button.is> # Migration: drop form_result_status RLS function
 tables/form_result_status [tables/form_result_status@v1.16.0] 2021-03-12T23:10:08Z Dylan Leard <dylan@button.is> # Migration: drop form_result_status table
+types/ciip_form_result_status [types/ciip_form_result_status@v1.16.0] 2021-03-12T23:22:31Z Dylan Leard <dylan@button.is> # Migration: drop deprecated type
