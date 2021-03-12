@@ -2,18 +2,19 @@
 
 begin;
 
-select pg_catalog.has_table_privilege('ggircs_portal.form_result_status', 'select');
+do $$
+  begin
 
--- ciip_administrator Grants
-select ggircs_portal_private.verify_grant('select', 'form_result_status', 'ciip_administrator');
-select ggircs_portal_private.verify_grant('insert', 'form_result_status', 'ciip_administrator');
+    if (select exists (
+    select from information_schema.tables
+    where table_schema = 'ggircs_portal'
+    and table_name = 'form_result_status'
+   )) then
+      raise exception 'ggircs_portal.form_result_status exists when it should not';
+    else
+      perform true;
+    end if;
 
--- ciip_analyst Grants
-select ggircs_portal_private.verify_grant('select', 'form_result_status', 'ciip_analyst');
-select ggircs_portal_private.verify_grant('insert', 'form_result_status', 'ciip_analyst');
-
--- ciip_industry_user Grants
-select ggircs_portal_private.verify_grant('select', 'form_result_status', 'ciip_industry_user');
-select ggircs_portal_private.verify_grant('insert', 'form_result_status', 'ciip_industry_user');
+  end; $$;
 
 rollback;
