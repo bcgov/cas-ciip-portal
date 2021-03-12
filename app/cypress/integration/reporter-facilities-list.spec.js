@@ -30,11 +30,11 @@ describe('When the reporter is viewing a list of facilities & applications', () 
 
     // Change the reporting period (application Id filter should remain the same)
     cy.get('select[aria-label="Select reporting period"]').select('2018');
-    cy.get('tbody > tr:nth-child(1)').should('contain', 'not started');
-    cy.get('tbody > tr').should('have.length', 1);
+    cy.get('#no-search-results').should('have.length', 1);
 
     // Clear the application Id filter
     cy.get('thead button').contains('Clear').click();
+    cy.get('tbody > tr:nth-child(1)').should('contain', 'not started');
     cy.get('tbody > tr').should('have.length', 2);
   });
 });

@@ -13,7 +13,8 @@ create or replace function ggircs_portal.facility_application_by_reporting_year(
     left join ggircs_portal.application
       on facility.id = application.facility_id
       and application.reporting_year = _reporting_year
-    join ggircs_portal.organisation on facility.organisation_id = organisation.id;
+    join ggircs_portal.organisation on facility.organisation_id = organisation.id
+    order by organisation.operator_name, facility.facility_name;
   $$ language 'sql' stable;
 
 grant execute on function ggircs_portal.facility_application_by_reporting_year to ciip_administrator, ciip_analyst, ciip_industry_user;

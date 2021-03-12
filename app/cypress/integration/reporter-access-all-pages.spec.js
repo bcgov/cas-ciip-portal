@@ -12,7 +12,7 @@ describe('When logged in as a reporter', () => {
     cy.get('tr');
     cy.contains('View Facilities').click();
     cy.url().should('include', '/reporter/facilities');
-    cy.get('tr:nth-child(2) button')
+    cy.get('tbody > tr:nth-child(2) button')
       .contains('Resume CIIP application')
       .click();
     cy.url().should('include', '/reporter/new-application-disclaimer');
@@ -44,7 +44,7 @@ describe('When logged in as a reporter', () => {
         cy.get('tr');
         cy.contains('View Facilities').click();
         cy.url().should('include', '/reporter/facilities');
-        cy.get('tr:nth-child(2) button')
+        cy.get('tbody > tr:nth-child(2) button')
           .contains('Resume CIIP application')
           .click();
         cy.url().should('include', '/reporter/application');
