@@ -254,3 +254,4 @@ computed_columns/form_result_form_result_statuses [computed_columns/form_result_
 mutations/create_application_revision_mutation_chain [mutations/create_application_revision_mutation_chain@v1.16.0] 2021-03-12T22:57:07Z Dylan Leard <dylan@button.is> # Migration: do not create form_result_statuses
 mutations/create_review_comment_mutation_chain [mutations/create_review_comment_mutation_chain@v1.16.0] 2021-03-12T22:59:39Z Dylan Leard <dylan@button.is> # Migration: remove form_result_status inserts
 trigger_functions/checksum_form_results [trigger_functions/checksum_form_results@v1.16.0] 2021-03-12T23:02:03Z Dylan Leard <dylan@button.is> # Migration: remove form_result_status insert
+policies/form_result_status_policies [policies/form_result_status_policies@v1.16.0] 2021-03-12T23:04:17Z Dylan Leard <dylan@button.is> # Migration: drop form_result_status RLS function
