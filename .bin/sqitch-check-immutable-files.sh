@@ -4,8 +4,8 @@
 # usage: sqitch-immutable-files.sh schema_dir base_branch
 
 set -euo pipefail
-# gets the list of modified files via git diff, and removes the schema/(deploy|revert|verify) prefix, and the .sql suffix to match the sqitch plan change name
-modified_changes=$(git diff --name-only "${2}" -- "${1}"/deploy "${1}"/revert "${1}"/verify | sed -e "s/.*\/\(deploy\|verify\|revert\)\///g; s/@.*//g; s/\.sql$//g")
+# gets the list of modified files via git diff, and removes the schema/deploy prefix, and the .sql suffix to match the sqitch plan change name
+modified_changes=$(git diff --name-only "${2}" -- "${1}"/deploy | sed -e "s/.*\/\(deploy\)\///g; s/@.*//g; s/\.sql$//g")
 
 # finds the last tag in the sqitch plan in the base branch
 last_tag_on_base_branch=$(git show "${2}":"${1}"/sqitch.plan | tac | sed '/^@/q' | cut -d' ' -f1 )
