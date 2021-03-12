@@ -44,8 +44,10 @@ exports[`FacilitiesListContainer should match the previous snapshot 1`] = `
     }
     extraFilters={
       Array [
-        Object {
+        ReportingPeriodFilter {
           "Component": [Function],
+          "_defaultValue": 2019,
+          "_reportingPeriods": Array [],
           "argName": "reportingYear",
         },
       ]

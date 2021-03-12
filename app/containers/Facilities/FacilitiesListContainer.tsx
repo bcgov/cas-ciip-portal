@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import {graphql, createFragmentContainer} from 'react-relay';
-import {Form} from 'react-bootstrap';
 import {FacilitiesListContainer_query} from 'FacilitiesListContainer_query.graphql';
 import FacilitiesRowItemContainer from './FacilitiesRowItemContainer';
 import {ISearchOption} from 'components/Search/ISearchOption';
@@ -11,8 +10,8 @@ import FilterableTableLayout from 'components/FilterableComponents/FilterableTab
 import FilterableTablePagination from 'components/FilterableComponents/FilterableTablePagination';
 import {useRouter} from 'next/router';
 import safeJsonParse from 'lib/safeJsonParse';
-import {ISearchExtraFilter} from 'components/Search/SearchProps';
 import {ApplicationStatusSearchOption} from 'components/Search/ApplicationStatusSearchOption';
+import {ReportingPeriodFilter} from 'components/Search/ReportingPeriodFilter';
 
 interface Props {
   query: FacilitiesListContainer_query;
@@ -67,31 +66,11 @@ export const FacilitiesList: React.FunctionComponent<Props> = ({query}) => {
       selectableReportingYears.push(node.reportingYear);
   });
 
-  const reportingPeriodFilter: ISearchExtraFilter = {
-    argName: 'reportingYear',
-    Component: ({onChange, value}) => {
-      return (
-        <Form>
-          <Form.Group controlId="reportingYear">
-            <Form.Label>Reporting Period</Form.Label>
-            <Form.Control
-              as="select"
-              custom
-              value={Number(value || 2019)}
-              aria-label="Select reporting period"
-              onChange={(e) =>
-                onChange(Number((e.nativeEvent.target as any).value))
-              }
-            >
-              {selectableReportingYears.map((y) => (
-                <option key={y}>{y}</option>
-              ))}
-            </Form.Control>
-          </Form.Group>
-        </Form>
-      );
-    }
-  };
+  const reportingPeriodFilter = new ReportingPeriodFilter(
+    'reportingYear',
+    selectableReportingYears,
+    2019
+  );
 
   return (
     <>
