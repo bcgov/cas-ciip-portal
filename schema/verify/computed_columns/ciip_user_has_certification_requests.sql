@@ -2,6 +2,6 @@
 
 BEGIN;
 
-select pg_get_functiondef('ggircs_portal.ciip_user_has_certification_requests(ggircs_portal.ciip_user)'::regprocedure);
+select ggircs_portal_private.verify_function_not_present('ggircs_portal.ciip_user_has_certification_requests');
 
 ROLLBACK;
