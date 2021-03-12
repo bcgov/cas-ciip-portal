@@ -2,6 +2,6 @@
 
 begin;
 
-select pg_get_functiondef('ggircs_portal.search_certification_requests(text[],text[],text,text,int,int)'::regprocedure);
+select ggircs_portal_private.verify_function_not_present('ggircs_portal.search_certification_requests');
 
 rollback;
