@@ -2,6 +2,15 @@
 
 begin;
 
-select pg_get_functiondef('ggircs_portal.form_result_form_result_statuses(ggircs_portal.form_result)'::regprocedure);
+do $$
+  begin
+
+    if (select exists(select * from pg_proc where proname='ggircs_portal.form_result_form_result_statuses')) then
+      raise exception 'ggircs_portal.form_result_form_result_statuses exists when it should not';
+    else
+      perform true;
+    end if;
+
+  end; $$;
 
 rollback;

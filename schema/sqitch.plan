@@ -250,3 +250,4 @@ computed_columns/facility_application_application_status 2021-03-09T00:41:16Z Ma
 computed_columns/facility_application_last_swrs_reporting_year 2021-03-09T00:41:52Z Matthieu Foucault <matthieu@button.is> # add computed column to retrieve last swrs reporting year of a facility_application
 search_functions/search_all_facilities [search_functions/search_all_facilities@v1.16.0] 2021-03-09T00:52:12Z Matthieu Foucault <matthieu@button.is> # drop obsolete search function
 types/application_search_result [types/application_search_result@v1.16.0] 2021-03-09T00:56:14Z Matthieu Foucault <matthieu@button.is> # drop obsolete search result type
+computed_columns/form_result_form_result_statuses [computed_columns/form_result_form_result_statuses@v1.16.0] 2021-03-12T22:52:30Z Dylan Leard <dylan@button.is> # Migration: drop deprecated computed column
