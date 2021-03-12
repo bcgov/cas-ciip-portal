@@ -12,7 +12,7 @@ $function$
     if (select exists(select * from pg_proc where proname=function_name)) then
       raise exception '% exists when it should not', function_name;
     else
-      perform true;
+      return true;
     end if;
 
   end;
