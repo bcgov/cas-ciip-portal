@@ -1,4 +1,4 @@
--- Revert ggircs-portal:tables/review_step from pg
+-- Revert ggircs-portal:types/review_step from pg
 
 begin;
 

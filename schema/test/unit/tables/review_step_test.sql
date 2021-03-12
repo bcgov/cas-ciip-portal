@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(22);
+select plan(15);
 
 -- Table exists
 select has_table(
@@ -17,53 +17,11 @@ select col_is_pk(
   'review_step has an id column primary key'
 );
 
-select col_is_fk(
-  'ggircs_portal', 'review_step', 'application_id',
-  'review_step has foreign key application_id'
-);
-
-select col_is_fk(
-  'ggircs_portal', 'review_step', 'review_step_name_id',
-  'review_step has foreign key review_step_name_id'
-);
-
-select has_index(
-  'ggircs_portal', 'review_step', 'ggircs_portal_review_step_application_foreign_key',
-  'review_step has an index on application_id fk'
-);
-
-select has_index(
-  'ggircs_portal', 'review_step', 'ggircs_portal_review_step_review_step_name_foreign_key',
-  'review_step has an index on application_id fk'
-);
-
-select has_index(
-  'ggircs_portal', 'review_step', 'ggircs_portal_review_step_created_by_foreign_key',
-  'review_step has an index on created_by fk'
-);
-
-select has_index(
-  'ggircs_portal', 'review_step', 'ggircs_portal_review_step_updated_by_foreign_key',
-  'review_step has an index on updated_by fk'
-);
-
-select has_index(
-  'ggircs_portal', 'review_step', 'ggircs_portal_review_step_deleted_by_foreign_key',
-  'review_step has an index on deleted_by fk'
-);
-
 -- Columns
 select columns_are('ggircs_portal'::name, 'review_step'::name, array[
   'id'::name,
-  'application_id'::name,
-  'review_step_name_id'::name,
-  'is_complete'::name,
-  'created_at'::name,
-  'created_by'::name,
-  'updated_at'::name,
-  'updated_by'::name,
-  'deleted_at'::name,
-  'deleted_by'::name
+  'step_name'::name,
+  'is_active'::name
 ]);
 
 -- Test Setup
@@ -71,11 +29,7 @@ select test_helper.clean_ggircs_portal_schema();
 select test_helper.mock_open_window();
 select test_helper.modify_triggers('disable');
 select test_helper.create_test_users();
-select test_helper.create_applications(2, False, True);
-insert into ggircs_portal.review_step_name (step_name, is_active) values ('test_step1', true);
-insert into ggircs_portal.review_step_name (step_name, is_active) values ('test_step2', false);
-insert into ggircs_portal.review_step(application_id, review_step_name_id, is_complete)
-  values (1,1,false);
+insert into ggircs_portal.review_step (step_name, is_active) values ('test_step', true);
 
 -- Row level security tests
 
@@ -93,15 +47,14 @@ select results_eq(
 
 select lives_ok(
   $$
-    insert into ggircs_portal.review_step(application_id, review_step_name_id, is_complete)
-  values (1,2,false);
+    insert into ggircs_portal.review_step (step_name, is_active) values ('admin_created', true);
   $$,
     'ciip_administrator can insert data in review_step table'
 );
 
 select lives_ok(
   $$
-    update ggircs_portal.review_step set is_complete = true where id=1;
+    update ggircs_portal.review_step set step_name='admin_changed' where id=1;
   $$,
     'Administrator can update rows in review_step table'
 );
@@ -126,19 +79,20 @@ select results_eq(
   'Analyst can select all from table review_step'
 );
 
-select lives_ok(
+select throws_like(
   $$
-    insert into ggircs_portal.review_step(application_id, review_step_name_id, is_complete)
-  values (2,1,false);
+    insert into ggircs_portal.review_step (step_name, is_active) values ('analyst_created', true);
   $$,
-    'Analyst can insert data in review_step table'
+  'permission denied%',
+    'Analyst cannot update table review_step'
 );
 
-select lives_ok(
+select throws_like(
   $$
-    update ggircs_portal.review_step set is_complete = true where id=2;
+    update ggircs_portal.review_step set step_name = 'analyst_changed' where id=1;
   $$,
-    'Analyst can update rows in review_step table'
+  'permission denied%',
+    'Analyst cannot update table review_step'
 );
 
 select throws_like(
@@ -155,7 +109,7 @@ select concat('current user is: ', (select current_user));
 
 select throws_like(
   $$
-    select * from ggircs_portal.review_step;
+    select * from  ggircs_portal.review_step;
   $$,
   'permission denied%',
     'reporter cannot view table review_step'
@@ -163,8 +117,7 @@ select throws_like(
 
 select throws_like(
   $$
-    insert into ggircs_portal.review_step(application_id, review_step_name_id, is_complete)
-    values (2,2,false);
+    insert into ggircs_portal.review_step (step_name, is_active) values ('reporter_created', true);
   $$,
   'permission denied%',
     'reporter cannot update table review_step'
@@ -172,7 +125,7 @@ select throws_like(
 
 select throws_like(
   $$
-    update ggircs_portal.review_step set is_complete='false' where id=1;
+    update ggircs_portal.review_step set step_name='reporter_changed' where id=1;
   $$,
   'permission denied%',
     'reporter cannot update table review_step'

@@ -9,7 +9,5 @@ select ggircs_portal_private.verify_policy('update', 'ciip_administrator_update_
 
 -- ciip_analyst Policies
 select ggircs_portal_private.verify_policy('select', 'ciip_analyst_select_review_step', 'review_step', 'ciip_analyst');
-select ggircs_portal_private.verify_policy('insert', 'ciip_analyst_insert_review_step', 'review_step', 'ciip_analyst');
-select ggircs_portal_private.verify_policy('update', 'ciip_analyst_update_review_step', 'review_step', 'ciip_analyst');
 
 rollback;

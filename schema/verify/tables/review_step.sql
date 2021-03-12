@@ -1,4 +1,4 @@
--- Verify ggircs-portal:tables/review_step on pg
+-- Verify ggircs-portal:types/review_step on pg
 
 begin;
 
@@ -11,7 +11,5 @@ select ggircs_portal_private.verify_grant('update', 'review_step', 'ciip_adminis
 
 -- ciip_analyst Grants
 select ggircs_portal_private.verify_grant('select', 'review_step', 'ciip_analyst');
-select ggircs_portal_private.verify_grant('insert', 'review_step', 'ciip_analyst');
-select ggircs_portal_private.verify_grant('update', 'review_step', 'ciip_analyst');
 
 rollback;

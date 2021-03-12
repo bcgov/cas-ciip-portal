@@ -29,16 +29,16 @@ do $$
 $$;
 select test_helper.create_test_users();
 select test_helper.create_applications(2, False, True);
-insert into ggircs_portal.review_step_name (step_name, is_active) values ('test_step1', true);
-insert into ggircs_portal.review_step_name (step_name, is_active) values ('test_step2', true);
-insert into ggircs_portal.review_step_name (step_name, is_active) values ('no_step', false);
-insert into ggircs_portal.review_step (application_id, review_step_name_id, is_complete)
+insert into ggircs_portal.review_step (step_name, is_active) values ('test_step1', true);
+insert into ggircs_portal.review_step (step_name, is_active) values ('test_step2', true);
+insert into ggircs_portal.review_step (step_name, is_active) values ('no_step', false);
+insert into ggircs_portal.application_review_step (application_id, review_step_name_id, is_complete)
   values (2,1,true), (2,2,true);
 
 
 select results_eq(
   $$
-    select count(*) from ggircs_portal.review_step where application_id=1;
+    select count(*) from ggircs_portal.application_review_step where application_id=1;
   $$,
   ARRAY[0::bigint],
   'No review_steps exist for application with id=1'
@@ -50,7 +50,7 @@ insert into ggircs_portal.application_revision_status (application_id, version_n
 
 select results_eq(
   $$
-    select count(*) from ggircs_portal.review_step where application_id=1;
+    select count(*) from ggircs_portal.application_review_step where application_id=1;
   $$,
   ARRAY[0::bigint],
   'Trigger did not fire on status changed to approved'
@@ -61,7 +61,7 @@ insert into ggircs_portal.application_revision_status (application_id, version_n
 
 select results_eq(
   $$
-    select count(*) from ggircs_portal.review_step where application_id=1;
+    select count(*) from ggircs_portal.application_review_step where application_id=1;
   $$,
   ARRAY[0::bigint],
   'Trigger did not fire on status changed to rejected'
@@ -72,7 +72,7 @@ insert into ggircs_portal.application_revision_status (application_id, version_n
 
 select results_eq(
   $$
-    select count(*) from ggircs_portal.review_step where application_id=1;
+    select count(*) from ggircs_portal.application_review_step where application_id=1;
   $$,
   ARRAY[0::bigint],
   'Trigger did not fire on status changed to requested changes'
@@ -83,7 +83,7 @@ insert into ggircs_portal.application_revision_status (application_id, version_n
 
 select results_eq(
   $$
-    select count(*) from ggircs_portal.review_step where application_id=1;
+    select count(*) from ggircs_portal.application_review_step where application_id=1;
   $$,
   ARRAY[0::bigint],
   'Trigger did not fire on status changed to draft'
@@ -95,18 +95,18 @@ insert into ggircs_portal.application_revision_status (application_id, version_n
 
 select results_eq(
   $$
-    select count(*) from ggircs_portal.review_step where application_id=1 and review_step_name_id in (1,2);
+    select count(*) from ggircs_portal.application_review_step where application_id=1 and review_step_name_id in (1,2);
   $$,
   ARRAY[2::bigint],
-  'Trigger function creates review_step rows for each active reivew_step_name'
+  'Trigger function creates application_review_step rows for each active reivew_step_name'
 );
 
 select results_eq(
   $$
-    select count(*) from ggircs_portal.review_step where application_id=1 and review_step_name_id=3;
+    select count(*) from ggircs_portal.application_review_step where application_id=1 and review_step_name_id=3;
   $$,
   ARRAY[0::bigint],
-  'Trigger function does not create review_step rows for inactive reivew_step_names'
+  'Trigger function does not create application_review_step rows for inactive reivew_step_names'
 );
 
 -- Fire trigger by submitting an application with existing review_steps with is_complete set to true
@@ -115,7 +115,7 @@ insert into ggircs_portal.application_revision_status (application_id, version_n
 
 select results_eq(
   $$
-    select is_complete from ggircs_portal.review_step where application_id=2;
+    select is_complete from ggircs_portal.application_review_step where application_id=2;
   $$,
   ARRAY[false::boolean, false::boolean],
   'Trigger function sets is_complete column to false when review_steps already exist'
