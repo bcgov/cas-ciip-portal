@@ -11,18 +11,6 @@ describe('ApplicationDetailsCardItemComponent', () => {
         name: 'Fuel Usage',
         formJson: {schema: {title: 'Fuel UsageCollapse'}, uiSchema: {}},
         slug: 'fuel'
-      },
-      formResultStatuses: {
-        edges: [
-          {
-            node: {
-              ' $fragmentRefs': {
-                ' $refType': 'ApplicationDetailsCardItem_formResult',
-                ApplicationReviewContainer_formResultStatus: true
-              }
-            }
-          }
-        ]
       }
     };
     const query = {
@@ -60,18 +48,6 @@ describe('ApplicationDetailsCardItemComponent', () => {
         name: 'Fuel Usage',
         formJson: {schema: {title: 'Fuel UsageCollapse'}, uiSchema: {}},
         slug: 'fuel'
-      },
-      formResultStatuses: {
-        edges: [
-          {
-            node: {
-              ' $fragmentRefs': {
-                ' $refType': 'ApplicationDetailsCardItem_formResult',
-                ApplicationReviewContainer_formResultStatus: true
-              }
-            }
-          }
-        ]
       }
     };
     const query = {
