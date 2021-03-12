@@ -34189,7 +34189,6 @@ type Query implements Node {
   ): ReviewComment
   reviewCommentByRowId(rowId: Int!): ReviewComment
 
-<<<<<<< refs/remotes/origin/develop
   """Reads a single `ReviewStep` using its globally unique `ID`."""
   reviewStep(
     """
@@ -34200,42 +34199,6 @@ type Query implements Node {
   reviewStepByRowId(rowId: Int!): ReviewStep
   reviewStepByStepName(stepName: String!): ReviewStep
 
-  """Reads and enables pagination through a set of `FacilitySearchResult`."""
-  searchAllFacilities(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-    direction: String
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: FacilitySearchResultFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-    maxResultsPerPage: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-    offsetValue: Int
-    orderByField: String
-    organisationRowId: String
-    reportingYear: Int
-    searchField: String
-    searchValue: String
-  ): FacilitySearchResultsConnection!
-
-=======
->>>>>>> feat: remove obsolete facilities search
   """
   Search function returns data related to certification requests associated with the current user
   """
