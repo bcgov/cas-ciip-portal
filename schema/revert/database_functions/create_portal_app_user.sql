@@ -19,6 +19,4 @@ do $$
   end;
 $$;
 
-drop user ciip_portal;
-
 commit;
