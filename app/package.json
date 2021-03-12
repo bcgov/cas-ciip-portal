@@ -76,7 +76,6 @@
     "react-relay": "^9.1.0",
     "react-relay-network-modern": "^4.7.1",
     "react-relay-network-modern-ssr": "^1.2.4",
-    "react-signature-canvas": "^1.0.3",
     "react-toastify": "^7.0.3",
     "relay-runtime": "^9.0.0",
     "remove": "^0.1.5",
