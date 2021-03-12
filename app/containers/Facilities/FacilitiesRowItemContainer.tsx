@@ -3,14 +3,14 @@ import {Badge} from 'react-bootstrap';
 import {graphql, createFragmentContainer} from 'react-relay';
 import {
   CiipApplicationRevisionStatus,
-  FacilitiesRowItemContainer_facilitySearchResult
-} from 'FacilitiesRowItemContainer_facilitySearchResult.graphql';
+  FacilitiesRowItemContainer_facilityApplication
+} from 'FacilitiesRowItemContainer_facilityApplication.graphql';
 import {FacilitiesRowItemContainer_query} from 'FacilitiesRowItemContainer_query.graphql';
 import ApplyButtonContainer from 'containers/Applications/ApplyButtonContainer';
 import {getUserFriendlyStatusLabel} from 'lib/text-transforms';
 
 interface Props {
-  facilitySearchResult: FacilitiesRowItemContainer_facilitySearchResult;
+  facilityApplication: FacilitiesRowItemContainer_facilityApplication;
   reportingYear: number;
   query: FacilitiesRowItemContainer_query;
 }
@@ -25,52 +25,61 @@ const statusBadgeColor: Record<
   REQUESTED_CHANGES: 'secondary'
 };
 export const FacilitiesRowItemComponent: React.FunctionComponent<Props> = ({
-  facilitySearchResult,
+  facilityApplication,
   query,
   reportingYear
 }) => {
-  const {applicationRevisionStatus} = facilitySearchResult;
+  const {
+    applicationStatus,
+    applicationId,
+    operatorName,
+    facilityName,
+    facilityType,
+    facilityBcghgid,
+    lastSwrsReportingYear
+  } = facilityApplication;
   const hasCertificationUrl = Boolean(
-    facilitySearchResult?.applicationByApplicationId?.latestDraftRevision
+    facilityApplication?.applicationByApplicationId?.latestDraftRevision
       ?.certificationUrl
   );
   const isCertified = Boolean(
-    facilitySearchResult?.applicationByApplicationId?.latestDraftRevision
+    facilityApplication?.applicationByApplicationId?.latestDraftRevision
       ?.certificationUrl?.certifiedBy
   );
 
   let certificationStatus = null;
 
-  if (applicationRevisionStatus === 'DRAFT' && isCertified)
+  if (applicationStatus === 'DRAFT' && isCertified)
     certificationStatus = ' (Certified)';
-  else if (applicationRevisionStatus === 'DRAFT' && hasCertificationUrl)
+  else if (applicationStatus === 'DRAFT' && hasCertificationUrl)
     certificationStatus = ' (Pending Certification)';
 
   return (
     <tr>
-      <td>{facilitySearchResult.organisationName}</td>
-      <td>{facilitySearchResult.facilityName}</td>
-      <td>{facilitySearchResult.facilityType}</td>
-      <td>{facilitySearchResult.facilityBcghgid}</td>
-      <td>{facilitySearchResult.lastSwrsReportingYear}</td>
+      <td>{operatorName}</td>
+      <td>{facilityName}</td>
+      <td>{facilityType}</td>
+      <td>{facilityBcghgid}</td>
+      <td>{lastSwrsReportingYear}</td>
       <td>
         {' '}
-        {applicationRevisionStatus ? (
+        {applicationStatus ? (
           <Badge
             pill
             style={{width: '100%', textTransform: 'uppercase'}}
-            variant={statusBadgeColor[applicationRevisionStatus]}
+            variant={statusBadgeColor[applicationStatus]}
           >
-            {getUserFriendlyStatusLabel(applicationRevisionStatus)}
+            {getUserFriendlyStatusLabel(applicationStatus)}
             {certificationStatus}
           </Badge>
         ) : (
           <>Application not started</>
         )}
       </td>
+      <td>{applicationId}</td>
       <td>
         <ApplyButtonContainer
-          applyButtonDetails={facilitySearchResult}
+          applyButtonDetails={facilityApplication}
           reportingYear={reportingYear}
           query={query}
         />
@@ -80,15 +89,16 @@ export const FacilitiesRowItemComponent: React.FunctionComponent<Props> = ({
 };
 
 export default createFragmentContainer(FacilitiesRowItemComponent, {
-  facilitySearchResult: graphql`
-    fragment FacilitiesRowItemContainer_facilitySearchResult on FacilitySearchResult {
+  facilityApplication: graphql`
+    fragment FacilitiesRowItemContainer_facilityApplication on FacilityApplication {
       ...ApplyButtonContainer_applyButtonDetails
       facilityName
       facilityType
       facilityBcghgid
       lastSwrsReportingYear
-      applicationRevisionStatus
-      organisationName
+      applicationId
+      applicationStatus
+      operatorName
       applicationByApplicationId {
         latestDraftRevision {
           certificationUrl {

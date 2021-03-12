@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {graphql} from 'react-relay';
 import {NextRouter} from 'next/router';
 import {facilitiesQueryResponse} from 'facilitiesQuery.graphql';
-import SearchTable from 'components/SearchTable';
 import DefaultLayout from 'layouts/default-layout';
 import FacilitiesListContainer from 'containers/Facilities/FacilitiesListContainer';
 import {USER} from 'data/group-constants';
@@ -18,26 +17,32 @@ class FacilitiesList extends Component<Props> {
   static isAccessProtected = true;
   static query = graphql`
     query facilitiesQuery(
-      $orderByField: String
-      $direction: String
-      $searchField: String
-      $searchValue: String
-      $organisationRowId: String
-      $offsetValue: Int
-      $maxResultsPerPage: Int
-      $reportingYear: Int
+      $operatorName: String
+      $facilityName: String
+      $applicationStatus: CiipApplicationRevisionStatus
+      $applicationIdIsNull: Boolean
+      $applicationId: Int
+      $organisationRowId: Int
+      $offset: Int
+      $max_results: Int
+      $reportingYear: Int = 2019
+      $lastSwrsReportingYear: Int
+      $facilityBcghgid: String
     ) {
       query {
         ...FacilitiesListContainer_query
           @arguments(
-            orderByField: $orderByField
-            direction: $direction
-            searchField: $searchField
-            searchValue: $searchValue
+            operatorName: $operatorName
+            facilityName: $facilityName
+            applicationStatus: $applicationStatus
+            applicationIdIsNull: $applicationIdIsNull
+            applicationId: $applicationId
             organisationRowId: $organisationRowId
-            offsetValue: $offsetValue
-            maxResultsPerPage: $maxResultsPerPage
+            lastSwrsReportingYear: $lastSwrsReportingYear
+            offset: $offset
+            max_results: $max_results
             reportingYear: $reportingYear
+            facilityBcghgid: $facilityBcghgid
           )
         session {
           ...defaultLayout_session
@@ -49,26 +54,22 @@ class FacilitiesList extends Component<Props> {
   static async getInitialProps() {
     return {
       variables: {
-        orderByField: 'facility_name',
-        direction: 'ASC',
-        offsetValue: 0,
-        maxResultsPerPage: 10,
-        reportingYear: 2019
+        offset: 0,
+        max_results: 20
       }
     };
   }
 
   render() {
-    const {session} = this.props.query;
+    const {query} = this.props;
     return (
-      <DefaultLayout showSubheader session={session} title="Facilities">
-        <SearchTable
-          query={this.props.query}
-          defaultOrderByField="facility_name"
-          defaultOrderByDisplay="Facility Name"
-        >
-          {(props) => <FacilitiesListContainer {...props} />}
-        </SearchTable>
+      <DefaultLayout
+        showSubheader
+        session={query.session}
+        title="Facilities"
+        width="wide"
+      >
+        <FacilitiesListContainer query={query} />
       </DefaultLayout>
     );
   }

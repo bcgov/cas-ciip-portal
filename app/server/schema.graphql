@@ -732,6 +732,40 @@ type Application implements Node {
   currentUserCanEdit: Boolean
 
   """Reads and enables pagination through a set of `Facility`."""
+  facilitiesByFacilityApplicationApplicationIdAndFacilityId(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: FacilityCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: FacilityFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `Facility`."""
+    orderBy: [FacilitiesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ApplicationFacilitiesByFacilityApplicationApplicationIdAndFacilityIdManyToManyConnection!
+
+  """Reads and enables pagination through a set of `Facility`."""
   facilitiesByFacilitySearchResultApplicationIdAndFacilityId(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
@@ -961,6 +995,40 @@ type Application implements Node {
     offset: Int
     versionNumberInput: String
   ): FormResultsConnection!
+
+  """Reads and enables pagination through a set of `Organisation`."""
+  organisationsByFacilityApplicationApplicationIdAndOrganisationId(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: OrganisationCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: OrganisationFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `Organisation`."""
+    orderBy: [OrganisationsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ApplicationOrganisationsByFacilityApplicationApplicationIdAndOrganisationIdManyToManyConnection!
 
   """
   Computed column for graphql to traverse to the previous application_revision with status "submitted" from application
@@ -2222,6 +2290,62 @@ input ApplicationCondition {
 }
 
 """
+A connection to a list of `Facility` values, with data from `FacilityApplication`.
+"""
+type ApplicationFacilitiesByFacilityApplicationApplicationIdAndFacilityIdManyToManyConnection {
+  """
+  A list of edges which contains the `Facility`, info from the `FacilityApplication`, and the cursor to aid in pagination.
+  """
+  edges: [ApplicationFacilitiesByFacilityApplicationApplicationIdAndFacilityIdManyToManyEdge!]!
+
+  """A list of `Facility` objects."""
+  nodes: [Facility]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `Facility` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""
+A `Facility` edge in the connection, with data from `FacilityApplication`.
+"""
+type ApplicationFacilitiesByFacilityApplicationApplicationIdAndFacilityIdManyToManyEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """Reads and enables pagination through a set of `FacilityApplication`."""
+  facilityApplicationsByFacilityId(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: FacilityApplicationFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+  ): FacilityApplicationsConnection!
+
+  """The `Facility` at the end of the edge."""
+  node: Facility
+}
+
+"""
 A connection to a list of `Facility` values, with data from `FacilitySearchResult`.
 """
 type ApplicationFacilitiesByFacilitySearchResultApplicationIdAndFacilityIdManyToManyConnection {
@@ -2459,6 +2583,63 @@ input ApplicationInput {
   The foreign key to ggircs_portal.reporting_year, references reporting_year
   """
   reportingYear: Int
+}
+
+"""
+A connection to a list of `Organisation` values, with data from `FacilityApplication`.
+"""
+type ApplicationOrganisationsByFacilityApplicationApplicationIdAndOrganisationIdManyToManyConnection {
+  """
+  A list of edges which contains the `Organisation`, info from the
+  `FacilityApplication`, and the cursor to aid in pagination.
+  """
+  edges: [ApplicationOrganisationsByFacilityApplicationApplicationIdAndOrganisationIdManyToManyEdge!]!
+
+  """A list of `Organisation` objects."""
+  nodes: [Organisation]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `Organisation` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""
+A `Organisation` edge in the connection, with data from `FacilityApplication`.
+"""
+type ApplicationOrganisationsByFacilityApplicationApplicationIdAndOrganisationIdManyToManyEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """Reads and enables pagination through a set of `FacilityApplication`."""
+  facilityApplicationsByOrganisationId(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: FacilityApplicationFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+  ): FacilityApplicationsConnection!
+
+  """The `Organisation` at the end of the edge."""
+  node: Organisation
 }
 
 """
@@ -24871,6 +25052,40 @@ enum FacilitiesOrderBy {
 """Table containing information on an facility that has applied for CIIP"""
 type Facility implements Node {
   """Reads and enables pagination through a set of `Application`."""
+  applicationsByFacilityApplicationFacilityIdAndApplicationId(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ApplicationCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: ApplicationFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `Application`."""
+    orderBy: [ApplicationsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): FacilityApplicationsByFacilityApplicationFacilityIdAndApplicationIdManyToManyConnection!
+
+  """Reads and enables pagination through a set of `Application`."""
   applicationsByFacilityId(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
@@ -24959,6 +25174,40 @@ type Facility implements Node {
   """the id of the organization responsible for that facility"""
   organisationId: Int!
 
+  """Reads and enables pagination through a set of `Organisation`."""
+  organisationsByFacilityApplicationFacilityIdAndOrganisationId(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: OrganisationCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: OrganisationFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `Organisation`."""
+    orderBy: [OrganisationsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): FacilityOrganisationsByFacilityApplicationFacilityIdAndOrganisationIdManyToManyConnection!
+
   """report id from swrs"""
   reportId: Int
 
@@ -25007,6 +25256,141 @@ type Facility implements Node {
 
   """swrs report id from swrs"""
   swrsReportId: Int
+}
+
+"""
+A composite type representing the association of a facility and its CIIP application for a given reporting year
+"""
+type FacilityApplication {
+  """
+  Reads a single `Application` that is related to this `FacilityApplication`.
+  """
+  applicationByApplicationId: Application
+  applicationId: Int
+  applicationStatus: CiipApplicationRevisionStatus
+  facilityBcghgid: String
+
+  """
+  Reads a single `Facility` that is related to this `FacilityApplication`.
+  """
+  facilityByFacilityId: Facility
+  facilityId: Int
+  facilityName: String
+  facilityType: String
+  lastSwrsReportingYear: Int
+  operatorName: String
+
+  """
+  Reads a single `Organisation` that is related to this `FacilityApplication`.
+  """
+  organisationByOrganisationId: Organisation
+  organisationId: Int
+  reportingYear: Int
+  swrsFacilityId: Int
+}
+
+"""
+A filter to be used against `FacilityApplication` object types. All fields are combined with a logical ‘and.’
+"""
+input FacilityApplicationFilter {
+  """Checks for all expressions in this list."""
+  and: [FacilityApplicationFilter!]
+
+  """Filter by the object’s `applicationId` field."""
+  applicationId: IntFilter
+
+  """Filter by the object’s `applicationStatus` field."""
+  applicationStatus: CiipApplicationRevisionStatusFilter
+
+  """Filter by the object’s `facilityBcghgid` field."""
+  facilityBcghgid: StringFilter
+
+  """Filter by the object’s `facilityId` field."""
+  facilityId: IntFilter
+
+  """Filter by the object’s `facilityName` field."""
+  facilityName: StringFilter
+
+  """Filter by the object’s `facilityType` field."""
+  facilityType: StringFilter
+
+  """Filter by the object’s `lastSwrsReportingYear` field."""
+  lastSwrsReportingYear: IntFilter
+
+  """Negates the expression."""
+  not: FacilityApplicationFilter
+
+  """Filter by the object’s `operatorName` field."""
+  operatorName: StringFilter
+
+  """Checks for any expressions in this list."""
+  or: [FacilityApplicationFilter!]
+
+  """Filter by the object’s `organisationId` field."""
+  organisationId: IntFilter
+
+  """Filter by the object’s `reportingYear` field."""
+  reportingYear: IntFilter
+
+  """Filter by the object’s `swrsFacilityId` field."""
+  swrsFacilityId: IntFilter
+}
+
+"""
+A connection to a list of `Application` values, with data from `FacilityApplication`.
+"""
+type FacilityApplicationsByFacilityApplicationFacilityIdAndApplicationIdManyToManyConnection {
+  """
+  A list of edges which contains the `Application`, info from the
+  `FacilityApplication`, and the cursor to aid in pagination.
+  """
+  edges: [FacilityApplicationsByFacilityApplicationFacilityIdAndApplicationIdManyToManyEdge!]!
+
+  """A list of `Application` objects."""
+  nodes: [Application]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `Application` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""
+A `Application` edge in the connection, with data from `FacilityApplication`.
+"""
+type FacilityApplicationsByFacilityApplicationFacilityIdAndApplicationIdManyToManyEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """Reads and enables pagination through a set of `FacilityApplication`."""
+  facilityApplicationsByApplicationId(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: FacilityApplicationFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+  ): FacilityApplicationsConnection!
+
+  """The `Application` at the end of the edge."""
+  node: Application
 }
 
 """
@@ -25064,6 +25448,34 @@ type FacilityApplicationsByFacilitySearchResultFacilityIdAndApplicationIdManyToM
 
   """The `Application` at the end of the edge."""
   node: Application
+}
+
+"""A connection to a list of `FacilityApplication` values."""
+type FacilityApplicationsConnection {
+  """
+  A list of edges which contains the `FacilityApplication` and cursor to aid in pagination.
+  """
+  edges: [FacilityApplicationsEdge!]!
+
+  """A list of `FacilityApplication` objects."""
+  nodes: [FacilityApplication]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """
+  The count of *all* `FacilityApplication` you could get from the connection.
+  """
+  totalCount: Int!
+}
+
+"""A `FacilityApplication` edge in the connection."""
+type FacilityApplicationsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `FacilityApplication` at the end of the edge."""
+  node: FacilityApplication
 }
 
 """
@@ -25188,6 +25600,63 @@ input FacilityInput {
 
   """swrs report id from swrs"""
   swrsReportId: Int
+}
+
+"""
+A connection to a list of `Organisation` values, with data from `FacilityApplication`.
+"""
+type FacilityOrganisationsByFacilityApplicationFacilityIdAndOrganisationIdManyToManyConnection {
+  """
+  A list of edges which contains the `Organisation`, info from the
+  `FacilityApplication`, and the cursor to aid in pagination.
+  """
+  edges: [FacilityOrganisationsByFacilityApplicationFacilityIdAndOrganisationIdManyToManyEdge!]!
+
+  """A list of `Organisation` objects."""
+  nodes: [Organisation]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `Organisation` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""
+A `Organisation` edge in the connection, with data from `FacilityApplication`.
+"""
+type FacilityOrganisationsByFacilityApplicationFacilityIdAndOrganisationIdManyToManyEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """Reads and enables pagination through a set of `FacilityApplication`."""
+  facilityApplicationsByOrganisationId(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: FacilityApplicationFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+  ): FacilityApplicationsConnection!
+
+  """The `Organisation` at the end of the edge."""
+  node: Organisation
 }
 
 """
@@ -29919,6 +30388,40 @@ type OperatorContactDatum {
 Table containing information on an organisaiton that has applied for CIIP
 """
 type Organisation implements Node {
+  """Reads and enables pagination through a set of `Application`."""
+  applicationsByFacilityApplicationOrganisationIdAndApplicationId(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ApplicationCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: ApplicationFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `Application`."""
+    orderBy: [ApplicationsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): OrganisationApplicationsByFacilityApplicationOrganisationIdAndApplicationIdManyToManyConnection!
+
   """Reads and enables pagination through a set of `CiipUserOrganisation`."""
   ciipUserOrganisationsByOrganisationId(
     """Read all values in the set after (below) this cursor."""
@@ -29994,6 +30497,40 @@ type Organisation implements Node {
   duns: String
 
   """Reads and enables pagination through a set of `Facility`."""
+  facilitiesByFacilityApplicationOrganisationIdAndFacilityId(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: FacilityCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: FacilityFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `Facility`."""
+    orderBy: [FacilitiesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): OrganisationFacilitiesByFacilityApplicationOrganisationIdAndFacilityIdManyToManyConnection!
+
+  """Reads and enables pagination through a set of `Facility`."""
   facilitiesByOrganisationId(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
@@ -30067,6 +30604,63 @@ type Organisation implements Node {
 
   """swrs report id from swrs"""
   swrsReportId: Int
+}
+
+"""
+A connection to a list of `Application` values, with data from `FacilityApplication`.
+"""
+type OrganisationApplicationsByFacilityApplicationOrganisationIdAndApplicationIdManyToManyConnection {
+  """
+  A list of edges which contains the `Application`, info from the
+  `FacilityApplication`, and the cursor to aid in pagination.
+  """
+  edges: [OrganisationApplicationsByFacilityApplicationOrganisationIdAndApplicationIdManyToManyEdge!]!
+
+  """A list of `Application` objects."""
+  nodes: [Application]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `Application` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""
+A `Application` edge in the connection, with data from `FacilityApplication`.
+"""
+type OrganisationApplicationsByFacilityApplicationOrganisationIdAndApplicationIdManyToManyEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """Reads and enables pagination through a set of `FacilityApplication`."""
+  facilityApplicationsByApplicationId(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: FacilityApplicationFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+  ): FacilityApplicationsConnection!
+
+  """The `Application` at the end of the edge."""
+  node: Application
 }
 
 """
@@ -30195,6 +30789,62 @@ type OrganisationDatum {
   reportingYear: Int
   swrsOrganisationId: Int
   swrsReportId: Int
+}
+
+"""
+A connection to a list of `Facility` values, with data from `FacilityApplication`.
+"""
+type OrganisationFacilitiesByFacilityApplicationOrganisationIdAndFacilityIdManyToManyConnection {
+  """
+  A list of edges which contains the `Facility`, info from the `FacilityApplication`, and the cursor to aid in pagination.
+  """
+  edges: [OrganisationFacilitiesByFacilityApplicationOrganisationIdAndFacilityIdManyToManyEdge!]!
+
+  """A list of `Facility` objects."""
+  nodes: [Facility]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `Facility` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""
+A `Facility` edge in the connection, with data from `FacilityApplication`.
+"""
+type OrganisationFacilitiesByFacilityApplicationOrganisationIdAndFacilityIdManyToManyEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """Reads and enables pagination through a set of `FacilityApplication`."""
+  facilityApplicationsByFacilityId(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: FacilityApplicationFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+  ): FacilityApplicationsConnection!
+
+  """The `Facility` at the end of the edge."""
+  node: Facility
 }
 
 """
@@ -33313,6 +33963,34 @@ type Query implements Node {
     """The globally unique `ID` to be used in selecting a single `Facility`."""
     id: ID!
   ): Facility
+
+  """Reads and enables pagination through a set of `FacilityApplication`."""
+  facilityApplicationByReportingYear(
+    _reportingYear: Int
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: FacilityApplicationFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+  ): FacilityApplicationsConnection!
   facilityByRowId(rowId: Int!): Facility
 
   """Reads a single `FormJson` using its globally unique `ID`."""
@@ -33520,40 +34198,6 @@ type Query implements Node {
   ): ReviewStep
   reviewStepByRowId(rowId: Int!): ReviewStep
   reviewStepByStepName(stepName: String!): ReviewStep
-
-  """Reads and enables pagination through a set of `FacilitySearchResult`."""
-  searchAllFacilities(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-    direction: String
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: FacilitySearchResultFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-    maxResultsPerPage: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-    offsetValue: Int
-    orderByField: String
-    organisationRowId: String
-    reportingYear: Int
-    searchField: String
-    searchValue: String
-  ): FacilitySearchResultsConnection!
 
   """
   Search function returns data related to certification requests associated with the current user

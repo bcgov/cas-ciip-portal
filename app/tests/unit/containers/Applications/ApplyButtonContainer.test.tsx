@@ -10,7 +10,7 @@ describe('The apply button', () => {
         applyButtonDetails={{
           ' $refType': 'ApplyButtonContainer_applyButtonDetails',
           applicationByApplicationId: null,
-          applicationRevisionStatus: null,
+          applicationStatus: null,
           facilityByFacilityId: {
             rowId: 1,
             hasSwrsReport: true
@@ -40,7 +40,7 @@ describe('The apply button', () => {
         applyButtonDetails={{
           ' $refType': 'ApplyButtonContainer_applyButtonDetails',
           applicationByApplicationId: null,
-          applicationRevisionStatus: null,
+          applicationStatus: null,
           facilityByFacilityId: {
             rowId: 1,
             hasSwrsReport: false
@@ -70,7 +70,7 @@ describe('The apply button', () => {
         applyButtonDetails={{
           ' $refType': 'ApplyButtonContainer_applyButtonDetails',
           applicationByApplicationId: null,
-          applicationRevisionStatus: null,
+          applicationStatus: null,
           facilityByFacilityId: {
             rowId: 1,
             hasSwrsReport: true
@@ -95,7 +95,7 @@ describe('The apply button', () => {
         applyButtonDetails={{
           ' $refType': 'ApplyButtonContainer_applyButtonDetails',
           applicationByApplicationId: null,
-          applicationRevisionStatus: null,
+          applicationStatus: null,
           facilityByFacilityId: {
             rowId: 1,
             hasSwrsReport: true
@@ -129,7 +129,7 @@ describe('The apply button', () => {
             },
             latestSubmittedRevision: null
           },
-          applicationRevisionStatus: 'DRAFT',
+          applicationStatus: 'DRAFT',
           facilityByFacilityId: {
             rowId: 1,
             hasSwrsReport: true
@@ -165,7 +165,7 @@ describe('The apply button', () => {
             },
             latestSubmittedRevision: null
           },
-          applicationRevisionStatus: 'DRAFT',
+          applicationStatus: 'DRAFT',
           facilityByFacilityId: {
             rowId: 1,
             hasSwrsReport: true
@@ -198,7 +198,7 @@ describe('The apply button', () => {
             },
             latestSubmittedRevision: null
           },
-          applicationRevisionStatus: 'DRAFT',
+          applicationStatus: 'DRAFT',
           facilityByFacilityId: {
             rowId: 1,
             hasSwrsReport: true
@@ -233,7 +233,7 @@ describe('The apply button', () => {
               versionNumber: 1
             }
           },
-          applicationRevisionStatus: 'SUBMITTED',
+          applicationStatus: 'SUBMITTED',
           facilityByFacilityId: {
             rowId: 1,
             hasSwrsReport: true
@@ -270,7 +270,7 @@ describe('The apply button', () => {
               versionNumber: 1
             }
           },
-          applicationRevisionStatus: 'APPROVED',
+          applicationStatus: 'APPROVED',
           facilityByFacilityId: {
             rowId: 1,
             hasSwrsReport: true
@@ -307,7 +307,7 @@ describe('The apply button', () => {
               versionNumber: 1
             }
           },
-          applicationRevisionStatus: 'REJECTED',
+          applicationStatus: 'REJECTED',
           facilityByFacilityId: {
             rowId: 1,
             hasSwrsReport: true
@@ -344,7 +344,7 @@ describe('The apply button', () => {
               versionNumber: 1
             }
           },
-          applicationRevisionStatus: 'REQUESTED_CHANGES',
+          applicationStatus: 'REQUESTED_CHANGES',
           facilityByFacilityId: {
             rowId: 1,
             hasSwrsReport: true

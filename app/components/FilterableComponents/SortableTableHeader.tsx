@@ -19,7 +19,7 @@ const SORT_DIRECTION = ['ASC', 'DESC'];
 const SORT_ICONS = [faCaretDown, faCaretUp];
 
 const SortableTableHeader: React.FunctionComponent<Props> = ({
-  headerVariables
+  headerVariables: {columnName, displayName, sortable}
 }) => {
   const router = useRouter();
   const sortDirectionIndex = SORT_DIRECTION.indexOf(
@@ -49,9 +49,8 @@ const SortableTableHeader: React.FunctionComponent<Props> = ({
     router.replace(url, url, {shallow: true});
   };
 
-  const {columnName, displayName, sortable} = headerVariables;
   return (
-    <th onClick={() => triggerSort(columnName)}>
+    <th onClick={() => sortable && triggerSort(columnName)}>
       <span>{displayName}</span>
       {sortable && (
         <span style={{height: '100%', position: 'absolute', right: '0.75em'}}>

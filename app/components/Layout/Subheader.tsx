@@ -6,14 +6,14 @@ const DASHBOARD_PATH = '/reporter';
 const APPLICATIONS_PATH = '/reporter/facilities';
 
 const Subheader = () => {
-  const {asPath} = useRouter();
+  const {route} = useRouter();
 
   return (
     <div>
       <nav className="navigation-main" id="navbar" aria-label="Secondary">
         <div className="container">
           <ul>
-            <li className={asPath === DASHBOARD_PATH ? 'active' : ''}>
+            <li className={route === DASHBOARD_PATH ? 'active' : ''}>
               <Link
                 href={{
                   pathname: DASHBOARD_PATH
@@ -22,7 +22,7 @@ const Subheader = () => {
                 <a>My Dashboard</a>
               </Link>
             </li>
-            <li className={asPath === APPLICATIONS_PATH ? 'active' : ''}>
+            <li className={route === APPLICATIONS_PATH ? 'active' : ''}>
               <Link
                 href={{
                   pathname: APPLICATIONS_PATH

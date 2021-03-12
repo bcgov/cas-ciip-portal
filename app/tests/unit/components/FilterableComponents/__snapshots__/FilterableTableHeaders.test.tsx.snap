@@ -191,7 +191,7 @@ exports[`The filterable table headers component renders as many td elements as s
       name="test"
       onChange={[Function]}
       placeholder="Search"
-      value=""
+      value="a"
     />
   </td>
   <td
@@ -203,7 +203,7 @@ exports[`The filterable table headers component renders as many td elements as s
       name="test2"
       onChange={[Function]}
       placeholder="Search"
-      value=""
+      value="b"
     />
   </td>
   <td

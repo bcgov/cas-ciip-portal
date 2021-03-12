@@ -1,12 +1,20 @@
 import React from 'react';
-import {shallow} from 'enzyme';
+import {shallow, mount} from 'enzyme';
 import FilterableTableLayoutComponent from 'components/FilterableComponents/FilterableTableLayout';
+import * as nextRouter from 'next/router';
 
 import {TextSearchOption} from 'components/Search/TextSearchOption';
 import {DisplayOnlyOption} from 'components/Search/DisplayOnlyOption';
+import {ISearchExtraFilter} from 'components/Search/SearchProps';
 
 describe('The filterable table layout', () => {
-  const emptyBody = <React.Component>{[]}</React.Component>;
+  nextRouter.useRouter = jest.fn();
+  nextRouter.useRouter.mockImplementation(() => ({
+    route: '/',
+    query: ''
+  }));
+
+  const emptyBody = <tbody />;
 
   it('renders sort headers', () => {
     const searchOptions = [
@@ -17,7 +25,6 @@ describe('The filterable table layout', () => {
     const rendered = shallow(
       <FilterableTableLayoutComponent
         body={emptyBody}
-        handleEvent={() => {}}
         searchOptions={searchOptions}
       />
     );
@@ -49,7 +56,6 @@ describe('The filterable table layout', () => {
     const rendered = shallow(
       <FilterableTableLayoutComponent
         body={emptyBody}
-        handleEvent={() => {}}
         searchOptions={searchOptions}
       />
     );
@@ -70,14 +76,36 @@ describe('The filterable table layout', () => {
     );
 
     const rendered = shallow(
-      <FilterableTableLayoutComponent
-        body={body}
-        handleEvent={() => {}}
-        searchOptions={[]}
-      />
+      <FilterableTableLayoutComponent body={body} searchOptions={[]} />
     );
 
     expect(rendered).toMatchSnapshot();
     expect(rendered.find('tbody').text()).toContain('this is a test body');
+  });
+
+  it('renders extra filters', () => {
+    const extraFilter: ISearchExtraFilter = {
+      argName: 'myExtraFilter',
+      Component: ({onChange, value}) => {
+        return (
+          <input
+            name="myExtraFilter"
+            value={value as string}
+            onChange={(e) => onChange((e.nativeEvent.target as any).value)}
+          />
+        );
+      }
+    };
+
+    const rendered = mount(
+      <FilterableTableLayoutComponent
+        body={emptyBody}
+        searchOptions={[]}
+        extraFilters={[extraFilter]}
+      />
+    );
+
+    expect(rendered).toMatchSnapshot();
+    expect(rendered.find('input[name="myExtraFilter"]')).toHaveLength(1);
   });
 });

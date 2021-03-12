@@ -1,65 +1,52 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Button, Form} from 'react-bootstrap';
-import {useRouter} from 'next/router';
 import {ISearchProps} from 'components/Search/SearchProps';
 import {getUserFriendlyStatusLabel} from 'lib/text-transforms';
-import safeJsonParse from 'lib/safeJsonParse';
+import {FilterArgs} from 'components/Search/ISearchOption';
 
-const NONE_VALUES = [null, undefined];
+interface Props extends ISearchProps {
+  onSubmit: (searchData: Record<string, string | number | boolean>) => void;
+  filterArgs: FilterArgs;
+}
 
-const FilterableTableHeaders: React.FunctionComponent<ISearchProps> = (
-  props
-) => {
-  const router = useRouter();
-
-  const [searchFilters, setSearchFilters] = useState(() =>
-    safeJsonParse(router.query.relayVars as string)
-  );
+const FilterableTableHeaders: React.FunctionComponent<Props> = ({
+  onSubmit,
+  filterArgs,
+  searchOptions
+}) => {
+  const [searchFilters, setSearchFilters] = useState(filterArgs);
+  useEffect(() => setSearchFilters(filterArgs), [filterArgs]); // reset the local state when the prop changes
 
   const handleFilterChange = (value, column, parseMethod) => {
-    setSearchFilters({
-      ...searchFilters,
+    // using a state update with a callback ensures that we always have a reference to the latest searchFilters
+    // especially when this handler is fired multiple times in quick sucession, without the component updating
+    // which can happen when a single filter component handles multiple variables
+    setSearchFilters((prevFilters) => ({
+      ...prevFilters,
       [column]: parseMethod ? parseMethod(value) : value
-    });
-  };
-
-  const applySearch = (searchData) => {
-    const newQuery = {};
-    props.searchOptions.forEach((option) => {
-      const column = option.columnName;
-
-      if (option.isSearchEnabled) {
-        if (!NONE_VALUES.includes(searchData[column]))
-          newQuery[column] = searchData[column];
-        else delete newQuery[column];
-      }
-    });
-
-    const queryString = JSON.stringify(newQuery);
-
-    const url = {
-      pathname: router.pathname,
-      query: {
-        ...router.query,
-        relayVars: queryString,
-        pageVars: JSON.stringify({offset: 0})
-      }
-    };
-
-    router.push(url, url, {shallow: true});
+    }));
   };
 
   const clearForm = () => {
     setSearchFilters({});
-    applySearch({});
+    onSubmit({});
   };
 
   return (
     <tr>
-      {props.searchOptions.map((option) => {
+      {searchOptions.map((option) => {
         const column = option.columnName;
         const key = option.columnName + option.title;
-        const initialValue = searchFilters[column] ?? '';
+        const value = searchFilters[column] ?? '';
+
+        if (option.Component) {
+          return (
+            <option.Component
+              filterArgs={searchFilters}
+              onChange={handleFilterChange}
+            />
+          );
+        }
 
         if (option.isSearchEnabled) {
           if (!option.searchOptionValues) {
@@ -68,7 +55,7 @@ const FilterableTableHeaders: React.FunctionComponent<ISearchProps> = (
                 <Form.Control
                   placeholder="Search"
                   name={column}
-                  value={initialValue}
+                  value={value as string | number}
                   aria-label={`filter-by-${column}`}
                   onChange={(evt) =>
                     handleFilterChange(evt.target.value, column, option.toUrl)
@@ -84,7 +71,7 @@ const FilterableTableHeaders: React.FunctionComponent<ISearchProps> = (
                 as="select"
                 placeholder="Search"
                 name={column}
-                value={initialValue}
+                value={value as string | number}
                 aria-label={`filter-by-${column}`}
                 onChange={(evt) =>
                   handleFilterChange(evt.target.value, column, option.toUrl)
@@ -112,7 +99,7 @@ const FilterableTableHeaders: React.FunctionComponent<ISearchProps> = (
         <Button
           style={{marginLeft: '5px'}}
           variant="primary"
-          onClick={() => applySearch(searchFilters)}
+          onClick={() => onSubmit(searchFilters)}
         >
           Apply
         </Button>

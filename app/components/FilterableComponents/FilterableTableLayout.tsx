@@ -1,22 +1,61 @@
-import React from 'react';
+import React, {useMemo} from 'react';
 import {Col, Table, Alert} from 'react-bootstrap';
 import SortableTableHeader from './SortableTableHeader';
 import FilterableTableHeaders from './FilterableTableHeaders';
-import {ISearchProps} from 'components/Search/SearchProps';
+import {ISearchProps, ISearchExtraFilter} from 'components/Search/SearchProps';
+import {useRouter} from 'next/router';
+import safeJsonParse from 'lib/safeJsonParse';
+import {FilterArgs} from 'components/Search/ISearchOption';
 
 interface Props extends ISearchProps {
   body: JSX.Element;
   isLoading?: boolean;
-  extraControls?: JSX.Element;
+  extraFilters?: ISearchExtraFilter[];
 }
-export const FilterableTableLayoutComponent: React.FunctionComponent<Props> = (
-  props
-) => {
-  const {searchOptions, body, isLoading} = props;
+export const FilterableTableLayoutComponent: React.FunctionComponent<Props> = ({
+  searchOptions,
+  body,
+  isLoading,
+  extraFilters = []
+}) => {
+  const router = useRouter();
+  const relayVars = useMemo(
+    () => safeJsonParse(router.query.relayVars as string),
+    [router]
+  );
 
+  const applySearch = (searchData: FilterArgs) => {
+    const newQuery = {
+      // copy the vars from the query string, so that the args coming from extraFilters are not overriden
+      ...relayVars,
+      ...searchData
+    };
+    searchOptions.forEach((option) => {
+      const column = option.columnName;
+
+      if (option.isSearchEnabled) {
+        newQuery[column] = searchData[column] ?? undefined;
+      }
+    });
+
+    const queryString = JSON.stringify(newQuery);
+
+    const url = {
+      pathname: router.pathname,
+      query: {
+        ...router.query,
+        relayVars: queryString,
+        pageVars: JSON.stringify({offset: 0})
+      }
+    };
+
+    router.push(url, url, {shallow: true});
+  };
+
+  const bodyLength =
+    body.props.children?.length ?? body.props.children?.[0]?.length ?? 0;
   const noSearchResults =
-    body.props.children.length === 0 ||
-    body?.props?.children[0]?.length === 0 ? (
+    bodyLength === 0 ? (
       <Alert variant="secondary" id="no-search-results">
         No matching results to show.
       </Alert>
@@ -24,6 +63,19 @@ export const FilterableTableLayoutComponent: React.FunctionComponent<Props> = (
 
   return (
     <>
+      <div>
+        {extraFilters.map((f) => {
+          return (
+            <f.Component
+              key={f.argName}
+              onChange={(value) =>
+                applySearch({...relayVars, [f.argName]: value})
+              }
+              value={relayVars[f.argName]}
+            />
+          );
+        })}
+      </div>
       <Table
         striped
         bordered
@@ -43,7 +95,11 @@ export const FilterableTableLayoutComponent: React.FunctionComponent<Props> = (
               />
             ))}
           </tr>
-          <FilterableTableHeaders searchOptions={searchOptions} />
+          <FilterableTableHeaders
+            filterArgs={relayVars}
+            searchOptions={searchOptions}
+            onSubmit={applySearch}
+          />
         </thead>
         {body}
       </Table>

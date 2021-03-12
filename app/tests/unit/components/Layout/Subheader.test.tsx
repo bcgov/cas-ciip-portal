@@ -6,7 +6,7 @@ describe('The Subheader', () => {
   it('matches the last accepted Snapshot', () => {
     const useRouter = jest.spyOn(require('next/router'), 'useRouter');
     useRouter.mockImplementationOnce(() => ({
-      asPath: '/reporter'
+      route: '/reporter'
     }));
     const wrapper = render(<Subheader />);
     expect(wrapper).toMatchSnapshot();
@@ -16,13 +16,13 @@ describe('The Subheader', () => {
     const useRouter = jest.spyOn(require('next/router'), 'useRouter');
     useRouter
       .mockImplementationOnce(() => ({
-        asPath: '/reporter'
+        route: '/reporter'
       }))
       .mockImplementation(() => {
         // ideally we would use mockImplementationOnce (and did until upgrating to next 9.5.5),
         // but now the function is called multiple times for each render, not sure why
         return {
-          asPath: '/reporter/facilities'
+          route: '/reporter/facilities'
         };
       });
     let wrapper = render(<Subheader />);

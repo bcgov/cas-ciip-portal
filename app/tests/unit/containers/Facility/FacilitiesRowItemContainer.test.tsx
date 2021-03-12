@@ -1,22 +1,23 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import {FacilitiesRowItemContainer_facilitySearchResult} from 'FacilitiesRowItemContainer_facilitySearchResult.graphql';
+import {FacilitiesRowItemContainer_facilityApplication} from 'FacilitiesRowItemContainer_facilityApplication.graphql';
 import {FacilitiesRowItemContainer_query} from 'FacilitiesRowItemContainer_query.graphql';
 import {FacilitiesRowItemComponent} from 'containers/Facilities/FacilitiesRowItemContainer';
 
 describe('FacilitiesRowItem', () => {
   it('should match the previous snapshot', async () => {
-    const facilitySearchResult: FacilitiesRowItemContainer_facilitySearchResult = {
+    const facilityApplication: FacilitiesRowItemContainer_facilityApplication = {
       ' $fragmentRefs': {
         ApplyButtonContainer_applyButtonDetails: true
       },
-      ' $refType': 'FacilitiesRowItemContainer_facilitySearchResult',
+      ' $refType': 'FacilitiesRowItemContainer_facilityApplication',
       facilityName: 'fac',
       facilityType: 'EIO',
       facilityBcghgid: '123',
       lastSwrsReportingYear: 2019,
-      applicationRevisionStatus: 'SUBMITTED',
-      organisationName: 'org',
+      applicationStatus: 'SUBMITTED',
+      operatorName: 'org',
+      applicationId: 42,
       applicationByApplicationId: {
         latestDraftRevision: {
           certificationUrl: {
@@ -34,7 +35,7 @@ describe('FacilitiesRowItem', () => {
 
     const r = shallow(
       <FacilitiesRowItemComponent
-        facilitySearchResult={facilitySearchResult}
+        facilityApplication={facilityApplication}
         query={query}
         reportingYear={2019}
       />
@@ -43,17 +44,18 @@ describe('FacilitiesRowItem', () => {
   });
 
   it('should show Pending Certification in the status if the application is in draft and a certificationUrl exists', async () => {
-    const facilitySearchResult: FacilitiesRowItemContainer_facilitySearchResult = {
+    const facilityApplication: FacilitiesRowItemContainer_facilityApplication = {
       ' $fragmentRefs': {
         ApplyButtonContainer_applyButtonDetails: true
       },
-      ' $refType': 'FacilitiesRowItemContainer_facilitySearchResult',
+      ' $refType': 'FacilitiesRowItemContainer_facilityApplication',
       facilityName: 'fac',
       facilityType: 'EIO',
       facilityBcghgid: '123',
       lastSwrsReportingYear: 2019,
-      applicationRevisionStatus: 'DRAFT',
-      organisationName: 'org',
+      applicationStatus: 'DRAFT',
+      operatorName: 'org',
+      applicationId: 42,
       applicationByApplicationId: {
         latestDraftRevision: {
           certificationUrl: {
@@ -71,7 +73,7 @@ describe('FacilitiesRowItem', () => {
 
     const r = shallow(
       <FacilitiesRowItemComponent
-        facilitySearchResult={facilitySearchResult}
+        facilityApplication={facilityApplication}
         query={query}
         reportingYear={2019}
       />
@@ -81,17 +83,18 @@ describe('FacilitiesRowItem', () => {
   });
 
   it('should show Certified in the status if the application is in draft and has been certified', async () => {
-    const facilitySearchResult: FacilitiesRowItemContainer_facilitySearchResult = {
+    const facilityApplication: FacilitiesRowItemContainer_facilityApplication = {
       ' $fragmentRefs': {
         ApplyButtonContainer_applyButtonDetails: true
       },
-      ' $refType': 'FacilitiesRowItemContainer_facilitySearchResult',
+      ' $refType': 'FacilitiesRowItemContainer_facilityApplication',
       facilityName: 'fac',
       facilityType: 'EIO',
       facilityBcghgid: '123',
       lastSwrsReportingYear: 2019,
-      applicationRevisionStatus: 'DRAFT',
-      organisationName: 'org',
+      applicationStatus: 'DRAFT',
+      operatorName: 'org',
+      applicationId: 42,
       applicationByApplicationId: {
         latestDraftRevision: {
           certificationUrl: {
@@ -109,7 +112,7 @@ describe('FacilitiesRowItem', () => {
 
     const r = shallow(
       <FacilitiesRowItemComponent
-        facilitySearchResult={facilitySearchResult}
+        facilityApplication={facilityApplication}
         query={query}
         reportingYear={2019}
       />
@@ -119,17 +122,18 @@ describe('FacilitiesRowItem', () => {
   });
 
   it('should not show Pending Certification in the status if the application is in draft but a certificationUrl does not exist', async () => {
-    const facilitySearchResult: FacilitiesRowItemContainer_facilitySearchResult = {
+    const facilityApplication: FacilitiesRowItemContainer_facilityApplication = {
       ' $fragmentRefs': {
         ApplyButtonContainer_applyButtonDetails: true
       },
-      ' $refType': 'FacilitiesRowItemContainer_facilitySearchResult',
+      ' $refType': 'FacilitiesRowItemContainer_facilityApplication',
       facilityName: 'fac',
       facilityType: 'EIO',
       facilityBcghgid: '123',
       lastSwrsReportingYear: 2019,
-      applicationRevisionStatus: 'DRAFT',
-      organisationName: 'org',
+      applicationStatus: 'DRAFT',
+      operatorName: 'org',
+      applicationId: 42,
       applicationByApplicationId: {
         latestDraftRevision: {
           certificationUrl: null
@@ -145,7 +149,7 @@ describe('FacilitiesRowItem', () => {
 
     const r = shallow(
       <FacilitiesRowItemComponent
-        facilitySearchResult={facilitySearchResult}
+        facilityApplication={facilityApplication}
         query={query}
         reportingYear={2019}
       />
@@ -155,17 +159,18 @@ describe('FacilitiesRowItem', () => {
   });
 
   it('should not show Pending Certification in the status if the application is not in draft state and a certificationUrl exists', async () => {
-    const facilitySearchResult: FacilitiesRowItemContainer_facilitySearchResult = {
+    const facilityApplication: FacilitiesRowItemContainer_facilityApplication = {
       ' $fragmentRefs': {
         ApplyButtonContainer_applyButtonDetails: true
       },
-      ' $refType': 'FacilitiesRowItemContainer_facilitySearchResult',
+      ' $refType': 'FacilitiesRowItemContainer_facilityApplication',
       facilityName: 'fac',
       facilityType: 'EIO',
       facilityBcghgid: '123',
       lastSwrsReportingYear: 2019,
-      applicationRevisionStatus: 'APPROVED',
-      organisationName: 'org',
+      applicationStatus: 'APPROVED',
+      operatorName: 'org',
+      applicationId: 42,
       applicationByApplicationId: {
         latestDraftRevision: {
           certificationUrl: {
@@ -183,7 +188,7 @@ describe('FacilitiesRowItem', () => {
 
     const r = shallow(
       <FacilitiesRowItemComponent
-        facilitySearchResult={facilitySearchResult}
+        facilityApplication={facilityApplication}
         query={query}
         reportingYear={2019}
       />

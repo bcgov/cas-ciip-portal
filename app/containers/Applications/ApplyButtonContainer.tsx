@@ -21,7 +21,7 @@ export const ApplyButton: React.FunctionComponent<Props> = ({
 }) => {
   const {
     facilityByFacilityId,
-    applicationRevisionStatus,
+    applicationStatus,
     applicationByApplicationId
   } = applyButtonDetails;
   const {hasSwrsReport, rowId} = facilityByFacilityId;
@@ -39,7 +39,7 @@ export const ApplyButton: React.FunctionComponent<Props> = ({
 
     // The first version of the application was started but not submitted before the deadline
     if (
-      applicationRevisionStatus === 'DRAFT' &&
+      applicationStatus === 'DRAFT' &&
       applicationByApplicationId?.latestDraftRevision?.versionNumber <= 1
     )
       return false;
@@ -48,7 +48,7 @@ export const ApplyButton: React.FunctionComponent<Props> = ({
   }, [
     applicationByApplicationId?.latestDraftRevision?.versionNumber,
     applicationId,
-    applicationRevisionStatus,
+    applicationStatus,
     query.openedReportingYear?.reportingYear
   ]);
 
@@ -167,7 +167,7 @@ export const ApplyButton: React.FunctionComponent<Props> = ({
   const latestDraftlegalDisclaimerAccepted =
     latestDraftRevision?.legalDisclaimerAccepted;
 
-  if (applicationRevisionStatus === 'DRAFT') {
+  if (applicationStatus === 'DRAFT') {
     const continueApplication = () => {
       router.push({
         pathname: latestDraftlegalDisclaimerAccepted
@@ -188,10 +188,10 @@ export const ApplyButton: React.FunctionComponent<Props> = ({
   }
 
   if (
-    applicationRevisionStatus === 'SUBMITTED' ||
-    applicationRevisionStatus === 'REQUESTED_CHANGES' ||
-    applicationRevisionStatus === 'REJECTED' ||
-    applicationRevisionStatus === 'APPROVED'
+    applicationStatus === 'SUBMITTED' ||
+    applicationStatus === 'REQUESTED_CHANGES' ||
+    applicationStatus === 'REJECTED' ||
+    applicationStatus === 'APPROVED'
   ) {
     return (
       <Link
@@ -214,7 +214,7 @@ export const ApplyButton: React.FunctionComponent<Props> = ({
 
 export default createFragmentContainer(ApplyButton, {
   applyButtonDetails: graphql`
-    fragment ApplyButtonContainer_applyButtonDetails on FacilitySearchResult {
+    fragment ApplyButtonContainer_applyButtonDetails on FacilityApplication {
       applicationByApplicationId {
         id
         latestDraftRevision {
@@ -227,7 +227,7 @@ export default createFragmentContainer(ApplyButton, {
           versionNumber
         }
       }
-      applicationRevisionStatus
+      applicationStatus
       facilityByFacilityId {
         rowId
         hasSwrsReport
