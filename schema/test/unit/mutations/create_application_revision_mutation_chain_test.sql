@@ -17,7 +17,7 @@ $fun$
   select mocks.set_mocked_time_in_transaction('2021-04-01 14:49:54.191757-07'::timestamptz - interval '1 second');
 $fun$language sql;
 
-select plan(11);
+select plan(9);
 
 -- Setup
 alter table ggircs_portal.application_revision_status disable trigger _status_change_email;
@@ -92,38 +92,6 @@ select results_eq(
   $$,
   ARRAY['draft'::ggircs_portal.ciip_application_revision_status],
   'create_application_revision_mutation_chain creates an inital draft status'
-);
-
-select results_eq(
-  $$
-    select count(*) from ggircs_portal.form_result_status frs
-    join ggircs_portal.application a on a.id = frs.application_id
-    join ggircs_portal.facility f on a.facility_id = f.id
-    and facility_name = 'test facility'
-  $$,
-  $$
-    select count(form_id) from ggircs_portal.ciip_application_wizard where is_active=true
-  $$,
-  'create_application_revision_mutation_chain creates statuses for each form result when being called from create_application_mutation_chain (starting an application)'
-);
-
-with app_id as (
-  select a.id from ggircs_portal.application a
-    join ggircs_portal.facility f on a.facility_id = f.id
-    and facility_name = 'test facility'
-) select ggircs_portal.create_application_revision_mutation_chain((select id from app_id), 1);
-
-select results_eq(
-  $$
-    select count(*) from ggircs_portal.form_result_status frs
-    join ggircs_portal.application a on a.id = frs.application_id
-    join ggircs_portal.facility f on a.facility_id = f.id
-    and facility_name = 'test facility'
-  $$,
-  $$
-    select count(form_id) from ggircs_portal.ciip_application_wizard where is_active=true
-  $$,
-  'create_application_revision_mutation_chain does not create extra statuses for each form result when being called on its own (creating a revision)'
 );
 
 -- create an application with a facility that does not have a swrs report
