@@ -14,12 +14,10 @@ begin
   for temp_row in
     select id, step_name from ggircs_portal.review_step where is_active = true
   loop
-    if exists(select * from ggircs_portal.application_review_step where application_id = new.application_id and review_step_id = temp_row.id) then
-      update ggircs_portal.application_review_step set is_complete = false where application_id = new.application_id and review_step_id = temp_row.id;
-    else
-      insert into ggircs_portal.application_review_step(application_id, review_step_id)
-        values (new.application_id, temp_row.id);
-    end if;
+    insert into ggircs_portal.application_review_step(application_id, review_step_id)
+      values (new.application_id, temp_row.id)
+      on conflict (application_id, review_step_id)
+      do update set is_complete=false;
   end loop;
 
   return new;
