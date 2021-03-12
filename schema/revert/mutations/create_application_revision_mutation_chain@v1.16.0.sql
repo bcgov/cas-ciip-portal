@@ -36,7 +36,7 @@ begin
   select facility_id from ggircs_portal.application where id = application_id_input into facility_id_input;
 
   for temp_row in
-    select form_id from ggircs_portal.ciip_application_wizard where is_active=true
+    select form_id from ggircs_portal.ciip_application_wizard
   loop
     -- Populate new revision of form_results with data from previous result on new revision creation
     if last_revision_id_input > 0 then
@@ -69,6 +69,12 @@ begin
     insert into ggircs_portal.form_result(form_id, application_id, version_number, form_result)
     values (temp_row.form_id, application_id_input, new_version_number, form_result) returning id into form_result_id;
 
+    if last_revision_id_input = 0 then
+    -- Create form result statuses
+      insert into ggircs_portal.form_result_status(application_id, form_id, form_result_status)
+      values (application_id_input, temp_row.form_id, 'in review');
+    end if;
+
   end loop;
 
   -- If the application's facility has a report_id then there is a swrs report.
@@ -84,7 +90,7 @@ begin
     insert into ggircs_portal.application_revision_status(application_id, version_number, application_revision_status)
   values (application_id_input, 0, 'submitted');
     for temp_row in
-      select form_id from ggircs_portal.ciip_application_wizard where is_active=true
+      select form_id from ggircs_portal.ciip_application_wizard
     loop
       insert into ggircs_portal.form_result(form_id, application_id, version_number, form_result)
     values (temp_row.form_id, application_id_input, 0, (select fr.form_result
