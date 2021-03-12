@@ -23,17 +23,15 @@ describe('The products and benchmark page', () => {
     cy.cleanSchema();
     cy.sqlFixture('fixtures/products-benchmarks-setup');
     cy.mockLogin('admin');
-    cy.visit('/admin/products-benchmarks');
   });
 
-  it('Displays the list of all products', () => {
+  it('displays the list of all products with the correct status', () => {
+    cy.visit('/admin/products-benchmarks');
     cy.get('tr').its('length').should('be.gte', 4);
     cy.get('#page-content').contains('Product A');
     cy.get('#page-content').contains('Product B');
     cy.get('#page-content').contains('Product C');
-  });
 
-  it('Displays the proper statuses for each product', () => {
     cy.get('tbody > :nth-child(1) .badge-pill.badge-warning').contains('DRAFT');
     cy.get('tbody > :nth-child(2) .badge-pill.badge-success').contains(
       'PUBLISHED'
@@ -42,18 +40,10 @@ describe('The products and benchmark page', () => {
       'ARCHIVED'
     );
   });
-});
 
-describe('The benchmark modal', () => {
-  beforeEach(() => {
-    cy.cleanSchema();
-    cy.sqlFixture('fixtures/products-benchmarks-setup');
-    cy.mockLogin('admin');
+  it('allows to view and edit benchmark data, when allowed', () => {
     cy.visit('/admin/products-benchmarks');
     cy.get('#page-content');
-  });
-
-  it('Opens & displays the correct data in the benchmark modal', () => {
     openBenchmarkModal(1);
     cy.get('#root_benchmark').should('have.prop', 'disabled', false);
     cy.get('#root_benchmark').should('have.value', '0.12');
@@ -67,54 +57,39 @@ describe('The benchmark modal', () => {
     cy.get('body').happoScreenshot({
       component: 'Benchmark Modal'
     });
-    cy.get('.close > [aria-hidden="true"]').click();
-  });
 
-  it('Allows editing a benchmark for a draft product', () => {
-    openBenchmarkModal(1);
-    cy.get('#root_benchmark').should('have.prop', 'disabled', false);
     cy.get('#root_benchmark').clear().type('12');
     cy.get('.rjsf > .btn').contains('Save');
     cy.get('.rjsf > .btn').click();
     cy.get('tbody > :nth-child(1) > :nth-child(4)').contains('12');
-  });
 
-  it('Allows editing a benchmark for a published product', () => {
+    cy.get('.close > [aria-hidden="true"]').click();
+
+    // edit a published product
     openBenchmarkModal(2);
     cy.get('#root_benchmark').should('have.prop', 'disabled', false);
     cy.get('#root_benchmark').clear().type('10');
     cy.get('.rjsf > .btn').contains('Save');
     cy.get('.rjsf > .btn').click();
     cy.get('tbody > :nth-child(2) > :nth-child(4)').contains('10');
-  });
 
-  it('Allows editing a benchmark for a published (read-only) product', () => {
+    // edit a published (read-only) product
     openBenchmarkModal(4);
     cy.get('#root_benchmark').should('have.prop', 'disabled', false);
     cy.get('#root_benchmark').clear().type('10');
     cy.get('.rjsf > .btn').contains('Save');
     cy.get('.rjsf > .btn').click();
     cy.get('tbody > :nth-child(4) > :nth-child(4)').contains('10');
-  });
 
-  it('Does not allow editing a benchmark for an archived product', () => {
+    // Does not allow editing a benchmark for an archived product
     openBenchmarkModal(3);
     cy.get('#root_benchmark').should('have.prop', 'disabled', true);
     cy.get('.rjsf > .btn').should('have.class', 'hidden-button');
     cy.get('.close > [aria-hidden="true"]').click();
   });
-});
 
-describe('The linking modal', () => {
-  beforeEach(() => {
-    cy.cleanSchema();
-    cy.sqlFixture('fixtures/products-benchmarks-setup');
-    cy.mockLogin('admin');
+  it('allows to add and remove product links', () => {
     cy.visit('/admin/products-benchmarks');
-    cy.get('#page-content');
-  });
-
-  it('Can add and remove product links', () => {
     cy.get('#page-content');
     openLinkedProducts(1);
     cy.get('#root-add').click();
@@ -132,18 +107,10 @@ describe('The linking modal', () => {
       component: 'Link Product Modal'
     });
   });
-});
 
-describe('The Create Product modal', () => {
-  beforeEach(() => {
-    cy.cleanSchema();
-    cy.sqlFixture('fixtures/products-benchmarks-setup');
-    cy.mockLogin('admin');
+  it('allows to create a new product', () => {
     cy.visit('/admin/products-benchmarks');
     cy.get('#page-content');
-  });
-
-  it('Creates & displays a new product', () => {
     cy.contains('New Product').click();
     cy.get('#root_productName').clear().type('newProduct');
     cy.get('#root_units').clear().type('units');
