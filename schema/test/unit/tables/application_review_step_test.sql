@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(22);
+select plan(21);
 
 -- Table exists
 select has_table(
@@ -27,6 +27,11 @@ select col_is_fk(
   'application_review_step has foreign key review_step_id'
 );
 
+select col_is_fk(
+  'ggircs_portal', 'application_review_step', 'updated_by',
+  'application_review_step has foreign key updated_by'
+);
+
 select has_index(
   'ggircs_portal', 'application_review_step', 'ggircs_portal_application_review_step_application_foreign_key',
   'application_review_step has an index on application_id fk'
@@ -34,22 +39,12 @@ select has_index(
 
 select has_index(
   'ggircs_portal', 'application_review_step', 'ggircs_portal_application_review_step_review_step_foreign_key',
-  'application_review_step has an index on application_id fk'
-);
-
-select has_index(
-  'ggircs_portal', 'application_review_step', 'ggircs_portal_application_review_step_created_by_foreign_key',
-  'application_review_step has an index on created_by fk'
+  'application_review_step has an index on review_step_id fk'
 );
 
 select has_index(
   'ggircs_portal', 'application_review_step', 'ggircs_portal_application_review_step_updated_by_foreign_key',
   'application_review_step has an index on updated_by fk'
-);
-
-select has_index(
-  'ggircs_portal', 'application_review_step', 'ggircs_portal_application_review_step_deleted_by_foreign_key',
-  'application_review_step has an index on deleted_by fk'
 );
 
 -- Columns
@@ -58,12 +53,8 @@ select columns_are('ggircs_portal'::name, 'application_review_step'::name, array
   'application_id'::name,
   'review_step_id'::name,
   'is_complete'::name,
-  'created_at'::name,
-  'created_by'::name,
   'updated_at'::name,
-  'updated_by'::name,
-  'deleted_at'::name,
-  'deleted_by'::name
+  'updated_by'::name
 ]);
 
 -- Test Setup
