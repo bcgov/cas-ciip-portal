@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(43);
+select plan(46);
 
 -- Table exists
 select has_table(
@@ -63,6 +63,9 @@ select has_trigger('ggircs_portal', 'application_revision_status', '_ensure_wind
 select has_trigger('ggircs_portal', 'application_revision_status', '_100_timestamps', 'application_revision_status has update timestamps trigger');
 select has_trigger('ggircs_portal', 'application_revision_status', '_checksum_form_results', 'application_revision_status has checksum form results trigger');
 select has_trigger('ggircs_portal', 'application_revision_status', '_read_only_status_for_non_current_version', 'application_revision_status has _read_only_status_for_non_current_version trigger');
+select has_trigger('ggircs_portal', 'application_revision_status', '_read_only_status_for_non_current_version', 'application_revision_status has _read_only_status_for_non_current_version trigger');
+select has_trigger('ggircs_portal', 'application_revision_status', '_status_change_email', 'application_revision_status has _status_change_email trigger');
+select has_trigger('ggircs_portal', 'application_revision_status', '_create_or_refresh_review_step', 'application_revision_status has _create_or_refresh_review_step trigger');
 
 -- Row level security tests
 
