@@ -10,7 +10,6 @@ import customFields from 'components/Application/ApplicationDetailsCardItemCusto
 import SummaryFormArrayFieldTemplate from 'containers/Forms/SummaryFormArrayFieldTemplate';
 import SummaryFormFieldTemplate from 'containers/Forms/SummaryFormFieldTemplate';
 import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
-import ApplicationReviewContainer from './ApplicationReviewContainer';
 import {customTransformErrors} from 'functions/customTransformErrors';
 
 interface Props {
@@ -159,16 +158,6 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
           <Col md={6}>
             <h2>{formJsonByFormId.name}</h2>
           </Col>
-          {review ? (
-            <Col md={{span: 2, offset: 3}}>
-              <ApplicationReviewContainer
-                formName={formJsonByFormId.name}
-                formResultId={formResult.id}
-                formResultStatus={formResult.formResultStatuses}
-                versionNumber={formResult.versionNumber}
-              />
-            </Col>
-          ) : null}
           <Col md={1} style={{textAlign: 'right'}}>
             <Button
               aria-label="toggle-card-open"
@@ -247,9 +236,6 @@ export default createFragmentContainer(ApplicationDetailsCardItemComponent, {
         name
         slug
         formJson
-      }
-      formResultStatuses {
-        ...ApplicationReviewContainer_formResultStatus
       }
     }
   `,
