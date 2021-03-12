@@ -32,7 +32,7 @@ select test_helper.create_applications(2, False, True);
 insert into ggircs_portal.review_step (step_name, is_active) values ('test_step1', true);
 insert into ggircs_portal.review_step (step_name, is_active) values ('test_step2', true);
 insert into ggircs_portal.review_step (step_name, is_active) values ('no_step', false);
-insert into ggircs_portal.application_review_step (application_id, review_step_name_id, is_complete)
+insert into ggircs_portal.application_review_step (application_id, review_step_id, is_complete)
   values (2,1,true), (2,2,true);
 
 
@@ -95,7 +95,7 @@ insert into ggircs_portal.application_revision_status (application_id, version_n
 
 select results_eq(
   $$
-    select count(*) from ggircs_portal.application_review_step where application_id=1 and review_step_name_id in (1,2);
+    select count(*) from ggircs_portal.application_review_step where application_id=1 and review_step_id in (1,2);
   $$,
   ARRAY[2::bigint],
   'Trigger function creates application_review_step rows for each active reivew_step_name'
@@ -103,7 +103,7 @@ select results_eq(
 
 select results_eq(
   $$
-    select count(*) from ggircs_portal.application_review_step where application_id=1 and review_step_name_id=3;
+    select count(*) from ggircs_portal.application_review_step where application_id=1 and review_step_id=3;
   $$,
   ARRAY[0::bigint],
   'Trigger function does not create application_review_step rows for inactive reivew_step_names'

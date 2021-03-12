@@ -1,4 +1,4 @@
--- Revert ggircs-portal:policies/review_step_name_policies from pg
+-- Revert ggircs-portal:policies/review_step_policies from pg
 
 begin;
 

@@ -1,4 +1,4 @@
--- Deploy ggircs-portal:policies/review_step_name_policies to pg
+-- Deploy ggircs-portal:policies/review_step_policies to pg
 -- requires: tables/review_step
 
 begin;

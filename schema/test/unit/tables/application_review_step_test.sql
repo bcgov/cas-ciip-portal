@@ -23,32 +23,32 @@ select col_is_fk(
 );
 
 select col_is_fk(
-  'ggircs_portal', 'application_review_step', 'review_step_name_id',
-  'application_review_step has foreign key review_step_name_id'
+  'ggircs_portal', 'application_review_step', 'review_step_id',
+  'application_review_step has foreign key review_step_id'
 );
 
 select has_index(
-  'ggircs_portal', 'application_review_step', 'ggircs_portal_review_step_application_foreign_key',
+  'ggircs_portal', 'application_review_step', 'ggircs_portal_application_review_step_application_foreign_key',
   'application_review_step has an index on application_id fk'
 );
 
 select has_index(
-  'ggircs_portal', 'application_review_step', 'ggircs_portal_review_step_review_step_name_foreign_key',
+  'ggircs_portal', 'application_review_step', 'ggircs_portal_application_review_step_review_step_foreign_key',
   'application_review_step has an index on application_id fk'
 );
 
 select has_index(
-  'ggircs_portal', 'application_review_step', 'ggircs_portal_review_step_created_by_foreign_key',
+  'ggircs_portal', 'application_review_step', 'ggircs_portal_application_review_step_created_by_foreign_key',
   'application_review_step has an index on created_by fk'
 );
 
 select has_index(
-  'ggircs_portal', 'application_review_step', 'ggircs_portal_review_step_updated_by_foreign_key',
+  'ggircs_portal', 'application_review_step', 'ggircs_portal_application_review_step_updated_by_foreign_key',
   'application_review_step has an index on updated_by fk'
 );
 
 select has_index(
-  'ggircs_portal', 'application_review_step', 'ggircs_portal_review_step_deleted_by_foreign_key',
+  'ggircs_portal', 'application_review_step', 'ggircs_portal_application_review_step_deleted_by_foreign_key',
   'application_review_step has an index on deleted_by fk'
 );
 
@@ -56,7 +56,7 @@ select has_index(
 select columns_are('ggircs_portal'::name, 'application_review_step'::name, array[
   'id'::name,
   'application_id'::name,
-  'review_step_name_id'::name,
+  'review_step_id'::name,
   'is_complete'::name,
   'created_at'::name,
   'created_by'::name,
@@ -74,7 +74,7 @@ select test_helper.create_test_users();
 select test_helper.create_applications(2, False, True);
 insert into ggircs_portal.review_step (step_name, is_active) values ('test_step1', true);
 insert into ggircs_portal.review_step (step_name, is_active) values ('test_step2', false);
-insert into ggircs_portal.application_review_step(application_id, review_step_name_id, is_complete)
+insert into ggircs_portal.application_review_step(application_id, review_step_id, is_complete)
   values (1,1,false);
 
 -- Row level security tests
@@ -93,7 +93,7 @@ select results_eq(
 
 select lives_ok(
   $$
-    insert into ggircs_portal.application_review_step(application_id, review_step_name_id, is_complete)
+    insert into ggircs_portal.application_review_step(application_id, review_step_id, is_complete)
   values (1,2,false);
   $$,
     'ciip_administrator can insert data in application_review_step table'
@@ -128,7 +128,7 @@ select results_eq(
 
 select lives_ok(
   $$
-    insert into ggircs_portal.application_review_step(application_id, review_step_name_id, is_complete)
+    insert into ggircs_portal.application_review_step(application_id, review_step_id, is_complete)
   values (2,1,false);
   $$,
     'Analyst can insert data in application_review_step table'
@@ -163,7 +163,7 @@ select throws_like(
 
 select throws_like(
   $$
-    insert into ggircs_portal.application_review_step(application_id, review_step_name_id, is_complete)
+    insert into ggircs_portal.application_review_step(application_id, review_step_id, is_complete)
     values (2,2,false);
   $$,
   'permission denied%',
