@@ -27,7 +27,6 @@ export default class Reporter extends Component<Props> {
           ciipUserBySub {
             id
             rowId
-            hasCertificationRequests
           }
         }
       }
@@ -76,15 +75,13 @@ export default class Reporter extends Component<Props> {
   render() {
     const {query} = this.props;
     const {session} = query || {};
-    const hasCertificationRequests = this.props?.query?.session?.ciipUserBySub
-      ?.hasCertificationRequests;
+
     return (
       <DefaultLayout showSubheader session={session} title="My Operators">
         <Row>
           <Col md={{span: 8}}>
             <Organisations
               query={query}
-              flagCertRequests={hasCertificationRequests}
               orgInput={this.state.orgInput}
               selectedOrg={this.state.selectedOrg}
               confirmOrg={this.state.confirmOrg}

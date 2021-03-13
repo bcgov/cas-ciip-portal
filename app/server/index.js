@@ -39,7 +39,6 @@ Keycloak.prototype.accessDenied = ({res}) => res.redirect('/403');
 
 const NO_AUTH = process.argv.includes('NO_AUTH');
 const AS_REPORTER = process.argv.includes('AS_REPORTER');
-const AS_CERTIFIER = process.argv.includes('AS_CERTIFIER');
 const AS_ANALYST = process.argv.includes('AS_ANALYST');
 const AS_ADMIN = process.argv.includes('AS_ADMIN');
 const AS_PENDING = process.argv.includes('AS_PENDING');
@@ -199,7 +198,6 @@ app.prepare().then(async () => {
       AS_ANALYST ||
       AS_PENDING ||
       AS_REPORTER ||
-      AS_CERTIFIER ||
       AS_CYPRESS
     ) {
       return res.json(3600);
@@ -260,7 +258,7 @@ app.prepare().then(async () => {
     })
   );
 
-  if (NO_AUTH || AS_ANALYST || AS_REPORTER || AS_CERTIFIER || AS_ADMIN)
+  if (NO_AUTH || AS_ANALYST || AS_REPORTER || AS_ADMIN)
     server.post('/login', (req, res) => res.redirect(302, getRedirectURL(req)));
   else
     server.post('/login', keycloak.protect(), (req, res) =>

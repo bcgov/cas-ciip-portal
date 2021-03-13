@@ -160,7 +160,7 @@ describe('Draft application started email', () => {
   });
 });
 
-describe('Certification & Confirmation emails', () => {
+describe('Confirmation emails', () => {
   before(() => {
     cy.wait(500);
     cy.cleanSchema();
@@ -171,77 +171,6 @@ describe('Certification & Confirmation emails', () => {
     cy.mockLogin('reporter');
   });
 
-  it('should send notification emails to the certifier when the reporter sends a request, and to the reporter if the data is out of date', () => {
-    cy.request('DELETE', 'localhost:8025/api/v1/messages');
-    const applicationId = window.btoa('["applications", 1]');
-    cy.visit(
-      `/reporter/application?applicationId=${applicationId}&confirmationPage=true&version=1`
-    );
-    cy.url().should('include', '/reporter/application');
-    cy.get('#certifierEmail').clear().type('certifier@certi.fy');
-    cy.get('.btn').contains('Submit for Certification').click();
-    cy.wait(1000);
-    cy.request('localhost:8025/api/v1/messages').then((response) => {
-      expect(response.status).to.eq(200);
-      const message = response.body[0];
-      expect(message.To[0].Mailbox).to.contain('certifier');
-      expect(message.Content.Headers.Subject[0]).to.contain('CIIP');
-      expect(decoded(message.Content.Body)).to.contain(
-        'Your certification is requested'
-      );
-      cy.get('input')
-        .invoke('val')
-        .then(($url) => {
-          cy.visit($url);
-          cy.url().should('include', '/certifier/certification-redirect');
-          cy.get('#page-content');
-          cy.sqlFixture('fixtures/change-form-result');
-          cy.wait(1000);
-          cy.contains('Continue').click();
-          cy.url().should('include', '/certifier');
-          cy.get('#page-content');
-          cy.get('.card-title').contains('The data has changed');
-          cy.wait(500);
-        });
-    });
-    cy.request('DELETE', 'localhost:8025/api/v1/messages');
-  });
-
-  it('should send a notification email to the reporter when application has been certified', () => {
-    const applicationId = window.btoa('["applications", 1]');
-    cy.visit(
-      `/reporter/application?applicationId=${applicationId}&confirmationPage=true&version=1`
-    );
-    cy.url().should('include', '/reporter/application');
-    cy.get('#certifierEmail').clear().type('certifier@certi.fy');
-    cy.get('.btn').contains('Submit for Certification').click();
-    cy.wait(500);
-    cy.request('DELETE', 'localhost:8025/api/v1/messages');
-    cy.get('input')
-      .invoke('val')
-      .then(($url) => {
-        cy.visit($url);
-        cy.url().should('include', '/certifier/certification-redirect');
-        cy.get('#page-content');
-        cy.contains('Continue').click();
-        cy.url().should('include', '/certifier');
-        cy.get('.admin');
-        cy.get('input').click({multiple: true});
-        cy.get('.btn-success').click();
-        cy.wait(500);
-        cy.request('localhost:8025/api/v1/messages').then((response) => {
-          expect(response.status).to.eq(200);
-          const message = response.body[0];
-          expect(message.To[0].Mailbox).to.contain('ciip-reporter');
-          expect(message.Content.Headers.Subject[0]).to.contain('CIIP');
-          expect(decoded(message.Content.Body)).to.contain(
-            'has been signed by your certifier'
-          );
-          cy.request('DELETE', 'localhost:8025/api/v1/messages');
-        });
-        cy.wait(500);
-      });
-  });
   it('should send an email to the reporter and to the admin when application has been submitted', () => {
     const applicationId = window.btoa('["applications", 1]');
     cy.visit(
@@ -279,35 +208,6 @@ describe('Certification & Confirmation emails', () => {
         'has submitted or updated their application'
       );
       cy.request('DELETE', 'localhost:8025/api/v1/messages');
-    });
-  });
-});
-
-describe('Certification email opt-out', () => {
-  before(() => {
-    cy.cleanSchema();
-    cy.deployProdData();
-    cy.sqlFixture('fixtures/email-setup');
-  });
-  beforeEach(() => {
-    cy.mockLogin('reporter');
-  });
-
-  it('should not send a notification email to the certifier if the reporter opts out', () => {
-    const applicationId = window.btoa('["applications", 1]');
-    cy.request('DELETE', 'localhost:8025/api/v1/messages');
-    cy.visit(
-      `/reporter/application?applicationId=${applicationId}&confirmationPage=true&version=1`
-    );
-    cy.url().should('include', '/reporter/application');
-    cy.get('#certifierEmail').clear().type('certifier@certi.fy');
-    cy.get('.form-check-input').click();
-    cy.get('.btn').contains('Submit for Certification').click();
-    cy.wait(1000);
-    cy.request('localhost:8025/api/v1/messages').then((response) => {
-      expect(response.body.length).to.eq(0);
-      cy.request('DELETE', 'localhost:8025/api/v1/messages');
-      cy.wait(500);
     });
   });
 });

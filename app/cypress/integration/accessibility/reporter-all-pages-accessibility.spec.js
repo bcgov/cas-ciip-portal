@@ -96,7 +96,7 @@ describe('When logged in as a reporter', () => {
     cy.visit(
       `/reporter/application?applicationId=${applicationId}&confirmationPage=true&version=1`
     );
-    cy.contains('Submit for Certification');
+    cy.contains('Submit Application');
     cy.get('#page-content');
     cy.injectAxe();
     cy.get('#page-content');

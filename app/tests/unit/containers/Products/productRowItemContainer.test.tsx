@@ -71,7 +71,11 @@ describe('ProductList', () => {
 
   it('should allow benchmark editing when the product is PUBLISHED', async () => {
     const r = mount(
-      <ProductRowItemComponent product={product} query={query} />
+      <table>
+        <tbody>
+          <ProductRowItemComponent product={product} query={query} />
+        </tbody>
+      </table>
     );
     r.find('DropdownToggle').simulate('click');
     r.find('DropdownMenu DropdownItem').at(1).simulate('click');
@@ -87,7 +91,11 @@ describe('ProductList', () => {
 
   it('should not allow product editing when the product is PUBLISHED', async () => {
     const r = mount(
-      <ProductRowItemComponent product={product} query={query} />
+      <table>
+        <tbody>
+          <ProductRowItemComponent product={product} query={query} />
+        </tbody>
+      </table>
     );
     r.find('DropdownToggle').simulate('click');
     r.find('DropdownMenu DropdownItem').at(0).simulate('click');
@@ -104,7 +112,11 @@ describe('ProductList', () => {
   it('should allow benchmark editing when the product is DRAFT', async () => {
     const testProduct = {...product, productState: 'DRAFT'};
     const r = mount(
-      <ProductRowItemComponent product={testProduct} query={query} />
+      <table>
+        <tbody>
+          <ProductRowItemComponent product={testProduct} query={query} />
+        </tbody>
+      </table>
     );
     r.find('DropdownToggle').simulate('click');
     r.find('DropdownMenu DropdownItem').at(1).simulate('click');
@@ -121,7 +133,11 @@ describe('ProductList', () => {
   it('should allow product editing when the product is DRAFT', async () => {
     const testProduct = {...product, productState: 'DRAFT'};
     const r = mount(
-      <ProductRowItemComponent product={testProduct} query={query} />
+      <table>
+        <tbody>
+          <ProductRowItemComponent product={testProduct} query={query} />
+        </tbody>
+      </table>
     );
     r.find('DropdownToggle').simulate('click');
     r.find('DropdownMenu DropdownItem').at(0).simulate('click');
@@ -138,7 +154,11 @@ describe('ProductList', () => {
   it('should not allow product editing when the product is read-only', async () => {
     const testProduct = {...product, productState: 'DRAFT', isReadOnly: true};
     const r = mount(
-      <ProductRowItemComponent product={testProduct} query={query} />
+      <table>
+        <tbody>
+          <ProductRowItemComponent product={testProduct} query={query} />
+        </tbody>
+      </table>
     );
     r.find('DropdownToggle').simulate('click');
     r.find('DropdownMenu DropdownItem').at(0).simulate('click');

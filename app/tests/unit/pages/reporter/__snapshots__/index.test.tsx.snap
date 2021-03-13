@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Reporter Dashboard Reporter with certification requests 1`] = `
+exports[`Reporter Dashboard Should render properly 1`] = `
 <Relay(DefaultLayout)
   session={
     Object {
@@ -8,7 +8,6 @@ exports[`Reporter Dashboard Reporter with certification requests 1`] = `
         "defaultLayout_session": true,
       },
       "ciipUserBySub": Object {
-        "hasCertificationRequests": true,
         "id": "ciip-reporter@mailinator.com",
         "rowId": 6,
       },
@@ -29,7 +28,6 @@ exports[`Reporter Dashboard Reporter with certification requests 1`] = `
     >
       <Relay(OrganisationsComponent)
         confirmOrg={false}
-        flagCertRequests={true}
         handleContextChange={[Function]}
         handleInputChange={[Function]}
         handleOrgChange={[Function]}
@@ -45,173 +43,6 @@ exports[`Reporter Dashboard Reporter with certification requests 1`] = `
                 "defaultLayout_session": true,
               },
               "ciipUserBySub": Object {
-                "hasCertificationRequests": true,
-                "id": "ciip-reporter@mailinator.com",
-                "rowId": 6,
-              },
-            },
-          }
-        }
-        selectedOrg={null}
-      />
-    </Col>
-    <Col
-      md={4}
-    >
-      <h2
-        style={
-          Object {
-            "marginBottom": "20px",
-          }
-        }
-      >
-        How to apply for CIIP
-      </h2>
-      <div
-        className="how-to-apply"
-      >
-        <ListGroup>
-          <ListGroupItem
-            active={false}
-            disabled={false}
-          >
-            <strong>
-              Step 1:
-            </strong>
-            <br />
-            Request access to apply on behalf of an Operation as an applicant.
-          </ListGroupItem>
-          <ListGroupItem
-            active={false}
-            disabled={false}
-          >
-            <strong>
-              Step 2:
-            </strong>
-            <br />
-            CIIP administrators will review and approve your request.
-             
-          </ListGroupItem>
-          <ListGroupItem
-            active={false}
-            disabled={false}
-          >
-            <strong>
-              Step 3:
-            </strong>
-            <br />
-            Applicants will fill out an application for the Operation and send it to a Certifying Official.
-          </ListGroupItem>
-          <ListGroupItem
-            active={false}
-            disabled={false}
-          >
-            <strong>
-              Step 4:
-            </strong>
-            <br />
-            The Certifying Official reviews and signs off on the application.
-          </ListGroupItem>
-          <ListGroupItem
-            active={false}
-            disabled={false}
-          >
-            <strong>
-              Step 5:
-            </strong>
-            <br />
-            The applicant submits the application for assessment by the Ministry.
-          </ListGroupItem>
-          <ListGroupItem
-            active={false}
-            disabled={false}
-          >
-            <strong>
-              Step 6:
-            </strong>
-            <br />
-            CIIP administrators review the application.
-          </ListGroupItem>
-          <ListGroupItem
-            active={false}
-            disabled={false}
-          >
-            <strong>
-              Step 7:
-            </strong>
-            <br />
-            If any changes are required, the applicant will be requested to revise the application.
-          </ListGroupItem>
-          <ListGroupItem
-            active={false}
-            disabled={false}
-          >
-            <strong>
-              Step 8:
-            </strong>
-            <br />
-            Once processed, the applicant will receive a grant letter with further details on the expected incentive payment.
-          </ListGroupItem>
-        </ListGroup>
-      </div>
-    </Col>
-  </Row>
-  <style>
-    
-      h2 {
-        font-size: 1.25rem;
-      }
-    
-  </style>
-</Relay(DefaultLayout)>
-`;
-
-exports[`Reporter Dashboard Reporter with no certification requests 1`] = `
-<Relay(DefaultLayout)
-  session={
-    Object {
-      " $fragmentRefs": Object {
-        "defaultLayout_session": true,
-      },
-      "ciipUserBySub": Object {
-        "hasCertificationRequests": false,
-        "id": "ciip-reporter@mailinator.com",
-        "rowId": 6,
-      },
-    }
-  }
-  showSubheader={true}
-  title="My Operators"
->
-  <Row
-    noGutters={false}
-  >
-    <Col
-      md={
-        Object {
-          "span": 8,
-        }
-      }
-    >
-      <Relay(OrganisationsComponent)
-        confirmOrg={false}
-        flagCertRequests={false}
-        handleContextChange={[Function]}
-        handleInputChange={[Function]}
-        handleOrgChange={[Function]}
-        handleOrgConfirm={[Function]}
-        orgInput=""
-        query={
-          Object {
-            " $fragmentRefs": Object {
-              "Organisations_query": true,
-            },
-            "session": Object {
-              " $fragmentRefs": Object {
-                "defaultLayout_session": true,
-              },
-              "ciipUserBySub": Object {
-                "hasCertificationRequests": false,
                 "id": "ciip-reporter@mailinator.com",
                 "rowId": 6,
               },

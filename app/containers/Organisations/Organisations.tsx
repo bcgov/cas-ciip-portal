@@ -17,7 +17,6 @@ import UserOrganisation from './UserOrganisation';
 interface Props {
   query: Organisations_query;
   relay: RelayProp;
-  flagCertRequests: boolean;
   orgInput: string;
   selectedOrg: number;
   confirmOrg: boolean;
@@ -62,15 +61,6 @@ export const OrganisationsComponent: React.FunctionComponent<Props> = (
   const userOrgs = session.ciipUserBySub.ciipUserOrganisationsByUserId.edges;
   return (
     <>
-      {props.flagCertRequests && (
-        <Alert variant="info">
-          One or more reporting operations has requested that you certify an
-          application.{' '}
-          <Alert.Link href="/certifier/requests">
-            View all certification requests.
-          </Alert.Link>
-        </Alert>
-      )}
       <Card bg="light">
         <Card.Body>
           Operator, Operator Representative, and Reporting Operation are defined

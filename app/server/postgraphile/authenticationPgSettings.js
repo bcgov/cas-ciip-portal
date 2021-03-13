@@ -6,7 +6,6 @@ const databaseConnectionService = require('../db/databaseConnectionService');
 const AUTH_BYPASS_COOKIE = 'mocks.auth';
 const NO_AUTH = process.argv.includes('NO_AUTH');
 const AS_REPORTER = process.argv.includes('AS_REPORTER');
-const AS_CERTIFIER = process.argv.includes('AS_CERTIFIER');
 const AS_ANALYST = process.argv.includes('AS_ANALYST');
 const AS_ADMIN = process.argv.includes('AS_ADMIN');
 const AS_PENDING = process.argv.includes('AS_PENDING');
@@ -25,15 +24,6 @@ const authenticationPgSettings = (req) => {
       'jwt.claims.user_groups': groups.join(','),
       'jwt.claims.priority_group': priorityGroup,
       role: databaseConnectionService.NO_AUTH_POSTGRES_ROLE
-    };
-  }
-
-  if (AS_CERTIFIER || allowCypressForRole('certifier', req)) {
-    return {
-      'jwt.claims.sub': '15a21af2-ce88-42e6-ac90-0a5e24260ec6',
-      'jwt.claims.user_groups': 'User',
-      'jwt.claims.priority_group': 'User',
-      role: 'ciip_industry_user'
     };
   }
 
