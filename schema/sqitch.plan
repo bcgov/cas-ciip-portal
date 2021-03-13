@@ -277,3 +277,5 @@ computed_columns/ciip_user_has_certification_requests [computed_columns/ciip_use
 search_functions/search_certification_requests [search_functions/search_certification_requests@v1.16.0] 2021-03-12T22:11:06Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # removing function as part of the certifier role deprecation
 database_functions/verify_type_not_present 2021-03-12T22:17:37Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # function that throws if an existing type name is passed in, returns true otherwise
 types/search_certification_url_result [types/search_certification_url_result@v1.16.0] 2021-03-12T22:13:32Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # removing type as part of the certifier role deprecation
+policies/application_policies_001 [policies/application_policies] 2021-03-12T23:54:50Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # dropping certifier policies on application table
+database_functions/verify_policy_not_present 2021-03-13T00:18:59Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # function to verify a policy doesn't exist on the system
