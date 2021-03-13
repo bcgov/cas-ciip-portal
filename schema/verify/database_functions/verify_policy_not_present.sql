@@ -2,6 +2,6 @@
 
 BEGIN;
 
-select pg_get_functiondef('ggircs_portal_private.ggircs_portal_private.verify_policy_not_present(text,text)'::regprocedure);
+select pg_get_functiondef('ggircs_portal_private.verify_policy_not_present(text,text)'::regprocedure);
 
 ROLLBACK;
