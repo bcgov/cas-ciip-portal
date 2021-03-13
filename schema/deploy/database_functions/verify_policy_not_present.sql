@@ -10,13 +10,14 @@ BEGIN;
   $function$
     declare
       table_oid oid;
+      policy_exists boolean;
     begin
 
       -- Get the table OID
-      execute
+      execute format(
         $$
-          select table_name::regclass::oid
-        $$ into table_oid;
+          select '%s'::regclass::oid
+        $$ , table_name) into table_oid;
 
       -- Determine if policy exists with correct policy name, operation, role and table
       select exists(
