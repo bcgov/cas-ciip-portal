@@ -5745,6 +5745,13 @@ cross-fetch@3.0.6:
   dependencies:
     node-fetch "2.6.1"
 
+cross-fetch@^3.0.4:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/cross-fetch/-/cross-fetch-3.1.0.tgz#6447c13cc8887fa2a66caef92888d7fdaab6e0d1"
+  integrity sha512-a+yso9lSpXQI9DH+YjAu/m0dVfP8IVoZDPBLLFcvGpeq3KHNdikkekTOdkHiXEuTq4GBOeO0MfWkE40yzF1w7g==
+  dependencies:
+    node-fetch "2.6.1"
+
 cross-spawn@^6.0.0:
   version "6.0.5"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-6.0.5.tgz#4a5ec7c64dfae22c3a14124dbacdee846d80cbc4"
@@ -7507,6 +7514,19 @@ fbjs@^1.0.0:
     core-js "^2.4.1"
     fbjs-css-vars "^1.0.0"
     isomorphic-fetch "^2.1.1"
+    loose-envify "^1.0.0"
+    object-assign "^4.1.0"
+    promise "^7.1.1"
+    setimmediate "^1.0.5"
+    ua-parser-js "^0.7.18"
+
+fbjs@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-3.0.0.tgz#0907067fb3f57a78f45d95f1eacffcacd623c165"
+  integrity sha512-dJd4PiDOFuhe7vk4F80Mba83Vr2QuK86FoxtgPmzBqEJahncp+13YCmfoa53KHCo6OnlXLG7eeMWPfB5CrpVKg==
+  dependencies:
+    cross-fetch "^3.0.4"
+    fbjs-css-vars "^1.0.0"
     loose-envify "^1.0.0"
     object-assign "^4.1.0"
     promise "^7.1.1"
@@ -12481,15 +12501,15 @@ react-relay-network-modern@^4.7.1:
   dependencies:
     extract-files "^5.0.1"
 
-react-relay@^9.1.0:
-  version "9.1.0"
-  resolved "https://registry.yarnpkg.com/react-relay/-/react-relay-9.1.0.tgz#f0d21120a535c956ddb7feafda6f92175eb6cc6b"
-  integrity sha512-puE6o4tDTogQsRoRkuKpLhJ8fW4gvwhdpg5RcbSgj2M6WSGM2YvOWXTbD2mttgIvtpZtfoD8WmLArM3P7vQblw==
+react-relay@^11.0.0:
+  version "11.0.0"
+  resolved "https://registry.yarnpkg.com/react-relay/-/react-relay-11.0.0.tgz#385b629198596a1d1e7879e9c3577cf9e6b6b697"
+  integrity sha512-6ehR4ADbbJzA4slrEkL3iNBNIpICrBUBx3/kKZJN9JMfVKnXeOV52KmryIV1wj8yJU+wbkueu4h05fdQLTAIhw==
   dependencies:
     "@babel/runtime" "^7.0.0"
-    fbjs "^1.0.0"
+    fbjs "^3.0.0"
     nullthrows "^1.1.1"
-    relay-runtime "9.1.0"
+    relay-runtime "11.0.0"
 
 react-test-renderer@^16.0.0-0, react-test-renderer@^16.12.0:
   version "16.13.1"
@@ -12828,6 +12848,14 @@ relay-config@^9.1.0:
   integrity sha512-x9/5NOGUuGntYPVUK34yA8yedysBNoRT9BJIjRxGNIIIyof5NfpTPHoXBlD/g5w9DWN0yX11Ei/ar5Ma267vXQ==
   dependencies:
     cosmiconfig "^5.0.5"
+
+relay-runtime@11.0.0:
+  version "11.0.0"
+  resolved "https://registry.yarnpkg.com/relay-runtime/-/relay-runtime-11.0.0.tgz#cb3244dc4e2919a51fdcbedddd5d13a20cf393e8"
+  integrity sha512-7oeyW4hulyK3p4eB63Rsllo/es83xflCAt2HMWCpH2q0fi21iJBR02kK3wCPM/yFwi3i0K83W+UksLFQdE0CaQ==
+  dependencies:
+    "@babel/runtime" "^7.0.0"
+    fbjs "^3.0.0"
 
 relay-runtime@9.1.0, relay-runtime@^9.0.0:
   version "9.1.0"
