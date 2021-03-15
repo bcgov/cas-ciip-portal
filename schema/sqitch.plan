@@ -250,3 +250,10 @@ computed_columns/facility_application_application_status 2021-03-09T00:41:16Z Ma
 computed_columns/facility_application_last_swrs_reporting_year 2021-03-09T00:41:52Z Matthieu Foucault <matthieu@button.is> # add computed column to retrieve last swrs reporting year of a facility_application
 search_functions/search_all_facilities [search_functions/search_all_facilities@v1.16.0] 2021-03-09T00:52:12Z Matthieu Foucault <matthieu@button.is> # drop obsolete search function
 types/application_search_result [types/application_search_result@v1.16.0] 2021-03-09T00:56:14Z Matthieu Foucault <matthieu@button.is> # drop obsolete search result type
+computed_columns/form_result_form_result_statuses [computed_columns/form_result_form_result_statuses@v1.16.0] 2021-03-12T22:52:30Z Dylan Leard <dylan@button.is> # Migration: drop deprecated computed column
+mutations/create_application_revision_mutation_chain [mutations/create_application_revision_mutation_chain@v1.16.0] 2021-03-12T22:57:07Z Dylan Leard <dylan@button.is> # Migration: do not create form_result_statuses
+mutations/create_review_comment_mutation_chain [mutations/create_review_comment_mutation_chain@v1.16.0] 2021-03-12T22:59:39Z Dylan Leard <dylan@button.is> # Migration: remove form_result_status inserts
+trigger_functions/checksum_form_results [trigger_functions/checksum_form_results@v1.16.0] 2021-03-12T23:02:03Z Dylan Leard <dylan@button.is> # Migration: remove form_result_status insert
+policies/form_result_status_policies [policies/form_result_status_policies@v1.16.0] 2021-03-12T23:04:17Z Dylan Leard <dylan@button.is> # Migration: drop form_result_status RLS function
+tables/form_result_status [tables/form_result_status@v1.16.0] 2021-03-12T23:10:08Z Dylan Leard <dylan@button.is> # Migration: drop form_result_status table
+types/ciip_form_result_status [types/ciip_form_result_status@v1.16.0] 2021-03-12T23:22:31Z Dylan Leard <dylan@button.is> # Migration: drop deprecated type

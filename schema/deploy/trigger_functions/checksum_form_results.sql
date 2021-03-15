@@ -27,12 +27,6 @@ begin
                                           where fr.application_id = new.application_id
                                           and fr.form_id = temp_row.form_id
                                           and fr.version_number = new.version_number - 1)));
-
-      if new_form_result_hash != old_form_result_hash then
-        insert into ggircs_portal.form_result_status(application_id, form_id, form_result_status)
-        values (new.application_id, temp_row.form_id, 'needs attention');
-      end if;
-
     end loop;
   end if;
 

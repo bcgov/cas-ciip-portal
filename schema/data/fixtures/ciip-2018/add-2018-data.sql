@@ -59,12 +59,6 @@ values
   (1,1,2,'{}'),
   (1,1,3,'[{}]'),
   (1,1,4,'[{}]');
-insert into ggircs_portal.form_result_status(application_id, form_id, form_result_status)
-values
-  (1,1,'approved'),
-  (1,2,'approved'),
-  (1,3,'approved'),
-  (1,4,'approved');
 
 -- Create approved user-organisation connection
 insert into ggircs_portal.ciip_user_organisation(user_id, organisation_id, status) values (6, 1, 'approved');
