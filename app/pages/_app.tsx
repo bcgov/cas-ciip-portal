@@ -54,10 +54,10 @@ export default class App extends NextApp<AppProps> {
 
     // This is part of our query infrastructure.
     //
-    // The relayVars query string in the URL contains all filters to apply to the Relay query variables.
+    // The filterArgs query string in the URL contains all filters to apply to the Relay query variables.
     // It allows navigation to keep track of the query, so the form doesn't get reset.
-    const relayVars = safeJsonParse(router.query.relayVars as string);
-    const pageVars = safeJsonParse(router.query.pageVars as string);
+    const filterArgs = safeJsonParse(router.query.filterArgs as string);
+    const pageArgs = safeJsonParse(router.query.pageArgs as string);
 
     return (
       <ErrorBoundary>
@@ -72,8 +72,8 @@ export default class App extends NextApp<AppProps> {
             variables={{
               ...variables,
               ...router.query,
-              ...relayVars,
-              ...pageVars
+              ...filterArgs,
+              ...pageArgs
             }}
             render={({error, props}: {error: any; props: any}) => {
               if (error !== null) throw error; // Let the ErrorBoundary above render the error nicely

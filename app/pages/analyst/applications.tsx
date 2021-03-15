@@ -4,7 +4,7 @@ import {applicationsQueryResponse} from 'applicationsQuery.graphql';
 import ApplicationListContainer from 'containers/Applications/ApplicationListContainer';
 import DefaultLayout from 'layouts/default-layout';
 import {INCENTIVE_ANALYST, ADMIN_GROUP} from 'data/group-constants';
-import {DEFAULT_MAX_RESULTS} from 'components/FilterableTable/FilterableTablePagination';
+import {DEFAULT_PAGE_SIZE} from 'components/FilterableTable/FilterableTablePagination';
 
 const ALLOWED_GROUPS = [INCENTIVE_ANALYST, ...ADMIN_GROUP];
 
@@ -24,7 +24,7 @@ class Applications extends Component<Props> {
       $submission_date: Datetime
       $status: CiipApplicationRevisionStatus
       $order_by: [ApplicationsOrderBy!]
-      $max_results: Int
+      $pageSize: Int
       $offset: Int
     ) {
       query {
@@ -40,7 +40,7 @@ class Applications extends Component<Props> {
             submission_date: $submission_date
             status: $status
             order_by: $order_by
-            max_results: $max_results
+            pageSize: $pageSize
             offset: $offset
           )
       }
@@ -51,7 +51,7 @@ class Applications extends Component<Props> {
     return {
       variables: {
         order_by: 'OPERATOR_NAME_ASC',
-        max_results: DEFAULT_MAX_RESULTS,
+        pageSize: DEFAULT_PAGE_SIZE,
         offset: 0
       }
     };

@@ -1,5 +1,10 @@
 export type FilterArgs = Record<string, string | number | boolean>;
 
+export interface PageArgs {
+  offset?: number;
+  pageSize?: number;
+}
+
 export type FilterComponent = React.FunctionComponent<{
   onChange: (value: any, argName: string, toUrl?: (string) => any) => void;
   filterArgs: FilterArgs;

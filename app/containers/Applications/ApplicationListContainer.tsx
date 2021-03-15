@@ -67,11 +67,11 @@ export default createFragmentContainer(ApplicationList, {
       submission_date: {type: "Datetime"}
       status: {type: "CiipApplicationRevisionStatus"}
       order_by: {type: "[ApplicationsOrderBy!]"}
-      max_results: {type: "Int"}
+      pageSize: {type: "Int"}
       offset: {type: "Int"}
     ) {
       allApplications(
-        first: $max_results
+        first: $pageSize
         offset: $offset
         filter: {
           rowId: {equalTo: $id}

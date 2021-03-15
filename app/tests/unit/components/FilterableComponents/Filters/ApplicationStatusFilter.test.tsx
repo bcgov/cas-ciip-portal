@@ -13,9 +13,11 @@ describe('The ApplicationStatusFilter', () => {
     it('should render a select element with the possible application statuses', () => {
       const wrapper = mount(
         <table>
-          <tr>
-            <filter.Component filterArgs={{}} onChange={jest.fn()} />
-          </tr>
+          <tbody>
+            <tr>
+              <filter.Component filterArgs={{}} onChange={jest.fn()} />
+            </tr>
+          </tbody>
         </table>
       );
       const statuses = [
@@ -37,9 +39,11 @@ describe('The ApplicationStatusFilter', () => {
       const handleChange = jest.fn();
       const wrapper = mount(
         <table>
-          <tr>
-            <filter.Component filterArgs={{}} onChange={handleChange} />
-          </tr>
+          <tbody>
+            <tr>
+              <filter.Component filterArgs={{}} onChange={handleChange} />
+            </tr>
+          </tbody>
         </table>
       );
 
@@ -57,9 +61,11 @@ describe('The ApplicationStatusFilter', () => {
       const handleChange = jest.fn();
       const wrapper = mount(
         <table>
-          <tr>
-            <filter.Component filterArgs={{}} onChange={handleChange} />
-          </tr>
+          <tbody>
+            <tr>
+              <filter.Component filterArgs={{}} onChange={handleChange} />
+            </tr>
+          </tbody>
         </table>
       );
 

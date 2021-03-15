@@ -5,7 +5,7 @@ import {facilitiesQueryResponse} from 'facilitiesQuery.graphql';
 import DefaultLayout from 'layouts/default-layout';
 import FacilitiesListContainer from 'containers/Facilities/FacilitiesListContainer';
 import {USER} from 'data/group-constants';
-import {DEFAULT_MAX_RESULTS} from 'components/FilterableTable/FilterableTablePagination';
+import {DEFAULT_PAGE_SIZE} from 'components/FilterableTable/FilterableTablePagination';
 
 const ALLOWED_GROUPS = [USER];
 
@@ -25,7 +25,7 @@ class FacilitiesList extends Component<Props> {
       $applicationId: Int
       $organisationRowId: Int
       $offset: Int
-      $max_results: Int
+      $pageSize: Int
       $reportingYear: Int = 2019
       $lastSwrsReportingYear: Int
       $facilityBcghgid: String
@@ -41,7 +41,7 @@ class FacilitiesList extends Component<Props> {
             organisationRowId: $organisationRowId
             lastSwrsReportingYear: $lastSwrsReportingYear
             offset: $offset
-            max_results: $max_results
+            pageSize: $pageSize
             reportingYear: $reportingYear
             facilityBcghgid: $facilityBcghgid
           )
@@ -56,7 +56,7 @@ class FacilitiesList extends Component<Props> {
     return {
       variables: {
         offset: 0,
-        max_results: DEFAULT_MAX_RESULTS
+        pageSize: DEFAULT_PAGE_SIZE
       }
     };
   }
