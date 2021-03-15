@@ -2,6 +2,6 @@
 
 begin;
 
-select pg_get_functiondef('ggircs_portal_private.get_valid_applications_for_certifier()'::regprocedure);
+select ggircs_portal_private.verify_function_not_present('ggircs_portal_private.get_valid_applications_for_certifier');
 
 rollback;
