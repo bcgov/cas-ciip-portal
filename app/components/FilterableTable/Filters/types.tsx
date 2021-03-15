@@ -1,14 +1,14 @@
 export type FilterArgs = Record<string, string | number | boolean>;
 
-export type SearchOptionComponent = React.FunctionComponent<{
+export type FilterComponent = React.FunctionComponent<{
   onChange: (value: any, argName: string, toUrl?: (string) => any) => void;
   filterArgs: FilterArgs;
 }>;
 
-export interface ISearchOption {
+export interface TableFilter {
   toUrl?: (string) => any;
-  Component?: SearchOptionComponent;
-  columnName: string;
+  Component?: FilterComponent;
+  argName: string;
   title: string;
   isSearchEnabled: boolean;
   isSortEnabled: boolean;

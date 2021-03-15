@@ -2,38 +2,39 @@ import React, {useState} from 'react';
 import {graphql, createFragmentContainer} from 'react-relay';
 import {FacilitiesListContainer_query} from 'FacilitiesListContainer_query.graphql';
 import FacilitiesRowItemContainer from './FacilitiesRowItemContainer';
-import {ISearchOption} from 'components/Search/ISearchOption';
-import {NumberSearchOption} from 'components/Search/NumberSearchOption';
-import {TextSearchOption} from 'components/Search/TextSearchOption';
-import {NoHeaderSearchOption} from 'components/Search/NoHeaderSearchOption';
-import FilterableTableLayout from 'components/FilterableComponents/FilterableTableLayout';
-import FilterableTablePagination from 'components/FilterableComponents/FilterableTablePagination';
+import {
+  TableFilter,
+  TextFilter,
+  NumberFilter,
+  ApplicationStatusFilter,
+  NoHeaderFilter,
+  ReportingPeriodFilter
+} from 'components/FilterableTable/Filters';
+import FilterableTableLayout from 'components/FilterableTable/FilterableTable';
 import {useRouter} from 'next/router';
 import safeJsonParse from 'lib/safeJsonParse';
-import {ApplicationStatusSearchOption} from 'components/Search/ApplicationStatusSearchOption';
-import {ReportingPeriodFilter} from 'components/Search/ReportingPeriodFilter';
 
 interface Props {
   query: FacilitiesListContainer_query;
 }
 
-const searchOptions: ISearchOption[] = [
-  new TextSearchOption('Operator Name', 'operatorName', {sortable: false}),
-  new TextSearchOption('Facility Name', 'facilityName', {sortable: false}),
-  new TextSearchOption('Facility Type', 'facilityType', {sortable: false}),
-  new TextSearchOption('BC GHG id', 'facilityBcghgid', {sortable: false}),
-  new NumberSearchOption(
+const filters: TableFilter[] = [
+  new TextFilter('Operator Name', 'operatorName', {sortable: false}),
+  new TextFilter('Facility Name', 'facilityName', {sortable: false}),
+  new TextFilter('Facility Type', 'facilityType', {sortable: false}),
+  new TextFilter('BC GHG id', 'facilityBcghgid', {sortable: false}),
+  new NumberFilter(
     'Reporting period of last SWRS report',
     'lastSwrsReportingYear',
     {sortable: false}
   ),
-  new ApplicationStatusSearchOption(
+  new ApplicationStatusFilter(
     'Application Status',
     'applicationStatus',
     'applicationIdIsNull'
   ),
-  new NumberSearchOption('Application #', 'applicationId', {sortable: false}),
-  NoHeaderSearchOption
+  new NumberFilter('Application #', 'applicationId', {sortable: false}),
+  NoHeaderFilter
 ];
 
 export const FacilitiesList: React.FunctionComponent<Props> = ({query}) => {
@@ -75,11 +76,12 @@ export const FacilitiesList: React.FunctionComponent<Props> = ({query}) => {
   return (
     <>
       <FilterableTableLayout
+        paginated
         body={body}
-        searchOptions={searchOptions}
+        filters={filters}
         extraFilters={[reportingPeriodFilter]}
+        totalCount={totalCount}
       />
-      <FilterableTablePagination totalCount={totalCount} />
       If you cannot find your facility in the list, please{' '}
       <a href="mailto:ghgregulator@gov.bc.ca">contact CAS</a> for assistance.
     </>

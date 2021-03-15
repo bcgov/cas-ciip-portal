@@ -1,6 +1,6 @@
-import {BaseSearchOption} from './BaseSearchOption';
+import BaseFilter from './BaseFilter';
 
-export class YesNoSearchOption extends BaseSearchOption<boolean> {
+export default class YesNoFilter extends BaseFilter<boolean> {
   toUrl? = (v: string) => {
     if (v === 'true') return true;
     if (v === 'false') return false;

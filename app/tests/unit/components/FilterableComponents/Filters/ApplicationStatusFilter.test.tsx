@@ -1,10 +1,10 @@
 import React from 'react';
-import {ApplicationStatusSearchOption} from 'components/Search/ApplicationStatusSearchOption';
+import {ApplicationStatusFilter} from 'components/FilterableTable/Filters';
 import {mount} from 'enzyme';
 
-describe('The ApplicationStatusSearchOption', () => {
+describe('The ApplicationStatusFilter', () => {
   describe('Component property', () => {
-    const filter = new ApplicationStatusSearchOption(
+    const filter = new ApplicationStatusFilter(
       'myDisplayName',
       'myArgName',
       'myNullValueArgName'
@@ -12,7 +12,11 @@ describe('The ApplicationStatusSearchOption', () => {
 
     it('should render a select element with the possible application statuses', () => {
       const wrapper = mount(
-        <filter.Component filterArgs={{}} onChange={jest.fn()} />
+        <table>
+          <tr>
+            <filter.Component filterArgs={{}} onChange={jest.fn()} />
+          </tr>
+        </table>
       );
       const statuses = [
         'NOT_STARTED',
@@ -32,7 +36,11 @@ describe('The ApplicationStatusSearchOption', () => {
     it('should trigger onChange with the nullValueArgName to true, and argName to undefined when selecting "Not started"', () => {
       const handleChange = jest.fn();
       const wrapper = mount(
-        <filter.Component filterArgs={{}} onChange={handleChange} />
+        <table>
+          <tr>
+            <filter.Component filterArgs={{}} onChange={handleChange} />
+          </tr>
+        </table>
       );
 
       wrapper
@@ -48,7 +56,11 @@ describe('The ApplicationStatusSearchOption', () => {
     it('should trigger onChange with the nullValueArgName to null, and argName to the selected value when selecting a value other than "Not started"', () => {
       const handleChange = jest.fn();
       const wrapper = mount(
-        <filter.Component filterArgs={{}} onChange={handleChange} />
+        <table>
+          <tr>
+            <filter.Component filterArgs={{}} onChange={handleChange} />
+          </tr>
+        </table>
       );
 
       wrapper

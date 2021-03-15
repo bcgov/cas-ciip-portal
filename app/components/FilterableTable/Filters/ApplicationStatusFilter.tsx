@@ -1,11 +1,11 @@
 import React from 'react';
 import {CiipApplicationRevisionStatus} from 'FacilitiesRowItemContainer_facilityApplication.graphql';
-import {EnumSearchOption} from './EnumSearchOption';
+import EnumFilter from './EnumFilter';
 import {Form} from 'react-bootstrap';
 import {getUserFriendlyStatusLabel} from 'lib/text-transforms';
-import {SearchOptionComponent} from './ISearchOption';
+import {FilterComponent} from './types';
 
-export class ApplicationStatusSearchOption extends EnumSearchOption<
+export default class ApplicationStatusFilter extends EnumFilter<
   CiipApplicationRevisionStatus | 'NOT_STARTED'
 > {
   constructor(displayName: string, argName: string, nullValueArgName: string) {
@@ -21,15 +21,15 @@ export class ApplicationStatusSearchOption extends EnumSearchOption<
   }
   _nullValueArgName: string;
 
-  Component: SearchOptionComponent = ({onChange, filterArgs}) => {
+  Component: FilterComponent = ({onChange, filterArgs}) => {
     const handleChange = (e) => {
       const {value} = e.target;
       if (value === 'NOT_STARTED') {
         onChange(true, this._nullValueArgName);
-        onChange(undefined, this.columnName);
+        onChange(undefined, this.argName);
       } else {
         onChange(undefined, this._nullValueArgName);
-        onChange(value, this.columnName, this.toUrl);
+        onChange(value, this.argName, this.toUrl);
       }
     };
 
@@ -37,9 +37,9 @@ export class ApplicationStatusSearchOption extends EnumSearchOption<
       <td>
         <Form.Control
           as="select"
-          name={this.columnName}
+          name={this.argName}
           value={
-            (filterArgs[this.columnName] as string) ??
+            (filterArgs[this.argName] as string) ??
             (filterArgs[this._nullValueArgName] ? 'NOT_STARTED' : '')
           }
           onChange={handleChange}

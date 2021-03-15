@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`The filterable table layout renders extra filters 1`] = `
+exports[`The filterable table renders extra filters 1`] = `
 Array [
   <div
     className="jsx-1046249322"
@@ -131,7 +131,7 @@ Array [
 ]
 `;
 
-exports[`The filterable table layout renders filter headers 1`] = `
+exports[`The filterable table renders filter headers 1`] = `
 <Fragment>
   <div
     className="jsx-1046249322"
@@ -169,27 +169,27 @@ exports[`The filterable table layout renders filter headers 1`] = `
           key="DisplayOnlyTitle-sortHeader"
         />
       </tr>
-      <FilterableTableHeaders
+      <FilterableTableFilterRow
         filterArgs={Object {}}
-        onSubmit={[Function]}
-        searchOptions={
+        filters={
           Array [
-            TextSearchOption {
-              "columnName": "text_column",
+            TextFilter {
+              "argName": "text_column",
               "isSearchEnabled": true,
               "isSortEnabled": true,
               "removeSearchHeader": false,
               "title": "TextTitle",
               "toUrl": [Function],
             },
-            DisplayOnlyOption {
-              "columnName": undefined,
+            DisplayOnlyFilter {
+              "argName": undefined,
               "isSearchEnabled": false,
               "isSortEnabled": false,
               "title": "DisplayOnlyTitle",
             },
           ]
         }
+        onSubmit={[Function]}
       />
     </thead>
     <tbody />
@@ -233,7 +233,7 @@ exports[`The filterable table layout renders filter headers 1`] = `
 </Fragment>
 `;
 
-exports[`The filterable table layout renders sort headers 1`] = `
+exports[`The filterable table renders sort headers 1`] = `
 <Fragment>
   <div
     className="jsx-1046249322"
@@ -271,27 +271,27 @@ exports[`The filterable table layout renders sort headers 1`] = `
           key="DisplayOnlyTitle-sortHeader"
         />
       </tr>
-      <FilterableTableHeaders
+      <FilterableTableFilterRow
         filterArgs={Object {}}
-        onSubmit={[Function]}
-        searchOptions={
+        filters={
           Array [
-            TextSearchOption {
-              "columnName": "text_column",
+            TextFilter {
+              "argName": "text_column",
               "isSearchEnabled": true,
               "isSortEnabled": true,
               "removeSearchHeader": false,
               "title": "TextTitle",
               "toUrl": [Function],
             },
-            DisplayOnlyOption {
-              "columnName": undefined,
+            DisplayOnlyFilter {
+              "argName": undefined,
               "isSearchEnabled": false,
               "isSortEnabled": false,
               "title": "DisplayOnlyTitle",
             },
           ]
         }
+        onSubmit={[Function]}
       />
     </thead>
     <tbody />
@@ -335,7 +335,7 @@ exports[`The filterable table layout renders sort headers 1`] = `
 </Fragment>
 `;
 
-exports[`The filterable table layout renders the table body 1`] = `
+exports[`The filterable table renders the table body 1`] = `
 <Fragment>
   <div
     className="jsx-1046249322"
@@ -352,10 +352,10 @@ exports[`The filterable table layout renders the table body 1`] = `
       <tr
         className="jsx-1046249322"
       />
-      <FilterableTableHeaders
+      <FilterableTableFilterRow
         filterArgs={Object {}}
+        filters={Array []}
         onSubmit={[Function]}
-        searchOptions={Array []}
       />
     </thead>
     <tbody>

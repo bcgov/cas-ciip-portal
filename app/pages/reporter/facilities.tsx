@@ -5,6 +5,7 @@ import {facilitiesQueryResponse} from 'facilitiesQuery.graphql';
 import DefaultLayout from 'layouts/default-layout';
 import FacilitiesListContainer from 'containers/Facilities/FacilitiesListContainer';
 import {USER} from 'data/group-constants';
+import {DEFAULT_MAX_RESULTS} from 'components/FilterableTable/FilterableTablePagination';
 
 const ALLOWED_GROUPS = [USER];
 
@@ -55,7 +56,7 @@ class FacilitiesList extends Component<Props> {
     return {
       variables: {
         offset: 0,
-        max_results: 20
+        max_results: DEFAULT_MAX_RESULTS
       }
     };
   }

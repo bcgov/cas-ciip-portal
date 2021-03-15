@@ -1,6 +1,6 @@
 import * as nextRouter from 'next/router';
 import React from 'react';
-import SortableTableHeader from 'components/FilterableComponents/SortableTableHeader';
+import SortableTableHeader from 'components/FilterableTable/SortableTableHeader';
 import {shallow} from 'enzyme';
 
 nextRouter.useRouter = jest.fn();

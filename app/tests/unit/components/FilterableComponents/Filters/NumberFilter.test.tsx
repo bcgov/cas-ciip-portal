@@ -1,6 +1,6 @@
-import {NumberSearchOption} from 'components/Search/NumberSearchOption';
+import {NumberFilter} from 'components/FilterableTable/Filters';
 
-const optionUnderTest = new NumberSearchOption('display', 'column');
+const optionUnderTest = new NumberFilter('display', 'column');
 
 describe('the number search option', () => {
   it('converts the input to a number', () => {

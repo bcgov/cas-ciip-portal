@@ -1,23 +1,23 @@
-import {ISearchOption} from './ISearchOption';
+import {TableFilter} from './types';
 
 interface ISearchOptionSettings {
   filterable?: boolean;
   sortable?: boolean;
 }
 
-export abstract class BaseSearchOption<T> implements ISearchOption {
+export default abstract class BaseFilter<T> implements TableFilter {
   constructor(
-    display,
-    column,
+    title: string,
+    argName: string,
     settings: ISearchOptionSettings = {filterable: true, sortable: true}
   ) {
-    this.title = display;
-    this.columnName = column;
+    this.title = title;
+    this.argName = argName;
     this.isSearchEnabled = settings.filterable ?? true;
     this.isSortEnabled = settings.sortable ?? true;
   }
 
-  columnName = '';
+  argName = '';
   title = '';
 
   /// This function tells the component using this search option how to translate the

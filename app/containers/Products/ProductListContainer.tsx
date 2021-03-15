@@ -1,50 +1,46 @@
 import React from 'react';
 import {graphql, createFragmentContainer} from 'react-relay';
 import {ProductListContainer_query} from 'ProductListContainer_query.graphql';
-import FilterableTableLayout from 'components/FilterableComponents/FilterableTableLayout';
+import FilterableTableLayout from 'components/FilterableTable/FilterableTable';
 import LoadingSpinner from 'components/LoadingSpinner';
 import ProductRowItemContainer from './ProductRowItemContainer';
-import {ISearchOption} from 'components/Search/ISearchOption';
-import {TextSearchOption} from 'components/Search/TextSearchOption';
-import {SortOnlyOption} from 'components/Search/SortOnlyOption';
-import {NoHeaderSearchOption} from 'components/Search/NoHeaderSearchOption';
-import {DisplayOnlyOption} from 'components/Search/DisplayOnlyOption';
-import {NumberSearchOption} from 'components/Search/NumberSearchOption';
-import {YesNoSearchOption} from 'components/Search/YesNoSearchOption';
-import {EnumSearchOption} from 'components/Search/EnumSearchOption';
+import {
+  TableFilter,
+  TextFilter,
+  DisplayOnlyFilter,
+  SortOnlyFilter,
+  NumberFilter,
+  YesNoFilter,
+  EnumFilter,
+  NoHeaderFilter
+} from 'components/FilterableTable/Filters';
 import {CiipProductState} from 'createProductMutation.graphql';
-import FilterableTablePagination from 'components/FilterableComponents/FilterableTablePagination';
 
 interface Props {
   query: ProductListContainer_query;
 }
+
+const filters: TableFilter[] = [
+  new TextFilter('Product', 'product_name'),
+  new DisplayOnlyFilter('Settings'),
+  new SortOnlyFilter('Modified (D/M/Y)', 'date_modified'),
+  new NumberFilter('Benchmark', 'current_benchmark'),
+  new NumberFilter('Eligibility Threshold', 'current_eligibility_threshold'),
+  new YesNoFilter('Allocation of Emissions', 'requires_emission_allocation'),
+  new YesNoFilter('CIIP Benchmarked', 'is_ciip_product'),
+  new EnumFilter<CiipProductState>('Status', 'product_state', [
+    'ARCHIVED',
+    'DRAFT',
+    'PUBLISHED'
+  ]),
+  NoHeaderFilter
+];
 
 export const ProductList: React.FunctionComponent<Props> = ({query}) => {
   if (!query?.allProducts?.edges) return <LoadingSpinner />;
   const allProducts = query.allProducts.edges;
   const {totalCount} = query.allProducts;
 
-  const searchOptions: ISearchOption[] = [
-    new TextSearchOption('Product', 'product_name'),
-    new DisplayOnlyOption('Settings'),
-    new SortOnlyOption('Modified (D/M/Y)', 'date_modified'),
-    new NumberSearchOption('Benchmark', 'current_benchmark'),
-    new NumberSearchOption(
-      'Eligibility Threshold',
-      'current_eligibility_threshold'
-    ),
-    new YesNoSearchOption(
-      'Allocation of Emissions',
-      'requires_emission_allocation'
-    ),
-    new YesNoSearchOption('CIIP Benchmarked', 'is_ciip_product'),
-    new EnumSearchOption<CiipProductState>('Status', 'product_state', [
-      'ARCHIVED',
-      'DRAFT',
-      'PUBLISHED'
-    ]),
-    NoHeaderSearchOption
-  ];
   const body = (
     <tbody>
       {allProducts.map(({node}) => (
@@ -53,10 +49,12 @@ export const ProductList: React.FunctionComponent<Props> = ({query}) => {
     </tbody>
   );
   return (
-    <>
-      <FilterableTableLayout body={body} searchOptions={searchOptions} />
-      <FilterableTablePagination totalCount={totalCount} />
-    </>
+    <FilterableTableLayout
+      body={body}
+      filters={filters}
+      paginated
+      totalCount={totalCount}
+    />
   );
 };
 

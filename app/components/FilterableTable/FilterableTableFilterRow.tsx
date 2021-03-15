@@ -1,18 +1,18 @@
 import React, {useEffect, useState} from 'react';
 import {Button, Form} from 'react-bootstrap';
-import {ISearchProps} from 'components/Search/SearchProps';
+import {TableFilter, FilterArgs} from './Filters';
 import {getUserFriendlyStatusLabel} from 'lib/text-transforms';
-import {FilterArgs} from 'components/Search/ISearchOption';
 
-interface Props extends ISearchProps {
-  onSubmit: (searchData: Record<string, string | number | boolean>) => void;
+interface Props {
+  filters: TableFilter[];
   filterArgs: FilterArgs;
+  onSubmit: (searchData: Record<string, string | number | boolean>) => void;
 }
 
-const FilterableTableHeaders: React.FunctionComponent<Props> = ({
-  onSubmit,
+const FilterableTableFilterRow: React.FunctionComponent<Props> = ({
+  filters,
   filterArgs,
-  searchOptions
+  onSubmit
 }) => {
   const [searchFilters, setSearchFilters] = useState(filterArgs);
   useEffect(() => setSearchFilters(filterArgs), [filterArgs]); // reset the local state when the prop changes
@@ -34,22 +34,22 @@ const FilterableTableHeaders: React.FunctionComponent<Props> = ({
 
   return (
     <tr>
-      {searchOptions.map((option) => {
-        const column = option.columnName;
-        const key = option.columnName + option.title;
+      {filters.map((filter) => {
+        const column = filter.argName;
+        const key = filter.argName + filter.title;
         const value = searchFilters[column] ?? '';
 
-        if (option.Component) {
+        if (filter.Component) {
           return (
-            <option.Component
+            <filter.Component
               filterArgs={searchFilters}
               onChange={handleFilterChange}
             />
           );
         }
 
-        if (option.isSearchEnabled) {
-          if (!option.searchOptionValues) {
+        if (filter.isSearchEnabled) {
+          if (!filter.searchOptionValues) {
             return (
               <td key={key}>
                 <Form.Control
@@ -58,7 +58,7 @@ const FilterableTableHeaders: React.FunctionComponent<Props> = ({
                   value={value as string | number}
                   aria-label={`filter-by-${column}`}
                   onChange={(evt) =>
-                    handleFilterChange(evt.target.value, column, option.toUrl)
+                    handleFilterChange(evt.target.value, column, filter.toUrl)
                   }
                 />
               </td>
@@ -74,13 +74,13 @@ const FilterableTableHeaders: React.FunctionComponent<Props> = ({
                 value={value as string | number}
                 aria-label={`filter-by-${column}`}
                 onChange={(evt) =>
-                  handleFilterChange(evt.target.value, column, option.toUrl)
+                  handleFilterChange(evt.target.value, column, filter.toUrl)
                 }
               >
                 <option key={column + '-placeholder'} value="">
                   ...
                 </option>
-                {option.searchOptionValues.map((kvp) => (
+                {filter.searchOptionValues.map((kvp) => (
                   <option key={column + '-' + kvp.display} value={kvp.value}>
                     {getUserFriendlyStatusLabel(kvp.display)}
                   </option>
@@ -89,7 +89,7 @@ const FilterableTableHeaders: React.FunctionComponent<Props> = ({
             </td>
           );
         }
-        if (option.removeSearchHeader) return;
+        if (filter.removeSearchHeader) return;
         return <td key={key} />;
       })}
       <td className="flex">
@@ -113,4 +113,4 @@ const FilterableTableHeaders: React.FunctionComponent<Props> = ({
   );
 };
 
-export default FilterableTableHeaders;
+export default FilterableTableFilterRow;

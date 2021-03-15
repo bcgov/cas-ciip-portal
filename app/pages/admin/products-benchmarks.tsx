@@ -6,7 +6,7 @@ import DefaultLayout from 'layouts/default-layout';
 import ProductCreatorContainer from 'containers/Products/ProductCreatorContainer';
 import ProductListContainer from 'containers/Products/ProductListContainer';
 import {ADMIN_GROUP} from 'data/group-constants';
-import {DEFAULT_MAX_RESULTS} from 'components/FilterableComponents/FilterableTablePagination';
+import {DEFAULT_MAX_RESULTS} from 'components/FilterableTable/FilterableTablePagination';
 
 const ALLOWED_GROUPS = ADMIN_GROUP;
 

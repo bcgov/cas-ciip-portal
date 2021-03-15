@@ -23,7 +23,6 @@ describe('Organisations', () => {
     };
     const r = shallow(<OrganisationRequestsTableComponent query={query} />);
     expect(r).toMatchSnapshot();
-    expect(r.exists('FilterableTableLayoutComponent')).toBe(true);
-    expect(r.exists('FilterableTablePaginationComponent')).toBe(true);
+    expect(r.exists('FilterableTable')).toBe(true);
   });
 });
