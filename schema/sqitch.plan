@@ -280,3 +280,4 @@ types/search_certification_url_result [types/search_certification_url_result@v1.
 database_functions/verify_policy_not_present 2021-03-13T00:18:59Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # function to verify a policy doesn't exist on the system
 policies/application_policies_001 [policies/application_policies] 2021-03-12T23:54:50Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # dropping certifier policies on application table
 policies/application_revision_policies_001 [policies/application_revision_policies] 2021-03-13T01:03:12Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # removing the application revision policies linked to the certifier role
+policies/application_revision_status_policies_001 [policies/application_revision_status_policies] 2021-03-15T17:59:33Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # removing certifier RLS
