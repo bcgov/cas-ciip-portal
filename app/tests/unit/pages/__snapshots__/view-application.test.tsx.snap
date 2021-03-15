@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`matches the last accepted Snapshot 1`] = `
+exports[`View submitted application page displays a "Resume latest draft" button when changes are requested, and there is already a newer draft (not submitted) 1`] = `
 <Relay(DefaultLayout)
   session={
     Object {
@@ -16,8 +16,43 @@ exports[`matches the last accepted Snapshot 1`] = `
     noGutters={false}
   >
     <Col
-      md={8}
+      md={12}
     >
+      <ApplicationDecision
+        actionRequired={true}
+        decision="REQUESTED_CHANGES"
+        reviewComments={
+          Array [
+            "This is a comment",
+          ]
+        }
+      >
+        <p
+          style={
+            Object {
+              "margin": "1rem 0",
+            }
+          }
+        >
+          <strong>
+            Note:
+          </strong>
+           This application has been revised in a more recent draft.
+        </p>
+        <Link
+          href="/reporter/application?applicationId=testing&version=2"
+        >
+          <a>
+            <Button
+              active={false}
+              disabled={false}
+              variant="primary"
+            >
+              Resume latest draft
+            </Button>
+          </a>
+        </Link>
+      </ApplicationDecision>
       <Relay(ApplicationDetailsComponent)
         application={
           Object {
@@ -26,7 +61,13 @@ exports[`matches the last accepted Snapshot 1`] = `
               "ReviseApplicationButtonContainer_application": true,
             },
             "applicationRevisionStatus": Object {
-              "applicationRevisionStatus": "SUBMITTED",
+              "applicationRevisionStatus": "REQUESTED_CHANGES",
+            },
+            "latestDraftRevision": Object {
+              "versionNumber": 2,
+            },
+            "latestSubmittedRevision": Object {
+              "versionNumber": 1,
             },
             "orderedFormResults": Object {
               "edges": Array [
@@ -36,6 +77,17 @@ exports[`matches the last accepted Snapshot 1`] = `
                       "ApplicationCommentsContainer_formResult": true,
                     },
                     "id": "abc",
+                  },
+                },
+              ],
+            },
+            "reviewCommentsByApplicationId": Object {
+              "edges": Array [
+                Object {
+                  "node": Object {
+                    "commentType": "GENERAL",
+                    "description": "This is a comment",
+                    "resolved": false,
                   },
                 },
               ],
@@ -54,7 +106,13 @@ exports[`matches the last accepted Snapshot 1`] = `
                 "ReviseApplicationButtonContainer_application": true,
               },
               "applicationRevisionStatus": Object {
-                "applicationRevisionStatus": "SUBMITTED",
+                "applicationRevisionStatus": "REQUESTED_CHANGES",
+              },
+              "latestDraftRevision": Object {
+                "versionNumber": 2,
+              },
+              "latestSubmittedRevision": Object {
+                "versionNumber": 1,
               },
               "orderedFormResults": Object {
                 "edges": Array [
@@ -64,6 +122,17 @@ exports[`matches the last accepted Snapshot 1`] = `
                         "ApplicationCommentsContainer_formResult": true,
                       },
                       "id": "abc",
+                    },
+                  },
+                ],
+              },
+              "reviewCommentsByApplicationId": Object {
+                "edges": Array [
+                  Object {
+                    "node": Object {
+                      "commentType": "GENERAL",
+                      "description": "This is a comment",
+                      "resolved": false,
                     },
                   },
                 ],
@@ -79,25 +148,954 @@ exports[`matches the last accepted Snapshot 1`] = `
         review={false}
       />
     </Col>
+  </Row>
+</Relay(DefaultLayout)>
+`;
+
+exports[`View submitted application page displays a "Revise" button when changes are requested, and there is no newer revision 1`] = `
+<Relay(DefaultLayout)
+  session={
+    Object {
+      " $fragmentRefs": Object {
+        "defaultLayout_session": true,
+      },
+    }
+  }
+  showSubheader={true}
+  title="Summary of your application"
+>
+  <Row
+    noGutters={false}
+  >
     <Col
-      md={4}
+      md={12}
     >
-      <Relay(ApplicationCommentsComponent)
-        formResult={
+      <ApplicationDecision
+        actionRequired={true}
+        decision="REQUESTED_CHANGES"
+        reviewComments={
+          Array [
+            "The operator name is slightly different from a previous match we have on file: should it be \\"Virtucon Limited\\" instead of \\"Virtucon Ltd\\"?",
+          ]
+        }
+      >
+        <Relay(ReviseApplicationButton)
+          application={
+            Object {
+              " $fragmentRefs": Object {
+                "ApplicationDetailsContainer_application": true,
+                "ReviseApplicationButtonContainer_application": true,
+              },
+              "applicationRevisionStatus": Object {
+                "applicationRevisionStatus": "REQUESTED_CHANGES",
+              },
+              "latestDraftRevision": Object {
+                "versionNumber": 1,
+              },
+              "latestSubmittedRevision": Object {
+                "versionNumber": 1,
+              },
+              "orderedFormResults": Object {
+                "edges": Array [
+                  Object {
+                    "node": Object {
+                      " $fragmentRefs": Object {
+                        "ApplicationCommentsContainer_formResult": true,
+                      },
+                      "id": "abc",
+                    },
+                  },
+                ],
+              },
+              "reviewCommentsByApplicationId": Object {
+                "edges": Array [
+                  Object {
+                    "node": Object {
+                      "commentType": "GENERAL",
+                      "description": "The operator name is slightly different from a previous match we have on file: should it be \\"Virtucon Limited\\" instead of \\"Virtucon Ltd\\"?",
+                      "resolved": false,
+                    },
+                  },
+                ],
+              },
+            }
+          }
+        />
+      </ApplicationDecision>
+      <Relay(ApplicationDetailsComponent)
+        application={
           Object {
             " $fragmentRefs": Object {
-              "ApplicationCommentsContainer_formResult": true,
+              "ApplicationDetailsContainer_application": true,
+              "ReviseApplicationButtonContainer_application": true,
             },
-            "id": "abc",
+            "applicationRevisionStatus": Object {
+              "applicationRevisionStatus": "REQUESTED_CHANGES",
+            },
+            "latestDraftRevision": Object {
+              "versionNumber": 1,
+            },
+            "latestSubmittedRevision": Object {
+              "versionNumber": 1,
+            },
+            "orderedFormResults": Object {
+              "edges": Array [
+                Object {
+                  "node": Object {
+                    " $fragmentRefs": Object {
+                      "ApplicationCommentsContainer_formResult": true,
+                    },
+                    "id": "abc",
+                  },
+                },
+              ],
+            },
+            "reviewCommentsByApplicationId": Object {
+              "edges": Array [
+                Object {
+                  "node": Object {
+                    "commentType": "GENERAL",
+                    "description": "The operator name is slightly different from a previous match we have on file: should it be \\"Virtucon Limited\\" instead of \\"Virtucon Ltd\\"?",
+                    "resolved": false,
+                  },
+                },
+              ],
+            },
           }
         }
-        key="abc"
+        liveValidate={false}
+        query={
+          Object {
+            " $fragmentRefs": Object {
+              "ApplicationDetailsContainer_query": true,
+            },
+            "application": Object {
+              " $fragmentRefs": Object {
+                "ApplicationDetailsContainer_application": true,
+                "ReviseApplicationButtonContainer_application": true,
+              },
+              "applicationRevisionStatus": Object {
+                "applicationRevisionStatus": "REQUESTED_CHANGES",
+              },
+              "latestDraftRevision": Object {
+                "versionNumber": 1,
+              },
+              "latestSubmittedRevision": Object {
+                "versionNumber": 1,
+              },
+              "orderedFormResults": Object {
+                "edges": Array [
+                  Object {
+                    "node": Object {
+                      " $fragmentRefs": Object {
+                        "ApplicationCommentsContainer_formResult": true,
+                      },
+                      "id": "abc",
+                    },
+                  },
+                ],
+              },
+              "reviewCommentsByApplicationId": Object {
+                "edges": Array [
+                  Object {
+                    "node": Object {
+                      "commentType": "GENERAL",
+                      "description": "The operator name is slightly different from a previous match we have on file: should it be \\"Virtucon Limited\\" instead of \\"Virtucon Ltd\\"?",
+                      "resolved": false,
+                    },
+                  },
+                ],
+              },
+            },
+            "session": Object {
+              " $fragmentRefs": Object {
+                "defaultLayout_session": true,
+              },
+            },
+          }
+        }
         review={false}
       />
     </Col>
   </Row>
+</Relay(DefaultLayout)>
+`;
+
+exports[`View submitted application page does not show an application decision when unreviewed 1`] = `
+<Relay(DefaultLayout)
+  session={
+    Object {
+      " $fragmentRefs": Object {
+        "defaultLayout_session": true,
+      },
+    }
+  }
+  showSubheader={true}
+  title="Summary of your application"
+>
   <Row
     noGutters={false}
-  />
+  >
+    <Col
+      md={12}
+    >
+      <Relay(ApplicationDetailsComponent)
+        application={
+          Object {
+            " $fragmentRefs": Object {
+              "ApplicationDetailsContainer_application": true,
+              "ReviseApplicationButtonContainer_application": true,
+            },
+            "applicationRevisionStatus": Object {
+              "applicationRevisionStatus": "SUBMITTED",
+            },
+            "latestDraftRevision": Object {
+              "versionNumber": 1,
+            },
+            "latestSubmittedRevision": Object {
+              "versionNumber": 1,
+            },
+            "orderedFormResults": Object {
+              "edges": Array [
+                Object {
+                  "node": Object {
+                    " $fragmentRefs": Object {
+                      "ApplicationCommentsContainer_formResult": true,
+                    },
+                    "id": "abc",
+                  },
+                },
+              ],
+            },
+            "reviewCommentsByApplicationId": Object {
+              "edges": Array [],
+            },
+          }
+        }
+        liveValidate={false}
+        query={
+          Object {
+            " $fragmentRefs": Object {
+              "ApplicationDetailsContainer_query": true,
+            },
+            "application": Object {
+              " $fragmentRefs": Object {
+                "ApplicationDetailsContainer_application": true,
+                "ReviseApplicationButtonContainer_application": true,
+              },
+              "applicationRevisionStatus": Object {
+                "applicationRevisionStatus": "SUBMITTED",
+              },
+              "latestDraftRevision": Object {
+                "versionNumber": 1,
+              },
+              "latestSubmittedRevision": Object {
+                "versionNumber": 1,
+              },
+              "orderedFormResults": Object {
+                "edges": Array [
+                  Object {
+                    "node": Object {
+                      " $fragmentRefs": Object {
+                        "ApplicationCommentsContainer_formResult": true,
+                      },
+                      "id": "abc",
+                    },
+                  },
+                ],
+              },
+              "reviewCommentsByApplicationId": Object {
+                "edges": Array [],
+              },
+            },
+            "session": Object {
+              " $fragmentRefs": Object {
+                "defaultLayout_session": true,
+              },
+            },
+          }
+        }
+        review={false}
+      />
+    </Col>
+  </Row>
+</Relay(DefaultLayout)>
+`;
+
+exports[`View submitted application page should render a "View most recent submission" button when viewing an older submission (viewed version < last submitted version) 1`] = `
+<Relay(DefaultLayout)
+  session={
+    Object {
+      " $fragmentRefs": Object {
+        "defaultLayout_session": true,
+      },
+    }
+  }
+  showSubheader={true}
+  title="Summary of your application"
+>
+  <Row
+    noGutters={false}
+  >
+    <Col
+      md={12}
+    >
+      <Alert
+        closeLabel="Close alert"
+        show={true}
+        transition={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "defaultProps": Object {
+              "appear": false,
+              "in": false,
+              "mountOnEnter": false,
+              "timeout": 300,
+              "unmountOnExit": false,
+            },
+            "displayName": "Fade",
+            "render": [Function],
+          }
+        }
+        variant="secondary"
+      >
+        <p
+          style={
+            Object {
+              "margin": "1rem 0",
+            }
+          }
+        >
+          <strong>
+            Note:
+          </strong>
+           There is a more recently submitted version of this application.
+        </p>
+        <Link
+          href="/reporter/view-application?applicationId=testing&version=2"
+          passHref={true}
+        >
+          <Button
+            active={false}
+            disabled={false}
+            variant="primary"
+          >
+            View most recent submission
+          </Button>
+        </Link>
+      </Alert>
+      <ApplicationDecision
+        actionRequired={false}
+        decision="REQUESTED_CHANGES"
+        reviewComments={
+          Array [
+            "This is a comment",
+          ]
+        }
+      />
+      <Relay(ApplicationDetailsComponent)
+        application={
+          Object {
+            " $fragmentRefs": Object {
+              "ApplicationDetailsContainer_application": true,
+              "ReviseApplicationButtonContainer_application": true,
+            },
+            "applicationRevisionStatus": Object {
+              "applicationRevisionStatus": "REQUESTED_CHANGES",
+            },
+            "latestDraftRevision": Object {
+              "versionNumber": 2,
+            },
+            "latestSubmittedRevision": Object {
+              "versionNumber": 2,
+            },
+            "orderedFormResults": Object {
+              "edges": Array [
+                Object {
+                  "node": Object {
+                    " $fragmentRefs": Object {
+                      "ApplicationCommentsContainer_formResult": true,
+                    },
+                    "id": "abc",
+                  },
+                },
+              ],
+            },
+            "reviewCommentsByApplicationId": Object {
+              "edges": Array [
+                Object {
+                  "node": Object {
+                    "commentType": "GENERAL",
+                    "description": "This is a comment",
+                    "resolved": false,
+                  },
+                },
+              ],
+            },
+          }
+        }
+        liveValidate={false}
+        query={
+          Object {
+            " $fragmentRefs": Object {
+              "ApplicationDetailsContainer_query": true,
+            },
+            "application": Object {
+              " $fragmentRefs": Object {
+                "ApplicationDetailsContainer_application": true,
+                "ReviseApplicationButtonContainer_application": true,
+              },
+              "applicationRevisionStatus": Object {
+                "applicationRevisionStatus": "REQUESTED_CHANGES",
+              },
+              "latestDraftRevision": Object {
+                "versionNumber": 2,
+              },
+              "latestSubmittedRevision": Object {
+                "versionNumber": 2,
+              },
+              "orderedFormResults": Object {
+                "edges": Array [
+                  Object {
+                    "node": Object {
+                      " $fragmentRefs": Object {
+                        "ApplicationCommentsContainer_formResult": true,
+                      },
+                      "id": "abc",
+                    },
+                  },
+                ],
+              },
+              "reviewCommentsByApplicationId": Object {
+                "edges": Array [
+                  Object {
+                    "node": Object {
+                      "commentType": "GENERAL",
+                      "description": "This is a comment",
+                      "resolved": false,
+                    },
+                  },
+                ],
+              },
+            },
+            "session": Object {
+              " $fragmentRefs": Object {
+                "defaultLayout_session": true,
+              },
+            },
+          }
+        }
+        review={false}
+      />
+    </Col>
+  </Row>
+</Relay(DefaultLayout)>
+`;
+
+exports[`View submitted application page should render a "View most recent submission" button when viewing an older submission that has BOTH a newer submission, and at least two newer drafts 1`] = `
+<Relay(DefaultLayout)
+  session={
+    Object {
+      " $fragmentRefs": Object {
+        "defaultLayout_session": true,
+      },
+    }
+  }
+  showSubheader={true}
+  title="Summary of your application"
+>
+  <Row
+    noGutters={false}
+  >
+    <Col
+      md={12}
+    >
+      <Alert
+        closeLabel="Close alert"
+        show={true}
+        transition={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "defaultProps": Object {
+              "appear": false,
+              "in": false,
+              "mountOnEnter": false,
+              "timeout": 300,
+              "unmountOnExit": false,
+            },
+            "displayName": "Fade",
+            "render": [Function],
+          }
+        }
+        variant="secondary"
+      >
+        <p
+          style={
+            Object {
+              "margin": "1rem 0",
+            }
+          }
+        >
+          <strong>
+            Note:
+          </strong>
+           There is a more recently submitted version of this application.
+        </p>
+        <Link
+          href="/reporter/view-application?applicationId=testing&version=2"
+          passHref={true}
+        >
+          <Button
+            active={false}
+            disabled={false}
+            variant="primary"
+          >
+            View most recent submission
+          </Button>
+        </Link>
+      </Alert>
+      <ApplicationDecision
+        actionRequired={false}
+        decision="REQUESTED_CHANGES"
+        reviewComments={
+          Array [
+            "This is a comment",
+          ]
+        }
+      />
+      <Relay(ApplicationDetailsComponent)
+        application={
+          Object {
+            " $fragmentRefs": Object {
+              "ApplicationDetailsContainer_application": true,
+              "ReviseApplicationButtonContainer_application": true,
+            },
+            "applicationRevisionStatus": Object {
+              "applicationRevisionStatus": "REQUESTED_CHANGES",
+            },
+            "latestDraftRevision": Object {
+              "versionNumber": 3,
+            },
+            "latestSubmittedRevision": Object {
+              "versionNumber": 2,
+            },
+            "orderedFormResults": Object {
+              "edges": Array [
+                Object {
+                  "node": Object {
+                    " $fragmentRefs": Object {
+                      "ApplicationCommentsContainer_formResult": true,
+                    },
+                    "id": "abc",
+                  },
+                },
+              ],
+            },
+            "reviewCommentsByApplicationId": Object {
+              "edges": Array [
+                Object {
+                  "node": Object {
+                    "commentType": "GENERAL",
+                    "description": "This is a comment",
+                    "resolved": false,
+                  },
+                },
+              ],
+            },
+          }
+        }
+        liveValidate={false}
+        query={
+          Object {
+            " $fragmentRefs": Object {
+              "ApplicationDetailsContainer_query": true,
+            },
+            "application": Object {
+              " $fragmentRefs": Object {
+                "ApplicationDetailsContainer_application": true,
+                "ReviseApplicationButtonContainer_application": true,
+              },
+              "applicationRevisionStatus": Object {
+                "applicationRevisionStatus": "REQUESTED_CHANGES",
+              },
+              "latestDraftRevision": Object {
+                "versionNumber": 3,
+              },
+              "latestSubmittedRevision": Object {
+                "versionNumber": 2,
+              },
+              "orderedFormResults": Object {
+                "edges": Array [
+                  Object {
+                    "node": Object {
+                      " $fragmentRefs": Object {
+                        "ApplicationCommentsContainer_formResult": true,
+                      },
+                      "id": "abc",
+                    },
+                  },
+                ],
+              },
+              "reviewCommentsByApplicationId": Object {
+                "edges": Array [
+                  Object {
+                    "node": Object {
+                      "commentType": "GENERAL",
+                      "description": "This is a comment",
+                      "resolved": false,
+                    },
+                  },
+                ],
+              },
+            },
+            "session": Object {
+              " $fragmentRefs": Object {
+                "defaultLayout_session": true,
+              },
+            },
+          }
+        }
+        review={false}
+      />
+    </Col>
+  </Row>
+</Relay(DefaultLayout)>
+`;
+
+exports[`View submitted application page shows approval when reviewed and approved 1`] = `
+<Relay(DefaultLayout)
+  session={
+    Object {
+      " $fragmentRefs": Object {
+        "defaultLayout_session": true,
+      },
+    }
+  }
+  showSubheader={true}
+  title="Summary of your application"
+>
+  <Row
+    noGutters={false}
+  >
+    <Col
+      md={12}
+    >
+      <ApplicationDecision
+        actionRequired={false}
+        decision="APPROVED"
+        reviewComments={Array []}
+      />
+      <Relay(ApplicationDetailsComponent)
+        application={
+          Object {
+            " $fragmentRefs": Object {
+              "ApplicationDetailsContainer_application": true,
+              "ReviseApplicationButtonContainer_application": true,
+            },
+            "applicationRevisionStatus": Object {
+              "applicationRevisionStatus": "APPROVED",
+            },
+            "latestDraftRevision": Object {
+              "versionNumber": 1,
+            },
+            "latestSubmittedRevision": Object {
+              "versionNumber": 1,
+            },
+            "orderedFormResults": Object {
+              "edges": Array [
+                Object {
+                  "node": Object {
+                    " $fragmentRefs": Object {
+                      "ApplicationCommentsContainer_formResult": true,
+                    },
+                    "id": "abc",
+                  },
+                },
+              ],
+            },
+            "reviewCommentsByApplicationId": Object {
+              "edges": Array [],
+            },
+          }
+        }
+        liveValidate={false}
+        query={
+          Object {
+            " $fragmentRefs": Object {
+              "ApplicationDetailsContainer_query": true,
+            },
+            "application": Object {
+              " $fragmentRefs": Object {
+                "ApplicationDetailsContainer_application": true,
+                "ReviseApplicationButtonContainer_application": true,
+              },
+              "applicationRevisionStatus": Object {
+                "applicationRevisionStatus": "APPROVED",
+              },
+              "latestDraftRevision": Object {
+                "versionNumber": 1,
+              },
+              "latestSubmittedRevision": Object {
+                "versionNumber": 1,
+              },
+              "orderedFormResults": Object {
+                "edges": Array [
+                  Object {
+                    "node": Object {
+                      " $fragmentRefs": Object {
+                        "ApplicationCommentsContainer_formResult": true,
+                      },
+                      "id": "abc",
+                    },
+                  },
+                ],
+              },
+              "reviewCommentsByApplicationId": Object {
+                "edges": Array [],
+              },
+            },
+            "session": Object {
+              " $fragmentRefs": Object {
+                "defaultLayout_session": true,
+              },
+            },
+          }
+        }
+        review={false}
+      />
+    </Col>
+  </Row>
+</Relay(DefaultLayout)>
+`;
+
+exports[`View submitted application page shows rejection when reviewed and rejected 1`] = `
+<Relay(DefaultLayout)
+  session={
+    Object {
+      " $fragmentRefs": Object {
+        "defaultLayout_session": true,
+      },
+    }
+  }
+  showSubheader={true}
+  title="Summary of your application"
+>
+  <Row
+    noGutters={false}
+  >
+    <Col
+      md={12}
+    >
+      <ApplicationDecision
+        actionRequired={false}
+        decision="REJECTED"
+        reviewComments={Array []}
+      />
+      <Relay(ApplicationDetailsComponent)
+        application={
+          Object {
+            " $fragmentRefs": Object {
+              "ApplicationDetailsContainer_application": true,
+              "ReviseApplicationButtonContainer_application": true,
+            },
+            "applicationRevisionStatus": Object {
+              "applicationRevisionStatus": "REJECTED",
+            },
+            "latestDraftRevision": Object {
+              "versionNumber": 1,
+            },
+            "latestSubmittedRevision": Object {
+              "versionNumber": 1,
+            },
+            "orderedFormResults": Object {
+              "edges": Array [
+                Object {
+                  "node": Object {
+                    " $fragmentRefs": Object {
+                      "ApplicationCommentsContainer_formResult": true,
+                    },
+                    "id": "abc",
+                  },
+                },
+              ],
+            },
+            "reviewCommentsByApplicationId": Object {
+              "edges": Array [],
+            },
+          }
+        }
+        liveValidate={false}
+        query={
+          Object {
+            " $fragmentRefs": Object {
+              "ApplicationDetailsContainer_query": true,
+            },
+            "application": Object {
+              " $fragmentRefs": Object {
+                "ApplicationDetailsContainer_application": true,
+                "ReviseApplicationButtonContainer_application": true,
+              },
+              "applicationRevisionStatus": Object {
+                "applicationRevisionStatus": "REJECTED",
+              },
+              "latestDraftRevision": Object {
+                "versionNumber": 1,
+              },
+              "latestSubmittedRevision": Object {
+                "versionNumber": 1,
+              },
+              "orderedFormResults": Object {
+                "edges": Array [
+                  Object {
+                    "node": Object {
+                      " $fragmentRefs": Object {
+                        "ApplicationCommentsContainer_formResult": true,
+                      },
+                      "id": "abc",
+                    },
+                  },
+                ],
+              },
+              "reviewCommentsByApplicationId": Object {
+                "edges": Array [],
+              },
+            },
+            "session": Object {
+              " $fragmentRefs": Object {
+                "defaultLayout_session": true,
+              },
+            },
+          }
+        }
+        review={false}
+      />
+    </Col>
+  </Row>
+</Relay(DefaultLayout)>
+`;
+
+exports[`View submitted application page shows reviewer comments when reviewed and rejected 1`] = `
+<Relay(DefaultLayout)
+  session={
+    Object {
+      " $fragmentRefs": Object {
+        "defaultLayout_session": true,
+      },
+    }
+  }
+  showSubheader={true}
+  title="Summary of your application"
+>
+  <Row
+    noGutters={false}
+  >
+    <Col
+      md={12}
+    >
+      <ApplicationDecision
+        actionRequired={false}
+        decision="REJECTED"
+        reviewComments={
+          Array [
+            "We cannot accept applications from facilities that are either not regulated under GGIRCA, or which paid no carbon tax in 2020.",
+          ]
+        }
+      />
+      <Relay(ApplicationDetailsComponent)
+        application={
+          Object {
+            " $fragmentRefs": Object {
+              "ApplicationDetailsContainer_application": true,
+              "ReviseApplicationButtonContainer_application": true,
+            },
+            "applicationRevisionStatus": Object {
+              "applicationRevisionStatus": "REJECTED",
+            },
+            "latestDraftRevision": Object {
+              "versionNumber": 1,
+            },
+            "latestSubmittedRevision": Object {
+              "versionNumber": 1,
+            },
+            "orderedFormResults": Object {
+              "edges": Array [
+                Object {
+                  "node": Object {
+                    " $fragmentRefs": Object {
+                      "ApplicationCommentsContainer_formResult": true,
+                    },
+                    "id": "abc",
+                  },
+                },
+              ],
+            },
+            "reviewCommentsByApplicationId": Object {
+              "edges": Array [
+                Object {
+                  "node": Object {
+                    "commentType": "GENERAL",
+                    "description": "We cannot accept applications from facilities that are either not regulated under GGIRCA, or which paid no carbon tax in 2020.",
+                    "resolved": false,
+                  },
+                },
+              ],
+            },
+          }
+        }
+        liveValidate={false}
+        query={
+          Object {
+            " $fragmentRefs": Object {
+              "ApplicationDetailsContainer_query": true,
+            },
+            "application": Object {
+              " $fragmentRefs": Object {
+                "ApplicationDetailsContainer_application": true,
+                "ReviseApplicationButtonContainer_application": true,
+              },
+              "applicationRevisionStatus": Object {
+                "applicationRevisionStatus": "REJECTED",
+              },
+              "latestDraftRevision": Object {
+                "versionNumber": 1,
+              },
+              "latestSubmittedRevision": Object {
+                "versionNumber": 1,
+              },
+              "orderedFormResults": Object {
+                "edges": Array [
+                  Object {
+                    "node": Object {
+                      " $fragmentRefs": Object {
+                        "ApplicationCommentsContainer_formResult": true,
+                      },
+                      "id": "abc",
+                    },
+                  },
+                ],
+              },
+              "reviewCommentsByApplicationId": Object {
+                "edges": Array [
+                  Object {
+                    "node": Object {
+                      "commentType": "GENERAL",
+                      "description": "We cannot accept applications from facilities that are either not regulated under GGIRCA, or which paid no carbon tax in 2020.",
+                      "resolved": false,
+                    },
+                  },
+                ],
+              },
+            },
+            "session": Object {
+              " $fragmentRefs": Object {
+                "defaultLayout_session": true,
+              },
+            },
+          }
+        }
+        review={false}
+      />
+    </Col>
+  </Row>
 </Relay(DefaultLayout)>
 `;

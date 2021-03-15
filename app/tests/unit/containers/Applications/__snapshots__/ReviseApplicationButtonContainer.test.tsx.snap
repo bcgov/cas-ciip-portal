@@ -1,28 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`The ReviseApplicationButton should render a "Resume latest draft" button when a new draft exists (but has not yet been submitted) 1`] = `
-<Button
-  active={false}
-  disabled={false}
-  onClick={[Function]}
-  variant="primary"
->
-  Revise Application
-</Button>
-`;
-
 exports[`The ReviseApplicationButton should render a "Revise" button when the version being viewed === the latest draft version (there is not yet a newer draft) 1`] = `
-<Button
-  active={false}
-  disabled={false}
-  onClick={[Function]}
-  variant="primary"
->
-  Revise Application
-</Button>
-`;
-
-exports[`The ReviseApplicationButton should render a "View most recent submission" button when viewing an older submission (viewed version < last submitted version) 1`] = `
 <Button
   active={false}
   disabled={false}
