@@ -286,3 +286,4 @@ policies/form_result_policies_001 [policies/form_result_policies] 2021-03-15T18:
 database_functions/get_valid_applications_for_certifier [database_functions/get_valid_applications_for_certifier@v1.16.0] 2021-03-15T20:29:13Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # removing function as a part of certifier role deprecation
 trigger_functions/run_graphile_worker_job [trigger_functions/run_graphile_worker_job@v1.16.0] 2021-03-15T20:44:38Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # removing jobs related to certification
 tables/certification_url_001 [tables/certification_url] 2021-03-15T21:50:02Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # dropping triggers for removed functions
+trigger_functions/signature_md5 [trigger_functions/signature_md5@v1.16.0] 2021-03-15T22:58:28Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # removing since we don't certify applications anymore
