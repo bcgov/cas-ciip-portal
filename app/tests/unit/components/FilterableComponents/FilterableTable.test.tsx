@@ -1,13 +1,15 @@
 import React from 'react';
 import {shallow, mount} from 'enzyme';
-import FilterableTableLayoutComponent from 'components/FilterableComponents/FilterableTableLayout';
+import FilterableTable from 'components/FilterableTable/FilterableTable';
 import * as nextRouter from 'next/router';
 
-import {TextSearchOption} from 'components/Search/TextSearchOption';
-import {DisplayOnlyOption} from 'components/Search/DisplayOnlyOption';
-import {ISearchExtraFilter} from 'components/Search/SearchProps';
+import {
+  TextFilter,
+  DisplayOnlyFilter,
+  TableFilter
+} from 'components/FilterableTable/Filters';
 
-describe('The filterable table layout', () => {
+describe('The filterable table', () => {
   nextRouter.useRouter = jest.fn();
   nextRouter.useRouter.mockImplementation(() => ({
     route: '/',
@@ -17,16 +19,13 @@ describe('The filterable table layout', () => {
   const emptyBody = <tbody />;
 
   it('renders sort headers', () => {
-    const searchOptions = [
-      new TextSearchOption('TextTitle', 'text_column'),
-      new DisplayOnlyOption('DisplayOnlyTitle')
+    const filters = [
+      new TextFilter('TextTitle', 'text_column'),
+      new DisplayOnlyFilter('DisplayOnlyTitle')
     ];
 
     const rendered = shallow(
-      <FilterableTableLayoutComponent
-        body={emptyBody}
-        searchOptions={searchOptions}
-      />
+      <FilterableTable body={emptyBody} filters={filters} />
     );
 
     expect(rendered).toMatchSnapshot();
@@ -48,22 +47,19 @@ describe('The filterable table layout', () => {
   });
 
   it('renders filter headers', () => {
-    const searchOptions = [
-      new TextSearchOption('TextTitle', 'text_column'),
-      new DisplayOnlyOption('DisplayOnlyTitle')
+    const filters = [
+      new TextFilter('TextTitle', 'text_column'),
+      new DisplayOnlyFilter('DisplayOnlyTitle')
     ];
 
     const rendered = shallow(
-      <FilterableTableLayoutComponent
-        body={emptyBody}
-        searchOptions={searchOptions}
-      />
+      <FilterableTable body={emptyBody} filters={filters} />
     );
 
     expect(rendered).toMatchSnapshot();
     expect(
-      rendered.find('FilterableTableHeaders').at(0).prop('searchOptions')
-    ).toBe(searchOptions);
+      rendered.find('FilterableTableFilterRow').at(0).prop('filters')
+    ).toBe(filters);
   });
 
   it('renders the table body', () => {
@@ -75,32 +71,35 @@ describe('The filterable table layout', () => {
       </tbody>
     );
 
-    const rendered = shallow(
-      <FilterableTableLayoutComponent body={body} searchOptions={[]} />
-    );
+    const rendered = shallow(<FilterableTable body={body} filters={[]} />);
 
     expect(rendered).toMatchSnapshot();
     expect(rendered.find('tbody').text()).toContain('this is a test body');
   });
 
   it('renders extra filters', () => {
-    const extraFilter: ISearchExtraFilter = {
+    const extraFilter: TableFilter = {
       argName: 'myExtraFilter',
-      Component: ({onChange, value}) => {
+      title: '',
+      isSearchEnabled: true,
+      isSortEnabled: false,
+      Component: ({onChange, filterArgs}) => {
         return (
           <input
             name="myExtraFilter"
-            value={value as string}
-            onChange={(e) => onChange((e.nativeEvent.target as any).value)}
+            value={filterArgs.myExtraFilter as string}
+            onChange={(e) =>
+              onChange((e.nativeEvent.target as any).value, 'myExtraFilter')
+            }
           />
         );
       }
     };
 
     const rendered = mount(
-      <FilterableTableLayoutComponent
+      <FilterableTable
         body={emptyBody}
-        searchOptions={[]}
+        filters={[]}
         extraFilters={[extraFilter]}
       />
     );

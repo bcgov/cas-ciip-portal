@@ -1,10 +1,11 @@
-import {ISearchOption} from './ISearchOption';
+import {TableFilter} from './types';
 
 // This can be used as a UI trick to save space for the search/reset buttons
-export const NoHeaderSearchOption: ISearchOption = {
+const NoHeaderFilter: TableFilter = {
   title: null,
-  columnName: null,
+  argName: null,
   isSearchEnabled: false,
   isSortEnabled: false,
   removeSearchHeader: true
 };
+export default NoHeaderFilter;

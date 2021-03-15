@@ -1,6 +1,6 @@
-import {YesNoSearchOption} from 'components/Search/YesNoSearchOption';
+import {YesNoFilter} from 'components/FilterableTable/Filters';
 
-const searchOptionUnderTest = new YesNoSearchOption('yesno', 'yesno');
+const searchOptionUnderTest = new YesNoFilter('yesno', 'yesno');
 
 describe('the yes/no search option', () => {
   it('returns true/false when Yes/No is selected', () => {

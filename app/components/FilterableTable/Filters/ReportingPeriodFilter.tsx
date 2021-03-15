@@ -1,8 +1,8 @@
 import React from 'react';
 import {Form} from 'react-bootstrap';
-import {ISearchExtraFilter} from './SearchProps';
+import {TableFilter} from './types';
 
-export class ReportingPeriodFilter implements ISearchExtraFilter {
+export default class ReportingPeriodFilter implements TableFilter {
   constructor(
     argName: string,
     reportingPeriods: number[],
@@ -15,16 +15,19 @@ export class ReportingPeriodFilter implements ISearchExtraFilter {
   argName: string;
   _reportingPeriods: number[];
   _defaultValue: number;
+  isSortEnabled = false;
+  isSearchEnabled = true;
+  title = 'Reporting period';
 
-  Component = ({onChange, value}) => {
+  Component = ({onChange, filterArgs}) => {
     return (
       <Form>
         <Form.Group controlId="reportingYear">
-          <Form.Label>Reporting Period</Form.Label>
+          <Form.Label>{this.title}</Form.Label>
           <Form.Control
             as="select"
             custom
-            value={Number(value || this._defaultValue)}
+            value={Number(filterArgs[this.argName] || this._defaultValue)}
             aria-label="Select reporting period"
             onChange={(e) =>
               onChange(Number((e.nativeEvent.target as any).value))

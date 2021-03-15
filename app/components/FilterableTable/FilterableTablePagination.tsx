@@ -9,9 +9,7 @@ interface Props {
 
 export const DEFAULT_MAX_RESULTS = 20;
 
-const FilterableTablePaginationComponent: React.FunctionComponent<Props> = (
-  props
-) => {
+const FilterableTablePagination: React.FunctionComponent<Props> = (props) => {
   const {totalCount} = props;
   const router = useRouter();
 
@@ -137,4 +135,4 @@ const FilterableTablePaginationComponent: React.FunctionComponent<Props> = (
   );
 };
 
-export default FilterableTablePaginationComponent;
+export default FilterableTablePagination;

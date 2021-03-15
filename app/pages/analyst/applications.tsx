@@ -4,7 +4,7 @@ import {applicationsQueryResponse} from 'applicationsQuery.graphql';
 import ApplicationListContainer from 'containers/Applications/ApplicationListContainer';
 import DefaultLayout from 'layouts/default-layout';
 import {INCENTIVE_ANALYST, ADMIN_GROUP} from 'data/group-constants';
-import {DEFAULT_MAX_RESULTS} from 'components/FilterableComponents/FilterableTablePagination';
+import {DEFAULT_MAX_RESULTS} from 'components/FilterableTable/FilterableTablePagination';
 
 const ALLOWED_GROUPS = [INCENTIVE_ANALYST, ...ADMIN_GROUP];
 

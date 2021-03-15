@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The ApplicationStatusFilter Component property should render a select element with the possible application statuses 1`] = `
+<table>
+  <tr>
+    <td>
+      <FormControl
+        aria-label="Filter by application status"
+        as="select"
+        name="myArgName"
+        onChange={[Function]}
+        value=""
+      >
+        <select
+          aria-label="Filter by application status"
+          className="form-control"
+          name="myArgName"
+          onChange={[Function]}
+          value=""
+        >
+          <option
+            key="no-filter"
+            value=""
+          >
+            ...
+          </option>
+          <option
+            key="NOT_STARTED"
+            value="NOT_STARTED"
+          >
+            Not started
+          </option>
+          <option
+            key="DRAFT"
+            value="DRAFT"
+          >
+            Draft
+          </option>
+          <option
+            key="SUBMITTED"
+            value="SUBMITTED"
+          >
+            Submitted
+          </option>
+          <option
+            key="REQUESTED_CHANGES"
+            value="REQUESTED_CHANGES"
+          >
+            Changes requested
+          </option>
+          <option
+            key="APPROVED"
+            value="APPROVED"
+          >
+            Approved
+          </option>
+          <option
+            key="REJECTED"
+            value="REJECTED"
+          >
+            Rejected
+          </option>
+        </select>
+      </FormControl>
+    </td>
+  </tr>
+</table>
+`;

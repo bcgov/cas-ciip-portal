@@ -1,11 +1,11 @@
 import React from 'react';
-import FilterableTableHeaders from 'components/FilterableComponents/FilterableTableHeaders';
+import FilterableTableFilterRow from 'components/FilterableTable/FilterableTableFilterRow';
 import {shallow} from 'enzyme';
-import {ISearchOption} from 'components/Search/ISearchOption';
+import {TableFilter} from 'components/FilterableTable/Filters';
 
-const createMockSearchOption: (name: string) => ISearchOption = (name) => {
+const createMockFilter: (name: string) => TableFilter = (name) => {
   return {
-    columnName: name,
+    argName: name,
     title: name,
     isSearchEnabled: true,
     isSortEnabled: true
@@ -15,8 +15,8 @@ const createMockSearchOption: (name: string) => ISearchOption = (name) => {
 describe('The filterable table headers component', () => {
   it('renders search and reset buttons', () => {
     const rendered = shallow(
-      <FilterableTableHeaders
-        searchOptions={[]}
+      <FilterableTableFilterRow
+        filters={[]}
         onSubmit={jest.fn()}
         filterArgs={{}}
       />
@@ -39,13 +39,13 @@ describe('The filterable table headers component', () => {
   });
 
   it('renders as many td elements as search options, plus one for the search buttons', () => {
-    const searchOptions: ISearchOption[] = [
-      createMockSearchOption('test'),
-      createMockSearchOption('test2')
+    const filters: TableFilter[] = [
+      createMockFilter('test'),
+      createMockFilter('test2')
     ];
     const rendered = shallow(
-      <FilterableTableHeaders
-        searchOptions={searchOptions}
+      <FilterableTableFilterRow
+        filters={filters}
         onSubmit={jest.fn()}
         filterArgs={{test: 'a', test2: 'b'}}
       />
@@ -56,14 +56,14 @@ describe('The filterable table headers component', () => {
   });
 
   it('only renders elements that are searchable', () => {
-    const searchOptions = [
-      {...createMockSearchOption('test'), isSearchEnabled: false},
-      {...createMockSearchOption('test2'), isSearchEnabled: false},
-      {...createMockSearchOption('test3'), isSearchEnabled: true}
+    const filters = [
+      {...createMockFilter('test'), isSearchEnabled: false},
+      {...createMockFilter('test2'), isSearchEnabled: false},
+      {...createMockFilter('test3'), isSearchEnabled: true}
     ];
     const rendered = shallow(
-      <FilterableTableHeaders
-        searchOptions={searchOptions}
+      <FilterableTableFilterRow
+        filters={filters}
         onSubmit={jest.fn()}
         filterArgs={{}}
       />
@@ -75,10 +75,10 @@ describe('The filterable table headers component', () => {
   });
 
   it('renders a text input if values are not provided', () => {
-    const searchOptions = [createMockSearchOption('test')];
+    const filters = [createMockFilter('test')];
     const rendered = shallow(
-      <FilterableTableHeaders
-        searchOptions={searchOptions}
+      <FilterableTableFilterRow
+        filters={filters}
         onSubmit={jest.fn()}
         filterArgs={{}}
       />
@@ -100,9 +100,9 @@ describe('The filterable table headers component', () => {
   });
 
   it('renders a option input if values are provided', () => {
-    const searchOptions: ISearchOption[] = [
+    const filters: TableFilter[] = [
       {
-        ...createMockSearchOption('test'),
+        ...createMockFilter('test'),
         searchOptionValues: [
           {
             display: 'option1',
@@ -116,8 +116,8 @@ describe('The filterable table headers component', () => {
       }
     ];
     const rendered = shallow(
-      <FilterableTableHeaders
-        searchOptions={searchOptions}
+      <FilterableTableFilterRow
+        filters={filters}
         onSubmit={jest.fn()}
         filterArgs={{}}
       />

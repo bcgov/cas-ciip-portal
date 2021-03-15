@@ -1,37 +1,42 @@
 import React, {useMemo} from 'react';
 import {Col, Table, Alert} from 'react-bootstrap';
 import SortableTableHeader from './SortableTableHeader';
-import FilterableTableHeaders from './FilterableTableHeaders';
-import {ISearchProps, ISearchExtraFilter} from 'components/Search/SearchProps';
+import FilterableTableFilterRow from './FilterableTableFilterRow';
+import FilterableTablePagination from './FilterableTablePagination';
+import {TableFilter, FilterArgs} from './Filters';
 import {useRouter} from 'next/router';
 import safeJsonParse from 'lib/safeJsonParse';
-import {FilterArgs} from 'components/Search/ISearchOption';
 
-interface Props extends ISearchProps {
+interface Props {
+  filters: TableFilter[];
   body: JSX.Element;
   isLoading?: boolean;
-  extraFilters?: ISearchExtraFilter[];
+  extraFilters?: TableFilter[];
+  paginated?: boolean;
+  totalCount?: number;
 }
-export const FilterableTableLayoutComponent: React.FunctionComponent<Props> = ({
-  searchOptions,
+export const FilterableTable: React.FunctionComponent<Props> = ({
+  filters,
   body,
   isLoading,
-  extraFilters = []
+  extraFilters = [],
+  paginated,
+  totalCount
 }) => {
   const router = useRouter();
-  const relayVars = useMemo(
+  const filterArgs = useMemo(
     () => safeJsonParse(router.query.relayVars as string),
     [router]
   );
 
-  const applySearch = (searchData: FilterArgs) => {
+  const applyFilters = (searchData: FilterArgs) => {
     const newQuery = {
       // copy the vars from the query string, so that the args coming from extraFilters are not overriden
-      ...relayVars,
+      ...filterArgs,
       ...searchData
     };
-    searchOptions.forEach((option) => {
-      const column = option.columnName;
+    filters.forEach((option) => {
+      const column = option.argName;
 
       if (option.isSearchEnabled) {
         newQuery[column] = searchData[column] ?? undefined;
@@ -69,9 +74,9 @@ export const FilterableTableLayoutComponent: React.FunctionComponent<Props> = ({
             <f.Component
               key={f.argName}
               onChange={(value) =>
-                applySearch({...relayVars, [f.argName]: value})
+                applyFilters({...filterArgs, [f.argName]: value})
               }
-              value={relayVars[f.argName]}
+              filterArgs={filterArgs}
             />
           );
         })}
@@ -84,26 +89,27 @@ export const FilterableTableLayoutComponent: React.FunctionComponent<Props> = ({
       >
         <thead>
           <tr>
-            {searchOptions.map((option) => (
+            {filters.map((option) => (
               <SortableTableHeader
                 key={option.title + '-sortHeader'}
                 headerVariables={{
-                  columnName: option.columnName,
+                  columnName: option.argName,
                   displayName: option.title,
                   sortable: option.isSortEnabled
                 }}
               />
             ))}
           </tr>
-          <FilterableTableHeaders
-            filterArgs={relayVars}
-            searchOptions={searchOptions}
-            onSubmit={applySearch}
+          <FilterableTableFilterRow
+            filterArgs={filterArgs}
+            filters={filters}
+            onSubmit={applyFilters}
           />
         </thead>
         {body}
       </Table>
       <Col md={{span: 6, offset: 3}}>{noSearchResults}</Col>
+      {paginated && <FilterableTablePagination totalCount={totalCount} />}
       <style jsx global>{`
         .search-table {
           text-align: center;
@@ -162,4 +168,4 @@ export const FilterableTableLayoutComponent: React.FunctionComponent<Props> = ({
   );
 };
 
-export default FilterableTableLayoutComponent;
+export default FilterableTable;

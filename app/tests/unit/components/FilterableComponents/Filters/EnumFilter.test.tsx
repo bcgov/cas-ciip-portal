@@ -1,12 +1,12 @@
-import {EnumSearchOption} from 'components/Search/EnumSearchOption';
+import {EnumFilter} from 'components/FilterableTable/Filters';
 
 type TestType = 'A' | 'B' | 'C';
 
-const optionUnderTest = new EnumSearchOption<TestType>(
-  'enumDisplay',
-  'enumColumn',
-  ['A', 'B', 'C']
-);
+const optionUnderTest = new EnumFilter<TestType>('enumDisplay', 'enumColumn', [
+  'A',
+  'B',
+  'C'
+]);
 
 describe('the enum search option', () => {
   it('contains all allowed values in the exposed search options', () => {

@@ -1,6 +1,6 @@
-import {BaseSearchOption} from './BaseSearchOption';
+import BaseFilter from './BaseFilter';
 
-export class EnumSearchOption<T> extends BaseSearchOption<string> {
+export default class EnumFilter<T> extends BaseFilter<string> {
   enumValues: T[];
 
   constructor(display, column, enumValues: T[]) {
