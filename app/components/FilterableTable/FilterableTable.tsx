@@ -3,7 +3,7 @@ import {Col, Table, Alert} from 'react-bootstrap';
 import SortableTableHeader from './SortableTableHeader';
 import FilterableTableFilterRow from './FilterableTableFilterRow';
 import FilterableTablePagination from './FilterableTablePagination';
-import {TableFilter, FilterArgs} from './Filters';
+import {TableFilter, FilterArgs, PageArgs} from './Filters';
 import {useRouter} from 'next/router';
 import safeJsonParse from 'lib/safeJsonParse';
 
@@ -15,6 +15,7 @@ interface Props {
   paginated?: boolean;
   totalCount?: number;
 }
+
 export const FilterableTable: React.FunctionComponent<Props> = ({
   filters,
   body,
@@ -24,22 +25,27 @@ export const FilterableTable: React.FunctionComponent<Props> = ({
   totalCount
 }) => {
   const router = useRouter();
-  const filterArgs = useMemo(
-    () => safeJsonParse(router.query.relayVars as string),
+  const filterArgs = useMemo<FilterArgs>(
+    () => safeJsonParse(router.query.filterArgs as string),
     [router]
   );
 
-  const applyFilters = (searchData: FilterArgs) => {
+  const {offset, pageSize} = useMemo<PageArgs>(
+    () => safeJsonParse(router.query.pageArgs as string),
+    [router]
+  );
+
+  const applyFilterArgs = (newFilterArgs: FilterArgs) => {
     const newQuery = {
       // copy the vars from the query string, so that the args coming from extraFilters are not overriden
       ...filterArgs,
-      ...searchData
+      ...newFilterArgs
     };
     filters.forEach((option) => {
       const column = option.argName;
 
       if (option.isSearchEnabled) {
-        newQuery[column] = searchData[column] ?? undefined;
+        newQuery[column] = newFilterArgs[column] ?? undefined;
       }
     });
 
@@ -49,12 +55,31 @@ export const FilterableTable: React.FunctionComponent<Props> = ({
       pathname: router.pathname,
       query: {
         ...router.query,
-        relayVars: queryString,
-        pageVars: JSON.stringify({offset: 0})
+        filterArgs: queryString,
+        pageArgs: JSON.stringify({offset: 0, pageSize})
       }
     };
 
     router.push(url, url, {shallow: true});
+  };
+
+  const applyPageArgs = (newPageArgs: PageArgs) => {
+    const url = {
+      pathname: router.pathname,
+      query: {
+        ...router.query,
+        pageArgs: JSON.stringify(newPageArgs)
+      }
+    };
+    router.push(url, url, {shallow: true});
+  };
+
+  const handleOffsetChange = (value: number) => {
+    applyPageArgs({offset: value, pageSize});
+  };
+
+  const handleMaxResultsChange = (value: number) => {
+    applyPageArgs({offset: 0, pageSize: value});
   };
 
   const bodyLength =
@@ -74,7 +99,7 @@ export const FilterableTable: React.FunctionComponent<Props> = ({
             <f.Component
               key={f.argName}
               onChange={(value) =>
-                applyFilters({...filterArgs, [f.argName]: value})
+                applyFilterArgs({...filterArgs, [f.argName]: value})
               }
               filterArgs={filterArgs}
             />
@@ -103,13 +128,21 @@ export const FilterableTable: React.FunctionComponent<Props> = ({
           <FilterableTableFilterRow
             filterArgs={filterArgs}
             filters={filters}
-            onSubmit={applyFilters}
+            onSubmit={applyFilterArgs}
           />
         </thead>
         {body}
       </Table>
       <Col md={{span: 6, offset: 3}}>{noSearchResults}</Col>
-      {paginated && <FilterableTablePagination totalCount={totalCount} />}
+      {paginated && (
+        <FilterableTablePagination
+          totalCount={totalCount}
+          offset={offset}
+          pageSize={pageSize}
+          onOffsetChange={handleOffsetChange}
+          onPageSizeChange={handleMaxResultsChange}
+        />
+      )}
       <style jsx global>{`
         .search-table {
           text-align: center;

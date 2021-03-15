@@ -141,10 +141,11 @@ Note: We use the PostGraphile `--classic-ids` flag to rename `nodeId` to `id` an
 
 The @Connection Directive is a helpful, but poorly documented feature of Relay that helps to 'live update' results in the UI. The best documentation is in [this blogpost](https://www.prisma.io/blog/relay-moderns-connection-directive-1ecd8322f5c8), though it is still a bit outdated and non-comprehensive. There are two different scenarios where @connection needs different implementations:
 
-1) The @connection is defined on a CHILD of an entity.
-EXAMPLE:
+1. The @connection is defined on a CHILD of an entity.
+   EXAMPLE:
 
 Fragment Definition:
+
 ```ts
 export default createFragmentContainer(OrganisationsComponent, {
   query: graphql`
@@ -162,14 +163,16 @@ export default createFragmentContainer(OrganisationsComponent, {
           }
         }
       }
-  `
+  `,
 });
 ```
+
 - Notice that the @connection is defined on `ciipUserOrganisationByUserId` which is a child of the ciipUserBySub.
 - This means the connection has a ciipUser parent.
 - In this case the mutation configs needed to append to this connection can be defined as below.
 
 Mutation definition:
+
 ```ts
 const mutation = graphql`
   mutation createUserOrganisationMutation(
@@ -185,40 +188,43 @@ const mutation = graphql`
   }
 `;
 ```
+
 - The return object inside the createCiipUserOrganisation is an object of ciipUserOrganisationEdge, that edge is used in the updater configs:
 
 Mutation config definition:
+
 ```ts
 const configs: DeclarativeMutationConfig[] = [
-    {
-      type: 'RANGE_ADD',
-      parentID: userId,
-      connectionInfo: [
-        {
-          key: 'Organisations_ciipUserOrganisationsByUserId',
-          rangeBehavior: 'append'
-        }
-      ],
-      edgeName: 'ciipUserOrganisationEdge'
-    }
-  ];
+  {
+    type: "RANGE_ADD",
+    parentID: userId,
+    connectionInfo: [
+      {
+        key: "Organisations_ciipUserOrganisationsByUserId",
+        rangeBehavior: "append",
+      },
+    ],
+    edgeName: "ciipUserOrganisationEdge",
+  },
+];
 ```
+
 - The parentID is the ID of the parent ciipUser, which can be passed to the mutation as a parameter.
 - The key is the key defined in the @connection portion of the fragment.
 - type/rangeBehaviur is what to do with this edge (in this case, append).
 - The edgeName is the edge to add (defined above in the mutation definition).
 
-2) The @connection is defined at the root-level query:
-EXAMPLE:
+2. The @connection is defined at the root-level query:
+   EXAMPLE:
 
 Fragment Defintion:
+
 ```ts
 export default createFragmentContainer(ProductList, {
   query: graphql`
-    fragment ProductListContainer_query on Query{
-      allProducts(
-        first: $max_results
-      ) @connection(key: "ProductListContainer_allProducts", filters: []) {
+    fragment ProductListContainer_query on Query {
+      allProducts(first: $pageSize)
+        @connection(key: "ProductListContainer_allProducts", filters: []) {
         edges {
           node {
             id
@@ -227,10 +233,12 @@ export default createFragmentContainer(ProductList, {
         }
       }
     }
-  `
+  `,
 });
 ```
+
 Some root-level @connection gotchas:
+
 - Here the @connection is on the root-level `allProducts` query & thus has no parent entity.
 - In this case, notice the @connection needs both the key AND a set of filters (which can be an empty array) in order to be found by relay.
 - In our implementation, we have `query` as the root level entity that everything else falls under. All `query` entities have an id of `query` (This is needed in the mutation `RANGE CONFIG`).
@@ -238,20 +246,21 @@ Some root-level @connection gotchas:
 The mutation definition remains unchanged from example 1. (productEdge will be the return object under createProductMutation).
 The difference is in the mutation config defintion, where we passed a userID as the parentID in example 1, the parentID for a root-level @connection is `query`.
 Mutation config definition:
+
 ```ts
 const configs: DeclarativeMutationConfig[] = [
-    {
-      type: 'RANGE_ADD',
-      parentID: 'query',
-      connectionInfo: [
-        {
-          key: connectionKey,
-          rangeBehavior: 'append'
-        }
-      ],
-      edgeName: 'productEdge'
-    }
-  ];
+  {
+    type: "RANGE_ADD",
+    parentID: "query",
+    connectionInfo: [
+      {
+        key: connectionKey,
+        rangeBehavior: "append",
+      },
+    ],
+    edgeName: "productEdge",
+  },
+];
 ```
 
 ### React JsonSchema Forms

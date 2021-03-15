@@ -45,7 +45,7 @@ export const FacilitiesList: React.FunctionComponent<Props> = ({query}) => {
 
   const router = useRouter();
   const [selectedReportingYear] = useState(
-    () => safeJsonParse(router.query.relayVars as string).reportingYear || 2019
+    () => safeJsonParse(router.query.filterArgs as string).reportingYear || 2019
   );
 
   const body = (
@@ -102,12 +102,12 @@ export default createFragmentContainer(FacilitiesList, {
       organisationRowId: {type: "Int"}
       offsetValue: {type: "Int"}
       reportingYear: {type: "Int"}
-      max_results: {type: "Int"}
+      pageSize: {type: "Int"}
       offset: {type: "Int"}
     ) {
       ...FacilitiesRowItemContainer_query
       facilityApplicationByReportingYear(
-        first: $max_results
+        first: $pageSize
         offset: $offset
         _reportingYear: $reportingYear
         filter: {

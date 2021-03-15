@@ -9,7 +9,7 @@ import SortOnlyFilter from './SortOnlyFilter';
 import TextFilter from './TextFilter';
 import YesNoFilter from './YesNoFilter';
 
-export type {FilterArgs, FilterComponent, TableFilter} from './types';
+export type {FilterArgs, PageArgs, FilterComponent, TableFilter} from './types';
 export {
   ApplicationStatusFilter,
   BaseFilter,

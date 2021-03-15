@@ -69,12 +69,12 @@ export default createFragmentContainer(ProductList, {
       is_ciip_product: {type: "Boolean"}
       product_state: {type: "CiipProductState"}
       order_by: {type: "[ProductsOrderBy!]"}
-      max_results: {type: "Int"}
+      pageSize: {type: "Int"}
       offset: {type: "Int"}
     ) {
       ...ProductRowItemContainer_query
       allProducts(
-        first: $max_results
+        first: $pageSize
         offset: $offset
         filter: {
           productName: {includesInsensitive: $product_name}

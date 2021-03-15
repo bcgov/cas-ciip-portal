@@ -1,55 +1,38 @@
 import React from 'react';
-import {useRouter} from 'next/router';
 import {Pagination, Dropdown} from 'react-bootstrap';
-import safeJsonParse from 'lib/safeJsonParse';
 
 interface Props {
+  /**
+   * The total number of items in all of the pages
+   */
   totalCount: number;
+  /**
+   * Defaults to DEFAULT_PAGE_SIZE.
+   */
+  pageSize?: number;
+  /**
+   * The number of items to skip to get to the current page. Defaults to 0
+   */
+  offset?: number;
+  onOffsetChange: (offset: number) => void;
+  onPageSizeChange: (pageSize: number) => void;
 }
 
-export const DEFAULT_MAX_RESULTS = 20;
+export const DEFAULT_PAGE_SIZE = 20;
 
-const FilterableTablePagination: React.FunctionComponent<Props> = (props) => {
-  const {totalCount} = props;
-  const router = useRouter();
+const PAGE_SIZE_OPTIONS = [20, 50, 100];
 
-  const pageData = safeJsonParse(router.query.pageVars as string);
-
-  const maxResultsPerPage = pageData.max_results || DEFAULT_MAX_RESULTS;
-  const activePage = pageData.offset / maxResultsPerPage + 1 || 1;
-  const maxPages = Math.ceil(totalCount / maxResultsPerPage);
+const FilterableTablePagination: React.FunctionComponent<Props> = ({
+  totalCount,
+  pageSize = DEFAULT_PAGE_SIZE,
+  offset = 0,
+  onOffsetChange,
+  onPageSizeChange
+}) => {
+  const activePage = Math.floor(offset / pageSize + 1) || 1;
+  const maxPages = Math.ceil(totalCount / pageSize);
 
   const items = [];
-
-  const setQueryString = (toUrlObject: {
-    offset: number;
-    max_results: number;
-  }) => {
-    const url = {
-      pathname: router.pathname,
-      query: {
-        ...router.query,
-        pageVars: JSON.stringify(toUrlObject)
-      }
-    };
-    router.push(url, url, {shallow: true});
-  };
-
-  const handlePageChange = (pageNumber: number) => {
-    const paginationObject = {
-      offset: (pageNumber - 1) * maxResultsPerPage,
-      max_results: pageData.max_results || DEFAULT_MAX_RESULTS
-    };
-    setQueryString(paginationObject);
-  };
-
-  const handleMaxResultsChange = (numResults: number) => {
-    const resultsObject = {
-      offset: 0,
-      max_results: numResults
-    };
-    setQueryString(resultsObject);
-  };
 
   // Determines what page numbers to render based on the location of the activePage
   let startPage;
@@ -68,6 +51,10 @@ const FilterableTablePagination: React.FunctionComponent<Props> = (props) => {
     endPage = activePage + 4;
   }
 
+  const handlePageChange = (pageNumber: number) => {
+    onOffsetChange((pageNumber - 1) * pageSize);
+  };
+
   // Populate the Pagination items with page numbers & functionality
   for (let pageNumber = startPage; pageNumber <= endPage; pageNumber++) {
     items.push(
@@ -85,19 +72,18 @@ const FilterableTablePagination: React.FunctionComponent<Props> = (props) => {
       <div className="pagination">
         <Dropdown>
           <Dropdown.Toggle variant="outline-dark" id="dropdown-basic">
-            Results Per Page: <strong>{maxResultsPerPage}</strong>
+            Items Per Page: <strong>{pageSize}</strong>
           </Dropdown.Toggle>
 
           <Dropdown.Menu>
-            <Dropdown.Item onClick={() => handleMaxResultsChange(20)}>
-              20
-            </Dropdown.Item>
-            <Dropdown.Item onClick={() => handleMaxResultsChange(50)}>
-              50
-            </Dropdown.Item>
-            <Dropdown.Item onClick={() => handleMaxResultsChange(100)}>
-              100
-            </Dropdown.Item>
+            {PAGE_SIZE_OPTIONS.map((option) => (
+              <Dropdown.Item
+                ref={option}
+                onClick={() => onPageSizeChange(option)}
+              >
+                {option}
+              </Dropdown.Item>
+            ))}
           </Dropdown.Menu>
         </Dropdown>
         {maxPages > 1 && (
