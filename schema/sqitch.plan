@@ -282,3 +282,4 @@ policies/application_policies_001 [policies/application_policies] 2021-03-12T23:
 policies/application_revision_policies_001 [policies/application_revision_policies] 2021-03-13T01:03:12Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # removing the application revision policies linked to the certifier role
 policies/application_revision_status_policies_001 [policies/application_revision_status_policies] 2021-03-15T17:59:33Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # removing certifier RLS
 policies/facility_policies_001 [policies/facility_policies] 2021-03-15T18:25:58Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # remove facility RLS for certifier role
+policies/form_result_policies_001 [policies/form_result_policies] 2021-03-15T18:51:08Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # remove certifier RLS on form_result table
