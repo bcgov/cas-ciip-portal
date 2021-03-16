@@ -2,6 +2,16 @@
 
 begin;
 
-select pg_get_functiondef('ggircs_portal.create_review_comment_mutation_chain(int, int, varchar(100000), ggircs_portal.review_comment_type)'::regprocedure);
+do $$
+  begin
+
+    if (select exists(select * from pg_proc where proname='ggircs_portal.create_review_comment_mutation_chain')) then
+      raise exception 'ggircs_portal.create_review_comment_mutation_chain exists when it should not';
+    else
+      perform true;
+    end if;
+
+  end;
+$$;
 
 rollback;
