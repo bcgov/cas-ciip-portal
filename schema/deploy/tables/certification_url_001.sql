@@ -3,6 +3,7 @@
 
 BEGIN;
 
+drop trigger _set_user_id on ggircs_portal.certification_url;
 drop trigger _certification_request_email on ggircs_portal.certification_url;
 drop trigger _signed_by_certifier_email on ggircs_portal.certification_url;
 drop trigger _recertification_request on ggircs_portal.certification_url;
