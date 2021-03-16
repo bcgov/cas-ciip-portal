@@ -6,7 +6,6 @@ import IncentiveCalculatorContainer from 'containers/Incentives/IncentiveCalcula
 import ApplicationRevisionStatusContainer from 'containers/Applications/ApplicationRevisionStatusContainer';
 import DefaultLayout from 'layouts/default-layout';
 import ApplicationDetails from 'containers/Applications/ApplicationDetailsContainer';
-import ApplicationComments from 'containers/Applications/ApplicationCommentsContainer';
 import ApplicationOverrideNotification from 'components/Application/ApplicationOverrideNotificationCard';
 import {CiipPageComponentProps} from 'next-env';
 import {INCENTIVE_ANALYST, ADMIN_GROUP} from 'data/group-constants';
@@ -39,14 +38,6 @@ class ApplicationReview extends Component<Props> {
           }
           ...ApplicationDetailsContainer_application
             @arguments(version: $version)
-          orderedFormResults(versionNumberInput: $version) {
-            edges {
-              node {
-                id
-                ...ApplicationCommentsContainer_formResult
-              }
-            }
-          }
         }
         applicationRevision(id: $applicationRevisionId) {
           overrideJustification
@@ -62,7 +53,6 @@ class ApplicationReview extends Component<Props> {
     const {query} = this.props;
     const {overrideJustification} = query?.applicationRevision;
     const {session} = query || {};
-    const formResults = query.application.orderedFormResults.edges;
     return (
       <DefaultLayout session={session} width="wide">
         <ApplicationRevisionStatusContainer
@@ -84,11 +74,6 @@ class ApplicationReview extends Component<Props> {
             <IncentiveCalculatorContainer
               applicationRevision={query.applicationRevision}
             />
-          </Col>
-          <Col md={4} className="application-comments">
-            {formResults.map(({node}) => (
-              <ApplicationComments key={node.id} review formResult={node} />
-            ))}
           </Col>
         </Row>
         <style jsx>{`

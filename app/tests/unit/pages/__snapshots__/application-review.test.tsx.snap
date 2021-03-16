@@ -41,18 +41,6 @@ exports[`The application-review page matches the last accepted Snapshot 1`] = `
             " $fragmentRefs": Object {
               "ApplicationDetailsContainer_application": true,
             },
-            "orderedFormResults": Object {
-              "edges": Array [
-                Object {
-                  "node": Object {
-                    " $fragmentRefs": Object {
-                      "ApplicationCommentsContainer_formResult": true,
-                    },
-                    "id": "abc",
-                  },
-                },
-              ],
-            },
             "reviewRevisionStatus": Object {
               " $fragmentRefs": Object {
                 "ApplicationRevisionStatusContainer_applicationRevisionStatus": true,
@@ -70,18 +58,6 @@ exports[`The application-review page matches the last accepted Snapshot 1`] = `
             "application": Object {
               " $fragmentRefs": Object {
                 "ApplicationDetailsContainer_application": true,
-              },
-              "orderedFormResults": Object {
-                "edges": Array [
-                  Object {
-                    "node": Object {
-                      " $fragmentRefs": Object {
-                        "ApplicationCommentsContainer_formResult": true,
-                      },
-                      "id": "abc",
-                    },
-                  },
-                ],
               },
               "reviewRevisionStatus": Object {
                 " $fragmentRefs": Object {
@@ -114,23 +90,6 @@ exports[`The application-review page matches the last accepted Snapshot 1`] = `
             "overrideJustification": null,
           }
         }
-      />
-    </Col>
-    <Col
-      className="application-comments"
-      md={4}
-    >
-      <Relay(ApplicationCommentsComponent)
-        formResult={
-          Object {
-            " $fragmentRefs": Object {
-              "ApplicationCommentsContainer_formResult": true,
-            },
-            "id": "abc",
-          }
-        }
-        key="abc"
-        review={true}
       />
     </Col>
   </Row>

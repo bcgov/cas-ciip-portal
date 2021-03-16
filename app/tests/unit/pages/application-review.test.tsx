@@ -19,18 +19,6 @@ describe('The application-review page', () => {
         ' $fragmentRefs': {
           ApplicationRevisionStatusContainer_applicationRevisionStatus: true
         }
-      },
-      orderedFormResults: {
-        edges: [
-          {
-            node: {
-              id: 'abc',
-              ' $fragmentRefs': {
-                ApplicationCommentsContainer_formResult: true
-              }
-            }
-          }
-        ]
       }
     },
     applicationRevision: {
@@ -75,18 +63,6 @@ describe('The application-review page', () => {
           ' $fragmentRefs': {
             ApplicationRevisionStatusContainer_applicationRevisionStatus: true
           }
-        },
-        orderedFormResults: {
-          edges: [
-            {
-              node: {
-                id: 'abc',
-                ' $fragmentRefs': {
-                  ApplicationCommentsContainer_formResult: true
-                }
-              }
-            }
-          ]
         }
       },
       applicationRevision: {
