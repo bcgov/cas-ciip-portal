@@ -3,7 +3,7 @@ import {Alert} from 'react-bootstrap';
 import {getUserFriendlyStatusLabel} from 'lib/text-transforms';
 
 interface Props {
-  actionRequired: Boolean;
+  actionRequired: boolean;
   decision: string;
   reviewComments: string[];
 }
@@ -43,7 +43,7 @@ const ApplicationDecision: React.FunctionComponent<Props> = ({
       <Alert.Heading>{heading}</Alert.Heading>
       <p>
         {actionRequired
-          ? 'Changes to your application have been requested. Please read these review notes and gather the relevant information before revising your application.'
+          ? 'Changes to your application have been requested. Please read these review notes before revising and resubmitting your application.'
           : DECISION_TEXT[decision]}
       </p>
       {reviewComments.length > 0 && (

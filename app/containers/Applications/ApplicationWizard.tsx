@@ -5,6 +5,7 @@ import ApplicationFormNavbar from 'components/Forms/ApplicationFormNavbar';
 import {ApplicationWizard_query} from 'ApplicationWizard_query.graphql';
 import ApplicationWizardStep from './ApplicationWizardStep';
 import LoadingSpinner from 'components/LoadingSpinner';
+import ApplicationDecision from 'components/Application/ApplicationDecision';
 
 const setRouterQueryParam = (router, key, value, replace = false) => {
   const newUrl = {
@@ -42,6 +43,11 @@ export const ApplicationWizardComponent: React.FunctionComponent<Props> = ({
     latestSubmittedRevision,
     applicationRevisionByStringVersionNumber: applicationRevision
   } = application;
+  const reviewComments = query.application.reviewCommentsByApplicationId?.edges.map(
+    ({node}) => node.description
+  );
+  const revisionInProgress =
+    latestSubmittedRevision?.versionNumber < latestDraftRevision.versionNumber;
 
   // Redirect a reporter trying to edit an application revision that was already submitted
   if (applicationRevision.isImmutable) {
@@ -103,6 +109,14 @@ export const ApplicationWizardComponent: React.FunctionComponent<Props> = ({
     }
   };
 
+  const review = revisionInProgress ? (
+    <ApplicationDecision
+      actionRequired
+      decision="REQUESTED_CHANGES"
+      reviewComments={reviewComments}
+    />
+  ) : null;
+
   return (
     <>
       <ApplicationFormNavbar
@@ -116,6 +130,7 @@ export const ApplicationWizardComponent: React.FunctionComponent<Props> = ({
           query={query}
           confirmationPage={confirmationPage}
           onStepComplete={onStepComplete}
+          review={review}
         />
       )}
       {loading && <LoadingSpinner />}
@@ -150,7 +165,15 @@ export default createFragmentContainer(ApplicationWizardComponent, {
         applicationRevisionByStringVersionNumber(versionNumberInput: $version) {
           isImmutable
         }
-
+        reviewCommentsByApplicationId(
+          filter: {resolved: {isNull: true}, deletedBy: {isNull: true}}
+        ) {
+          edges {
+            node {
+              description
+            }
+          }
+        }
         ...ApplicationFormNavbar_application
       }
       ...ApplicationWizardStep_query

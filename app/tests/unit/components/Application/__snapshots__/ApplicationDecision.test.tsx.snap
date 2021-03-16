@@ -124,7 +124,7 @@ exports[`ApplicationDecision matches the last accepted snapshot (with reviewer c
     Action Required
   </AlertHeading>
   <p>
-    Changes to your application have been requested. Please read these review notes and gather the relevant information before revising your application.
+    Changes to your application have been requested. Please read these review notes before revising and resubmitting your application.
   </p>
   <hr />
   <p
