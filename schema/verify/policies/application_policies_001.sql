@@ -3,6 +3,8 @@
 BEGIN;
 
 select ggircs_portal_private.verify_function_not_present('ggircs_portal_private.validate_certifier');
-select ggircs_portal_private.verify_policy_not_present('certifier_select_application', 'ggircs_portal.application');
+
+-- verification of policies is a unit test
+select true;
 
 ROLLBACK;

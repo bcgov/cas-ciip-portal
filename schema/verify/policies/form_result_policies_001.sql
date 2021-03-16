@@ -2,6 +2,7 @@
 
 BEGIN;
 
-select ggircs_portal_private.verify_policy_not_present('certifier_select_form_result', 'ggircs_portal.form_result');
+-- verification of policies is a unit test
+select true;
 
 ROLLBACK;
