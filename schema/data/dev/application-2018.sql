@@ -29,10 +29,8 @@ begin;
 
   update ggircs_portal.application_revision_status set application_revision_status='submitted' where application_id=3 and version_number=1;
   -- Create an application revision on application id=3
-  select ggircs_portal.create_review_comment_mutation_chain(
-    3, 1,
-    'This is a comment','requested change'
-  );
+  insert into ggircs_portal.review_comment(application_id, description, comment_type)
+    values (3,'This is a comment','general');
   update ggircs_portal.application_revision_status set application_revision_status='requested changes' where application_id=3 and version_number=1;
 
   -- Set legal_disclaimer_accepted to true for application id=3
