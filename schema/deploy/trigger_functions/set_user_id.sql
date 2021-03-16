@@ -3,7 +3,7 @@
 -- requires: table_ciip_user
 
 begin;
-create function ggircs_portal_private.set_user_id()
+create or replace function ggircs_portal_private.set_user_id()
   returns trigger as $$
 
 declare
