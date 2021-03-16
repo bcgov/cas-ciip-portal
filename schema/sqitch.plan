@@ -292,3 +292,4 @@ types/application_validation_result [schema_ggircs_portal_private] 2021-03-30T21
 computed_columns/application_validation [types/application_validation_result tables/application_validation_function] 2021-03-30T22:00:03Z Dylan Leard <dylan@button.is> # Function calls all validation functions in the application_validation_function table
 computed_columns/form_result_internal_general_comments [computed_columns/form_result_internal_general_comments@v1.16.0] 2021-03-16T18:31:48Z Dylan Leard <dylan@button.is> # Migration: drop deprecated function
 computed_columns/form_result_requested_change_comments [computed_columns/form_result_requested_change_comments@v1.16.0] 2021-03-16T18:38:16Z Dylan Leard <dylan@button.is> # Migration: drop deprecated function
+computed_columns/form_result_has_unresolved_comments [computed_columns/form_result_has_unresolved_comments@v1.16.0] 2021-03-16T18:42:31Z Dylan Leard <dylan@button.is> # Migration: drop deprecated function
