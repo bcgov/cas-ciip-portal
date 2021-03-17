@@ -22,6 +22,7 @@ prepare null_table_comment as select FORMAT('Violation(table, column): %s, %s', 
     where  c.relkind in('r')
       and  n.nspname = 'ggircs_portal'
       and a.attnum > 0
+      and a.attisdropped = false
       and d.description is null;
 -- Test that there are no results on the above query for null comments
 select is_empty(
