@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(46);
+select plan(42);
 
 -- Table exists
 select has_table(
@@ -79,8 +79,6 @@ alter table ggircs_portal.ciip_user_organisation
 alter table ggircs_portal.ciip_user disable trigger _welcome_email;
 alter table ggircs_portal.application_revision_status disable trigger _status_change_email;
 alter table ggircs_portal.application_revision_status disable trigger _read_only_status_for_non_current_version;
-alter table ggircs_portal.certification_url disable trigger _check_form_result_md5;
-alter table ggircs_portal.certification_url disable trigger _create_form_result_md5;
 alter table ggircs_portal.ciip_user_organisation
   disable trigger _send_request_for_access_email;
 alter table ggircs_portal.ciip_user_organisation
@@ -234,42 +232,6 @@ select throws_like(
   $$,
   'permission denied%',
     'Analyst cannot delete rows from table application_revision_status'
-);
-
--- CIIP_INDUSTRY_USER (Certifier)
-set role ciip_industry_user;
-set jwt.claims.sub to '33333333-3333-3333-3333-333333333333';
-
-select results_eq(
-  $$
-    select distinct application_id from ggircs_portal.application_revision_status
-  $$,
-  ARRAY[999::integer],
-    'Certifier can view data from application_revision_status where the current users certifier_email on certification_url maps to an application'
-);
-
-select throws_like(
-  $$
-    insert into ggircs_portal.application_revision_status(application_id, version_number) values (999, 3);
-  $$,
-  'new row violates%',
-    'Certifier cannot create a row in ggircs_portal.application_revision_status'
-);
-
-select throws_like(
-  $$
-    update ggircs_portal.application_revision_status set application_revision_status='approved' where application_id=999 and version_number=1;
-  $$,
-  'permission denied%',
-    'Certifier cannot update table application_revision_status'
-);
-
-select throws_like(
-  $$
-    delete from ggircs_portal.application_revision_status where application_id = 999;
-  $$,
-  'permission denied%',
-    'Certifier cannot delete rows from table application_revision_status'
 );
 
 select finish();

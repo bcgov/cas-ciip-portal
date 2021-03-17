@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(21);
+select plan(17);
 
 -- Table exists
 select has_table(
@@ -175,42 +175,6 @@ select throws_like(
   $$,
   'permission denied%',
     'Analyst cannot delete rows from table application'
-);
-
--- CIIP_INDUSTRY_USER (Certifier)
-set role ciip_industry_user;
-set jwt.claims.sub to '33333333-3333-3333-3333-333333333333';
-
-select results_eq(
-  $$
-    select distinct id from ggircs_portal.application
-  $$,
-  ARRAY[999::integer],
-    'Certifier can view data from application where the current users certifier_email on certification_url maps to an application'
-);
-
-select throws_like(
-  $$
-    insert into ggircs_portal.application(facility_id) values (1);
-  $$,
-  'new row violates%',
-    'Certifier cannot create a row in ggircs_portal.application'
-);
-
-select throws_like(
-  $$
-    update ggircs_portal.application set reporting_year=2100 where id=999;
-  $$,
-  'permission denied%',
-    'Certifier cannot update ggircs_portal.application'
-);
-
-select throws_like(
-  $$
-    delete from ggircs_portal.application where id = 999;
-  $$,
-  'permission denied%',
-    'Certifier cannot delete rows from table application'
 );
 
 select finish();

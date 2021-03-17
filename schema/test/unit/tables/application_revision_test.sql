@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(22);
+select plan(18);
 
 -- Table exists
 select has_table(
@@ -20,8 +20,6 @@ set jwt.claims.sub to '11111111-1111-1111-1111-111111111111';
 alter table ggircs_portal.ciip_user_organisation
   disable trigger _set_user_id;
 alter table ggircs_portal.ciip_user disable trigger _welcome_email;
-alter table ggircs_portal.certification_url disable trigger _check_form_result_md5;
-alter table ggircs_portal.certification_url disable trigger _create_form_result_md5;
 alter table ggircs_portal.ciip_user_organisation
   disable trigger _send_request_for_access_email;
 alter table ggircs_portal.ciip_user_organisation
@@ -192,43 +190,6 @@ select throws_like(
     'Analyst cannot delete rows from table application_revision'
 );
 
--- CIIP_INDUSTRY_USER (Certifier)
-set role ciip_industry_user;
-set jwt.claims.sub to '33333333-3333-3333-3333-333333333333';
-
-select results_eq(
-  $$
-    select distinct application_id from ggircs_portal.application_revision
-  $$,
-  ARRAY[999::integer],
-    'Certifier can view data from application_revision where the current users certifier_email on certification_url maps to an application'
-);
-
-select throws_like(
-  $$
-    insert into ggircs_portal.application_revision(application_id, version_number) values (999, 3);
-  $$,
-  'new row violates%',
-    'Certifier cannot create a row in ggircs_portal.application_revision'
-);
-
--- Attempt to update & ensure no data was changed
-update ggircs_portal.application_revision set legal_disclaimer_accepted=true where application_id=999 and version_number=1;
-select results_eq(
-  $$
-    select legal_disclaimer_accepted from ggircs_portal.application_revision where application_id=999 and version_number=1;
-  $$,
-  ARRAY['false'::boolean],
-    'Certifier cannot update table application_revision'
-);
-
-select throws_like(
-  $$
-    delete from ggircs_portal.application_revision where application_id = 999;
-  $$,
-  'permission denied%',
-    'Certifier cannot delete rows from table application_revision'
-);
 
 select finish();
 rollback;
