@@ -9,6 +9,7 @@ import ApplicationDetails from 'containers/Applications/ApplicationDetailsContai
 import ApplicationOverrideNotification from 'components/Application/ApplicationOverrideNotificationCard';
 import {CiipPageComponentProps} from 'next-env';
 import {INCENTIVE_ANALYST, ADMIN_GROUP} from 'data/group-constants';
+import ApplicationReviewStep from 'components/Application/ApplicationReviewStep';
 
 const ALLOWED_GROUPS = [INCENTIVE_ANALYST, ...ADMIN_GROUP];
 
@@ -38,6 +39,24 @@ class ApplicationReview extends Component<Props> {
           }
           ...ApplicationDetailsContainer_application
             @arguments(version: $version)
+          internalComments: reviewCommentsByApplicationId(
+            filter: {commentType: {equalTo: INTERNAL}}
+          ) {
+            edges {
+              node {
+                id
+              }
+            }
+          }
+          generalComments: reviewCommentsByApplicationId(
+            filter: {commentType: {equalTo: GENERAL}}
+          ) {
+            edges {
+              node {
+                id
+              }
+            }
+          }
         }
         applicationRevision(id: $applicationRevisionId) {
           overrideJustification
@@ -74,6 +93,9 @@ class ApplicationReview extends Component<Props> {
             <IncentiveCalculatorContainer
               applicationRevision={query.applicationRevision}
             />
+          </Col>
+          <Col md={4} className="review-step-box">
+            <ApplicationReviewStep reviewStep="Technical" />
           </Col>
         </Row>
         <style jsx>{`

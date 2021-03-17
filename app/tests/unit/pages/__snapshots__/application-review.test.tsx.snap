@@ -92,6 +92,14 @@ exports[`The application-review page matches the last accepted Snapshot 1`] = `
         }
       />
     </Col>
+    <Col
+      className="review-step-box"
+      md={4}
+    >
+      <ApplicationReviewStep
+        reviewStep="Technical"
+      />
+    </Col>
   </Row>
   <JSXStyle
     id="1070550671"
