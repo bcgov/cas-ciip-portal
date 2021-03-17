@@ -15,11 +15,7 @@ describe('When the reporter is viewing a list of facilities & applications', () 
       'have.value',
       2019
     );
-    cy.get('tbody > tr:nth-child(1) .btn').should(
-      'have.prop',
-      'disabled',
-      false
-    );
+    cy.get('tbody > tr:nth-child(1) a.btn').should('have.attr', 'href');
     cy.get('tbody > tr:nth-child(1) .btn').should('contain', 'Resume');
     cy.get('tbody > tr').should('have.length', 2);
 
