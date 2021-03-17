@@ -17,14 +17,7 @@ describe('FacilitiesRowItem', () => {
       lastSwrsReportingYear: 2019,
       applicationStatus: 'SUBMITTED',
       operatorName: 'org',
-      applicationId: 42,
-      applicationByApplicationId: {
-        latestDraftRevision: {
-          certificationUrl: {
-            certifiedBy: 1
-          }
-        }
-      }
+      applicationId: 42
     };
     const query: FacilitiesRowItemContainer_query = {
       ' $fragmentRefs': {
@@ -41,9 +34,10 @@ describe('FacilitiesRowItem', () => {
       />
     );
     expect(r).toMatchSnapshot();
+    expect(r.find('Badge').text()).toBe('Submitted');
   });
 
-  it('should show Pending Certification in the status if the application is in draft and a certificationUrl exists', async () => {
+  it('should show Draft in the status if the application is in draft', async () => {
     const facilityApplication: FacilitiesRowItemContainer_facilityApplication = {
       ' $fragmentRefs': {
         ApplyButtonContainer_applyButtonDetails: true
@@ -55,90 +49,7 @@ describe('FacilitiesRowItem', () => {
       lastSwrsReportingYear: 2019,
       applicationStatus: 'DRAFT',
       operatorName: 'org',
-      applicationId: 42,
-      applicationByApplicationId: {
-        latestDraftRevision: {
-          certificationUrl: {
-            certifiedBy: null
-          }
-        }
-      }
-    };
-    const query: FacilitiesRowItemContainer_query = {
-      ' $fragmentRefs': {
-        ApplyButtonContainer_query: true
-      },
-      ' $refType': 'FacilitiesRowItemContainer_query'
-    };
-
-    const r = shallow(
-      <FacilitiesRowItemComponent
-        facilityApplication={facilityApplication}
-        query={query}
-        reportingYear={2019}
-      />
-    );
-    expect(r).toMatchSnapshot();
-    expect(r.find('Badge').text()).toBe('Draft (Pending Certification)');
-  });
-
-  it('should show Certified in the status if the application is in draft and has been certified', async () => {
-    const facilityApplication: FacilitiesRowItemContainer_facilityApplication = {
-      ' $fragmentRefs': {
-        ApplyButtonContainer_applyButtonDetails: true
-      },
-      ' $refType': 'FacilitiesRowItemContainer_facilityApplication',
-      facilityName: 'fac',
-      facilityType: 'EIO',
-      facilityBcghgid: '123',
-      lastSwrsReportingYear: 2019,
-      applicationStatus: 'DRAFT',
-      operatorName: 'org',
-      applicationId: 42,
-      applicationByApplicationId: {
-        latestDraftRevision: {
-          certificationUrl: {
-            certifiedBy: 1
-          }
-        }
-      }
-    };
-    const query: FacilitiesRowItemContainer_query = {
-      ' $fragmentRefs': {
-        ApplyButtonContainer_query: true
-      },
-      ' $refType': 'FacilitiesRowItemContainer_query'
-    };
-
-    const r = shallow(
-      <FacilitiesRowItemComponent
-        facilityApplication={facilityApplication}
-        query={query}
-        reportingYear={2019}
-      />
-    );
-    expect(r).toMatchSnapshot();
-    expect(r.find('Badge').text()).toBe('Draft (Certified)');
-  });
-
-  it('should not show Pending Certification in the status if the application is in draft but a certificationUrl does not exist', async () => {
-    const facilityApplication: FacilitiesRowItemContainer_facilityApplication = {
-      ' $fragmentRefs': {
-        ApplyButtonContainer_applyButtonDetails: true
-      },
-      ' $refType': 'FacilitiesRowItemContainer_facilityApplication',
-      facilityName: 'fac',
-      facilityType: 'EIO',
-      facilityBcghgid: '123',
-      lastSwrsReportingYear: 2019,
-      applicationStatus: 'DRAFT',
-      operatorName: 'org',
-      applicationId: 42,
-      applicationByApplicationId: {
-        latestDraftRevision: {
-          certificationUrl: null
-        }
-      }
+      applicationId: 42
     };
     const query: FacilitiesRowItemContainer_query = {
       ' $fragmentRefs': {
@@ -158,7 +69,7 @@ describe('FacilitiesRowItem', () => {
     expect(r.find('Badge').text()).toBe('Draft');
   });
 
-  it('should not show Pending Certification in the status if the application is not in draft state and a certificationUrl exists', async () => {
+  it('should show approved in the status if the application is approved', async () => {
     const facilityApplication: FacilitiesRowItemContainer_facilityApplication = {
       ' $fragmentRefs': {
         ApplyButtonContainer_applyButtonDetails: true
@@ -170,14 +81,7 @@ describe('FacilitiesRowItem', () => {
       lastSwrsReportingYear: 2019,
       applicationStatus: 'APPROVED',
       operatorName: 'org',
-      applicationId: 42,
-      applicationByApplicationId: {
-        latestDraftRevision: {
-          certificationUrl: {
-            certifiedBy: null
-          }
-        }
-      }
+      applicationId: 42
     };
     const query: FacilitiesRowItemContainer_query = {
       ' $fragmentRefs': {
