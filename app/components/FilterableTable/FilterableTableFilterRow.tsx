@@ -32,8 +32,14 @@ const FilterableTableFilterRow: React.FunctionComponent<Props> = ({
     onSubmit({});
   };
 
+  const handleKeyDown: React.KeyboardEventHandler = (e) => {
+    if (e.key === 'Enter') {
+      onSubmit(searchFilters);
+    }
+  };
+
   return (
-    <tr>
+    <tr onKeyDown={handleKeyDown}>
       {filters.map((filter) => {
         const column = filter.argName;
         const key = filter.argName + filter.title;

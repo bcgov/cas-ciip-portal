@@ -142,4 +142,20 @@ describe('The filterable table headers component', () => {
     expect(rendered.find('option').at(1).text()).toContain('Option1');
     expect(rendered.find('option').at(2).text()).toContain('Option2');
   });
+
+  it('should submit the filters if the "Enter" key is pressed', () => {
+    const handleSubmit = jest.fn();
+    const filters = [createMockFilter('test')];
+    const rendered = shallow(
+      <FilterableTableFilterRow
+        filters={filters}
+        onSubmit={handleSubmit}
+        filterArgs={{}}
+      />
+    );
+
+    rendered.find('tr').first().simulate('keyDown', {key: 'Enter'});
+
+    expect(handleSubmit).toBeCalledTimes(1);
+  });
 });

@@ -3,6 +3,7 @@
 exports[`The filterable table headers component only renders elements that are searchable 1`] = `
 <tr
   className="jsx-870174952"
+  onKeyDown={[Function]}
 >
   <td
     className="jsx-870174952"
@@ -60,6 +61,7 @@ exports[`The filterable table headers component only renders elements that are s
 exports[`The filterable table headers component renders a option input if values are provided 1`] = `
 <tr
   className="jsx-870174952"
+  onKeyDown={[Function]}
 >
   <td
     className="jsx-870174952"
@@ -132,6 +134,7 @@ exports[`The filterable table headers component renders a option input if values
 exports[`The filterable table headers component renders a text input if values are not provided 1`] = `
 <tr
   className="jsx-870174952"
+  onKeyDown={[Function]}
 >
   <td
     className="jsx-870174952"
@@ -181,6 +184,7 @@ exports[`The filterable table headers component renders a text input if values a
 exports[`The filterable table headers component renders as many td elements as search options, plus one for the search buttons 1`] = `
 <tr
   className="jsx-870174952"
+  onKeyDown={[Function]}
 >
   <td
     className="jsx-870174952"
@@ -242,6 +246,7 @@ exports[`The filterable table headers component renders as many td elements as s
 exports[`The filterable table headers component renders search and reset buttons 1`] = `
 <tr
   className="jsx-870174952"
+  onKeyDown={[Function]}
 >
   <td
     className="jsx-870174952 flex"
