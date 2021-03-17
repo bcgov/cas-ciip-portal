@@ -168,22 +168,21 @@ export const ApplyButton: React.FunctionComponent<Props> = ({
     latestDraftRevision?.legalDisclaimerAccepted;
 
   if (applicationStatus === 'DRAFT') {
-    const continueApplication = () => {
-      router.push({
-        pathname: latestDraftlegalDisclaimerAccepted
-          ? '/reporter/application'
-          : '/reporter/new-application-disclaimer',
-        query: {
-          applicationId,
-          version: latestDraftVersionNumber
-        }
-      });
-    };
-
     return (
-      <Button variant="primary" onClick={continueApplication}>
-        Resume CIIP application
-      </Button>
+      <Link
+        passHref
+        href={{
+          pathname: latestDraftlegalDisclaimerAccepted
+            ? '/reporter/application'
+            : '/reporter/new-application-disclaimer',
+          query: {
+            applicationId,
+            version: latestDraftVersionNumber
+          }
+        }}
+      >
+        <Button variant="primary">Resume CIIP application</Button>
+      </Link>
     );
   }
 
