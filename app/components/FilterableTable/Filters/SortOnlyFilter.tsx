@@ -1,12 +1,10 @@
-import {TableFilter} from './types';
+import React from 'react';
+import TableFilter from './TableFilter';
 
-export default class SortOnlyFilter implements TableFilter {
+export default class SortOnlyFilter extends TableFilter {
   constructor(title, columnName) {
-    this.title = title;
-    this.argName = columnName;
+    super(title, columnName, {sortable: true, filterable: false});
   }
-  argName: string;
-  title: string;
-  isSearchEnabled = false;
-  isSortEnabled = true;
+
+  Component = () => <td />;
 }

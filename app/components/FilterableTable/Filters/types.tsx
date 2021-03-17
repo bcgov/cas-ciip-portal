@@ -5,18 +5,9 @@ export interface PageArgs {
   pageSize?: number;
 }
 
-export type FilterComponent = React.FunctionComponent<{
-  onChange: (value: any, argName: string, toUrl?: (string) => any) => void;
+export interface FilterComponentProps {
+  onChange: (value: string | number | boolean, argName: string) => void;
   filterArgs: FilterArgs;
-}>;
-
-export interface TableFilter {
-  toUrl?: (string) => any;
-  Component?: FilterComponent;
-  argName: string;
-  title: string;
-  isSearchEnabled: boolean;
-  isSortEnabled: boolean;
-  removeSearchHeader?: boolean;
-  searchOptionValues?: {display: string; value: any}[];
 }
+
+export type FilterComponent = React.FunctionComponent<FilterComponentProps>;

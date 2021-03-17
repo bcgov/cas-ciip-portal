@@ -21,6 +21,10 @@ export default class ApplicationStatusFilter extends EnumFilter<
   }
   _nullValueArgName: string;
 
+  get argNames() {
+    return [this.argName, this._nullValueArgName];
+  }
+
   Component: FilterComponent = ({onChange, filterArgs}) => {
     const handleChange = (e) => {
       const {value} = e.target;
@@ -29,7 +33,7 @@ export default class ApplicationStatusFilter extends EnumFilter<
         onChange(undefined, this.argName);
       } else {
         onChange(undefined, this._nullValueArgName);
-        onChange(value, this.argName, this.toUrl);
+        onChange(this.castValue(value), this.argName);
       }
     };
 

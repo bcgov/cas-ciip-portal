@@ -1,11 +1,7 @@
-import {TableFilter} from './types';
+import TableFilter from './TableFilter';
 
-export default class DisplayOnlyFilter implements TableFilter {
+export default class DisplayOnlyFilter extends TableFilter {
   constructor(title) {
-    this.title = title;
+    super(title, null);
   }
-  argName: string;
-  title: string;
-  isSearchEnabled = false;
-  isSortEnabled = false;
 }

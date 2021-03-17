@@ -27,7 +27,7 @@ const filters: TableFilter[] = [
     'PENDING',
     'REJECTED'
   ]),
-  NoHeaderFilter
+  new NoHeaderFilter()
 ];
 
 export const OrganisationRequestsTableComponent: React.FunctionComponent<Props> = (

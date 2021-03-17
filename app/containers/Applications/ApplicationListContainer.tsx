@@ -29,7 +29,7 @@ const filters: TableFilter[] = [
     'REQUESTED_CHANGES',
     'SUBMITTED'
   ]),
-  NoHeaderFilter
+  new NoHeaderFilter()
 ];
 
 export const ApplicationList: React.FunctionComponent<Props> = (props) => {

@@ -1,23 +1,19 @@
 import React from 'react';
 import {Form} from 'react-bootstrap';
-import {TableFilter} from './types';
+import TableFilter from './TableFilter';
 
-export default class ReportingPeriodFilter implements TableFilter {
+export default class ReportingPeriodFilter extends TableFilter<number> {
   constructor(
     argName: string,
     reportingPeriods: number[],
     defaultValue: number
   ) {
-    this.argName = argName;
+    super('Reporting period', argName);
     this._reportingPeriods = reportingPeriods;
     this._defaultValue = defaultValue;
   }
-  argName: string;
   _reportingPeriods: number[];
   _defaultValue: number;
-  isSortEnabled = false;
-  isSearchEnabled = true;
-  title = 'Reporting period';
 
   Component = ({onChange, filterArgs}) => {
     return (

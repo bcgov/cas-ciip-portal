@@ -33,7 +33,7 @@ const filters: TableFilter[] = [
     'DRAFT',
     'PUBLISHED'
   ]),
-  NoHeaderFilter
+  new NoHeaderFilter()
 ];
 
 export const ProductList: React.FunctionComponent<Props> = ({query}) => {

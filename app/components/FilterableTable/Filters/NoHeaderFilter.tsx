@@ -1,11 +1,10 @@
-import {TableFilter} from './types';
+import TableFilter from './TableFilter';
 
 // This can be used as a UI trick to save space for the search/reset buttons
-const NoHeaderFilter: TableFilter = {
-  title: null,
-  argName: null,
-  isSearchEnabled: false,
-  isSortEnabled: false,
-  removeSearchHeader: true
-};
-export default NoHeaderFilter;
+export default class NoHeaderFilter extends TableFilter {
+  constructor() {
+    super(null, null, {filterable: false, sortable: false});
+  }
+
+  Component = () => null;
+}

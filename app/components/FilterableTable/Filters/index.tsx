@@ -1,5 +1,5 @@
 import ApplicationStatusFilter from './ApplicationStatusFilter';
-import BaseFilter from './BaseFilter';
+import TableFilter from './TableFilter';
 import DisplayOnlyFilter from './DisplayOnlyFilter';
 import EnumFilter from './EnumFilter';
 import NoHeaderFilter from './NoHeaderFilter';
@@ -9,10 +9,10 @@ import SortOnlyFilter from './SortOnlyFilter';
 import TextFilter from './TextFilter';
 import YesNoFilter from './YesNoFilter';
 
-export type {FilterArgs, PageArgs, FilterComponent, TableFilter} from './types';
+export type {FilterArgs, PageArgs, FilterComponent} from './types';
 export {
   ApplicationStatusFilter,
-  BaseFilter,
+  TableFilter,
   DisplayOnlyFilter,
   EnumFilter,
   NoHeaderFilter,

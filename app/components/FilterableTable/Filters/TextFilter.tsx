@@ -1,5 +1,5 @@
-import BaseFilter from './BaseFilter';
+import BaseFilter from './TableFilter';
 
 export default class TextFilter extends BaseFilter<string> {
-  toUrl = (input) => String(input);
+  castValue = (input) => String(input);
 }

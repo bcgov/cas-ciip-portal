@@ -118,7 +118,7 @@ export const FilterableTable: React.FunctionComponent<Props> = ({
               <SortableTableHeader
                 key={option.title + '-sortHeader'}
                 headerVariables={{
-                  columnName: option.argName,
+                  columnName: option.sortColumnName,
                   displayName: option.title,
                   sortable: option.isSortEnabled
                 }}

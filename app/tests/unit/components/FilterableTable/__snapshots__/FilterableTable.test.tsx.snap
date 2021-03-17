@@ -27,6 +27,7 @@ Array [
         />
         <tr
           className="jsx-870174952"
+          onKeyDown={[Function]}
         >
           <td
             className="jsx-870174952 flex"
@@ -161,9 +162,9 @@ exports[`The filterable table renders filter headers 1`] = `
         <SortableTableHeader
           headerVariables={
             Object {
-              "columnName": undefined,
+              "columnName": null,
               "displayName": "DisplayOnlyTitle",
-              "sortable": false,
+              "sortable": true,
             }
           }
           key="DisplayOnlyTitle-sortHeader"
@@ -174,17 +175,23 @@ exports[`The filterable table renders filter headers 1`] = `
         filters={
           Array [
             TextFilter {
+              "Component": [Function],
               "argName": "text_column",
+              "castValue": [Function],
               "isSearchEnabled": true,
               "isSortEnabled": true,
-              "removeSearchHeader": false,
+              "removeSearchHeader": undefined,
+              "sortColumnName": "text_column",
               "title": "TextTitle",
-              "toUrl": [Function],
             },
             DisplayOnlyFilter {
-              "argName": undefined,
-              "isSearchEnabled": false,
-              "isSortEnabled": false,
+              "Component": [Function],
+              "argName": null,
+              "castValue": [Function],
+              "isSearchEnabled": true,
+              "isSortEnabled": true,
+              "removeSearchHeader": undefined,
+              "sortColumnName": null,
               "title": "DisplayOnlyTitle",
             },
           ]
@@ -263,9 +270,9 @@ exports[`The filterable table renders sort headers 1`] = `
         <SortableTableHeader
           headerVariables={
             Object {
-              "columnName": undefined,
+              "columnName": null,
               "displayName": "DisplayOnlyTitle",
-              "sortable": false,
+              "sortable": true,
             }
           }
           key="DisplayOnlyTitle-sortHeader"
@@ -276,17 +283,23 @@ exports[`The filterable table renders sort headers 1`] = `
         filters={
           Array [
             TextFilter {
+              "Component": [Function],
               "argName": "text_column",
+              "castValue": [Function],
               "isSearchEnabled": true,
               "isSortEnabled": true,
-              "removeSearchHeader": false,
+              "removeSearchHeader": undefined,
+              "sortColumnName": "text_column",
               "title": "TextTitle",
-              "toUrl": [Function],
             },
             DisplayOnlyFilter {
-              "argName": undefined,
-              "isSearchEnabled": false,
-              "isSortEnabled": false,
+              "Component": [Function],
+              "argName": null,
+              "castValue": [Function],
+              "isSearchEnabled": true,
+              "isSortEnabled": true,
+              "removeSearchHeader": undefined,
+              "sortColumnName": null,
               "title": "DisplayOnlyTitle",
             },
           ]

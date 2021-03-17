@@ -5,26 +5,21 @@ exports[`The filterable table headers component only renders elements that are s
   className="jsx-870174952"
   onKeyDown={[Function]}
 >
-  <td
-    className="jsx-870174952"
+  <Component
+    filterArgs={Object {}}
     key="testtest"
+    onChange={[Function]}
   />
-  <td
-    className="jsx-870174952"
+  <Component
+    filterArgs={Object {}}
     key="test2test2"
+    onChange={[Function]}
   />
-  <td
-    className="jsx-870174952"
+  <Component
+    filterArgs={Object {}}
     key="test3test3"
-  >
-    <FormControl
-      aria-label="filter-by-test3"
-      name="test3"
-      onChange={[Function]}
-      placeholder="Search"
-      value=""
-    />
-  </td>
+    onChange={[Function]}
+  />
   <td
     className="jsx-870174952 flex"
   >
@@ -63,41 +58,11 @@ exports[`The filterable table headers component renders a option input if values
   className="jsx-870174952"
   onKeyDown={[Function]}
 >
-  <td
-    className="jsx-870174952"
+  <Component
+    filterArgs={Object {}}
     key="testtest"
-  >
-    <FormControl
-      aria-label="filter-by-test"
-      as="select"
-      name="test"
-      onChange={[Function]}
-      placeholder="Search"
-      value=""
-    >
-      <option
-        className="jsx-870174952"
-        key="test-placeholder"
-        value=""
-      >
-        ...
-      </option>
-      <option
-        className="jsx-870174952"
-        key="test-option1"
-        value="optionvalue1"
-      >
-        Option1
-      </option>
-      <option
-        className="jsx-870174952"
-        key="test-option2"
-        value="optionvalue2"
-      >
-        Option2
-      </option>
-    </FormControl>
-  </td>
+    onChange={[Function]}
+  />
   <td
     className="jsx-870174952 flex"
   >
@@ -136,18 +101,11 @@ exports[`The filterable table headers component renders a text input if values a
   className="jsx-870174952"
   onKeyDown={[Function]}
 >
-  <td
-    className="jsx-870174952"
+  <Component
+    filterArgs={Object {}}
     key="testtest"
-  >
-    <FormControl
-      aria-label="filter-by-test"
-      name="test"
-      onChange={[Function]}
-      placeholder="Search"
-      value=""
-    />
-  </td>
+    onChange={[Function]}
+  />
   <td
     className="jsx-870174952 flex"
   >
@@ -186,30 +144,26 @@ exports[`The filterable table headers component renders as many td elements as s
   className="jsx-870174952"
   onKeyDown={[Function]}
 >
-  <td
-    className="jsx-870174952"
+  <Component
+    filterArgs={
+      Object {
+        "test": "a",
+        "test2": "b",
+      }
+    }
     key="testtest"
-  >
-    <FormControl
-      aria-label="filter-by-test"
-      name="test"
-      onChange={[Function]}
-      placeholder="Search"
-      value="a"
-    />
-  </td>
-  <td
-    className="jsx-870174952"
+    onChange={[Function]}
+  />
+  <Component
+    filterArgs={
+      Object {
+        "test": "a",
+        "test2": "b",
+      }
+    }
     key="test2test2"
-  >
-    <FormControl
-      aria-label="filter-by-test2"
-      name="test2"
-      onChange={[Function]}
-      placeholder="Search"
-      value="b"
-    />
-  </td>
+    onChange={[Function]}
+  />
   <td
     className="jsx-870174952 flex"
   >

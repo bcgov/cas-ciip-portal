@@ -34,7 +34,7 @@ const filters: TableFilter[] = [
     'applicationIdIsNull'
   ),
   new NumberFilter('Application #', 'applicationId', {sortable: false}),
-  NoHeaderFilter
+  new NoHeaderFilter()
 ];
 
 export const FacilitiesList: React.FunctionComponent<Props> = ({query}) => {

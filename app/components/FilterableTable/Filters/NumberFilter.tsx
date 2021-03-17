@@ -1,8 +1,8 @@
-import BaseFilter from './BaseFilter';
+import BaseFilter from './TableFilter';
 
 /**
  * A filter that converts the input to a numerical value when submitting it
  */
 export default class NumberFilter extends BaseFilter<number> {
-  toUrl = (input) => Number(input) || null;
+  castValue = (input) => Number(input) || null;
 }
