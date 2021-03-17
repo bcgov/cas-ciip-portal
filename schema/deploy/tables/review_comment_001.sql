@@ -8,4 +8,26 @@ alter table ggircs_portal.review_comment add column application_review_step_id i
 create index ggircs_portal_review_comment_app_review_step_foreign_key on ggircs_portal.review_comment(application_review_step_id);
 comment on column ggircs_portal.review_comment.application_review_step_id is 'Foreign key to application_review_step. Defines the review step that this comment belongs to.';
 
+create or replace function ggircs_portal_private.create_review_steps()
+  returns void as $$
+declare
+  temp_row record;
+  temp_id int;
+begin
+    for temp_row in
+      select id from ggircs_portal.application
+    loop
+      insert into ggircs_portal.application_review_step(application_id, review_step_id)
+      values (temp_row.id, 1)
+      on conflict("application_id", "review_step_id") do nothing returning id into temp_id;
+      update ggircs_portal.review_comment rc set application_review_step_id = temp_id where rc.application_id = temp_row.id and application_review_step_id is null;
+    end loop;
+end;
+$$ language plpgsql volatile;
+
+-- Data migration: add comments with null application_review_step_id to an application_review_step
+select ggircs_portal_private.create_review_steps();
+
+drop function ggircs_portal_private.create_review_steps;
+
 commit;
