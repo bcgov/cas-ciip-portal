@@ -24,19 +24,6 @@ $function$
 $function$
 language 'plpgsql' stable;
 
-
--- ciip_administrator Policies
-select throw_if_policy_exists('select', 'ciip_administrator_select_certification_url', 'certification_url', 'ciip_administrator');
-select throw_if_policy_exists('insert', 'ciip_administrator_insert_certification_url', 'certification_url', 'ciip_administrator');
-
--- ciip_analyst Policies
-select throw_if_policy_exists('select', 'ciip_analyst_select_certification_url', 'certification_url', 'ciip_analyst');
-
--- ciip_industry_user Policies
-select throw_if_policy_exists('select', 'ciip_industry_user_select_certification_url', 'certification_url', 'ciip_industry_user');
-select throw_if_policy_exists('insert', 'ciip_industry_user_insert_certification_url', 'certification_url', 'ciip_industry_user');
-select throw_if_policy_exists('update', 'ciip_industry_user_update_certification_url', 'certification_url', 'ciip_industry_user');
-
 -- ciip_industry_user (certifier) Policies
 select throw_if_policy_exists('select', 'certifier_select_certification_url', 'certification_url', 'ciip_industry_user');
 select throw_if_policy_exists('update', 'certifier_update_certification_url', 'certification_url', 'ciip_industry_user');
