@@ -1,14 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`The apply button should render a Resume Application button if an application revision exists with draft status and the application window is open 1`] = `
-<Button
-  active={false}
-  disabled={false}
-  onClick={[Function]}
-  variant="primary"
+<Link
+  href={
+    Object {
+      "pathname": "/reporter/new-application-disclaimer",
+      "query": Object {
+        "applicationId": "foo",
+        "version": 1,
+      },
+    }
+  }
+  passHref={true}
 >
-  Resume CIIP application
-</Button>
+  <Button
+    active={false}
+    disabled={false}
+    variant="primary"
+  >
+    Resume CIIP application
+  </Button>
+</Link>
 `;
 
 exports[`The apply button should render a View Application button if an application revision exists with approved status 1`] = `
