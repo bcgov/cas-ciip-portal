@@ -20,7 +20,7 @@ describe('When the reporter is viewing a list of facilities & applications', () 
     cy.get('tbody > tr').should('have.length', 2);
 
     // Filter by application Id
-    cy.get('input[aria-label="filter-by-applicationId"]').type(1);
+    cy.get('input[aria-label="Filter by Application #"]').type(1);
     cy.get('thead button').contains('Apply').click();
     cy.get('tbody > tr').should('have.length', 1);
 
