@@ -20,10 +20,10 @@ describe('the enum search option', () => {
   });
 
   it('only allows enum values in the URL', () => {
-    expect(optionUnderTest.toUrl).toBeDefined();
-    expect(optionUnderTest.toUrl('A')).toEqual('A');
-    expect(optionUnderTest.toUrl('C')).toEqual('C');
-    expect(optionUnderTest.toUrl('NOT ALLOWED')).toEqual(null);
-    expect(optionUnderTest.toUrl('12')).toEqual(null);
+    expect(optionUnderTest.castValue).toBeDefined();
+    expect(optionUnderTest.castValue('A')).toEqual('A');
+    expect(optionUnderTest.castValue('C')).toEqual('C');
+    expect(optionUnderTest.castValue('NOT ALLOWED')).toEqual(null);
+    expect(optionUnderTest.castValue('12')).toEqual(null);
   });
 });

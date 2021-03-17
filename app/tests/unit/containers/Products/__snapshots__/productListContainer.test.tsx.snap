@@ -51,12 +51,12 @@ exports[`ProductList should render the product list 1`] = `
       },
       DisplayOnlyFilter {
         "Component": [Function],
-        "argName": null,
+        "argName": undefined,
         "castValue": [Function],
-        "isSearchEnabled": true,
-        "isSortEnabled": true,
+        "isSearchEnabled": false,
+        "isSortEnabled": false,
         "removeSearchHeader": undefined,
-        "sortColumnName": null,
+        "sortColumnName": undefined,
         "title": "Settings",
       },
       SortOnlyFilter {

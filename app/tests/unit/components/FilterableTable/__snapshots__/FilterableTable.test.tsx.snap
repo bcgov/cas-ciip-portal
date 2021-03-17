@@ -162,9 +162,9 @@ exports[`The filterable table renders filter headers 1`] = `
         <SortableTableHeader
           headerVariables={
             Object {
-              "columnName": null,
+              "columnName": undefined,
               "displayName": "DisplayOnlyTitle",
-              "sortable": true,
+              "sortable": false,
             }
           }
           key="DisplayOnlyTitle-sortHeader"
@@ -186,12 +186,12 @@ exports[`The filterable table renders filter headers 1`] = `
             },
             DisplayOnlyFilter {
               "Component": [Function],
-              "argName": null,
+              "argName": undefined,
               "castValue": [Function],
-              "isSearchEnabled": true,
-              "isSortEnabled": true,
+              "isSearchEnabled": false,
+              "isSortEnabled": false,
               "removeSearchHeader": undefined,
-              "sortColumnName": null,
+              "sortColumnName": undefined,
               "title": "DisplayOnlyTitle",
             },
           ]
@@ -270,9 +270,9 @@ exports[`The filterable table renders sort headers 1`] = `
         <SortableTableHeader
           headerVariables={
             Object {
-              "columnName": null,
+              "columnName": undefined,
               "displayName": "DisplayOnlyTitle",
-              "sortable": true,
+              "sortable": false,
             }
           }
           key="DisplayOnlyTitle-sortHeader"
@@ -294,12 +294,12 @@ exports[`The filterable table renders sort headers 1`] = `
             },
             DisplayOnlyFilter {
               "Component": [Function],
-              "argName": null,
+              "argName": undefined,
               "castValue": [Function],
-              "isSearchEnabled": true,
-              "isSortEnabled": true,
+              "isSearchEnabled": false,
+              "isSortEnabled": false,
               "removeSearchHeader": undefined,
-              "sortColumnName": null,
+              "sortColumnName": undefined,
               "title": "DisplayOnlyTitle",
             },
           ]

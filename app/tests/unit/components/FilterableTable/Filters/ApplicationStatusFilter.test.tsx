@@ -76,7 +76,7 @@ describe('The ApplicationStatusFilter', () => {
 
       expect(handleChange).toBeCalledTimes(2);
       expect(handleChange).toBeCalledWith(undefined, 'myNullValueArgName');
-      expect(handleChange).toBeCalledWith('DRAFT', 'myArgName', filter.toUrl);
+      expect(handleChange).toBeCalledWith('DRAFT', 'myArgName');
 
       handleChange.mockReset();
 
@@ -87,11 +87,7 @@ describe('The ApplicationStatusFilter', () => {
 
       expect(handleChange).toBeCalledTimes(2);
       expect(handleChange).toBeCalledWith(undefined, 'myNullValueArgName');
-      expect(handleChange).toBeCalledWith(
-        'REQUESTED_CHANGES',
-        'myArgName',
-        filter.toUrl
-      );
+      expect(handleChange).toBeCalledWith('REQUESTED_CHANGES', 'myArgName');
 
       handleChange.mockReset();
 
@@ -102,7 +98,7 @@ describe('The ApplicationStatusFilter', () => {
 
       expect(handleChange).toBeCalledTimes(2);
       expect(handleChange).toBeCalledWith(undefined, 'myNullValueArgName');
-      expect(handleChange).toBeCalledWith('', 'myArgName', filter.toUrl);
+      expect(handleChange).toBeCalledWith(null, 'myArgName');
     });
   });
 });

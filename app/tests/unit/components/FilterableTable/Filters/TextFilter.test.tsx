@@ -4,9 +4,9 @@ const optionUnderTest = new TextFilter('displayText', 'column');
 
 describe('the text search option', () => {
   it('converts any input to string', () => {
-    expect(optionUnderTest.toUrl).toBeDefined();
+    expect(optionUnderTest.castValue).toBeDefined();
 
-    expect(optionUnderTest.toUrl('string')).toEqual('string');
-    expect(optionUnderTest.toUrl(123)).toEqual('123');
+    expect(optionUnderTest.castValue('string')).toEqual('string');
+    expect(optionUnderTest.castValue(123)).toEqual('123');
   });
 });
