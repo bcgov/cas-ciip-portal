@@ -59,13 +59,23 @@ const ApplicationWizardStep: React.FunctionComponent<Props> = ({
     await storeResult(formData);
   };
 
-  if (confirmationPage)
-    return (
+  if (confirmationPage) {
+    const confirmation = (
       <ApplicationWizardConfirmation
         query={query}
         application={query.application}
       />
     );
+    if (review) {
+      return (
+        <Row>
+          <Col md={8}>{confirmation}</Col>
+          <Col md={4}>{review}</Col>
+        </Row>
+      );
+    }
+    return confirmation;
+  }
   if (!formResult) return null;
 
   if (!application) return null;
