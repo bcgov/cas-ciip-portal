@@ -257,3 +257,5 @@ trigger_functions/checksum_form_results [trigger_functions/checksum_form_results
 policies/form_result_status_policies [policies/form_result_status_policies@v1.16.0] 2021-03-12T23:04:17Z Dylan Leard <dylan@button.is> # Migration: drop form_result_status RLS function
 tables/form_result_status [tables/form_result_status@v1.16.0] 2021-03-12T23:10:08Z Dylan Leard <dylan@button.is> # Migration: drop form_result_status table
 types/ciip_form_result_status [types/ciip_form_result_status@v1.16.0] 2021-03-12T23:22:31Z Dylan Leard <dylan@button.is> # Migration: drop deprecated type
+tables/naics [schema_ggircs_portal] 2021-03-17T20:59:43Z Dylan Leard <dylan@button.is> # Table contains naics codes & their descriptions. NAICS is an acronym for North American Industry Classification System and is used to categorize industrial operations into sectors
+mutations/custom_create_naics_mutation [tables/naics] 2021-03-17T21:14:47Z Dylan Leard <dylan@button.is> # Mutation does an upsert when creating a row for a naics code that already exists
