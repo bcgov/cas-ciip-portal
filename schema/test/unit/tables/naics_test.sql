@@ -3,13 +3,19 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(15);
+select plan(16);
 
 -- Table exists
 select has_table(
   'ggircs_portal', 'naics',
   'ggircs_portal.naics should exist, and be a table'
 );
+
+select has_index(
+  'ggircs_portal', 'naics', 'naics_naics_code_uindex',
+  'naics table has a unique index on the naics_code column'
+);
+
 
 -- Test Setup
 select test_helper.clean_ggircs_portal_schema();
@@ -27,7 +33,7 @@ select results_eq(
   $$
     select naics_code from ggircs_portal.naics;
   $$,
-  ARRAY[1234::integer],
+  ARRAY[1234::varchar(1000)],
     'ciip_administrator can select data from the naics table'
 );
 
@@ -41,7 +47,7 @@ select lives_ok(
 
 select results_eq(
   $$
-    select naics_description from ggircs_portal.naics where naics_code=1001;
+    select naics_description from ggircs_portal.naics where naics_code='1001';
   $$,
     ARRAY['admin created'::varchar(10000)],
     'Data was inserted by ciip_administrator'
@@ -56,7 +62,7 @@ select lives_ok(
 
 select results_eq(
   $$
-    select naics_description from ggircs_portal.naics where naics_code=1001;
+    select naics_description from ggircs_portal.naics where naics_code='1001';
   $$,
     ARRAY['admin updated'::varchar(10000)],
     'Data was updated by ciip_administrator'
@@ -76,9 +82,9 @@ select concat('current user is: ', (select current_user));
 
 select results_eq(
   $$
-    select naics_code from ggircs_portal.naics where naics_code=1234;
+    select naics_code from ggircs_portal.naics where naics_code='1234';
   $$,
-  ARRAY[1234::integer],
+  ARRAY[1234::varchar(1000)],
     'Industry user can view data from naics'
 );
 
@@ -92,7 +98,7 @@ select throws_like(
 
 select throws_like(
   $$
-    update ggircs_portal.naics set naics_description='user changed' where naics_code=1234;
+    update ggircs_portal.naics set naics_description='user changed' where naics_code='1234';
   $$,
   'permission denied%',
     'Industry User cannot update ggircs_portal.naics'
@@ -112,9 +118,9 @@ select concat('current user is: ', (select current_user));
 
 select results_eq(
   $$
-    select naics_code from ggircs_portal.naics where naics_code=1234;
+    select naics_code from ggircs_portal.naics where naics_code='1234';
   $$,
-  ARRAY[1234::integer],
+  ARRAY[1234::varchar(1000)],
   'Analyst can select from table naics'
 );
 
@@ -128,7 +134,7 @@ select throws_like(
 
 select throws_like(
   $$
-    update ggircs_portal.naics set naics_description='user changed' where naics_code=1234;
+    update ggircs_portal.naics set naics_description='user changed' where naics_code='1234';
   $$,
   'permission denied%',
     'Analyst cannot update ggircs_portal.naics'
