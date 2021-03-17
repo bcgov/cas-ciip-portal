@@ -1,0 +1,148 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ApplicationDecision matches the last accepted snapshot (no reviewer comments; APPROVED) 1`] = `
+<Alert
+  closeLabel="Close alert"
+  show={true}
+  transition={
+    Object {
+      "$$typeof": Symbol(react.forward_ref),
+      "defaultProps": Object {
+        "appear": false,
+        "in": false,
+        "mountOnEnter": false,
+        "timeout": 300,
+        "unmountOnExit": false,
+      },
+      "displayName": "Fade",
+      "render": [Function],
+    }
+  }
+  variant="success"
+>
+  <AlertHeading>
+    Decision: Approved
+  </AlertHeading>
+  <p>
+    This application has been approved. Your incentive payment is being processed. No further action is required from you at this time.
+  </p>
+</Alert>
+`;
+
+exports[`ApplicationDecision matches the last accepted snapshot (no reviewer comments; REJECTED) 1`] = `
+<Alert
+  closeLabel="Close alert"
+  show={true}
+  transition={
+    Object {
+      "$$typeof": Symbol(react.forward_ref),
+      "defaultProps": Object {
+        "appear": false,
+        "in": false,
+        "mountOnEnter": false,
+        "timeout": 300,
+        "unmountOnExit": false,
+      },
+      "displayName": "Fade",
+      "render": [Function],
+    }
+  }
+  variant="danger"
+>
+  <AlertHeading>
+    Decision: Rejected
+  </AlertHeading>
+  <p>
+    Thank you for applying to the CIIP. Unfortunately this submission did not meet program requirements and a payment cannot be granted.
+  </p>
+</Alert>
+`;
+
+exports[`ApplicationDecision matches the last accepted snapshot (with reviewer comments; REJECTED) 1`] = `
+<Alert
+  closeLabel="Close alert"
+  show={true}
+  transition={
+    Object {
+      "$$typeof": Symbol(react.forward_ref),
+      "defaultProps": Object {
+        "appear": false,
+        "in": false,
+        "mountOnEnter": false,
+        "timeout": 300,
+        "unmountOnExit": false,
+      },
+      "displayName": "Fade",
+      "render": [Function],
+    }
+  }
+  variant="danger"
+>
+  <AlertHeading>
+    Decision: Rejected
+  </AlertHeading>
+  <p>
+    Thank you for applying to the CIIP. Unfortunately this submission did not meet program requirements and a payment cannot be granted.
+  </p>
+  <hr />
+  <p
+    className="h5"
+  >
+    Reviewer Notes:
+  </p>
+  <ul>
+    <li
+      key="comment-0"
+    >
+      We cannot accept applications from facilities that are either not regulated under GGIRCA, or which paid no carbon tax in 2020.
+    </li>
+  </ul>
+</Alert>
+`;
+
+exports[`ApplicationDecision matches the last accepted snapshot (with reviewer comments; REQUESTED_CHANGES) 1`] = `
+<Alert
+  closeLabel="Close alert"
+  show={true}
+  transition={
+    Object {
+      "$$typeof": Symbol(react.forward_ref),
+      "defaultProps": Object {
+        "appear": false,
+        "in": false,
+        "mountOnEnter": false,
+        "timeout": 300,
+        "unmountOnExit": false,
+      },
+      "displayName": "Fade",
+      "render": [Function],
+    }
+  }
+  variant="danger"
+>
+  <AlertHeading>
+    Action Required
+  </AlertHeading>
+  <p>
+    Changes to your application have been requested. Please read these review notes before revising and resubmitting your application.
+  </p>
+  <hr />
+  <p
+    className="h5"
+  >
+    Reviewer Notes:
+  </p>
+  <ul>
+    <li
+      key="comment-0"
+    >
+      The operator name is slightly different from a previous match we have on file: should it be "Virtucon Limited" instead of "Virtucon Ltd"?
+    </li>
+    <li
+      key="comment-1"
+    >
+      Another comment.
+    </li>
+  </ul>
+</Alert>
+`;
