@@ -23,8 +23,8 @@ select col_is_fk(
 );
 
 select col_is_fk(
-  'ggircs_portal', 'review_comment', 'form_id',
-  'review_comment has foreign key on form_id referencing ggircs_portal.form_json'
+  'ggircs_portal', 'review_comment', 'application_review_step_id',
+  'review_comment has foreign key on application_review_step_id referencing ggircs_portal.application_review_step'
 );
 
 select has_index(
@@ -33,15 +33,15 @@ select has_index(
 );
 
 select has_index(
-  'ggircs_portal', 'review_comment', 'ggircs_portal_review_comment_form_json_foreign_key',
-  'review_comment has an index on its foreign key (form_id)'
+  'ggircs_portal', 'review_comment', 'ggircs_portal_review_comment_app_review_step_foreign_key',
+  'review_comment has an index on its foreign key (applcation_review_step_id)'
 );
 
 -- Columns
 select columns_are('ggircs_portal'::name, 'review_comment'::name, array[
   'id'::name,
   'application_id'::name,
-  'form_id'::name,
+  'application_review_step_id'::name,
   'description'::name,
   'comment_type'::name,
   'resolved'::name,
@@ -55,6 +55,7 @@ select columns_are('ggircs_portal'::name, 'review_comment'::name, array[
 
 select col_type_is('ggircs_portal', 'review_comment', 'id', 'integer', 'id column should be type integer');
 select col_type_is('ggircs_portal', 'review_comment', 'application_id', 'integer', 'application_id column should be type integer');
+select col_type_is('ggircs_portal', 'review_comment', 'application_review_step_id', 'integer', 'application_review_step_id column should be type integer');
 select col_type_is('ggircs_portal', 'review_comment', 'description', 'character varying(100000)', 'review_comment column should be type varchar(10000)');
 select col_type_is('ggircs_portal', 'review_comment', 'comment_type', 'ggircs_portal.review_comment_type', 'comment_type column should be type review_comment_type');
 select col_type_is('ggircs_portal', 'review_comment', 'created_at', 'timestamp with time zone', 'created_at column should be type timestamptz');
@@ -66,7 +67,6 @@ select col_type_is('ggircs_portal', 'review_comment', 'deleted_by', 'integer', '
 
 select col_not_null('ggircs_portal', 'review_comment', 'id', 'id column should not be nullable');
 select col_not_null('ggircs_portal', 'review_comment', 'application_id', 'application_id column should not be nullable');
-select col_not_null('ggircs_portal', 'review_comment', 'form_id', 'form_id column should not be nullable');
 select col_not_null('ggircs_portal', 'review_comment', 'created_at', 'created_at column should not be nullable');
 select col_not_null('ggircs_portal', 'review_comment', 'updated_at', 'updated_at column should not be nullable');
 
@@ -98,12 +98,12 @@ insert into ggircs_portal.organisation(id) overriding system value values(999), 
 insert into ggircs_portal.facility(id, organisation_id) overriding system value values(999, 999), (1000, 1000);
 insert into ggircs_portal.application(id, facility_id) overriding system value values(999, 999), (1000, 1000);
 insert into ggircs_portal.ciip_user_organisation(id, user_id, organisation_id, status) overriding system value values(999, 999, 999, 'approved'), (1000, 1000, 1000, 'approved');
-insert into ggircs_portal.review_comment(id, application_id, form_id, description, comment_type, created_by, resolved) overriding system value
+insert into ggircs_portal.review_comment(id, application_id, description, comment_type, created_by, resolved) overriding system value
   values
-    (999, 999, 1, 'User can see this', 'requested change', 999, false),
-    (1000, 999, 1, 'User cannot see this', 'internal', 1,false),
-    (1001, 999, 1, 'User can see this', 'general', 999, false),
-    (1002, 999, 1, 'User can see this', 'approval', 999, false);
+    (999, 999, 'User can see this', 'general', 999, false),
+    (1000, 999, 'User cannot see this', 'internal', 1,false),
+    (1001, 999, 'User can see this', 'general', 999, false),
+    (1002, 999, 'User can see this', 'general', 999, false);
 
 
 -- CIIP_ADMINISTRATOR
@@ -120,8 +120,8 @@ select results_eq(
 
 select lives_ok(
   $$
-    insert into ggircs_portal.review_comment (id, application_id, form_id) overriding system value
-    values (1003, 1000, 1);
+    insert into ggircs_portal.review_comment (id, application_id) overriding system value
+    values (1003, 1000);
   $$,
     'ciip_administrator can insert data in review_comment table'
 );
@@ -160,7 +160,7 @@ select set_eq(
     select id from ggircs_portal.review_comment
   $$,
   ARRAY[999::integer, 1001::integer, 1002::integer],
-    'Industry user can view data from review_comment where the connection review_comment -> application -> facility -> ciip_user_organisation -> user exists on user.uuid = session.sub AND comment_type in [requested change, general, approval]'
+    'Industry user can view data from review_comment where the connection review_comment -> application -> facility -> ciip_user_organisation -> user exists on user.uuid = session.sub AND comment_type is general]'
 );
 
 select is_empty (
@@ -172,7 +172,7 @@ select is_empty (
 
 select throws_like(
   $$
-    insert into ggircs_portal.review_comment(application_id, form_id) values (1002, 1);
+    insert into ggircs_portal.review_comment(application_id) values (1002);
   $$,
   'permission denied%',
     'Industry User cannot create a row in ggircs_portal.review_comment'
@@ -220,8 +220,8 @@ select results_eq(
 
 select lives_ok(
   $$
-    insert into ggircs_portal.review_comment(id, application_id, form_id, created_by) overriding system value
-    values (1005,999, 1, 999);
+    insert into ggircs_portal.review_comment(id, application_id, created_by) overriding system value
+    values (1005,999,999);
   $$,
     'Analyst can insert into table review_comment'
 );
