@@ -41,12 +41,10 @@ export const FilterableTable: React.FunctionComponent<Props> = ({
       ...filterArgs,
       ...newFilterArgs
     };
-    filters.forEach((option) => {
-      const column = option.argName;
-
-      if (option.isSearchEnabled) {
-        newQuery[column] = newFilterArgs[column] ?? undefined;
-      }
+    filters.forEach((filter) => {
+      filter.argNames.forEach((argName) => {
+        newQuery[argName] = newFilterArgs[argName] ?? undefined;
+      });
     });
 
     const queryString = JSON.stringify(newQuery);
