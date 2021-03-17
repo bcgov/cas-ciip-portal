@@ -38,21 +38,6 @@ export const FacilitiesRowItemComponent: React.FunctionComponent<Props> = ({
     facilityBcghgid,
     lastSwrsReportingYear
   } = facilityApplication;
-  const hasCertificationUrl = Boolean(
-    facilityApplication?.applicationByApplicationId?.latestDraftRevision
-      ?.certificationUrl
-  );
-  const isCertified = Boolean(
-    facilityApplication?.applicationByApplicationId?.latestDraftRevision
-      ?.certificationUrl?.certifiedBy
-  );
-
-  let certificationStatus = null;
-
-  if (applicationStatus === 'DRAFT' && isCertified)
-    certificationStatus = ' (Certified)';
-  else if (applicationStatus === 'DRAFT' && hasCertificationUrl)
-    certificationStatus = ' (Pending Certification)';
 
   return (
     <tr>
@@ -70,7 +55,6 @@ export const FacilitiesRowItemComponent: React.FunctionComponent<Props> = ({
             variant={statusBadgeColor[applicationStatus]}
           >
             {getUserFriendlyStatusLabel(applicationStatus)}
-            {certificationStatus}
           </Badge>
         ) : (
           <>Application not started</>
@@ -99,13 +83,6 @@ export default createFragmentContainer(FacilitiesRowItemComponent, {
       applicationId
       applicationStatus
       operatorName
-      applicationByApplicationId {
-        latestDraftRevision {
-          certificationUrl {
-            certifiedBy
-          }
-        }
-      }
     }
   `,
   query: graphql`
