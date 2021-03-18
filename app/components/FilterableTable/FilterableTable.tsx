@@ -96,8 +96,8 @@ export const FilterableTable: React.FunctionComponent<Props> = ({
           return (
             <f.Component
               key={f.argName}
-              onChange={(value) =>
-                applyFilterArgs({...filterArgs, [f.argName]: value})
+              onChange={(value, argName) =>
+                applyFilterArgs({...filterArgs, [argName]: value})
               }
               filterArgs={filterArgs}
             />
@@ -112,13 +112,13 @@ export const FilterableTable: React.FunctionComponent<Props> = ({
       >
         <thead>
           <tr>
-            {filters.map((option) => (
+            {filters.map((filter) => (
               <SortableTableHeader
-                key={option.title + '-sortHeader'}
+                key={filter.title + '-sortHeader'}
                 headerVariables={{
-                  columnName: option.sortColumnName,
-                  displayName: option.title,
-                  sortable: option.isSortEnabled
+                  columnName: filter.sortColumnName,
+                  displayName: filter.title,
+                  sortable: filter.isSortEnabled
                 }}
               />
             ))}
@@ -145,36 +145,10 @@ export const FilterableTable: React.FunctionComponent<Props> = ({
         .search-table {
           text-align: center;
         }
-        .master-select {
-          background: #003366;
-          color: white;
-          min-width: 6em;
-          position: relative;
-        }
-        .master-select label {
-          margin-bottom: 0;
-          padding-right: 24px;
-          width: 100%;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          position: absolute;
-          top: 0;
-          right: 0;
-          bottom: 0;
-          left: 0;
-        }
-        .master-select input[type='checkbox'] {
-          position: absolute;
-          right: 10px;
-          top: calc(50% - 6px);
-        }
         .search-table.loading td {
           opacity: 0;
           pointer-events: none;
         }
-
         .search-table.loading tbody {
           position: relative;
         }

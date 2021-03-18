@@ -1,6 +1,7 @@
 import React from 'react';
 import {Form} from 'react-bootstrap';
 import TableFilter from './TableFilter';
+import {FilterComponent} from './types';
 
 export default class ReportingPeriodFilter extends TableFilter<number> {
   constructor(
@@ -15,7 +16,7 @@ export default class ReportingPeriodFilter extends TableFilter<number> {
   _reportingPeriods: number[];
   _defaultValue: number;
 
-  Component = ({onChange, filterArgs}) => {
+  Component: FilterComponent = ({onChange, filterArgs}) => {
     return (
       <Form>
         <Form.Group controlId="reportingYear">
@@ -26,7 +27,10 @@ export default class ReportingPeriodFilter extends TableFilter<number> {
             value={Number(filterArgs[this.argName] || this._defaultValue)}
             aria-label="Select reporting period"
             onChange={(e) =>
-              onChange(Number((e.nativeEvent.target as any).value))
+              onChange(
+                Number((e.nativeEvent.target as any).value),
+                this.argName
+              )
             }
           >
             {this._reportingPeriods.map((y) => (
