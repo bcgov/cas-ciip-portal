@@ -195,6 +195,11 @@ jobs:
       image: ubuntu-1604:201903-01
     working_directory: ~/cas-ciip-portal
     steps:
+      - run:
+          name: install libdbd-pg-perl
+          command: |
+            sudo apt-get update
+            sudo apt-get install libdbd-pg-perl
       - attach_workspace:
           at: ~/
       - run:
