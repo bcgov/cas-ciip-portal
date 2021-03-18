@@ -268,6 +268,7 @@ mutations/create_product_naics_code [tables/product_naics_code] 2021-03-19T20:11
 mutations/create_product_naics_code_mutation [tables/product_naics_code] 2021-03-19T20:11:08Z Dylan Leard <dylan@button.is> # Custom create mutation upserts on conflict (product_id, naics_id)
 tables/naics [schema_ggircs_portal] 2021-03-17T20:59:43Z Dylan Leard <dylan@button.is> # Table contains naics codes & their descriptions. NAICS is an acronym for North American Industry Classification System and is used to categorize industrial operations into sectors
 mutations/create_naics_mutation [tables/naics] 2021-03-17T21:14:47Z Dylan Leard <dylan@button.is> # Mutation does an upsert when creating a row for a naics code that already exists
+database_functions/verify_policy_not_present 2021-03-13T00:18:59Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # function to verify a policy doesn't exist on the system
 policies/certification_url_policies [policies/certification_url_policies@v1.16.0] 2021-03-11T22:31:10Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # Removing certification url policies as part of the certifier role deprecation
 database_functions/verify_function_not_present 2021-03-12T00:26:55Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # Helper that throws if a function already exists, meant to verify drop operations
 computed_columns/application_revision_certification_signature_is_valid [computed_columns/application_revision_certification_signature_is_valid@v1.16.0] 2021-03-11T23:59:49Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # Removing computed column as part of the certifier role deprecation
@@ -277,7 +278,6 @@ computed_columns/ciip_user_has_certification_requests [computed_columns/ciip_use
 search_functions/search_certification_requests [search_functions/search_certification_requests@v1.16.0] 2021-03-12T22:11:06Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # removing function as part of the certifier role deprecation
 database_functions/verify_type_not_present 2021-03-12T22:17:37Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # function that throws if an existing type name is passed in, returns true otherwise
 types/search_certification_url_result [types/search_certification_url_result@v1.16.0] 2021-03-12T22:13:32Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # removing type as part of the certifier role deprecation
-database_functions/verify_policy_not_present 2021-03-13T00:18:59Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # function to verify a policy doesn't exist on the system
 policies/application_policies_001 [policies/application_policies] 2021-03-12T23:54:50Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # dropping certifier policies on application table
 policies/application_revision_policies_001 [policies/application_revision_policies] 2021-03-13T01:03:12Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # removing the application revision policies linked to the certifier role
 policies/application_revision_status_policies_001 [policies/application_revision_status_policies] 2021-03-15T17:59:33Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # removing certifier RLS
