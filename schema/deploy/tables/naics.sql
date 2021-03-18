@@ -35,9 +35,6 @@ perform ggircs_portal_private.grant_permissions('select', 'naics', 'ciip_industr
 end
 $grant$;
 
--- Enable row-level security
-alter table ggircs_portal.naics enable row level security;
-
 comment on table ggircs_portal.naics is 'Table contains naics codes & their descriptions. NAICS is an acronym for North American Industry Classification System and is used to categorize industrial operations into sectors.';
 comment on column ggircs_portal.naics.id is 'Primary key for naics table';
 comment on column ggircs_portal.naics.naics_code is 'The naics_code, NAICS is an acronym for North American Industry Classification System and is used to categorize industrial operations into sectors.';
