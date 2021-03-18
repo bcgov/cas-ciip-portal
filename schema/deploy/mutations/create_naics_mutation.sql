@@ -1,9 +1,9 @@
--- Deploy ggircs-portal:mutations/custom_create_naics_mutation to pg
+-- Deploy ggircs-portal:mutations/create_naics_mutation to pg
 -- requires: tables/naics
 
 begin;
 
-create or replace function ggircs_portal.custom_create_naics_mutation(
+create or replace function ggircs_portal.create_naics_mutation(
   naics_code_input int,
   naics_description_input text
 ) returns void as $function$
@@ -15,6 +15,6 @@ create or replace function ggircs_portal.custom_create_naics_mutation(
 
 $function$ language sql volatile;
 
-grant execute on function ggircs_portal.custom_create_naics_mutation to ciip_administrator;
+grant execute on function ggircs_portal.create_naics_mutation to ciip_administrator;
 comment on function ggircs_portal_private.check_for_immutable_application_revision_status is 'This custom create mutation does an upsert on conflict of the naics_code column, updating the description and setting the deleted at/by columsn to null';
 commit;
