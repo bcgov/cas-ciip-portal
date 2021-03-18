@@ -16,5 +16,6 @@ create or replace function ggircs_portal.create_naics_mutation(
 $function$ language sql volatile;
 
 grant execute on function ggircs_portal.create_naics_mutation to ciip_administrator;
-comment on function ggircs_portal_private.check_for_immutable_application_revision_status is 'This custom create mutation does an upsert on conflict of the naics_code column, updating the description and setting the deleted at/by columsn to null';
+comment on function ggircs_portal.create_naics_mutation is 'This custom create mutation does an upsert on conflict of the naics_code column, updating the description and setting the deleted at/by columsn to null';
+
 commit;
