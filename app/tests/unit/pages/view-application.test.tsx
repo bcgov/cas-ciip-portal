@@ -13,6 +13,10 @@ const query: viewApplicationQueryResponse['query'] = {
     }
   },
   application: {
+    rowId: 1,
+    facilityByFacilityId: {
+      bcghgid: '123456'
+    },
     latestDraftRevision: {
       versionNumber: 1
     },

@@ -54,17 +54,24 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
         {showSubheader && <Subheader />}
       </Header>
       <main>
-        {title ? (
+        {title || titleControls ? (
           <div className="page-title">
             <Container className={width}>
               <Row>
-                <Col>
-                  <h1>{title}</h1>
-                  {help && (
-                    <Help title={help.title} helpMessage={help.helpMessage} />
-                  )}
-                </Col>
-                <Col xs="auto">{titleControls}</Col>
+                {title && (
+                  <Col>
+                    <div className="title-container">
+                      <h1>{title}</h1>
+                      {help && (
+                        <Help
+                          title={help.title}
+                          helpMessage={help.helpMessage}
+                        />
+                      )}
+                    </div>
+                  </Col>
+                )}
+                <Col sm="auto">{titleControls}</Col>
               </Row>
             </Container>
           </div>
@@ -88,6 +95,18 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
           main {
             flex-grow: 1;
           }
+
+          .title-container {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+          }
+          h1 {
+            font-size: 30px;
+            display: inline-block;
+            margin-bottom: 0;
+          }
         `}
       </style>
       <style jsx global>
@@ -105,14 +124,10 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
           .footer {
             flex-shrink: 0;
           }
-          h1 {
-            font-size: 30px;
-            display: inline-block;
-          }
           .page-title {
             background: #f5f5f5;
             border-bottom: 1px solid #ccc;
-            padding: 40px 0 20px;
+            padding: 30px 0 30px;
           }
           .page-title h1 {
             font-size: 25px;

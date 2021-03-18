@@ -37,6 +37,10 @@ class ViewApplication extends Component<Props> {
           )
 
         application(id: $applicationId) {
+          rowId
+          facilityByFacilityId {
+            bcghgid
+          }
           latestDraftRevision {
             versionNumber
           }
@@ -77,19 +81,19 @@ class ViewApplication extends Component<Props> {
   render() {
     const {session} = this.props.query;
     const {query} = this.props;
-    const reviewComments = query.application?.reviewCommentsByApplicationId.edges.map(
+    const {application} = query;
+    const reviewComments = application?.reviewCommentsByApplicationId.edges.map(
       (result) => result.node.description
     );
     const status =
-      query?.application?.applicationRevisionStatus?.applicationRevisionStatus;
+      application?.applicationRevisionStatus?.applicationRevisionStatus;
     const changesRequested = status === 'REQUESTED_CHANGES';
     const hasBeenReviewed = status !== 'SUBMITTED' && status !== 'DRAFT';
 
     const thisVersion = Number(this.props.router.query.version);
     const latestSubmittedRevision =
-      query.application.latestSubmittedRevision?.versionNumber;
-    const latestDraftRevision =
-      query.application.latestDraftRevision?.versionNumber;
+      application.latestSubmittedRevision?.versionNumber;
+    const latestDraftRevision = application.latestDraftRevision?.versionNumber;
 
     const newerSubmissionExists = latestSubmittedRevision > thisVersion;
     const newerDraftExists = latestDraftRevision > latestSubmittedRevision;
@@ -126,11 +130,26 @@ class ViewApplication extends Component<Props> {
       </>
     );
 
+    const applicationInfo = (
+      <div>
+        Application ID: {application.rowId}
+        <br />
+        {thisVersion > 1 && (
+          <>
+            Version: {application.latestDraftRevision.versionNumber}
+            <br />
+          </>
+        )}
+        BC GHG ID: {application.facilityByFacilityId.bcghgid}
+      </div>
+    );
+
     return (
       <DefaultLayout
         showSubheader
         session={session}
         title="Summary of your application"
+        titleControls={applicationInfo}
       >
         <Row>
           <Col md={12}>

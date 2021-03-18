@@ -25,9 +25,13 @@ class Application extends Component<Props> {
       query {
         application(id: $applicationId) {
           id
+          rowId
           latestDraftRevision {
             versionNumber
             legalDisclaimerAccepted
+          }
+          facilityByFacilityId {
+            bcghgid
           }
         }
         session {
@@ -74,7 +78,33 @@ class Application extends Component<Props> {
 
     return (
       <DefaultLayout session={session}>
+        <div className="application-ids">
+          Application ID: {application.rowId}
+          <br />
+          {application.latestDraftRevision.versionNumber > 1 && (
+            <>
+              Version Number: {application.latestDraftRevision.versionNumber}
+              <br />
+            </>
+          )}
+          BC GHG ID: {application.facilityByFacilityId.bcghgid}
+        </div>
         <ApplicationWizard query={query} loading={this.props.loading} />
+        <style jsx global>{`
+          .application-ids {
+            margin-top: -50px;
+            min-height: 50px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+          }
+          @media screen and (min-width: 992px) {
+            .application-ids {
+              margin-top: -60px;
+              min-height: 60px;
+            }
+          }
+        `}</style>
         <style jsx global>{`
           @media print {
             .nav-guide-container {
