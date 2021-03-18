@@ -139,7 +139,7 @@ describe('Draft application started email', () => {
   });
 
   it('emails the reporter when they start a new application', () => {
-    cy.visit('/reporter/facilities?relayVars={"organisationRowId"%3A200}');
+    cy.visit('/reporter/facilities?filterArgs={"organisationRowId"%3A200}');
     cy.get('#page-content');
 
     // Assumption: The first facility with an 'Apply' button is the one created in test setup
