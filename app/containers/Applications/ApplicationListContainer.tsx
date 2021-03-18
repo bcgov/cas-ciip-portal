@@ -1,38 +1,39 @@
 import React from 'react';
 import {graphql, createFragmentContainer} from 'react-relay';
-import FilterableTableLayout from 'components/FilterableComponents/FilterableTableLayout';
+import FilterableTableLayout from 'components/FilterableTable/FilterableTable';
 import ApplicationRowItemContainer from './ApplicationRowItemContainer';
-import {ISearchOption} from 'components/Search/ISearchOption';
-import {NumberSearchOption} from 'components/Search/NumberSearchOption';
-import {NoHeaderSearchOption} from 'components/Search/NoHeaderSearchOption';
-import {TextSearchOption} from 'components/Search/TextSearchOption';
-import {SortOnlyOption} from 'components/Search/SortOnlyOption';
-import {EnumSearchOption} from 'components/Search/EnumSearchOption';
+import {
+  TableFilter,
+  NumberFilter,
+  NoHeaderFilter,
+  TextFilter,
+  SortOnlyFilter,
+  EnumFilter
+} from 'components/FilterableTable/Filters';
 import {CiipApplicationRevisionStatus} from 'createApplicationRevisionStatusMutation.graphql';
 import {ApplicationListContainer_query} from 'ApplicationListContainer_query.graphql';
-import FilterableTablePagination from 'components/FilterableComponents/FilterableTablePagination';
 
 interface Props {
   query: ApplicationListContainer_query;
 }
 
+const filters: TableFilter[] = [
+  new NumberFilter('Application Id', 'id'),
+  new TextFilter('Operator Name', 'operator_name'),
+  new TextFilter('Facility Name', 'facility_name'),
+  new NumberFilter('Reporting Year', 'reporting_year'),
+  new SortOnlyFilter('Submission Date', 'submission_date'),
+  new EnumFilter<CiipApplicationRevisionStatus>('Status', 'status', [
+    'APPROVED',
+    'REJECTED',
+    'REQUESTED_CHANGES',
+    'SUBMITTED'
+  ]),
+  new NoHeaderFilter()
+];
+
 export const ApplicationList: React.FunctionComponent<Props> = (props) => {
   const {edges, totalCount} = props.query.allApplications;
-
-  const searchOptions: ISearchOption[] = [
-    new NumberSearchOption('Application Id', 'id'),
-    new TextSearchOption('Operator Name', 'operator_name'),
-    new TextSearchOption('Facility Name', 'facility_name'),
-    new NumberSearchOption('Reporting Year', 'reporting_year'),
-    new SortOnlyOption('Submission Date', 'submission_date'),
-    new EnumSearchOption<CiipApplicationRevisionStatus>('Status', 'status', [
-      'APPROVED',
-      'REJECTED',
-      'REQUESTED_CHANGES',
-      'SUBMITTED'
-    ]),
-    NoHeaderSearchOption
-  ];
 
   const body = (
     <tbody>
@@ -46,10 +47,12 @@ export const ApplicationList: React.FunctionComponent<Props> = (props) => {
   );
 
   return (
-    <>
-      <FilterableTableLayout body={body} searchOptions={searchOptions} />
-      <FilterableTablePagination totalCount={totalCount} />
-    </>
+    <FilterableTableLayout
+      body={body}
+      filters={filters}
+      totalCount={totalCount}
+      paginated
+    />
   );
 };
 
@@ -64,11 +67,11 @@ export default createFragmentContainer(ApplicationList, {
       submission_date: {type: "Datetime"}
       status: {type: "CiipApplicationRevisionStatus"}
       order_by: {type: "[ApplicationsOrderBy!]"}
-      max_results: {type: "Int"}
+      pageSize: {type: "Int"}
       offset: {type: "Int"}
     ) {
       allApplications(
-        first: $max_results
+        first: $pageSize
         offset: $offset
         filter: {
           rowId: {equalTo: $id}

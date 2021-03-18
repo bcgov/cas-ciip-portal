@@ -1,156 +1,184 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ProductList should render the product list 1`] = `
-<Fragment>
-  <FilterableTableLayoutComponent
-    body={
-      <tbody>
-        <Relay(ProductRowItemComponent)
-          product={
-            Object {
-              " $fragmentRefs": Object {
-                "ProductRowItemContainer_product": true,
-              },
-              "id": "abc",
-            }
+<FilterableTable
+  body={
+    <tbody>
+      <Relay(ProductRowItemComponent)
+        product={
+          Object {
+            " $fragmentRefs": Object {
+              "ProductRowItemContainer_product": true,
+            },
+            "id": "abc",
           }
-          query={
-            Object {
-              " $fragmentRefs": Object {
-                "ProductRowItemContainer_query": true,
-              },
-              " $refType": null,
-              "allProducts": Object {
-                "edges": Array [
-                  Object {
-                    "node": Object {
-                      " $fragmentRefs": Object {
-                        "ProductRowItemContainer_product": true,
-                      },
-                      "id": "abc",
+        }
+        query={
+          Object {
+            " $fragmentRefs": Object {
+              "ProductRowItemContainer_query": true,
+            },
+            " $refType": null,
+            "allProducts": Object {
+              "edges": Array [
+                Object {
+                  "node": Object {
+                    " $fragmentRefs": Object {
+                      "ProductRowItemContainer_product": true,
                     },
+                    "id": "abc",
                   },
-                ],
-                "totalCount": 1,
-              },
-            }
+                },
+              ],
+              "totalCount": 1,
+            },
           }
-        />
-      </tbody>
-    }
-    searchOptions={
-      Array [
-        TextSearchOption {
-          "columnName": "product_name",
-          "isSearchEnabled": true,
-          "isSortEnabled": true,
-          "removeSearchHeader": false,
-          "title": "Product",
-          "toUrl": [Function],
-        },
-        DisplayOnlyOption {
-          "columnName": undefined,
-          "isSearchEnabled": false,
-          "isSortEnabled": false,
-          "title": "Settings",
-        },
-        SortOnlyOption {
-          "columnName": "date_modified",
-          "isSearchEnabled": false,
-          "isSortEnabled": true,
-          "title": "Modified (D/M/Y)",
-        },
-        NumberSearchOption {
-          "columnName": "current_benchmark",
-          "isSearchEnabled": true,
-          "isSortEnabled": true,
-          "removeSearchHeader": false,
-          "title": "Benchmark",
-          "toUrl": [Function],
-        },
-        NumberSearchOption {
-          "columnName": "current_eligibility_threshold",
-          "isSearchEnabled": true,
-          "isSortEnabled": true,
-          "removeSearchHeader": false,
-          "title": "Eligibility Threshold",
-          "toUrl": [Function],
-        },
-        YesNoSearchOption {
-          "columnName": "requires_emission_allocation",
-          "isSearchEnabled": true,
-          "isSortEnabled": true,
-          "removeSearchHeader": false,
-          "searchOptionValues": Array [
-            Object {
-              "display": "Yes",
-              "value": true,
-            },
-            Object {
-              "display": "No",
-              "value": false,
-            },
-          ],
-          "title": "Allocation of Emissions",
-          "toUrl": [Function],
-        },
-        YesNoSearchOption {
-          "columnName": "is_ciip_product",
-          "isSearchEnabled": true,
-          "isSortEnabled": true,
-          "removeSearchHeader": false,
-          "searchOptionValues": Array [
-            Object {
-              "display": "Yes",
-              "value": true,
-            },
-            Object {
-              "display": "No",
-              "value": false,
-            },
-          ],
-          "title": "CIIP Benchmarked",
-          "toUrl": [Function],
-        },
-        EnumSearchOption {
-          "columnName": "product_state",
-          "enumValues": Array [
-            "ARCHIVED",
-            "DRAFT",
-            "PUBLISHED",
-          ],
-          "isSearchEnabled": true,
-          "isSortEnabled": true,
-          "removeSearchHeader": false,
-          "searchOptionValues": Array [
-            Object {
-              "display": "ARCHIVED",
-              "value": "ARCHIVED",
-            },
-            Object {
-              "display": "DRAFT",
-              "value": "DRAFT",
-            },
-            Object {
-              "display": "PUBLISHED",
-              "value": "PUBLISHED",
-            },
-          ],
-          "title": "Status",
-          "toUrl": [Function],
-        },
-        Object {
-          "columnName": null,
-          "isSearchEnabled": false,
-          "isSortEnabled": false,
-          "removeSearchHeader": true,
-          "title": null,
-        },
-      ]
-    }
-  />
-  <FilterableTablePaginationComponent
-    totalCount={1}
-  />
-</Fragment>
+        }
+      />
+    </tbody>
+  }
+  filters={
+    Array [
+      TextFilter {
+        "Component": [Function],
+        "argName": "product_name",
+        "castValue": [Function],
+        "isSearchEnabled": true,
+        "isSortEnabled": true,
+        "removeSearchHeader": undefined,
+        "sortColumnName": "product_name",
+        "title": "Product",
+      },
+      DisplayOnlyFilter {
+        "Component": [Function],
+        "argName": undefined,
+        "castValue": [Function],
+        "isSearchEnabled": false,
+        "isSortEnabled": false,
+        "removeSearchHeader": undefined,
+        "sortColumnName": undefined,
+        "title": "Settings",
+      },
+      SortOnlyFilter {
+        "Component": [Function],
+        "argName": "date_modified",
+        "castValue": [Function],
+        "isSearchEnabled": false,
+        "isSortEnabled": true,
+        "removeSearchHeader": undefined,
+        "sortColumnName": "date_modified",
+        "title": "Modified (D/M/Y)",
+      },
+      NumberFilter {
+        "Component": [Function],
+        "argName": "current_benchmark",
+        "castValue": [Function],
+        "isSearchEnabled": true,
+        "isSortEnabled": true,
+        "removeSearchHeader": undefined,
+        "sortColumnName": "current_benchmark",
+        "title": "Benchmark",
+      },
+      NumberFilter {
+        "Component": [Function],
+        "argName": "current_eligibility_threshold",
+        "castValue": [Function],
+        "isSearchEnabled": true,
+        "isSortEnabled": true,
+        "removeSearchHeader": undefined,
+        "sortColumnName": "current_eligibility_threshold",
+        "title": "Eligibility Threshold",
+      },
+      YesNoFilter {
+        "Component": [Function],
+        "argName": "requires_emission_allocation",
+        "castValue": [Function],
+        "enumValues": Array [
+          true,
+          false,
+        ],
+        "isSearchEnabled": true,
+        "isSortEnabled": true,
+        "removeSearchHeader": undefined,
+        "searchOptionValues": Array [
+          Object {
+            "display": "Yes",
+            "value": true,
+          },
+          Object {
+            "display": "No",
+            "value": false,
+          },
+        ],
+        "sortColumnName": "requires_emission_allocation",
+        "title": "Allocation of Emissions",
+      },
+      YesNoFilter {
+        "Component": [Function],
+        "argName": "is_ciip_product",
+        "castValue": [Function],
+        "enumValues": Array [
+          true,
+          false,
+        ],
+        "isSearchEnabled": true,
+        "isSortEnabled": true,
+        "removeSearchHeader": undefined,
+        "searchOptionValues": Array [
+          Object {
+            "display": "Yes",
+            "value": true,
+          },
+          Object {
+            "display": "No",
+            "value": false,
+          },
+        ],
+        "sortColumnName": "is_ciip_product",
+        "title": "CIIP Benchmarked",
+      },
+      EnumFilter {
+        "Component": [Function],
+        "argName": "product_state",
+        "castValue": [Function],
+        "enumValues": Array [
+          "ARCHIVED",
+          "DRAFT",
+          "PUBLISHED",
+        ],
+        "isSearchEnabled": true,
+        "isSortEnabled": true,
+        "removeSearchHeader": undefined,
+        "searchOptionValues": Array [
+          Object {
+            "display": "ARCHIVED",
+            "value": "ARCHIVED",
+          },
+          Object {
+            "display": "DRAFT",
+            "value": "DRAFT",
+          },
+          Object {
+            "display": "PUBLISHED",
+            "value": "PUBLISHED",
+          },
+        ],
+        "sortColumnName": "product_state",
+        "title": "Status",
+      },
+      NoHeaderFilter {
+        "Component": [Function],
+        "argName": null,
+        "castValue": [Function],
+        "isSearchEnabled": false,
+        "isSortEnabled": false,
+        "removeSearchHeader": undefined,
+        "sortColumnName": null,
+        "title": null,
+      },
+    ]
+  }
+  paginated={true}
+  totalCount={1}
+/>
 `;

@@ -22,7 +22,7 @@ class OrganisationRequests extends Component<Props> {
       $operator_name: String
       $status: CiipUserOrganisationStatus
       $order_by: [CiipUserOrganisationsOrderBy!]
-      $max_results: Int
+      $pageSize: Int
       $offset: Int
     ) {
       query {
@@ -38,7 +38,7 @@ class OrganisationRequests extends Component<Props> {
             operator_name: $operator_name
             status: $status
             order_by: $order_by
-            max_results: $max_results
+            pageSize: $pageSize
             offset: $offset
           )
       }

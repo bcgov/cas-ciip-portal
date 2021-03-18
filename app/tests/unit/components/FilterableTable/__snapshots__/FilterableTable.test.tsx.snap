@@ -1,0 +1,419 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The filterable table renders extra filters 1`] = `
+Array [
+  <div
+    className="jsx-571785697"
+  >
+    <input
+      name="myExtraFilter"
+      onChange={[Function]}
+    />
+  </div>,
+  <ForwardRef
+    bordered={true}
+    className="search-table"
+    hover={true}
+    striped={true}
+  >
+    <table
+      className="search-table table table-striped table-bordered table-hover"
+    >
+      <thead
+        className="jsx-571785697"
+      >
+        <tr
+          className="jsx-571785697"
+        />
+        <tr
+          className="jsx-870174952"
+          onKeyDown={[Function]}
+        >
+          <td
+            className="jsx-870174952 flex"
+          >
+            <Button
+              active={false}
+              disabled={false}
+              onClick={[Function]}
+              variant="outline-secondary"
+            >
+              <button
+                className="btn btn-outline-secondary"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                Clear
+              </button>
+            </Button>
+            <Button
+              active={false}
+              disabled={false}
+              onClick={[Function]}
+              style={
+                Object {
+                  "marginLeft": "5px",
+                }
+              }
+              variant="primary"
+            >
+              <button
+                className="btn btn-primary"
+                disabled={false}
+                onClick={[Function]}
+                style={
+                  Object {
+                    "marginLeft": "5px",
+                  }
+                }
+                type="button"
+              >
+                Apply
+              </button>
+            </Button>
+          </td>
+        </tr>
+      </thead>
+      <tbody />
+    </table>
+  </ForwardRef>,
+  <Col
+    md={
+      Object {
+        "offset": 3,
+        "span": 6,
+      }
+    }
+  >
+    <div
+      className="col-md-6 offset-md-3"
+    >
+      <Alert
+        closeLabel="Close alert"
+        id="no-search-results"
+        show={true}
+        transition={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "defaultProps": Object {
+              "appear": false,
+              "in": false,
+              "mountOnEnter": false,
+              "timeout": 300,
+              "unmountOnExit": false,
+            },
+            "displayName": "Fade",
+            "render": [Function],
+          }
+        }
+        variant="secondary"
+      >
+        <Fade
+          appear={false}
+          id="no-search-results"
+          in={true}
+          mountOnEnter={false}
+          timeout={300}
+          unmountOnExit={true}
+        >
+          <div
+            className="fade alert alert-secondary show"
+            id="no-search-results"
+            role="alert"
+          >
+            No matching results to show.
+          </div>
+        </Fade>
+      </Alert>
+    </div>
+  </Col>,
+  "",
+]
+`;
+
+exports[`The filterable table renders filter headers 1`] = `
+<Fragment>
+  <div
+    className="jsx-571785697"
+  />
+  <ForwardRef
+    bordered={true}
+    className="search-table"
+    hover={true}
+    striped={true}
+  >
+    <thead
+      className="jsx-571785697"
+    >
+      <tr
+        className="jsx-571785697"
+      >
+        <SortableTableHeader
+          headerVariables={
+            Object {
+              "columnName": "text_column",
+              "displayName": "TextTitle",
+              "sortable": true,
+            }
+          }
+          key="TextTitle-sortHeader"
+        />
+        <SortableTableHeader
+          headerVariables={
+            Object {
+              "columnName": undefined,
+              "displayName": "DisplayOnlyTitle",
+              "sortable": false,
+            }
+          }
+          key="DisplayOnlyTitle-sortHeader"
+        />
+      </tr>
+      <FilterableTableFilterRow
+        filterArgs={Object {}}
+        filters={
+          Array [
+            TextFilter {
+              "Component": [Function],
+              "argName": "text_column",
+              "castValue": [Function],
+              "isSearchEnabled": true,
+              "isSortEnabled": true,
+              "removeSearchHeader": undefined,
+              "sortColumnName": "text_column",
+              "title": "TextTitle",
+            },
+            DisplayOnlyFilter {
+              "Component": [Function],
+              "argName": undefined,
+              "castValue": [Function],
+              "isSearchEnabled": false,
+              "isSortEnabled": false,
+              "removeSearchHeader": undefined,
+              "sortColumnName": undefined,
+              "title": "DisplayOnlyTitle",
+            },
+          ]
+        }
+        onSubmit={[Function]}
+      />
+    </thead>
+    <tbody />
+  </ForwardRef>
+  <Col
+    md={
+      Object {
+        "offset": 3,
+        "span": 6,
+      }
+    }
+  >
+    <Alert
+      closeLabel="Close alert"
+      id="no-search-results"
+      show={true}
+      transition={
+        Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "defaultProps": Object {
+            "appear": false,
+            "in": false,
+            "mountOnEnter": false,
+            "timeout": 300,
+            "unmountOnExit": false,
+          },
+          "displayName": "Fade",
+          "render": [Function],
+        }
+      }
+      variant="secondary"
+    >
+      No matching results to show.
+    </Alert>
+  </Col>
+  <JSXStyle
+    id="571785697"
+  >
+    .search-table{text-align:center;}.search-table.loading td{opacity:0;pointer-events:none;}.search-table.loading tbody{position:relative;}.search-table.loading tbody::after{width:2rem;height:2rem;vertical-align:text-bottom;background-color:black;border-radius:50%;opacity:0;content:'';position:absolute;top:50%;left:50%;-webkit-animation:spinner-grow 0.75s linear infinite;animation:spinner-grow 0.75s linear infinite;}#no-search-results{text-align:center;}
+  </JSXStyle>
+</Fragment>
+`;
+
+exports[`The filterable table renders sort headers 1`] = `
+<Fragment>
+  <div
+    className="jsx-571785697"
+  />
+  <ForwardRef
+    bordered={true}
+    className="search-table"
+    hover={true}
+    striped={true}
+  >
+    <thead
+      className="jsx-571785697"
+    >
+      <tr
+        className="jsx-571785697"
+      >
+        <SortableTableHeader
+          headerVariables={
+            Object {
+              "columnName": "text_column",
+              "displayName": "TextTitle",
+              "sortable": true,
+            }
+          }
+          key="TextTitle-sortHeader"
+        />
+        <SortableTableHeader
+          headerVariables={
+            Object {
+              "columnName": undefined,
+              "displayName": "DisplayOnlyTitle",
+              "sortable": false,
+            }
+          }
+          key="DisplayOnlyTitle-sortHeader"
+        />
+      </tr>
+      <FilterableTableFilterRow
+        filterArgs={Object {}}
+        filters={
+          Array [
+            TextFilter {
+              "Component": [Function],
+              "argName": "text_column",
+              "castValue": [Function],
+              "isSearchEnabled": true,
+              "isSortEnabled": true,
+              "removeSearchHeader": undefined,
+              "sortColumnName": "text_column",
+              "title": "TextTitle",
+            },
+            DisplayOnlyFilter {
+              "Component": [Function],
+              "argName": undefined,
+              "castValue": [Function],
+              "isSearchEnabled": false,
+              "isSortEnabled": false,
+              "removeSearchHeader": undefined,
+              "sortColumnName": undefined,
+              "title": "DisplayOnlyTitle",
+            },
+          ]
+        }
+        onSubmit={[Function]}
+      />
+    </thead>
+    <tbody />
+  </ForwardRef>
+  <Col
+    md={
+      Object {
+        "offset": 3,
+        "span": 6,
+      }
+    }
+  >
+    <Alert
+      closeLabel="Close alert"
+      id="no-search-results"
+      show={true}
+      transition={
+        Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "defaultProps": Object {
+            "appear": false,
+            "in": false,
+            "mountOnEnter": false,
+            "timeout": 300,
+            "unmountOnExit": false,
+          },
+          "displayName": "Fade",
+          "render": [Function],
+        }
+      }
+      variant="secondary"
+    >
+      No matching results to show.
+    </Alert>
+  </Col>
+  <JSXStyle
+    id="571785697"
+  >
+    .search-table{text-align:center;}.search-table.loading td{opacity:0;pointer-events:none;}.search-table.loading tbody{position:relative;}.search-table.loading tbody::after{width:2rem;height:2rem;vertical-align:text-bottom;background-color:black;border-radius:50%;opacity:0;content:'';position:absolute;top:50%;left:50%;-webkit-animation:spinner-grow 0.75s linear infinite;animation:spinner-grow 0.75s linear infinite;}#no-search-results{text-align:center;}
+  </JSXStyle>
+</Fragment>
+`;
+
+exports[`The filterable table renders the table body 1`] = `
+<Fragment>
+  <div
+    className="jsx-571785697"
+  />
+  <ForwardRef
+    bordered={true}
+    className="search-table"
+    hover={true}
+    striped={true}
+  >
+    <thead
+      className="jsx-571785697"
+    >
+      <tr
+        className="jsx-571785697"
+      />
+      <FilterableTableFilterRow
+        filterArgs={Object {}}
+        filters={Array []}
+        onSubmit={[Function]}
+      />
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          this is a test body
+        </td>
+      </tr>
+    </tbody>
+  </ForwardRef>
+  <Col
+    md={
+      Object {
+        "offset": 3,
+        "span": 6,
+      }
+    }
+  >
+    <Alert
+      closeLabel="Close alert"
+      id="no-search-results"
+      show={true}
+      transition={
+        Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "defaultProps": Object {
+            "appear": false,
+            "in": false,
+            "mountOnEnter": false,
+            "timeout": 300,
+            "unmountOnExit": false,
+          },
+          "displayName": "Fade",
+          "render": [Function],
+        }
+      }
+      variant="secondary"
+    >
+      No matching results to show.
+    </Alert>
+  </Col>
+  <JSXStyle
+    id="571785697"
+  >
+    .search-table{text-align:center;}.search-table.loading td{opacity:0;pointer-events:none;}.search-table.loading tbody{position:relative;}.search-table.loading tbody::after{width:2rem;height:2rem;vertical-align:text-bottom;background-color:black;border-radius:50%;opacity:0;content:'';position:absolute;top:50%;left:50%;-webkit-animation:spinner-grow 0.75s linear infinite;animation:spinner-grow 0.75s linear infinite;}#no-search-results{text-align:center;}
+  </JSXStyle>
+</Fragment>
+`;

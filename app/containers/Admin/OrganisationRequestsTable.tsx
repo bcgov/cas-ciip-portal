@@ -3,33 +3,36 @@ import {graphql, createFragmentContainer} from 'react-relay';
 import {OrganisationRequestsTable_query} from 'OrganisationRequestsTable_query.graphql';
 import {CiipUserOrganisationStatus} from 'OrganisationRequestsTableRow_userOrganisation.graphql';
 import OrganisationRequestsTableRow from './OrganisationRequestsTableRow';
-import {ISearchOption} from 'components/Search/ISearchOption';
-import {NoHeaderSearchOption} from 'components/Search/NoHeaderSearchOption';
-import {TextSearchOption} from 'components/Search/TextSearchOption';
-import {NumberSearchOption} from 'components/Search/NumberSearchOption';
-import {EnumSearchOption} from 'components/Search/EnumSearchOption';
-import FilterableTableLayoutComponent from 'components/FilterableComponents/FilterableTableLayout';
-import FilterableTablePaginationComponent from 'components/FilterableComponents/FilterableTablePagination';
+import {
+  TableFilter,
+  TextFilter,
+  NumberFilter,
+  EnumFilter,
+  NoHeaderFilter
+} from 'components/FilterableTable/Filters';
+import FilterableTable from 'components/FilterableTable/FilterableTable';
+
 interface Props {
   query: OrganisationRequestsTable_query;
 }
+
+const filters: TableFilter[] = [
+  new NumberFilter('User ID', 'user_id'),
+  new TextFilter('First Name', 'first_name'),
+  new TextFilter('Last Name', 'last_name'),
+  new TextFilter('Email', 'email_address'),
+  new TextFilter('Operator', 'operator_name'),
+  new EnumFilter<CiipUserOrganisationStatus>('Status', 'status', [
+    'APPROVED',
+    'PENDING',
+    'REJECTED'
+  ]),
+  new NoHeaderFilter()
+];
+
 export const OrganisationRequestsTableComponent: React.FunctionComponent<Props> = (
   props
 ) => {
-  const searchOptions: ISearchOption[] = [
-    new NumberSearchOption('User ID', 'user_id'),
-    new TextSearchOption('First Name', 'first_name'),
-    new TextSearchOption('Last Name', 'last_name'),
-    new TextSearchOption('Email', 'email_address'),
-    new TextSearchOption('Operator', 'operator_name'),
-    new EnumSearchOption<CiipUserOrganisationStatus>('Status', 'status', [
-      'APPROVED',
-      'PENDING',
-      'REJECTED'
-    ]),
-    NoHeaderSearchOption
-  ];
-
   const {edges, totalCount} = props.query.allCiipUserOrganisations;
 
   const body = (
@@ -43,13 +46,12 @@ export const OrganisationRequestsTableComponent: React.FunctionComponent<Props> 
     </tbody>
   );
   return (
-    <>
-      <FilterableTableLayoutComponent
-        body={body}
-        searchOptions={searchOptions}
-      />
-      <FilterableTablePaginationComponent totalCount={totalCount} />
-    </>
+    <FilterableTable
+      body={body}
+      filters={filters}
+      paginated
+      totalCount={totalCount}
+    />
   );
 };
 
@@ -64,11 +66,11 @@ export default createFragmentContainer(OrganisationRequestsTableComponent, {
       operator_name: {type: "String"}
       status: {type: "CiipUserOrganisationStatus"}
       order_by: {type: "[CiipUserOrganisationsOrderBy!]"}
-      max_results: {type: "Int"}
+      pageSize: {type: "Int"}
       offset: {type: "Int"}
     ) {
       allCiipUserOrganisations(
-        first: $max_results
+        first: $pageSize
         offset: $offset
         filter: {
           userId: {equalTo: $user_id}

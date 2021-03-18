@@ -20,7 +20,7 @@ describe('When filtering applications', () => {
     cy.get('#page-content');
     cy.url().should(
       'include',
-      '/analyst/applications?relayVars=%7B%22id%22%3A1%7D'
+      '/analyst/applications?filterArgs=%7B%22id%22%3A1%7D'
     );
     cy.get('table.search-table > tbody').find('tr').should('have.length', 1);
     cy.get('tbody > tr > td:nth-child(1)').should('have.text', '1');
@@ -43,7 +43,7 @@ describe('When filtering applications', () => {
     cy.contains('Apply').click();
     cy.url().should(
       'include',
-      '/analyst/applications?relayVars=%7B%22operator_name%22%3A%221%22%7D'
+      '/analyst/applications?filterArgs=%7B%22operator_name%22%3A%221%22%7D'
     );
     cy.get('table.search-table > tbody').find('tr').should('have.length', 1);
     cy.get('tbody > tr > td:nth-child(2)').should(
@@ -63,7 +63,7 @@ describe('When filtering applications', () => {
     cy.contains('Apply').click();
     cy.url().should(
       'include',
-      '/analyst/applications?relayVars=%7B%22status%22%3A%22SUBMITTED%22%7D'
+      '/analyst/applications?filterArgs=%7B%22status%22%3A%22SUBMITTED%22%7D'
     );
     cy.get('table.search-table > tbody').find('tr').should('have.length', 2);
     cy.get('tbody > tr:nth-child(1) > td:nth-child(6)').should(
@@ -90,7 +90,7 @@ describe('When filtering applications', () => {
     cy.contains('Apply').click();
     cy.url().should(
       'include',
-      '/analyst/applications?relayVars=%7B%22operator_name%22%3A%221%22%2C%22status%22%3A%22SUBMITTED%22%7D'
+      '/analyst/applications?filterArgs=%7B%22operator_name%22%3A%221%22%2C%22status%22%3A%22SUBMITTED%22%7D'
     );
     cy.get('table.search-table > tbody').find('tr').should('have.length', 1);
     cy.get('tbody > tr > :nth-child(2)').should(
@@ -128,7 +128,7 @@ describe('When filtering organisation requests', () => {
     cy.get('#page-content');
     cy.url().should(
       'include',
-      'analyst/organisation-requests?relayVars=%7B%22status%22%3A%22APPROVED%22%2C%22last_name%22%3A%22Filch%22%7D'
+      'analyst/organisation-requests?filterArgs=%7B%22status%22%3A%22APPROVED%22%2C%22last_name%22%3A%22Filch%22%7D'
     );
     cy.get('table.search-table > tbody').find('tr').should('have.length', 1);
     cy.get('tbody > tr:nth-child(1) > td:nth-child(5)').should(

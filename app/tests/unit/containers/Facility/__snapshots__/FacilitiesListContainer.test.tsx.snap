@@ -2,7 +2,7 @@
 
 exports[`FacilitiesListContainer should match the previous snapshot 1`] = `
 <Fragment>
-  <FilterableTableLayoutComponent
+  <FilterableTable
     body={
       <tbody>
         <Relay(FacilitiesRowItemComponent)
@@ -49,55 +49,72 @@ exports[`FacilitiesListContainer should match the previous snapshot 1`] = `
           "_defaultValue": 2019,
           "_reportingPeriods": Array [],
           "argName": "reportingYear",
+          "castValue": [Function],
+          "isSearchEnabled": true,
+          "isSortEnabled": true,
+          "removeSearchHeader": undefined,
+          "sortColumnName": "reportingYear",
+          "title": "Reporting period",
         },
       ]
     }
-    searchOptions={
+    filters={
       Array [
-        TextSearchOption {
-          "columnName": "operatorName",
+        TextFilter {
+          "Component": [Function],
+          "argName": "operatorName",
+          "castValue": [Function],
           "isSearchEnabled": true,
           "isSortEnabled": false,
-          "removeSearchHeader": false,
+          "removeSearchHeader": undefined,
+          "sortColumnName": "operatorName",
           "title": "Operator Name",
-          "toUrl": [Function],
         },
-        TextSearchOption {
-          "columnName": "facilityName",
+        TextFilter {
+          "Component": [Function],
+          "argName": "facilityName",
+          "castValue": [Function],
           "isSearchEnabled": true,
           "isSortEnabled": false,
-          "removeSearchHeader": false,
+          "removeSearchHeader": undefined,
+          "sortColumnName": "facilityName",
           "title": "Facility Name",
-          "toUrl": [Function],
         },
-        TextSearchOption {
-          "columnName": "facilityType",
+        TextFilter {
+          "Component": [Function],
+          "argName": "facilityType",
+          "castValue": [Function],
           "isSearchEnabled": true,
           "isSortEnabled": false,
-          "removeSearchHeader": false,
+          "removeSearchHeader": undefined,
+          "sortColumnName": "facilityType",
           "title": "Facility Type",
-          "toUrl": [Function],
         },
-        TextSearchOption {
-          "columnName": "facilityBcghgid",
+        TextFilter {
+          "Component": [Function],
+          "argName": "facilityBcghgid",
+          "castValue": [Function],
           "isSearchEnabled": true,
           "isSortEnabled": false,
-          "removeSearchHeader": false,
+          "removeSearchHeader": undefined,
+          "sortColumnName": "facilityBcghgid",
           "title": "BC GHG id",
-          "toUrl": [Function],
         },
-        NumberSearchOption {
-          "columnName": "lastSwrsReportingYear",
+        NumberFilter {
+          "Component": [Function],
+          "argName": "lastSwrsReportingYear",
+          "castValue": [Function],
           "isSearchEnabled": true,
           "isSortEnabled": false,
-          "removeSearchHeader": false,
+          "removeSearchHeader": undefined,
+          "sortColumnName": "lastSwrsReportingYear",
           "title": "Reporting period of last SWRS report",
-          "toUrl": [Function],
         },
-        ApplicationStatusSearchOption {
+        ApplicationStatusFilter {
           "Component": [Function],
           "_nullValueArgName": "applicationIdIsNull",
-          "columnName": "applicationStatus",
+          "argName": "applicationStatus",
+          "castValue": [Function],
           "enumValues": Array [
             "NOT_STARTED",
             "DRAFT",
@@ -108,7 +125,7 @@ exports[`FacilitiesListContainer should match the previous snapshot 1`] = `
           ],
           "isSearchEnabled": true,
           "isSortEnabled": true,
-          "removeSearchHeader": false,
+          "removeSearchHeader": undefined,
           "searchOptionValues": Array [
             Object {
               "display": "NOT_STARTED",
@@ -135,28 +152,32 @@ exports[`FacilitiesListContainer should match the previous snapshot 1`] = `
               "value": "REJECTED",
             },
           ],
+          "sortColumnName": "applicationStatus",
           "title": "Application Status",
-          "toUrl": [Function],
         },
-        NumberSearchOption {
-          "columnName": "applicationId",
+        NumberFilter {
+          "Component": [Function],
+          "argName": "applicationId",
+          "castValue": [Function],
           "isSearchEnabled": true,
           "isSortEnabled": false,
-          "removeSearchHeader": false,
+          "removeSearchHeader": undefined,
+          "sortColumnName": "applicationId",
           "title": "Application #",
-          "toUrl": [Function],
         },
-        Object {
-          "columnName": null,
+        NoHeaderFilter {
+          "Component": [Function],
+          "argName": null,
+          "castValue": [Function],
           "isSearchEnabled": false,
           "isSortEnabled": false,
-          "removeSearchHeader": true,
+          "removeSearchHeader": undefined,
+          "sortColumnName": null,
           "title": null,
         },
       ]
     }
-  />
-  <FilterableTablePaginationComponent
+    paginated={true}
     totalCount={1}
   />
   If you cannot find your facility in the list, please
