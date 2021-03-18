@@ -21,196 +21,196 @@ function decoded(emailEncoded) {
   return String.raw`${emailEncoded}`.replace(/([=\n\r])/gm, '');
 }
 
-// describe('When a user is created', () => {
-//   before(() => {
-//     cy.cleanSchema();
-//     cy.sqlFixture('fixtures/add-user');
-//   });
+describe('When a user is created', () => {
+  before(() => {
+    cy.cleanSchema();
+    cy.sqlFixture('fixtures/add-user');
+  });
 
-//   it('should send an automatic email upon registration', () => {
-//     cy.wait(500);
-//     cy.request('localhost:8025/api/v1/messages').then((response) => {
-//       expect(response.status).to.eq(200);
-//       const message = response.body[0];
-//       expect(message.To[0].Mailbox).to.contain('newcypressuser');
-//       expect(message.Content.Headers.Subject[0]).to.contain('CIIP');
-//       expect(decoded(message.Content.Body)).to.contain(
-//         'Thank you for registering'
-//       );
-//       cy.request('DELETE', 'localhost:8025/api/v1/messages');
-//     });
-//   });
-// });
+  it('should send an automatic email upon registration', () => {
+    cy.wait(500);
+    cy.request('localhost:8025/api/v1/messages').then((response) => {
+      expect(response.status).to.eq(200);
+      const message = response.body[0];
+      expect(message.To[0].Mailbox).to.contain('newcypressuser');
+      expect(message.Content.Headers.Subject[0]).to.contain('CIIP');
+      expect(decoded(message.Content.Body)).to.contain(
+        'Thank you for registering'
+      );
+      cy.request('DELETE', 'localhost:8025/api/v1/messages');
+    });
+  });
+});
 
-// function requestAccessToOrg() {
-//   cy.visit('/reporter');
-//   cy.get('#page-content');
-//   cy.get('button#org-dropdown').click();
-//   cy.get('.dropdown-menu.show a.dropdown-item')
-//     .contains('MacDonalds Agriculture, Ltd.')
-//     .click();
-//   cy.get('.card h4').contains('MacDonalds Agriculture, Ltd.');
-//   cy.contains('Request Access').click();
-//   cy.get('td').contains('MacDonalds Agriculture, Ltd.');
-// }
+function requestAccessToOrg() {
+  cy.visit('/reporter');
+  cy.get('#page-content');
+  cy.get('button#org-dropdown').click();
+  cy.get('.dropdown-menu.show a.dropdown-item')
+    .contains('MacDonalds Agriculture, Ltd.')
+    .click();
+  cy.get('.card h4').contains('MacDonalds Agriculture, Ltd.');
+  cy.contains('Request Access').click();
+  cy.get('td').contains('MacDonalds Agriculture, Ltd.');
+}
 
-// describe('Organisation access request emails', () => {
-//   beforeEach(() => {
-//     cy.cleanSchema();
-//     cy.sqlFixture('fixtures/email/org-access-setup');
-//     cy.mockLogin('reporter');
-//     cy.request('DELETE', 'localhost:8025/api/v1/messages');
-//   });
+describe('Organisation access request emails', () => {
+  beforeEach(() => {
+    cy.cleanSchema();
+    cy.sqlFixture('fixtures/email/org-access-setup');
+    cy.mockLogin('reporter');
+    cy.request('DELETE', 'localhost:8025/api/v1/messages');
+  });
 
-//   it('sends the reporter an email when they request organisation access', () => {
-//     requestAccessToOrg();
-//     cy.request('localhost:8025/api/v1/messages').then((response) => {
-//       const messages = response.body;
-//       expect(response.status).to.eq(200);
-//       expect(messages).to.satisfy((messages) => {
-//         return messages.some((msg) => msg.To[0].Mailbox.includes('reporter'));
-//       });
-//       const reporterMail = messages.find((msg) =>
-//         msg.To[0].Mailbox.includes('reporter')
-//       );
-//       expect(reporterMail.Content.Headers.Subject[0]).to.contain('CIIP');
-//       expect(decoded(reporterMail.Content.Body)).to.satisfy(
-//         (msg) =>
-//           msg.includes('You have requested access') &&
-//           msg.includes('MacDonalds Agriculture, Ltd.')
-//       );
-//       expect(reporterMail.Content.Body).to.satisfy((body) => {
-//         const parser = new DOMParser();
-//         const parsed = parser.parseFromString(body, 'text/html');
-//         return parsed.querySelector('a[href*="/reporter"]');
-//       });
-//     });
-//   });
-//   it('notifies the admin when organisation access is requested', () => {
-//     requestAccessToOrg();
-//     cy.request('localhost:8025/api/v1/messages').then((response) => {
-//       const messages = response.body;
-//       expect(response.status).to.eq(200);
-//       expect(messages).to.satisfy((messages) => {
-//         return messages.some((msg) =>
-//           msg.To[0].Mailbox.includes('GHGRegulator')
-//         );
-//       });
-//       const adminMail = messages.find((msg) =>
-//         msg.To[0].Mailbox.includes('GHGRegulator')
-//       );
-//       expect(adminMail.Content.Headers.Subject[0]).to.contain('CIIP');
-//       // Email encoding makes it difficult to check text verbatim:
-//       expect(decoded(adminMail.Content.Body)).to.satisfy(
-//         (msg) =>
-//           msg.includes('Cypress Reporter') &&
-//           msg.includes('has requested') &&
-//           msg.includes('access to the application') &&
-//           msg.includes('MacDonalds Agriculture, Ltd.')
-//       );
-//     });
-//   });
-//   it('notifies the reporter when their access to an org is approved', () => {
-//     requestAccessToOrg();
-//     // Clear the access request notifications before generating the approval email:
-//     cy.request('DELETE', 'localhost:8025/api/v1/messages');
-//     cy.wait(500);
-//     cy.sqlFixture('fixtures/email/org-access-approval');
-//     cy.wait(500);
-//     cy.request('localhost:8025/api/v1/messages').then((response) => {
-//       const message = response.body[0];
-//       expect(message.To[0].Mailbox).to.contain('reporter');
-//       expect(message.Content.Headers.Subject[0]).to.contain('CIIP');
-//       expect(decoded(message.Content.Body)).to.contain(
-//         'approved you as an authorized representative'
-//       );
-//     });
-//   });
-// });
+  it('sends the reporter an email when they request organisation access', () => {
+    requestAccessToOrg();
+    cy.request('localhost:8025/api/v1/messages').then((response) => {
+      const messages = response.body;
+      expect(response.status).to.eq(200);
+      expect(messages).to.satisfy((messages) => {
+        return messages.some((msg) => msg.To[0].Mailbox.includes('reporter'));
+      });
+      const reporterMail = messages.find((msg) =>
+        msg.To[0].Mailbox.includes('reporter')
+      );
+      expect(reporterMail.Content.Headers.Subject[0]).to.contain('CIIP');
+      expect(decoded(reporterMail.Content.Body)).to.satisfy(
+        (msg) =>
+          msg.includes('You have requested access') &&
+          msg.includes('MacDonalds Agriculture, Ltd.')
+      );
+      expect(reporterMail.Content.Body).to.satisfy((body) => {
+        const parser = new DOMParser();
+        const parsed = parser.parseFromString(body, 'text/html');
+        return parsed.querySelector('a[href*="/reporter"]');
+      });
+    });
+  });
+  it('notifies the admin when organisation access is requested', () => {
+    requestAccessToOrg();
+    cy.request('localhost:8025/api/v1/messages').then((response) => {
+      const messages = response.body;
+      expect(response.status).to.eq(200);
+      expect(messages).to.satisfy((messages) => {
+        return messages.some((msg) =>
+          msg.To[0].Mailbox.includes('GHGRegulator')
+        );
+      });
+      const adminMail = messages.find((msg) =>
+        msg.To[0].Mailbox.includes('GHGRegulator')
+      );
+      expect(adminMail.Content.Headers.Subject[0]).to.contain('CIIP');
+      // Email encoding makes it difficult to check text verbatim:
+      expect(decoded(adminMail.Content.Body)).to.satisfy(
+        (msg) =>
+          msg.includes('Cypress Reporter') &&
+          msg.includes('has requested') &&
+          msg.includes('access to the application') &&
+          msg.includes('MacDonalds Agriculture, Ltd.')
+      );
+    });
+  });
+  it('notifies the reporter when their access to an org is approved', () => {
+    requestAccessToOrg();
+    // Clear the access request notifications before generating the approval email:
+    cy.request('DELETE', 'localhost:8025/api/v1/messages');
+    cy.wait(500);
+    cy.sqlFixture('fixtures/email/org-access-approval');
+    cy.wait(500);
+    cy.request('localhost:8025/api/v1/messages').then((response) => {
+      const message = response.body[0];
+      expect(message.To[0].Mailbox).to.contain('reporter');
+      expect(message.Content.Headers.Subject[0]).to.contain('CIIP');
+      expect(decoded(message.Content.Body)).to.contain(
+        'approved you as an authorized representative'
+      );
+    });
+  });
+});
 
-// describe('Draft application started email', () => {
-//   beforeEach(() => {
-//     cy.cleanSchema();
-//     cy.deployProdData();
-//     cy.sqlFixture('fixtures/email/draft-application-setup');
-//     cy.mockLogin('reporter');
-//     cy.request('DELETE', 'localhost:8025/api/v1/messages');
-//     cy.wait(500);
-//   });
+describe('Draft application started email', () => {
+  beforeEach(() => {
+    cy.cleanSchema();
+    cy.deployProdData();
+    cy.sqlFixture('fixtures/email/draft-application-setup');
+    cy.mockLogin('reporter');
+    cy.request('DELETE', 'localhost:8025/api/v1/messages');
+    cy.wait(500);
+  });
 
-//   it('emails the reporter when they start a new application', () => {
-//     cy.visit('/reporter/facilities?relayVars={"organisationRowId"%3A200}');
-//     cy.get('#page-content');
+  it('emails the reporter when they start a new application', () => {
+    cy.visit('/reporter/facilities?relayVars={"organisationRowId"%3A200}');
+    cy.get('#page-content');
 
-//     // Assumption: The first facility with an 'Apply' button is the one created in test setup
-//     cy.contains('Apply for CIIP').click();
-//     cy.contains('Begin').click();
-//     cy.wait(500);
-//     cy.request('localhost:8025/api/v1/messages').then((response) => {
-//       const message = response.body[0];
-//       expect(message.To[0].Mailbox).to.contain('reporter');
-//       expect(message.Content.Headers.Subject[0]).to.contain('CIIP');
-//       expect(decoded(message.Content.Body)).to.satisfy(
-//         (msg) =>
-//           msg.includes('Thank you for starting an application') &&
-//           msg.includes('MacDonalds Agriculture, Ltd.') &&
-//           msg.includes('Farm')
-//       );
-//     });
-//   });
-// });
+    // Assumption: The first facility with an 'Apply' button is the one created in test setup
+    cy.contains('Apply for CIIP').click();
+    cy.contains('Begin').click();
+    cy.wait(500);
+    cy.request('localhost:8025/api/v1/messages').then((response) => {
+      const message = response.body[0];
+      expect(message.To[0].Mailbox).to.contain('reporter');
+      expect(message.Content.Headers.Subject[0]).to.contain('CIIP');
+      expect(decoded(message.Content.Body)).to.satisfy(
+        (msg) =>
+          msg.includes('Thank you for starting an application') &&
+          msg.includes('MacDonalds Agriculture, Ltd.') &&
+          msg.includes('Farm')
+      );
+    });
+  });
+});
 
-// describe('Confirmation emails', () => {
-//   before(() => {
-//     cy.wait(500);
-//     cy.cleanSchema();
-//     cy.deployProdData();
-//     cy.sqlFixture('fixtures/email-setup');
-//   });
-//   beforeEach(() => {
-//     cy.mockLogin('reporter');
-//   });
+describe('Confirmation emails', () => {
+  before(() => {
+    cy.wait(500);
+    cy.cleanSchema();
+    cy.deployProdData();
+    cy.sqlFixture('fixtures/email-setup');
+  });
+  beforeEach(() => {
+    cy.mockLogin('reporter');
+  });
 
-//   it('should send an email to the reporter and to the admin when application has been submitted', () => {
-//     const applicationId = window.btoa('["applications", 1]');
-//     cy.visit(
-//       `/reporter/application?applicationId=${applicationId}&confirmationPage=true&version=1`
-//     );
-//     cy.url().should('include', '/reporter/application');
-//     cy.get('.admin');
-//     cy.contains('Submit Application').click();
-//     cy.wait(1000);
-//     cy.request('localhost:8025/api/v1/messages').then((response) => {
-//       expect(response.status).to.eq(200);
-//       const messages = response.body;
-//       expect(messages).to.satisfy((messages) => {
-//         return messages.some((msg) =>
-//           msg.To[0].Mailbox.includes('ciip-reporter')
-//         );
-//       });
-//       const reporterMail = messages.find((msg) =>
-//         msg.To[0].Mailbox.includes('ciip-reporter')
-//       );
-//       expect(reporterMail.Content.Headers.Subject[0]).to.contain('CIIP');
-//       expect(decoded(reporterMail.Content.Body)).to.contain(
-//         'Thank you for your submission'
-//       );
-//       expect(messages).to.satisfy((messages) => {
-//         return messages.some((msg) =>
-//           msg.To[0].Mailbox.includes('GHGRegulator')
-//         );
-//       });
-//       const adminMail = messages.find((msg) =>
-//         msg.To[0].Mailbox.includes('GHGRegulator')
-//       );
-//       expect(adminMail.Content.Headers.Subject[0]).to.contain('CIIP');
-//       expect(decoded(adminMail.Content.Body)).to.contain(
-//         'has submitted or updated their application'
-//       );
-//       cy.request('DELETE', 'localhost:8025/api/v1/messages');
-//     });
-//   });
-// });
+  it('should send an email to the reporter and to the admin when application has been submitted', () => {
+    const applicationId = window.btoa('["applications", 1]');
+    cy.visit(
+      `/reporter/application?applicationId=${applicationId}&confirmationPage=true&version=1`
+    );
+    cy.url().should('include', '/reporter/application');
+    cy.get('.admin');
+    cy.contains('Submit Application').click();
+    cy.wait(1000);
+    cy.request('localhost:8025/api/v1/messages').then((response) => {
+      expect(response.status).to.eq(200);
+      const messages = response.body;
+      expect(messages).to.satisfy((messages) => {
+        return messages.some((msg) =>
+          msg.To[0].Mailbox.includes('ciip-reporter')
+        );
+      });
+      const reporterMail = messages.find((msg) =>
+        msg.To[0].Mailbox.includes('ciip-reporter')
+      );
+      expect(reporterMail.Content.Headers.Subject[0]).to.contain('CIIP');
+      expect(decoded(reporterMail.Content.Body)).to.contain(
+        'Thank you for your submission'
+      );
+      expect(messages).to.satisfy((messages) => {
+        return messages.some((msg) =>
+          msg.To[0].Mailbox.includes('GHGRegulator')
+        );
+      });
+      const adminMail = messages.find((msg) =>
+        msg.To[0].Mailbox.includes('GHGRegulator')
+      );
+      expect(adminMail.Content.Headers.Subject[0]).to.contain('CIIP');
+      expect(decoded(adminMail.Content.Body)).to.contain(
+        'has submitted or updated their application'
+      );
+      cy.request('DELETE', 'localhost:8025/api/v1/messages');
+    });
+  });
+});
 
 function makeApplicationDecision(decision) {
   const applicationId = window.btoa('["applications", 1]');
@@ -238,6 +238,7 @@ describe('Application status change emails', () => {
   });
   beforeEach(() => {
     cy.request('DELETE', 'localhost:8025/api/v1/messages');
+    cy.wait(500);
   });
 
   it('should send the reporter an email when their application has been approved', () => {
@@ -246,6 +247,7 @@ describe('Application status change emails', () => {
     cy.get('#page-content');
 
     makeApplicationDecision('APPROVED');
+    cy.wait(500);
 
     cy.request('localhost:8025/api/v1/messages').then((response) => {
       const message = response.body[0];
@@ -266,6 +268,7 @@ describe('Application status change emails', () => {
     cy.get('#page-content');
 
     makeApplicationDecision('REJECTED');
+    cy.wait(500);
 
     cy.request('localhost:8025/api/v1/messages').then((response) => {
       const message = response.body[0];
@@ -286,6 +289,7 @@ describe('Application status change emails', () => {
     cy.get('#page-content');
 
     makeApplicationDecision('REQUESTED_CHANGES');
+    cy.wait(500);
 
     cy.request('localhost:8025/api/v1/messages').then((response) => {
       const message = response.body[0];
