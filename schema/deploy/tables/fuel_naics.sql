@@ -10,6 +10,7 @@ create table ggircs_portal.fuel_naics (
   naics_id int not null references ggircs_portal.naics(id)
 );
 
+create unique index fuel_naics_fuel_id_naics_id_uindex on ggircs_portal.fuel_naics(fuel_id, naics_id);
 create index fuel_naics_fuel_id_fkey on ggircs_portal.fuel_naics(fuel_id);
 create index fuel_naics_naics_id_fkey on ggircs_portal.fuel_naics(naics_id);
 
