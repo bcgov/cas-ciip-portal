@@ -24,7 +24,7 @@ begin
     end if;
   elsif tg_op = 'UPDATE' then
     if to_jsonb(new) ? 'deleted_at' then
-      if old.deleted_at is distinct from new.deleted_at then
+      if old.deleted_at is distinct from new.deleted_at and new.deleted_at is not null then
         new.deleted_at = now();
         new.deleted_by = ciip_user_id;
       end if;
