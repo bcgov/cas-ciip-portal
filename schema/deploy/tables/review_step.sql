@@ -31,4 +31,8 @@ comment on column ggircs_portal.review_step.id is 'Primary key for review_step t
 comment on column ggircs_portal.review_step.step_name is 'Unique step_name to be included in during an application review';
 comment on column ggircs_portal.review_step.is_active is 'Boolean value indicates if the step is currently in use when reviewing an application';
 
+-- Create initial review step rows
+insert into ggircs_portal.review_step(step_name, is_active)
+  values ('legacy', false), ('administrative', true), ('technical', true);
+
 commit;
