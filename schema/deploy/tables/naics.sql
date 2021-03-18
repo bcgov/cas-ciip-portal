@@ -38,7 +38,7 @@ $grant$;
 comment on table ggircs_portal.naics is 'Table contains naics codes & their descriptions. NAICS is an acronym for North American Industry Classification System and is used to categorize industrial operations into sectors.';
 comment on column ggircs_portal.naics.id is 'Primary key for naics table';
 comment on column ggircs_portal.naics.naics_code is 'The naics_code, NAICS is an acronym for North American Industry Classification System and is used to categorize industrial operations into sectors.';
-comment on column ggircs_portal.naics.naics_description is 'Unique step_name to be included in during an application review';
+comment on column ggircs_portal.naics.naics_description is 'The plain text description of the NAICS classification';
 comment on column ggircs_portal.naics.created_at is 'The timestamp of when this naics row was created';
 comment on column ggircs_portal.naics.created_by is 'The id of the user who created this row, references ciip_user(id)';
 comment on column ggircs_portal.naics.updated_at is 'The timestamp of when this naics row was last updated';
