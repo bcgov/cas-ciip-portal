@@ -4,7 +4,7 @@
 begin;
 
 create or replace function ggircs_portal.create_naics_mutation(
-  naics_code_input int,
+  naics_code_input text,
   naics_description_input text
 ) returns void as $function$
 
