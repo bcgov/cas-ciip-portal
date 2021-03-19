@@ -44,4 +44,5 @@ select is_empty(
 );
 
 select finish();
+
 rollback;
