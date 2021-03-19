@@ -44,6 +44,7 @@ comment on table ggircs_portal.product_naics is 'Defines which products can be r
 comment on column ggircs_portal.product_naics.id is 'Primary key for product_naics table';
 comment on column ggircs_portal.product_naics.product_id is 'The id referencing the product table';
 comment on column ggircs_portal.product_naics.naics_id is 'The id refrencing the naics table';
+comment on column ggircs_portal.product_naics.is_mandatory is 'Defines whether the related product must be reported by an operator classified under the related naics code';
 comment on column ggircs_portal.product_naics.created_at is 'The timestamp of when this product_naics row was created';
 comment on column ggircs_portal.product_naics.created_by is 'The id of the user who created this row, references ciip_user(id)';
 comment on column ggircs_portal.product_naics.updated_at is 'The timestamp of when this product_naics row was last updated';
