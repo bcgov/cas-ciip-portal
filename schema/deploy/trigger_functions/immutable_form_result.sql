@@ -12,7 +12,7 @@ begin;
       from ggircs_portal.application_revision_status ars
       where ars.application_id = new.application_id
       and ars.version_number = new.version_number
-      order by created_at desc limit 1;
+      order by ars.id desc limit 1;
 
     if (app_status='submitted') then
       raise exception 'Form_result is immutable after application has been submitted';
