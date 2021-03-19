@@ -28,6 +28,6 @@ $function$ language 'plpgsql' stable;
 
 grant execute on function ggircs_portal.application_revision_is_immutable to ciip_administrator, ciip_analyst, ciip_industry_user;
 
-comment on function ggircs_portal.application_application_revision_status is 'Computed column to determine whether a revision is immutable (submitted)';
+comment on function ggircs_portal.application_revision_is_immutable is 'Computed column to determine whether a revision is immutable (submitted)';
 
 commit;

@@ -14,7 +14,7 @@ begin
         from ggircs_portal.application_revision_status as _application_revision_status
         where _application_revision_status.application_id = application_revision.application_id
         and _application_revision_status.version_number = application_revision.version_number
-        order by _application_revision_status.created_at desc
+        order by _application_revision_status.id desc
         limit 1
     );
 end;
