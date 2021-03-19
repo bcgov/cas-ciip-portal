@@ -28740,8 +28740,8 @@ input FuelInput {
 }
 
 """
-Table contains the relationships between fuels and naics codes. NAICS is an
-acronym for North American Industry Classification System and is used to
+Defines which fuels can be reported in a facility with a given naics code. NAICS
+is an acronym for North American Industry Classification System and is used to
 categorize industrial operations into sectors.
 """
 type FuelNaic implements Node {
