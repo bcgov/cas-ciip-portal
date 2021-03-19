@@ -264,3 +264,4 @@ mutations/create_fuel_naics_mutation [tables/fuel_naics] 2021-03-18T22:31:58Z Dy
 computed_columns/application_application_revision_status [computed_columns/application_application_revision_status@v1.16.0] 2021-03-19T16:33:04Z Dylan Leard <dylan@button.is> # Migration: order by id instead of created_at
 computed_columns/application_revision_application_revision_status [computed_columns/application_revision_application_revision_status@v1.16.0] 2021-03-19T16:33:59Z Dylan Leard <dylan@button.is> # Migration: order by id rather than created_at
 trigger_functions/immutable_form_result [trigger_functions/immutable_form_result@v1.16.0] 2021-03-19T16:35:40Z Dylan Leard <dylan@button.is> # Migration: order by id rather than created_at
+computed_columns/application_revision_is_immutable [computed_columns/application_revision_is_immutable@v1.16.0] 2021-03-19T16:58:18Z Dylan Leard <dylan@button.is> # Migration: fix comment copy paste error

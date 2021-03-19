@@ -70,7 +70,7 @@ type Application implements Node {
   ): ApplicationRevisionsConnection!
 
   """
-  Computed column to determine whether a revision is immutable (submitted)
+  Computed column for graphql to traverse to an application_revision_status from application
   """
   applicationRevisionStatus(versionNumberInput: String): ApplicationRevisionStatus
 
@@ -2790,6 +2790,10 @@ type ApplicationRevision implements Node {
   Computed column indicates if a revision is the current version of the application
   """
   isCurrentVersion: Boolean
+
+  """
+  Computed column to determine whether a revision is immutable (submitted)
+  """
   isImmutable: Boolean
 
   """Whether or not reporter agreed the legal disclaimer"""
