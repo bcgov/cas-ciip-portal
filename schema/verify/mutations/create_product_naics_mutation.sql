@@ -1,7 +1,7 @@
 -- Verify ggircs-portal:mutations/create_product_naics_mutation on pg
 
-BEGIN;
+begin;
 
--- XXX Add verifications here.
+select pg_get_functiondef('ggircs_portal.create_product_naics_mutation(int, int, boolean)'::regprocedure);
 
-ROLLBACK;
+rollback;

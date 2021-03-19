@@ -1,7 +1,7 @@
 -- Revert ggircs-portal:mutations/create_product_naics_mutation from pg
 
-BEGIN;
+begin;
 
--- XXX Add DDLs here.
+drop function ggircs_portal.create_product_naics_mutation;
 
-COMMIT;
+commit;
