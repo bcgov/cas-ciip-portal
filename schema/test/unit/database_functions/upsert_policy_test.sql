@@ -71,9 +71,9 @@ select policies_are(
 
 select results_eq(
   $$
-    select qual from pg_policies where policyname = 'admin_delete'
+    select qual::boolean from pg_policies where policyname = 'admin_delete'
   $$,
-  ARRAY['true'::text],
+  ARRAY[true],
   'policy admin_delete using qualifier is TRUE'
 );
 
@@ -86,9 +86,9 @@ select lives_ok(
 
 select results_eq(
   $$
-    select qual from pg_policies where policyname = 'admin_delete'
+    select qual::boolean from pg_policies where policyname = 'admin_delete'
   $$,
-  ARRAY['false'::text],
+  ARRAY[false],
   'policy admin_delete using qualifier has been changed to FALSE'
 );
 
@@ -103,9 +103,9 @@ select qual, with_check from pg_policies where policyname = 'different_statement
 
 select row_eq(
   $$
-    select qual, with_check from pg_policies where policyname = 'different_statement_update'
+    select qual::boolean, with_check::boolean from pg_policies where policyname = 'different_statement_update'
   $$,
-  ROW('true'::text, 'false'::text),
+  ROW(true, false),
   'policy different_statement_update has different values for using qualifier and with_check'
 );
 
