@@ -3206,10 +3206,10 @@
   resolved "https://registry.yarnpkg.com/@types/range-parser/-/range-parser-1.2.3.tgz#7ee330ba7caafb98090bece86a5ee44115904c2c"
   integrity sha512-ewFXqrQHlFsgc09MK5jP5iR7vumV/BYayNC6PgJO2LPe8vrnNFyjQjSppfEngITi0qvfKtzFvgKymGheFM9UOA==
 
-"@types/react-relay@^7.0.8":
-  version "7.0.8"
-  resolved "https://registry.yarnpkg.com/@types/react-relay/-/react-relay-7.0.8.tgz#928e91d7c7b58844738d6a7b18aa224ab564c98c"
-  integrity sha512-cs1dqvSzlZI4Gxm4gUalL/f8uRozLCOAaoHmMWIRS7ggDCkF/gaua86sAbRr5/5GeBCDcLAZDUzmAxzS9exrlA==
+"@types/react-relay@^11.0.0":
+  version "11.0.0"
+  resolved "https://registry.yarnpkg.com/@types/react-relay/-/react-relay-11.0.0.tgz#23730d0c7216df4462634624c5dcb6dc061647cb"
+  integrity sha512-kLzDqhb+w0caxWt9nf2UyVvSiAwjs6mzoxswh8PqXaHgKG20YrpGTWYfs2JDX1QNQ032MkuRwqLfzucTif/y+Q==
   dependencies:
     "@types/react" "*"
     "@types/relay-runtime" "*"
