@@ -7,14 +7,14 @@ select plan(4);
 
 -- Function exists
 select has_function(
-  'ggircs_portal', 'create_naics_code_mutation', array['text', 'text'],
+  'ggircs_portal', 'create_naics_code_mutation', array['text', 'text', 'text'],
   'Function ggircs_portal.create_naics_code_mutation should exist'
 );
 
 -- Test Setup
 select test_helper.clean_ggircs_portal_schema();
 
-select ggircs_portal.create_naics_code_mutation('1234', 'init');
+select ggircs_portal.create_naics_code_mutation('1234', 'sector', 'init');
 
 select results_eq(
   $$
@@ -26,7 +26,7 @@ select results_eq(
 
 -- "Delete" naics code & re-run custom mutation
 update ggircs_portal.naics_code set deleted_at=now() where naics_code='1234';
-select ggircs_portal.create_naics_code_mutation('1234', 'updated');
+select ggircs_portal.create_naics_code_mutation('1234', 'sector', 'updated');
 
 select results_eq(
   $$
