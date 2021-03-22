@@ -31557,6 +31557,11 @@ American Industry Classification System and is used to categorize industrial
 operations into sectors.
 """
 type NaicsCode implements Node {
+  """
+  The sector this naics code belongs to according to the CleanBC Industrial Incentive Program
+  """
+  ciipSector: String
+
   """Reads a single `CiipUser` that is related to this `NaicsCode`."""
   ciipUserByCreatedBy: CiipUser
 
@@ -31963,6 +31968,9 @@ A condition to be used against `NaicsCode` object types. All fields are tested
 for equality and combined with a logical ‘and.’
 """
 input NaicsCodeCondition {
+  """Checks for equality with the object’s `ciipSector` field."""
+  ciipSector: String
+
   """Checks for equality with the object’s `createdAt` field."""
   createdAt: Datetime
 
@@ -31997,6 +32005,9 @@ A filter to be used against `NaicsCode` object types. All fields are combined wi
 input NaicsCodeFilter {
   """Checks for all expressions in this list."""
   and: [NaicsCodeFilter!]
+
+  """Filter by the object’s `ciipSector` field."""
+  ciipSector: StringFilter
 
   """Filter by the object’s `createdAt` field."""
   createdAt: DatetimeFilter
@@ -32096,6 +32107,11 @@ type NaicsCodeFuelsByFuelNaicsCodeNaicsCodeIdAndFuelIdManyToManyEdge {
 
 """An input for mutations affecting `NaicsCode`"""
 input NaicsCodeInput {
+  """
+  The sector this naics code belongs to according to the CleanBC Industrial Incentive Program
+  """
+  ciipSector: String
+
   """The timestamp of when this naics_code row was created"""
   createdAt: Datetime
 
@@ -32128,6 +32144,11 @@ input NaicsCodeInput {
 Represents an update to a `NaicsCode`. Fields that are set will be updated.
 """
 input NaicsCodePatch {
+  """
+  The sector this naics code belongs to according to the CleanBC Industrial Incentive Program
+  """
+  ciipSector: String
+
   """The timestamp of when this naics_code row was created"""
   createdAt: Datetime
 
@@ -32184,6 +32205,8 @@ type NaicsCodesEdge {
 
 """Methods to use when ordering `NaicsCode`."""
 enum NaicsCodesOrderBy {
+  CIIP_SECTOR_ASC
+  CIIP_SECTOR_DESC
   CREATED_AT_ASC
   CREATED_AT_DESC
   CREATED_BY_ASC
