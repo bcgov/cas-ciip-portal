@@ -24,6 +24,11 @@ const ProgramDataManagement: React.FunctionComponent<Props> = ({
             <Card.Link href="#">Reporting Periods</Card.Link>
           </Link>
         </ListGroup.Item>
+        <ListGroup.Item>
+          <Link href="/admin/naics-codes" passHref>
+            <Card.Link href="#">Naics Codes</Card.Link>
+          </Link>
+        </ListGroup.Item>
       </>
     );
   }
