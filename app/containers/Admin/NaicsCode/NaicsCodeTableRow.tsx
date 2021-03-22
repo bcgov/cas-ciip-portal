@@ -8,12 +8,13 @@ import {nowMoment} from 'functions/formatDates';
 interface Props {
   relay: RelayProp;
   naicsCode: NaicsCodeTableRow_naicsCode;
+  connectionId: string;
 }
 
 export const NaicsCodeTableRowContainer: React.FunctionComponent<Props> = (
   props
 ) => {
-  const {naicsCode} = props;
+  const {naicsCode, connectionId} = props;
 
   const handleDeleteNaicsCode = async () => {
     const {environment} = props.relay;
@@ -28,8 +29,7 @@ export const NaicsCodeTableRowContainer: React.FunctionComponent<Props> = (
         }
       }
     };
-
-    await updateNaicsCodeMutation(environment, variables);
+    await updateNaicsCodeMutation(environment, variables, connectionId);
   };
 
   return (

@@ -13,7 +13,6 @@ export const NaicsCodeTableContainer: React.FunctionComponent<Props> = (
   props
 ) => {
   const {query} = props;
-  console.log(query.allNaicsCodes?.edges);
   return (
     <>
       <div style={{textAlign: 'right'}}>
@@ -35,7 +34,12 @@ export const NaicsCodeTableContainer: React.FunctionComponent<Props> = (
         </thead>
         <tbody>
           {query.allNaicsCodes?.edges.map(({node}) => {
-            return <NaicsCodeTableRow naicsCode={node} />;
+            return (
+              <NaicsCodeTableRow
+                naicsCode={node}
+                connectionId={query.allNaicsCodes.__id}
+              />
+            );
           })}
         </tbody>
       </Table>
@@ -47,9 +51,11 @@ export default createFragmentContainer(NaicsCodeTableContainer, {
   query: graphql`
     fragment NaicsCodeTable_query on Query {
       allNaicsCodes(
+        first: 2147483647
         filter: {deletedAt: {isNull: true}}
         orderBy: NAICS_CODE_DESC
-      ) {
+      ) @connection(key: "NaicsCodeTableContainer_allNaicsCodes") {
+        __id
         edges {
           node {
             ...NaicsCodeTableRow_naicsCode

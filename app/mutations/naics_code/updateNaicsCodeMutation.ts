@@ -5,16 +5,13 @@ import {
   updateNaicsCodeMutation as updateNaicsCodeMutationType
 } from 'updateNaicsCodeMutation.graphql';
 import BaseMutation from 'mutations/BaseMutation';
+import {RecordSourceSelectorProxy, ConnectionHandler} from 'relay-runtime';
 
 const mutation = graphql`
   mutation updateNaicsCodeMutation($input: UpdateNaicsCodeInput!) {
     updateNaicsCode(input: $input) {
       naicsCode {
         ...NaicsCodeTableRow_naicsCode
-        deletedAt
-      }
-      query {
-        ...NaicsCodeTable_query
       }
     }
   }
@@ -22,7 +19,8 @@ const mutation = graphql`
 
 const updateNaicsCodeMutation = async (
   environment: RelayModernEnvironment,
-  variables: updateNaicsCodeMutationVariables
+  variables: updateNaicsCodeMutationVariables,
+  connectionId: string
 ) => {
   const optimisticResponse = {
     updateNaicsCode: {
@@ -32,6 +30,11 @@ const updateNaicsCodeMutation = async (
       }
     }
   };
+  const updater = (store: RecordSourceSelectorProxy) => {
+    // connectionID is passed as input to the mutation/subscription
+    const connection = store.get(connectionId);
+    ConnectionHandler.deleteNode(connection, variables.input.id);
+  };
   const m = new BaseMutation<updateNaicsCodeMutationType>(
     'update-review-comment-mutation'
   );
@@ -39,7 +42,8 @@ const updateNaicsCodeMutation = async (
     environment,
     mutation,
     variables,
-    optimisticResponse
+    optimisticResponse,
+    updater
   );
 };
 
