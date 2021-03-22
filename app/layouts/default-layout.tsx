@@ -153,7 +153,7 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
 
           @media screen and (min-width: 992px) {
             #page-content {
-              padding-top: 110px;
+              padding-top: 60px;
             }
           }
 

@@ -33,7 +33,7 @@ export default class Index extends Component<Props> {
 
     return (
       <DefaultLayout showSubheader={false} session={session}>
-        <Row>
+        <div className="row">
           <Col md={6}>
             <h1 className="blue">
               What is the CleanBC Industrial Incentive Program?
@@ -57,7 +57,7 @@ export default class Index extends Component<Props> {
             </p>
           </Col>
           <RegistrationLoginButtons query={query} />
-        </Row>
+        </div>
 
         <Row style={{marginTop: '100px'}} id="value-props">
           <Col md={12}>
@@ -152,6 +152,12 @@ export default class Index extends Component<Props> {
           </Col>
         </div>
         <style jsx>{`
+          @media screen and (min-width: 992px) {
+            .row:first-child {
+              padding-top: 50px;
+            }
+          }
+
           .value-prop {
             display: flex;
             flex-direction: column;
