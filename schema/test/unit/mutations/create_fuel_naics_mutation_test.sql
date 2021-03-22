@@ -16,7 +16,7 @@ select test_helper.clean_ggircs_portal_schema();
 alter table ggircs_portal.ciip_user disable trigger _welcome_email;
 select test_helper.create_test_users();
 insert into ggircs_portal.fuel(name, swrs_fuel_mapping_id) values ('fuel 1', 1), ('fuel 2', 2);
-insert into ggircs_portal.naics(naics_code, naics_description) values ('1234', 'naics 1'), ('9999', 'naics 2');
+insert into ggircs_portal.naics_code(naics_code, naics_description) values ('1234', 'naics 1'), ('9999', 'naics 2');
 
 select ggircs_portal.create_fuel_naics_mutation(1, 1);
 

@@ -7,7 +7,7 @@ begin;
 create table ggircs_portal.fuel_naics (
   id integer primary key generated always as identity,
   fuel_id int not null references ggircs_portal.fuel(id),
-  naics_id int not null references ggircs_portal.naics(id)
+  naics_id int not null references ggircs_portal.naics_code(id)
 );
 
 create unique index fuel_naics_fuel_id_naics_id_uindex on ggircs_portal.fuel_naics(fuel_id, naics_id);

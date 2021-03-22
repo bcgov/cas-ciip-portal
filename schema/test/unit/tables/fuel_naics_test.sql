@@ -43,7 +43,7 @@ select test_helper.clean_ggircs_portal_schema();
 alter table ggircs_portal.ciip_user disable trigger _welcome_email;
 select test_helper.create_test_users();
 insert into ggircs_portal.fuel(name, swrs_fuel_mapping_id) values ('fuel 1', 1), ('fuel 2', 2);
-insert into ggircs_portal.naics(naics_code, naics_description) values ('1234', 'naics 1'), ('9999', 'naics 2');
+insert into ggircs_portal.naics_code(naics_code, naics_description) values ('1234', 'naics 1'), ('9999', 'naics 2');
 insert into ggircs_portal.fuel_naics(fuel_id, naics_id) values (1,1);
 
 -- Row level security tests --
@@ -73,7 +73,7 @@ select lives_ok(
 select results_eq(
   $$
     select naics_description from ggircs_portal.fuel_naics fn
-    join ggircs_portal.naics n
+    join ggircs_portal.naics_code n
     on fn.naics_id = n.id
     and fn.id=2;
   $$,
@@ -91,7 +91,7 @@ select lives_ok(
 select results_eq(
   $$
     select naics_description from ggircs_portal.fuel_naics fn
-    join ggircs_portal.naics n
+    join ggircs_portal.naics_code n
     on fn.naics_id = n.id
     and fn.id =1;
   $$,

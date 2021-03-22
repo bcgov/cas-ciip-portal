@@ -7,12 +7,12 @@ select plan(16);
 
 -- Table exists
 select has_table(
-  'ggircs_portal', 'naics',
-  'ggircs_portal.naics should exist, and be a table'
+  'ggircs_portal', 'naics_code',
+  'ggircs_portal.naics_code should exist, and be a table'
 );
 
 select has_index(
-  'ggircs_portal', 'naics', 'naics_naics_code_uindex',
+  'ggircs_portal', 'naics_code', 'naics_naics_code_uindex',
   'naics table has a unique index on the naics_code column'
 );
 
@@ -21,7 +21,7 @@ select has_index(
 select test_helper.clean_ggircs_portal_schema();
 alter table ggircs_portal.ciip_user disable trigger _welcome_email;
 select test_helper.create_test_users();
-insert into ggircs_portal.naics(naics_code, naics_description) values (1234, 'init');
+insert into ggircs_portal.naics_code(naics_code, naics_description) values (1234, 'init');
 
 -- Row level security tests --
 
@@ -31,7 +31,7 @@ select concat('current user is: ', (select current_user));
 
 select results_eq(
   $$
-    select naics_code from ggircs_portal.naics;
+    select naics_code from ggircs_portal.naics_code;
   $$,
   ARRAY[1234::varchar(1000)],
     'ciip_administrator can select data from the naics table'
@@ -39,7 +39,7 @@ select results_eq(
 
 select lives_ok(
   $$
-    insert into ggircs_portal.naics (naics_code, naics_description)
+    insert into ggircs_portal.naics_code (naics_code, naics_description)
     values (1001, 'admin created');
   $$,
     'ciip_administrator can insert data in naics table'
@@ -47,7 +47,7 @@ select lives_ok(
 
 select results_eq(
   $$
-    select naics_description from ggircs_portal.naics where naics_code='1001';
+    select naics_description from ggircs_portal.naics_code where naics_code='1001';
   $$,
     ARRAY['admin created'::varchar(10000)],
     'Data was inserted by ciip_administrator'
@@ -55,14 +55,14 @@ select results_eq(
 
 select lives_ok(
   $$
-    update ggircs_portal.naics set naics_description='admin updated';
+    update ggircs_portal.naics_code set naics_description='admin updated';
   $$,
     'ciip_administrator can change data in naics table'
 );
 
 select results_eq(
   $$
-    select naics_description from ggircs_portal.naics where naics_code='1001';
+    select naics_description from ggircs_portal.naics_code where naics_code='1001';
   $$,
     ARRAY['admin updated'::varchar(10000)],
     'Data was updated by ciip_administrator'
@@ -70,7 +70,7 @@ select results_eq(
 
 select throws_like(
   $$
-    delete from ggircs_portal.naics;
+    delete from ggircs_portal.naics_code;
   $$,
   'permission denied%',
     'Administrator cannot delete rows from table_naics'
@@ -82,7 +82,7 @@ select concat('current user is: ', (select current_user));
 
 select results_eq(
   $$
-    select naics_code from ggircs_portal.naics where naics_code='1234';
+    select naics_code from ggircs_portal.naics_code where naics_code='1234';
   $$,
   ARRAY[1234::varchar(1000)],
     'Industry user can view data from naics'
@@ -90,23 +90,23 @@ select results_eq(
 
 select throws_like(
   $$
-    insert into ggircs_portal.naics(naics_code, naics_description) values (999, 'user created');
+    insert into ggircs_portal.naics_code(naics_code, naics_description) values (999, 'user created');
   $$,
   'permission denied%',
-    'Industry User cannot insert into ggircs_portal.naics'
+    'Industry User cannot insert into ggircs_portal.naics_code'
 );
 
 select throws_like(
   $$
-    update ggircs_portal.naics set naics_description='user changed' where naics_code='1234';
+    update ggircs_portal.naics_code set naics_description='user changed' where naics_code='1234';
   $$,
   'permission denied%',
-    'Industry User cannot update ggircs_portal.naics'
+    'Industry User cannot update ggircs_portal.naics_code'
 );
 
 select throws_like(
   $$
-    delete from ggircs_portal.naics;
+    delete from ggircs_portal.naics_code;
   $$,
   'permission denied%',
     'Industry User cannot delete rows from table_naics'
@@ -118,7 +118,7 @@ select concat('current user is: ', (select current_user));
 
 select results_eq(
   $$
-    select naics_code from ggircs_portal.naics where naics_code='1234';
+    select naics_code from ggircs_portal.naics_code where naics_code='1234';
   $$,
   ARRAY[1234::varchar(1000)],
   'Analyst can select from table naics'
@@ -126,23 +126,23 @@ select results_eq(
 
 select throws_like(
   $$
-    insert into ggircs_portal.naics(naics_code, naics_description) values (999, 'user created');
+    insert into ggircs_portal.naics_code(naics_code, naics_description) values (999, 'user created');
   $$,
   'permission denied%',
-    'Analyst cannot insert into ggircs_portal.naics'
+    'Analyst cannot insert into ggircs_portal.naics_code'
 );
 
 select throws_like(
   $$
-    update ggircs_portal.naics set naics_description='user changed' where naics_code='1234';
+    update ggircs_portal.naics_code set naics_description='user changed' where naics_code='1234';
   $$,
   'permission denied%',
-    'Analyst cannot update ggircs_portal.naics'
+    'Analyst cannot update ggircs_portal.naics_code'
 );
 
 select throws_like(
   $$
-    delete from ggircs_portal.naics;
+    delete from ggircs_portal.naics_code;
   $$,
   'permission denied%',
     'Analyst cannot delete rows from table_naics'
