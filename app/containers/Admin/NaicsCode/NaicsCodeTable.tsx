@@ -1,17 +1,19 @@
 import React from 'react';
 import {Table, Button} from 'react-bootstrap';
 import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
-import {NaicsCodesTable_query} from '__generated__/NaicsCodesTable_query.graphql';
+import {NaicsCodeTable_query} from '__generated__/NaicsCodeTable_query.graphql';
+import NaicsCodeTableRow from './NaicsCodeTableRow';
 
 interface Props {
   relay: RelayProp;
-  query: NaicsCodesTable_query;
+  query: NaicsCodeTable_query;
 }
 
-export const NaicsCodesTableComponent: React.FunctionComponent<Props> = (
+export const NaicsCodeTableContainer: React.FunctionComponent<Props> = (
   props
 ) => {
   const {query} = props;
+  console.log(query.allNaicsCodes?.edges);
   return (
     <>
       <div style={{textAlign: 'right'}}>
@@ -32,19 +34,8 @@ export const NaicsCodesTableComponent: React.FunctionComponent<Props> = (
           </tr>
         </thead>
         <tbody>
-          {query.allNaicsCodes.edges.map(({node}) => {
-            return (
-              <tr key={node.id}>
-                <td>{node.naicsCode}</td>
-                <td>{node.ciipSector}</td>
-                <td>{node.naicsDescription}</td>
-                <td>
-                  <Button onClick={() => console.log('edit stuff')}>
-                    Edit
-                  </Button>
-                </td>
-              </tr>
-            );
+          {query.allNaicsCodes?.edges.map(({node}) => {
+            return <NaicsCodeTableRow naicsCode={node} />;
           })}
         </tbody>
       </Table>
@@ -52,19 +43,16 @@ export const NaicsCodesTableComponent: React.FunctionComponent<Props> = (
   );
 };
 
-export default createFragmentContainer(NaicsCodesTableComponent, {
+export default createFragmentContainer(NaicsCodeTableContainer, {
   query: graphql`
-    fragment NaicsCodesTable_query on Query {
+    fragment NaicsCodeTable_query on Query {
       allNaicsCodes(
-        filter: {deletedAt: {equalTo: null}}
+        filter: {deletedAt: {isNull: true}}
         orderBy: NAICS_CODE_DESC
       ) {
         edges {
           node {
-            id
-            naicsCode
-            ciipSector
-            naicsDescription
+            ...NaicsCodeTableRow_naicsCode
           }
         }
       }

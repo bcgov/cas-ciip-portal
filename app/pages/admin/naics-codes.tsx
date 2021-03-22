@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {graphql} from 'react-relay';
 import {naicsCodesQueryResponse} from 'naicsCodesQuery.graphql';
-import NaicsCodesTable from 'containers/Admin/NaicsCodesTable';
+import NaicsCodeTable from 'containers/Admin/NaicsCode/NaicsCodeTable';
 import DefaultLayout from 'layouts/default-layout';
 import {ADMIN_GROUP} from 'data/group-constants';
 
@@ -17,7 +17,7 @@ class NaicsCodes extends Component<Props> {
   static query = graphql`
     query naicsCodesQuery {
       query {
-        ...NaicsCodesTable_query
+        ...NaicsCodeTable_query
         session {
           ...defaultLayout_session
         }
@@ -29,7 +29,7 @@ class NaicsCodes extends Component<Props> {
     const {query} = this.props;
     return (
       <DefaultLayout session={query.session} title="Naics Codes">
-        <NaicsCodesTable query={query} />
+        <NaicsCodeTable query={query} />
       </DefaultLayout>
     );
   }
