@@ -2,6 +2,6 @@
 
 begin;
 
-drop table ggircs_portal.product_naics;
+drop table ggircs_portal.product_naics_code;
 
 commit;

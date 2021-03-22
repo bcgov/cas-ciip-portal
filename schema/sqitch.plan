@@ -265,5 +265,5 @@ computed_columns/application_application_revision_status [computed_columns/appli
 computed_columns/application_revision_application_revision_status [computed_columns/application_revision_application_revision_status@v1.16.0] 2021-03-19T16:33:59Z Dylan Leard <dylan@button.is> # Migration: order by id rather than created_at
 trigger_functions/immutable_form_result [trigger_functions/immutable_form_result@v1.16.0] 2021-03-19T16:35:40Z Dylan Leard <dylan@button.is> # Migration: order by id rather than created_at
 computed_columns/application_revision_is_immutable [computed_columns/application_revision_is_immutable@v1.16.0] 2021-03-19T16:58:18Z Dylan Leard <dylan@button.is> # Migration: fix comment copy paste error
-tables/product_naics [tables/naics tables/product] 2021-03-19T20:00:08Z Dylan Leard <dylan@button.is> # Table contains product-naics relationships
-mutations/create_product_naics_mutation [tables/product_naics] 2021-03-19T20:11:08Z Dylan Leard <dylan@button.is> # Custom create mutation upserts on conflict (product_id, naics_id)
+tables/product_naics_code [tables/naics_code tables/product] 2021-03-19T20:00:08Z Dylan Leard <dylan@button.is> # Table contains product-naics relationships
+mutations/create_product_naics_code_mutation [tables/product_naics_code] 2021-03-19T20:11:08Z Dylan Leard <dylan@button.is> # Custom create mutation upserts on conflict (product_id, naics_id)
