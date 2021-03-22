@@ -5,13 +5,14 @@ begin;
 
 create or replace function ggircs_portal.create_naics_code_mutation(
   naics_code_input text,
+  ciip_sector_input text,
   naics_description_input text
 ) returns void as $function$
 
   -- Reset deleted at/by and update description on conflict
-  insert into ggircs_portal.naics_code(naics_code, naics_description)
-  values (naics_code_input, naics_description_input)
-  on conflict(naics_code) do update set naics_description=naics_description_input, deleted_at=null, deleted_by=null;
+  insert into ggircs_portal.naics_code(naics_code, ciip_sector, naics_description)
+  values (naics_code_input, ciip_sector_input, naics_description_input)
+  on conflict(naics_code) do update set naics_description=naics_description_input, ciip_sector=ciip_sector_input, deleted_at=null, deleted_by=null;
 
 $function$ language sql volatile;
 

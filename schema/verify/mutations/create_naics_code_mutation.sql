@@ -2,6 +2,6 @@
 
 begin;
 
-select pg_get_functiondef('ggircs_portal.create_naics_code_mutation(text,text)'::regprocedure);
+select pg_get_functiondef('ggircs_portal.create_naics_code_mutation(text,text,text)'::regprocedure);
 
 rollback;
