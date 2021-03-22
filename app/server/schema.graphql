@@ -8223,7 +8223,7 @@ type CiipUser implements Node {
   ): CiipUserCiipUsersByFuelDeletedByAndUpdatedByManyToManyConnection!
 
   """Reads and enables pagination through a set of `CiipUser`."""
-  ciipUsersByFuelNaicCreatedByAndDeletedBy(
+  ciipUsersByFuelNaicsCodeCreatedByAndDeletedBy(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -8254,10 +8254,10 @@ type CiipUser implements Node {
 
     """The method to use when ordering `CiipUser`."""
     orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
-  ): CiipUserCiipUsersByFuelNaicCreatedByAndDeletedByManyToManyConnection!
+  ): CiipUserCiipUsersByFuelNaicsCodeCreatedByAndDeletedByManyToManyConnection!
 
   """Reads and enables pagination through a set of `CiipUser`."""
-  ciipUsersByFuelNaicCreatedByAndUpdatedBy(
+  ciipUsersByFuelNaicsCodeCreatedByAndUpdatedBy(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -8288,10 +8288,10 @@ type CiipUser implements Node {
 
     """The method to use when ordering `CiipUser`."""
     orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
-  ): CiipUserCiipUsersByFuelNaicCreatedByAndUpdatedByManyToManyConnection!
+  ): CiipUserCiipUsersByFuelNaicsCodeCreatedByAndUpdatedByManyToManyConnection!
 
   """Reads and enables pagination through a set of `CiipUser`."""
-  ciipUsersByFuelNaicDeletedByAndCreatedBy(
+  ciipUsersByFuelNaicsCodeDeletedByAndCreatedBy(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -8322,10 +8322,10 @@ type CiipUser implements Node {
 
     """The method to use when ordering `CiipUser`."""
     orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
-  ): CiipUserCiipUsersByFuelNaicDeletedByAndCreatedByManyToManyConnection!
+  ): CiipUserCiipUsersByFuelNaicsCodeDeletedByAndCreatedByManyToManyConnection!
 
   """Reads and enables pagination through a set of `CiipUser`."""
-  ciipUsersByFuelNaicDeletedByAndUpdatedBy(
+  ciipUsersByFuelNaicsCodeDeletedByAndUpdatedBy(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -8356,10 +8356,10 @@ type CiipUser implements Node {
 
     """The method to use when ordering `CiipUser`."""
     orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
-  ): CiipUserCiipUsersByFuelNaicDeletedByAndUpdatedByManyToManyConnection!
+  ): CiipUserCiipUsersByFuelNaicsCodeDeletedByAndUpdatedByManyToManyConnection!
 
   """Reads and enables pagination through a set of `CiipUser`."""
-  ciipUsersByFuelNaicUpdatedByAndCreatedBy(
+  ciipUsersByFuelNaicsCodeUpdatedByAndCreatedBy(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -8390,10 +8390,10 @@ type CiipUser implements Node {
 
     """The method to use when ordering `CiipUser`."""
     orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
-  ): CiipUserCiipUsersByFuelNaicUpdatedByAndCreatedByManyToManyConnection!
+  ): CiipUserCiipUsersByFuelNaicsCodeUpdatedByAndCreatedByManyToManyConnection!
 
   """Reads and enables pagination through a set of `CiipUser`."""
-  ciipUsersByFuelNaicUpdatedByAndDeletedBy(
+  ciipUsersByFuelNaicsCodeUpdatedByAndDeletedBy(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -8424,7 +8424,7 @@ type CiipUser implements Node {
 
     """The method to use when ordering `CiipUser`."""
     orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
-  ): CiipUserCiipUsersByFuelNaicUpdatedByAndDeletedByManyToManyConnection!
+  ): CiipUserCiipUsersByFuelNaicsCodeUpdatedByAndDeletedByManyToManyConnection!
 
   """Reads and enables pagination through a set of `CiipUser`."""
   ciipUsersByFuelUpdatedByAndCreatedBy(
@@ -8903,7 +8903,7 @@ type CiipUser implements Node {
   ): CiipUserCiipUsersByLinkedProductUpdatedByAndDeletedByManyToManyConnection!
 
   """Reads and enables pagination through a set of `CiipUser`."""
-  ciipUsersByNaicCreatedByAndDeletedBy(
+  ciipUsersByNaicsCodeCreatedByAndDeletedBy(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -8934,10 +8934,10 @@ type CiipUser implements Node {
 
     """The method to use when ordering `CiipUser`."""
     orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
-  ): CiipUserCiipUsersByNaicCreatedByAndDeletedByManyToManyConnection!
+  ): CiipUserCiipUsersByNaicsCodeCreatedByAndDeletedByManyToManyConnection!
 
   """Reads and enables pagination through a set of `CiipUser`."""
-  ciipUsersByNaicCreatedByAndUpdatedBy(
+  ciipUsersByNaicsCodeCreatedByAndUpdatedBy(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -8968,10 +8968,10 @@ type CiipUser implements Node {
 
     """The method to use when ordering `CiipUser`."""
     orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
-  ): CiipUserCiipUsersByNaicCreatedByAndUpdatedByManyToManyConnection!
+  ): CiipUserCiipUsersByNaicsCodeCreatedByAndUpdatedByManyToManyConnection!
 
   """Reads and enables pagination through a set of `CiipUser`."""
-  ciipUsersByNaicDeletedByAndCreatedBy(
+  ciipUsersByNaicsCodeDeletedByAndCreatedBy(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -9002,10 +9002,10 @@ type CiipUser implements Node {
 
     """The method to use when ordering `CiipUser`."""
     orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
-  ): CiipUserCiipUsersByNaicDeletedByAndCreatedByManyToManyConnection!
+  ): CiipUserCiipUsersByNaicsCodeDeletedByAndCreatedByManyToManyConnection!
 
   """Reads and enables pagination through a set of `CiipUser`."""
-  ciipUsersByNaicDeletedByAndUpdatedBy(
+  ciipUsersByNaicsCodeDeletedByAndUpdatedBy(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -9036,10 +9036,10 @@ type CiipUser implements Node {
 
     """The method to use when ordering `CiipUser`."""
     orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
-  ): CiipUserCiipUsersByNaicDeletedByAndUpdatedByManyToManyConnection!
+  ): CiipUserCiipUsersByNaicsCodeDeletedByAndUpdatedByManyToManyConnection!
 
   """Reads and enables pagination through a set of `CiipUser`."""
-  ciipUsersByNaicUpdatedByAndCreatedBy(
+  ciipUsersByNaicsCodeUpdatedByAndCreatedBy(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -9070,10 +9070,10 @@ type CiipUser implements Node {
 
     """The method to use when ordering `CiipUser`."""
     orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
-  ): CiipUserCiipUsersByNaicUpdatedByAndCreatedByManyToManyConnection!
+  ): CiipUserCiipUsersByNaicsCodeUpdatedByAndCreatedByManyToManyConnection!
 
   """Reads and enables pagination through a set of `CiipUser`."""
-  ciipUsersByNaicUpdatedByAndDeletedBy(
+  ciipUsersByNaicsCodeUpdatedByAndDeletedBy(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -9104,7 +9104,7 @@ type CiipUser implements Node {
 
     """The method to use when ordering `CiipUser`."""
     orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
-  ): CiipUserCiipUsersByNaicUpdatedByAndDeletedByManyToManyConnection!
+  ): CiipUserCiipUsersByNaicsCodeUpdatedByAndDeletedByManyToManyConnection!
 
   """Reads and enables pagination through a set of `CiipUser`."""
   ciipUsersByProductCreatedByAndDeletedBy(
@@ -10280,8 +10280,8 @@ type CiipUser implements Node {
     orderBy: [FormResultsOrderBy!] = [PRIMARY_KEY_ASC]
   ): FormResultsConnection!
 
-  """Reads and enables pagination through a set of `FuelNaic`."""
-  fuelNaicsByCreatedBy(
+  """Reads and enables pagination through a set of `FuelNaicsCode`."""
+  fuelNaicsCodesByCreatedBy(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -10291,12 +10291,12 @@ type CiipUser implements Node {
     """
     A condition to be used in determining which values should be returned by the collection.
     """
-    condition: FuelNaicCondition
+    condition: FuelNaicsCodeCondition
 
     """
     A filter to be used in determining which values should be returned by the collection.
     """
-    filter: FuelNaicFilter
+    filter: FuelNaicsCodeFilter
 
     """Only read the first `n` values of the set."""
     first: Int
@@ -10310,12 +10310,12 @@ type CiipUser implements Node {
     """
     offset: Int
 
-    """The method to use when ordering `FuelNaic`."""
-    orderBy: [FuelNaicsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): FuelNaicsConnection!
+    """The method to use when ordering `FuelNaicsCode`."""
+    orderBy: [FuelNaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): FuelNaicsCodesConnection!
 
-  """Reads and enables pagination through a set of `FuelNaic`."""
-  fuelNaicsByDeletedBy(
+  """Reads and enables pagination through a set of `FuelNaicsCode`."""
+  fuelNaicsCodesByDeletedBy(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -10325,12 +10325,12 @@ type CiipUser implements Node {
     """
     A condition to be used in determining which values should be returned by the collection.
     """
-    condition: FuelNaicCondition
+    condition: FuelNaicsCodeCondition
 
     """
     A filter to be used in determining which values should be returned by the collection.
     """
-    filter: FuelNaicFilter
+    filter: FuelNaicsCodeFilter
 
     """Only read the first `n` values of the set."""
     first: Int
@@ -10344,12 +10344,12 @@ type CiipUser implements Node {
     """
     offset: Int
 
-    """The method to use when ordering `FuelNaic`."""
-    orderBy: [FuelNaicsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): FuelNaicsConnection!
+    """The method to use when ordering `FuelNaicsCode`."""
+    orderBy: [FuelNaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): FuelNaicsCodesConnection!
 
-  """Reads and enables pagination through a set of `FuelNaic`."""
-  fuelNaicsByUpdatedBy(
+  """Reads and enables pagination through a set of `FuelNaicsCode`."""
+  fuelNaicsCodesByUpdatedBy(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -10359,12 +10359,12 @@ type CiipUser implements Node {
     """
     A condition to be used in determining which values should be returned by the collection.
     """
-    condition: FuelNaicCondition
+    condition: FuelNaicsCodeCondition
 
     """
     A filter to be used in determining which values should be returned by the collection.
     """
-    filter: FuelNaicFilter
+    filter: FuelNaicsCodeFilter
 
     """Only read the first `n` values of the set."""
     first: Int
@@ -10378,9 +10378,9 @@ type CiipUser implements Node {
     """
     offset: Int
 
-    """The method to use when ordering `FuelNaic`."""
-    orderBy: [FuelNaicsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): FuelNaicsConnection!
+    """The method to use when ordering `FuelNaicsCode`."""
+    orderBy: [FuelNaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): FuelNaicsCodesConnection!
 
   """Reads and enables pagination through a set of `Fuel`."""
   fuelsByCreatedBy(
@@ -10451,7 +10451,7 @@ type CiipUser implements Node {
   ): FuelsConnection!
 
   """Reads and enables pagination through a set of `Fuel`."""
-  fuelsByFuelNaicCreatedByAndFuelId(
+  fuelsByFuelNaicsCodeCreatedByAndFuelId(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -10482,10 +10482,10 @@ type CiipUser implements Node {
 
     """The method to use when ordering `Fuel`."""
     orderBy: [FuelsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): CiipUserFuelsByFuelNaicCreatedByAndFuelIdManyToManyConnection!
+  ): CiipUserFuelsByFuelNaicsCodeCreatedByAndFuelIdManyToManyConnection!
 
   """Reads and enables pagination through a set of `Fuel`."""
-  fuelsByFuelNaicDeletedByAndFuelId(
+  fuelsByFuelNaicsCodeDeletedByAndFuelId(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -10516,10 +10516,10 @@ type CiipUser implements Node {
 
     """The method to use when ordering `Fuel`."""
     orderBy: [FuelsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): CiipUserFuelsByFuelNaicDeletedByAndFuelIdManyToManyConnection!
+  ): CiipUserFuelsByFuelNaicsCodeDeletedByAndFuelIdManyToManyConnection!
 
   """Reads and enables pagination through a set of `Fuel`."""
-  fuelsByFuelNaicUpdatedByAndFuelId(
+  fuelsByFuelNaicsCodeUpdatedByAndFuelId(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -10550,7 +10550,7 @@ type CiipUser implements Node {
 
     """The method to use when ordering `Fuel`."""
     orderBy: [FuelsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): CiipUserFuelsByFuelNaicUpdatedByAndFuelIdManyToManyConnection!
+  ): CiipUserFuelsByFuelNaicsCodeUpdatedByAndFuelIdManyToManyConnection!
 
   """Reads and enables pagination through a set of `Fuel`."""
   fuelsByUpdatedBy(
@@ -10905,8 +10905,8 @@ type CiipUser implements Node {
     orderBy: [LinkedProductsOrderBy!] = [PRIMARY_KEY_ASC]
   ): LinkedProductsConnection!
 
-  """Reads and enables pagination through a set of `Naic`."""
-  naicsByCreatedBy(
+  """Reads and enables pagination through a set of `NaicsCode`."""
+  naicsCodesByCreatedBy(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -10916,12 +10916,12 @@ type CiipUser implements Node {
     """
     A condition to be used in determining which values should be returned by the collection.
     """
-    condition: NaicCondition
+    condition: NaicsCodeCondition
 
     """
     A filter to be used in determining which values should be returned by the collection.
     """
-    filter: NaicFilter
+    filter: NaicsCodeFilter
 
     """Only read the first `n` values of the set."""
     first: Int
@@ -10935,12 +10935,12 @@ type CiipUser implements Node {
     """
     offset: Int
 
-    """The method to use when ordering `Naic`."""
-    orderBy: [NaicsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): NaicsConnection!
+    """The method to use when ordering `NaicsCode`."""
+    orderBy: [NaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): NaicsCodesConnection!
 
-  """Reads and enables pagination through a set of `Naic`."""
-  naicsByDeletedBy(
+  """Reads and enables pagination through a set of `NaicsCode`."""
+  naicsCodesByDeletedBy(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -10950,12 +10950,12 @@ type CiipUser implements Node {
     """
     A condition to be used in determining which values should be returned by the collection.
     """
-    condition: NaicCondition
+    condition: NaicsCodeCondition
 
     """
     A filter to be used in determining which values should be returned by the collection.
     """
-    filter: NaicFilter
+    filter: NaicsCodeFilter
 
     """Only read the first `n` values of the set."""
     first: Int
@@ -10969,12 +10969,12 @@ type CiipUser implements Node {
     """
     offset: Int
 
-    """The method to use when ordering `Naic`."""
-    orderBy: [NaicsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): NaicsConnection!
+    """The method to use when ordering `NaicsCode`."""
+    orderBy: [NaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): NaicsCodesConnection!
 
-  """Reads and enables pagination through a set of `Naic`."""
-  naicsByFuelNaicCreatedByAndNaicsId(
+  """Reads and enables pagination through a set of `NaicsCode`."""
+  naicsCodesByFuelNaicsCodeCreatedByAndNaicsCodeId(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -10984,12 +10984,12 @@ type CiipUser implements Node {
     """
     A condition to be used in determining which values should be returned by the collection.
     """
-    condition: NaicCondition
+    condition: NaicsCodeCondition
 
     """
     A filter to be used in determining which values should be returned by the collection.
     """
-    filter: NaicFilter
+    filter: NaicsCodeFilter
 
     """Only read the first `n` values of the set."""
     first: Int
@@ -11003,12 +11003,12 @@ type CiipUser implements Node {
     """
     offset: Int
 
-    """The method to use when ordering `Naic`."""
-    orderBy: [NaicsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): CiipUserNaicsByFuelNaicCreatedByAndNaicsIdManyToManyConnection!
+    """The method to use when ordering `NaicsCode`."""
+    orderBy: [NaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CiipUserNaicsCodesByFuelNaicsCodeCreatedByAndNaicsCodeIdManyToManyConnection!
 
-  """Reads and enables pagination through a set of `Naic`."""
-  naicsByFuelNaicDeletedByAndNaicsId(
+  """Reads and enables pagination through a set of `NaicsCode`."""
+  naicsCodesByFuelNaicsCodeDeletedByAndNaicsCodeId(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -11018,12 +11018,12 @@ type CiipUser implements Node {
     """
     A condition to be used in determining which values should be returned by the collection.
     """
-    condition: NaicCondition
+    condition: NaicsCodeCondition
 
     """
     A filter to be used in determining which values should be returned by the collection.
     """
-    filter: NaicFilter
+    filter: NaicsCodeFilter
 
     """Only read the first `n` values of the set."""
     first: Int
@@ -11037,12 +11037,12 @@ type CiipUser implements Node {
     """
     offset: Int
 
-    """The method to use when ordering `Naic`."""
-    orderBy: [NaicsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): CiipUserNaicsByFuelNaicDeletedByAndNaicsIdManyToManyConnection!
+    """The method to use when ordering `NaicsCode`."""
+    orderBy: [NaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CiipUserNaicsCodesByFuelNaicsCodeDeletedByAndNaicsCodeIdManyToManyConnection!
 
-  """Reads and enables pagination through a set of `Naic`."""
-  naicsByFuelNaicUpdatedByAndNaicsId(
+  """Reads and enables pagination through a set of `NaicsCode`."""
+  naicsCodesByFuelNaicsCodeUpdatedByAndNaicsCodeId(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -11052,12 +11052,12 @@ type CiipUser implements Node {
     """
     A condition to be used in determining which values should be returned by the collection.
     """
-    condition: NaicCondition
+    condition: NaicsCodeCondition
 
     """
     A filter to be used in determining which values should be returned by the collection.
     """
-    filter: NaicFilter
+    filter: NaicsCodeFilter
 
     """Only read the first `n` values of the set."""
     first: Int
@@ -11071,12 +11071,12 @@ type CiipUser implements Node {
     """
     offset: Int
 
-    """The method to use when ordering `Naic`."""
-    orderBy: [NaicsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): CiipUserNaicsByFuelNaicUpdatedByAndNaicsIdManyToManyConnection!
+    """The method to use when ordering `NaicsCode`."""
+    orderBy: [NaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CiipUserNaicsCodesByFuelNaicsCodeUpdatedByAndNaicsCodeIdManyToManyConnection!
 
-  """Reads and enables pagination through a set of `Naic`."""
-  naicsByUpdatedBy(
+  """Reads and enables pagination through a set of `NaicsCode`."""
+  naicsCodesByUpdatedBy(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -11086,12 +11086,12 @@ type CiipUser implements Node {
     """
     A condition to be used in determining which values should be returned by the collection.
     """
-    condition: NaicCondition
+    condition: NaicsCodeCondition
 
     """
     A filter to be used in determining which values should be returned by the collection.
     """
-    filter: NaicFilter
+    filter: NaicsCodeFilter
 
     """Only read the first `n` values of the set."""
     first: Int
@@ -11105,9 +11105,9 @@ type CiipUser implements Node {
     """
     offset: Int
 
-    """The method to use when ordering `Naic`."""
-    orderBy: [NaicsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): NaicsConnection!
+    """The method to use when ordering `NaicsCode`."""
+    orderBy: [NaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): NaicsCodesConnection!
 
   """User's occupation"""
   occupation: String
@@ -16855,13 +16855,13 @@ type CiipUserCiipUsersByFuelDeletedByAndUpdatedByManyToManyEdge {
 }
 
 """
-A connection to a list of `CiipUser` values, with data from `FuelNaic`.
+A connection to a list of `CiipUser` values, with data from `FuelNaicsCode`.
 """
-type CiipUserCiipUsersByFuelNaicCreatedByAndDeletedByManyToManyConnection {
+type CiipUserCiipUsersByFuelNaicsCodeCreatedByAndDeletedByManyToManyConnection {
   """
-  A list of edges which contains the `CiipUser`, info from the `FuelNaic`, and the cursor to aid in pagination.
+  A list of edges which contains the `CiipUser`, info from the `FuelNaicsCode`, and the cursor to aid in pagination.
   """
-  edges: [CiipUserCiipUsersByFuelNaicCreatedByAndDeletedByManyToManyEdge!]!
+  edges: [CiipUserCiipUsersByFuelNaicsCodeCreatedByAndDeletedByManyToManyEdge!]!
 
   """A list of `CiipUser` objects."""
   nodes: [CiipUser]!
@@ -16873,13 +16873,13 @@ type CiipUserCiipUsersByFuelNaicCreatedByAndDeletedByManyToManyConnection {
   totalCount: Int!
 }
 
-"""A `CiipUser` edge in the connection, with data from `FuelNaic`."""
-type CiipUserCiipUsersByFuelNaicCreatedByAndDeletedByManyToManyEdge {
+"""A `CiipUser` edge in the connection, with data from `FuelNaicsCode`."""
+type CiipUserCiipUsersByFuelNaicsCodeCreatedByAndDeletedByManyToManyEdge {
   """A cursor for use in pagination."""
   cursor: Cursor
 
-  """Reads and enables pagination through a set of `FuelNaic`."""
-  fuelNaicsByDeletedBy(
+  """Reads and enables pagination through a set of `FuelNaicsCode`."""
+  fuelNaicsCodesByDeletedBy(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -16889,12 +16889,12 @@ type CiipUserCiipUsersByFuelNaicCreatedByAndDeletedByManyToManyEdge {
     """
     A condition to be used in determining which values should be returned by the collection.
     """
-    condition: FuelNaicCondition
+    condition: FuelNaicsCodeCondition
 
     """
     A filter to be used in determining which values should be returned by the collection.
     """
-    filter: FuelNaicFilter
+    filter: FuelNaicsCodeFilter
 
     """Only read the first `n` values of the set."""
     first: Int
@@ -16908,22 +16908,22 @@ type CiipUserCiipUsersByFuelNaicCreatedByAndDeletedByManyToManyEdge {
     """
     offset: Int
 
-    """The method to use when ordering `FuelNaic`."""
-    orderBy: [FuelNaicsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): FuelNaicsConnection!
+    """The method to use when ordering `FuelNaicsCode`."""
+    orderBy: [FuelNaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): FuelNaicsCodesConnection!
 
   """The `CiipUser` at the end of the edge."""
   node: CiipUser
 }
 
 """
-A connection to a list of `CiipUser` values, with data from `FuelNaic`.
+A connection to a list of `CiipUser` values, with data from `FuelNaicsCode`.
 """
-type CiipUserCiipUsersByFuelNaicCreatedByAndUpdatedByManyToManyConnection {
+type CiipUserCiipUsersByFuelNaicsCodeCreatedByAndUpdatedByManyToManyConnection {
   """
-  A list of edges which contains the `CiipUser`, info from the `FuelNaic`, and the cursor to aid in pagination.
+  A list of edges which contains the `CiipUser`, info from the `FuelNaicsCode`, and the cursor to aid in pagination.
   """
-  edges: [CiipUserCiipUsersByFuelNaicCreatedByAndUpdatedByManyToManyEdge!]!
+  edges: [CiipUserCiipUsersByFuelNaicsCodeCreatedByAndUpdatedByManyToManyEdge!]!
 
   """A list of `CiipUser` objects."""
   nodes: [CiipUser]!
@@ -16935,13 +16935,13 @@ type CiipUserCiipUsersByFuelNaicCreatedByAndUpdatedByManyToManyConnection {
   totalCount: Int!
 }
 
-"""A `CiipUser` edge in the connection, with data from `FuelNaic`."""
-type CiipUserCiipUsersByFuelNaicCreatedByAndUpdatedByManyToManyEdge {
+"""A `CiipUser` edge in the connection, with data from `FuelNaicsCode`."""
+type CiipUserCiipUsersByFuelNaicsCodeCreatedByAndUpdatedByManyToManyEdge {
   """A cursor for use in pagination."""
   cursor: Cursor
 
-  """Reads and enables pagination through a set of `FuelNaic`."""
-  fuelNaicsByUpdatedBy(
+  """Reads and enables pagination through a set of `FuelNaicsCode`."""
+  fuelNaicsCodesByUpdatedBy(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -16951,12 +16951,12 @@ type CiipUserCiipUsersByFuelNaicCreatedByAndUpdatedByManyToManyEdge {
     """
     A condition to be used in determining which values should be returned by the collection.
     """
-    condition: FuelNaicCondition
+    condition: FuelNaicsCodeCondition
 
     """
     A filter to be used in determining which values should be returned by the collection.
     """
-    filter: FuelNaicFilter
+    filter: FuelNaicsCodeFilter
 
     """Only read the first `n` values of the set."""
     first: Int
@@ -16970,22 +16970,22 @@ type CiipUserCiipUsersByFuelNaicCreatedByAndUpdatedByManyToManyEdge {
     """
     offset: Int
 
-    """The method to use when ordering `FuelNaic`."""
-    orderBy: [FuelNaicsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): FuelNaicsConnection!
+    """The method to use when ordering `FuelNaicsCode`."""
+    orderBy: [FuelNaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): FuelNaicsCodesConnection!
 
   """The `CiipUser` at the end of the edge."""
   node: CiipUser
 }
 
 """
-A connection to a list of `CiipUser` values, with data from `FuelNaic`.
+A connection to a list of `CiipUser` values, with data from `FuelNaicsCode`.
 """
-type CiipUserCiipUsersByFuelNaicDeletedByAndCreatedByManyToManyConnection {
+type CiipUserCiipUsersByFuelNaicsCodeDeletedByAndCreatedByManyToManyConnection {
   """
-  A list of edges which contains the `CiipUser`, info from the `FuelNaic`, and the cursor to aid in pagination.
+  A list of edges which contains the `CiipUser`, info from the `FuelNaicsCode`, and the cursor to aid in pagination.
   """
-  edges: [CiipUserCiipUsersByFuelNaicDeletedByAndCreatedByManyToManyEdge!]!
+  edges: [CiipUserCiipUsersByFuelNaicsCodeDeletedByAndCreatedByManyToManyEdge!]!
 
   """A list of `CiipUser` objects."""
   nodes: [CiipUser]!
@@ -16997,13 +16997,13 @@ type CiipUserCiipUsersByFuelNaicDeletedByAndCreatedByManyToManyConnection {
   totalCount: Int!
 }
 
-"""A `CiipUser` edge in the connection, with data from `FuelNaic`."""
-type CiipUserCiipUsersByFuelNaicDeletedByAndCreatedByManyToManyEdge {
+"""A `CiipUser` edge in the connection, with data from `FuelNaicsCode`."""
+type CiipUserCiipUsersByFuelNaicsCodeDeletedByAndCreatedByManyToManyEdge {
   """A cursor for use in pagination."""
   cursor: Cursor
 
-  """Reads and enables pagination through a set of `FuelNaic`."""
-  fuelNaicsByCreatedBy(
+  """Reads and enables pagination through a set of `FuelNaicsCode`."""
+  fuelNaicsCodesByCreatedBy(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -17013,12 +17013,12 @@ type CiipUserCiipUsersByFuelNaicDeletedByAndCreatedByManyToManyEdge {
     """
     A condition to be used in determining which values should be returned by the collection.
     """
-    condition: FuelNaicCondition
+    condition: FuelNaicsCodeCondition
 
     """
     A filter to be used in determining which values should be returned by the collection.
     """
-    filter: FuelNaicFilter
+    filter: FuelNaicsCodeFilter
 
     """Only read the first `n` values of the set."""
     first: Int
@@ -17032,22 +17032,22 @@ type CiipUserCiipUsersByFuelNaicDeletedByAndCreatedByManyToManyEdge {
     """
     offset: Int
 
-    """The method to use when ordering `FuelNaic`."""
-    orderBy: [FuelNaicsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): FuelNaicsConnection!
+    """The method to use when ordering `FuelNaicsCode`."""
+    orderBy: [FuelNaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): FuelNaicsCodesConnection!
 
   """The `CiipUser` at the end of the edge."""
   node: CiipUser
 }
 
 """
-A connection to a list of `CiipUser` values, with data from `FuelNaic`.
+A connection to a list of `CiipUser` values, with data from `FuelNaicsCode`.
 """
-type CiipUserCiipUsersByFuelNaicDeletedByAndUpdatedByManyToManyConnection {
+type CiipUserCiipUsersByFuelNaicsCodeDeletedByAndUpdatedByManyToManyConnection {
   """
-  A list of edges which contains the `CiipUser`, info from the `FuelNaic`, and the cursor to aid in pagination.
+  A list of edges which contains the `CiipUser`, info from the `FuelNaicsCode`, and the cursor to aid in pagination.
   """
-  edges: [CiipUserCiipUsersByFuelNaicDeletedByAndUpdatedByManyToManyEdge!]!
+  edges: [CiipUserCiipUsersByFuelNaicsCodeDeletedByAndUpdatedByManyToManyEdge!]!
 
   """A list of `CiipUser` objects."""
   nodes: [CiipUser]!
@@ -17059,13 +17059,13 @@ type CiipUserCiipUsersByFuelNaicDeletedByAndUpdatedByManyToManyConnection {
   totalCount: Int!
 }
 
-"""A `CiipUser` edge in the connection, with data from `FuelNaic`."""
-type CiipUserCiipUsersByFuelNaicDeletedByAndUpdatedByManyToManyEdge {
+"""A `CiipUser` edge in the connection, with data from `FuelNaicsCode`."""
+type CiipUserCiipUsersByFuelNaicsCodeDeletedByAndUpdatedByManyToManyEdge {
   """A cursor for use in pagination."""
   cursor: Cursor
 
-  """Reads and enables pagination through a set of `FuelNaic`."""
-  fuelNaicsByUpdatedBy(
+  """Reads and enables pagination through a set of `FuelNaicsCode`."""
+  fuelNaicsCodesByUpdatedBy(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -17075,12 +17075,12 @@ type CiipUserCiipUsersByFuelNaicDeletedByAndUpdatedByManyToManyEdge {
     """
     A condition to be used in determining which values should be returned by the collection.
     """
-    condition: FuelNaicCondition
+    condition: FuelNaicsCodeCondition
 
     """
     A filter to be used in determining which values should be returned by the collection.
     """
-    filter: FuelNaicFilter
+    filter: FuelNaicsCodeFilter
 
     """Only read the first `n` values of the set."""
     first: Int
@@ -17094,22 +17094,22 @@ type CiipUserCiipUsersByFuelNaicDeletedByAndUpdatedByManyToManyEdge {
     """
     offset: Int
 
-    """The method to use when ordering `FuelNaic`."""
-    orderBy: [FuelNaicsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): FuelNaicsConnection!
+    """The method to use when ordering `FuelNaicsCode`."""
+    orderBy: [FuelNaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): FuelNaicsCodesConnection!
 
   """The `CiipUser` at the end of the edge."""
   node: CiipUser
 }
 
 """
-A connection to a list of `CiipUser` values, with data from `FuelNaic`.
+A connection to a list of `CiipUser` values, with data from `FuelNaicsCode`.
 """
-type CiipUserCiipUsersByFuelNaicUpdatedByAndCreatedByManyToManyConnection {
+type CiipUserCiipUsersByFuelNaicsCodeUpdatedByAndCreatedByManyToManyConnection {
   """
-  A list of edges which contains the `CiipUser`, info from the `FuelNaic`, and the cursor to aid in pagination.
+  A list of edges which contains the `CiipUser`, info from the `FuelNaicsCode`, and the cursor to aid in pagination.
   """
-  edges: [CiipUserCiipUsersByFuelNaicUpdatedByAndCreatedByManyToManyEdge!]!
+  edges: [CiipUserCiipUsersByFuelNaicsCodeUpdatedByAndCreatedByManyToManyEdge!]!
 
   """A list of `CiipUser` objects."""
   nodes: [CiipUser]!
@@ -17121,13 +17121,13 @@ type CiipUserCiipUsersByFuelNaicUpdatedByAndCreatedByManyToManyConnection {
   totalCount: Int!
 }
 
-"""A `CiipUser` edge in the connection, with data from `FuelNaic`."""
-type CiipUserCiipUsersByFuelNaicUpdatedByAndCreatedByManyToManyEdge {
+"""A `CiipUser` edge in the connection, with data from `FuelNaicsCode`."""
+type CiipUserCiipUsersByFuelNaicsCodeUpdatedByAndCreatedByManyToManyEdge {
   """A cursor for use in pagination."""
   cursor: Cursor
 
-  """Reads and enables pagination through a set of `FuelNaic`."""
-  fuelNaicsByCreatedBy(
+  """Reads and enables pagination through a set of `FuelNaicsCode`."""
+  fuelNaicsCodesByCreatedBy(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -17137,12 +17137,12 @@ type CiipUserCiipUsersByFuelNaicUpdatedByAndCreatedByManyToManyEdge {
     """
     A condition to be used in determining which values should be returned by the collection.
     """
-    condition: FuelNaicCondition
+    condition: FuelNaicsCodeCondition
 
     """
     A filter to be used in determining which values should be returned by the collection.
     """
-    filter: FuelNaicFilter
+    filter: FuelNaicsCodeFilter
 
     """Only read the first `n` values of the set."""
     first: Int
@@ -17156,22 +17156,22 @@ type CiipUserCiipUsersByFuelNaicUpdatedByAndCreatedByManyToManyEdge {
     """
     offset: Int
 
-    """The method to use when ordering `FuelNaic`."""
-    orderBy: [FuelNaicsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): FuelNaicsConnection!
+    """The method to use when ordering `FuelNaicsCode`."""
+    orderBy: [FuelNaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): FuelNaicsCodesConnection!
 
   """The `CiipUser` at the end of the edge."""
   node: CiipUser
 }
 
 """
-A connection to a list of `CiipUser` values, with data from `FuelNaic`.
+A connection to a list of `CiipUser` values, with data from `FuelNaicsCode`.
 """
-type CiipUserCiipUsersByFuelNaicUpdatedByAndDeletedByManyToManyConnection {
+type CiipUserCiipUsersByFuelNaicsCodeUpdatedByAndDeletedByManyToManyConnection {
   """
-  A list of edges which contains the `CiipUser`, info from the `FuelNaic`, and the cursor to aid in pagination.
+  A list of edges which contains the `CiipUser`, info from the `FuelNaicsCode`, and the cursor to aid in pagination.
   """
-  edges: [CiipUserCiipUsersByFuelNaicUpdatedByAndDeletedByManyToManyEdge!]!
+  edges: [CiipUserCiipUsersByFuelNaicsCodeUpdatedByAndDeletedByManyToManyEdge!]!
 
   """A list of `CiipUser` objects."""
   nodes: [CiipUser]!
@@ -17183,13 +17183,13 @@ type CiipUserCiipUsersByFuelNaicUpdatedByAndDeletedByManyToManyConnection {
   totalCount: Int!
 }
 
-"""A `CiipUser` edge in the connection, with data from `FuelNaic`."""
-type CiipUserCiipUsersByFuelNaicUpdatedByAndDeletedByManyToManyEdge {
+"""A `CiipUser` edge in the connection, with data from `FuelNaicsCode`."""
+type CiipUserCiipUsersByFuelNaicsCodeUpdatedByAndDeletedByManyToManyEdge {
   """A cursor for use in pagination."""
   cursor: Cursor
 
-  """Reads and enables pagination through a set of `FuelNaic`."""
-  fuelNaicsByDeletedBy(
+  """Reads and enables pagination through a set of `FuelNaicsCode`."""
+  fuelNaicsCodesByDeletedBy(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -17199,12 +17199,12 @@ type CiipUserCiipUsersByFuelNaicUpdatedByAndDeletedByManyToManyEdge {
     """
     A condition to be used in determining which values should be returned by the collection.
     """
-    condition: FuelNaicCondition
+    condition: FuelNaicsCodeCondition
 
     """
     A filter to be used in determining which values should be returned by the collection.
     """
-    filter: FuelNaicFilter
+    filter: FuelNaicsCodeFilter
 
     """Only read the first `n` values of the set."""
     first: Int
@@ -17218,9 +17218,9 @@ type CiipUserCiipUsersByFuelNaicUpdatedByAndDeletedByManyToManyEdge {
     """
     offset: Int
 
-    """The method to use when ordering `FuelNaic`."""
-    orderBy: [FuelNaicsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): FuelNaicsConnection!
+    """The method to use when ordering `FuelNaicsCode`."""
+    orderBy: [FuelNaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): FuelNaicsCodesConnection!
 
   """The `CiipUser` at the end of the edge."""
   node: CiipUser
@@ -18078,12 +18078,14 @@ type CiipUserCiipUsersByLinkedProductUpdatedByAndDeletedByManyToManyEdge {
   node: CiipUser
 }
 
-"""A connection to a list of `CiipUser` values, with data from `Naic`."""
-type CiipUserCiipUsersByNaicCreatedByAndDeletedByManyToManyConnection {
+"""
+A connection to a list of `CiipUser` values, with data from `NaicsCode`.
+"""
+type CiipUserCiipUsersByNaicsCodeCreatedByAndDeletedByManyToManyConnection {
   """
-  A list of edges which contains the `CiipUser`, info from the `Naic`, and the cursor to aid in pagination.
+  A list of edges which contains the `CiipUser`, info from the `NaicsCode`, and the cursor to aid in pagination.
   """
-  edges: [CiipUserCiipUsersByNaicCreatedByAndDeletedByManyToManyEdge!]!
+  edges: [CiipUserCiipUsersByNaicsCodeCreatedByAndDeletedByManyToManyEdge!]!
 
   """A list of `CiipUser` objects."""
   nodes: [CiipUser]!
@@ -18095,13 +18097,13 @@ type CiipUserCiipUsersByNaicCreatedByAndDeletedByManyToManyConnection {
   totalCount: Int!
 }
 
-"""A `CiipUser` edge in the connection, with data from `Naic`."""
-type CiipUserCiipUsersByNaicCreatedByAndDeletedByManyToManyEdge {
+"""A `CiipUser` edge in the connection, with data from `NaicsCode`."""
+type CiipUserCiipUsersByNaicsCodeCreatedByAndDeletedByManyToManyEdge {
   """A cursor for use in pagination."""
   cursor: Cursor
 
-  """Reads and enables pagination through a set of `Naic`."""
-  naicsByDeletedBy(
+  """Reads and enables pagination through a set of `NaicsCode`."""
+  naicsCodesByDeletedBy(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -18111,12 +18113,12 @@ type CiipUserCiipUsersByNaicCreatedByAndDeletedByManyToManyEdge {
     """
     A condition to be used in determining which values should be returned by the collection.
     """
-    condition: NaicCondition
+    condition: NaicsCodeCondition
 
     """
     A filter to be used in determining which values should be returned by the collection.
     """
-    filter: NaicFilter
+    filter: NaicsCodeFilter
 
     """Only read the first `n` values of the set."""
     first: Int
@@ -18130,20 +18132,22 @@ type CiipUserCiipUsersByNaicCreatedByAndDeletedByManyToManyEdge {
     """
     offset: Int
 
-    """The method to use when ordering `Naic`."""
-    orderBy: [NaicsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): NaicsConnection!
+    """The method to use when ordering `NaicsCode`."""
+    orderBy: [NaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): NaicsCodesConnection!
 
   """The `CiipUser` at the end of the edge."""
   node: CiipUser
 }
 
-"""A connection to a list of `CiipUser` values, with data from `Naic`."""
-type CiipUserCiipUsersByNaicCreatedByAndUpdatedByManyToManyConnection {
+"""
+A connection to a list of `CiipUser` values, with data from `NaicsCode`.
+"""
+type CiipUserCiipUsersByNaicsCodeCreatedByAndUpdatedByManyToManyConnection {
   """
-  A list of edges which contains the `CiipUser`, info from the `Naic`, and the cursor to aid in pagination.
+  A list of edges which contains the `CiipUser`, info from the `NaicsCode`, and the cursor to aid in pagination.
   """
-  edges: [CiipUserCiipUsersByNaicCreatedByAndUpdatedByManyToManyEdge!]!
+  edges: [CiipUserCiipUsersByNaicsCodeCreatedByAndUpdatedByManyToManyEdge!]!
 
   """A list of `CiipUser` objects."""
   nodes: [CiipUser]!
@@ -18155,13 +18159,13 @@ type CiipUserCiipUsersByNaicCreatedByAndUpdatedByManyToManyConnection {
   totalCount: Int!
 }
 
-"""A `CiipUser` edge in the connection, with data from `Naic`."""
-type CiipUserCiipUsersByNaicCreatedByAndUpdatedByManyToManyEdge {
+"""A `CiipUser` edge in the connection, with data from `NaicsCode`."""
+type CiipUserCiipUsersByNaicsCodeCreatedByAndUpdatedByManyToManyEdge {
   """A cursor for use in pagination."""
   cursor: Cursor
 
-  """Reads and enables pagination through a set of `Naic`."""
-  naicsByUpdatedBy(
+  """Reads and enables pagination through a set of `NaicsCode`."""
+  naicsCodesByUpdatedBy(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -18171,12 +18175,12 @@ type CiipUserCiipUsersByNaicCreatedByAndUpdatedByManyToManyEdge {
     """
     A condition to be used in determining which values should be returned by the collection.
     """
-    condition: NaicCondition
+    condition: NaicsCodeCondition
 
     """
     A filter to be used in determining which values should be returned by the collection.
     """
-    filter: NaicFilter
+    filter: NaicsCodeFilter
 
     """Only read the first `n` values of the set."""
     first: Int
@@ -18190,20 +18194,22 @@ type CiipUserCiipUsersByNaicCreatedByAndUpdatedByManyToManyEdge {
     """
     offset: Int
 
-    """The method to use when ordering `Naic`."""
-    orderBy: [NaicsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): NaicsConnection!
+    """The method to use when ordering `NaicsCode`."""
+    orderBy: [NaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): NaicsCodesConnection!
 
   """The `CiipUser` at the end of the edge."""
   node: CiipUser
 }
 
-"""A connection to a list of `CiipUser` values, with data from `Naic`."""
-type CiipUserCiipUsersByNaicDeletedByAndCreatedByManyToManyConnection {
+"""
+A connection to a list of `CiipUser` values, with data from `NaicsCode`.
+"""
+type CiipUserCiipUsersByNaicsCodeDeletedByAndCreatedByManyToManyConnection {
   """
-  A list of edges which contains the `CiipUser`, info from the `Naic`, and the cursor to aid in pagination.
+  A list of edges which contains the `CiipUser`, info from the `NaicsCode`, and the cursor to aid in pagination.
   """
-  edges: [CiipUserCiipUsersByNaicDeletedByAndCreatedByManyToManyEdge!]!
+  edges: [CiipUserCiipUsersByNaicsCodeDeletedByAndCreatedByManyToManyEdge!]!
 
   """A list of `CiipUser` objects."""
   nodes: [CiipUser]!
@@ -18215,13 +18221,13 @@ type CiipUserCiipUsersByNaicDeletedByAndCreatedByManyToManyConnection {
   totalCount: Int!
 }
 
-"""A `CiipUser` edge in the connection, with data from `Naic`."""
-type CiipUserCiipUsersByNaicDeletedByAndCreatedByManyToManyEdge {
+"""A `CiipUser` edge in the connection, with data from `NaicsCode`."""
+type CiipUserCiipUsersByNaicsCodeDeletedByAndCreatedByManyToManyEdge {
   """A cursor for use in pagination."""
   cursor: Cursor
 
-  """Reads and enables pagination through a set of `Naic`."""
-  naicsByCreatedBy(
+  """Reads and enables pagination through a set of `NaicsCode`."""
+  naicsCodesByCreatedBy(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -18231,12 +18237,12 @@ type CiipUserCiipUsersByNaicDeletedByAndCreatedByManyToManyEdge {
     """
     A condition to be used in determining which values should be returned by the collection.
     """
-    condition: NaicCondition
+    condition: NaicsCodeCondition
 
     """
     A filter to be used in determining which values should be returned by the collection.
     """
-    filter: NaicFilter
+    filter: NaicsCodeFilter
 
     """Only read the first `n` values of the set."""
     first: Int
@@ -18250,20 +18256,22 @@ type CiipUserCiipUsersByNaicDeletedByAndCreatedByManyToManyEdge {
     """
     offset: Int
 
-    """The method to use when ordering `Naic`."""
-    orderBy: [NaicsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): NaicsConnection!
+    """The method to use when ordering `NaicsCode`."""
+    orderBy: [NaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): NaicsCodesConnection!
 
   """The `CiipUser` at the end of the edge."""
   node: CiipUser
 }
 
-"""A connection to a list of `CiipUser` values, with data from `Naic`."""
-type CiipUserCiipUsersByNaicDeletedByAndUpdatedByManyToManyConnection {
+"""
+A connection to a list of `CiipUser` values, with data from `NaicsCode`.
+"""
+type CiipUserCiipUsersByNaicsCodeDeletedByAndUpdatedByManyToManyConnection {
   """
-  A list of edges which contains the `CiipUser`, info from the `Naic`, and the cursor to aid in pagination.
+  A list of edges which contains the `CiipUser`, info from the `NaicsCode`, and the cursor to aid in pagination.
   """
-  edges: [CiipUserCiipUsersByNaicDeletedByAndUpdatedByManyToManyEdge!]!
+  edges: [CiipUserCiipUsersByNaicsCodeDeletedByAndUpdatedByManyToManyEdge!]!
 
   """A list of `CiipUser` objects."""
   nodes: [CiipUser]!
@@ -18275,13 +18283,13 @@ type CiipUserCiipUsersByNaicDeletedByAndUpdatedByManyToManyConnection {
   totalCount: Int!
 }
 
-"""A `CiipUser` edge in the connection, with data from `Naic`."""
-type CiipUserCiipUsersByNaicDeletedByAndUpdatedByManyToManyEdge {
+"""A `CiipUser` edge in the connection, with data from `NaicsCode`."""
+type CiipUserCiipUsersByNaicsCodeDeletedByAndUpdatedByManyToManyEdge {
   """A cursor for use in pagination."""
   cursor: Cursor
 
-  """Reads and enables pagination through a set of `Naic`."""
-  naicsByUpdatedBy(
+  """Reads and enables pagination through a set of `NaicsCode`."""
+  naicsCodesByUpdatedBy(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -18291,12 +18299,12 @@ type CiipUserCiipUsersByNaicDeletedByAndUpdatedByManyToManyEdge {
     """
     A condition to be used in determining which values should be returned by the collection.
     """
-    condition: NaicCondition
+    condition: NaicsCodeCondition
 
     """
     A filter to be used in determining which values should be returned by the collection.
     """
-    filter: NaicFilter
+    filter: NaicsCodeFilter
 
     """Only read the first `n` values of the set."""
     first: Int
@@ -18310,20 +18318,22 @@ type CiipUserCiipUsersByNaicDeletedByAndUpdatedByManyToManyEdge {
     """
     offset: Int
 
-    """The method to use when ordering `Naic`."""
-    orderBy: [NaicsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): NaicsConnection!
+    """The method to use when ordering `NaicsCode`."""
+    orderBy: [NaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): NaicsCodesConnection!
 
   """The `CiipUser` at the end of the edge."""
   node: CiipUser
 }
 
-"""A connection to a list of `CiipUser` values, with data from `Naic`."""
-type CiipUserCiipUsersByNaicUpdatedByAndCreatedByManyToManyConnection {
+"""
+A connection to a list of `CiipUser` values, with data from `NaicsCode`.
+"""
+type CiipUserCiipUsersByNaicsCodeUpdatedByAndCreatedByManyToManyConnection {
   """
-  A list of edges which contains the `CiipUser`, info from the `Naic`, and the cursor to aid in pagination.
+  A list of edges which contains the `CiipUser`, info from the `NaicsCode`, and the cursor to aid in pagination.
   """
-  edges: [CiipUserCiipUsersByNaicUpdatedByAndCreatedByManyToManyEdge!]!
+  edges: [CiipUserCiipUsersByNaicsCodeUpdatedByAndCreatedByManyToManyEdge!]!
 
   """A list of `CiipUser` objects."""
   nodes: [CiipUser]!
@@ -18335,13 +18345,13 @@ type CiipUserCiipUsersByNaicUpdatedByAndCreatedByManyToManyConnection {
   totalCount: Int!
 }
 
-"""A `CiipUser` edge in the connection, with data from `Naic`."""
-type CiipUserCiipUsersByNaicUpdatedByAndCreatedByManyToManyEdge {
+"""A `CiipUser` edge in the connection, with data from `NaicsCode`."""
+type CiipUserCiipUsersByNaicsCodeUpdatedByAndCreatedByManyToManyEdge {
   """A cursor for use in pagination."""
   cursor: Cursor
 
-  """Reads and enables pagination through a set of `Naic`."""
-  naicsByCreatedBy(
+  """Reads and enables pagination through a set of `NaicsCode`."""
+  naicsCodesByCreatedBy(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -18351,12 +18361,12 @@ type CiipUserCiipUsersByNaicUpdatedByAndCreatedByManyToManyEdge {
     """
     A condition to be used in determining which values should be returned by the collection.
     """
-    condition: NaicCondition
+    condition: NaicsCodeCondition
 
     """
     A filter to be used in determining which values should be returned by the collection.
     """
-    filter: NaicFilter
+    filter: NaicsCodeFilter
 
     """Only read the first `n` values of the set."""
     first: Int
@@ -18370,20 +18380,22 @@ type CiipUserCiipUsersByNaicUpdatedByAndCreatedByManyToManyEdge {
     """
     offset: Int
 
-    """The method to use when ordering `Naic`."""
-    orderBy: [NaicsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): NaicsConnection!
+    """The method to use when ordering `NaicsCode`."""
+    orderBy: [NaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): NaicsCodesConnection!
 
   """The `CiipUser` at the end of the edge."""
   node: CiipUser
 }
 
-"""A connection to a list of `CiipUser` values, with data from `Naic`."""
-type CiipUserCiipUsersByNaicUpdatedByAndDeletedByManyToManyConnection {
+"""
+A connection to a list of `CiipUser` values, with data from `NaicsCode`.
+"""
+type CiipUserCiipUsersByNaicsCodeUpdatedByAndDeletedByManyToManyConnection {
   """
-  A list of edges which contains the `CiipUser`, info from the `Naic`, and the cursor to aid in pagination.
+  A list of edges which contains the `CiipUser`, info from the `NaicsCode`, and the cursor to aid in pagination.
   """
-  edges: [CiipUserCiipUsersByNaicUpdatedByAndDeletedByManyToManyEdge!]!
+  edges: [CiipUserCiipUsersByNaicsCodeUpdatedByAndDeletedByManyToManyEdge!]!
 
   """A list of `CiipUser` objects."""
   nodes: [CiipUser]!
@@ -18395,13 +18407,13 @@ type CiipUserCiipUsersByNaicUpdatedByAndDeletedByManyToManyConnection {
   totalCount: Int!
 }
 
-"""A `CiipUser` edge in the connection, with data from `Naic`."""
-type CiipUserCiipUsersByNaicUpdatedByAndDeletedByManyToManyEdge {
+"""A `CiipUser` edge in the connection, with data from `NaicsCode`."""
+type CiipUserCiipUsersByNaicsCodeUpdatedByAndDeletedByManyToManyEdge {
   """A cursor for use in pagination."""
   cursor: Cursor
 
-  """Reads and enables pagination through a set of `Naic`."""
-  naicsByDeletedBy(
+  """Reads and enables pagination through a set of `NaicsCode`."""
+  naicsCodesByDeletedBy(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -18411,12 +18423,12 @@ type CiipUserCiipUsersByNaicUpdatedByAndDeletedByManyToManyEdge {
     """
     A condition to be used in determining which values should be returned by the collection.
     """
-    condition: NaicCondition
+    condition: NaicsCodeCondition
 
     """
     A filter to be used in determining which values should be returned by the collection.
     """
-    filter: NaicFilter
+    filter: NaicsCodeFilter
 
     """Only read the first `n` values of the set."""
     first: Int
@@ -18430,9 +18442,9 @@ type CiipUserCiipUsersByNaicUpdatedByAndDeletedByManyToManyEdge {
     """
     offset: Int
 
-    """The method to use when ordering `Naic`."""
-    orderBy: [NaicsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): NaicsConnection!
+    """The method to use when ordering `NaicsCode`."""
+    orderBy: [NaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): NaicsCodesConnection!
 
   """The `CiipUser` at the end of the edge."""
   node: CiipUser
@@ -19844,12 +19856,14 @@ type CiipUserFormJsonsByReviewCommentUpdatedByAndFormIdManyToManyEdge {
   ): ReviewCommentsConnection!
 }
 
-"""A connection to a list of `Fuel` values, with data from `FuelNaic`."""
-type CiipUserFuelsByFuelNaicCreatedByAndFuelIdManyToManyConnection {
+"""
+A connection to a list of `Fuel` values, with data from `FuelNaicsCode`.
+"""
+type CiipUserFuelsByFuelNaicsCodeCreatedByAndFuelIdManyToManyConnection {
   """
-  A list of edges which contains the `Fuel`, info from the `FuelNaic`, and the cursor to aid in pagination.
+  A list of edges which contains the `Fuel`, info from the `FuelNaicsCode`, and the cursor to aid in pagination.
   """
-  edges: [CiipUserFuelsByFuelNaicCreatedByAndFuelIdManyToManyEdge!]!
+  edges: [CiipUserFuelsByFuelNaicsCodeCreatedByAndFuelIdManyToManyEdge!]!
 
   """A list of `Fuel` objects."""
   nodes: [Fuel]!
@@ -19861,13 +19875,13 @@ type CiipUserFuelsByFuelNaicCreatedByAndFuelIdManyToManyConnection {
   totalCount: Int!
 }
 
-"""A `Fuel` edge in the connection, with data from `FuelNaic`."""
-type CiipUserFuelsByFuelNaicCreatedByAndFuelIdManyToManyEdge {
+"""A `Fuel` edge in the connection, with data from `FuelNaicsCode`."""
+type CiipUserFuelsByFuelNaicsCodeCreatedByAndFuelIdManyToManyEdge {
   """A cursor for use in pagination."""
   cursor: Cursor
 
-  """Reads and enables pagination through a set of `FuelNaic`."""
-  fuelNaicsByFuelId(
+  """Reads and enables pagination through a set of `FuelNaicsCode`."""
+  fuelNaicsCodesByFuelId(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -19877,12 +19891,12 @@ type CiipUserFuelsByFuelNaicCreatedByAndFuelIdManyToManyEdge {
     """
     A condition to be used in determining which values should be returned by the collection.
     """
-    condition: FuelNaicCondition
+    condition: FuelNaicsCodeCondition
 
     """
     A filter to be used in determining which values should be returned by the collection.
     """
-    filter: FuelNaicFilter
+    filter: FuelNaicsCodeFilter
 
     """Only read the first `n` values of the set."""
     first: Int
@@ -19896,20 +19910,22 @@ type CiipUserFuelsByFuelNaicCreatedByAndFuelIdManyToManyEdge {
     """
     offset: Int
 
-    """The method to use when ordering `FuelNaic`."""
-    orderBy: [FuelNaicsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): FuelNaicsConnection!
+    """The method to use when ordering `FuelNaicsCode`."""
+    orderBy: [FuelNaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): FuelNaicsCodesConnection!
 
   """The `Fuel` at the end of the edge."""
   node: Fuel
 }
 
-"""A connection to a list of `Fuel` values, with data from `FuelNaic`."""
-type CiipUserFuelsByFuelNaicDeletedByAndFuelIdManyToManyConnection {
+"""
+A connection to a list of `Fuel` values, with data from `FuelNaicsCode`.
+"""
+type CiipUserFuelsByFuelNaicsCodeDeletedByAndFuelIdManyToManyConnection {
   """
-  A list of edges which contains the `Fuel`, info from the `FuelNaic`, and the cursor to aid in pagination.
+  A list of edges which contains the `Fuel`, info from the `FuelNaicsCode`, and the cursor to aid in pagination.
   """
-  edges: [CiipUserFuelsByFuelNaicDeletedByAndFuelIdManyToManyEdge!]!
+  edges: [CiipUserFuelsByFuelNaicsCodeDeletedByAndFuelIdManyToManyEdge!]!
 
   """A list of `Fuel` objects."""
   nodes: [Fuel]!
@@ -19921,13 +19937,13 @@ type CiipUserFuelsByFuelNaicDeletedByAndFuelIdManyToManyConnection {
   totalCount: Int!
 }
 
-"""A `Fuel` edge in the connection, with data from `FuelNaic`."""
-type CiipUserFuelsByFuelNaicDeletedByAndFuelIdManyToManyEdge {
+"""A `Fuel` edge in the connection, with data from `FuelNaicsCode`."""
+type CiipUserFuelsByFuelNaicsCodeDeletedByAndFuelIdManyToManyEdge {
   """A cursor for use in pagination."""
   cursor: Cursor
 
-  """Reads and enables pagination through a set of `FuelNaic`."""
-  fuelNaicsByFuelId(
+  """Reads and enables pagination through a set of `FuelNaicsCode`."""
+  fuelNaicsCodesByFuelId(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -19937,12 +19953,12 @@ type CiipUserFuelsByFuelNaicDeletedByAndFuelIdManyToManyEdge {
     """
     A condition to be used in determining which values should be returned by the collection.
     """
-    condition: FuelNaicCondition
+    condition: FuelNaicsCodeCondition
 
     """
     A filter to be used in determining which values should be returned by the collection.
     """
-    filter: FuelNaicFilter
+    filter: FuelNaicsCodeFilter
 
     """Only read the first `n` values of the set."""
     first: Int
@@ -19956,20 +19972,22 @@ type CiipUserFuelsByFuelNaicDeletedByAndFuelIdManyToManyEdge {
     """
     offset: Int
 
-    """The method to use when ordering `FuelNaic`."""
-    orderBy: [FuelNaicsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): FuelNaicsConnection!
+    """The method to use when ordering `FuelNaicsCode`."""
+    orderBy: [FuelNaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): FuelNaicsCodesConnection!
 
   """The `Fuel` at the end of the edge."""
   node: Fuel
 }
 
-"""A connection to a list of `Fuel` values, with data from `FuelNaic`."""
-type CiipUserFuelsByFuelNaicUpdatedByAndFuelIdManyToManyConnection {
+"""
+A connection to a list of `Fuel` values, with data from `FuelNaicsCode`.
+"""
+type CiipUserFuelsByFuelNaicsCodeUpdatedByAndFuelIdManyToManyConnection {
   """
-  A list of edges which contains the `Fuel`, info from the `FuelNaic`, and the cursor to aid in pagination.
+  A list of edges which contains the `Fuel`, info from the `FuelNaicsCode`, and the cursor to aid in pagination.
   """
-  edges: [CiipUserFuelsByFuelNaicUpdatedByAndFuelIdManyToManyEdge!]!
+  edges: [CiipUserFuelsByFuelNaicsCodeUpdatedByAndFuelIdManyToManyEdge!]!
 
   """A list of `Fuel` objects."""
   nodes: [Fuel]!
@@ -19981,13 +19999,13 @@ type CiipUserFuelsByFuelNaicUpdatedByAndFuelIdManyToManyConnection {
   totalCount: Int!
 }
 
-"""A `Fuel` edge in the connection, with data from `FuelNaic`."""
-type CiipUserFuelsByFuelNaicUpdatedByAndFuelIdManyToManyEdge {
+"""A `Fuel` edge in the connection, with data from `FuelNaicsCode`."""
+type CiipUserFuelsByFuelNaicsCodeUpdatedByAndFuelIdManyToManyEdge {
   """A cursor for use in pagination."""
   cursor: Cursor
 
-  """Reads and enables pagination through a set of `FuelNaic`."""
-  fuelNaicsByFuelId(
+  """Reads and enables pagination through a set of `FuelNaicsCode`."""
+  fuelNaicsCodesByFuelId(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -19997,12 +20015,12 @@ type CiipUserFuelsByFuelNaicUpdatedByAndFuelIdManyToManyEdge {
     """
     A condition to be used in determining which values should be returned by the collection.
     """
-    condition: FuelNaicCondition
+    condition: FuelNaicsCodeCondition
 
     """
     A filter to be used in determining which values should be returned by the collection.
     """
-    filter: FuelNaicFilter
+    filter: FuelNaicsCodeFilter
 
     """Only read the first `n` values of the set."""
     first: Int
@@ -20016,9 +20034,9 @@ type CiipUserFuelsByFuelNaicUpdatedByAndFuelIdManyToManyEdge {
     """
     offset: Int
 
-    """The method to use when ordering `FuelNaic`."""
-    orderBy: [FuelNaicsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): FuelNaicsConnection!
+    """The method to use when ordering `FuelNaicsCode`."""
+    orderBy: [FuelNaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): FuelNaicsCodesConnection!
 
   """The `Fuel` at the end of the edge."""
   node: Fuel
@@ -20249,30 +20267,32 @@ input CiipUserInput {
   uuid: UUID!
 }
 
-"""A connection to a list of `Naic` values, with data from `FuelNaic`."""
-type CiipUserNaicsByFuelNaicCreatedByAndNaicsIdManyToManyConnection {
+"""
+A connection to a list of `NaicsCode` values, with data from `FuelNaicsCode`.
+"""
+type CiipUserNaicsCodesByFuelNaicsCodeCreatedByAndNaicsCodeIdManyToManyConnection {
   """
-  A list of edges which contains the `Naic`, info from the `FuelNaic`, and the cursor to aid in pagination.
+  A list of edges which contains the `NaicsCode`, info from the `FuelNaicsCode`, and the cursor to aid in pagination.
   """
-  edges: [CiipUserNaicsByFuelNaicCreatedByAndNaicsIdManyToManyEdge!]!
+  edges: [CiipUserNaicsCodesByFuelNaicsCodeCreatedByAndNaicsCodeIdManyToManyEdge!]!
 
-  """A list of `Naic` objects."""
-  nodes: [Naic]!
+  """A list of `NaicsCode` objects."""
+  nodes: [NaicsCode]!
 
   """Information to aid in pagination."""
   pageInfo: PageInfo!
 
-  """The count of *all* `Naic` you could get from the connection."""
+  """The count of *all* `NaicsCode` you could get from the connection."""
   totalCount: Int!
 }
 
-"""A `Naic` edge in the connection, with data from `FuelNaic`."""
-type CiipUserNaicsByFuelNaicCreatedByAndNaicsIdManyToManyEdge {
+"""A `NaicsCode` edge in the connection, with data from `FuelNaicsCode`."""
+type CiipUserNaicsCodesByFuelNaicsCodeCreatedByAndNaicsCodeIdManyToManyEdge {
   """A cursor for use in pagination."""
   cursor: Cursor
 
-  """Reads and enables pagination through a set of `FuelNaic`."""
-  fuelNaicsByNaicsId(
+  """Reads and enables pagination through a set of `FuelNaicsCode`."""
+  fuelNaicsCodesByNaicsCodeId(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -20282,12 +20302,12 @@ type CiipUserNaicsByFuelNaicCreatedByAndNaicsIdManyToManyEdge {
     """
     A condition to be used in determining which values should be returned by the collection.
     """
-    condition: FuelNaicCondition
+    condition: FuelNaicsCodeCondition
 
     """
     A filter to be used in determining which values should be returned by the collection.
     """
-    filter: FuelNaicFilter
+    filter: FuelNaicsCodeFilter
 
     """Only read the first `n` values of the set."""
     first: Int
@@ -20301,38 +20321,40 @@ type CiipUserNaicsByFuelNaicCreatedByAndNaicsIdManyToManyEdge {
     """
     offset: Int
 
-    """The method to use when ordering `FuelNaic`."""
-    orderBy: [FuelNaicsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): FuelNaicsConnection!
+    """The method to use when ordering `FuelNaicsCode`."""
+    orderBy: [FuelNaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): FuelNaicsCodesConnection!
 
-  """The `Naic` at the end of the edge."""
-  node: Naic
+  """The `NaicsCode` at the end of the edge."""
+  node: NaicsCode
 }
 
-"""A connection to a list of `Naic` values, with data from `FuelNaic`."""
-type CiipUserNaicsByFuelNaicDeletedByAndNaicsIdManyToManyConnection {
+"""
+A connection to a list of `NaicsCode` values, with data from `FuelNaicsCode`.
+"""
+type CiipUserNaicsCodesByFuelNaicsCodeDeletedByAndNaicsCodeIdManyToManyConnection {
   """
-  A list of edges which contains the `Naic`, info from the `FuelNaic`, and the cursor to aid in pagination.
+  A list of edges which contains the `NaicsCode`, info from the `FuelNaicsCode`, and the cursor to aid in pagination.
   """
-  edges: [CiipUserNaicsByFuelNaicDeletedByAndNaicsIdManyToManyEdge!]!
+  edges: [CiipUserNaicsCodesByFuelNaicsCodeDeletedByAndNaicsCodeIdManyToManyEdge!]!
 
-  """A list of `Naic` objects."""
-  nodes: [Naic]!
+  """A list of `NaicsCode` objects."""
+  nodes: [NaicsCode]!
 
   """Information to aid in pagination."""
   pageInfo: PageInfo!
 
-  """The count of *all* `Naic` you could get from the connection."""
+  """The count of *all* `NaicsCode` you could get from the connection."""
   totalCount: Int!
 }
 
-"""A `Naic` edge in the connection, with data from `FuelNaic`."""
-type CiipUserNaicsByFuelNaicDeletedByAndNaicsIdManyToManyEdge {
+"""A `NaicsCode` edge in the connection, with data from `FuelNaicsCode`."""
+type CiipUserNaicsCodesByFuelNaicsCodeDeletedByAndNaicsCodeIdManyToManyEdge {
   """A cursor for use in pagination."""
   cursor: Cursor
 
-  """Reads and enables pagination through a set of `FuelNaic`."""
-  fuelNaicsByNaicsId(
+  """Reads and enables pagination through a set of `FuelNaicsCode`."""
+  fuelNaicsCodesByNaicsCodeId(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -20342,12 +20364,12 @@ type CiipUserNaicsByFuelNaicDeletedByAndNaicsIdManyToManyEdge {
     """
     A condition to be used in determining which values should be returned by the collection.
     """
-    condition: FuelNaicCondition
+    condition: FuelNaicsCodeCondition
 
     """
     A filter to be used in determining which values should be returned by the collection.
     """
-    filter: FuelNaicFilter
+    filter: FuelNaicsCodeFilter
 
     """Only read the first `n` values of the set."""
     first: Int
@@ -20361,38 +20383,40 @@ type CiipUserNaicsByFuelNaicDeletedByAndNaicsIdManyToManyEdge {
     """
     offset: Int
 
-    """The method to use when ordering `FuelNaic`."""
-    orderBy: [FuelNaicsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): FuelNaicsConnection!
+    """The method to use when ordering `FuelNaicsCode`."""
+    orderBy: [FuelNaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): FuelNaicsCodesConnection!
 
-  """The `Naic` at the end of the edge."""
-  node: Naic
+  """The `NaicsCode` at the end of the edge."""
+  node: NaicsCode
 }
 
-"""A connection to a list of `Naic` values, with data from `FuelNaic`."""
-type CiipUserNaicsByFuelNaicUpdatedByAndNaicsIdManyToManyConnection {
+"""
+A connection to a list of `NaicsCode` values, with data from `FuelNaicsCode`.
+"""
+type CiipUserNaicsCodesByFuelNaicsCodeUpdatedByAndNaicsCodeIdManyToManyConnection {
   """
-  A list of edges which contains the `Naic`, info from the `FuelNaic`, and the cursor to aid in pagination.
+  A list of edges which contains the `NaicsCode`, info from the `FuelNaicsCode`, and the cursor to aid in pagination.
   """
-  edges: [CiipUserNaicsByFuelNaicUpdatedByAndNaicsIdManyToManyEdge!]!
+  edges: [CiipUserNaicsCodesByFuelNaicsCodeUpdatedByAndNaicsCodeIdManyToManyEdge!]!
 
-  """A list of `Naic` objects."""
-  nodes: [Naic]!
+  """A list of `NaicsCode` objects."""
+  nodes: [NaicsCode]!
 
   """Information to aid in pagination."""
   pageInfo: PageInfo!
 
-  """The count of *all* `Naic` you could get from the connection."""
+  """The count of *all* `NaicsCode` you could get from the connection."""
   totalCount: Int!
 }
 
-"""A `Naic` edge in the connection, with data from `FuelNaic`."""
-type CiipUserNaicsByFuelNaicUpdatedByAndNaicsIdManyToManyEdge {
+"""A `NaicsCode` edge in the connection, with data from `FuelNaicsCode`."""
+type CiipUserNaicsCodesByFuelNaicsCodeUpdatedByAndNaicsCodeIdManyToManyEdge {
   """A cursor for use in pagination."""
   cursor: Cursor
 
-  """Reads and enables pagination through a set of `FuelNaic`."""
-  fuelNaicsByNaicsId(
+  """Reads and enables pagination through a set of `FuelNaicsCode`."""
+  fuelNaicsCodesByNaicsCodeId(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -20402,12 +20426,12 @@ type CiipUserNaicsByFuelNaicUpdatedByAndNaicsIdManyToManyEdge {
     """
     A condition to be used in determining which values should be returned by the collection.
     """
-    condition: FuelNaicCondition
+    condition: FuelNaicsCodeCondition
 
     """
     A filter to be used in determining which values should be returned by the collection.
     """
-    filter: FuelNaicFilter
+    filter: FuelNaicsCodeFilter
 
     """Only read the first `n` values of the set."""
     first: Int
@@ -20421,12 +20445,12 @@ type CiipUserNaicsByFuelNaicUpdatedByAndNaicsIdManyToManyEdge {
     """
     offset: Int
 
-    """The method to use when ordering `FuelNaic`."""
-    orderBy: [FuelNaicsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): FuelNaicsConnection!
+    """The method to use when ordering `FuelNaicsCode`."""
+    orderBy: [FuelNaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): FuelNaicsCodesConnection!
 
-  """The `Naic` at the end of the edge."""
-  node: Naic
+  """The `NaicsCode` at the end of the edge."""
+  node: NaicsCode
 }
 
 """
@@ -22604,27 +22628,52 @@ input CreateFuelInput {
   fuel: FuelInput!
 }
 
-"""All input for the create `FuelNaic` mutation."""
-input CreateFuelNaicInput {
+"""All input for the create `FuelNaicsCode` mutation."""
+input CreateFuelNaicsCodeInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
   """
   clientMutationId: String
 
-  """The `FuelNaic` to be created by this mutation."""
-  fuelNaic: FuelNaicInput!
+  """The `FuelNaicsCode` to be created by this mutation."""
+  fuelNaicsCode: FuelNaicsCodeInput!
 }
 
-"""The output of our create `FuelNaic` mutation."""
-type CreateFuelNaicPayload {
-  """Reads a single `CiipUser` that is related to this `FuelNaic`."""
+"""All input for the `createFuelNaicsCodeMutation` mutation."""
+input CreateFuelNaicsCodeMutationInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  fuelIdInput: Int
+  naicsCodeIdInput: Int
+}
+
+"""The output of our `createFuelNaicsCodeMutation` mutation."""
+type CreateFuelNaicsCodeMutationPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""The output of our create `FuelNaicsCode` mutation."""
+type CreateFuelNaicsCodePayload {
+  """Reads a single `CiipUser` that is related to this `FuelNaicsCode`."""
   ciipUserByCreatedBy: CiipUser
 
-  """Reads a single `CiipUser` that is related to this `FuelNaic`."""
+  """Reads a single `CiipUser` that is related to this `FuelNaicsCode`."""
   ciipUserByDeletedBy: CiipUser
 
-  """Reads a single `CiipUser` that is related to this `FuelNaic`."""
+  """Reads a single `CiipUser` that is related to this `FuelNaicsCode`."""
   ciipUserByUpdatedBy: CiipUser
 
   """
@@ -22633,45 +22682,20 @@ type CreateFuelNaicPayload {
   """
   clientMutationId: String
 
-  """Reads a single `Fuel` that is related to this `FuelNaic`."""
+  """Reads a single `Fuel` that is related to this `FuelNaicsCode`."""
   fuelByFuelId: Fuel
 
-  """The `FuelNaic` that was created by this mutation."""
-  fuelNaic: FuelNaic
+  """The `FuelNaicsCode` that was created by this mutation."""
+  fuelNaicsCode: FuelNaicsCode
 
-  """An edge for our `FuelNaic`. May be used by Relay 1."""
-  fuelNaicEdge(
-    """The method to use when ordering `FuelNaic`."""
-    orderBy: [FuelNaicsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): FuelNaicsEdge
+  """An edge for our `FuelNaicsCode`. May be used by Relay 1."""
+  fuelNaicsCodeEdge(
+    """The method to use when ordering `FuelNaicsCode`."""
+    orderBy: [FuelNaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): FuelNaicsCodesEdge
 
-  """Reads a single `Naic` that is related to this `FuelNaic`."""
-  naicByNaicsId: Naic
-
-  """
-  Our root query field type. Allows us to run any query from our mutation payload.
-  """
-  query: Query
-}
-
-"""All input for the `createFuelNaicsMutation` mutation."""
-input CreateFuelNaicsMutationInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-  fuelIdInput: Int
-  naicsIdInput: Int
-}
-
-"""The output of our `createFuelNaicsMutation` mutation."""
-type CreateFuelNaicsMutationPayload {
-  """
-  The exact same `clientMutationId` that was provided in the mutation input,
-  unchanged and unused. May be used by a client to track mutations.
-  """
-  clientMutationId: String
+  """Reads a single `NaicsCode` that is related to this `FuelNaicsCode`."""
+  naicsCodeByNaicsCodeId: NaicsCode
 
   """
   Our root query field type. Allows us to run any query from our mutation payload.
@@ -22805,52 +22829,20 @@ type CreateLinkedProductPayload {
   query: Query
 }
 
-"""All input for the create `Naic` mutation."""
-input CreateNaicInput {
+"""All input for the create `NaicsCode` mutation."""
+input CreateNaicsCodeInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
   """
   clientMutationId: String
 
-  """The `Naic` to be created by this mutation."""
-  naic: NaicInput!
+  """The `NaicsCode` to be created by this mutation."""
+  naicsCode: NaicsCodeInput!
 }
 
-"""The output of our create `Naic` mutation."""
-type CreateNaicPayload {
-  """Reads a single `CiipUser` that is related to this `Naic`."""
-  ciipUserByCreatedBy: CiipUser
-
-  """Reads a single `CiipUser` that is related to this `Naic`."""
-  ciipUserByDeletedBy: CiipUser
-
-  """Reads a single `CiipUser` that is related to this `Naic`."""
-  ciipUserByUpdatedBy: CiipUser
-
-  """
-  The exact same `clientMutationId` that was provided in the mutation input,
-  unchanged and unused. May be used by a client to track mutations.
-  """
-  clientMutationId: String
-
-  """The `Naic` that was created by this mutation."""
-  naic: Naic
-
-  """An edge for our `Naic`. May be used by Relay 1."""
-  naicEdge(
-    """The method to use when ordering `Naic`."""
-    orderBy: [NaicsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): NaicsEdge
-
-  """
-  Our root query field type. Allows us to run any query from our mutation payload.
-  """
-  query: Query
-}
-
-"""All input for the `createNaicsMutation` mutation."""
-input CreateNaicsMutationInput {
+"""All input for the `createNaicsCodeMutation` mutation."""
+input CreateNaicsCodeMutationInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
@@ -22860,13 +22852,45 @@ input CreateNaicsMutationInput {
   naicsDescriptionInput: String
 }
 
-"""The output of our `createNaicsMutation` mutation."""
-type CreateNaicsMutationPayload {
+"""The output of our `createNaicsCodeMutation` mutation."""
+type CreateNaicsCodeMutationPayload {
   """
   The exact same `clientMutationId` that was provided in the mutation input,
   unchanged and unused. May be used by a client to track mutations.
   """
   clientMutationId: String
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""The output of our create `NaicsCode` mutation."""
+type CreateNaicsCodePayload {
+  """Reads a single `CiipUser` that is related to this `NaicsCode`."""
+  ciipUserByCreatedBy: CiipUser
+
+  """Reads a single `CiipUser` that is related to this `NaicsCode`."""
+  ciipUserByDeletedBy: CiipUser
+
+  """Reads a single `CiipUser` that is related to this `NaicsCode`."""
+  ciipUserByUpdatedBy: CiipUser
+
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `NaicsCode` that was created by this mutation."""
+  naicsCode: NaicsCode
+
+  """An edge for our `NaicsCode`. May be used by Relay 1."""
+  naicsCodeEdge(
+    """The method to use when ordering `NaicsCode`."""
+    orderBy: [NaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): NaicsCodesEdge
 
   """
   Our root query field type. Allows us to run any query from our mutation payload.
@@ -24163,20 +24187,20 @@ input DeleteFuelInput {
   id: ID!
 }
 
-"""All input for the `deleteFuelNaicByRowId` mutation."""
-input DeleteFuelNaicByRowIdInput {
+"""All input for the `deleteFuelNaicsCodeByRowId` mutation."""
+input DeleteFuelNaicsCodeByRowIdInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
   """
   clientMutationId: String
 
-  """Primary key for fuel_naics table"""
+  """Primary key for fuel_naics_code table"""
   rowId: Int!
 }
 
-"""All input for the `deleteFuelNaic` mutation."""
-input DeleteFuelNaicInput {
+"""All input for the `deleteFuelNaicsCode` mutation."""
+input DeleteFuelNaicsCodeInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
@@ -24184,20 +24208,20 @@ input DeleteFuelNaicInput {
   clientMutationId: String
 
   """
-  The globally unique `ID` which will identify a single `FuelNaic` to be deleted.
+  The globally unique `ID` which will identify a single `FuelNaicsCode` to be deleted.
   """
   id: ID!
 }
 
-"""The output of our delete `FuelNaic` mutation."""
-type DeleteFuelNaicPayload {
-  """Reads a single `CiipUser` that is related to this `FuelNaic`."""
+"""The output of our delete `FuelNaicsCode` mutation."""
+type DeleteFuelNaicsCodePayload {
+  """Reads a single `CiipUser` that is related to this `FuelNaicsCode`."""
   ciipUserByCreatedBy: CiipUser
 
-  """Reads a single `CiipUser` that is related to this `FuelNaic`."""
+  """Reads a single `CiipUser` that is related to this `FuelNaicsCode`."""
   ciipUserByDeletedBy: CiipUser
 
-  """Reads a single `CiipUser` that is related to this `FuelNaic`."""
+  """Reads a single `CiipUser` that is related to this `FuelNaicsCode`."""
   ciipUserByUpdatedBy: CiipUser
 
   """
@@ -24205,22 +24229,22 @@ type DeleteFuelNaicPayload {
   unchanged and unused. May be used by a client to track mutations.
   """
   clientMutationId: String
-  deletedFuelNaicId: ID
+  deletedFuelNaicsCodeId: ID
 
-  """Reads a single `Fuel` that is related to this `FuelNaic`."""
+  """Reads a single `Fuel` that is related to this `FuelNaicsCode`."""
   fuelByFuelId: Fuel
 
-  """The `FuelNaic` that was deleted by this mutation."""
-  fuelNaic: FuelNaic
+  """The `FuelNaicsCode` that was deleted by this mutation."""
+  fuelNaicsCode: FuelNaicsCode
 
-  """An edge for our `FuelNaic`. May be used by Relay 1."""
-  fuelNaicEdge(
-    """The method to use when ordering `FuelNaic`."""
-    orderBy: [FuelNaicsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): FuelNaicsEdge
+  """An edge for our `FuelNaicsCode`. May be used by Relay 1."""
+  fuelNaicsCodeEdge(
+    """The method to use when ordering `FuelNaicsCode`."""
+    orderBy: [FuelNaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): FuelNaicsCodesEdge
 
-  """Reads a single `Naic` that is related to this `FuelNaic`."""
-  naicByNaicsId: Naic
+  """Reads a single `NaicsCode` that is related to this `FuelNaicsCode`."""
+  naicsCodeByNaicsCodeId: NaicsCode
 
   """
   Our root query field type. Allows us to run any query from our mutation payload.
@@ -24385,20 +24409,20 @@ type DeleteLinkedProductPayload {
   query: Query
 }
 
-"""All input for the `deleteNaicByRowId` mutation."""
-input DeleteNaicByRowIdInput {
+"""All input for the `deleteNaicsCodeByRowId` mutation."""
+input DeleteNaicsCodeByRowIdInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
   """
   clientMutationId: String
 
-  """Primary key for naics table"""
+  """Primary key for naics_code table"""
   rowId: Int!
 }
 
-"""All input for the `deleteNaic` mutation."""
-input DeleteNaicInput {
+"""All input for the `deleteNaicsCode` mutation."""
+input DeleteNaicsCodeInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
@@ -24406,20 +24430,20 @@ input DeleteNaicInput {
   clientMutationId: String
 
   """
-  The globally unique `ID` which will identify a single `Naic` to be deleted.
+  The globally unique `ID` which will identify a single `NaicsCode` to be deleted.
   """
   id: ID!
 }
 
-"""The output of our delete `Naic` mutation."""
-type DeleteNaicPayload {
-  """Reads a single `CiipUser` that is related to this `Naic`."""
+"""The output of our delete `NaicsCode` mutation."""
+type DeleteNaicsCodePayload {
+  """Reads a single `CiipUser` that is related to this `NaicsCode`."""
   ciipUserByCreatedBy: CiipUser
 
-  """Reads a single `CiipUser` that is related to this `Naic`."""
+  """Reads a single `CiipUser` that is related to this `NaicsCode`."""
   ciipUserByDeletedBy: CiipUser
 
-  """Reads a single `CiipUser` that is related to this `Naic`."""
+  """Reads a single `CiipUser` that is related to this `NaicsCode`."""
   ciipUserByUpdatedBy: CiipUser
 
   """
@@ -24427,16 +24451,16 @@ type DeleteNaicPayload {
   unchanged and unused. May be used by a client to track mutations.
   """
   clientMutationId: String
-  deletedNaicId: ID
+  deletedNaicsCodeId: ID
 
-  """The `Naic` that was deleted by this mutation."""
-  naic: Naic
+  """The `NaicsCode` that was deleted by this mutation."""
+  naicsCode: NaicsCode
 
-  """An edge for our `Naic`. May be used by Relay 1."""
-  naicEdge(
-    """The method to use when ordering `Naic`."""
-    orderBy: [NaicsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): NaicsEdge
+  """An edge for our `NaicsCode`. May be used by Relay 1."""
+  naicsCodeEdge(
+    """The method to use when ordering `NaicsCode`."""
+    orderBy: [NaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): NaicsCodesEdge
 
   """
   Our root query field type. Allows us to run any query from our mutation payload.
@@ -28116,7 +28140,7 @@ type Fuel implements Node {
   ciipUserByUpdatedBy: CiipUser
 
   """Reads and enables pagination through a set of `CiipUser`."""
-  ciipUsersByFuelNaicFuelIdAndCreatedBy(
+  ciipUsersByFuelNaicsCodeFuelIdAndCreatedBy(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -28147,10 +28171,10 @@ type Fuel implements Node {
 
     """The method to use when ordering `CiipUser`."""
     orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
-  ): FuelCiipUsersByFuelNaicFuelIdAndCreatedByManyToManyConnection!
+  ): FuelCiipUsersByFuelNaicsCodeFuelIdAndCreatedByManyToManyConnection!
 
   """Reads and enables pagination through a set of `CiipUser`."""
-  ciipUsersByFuelNaicFuelIdAndDeletedBy(
+  ciipUsersByFuelNaicsCodeFuelIdAndDeletedBy(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -28181,10 +28205,10 @@ type Fuel implements Node {
 
     """The method to use when ordering `CiipUser`."""
     orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
-  ): FuelCiipUsersByFuelNaicFuelIdAndDeletedByManyToManyConnection!
+  ): FuelCiipUsersByFuelNaicsCodeFuelIdAndDeletedByManyToManyConnection!
 
   """Reads and enables pagination through a set of `CiipUser`."""
-  ciipUsersByFuelNaicFuelIdAndUpdatedBy(
+  ciipUsersByFuelNaicsCodeFuelIdAndUpdatedBy(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -28215,7 +28239,7 @@ type Fuel implements Node {
 
     """The method to use when ordering `CiipUser`."""
     orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
-  ): FuelCiipUsersByFuelNaicFuelIdAndUpdatedByManyToManyConnection!
+  ): FuelCiipUsersByFuelNaicsCodeFuelIdAndUpdatedByManyToManyConnection!
 
   """Creation date of row"""
   createdAt: Datetime!
@@ -28232,8 +28256,8 @@ type Fuel implements Node {
   """The description of the fuel"""
   description: String
 
-  """Reads and enables pagination through a set of `FuelNaic`."""
-  fuelNaicsByFuelId(
+  """Reads and enables pagination through a set of `FuelNaicsCode`."""
+  fuelNaicsCodesByFuelId(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -28243,12 +28267,12 @@ type Fuel implements Node {
     """
     A condition to be used in determining which values should be returned by the collection.
     """
-    condition: FuelNaicCondition
+    condition: FuelNaicsCodeCondition
 
     """
     A filter to be used in determining which values should be returned by the collection.
     """
-    filter: FuelNaicFilter
+    filter: FuelNaicsCodeFilter
 
     """Only read the first `n` values of the set."""
     first: Int
@@ -28262,17 +28286,17 @@ type Fuel implements Node {
     """
     offset: Int
 
-    """The method to use when ordering `FuelNaic`."""
-    orderBy: [FuelNaicsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): FuelNaicsConnection!
+    """The method to use when ordering `FuelNaicsCode`."""
+    orderBy: [FuelNaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): FuelNaicsCodesConnection!
 
   """
   A globally unique identifier. Can be used in various places throughout the system to identify this single value.
   """
   id: ID!
 
-  """Reads and enables pagination through a set of `Naic`."""
-  naicsByFuelNaicFuelIdAndNaicsId(
+  """Reads and enables pagination through a set of `NaicsCode`."""
+  naicsCodesByFuelNaicsCodeFuelIdAndNaicsCodeId(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -28282,12 +28306,12 @@ type Fuel implements Node {
     """
     A condition to be used in determining which values should be returned by the collection.
     """
-    condition: NaicCondition
+    condition: NaicsCodeCondition
 
     """
     A filter to be used in determining which values should be returned by the collection.
     """
-    filter: NaicFilter
+    filter: NaicsCodeFilter
 
     """Only read the first `n` values of the set."""
     first: Int
@@ -28301,9 +28325,9 @@ type Fuel implements Node {
     """
     offset: Int
 
-    """The method to use when ordering `Naic`."""
-    orderBy: [NaicsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): FuelNaicsByFuelNaicFuelIdAndNaicsIdManyToManyConnection!
+    """The method to use when ordering `NaicsCode`."""
+    orderBy: [NaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): FuelNaicsCodesByFuelNaicsCodeFuelIdAndNaicsCodeIdManyToManyConnection!
 
   """The name of the fuel"""
   name: String!
@@ -28335,13 +28359,13 @@ type Fuel implements Node {
 }
 
 """
-A connection to a list of `CiipUser` values, with data from `FuelNaic`.
+A connection to a list of `CiipUser` values, with data from `FuelNaicsCode`.
 """
-type FuelCiipUsersByFuelNaicFuelIdAndCreatedByManyToManyConnection {
+type FuelCiipUsersByFuelNaicsCodeFuelIdAndCreatedByManyToManyConnection {
   """
-  A list of edges which contains the `CiipUser`, info from the `FuelNaic`, and the cursor to aid in pagination.
+  A list of edges which contains the `CiipUser`, info from the `FuelNaicsCode`, and the cursor to aid in pagination.
   """
-  edges: [FuelCiipUsersByFuelNaicFuelIdAndCreatedByManyToManyEdge!]!
+  edges: [FuelCiipUsersByFuelNaicsCodeFuelIdAndCreatedByManyToManyEdge!]!
 
   """A list of `CiipUser` objects."""
   nodes: [CiipUser]!
@@ -28353,13 +28377,13 @@ type FuelCiipUsersByFuelNaicFuelIdAndCreatedByManyToManyConnection {
   totalCount: Int!
 }
 
-"""A `CiipUser` edge in the connection, with data from `FuelNaic`."""
-type FuelCiipUsersByFuelNaicFuelIdAndCreatedByManyToManyEdge {
+"""A `CiipUser` edge in the connection, with data from `FuelNaicsCode`."""
+type FuelCiipUsersByFuelNaicsCodeFuelIdAndCreatedByManyToManyEdge {
   """A cursor for use in pagination."""
   cursor: Cursor
 
-  """Reads and enables pagination through a set of `FuelNaic`."""
-  fuelNaicsByCreatedBy(
+  """Reads and enables pagination through a set of `FuelNaicsCode`."""
+  fuelNaicsCodesByCreatedBy(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -28369,12 +28393,12 @@ type FuelCiipUsersByFuelNaicFuelIdAndCreatedByManyToManyEdge {
     """
     A condition to be used in determining which values should be returned by the collection.
     """
-    condition: FuelNaicCondition
+    condition: FuelNaicsCodeCondition
 
     """
     A filter to be used in determining which values should be returned by the collection.
     """
-    filter: FuelNaicFilter
+    filter: FuelNaicsCodeFilter
 
     """Only read the first `n` values of the set."""
     first: Int
@@ -28388,22 +28412,22 @@ type FuelCiipUsersByFuelNaicFuelIdAndCreatedByManyToManyEdge {
     """
     offset: Int
 
-    """The method to use when ordering `FuelNaic`."""
-    orderBy: [FuelNaicsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): FuelNaicsConnection!
+    """The method to use when ordering `FuelNaicsCode`."""
+    orderBy: [FuelNaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): FuelNaicsCodesConnection!
 
   """The `CiipUser` at the end of the edge."""
   node: CiipUser
 }
 
 """
-A connection to a list of `CiipUser` values, with data from `FuelNaic`.
+A connection to a list of `CiipUser` values, with data from `FuelNaicsCode`.
 """
-type FuelCiipUsersByFuelNaicFuelIdAndDeletedByManyToManyConnection {
+type FuelCiipUsersByFuelNaicsCodeFuelIdAndDeletedByManyToManyConnection {
   """
-  A list of edges which contains the `CiipUser`, info from the `FuelNaic`, and the cursor to aid in pagination.
+  A list of edges which contains the `CiipUser`, info from the `FuelNaicsCode`, and the cursor to aid in pagination.
   """
-  edges: [FuelCiipUsersByFuelNaicFuelIdAndDeletedByManyToManyEdge!]!
+  edges: [FuelCiipUsersByFuelNaicsCodeFuelIdAndDeletedByManyToManyEdge!]!
 
   """A list of `CiipUser` objects."""
   nodes: [CiipUser]!
@@ -28415,13 +28439,13 @@ type FuelCiipUsersByFuelNaicFuelIdAndDeletedByManyToManyConnection {
   totalCount: Int!
 }
 
-"""A `CiipUser` edge in the connection, with data from `FuelNaic`."""
-type FuelCiipUsersByFuelNaicFuelIdAndDeletedByManyToManyEdge {
+"""A `CiipUser` edge in the connection, with data from `FuelNaicsCode`."""
+type FuelCiipUsersByFuelNaicsCodeFuelIdAndDeletedByManyToManyEdge {
   """A cursor for use in pagination."""
   cursor: Cursor
 
-  """Reads and enables pagination through a set of `FuelNaic`."""
-  fuelNaicsByDeletedBy(
+  """Reads and enables pagination through a set of `FuelNaicsCode`."""
+  fuelNaicsCodesByDeletedBy(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -28431,12 +28455,12 @@ type FuelCiipUsersByFuelNaicFuelIdAndDeletedByManyToManyEdge {
     """
     A condition to be used in determining which values should be returned by the collection.
     """
-    condition: FuelNaicCondition
+    condition: FuelNaicsCodeCondition
 
     """
     A filter to be used in determining which values should be returned by the collection.
     """
-    filter: FuelNaicFilter
+    filter: FuelNaicsCodeFilter
 
     """Only read the first `n` values of the set."""
     first: Int
@@ -28450,22 +28474,22 @@ type FuelCiipUsersByFuelNaicFuelIdAndDeletedByManyToManyEdge {
     """
     offset: Int
 
-    """The method to use when ordering `FuelNaic`."""
-    orderBy: [FuelNaicsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): FuelNaicsConnection!
+    """The method to use when ordering `FuelNaicsCode`."""
+    orderBy: [FuelNaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): FuelNaicsCodesConnection!
 
   """The `CiipUser` at the end of the edge."""
   node: CiipUser
 }
 
 """
-A connection to a list of `CiipUser` values, with data from `FuelNaic`.
+A connection to a list of `CiipUser` values, with data from `FuelNaicsCode`.
 """
-type FuelCiipUsersByFuelNaicFuelIdAndUpdatedByManyToManyConnection {
+type FuelCiipUsersByFuelNaicsCodeFuelIdAndUpdatedByManyToManyConnection {
   """
-  A list of edges which contains the `CiipUser`, info from the `FuelNaic`, and the cursor to aid in pagination.
+  A list of edges which contains the `CiipUser`, info from the `FuelNaicsCode`, and the cursor to aid in pagination.
   """
-  edges: [FuelCiipUsersByFuelNaicFuelIdAndUpdatedByManyToManyEdge!]!
+  edges: [FuelCiipUsersByFuelNaicsCodeFuelIdAndUpdatedByManyToManyEdge!]!
 
   """A list of `CiipUser` objects."""
   nodes: [CiipUser]!
@@ -28477,13 +28501,13 @@ type FuelCiipUsersByFuelNaicFuelIdAndUpdatedByManyToManyConnection {
   totalCount: Int!
 }
 
-"""A `CiipUser` edge in the connection, with data from `FuelNaic`."""
-type FuelCiipUsersByFuelNaicFuelIdAndUpdatedByManyToManyEdge {
+"""A `CiipUser` edge in the connection, with data from `FuelNaicsCode`."""
+type FuelCiipUsersByFuelNaicsCodeFuelIdAndUpdatedByManyToManyEdge {
   """A cursor for use in pagination."""
   cursor: Cursor
 
-  """Reads and enables pagination through a set of `FuelNaic`."""
-  fuelNaicsByUpdatedBy(
+  """Reads and enables pagination through a set of `FuelNaicsCode`."""
+  fuelNaicsCodesByUpdatedBy(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -28493,12 +28517,12 @@ type FuelCiipUsersByFuelNaicFuelIdAndUpdatedByManyToManyEdge {
     """
     A condition to be used in determining which values should be returned by the collection.
     """
-    condition: FuelNaicCondition
+    condition: FuelNaicsCodeCondition
 
     """
     A filter to be used in determining which values should be returned by the collection.
     """
-    filter: FuelNaicFilter
+    filter: FuelNaicsCodeFilter
 
     """Only read the first `n` values of the set."""
     first: Int
@@ -28512,9 +28536,9 @@ type FuelCiipUsersByFuelNaicFuelIdAndUpdatedByManyToManyEdge {
     """
     offset: Int
 
-    """The method to use when ordering `FuelNaic`."""
-    orderBy: [FuelNaicsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): FuelNaicsConnection!
+    """The method to use when ordering `FuelNaicsCode`."""
+    orderBy: [FuelNaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): FuelNaicsCodesConnection!
 
   """The `CiipUser` at the end of the edge."""
   node: CiipUser
@@ -28748,29 +28772,29 @@ Defines which fuels can be reported in a facility with a given naics code. NAICS
 is an acronym for North American Industry Classification System and is used to
 categorize industrial operations into sectors.
 """
-type FuelNaic implements Node {
-  """Reads a single `CiipUser` that is related to this `FuelNaic`."""
+type FuelNaicsCode implements Node {
+  """Reads a single `CiipUser` that is related to this `FuelNaicsCode`."""
   ciipUserByCreatedBy: CiipUser
 
-  """Reads a single `CiipUser` that is related to this `FuelNaic`."""
+  """Reads a single `CiipUser` that is related to this `FuelNaicsCode`."""
   ciipUserByDeletedBy: CiipUser
 
-  """Reads a single `CiipUser` that is related to this `FuelNaic`."""
+  """Reads a single `CiipUser` that is related to this `FuelNaicsCode`."""
   ciipUserByUpdatedBy: CiipUser
 
-  """The timestamp of when this fuel_naics row was created"""
+  """The timestamp of when this fuel_naics_code row was created"""
   createdAt: Datetime!
 
   """The id of the user who created this row, references ciip_user(id)"""
   createdBy: Int
 
-  """The timestamp of when this fuel_naics row was archived"""
+  """The timestamp of when this fuel_naics_code row was archived"""
   deletedAt: Datetime
 
   """The id of the user who archived this row, references ciip_user(id)"""
   deletedBy: Int
 
-  """Reads a single `Fuel` that is related to this `FuelNaic`."""
+  """Reads a single `Fuel` that is related to this `FuelNaicsCode`."""
   fuelByFuelId: Fuel
 
   """The id referencing the fuel table"""
@@ -28781,16 +28805,16 @@ type FuelNaic implements Node {
   """
   id: ID!
 
-  """Reads a single `Naic` that is related to this `FuelNaic`."""
-  naicByNaicsId: Naic
+  """Reads a single `NaicsCode` that is related to this `FuelNaicsCode`."""
+  naicsCodeByNaicsCodeId: NaicsCode
 
   """The id refrencing the naics table"""
-  naicsId: Int!
+  naicsCodeId: Int!
 
-  """Primary key for fuel_naics table"""
+  """Primary key for fuel_naics_code table"""
   rowId: Int!
 
-  """The timestamp of when this fuel_naics row was last updated"""
+  """The timestamp of when this fuel_naics_code row was last updated"""
   updatedAt: Datetime!
 
   """The id of the user who last updated this row, references ciip_user(id)"""
@@ -28798,10 +28822,10 @@ type FuelNaic implements Node {
 }
 
 """
-A condition to be used against `FuelNaic` object types. All fields are tested
-for equality and combined with a logical ‘and.’
+A condition to be used against `FuelNaicsCode` object types. All fields are
+tested for equality and combined with a logical ‘and.’
 """
-input FuelNaicCondition {
+input FuelNaicsCodeCondition {
   """Checks for equality with the object’s `createdAt` field."""
   createdAt: Datetime
 
@@ -28817,8 +28841,8 @@ input FuelNaicCondition {
   """Checks for equality with the object’s `fuelId` field."""
   fuelId: Int
 
-  """Checks for equality with the object’s `naicsId` field."""
-  naicsId: Int
+  """Checks for equality with the object’s `naicsCodeId` field."""
+  naicsCodeId: Int
 
   """Checks for equality with the object’s `rowId` field."""
   rowId: Int
@@ -28831,11 +28855,11 @@ input FuelNaicCondition {
 }
 
 """
-A filter to be used against `FuelNaic` object types. All fields are combined with a logical ‘and.’
+A filter to be used against `FuelNaicsCode` object types. All fields are combined with a logical ‘and.’
 """
-input FuelNaicFilter {
+input FuelNaicsCodeFilter {
   """Checks for all expressions in this list."""
-  and: [FuelNaicFilter!]
+  and: [FuelNaicsCodeFilter!]
 
   """Filter by the object’s `createdAt` field."""
   createdAt: DatetimeFilter
@@ -28852,14 +28876,14 @@ input FuelNaicFilter {
   """Filter by the object’s `fuelId` field."""
   fuelId: IntFilter
 
-  """Filter by the object’s `naicsId` field."""
-  naicsId: IntFilter
+  """Filter by the object’s `naicsCodeId` field."""
+  naicsCodeId: IntFilter
 
   """Negates the expression."""
-  not: FuelNaicFilter
+  not: FuelNaicsCodeFilter
 
   """Checks for any expressions in this list."""
-  or: [FuelNaicFilter!]
+  or: [FuelNaicsCodeFilter!]
 
   """Filter by the object’s `rowId` field."""
   rowId: IntFilter
@@ -28871,15 +28895,15 @@ input FuelNaicFilter {
   updatedBy: IntFilter
 }
 
-"""An input for mutations affecting `FuelNaic`"""
-input FuelNaicInput {
-  """The timestamp of when this fuel_naics row was created"""
+"""An input for mutations affecting `FuelNaicsCode`"""
+input FuelNaicsCodeInput {
+  """The timestamp of when this fuel_naics_code row was created"""
   createdAt: Datetime
 
   """The id of the user who created this row, references ciip_user(id)"""
   createdBy: Int
 
-  """The timestamp of when this fuel_naics row was archived"""
+  """The timestamp of when this fuel_naics_code row was archived"""
   deletedAt: Datetime
 
   """The id of the user who archived this row, references ciip_user(id)"""
@@ -28889,9 +28913,9 @@ input FuelNaicInput {
   fuelId: Int!
 
   """The id refrencing the naics table"""
-  naicsId: Int!
+  naicsCodeId: Int!
 
-  """The timestamp of when this fuel_naics row was last updated"""
+  """The timestamp of when this fuel_naics_code row was last updated"""
   updatedAt: Datetime
 
   """The id of the user who last updated this row, references ciip_user(id)"""
@@ -28899,16 +28923,16 @@ input FuelNaicInput {
 }
 
 """
-Represents an update to a `FuelNaic`. Fields that are set will be updated.
+Represents an update to a `FuelNaicsCode`. Fields that are set will be updated.
 """
-input FuelNaicPatch {
-  """The timestamp of when this fuel_naics row was created"""
+input FuelNaicsCodePatch {
+  """The timestamp of when this fuel_naics_code row was created"""
   createdAt: Datetime
 
   """The id of the user who created this row, references ciip_user(id)"""
   createdBy: Int
 
-  """The timestamp of when this fuel_naics row was archived"""
+  """The timestamp of when this fuel_naics_code row was archived"""
   deletedAt: Datetime
 
   """The id of the user who archived this row, references ciip_user(id)"""
@@ -28918,39 +28942,41 @@ input FuelNaicPatch {
   fuelId: Int
 
   """The id refrencing the naics table"""
-  naicsId: Int
+  naicsCodeId: Int
 
-  """The timestamp of when this fuel_naics row was last updated"""
+  """The timestamp of when this fuel_naics_code row was last updated"""
   updatedAt: Datetime
 
   """The id of the user who last updated this row, references ciip_user(id)"""
   updatedBy: Int
 }
 
-"""A connection to a list of `Naic` values, with data from `FuelNaic`."""
-type FuelNaicsByFuelNaicFuelIdAndNaicsIdManyToManyConnection {
+"""
+A connection to a list of `NaicsCode` values, with data from `FuelNaicsCode`.
+"""
+type FuelNaicsCodesByFuelNaicsCodeFuelIdAndNaicsCodeIdManyToManyConnection {
   """
-  A list of edges which contains the `Naic`, info from the `FuelNaic`, and the cursor to aid in pagination.
+  A list of edges which contains the `NaicsCode`, info from the `FuelNaicsCode`, and the cursor to aid in pagination.
   """
-  edges: [FuelNaicsByFuelNaicFuelIdAndNaicsIdManyToManyEdge!]!
+  edges: [FuelNaicsCodesByFuelNaicsCodeFuelIdAndNaicsCodeIdManyToManyEdge!]!
 
-  """A list of `Naic` objects."""
-  nodes: [Naic]!
+  """A list of `NaicsCode` objects."""
+  nodes: [NaicsCode]!
 
   """Information to aid in pagination."""
   pageInfo: PageInfo!
 
-  """The count of *all* `Naic` you could get from the connection."""
+  """The count of *all* `NaicsCode` you could get from the connection."""
   totalCount: Int!
 }
 
-"""A `Naic` edge in the connection, with data from `FuelNaic`."""
-type FuelNaicsByFuelNaicFuelIdAndNaicsIdManyToManyEdge {
+"""A `NaicsCode` edge in the connection, with data from `FuelNaicsCode`."""
+type FuelNaicsCodesByFuelNaicsCodeFuelIdAndNaicsCodeIdManyToManyEdge {
   """A cursor for use in pagination."""
   cursor: Cursor
 
-  """Reads and enables pagination through a set of `FuelNaic`."""
-  fuelNaicsByNaicsId(
+  """Reads and enables pagination through a set of `FuelNaicsCode`."""
+  fuelNaicsCodesByNaicsCodeId(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -28960,12 +28986,12 @@ type FuelNaicsByFuelNaicFuelIdAndNaicsIdManyToManyEdge {
     """
     A condition to be used in determining which values should be returned by the collection.
     """
-    condition: FuelNaicCondition
+    condition: FuelNaicsCodeCondition
 
     """
     A filter to be used in determining which values should be returned by the collection.
     """
-    filter: FuelNaicFilter
+    filter: FuelNaicsCodeFilter
 
     """Only read the first `n` values of the set."""
     first: Int
@@ -28979,42 +29005,42 @@ type FuelNaicsByFuelNaicFuelIdAndNaicsIdManyToManyEdge {
     """
     offset: Int
 
-    """The method to use when ordering `FuelNaic`."""
-    orderBy: [FuelNaicsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): FuelNaicsConnection!
+    """The method to use when ordering `FuelNaicsCode`."""
+    orderBy: [FuelNaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): FuelNaicsCodesConnection!
 
-  """The `Naic` at the end of the edge."""
-  node: Naic
+  """The `NaicsCode` at the end of the edge."""
+  node: NaicsCode
 }
 
-"""A connection to a list of `FuelNaic` values."""
-type FuelNaicsConnection {
+"""A connection to a list of `FuelNaicsCode` values."""
+type FuelNaicsCodesConnection {
   """
-  A list of edges which contains the `FuelNaic` and cursor to aid in pagination.
+  A list of edges which contains the `FuelNaicsCode` and cursor to aid in pagination.
   """
-  edges: [FuelNaicsEdge!]!
+  edges: [FuelNaicsCodesEdge!]!
 
-  """A list of `FuelNaic` objects."""
-  nodes: [FuelNaic]!
+  """A list of `FuelNaicsCode` objects."""
+  nodes: [FuelNaicsCode]!
 
   """Information to aid in pagination."""
   pageInfo: PageInfo!
 
-  """The count of *all* `FuelNaic` you could get from the connection."""
+  """The count of *all* `FuelNaicsCode` you could get from the connection."""
   totalCount: Int!
 }
 
-"""A `FuelNaic` edge in the connection."""
-type FuelNaicsEdge {
+"""A `FuelNaicsCode` edge in the connection."""
+type FuelNaicsCodesEdge {
   """A cursor for use in pagination."""
   cursor: Cursor
 
-  """The `FuelNaic` at the end of the edge."""
-  node: FuelNaic
+  """The `FuelNaicsCode` at the end of the edge."""
+  node: FuelNaicsCode
 }
 
-"""Methods to use when ordering `FuelNaic`."""
-enum FuelNaicsOrderBy {
+"""Methods to use when ordering `FuelNaicsCode`."""
+enum FuelNaicsCodesOrderBy {
   CREATED_AT_ASC
   CREATED_AT_DESC
   CREATED_BY_ASC
@@ -29027,8 +29053,8 @@ enum FuelNaicsOrderBy {
   FUEL_ID_DESC
   ID_ASC
   ID_DESC
-  NAICS_ID_ASC
-  NAICS_ID_DESC
+  NAICS_CODE_ID_ASC
+  NAICS_CODE_ID_DESC
   NATURAL
   PRIMARY_KEY_ASC
   PRIMARY_KEY_DESC
@@ -30558,24 +30584,24 @@ type Mutation {
     input: CreateFuelInput!
   ): CreateFuelPayload
 
-  """Creates a single `FuelNaic`."""
-  createFuelNaic(
+  """Creates a single `FuelNaicsCode`."""
+  createFuelNaicsCode(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: CreateFuelNaicInput!
-  ): CreateFuelNaicPayload
+    input: CreateFuelNaicsCodeInput!
+  ): CreateFuelNaicsCodePayload
 
   """
   This custom create mutation does an upsert on conflict of the fuel_id &
-  naics_id columns, setting the deleted at/by columsn to null
+  naics_code_id columns, setting the deleted at/by columsn to null
   """
-  createFuelNaicsMutation(
+  createFuelNaicsCodeMutation(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: CreateFuelNaicsMutationInput!
-  ): CreateFuelNaicsMutationPayload
+    input: CreateFuelNaicsCodeMutationInput!
+  ): CreateFuelNaicsCodeMutationPayload
 
   """Creates a single `Gas`."""
   createGas(
@@ -30593,24 +30619,24 @@ type Mutation {
     input: CreateLinkedProductInput!
   ): CreateLinkedProductPayload
 
-  """Creates a single `Naic`."""
-  createNaic(
+  """Creates a single `NaicsCode`."""
+  createNaicsCode(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: CreateNaicInput!
-  ): CreateNaicPayload
+    input: CreateNaicsCodeInput!
+  ): CreateNaicsCodePayload
 
   """
   This custom create mutation does an upsert on conflict of the naics_code
   column, updating the description and setting the deleted at/by columsn to null
   """
-  createNaicsMutation(
+  createNaicsCodeMutation(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: CreateNaicsMutationInput!
-  ): CreateNaicsMutationPayload
+    input: CreateNaicsCodeMutationInput!
+  ): CreateNaicsCodeMutationPayload
 
   """Creates a single `Organisation`."""
   createOrganisation(
@@ -30908,21 +30934,21 @@ type Mutation {
     input: DeleteFuelByRowIdInput!
   ): DeleteFuelPayload
 
-  """Deletes a single `FuelNaic` using its globally unique id."""
-  deleteFuelNaic(
+  """Deletes a single `FuelNaicsCode` using its globally unique id."""
+  deleteFuelNaicsCode(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: DeleteFuelNaicInput!
-  ): DeleteFuelNaicPayload
+    input: DeleteFuelNaicsCodeInput!
+  ): DeleteFuelNaicsCodePayload
 
-  """Deletes a single `FuelNaic` using a unique key."""
-  deleteFuelNaicByRowId(
+  """Deletes a single `FuelNaicsCode` using a unique key."""
+  deleteFuelNaicsCodeByRowId(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: DeleteFuelNaicByRowIdInput!
-  ): DeleteFuelNaicPayload
+    input: DeleteFuelNaicsCodeByRowIdInput!
+  ): DeleteFuelNaicsCodePayload
 
   """Deletes a single `Gas` using its globally unique id."""
   deleteGas(
@@ -30956,21 +30982,21 @@ type Mutation {
     input: DeleteLinkedProductByRowIdInput!
   ): DeleteLinkedProductPayload
 
-  """Deletes a single `Naic` using its globally unique id."""
-  deleteNaic(
+  """Deletes a single `NaicsCode` using its globally unique id."""
+  deleteNaicsCode(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: DeleteNaicInput!
-  ): DeleteNaicPayload
+    input: DeleteNaicsCodeInput!
+  ): DeleteNaicsCodePayload
 
-  """Deletes a single `Naic` using a unique key."""
-  deleteNaicByRowId(
+  """Deletes a single `NaicsCode` using a unique key."""
+  deleteNaicsCodeByRowId(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: DeleteNaicByRowIdInput!
-  ): DeleteNaicPayload
+    input: DeleteNaicsCodeByRowIdInput!
+  ): DeleteNaicsCodePayload
 
   """Deletes a single `Organisation` using its globally unique id."""
   deleteOrganisation(
@@ -31360,21 +31386,23 @@ type Mutation {
     input: UpdateFuelByRowIdInput!
   ): UpdateFuelPayload
 
-  """Updates a single `FuelNaic` using its globally unique id and a patch."""
-  updateFuelNaic(
+  """
+  Updates a single `FuelNaicsCode` using its globally unique id and a patch.
+  """
+  updateFuelNaicsCode(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: UpdateFuelNaicInput!
-  ): UpdateFuelNaicPayload
+    input: UpdateFuelNaicsCodeInput!
+  ): UpdateFuelNaicsCodePayload
 
-  """Updates a single `FuelNaic` using a unique key and a patch."""
-  updateFuelNaicByRowId(
+  """Updates a single `FuelNaicsCode` using a unique key and a patch."""
+  updateFuelNaicsCodeByRowId(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: UpdateFuelNaicByRowIdInput!
-  ): UpdateFuelNaicPayload
+    input: UpdateFuelNaicsCodeByRowIdInput!
+  ): UpdateFuelNaicsCodePayload
 
   """Updates a single `Gas` using its globally unique id and a patch."""
   updateGas(
@@ -31410,21 +31438,21 @@ type Mutation {
     input: UpdateLinkedProductByRowIdInput!
   ): UpdateLinkedProductPayload
 
-  """Updates a single `Naic` using its globally unique id and a patch."""
-  updateNaic(
+  """Updates a single `NaicsCode` using its globally unique id and a patch."""
+  updateNaicsCode(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: UpdateNaicInput!
-  ): UpdateNaicPayload
+    input: UpdateNaicsCodeInput!
+  ): UpdateNaicsCodePayload
 
-  """Updates a single `Naic` using a unique key and a patch."""
-  updateNaicByRowId(
+  """Updates a single `NaicsCode` using a unique key and a patch."""
+  updateNaicsCodeByRowId(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: UpdateNaicByRowIdInput!
-  ): UpdateNaicPayload
+    input: UpdateNaicsCodeByRowIdInput!
+  ): UpdateNaicsCodePayload
 
   """
   Updates a single `Organisation` using its globally unique id and a patch.
@@ -31528,18 +31556,18 @@ Table contains naics codes & their descriptions. NAICS is an acronym for North
 American Industry Classification System and is used to categorize industrial
 operations into sectors.
 """
-type Naic implements Node {
-  """Reads a single `CiipUser` that is related to this `Naic`."""
+type NaicsCode implements Node {
+  """Reads a single `CiipUser` that is related to this `NaicsCode`."""
   ciipUserByCreatedBy: CiipUser
 
-  """Reads a single `CiipUser` that is related to this `Naic`."""
+  """Reads a single `CiipUser` that is related to this `NaicsCode`."""
   ciipUserByDeletedBy: CiipUser
 
-  """Reads a single `CiipUser` that is related to this `Naic`."""
+  """Reads a single `CiipUser` that is related to this `NaicsCode`."""
   ciipUserByUpdatedBy: CiipUser
 
   """Reads and enables pagination through a set of `CiipUser`."""
-  ciipUsersByFuelNaicNaicsIdAndCreatedBy(
+  ciipUsersByFuelNaicsCodeNaicsCodeIdAndCreatedBy(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -31570,10 +31598,10 @@ type Naic implements Node {
 
     """The method to use when ordering `CiipUser`."""
     orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
-  ): NaicCiipUsersByFuelNaicNaicsIdAndCreatedByManyToManyConnection!
+  ): NaicsCodeCiipUsersByFuelNaicsCodeNaicsCodeIdAndCreatedByManyToManyConnection!
 
   """Reads and enables pagination through a set of `CiipUser`."""
-  ciipUsersByFuelNaicNaicsIdAndDeletedBy(
+  ciipUsersByFuelNaicsCodeNaicsCodeIdAndDeletedBy(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -31604,10 +31632,10 @@ type Naic implements Node {
 
     """The method to use when ordering `CiipUser`."""
     orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
-  ): NaicCiipUsersByFuelNaicNaicsIdAndDeletedByManyToManyConnection!
+  ): NaicsCodeCiipUsersByFuelNaicsCodeNaicsCodeIdAndDeletedByManyToManyConnection!
 
   """Reads and enables pagination through a set of `CiipUser`."""
-  ciipUsersByFuelNaicNaicsIdAndUpdatedBy(
+  ciipUsersByFuelNaicsCodeNaicsCodeIdAndUpdatedBy(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -31638,22 +31666,22 @@ type Naic implements Node {
 
     """The method to use when ordering `CiipUser`."""
     orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
-  ): NaicCiipUsersByFuelNaicNaicsIdAndUpdatedByManyToManyConnection!
+  ): NaicsCodeCiipUsersByFuelNaicsCodeNaicsCodeIdAndUpdatedByManyToManyConnection!
 
-  """The timestamp of when this naics row was created"""
+  """The timestamp of when this naics_code row was created"""
   createdAt: Datetime!
 
   """The id of the user who created this row, references ciip_user(id)"""
   createdBy: Int
 
-  """The timestamp of when this naics row was archived"""
+  """The timestamp of when this naics_code row was archived"""
   deletedAt: Datetime
 
   """The id of the user who archived this row, references ciip_user(id)"""
   deletedBy: Int
 
-  """Reads and enables pagination through a set of `FuelNaic`."""
-  fuelNaicsByNaicsId(
+  """Reads and enables pagination through a set of `FuelNaicsCode`."""
+  fuelNaicsCodesByNaicsCodeId(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -31663,12 +31691,12 @@ type Naic implements Node {
     """
     A condition to be used in determining which values should be returned by the collection.
     """
-    condition: FuelNaicCondition
+    condition: FuelNaicsCodeCondition
 
     """
     A filter to be used in determining which values should be returned by the collection.
     """
-    filter: FuelNaicFilter
+    filter: FuelNaicsCodeFilter
 
     """Only read the first `n` values of the set."""
     first: Int
@@ -31682,12 +31710,12 @@ type Naic implements Node {
     """
     offset: Int
 
-    """The method to use when ordering `FuelNaic`."""
-    orderBy: [FuelNaicsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): FuelNaicsConnection!
+    """The method to use when ordering `FuelNaicsCode`."""
+    orderBy: [FuelNaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): FuelNaicsCodesConnection!
 
   """Reads and enables pagination through a set of `Fuel`."""
-  fuelsByFuelNaicNaicsIdAndFuelId(
+  fuelsByFuelNaicsCodeNaicsCodeIdAndFuelId(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -31718,7 +31746,7 @@ type Naic implements Node {
 
     """The method to use when ordering `Fuel`."""
     orderBy: [FuelsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): NaicFuelsByFuelNaicNaicsIdAndFuelIdManyToManyConnection!
+  ): NaicsCodeFuelsByFuelNaicsCodeNaicsCodeIdAndFuelIdManyToManyConnection!
 
   """
   A globally unique identifier. Can be used in various places throughout the system to identify this single value.
@@ -31734,10 +31762,10 @@ type Naic implements Node {
   """The plain text description of the NAICS classification"""
   naicsDescription: String!
 
-  """Primary key for naics table"""
+  """Primary key for naics_code table"""
   rowId: Int!
 
-  """The timestamp of when this naics row was last updated"""
+  """The timestamp of when this naics_code row was last updated"""
   updatedAt: Datetime!
 
   """The id of the user who last updated this row, references ciip_user(id)"""
@@ -31745,13 +31773,13 @@ type Naic implements Node {
 }
 
 """
-A connection to a list of `CiipUser` values, with data from `FuelNaic`.
+A connection to a list of `CiipUser` values, with data from `FuelNaicsCode`.
 """
-type NaicCiipUsersByFuelNaicNaicsIdAndCreatedByManyToManyConnection {
+type NaicsCodeCiipUsersByFuelNaicsCodeNaicsCodeIdAndCreatedByManyToManyConnection {
   """
-  A list of edges which contains the `CiipUser`, info from the `FuelNaic`, and the cursor to aid in pagination.
+  A list of edges which contains the `CiipUser`, info from the `FuelNaicsCode`, and the cursor to aid in pagination.
   """
-  edges: [NaicCiipUsersByFuelNaicNaicsIdAndCreatedByManyToManyEdge!]!
+  edges: [NaicsCodeCiipUsersByFuelNaicsCodeNaicsCodeIdAndCreatedByManyToManyEdge!]!
 
   """A list of `CiipUser` objects."""
   nodes: [CiipUser]!
@@ -31763,13 +31791,13 @@ type NaicCiipUsersByFuelNaicNaicsIdAndCreatedByManyToManyConnection {
   totalCount: Int!
 }
 
-"""A `CiipUser` edge in the connection, with data from `FuelNaic`."""
-type NaicCiipUsersByFuelNaicNaicsIdAndCreatedByManyToManyEdge {
+"""A `CiipUser` edge in the connection, with data from `FuelNaicsCode`."""
+type NaicsCodeCiipUsersByFuelNaicsCodeNaicsCodeIdAndCreatedByManyToManyEdge {
   """A cursor for use in pagination."""
   cursor: Cursor
 
-  """Reads and enables pagination through a set of `FuelNaic`."""
-  fuelNaicsByCreatedBy(
+  """Reads and enables pagination through a set of `FuelNaicsCode`."""
+  fuelNaicsCodesByCreatedBy(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -31779,12 +31807,12 @@ type NaicCiipUsersByFuelNaicNaicsIdAndCreatedByManyToManyEdge {
     """
     A condition to be used in determining which values should be returned by the collection.
     """
-    condition: FuelNaicCondition
+    condition: FuelNaicsCodeCondition
 
     """
     A filter to be used in determining which values should be returned by the collection.
     """
-    filter: FuelNaicFilter
+    filter: FuelNaicsCodeFilter
 
     """Only read the first `n` values of the set."""
     first: Int
@@ -31798,22 +31826,22 @@ type NaicCiipUsersByFuelNaicNaicsIdAndCreatedByManyToManyEdge {
     """
     offset: Int
 
-    """The method to use when ordering `FuelNaic`."""
-    orderBy: [FuelNaicsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): FuelNaicsConnection!
+    """The method to use when ordering `FuelNaicsCode`."""
+    orderBy: [FuelNaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): FuelNaicsCodesConnection!
 
   """The `CiipUser` at the end of the edge."""
   node: CiipUser
 }
 
 """
-A connection to a list of `CiipUser` values, with data from `FuelNaic`.
+A connection to a list of `CiipUser` values, with data from `FuelNaicsCode`.
 """
-type NaicCiipUsersByFuelNaicNaicsIdAndDeletedByManyToManyConnection {
+type NaicsCodeCiipUsersByFuelNaicsCodeNaicsCodeIdAndDeletedByManyToManyConnection {
   """
-  A list of edges which contains the `CiipUser`, info from the `FuelNaic`, and the cursor to aid in pagination.
+  A list of edges which contains the `CiipUser`, info from the `FuelNaicsCode`, and the cursor to aid in pagination.
   """
-  edges: [NaicCiipUsersByFuelNaicNaicsIdAndDeletedByManyToManyEdge!]!
+  edges: [NaicsCodeCiipUsersByFuelNaicsCodeNaicsCodeIdAndDeletedByManyToManyEdge!]!
 
   """A list of `CiipUser` objects."""
   nodes: [CiipUser]!
@@ -31825,13 +31853,13 @@ type NaicCiipUsersByFuelNaicNaicsIdAndDeletedByManyToManyConnection {
   totalCount: Int!
 }
 
-"""A `CiipUser` edge in the connection, with data from `FuelNaic`."""
-type NaicCiipUsersByFuelNaicNaicsIdAndDeletedByManyToManyEdge {
+"""A `CiipUser` edge in the connection, with data from `FuelNaicsCode`."""
+type NaicsCodeCiipUsersByFuelNaicsCodeNaicsCodeIdAndDeletedByManyToManyEdge {
   """A cursor for use in pagination."""
   cursor: Cursor
 
-  """Reads and enables pagination through a set of `FuelNaic`."""
-  fuelNaicsByDeletedBy(
+  """Reads and enables pagination through a set of `FuelNaicsCode`."""
+  fuelNaicsCodesByDeletedBy(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -31841,12 +31869,12 @@ type NaicCiipUsersByFuelNaicNaicsIdAndDeletedByManyToManyEdge {
     """
     A condition to be used in determining which values should be returned by the collection.
     """
-    condition: FuelNaicCondition
+    condition: FuelNaicsCodeCondition
 
     """
     A filter to be used in determining which values should be returned by the collection.
     """
-    filter: FuelNaicFilter
+    filter: FuelNaicsCodeFilter
 
     """Only read the first `n` values of the set."""
     first: Int
@@ -31860,22 +31888,22 @@ type NaicCiipUsersByFuelNaicNaicsIdAndDeletedByManyToManyEdge {
     """
     offset: Int
 
-    """The method to use when ordering `FuelNaic`."""
-    orderBy: [FuelNaicsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): FuelNaicsConnection!
+    """The method to use when ordering `FuelNaicsCode`."""
+    orderBy: [FuelNaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): FuelNaicsCodesConnection!
 
   """The `CiipUser` at the end of the edge."""
   node: CiipUser
 }
 
 """
-A connection to a list of `CiipUser` values, with data from `FuelNaic`.
+A connection to a list of `CiipUser` values, with data from `FuelNaicsCode`.
 """
-type NaicCiipUsersByFuelNaicNaicsIdAndUpdatedByManyToManyConnection {
+type NaicsCodeCiipUsersByFuelNaicsCodeNaicsCodeIdAndUpdatedByManyToManyConnection {
   """
-  A list of edges which contains the `CiipUser`, info from the `FuelNaic`, and the cursor to aid in pagination.
+  A list of edges which contains the `CiipUser`, info from the `FuelNaicsCode`, and the cursor to aid in pagination.
   """
-  edges: [NaicCiipUsersByFuelNaicNaicsIdAndUpdatedByManyToManyEdge!]!
+  edges: [NaicsCodeCiipUsersByFuelNaicsCodeNaicsCodeIdAndUpdatedByManyToManyEdge!]!
 
   """A list of `CiipUser` objects."""
   nodes: [CiipUser]!
@@ -31887,13 +31915,13 @@ type NaicCiipUsersByFuelNaicNaicsIdAndUpdatedByManyToManyConnection {
   totalCount: Int!
 }
 
-"""A `CiipUser` edge in the connection, with data from `FuelNaic`."""
-type NaicCiipUsersByFuelNaicNaicsIdAndUpdatedByManyToManyEdge {
+"""A `CiipUser` edge in the connection, with data from `FuelNaicsCode`."""
+type NaicsCodeCiipUsersByFuelNaicsCodeNaicsCodeIdAndUpdatedByManyToManyEdge {
   """A cursor for use in pagination."""
   cursor: Cursor
 
-  """Reads and enables pagination through a set of `FuelNaic`."""
-  fuelNaicsByUpdatedBy(
+  """Reads and enables pagination through a set of `FuelNaicsCode`."""
+  fuelNaicsCodesByUpdatedBy(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -31903,12 +31931,12 @@ type NaicCiipUsersByFuelNaicNaicsIdAndUpdatedByManyToManyEdge {
     """
     A condition to be used in determining which values should be returned by the collection.
     """
-    condition: FuelNaicCondition
+    condition: FuelNaicsCodeCondition
 
     """
     A filter to be used in determining which values should be returned by the collection.
     """
-    filter: FuelNaicFilter
+    filter: FuelNaicsCodeFilter
 
     """Only read the first `n` values of the set."""
     first: Int
@@ -31922,18 +31950,19 @@ type NaicCiipUsersByFuelNaicNaicsIdAndUpdatedByManyToManyEdge {
     """
     offset: Int
 
-    """The method to use when ordering `FuelNaic`."""
-    orderBy: [FuelNaicsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): FuelNaicsConnection!
+    """The method to use when ordering `FuelNaicsCode`."""
+    orderBy: [FuelNaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): FuelNaicsCodesConnection!
 
   """The `CiipUser` at the end of the edge."""
   node: CiipUser
 }
 
 """
-A condition to be used against `Naic` object types. All fields are tested for equality and combined with a logical ‘and.’
+A condition to be used against `NaicsCode` object types. All fields are tested
+for equality and combined with a logical ‘and.’
 """
-input NaicCondition {
+input NaicsCodeCondition {
   """Checks for equality with the object’s `createdAt` field."""
   createdAt: Datetime
 
@@ -31963,11 +31992,11 @@ input NaicCondition {
 }
 
 """
-A filter to be used against `Naic` object types. All fields are combined with a logical ‘and.’
+A filter to be used against `NaicsCode` object types. All fields are combined with a logical ‘and.’
 """
-input NaicFilter {
+input NaicsCodeFilter {
   """Checks for all expressions in this list."""
-  and: [NaicFilter!]
+  and: [NaicsCodeFilter!]
 
   """Filter by the object’s `createdAt` field."""
   createdAt: DatetimeFilter
@@ -31988,10 +32017,10 @@ input NaicFilter {
   naicsDescription: StringFilter
 
   """Negates the expression."""
-  not: NaicFilter
+  not: NaicsCodeFilter
 
   """Checks for any expressions in this list."""
-  or: [NaicFilter!]
+  or: [NaicsCodeFilter!]
 
   """Filter by the object’s `rowId` field."""
   rowId: IntFilter
@@ -32003,12 +32032,14 @@ input NaicFilter {
   updatedBy: IntFilter
 }
 
-"""A connection to a list of `Fuel` values, with data from `FuelNaic`."""
-type NaicFuelsByFuelNaicNaicsIdAndFuelIdManyToManyConnection {
+"""
+A connection to a list of `Fuel` values, with data from `FuelNaicsCode`.
+"""
+type NaicsCodeFuelsByFuelNaicsCodeNaicsCodeIdAndFuelIdManyToManyConnection {
   """
-  A list of edges which contains the `Fuel`, info from the `FuelNaic`, and the cursor to aid in pagination.
+  A list of edges which contains the `Fuel`, info from the `FuelNaicsCode`, and the cursor to aid in pagination.
   """
-  edges: [NaicFuelsByFuelNaicNaicsIdAndFuelIdManyToManyEdge!]!
+  edges: [NaicsCodeFuelsByFuelNaicsCodeNaicsCodeIdAndFuelIdManyToManyEdge!]!
 
   """A list of `Fuel` objects."""
   nodes: [Fuel]!
@@ -32020,13 +32051,13 @@ type NaicFuelsByFuelNaicNaicsIdAndFuelIdManyToManyConnection {
   totalCount: Int!
 }
 
-"""A `Fuel` edge in the connection, with data from `FuelNaic`."""
-type NaicFuelsByFuelNaicNaicsIdAndFuelIdManyToManyEdge {
+"""A `Fuel` edge in the connection, with data from `FuelNaicsCode`."""
+type NaicsCodeFuelsByFuelNaicsCodeNaicsCodeIdAndFuelIdManyToManyEdge {
   """A cursor for use in pagination."""
   cursor: Cursor
 
-  """Reads and enables pagination through a set of `FuelNaic`."""
-  fuelNaicsByFuelId(
+  """Reads and enables pagination through a set of `FuelNaicsCode`."""
+  fuelNaicsCodesByFuelId(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -32036,12 +32067,12 @@ type NaicFuelsByFuelNaicNaicsIdAndFuelIdManyToManyEdge {
     """
     A condition to be used in determining which values should be returned by the collection.
     """
-    condition: FuelNaicCondition
+    condition: FuelNaicsCodeCondition
 
     """
     A filter to be used in determining which values should be returned by the collection.
     """
-    filter: FuelNaicFilter
+    filter: FuelNaicsCodeFilter
 
     """Only read the first `n` values of the set."""
     first: Int
@@ -32055,23 +32086,23 @@ type NaicFuelsByFuelNaicNaicsIdAndFuelIdManyToManyEdge {
     """
     offset: Int
 
-    """The method to use when ordering `FuelNaic`."""
-    orderBy: [FuelNaicsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): FuelNaicsConnection!
+    """The method to use when ordering `FuelNaicsCode`."""
+    orderBy: [FuelNaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): FuelNaicsCodesConnection!
 
   """The `Fuel` at the end of the edge."""
   node: Fuel
 }
 
-"""An input for mutations affecting `Naic`"""
-input NaicInput {
-  """The timestamp of when this naics row was created"""
+"""An input for mutations affecting `NaicsCode`"""
+input NaicsCodeInput {
+  """The timestamp of when this naics_code row was created"""
   createdAt: Datetime
 
   """The id of the user who created this row, references ciip_user(id)"""
   createdBy: Int
 
-  """The timestamp of when this naics row was archived"""
+  """The timestamp of when this naics_code row was archived"""
   deletedAt: Datetime
 
   """The id of the user who archived this row, references ciip_user(id)"""
@@ -32086,22 +32117,24 @@ input NaicInput {
   """The plain text description of the NAICS classification"""
   naicsDescription: String!
 
-  """The timestamp of when this naics row was last updated"""
+  """The timestamp of when this naics_code row was last updated"""
   updatedAt: Datetime
 
   """The id of the user who last updated this row, references ciip_user(id)"""
   updatedBy: Int
 }
 
-"""Represents an update to a `Naic`. Fields that are set will be updated."""
-input NaicPatch {
-  """The timestamp of when this naics row was created"""
+"""
+Represents an update to a `NaicsCode`. Fields that are set will be updated.
+"""
+input NaicsCodePatch {
+  """The timestamp of when this naics_code row was created"""
   createdAt: Datetime
 
   """The id of the user who created this row, references ciip_user(id)"""
   createdBy: Int
 
-  """The timestamp of when this naics row was archived"""
+  """The timestamp of when this naics_code row was archived"""
   deletedAt: Datetime
 
   """The id of the user who archived this row, references ciip_user(id)"""
@@ -32116,41 +32149,41 @@ input NaicPatch {
   """The plain text description of the NAICS classification"""
   naicsDescription: String
 
-  """The timestamp of when this naics row was last updated"""
+  """The timestamp of when this naics_code row was last updated"""
   updatedAt: Datetime
 
   """The id of the user who last updated this row, references ciip_user(id)"""
   updatedBy: Int
 }
 
-"""A connection to a list of `Naic` values."""
-type NaicsConnection {
+"""A connection to a list of `NaicsCode` values."""
+type NaicsCodesConnection {
   """
-  A list of edges which contains the `Naic` and cursor to aid in pagination.
+  A list of edges which contains the `NaicsCode` and cursor to aid in pagination.
   """
-  edges: [NaicsEdge!]!
+  edges: [NaicsCodesEdge!]!
 
-  """A list of `Naic` objects."""
-  nodes: [Naic]!
+  """A list of `NaicsCode` objects."""
+  nodes: [NaicsCode]!
 
   """Information to aid in pagination."""
   pageInfo: PageInfo!
 
-  """The count of *all* `Naic` you could get from the connection."""
+  """The count of *all* `NaicsCode` you could get from the connection."""
   totalCount: Int!
 }
 
-"""A `Naic` edge in the connection."""
-type NaicsEdge {
+"""A `NaicsCode` edge in the connection."""
+type NaicsCodesEdge {
   """A cursor for use in pagination."""
   cursor: Cursor
 
-  """The `Naic` at the end of the edge."""
-  node: Naic
+  """The `NaicsCode` at the end of the edge."""
+  node: NaicsCode
 }
 
-"""Methods to use when ordering `Naic`."""
-enum NaicsOrderBy {
+"""Methods to use when ordering `NaicsCode`."""
+enum NaicsCodesOrderBy {
   CREATED_AT_ASC
   CREATED_AT_DESC
   CREATED_BY_ASC
@@ -35371,8 +35404,8 @@ type Query implements Node {
     orderBy: [FormResultsOrderBy!] = [PRIMARY_KEY_ASC]
   ): FormResultsConnection
 
-  """Reads and enables pagination through a set of `FuelNaic`."""
-  allFuelNaics(
+  """Reads and enables pagination through a set of `FuelNaicsCode`."""
+  allFuelNaicsCodes(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -35382,12 +35415,12 @@ type Query implements Node {
     """
     A condition to be used in determining which values should be returned by the collection.
     """
-    condition: FuelNaicCondition
+    condition: FuelNaicsCodeCondition
 
     """
     A filter to be used in determining which values should be returned by the collection.
     """
-    filter: FuelNaicFilter
+    filter: FuelNaicsCodeFilter
 
     """Only read the first `n` values of the set."""
     first: Int
@@ -35401,9 +35434,9 @@ type Query implements Node {
     """
     offset: Int
 
-    """The method to use when ordering `FuelNaic`."""
-    orderBy: [FuelNaicsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): FuelNaicsConnection
+    """The method to use when ordering `FuelNaicsCode`."""
+    orderBy: [FuelNaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): FuelNaicsCodesConnection
 
   """Reads and enables pagination through a set of `Fuel`."""
   allFuels(
@@ -35507,8 +35540,8 @@ type Query implements Node {
     orderBy: [LinkedProductsOrderBy!] = [PRIMARY_KEY_ASC]
   ): LinkedProductsConnection
 
-  """Reads and enables pagination through a set of `Naic`."""
-  allNaics(
+  """Reads and enables pagination through a set of `NaicsCode`."""
+  allNaicsCodes(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -35518,12 +35551,12 @@ type Query implements Node {
     """
     A condition to be used in determining which values should be returned by the collection.
     """
-    condition: NaicCondition
+    condition: NaicsCodeCondition
 
     """
     A filter to be used in determining which values should be returned by the collection.
     """
-    filter: NaicFilter
+    filter: NaicsCodeFilter
 
     """Only read the first `n` values of the set."""
     first: Int
@@ -35537,9 +35570,9 @@ type Query implements Node {
     """
     offset: Int
 
-    """The method to use when ordering `Naic`."""
-    orderBy: [NaicsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): NaicsConnection
+    """The method to use when ordering `NaicsCode`."""
+    orderBy: [NaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): NaicsCodesConnection
 
   """Reads and enables pagination through a set of `Organisation`."""
   allOrganisations(
@@ -35867,12 +35900,14 @@ type Query implements Node {
   ): Fuel
   fuelByRowId(rowId: Int!): Fuel
 
-  """Reads a single `FuelNaic` using its globally unique `ID`."""
-  fuelNaic(
-    """The globally unique `ID` to be used in selecting a single `FuelNaic`."""
+  """Reads a single `FuelNaicsCode` using its globally unique `ID`."""
+  fuelNaicsCode(
+    """
+    The globally unique `ID` to be used in selecting a single `FuelNaicsCode`.
+    """
     id: ID!
-  ): FuelNaic
-  fuelNaicByRowId(rowId: Int!): FuelNaic
+  ): FuelNaicsCode
+  fuelNaicsCodeByRowId(rowId: Int!): FuelNaicsCode
 
   """Reads a single `Gas` using its globally unique `ID`."""
   gas(
@@ -35980,12 +36015,12 @@ type Query implements Node {
   ): LinkedProduct
   linkedProductByRowId(rowId: Int!): LinkedProduct
 
-  """Reads a single `Naic` using its globally unique `ID`."""
-  naic(
-    """The globally unique `ID` to be used in selecting a single `Naic`."""
+  """Reads a single `NaicsCode` using its globally unique `ID`."""
+  naicsCode(
+    """The globally unique `ID` to be used in selecting a single `NaicsCode`."""
     id: ID!
-  ): Naic
-  naicByRowId(rowId: Int!): Naic
+  ): NaicsCode
+  naicsCodeByRowId(rowId: Int!): NaicsCode
 
   """
   Returns the next reporting year to have an application window that opens.
@@ -39462,8 +39497,8 @@ input UpdateFuelInput {
   id: ID!
 }
 
-"""All input for the `updateFuelNaicByRowId` mutation."""
-input UpdateFuelNaicByRowIdInput {
+"""All input for the `updateFuelNaicsCodeByRowId` mutation."""
+input UpdateFuelNaicsCodeByRowIdInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
@@ -39471,16 +39506,16 @@ input UpdateFuelNaicByRowIdInput {
   clientMutationId: String
 
   """
-  An object where the defined keys will be set on the `FuelNaic` being updated.
+  An object where the defined keys will be set on the `FuelNaicsCode` being updated.
   """
-  fuelNaicPatch: FuelNaicPatch!
+  fuelNaicsCodePatch: FuelNaicsCodePatch!
 
-  """Primary key for fuel_naics table"""
+  """Primary key for fuel_naics_code table"""
   rowId: Int!
 }
 
-"""All input for the `updateFuelNaic` mutation."""
-input UpdateFuelNaicInput {
+"""All input for the `updateFuelNaicsCode` mutation."""
+input UpdateFuelNaicsCodeInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
@@ -39488,25 +39523,25 @@ input UpdateFuelNaicInput {
   clientMutationId: String
 
   """
-  An object where the defined keys will be set on the `FuelNaic` being updated.
+  An object where the defined keys will be set on the `FuelNaicsCode` being updated.
   """
-  fuelNaicPatch: FuelNaicPatch!
+  fuelNaicsCodePatch: FuelNaicsCodePatch!
 
   """
-  The globally unique `ID` which will identify a single `FuelNaic` to be updated.
+  The globally unique `ID` which will identify a single `FuelNaicsCode` to be updated.
   """
   id: ID!
 }
 
-"""The output of our update `FuelNaic` mutation."""
-type UpdateFuelNaicPayload {
-  """Reads a single `CiipUser` that is related to this `FuelNaic`."""
+"""The output of our update `FuelNaicsCode` mutation."""
+type UpdateFuelNaicsCodePayload {
+  """Reads a single `CiipUser` that is related to this `FuelNaicsCode`."""
   ciipUserByCreatedBy: CiipUser
 
-  """Reads a single `CiipUser` that is related to this `FuelNaic`."""
+  """Reads a single `CiipUser` that is related to this `FuelNaicsCode`."""
   ciipUserByDeletedBy: CiipUser
 
-  """Reads a single `CiipUser` that is related to this `FuelNaic`."""
+  """Reads a single `CiipUser` that is related to this `FuelNaicsCode`."""
   ciipUserByUpdatedBy: CiipUser
 
   """
@@ -39515,20 +39550,20 @@ type UpdateFuelNaicPayload {
   """
   clientMutationId: String
 
-  """Reads a single `Fuel` that is related to this `FuelNaic`."""
+  """Reads a single `Fuel` that is related to this `FuelNaicsCode`."""
   fuelByFuelId: Fuel
 
-  """The `FuelNaic` that was updated by this mutation."""
-  fuelNaic: FuelNaic
+  """The `FuelNaicsCode` that was updated by this mutation."""
+  fuelNaicsCode: FuelNaicsCode
 
-  """An edge for our `FuelNaic`. May be used by Relay 1."""
-  fuelNaicEdge(
-    """The method to use when ordering `FuelNaic`."""
-    orderBy: [FuelNaicsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): FuelNaicsEdge
+  """An edge for our `FuelNaicsCode`. May be used by Relay 1."""
+  fuelNaicsCodeEdge(
+    """The method to use when ordering `FuelNaicsCode`."""
+    orderBy: [FuelNaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): FuelNaicsCodesEdge
 
-  """Reads a single `Naic` that is related to this `FuelNaic`."""
-  naicByNaicsId: Naic
+  """Reads a single `NaicsCode` that is related to this `FuelNaicsCode`."""
+  naicsCodeByNaicsCodeId: NaicsCode
 
   """
   Our root query field type. Allows us to run any query from our mutation payload.
@@ -39710,8 +39745,8 @@ type UpdateLinkedProductPayload {
   query: Query
 }
 
-"""All input for the `updateNaicByRowId` mutation."""
-input UpdateNaicByRowIdInput {
+"""All input for the `updateNaicsCodeByRowId` mutation."""
+input UpdateNaicsCodeByRowIdInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
@@ -39719,16 +39754,16 @@ input UpdateNaicByRowIdInput {
   clientMutationId: String
 
   """
-  An object where the defined keys will be set on the `Naic` being updated.
+  An object where the defined keys will be set on the `NaicsCode` being updated.
   """
-  naicPatch: NaicPatch!
+  naicsCodePatch: NaicsCodePatch!
 
-  """Primary key for naics table"""
+  """Primary key for naics_code table"""
   rowId: Int!
 }
 
-"""All input for the `updateNaic` mutation."""
-input UpdateNaicInput {
+"""All input for the `updateNaicsCode` mutation."""
+input UpdateNaicsCodeInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
@@ -39736,25 +39771,25 @@ input UpdateNaicInput {
   clientMutationId: String
 
   """
-  The globally unique `ID` which will identify a single `Naic` to be updated.
+  The globally unique `ID` which will identify a single `NaicsCode` to be updated.
   """
   id: ID!
 
   """
-  An object where the defined keys will be set on the `Naic` being updated.
+  An object where the defined keys will be set on the `NaicsCode` being updated.
   """
-  naicPatch: NaicPatch!
+  naicsCodePatch: NaicsCodePatch!
 }
 
-"""The output of our update `Naic` mutation."""
-type UpdateNaicPayload {
-  """Reads a single `CiipUser` that is related to this `Naic`."""
+"""The output of our update `NaicsCode` mutation."""
+type UpdateNaicsCodePayload {
+  """Reads a single `CiipUser` that is related to this `NaicsCode`."""
   ciipUserByCreatedBy: CiipUser
 
-  """Reads a single `CiipUser` that is related to this `Naic`."""
+  """Reads a single `CiipUser` that is related to this `NaicsCode`."""
   ciipUserByDeletedBy: CiipUser
 
-  """Reads a single `CiipUser` that is related to this `Naic`."""
+  """Reads a single `CiipUser` that is related to this `NaicsCode`."""
   ciipUserByUpdatedBy: CiipUser
 
   """
@@ -39763,14 +39798,14 @@ type UpdateNaicPayload {
   """
   clientMutationId: String
 
-  """The `Naic` that was updated by this mutation."""
-  naic: Naic
+  """The `NaicsCode` that was updated by this mutation."""
+  naicsCode: NaicsCode
 
-  """An edge for our `Naic`. May be used by Relay 1."""
-  naicEdge(
-    """The method to use when ordering `Naic`."""
-    orderBy: [NaicsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): NaicsEdge
+  """An edge for our `NaicsCode`. May be used by Relay 1."""
+  naicsCodeEdge(
+    """The method to use when ordering `NaicsCode`."""
+    orderBy: [NaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): NaicsCodesEdge
 
   """
   Our root query field type. Allows us to run any query from our mutation payload.
