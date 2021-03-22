@@ -6,6 +6,7 @@ begin;
 create table ggircs_portal.naics_code (
   id integer primary key generated always as identity,
   naics_code varchar(1000) not null,
+  ciip_sector varchar(1000),
   naics_description varchar(10000) not null
 );
 
@@ -38,6 +39,7 @@ $grant$;
 comment on table ggircs_portal.naics_code is 'Table contains naics codes & their descriptions. NAICS is an acronym for North American Industry Classification System and is used to categorize industrial operations into sectors.';
 comment on column ggircs_portal.naics_code.id is 'Primary key for naics_code table';
 comment on column ggircs_portal.naics_code.naics_code is 'The naics_code, NAICS is an acronym for North American Industry Classification System and is used to categorize industrial operations into sectors.';
+comment on column ggircs_portal.naics_code.ciip_sector is 'The sector this naics code belongs to according to the CleanBC Industrial Incentive Program';
 comment on column ggircs_portal.naics_code.naics_description is 'The plain text description of the NAICS classification';
 comment on column ggircs_portal.naics_code.created_at is 'The timestamp of when this naics_code row was created';
 comment on column ggircs_portal.naics_code.created_by is 'The id of the user who created this row, references ciip_user(id)';
