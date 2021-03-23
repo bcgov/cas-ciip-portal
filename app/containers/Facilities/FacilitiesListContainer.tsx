@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useMemo} from 'react';
 import {graphql, createFragmentContainer} from 'react-relay';
 import {FacilitiesListContainer_query} from 'FacilitiesListContainer_query.graphql';
 import FacilitiesRowItemContainer from './FacilitiesRowItemContainer';
@@ -44,8 +44,10 @@ export const FacilitiesList: React.FunctionComponent<Props> = ({query}) => {
   } = query;
 
   const router = useRouter();
-  const [selectedReportingYear] = useState(
-    () => safeJsonParse(router.query.filterArgs as string).reportingYear || 2019
+  const selectedReportingYear = useMemo(
+    () =>
+      safeJsonParse(router.query.filterArgs as string).reportingYear || 2019,
+    [router]
   );
 
   const body = (
