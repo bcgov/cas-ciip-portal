@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(16);
+select plan(17);
 
 -- Table exists
 select has_table(
@@ -16,6 +16,11 @@ select has_index(
   'naics table has a unique index on the naics_code column'
 );
 
+select is(
+  (select count(*) from ggircs_portal.naics_code),
+  29::bigint,
+  'The naics table was seeded with 29 naics codes'
+);
 
 -- Test Setup
 select test_helper.clean_ggircs_portal_schema();

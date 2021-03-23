@@ -40,7 +40,7 @@ perform ggircs_portal_private.grant_permissions('select', 'product_naics_code', 
 end
 $grant$;
 
-comment on table ggircs_portal.product_naics_code is 'Defines which products can be reported in a facility with a given naics code. NAICS is an acronym for North American Industry Classification System and is used to categorize industrial operations into sectors.';
+comment on table ggircs_portal.product_naics_code is E'@omit create,delete\nDefines which products can be reported in a facility with a given naics code. NAICS is an acronym for North American Industry Classification System and is used to categorize industrial operations into sectors.';
 comment on column ggircs_portal.product_naics_code.id is 'Primary key for product_naics_code table';
 comment on column ggircs_portal.product_naics_code.product_id is 'The id referencing the product table';
 comment on column ggircs_portal.product_naics_code.naics_code_id is 'The id refrencing the naics_code table';

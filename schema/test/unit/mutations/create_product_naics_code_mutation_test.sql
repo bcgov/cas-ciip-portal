@@ -7,8 +7,8 @@ select plan(4);
 
 -- Function exists
 select has_function(
-  'ggircs_portal', 'create_product_naics_code_mutation', array['int', 'int', 'boolean'],
-  'Function ggircs_portal.create_product_naics_code_mutation should exist'
+  'ggircs_portal', 'create_product_naics_code', array['int', 'int', 'boolean'],
+  'Function ggircs_portal.create_product_naics_code should exist'
 );
 
 -- Test Setup
@@ -18,7 +18,7 @@ select test_helper.create_test_users();
 insert into ggircs_portal.product(product_name, product_state) values ('product 1', 'published'), ('product 2', 'published');
 insert into ggircs_portal.naics_code(naics_code, naics_description) values ('1234', 'naics 1'), ('9999', 'naics 2');
 
-select ggircs_portal.create_product_naics_code_mutation(1, 1, false);
+select ggircs_portal.create_product_naics_code(1, 1, false);
 
 select results_eq(
   $$
@@ -30,7 +30,7 @@ select results_eq(
 
 -- "Delete" product_naics_code code & re-run custom mutation
 update ggircs_portal.product_naics_code set deleted_at=now();
-select ggircs_portal.create_product_naics_code_mutation(1, 1, true);
+select ggircs_portal.create_product_naics_code(1, 1, true);
 
 select results_eq(
   $$
