@@ -222,11 +222,12 @@ function makeApplicationDecision(decision) {
       applicationRevisionId
     )}&version=1`
   );
+  cy.get('#page-content');
   cy.get('#dropdown').click();
-  cy.wait(500);
+  cy.get('#page-content');
   cy.contains(getUserFriendlyStatusLabel(decision)).click();
   cy.get('.btn-success').click();
-  cy.wait(500);
+  cy.get('#page-content');
 }
 
 describe('Application status change emails', () => {
@@ -237,12 +238,16 @@ describe('Application status change emails', () => {
   });
   beforeEach(() => {
     cy.request('DELETE', 'localhost:8025/api/v1/messages');
-    cy.mockLogin('analyst');
     cy.wait(500);
   });
 
   it('should send the reporter an email when their application has been approved', () => {
+    cy.mockLogin('analyst');
+    cy.visit('/analyst');
+    cy.get('#page-content');
+
     makeApplicationDecision('APPROVED');
+    cy.wait(500);
 
     cy.request('localhost:8025/api/v1/messages').then((response) => {
       const message = response.body[0];
@@ -258,7 +263,12 @@ describe('Application status change emails', () => {
     });
   });
   it('should send the reporter an email when their application has been rejected', () => {
+    cy.mockLogin('analyst');
+    cy.visit('/analyst');
+    cy.get('#page-content');
+
     makeApplicationDecision('REJECTED');
+    cy.wait(500);
 
     cy.request('localhost:8025/api/v1/messages').then((response) => {
       const message = response.body[0];
@@ -274,7 +284,12 @@ describe('Application status change emails', () => {
     });
   });
   it('should send the reporter an email when changes to their application have been requested', () => {
+    cy.mockLogin('analyst');
+    cy.visit('/analyst');
+    cy.get('#page-content');
+
     makeApplicationDecision('REQUESTED_CHANGES');
+    cy.wait(500);
 
     cy.request('localhost:8025/api/v1/messages').then((response) => {
       const message = response.body[0];

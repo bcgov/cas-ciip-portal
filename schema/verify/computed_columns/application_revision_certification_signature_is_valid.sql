@@ -2,6 +2,6 @@
 
 begin;
 
-select pg_get_functiondef('ggircs_portal.application_revision_certification_signature_is_valid(ggircs_portal.application_revision)'::regprocedure);
+select ggircs_portal_private.verify_function_not_present('ggircs_portal.application_revision_certification_signature_is_valid');
 
 rollback;

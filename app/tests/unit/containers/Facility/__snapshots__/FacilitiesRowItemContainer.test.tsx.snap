@@ -43,13 +43,6 @@ exports[`FacilitiesRowItem should match the previous snapshot 1`] = `
             "ApplyButtonContainer_applyButtonDetails": true,
           },
           " $refType": "FacilitiesRowItemContainer_facilityApplication",
-          "applicationByApplicationId": Object {
-            "latestDraftRevision": Object {
-              "certificationUrl": Object {
-                "certifiedBy": 1,
-              },
-            },
-          },
           "applicationId": 42,
           "applicationStatus": "SUBMITTED",
           "facilityBcghgid": "123",
@@ -73,7 +66,7 @@ exports[`FacilitiesRowItem should match the previous snapshot 1`] = `
 </tr>
 `;
 
-exports[`FacilitiesRowItem should not show Pending Certification in the status if the application is in draft but a certificationUrl does not exist 1`] = `
+exports[`FacilitiesRowItem should show Draft in the status if the application is in draft 1`] = `
 <tr>
   <td>
     org
@@ -116,11 +109,6 @@ exports[`FacilitiesRowItem should not show Pending Certification in the status i
             "ApplyButtonContainer_applyButtonDetails": true,
           },
           " $refType": "FacilitiesRowItemContainer_facilityApplication",
-          "applicationByApplicationId": Object {
-            "latestDraftRevision": Object {
-              "certificationUrl": null,
-            },
-          },
           "applicationId": 42,
           "applicationStatus": "DRAFT",
           "facilityBcghgid": "123",
@@ -144,7 +132,7 @@ exports[`FacilitiesRowItem should not show Pending Certification in the status i
 </tr>
 `;
 
-exports[`FacilitiesRowItem should not show Pending Certification in the status if the application is not in draft state and a certificationUrl exists 1`] = `
+exports[`FacilitiesRowItem should show approved in the status if the application is approved 1`] = `
 <tr>
   <td>
     org
@@ -187,163 +175,8 @@ exports[`FacilitiesRowItem should not show Pending Certification in the status i
             "ApplyButtonContainer_applyButtonDetails": true,
           },
           " $refType": "FacilitiesRowItemContainer_facilityApplication",
-          "applicationByApplicationId": Object {
-            "latestDraftRevision": Object {
-              "certificationUrl": Object {
-                "certifiedBy": null,
-              },
-            },
-          },
           "applicationId": 42,
           "applicationStatus": "APPROVED",
-          "facilityBcghgid": "123",
-          "facilityName": "fac",
-          "facilityType": "EIO",
-          "lastSwrsReportingYear": 2019,
-          "operatorName": "org",
-        }
-      }
-      query={
-        Object {
-          " $fragmentRefs": Object {
-            "ApplyButtonContainer_query": true,
-          },
-          " $refType": "FacilitiesRowItemContainer_query",
-        }
-      }
-      reportingYear={2019}
-    />
-  </td>
-</tr>
-`;
-
-exports[`FacilitiesRowItem should show Certified in the status if the application is in draft and has been certified 1`] = `
-<tr>
-  <td>
-    org
-  </td>
-  <td>
-    fac
-  </td>
-  <td>
-    EIO
-  </td>
-  <td>
-    123
-  </td>
-  <td>
-    2019
-  </td>
-  <td>
-     
-    <Badge
-      pill={true}
-      style={
-        Object {
-          "textTransform": "uppercase",
-          "width": "100%",
-        }
-      }
-      variant="warning"
-    >
-      Draft
-       (Certified)
-    </Badge>
-  </td>
-  <td>
-    42
-  </td>
-  <td>
-    <Relay(ApplyButton)
-      applyButtonDetails={
-        Object {
-          " $fragmentRefs": Object {
-            "ApplyButtonContainer_applyButtonDetails": true,
-          },
-          " $refType": "FacilitiesRowItemContainer_facilityApplication",
-          "applicationByApplicationId": Object {
-            "latestDraftRevision": Object {
-              "certificationUrl": Object {
-                "certifiedBy": 1,
-              },
-            },
-          },
-          "applicationId": 42,
-          "applicationStatus": "DRAFT",
-          "facilityBcghgid": "123",
-          "facilityName": "fac",
-          "facilityType": "EIO",
-          "lastSwrsReportingYear": 2019,
-          "operatorName": "org",
-        }
-      }
-      query={
-        Object {
-          " $fragmentRefs": Object {
-            "ApplyButtonContainer_query": true,
-          },
-          " $refType": "FacilitiesRowItemContainer_query",
-        }
-      }
-      reportingYear={2019}
-    />
-  </td>
-</tr>
-`;
-
-exports[`FacilitiesRowItem should show Pending Certification in the status if the application is in draft and a certificationUrl exists 1`] = `
-<tr>
-  <td>
-    org
-  </td>
-  <td>
-    fac
-  </td>
-  <td>
-    EIO
-  </td>
-  <td>
-    123
-  </td>
-  <td>
-    2019
-  </td>
-  <td>
-     
-    <Badge
-      pill={true}
-      style={
-        Object {
-          "textTransform": "uppercase",
-          "width": "100%",
-        }
-      }
-      variant="warning"
-    >
-      Draft
-       (Pending Certification)
-    </Badge>
-  </td>
-  <td>
-    42
-  </td>
-  <td>
-    <Relay(ApplyButton)
-      applyButtonDetails={
-        Object {
-          " $fragmentRefs": Object {
-            "ApplyButtonContainer_applyButtonDetails": true,
-          },
-          " $refType": "FacilitiesRowItemContainer_facilityApplication",
-          "applicationByApplicationId": Object {
-            "latestDraftRevision": Object {
-              "certificationUrl": Object {
-                "certifiedBy": null,
-              },
-            },
-          },
-          "applicationId": 42,
-          "applicationStatus": "DRAFT",
           "facilityBcghgid": "123",
           "facilityName": "fac",
           "facilityType": "EIO",

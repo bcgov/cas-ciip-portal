@@ -11,8 +11,6 @@ begin;
 
   alter table ggircs_portal.application disable trigger _send_draft_application_email;
   alter table ggircs_portal.application_revision_status disable trigger _status_change_email;
-  alter table ggircs_portal.certification_url disable trigger _certification_request_email;
-  alter table ggircs_portal.certification_url disable trigger _signed_by_certifier_email;
 
   -- Set a jwt token so that the created_by columns are not null on creation of application;
   set jwt.claims.sub to '00000000-0000-0000-0000-000000000000';
@@ -43,7 +41,5 @@ begin;
 
   alter table ggircs_portal.application_revision_status enable trigger _status_change_email;
   alter table ggircs_portal.application enable trigger _send_draft_application_email;
-  alter table ggircs_portal.certification_url enable trigger _certification_request_email;
-  alter table ggircs_portal.certification_url enable trigger _signed_by_certifier_email;
 
 commit;

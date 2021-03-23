@@ -5,25 +5,6 @@
 
 begin;
 
-  create or replace function ggircs_portal.ciip_user_has_certification_requests(
-    ciip_user ggircs_portal.ciip_user
-  )
-  returns boolean
-  as
-  $body$
-    declare
-    begin
-      if (select count(*) from ggircs_portal.certification_url where lower(certifier_email) = lower(ciip_user.email_address)) = 0 then
-        return false;
-      else
-        return true;
-      end if;
-    end;
-  $body$
-  language 'plpgsql' stable;
-
-  grant execute on function ggircs_portal.ciip_user_has_certification_requests to ciip_administrator, ciip_analyst, ciip_industry_user;
-
-  comment on function ggircs_portal.ciip_user_has_certification_requests is 'Computed column true if the user has certification requests attached to their email';
+drop function ggircs_portal.ciip_user_has_certification_requests;
 
 commit;

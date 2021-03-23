@@ -3,18 +3,14 @@
 -- requires: table_ciip_user
 
 begin;
-create function ggircs_portal_private.set_user_id()
+create or replace function ggircs_portal_private.set_user_id()
   returns trigger as $$
 
 declare
   user_sub uuid;
 begin
   user_sub := (select sub from ggircs_portal.session());
-  if tg_argv[0] = 'certification_url' then
-    new.certified_by := (select id from ggircs_portal.ciip_user as cu where cu.uuid = user_sub);
-  else
-    new.user_id := (select id from ggircs_portal.ciip_user as cu where cu.uuid = user_sub);
-  end if;
+  new.user_id := (select id from ggircs_portal.ciip_user as cu where cu.uuid = user_sub);
   return new;
 end;
 $$ language plpgsql volatile;

@@ -4,9 +4,6 @@ const createWelcomeMail = require('../emailTemplates/welcome.js');
 const createConfirmationMail = require('../emailTemplates/confirmation.js');
 const createApplicationDecisionMail = require('../emailTemplates/applicationDecision.js');
 const createAmendmentMail = require('../emailTemplates/amendment.js');
-const createCertificationRequestMail = require('../emailTemplates/certificationRequest.js');
-const createSignedByCertifierMail = require('../emailTemplates/signedByCertifier.js');
-const createRecertificationRequestMail = require('../emailTemplates/recertificationRequest.js');
 const createOrganisationAccessRequestMail = require('../emailTemplates/requestForOrganisationAccess.js');
 const createOrganisationAccessApprovedMail = require('../emailTemplates/organisationAccessApproved.js');
 const createNotifyAdminApplicationSubmittedMail = require('../emailTemplates/notifyAdminApplicationSubmitted.js');
@@ -27,11 +24,6 @@ module.exports = async ({
   operatorName,
   organisationId,
   status,
-  reporterEmail,
-  certifierFirstName,
-  certifierLastName,
-  certifierEmail,
-  certifierUrl,
   versionNumber
 }) => {
   if (!process.env.SMTP_CONNECTION_STRING && !process.env.NO_MAIL)
@@ -110,50 +102,6 @@ module.exports = async ({
         facilityName,
         operatorName,
         versionNumber,
-        contactEmail: ADMIN_EMAIL_SHORT
-      });
-      break;
-    // Request for certification
-    case 'certification_request':
-      subject = 'CIIP Application Certification Request';
-      htmlContent = createCertificationRequestMail({
-        email,
-        firstName,
-        lastName,
-        facilityName,
-        operatorName,
-        reporterEmail,
-        certifierUrl,
-        contactEmail: ADMIN_EMAIL_SHORT
-      });
-      break;
-    // Certifier signs application
-    case 'signed_by_certifier':
-      subject = 'CIIP Application Certified';
-      htmlContent = createSignedByCertifierMail({
-        applicationId,
-        versionNumber,
-        email,
-        firstName,
-        lastName,
-        facilityName,
-        operatorName,
-        certifierEmail,
-        certifierFirstName,
-        certifierLastName,
-        contactEmail: ADMIN_EMAIL_SHORT
-      });
-      break;
-    // Request for recertification (data changed)
-    case 'recertification':
-      subject = 'CIIP Application recertification request';
-      htmlContent = createRecertificationRequestMail({
-        applicationId,
-        email,
-        firstName,
-        lastName,
-        facilityName,
-        operatorName,
         contactEmail: ADMIN_EMAIL_SHORT
       });
       break;

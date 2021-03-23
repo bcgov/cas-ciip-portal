@@ -2,6 +2,6 @@
 
 begin;
 
-select pg_get_functiondef('ggircs_portal.certification_url_hash_matches(ggircs_portal.certification_url)'::regprocedure);
+select ggircs_portal_private.verify_function_not_present('ggircs_portal.certification_url_hash_matches');
 
 rollback;
