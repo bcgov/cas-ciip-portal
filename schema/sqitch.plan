@@ -265,7 +265,6 @@ trigger_functions/immutable_form_result [trigger_functions/immutable_form_result
 computed_columns/application_revision_is_immutable [computed_columns/application_revision_is_immutable@v1.16.0] 2021-03-19T16:58:18Z Dylan Leard <dylan@button.is> # Migration: fix comment copy paste error
 tables/product_naics_code [tables/naics_code tables/product] 2021-03-19T20:00:08Z Dylan Leard <dylan@button.is> # Table contains product-naics relationships
 mutations/create_product_naics_code [tables/product_naics_code] 2021-03-19T20:11:08Z Dylan Leard <dylan@button.is> # Custom create mutation upserts on conflict (product_id, naics_id)
-mutations/create_product_naics_code_mutation [tables/product_naics_code] 2021-03-19T20:11:08Z Dylan Leard <dylan@button.is> # Custom create mutation upserts on conflict (product_id, naics_id)
 database_functions/verify_policy_not_present 2021-03-13T00:18:59Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # function to verify a policy doesn't exist on the system
 policies/certification_url_policies [policies/certification_url_policies@v1.16.0] 2021-03-11T22:31:10Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # Removing certification url policies as part of the certifier role deprecation
 database_functions/verify_function_not_present 2021-03-12T00:26:55Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # Helper that throws if a function already exists, meant to verify drop operations
