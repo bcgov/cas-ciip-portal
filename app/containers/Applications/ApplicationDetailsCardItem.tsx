@@ -1,7 +1,7 @@
-import React, {useState, useMemo} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Button, Card, Collapse, Col, Row} from 'react-bootstrap';
 import {createFragmentContainer, graphql} from 'react-relay';
-import JsonSchemaForm, {FieldProps, AjvError} from '@rjsf/core';
+import JsonSchemaForm, {AjvError, ErrorSchema} from '@rjsf/core';
 import {FormJson} from 'next-env';
 import {ApplicationDetailsCardItem_formResult} from '__generated__/ApplicationDetailsCardItem_formResult.graphql';
 import {ApplicationDetailsCardItem_query} from '__generated__/ApplicationDetailsCardItem_query.graphql';
@@ -49,19 +49,26 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
   const {formJson} = formJsonByFormId;
   const {schema, uiSchema, customFormats} = formJson as FormJson;
 
+  const formIdPrefix = `${formJsonByFormId.name
+    .toLowerCase()
+    .replace(' ', '-')}`;
+
   const transformErrors = (errors: AjvError[]) => {
     return customTransformErrors(errors, formJson);
   };
 
+  const handleChange = (_formData, errorSchema: ErrorSchema) => {
+    if (setHasErrors) {
+      if (errorSchema?.__errors) {
+        setHasErrors(true);
+      } else {
+        setHasErrors(false);
+      }
+    }
+  };
+
   // Expands or collapses the form_result card
   const [isOpen, setIsOpen] = useState(false);
-
-  // The array of paths to each difference between diffFrom result & diffTo result (each path matches up with idSchema)
-  const diffPathArray = [];
-  // The array of differences
-  const diffArray = [];
-  // If the diffFrom result is empty, there is no path. This flag gives us control over what to show in the diff in that case.
-  let previousIsEmpty = false;
 
   let diffTo;
   // Select the correct form result to diff to by matching formJson slugs
@@ -70,7 +77,16 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
       diffTo = result;
   });
 
-  useMemo(() => {
+  const [idDiffMap, setIdDiffMap] = useState<
+    Record<string, {lhs: any; rhs: any}>
+  >({});
+  const [formData, setFormData] = useState(
+    review ? diffTo.node.formResult : formResult.formResult
+  );
+  // The array of paths to each difference between diffFrom result & diffTo result (each path matches up with idSchema)
+  useEffect(() => {
+    const newIdDiffMap: Record<string, {lhs: any; rhs: any}> = {};
+    let newFormData = Array.isArray(formData) ? [...formData] : {...formData};
     if (diffFromResults && showDiff) {
       let diffFrom;
       // Select the correct form result to diff from by matching formJson slugs
@@ -87,67 +103,67 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
       const rhs = diffTo.node.formResult;
       const differences = diff(lhs, rhs);
 
-      // These are the default values for empty form results. If the form results for the diffFrom are empty, set the previousIsEmpty flag
-      if (
-        JSON.stringify(diffFrom) === '[]' ||
-        JSON.stringify(diffFrom) === '{}' ||
-        JSON.stringify(diffFrom) === '[{}]'
-      ) {
-        previousIsEmpty = true;
-      } else if (differences) {
+      if (differences) {
         // Populate the diffPathArray and diffArray
         differences.forEach((difference) => {
-          if (difference.path) {
-            diffPathArray.push(difference.path.join('_'));
-            diffArray.push(difference.lhs);
+          if (difference.kind === 'A') {
+            // Array differences
+            const arrayElementPath = [
+              formIdPrefix,
+              ...(difference.path ?? []),
+              difference.index
+            ].join('_');
+            if (difference.item.kind === 'N') {
+              // Added an element to the array
+              Object.keys(difference.item.rhs).forEach((key) => {
+                newIdDiffMap[`${arrayElementPath}_${key}`] = {
+                  lhs: null,
+                  rhs: difference.item.rhs[key]
+                };
+              });
+            } else if (difference.item.kind === 'D') {
+              console.log(difference);
+              const deletedItem = {};
+              // Deleted an element from the array
+              Object.keys(difference.item.lhs).forEach((key) => {
+                deletedItem[key] = null;
+                newIdDiffMap[`${arrayElementPath}_${key}`] = {
+                  lhs: difference.item.lhs[key],
+                  rhs: null
+                };
+              });
+              if (Array.isArray(newFormData) && !difference.path) {
+                newFormData = [
+                  ...newFormData.slice(0, difference.index),
+                  deletedItem,
+                  ...newFormData.slice(difference.index)
+                ];
+              }
+            }
+          } else if (difference.path) {
+            const {lhs, rhs} = difference;
+            newIdDiffMap[[formIdPrefix, ...difference.path].join('_')] = {
+              lhs,
+              rhs
+            };
           }
         });
       }
     }
+    setFormData(newFormData);
+    setIdDiffMap(newIdDiffMap);
   }, [
-    diffArray,
-    diffPathArray,
     formResult.formJsonByFormId.slug,
     formResult.formResult,
     diffFromResults,
     showDiff
   ]);
 
-  // Some formData values are numbers that map to enums, this function uses the number values to return the enum names stored in the schema
-  const handleEnums = (props, isCurrent, prevValue) => {
-    if (props.schema.enum && props.schema.enumNames) {
-      // TODO: needs a fix on jsonschema types (missing enumNames)
-      const enumIndex = isCurrent
-        ? props.schema.enum.indexOf(props.formData)
-        : props.schema.enum.indexOf(prevValue);
-      if (enumIndex === -1 && isCurrent) return props.formData;
-      if (enumIndex === -1 && !isCurrent) return '[No Data Entered]';
-      return props.schema.enumNames[enumIndex];
-    }
-
-    if (isCurrent) return props.formData;
-
-    return prevValue;
-  };
-
-  const CUSTOM_FIELDS: Record<
-    string,
-    React.FunctionComponent<FieldProps>
-  > = customFields(
-    showDiff,
-    diffPathArray,
-    diffArray,
-    handleEnums,
-    previousIsEmpty,
-    setHasErrors
-  );
   const classTag = formJsonByFormId.slug;
   // Override submit button for each form with an empty fragment
   // eslint-disable-next-line react/jsx-no-useless-fragment
   const buttonOverride = <></>;
-  const formIdPrefix = `${formJsonByFormId.name
-    .toLowerCase()
-    .replace(' ', '-')}`;
+
   return (
     <Card
       style={{width: '100%', marginBottom: '10px'}}
@@ -179,20 +195,19 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
             ArrayFieldTemplate={SummaryFormArrayFieldTemplate}
             FieldTemplate={SummaryFormFieldTemplate}
             showErrorList={false}
-            fields={CUSTOM_FIELDS}
+            fields={customFields}
             customFormats={customFormats}
             transformErrors={transformErrors}
             schema={schema}
             idPrefix={formIdPrefix}
             uiSchema={uiSchema}
+            onChange={handleChange}
             ObjectFieldTemplate={FormObjectFieldTemplate}
-            formData={review ? diffTo.node.formResult : formResult.formResult}
+            formData={formData}
             formContext={{
               query,
               showDiff,
-              diffPathArray,
-              diffArray,
-              previousIsEmpty
+              idDiffMap
             }}
           >
             {buttonOverride}
@@ -229,9 +244,7 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
 export default createFragmentContainer(ApplicationDetailsCardItemComponent, {
   formResult: graphql`
     fragment ApplicationDetailsCardItem_formResult on FormResult {
-      id
       formResult
-      versionNumber
       formJsonByFormId {
         name
         slug
