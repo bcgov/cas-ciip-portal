@@ -87,7 +87,7 @@ export default createFragmentContainer(NaicsCodeTableContainer, {
       allNaicsCodes(
         first: 2147483647
         filter: {deletedAt: {isNull: true}}
-        orderBy: NAICS_CODE_DESC
+        orderBy: NAICS_CODE_ASC
       ) @connection(key: "NaicsCodeTableContainer_allNaicsCodes", filters: []) {
         __id
         edges {
