@@ -70,7 +70,7 @@ type Application implements Node {
   ): ApplicationRevisionsConnection!
 
   """
-  Computed column for graphql to traverse to an application_revision_status from application
+  Computed column to determine whether a revision is immutable (submitted)
   """
   applicationRevisionStatus(versionNumberInput: String): ApplicationRevisionStatus
 
@@ -2685,10 +2685,6 @@ type ApplicationRevision implements Node {
   Computed column indicates if a revision is the current version of the application
   """
   isCurrentVersion: Boolean
-
-  """
-  Computed column to determine whether a revision is immutable (submitted)
-  """
   isImmutable: Boolean
 
   """Whether or not reporter agreed the legal disclaimer"""
@@ -8440,7 +8436,7 @@ type CiipUser implements Node {
   ): CiipUserCiipUsersByLinkedProductUpdatedByAndDeletedByManyToManyConnection!
 
   """Reads and enables pagination through a set of `CiipUser`."""
-  ciipUsersByNaicsCodeCreatedByAndDeletedBy(
+  ciipUsersByNaicCreatedByAndDeletedBy(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -8471,10 +8467,10 @@ type CiipUser implements Node {
 
     """The method to use when ordering `CiipUser`."""
     orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
-  ): CiipUserCiipUsersByNaicsCodeCreatedByAndDeletedByManyToManyConnection!
+  ): CiipUserCiipUsersByNaicCreatedByAndDeletedByManyToManyConnection!
 
   """Reads and enables pagination through a set of `CiipUser`."""
-  ciipUsersByNaicsCodeCreatedByAndUpdatedBy(
+  ciipUsersByNaicCreatedByAndUpdatedBy(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -8505,10 +8501,10 @@ type CiipUser implements Node {
 
     """The method to use when ordering `CiipUser`."""
     orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
-  ): CiipUserCiipUsersByNaicsCodeCreatedByAndUpdatedByManyToManyConnection!
+  ): CiipUserCiipUsersByNaicCreatedByAndUpdatedByManyToManyConnection!
 
   """Reads and enables pagination through a set of `CiipUser`."""
-  ciipUsersByNaicsCodeDeletedByAndCreatedBy(
+  ciipUsersByNaicDeletedByAndCreatedBy(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -8539,10 +8535,10 @@ type CiipUser implements Node {
 
     """The method to use when ordering `CiipUser`."""
     orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
-  ): CiipUserCiipUsersByNaicsCodeDeletedByAndCreatedByManyToManyConnection!
+  ): CiipUserCiipUsersByNaicDeletedByAndCreatedByManyToManyConnection!
 
   """Reads and enables pagination through a set of `CiipUser`."""
-  ciipUsersByNaicsCodeDeletedByAndUpdatedBy(
+  ciipUsersByNaicDeletedByAndUpdatedBy(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -8573,10 +8569,10 @@ type CiipUser implements Node {
 
     """The method to use when ordering `CiipUser`."""
     orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
-  ): CiipUserCiipUsersByNaicsCodeDeletedByAndUpdatedByManyToManyConnection!
+  ): CiipUserCiipUsersByNaicDeletedByAndUpdatedByManyToManyConnection!
 
   """Reads and enables pagination through a set of `CiipUser`."""
-  ciipUsersByNaicsCodeUpdatedByAndCreatedBy(
+  ciipUsersByNaicUpdatedByAndCreatedBy(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -8607,10 +8603,10 @@ type CiipUser implements Node {
 
     """The method to use when ordering `CiipUser`."""
     orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
-  ): CiipUserCiipUsersByNaicsCodeUpdatedByAndCreatedByManyToManyConnection!
+  ): CiipUserCiipUsersByNaicUpdatedByAndCreatedByManyToManyConnection!
 
   """Reads and enables pagination through a set of `CiipUser`."""
-  ciipUsersByNaicsCodeUpdatedByAndDeletedBy(
+  ciipUsersByNaicUpdatedByAndDeletedBy(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -8641,7 +8637,7 @@ type CiipUser implements Node {
 
     """The method to use when ordering `CiipUser`."""
     orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
-  ): CiipUserCiipUsersByNaicsCodeUpdatedByAndDeletedByManyToManyConnection!
+  ): CiipUserCiipUsersByNaicUpdatedByAndDeletedByManyToManyConnection!
 
   """Reads and enables pagination through a set of `CiipUser`."""
   ciipUsersByProductCreatedByAndDeletedBy(
@@ -8778,210 +8774,6 @@ type CiipUser implements Node {
     """The method to use when ordering `CiipUser`."""
     orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
   ): CiipUserCiipUsersByProductDeletedByAndUpdatedByManyToManyConnection!
-
-  """Reads and enables pagination through a set of `CiipUser`."""
-  ciipUsersByProductNaicsCodeCreatedByAndDeletedBy(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: CiipUserCondition
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: CiipUserFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `CiipUser`."""
-    orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
-  ): CiipUserCiipUsersByProductNaicsCodeCreatedByAndDeletedByManyToManyConnection!
-
-  """Reads and enables pagination through a set of `CiipUser`."""
-  ciipUsersByProductNaicsCodeCreatedByAndUpdatedBy(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: CiipUserCondition
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: CiipUserFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `CiipUser`."""
-    orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
-  ): CiipUserCiipUsersByProductNaicsCodeCreatedByAndUpdatedByManyToManyConnection!
-
-  """Reads and enables pagination through a set of `CiipUser`."""
-  ciipUsersByProductNaicsCodeDeletedByAndCreatedBy(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: CiipUserCondition
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: CiipUserFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `CiipUser`."""
-    orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
-  ): CiipUserCiipUsersByProductNaicsCodeDeletedByAndCreatedByManyToManyConnection!
-
-  """Reads and enables pagination through a set of `CiipUser`."""
-  ciipUsersByProductNaicsCodeDeletedByAndUpdatedBy(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: CiipUserCondition
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: CiipUserFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `CiipUser`."""
-    orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
-  ): CiipUserCiipUsersByProductNaicsCodeDeletedByAndUpdatedByManyToManyConnection!
-
-  """Reads and enables pagination through a set of `CiipUser`."""
-  ciipUsersByProductNaicsCodeUpdatedByAndCreatedBy(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: CiipUserCondition
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: CiipUserFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `CiipUser`."""
-    orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
-  ): CiipUserCiipUsersByProductNaicsCodeUpdatedByAndCreatedByManyToManyConnection!
-
-  """Reads and enables pagination through a set of `CiipUser`."""
-  ciipUsersByProductNaicsCodeUpdatedByAndDeletedBy(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: CiipUserCondition
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: CiipUserFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `CiipUser`."""
-    orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
-  ): CiipUserCiipUsersByProductNaicsCodeUpdatedByAndDeletedByManyToManyConnection!
 
   """Reads and enables pagination through a set of `CiipUser`."""
   ciipUsersByProductUpdatedByAndCreatedBy(
@@ -10023,6 +9815,7 @@ type CiipUser implements Node {
 
   """Reads and enables pagination through a set of `Fuel`."""
   fuelsByCreatedBy(
+<<<<<<< HEAD
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -10057,6 +9850,8 @@ type CiipUser implements Node {
 
   """Reads and enables pagination through a set of `Fuel`."""
   fuelsByDeletedBy(
+=======
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -10090,7 +9885,11 @@ type CiipUser implements Node {
   ): FuelsConnection!
 
   """Reads and enables pagination through a set of `Fuel`."""
+<<<<<<< HEAD
   fuelsByUpdatedBy(
+=======
+  fuelsByDeletedBy(
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -10123,8 +9922,13 @@ type CiipUser implements Node {
     orderBy: [FuelsOrderBy!] = [PRIMARY_KEY_ASC]
   ): FuelsConnection!
 
+<<<<<<< HEAD
   """Reads and enables pagination through a set of `Gas`."""
   gasesByCreatedBy(
+=======
+  """Reads and enables pagination through a set of `Fuel`."""
+  fuelsByUpdatedBy(
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -10158,7 +9962,11 @@ type CiipUser implements Node {
   ): GasesConnection!
 
   """Reads and enables pagination through a set of `Gas`."""
+<<<<<<< HEAD
   gasesByDeletedBy(
+=======
+  gasesByCreatedBy(
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -10189,6 +9997,49 @@ type CiipUser implements Node {
 
     """The method to use when ordering `Gas`."""
     orderBy: [GasesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): GasesConnection!
+
+  """Reads and enables pagination through a set of `Gas`."""
+<<<<<<< HEAD
+  gasesByEmissionCategoryGasCreatedByAndGasId(
+=======
+  gasesByDeletedBy(
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: GasCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: GasFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `Gas`."""
+    orderBy: [GasesOrderBy!] = [PRIMARY_KEY_ASC]
+<<<<<<< HEAD
+  ): CiipUserGasesByEmissionCategoryGasCreatedByAndGasIdManyToManyConnection!
+
+  """Reads and enables pagination through a set of `Gas`."""
+=======
   ): GasesConnection!
 
   """Reads and enables pagination through a set of `Gas`."""
@@ -10226,6 +10077,7 @@ type CiipUser implements Node {
   ): CiipUserGasesByEmissionCategoryGasCreatedByAndGasIdManyToManyConnection!
 
   """Reads and enables pagination through a set of `Gas`."""
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
   gasesByEmissionCategoryGasDeletedByAndGasId(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
@@ -10437,8 +10289,8 @@ type CiipUser implements Node {
     orderBy: [LinkedProductsOrderBy!] = [PRIMARY_KEY_ASC]
   ): LinkedProductsConnection!
 
-  """Reads and enables pagination through a set of `NaicsCode`."""
-  naicsCodesByCreatedBy(
+  """Reads and enables pagination through a set of `Naic`."""
+  naicsByCreatedBy(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -10448,12 +10300,12 @@ type CiipUser implements Node {
     """
     A condition to be used in determining which values should be returned by the collection.
     """
-    condition: NaicsCodeCondition
+    condition: NaicCondition
 
     """
     A filter to be used in determining which values should be returned by the collection.
     """
-    filter: NaicsCodeFilter
+    filter: NaicFilter
 
     """Only read the first `n` values of the set."""
     first: Int
@@ -10467,12 +10319,12 @@ type CiipUser implements Node {
     """
     offset: Int
 
-    """The method to use when ordering `NaicsCode`."""
-    orderBy: [NaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
-  ): NaicsCodesConnection!
+    """The method to use when ordering `Naic`."""
+    orderBy: [NaicsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): NaicsConnection!
 
-  """Reads and enables pagination through a set of `NaicsCode`."""
-  naicsCodesByDeletedBy(
+  """Reads and enables pagination through a set of `Naic`."""
+  naicsByDeletedBy(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -10482,12 +10334,12 @@ type CiipUser implements Node {
     """
     A condition to be used in determining which values should be returned by the collection.
     """
-    condition: NaicsCodeCondition
+    condition: NaicCondition
 
     """
     A filter to be used in determining which values should be returned by the collection.
     """
-    filter: NaicsCodeFilter
+    filter: NaicFilter
 
     """Only read the first `n` values of the set."""
     first: Int
@@ -10501,12 +10353,17 @@ type CiipUser implements Node {
     """
     offset: Int
 
-    """The method to use when ordering `NaicsCode`."""
-    orderBy: [NaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
-  ): NaicsCodesConnection!
+    """The method to use when ordering `Naic`."""
+    orderBy: [NaicsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): NaicsConnection!
 
+<<<<<<< HEAD
   """Reads and enables pagination through a set of `NaicsCode`."""
   naicsCodesByProductNaicsCodeCreatedByAndNaicsCodeId(
+=======
+  """Reads and enables pagination through a set of `Naic`."""
+  naicsByUpdatedBy(
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -10516,12 +10373,12 @@ type CiipUser implements Node {
     """
     A condition to be used in determining which values should be returned by the collection.
     """
-    condition: NaicsCodeCondition
+    condition: NaicCondition
 
     """
     A filter to be used in determining which values should be returned by the collection.
     """
-    filter: NaicsCodeFilter
+    filter: NaicFilter
 
     """Only read the first `n` values of the set."""
     first: Int
@@ -10535,117 +10392,24 @@ type CiipUser implements Node {
     """
     offset: Int
 
+<<<<<<< HEAD
     """The method to use when ordering `NaicsCode`."""
     orderBy: [NaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
   ): CiipUserNaicsCodesByProductNaicsCodeCreatedByAndNaicsCodeIdManyToManyConnection!
 
   """Reads and enables pagination through a set of `NaicsCode`."""
   naicsCodesByProductNaicsCodeDeletedByAndNaicsCodeId(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: NaicsCodeCondition
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: NaicsCodeFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `NaicsCode`."""
-    orderBy: [NaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
-  ): CiipUserNaicsCodesByProductNaicsCodeDeletedByAndNaicsCodeIdManyToManyConnection!
-
-  """Reads and enables pagination through a set of `NaicsCode`."""
-  naicsCodesByProductNaicsCodeUpdatedByAndNaicsCodeId(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: NaicsCodeCondition
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: NaicsCodeFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `NaicsCode`."""
-    orderBy: [NaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
-  ): CiipUserNaicsCodesByProductNaicsCodeUpdatedByAndNaicsCodeIdManyToManyConnection!
-
-  """Reads and enables pagination through a set of `NaicsCode`."""
-  naicsCodesByUpdatedBy(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: NaicsCodeCondition
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: NaicsCodeFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `NaicsCode`."""
-    orderBy: [NaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
-  ): NaicsCodesConnection!
+=======
+    """The method to use when ordering `Naic`."""
+    orderBy: [NaicsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): NaicsConnection!
 
   """User's occupation"""
   occupation: String
 
   """Reads and enables pagination through a set of `Organisation`."""
   organisationsByCiipUserOrganisationUserIdAndOrganisationId(
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -10674,6 +10438,150 @@ type CiipUser implements Node {
     """
     offset: Int
 
+<<<<<<< HEAD
+    """The method to use when ordering `NaicsCode`."""
+    orderBy: [NaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CiipUserNaicsCodesByProductNaicsCodeDeletedByAndNaicsCodeIdManyToManyConnection!
+
+  """Reads and enables pagination through a set of `NaicsCode`."""
+  naicsCodesByProductNaicsCodeUpdatedByAndNaicsCodeId(
+=======
+    """The method to use when ordering `Organisation`."""
+    orderBy: [OrganisationsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CiipUserOrganisationsByCiipUserOrganisationUserIdAndOrganisationIdManyToManyConnection!
+
+  """User's phone number"""
+  phoneNumber: String
+
+  """Reads and enables pagination through a set of `Product`."""
+  productsByBenchmarkCreatedByAndProductId(
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ProductCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: ProductFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+<<<<<<< HEAD
+    """The method to use when ordering `NaicsCode`."""
+    orderBy: [NaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CiipUserNaicsCodesByProductNaicsCodeUpdatedByAndNaicsCodeIdManyToManyConnection!
+
+  """Reads and enables pagination through a set of `NaicsCode`."""
+  naicsCodesByUpdatedBy(
+=======
+    """The method to use when ordering `Product`."""
+    orderBy: [ProductsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CiipUserProductsByBenchmarkCreatedByAndProductIdManyToManyConnection!
+
+  """Reads and enables pagination through a set of `Product`."""
+  productsByBenchmarkDeletedByAndProductId(
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ProductCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: ProductFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+<<<<<<< HEAD
+    """The method to use when ordering `NaicsCode`."""
+    orderBy: [NaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): NaicsCodesConnection!
+
+  """User's occupation"""
+  occupation: String
+
+  """Reads and enables pagination through a set of `Organisation`."""
+  organisationsByCiipUserOrganisationUserIdAndOrganisationId(
+=======
+    """The method to use when ordering `Product`."""
+    orderBy: [ProductsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CiipUserProductsByBenchmarkDeletedByAndProductIdManyToManyConnection!
+
+  """Reads and enables pagination through a set of `Product`."""
+  productsByBenchmarkUpdatedByAndProductId(
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+<<<<<<< HEAD
+    condition: OrganisationCondition
+=======
+    condition: ProductCondition
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+<<<<<<< HEAD
+    filter: OrganisationFilter
+=======
+    filter: ProductFilter
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+<<<<<<< HEAD
     """The method to use when ordering `Organisation`."""
     orderBy: [OrganisationsOrderBy!] = [PRIMARY_KEY_ASC]
   ): CiipUserOrganisationsByCiipUserOrganisationUserIdAndOrganisationIdManyToManyConnection!
@@ -10683,210 +10591,14 @@ type CiipUser implements Node {
 
   """Reads and enables pagination through a set of `ProductNaicsCode`."""
   productNaicsCodesByCreatedBy(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: ProductNaicsCodeCondition
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: ProductNaicsCodeFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `ProductNaicsCode`."""
-    orderBy: [ProductNaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
-  ): ProductNaicsCodesConnection!
-
-  """Reads and enables pagination through a set of `ProductNaicsCode`."""
-  productNaicsCodesByDeletedBy(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: ProductNaicsCodeCondition
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: ProductNaicsCodeFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `ProductNaicsCode`."""
-    orderBy: [ProductNaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
-  ): ProductNaicsCodesConnection!
-
-  """Reads and enables pagination through a set of `ProductNaicsCode`."""
-  productNaicsCodesByUpdatedBy(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: ProductNaicsCodeCondition
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: ProductNaicsCodeFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `ProductNaicsCode`."""
-    orderBy: [ProductNaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
-  ): ProductNaicsCodesConnection!
-
-  """Reads and enables pagination through a set of `Product`."""
-  productsByBenchmarkCreatedByAndProductId(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: ProductCondition
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: ProductFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `Product`."""
-    orderBy: [ProductsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): CiipUserProductsByBenchmarkCreatedByAndProductIdManyToManyConnection!
-
-  """Reads and enables pagination through a set of `Product`."""
-  productsByBenchmarkDeletedByAndProductId(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: ProductCondition
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: ProductFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `Product`."""
-    orderBy: [ProductsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): CiipUserProductsByBenchmarkDeletedByAndProductIdManyToManyConnection!
-
-  """Reads and enables pagination through a set of `Product`."""
-  productsByBenchmarkUpdatedByAndProductId(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: ProductCondition
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: ProductFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
+=======
     """The method to use when ordering `Product`."""
     orderBy: [ProductsOrderBy!] = [PRIMARY_KEY_ASC]
   ): CiipUserProductsByBenchmarkUpdatedByAndProductIdManyToManyConnection!
 
   """Reads and enables pagination through a set of `Product`."""
   productsByCreatedBy(
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -10896,12 +10608,20 @@ type CiipUser implements Node {
     """
     A condition to be used in determining which values should be returned by the collection.
     """
+<<<<<<< HEAD
+    condition: ProductNaicsCodeCondition
+=======
     condition: ProductCondition
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
 
     """
     A filter to be used in determining which values should be returned by the collection.
     """
+<<<<<<< HEAD
+    filter: ProductNaicsCodeFilter
+=======
     filter: ProductFilter
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
 
     """Only read the first `n` values of the set."""
     first: Int
@@ -10915,12 +10635,21 @@ type CiipUser implements Node {
     """
     offset: Int
 
+<<<<<<< HEAD
+    """The method to use when ordering `ProductNaicsCode`."""
+    orderBy: [ProductNaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ProductNaicsCodesConnection!
+
+  """Reads and enables pagination through a set of `ProductNaicsCode`."""
+  productNaicsCodesByDeletedBy(
+=======
     """The method to use when ordering `Product`."""
     orderBy: [ProductsOrderBy!] = [PRIMARY_KEY_ASC]
   ): ProductsConnection!
 
   """Reads and enables pagination through a set of `Product`."""
   productsByDeletedBy(
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -10930,11 +10659,18 @@ type CiipUser implements Node {
     """
     A condition to be used in determining which values should be returned by the collection.
     """
+<<<<<<< HEAD
+    condition: ProductNaicsCodeCondition
+=======
     condition: ProductCondition
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
 
     """
     A filter to be used in determining which values should be returned by the collection.
     """
+<<<<<<< HEAD
+    filter: ProductNaicsCodeFilter
+=======
     filter: ProductFilter
 
     """Only read the first `n` values of the set."""
@@ -11038,6 +10774,7 @@ type CiipUser implements Node {
     A filter to be used in determining which values should be returned by the collection.
     """
     filter: ProductFilter
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
 
     """Only read the first `n` values of the set."""
     first: Int
@@ -11156,108 +10893,6 @@ type CiipUser implements Node {
     """The method to use when ordering `Product`."""
     orderBy: [ProductsOrderBy!] = [PRIMARY_KEY_ASC]
   ): CiipUserProductsByLinkedProductUpdatedByAndProductIdManyToManyConnection!
-
-  """Reads and enables pagination through a set of `Product`."""
-  productsByProductNaicsCodeCreatedByAndProductId(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: ProductCondition
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: ProductFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `Product`."""
-    orderBy: [ProductsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): CiipUserProductsByProductNaicsCodeCreatedByAndProductIdManyToManyConnection!
-
-  """Reads and enables pagination through a set of `Product`."""
-  productsByProductNaicsCodeDeletedByAndProductId(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: ProductCondition
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: ProductFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `Product`."""
-    orderBy: [ProductsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): CiipUserProductsByProductNaicsCodeDeletedByAndProductIdManyToManyConnection!
-
-  """Reads and enables pagination through a set of `Product`."""
-  productsByProductNaicsCodeUpdatedByAndProductId(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: ProductCondition
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: ProductFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `Product`."""
-    orderBy: [ProductsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): CiipUserProductsByProductNaicsCodeUpdatedByAndProductIdManyToManyConnection!
 
   """Reads and enables pagination through a set of `Product`."""
   productsByUpdatedBy(
@@ -16592,6 +16227,7 @@ type CiipUserCiipUsersByFuelDeletedByAndUpdatedByManyToManyEdge {
 
 """A connection to a list of `CiipUser` values, with data from `Fuel`."""
 type CiipUserCiipUsersByFuelUpdatedByAndCreatedByManyToManyConnection {
+<<<<<<< HEAD
   """
   A list of edges which contains the `CiipUser`, info from the `Fuel`, and the cursor to aid in pagination.
   """
@@ -16952,6 +16588,8 @@ type CiipUserCiipUsersByGasDeletedByAndUpdatedByManyToManyEdge {
 
 """A connection to a list of `CiipUser` values, with data from `Gas`."""
 type CiipUserCiipUsersByGasUpdatedByAndCreatedByManyToManyConnection {
+=======
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
   """
   A list of edges which contains the `CiipUser`, info from the `Gas`, and the cursor to aid in pagination.
   """
@@ -17814,12 +17452,21 @@ type CiipUserCiipUsersByNaicsCodeUpdatedByAndDeletedByManyToManyEdge {
   node: CiipUser
 }
 
+<<<<<<< HEAD
 """A connection to a list of `CiipUser` values, with data from `Product`."""
 type CiipUserCiipUsersByProductCreatedByAndDeletedByManyToManyConnection {
   """
   A list of edges which contains the `CiipUser`, info from the `Product`, and the cursor to aid in pagination.
   """
   edges: [CiipUserCiipUsersByProductCreatedByAndDeletedByManyToManyEdge!]!
+=======
+"""A connection to a list of `CiipUser` values, with data from `Naic`."""
+type CiipUserCiipUsersByNaicCreatedByAndDeletedByManyToManyConnection {
+  """
+  A list of edges which contains the `CiipUser`, info from the `Naic`, and the cursor to aid in pagination.
+  """
+  edges: [CiipUserCiipUsersByNaicCreatedByAndDeletedByManyToManyEdge!]!
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
 
   """A list of `CiipUser` objects."""
   nodes: [CiipUser]!
@@ -17831,6 +17478,7 @@ type CiipUserCiipUsersByProductCreatedByAndDeletedByManyToManyConnection {
   totalCount: Int!
 }
 
+<<<<<<< HEAD
 """A `CiipUser` edge in the connection, with data from `Product`."""
 type CiipUserCiipUsersByProductCreatedByAndDeletedByManyToManyEdge {
   """A cursor for use in pagination."""
@@ -17841,6 +17489,15 @@ type CiipUserCiipUsersByProductCreatedByAndDeletedByManyToManyEdge {
 
   """Reads and enables pagination through a set of `Product`."""
   productsByDeletedBy(
+=======
+"""A `CiipUser` edge in the connection, with data from `Naic`."""
+type CiipUserCiipUsersByNaicCreatedByAndDeletedByManyToManyEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """Reads and enables pagination through a set of `Naic`."""
+  naicsByDeletedBy(
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -17850,12 +17507,20 @@ type CiipUserCiipUsersByProductCreatedByAndDeletedByManyToManyEdge {
     """
     A condition to be used in determining which values should be returned by the collection.
     """
+<<<<<<< HEAD
     condition: ProductCondition
+=======
+    condition: NaicCondition
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
 
     """
     A filter to be used in determining which values should be returned by the collection.
     """
+<<<<<<< HEAD
     filter: ProductFilter
+=======
+    filter: NaicFilter
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
 
     """Only read the first `n` values of the set."""
     first: Int
@@ -17869,6 +17534,7 @@ type CiipUserCiipUsersByProductCreatedByAndDeletedByManyToManyEdge {
     """
     offset: Int
 
+<<<<<<< HEAD
     """The method to use when ordering `Product`."""
     orderBy: [ProductsOrderBy!] = [PRIMARY_KEY_ASC]
   ): ProductsConnection!
@@ -17880,6 +17546,22 @@ type CiipUserCiipUsersByProductCreatedByAndUpdatedByManyToManyConnection {
   A list of edges which contains the `CiipUser`, info from the `Product`, and the cursor to aid in pagination.
   """
   edges: [CiipUserCiipUsersByProductCreatedByAndUpdatedByManyToManyEdge!]!
+=======
+    """The method to use when ordering `Naic`."""
+    orderBy: [NaicsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): NaicsConnection!
+
+  """The `CiipUser` at the end of the edge."""
+  node: CiipUser
+}
+
+"""A connection to a list of `CiipUser` values, with data from `Naic`."""
+type CiipUserCiipUsersByNaicCreatedByAndUpdatedByManyToManyConnection {
+  """
+  A list of edges which contains the `CiipUser`, info from the `Naic`, and the cursor to aid in pagination.
+  """
+  edges: [CiipUserCiipUsersByNaicCreatedByAndUpdatedByManyToManyEdge!]!
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
 
   """A list of `CiipUser` objects."""
   nodes: [CiipUser]!
@@ -17891,6 +17573,7 @@ type CiipUserCiipUsersByProductCreatedByAndUpdatedByManyToManyConnection {
   totalCount: Int!
 }
 
+<<<<<<< HEAD
 """A `CiipUser` edge in the connection, with data from `Product`."""
 type CiipUserCiipUsersByProductCreatedByAndUpdatedByManyToManyEdge {
   """A cursor for use in pagination."""
@@ -17901,6 +17584,15 @@ type CiipUserCiipUsersByProductCreatedByAndUpdatedByManyToManyEdge {
 
   """Reads and enables pagination through a set of `Product`."""
   productsByUpdatedBy(
+=======
+"""A `CiipUser` edge in the connection, with data from `Naic`."""
+type CiipUserCiipUsersByNaicCreatedByAndUpdatedByManyToManyEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """Reads and enables pagination through a set of `Naic`."""
+  naicsByUpdatedBy(
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -17910,12 +17602,20 @@ type CiipUserCiipUsersByProductCreatedByAndUpdatedByManyToManyEdge {
     """
     A condition to be used in determining which values should be returned by the collection.
     """
+<<<<<<< HEAD
     condition: ProductCondition
+=======
+    condition: NaicCondition
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
 
     """
     A filter to be used in determining which values should be returned by the collection.
     """
+<<<<<<< HEAD
     filter: ProductFilter
+=======
+    filter: NaicFilter
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
 
     """Only read the first `n` values of the set."""
     first: Int
@@ -17929,6 +17629,7 @@ type CiipUserCiipUsersByProductCreatedByAndUpdatedByManyToManyEdge {
     """
     offset: Int
 
+<<<<<<< HEAD
     """The method to use when ordering `Product`."""
     orderBy: [ProductsOrderBy!] = [PRIMARY_KEY_ASC]
   ): ProductsConnection!
@@ -17940,6 +17641,22 @@ type CiipUserCiipUsersByProductDeletedByAndCreatedByManyToManyConnection {
   A list of edges which contains the `CiipUser`, info from the `Product`, and the cursor to aid in pagination.
   """
   edges: [CiipUserCiipUsersByProductDeletedByAndCreatedByManyToManyEdge!]!
+=======
+    """The method to use when ordering `Naic`."""
+    orderBy: [NaicsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): NaicsConnection!
+
+  """The `CiipUser` at the end of the edge."""
+  node: CiipUser
+}
+
+"""A connection to a list of `CiipUser` values, with data from `Naic`."""
+type CiipUserCiipUsersByNaicDeletedByAndCreatedByManyToManyConnection {
+  """
+  A list of edges which contains the `CiipUser`, info from the `Naic`, and the cursor to aid in pagination.
+  """
+  edges: [CiipUserCiipUsersByNaicDeletedByAndCreatedByManyToManyEdge!]!
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
 
   """A list of `CiipUser` objects."""
   nodes: [CiipUser]!
@@ -17951,6 +17668,7 @@ type CiipUserCiipUsersByProductDeletedByAndCreatedByManyToManyConnection {
   totalCount: Int!
 }
 
+<<<<<<< HEAD
 """A `CiipUser` edge in the connection, with data from `Product`."""
 type CiipUserCiipUsersByProductDeletedByAndCreatedByManyToManyEdge {
   """A cursor for use in pagination."""
@@ -17961,6 +17679,15 @@ type CiipUserCiipUsersByProductDeletedByAndCreatedByManyToManyEdge {
 
   """Reads and enables pagination through a set of `Product`."""
   productsByCreatedBy(
+=======
+"""A `CiipUser` edge in the connection, with data from `Naic`."""
+type CiipUserCiipUsersByNaicDeletedByAndCreatedByManyToManyEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """Reads and enables pagination through a set of `Naic`."""
+  naicsByCreatedBy(
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -17970,12 +17697,20 @@ type CiipUserCiipUsersByProductDeletedByAndCreatedByManyToManyEdge {
     """
     A condition to be used in determining which values should be returned by the collection.
     """
+<<<<<<< HEAD
     condition: ProductCondition
+=======
+    condition: NaicCondition
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
 
     """
     A filter to be used in determining which values should be returned by the collection.
     """
+<<<<<<< HEAD
     filter: ProductFilter
+=======
+    filter: NaicFilter
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
 
     """Only read the first `n` values of the set."""
     first: Int
@@ -17989,6 +17724,7 @@ type CiipUserCiipUsersByProductDeletedByAndCreatedByManyToManyEdge {
     """
     offset: Int
 
+<<<<<<< HEAD
     """The method to use when ordering `Product`."""
     orderBy: [ProductsOrderBy!] = [PRIMARY_KEY_ASC]
   ): ProductsConnection!
@@ -18000,6 +17736,22 @@ type CiipUserCiipUsersByProductDeletedByAndUpdatedByManyToManyConnection {
   A list of edges which contains the `CiipUser`, info from the `Product`, and the cursor to aid in pagination.
   """
   edges: [CiipUserCiipUsersByProductDeletedByAndUpdatedByManyToManyEdge!]!
+=======
+    """The method to use when ordering `Naic`."""
+    orderBy: [NaicsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): NaicsConnection!
+
+  """The `CiipUser` at the end of the edge."""
+  node: CiipUser
+}
+
+"""A connection to a list of `CiipUser` values, with data from `Naic`."""
+type CiipUserCiipUsersByNaicDeletedByAndUpdatedByManyToManyConnection {
+  """
+  A list of edges which contains the `CiipUser`, info from the `Naic`, and the cursor to aid in pagination.
+  """
+  edges: [CiipUserCiipUsersByNaicDeletedByAndUpdatedByManyToManyEdge!]!
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
 
   """A list of `CiipUser` objects."""
   nodes: [CiipUser]!
@@ -18011,6 +17763,7 @@ type CiipUserCiipUsersByProductDeletedByAndUpdatedByManyToManyConnection {
   totalCount: Int!
 }
 
+<<<<<<< HEAD
 """A `CiipUser` edge in the connection, with data from `Product`."""
 type CiipUserCiipUsersByProductDeletedByAndUpdatedByManyToManyEdge {
   """A cursor for use in pagination."""
@@ -18021,6 +17774,15 @@ type CiipUserCiipUsersByProductDeletedByAndUpdatedByManyToManyEdge {
 
   """Reads and enables pagination through a set of `Product`."""
   productsByUpdatedBy(
+=======
+"""A `CiipUser` edge in the connection, with data from `Naic`."""
+type CiipUserCiipUsersByNaicDeletedByAndUpdatedByManyToManyEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """Reads and enables pagination through a set of `Naic`."""
+  naicsByUpdatedBy(
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -18030,12 +17792,20 @@ type CiipUserCiipUsersByProductDeletedByAndUpdatedByManyToManyEdge {
     """
     A condition to be used in determining which values should be returned by the collection.
     """
+<<<<<<< HEAD
     condition: ProductCondition
+=======
+    condition: NaicCondition
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
 
     """
     A filter to be used in determining which values should be returned by the collection.
     """
+<<<<<<< HEAD
     filter: ProductFilter
+=======
+    filter: NaicFilter
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
 
     """Only read the first `n` values of the set."""
     first: Int
@@ -18049,6 +17819,7 @@ type CiipUserCiipUsersByProductDeletedByAndUpdatedByManyToManyEdge {
     """
     offset: Int
 
+<<<<<<< HEAD
     """The method to use when ordering `Product`."""
     orderBy: [ProductsOrderBy!] = [PRIMARY_KEY_ASC]
   ): ProductsConnection!
@@ -18062,6 +17833,22 @@ type CiipUserCiipUsersByProductNaicsCodeCreatedByAndDeletedByManyToManyConnectio
   A list of edges which contains the `CiipUser`, info from the `ProductNaicsCode`, and the cursor to aid in pagination.
   """
   edges: [CiipUserCiipUsersByProductNaicsCodeCreatedByAndDeletedByManyToManyEdge!]!
+=======
+    """The method to use when ordering `Naic`."""
+    orderBy: [NaicsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): NaicsConnection!
+
+  """The `CiipUser` at the end of the edge."""
+  node: CiipUser
+}
+
+"""A connection to a list of `CiipUser` values, with data from `Naic`."""
+type CiipUserCiipUsersByNaicUpdatedByAndCreatedByManyToManyConnection {
+  """
+  A list of edges which contains the `CiipUser`, info from the `Naic`, and the cursor to aid in pagination.
+  """
+  edges: [CiipUserCiipUsersByNaicUpdatedByAndCreatedByManyToManyEdge!]!
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
 
   """A list of `CiipUser` objects."""
   nodes: [CiipUser]!
@@ -18073,6 +17860,7 @@ type CiipUserCiipUsersByProductNaicsCodeCreatedByAndDeletedByManyToManyConnectio
   totalCount: Int!
 }
 
+<<<<<<< HEAD
 """
 A `CiipUser` edge in the connection, with data from `ProductNaicsCode`.
 """
@@ -18085,6 +17873,15 @@ type CiipUserCiipUsersByProductNaicsCodeCreatedByAndDeletedByManyToManyEdge {
 
   """Reads and enables pagination through a set of `ProductNaicsCode`."""
   productNaicsCodesByDeletedBy(
+=======
+"""A `CiipUser` edge in the connection, with data from `Naic`."""
+type CiipUserCiipUsersByNaicUpdatedByAndCreatedByManyToManyEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """Reads and enables pagination through a set of `Naic`."""
+  naicsByCreatedBy(
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -18094,12 +17891,20 @@ type CiipUserCiipUsersByProductNaicsCodeCreatedByAndDeletedByManyToManyEdge {
     """
     A condition to be used in determining which values should be returned by the collection.
     """
+<<<<<<< HEAD
     condition: ProductNaicsCodeCondition
+=======
+    condition: NaicCondition
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
 
     """
     A filter to be used in determining which values should be returned by the collection.
     """
+<<<<<<< HEAD
     filter: ProductNaicsCodeFilter
+=======
+    filter: NaicFilter
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
 
     """Only read the first `n` values of the set."""
     first: Int
@@ -18113,6 +17918,7 @@ type CiipUserCiipUsersByProductNaicsCodeCreatedByAndDeletedByManyToManyEdge {
     """
     offset: Int
 
+<<<<<<< HEAD
     """The method to use when ordering `ProductNaicsCode`."""
     orderBy: [ProductNaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
   ): ProductNaicsCodesConnection!
@@ -18126,6 +17932,22 @@ type CiipUserCiipUsersByProductNaicsCodeCreatedByAndUpdatedByManyToManyConnectio
   A list of edges which contains the `CiipUser`, info from the `ProductNaicsCode`, and the cursor to aid in pagination.
   """
   edges: [CiipUserCiipUsersByProductNaicsCodeCreatedByAndUpdatedByManyToManyEdge!]!
+=======
+    """The method to use when ordering `Naic`."""
+    orderBy: [NaicsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): NaicsConnection!
+
+  """The `CiipUser` at the end of the edge."""
+  node: CiipUser
+}
+
+"""A connection to a list of `CiipUser` values, with data from `Naic`."""
+type CiipUserCiipUsersByNaicUpdatedByAndDeletedByManyToManyConnection {
+  """
+  A list of edges which contains the `CiipUser`, info from the `Naic`, and the cursor to aid in pagination.
+  """
+  edges: [CiipUserCiipUsersByNaicUpdatedByAndDeletedByManyToManyEdge!]!
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
 
   """A list of `CiipUser` objects."""
   nodes: [CiipUser]!
@@ -18137,6 +17959,7 @@ type CiipUserCiipUsersByProductNaicsCodeCreatedByAndUpdatedByManyToManyConnectio
   totalCount: Int!
 }
 
+<<<<<<< HEAD
 """
 A `CiipUser` edge in the connection, with data from `ProductNaicsCode`.
 """
@@ -18149,6 +17972,15 @@ type CiipUserCiipUsersByProductNaicsCodeCreatedByAndUpdatedByManyToManyEdge {
 
   """Reads and enables pagination through a set of `ProductNaicsCode`."""
   productNaicsCodesByUpdatedBy(
+=======
+"""A `CiipUser` edge in the connection, with data from `Naic`."""
+type CiipUserCiipUsersByNaicUpdatedByAndDeletedByManyToManyEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """Reads and enables pagination through a set of `Naic`."""
+  naicsByDeletedBy(
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -18158,12 +17990,20 @@ type CiipUserCiipUsersByProductNaicsCodeCreatedByAndUpdatedByManyToManyEdge {
     """
     A condition to be used in determining which values should be returned by the collection.
     """
+<<<<<<< HEAD
     condition: ProductNaicsCodeCondition
+=======
+    condition: NaicCondition
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
 
     """
     A filter to be used in determining which values should be returned by the collection.
     """
+<<<<<<< HEAD
     filter: ProductNaicsCodeFilter
+=======
+    filter: NaicFilter
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
 
     """Only read the first `n` values of the set."""
     first: Int
@@ -18177,9 +18017,18 @@ type CiipUserCiipUsersByProductNaicsCodeCreatedByAndUpdatedByManyToManyEdge {
     """
     offset: Int
 
+<<<<<<< HEAD
     """The method to use when ordering `ProductNaicsCode`."""
     orderBy: [ProductNaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
   ): ProductNaicsCodesConnection!
+=======
+    """The method to use when ordering `Naic`."""
+    orderBy: [NaicsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): NaicsConnection!
+
+  """The `CiipUser` at the end of the edge."""
+  node: CiipUser
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
 }
 
 """
@@ -18440,6 +18289,7 @@ type CiipUserCiipUsersByProductNaicsCodeUpdatedByAndDeletedByManyToManyEdge {
 
 """A connection to a list of `CiipUser` values, with data from `Product`."""
 type CiipUserCiipUsersByProductUpdatedByAndCreatedByManyToManyConnection {
+<<<<<<< HEAD
   """
   A list of edges which contains the `CiipUser`, info from the `Product`, and the cursor to aid in pagination.
   """
@@ -18504,6 +18354,12 @@ type CiipUserCiipUsersByProductUpdatedByAndDeletedByManyToManyConnection {
   A list of edges which contains the `CiipUser`, info from the `Product`, and the cursor to aid in pagination.
   """
   edges: [CiipUserCiipUsersByProductUpdatedByAndDeletedByManyToManyEdge!]!
+=======
+  """
+  A list of edges which contains the `CiipUser`, info from the `Product`, and the cursor to aid in pagination.
+  """
+  edges: [CiipUserCiipUsersByProductUpdatedByAndCreatedByManyToManyEdge!]!
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
 
   """A list of `CiipUser` objects."""
   nodes: [CiipUser]!
@@ -18516,7 +18372,11 @@ type CiipUserCiipUsersByProductUpdatedByAndDeletedByManyToManyConnection {
 }
 
 """A `CiipUser` edge in the connection, with data from `Product`."""
+<<<<<<< HEAD
 type CiipUserCiipUsersByProductUpdatedByAndDeletedByManyToManyEdge {
+=======
+type CiipUserCiipUsersByProductUpdatedByAndCreatedByManyToManyEdge {
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
   """A cursor for use in pagination."""
   cursor: Cursor
 
@@ -18524,7 +18384,11 @@ type CiipUserCiipUsersByProductUpdatedByAndDeletedByManyToManyEdge {
   node: CiipUser
 
   """Reads and enables pagination through a set of `Product`."""
+<<<<<<< HEAD
   productsByDeletedBy(
+=======
+  productsByCreatedBy(
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -18558,6 +18422,7 @@ type CiipUserCiipUsersByProductUpdatedByAndDeletedByManyToManyEdge {
   ): ProductsConnection!
 }
 
+<<<<<<< HEAD
 """
 A connection to a list of `CiipUser` values, with data from `ReviewComment`.
 """
@@ -18566,6 +18431,14 @@ type CiipUserCiipUsersByReviewCommentCreatedByAndDeletedByManyToManyConnection {
   A list of edges which contains the `CiipUser`, info from the `ReviewComment`, and the cursor to aid in pagination.
   """
   edges: [CiipUserCiipUsersByReviewCommentCreatedByAndDeletedByManyToManyEdge!]!
+=======
+"""A connection to a list of `CiipUser` values, with data from `Product`."""
+type CiipUserCiipUsersByProductUpdatedByAndDeletedByManyToManyConnection {
+  """
+  A list of edges which contains the `CiipUser`, info from the `Product`, and the cursor to aid in pagination.
+  """
+  edges: [CiipUserCiipUsersByProductUpdatedByAndDeletedByManyToManyEdge!]!
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
 
   """A list of `CiipUser` objects."""
   nodes: [CiipUser]!
@@ -18577,16 +18450,26 @@ type CiipUserCiipUsersByReviewCommentCreatedByAndDeletedByManyToManyConnection {
   totalCount: Int!
 }
 
+<<<<<<< HEAD
 """A `CiipUser` edge in the connection, with data from `ReviewComment`."""
 type CiipUserCiipUsersByReviewCommentCreatedByAndDeletedByManyToManyEdge {
+=======
+"""A `CiipUser` edge in the connection, with data from `Product`."""
+type CiipUserCiipUsersByProductUpdatedByAndDeletedByManyToManyEdge {
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
   """A cursor for use in pagination."""
   cursor: Cursor
 
   """The `CiipUser` at the end of the edge."""
   node: CiipUser
 
+<<<<<<< HEAD
   """Reads and enables pagination through a set of `ReviewComment`."""
   reviewCommentsByDeletedBy(
+=======
+  """Reads and enables pagination through a set of `Product`."""
+  productsByDeletedBy(
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -18596,12 +18479,20 @@ type CiipUserCiipUsersByReviewCommentCreatedByAndDeletedByManyToManyEdge {
     """
     A condition to be used in determining which values should be returned by the collection.
     """
+<<<<<<< HEAD
     condition: ReviewCommentCondition
+=======
+    condition: ProductCondition
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
 
     """
     A filter to be used in determining which values should be returned by the collection.
     """
+<<<<<<< HEAD
     filter: ReviewCommentFilter
+=======
+    filter: ProductFilter
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
 
     """Only read the first `n` values of the set."""
     first: Int
@@ -18615,19 +18506,33 @@ type CiipUserCiipUsersByReviewCommentCreatedByAndDeletedByManyToManyEdge {
     """
     offset: Int
 
+<<<<<<< HEAD
     """The method to use when ordering `ReviewComment`."""
     orderBy: [ReviewCommentsOrderBy!] = [PRIMARY_KEY_ASC]
   ): ReviewCommentsConnection!
+=======
+    """The method to use when ordering `Product`."""
+    orderBy: [ProductsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ProductsConnection!
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
 }
 
 """
 A connection to a list of `CiipUser` values, with data from `ReviewComment`.
 """
+<<<<<<< HEAD
 type CiipUserCiipUsersByReviewCommentCreatedByAndUpdatedByManyToManyConnection {
   """
   A list of edges which contains the `CiipUser`, info from the `ReviewComment`, and the cursor to aid in pagination.
   """
   edges: [CiipUserCiipUsersByReviewCommentCreatedByAndUpdatedByManyToManyEdge!]!
+=======
+type CiipUserCiipUsersByReviewCommentCreatedByAndDeletedByManyToManyConnection {
+  """
+  A list of edges which contains the `CiipUser`, info from the `ReviewComment`, and the cursor to aid in pagination.
+  """
+  edges: [CiipUserCiipUsersByReviewCommentCreatedByAndDeletedByManyToManyEdge!]!
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
 
   """A list of `CiipUser` objects."""
   nodes: [CiipUser]!
@@ -18640,7 +18545,11 @@ type CiipUserCiipUsersByReviewCommentCreatedByAndUpdatedByManyToManyConnection {
 }
 
 """A `CiipUser` edge in the connection, with data from `ReviewComment`."""
+<<<<<<< HEAD
 type CiipUserCiipUsersByReviewCommentCreatedByAndUpdatedByManyToManyEdge {
+=======
+type CiipUserCiipUsersByReviewCommentCreatedByAndDeletedByManyToManyEdge {
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
   """A cursor for use in pagination."""
   cursor: Cursor
 
@@ -18648,7 +18557,11 @@ type CiipUserCiipUsersByReviewCommentCreatedByAndUpdatedByManyToManyEdge {
   node: CiipUser
 
   """Reads and enables pagination through a set of `ReviewComment`."""
+<<<<<<< HEAD
   reviewCommentsByUpdatedBy(
+=======
+  reviewCommentsByDeletedBy(
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -18685,11 +18598,19 @@ type CiipUserCiipUsersByReviewCommentCreatedByAndUpdatedByManyToManyEdge {
 """
 A connection to a list of `CiipUser` values, with data from `ReviewComment`.
 """
+<<<<<<< HEAD
 type CiipUserCiipUsersByReviewCommentDeletedByAndCreatedByManyToManyConnection {
   """
   A list of edges which contains the `CiipUser`, info from the `ReviewComment`, and the cursor to aid in pagination.
   """
   edges: [CiipUserCiipUsersByReviewCommentDeletedByAndCreatedByManyToManyEdge!]!
+=======
+type CiipUserCiipUsersByReviewCommentCreatedByAndUpdatedByManyToManyConnection {
+  """
+  A list of edges which contains the `CiipUser`, info from the `ReviewComment`, and the cursor to aid in pagination.
+  """
+  edges: [CiipUserCiipUsersByReviewCommentCreatedByAndUpdatedByManyToManyEdge!]!
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
 
   """A list of `CiipUser` objects."""
   nodes: [CiipUser]!
@@ -18702,7 +18623,11 @@ type CiipUserCiipUsersByReviewCommentDeletedByAndCreatedByManyToManyConnection {
 }
 
 """A `CiipUser` edge in the connection, with data from `ReviewComment`."""
+<<<<<<< HEAD
 type CiipUserCiipUsersByReviewCommentDeletedByAndCreatedByManyToManyEdge {
+=======
+type CiipUserCiipUsersByReviewCommentCreatedByAndUpdatedByManyToManyEdge {
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
   """A cursor for use in pagination."""
   cursor: Cursor
 
@@ -18710,7 +18635,11 @@ type CiipUserCiipUsersByReviewCommentDeletedByAndCreatedByManyToManyEdge {
   node: CiipUser
 
   """Reads and enables pagination through a set of `ReviewComment`."""
+<<<<<<< HEAD
   reviewCommentsByCreatedBy(
+=======
+  reviewCommentsByUpdatedBy(
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -18742,6 +18671,7 @@ type CiipUserCiipUsersByReviewCommentDeletedByAndCreatedByManyToManyEdge {
     """The method to use when ordering `ReviewComment`."""
     orderBy: [ReviewCommentsOrderBy!] = [PRIMARY_KEY_ASC]
   ): ReviewCommentsConnection!
+<<<<<<< HEAD
 }
 
 """
@@ -18876,6 +18806,18 @@ type CiipUserCiipUsersByReviewCommentUpdatedByAndDeletedByManyToManyConnection {
   A list of edges which contains the `CiipUser`, info from the `ReviewComment`, and the cursor to aid in pagination.
   """
   edges: [CiipUserCiipUsersByReviewCommentUpdatedByAndDeletedByManyToManyEdge!]!
+=======
+}
+
+"""
+A connection to a list of `CiipUser` values, with data from `ReviewComment`.
+"""
+type CiipUserCiipUsersByReviewCommentDeletedByAndCreatedByManyToManyConnection {
+  """
+  A list of edges which contains the `CiipUser`, info from the `ReviewComment`, and the cursor to aid in pagination.
+  """
+  edges: [CiipUserCiipUsersByReviewCommentDeletedByAndCreatedByManyToManyEdge!]!
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
 
   """A list of `CiipUser` objects."""
   nodes: [CiipUser]!
@@ -18888,7 +18830,11 @@ type CiipUserCiipUsersByReviewCommentUpdatedByAndDeletedByManyToManyConnection {
 }
 
 """A `CiipUser` edge in the connection, with data from `ReviewComment`."""
+<<<<<<< HEAD
 type CiipUserCiipUsersByReviewCommentUpdatedByAndDeletedByManyToManyEdge {
+=======
+type CiipUserCiipUsersByReviewCommentDeletedByAndCreatedByManyToManyEdge {
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
   """A cursor for use in pagination."""
   cursor: Cursor
 
@@ -18896,7 +18842,11 @@ type CiipUserCiipUsersByReviewCommentUpdatedByAndDeletedByManyToManyEdge {
   node: CiipUser
 
   """Reads and enables pagination through a set of `ReviewComment`."""
+<<<<<<< HEAD
   reviewCommentsByDeletedBy(
+=======
+  reviewCommentsByCreatedBy(
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -18934,6 +18884,7 @@ type CiipUserCiipUsersByReviewCommentUpdatedByAndDeletedByManyToManyEdge {
 A condition to be used against `CiipUser` object types. All fields are tested
 for equality and combined with a logical ‘and.’
 """
+<<<<<<< HEAD
 input CiipUserCondition {
   """Checks for equality with the object’s `createdAt` field."""
   createdAt: Datetime
@@ -18979,11 +18930,18 @@ input CiipUserCondition {
 A connection to a list of `EmissionCategory` values, with data from `EmissionCategoryGas`.
 """
 type CiipUserEmissionCategoriesByEmissionCategoryGasCreatedByAndEmissionCategoryIdManyToManyConnection {
+=======
+type CiipUserCiipUsersByReviewCommentDeletedByAndUpdatedByManyToManyConnection {
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
   """
   A list of edges which contains the `EmissionCategory`, info from the
   `EmissionCategoryGas`, and the cursor to aid in pagination.
   """
+<<<<<<< HEAD
   edges: [CiipUserEmissionCategoriesByEmissionCategoryGasCreatedByAndEmissionCategoryIdManyToManyEdge!]!
+=======
+  edges: [CiipUserCiipUsersByReviewCommentDeletedByAndUpdatedByManyToManyEdge!]!
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
 
   """A list of `EmissionCategory` objects."""
   nodes: [EmissionCategory]!
@@ -18997,6 +18955,7 @@ type CiipUserEmissionCategoriesByEmissionCategoryGasCreatedByAndEmissionCategory
   totalCount: Int!
 }
 
+<<<<<<< HEAD
 """
 A `EmissionCategory` edge in the connection, with data from `EmissionCategoryGas`.
 """
@@ -19200,6 +19159,20 @@ input CiipUserFilter {
 
   """Filter by the object’s `firstName` field."""
   firstName: StringFilter
+=======
+"""A `CiipUser` edge in the connection, with data from `ReviewComment`."""
+type CiipUserCiipUsersByReviewCommentDeletedByAndUpdatedByManyToManyEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `CiipUser` at the end of the edge."""
+  node: CiipUser
+
+  """Reads and enables pagination through a set of `ReviewComment`."""
+  reviewCommentsByUpdatedBy(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
 
   """Filter by the object’s `hasCertificationRequests` field."""
   hasCertificationRequests: BooleanFilter
@@ -19956,6 +19929,7 @@ type CiipUserNaicsCodesByProductNaicsCodeCreatedByAndNaicsCodeIdManyToManyEdge {
 }
 
 """
+<<<<<<< HEAD
 A connection to a list of `NaicsCode` values, with data from `ProductNaicsCode`.
 """
 type CiipUserNaicsCodesByProductNaicsCodeDeletedByAndNaicsCodeIdManyToManyConnection {
@@ -20030,10 +20004,23 @@ type CiipUserNaicsCodesByProductNaicsCodeUpdatedByAndNaicsCodeIdManyToManyConnec
 
   """A list of `NaicsCode` objects."""
   nodes: [NaicsCode]!
+=======
+A connection to a list of `Gas` values, with data from `EmissionCategoryGas`.
+"""
+type CiipUserGasesByEmissionCategoryGasCreatedByAndGasIdManyToManyConnection {
+  """
+  A list of edges which contains the `Gas`, info from the `EmissionCategoryGas`, and the cursor to aid in pagination.
+  """
+  edges: [CiipUserGasesByEmissionCategoryGasCreatedByAndGasIdManyToManyEdge!]!
+
+  """A list of `Gas` objects."""
+  nodes: [Gas]!
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
 
   """Information to aid in pagination."""
   pageInfo: PageInfo!
 
+<<<<<<< HEAD
   """The count of *all* `NaicsCode` you could get from the connection."""
   totalCount: Int!
 }
@@ -20050,6 +20037,19 @@ type CiipUserNaicsCodesByProductNaicsCodeUpdatedByAndNaicsCodeIdManyToManyEdge {
 
   """Reads and enables pagination through a set of `ProductNaicsCode`."""
   productNaicsCodesByNaicsCodeId(
+=======
+  """The count of *all* `Gas` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `Gas` edge in the connection, with data from `EmissionCategoryGas`."""
+type CiipUserGasesByEmissionCategoryGasCreatedByAndGasIdManyToManyEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """Reads and enables pagination through a set of `EmissionCategoryGas`."""
+  emissionCategoryGasesByGasId(
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -20059,12 +20059,20 @@ type CiipUserNaicsCodesByProductNaicsCodeUpdatedByAndNaicsCodeIdManyToManyEdge {
     """
     A condition to be used in determining which values should be returned by the collection.
     """
+<<<<<<< HEAD
     condition: ProductNaicsCodeCondition
+=======
+    condition: EmissionCategoryGasCondition
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
 
     """
     A filter to be used in determining which values should be returned by the collection.
     """
+<<<<<<< HEAD
     filter: ProductNaicsCodeFilter
+=======
+    filter: EmissionCategoryGasFilter
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
 
     """Only read the first `n` values of the set."""
     first: Int
@@ -20078,6 +20086,7 @@ type CiipUserNaicsCodesByProductNaicsCodeUpdatedByAndNaicsCodeIdManyToManyEdge {
     """
     offset: Int
 
+<<<<<<< HEAD
     """The method to use when ordering `ProductNaicsCode`."""
     orderBy: [ProductNaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
   ): ProductNaicsCodesConnection!
@@ -20096,12 +20105,34 @@ type CiipUserOrganisation implements Node {
   This function is a wrapper to return email_address from the ciip_user object as a scalar
   """
   emailAddress: String
+=======
+    """The method to use when ordering `EmissionCategoryGas`."""
+    orderBy: [EmissionCategoryGasesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): EmissionCategoryGasesConnection!
+
+  """The `Gas` at the end of the edge."""
+  node: Gas
+}
+
+"""
+A connection to a list of `Gas` values, with data from `EmissionCategoryGas`.
+"""
+type CiipUserGasesByEmissionCategoryGasDeletedByAndGasIdManyToManyConnection {
+  """
+  A list of edges which contains the `Gas`, info from the `EmissionCategoryGas`, and the cursor to aid in pagination.
+  """
+  edges: [CiipUserGasesByEmissionCategoryGasDeletedByAndGasIdManyToManyEdge!]!
+
+  """A list of `Gas` objects."""
+  nodes: [Gas]!
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
 
   """
   This function is a wrapper to return first_name from the ciip_user object as a scalar
   """
   firstName: String
 
+<<<<<<< HEAD
   """
   A globally unique identifier. Can be used in various places throughout the system to identify this single value.
   """
@@ -20116,17 +20147,44 @@ type CiipUserOrganisation implements Node {
   This function is a wrapper to return operator_name from the organisation object as a scalar
   """
   operatorName: String
+=======
+  """The count of *all* `Gas` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `Gas` edge in the connection, with data from `EmissionCategoryGas`."""
+type CiipUserGasesByEmissionCategoryGasDeletedByAndGasIdManyToManyEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """Reads and enables pagination through a set of `EmissionCategoryGas`."""
+  emissionCategoryGasesByGasId(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
 
   """
   Reads a single `Organisation` that is related to this `CiipUserOrganisation`.
   """
   organisationByOrganisationId: Organisation
 
+<<<<<<< HEAD
   """foreign key that references the organisation table"""
   organisationId: Int!
 
   """ciip_user_organisation primary key"""
   rowId: Int!
+=======
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: EmissionCategoryGasCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: EmissionCategoryGasFilter
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
 
   """the status of the request to report on behalf of an organisation"""
   status: CiipUserOrganisationStatus
@@ -20143,6 +20201,7 @@ input CiipUserOrganisationCondition {
   """Checks for equality with the object’s `organisationId` field."""
   organisationId: Int
 
+<<<<<<< HEAD
   """Checks for equality with the object’s `rowId` field."""
   rowId: Int
 
@@ -20151,14 +20210,30 @@ input CiipUserOrganisationCondition {
 
   """Checks for equality with the object’s `userId` field."""
   userId: Int
+=======
+    """The method to use when ordering `EmissionCategoryGas`."""
+    orderBy: [EmissionCategoryGasesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): EmissionCategoryGasesConnection!
+
+  """The `Gas` at the end of the edge."""
+  node: Gas
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
 }
 
 """
 A filter to be used against `CiipUserOrganisation` object types. All fields are combined with a logical ‘and.’
 """
+<<<<<<< HEAD
 input CiipUserOrganisationFilter {
   """Checks for all expressions in this list."""
   and: [CiipUserOrganisationFilter!]
+=======
+type CiipUserGasesByEmissionCategoryGasUpdatedByAndGasIdManyToManyConnection {
+  """
+  A list of edges which contains the `Gas`, info from the `EmissionCategoryGas`, and the cursor to aid in pagination.
+  """
+  edges: [CiipUserGasesByEmissionCategoryGasUpdatedByAndGasIdManyToManyEdge!]!
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
 
   """Filter by the object’s `emailAddress` field."""
   emailAddress: StringFilter
@@ -20169,6 +20244,7 @@ input CiipUserOrganisationFilter {
   """Filter by the object’s `lastName` field."""
   lastName: StringFilter
 
+<<<<<<< HEAD
   """Negates the expression."""
   not: CiipUserOrganisationFilter
 
@@ -20303,6 +20379,10 @@ type CiipUserOrganisationsConnection {
 
 """A `CiipUserOrganisation` edge in the connection."""
 type CiipUserOrganisationsEdge {
+=======
+"""A `Gas` edge in the connection, with data from `EmissionCategoryGas`."""
+type CiipUserGasesByEmissionCategoryGasUpdatedByAndGasIdManyToManyEdge {
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
   """A cursor for use in pagination."""
   cursor: Cursor
 
@@ -20423,6 +20503,7 @@ input CiipUserPatch {
 }
 
 """
+<<<<<<< HEAD
 A connection to a list of `Product` values, with data from `Benchmark`.
 """
 type CiipUserProductsByBenchmarkCreatedByAndProductIdManyToManyConnection {
@@ -20796,6 +20877,9 @@ type CiipUserProductsByLinkedProductDeletedByAndLinkedProductIdManyToManyEdge {
 
 """
 A connection to a list of `Product` values, with data from `LinkedProduct`.
+=======
+Table containing the access rights for a user to report on behalf of an organisation
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
 """
 type CiipUserProductsByLinkedProductDeletedByAndProductIdManyToManyConnection {
   """
@@ -21703,6 +21787,546 @@ type CreateApplicationMutationChainPayload {
   """Reads a single `Facility` that is related to this `Application`."""
   facilityByFacilityId: Facility
 
+<<<<<<< HEAD
+=======
+"""
+A connection to a list of `ReportingYear` values, with data from `Benchmark`.
+"""
+type CiipUserReportingYearsByBenchmarkCreatedByAndEndReportingYearManyToManyConnection {
+  """
+  A list of edges which contains the `ReportingYear`, info from the `Benchmark`, and the cursor to aid in pagination.
+  """
+  edges: [CiipUserReportingYearsByBenchmarkCreatedByAndEndReportingYearManyToManyEdge!]!
+
+  """A list of `ReportingYear` objects."""
+  nodes: [ReportingYear]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `ReportingYear` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `ReportingYear` edge in the connection, with data from `Benchmark`."""
+type CiipUserReportingYearsByBenchmarkCreatedByAndEndReportingYearManyToManyEdge {
+  """Reads and enables pagination through a set of `Benchmark`."""
+  benchmarksByEndReportingYear(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: BenchmarkCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: BenchmarkFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `Benchmark`."""
+    orderBy: [BenchmarksOrderBy!] = [PRIMARY_KEY_ASC]
+  ): BenchmarksConnection!
+
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `ReportingYear` at the end of the edge."""
+  node: ReportingYear
+}
+
+"""
+A connection to a list of `ReportingYear` values, with data from `Benchmark`.
+"""
+type CiipUserReportingYearsByBenchmarkCreatedByAndStartReportingYearManyToManyConnection {
+  """
+  A list of edges which contains the `ReportingYear`, info from the `Benchmark`, and the cursor to aid in pagination.
+  """
+  edges: [CiipUserReportingYearsByBenchmarkCreatedByAndStartReportingYearManyToManyEdge!]!
+
+  """A list of `ReportingYear` objects."""
+  nodes: [ReportingYear]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `ReportingYear` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `ReportingYear` edge in the connection, with data from `Benchmark`."""
+type CiipUserReportingYearsByBenchmarkCreatedByAndStartReportingYearManyToManyEdge {
+  """Reads and enables pagination through a set of `Benchmark`."""
+  benchmarksByStartReportingYear(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: BenchmarkCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: BenchmarkFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `Benchmark`."""
+    orderBy: [BenchmarksOrderBy!] = [PRIMARY_KEY_ASC]
+  ): BenchmarksConnection!
+
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `ReportingYear` at the end of the edge."""
+  node: ReportingYear
+}
+
+"""
+A connection to a list of `ReportingYear` values, with data from `Benchmark`.
+"""
+type CiipUserReportingYearsByBenchmarkDeletedByAndEndReportingYearManyToManyConnection {
+  """
+  A list of edges which contains the `ReportingYear`, info from the `Benchmark`, and the cursor to aid in pagination.
+  """
+  edges: [CiipUserReportingYearsByBenchmarkDeletedByAndEndReportingYearManyToManyEdge!]!
+
+  """A list of `ReportingYear` objects."""
+  nodes: [ReportingYear]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `ReportingYear` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `ReportingYear` edge in the connection, with data from `Benchmark`."""
+type CiipUserReportingYearsByBenchmarkDeletedByAndEndReportingYearManyToManyEdge {
+  """Reads and enables pagination through a set of `Benchmark`."""
+  benchmarksByEndReportingYear(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: BenchmarkCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: BenchmarkFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `Benchmark`."""
+    orderBy: [BenchmarksOrderBy!] = [PRIMARY_KEY_ASC]
+  ): BenchmarksConnection!
+
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `ReportingYear` at the end of the edge."""
+  node: ReportingYear
+}
+
+"""
+A connection to a list of `ReportingYear` values, with data from `Benchmark`.
+"""
+type CiipUserReportingYearsByBenchmarkDeletedByAndStartReportingYearManyToManyConnection {
+  """
+  A list of edges which contains the `ReportingYear`, info from the `Benchmark`, and the cursor to aid in pagination.
+  """
+  edges: [CiipUserReportingYearsByBenchmarkDeletedByAndStartReportingYearManyToManyEdge!]!
+
+  """A list of `ReportingYear` objects."""
+  nodes: [ReportingYear]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `ReportingYear` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `ReportingYear` edge in the connection, with data from `Benchmark`."""
+type CiipUserReportingYearsByBenchmarkDeletedByAndStartReportingYearManyToManyEdge {
+  """Reads and enables pagination through a set of `Benchmark`."""
+  benchmarksByStartReportingYear(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: BenchmarkCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: BenchmarkFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `Benchmark`."""
+    orderBy: [BenchmarksOrderBy!] = [PRIMARY_KEY_ASC]
+  ): BenchmarksConnection!
+
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `ReportingYear` at the end of the edge."""
+  node: ReportingYear
+}
+
+"""
+A connection to a list of `ReportingYear` values, with data from `Benchmark`.
+"""
+type CiipUserReportingYearsByBenchmarkUpdatedByAndEndReportingYearManyToManyConnection {
+  """
+  A list of edges which contains the `ReportingYear`, info from the `Benchmark`, and the cursor to aid in pagination.
+  """
+  edges: [CiipUserReportingYearsByBenchmarkUpdatedByAndEndReportingYearManyToManyEdge!]!
+
+  """A list of `ReportingYear` objects."""
+  nodes: [ReportingYear]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `ReportingYear` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `ReportingYear` edge in the connection, with data from `Benchmark`."""
+type CiipUserReportingYearsByBenchmarkUpdatedByAndEndReportingYearManyToManyEdge {
+  """Reads and enables pagination through a set of `Benchmark`."""
+  benchmarksByEndReportingYear(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: BenchmarkCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: BenchmarkFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `Benchmark`."""
+    orderBy: [BenchmarksOrderBy!] = [PRIMARY_KEY_ASC]
+  ): BenchmarksConnection!
+
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `ReportingYear` at the end of the edge."""
+  node: ReportingYear
+}
+
+"""
+A connection to a list of `ReportingYear` values, with data from `Benchmark`.
+"""
+type CiipUserReportingYearsByBenchmarkUpdatedByAndStartReportingYearManyToManyConnection {
+  """
+  A list of edges which contains the `ReportingYear`, info from the `Benchmark`, and the cursor to aid in pagination.
+  """
+  edges: [CiipUserReportingYearsByBenchmarkUpdatedByAndStartReportingYearManyToManyEdge!]!
+
+  """A list of `ReportingYear` objects."""
+  nodes: [ReportingYear]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `ReportingYear` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `ReportingYear` edge in the connection, with data from `Benchmark`."""
+type CiipUserReportingYearsByBenchmarkUpdatedByAndStartReportingYearManyToManyEdge {
+  """Reads and enables pagination through a set of `Benchmark`."""
+  benchmarksByStartReportingYear(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: BenchmarkCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: BenchmarkFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `Benchmark`."""
+    orderBy: [BenchmarksOrderBy!] = [PRIMARY_KEY_ASC]
+  ): BenchmarksConnection!
+
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `ReportingYear` at the end of the edge."""
+  node: ReportingYear
+}
+
+"""
+A connection to a list of `ReviewStep` values, with data from `ApplicationReviewStep`.
+"""
+type CiipUserReviewStepsByApplicationReviewStepUpdatedByAndReviewStepIdManyToManyConnection {
+  """
+  A list of edges which contains the `ReviewStep`, info from the
+  `ApplicationReviewStep`, and the cursor to aid in pagination.
+  """
+  edges: [CiipUserReviewStepsByApplicationReviewStepUpdatedByAndReviewStepIdManyToManyEdge!]!
+
+  """A list of `ReviewStep` objects."""
+  nodes: [ReviewStep]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `ReviewStep` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""
+A `ReviewStep` edge in the connection, with data from `ApplicationReviewStep`.
+"""
+type CiipUserReviewStepsByApplicationReviewStepUpdatedByAndReviewStepIdManyToManyEdge {
+  """Reads and enables pagination through a set of `ApplicationReviewStep`."""
+  applicationReviewStepsByReviewStepId(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ApplicationReviewStepCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: ApplicationReviewStepFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `ApplicationReviewStep`."""
+    orderBy: [ApplicationReviewStepsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ApplicationReviewStepsConnection!
+
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `ReviewStep` at the end of the edge."""
+  node: ReviewStep
+}
+
+"""A connection to a list of `CiipUser` values."""
+type CiipUsersConnection {
+  """
+  A list of edges which contains the `CiipUser` and cursor to aid in pagination.
+  """
+  edges: [CiipUsersEdge!]!
+
+  """A list of `CiipUser` objects."""
+  nodes: [CiipUser]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `CiipUser` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `CiipUser` edge in the connection."""
+type CiipUsersEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `CiipUser` at the end of the edge."""
+  node: CiipUser
+}
+
+"""Methods to use when ordering `CiipUser`."""
+enum CiipUsersOrderBy {
+  CREATED_AT_ASC
+  CREATED_AT_DESC
+  CREATED_BY_ASC
+  CREATED_BY_DESC
+  DELETED_AT_ASC
+  DELETED_AT_DESC
+  DELETED_BY_ASC
+  DELETED_BY_DESC
+  EMAIL_ADDRESS_ASC
+  EMAIL_ADDRESS_DESC
+  FIRST_NAME_ASC
+  FIRST_NAME_DESC
+  ID_ASC
+  ID_DESC
+  LAST_NAME_ASC
+  LAST_NAME_DESC
+  NATURAL
+  OCCUPATION_ASC
+  OCCUPATION_DESC
+  PHONE_NUMBER_ASC
+  PHONE_NUMBER_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+  UPDATED_AT_ASC
+  UPDATED_AT_DESC
+  UPDATED_BY_ASC
+  UPDATED_BY_DESC
+  UUID_ASC
+  UUID_DESC
+}
+
+"""All input for the create `Application` mutation."""
+input CreateApplicationInput {
+  """The `Application` to be created by this mutation."""
+  application: ApplicationInput!
+
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+}
+
+"""All input for the `createApplicationMutationChain` mutation."""
+input CreateApplicationMutationChainInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  facilityIdInput: Int!
+}
+
+"""The output of our `createApplicationMutationChain` mutation."""
+type CreateApplicationMutationChainPayload {
+  application: Application
+
+  """An edge for our `Application`. May be used by Relay 1."""
+  applicationEdge(
+    """The method to use when ordering `Application`."""
+    orderBy: [ApplicationsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ApplicationsEdge
+
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """Reads a single `Facility` that is related to this `Application`."""
+  facilityByFacilityId: Facility
+
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
   """
   Our root query field type. Allows us to run any query from our mutation payload.
   """
@@ -22570,19 +23194,36 @@ type CreateLinkedProductPayload {
   query: Query
 }
 
+<<<<<<< HEAD
 """All input for the `createNaicsCode` mutation."""
 input CreateNaicsCodeInput {
   ciipSectorInput: String
-
+=======
+"""All input for the create `Naic` mutation."""
+input CreateNaicInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
   """
   clientMutationId: String
-  naicsCodeInput: String
-  naicsDescriptionInput: String
+
+  """The `Naic` to be created by this mutation."""
+  naic: NaicInput!
 }
 
+"""The output of our create `Naic` mutation."""
+type CreateNaicPayload {
+  """Reads a single `CiipUser` that is related to this `Naic`."""
+  ciipUserByCreatedBy: CiipUser
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
+
+  """Reads a single `CiipUser` that is related to this `Naic`."""
+  ciipUserByDeletedBy: CiipUser
+
+  """Reads a single `CiipUser` that is related to this `Naic`."""
+  ciipUserByUpdatedBy: CiipUser
+
+<<<<<<< HEAD
 """The output of our `createNaicsCode` mutation."""
 type CreateNaicsCodePayload {
   """Reads a single `CiipUser` that is related to this `NaicsCode`."""
@@ -22593,12 +23234,48 @@ type CreateNaicsCodePayload {
 
   """Reads a single `CiipUser` that is related to this `NaicsCode`."""
   ciipUserByUpdatedBy: CiipUser
-
+=======
   """
   The exact same `clientMutationId` that was provided in the mutation input,
   unchanged and unused. May be used by a client to track mutations.
   """
   clientMutationId: String
+
+  """The `Naic` that was created by this mutation."""
+  naic: Naic
+
+  """An edge for our `Naic`. May be used by Relay 1."""
+  naicEdge(
+    """The method to use when ordering `Naic`."""
+    orderBy: [NaicsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): NaicsEdge
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""All input for the `createNaicsMutation` mutation."""
+input CreateNaicsMutationInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  naicsCodeInput: String
+  naicsDescriptionInput: String
+}
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
+
+"""The output of our `createNaicsMutation` mutation."""
+type CreateNaicsMutationPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+<<<<<<< HEAD
   naicsCode: NaicsCode
 
   """An edge for our `NaicsCode`. May be used by Relay 1."""
@@ -22606,6 +23283,8 @@ type CreateNaicsCodePayload {
     """The method to use when ordering `NaicsCode`."""
     orderBy: [NaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
   ): NaicsCodesEdge
+=======
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
 
   """
   Our root query field type. Allows us to run any query from our mutation payload.
@@ -22660,6 +23339,7 @@ input CreateProductInput {
   product: ProductInput!
 }
 
+<<<<<<< HEAD
 """All input for the `createProductNaicsCode` mutation."""
 input CreateProductNaicsCodeInput {
   """
@@ -22708,6 +23388,8 @@ type CreateProductNaicsCodePayload {
   query: Query
 }
 
+=======
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
 """The output of our create `Product` mutation."""
 type CreateProductPayload {
   """Reads a single `CiipUser` that is related to this `Product`."""
@@ -24107,6 +24789,68 @@ type DeleteLinkedProductPayload {
   query: Query
 }
 
+<<<<<<< HEAD
+=======
+"""All input for the `deleteNaicByRowId` mutation."""
+input DeleteNaicByRowIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """Primary key for naics table"""
+  rowId: Int!
+}
+
+"""All input for the `deleteNaic` mutation."""
+input DeleteNaicInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `Naic` to be deleted.
+  """
+  id: ID!
+}
+
+"""The output of our delete `Naic` mutation."""
+type DeleteNaicPayload {
+  """Reads a single `CiipUser` that is related to this `Naic`."""
+  ciipUserByCreatedBy: CiipUser
+
+  """Reads a single `CiipUser` that is related to this `Naic`."""
+  ciipUserByDeletedBy: CiipUser
+
+  """Reads a single `CiipUser` that is related to this `Naic`."""
+  ciipUserByUpdatedBy: CiipUser
+
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+  deletedNaicId: ID
+
+  """The `Naic` that was deleted by this mutation."""
+  naic: Naic
+
+  """An edge for our `Naic`. May be used by Relay 1."""
+  naicEdge(
+    """The method to use when ordering `Naic`."""
+    orderBy: [NaicsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): NaicsEdge
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
 """All input for the `deleteOrganisationByRowId` mutation."""
 input DeleteOrganisationByRowIdInput {
   """
@@ -27455,6 +28199,7 @@ type FormResult implements Node {
   """Reads a single `CiipUser` that is related to this `FormResult`."""
   ciipUserByUpdatedBy: CiipUser
 
+<<<<<<< HEAD
   """The date the form was updated"""
   createdAt: Datetime!
 
@@ -27547,6 +28292,10 @@ type FormResult implements Node {
 
   """The date the form was updated"""
   updatedAt: Datetime!
+=======
+  """Creation date of row"""
+  createdAt: Datetime!
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
 
   """The person who updated the form"""
   updatedBy: Int
@@ -27578,6 +28327,7 @@ input FormResultCondition {
   """Checks for equality with the object’s `formId` field."""
   formId: Int
 
+<<<<<<< HEAD
   """Checks for equality with the object’s `formResult` field."""
   formResult: JSON
 
@@ -27648,6 +28398,15 @@ input FormResultFilter {
 input FormResultInput {
   """The Unique ID of the Application"""
   applicationId: Int!
+=======
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  id: ID!
+
+  """The name of the fuel"""
+  name: String!
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
 
   """The date the form was updated"""
   createdAt: Datetime
@@ -27678,6 +28437,7 @@ input FormResultInput {
 }
 
 """
+<<<<<<< HEAD
 Represents an update to a `FormResult`. Fields that are set will be updated.
 """
 input FormResultPatch {
@@ -27828,6 +28588,8 @@ type Fuel implements Node {
 }
 
 """
+=======
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
 A condition to be used against `Fuel` object types. All fields are tested for equality and combined with a logical ‘and.’
 """
 input FuelCondition {
@@ -29586,6 +30348,7 @@ type Mutation {
     input: CreateLinkedProductInput!
   ): CreateLinkedProductPayload
 
+<<<<<<< HEAD
   """
   This custom create mutation does an upsert on conflict of the naics_code
   column, updating the description and setting the deleted at/by columsn to null
@@ -29596,6 +30359,21 @@ type Mutation {
     """
     input: CreateNaicsCodeInput!
   ): CreateNaicsCodePayload
+=======
+  """Creates a single `Naic`."""
+  createNaic(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateNaicInput!
+  ): CreateNaicPayload
+  createNaicsMutation(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateNaicsMutationInput!
+  ): CreateNaicsMutationPayload
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
 
   """Creates a single `Organisation`."""
   createOrganisation(
@@ -29613,6 +30391,7 @@ type Mutation {
     input: CreateProductInput!
   ): CreateProductPayload
 
+<<<<<<< HEAD
   """
   This custom create mutation does an upsert on conflict of the product_id &
   naics_code_id columns, updating the is_mandatory column & setting the deleted
@@ -29625,6 +30404,8 @@ type Mutation {
     input: CreateProductNaicsCodeInput!
   ): CreateProductNaicsCodePayload
 
+=======
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
   """Creates a single `ReportingYear`."""
   createReportingYear(
     """
@@ -29937,6 +30718,25 @@ type Mutation {
     input: DeleteLinkedProductByRowIdInput!
   ): DeleteLinkedProductPayload
 
+<<<<<<< HEAD
+=======
+  """Deletes a single `Naic` using its globally unique id."""
+  deleteNaic(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteNaicInput!
+  ): DeleteNaicPayload
+
+  """Deletes a single `Naic` using a unique key."""
+  deleteNaicByRowId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteNaicByRowIdInput!
+  ): DeleteNaicPayload
+
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
   """Deletes a single `Organisation` using its globally unique id."""
   deleteOrganisation(
     """
@@ -30359,21 +31159,21 @@ type Mutation {
     input: UpdateLinkedProductByRowIdInput!
   ): UpdateLinkedProductPayload
 
-  """Updates a single `NaicsCode` using its globally unique id and a patch."""
-  updateNaicsCode(
+  """Updates a single `Naic` using its globally unique id and a patch."""
+  updateNaic(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: UpdateNaicsCodeInput!
-  ): UpdateNaicsCodePayload
+    input: UpdateNaicInput!
+  ): UpdateNaicPayload
 
-  """Updates a single `NaicsCode` using a unique key and a patch."""
-  updateNaicsCodeByRowId(
+  """Updates a single `Naic` using a unique key and a patch."""
+  updateNaicByRowId(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: UpdateNaicsCodeByRowIdInput!
-  ): UpdateNaicsCodePayload
+    input: UpdateNaicByRowIdInput!
+  ): UpdateNaicPayload
 
   """
   Updates a single `Organisation` using its globally unique id and a patch.
@@ -30408,24 +31208,6 @@ type Mutation {
     """
     input: UpdateProductByRowIdInput!
   ): UpdateProductPayload
-
-  """
-  Updates a single `ProductNaicsCode` using its globally unique id and a patch.
-  """
-  updateProductNaicsCode(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: UpdateProductNaicsCodeInput!
-  ): UpdateProductNaicsCodePayload
-
-  """Updates a single `ProductNaicsCode` using a unique key and a patch."""
-  updateProductNaicsCodeByRowId(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: UpdateProductNaicsCodeByRowIdInput!
-  ): UpdateProductNaicsCodePayload
 
   """
   Updates a single `ReportingYear` using its globally unique id and a patch.
@@ -30495,6 +31277,7 @@ Table contains naics codes & their descriptions. NAICS is an acronym for North
 American Industry Classification System and is used to categorize industrial
 operations into sectors.
 """
+<<<<<<< HEAD
 type NaicsCode implements Node {
   """
   The sector this naics code belongs to according to the CleanBC Industrial Incentive Program
@@ -30613,12 +31396,25 @@ type NaicsCode implements Node {
   ): NaicsCodeCiipUsersByProductNaicsCodeNaicsCodeIdAndUpdatedByManyToManyConnection!
 
   """The timestamp of when this naics_code row was created"""
+=======
+type Naic implements Node {
+  """Reads a single `CiipUser` that is related to this `Naic`."""
+  ciipUserByCreatedBy: CiipUser
+
+  """Reads a single `CiipUser` that is related to this `Naic`."""
+  ciipUserByDeletedBy: CiipUser
+
+  """Reads a single `CiipUser` that is related to this `Naic`."""
+  ciipUserByUpdatedBy: CiipUser
+
+  """The timestamp of when this naics row was created"""
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
   createdAt: Datetime!
 
   """The id of the user who created this row, references ciip_user(id)"""
   createdBy: Int
 
-  """The timestamp of when this naics_code row was archived"""
+  """The timestamp of when this naics row was archived"""
   deletedAt: Datetime
 
   """The id of the user who archived this row, references ciip_user(id)"""
@@ -30635,6 +31431,7 @@ type NaicsCode implements Node {
   """
   naicsCode: String!
 
+<<<<<<< HEAD
   """The plain text description of the NAICS classification"""
   naicsDescription: String!
 
@@ -30710,6 +31507,15 @@ type NaicsCode implements Node {
   rowId: Int!
 
   """The timestamp of when this naics_code row was last updated"""
+=======
+  """Unique step_name to be included in during an application review"""
+  naicsDescription: String!
+
+  """Primary key for naics table"""
+  rowId: Int!
+
+  """The timestamp of when this naics row was last updated"""
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
   updatedAt: Datetime!
 
   """The id of the user who last updated this row, references ciip_user(id)"""
@@ -30717,6 +31523,7 @@ type NaicsCode implements Node {
 }
 
 """
+<<<<<<< HEAD
 A connection to a list of `CiipUser` values, with data from `ProductNaicsCode`.
 """
 type NaicsCodeCiipUsersByProductNaicsCodeNaicsCodeIdAndCreatedByManyToManyConnection {
@@ -30916,6 +31723,11 @@ input NaicsCodeCondition {
   """Checks for equality with the object’s `ciipSector` field."""
   ciipSector: String
 
+=======
+A condition to be used against `Naic` object types. All fields are tested for equality and combined with a logical ‘and.’
+"""
+input NaicCondition {
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
   """Checks for equality with the object’s `createdAt` field."""
   createdAt: Datetime
 
@@ -30945,14 +31757,11 @@ input NaicsCodeCondition {
 }
 
 """
-A filter to be used against `NaicsCode` object types. All fields are combined with a logical ‘and.’
+A filter to be used against `Naic` object types. All fields are combined with a logical ‘and.’
 """
-input NaicsCodeFilter {
+input NaicFilter {
   """Checks for all expressions in this list."""
-  and: [NaicsCodeFilter!]
-
-  """Filter by the object’s `ciipSector` field."""
-  ciipSector: StringFilter
+  and: [NaicFilter!]
 
   """Filter by the object’s `createdAt` field."""
   createdAt: DatetimeFilter
@@ -30973,10 +31782,10 @@ input NaicsCodeFilter {
   naicsDescription: StringFilter
 
   """Negates the expression."""
-  not: NaicsCodeFilter
+  not: NaicFilter
 
   """Checks for any expressions in this list."""
-  or: [NaicsCodeFilter!]
+  or: [NaicFilter!]
 
   """Filter by the object’s `rowId` field."""
   rowId: IntFilter
@@ -30988,6 +31797,7 @@ input NaicsCodeFilter {
   updatedBy: IntFilter
 }
 
+<<<<<<< HEAD
 """
 Represents an update to a `NaicsCode`. Fields that are set will be updated.
 """
@@ -30998,12 +31808,47 @@ input NaicsCodePatch {
   ciipSector: String
 
   """The timestamp of when this naics_code row was created"""
+=======
+"""An input for mutations affecting `Naic`"""
+input NaicInput {
+  """The timestamp of when this naics row was created"""
   createdAt: Datetime
 
   """The id of the user who created this row, references ciip_user(id)"""
   createdBy: Int
 
-  """The timestamp of when this naics_code row was archived"""
+  """The timestamp of when this naics row was archived"""
+  deletedAt: Datetime
+
+  """The id of the user who archived this row, references ciip_user(id)"""
+  deletedBy: Int
+
+  """
+  The naics_code, NAICS is an acronym for North American Industry Classification
+  System and is used to categorize industrial operations into sectors.
+  """
+  naicsCode: String!
+
+  """Unique step_name to be included in during an application review"""
+  naicsDescription: String!
+
+  """The timestamp of when this naics row was last updated"""
+  updatedAt: Datetime
+
+  """The id of the user who last updated this row, references ciip_user(id)"""
+  updatedBy: Int
+}
+
+"""Represents an update to a `Naic`. Fields that are set will be updated."""
+input NaicPatch {
+  """The timestamp of when this naics row was created"""
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
+  createdAt: Datetime
+
+  """The id of the user who created this row, references ciip_user(id)"""
+  createdBy: Int
+
+  """The timestamp of when this naics row was archived"""
   deletedAt: Datetime
 
   """The id of the user who archived this row, references ciip_user(id)"""
@@ -31015,108 +31860,44 @@ input NaicsCodePatch {
   """
   naicsCode: String
 
-  """The plain text description of the NAICS classification"""
+  """Unique step_name to be included in during an application review"""
   naicsDescription: String
 
-  """The timestamp of when this naics_code row was last updated"""
+  """The timestamp of when this naics row was last updated"""
   updatedAt: Datetime
 
   """The id of the user who last updated this row, references ciip_user(id)"""
   updatedBy: Int
 }
 
-"""
-A connection to a list of `Product` values, with data from `ProductNaicsCode`.
-"""
-type NaicsCodeProductsByProductNaicsCodeNaicsCodeIdAndProductIdManyToManyConnection {
+"""A connection to a list of `Naic` values."""
+type NaicsConnection {
   """
-  A list of edges which contains the `Product`, info from the `ProductNaicsCode`, and the cursor to aid in pagination.
+  A list of edges which contains the `Naic` and cursor to aid in pagination.
   """
-  edges: [NaicsCodeProductsByProductNaicsCodeNaicsCodeIdAndProductIdManyToManyEdge!]!
+  edges: [NaicsEdge!]!
 
-  """A list of `Product` objects."""
-  nodes: [Product]!
+  """A list of `Naic` objects."""
+  nodes: [Naic]!
 
   """Information to aid in pagination."""
   pageInfo: PageInfo!
 
-  """The count of *all* `Product` you could get from the connection."""
+  """The count of *all* `Naic` you could get from the connection."""
   totalCount: Int!
 }
 
-"""A `Product` edge in the connection, with data from `ProductNaicsCode`."""
-type NaicsCodeProductsByProductNaicsCodeNaicsCodeIdAndProductIdManyToManyEdge {
+"""A `Naic` edge in the connection."""
+type NaicsEdge {
   """A cursor for use in pagination."""
   cursor: Cursor
 
-  """The `Product` at the end of the edge."""
-  node: Product
-
-  """Reads and enables pagination through a set of `ProductNaicsCode`."""
-  productNaicsCodesByProductId(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: ProductNaicsCodeCondition
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: ProductNaicsCodeFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `ProductNaicsCode`."""
-    orderBy: [ProductNaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
-  ): ProductNaicsCodesConnection!
+  """The `Naic` at the end of the edge."""
+  node: Naic
 }
 
-"""A connection to a list of `NaicsCode` values."""
-type NaicsCodesConnection {
-  """
-  A list of edges which contains the `NaicsCode` and cursor to aid in pagination.
-  """
-  edges: [NaicsCodesEdge!]!
-
-  """A list of `NaicsCode` objects."""
-  nodes: [NaicsCode]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """The count of *all* `NaicsCode` you could get from the connection."""
-  totalCount: Int!
-}
-
-"""A `NaicsCode` edge in the connection."""
-type NaicsCodesEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `NaicsCode` at the end of the edge."""
-  node: NaicsCode
-}
-
-"""Methods to use when ordering `NaicsCode`."""
-enum NaicsCodesOrderBy {
-  CIIP_SECTOR_ASC
-  CIIP_SECTOR_DESC
+"""Methods to use when ordering `Naic`."""
+enum NaicsOrderBy {
   CREATED_AT_ASC
   CREATED_AT_DESC
   CREATED_BY_ASC
@@ -32218,108 +32999,6 @@ type Product implements Node {
     orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
   ): ProductCiipUsersByLinkedProductProductIdAndUpdatedByManyToManyConnection!
 
-  """Reads and enables pagination through a set of `CiipUser`."""
-  ciipUsersByProductNaicsCodeProductIdAndCreatedBy(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: CiipUserCondition
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: CiipUserFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `CiipUser`."""
-    orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
-  ): ProductCiipUsersByProductNaicsCodeProductIdAndCreatedByManyToManyConnection!
-
-  """Reads and enables pagination through a set of `CiipUser`."""
-  ciipUsersByProductNaicsCodeProductIdAndDeletedBy(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: CiipUserCondition
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: CiipUserFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `CiipUser`."""
-    orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
-  ): ProductCiipUsersByProductNaicsCodeProductIdAndDeletedByManyToManyConnection!
-
-  """Reads and enables pagination through a set of `CiipUser`."""
-  ciipUsersByProductNaicsCodeProductIdAndUpdatedBy(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: CiipUserCondition
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: CiipUserFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `CiipUser`."""
-    orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
-  ): ProductCiipUsersByProductNaicsCodeProductIdAndUpdatedByManyToManyConnection!
-
   """Creation date of row"""
   createdAt: Datetime!
 
@@ -32457,74 +33136,6 @@ type Product implements Node {
     """The method to use when ordering `LinkedProduct`."""
     orderBy: [LinkedProductsOrderBy!] = [PRIMARY_KEY_ASC]
   ): LinkedProductsConnection!
-
-  """Reads and enables pagination through a set of `NaicsCode`."""
-  naicsCodesByProductNaicsCodeProductIdAndNaicsCodeId(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: NaicsCodeCondition
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: NaicsCodeFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `NaicsCode`."""
-    orderBy: [NaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
-  ): ProductNaicsCodesByProductNaicsCodeProductIdAndNaicsCodeIdManyToManyConnection!
-
-  """Reads and enables pagination through a set of `ProductNaicsCode`."""
-  productNaicsCodesByProductId(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: ProductNaicsCodeCondition
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: ProductNaicsCodeFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `ProductNaicsCode`."""
-    orderBy: [ProductNaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
-  ): ProductNaicsCodesConnection!
 
   """The name of the product"""
   productName: String!
@@ -33280,198 +33891,6 @@ type ProductCiipUsersByLinkedProductProductIdAndUpdatedByManyToManyEdge {
 }
 
 """
-A connection to a list of `CiipUser` values, with data from `ProductNaicsCode`.
-"""
-type ProductCiipUsersByProductNaicsCodeProductIdAndCreatedByManyToManyConnection {
-  """
-  A list of edges which contains the `CiipUser`, info from the `ProductNaicsCode`, and the cursor to aid in pagination.
-  """
-  edges: [ProductCiipUsersByProductNaicsCodeProductIdAndCreatedByManyToManyEdge!]!
-
-  """A list of `CiipUser` objects."""
-  nodes: [CiipUser]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """The count of *all* `CiipUser` you could get from the connection."""
-  totalCount: Int!
-}
-
-"""
-A `CiipUser` edge in the connection, with data from `ProductNaicsCode`.
-"""
-type ProductCiipUsersByProductNaicsCodeProductIdAndCreatedByManyToManyEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `CiipUser` at the end of the edge."""
-  node: CiipUser
-
-  """Reads and enables pagination through a set of `ProductNaicsCode`."""
-  productNaicsCodesByCreatedBy(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: ProductNaicsCodeCondition
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: ProductNaicsCodeFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `ProductNaicsCode`."""
-    orderBy: [ProductNaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
-  ): ProductNaicsCodesConnection!
-}
-
-"""
-A connection to a list of `CiipUser` values, with data from `ProductNaicsCode`.
-"""
-type ProductCiipUsersByProductNaicsCodeProductIdAndDeletedByManyToManyConnection {
-  """
-  A list of edges which contains the `CiipUser`, info from the `ProductNaicsCode`, and the cursor to aid in pagination.
-  """
-  edges: [ProductCiipUsersByProductNaicsCodeProductIdAndDeletedByManyToManyEdge!]!
-
-  """A list of `CiipUser` objects."""
-  nodes: [CiipUser]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """The count of *all* `CiipUser` you could get from the connection."""
-  totalCount: Int!
-}
-
-"""
-A `CiipUser` edge in the connection, with data from `ProductNaicsCode`.
-"""
-type ProductCiipUsersByProductNaicsCodeProductIdAndDeletedByManyToManyEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `CiipUser` at the end of the edge."""
-  node: CiipUser
-
-  """Reads and enables pagination through a set of `ProductNaicsCode`."""
-  productNaicsCodesByDeletedBy(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: ProductNaicsCodeCondition
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: ProductNaicsCodeFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `ProductNaicsCode`."""
-    orderBy: [ProductNaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
-  ): ProductNaicsCodesConnection!
-}
-
-"""
-A connection to a list of `CiipUser` values, with data from `ProductNaicsCode`.
-"""
-type ProductCiipUsersByProductNaicsCodeProductIdAndUpdatedByManyToManyConnection {
-  """
-  A list of edges which contains the `CiipUser`, info from the `ProductNaicsCode`, and the cursor to aid in pagination.
-  """
-  edges: [ProductCiipUsersByProductNaicsCodeProductIdAndUpdatedByManyToManyEdge!]!
-
-  """A list of `CiipUser` objects."""
-  nodes: [CiipUser]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """The count of *all* `CiipUser` you could get from the connection."""
-  totalCount: Int!
-}
-
-"""
-A `CiipUser` edge in the connection, with data from `ProductNaicsCode`.
-"""
-type ProductCiipUsersByProductNaicsCodeProductIdAndUpdatedByManyToManyEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `CiipUser` at the end of the edge."""
-  node: CiipUser
-
-  """Reads and enables pagination through a set of `ProductNaicsCode`."""
-  productNaicsCodesByUpdatedBy(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: ProductNaicsCodeCondition
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: ProductNaicsCodeFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `ProductNaicsCode`."""
-    orderBy: [ProductNaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
-  ): ProductNaicsCodesConnection!
-}
-
-"""
 A condition to be used against `Product` object types. All fields are tested for equality and combined with a logical ‘and.’
 """
 input ProductCondition {
@@ -33748,6 +34167,7 @@ input ProductInput {
 }
 
 """
+<<<<<<< HEAD
 Defines which products can be reported in a facility with a given naics code.
 NAICS is an acronym for North American Industry Classification System and is
 used to categorize industrial operations into sectors.
@@ -34040,6 +34460,8 @@ enum ProductNaicsCodesOrderBy {
 }
 
 """
+=======
+>>>>>>> 92654914 (feat: updating schema graphql and json files after rebase)
 Represents an update to a `Product`. Fields that are set will be updated.
 """
 input ProductPatch {
@@ -35093,8 +35515,8 @@ type Query implements Node {
     orderBy: [LinkedProductsOrderBy!] = [PRIMARY_KEY_ASC]
   ): LinkedProductsConnection
 
-  """Reads and enables pagination through a set of `NaicsCode`."""
-  allNaicsCodes(
+  """Reads and enables pagination through a set of `Naic`."""
+  allNaics(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -35104,12 +35526,12 @@ type Query implements Node {
     """
     A condition to be used in determining which values should be returned by the collection.
     """
-    condition: NaicsCodeCondition
+    condition: NaicCondition
 
     """
     A filter to be used in determining which values should be returned by the collection.
     """
-    filter: NaicsCodeFilter
+    filter: NaicFilter
 
     """Only read the first `n` values of the set."""
     first: Int
@@ -35123,9 +35545,9 @@ type Query implements Node {
     """
     offset: Int
 
-    """The method to use when ordering `NaicsCode`."""
-    orderBy: [NaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
-  ): NaicsCodesConnection
+    """The method to use when ordering `Naic`."""
+    orderBy: [NaicsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): NaicsConnection
 
   """Reads and enables pagination through a set of `Organisation`."""
   allOrganisations(
@@ -35160,40 +35582,6 @@ type Query implements Node {
     """The method to use when ordering `Organisation`."""
     orderBy: [OrganisationsOrderBy!] = [PRIMARY_KEY_ASC]
   ): OrganisationsConnection
-
-  """Reads and enables pagination through a set of `ProductNaicsCode`."""
-  allProductNaicsCodes(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: ProductNaicsCodeCondition
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: ProductNaicsCodeFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `ProductNaicsCode`."""
-    orderBy: [ProductNaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
-  ): ProductNaicsCodesConnection
 
   """Reads and enables pagination through a set of `Product`."""
   allProducts(
@@ -35593,12 +35981,12 @@ type Query implements Node {
   ): LinkedProduct
   linkedProductByRowId(rowId: Int!): LinkedProduct
 
-  """Reads a single `NaicsCode` using its globally unique `ID`."""
-  naicsCode(
-    """The globally unique `ID` to be used in selecting a single `NaicsCode`."""
+  """Reads a single `Naic` using its globally unique `ID`."""
+  naic(
+    """The globally unique `ID` to be used in selecting a single `Naic`."""
     id: ID!
-  ): NaicsCode
-  naicsCodeByRowId(rowId: Int!): NaicsCode
+  ): Naic
+  naicByRowId(rowId: Int!): Naic
 
   """
   Returns the next reporting year to have an application window that opens.
@@ -35632,15 +36020,6 @@ type Query implements Node {
     id: ID!
   ): Product
   productByRowId(rowId: Int!): Product
-
-  """Reads a single `ProductNaicsCode` using its globally unique `ID`."""
-  productNaicsCode(
-    """
-    The globally unique `ID` to be used in selecting a single `ProductNaicsCode`.
-    """
-    id: ID!
-  ): ProductNaicsCode
-  productNaicsCodeByRowId(rowId: Int!): ProductNaicsCode
 
   """
   Exposes the root query type nested one level down. This is helpful for Relay 1
@@ -39122,8 +39501,8 @@ type UpdateLinkedProductPayload {
   query: Query
 }
 
-"""All input for the `updateNaicsCodeByRowId` mutation."""
-input UpdateNaicsCodeByRowIdInput {
+"""All input for the `updateNaicByRowId` mutation."""
+input UpdateNaicByRowIdInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
@@ -39131,16 +39510,16 @@ input UpdateNaicsCodeByRowIdInput {
   clientMutationId: String
 
   """
-  An object where the defined keys will be set on the `NaicsCode` being updated.
+  An object where the defined keys will be set on the `Naic` being updated.
   """
-  naicsCodePatch: NaicsCodePatch!
+  naicPatch: NaicPatch!
 
-  """Primary key for naics_code table"""
+  """Primary key for naics table"""
   rowId: Int!
 }
 
-"""All input for the `updateNaicsCode` mutation."""
-input UpdateNaicsCodeInput {
+"""All input for the `updateNaic` mutation."""
+input UpdateNaicInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
@@ -39148,25 +39527,25 @@ input UpdateNaicsCodeInput {
   clientMutationId: String
 
   """
-  The globally unique `ID` which will identify a single `NaicsCode` to be updated.
+  The globally unique `ID` which will identify a single `Naic` to be updated.
   """
   id: ID!
 
   """
-  An object where the defined keys will be set on the `NaicsCode` being updated.
+  An object where the defined keys will be set on the `Naic` being updated.
   """
-  naicsCodePatch: NaicsCodePatch!
+  naicPatch: NaicPatch!
 }
 
-"""The output of our update `NaicsCode` mutation."""
-type UpdateNaicsCodePayload {
-  """Reads a single `CiipUser` that is related to this `NaicsCode`."""
+"""The output of our update `Naic` mutation."""
+type UpdateNaicPayload {
+  """Reads a single `CiipUser` that is related to this `Naic`."""
   ciipUserByCreatedBy: CiipUser
 
-  """Reads a single `CiipUser` that is related to this `NaicsCode`."""
+  """Reads a single `CiipUser` that is related to this `Naic`."""
   ciipUserByDeletedBy: CiipUser
 
-  """Reads a single `CiipUser` that is related to this `NaicsCode`."""
+  """Reads a single `CiipUser` that is related to this `Naic`."""
   ciipUserByUpdatedBy: CiipUser
 
   """
@@ -39175,14 +39554,14 @@ type UpdateNaicsCodePayload {
   """
   clientMutationId: String
 
-  """The `NaicsCode` that was updated by this mutation."""
-  naicsCode: NaicsCode
+  """The `Naic` that was updated by this mutation."""
+  naic: Naic
 
-  """An edge for our `NaicsCode`. May be used by Relay 1."""
-  naicsCodeEdge(
-    """The method to use when ordering `NaicsCode`."""
-    orderBy: [NaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
-  ): NaicsCodesEdge
+  """An edge for our `Naic`. May be used by Relay 1."""
+  naicEdge(
+    """The method to use when ordering `Naic`."""
+    orderBy: [NaicsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): NaicsEdge
 
   """
   Our root query field type. Allows us to run any query from our mutation payload.
@@ -39283,80 +39662,6 @@ input UpdateProductInput {
   An object where the defined keys will be set on the `Product` being updated.
   """
   productPatch: ProductPatch!
-}
-
-"""All input for the `updateProductNaicsCodeByRowId` mutation."""
-input UpdateProductNaicsCodeByRowIdInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """
-  An object where the defined keys will be set on the `ProductNaicsCode` being updated.
-  """
-  productNaicsCodePatch: ProductNaicsCodePatch!
-
-  """Primary key for product_naics_code table"""
-  rowId: Int!
-}
-
-"""All input for the `updateProductNaicsCode` mutation."""
-input UpdateProductNaicsCodeInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """
-  The globally unique `ID` which will identify a single `ProductNaicsCode` to be updated.
-  """
-  id: ID!
-
-  """
-  An object where the defined keys will be set on the `ProductNaicsCode` being updated.
-  """
-  productNaicsCodePatch: ProductNaicsCodePatch!
-}
-
-"""The output of our update `ProductNaicsCode` mutation."""
-type UpdateProductNaicsCodePayload {
-  """Reads a single `CiipUser` that is related to this `ProductNaicsCode`."""
-  ciipUserByCreatedBy: CiipUser
-
-  """Reads a single `CiipUser` that is related to this `ProductNaicsCode`."""
-  ciipUserByDeletedBy: CiipUser
-
-  """Reads a single `CiipUser` that is related to this `ProductNaicsCode`."""
-  ciipUserByUpdatedBy: CiipUser
-
-  """
-  The exact same `clientMutationId` that was provided in the mutation input,
-  unchanged and unused. May be used by a client to track mutations.
-  """
-  clientMutationId: String
-
-  """Reads a single `NaicsCode` that is related to this `ProductNaicsCode`."""
-  naicsCodeByNaicsCodeId: NaicsCode
-
-  """Reads a single `Product` that is related to this `ProductNaicsCode`."""
-  productByProductId: Product
-
-  """The `ProductNaicsCode` that was updated by this mutation."""
-  productNaicsCode: ProductNaicsCode
-
-  """An edge for our `ProductNaicsCode`. May be used by Relay 1."""
-  productNaicsCodeEdge(
-    """The method to use when ordering `ProductNaicsCode`."""
-    orderBy: [ProductNaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
-  ): ProductNaicsCodesEdge
-
-  """
-  Our root query field type. Allows us to run any query from our mutation payload.
-  """
-  query: Query
 }
 
 """The output of our update `Product` mutation."""
