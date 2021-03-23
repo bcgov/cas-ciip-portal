@@ -36,7 +36,7 @@ perform ggircs_portal_private.grant_permissions('select', 'naics_code', 'ciip_in
 end
 $grant$;
 
-comment on table ggircs_portal.naics_code is 'Table contains naics codes & their descriptions. NAICS is an acronym for North American Industry Classification System and is used to categorize industrial operations into sectors.';
+comment on table ggircs_portal.naics_code is E'@omit create,delete\nTable contains naics codes & their descriptions. NAICS is an acronym for North American Industry Classification System and is used to categorize industrial operations into sectors.';
 comment on column ggircs_portal.naics_code.id is 'Primary key for naics_code table';
 comment on column ggircs_portal.naics_code.naics_code is 'The naics_code, NAICS is an acronym for North American Industry Classification System and is used to categorize industrial operations into sectors.';
 comment on column ggircs_portal.naics_code.ciip_sector is 'The sector this naics code belongs to according to the CleanBC Industrial Incentive Program';

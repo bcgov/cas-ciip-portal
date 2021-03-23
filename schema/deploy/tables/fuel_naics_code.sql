@@ -39,7 +39,7 @@ perform ggircs_portal_private.grant_permissions('select', 'fuel_naics_code', 'ci
 end
 $grant$;
 
-comment on table ggircs_portal.fuel_naics_code is 'Defines which fuels can be reported in a facility with a given naics code. NAICS is an acronym for North American Industry Classification System and is used to categorize industrial operations into sectors.';
+comment on table ggircs_portal.fuel_naics_code is E'@omit create,delete\nDefines which fuels can be reported in a facility with a given naics code. NAICS is an acronym for North American Industry Classification System and is used to categorize industrial operations into sectors.';
 comment on column ggircs_portal.fuel_naics_code.id is 'Primary key for fuel_naics_code table';
 comment on column ggircs_portal.fuel_naics_code.fuel_id is 'The id referencing the fuel table';
 comment on column ggircs_portal.fuel_naics_code.naics_code_id is 'The id refrencing the naics table';
