@@ -118,7 +118,8 @@ select results_eq(
     select version_number from ggircs_portal.facility f
     join ggircs_portal.application a on f.id = a.facility_id
     join ggircs_portal.application_revision ar on a.id = ar.application_id
-    and f.facility_name = 'has swrs';
+    and f.facility_name = 'has swrs'
+    order by version_number;
   $$,
   ARRAY[0::integer, 1::integer],
   'If an application has a swrs report, two application revisions are created with version_number 0 for swrs and 1 for draft'
