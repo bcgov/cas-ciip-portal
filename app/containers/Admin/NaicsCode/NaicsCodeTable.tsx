@@ -4,6 +4,7 @@ import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
 import {NaicsCodeTable_query} from '__generated__/NaicsCodeTable_query.graphql';
 import NaicsCodeTableRow from './NaicsCodeTableRow';
 import CreateNaicsCodeModal from 'components/Admin/CreateNaicsCodeModal';
+import createNaicsCodeMutation from 'mutations/naics_code/createNaicsCodeMutation';
 
 interface Props {
   relay: RelayProp;
@@ -15,21 +16,36 @@ export const NaicsCodeTableContainer: React.FunctionComponent<Props> = (
 ) => {
   const [validated, setValidated] = useState(false);
   const [showCreateModal, setShowCreateModal] = useState(false);
+  const {query} = props;
 
-  const handleCreateNaicsCode = (e: React.SyntheticEvent<any>) => {
+  const handleCreateNaicsCode = async (e: React.SyntheticEvent<any>) => {
     const form = e.currentTarget;
     if (form.checkValidity() === false) {
       e.preventDefault();
       e.stopPropagation();
     }
-    setValidated(true);
-    e.preventDefault();
     e.stopPropagation();
+    e.preventDefault();
+    e.persist();
+    setValidated(true);
 
-    console.log(e);
+    const {environment} = props.relay;
+    const variables = {
+      input: {
+        naicsCodeInput: e.target[0].value,
+        ciipSectorInput: e.target[1].value ? e.target[1].value : null,
+        naicsDescriptionInput: e.target[2].value
+      }
+    };
+    const response = await createNaicsCodeMutation(
+      environment,
+      variables,
+      query.allNaicsCodes.__id
+    );
+    console.log(response);
+    setShowCreateModal(false);
   };
 
-  const {query} = props;
   return (
     <>
       <div style={{textAlign: 'right'}}>

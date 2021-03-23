@@ -36,7 +36,7 @@ const updateNaicsCodeMutation = async (
     ConnectionHandler.deleteNode(connection, variables.input.id);
   };
   const m = new BaseMutation<updateNaicsCodeMutationType>(
-    'update-review-comment-mutation'
+    'update-naics-code-mutation'
   );
   return m.performMutation(
     environment,
