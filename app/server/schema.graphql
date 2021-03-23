@@ -23900,20 +23900,8 @@ input CreateFuelInput {
   fuel: FuelInput!
 }
 
-"""All input for the create `FuelNaicsCode` mutation."""
+"""All input for the `createFuelNaicsCode` mutation."""
 input CreateFuelNaicsCodeInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """The `FuelNaicsCode` to be created by this mutation."""
-  fuelNaicsCode: FuelNaicsCodeInput!
-}
-
-"""All input for the `createFuelNaicsCodeMutation` mutation."""
-input CreateFuelNaicsCodeMutationInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
@@ -23923,21 +23911,7 @@ input CreateFuelNaicsCodeMutationInput {
   naicsCodeIdInput: Int
 }
 
-"""The output of our `createFuelNaicsCodeMutation` mutation."""
-type CreateFuelNaicsCodeMutationPayload {
-  """
-  The exact same `clientMutationId` that was provided in the mutation input,
-  unchanged and unused. May be used by a client to track mutations.
-  """
-  clientMutationId: String
-
-  """
-  Our root query field type. Allows us to run any query from our mutation payload.
-  """
-  query: Query
-}
-
-"""The output of our create `FuelNaicsCode` mutation."""
+"""The output of our `createFuelNaicsCode` mutation."""
 type CreateFuelNaicsCodePayload {
   """Reads a single `CiipUser` that is related to this `FuelNaicsCode`."""
   ciipUserByCreatedBy: CiipUser
@@ -23956,8 +23930,6 @@ type CreateFuelNaicsCodePayload {
 
   """Reads a single `Fuel` that is related to this `FuelNaicsCode`."""
   fuelByFuelId: Fuel
-
-  """The `FuelNaicsCode` that was created by this mutation."""
   fuelNaicsCode: FuelNaicsCode
 
   """An edge for our `FuelNaicsCode`. May be used by Relay 1."""
@@ -24101,20 +24073,8 @@ type CreateLinkedProductPayload {
   query: Query
 }
 
-"""All input for the create `NaicsCode` mutation."""
+"""All input for the `createNaicsCode` mutation."""
 input CreateNaicsCodeInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """The `NaicsCode` to be created by this mutation."""
-  naicsCode: NaicsCodeInput!
-}
-
-"""All input for the `createNaicsCodeMutation` mutation."""
-input CreateNaicsCodeMutationInput {
   ciipSectorInput: String
 
   """
@@ -24126,21 +24086,7 @@ input CreateNaicsCodeMutationInput {
   naicsDescriptionInput: String
 }
 
-"""The output of our `createNaicsCodeMutation` mutation."""
-type CreateNaicsCodeMutationPayload {
-  """
-  The exact same `clientMutationId` that was provided in the mutation input,
-  unchanged and unused. May be used by a client to track mutations.
-  """
-  clientMutationId: String
-
-  """
-  Our root query field type. Allows us to run any query from our mutation payload.
-  """
-  query: Query
-}
-
-"""The output of our create `NaicsCode` mutation."""
+"""The output of our `createNaicsCode` mutation."""
 type CreateNaicsCodePayload {
   """Reads a single `CiipUser` that is related to this `NaicsCode`."""
   ciipUserByCreatedBy: CiipUser
@@ -24156,8 +24102,6 @@ type CreateNaicsCodePayload {
   unchanged and unused. May be used by a client to track mutations.
   """
   clientMutationId: String
-
-  """The `NaicsCode` that was created by this mutation."""
   naicsCode: NaicsCode
 
   """An edge for our `NaicsCode`. May be used by Relay 1."""
@@ -24219,20 +24163,8 @@ input CreateProductInput {
   product: ProductInput!
 }
 
-"""All input for the create `ProductNaicsCode` mutation."""
+"""All input for the `createProductNaicsCode` mutation."""
 input CreateProductNaicsCodeInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """The `ProductNaicsCode` to be created by this mutation."""
-  productNaicsCode: ProductNaicsCodeInput!
-}
-
-"""All input for the `createProductNaicsCodeMutation` mutation."""
-input CreateProductNaicsCodeMutationInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
@@ -24243,21 +24175,7 @@ input CreateProductNaicsCodeMutationInput {
   productIdInput: Int
 }
 
-"""The output of our `createProductNaicsCodeMutation` mutation."""
-type CreateProductNaicsCodeMutationPayload {
-  """
-  The exact same `clientMutationId` that was provided in the mutation input,
-  unchanged and unused. May be used by a client to track mutations.
-  """
-  clientMutationId: String
-
-  """
-  Our root query field type. Allows us to run any query from our mutation payload.
-  """
-  query: Query
-}
-
-"""The output of our create `ProductNaicsCode` mutation."""
+"""The output of our `createProductNaicsCode` mutation."""
 type CreateProductNaicsCodePayload {
   """Reads a single `CiipUser` that is related to this `ProductNaicsCode`."""
   ciipUserByCreatedBy: CiipUser
@@ -24279,8 +24197,6 @@ type CreateProductNaicsCodePayload {
 
   """Reads a single `Product` that is related to this `ProductNaicsCode`."""
   productByProductId: Product
-
-  """The `ProductNaicsCode` that was created by this mutation."""
   productNaicsCode: ProductNaicsCode
 
   """An edge for our `ProductNaicsCode`. May be used by Relay 1."""
@@ -25537,71 +25453,6 @@ input DeleteFuelInput {
   id: ID!
 }
 
-"""All input for the `deleteFuelNaicsCodeByRowId` mutation."""
-input DeleteFuelNaicsCodeByRowIdInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """Primary key for fuel_naics_code table"""
-  rowId: Int!
-}
-
-"""All input for the `deleteFuelNaicsCode` mutation."""
-input DeleteFuelNaicsCodeInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """
-  The globally unique `ID` which will identify a single `FuelNaicsCode` to be deleted.
-  """
-  id: ID!
-}
-
-"""The output of our delete `FuelNaicsCode` mutation."""
-type DeleteFuelNaicsCodePayload {
-  """Reads a single `CiipUser` that is related to this `FuelNaicsCode`."""
-  ciipUserByCreatedBy: CiipUser
-
-  """Reads a single `CiipUser` that is related to this `FuelNaicsCode`."""
-  ciipUserByDeletedBy: CiipUser
-
-  """Reads a single `CiipUser` that is related to this `FuelNaicsCode`."""
-  ciipUserByUpdatedBy: CiipUser
-
-  """
-  The exact same `clientMutationId` that was provided in the mutation input,
-  unchanged and unused. May be used by a client to track mutations.
-  """
-  clientMutationId: String
-  deletedFuelNaicsCodeId: ID
-
-  """Reads a single `Fuel` that is related to this `FuelNaicsCode`."""
-  fuelByFuelId: Fuel
-
-  """The `FuelNaicsCode` that was deleted by this mutation."""
-  fuelNaicsCode: FuelNaicsCode
-
-  """An edge for our `FuelNaicsCode`. May be used by Relay 1."""
-  fuelNaicsCodeEdge(
-    """The method to use when ordering `FuelNaicsCode`."""
-    orderBy: [FuelNaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
-  ): FuelNaicsCodesEdge
-
-  """Reads a single `NaicsCode` that is related to this `FuelNaicsCode`."""
-  naicsCodeByNaicsCodeId: NaicsCode
-
-  """
-  Our root query field type. Allows us to run any query from our mutation payload.
-  """
-  query: Query
-}
-
 """The output of our delete `Fuel` mutation."""
 type DeleteFuelPayload {
   """Reads a single `CiipUser` that is related to this `Fuel`."""
@@ -25759,65 +25610,6 @@ type DeleteLinkedProductPayload {
   query: Query
 }
 
-"""All input for the `deleteNaicsCodeByRowId` mutation."""
-input DeleteNaicsCodeByRowIdInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """Primary key for naics_code table"""
-  rowId: Int!
-}
-
-"""All input for the `deleteNaicsCode` mutation."""
-input DeleteNaicsCodeInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """
-  The globally unique `ID` which will identify a single `NaicsCode` to be deleted.
-  """
-  id: ID!
-}
-
-"""The output of our delete `NaicsCode` mutation."""
-type DeleteNaicsCodePayload {
-  """Reads a single `CiipUser` that is related to this `NaicsCode`."""
-  ciipUserByCreatedBy: CiipUser
-
-  """Reads a single `CiipUser` that is related to this `NaicsCode`."""
-  ciipUserByDeletedBy: CiipUser
-
-  """Reads a single `CiipUser` that is related to this `NaicsCode`."""
-  ciipUserByUpdatedBy: CiipUser
-
-  """
-  The exact same `clientMutationId` that was provided in the mutation input,
-  unchanged and unused. May be used by a client to track mutations.
-  """
-  clientMutationId: String
-  deletedNaicsCodeId: ID
-
-  """The `NaicsCode` that was deleted by this mutation."""
-  naicsCode: NaicsCode
-
-  """An edge for our `NaicsCode`. May be used by Relay 1."""
-  naicsCodeEdge(
-    """The method to use when ordering `NaicsCode`."""
-    orderBy: [NaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
-  ): NaicsCodesEdge
-
-  """
-  Our root query field type. Allows us to run any query from our mutation payload.
-  """
-  query: Query
-}
-
 """All input for the `deleteOrganisationByRowId` mutation."""
 input DeleteOrganisationByRowIdInput {
   """
@@ -25892,71 +25684,6 @@ input DeleteProductInput {
   The globally unique `ID` which will identify a single `Product` to be deleted.
   """
   id: ID!
-}
-
-"""All input for the `deleteProductNaicsCodeByRowId` mutation."""
-input DeleteProductNaicsCodeByRowIdInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """Primary key for product_naics_code table"""
-  rowId: Int!
-}
-
-"""All input for the `deleteProductNaicsCode` mutation."""
-input DeleteProductNaicsCodeInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """
-  The globally unique `ID` which will identify a single `ProductNaicsCode` to be deleted.
-  """
-  id: ID!
-}
-
-"""The output of our delete `ProductNaicsCode` mutation."""
-type DeleteProductNaicsCodePayload {
-  """Reads a single `CiipUser` that is related to this `ProductNaicsCode`."""
-  ciipUserByCreatedBy: CiipUser
-
-  """Reads a single `CiipUser` that is related to this `ProductNaicsCode`."""
-  ciipUserByDeletedBy: CiipUser
-
-  """Reads a single `CiipUser` that is related to this `ProductNaicsCode`."""
-  ciipUserByUpdatedBy: CiipUser
-
-  """
-  The exact same `clientMutationId` that was provided in the mutation input,
-  unchanged and unused. May be used by a client to track mutations.
-  """
-  clientMutationId: String
-  deletedProductNaicsCodeId: ID
-
-  """Reads a single `NaicsCode` that is related to this `ProductNaicsCode`."""
-  naicsCodeByNaicsCodeId: NaicsCode
-
-  """Reads a single `Product` that is related to this `ProductNaicsCode`."""
-  productByProductId: Product
-
-  """The `ProductNaicsCode` that was deleted by this mutation."""
-  productNaicsCode: ProductNaicsCode
-
-  """An edge for our `ProductNaicsCode`. May be used by Relay 1."""
-  productNaicsCodeEdge(
-    """The method to use when ordering `ProductNaicsCode`."""
-    orderBy: [ProductNaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
-  ): ProductNaicsCodesEdge
-
-  """
-  Our root query field type. Allows us to run any query from our mutation payload.
-  """
-  query: Query
 }
 
 """The output of our delete `Product` mutation."""
@@ -30310,33 +30037,6 @@ input FuelNaicsCodeFilter {
   updatedBy: IntFilter
 }
 
-"""An input for mutations affecting `FuelNaicsCode`"""
-input FuelNaicsCodeInput {
-  """The timestamp of when this fuel_naics_code row was created"""
-  createdAt: Datetime
-
-  """The id of the user who created this row, references ciip_user(id)"""
-  createdBy: Int
-
-  """The timestamp of when this fuel_naics_code row was archived"""
-  deletedAt: Datetime
-
-  """The id of the user who archived this row, references ciip_user(id)"""
-  deletedBy: Int
-
-  """The id referencing the fuel table"""
-  fuelId: Int!
-
-  """The id refrencing the naics table"""
-  naicsCodeId: Int!
-
-  """The timestamp of when this fuel_naics_code row was last updated"""
-  updatedAt: Datetime
-
-  """The id of the user who last updated this row, references ciip_user(id)"""
-  updatedBy: Int
-}
-
 """
 Represents an update to a `FuelNaicsCode`. Fields that are set will be updated.
 """
@@ -31999,24 +31699,16 @@ type Mutation {
     input: CreateFuelInput!
   ): CreateFuelPayload
 
-  """Creates a single `FuelNaicsCode`."""
+  """
+  This custom create mutation does an upsert on conflict of the fuel_id &
+  naics_code_id columns, setting the deleted at/by columsn to null
+  """
   createFuelNaicsCode(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
     input: CreateFuelNaicsCodeInput!
   ): CreateFuelNaicsCodePayload
-
-  """
-  This custom create mutation does an upsert on conflict of the fuel_id &
-  naics_code_id columns, setting the deleted at/by columsn to null
-  """
-  createFuelNaicsCodeMutation(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: CreateFuelNaicsCodeMutationInput!
-  ): CreateFuelNaicsCodeMutationPayload
 
   """Creates a single `Gas`."""
   createGas(
@@ -32034,24 +31726,16 @@ type Mutation {
     input: CreateLinkedProductInput!
   ): CreateLinkedProductPayload
 
-  """Creates a single `NaicsCode`."""
+  """
+  This custom create mutation does an upsert on conflict of the naics_code
+  column, updating the description and setting the deleted at/by columsn to null
+  """
   createNaicsCode(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
     input: CreateNaicsCodeInput!
   ): CreateNaicsCodePayload
-
-  """
-  This custom create mutation does an upsert on conflict of the naics_code
-  column, updating the description and setting the deleted at/by columsn to null
-  """
-  createNaicsCodeMutation(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: CreateNaicsCodeMutationInput!
-  ): CreateNaicsCodeMutationPayload
 
   """Creates a single `Organisation`."""
   createOrganisation(
@@ -32069,25 +31753,17 @@ type Mutation {
     input: CreateProductInput!
   ): CreateProductPayload
 
-  """Creates a single `ProductNaicsCode`."""
+  """
+  This custom create mutation does an upsert on conflict of the product_id &
+  naics_code_id columns, updating the is_mandatory column & setting the deleted
+  at/by columns to null
+  """
   createProductNaicsCode(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
     input: CreateProductNaicsCodeInput!
   ): CreateProductNaicsCodePayload
-
-  """
-  This custom create mutation does an upsert on conflict of the product_id &
-  naics_code_id columns, updating the is_mandatory column & setting the deleted
-  at/by columns to null
-  """
-  createProductNaicsCodeMutation(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: CreateProductNaicsCodeMutationInput!
-  ): CreateProductNaicsCodeMutationPayload
 
   """Creates a single `ReportingYear`."""
   createReportingYear(
@@ -32369,22 +32045,6 @@ type Mutation {
     input: DeleteFuelByRowIdInput!
   ): DeleteFuelPayload
 
-  """Deletes a single `FuelNaicsCode` using its globally unique id."""
-  deleteFuelNaicsCode(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: DeleteFuelNaicsCodeInput!
-  ): DeleteFuelNaicsCodePayload
-
-  """Deletes a single `FuelNaicsCode` using a unique key."""
-  deleteFuelNaicsCodeByRowId(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: DeleteFuelNaicsCodeByRowIdInput!
-  ): DeleteFuelNaicsCodePayload
-
   """Deletes a single `Gas` using its globally unique id."""
   deleteGas(
     """
@@ -32417,22 +32077,6 @@ type Mutation {
     input: DeleteLinkedProductByRowIdInput!
   ): DeleteLinkedProductPayload
 
-  """Deletes a single `NaicsCode` using its globally unique id."""
-  deleteNaicsCode(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: DeleteNaicsCodeInput!
-  ): DeleteNaicsCodePayload
-
-  """Deletes a single `NaicsCode` using a unique key."""
-  deleteNaicsCodeByRowId(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: DeleteNaicsCodeByRowIdInput!
-  ): DeleteNaicsCodePayload
-
   """Deletes a single `Organisation` using its globally unique id."""
   deleteOrganisation(
     """
@@ -32464,22 +32108,6 @@ type Mutation {
     """
     input: DeleteProductByRowIdInput!
   ): DeleteProductPayload
-
-  """Deletes a single `ProductNaicsCode` using its globally unique id."""
-  deleteProductNaicsCode(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: DeleteProductNaicsCodeInput!
-  ): DeleteProductNaicsCodePayload
-
-  """Deletes a single `ProductNaicsCode` using a unique key."""
-  deleteProductNaicsCodeByRowId(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: DeleteProductNaicsCodeByRowIdInput!
-  ): DeleteProductNaicsCodePayload
 
   """Deletes a single `ReportingYear` using its globally unique id."""
   deleteReportingYear(
@@ -33934,41 +33562,6 @@ type NaicsCodeFuelsByFuelNaicsCodeNaicsCodeIdAndFuelIdManyToManyEdge {
 
   """The `Fuel` at the end of the edge."""
   node: Fuel
-}
-
-"""An input for mutations affecting `NaicsCode`"""
-input NaicsCodeInput {
-  """
-  The sector this naics code belongs to according to the CleanBC Industrial Incentive Program
-  """
-  ciipSector: String
-
-  """The timestamp of when this naics_code row was created"""
-  createdAt: Datetime
-
-  """The id of the user who created this row, references ciip_user(id)"""
-  createdBy: Int
-
-  """The timestamp of when this naics_code row was archived"""
-  deletedAt: Datetime
-
-  """The id of the user who archived this row, references ciip_user(id)"""
-  deletedBy: Int
-
-  """
-  The naics_code, NAICS is an acronym for North American Industry Classification
-  System and is used to categorize industrial operations into sectors.
-  """
-  naicsCode: String!
-
-  """The plain text description of the NAICS classification"""
-  naicsDescription: String!
-
-  """The timestamp of when this naics_code row was last updated"""
-  updatedAt: Datetime
-
-  """The id of the user who last updated this row, references ciip_user(id)"""
-  updatedBy: Int
 }
 
 """
@@ -36867,38 +36460,6 @@ input ProductNaicsCodeFilter {
 
   """Filter by the object’s `updatedBy` field."""
   updatedBy: IntFilter
-}
-
-"""An input for mutations affecting `ProductNaicsCode`"""
-input ProductNaicsCodeInput {
-  """The timestamp of when this product_naics_code row was created"""
-  createdAt: Datetime
-
-  """The id of the user who created this row, references ciip_user(id)"""
-  createdBy: Int
-
-  """The timestamp of when this product_naics_code row was archived"""
-  deletedAt: Datetime
-
-  """The id of the user who archived this row, references ciip_user(id)"""
-  deletedBy: Int
-
-  """
-  Defines whether the related product must be reported by an operator classified under the related naics code
-  """
-  isMandatory: Boolean
-
-  """The id refrencing the naics_code table"""
-  naicsCodeId: Int!
-
-  """The id referencing the product table"""
-  productId: Int!
-
-  """The timestamp of when this product_naics_code row was last updated"""
-  updatedAt: Datetime
-
-  """The id of the user who last updated this row, references ciip_user(id)"""
-  updatedBy: Int
 }
 
 """
