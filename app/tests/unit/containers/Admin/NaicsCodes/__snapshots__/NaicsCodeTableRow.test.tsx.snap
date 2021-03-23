@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NaicsCodeTable should match the snapshot with the NaicsCodeTableRow container 1`] = `
+<tr
+  key="abc"
+>
+  <td>
+    code
+  </td>
+  <td>
+    sector
+  </td>
+  <td>
+    description
+  </td>
+  <td
+    style={
+      Object {
+        "textAlign": "center",
+      }
+    }
+  >
+    <Button
+      active={false}
+      disabled={false}
+      onClick={[Function]}
+      variant="danger"
+    >
+      Delete
+    </Button>
+  </td>
+</tr>
+`;

@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NaicsCodeTable should match the snapshot with the NaicsCodeTable container 1`] = `
+<Fragment>
+  <div
+    style={
+      Object {
+        "textAlign": "right",
+      }
+    }
+  >
+    <Button
+      active={false}
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "marginTop": "-100px",
+        }
+      }
+      variant="primary"
+    >
+      New Naics Code
+    </Button>
+  </div>
+  <CreateNaicsCodeModal
+    handleCreateNaicsCode={[Function]}
+    setShowCreateModal={[Function]}
+    showCreateModal={false}
+    validated={false}
+  />
+  <ForwardRef
+    bordered={true}
+    hover={true}
+    striped={true}
+  >
+    <thead>
+      <tr>
+        <th
+          scope="col"
+        >
+          NAICS Code
+        </th>
+        <th
+          scope="col"
+        >
+          CIIP Sector
+        </th>
+        <th
+          scope="col"
+        >
+          NAICS Description
+        </th>
+        <th />
+      </tr>
+    </thead>
+    <tbody>
+      <Relay(NaicsCodeTableRowContainer)
+        connectionId="abc"
+        naicsCode={
+          Object {
+            " $fragmentRefs": Object {
+              "NaicsCodeTableRow_naicsCode": true,
+            },
+          }
+        }
+      />
+    </tbody>
+  </ForwardRef>
+</Fragment>
+`;

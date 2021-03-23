@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The /admin/naics-codes page matches the last accepted Snapshot 1`] = `
+<Relay(DefaultLayout)
+  session={
+    Object {
+      " $fragmentRefs": Object {
+        "defaultLayout_session": true,
+      },
+    }
+  }
+  title="Naics Codes"
+>
+  <Relay(NaicsCodeTableContainer)
+    query={
+      Object {
+        " $fragmentRefs": Object {
+          "NaicsCodeTable_query": true,
+        },
+        "session": Object {
+          " $fragmentRefs": Object {
+            "defaultLayout_session": true,
+          },
+        },
+      }
+    }
+  />
+</Relay(DefaultLayout)>
+`;
