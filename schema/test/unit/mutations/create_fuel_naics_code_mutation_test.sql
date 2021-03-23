@@ -7,8 +7,8 @@ select plan(3);
 
 -- Function exists
 select has_function(
-  'ggircs_portal', 'create_fuel_naics_code_mutation', array['int', 'int'],
-  'Function ggircs_portal.create_fuel_naics_code_mutation should exist'
+  'ggircs_portal', 'create_fuel_naics_code', array['int', 'int'],
+  'Function ggircs_portal.create_fuel_naics_code should exist'
 );
 
 -- Test Setup
@@ -18,7 +18,7 @@ select test_helper.create_test_users();
 insert into ggircs_portal.fuel(name, swrs_fuel_mapping_id) values ('fuel 1', 1), ('fuel 2', 2);
 insert into ggircs_portal.naics_code(naics_code, naics_description) values ('1234', 'naics 1'), ('9999', 'naics 2');
 
-select ggircs_portal.create_fuel_naics_code_mutation(1, 1);
+select ggircs_portal.create_fuel_naics_code(1, 1);
 
 select results_eq(
   $$
@@ -30,7 +30,7 @@ select results_eq(
 
 -- "Delete" fuel_naics_code code & re-run custom mutation
 update ggircs_portal.fuel_naics_code set deleted_at=now();
-select ggircs_portal.create_fuel_naics_code_mutation(1, 1);
+select ggircs_portal.create_fuel_naics_code(1, 1);
 
 select is_empty(
   $$
