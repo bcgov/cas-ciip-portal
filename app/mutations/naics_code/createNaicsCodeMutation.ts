@@ -1,22 +1,26 @@
 import {graphql, DeclarativeMutationConfig} from 'react-relay';
 import RelayModernEnvironment from 'relay-runtime/lib/store/RelayModernEnvironment';
 import {
-  createNaicsCodeMutationMutationVariables,
-  createNaicsCodeMutationMutation as createNaicsCodeMutationMutationType
-} from 'createNaicsCodeMutationMutation.graphql';
+  createNaicsCodeMutationVariables,
+  createNaicsCodeMutation as createNaicsCodeMutationType
+} from 'createNaicsCodeMutation.graphql';
 import BaseMutation from 'mutations/BaseMutation';
 
 const mutation = graphql`
-  mutation createNaicsCodeMutation($input: CreateNaicsCodeMutationInput!) {
-    createNaicsCodeMutation(input: $input) {
-      query {
-        allNaicsCodes {
-          edges {
-            node {
-              id
-              naicsCode
-            }
-          }
+  mutation createNaicsCodeMutation($input: CreateNaicsCodeInput!) {
+    createNaicsCode(input: $input) {
+      naicsCodeEdge {
+        node {
+          id
+          naicsCode
+          ciipSector
+          naicsDescription
+          createdAt
+          createdBy
+          updatedAt
+          updatedBy
+          deletedAt
+          deletedBy
         }
       }
     }
@@ -25,7 +29,7 @@ const mutation = graphql`
 
 const createNaicsCodeMutation = async (
   environment: RelayModernEnvironment,
-  variables: createNaicsCodeMutationMutationVariables
+  variables: createNaicsCodeMutationVariables
 ) => {
   const connectionKey = 'NaicsCodeTableContainer_allNaicsCodes';
   const configs: DeclarativeMutationConfig[] = [
@@ -42,7 +46,7 @@ const createNaicsCodeMutation = async (
     }
   ];
 
-  const m = new BaseMutation<createNaicsCodeMutationMutationType>(
+  const m = new BaseMutation<createNaicsCodeMutationType>(
     'create-naics_code-mutation',
     configs
   );

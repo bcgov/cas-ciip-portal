@@ -3,7 +3,7 @@ import {Button, Form, Modal, Container, Col, Row} from 'react-bootstrap';
 
 interface Props {
   validated: boolean;
-  handleCreateNaicsCode: () => void;
+  handleCreateNaicsCode: (e: React.SyntheticEvent<any>) => Promise<void>;
   showCreateModal: boolean;
   setShowCreateModal: (x: boolean) => void;
 }

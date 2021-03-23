@@ -37,12 +37,7 @@ export const NaicsCodeTableContainer: React.FunctionComponent<Props> = (
         naicsDescriptionInput: e.target[2].value
       }
     };
-    const response = await createNaicsCodeMutation(
-      environment,
-      variables,
-      query.allNaicsCodes.__id
-    );
-    console.log(response);
+    await createNaicsCodeMutation(environment, variables);
     setShowCreateModal(false);
   };
 
@@ -93,7 +88,7 @@ export default createFragmentContainer(NaicsCodeTableContainer, {
         first: 2147483647
         filter: {deletedAt: {isNull: true}}
         orderBy: NAICS_CODE_DESC
-      ) @connection(key: "NaicsCodeTableContainer_allNaicsCodes") {
+      ) @connection(key: "NaicsCodeTableContainer_allNaicsCodes", filters: []) {
         __id
         edges {
           node {
