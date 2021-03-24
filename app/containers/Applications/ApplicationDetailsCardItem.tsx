@@ -241,6 +241,7 @@ export default createFragmentContainer(ApplicationDetailsCardItemComponent, {
   `,
   query: graphql`
     fragment ApplicationDetailsCardItem_query on Query {
+      ...NaicsField_query
       ...ProductField_query
       ...ProductRowIdField_query
       ...FuelField_query

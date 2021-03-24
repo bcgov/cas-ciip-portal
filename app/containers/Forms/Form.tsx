@@ -23,6 +23,7 @@ import EmissionCategoryRowIdField from './EmissionCategoryRowIdField';
 import ProblemReportField from 'components/Forms/ProblemReportField';
 import {customTransformErrors} from 'functions/customTransformErrors';
 import SavingIndicator from 'components/helpers/SavingIndicator';
+import NaicsField from './NaicsField';
 
 interface Props {
   query: Form_query;
@@ -32,6 +33,7 @@ interface Props {
 }
 
 const CUSTOM_FIELDS = {
+  naics: (props) => <NaicsField query={props.formContext.query} {...props} />,
   fuel: (props) => <FuelFields query={props.formContext.query} {...props} />,
   emissionSource: EmissionSourceFields,
   emissionGas: EmissionGasFields,
@@ -311,6 +313,7 @@ export default createFragmentContainer(FormComponent, {
   query: graphql`
     fragment Form_query on Query
     @argumentDefinitions(formResultId: {type: "ID!"}) {
+      ...NaicsField_query
       ...FuelField_query
       ...FuelRowIdField_query
       ...ProductField_query
