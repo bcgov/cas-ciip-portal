@@ -11,6 +11,15 @@ exports[`View submitted application page displays a "Resume latest draft" button
   }
   showSubheader={true}
   title="Summary of your application"
+  titleControls={
+    <div>
+      Application ID: 
+      1
+      <br />
+      BC GHG ID: 
+      123456
+    </div>
+  }
 >
   <Row
     noGutters={false}
@@ -63,6 +72,9 @@ exports[`View submitted application page displays a "Resume latest draft" button
             "applicationRevisionStatus": Object {
               "applicationRevisionStatus": "REQUESTED_CHANGES",
             },
+            "facilityByFacilityId": Object {
+              "bcghgid": "123456",
+            },
             "latestDraftRevision": Object {
               "versionNumber": 2,
             },
@@ -92,6 +104,7 @@ exports[`View submitted application page displays a "Resume latest draft" button
                 },
               ],
             },
+            "rowId": 1,
           }
         }
         liveValidate={false}
@@ -107,6 +120,9 @@ exports[`View submitted application page displays a "Resume latest draft" button
               },
               "applicationRevisionStatus": Object {
                 "applicationRevisionStatus": "REQUESTED_CHANGES",
+              },
+              "facilityByFacilityId": Object {
+                "bcghgid": "123456",
               },
               "latestDraftRevision": Object {
                 "versionNumber": 2,
@@ -137,6 +153,7 @@ exports[`View submitted application page displays a "Resume latest draft" button
                   },
                 ],
               },
+              "rowId": 1,
             },
             "session": Object {
               " $fragmentRefs": Object {
@@ -163,6 +180,15 @@ exports[`View submitted application page displays a "Revise" button when changes
   }
   showSubheader={true}
   title="Summary of your application"
+  titleControls={
+    <div>
+      Application ID: 
+      1
+      <br />
+      BC GHG ID: 
+      123456
+    </div>
+  }
 >
   <Row
     noGutters={false}
@@ -188,6 +214,9 @@ exports[`View submitted application page displays a "Revise" button when changes
               },
               "applicationRevisionStatus": Object {
                 "applicationRevisionStatus": "REQUESTED_CHANGES",
+              },
+              "facilityByFacilityId": Object {
+                "bcghgid": "123456",
               },
               "latestDraftRevision": Object {
                 "versionNumber": 1,
@@ -218,6 +247,7 @@ exports[`View submitted application page displays a "Revise" button when changes
                   },
                 ],
               },
+              "rowId": 1,
             }
           }
         />
@@ -231,6 +261,9 @@ exports[`View submitted application page displays a "Revise" button when changes
             },
             "applicationRevisionStatus": Object {
               "applicationRevisionStatus": "REQUESTED_CHANGES",
+            },
+            "facilityByFacilityId": Object {
+              "bcghgid": "123456",
             },
             "latestDraftRevision": Object {
               "versionNumber": 1,
@@ -261,6 +294,7 @@ exports[`View submitted application page displays a "Revise" button when changes
                 },
               ],
             },
+            "rowId": 1,
           }
         }
         liveValidate={false}
@@ -276,6 +310,9 @@ exports[`View submitted application page displays a "Revise" button when changes
               },
               "applicationRevisionStatus": Object {
                 "applicationRevisionStatus": "REQUESTED_CHANGES",
+              },
+              "facilityByFacilityId": Object {
+                "bcghgid": "123456",
               },
               "latestDraftRevision": Object {
                 "versionNumber": 1,
@@ -306,6 +343,7 @@ exports[`View submitted application page displays a "Revise" button when changes
                   },
                 ],
               },
+              "rowId": 1,
             },
             "session": Object {
               " $fragmentRefs": Object {
@@ -332,6 +370,15 @@ exports[`View submitted application page does not show an application decision w
   }
   showSubheader={true}
   title="Summary of your application"
+  titleControls={
+    <div>
+      Application ID: 
+      1
+      <br />
+      BC GHG ID: 
+      123456
+    </div>
+  }
 >
   <Row
     noGutters={false}
@@ -348,6 +395,9 @@ exports[`View submitted application page does not show an application decision w
             },
             "applicationRevisionStatus": Object {
               "applicationRevisionStatus": "SUBMITTED",
+            },
+            "facilityByFacilityId": Object {
+              "bcghgid": "123456",
             },
             "latestDraftRevision": Object {
               "versionNumber": 1,
@@ -370,6 +420,7 @@ exports[`View submitted application page does not show an application decision w
             "reviewCommentsByApplicationId": Object {
               "edges": Array [],
             },
+            "rowId": 1,
           }
         }
         liveValidate={false}
@@ -385,6 +436,9 @@ exports[`View submitted application page does not show an application decision w
               },
               "applicationRevisionStatus": Object {
                 "applicationRevisionStatus": "SUBMITTED",
+              },
+              "facilityByFacilityId": Object {
+                "bcghgid": "123456",
               },
               "latestDraftRevision": Object {
                 "versionNumber": 1,
@@ -407,6 +461,7 @@ exports[`View submitted application page does not show an application decision w
               "reviewCommentsByApplicationId": Object {
                 "edges": Array [],
               },
+              "rowId": 1,
             },
             "session": Object {
               " $fragmentRefs": Object {
@@ -433,6 +488,15 @@ exports[`View submitted application page should render a "View most recent submi
   }
   showSubheader={true}
   title="Summary of your application"
+  titleControls={
+    <div>
+      Application ID: 
+      1
+      <br />
+      BC GHG ID: 
+      123456
+    </div>
+  }
 >
   <Row
     noGutters={false}
@@ -502,6 +566,9 @@ exports[`View submitted application page should render a "View most recent submi
             },
             "applicationRevisionStatus": Object {
               "applicationRevisionStatus": "REQUESTED_CHANGES",
+            },
+            "facilityByFacilityId": Object {
+              "bcghgid": "123456",
             },
             "latestDraftRevision": Object {
               "versionNumber": 2,
@@ -532,6 +599,7 @@ exports[`View submitted application page should render a "View most recent submi
                 },
               ],
             },
+            "rowId": 1,
           }
         }
         liveValidate={false}
@@ -547,6 +615,9 @@ exports[`View submitted application page should render a "View most recent submi
               },
               "applicationRevisionStatus": Object {
                 "applicationRevisionStatus": "REQUESTED_CHANGES",
+              },
+              "facilityByFacilityId": Object {
+                "bcghgid": "123456",
               },
               "latestDraftRevision": Object {
                 "versionNumber": 2,
@@ -577,6 +648,7 @@ exports[`View submitted application page should render a "View most recent submi
                   },
                 ],
               },
+              "rowId": 1,
             },
             "session": Object {
               " $fragmentRefs": Object {
@@ -603,6 +675,15 @@ exports[`View submitted application page should render a "View most recent submi
   }
   showSubheader={true}
   title="Summary of your application"
+  titleControls={
+    <div>
+      Application ID: 
+      1
+      <br />
+      BC GHG ID: 
+      123456
+    </div>
+  }
 >
   <Row
     noGutters={false}
@@ -672,6 +753,9 @@ exports[`View submitted application page should render a "View most recent submi
             },
             "applicationRevisionStatus": Object {
               "applicationRevisionStatus": "REQUESTED_CHANGES",
+            },
+            "facilityByFacilityId": Object {
+              "bcghgid": "123456",
             },
             "latestDraftRevision": Object {
               "versionNumber": 3,
@@ -702,6 +786,7 @@ exports[`View submitted application page should render a "View most recent submi
                 },
               ],
             },
+            "rowId": 1,
           }
         }
         liveValidate={false}
@@ -717,6 +802,9 @@ exports[`View submitted application page should render a "View most recent submi
               },
               "applicationRevisionStatus": Object {
                 "applicationRevisionStatus": "REQUESTED_CHANGES",
+              },
+              "facilityByFacilityId": Object {
+                "bcghgid": "123456",
               },
               "latestDraftRevision": Object {
                 "versionNumber": 3,
@@ -747,6 +835,7 @@ exports[`View submitted application page should render a "View most recent submi
                   },
                 ],
               },
+              "rowId": 1,
             },
             "session": Object {
               " $fragmentRefs": Object {
@@ -773,6 +862,15 @@ exports[`View submitted application page shows approval when reviewed and approv
   }
   showSubheader={true}
   title="Summary of your application"
+  titleControls={
+    <div>
+      Application ID: 
+      1
+      <br />
+      BC GHG ID: 
+      123456
+    </div>
+  }
 >
   <Row
     noGutters={false}
@@ -795,6 +893,9 @@ exports[`View submitted application page shows approval when reviewed and approv
             "applicationRevisionStatus": Object {
               "applicationRevisionStatus": "APPROVED",
             },
+            "facilityByFacilityId": Object {
+              "bcghgid": "123456",
+            },
             "latestDraftRevision": Object {
               "versionNumber": 1,
             },
@@ -816,6 +917,7 @@ exports[`View submitted application page shows approval when reviewed and approv
             "reviewCommentsByApplicationId": Object {
               "edges": Array [],
             },
+            "rowId": 1,
           }
         }
         liveValidate={false}
@@ -831,6 +933,9 @@ exports[`View submitted application page shows approval when reviewed and approv
               },
               "applicationRevisionStatus": Object {
                 "applicationRevisionStatus": "APPROVED",
+              },
+              "facilityByFacilityId": Object {
+                "bcghgid": "123456",
               },
               "latestDraftRevision": Object {
                 "versionNumber": 1,
@@ -853,6 +958,7 @@ exports[`View submitted application page shows approval when reviewed and approv
               "reviewCommentsByApplicationId": Object {
                 "edges": Array [],
               },
+              "rowId": 1,
             },
             "session": Object {
               " $fragmentRefs": Object {
@@ -879,6 +985,15 @@ exports[`View submitted application page shows rejection when reviewed and rejec
   }
   showSubheader={true}
   title="Summary of your application"
+  titleControls={
+    <div>
+      Application ID: 
+      1
+      <br />
+      BC GHG ID: 
+      123456
+    </div>
+  }
 >
   <Row
     noGutters={false}
@@ -901,6 +1016,9 @@ exports[`View submitted application page shows rejection when reviewed and rejec
             "applicationRevisionStatus": Object {
               "applicationRevisionStatus": "REJECTED",
             },
+            "facilityByFacilityId": Object {
+              "bcghgid": "123456",
+            },
             "latestDraftRevision": Object {
               "versionNumber": 1,
             },
@@ -922,6 +1040,7 @@ exports[`View submitted application page shows rejection when reviewed and rejec
             "reviewCommentsByApplicationId": Object {
               "edges": Array [],
             },
+            "rowId": 1,
           }
         }
         liveValidate={false}
@@ -937,6 +1056,9 @@ exports[`View submitted application page shows rejection when reviewed and rejec
               },
               "applicationRevisionStatus": Object {
                 "applicationRevisionStatus": "REJECTED",
+              },
+              "facilityByFacilityId": Object {
+                "bcghgid": "123456",
               },
               "latestDraftRevision": Object {
                 "versionNumber": 1,
@@ -959,6 +1081,7 @@ exports[`View submitted application page shows rejection when reviewed and rejec
               "reviewCommentsByApplicationId": Object {
                 "edges": Array [],
               },
+              "rowId": 1,
             },
             "session": Object {
               " $fragmentRefs": Object {
@@ -985,6 +1108,15 @@ exports[`View submitted application page shows reviewer comments when reviewed a
   }
   showSubheader={true}
   title="Summary of your application"
+  titleControls={
+    <div>
+      Application ID: 
+      1
+      <br />
+      BC GHG ID: 
+      123456
+    </div>
+  }
 >
   <Row
     noGutters={false}
@@ -1010,6 +1142,9 @@ exports[`View submitted application page shows reviewer comments when reviewed a
             },
             "applicationRevisionStatus": Object {
               "applicationRevisionStatus": "REJECTED",
+            },
+            "facilityByFacilityId": Object {
+              "bcghgid": "123456",
             },
             "latestDraftRevision": Object {
               "versionNumber": 1,
@@ -1040,6 +1175,7 @@ exports[`View submitted application page shows reviewer comments when reviewed a
                 },
               ],
             },
+            "rowId": 1,
           }
         }
         liveValidate={false}
@@ -1055,6 +1191,9 @@ exports[`View submitted application page shows reviewer comments when reviewed a
               },
               "applicationRevisionStatus": Object {
                 "applicationRevisionStatus": "REJECTED",
+              },
+              "facilityByFacilityId": Object {
+                "bcghgid": "123456",
               },
               "latestDraftRevision": Object {
                 "versionNumber": 1,
@@ -1085,6 +1224,7 @@ exports[`View submitted application page shows reviewer comments when reviewed a
                   },
                 ],
               },
+              "rowId": 1,
             },
             "session": Object {
               " $fragmentRefs": Object {

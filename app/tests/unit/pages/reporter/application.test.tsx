@@ -13,6 +13,10 @@ const query: applicationQueryResponse['query'] = {
     ApplicationWizard_query: true
   },
   application: {
+    rowId: 1,
+    facilityByFacilityId: {
+      bcghgid: '1234'
+    },
     id: '1',
     latestDraftRevision: {
       versionNumber: 1,
