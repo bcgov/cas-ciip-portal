@@ -24,7 +24,7 @@ exports[`NaicsCodeTable should match the snapshot with the NaicsCodeTableRow con
       active={false}
       disabled={false}
       onClick={[Function]}
-      variant="danger"
+      variant="ouline-danger"
     >
       Delete
     </Button>

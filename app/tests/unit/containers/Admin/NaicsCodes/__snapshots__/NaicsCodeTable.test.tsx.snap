@@ -24,9 +24,9 @@ exports[`NaicsCodeTable should match the snapshot with the NaicsCodeTable contai
     </Button>
   </div>
   <CreateNaicsCodeModal
-    handleCreateNaicsCode={[Function]}
-    setShowCreateModal={[Function]}
-    showCreateModal={false}
+    onClose={[Function]}
+    onSubmit={[Function]}
+    show={false}
     validated={false}
   />
   <ForwardRef

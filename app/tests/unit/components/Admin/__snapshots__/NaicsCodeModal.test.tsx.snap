@@ -1,0 +1,124 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CreateNaicsCodeModal should match the snapshot with the NaicsCodeTable container 1`] = `
+<Fragment>
+  <Modal
+    animation={true}
+    aria-modal="true"
+    autoFocus={true}
+    backdrop={true}
+    centered={true}
+    dialogAs={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "displayName": "ModalDialog",
+        "render": [Function],
+      }
+    }
+    enforceFocus={true}
+    keyboard={true}
+    onHide={[Function]}
+    restoreFocus={true}
+    show={true}
+    size="lg"
+  >
+    <ModalHeader
+      closeButton={true}
+      closeLabel="Close"
+    >
+      <ModalTitle>
+        New NAICS Code
+      </ModalTitle>
+    </ModalHeader>
+    <ModalBody>
+      <Container
+        fluid={false}
+      >
+        <Form
+          inline={false}
+          noValidate={true}
+          onSubmit={[MockFunction]}
+          validated={true}
+        >
+          <Row
+            noGutters={false}
+          >
+            <Col
+              md={4}
+            >
+              <FormGroup
+                controlId="naicsCode"
+              >
+                <FormLabel
+                  column={false}
+                  srOnly={false}
+                >
+                  NAICS Code
+                </FormLabel>
+                <FormControl
+                  required={true}
+                  type="text"
+                />
+                <Feedback
+                  type="invalid"
+                >
+                  NAICS Code is required
+                </Feedback>
+              </FormGroup>
+            </Col>
+            <Col
+              md={8}
+            >
+              <FormGroup
+                controlId="ciipSector"
+              >
+                <FormLabel
+                  column={false}
+                  srOnly={false}
+                >
+                  CIIP Sector
+                </FormLabel>
+                <FormControl
+                  type="text"
+                />
+              </FormGroup>
+            </Col>
+          </Row>
+          <FormGroup
+            controlId="naicsDescription"
+          >
+            <FormLabel
+              column={false}
+              srOnly={false}
+            >
+              NAICS Description
+            </FormLabel>
+            <FormControl
+              required={true}
+              type="text"
+            />
+            <Feedback
+              type="invalid"
+            >
+              NAICS Description is required
+            </Feedback>
+          </FormGroup>
+          <Button
+            active={false}
+            disabled={false}
+            type="submit"
+            variant="primary"
+          >
+            Submit
+          </Button>
+        </Form>
+      </Container>
+    </ModalBody>
+  </Modal>
+  <JSXStyle
+    id="2506197536"
+  >
+    .modal-header{color:white;background:#003366;}.modal-body{background:#f5f5f5;}.close{color:white;}
+  </JSXStyle>
+</Fragment>
+`;
