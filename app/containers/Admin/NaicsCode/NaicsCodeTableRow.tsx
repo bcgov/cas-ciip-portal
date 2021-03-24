@@ -38,7 +38,7 @@ export const NaicsCodeTableRowContainer: React.FunctionComponent<Props> = (
       <td>{naicsCode.ciipSector}</td>
       <td>{naicsCode.naicsDescription}</td>
       <td style={{textAlign: 'center'}}>
-        <Button variant="danger" onClick={() => handleDeleteNaicsCode()}>
+        <Button variant="ouline-danger" onClick={() => handleDeleteNaicsCode()}>
           Delete
         </Button>
       </td>

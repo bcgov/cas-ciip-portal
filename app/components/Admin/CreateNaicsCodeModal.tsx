@@ -3,24 +3,24 @@ import {Button, Form, Modal, Container, Col, Row} from 'react-bootstrap';
 
 interface Props {
   validated: boolean;
-  handleCreateNaicsCode: (e: React.SyntheticEvent<any>) => Promise<void>;
-  showCreateModal: boolean;
-  setShowCreateModal: (x: boolean) => void;
+  onSubmit: (e: React.SyntheticEvent<any>) => Promise<void>;
+  show: boolean;
+  onClose: () => void;
 }
 
 export const CreateNaicsCodeModal: React.FunctionComponent<Props> = ({
   validated,
-  handleCreateNaicsCode,
-  showCreateModal,
-  setShowCreateModal
+  onSubmit,
+  show,
+  onClose
 }) => {
   return (
     <>
       <Modal
         centered
         size="lg"
-        show={showCreateModal}
-        onHide={() => setShowCreateModal(false)}
+        show={show}
+        onHide={() => onClose()}
         aria-modal="true"
       >
         <Modal.Header closeButton>
@@ -28,11 +28,7 @@ export const CreateNaicsCodeModal: React.FunctionComponent<Props> = ({
         </Modal.Header>
         <Modal.Body>
           <Container>
-            <Form
-              noValidate
-              validated={validated}
-              onSubmit={handleCreateNaicsCode}
-            >
+            <Form noValidate validated={validated} onSubmit={onSubmit}>
               <Row>
                 <Col md={4}>
                   <Form.Group controlId="naicsCode">

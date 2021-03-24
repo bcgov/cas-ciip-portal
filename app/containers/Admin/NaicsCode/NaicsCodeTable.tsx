@@ -51,9 +51,9 @@ export const NaicsCodeTableContainer: React.FunctionComponent<Props> = (
       </div>
       <CreateNaicsCodeModal
         validated={validated}
-        handleCreateNaicsCode={handleCreateNaicsCode}
-        showCreateModal={showCreateModal}
-        setShowCreateModal={setShowCreateModal}
+        onSubmit={handleCreateNaicsCode}
+        show={showCreateModal}
+        onClose={() => setShowCreateModal(false)}
       />
       <Table striped bordered hover>
         <thead>

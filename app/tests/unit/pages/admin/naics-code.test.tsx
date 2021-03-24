@@ -21,7 +21,7 @@ describe('The /admin/naics-codes page', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('passes a query to the ApplicationWizard component', () => {
+  it('passes a query to the NaicsCodeTableContainer Component', () => {
     const wrapper = shallow(<NaicsCodes query={query} />);
     expect(wrapper.find('Relay(NaicsCodeTableContainer)').prop('query')).toBe(
       query
