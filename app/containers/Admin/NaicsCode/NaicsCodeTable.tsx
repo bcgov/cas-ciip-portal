@@ -20,25 +20,23 @@ export const NaicsCodeTableContainer: React.FunctionComponent<Props> = (
 
   const handleCreateNaicsCode = async (e: React.SyntheticEvent<any>) => {
     const form = e.currentTarget;
-    if (form.checkValidity() === false) {
-      e.preventDefault();
-      e.stopPropagation();
-    }
     e.stopPropagation();
     e.preventDefault();
     e.persist();
     setValidated(true);
+    if (form.checkValidity === true) {
+      const {environment} = props.relay;
+      const variables = {
+        input: {
+          naicsCodeInput: e.target[0].value,
+          ciipSectorInput: e.target[1].value ? e.target[1].value : null,
+          naicsDescriptionInput: e.target[2].value
+        }
+      };
 
-    const {environment} = props.relay;
-    const variables = {
-      input: {
-        naicsCodeInput: e.target[0].value,
-        ciipSectorInput: e.target[1].value ? e.target[1].value : null,
-        naicsDescriptionInput: e.target[2].value
-      }
-    };
-    await createNaicsCodeMutation(environment, variables);
-    setShowCreateModal(false);
+      await createNaicsCodeMutation(environment, variables);
+      setShowCreateModal(false);
+    }
   };
 
   return (
