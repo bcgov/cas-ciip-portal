@@ -28,7 +28,7 @@ class NaicsCodes extends Component<Props> {
   render() {
     const {query} = this.props;
     return (
-      <DefaultLayout session={query.session} title="Naics Codes">
+      <DefaultLayout session={query.session} title="NAICS Codes">
         <NaicsCodeTable query={query} />
       </DefaultLayout>
     );
