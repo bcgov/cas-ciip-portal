@@ -45,6 +45,9 @@ export const NaicsCodeTableRowContainer: React.FunctionComponent<Props> = (
         <Modal.Title style={{margin: 'auto'}}>Delete NAICS Code</Modal.Title>
       </Modal.Header>
       <Modal.Body style={{textAlign: 'center'}}>
+        <p>Confirm delete NAICS code:</p>
+        <h5>{naicsCode.naicsCode}</h5>
+        <p>{naicsCode.naicsDescription}</p>
         <Button onClick={handleDeleteNaicsCode} variant="danger">
           Confirm Delete
         </Button>
