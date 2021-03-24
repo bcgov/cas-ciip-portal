@@ -138,7 +138,7 @@ describe('NaicsCodeTable', () => {
       stopPropagation: jest.fn(),
       preventDefault: jest.fn(),
       persist: jest.fn(),
-      currentTarget: {checkValidity: true},
+      currentTarget: {checkValidity: jest.fn(() => true)},
       target: [{value: 'a'}, {value: 'b'}, {value: 'c'}]
     } as any);
 

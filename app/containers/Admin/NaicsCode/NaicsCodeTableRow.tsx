@@ -1,5 +1,5 @@
-import React from 'react';
-import {Button} from 'react-bootstrap';
+import React, {useState} from 'react';
+import {Button, Modal} from 'react-bootstrap';
 import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
 import {NaicsCodeTableRow_naicsCode} from '__generated__/NaicsCodeTableRow_naicsCode.graphql';
 import updateNaicsCodeMutation from 'mutations/naics_code/updateNaicsCodeMutation';
@@ -15,6 +15,7 @@ export const NaicsCodeTableRowContainer: React.FunctionComponent<Props> = (
   props
 ) => {
   const {naicsCode, connectionId} = props;
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
 
   const handleDeleteNaicsCode = async () => {
     const {environment} = props.relay;
@@ -32,20 +33,42 @@ export const NaicsCodeTableRowContainer: React.FunctionComponent<Props> = (
     await updateNaicsCodeMutation(environment, variables, connectionId);
   };
 
-  return (
-    <tr>
-      <td>{naicsCode.naicsCode}</td>
-      <td>{naicsCode.ciipSector}</td>
-      <td>{naicsCode.naicsDescription}</td>
-      <td style={{textAlign: 'center'}}>
-        <Button
-          variant="outline-danger"
-          onClick={() => handleDeleteNaicsCode()}
-        >
-          Delete
+  const confirmationModal = (
+    <Modal
+      centered
+      size="sm"
+      show={showConfirmModal}
+      onHide={() => setShowConfirmModal(false)}
+      aria-modal="true"
+    >
+      <Modal.Header closeButton>
+        <Modal.Title style={{margin: 'auto'}}>Delete NAICS Code</Modal.Title>
+      </Modal.Header>
+      <Modal.Body style={{textAlign: 'center'}}>
+        <Button onClick={handleDeleteNaicsCode} variant="danger">
+          Confirm Delete
         </Button>
-      </td>
-    </tr>
+      </Modal.Body>
+    </Modal>
+  );
+
+  return (
+    <>
+      {confirmationModal}
+      <tr>
+        <td>{naicsCode.naicsCode}</td>
+        <td>{naicsCode.ciipSector}</td>
+        <td>{naicsCode.naicsDescription}</td>
+        <td style={{textAlign: 'center'}}>
+          <Button
+            variant="outline-danger"
+            onClick={() => setShowConfirmModal(true)}
+          >
+            Delete
+          </Button>
+        </td>
+      </tr>
+    </>
   );
 };
 

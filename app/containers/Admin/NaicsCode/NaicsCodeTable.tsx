@@ -24,7 +24,7 @@ export const NaicsCodeTableContainer: React.FunctionComponent<Props> = (
     e.preventDefault();
     e.persist();
     setValidated(true);
-    if (form.checkValidity === true) {
+    if (form.checkValidity() === true) {
       const {environment} = props.relay;
       const variables = {
         input: {
@@ -35,10 +35,10 @@ export const NaicsCodeTableContainer: React.FunctionComponent<Props> = (
       };
       try {
         await createNaicsCodeMutation(environment, variables);
-        setShowCreateModal(false);
       } catch (e) {
         console.error(e);
       }
+      setShowCreateModal(false);
     }
   };
 

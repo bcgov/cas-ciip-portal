@@ -1,31 +1,84 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`NaicsCodeTable should match the snapshot with the NaicsCodeTableRow container 1`] = `
-<tr>
-  <td>
-    code
-  </td>
-  <td>
-    sector
-  </td>
-  <td>
-    description
-  </td>
-  <td
-    style={
+<Fragment>
+  <Modal
+    animation={true}
+    aria-modal="true"
+    autoFocus={true}
+    backdrop={true}
+    centered={true}
+    dialogAs={
       Object {
-        "textAlign": "center",
+        "$$typeof": Symbol(react.forward_ref),
+        "displayName": "ModalDialog",
+        "render": [Function],
       }
     }
+    enforceFocus={true}
+    keyboard={true}
+    onHide={[Function]}
+    restoreFocus={true}
+    show={false}
+    size="sm"
   >
-    <Button
-      active={false}
-      disabled={false}
-      onClick={[Function]}
-      variant="outline-danger"
+    <ModalHeader
+      closeButton={true}
+      closeLabel="Close"
     >
-      Delete
-    </Button>
-  </td>
-</tr>
+      <ModalTitle
+        style={
+          Object {
+            "margin": "auto",
+          }
+        }
+      >
+        Delete NAICS Code
+      </ModalTitle>
+    </ModalHeader>
+    <ModalBody
+      style={
+        Object {
+          "textAlign": "center",
+        }
+      }
+    >
+      <Button
+        active={false}
+        disabled={false}
+        onClick={[Function]}
+        variant="danger"
+      >
+        Confirm Delete
+      </Button>
+    </ModalBody>
+  </Modal>
+  <tr>
+    <td>
+      code
+    </td>
+    <td>
+      sector
+    </td>
+    <td>
+      description
+    </td>
+    <td
+      style={
+        Object {
+          "textAlign": "center",
+        }
+      }
+    >
+      <Button
+        active={false}
+        disabled={false}
+        onClick={[Function]}
+        variant="outline-danger"
+      >
+        Delete
+      </Button>
+    </td>
+  </tr>
+</Fragment>
 `;
