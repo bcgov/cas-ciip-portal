@@ -53,10 +53,7 @@ export const NaicsCodeTableRowContainer: React.FunctionComponent<Props> = (
         <td>{naicsCode.ciipSector}</td>
         <td>{naicsCode.naicsDescription}</td>
         <td style={{textAlign: 'center'}}>
-          <Button
-            variant="outline-danger"
-            onClick={() => setShowConfirmModal(true)}
-          >
+          <Button variant="danger" onClick={() => setShowConfirmModal(true)}>
             Delete
           </Button>
         </td>
