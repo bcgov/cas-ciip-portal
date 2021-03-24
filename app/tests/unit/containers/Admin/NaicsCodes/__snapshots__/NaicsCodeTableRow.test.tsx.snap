@@ -2,66 +2,18 @@
 
 exports[`NaicsCodeTable should match the snapshot with the NaicsCodeTableRow container 1`] = `
 <Fragment>
-  <Modal
-    animation={true}
-    aria-modal="true"
-    autoFocus={true}
-    backdrop={true}
-    centered={true}
-    dialogAs={
+  <DeleteConfirmationModal
+    deleteObject={
       Object {
-        "$$typeof": Symbol(react.forward_ref),
-        "displayName": "ModalDialog",
-        "render": [Function],
+        "deleteItem": "code",
+        "deleteItemDescription": "description",
+        "deleteName": "NAICS Code",
       }
     }
-    enforceFocus={true}
-    keyboard={true}
-    onHide={[Function]}
-    restoreFocus={true}
+    handleDelete={[Function]}
+    onClose={[Function]}
     show={false}
-    size="sm"
-  >
-    <ModalHeader
-      closeButton={true}
-      closeLabel="Close"
-    >
-      <ModalTitle
-        style={
-          Object {
-            "margin": "auto",
-          }
-        }
-      >
-        Delete NAICS Code
-      </ModalTitle>
-    </ModalHeader>
-    <ModalBody
-      style={
-        Object {
-          "textAlign": "center",
-        }
-      }
-    >
-      <p>
-        Confirm delete NAICS code:
-      </p>
-      <h5>
-        code
-      </h5>
-      <p>
-        description
-      </p>
-      <Button
-        active={false}
-        disabled={false}
-        onClick={[Function]}
-        variant="danger"
-      >
-        Confirm Delete
-      </Button>
-    </ModalBody>
-  </Modal>
+  />
   <tr>
     <td>
       code

@@ -38,7 +38,7 @@ describe('NaicsCodeTable', () => {
 
     renderer.find('td').at(3).find('Button').simulate('click');
 
-    expect(renderer.find('Modal').prop('show')).toBe(true);
+    expect(renderer.find('DeleteConfirmationModal').prop('show')).toBe(true);
   });
 
   it('should call the update mutation on confirmation', async () => {
@@ -61,7 +61,7 @@ describe('NaicsCodeTable', () => {
       />
     );
 
-    renderer.find('Modal').find('Button').prop('onClick')({} as any);
+    renderer.find('DeleteConfirmationModal').prop('handleDelete')({} as any);
 
     expect(spy).toBeCalledTimes(1);
     expect(spy).toBeCalledWith(
