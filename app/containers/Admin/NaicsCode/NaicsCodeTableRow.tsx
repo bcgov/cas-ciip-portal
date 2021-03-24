@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
-import {Button, Modal} from 'react-bootstrap';
+import {Button} from 'react-bootstrap';
 import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
 import {NaicsCodeTableRow_naicsCode} from '__generated__/NaicsCodeTableRow_naicsCode.graphql';
 import updateNaicsCodeMutation from 'mutations/naics_code/updateNaicsCodeMutation';
 import {nowMoment} from 'functions/formatDates';
+import DeleteConfirmationModal from 'components/Admin/DeleteConfirmationModal';
 
 interface Props {
   relay: RelayProp;
@@ -33,31 +34,20 @@ export const NaicsCodeTableRowContainer: React.FunctionComponent<Props> = (
     await updateNaicsCodeMutation(environment, variables, connectionId);
   };
 
-  const confirmationModal = (
-    <Modal
-      centered
-      size="sm"
-      show={showConfirmModal}
-      onHide={() => setShowConfirmModal(false)}
-      aria-modal="true"
-    >
-      <Modal.Header closeButton>
-        <Modal.Title style={{margin: 'auto'}}>Delete NAICS Code</Modal.Title>
-      </Modal.Header>
-      <Modal.Body style={{textAlign: 'center'}}>
-        <p>Confirm delete NAICS code:</p>
-        <h5>{naicsCode.naicsCode}</h5>
-        <p>{naicsCode.naicsDescription}</p>
-        <Button onClick={handleDeleteNaicsCode} variant="danger">
-          Confirm Delete
-        </Button>
-      </Modal.Body>
-    </Modal>
-  );
+  const deleteObject = {
+    deleteName: 'NAICS Code',
+    deleteItem: naicsCode.naicsCode,
+    deleteItemDescription: naicsCode.naicsDescription
+  };
 
   return (
     <>
-      {confirmationModal}
+      <DeleteConfirmationModal
+        deleteObject={deleteObject}
+        handleDelete={handleDeleteNaicsCode}
+        show={showConfirmModal}
+        onClose={() => setShowConfirmModal(false)}
+      />
       <tr>
         <td>{naicsCode.naicsCode}</td>
         <td>{naicsCode.ciipSector}</td>
