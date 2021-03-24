@@ -9,7 +9,7 @@ exports[`The /admin/naics-codes page matches the last accepted Snapshot 1`] = `
       },
     }
   }
-  title="Naics Codes"
+  title="NAICS Codes"
 >
   <Relay(NaicsCodeTableContainer)
     query={
