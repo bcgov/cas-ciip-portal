@@ -57,11 +57,13 @@ exports[`NaicsCodeTable should match the snapshot with the NaicsCodeTable contai
     <tbody>
       <Relay(NaicsCodeTableRowContainer)
         connectionId="abc"
+        key="abc"
         naicsCode={
           Object {
             " $fragmentRefs": Object {
               "NaicsCodeTableRow_naicsCode": true,
             },
+            "id": "abc",
           }
         }
       />

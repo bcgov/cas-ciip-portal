@@ -33,9 +33,12 @@ export const NaicsCodeTableContainer: React.FunctionComponent<Props> = (
           naicsDescriptionInput: e.target[2].value
         }
       };
-
-      await createNaicsCodeMutation(environment, variables);
-      setShowCreateModal(false);
+      try {
+        await createNaicsCodeMutation(environment, variables);
+        setShowCreateModal(false);
+      } catch (e) {
+        console.error(e);
+      }
     }
   };
 
@@ -68,6 +71,7 @@ export const NaicsCodeTableContainer: React.FunctionComponent<Props> = (
           {query.allNaicsCodes?.edges.map(({node}) => {
             return (
               <NaicsCodeTableRow
+                key={node.id}
                 naicsCode={node}
                 connectionId={query.allNaicsCodes.__id}
               />
@@ -90,6 +94,7 @@ export default createFragmentContainer(NaicsCodeTableContainer, {
         __id
         edges {
           node {
+            id
             ...NaicsCodeTableRow_naicsCode
           }
         }

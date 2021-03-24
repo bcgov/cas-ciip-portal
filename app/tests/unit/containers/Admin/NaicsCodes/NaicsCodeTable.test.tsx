@@ -14,6 +14,7 @@ describe('NaicsCodeTable', () => {
             edges: [
               {
                 node: {
+                  id: 'abc',
                   ' $fragmentRefs': {
                     NaicsCodeTableRow_naicsCode: true
                   }
@@ -37,6 +38,7 @@ describe('NaicsCodeTable', () => {
             edges: [
               {
                 node: {
+                  id: 'abc',
                   ' $fragmentRefs': {
                     NaicsCodeTableRow_naicsCode: true
                   }
@@ -61,6 +63,7 @@ describe('NaicsCodeTable', () => {
             edges: [
               {
                 node: {
+                  id: 'abc',
                   ' $fragmentRefs': {
                     NaicsCodeTableRow_naicsCode: true
                   }
@@ -84,6 +87,7 @@ describe('NaicsCodeTable', () => {
             edges: [
               {
                 node: {
+                  id: 'abc',
                   ' $fragmentRefs': {
                     NaicsCodeTableRow_naicsCode: true
                   }
@@ -106,6 +110,7 @@ describe('NaicsCodeTable', () => {
       require('mutations/naics_code/createNaicsCodeMutation'),
       'default'
     );
+    spy.mockImplementation(() => null);
     const relay = {environment: null};
     const renderer = shallow(
       <NaicsCodeTableContainer
@@ -116,6 +121,7 @@ describe('NaicsCodeTable', () => {
             edges: [
               {
                 node: {
+                  id: 'abc',
                   ' $fragmentRefs': {
                     NaicsCodeTableRow_naicsCode: true
                   }

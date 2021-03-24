@@ -1,9 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`NaicsCodeTable should match the snapshot with the NaicsCodeTableRow container 1`] = `
-<tr
-  key="abc"
->
+<tr>
   <td>
     code
   </td>
@@ -24,7 +22,7 @@ exports[`NaicsCodeTable should match the snapshot with the NaicsCodeTableRow con
       active={false}
       disabled={false}
       onClick={[Function]}
-      variant="ouline-danger"
+      variant="outline-danger"
     >
       Delete
     </Button>

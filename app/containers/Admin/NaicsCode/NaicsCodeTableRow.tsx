@@ -33,12 +33,15 @@ export const NaicsCodeTableRowContainer: React.FunctionComponent<Props> = (
   };
 
   return (
-    <tr key={naicsCode.id}>
+    <tr>
       <td>{naicsCode.naicsCode}</td>
       <td>{naicsCode.ciipSector}</td>
       <td>{naicsCode.naicsDescription}</td>
       <td style={{textAlign: 'center'}}>
-        <Button variant="ouline-danger" onClick={() => handleDeleteNaicsCode()}>
+        <Button
+          variant="outline-danger"
+          onClick={() => handleDeleteNaicsCode()}
+        >
           Delete
         </Button>
       </td>
