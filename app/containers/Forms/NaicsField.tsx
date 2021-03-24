@@ -24,8 +24,7 @@ export const NaicsFieldComponent: React.FunctionComponent<Props> = (props) => {
     }
   };
 
-  if (!naicsList.includes(props.formData))
-    return <props.registry.fields.StringField {...fieldProps} />;
+  return <props.registry.fields.StringField {...fieldProps} />;
 };
 
 export default createFragmentContainer(NaicsFieldComponent, {
