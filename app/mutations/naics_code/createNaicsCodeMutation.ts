@@ -39,7 +39,7 @@ const createNaicsCodeMutation = async (
       connectionInfo: [
         {
           key: connectionKey,
-          rangeBehavior: 'append'
+          rangeBehavior: 'prepend'
         }
       ],
       edgeName: 'naicsCodeEdge'
