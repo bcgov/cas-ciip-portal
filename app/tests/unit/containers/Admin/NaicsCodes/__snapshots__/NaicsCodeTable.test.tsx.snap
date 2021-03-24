@@ -3,6 +3,7 @@
 exports[`NaicsCodeTable should match the snapshot with the NaicsCodeTable container 1`] = `
 <Fragment>
   <div
+    className="jsx-1364320900"
     style={
       Object {
         "textAlign": "right",
@@ -34,27 +35,38 @@ exports[`NaicsCodeTable should match the snapshot with the NaicsCodeTable contai
     hover={true}
     striped={true}
   >
-    <thead>
-      <tr>
+    <thead
+      className="jsx-1364320900"
+    >
+      <tr
+        className="jsx-1364320900"
+      >
         <th
+          className="jsx-1364320900"
           scope="col"
         >
           NAICS Code
         </th>
         <th
+          className="jsx-1364320900"
           scope="col"
         >
           CIIP Sector
         </th>
         <th
+          className="jsx-1364320900"
           scope="col"
         >
           NAICS Description
         </th>
-        <th />
+        <th
+          className="jsx-1364320900"
+        />
       </tr>
     </thead>
-    <tbody>
+    <tbody
+      className="jsx-1364320900"
+    >
       <Relay(NaicsCodeTableRowContainer)
         connectionId="abc"
         key="abc"
@@ -69,5 +81,10 @@ exports[`NaicsCodeTable should match the snapshot with the NaicsCodeTable contai
       />
     </tbody>
   </ForwardRef>
+  <JSXStyle
+    id="1364320900"
+  >
+    .table thead th{color:white;background:#003366;}
+  </JSXStyle>
 </Fragment>
 `;

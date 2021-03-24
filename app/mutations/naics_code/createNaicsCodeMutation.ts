@@ -6,6 +6,7 @@ import {
 } from 'createNaicsCodeMutation.graphql';
 import BaseMutation from 'mutations/BaseMutation';
 
+// The default createNaicsCode mutation has been overridden by a custom function in our database in order to upsert on conflict
 const mutation = graphql`
   mutation createNaicsCodeMutation($input: CreateNaicsCodeInput!) {
     createNaicsCode(input: $input) {

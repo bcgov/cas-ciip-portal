@@ -79,6 +79,12 @@ export const NaicsCodeTableContainer: React.FunctionComponent<Props> = (
           })}
         </tbody>
       </Table>
+      <style jsx global>{`
+        .table thead th {
+          color: white;
+          background: #003366;
+        }
+      `}</style>
     </>
   );
 };
