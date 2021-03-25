@@ -1,5 +1,6 @@
 import jsf from 'json-schema-faker';
 import {FormJson} from 'next-env';
+import {getDefaultRegistry} from '@rjsf/core/dist/cjs/utils';
 
 const generateFakeSchemaData = (formJson: FormJson) => {
   jsf.option({alwaysFakeOptionals: true});
@@ -13,4 +14,25 @@ const generateFakeSchemaData = (formJson: FormJson) => {
   return jsf.generate(formJson.schema);
 };
 
-export {generateFakeSchemaData};
+const createDefaultJsonSchemaFormProps = () => {
+  return {
+    schema: {},
+    uiSchema: {},
+    idSchema: {$id: null},
+    formData: null,
+    errorSchema: {},
+    onChange: jest.fn(),
+    onBlur: jest.fn(),
+    registry: {
+      ...getDefaultRegistry()
+    },
+    formContext: {},
+    autofocus: false,
+    disabled: false,
+    readonly: false,
+    required: false,
+    name: ''
+  };
+};
+
+export {generateFakeSchemaData, createDefaultJsonSchemaFormProps};
