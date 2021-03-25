@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NaicsCodeTable should match the snapshot with the NaicsCodeTableRow container 1`] = `
+<Fragment>
+  <DeleteConfirmationModal
+    deleteObject={
+      Object {
+        "deleteItem": "code",
+        "deleteItemDescription": "description",
+        "deleteName": "NAICS Code",
+      }
+    }
+    handleDelete={[Function]}
+    onClose={[Function]}
+    show={false}
+  />
+  <tr>
+    <td>
+      code
+    </td>
+    <td>
+      sector
+    </td>
+    <td>
+      description
+    </td>
+    <td
+      style={
+        Object {
+          "textAlign": "center",
+        }
+      }
+    >
+      <Button
+        active={false}
+        disabled={false}
+        onClick={[Function]}
+        variant="danger"
+      >
+        Delete
+      </Button>
+    </td>
+  </tr>
+</Fragment>
+`;

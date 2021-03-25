@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CreateNaicsCodeModal should match the snapshot with the DeleteConfirmationModal component 1`] = `
+<Modal
+  animation={true}
+  aria-modal="true"
+  autoFocus={true}
+  backdrop={true}
+  centered={true}
+  dialogAs={
+    Object {
+      "$$typeof": Symbol(react.forward_ref),
+      "displayName": "ModalDialog",
+      "render": [Function],
+    }
+  }
+  enforceFocus={true}
+  keyboard={true}
+  onHide={[Function]}
+  restoreFocus={true}
+  show={true}
+  size="sm"
+>
+  <ModalHeader
+    closeButton={true}
+    closeLabel="Close"
+  >
+    <ModalTitle
+      style={
+        Object {
+          "margin": "auto",
+        }
+      }
+    >
+      Delete 
+      NAICS Code
+    </ModalTitle>
+  </ModalHeader>
+  <ModalBody
+    style={
+      Object {
+        "textAlign": "center",
+      }
+    }
+  >
+    <p>
+      Confirm delete 
+      NAICS Code
+      :
+    </p>
+    <h5>
+      1234
+    </h5>
+    <p>
+      description
+    </p>
+    <Button
+      active={false}
+      disabled={false}
+      onClick={[MockFunction]}
+      variant="danger"
+    >
+      Confirm Delete
+    </Button>
+  </ModalBody>
+</Modal>
+`;
