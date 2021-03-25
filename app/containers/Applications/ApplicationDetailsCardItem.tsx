@@ -135,7 +135,7 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
               if (Array.isArray(newFormData) && !difference.path) {
                 newFormData = [
                   ...newFormData.slice(0, difference.index),
-                  deletedItem,
+                  difference.item.lhs,
                   ...newFormData.slice(difference.index)
                 ];
               }

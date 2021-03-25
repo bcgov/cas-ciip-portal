@@ -46,16 +46,15 @@ const CUSTOM_FIELDS: Record<string, React.FunctionComponent<FieldProps>> = {
     if (showDiff) {
       const diff = idDiffMap?.[id];
 
-      if (diff && diff.lhs !== formData) {
-        const prevValue = getDisplayValue(schema, diff.lhs);
+      if (diff) {
         return (
           <>
             <span id={id && `${id}-diffFrom`} className="diffFrom">
-              {prevValue ?? <i>[No Data Entered]</i>}
+              {getDisplayValue(schema, diff.lhs) ?? <i>[No Data Entered]</i>}
             </span>
             &nbsp;---&gt;&nbsp;
             <span id={id && `${id}-diffTo`} className="diffTo">
-              {displayValue ?? <i>[No Data Entered]</i>}
+              {getDisplayValue(schema, diff.rhs) ?? <i>[No Data Entered]</i>}
             </span>
           </>
         );
@@ -94,7 +93,7 @@ const CUSTOM_FIELDS: Record<string, React.FunctionComponent<FieldProps>> = {
           </span>
           &nbsp;---&gt;&nbsp;
           <span id={`${id}-diffTo`} className="diffTo">
-            {formData ? 'Yes' : 'No'}
+            {diff.rhs ? 'Yes' : 'No'}
           </span>
         </>
       );
@@ -142,17 +141,18 @@ const CUSTOM_FIELDS: Record<string, React.FunctionComponent<FieldProps>> = {
     const diff = idDiffMap?.[id];
 
     if (showDiff && diff) {
-      const prevValue = getDisplayValue(schema, diff.lhs);
+      const lhs = getDisplayValue(schema, diff.lhs);
+      const rhs = getDisplayValue(schema, diff.rhs);
 
       return (
         <>
           <span className="diffFrom">
-            {prevValue !== null && prevValue !== undefined ? (
+            {lhs !== null && lhs !== undefined ? (
               <NumberFormat
                 thousandSeparator
                 id={id && `${id}-diffFrom`}
                 displayType="text"
-                value={prevValue}
+                value={lhs}
               />
             ) : (
               <i id={id && `${id}-diffFrom`}>[No Data Entered]</i>
@@ -160,12 +160,12 @@ const CUSTOM_FIELDS: Record<string, React.FunctionComponent<FieldProps>> = {
           </span>
           &nbsp;---&gt;&nbsp;
           <span className="diffTo">
-            {displayValue !== null && displayValue !== undefined ? (
+            {rhs !== null && rhs !== undefined ? (
               <NumberFormat
                 thousandSeparator
                 id={id && `${id}-diffTo`}
                 displayType="text"
-                value={displayValue}
+                value={rhs}
               />
             ) : (
               <i id={id && `${id}-diffTo`}>[No Data Entered]</i>
