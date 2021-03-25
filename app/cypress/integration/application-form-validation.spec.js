@@ -78,9 +78,10 @@ describe('When reviewing a submitted application as an analyst', () => {
     cy.get('#root_facility_bcghgid +div .error-detail').contains(
       'BCGHGID code should be numeric'
     );
-    cy.get('#root_operator_naics +div .error-detail').contains(
-      'NAICS code should be numeric'
-    );
+    cy.get('#root_operator_naics')
+      .parents('.form-group')
+      .get('.error-detail')
+      .contains('is a required property');
     cy.get(
       '#root_operator_bcCorporateRegistryNumber +div .error-detail'
     ).contains(
@@ -92,7 +93,9 @@ describe('When reviewing a submitted application as an analyst', () => {
 
     cy.visit(summaryPageUrl);
     // Format error messages for should be explicit
-    cy.get('.admin > .collapse').contains('NAICS code should be numeric');
+    cy.get('#administration-data_operator_naics ~div .text-danger').contains(
+      'is a required property'
+    );
     cy.get('.admin > .collapse').contains(
       'BC Corporate Registry number should be 1-3 letters followed by 7 digits'
     );
@@ -125,7 +128,8 @@ describe('When reviewing a submitted application as an analyst', () => {
 
     // Fix invalid data
     cy.get('#root_facility_bcghgid').clear().type(11001100223);
-    cy.get('#root_operator_naics').clear().type('1234');
+    cy.get('#root_operator_naics').clear().type('777777');
+    cy.get('.dropdown-item').click();
     cy.get('#root_operationalRepresentative_mailingAddress_postalCode')
       .clear()
       .type('A1A 1A1');
