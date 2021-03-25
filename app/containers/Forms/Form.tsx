@@ -25,6 +25,7 @@ import {customTransformErrors} from 'functions/customTransformErrors';
 import SavingIndicator from 'components/helpers/SavingIndicator';
 import NaicsField from './NaicsField';
 import productFieldValidation from './validation/productFieldValidation';
+import MissingProductsComponent from 'components/product/MissingProductsComponent';
 
 interface Props {
   query: Form_query;
@@ -92,50 +93,6 @@ export const FormComponent: React.FunctionComponent<Props> = ({
     return errors;
   };
 
-  const getMissingProducts = () => {
-    if (formResult[0]?.productRowId) {
-      const reportedProducts = formResult.map((r) => r.productRowId);
-      const missingProducts = [];
-
-      reportedProducts.forEach((productId) => {
-        const product = query.products.edges.find(
-          ({node}) => node.rowId === productId
-        )?.node;
-        if (product?.linkedProduct?.edges?.length > 0) {
-          product.linkedProduct.edges.forEach((edge) => {
-            if (!reportedProducts.includes(edge.node.linkedProductId)) {
-              missingProducts.push({
-                linkId: edge.node.rowId,
-                product: product.productName,
-                missingLink: edge.node.productName
-              });
-            }
-          });
-        }
-      });
-      return missingProducts;
-    }
-  };
-
-  const showMissingProducts = () => {
-    const missingProducts = getMissingProducts();
-    if (!missingProducts) return null;
-    const renderMissingProducts = missingProducts.map((missingObj) => (
-      <Alert key={missingObj.linkId} variant="warning">
-        {missingObj.product} requires reporting of: {missingObj.missingLink}
-      </Alert>
-    ));
-    if (missingProducts.length === 0) return null;
-    return (
-      <>
-        <Alert variant="warning">
-          <h5>Some required products are missing from your application:</h5>
-        </Alert>
-        {renderMissingProducts}
-      </>
-    );
-  };
-
   const formClass = uiSchema?.['ui:className'] || '';
 
   return (
@@ -161,7 +118,7 @@ export const FormComponent: React.FunctionComponent<Props> = ({
           {hasErrors && (
             <div className="errors">Please correct the errors below.</div>
           )}
-          {showMissingProducts()}
+          <MissingProductsComponent formResult={formResult} query={query} />
           <JsonSchemaForm
             noHtml5Validate
             validate={customValidation}
