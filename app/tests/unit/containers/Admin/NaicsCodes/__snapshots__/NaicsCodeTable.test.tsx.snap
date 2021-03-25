@@ -28,6 +28,7 @@ exports[`NaicsCodeTable should match the snapshot with the NaicsCodeTable contai
     onClose={[Function]}
     onSubmit={[Function]}
     show={false}
+    showActiveCodeError={false}
     validated={false}
   />
   <ForwardRef
