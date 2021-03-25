@@ -19,10 +19,9 @@ exports[`CreateNaicsCodeModal should match the snapshot with the DeleteConfirmat
   onHide={[Function]}
   restoreFocus={true}
   show={true}
-  size="sm"
 >
   <ModalHeader
-    closeButton={true}
+    closeButton={false}
     closeLabel="Close"
   >
     <ModalTitle
@@ -43,25 +42,78 @@ exports[`CreateNaicsCodeModal should match the snapshot with the DeleteConfirmat
       }
     }
   >
-    <p>
-      Confirm delete 
-      NAICS Code
-      :
-    </p>
+    <Alert
+      closeLabel="Close alert"
+      show={true}
+      transition={
+        Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "defaultProps": Object {
+            "appear": false,
+            "in": false,
+            "mountOnEnter": false,
+            "timeout": 300,
+            "unmountOnExit": false,
+          },
+          "displayName": "Fade",
+          "render": [Function],
+        }
+      }
+      variant="danger"
+    >
+      <p>
+        Are you sure you want to delete this 
+        NAICS Code
+        ?
+      </p>
+      <p>
+        Doing so will immediately remove it as an option for in-progress applications and those not yet started. Submitted applications will not be affected.
+      </p>
+    </Alert>
     <h5>
       1234
     </h5>
     <p>
       description
     </p>
-    <Button
-      active={false}
-      disabled={false}
-      onClick={[MockFunction]}
-      variant="danger"
+    <Row
+      noGutters={false}
     >
-      Confirm Delete
-    </Button>
+      <Col
+        md={
+          Object {
+            "offset": 4,
+            "span": 4,
+          }
+        }
+      >
+        <Button
+          active={false}
+          disabled={false}
+          onClick={[MockFunction]}
+          variant="danger"
+        >
+          Confirm Delete
+        </Button>
+      </Col>
+      <Col
+        md={
+          Object {
+            "offset": 1,
+            "span": 3,
+          }
+        }
+      >
+        <Button
+          active={false}
+          disabled={false}
+          onClick={[MockFunction]}
+          variant="secondary"
+        >
+          Cancel
+        </Button>
+      </Col>
+    </Row>
   </ModalBody>
 </Modal>
 `;

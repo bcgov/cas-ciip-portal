@@ -18,7 +18,7 @@ describe('CreateNaicsCodeModal', () => {
     );
     expect(renderer).toMatchSnapshot();
   });
-  it('should call handleCreateNaicsCode when the form is submitted', async () => {
+  it('should call handleDelete when the Confirm button is clicked', async () => {
     const handleDelete = jest.fn();
     const renderer = shallow(
       <DeleteConfirmationModal
@@ -32,7 +32,7 @@ describe('CreateNaicsCodeModal', () => {
         onClose={jest.fn()}
       />
     );
-    renderer.find('Button').prop('onClick')({} as any);
+    renderer.find('Button').at(0).prop('onClick')({} as any);
     expect(handleDelete).toBeCalledTimes(1);
   });
 });
