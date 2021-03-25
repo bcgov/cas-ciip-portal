@@ -1,0 +1,134 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The Naics Field custom field Displays (<code> - <industry> - <description>) when the form data contains a 6-digit NAICS code 1`] = `
+Array [
+  <select
+    autoFocus={false}
+    className="form-control"
+    disabled={false}
+    id={null}
+    onBlur={[Function]}
+    onChange={[Function]}
+    required={false}
+    value="222222"
+  >
+    <option
+      value=""
+    />
+    <option
+      key="0"
+      value="111111"
+    >
+      111111 - Software - Javascript
+    </option>
+    <option
+      key="1"
+      value="222222"
+    >
+      222222 - Software - Typescript
+    </option>
+  </select>,
+  "",
+]
+`;
+
+exports[`The Naics Field custom field Displays an alert if the current form data doesn't contain an allowed NAICS code 1`] = `
+Array [
+  <select
+    autoFocus={false}
+    className="form-control"
+    disabled={false}
+    id={null}
+    onBlur={[Function]}
+    onChange={[Function]}
+    required={false}
+    value="1234"
+  >
+    <option
+      value=""
+    />
+    <option
+      key="0"
+      value="111111"
+    >
+      111111 - Software - Javascript
+    </option>
+    <option
+      key="1"
+      value="222222"
+    >
+      222222 - Software - Typescript
+    </option>
+  </select>,
+  <Alert
+    className="mt-3 mb-0"
+    closeLabel="Close alert"
+    show={true}
+    transition={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "defaultProps": Object {
+          "appear": false,
+          "in": false,
+          "mountOnEnter": false,
+          "timeout": 300,
+          "unmountOnExit": false,
+        },
+        "displayName": "Fade",
+        "render": [Function],
+      }
+    }
+    variant="danger"
+  >
+    <Fade
+      appear={false}
+      in={true}
+      mountOnEnter={false}
+      timeout={300}
+      unmountOnExit={true}
+    >
+      <div
+        className="fade mt-3 mb-0 alert alert-danger show"
+        role="alert"
+      >
+        <strong>
+          Warning:
+        </strong>
+         The naics code submitted to SWRS is not in the list of valid codes for this program. Please refer to the guidance documents and select an appropriate NAICS code.
+      </div>
+    </Fade>
+  </Alert>,
+]
+`;
+
+exports[`The Naics Field custom field Displays the list of returned NAICS codes as a dropdown 1`] = `
+Array [
+  <select
+    autoFocus={false}
+    className="form-control"
+    disabled={false}
+    id={null}
+    onBlur={[Function]}
+    onChange={[Function]}
+    required={false}
+    value=""
+  >
+    <option
+      value=""
+    />
+    <option
+      key="0"
+      value="111111"
+    >
+      111111 - Software - Javascript
+    </option>
+    <option
+      key="1"
+      value="222222"
+    >
+      222222 - Software - Typescript
+    </option>
+  </select>,
+  "",
+]
+`;
