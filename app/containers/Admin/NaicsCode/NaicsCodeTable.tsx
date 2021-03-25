@@ -18,6 +18,11 @@ export const NaicsCodeTableContainer: React.FunctionComponent<Props> = (
   const [showCreateModal, setShowCreateModal] = useState(false);
   const {query} = props;
 
+  const handleClose = () => {
+    setShowCreateModal(false);
+    setValidated(false);
+  };
+
   const handleCreateNaicsCode = async (e: React.SyntheticEvent<any>) => {
     const form = e.currentTarget;
     e.stopPropagation();
@@ -38,7 +43,7 @@ export const NaicsCodeTableContainer: React.FunctionComponent<Props> = (
       } catch (e) {
         console.error(e);
       }
-      setShowCreateModal(false);
+      handleClose();
     }
   };
 
@@ -49,14 +54,14 @@ export const NaicsCodeTableContainer: React.FunctionComponent<Props> = (
           style={{marginTop: '-100px'}}
           onClick={() => setShowCreateModal(true)}
         >
-          New Naics Code
+          New NAICS Code
         </Button>
       </div>
       <CreateNaicsCodeModal
         validated={validated}
         onSubmit={handleCreateNaicsCode}
         show={showCreateModal}
-        onClose={() => setShowCreateModal(false)}
+        onClose={() => handleClose()}
       />
       <Table striped bordered hover>
         <thead>
