@@ -26,4 +26,9 @@ insert into ggircs_portal.product(product_name, units, product_state, requires_e
   values
     ('Aluminum Smelting','tonnes of aluminum produced','published', true, true);
 
+-- Create a valid NAICS code
+insert into ggircs_portal.naics_code(naics_code, ciip_sector, naics_description)
+values
+('777777', 'Gambling Industry', 'Left-hand actuated slot machines');
+
 commit;

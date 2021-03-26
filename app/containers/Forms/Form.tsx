@@ -23,6 +23,9 @@ import EmissionCategoryRowIdField from './EmissionCategoryRowIdField';
 import ProblemReportField from 'components/Forms/ProblemReportField';
 import {customTransformErrors} from 'functions/customTransformErrors';
 import SavingIndicator from 'components/helpers/SavingIndicator';
+import NaicsField from './NaicsField';
+import productFieldValidation from './validation/productFieldValidation';
+import MissingProductsComponent from 'components/product/MissingProductsComponent';
 
 interface Props {
   query: Form_query;
@@ -32,6 +35,7 @@ interface Props {
 }
 
 const CUSTOM_FIELDS = {
+  naics: (props) => <NaicsField query={props.formContext.query} {...props} />,
   fuel: (props) => <FuelFields query={props.formContext.query} {...props} />,
   emissionSource: EmissionSourceFields,
   emissionGas: EmissionGasFields,
@@ -85,135 +89,11 @@ export const FormComponent: React.FunctionComponent<Props> = ({
     });
 
   const customValidation = (formData, errors) => {
-    let hasFalseRequiresEmissionAllocation = false;
-    let hasRequirePurchasedElectricity = false;
-    let hasRequirePurchasedHeat = false;
-    let hasRequireExportedElectricity = false;
-    let hasRequireExportedHeat = false;
-    let hasRequireGeneratedElectricity = false;
-    let hasRequireGeneratedHeat = false;
-    let hasRequireEmissionsFromEios = false;
-    let nonEnergyProductCount = 0;
-    const energyProductsReported = [];
-    const productsInConflict = [];
-    if (formData[0]?.productRowId) {
-      formData.forEach((product, index: number) => {
-        if (product.requiresEmissionAllocation === false)
-          hasFalseRequiresEmissionAllocation = true;
-        if (product.isEnergyProduct === false) {
-          nonEnergyProductCount++;
-          productsInConflict.push(index + 1);
-        } else {
-          energyProductsReported.push(product.productRowId);
-        }
-
-        if (product.addPurchasedElectricityEmissions === true)
-          hasRequirePurchasedElectricity = true;
-        if (product.addPurchasedHeatEmissions === true)
-          hasRequirePurchasedHeat = true;
-        if (product.subtractExportedElectricityEmissions === true)
-          hasRequireExportedElectricity = true;
-        if (product.subtractExportedHeatEmissions === true)
-          hasRequireExportedHeat = true;
-        if (product.subtractGeneratedElectricityEmissions === true)
-          hasRequireGeneratedElectricity = true;
-        if (product.subtractGeneratedHeatEmissions === true)
-          hasRequireGeneratedHeat = true;
-        if (product.addEmissionsFromEios === true)
-          hasRequireEmissionsFromEios = true;
-      });
-    }
-
-    if (hasFalseRequiresEmissionAllocation && nonEnergyProductCount > 1)
-      errors['0'].addError(
-        `Products: ${productsInConflict.join(
-          ','
-        )} cannot be reported together as at least one of these products does not require manual allocation of emissions.`
-      );
-
-    if (hasRequirePurchasedElectricity && !energyProductsReported.includes(3))
-      errors['0'].addError(
-        'Purchased Electricity is a required product based on the products you have reported, please refer to the guidance document'
-      );
-
-    if (hasRequirePurchasedHeat && !energyProductsReported.includes(4))
-      errors['0'].addError(
-        'Purchased Heat is a required product based on the products you have reported, please refer to the guidance document'
-      );
-
-    if (hasRequireExportedElectricity && !energyProductsReported.includes(1))
-      errors['0'].addError(
-        'Sold Electricity is a required product based on the products you have reported, please refer to the guidance document'
-      );
-
-    if (hasRequireExportedHeat && !energyProductsReported.includes(2))
-      errors['0'].addError(
-        'Sold Heat is a required product based on the products you have reported, please refer to the guidance document'
-      );
-
-    if (hasRequireGeneratedElectricity && !energyProductsReported.includes(5))
-      errors['0'].addError(
-        'Generated Electricity is a required product based on the products you have reported, please refer to the guidance document'
-      );
-
-    if (hasRequireGeneratedHeat && !energyProductsReported.includes(6))
-      errors['0'].addError(
-        'Generated Heat is a required product based on the products you have reported, please refer to the guidance document'
-      );
-
-    if (hasRequireEmissionsFromEios && !energyProductsReported.includes(7))
-      errors['0'].addError(
-        'Emissions from EIOs is a required product based on the products you have reported, please refer to the guidance document'
-      );
-
+    errors = productFieldValidation(formData, errors);
     return errors;
   };
 
   const formClass = uiSchema?.['ui:className'] || '';
-
-  const getMissingProducts = () => {
-    if (formResult[0]?.productRowId) {
-      const reportedProducts = formResult.map((r) => r.productRowId);
-      const missingProducts = [];
-
-      reportedProducts.forEach((productId) => {
-        const product = query.products.edges.find(
-          ({node}) => node.rowId === productId
-        )?.node;
-        if (product?.linkedProduct?.edges?.length > 0) {
-          product.linkedProduct.edges.forEach((edge) => {
-            if (!reportedProducts.includes(edge.node.linkedProductId)) {
-              missingProducts.push({
-                linkId: edge.node.rowId,
-                product: product.productName,
-                missingLink: edge.node.productName
-              });
-            }
-          });
-        }
-      });
-      return missingProducts;
-    }
-  };
-
-  const showMissingProducts = () => {
-    const missingProducts = getMissingProducts();
-    if (!missingProducts) return null;
-    const renderMissingProducts = missingProducts.map((missingObj) => (
-      <Alert key={missingObj.linkId} variant="warning">
-        {missingObj.product} requires reporting of: {missingObj.missingLink}
-      </Alert>
-    ));
-    if (missingProducts.length === 0) return null;
-    return (
-      <>
-        <Alert variant="warning">
-          <h5>Some required products are missing from your application:</h5>
-        </Alert>
-        {renderMissingProducts}
-      </>
-    );
-  };
 
   return (
     <div className={formClass}>
@@ -238,7 +118,7 @@ export const FormComponent: React.FunctionComponent<Props> = ({
           {hasErrors && (
             <div className="errors">Please correct the errors below.</div>
           )}
-          {showMissingProducts()}
+          <MissingProductsComponent formResult={formResult} query={query} />
           <JsonSchemaForm
             noHtml5Validate
             validate={customValidation}
@@ -311,6 +191,7 @@ export default createFragmentContainer(FormComponent, {
   query: graphql`
     fragment Form_query on Query
     @argumentDefinitions(formResultId: {type: "ID!"}) {
+      ...NaicsField_query
       ...FuelField_query
       ...FuelRowIdField_query
       ...ProductField_query

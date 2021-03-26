@@ -10,6 +10,7 @@ import {faExclamationTriangle} from '@fortawesome/free-solid-svg-icons';
 import FuelRowIdField from 'containers/Forms/FuelRowIdField';
 import FuelField from 'containers/Forms/FuelField';
 import EmissionCategoryRowIdField from 'containers/Forms/EmissionCategoryRowIdField';
+import NaicsField from 'containers/Forms/NaicsField';
 
 const customFields = (
   showDiff: boolean,
@@ -109,6 +110,7 @@ const customFields = (
         </span>
       );
     },
+    naics: (props) => <NaicsField query={props.formContext.query} {...props} />,
     emissionSource: EmissionSourceFields,
     emissionGas: (props) => (
       <EmissionGasFields setHasErrors={setHasErrors} {...props} />

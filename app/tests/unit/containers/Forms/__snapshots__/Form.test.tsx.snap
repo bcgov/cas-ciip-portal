@@ -65,6 +65,36 @@ exports[`The Form Component should match the snapshot 1`] = `
         }
       }
     >
+      <MissingProductsComponent
+        formResult={Object {}}
+        query={
+          Object {
+            " $fragmentRefs": Object {
+              "EmissionCategoryRowIdField_query": true,
+              "FuelField_query": true,
+              "FuelRowIdField_query": true,
+              "ProductField_query": true,
+              "ProductRowIdField_query": true,
+            },
+            " $refType": "Form_query",
+            "products": Object {
+              "edges": Array [],
+            },
+            "result": Object {
+              "formJsonByFormId": Object {
+                "ciipApplicationWizardByFormId": Object {
+                  "formPosition": 1,
+                },
+                "formJson": Object {
+                  "schema": Object {},
+                },
+                "name": "Foo",
+              },
+              "formResult": Object {},
+            },
+          }
+        }
+      />
       <Form
         ArrayFieldTemplate={[Function]}
         ErrorList={[Function]}
@@ -81,6 +111,7 @@ exports[`The Form Component should match the snapshot 1`] = `
             "emissionSource": [Function],
             "fuel": [Function],
             "fuelRowId": [Function],
+            "naics": [Function],
             "product": [Function],
             "productRowId": [Function],
           }
@@ -757,6 +788,46 @@ exports[`The Form Component should not render an alert reminder to check the gui
         }
       }
     >
+      <MissingProductsComponent
+        formResult={
+          Array [
+            Object {
+              "requiresEmissionAllocation": false,
+            },
+          ]
+        }
+        query={
+          Object {
+            " $fragmentRefs": Object {
+              "EmissionCategoryRowIdField_query": true,
+              "FuelField_query": true,
+              "FuelRowIdField_query": true,
+              "ProductField_query": true,
+              "ProductRowIdField_query": true,
+            },
+            " $refType": "Form_query",
+            "products": Object {
+              "edges": Array [],
+            },
+            "result": Object {
+              "formJsonByFormId": Object {
+                "ciipApplicationWizardByFormId": Object {
+                  "formPosition": 3,
+                },
+                "formJson": Object {
+                  "schema": Object {},
+                },
+                "name": "Foo",
+              },
+              "formResult": Array [
+                Object {
+                  "requiresEmissionAllocation": false,
+                },
+              ],
+            },
+          }
+        }
+      />
       <Form
         ArrayFieldTemplate={[Function]}
         ErrorList={[Function]}
@@ -773,6 +844,7 @@ exports[`The Form Component should not render an alert reminder to check the gui
             "emissionSource": [Function],
             "fuel": [Function],
             "fuelRowId": [Function],
+            "naics": [Function],
             "product": [Function],
             "productRowId": [Function],
           }
@@ -1459,6 +1531,46 @@ exports[`The Form Component should render alert reminder to check the guidance i
         }
       }
     >
+      <MissingProductsComponent
+        formResult={
+          Array [
+            Object {
+              "requiresEmissionAllocation": true,
+            },
+          ]
+        }
+        query={
+          Object {
+            " $fragmentRefs": Object {
+              "EmissionCategoryRowIdField_query": true,
+              "FuelField_query": true,
+              "FuelRowIdField_query": true,
+              "ProductField_query": true,
+              "ProductRowIdField_query": true,
+            },
+            " $refType": "Form_query",
+            "products": Object {
+              "edges": Array [],
+            },
+            "result": Object {
+              "formJsonByFormId": Object {
+                "ciipApplicationWizardByFormId": Object {
+                  "formPosition": 3,
+                },
+                "formJson": Object {
+                  "schema": Object {},
+                },
+                "name": "Foo",
+              },
+              "formResult": Array [
+                Object {
+                  "requiresEmissionAllocation": true,
+                },
+              ],
+            },
+          }
+        }
+      />
       <Form
         ArrayFieldTemplate={[Function]}
         ErrorList={[Function]}
@@ -1475,6 +1587,7 @@ exports[`The Form Component should render alert reminder to check the guidance i
             "emissionSource": [Function],
             "fuel": [Function],
             "fuelRowId": [Function],
+            "naics": [Function],
             "product": [Function],
             "productRowId": [Function],
           }
@@ -1560,779 +1673,6 @@ exports[`The Form Component should render alert reminder to check the guidance i
           </AlertHeading>
           Please refer to the guidance documents to calculate the emission allocations for each product or service, and ensure that you report all the necessary product or services
         </Alert>
-        <Button
-          active={false}
-          disabled={false}
-          size="lg"
-          type="submit"
-          variant="primary"
-        >
-          Save & Continue
-        </Button>
-        <Link
-          href={
-            Object {
-              "pathname": "/reporter",
-            }
-          }
-          passHref={true}
-        >
-          <Button
-            active={false}
-            className="exit-button"
-            disabled={false}
-            size="lg"
-            style={
-              Object {
-                "background": "white",
-              }
-            }
-            variant="outline-secondary"
-          >
-            Save & Exit
-          </Button>
-        </Link>
-      </Form>
-    </div>
-  </div>
-  <JSXStyle
-    id="2037158273"
-  >
-    .
-    r
-    j
-    s
-    f
-     
-    .
-    f
-    o
-    r
-    m
-    -
-    r
-    o
-    w
-    {
-    m
-    a
-    r
-    g
-    i
-    n
-    :
-    2
-    0
-    p
-    x
-     
-    0
-     
-    2
-    0
-    p
-    x
-    ;
-    }
-    .
-    e
-    m
-    i
-    s
-    s
-    i
-    o
-    n
-    -
-    f
-    o
-    r
-    m
-     
-    .
-    r
-    j
-    s
-    f
-     
-    .
-    f
-    o
-    r
-    m
-    -
-    r
-    o
-    w
-    {
-    m
-    a
-    r
-    g
-    i
-    n
-    :
-    0
-    ;
-    }
-    .
-    n
-    o
-    -
-    c
-    o
-    l
-    -
-    p
-    a
-    d
-    d
-    i
-    n
-    g
-     
-    .
-    f
-    o
-    r
-    m
-    -
-    r
-    o
-    w
-    &gt;
-    .
-    c
-    o
-    l
-    ,
-    .
-    n
-    o
-    -
-    c
-    o
-    l
-    -
-    p
-    a
-    d
-    d
-    i
-    n
-    g
-     
-    .
-    f
-    o
-    r
-    m
-    -
-    r
-    o
-    w
-    &gt;
-    [
-    c
-    l
-    a
-    s
-    s
-    *
-    =
-    '
-    c
-    o
-    l
-    -
-    '
-    ]
-    {
-    p
-    a
-    d
-    d
-    i
-    n
-    g
-    :
-    0
-    ;
-    }
-    .
-    e
-    r
-    r
-    o
-    r
-    s
-    {
-    m
-    a
-    r
-    g
-    i
-    n
-    :
-    1
-    e
-    m
-     
-    0
-     
-    0
-     
-    0
-    ;
-    p
-    a
-    d
-    d
-    i
-    n
-    g
-    :
-    2
-    0
-    p
-    x
-    ;
-    b
-    a
-    c
-    k
-    g
-    r
-    o
-    u
-    n
-    d
-    :
-    #
-    c
-    e
-    5
-    c
-    5
-    c
-    ;
-    c
-    o
-    l
-    o
-    r
-    :
-    w
-    h
-    i
-    t
-    e
-    ;
-    f
-    o
-    n
-    t
-    -
-    s
-    i
-    z
-    e
-    :
-    2
-    0
-    p
-    x
-    ;
-    }
-    u
-    l
-    .
-    e
-    r
-    r
-    o
-    r
-    -
-    d
-    e
-    t
-    a
-    i
-    l
-    {
-    p
-    a
-    d
-    d
-    i
-    n
-    g
-    :
-    0
-    ;
-    l
-    i
-    s
-    t
-    -
-    s
-    t
-    y
-    l
-    e
-    :
-    n
-    o
-    n
-    e
-    ;
-    }
-    u
-    l
-    .
-    e
-    r
-    r
-    o
-    r
-    -
-    d
-    e
-    t
-    a
-    i
-    l
-     
-    l
-    i
-    .
-    t
-    e
-    x
-    t
-    -
-    d
-    a
-    n
-    g
-    e
-    r
-    {
-    b
-    a
-    c
-    k
-    g
-    r
-    o
-    u
-    n
-    d
-    :
-    #
-    c
-    e
-    5
-    c
-    5
-    c
-    ;
-    c
-    o
-    l
-    o
-    r
-    :
-    w
-    h
-    i
-    t
-    e
-     
-    !
-    i
-    m
-    p
-    o
-    r
-    t
-    a
-    n
-    t
-    ;
-    p
-    a
-    d
-    d
-    i
-    n
-    g
-    :
-    5
-    p
-    x
-    ;
-    }
-    .
-    e
-    x
-    i
-    t
-    -
-    b
-    u
-    t
-    t
-    o
-    n
-    {
-    c
-    o
-    l
-    o
-    r
-    :
-    #
-    0
-    0
-    3
-    3
-    6
-    6
-    ;
-    m
-    a
-    r
-    g
-    i
-    n
-    -
-    l
-    e
-    f
-    t
-    :
-    5
-    p
-    x
-    ;
-    b
-    o
-    r
-    d
-    e
-    r
-    -
-    c
-    o
-    l
-    o
-    r
-    :
-    #
-    0
-    0
-    3
-    3
-    6
-    6
-    ;
-    }
-    .
-    e
-    x
-    i
-    t
-    -
-    b
-    u
-    t
-    t
-    o
-    n
-    :
-    h
-    o
-    v
-    e
-    r
-    {
-    c
-    o
-    l
-    o
-    r
-    :
-    w
-    h
-    i
-    t
-    e
-     
-    !
-    i
-    m
-    p
-    o
-    r
-    t
-    a
-    n
-    t
-    ;
-    b
-    a
-    c
-    k
-    g
-    r
-    o
-    u
-    n
-    d
-    :
-    #
-    0
-    0
-    7
-    b
-    f
-    f
-     
-    !
-    i
-    m
-    p
-    o
-    r
-    t
-    a
-    n
-    t
-    ;
-    }
-  </JSXStyle>
-  <JSXStyle
-    id="1245585032"
-  >
-    .card.jsx-1245585032{border-color:#a4a4a4;background-color:#f4f4f4;}.card-header.jsx-1245585032{background-color:#036;color:#fff;}.card-header.jsx-1245585032 h1.jsx-1245585032{margin-bottom:0;}
-  </JSXStyle>
-</div>
-`;
-
-exports[`The Form Component should render an alert reminder to report any missing linked products 1`] = `
-<div
-  className="jsx-1245585032 "
->
-  <Alert
-    closeLabel="Close alert"
-    show={true}
-    transition={
-      Object {
-        "$$typeof": Symbol(react.forward_ref),
-        "defaultProps": Object {
-          "appear": false,
-          "in": false,
-          "mountOnEnter": false,
-          "timeout": 300,
-          "unmountOnExit": false,
-        },
-        "displayName": "Fade",
-        "render": [Function],
-      }
-    }
-    variant="info"
-  >
-    Note: Your form input will be saved automatically as you type.
-  </Alert>
-  <div
-    className="jsx-1245585032 card"
-  >
-    <div
-      className="jsx-1245585032 card-header"
-    >
-      <Row
-        noGutters={false}
-      >
-        <Col
-          md={8}
-        >
-          <h1
-            className="jsx-1245585032"
-          >
-            Foo
-          </h1>
-        </Col>
-        <Col
-          md={4}
-        >
-          <SavingIndicator
-            isSaved={true}
-            style={
-              Object {
-                "lineHeight": "2.25em",
-              }
-            }
-          />
-        </Col>
-      </Row>
-    </div>
-    <div
-      className="jsx-1245585032"
-      style={
-        Object {
-          "padding": "0 2em 2em 2em",
-        }
-      }
-    >
-      <Alert
-        closeLabel="Close alert"
-        show={true}
-        transition={
-          Object {
-            "$$typeof": Symbol(react.forward_ref),
-            "defaultProps": Object {
-              "appear": false,
-              "in": false,
-              "mountOnEnter": false,
-              "timeout": 300,
-              "unmountOnExit": false,
-            },
-            "displayName": "Fade",
-            "render": [Function],
-          }
-        }
-        variant="warning"
-      >
-        <h5>
-          Some required products are missing from your application:
-        </h5>
-      </Alert>
-      <Alert
-        closeLabel="Close alert"
-        key="2"
-        show={true}
-        transition={
-          Object {
-            "$$typeof": Symbol(react.forward_ref),
-            "defaultProps": Object {
-              "appear": false,
-              "in": false,
-              "mountOnEnter": false,
-              "timeout": 300,
-              "unmountOnExit": false,
-            },
-            "displayName": "Fade",
-            "render": [Function],
-          }
-        }
-        variant="warning"
-      >
-        foo
-         requires reporting of: 
-        bar
-      </Alert>
-      <Form
-        ArrayFieldTemplate={[Function]}
-        ErrorList={[Function]}
-        FieldTemplate={[Function]}
-        ObjectFieldTemplate={[Function]}
-        disabled={false}
-        fields={
-          Object {
-            "NumberField": [Function],
-            "ProblemReportField": [Function],
-            "emission": [Function],
-            "emissionCategoryRowId": [Function],
-            "emissionGas": [Function],
-            "emissionSource": [Function],
-            "fuel": [Function],
-            "fuelRowId": [Function],
-            "product": [Function],
-            "productRowId": [Function],
-          }
-        }
-        formContext={
-          Object {
-            "query": Object {
-              " $fragmentRefs": Object {
-                "EmissionCategoryRowIdField_query": true,
-                "FuelField_query": true,
-                "FuelRowIdField_query": true,
-                "ProductField_query": true,
-                "ProductRowIdField_query": true,
-              },
-              " $refType": "Form_query",
-              "products": Object {
-                "edges": Array [
-                  Object {
-                    "node": Object {
-                      "linkedProduct": Object {
-                        "edges": Array [
-                          Object {
-                            "node": Object {
-                              "linkedProductId": 3,
-                              "productName": "bar",
-                              "rowId": 2,
-                            },
-                          },
-                        ],
-                      },
-                      "productName": "foo",
-                      "rowId": 1,
-                    },
-                  },
-                ],
-              },
-              "result": Object {
-                "formJsonByFormId": Object {
-                  "ciipApplicationWizardByFormId": Object {
-                    "formPosition": 3,
-                  },
-                  "formJson": Object {
-                    "schema": Object {},
-                  },
-                  "name": "Foo",
-                },
-                "formResult": Array [
-                  Object {
-                    "productRowId": 1,
-                  },
-                  Object {
-                    "requiresEmissionAllocation": false,
-                  },
-                ],
-              },
-            },
-          }
-        }
-        formData={
-          Array [
-            Object {
-              "productRowId": 1,
-            },
-            Object {
-              "requiresEmissionAllocation": false,
-            },
-          ]
-        }
-        liveValidate={false}
-        noHtml5Validate={true}
-        noValidate={false}
-        omitExtraData={false}
-        onError={[Function]}
-        onSubmit={[MockFunction]}
-        schema={Object {}}
-        showErrorList={false}
-        transformErrors={[Function]}
-        uiSchema={Object {}}
-        validate={[Function]}
-        widgets={
-          Object {
-            "SearchWidget": [Function],
-          }
-        }
-      >
         <Button
           active={false}
           disabled={false}
