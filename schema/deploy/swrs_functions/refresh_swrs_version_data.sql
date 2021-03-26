@@ -50,6 +50,7 @@ begin
                 values (application_temp_row.id, 0, form_json_temp_row.form_id, (select default_form_result from ggircs_portal.form_json where id = form_json_temp_row.form_id));
             end if;
           end loop;
+          raise notice 'Created new swrs version (version 0) for application ID: %', application_temp_row.id;
 
       -- Do nothing if a swrs report does not exist
       elsif (report_imported_at is not null) then
@@ -78,6 +79,7 @@ begin
               end if;
             end if;
           end loop;
+          raise notice 'updated swrs version (version 0) for application ID: %', application_temp_row.id;
       end if;
     end loop;
 

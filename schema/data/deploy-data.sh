@@ -140,6 +140,12 @@ deployPortal() {
   popd
 }
 
+refreshSwrsVersions() {
+  echo "Refresh all outdated application swrs versions (version 0)"
+  _psql -c "select ggircs_portal_private.refresh_swrs_version_data()"
+  return 0
+}
+
 
 while [[ "$1" =~ ^- && ! "$1" == "--" ]]; do case $1 in
   -d | --drop-db )
@@ -167,6 +173,9 @@ while [[ "$1" =~ ^- && ! "$1" == "--" ]]; do case $1 in
     ;;
   -s | --deploy-swrs-schema )
     actions+=('deploySwrs')
+    ;;
+  -r | --refresh-swrs-versions )
+    actions+=('refreshSwrsVersions')
     ;;
   -h | --help )
     usage
@@ -244,4 +253,7 @@ fi
 if [[ " ${actions[*]} " =~ " deployDev " ]]; then
   echo 'Deploying development data'
   deployDevData
+fi
+if [[ " ${actions[*]} " =~ " refreshSwrsVersions " ]]; then
+  refreshSwrsVersions
 fi
