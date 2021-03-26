@@ -156,7 +156,6 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = (
             diffToResults={props.query.new.orderedFormResults.edges}
             formResult={node}
             query={props.query.query}
-            review={props.review}
             showDiff={showDiff}
             setHasErrors={props.setHasErrors}
           />

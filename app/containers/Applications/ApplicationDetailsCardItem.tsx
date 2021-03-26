@@ -1,16 +1,16 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {Button, Card, Collapse, Col, Row} from 'react-bootstrap';
 import {createFragmentContainer, graphql} from 'react-relay';
 import JsonSchemaForm, {AjvError, ErrorSchema} from '@rjsf/core';
 import {FormJson} from 'next-env';
 import {ApplicationDetailsCardItem_formResult} from '__generated__/ApplicationDetailsCardItem_formResult.graphql';
 import {ApplicationDetailsCardItem_query} from '__generated__/ApplicationDetailsCardItem_query.graphql';
-import diff from 'deep-diff';
 import customFields from 'components/Application/ApplicationDetailsCardItemCustomFields';
 import SummaryFormArrayFieldTemplate from 'containers/Forms/SummaryFormArrayFieldTemplate';
 import SummaryFormFieldTemplate from 'containers/Forms/SummaryFormFieldTemplate';
 import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
 import {customTransformErrors} from 'functions/customTransformErrors';
+import useJsonSchemaDiff from 'hooks/useJsonSchemaDiff';
 
 interface Props {
   // The form_result used by the fragment
@@ -23,8 +23,6 @@ interface Props {
   diffToResults?: any;
   // The query prop used by the fragment
   query: ApplicationDetailsCardItem_query;
-  // Boolean indicates whether this component is being rendered in a review page or not
-  review: boolean;
   // Boolean indicates whether or not to show the diff between selected versions
   showDiff: boolean;
   // Boolean indicates whether or not to liveValidate the results (true when rendered by the summary component)
@@ -40,7 +38,6 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
   diffFromResults,
   diffToResults,
   query,
-  review,
   showDiff,
   liveValidate,
   setHasErrors
@@ -70,94 +67,23 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
   // Expands or collapses the form_result card
   const [isOpen, setIsOpen] = useState(false);
 
-  let diffTo;
   // Select the correct form result to diff to by matching formJson slugs
-  diffToResults.forEach((result) => {
-    if (result.node.formJsonByFormId.slug === formJsonByFormId.slug)
-      diffTo = result;
-  });
+  const diffTo = diffToResults.find(
+    ({node}) => node.formJsonByFormId.slug === formJsonByFormId.slug
+  )?.formResult;
 
-  const [idDiffMap, setIdDiffMap] = useState<
-    Record<string, {lhs: any; rhs: any}>
-  >({});
-  const [formData, setFormData] = useState(
-    review ? diffTo.node.formResult : formResult.formResult
+  // Select the correct form result to diff from by matching formJson slugs
+  const diffFrom = diffFromResults.find(
+    ({node}) => node.formJsonByFormId.slug === formJsonByFormId.slug
+  )?.formResult;
+
+  const {formData, idDiffMap} = useJsonSchemaDiff(
+    formResult,
+    showDiff,
+    formIdPrefix,
+    diffFrom,
+    diffTo
   );
-  // The array of paths to each difference between diffFrom result & diffTo result (each path matches up with idSchema)
-  useEffect(() => {
-    const newIdDiffMap: Record<string, {lhs: any; rhs: any}> = {};
-    let newFormData = Array.isArray(formData) ? [...formData] : {...formData};
-    if (diffFromResults && showDiff) {
-      let diffFrom;
-      // Select the correct form result to diff from by matching formJson slugs
-      diffFromResults.forEach((result) => {
-        if (
-          diffFromResults.length > 0 &&
-          result.node.formJsonByFormId.slug === formJsonByFormId.slug
-        ) {
-          diffFrom = result.node.formResult;
-        }
-      });
-
-      const lhs = diffFrom;
-      const rhs = diffTo.node.formResult;
-      const differences = diff(lhs, rhs);
-
-      if (differences) {
-        // Populate the diffPathArray and diffArray
-        differences.forEach((difference) => {
-          if (difference.kind === 'A') {
-            // Array differences
-            const arrayElementPath = [
-              formIdPrefix,
-              ...(difference.path ?? []),
-              difference.index
-            ].join('_');
-            if (difference.item.kind === 'N') {
-              // Added an element to the array
-              Object.keys(difference.item.rhs).forEach((key) => {
-                newIdDiffMap[`${arrayElementPath}_${key}`] = {
-                  lhs: null,
-                  rhs: difference.item.rhs[key]
-                };
-              });
-            } else if (difference.item.kind === 'D') {
-              console.log(difference);
-              const deletedItem = {};
-              // Deleted an element from the array
-              Object.keys(difference.item.lhs).forEach((key) => {
-                deletedItem[key] = null;
-                newIdDiffMap[`${arrayElementPath}_${key}`] = {
-                  lhs: difference.item.lhs[key],
-                  rhs: null
-                };
-              });
-              if (Array.isArray(newFormData) && !difference.path) {
-                newFormData = [
-                  ...newFormData.slice(0, difference.index),
-                  difference.item.lhs,
-                  ...newFormData.slice(difference.index)
-                ];
-              }
-            }
-          } else if (difference.path) {
-            const {lhs, rhs} = difference;
-            newIdDiffMap[[formIdPrefix, ...difference.path].join('_')] = {
-              lhs,
-              rhs
-            };
-          }
-        });
-      }
-    }
-    setFormData(newFormData);
-    setIdDiffMap(newIdDiffMap);
-  }, [
-    formResult.formJsonByFormId.slug,
-    formResult.formResult,
-    diffFromResults,
-    showDiff
-  ]);
 
   const classTag = formJsonByFormId.slug;
   // Override submit button for each form with an empty fragment
