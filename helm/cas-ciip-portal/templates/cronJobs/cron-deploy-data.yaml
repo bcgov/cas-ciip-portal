@@ -69,4 +69,4 @@ spec:
                 - -c
                 - |
                   set -euo pipefail;
-                  schema/data/deploy-data.sh --oc-project=$(NAMESPACE);
+                  schema/data/deploy-data.sh -r --oc-project=$(NAMESPACE);
