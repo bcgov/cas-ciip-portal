@@ -1,4 +1,5 @@
 -- Deploy ggircs-portal:swrs_functions/refresh_swrs_version_data to pg
+-- requires: tables/form_json_001
 -- requires: tables/form_result
 -- requires: swrs_functions/init_application_administration_form_result
 -- requires: swrs_functions/init_application_emission_form_result
@@ -16,8 +17,8 @@ declare
   new_form_result jsonb;
   query text;
   empty_form_result jsonb;
-  temp_row record;
 begin
+
   for application_temp_row in select * from ggircs_portal.application
     loop
       report_imported_at := (select imported_at from swrs.report r where r.id = application_temp_row.report_id);
@@ -55,11 +56,11 @@ begin
 
         for form_json_temp_row in select form_id from ggircs_portal.ciip_application_wizard where is_active=true
           loop
-
-            if ((select updated_at from ggircs_portal.form_result fr
+            -- Compare timestamp (truncated to day) of form_result.updated_at to timestamp (truncated to day) of report.imported_at
+            if ((select date_trunc('day', updated_at) from ggircs_portal.form_result fr
                 where fr.form_id = form_json_temp_row.form_id
                 and fr.application_id = application_temp_row.id
-                and fr.version_number = 0) < report_imported_at)
+                and fr.version_number = 0) < date_trunc('day', report_imported_at))
             then
 
               select form_result_init_function from ggircs_portal.form_json fj where fj.id = form_json_temp_row.form_id into init_function;
@@ -84,6 +85,6 @@ end;
 
 $function$ language plpgsql volatile;
 
-comment on function ggircs_portal_private.refresh_swrs_version_data is 'This function updates the form results relating to the swrs version of an application (version 0) if the form results were updated prior to the import date of the report';
+comment on function ggircs_portal_private.refresh_swrs_version_data is 'This function updates the form results relating to the swrs version of an application (version 0) if the form results were updated prior to the import date of the report. Creates the form results for version 0 if it does not exist';
 
 commit;
