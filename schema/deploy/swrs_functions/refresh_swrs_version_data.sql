@@ -32,7 +32,7 @@ begin
             values (application_temp_row.id, 0);
           insert into ggircs_portal.application_revision_status(application_id, version_number, application_revision_status)
             values (application_temp_row.id, 0, 'submitted');
-          for form_json_temp_row in select form_id, default_form_result from ggircs_portal.ciip_application_wizard where is_active=true
+          for form_json_temp_row in select form_id from ggircs_portal.ciip_application_wizard where is_active=true
           loop
 
             select form_result_init_function from ggircs_portal.form_json fj where fj.id = form_json_temp_row.form_id into init_function;
@@ -46,7 +46,7 @@ begin
                 values (application_temp_row.id, 0, form_json_temp_row.form_id, new_form_result);
             else
               insert into ggircs_portal.form_result(application_id, version_number, form_id, form_result)
-                values (application_temp_row.id, 0, form_json_temp_row.form_id, form_json_temp_row.default_form_result);
+                values (application_temp_row.id, 0, form_json_temp_row.form_id, (select default_form_result from ggircs_portal.form_json where id = form_json_temp_row.form_id));
             end if;
           end loop;
 
