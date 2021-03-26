@@ -15,34 +15,69 @@ declare
   init_function varchar(1000);
   new_form_result jsonb;
   query text;
+  empty_form_result jsonb;
+  temp_row record;
 begin
-
   for application_temp_row in select * from ggircs_portal.application
     loop
-      report_imported_at := (select imported_at from swrs.report r where r.id = temp_row.report_id);
+      report_imported_at := (select imported_at from swrs.report r where r.id = application_temp_row.report_id);
 
-      for form_json_temp_row in select form_id from ggircs_portal.ciip_application_wizard where is_active=true
-        loop
-
-          if (select updated_at from ggircs_portal.form_result fr
-              where fr.form_id = form_json_temp_row.form_id
-              and fr.application_id = application_temp_row.id
-              and fr.version_number = 0) < report_imported_at
-          then
+      -- Create application_revision, status and form_results with version number = 0 if a report exists and the 0 version does not
+      if (report_imported_at is not null
+          and
+          (select application_id from ggircs_portal.application_revision
+          where application_id = application_temp_row.id and version_number = 0) is null
+      ) then
+          insert into ggircs_portal.application_revision(application_id, version_number)
+            values (application_temp_row.id, 0);
+          insert into ggircs_portal.application_revision_status(application_id, version_number, application_revision_status)
+            values (application_temp_row.id, 0, 'submitted');
+          for form_json_temp_row in select form_id, default_form_result from ggircs_portal.ciip_application_wizard where is_active=true
+          loop
 
             select form_result_init_function from ggircs_portal.form_json fj where fj.id = form_json_temp_row.form_id into init_function;
             if (init_function is not null) then
+
               query := format('select * from ggircs_portal.%I($1, $2);', init_function);
               execute query
                 using application_temp_row.facility_id, application_temp_row.reporting_year
                 into new_form_result;
-              update ggircs_portal.form_result fr set fr.form_result=new_form_result
-                where fr.application_id = application_temp_row.id
-                and fr.version_number = 0
-                and fr.form_id = form_json_temp_row.form_id;
+              insert into ggircs_portal.form_result(application_id, version_number, form_id, form_result)
+                values (application_temp_row.id, 0, form_json_temp_row.form_id, new_form_result);
+            else
+              insert into ggircs_portal.form_result(application_id, version_number, form_id, form_result)
+                values (application_temp_row.id, 0, form_json_temp_row.form_id, form_json_temp_row.default_form_result);
             end if;
-          end if;
-        end loop;
+          end loop;
+
+      -- Do nothing if a swrs report does not exist
+      elsif (report_imported_at is not null) then
+
+        for form_json_temp_row in select form_id from ggircs_portal.ciip_application_wizard where is_active=true
+          loop
+
+            if ((select updated_at from ggircs_portal.form_result fr
+                where fr.form_id = form_json_temp_row.form_id
+                and fr.application_id = application_temp_row.id
+                and fr.version_number = 0) < report_imported_at)
+            then
+
+              select form_result_init_function from ggircs_portal.form_json fj where fj.id = form_json_temp_row.form_id into init_function;
+              if (init_function is not null) then
+
+                query := format('select * from ggircs_portal.%I($1, $2);', init_function);
+                execute query
+                  using application_temp_row.facility_id, application_temp_row.reporting_year
+                  into new_form_result;
+
+                update ggircs_portal.form_result fr set form_result=new_form_result
+                  where fr.application_id = application_temp_row.id
+                  and fr.version_number = 0
+                  and fr.form_id = form_json_temp_row.form_id;
+              end if;
+            end if;
+          end loop;
+      end if;
     end loop;
 
 end;
