@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(15);
+select plan(16);
 
 -- Table exists
 select has_table(
@@ -11,6 +11,25 @@ select has_table(
   'ggircs_portal.form_json should exist, and be a table'
 );
 
+-- Columns
+select columns_are('ggircs_portal'::name, 'form_json'::name, array[
+  'id'::name,
+  'name'::name,
+  'slug'::name,
+  'short_name'::name,
+  'description'::name,
+  'form_json'::name,
+  'created_at'::name,
+  'created_by'::name,
+  'updated_at'::name,
+  'updated_by'::name,
+  'deleted_at'::name,
+  'deleted_by'::name,
+  'prepopulate_from_ciip'::name,
+  'prepopulate_from_swrs'::name,
+  'form_result_init_function'::name,
+  'default_form_result'::name
+]);
 
 -- Row level security tests --
 

@@ -15,25 +15,26 @@ create temporary table production (json_data jsonb);
 
 with rows as (
 insert into ggircs_portal.form_json
-  (id, name, slug, short_name, description, form_json, prepopulate_from_swrs, prepopulate_from_ciip, form_result_init_function)
+  (id, name, slug, short_name, description, form_json, prepopulate_from_swrs, prepopulate_from_ciip, form_result_init_function, default_form_result)
   overriding system value
 values
   (1,
   'Administration Data', 'admin', 'Admin data', 'Admin description',
-  (select json_data from administration), true, true, 'init_application_administration_form_result'),
+  (select json_data from administration), true, true, 'init_application_administration_form_result', '{}'),
   (2, 'Emission', 'emission', 'Emission', 'Emission description',
-  (select json_data from emission), true, false, 'init_application_emission_form_result'),
+  (select json_data from emission), true, false, 'init_application_emission_form_result', '{}'),
   (3, 'Fuel','fuel', 'Fuel', 'Fuel description',
-  (select json_data from fuel), true, false, 'init_application_fuel_form_result'),
+  (select json_data from fuel), true, false, 'init_application_fuel_form_result', '[]'),
   (4, 'Production', 'production', 'Production', 'Production description',
-  (select json_data from production), false, false, null)
+  (select json_data from production), false, false, null, '[]')
 on conflict(id) do update
 set name=excluded.name, form_json=excluded.form_json,
     prepopulate_from_ciip=excluded.prepopulate_from_ciip,
     prepopulate_from_swrs=excluded.prepopulate_from_swrs,
     slug=excluded.slug,
     short_name=excluded.short_name,
-    description=excluded.description
+    description=excluded.description,
+    default_form_result=excluded.default_form_result
 returning 1
 ) select 'Inserted ' || count(*) || ' rows into ggircs_portal.form_json' from rows;
 

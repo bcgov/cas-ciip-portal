@@ -285,4 +285,4 @@ trigger_functions/run_graphile_worker_job [trigger_functions/run_graphile_worker
 tables/certification_url_001 [tables/certification_url] 2021-03-15T21:50:02Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # dropping triggers for removed functions
 trigger_functions/signature_md5 [trigger_functions/signature_md5@v1.16.0] 2021-03-15T22:58:28Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # removing since we don't certify applications anymore
 trigger_functions/set_user_id [trigger_functions/set_user_id@v1.16.0] 2021-03-15T23:10:29Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # removing certification option
-swrs_functions/refresh_swrs_version_data [tables/form_result swrs_functions/init_application_administration_form_result swrs_functions/init_application_emission_form_result swrs_functions/init_application_fuel_form_result] 2021-03-24T23:42:37Z Dylan Leard <dylan@button.is> # Function refreshes the swrs version (version 0) of an application with updated data from swrs
+tables/form_json_001 [tables/form_json] 2021-03-26T20:02:39Z Dylan Leard <dylan@button.is> # Migration: add a default_form_result column to define the shape of an empty form result
