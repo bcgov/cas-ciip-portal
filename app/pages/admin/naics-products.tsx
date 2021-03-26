@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
 import {graphql} from 'react-relay';
+import {naicsProductsAssociationsQueryResponse} from 'naicsProductsAssociationsQuery.graphql';
 import DefaultLayout from 'layouts/default-layout';
 import {ADMIN_GROUP} from 'data/group-constants';
-import NaicsCodeList from 'containers/Admin/NaicsCode/NaicsCodeList';
+import NaicsCodeProductAssociationComponent from 'containers/Admin/NaicsCodeProduct/NaicsCodeProductAssociation';
 
 const ALLOWED_GROUPS = ADMIN_GROUP;
 
 interface Props {
-  query: naicsCodesProductsQueryResponse['query'];
+  query: naicsProductsAssociationsQueryResponse['query'];
 }
 
 class NaicsProductsAssociations extends Component<Props> {
@@ -16,7 +17,7 @@ class NaicsProductsAssociations extends Component<Props> {
   static query = graphql`
     query naicsProductsAssociationsQuery {
       query {
-        ...NaicsCodeList_query
+        ...NaicsCodeProductAssociation_query
         session {
           ...defaultLayout_session
         }
@@ -31,8 +32,7 @@ class NaicsProductsAssociations extends Component<Props> {
         session={query.session}
         title="Allowable Products by Industry (NAICS)"
       >
-        <h1>NAICS AND PRODUCTS</h1>
-        <NaicsCodeList query={query} />
+        <NaicsCodeProductAssociationComponent query={query} />
       </DefaultLayout>
     );
   }
