@@ -1,35 +1,32 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`The Naics Field custom field Displays (<code> - <industry> - <description>) when the form data contains a 6-digit NAICS code 1`] = `
-Array [
-  <select
-    autoFocus={false}
-    className="form-control"
-    disabled={false}
-    id={null}
-    onBlur={[Function]}
-    onChange={[Function]}
-    required={false}
+exports[`The Naics Field custom field Displays (<code> - <description>) when the form data contains a 6-digit NAICS code 1`] = `
+<select
+  autoFocus={false}
+  className="form-control"
+  disabled={false}
+  id={null}
+  onBlur={[Function]}
+  onChange={[Function]}
+  required={false}
+  value="222222"
+>
+  <option
+    value=""
+  />
+  <option
+    key="0"
+    value="111111"
+  >
+    111111 - Javascript
+  </option>
+  <option
+    key="1"
     value="222222"
   >
-    <option
-      value=""
-    />
-    <option
-      key="0"
-      value="111111"
-    >
-      111111 - Software - Javascript
-    </option>
-    <option
-      key="1"
-      value="222222"
-    >
-      222222 - Software - Typescript
-    </option>
-  </select>,
-  "",
-]
+    222222 - Typescript
+  </option>
+</select>
 `;
 
 exports[`The Naics Field custom field Displays an alert if the current form data doesn't contain an allowed NAICS code 1`] = `
@@ -51,13 +48,13 @@ Array [
       key="0"
       value="111111"
     >
-      111111 - Software - Javascript
+      111111 - Javascript
     </option>
     <option
       key="1"
       value="222222"
     >
-      222222 - Software - Typescript
+      222222 - Typescript
     </option>
   </select>,
   <Alert
@@ -102,33 +99,30 @@ Array [
 `;
 
 exports[`The Naics Field custom field Displays the list of returned NAICS codes as a dropdown 1`] = `
-Array [
-  <select
-    autoFocus={false}
-    className="form-control"
-    disabled={false}
-    id={null}
-    onBlur={[Function]}
-    onChange={[Function]}
-    required={false}
+<select
+  autoFocus={false}
+  className="form-control"
+  disabled={false}
+  id={null}
+  onBlur={[Function]}
+  onChange={[Function]}
+  required={false}
+  value=""
+>
+  <option
     value=""
+  />
+  <option
+    key="0"
+    value="111111"
   >
-    <option
-      value=""
-    />
-    <option
-      key="0"
-      value="111111"
-    >
-      111111 - Software - Javascript
-    </option>
-    <option
-      key="1"
-      value="222222"
-    >
-      222222 - Software - Typescript
-    </option>
-  </select>,
-  "",
-]
+    111111 - Javascript
+  </option>
+  <option
+    key="1"
+    value="222222"
+  >
+    222222 - Typescript
+  </option>
+</select>
 `;

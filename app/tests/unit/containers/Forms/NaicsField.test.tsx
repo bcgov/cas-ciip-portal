@@ -11,18 +11,14 @@ describe('The Naics Field custom field', () => {
       edges: [
         {
           node: {
-            rowId: 123,
             naicsCode: '111111',
-            naicsDescription: 'Javascript',
-            ciipSector: 'Software'
+            naicsDescription: 'Javascript'
           }
         },
         {
           node: {
-            rowId: 124,
             naicsCode: '222222',
-            naicsDescription: 'Typescript',
-            ciipSector: 'Software'
+            naicsDescription: 'Typescript'
           }
         }
       ]
@@ -44,7 +40,7 @@ describe('The Naics Field custom field', () => {
     expect(componentUnderTest).toMatchSnapshot();
   });
 
-  it('Displays (<code> - <industry> - <description>) when the form data contains a 6-digit NAICS code', () => {
+  it('Displays (<code> - <description>) when the form data contains a 6-digit NAICS code', () => {
     const props = {
       ...initialProps,
       formData: '222222'

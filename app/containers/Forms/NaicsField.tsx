@@ -1,5 +1,5 @@
 import {FieldProps} from '@rjsf/core';
-import React from 'react';
+import React, {useMemo} from 'react';
 import {Alert} from 'react-bootstrap';
 import {createFragmentContainer, graphql} from 'react-relay';
 import {NaicsField_query} from '__generated__/NaicsField_query.graphql';
@@ -9,19 +9,25 @@ interface Props extends FieldProps<string> {
 }
 
 export const NaicsFieldComponent: React.FunctionComponent<Props> = (props) => {
-  const naicsList = props.query.naicsCodes.edges.map(
-    (edge) => edge.node.naicsCode
+  const naicsList = useMemo(
+    () => props.query.naicsCodes.edges.map((edge) => edge.node.naicsCode),
+    [props.query.naicsCodes]
+  );
+  const naicsDisplayList = useMemo(
+    () =>
+      props.query.naicsCodes.edges.map(
+        (edge) => `${edge.node.naicsCode} - ${edge.node.naicsDescription}`
+      ),
+    [props.query.naicsCodes]
   );
 
   const fieldProps = {
     ...props,
+    query: undefined,
     schema: {
       ...props.schema,
       enum: naicsList,
-      enumNames: props.query.naicsCodes.edges.map((edge) => {
-        const naicsCode = edge.node;
-        return `${naicsCode.naicsCode} - ${naicsCode.ciipSector} - ${naicsCode.naicsDescription}`;
-      })
+      enumNames: naicsDisplayList
     }
   };
 
@@ -32,9 +38,7 @@ export const NaicsFieldComponent: React.FunctionComponent<Props> = (props) => {
         list of valid codes for this program. Please refer to the guidance
         documents and select an appropriate NAICS code.
       </Alert>
-    ) : (
-      <></>
-    );
+    ) : null;
 
   return (
     <>
@@ -50,10 +54,8 @@ export default createFragmentContainer(NaicsFieldComponent, {
       naicsCodes: allNaicsCodes {
         edges {
           node {
-            rowId
             naicsCode
             naicsDescription
-            ciipSector
           }
         }
       }
