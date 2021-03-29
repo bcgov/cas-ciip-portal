@@ -1,18 +1,20 @@
 import React from 'react';
-import {Button, Form, Modal, Container, Col, Row} from 'react-bootstrap';
+import {Button, Form, Modal, Container, Col, Row, Alert} from 'react-bootstrap';
 
 interface Props {
   validated: boolean;
   onSubmit: (e: React.SyntheticEvent<any>) => Promise<void>;
   show: boolean;
   onClose: () => void;
+  showActiveCodeError: boolean;
 }
 
 export const CreateNaicsCodeModal: React.FunctionComponent<Props> = ({
   validated,
   onSubmit,
   show,
-  onClose
+  onClose,
+  showActiveCodeError
 }) => {
   return (
     <>
@@ -53,6 +55,12 @@ export const CreateNaicsCodeModal: React.FunctionComponent<Props> = ({
                   NAICS Description is required
                 </Form.Control.Feedback>
               </Form.Group>
+              {showActiveCodeError && (
+                <Alert variant="danger">
+                  This NAICS code already exists. Please delete the currently
+                  active code before entering new information
+                </Alert>
+              )}
               <Button variant="primary" type="submit">
                 Submit
               </Button>

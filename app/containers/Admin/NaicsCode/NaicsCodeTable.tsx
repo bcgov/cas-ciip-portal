@@ -16,7 +16,20 @@ export const NaicsCodeTableContainer: React.FunctionComponent<Props> = (
 ) => {
   const [validated, setValidated] = useState(false);
   const [showCreateModal, setShowCreateModal] = useState(false);
+  const [showActiveCodeError, setShowActiveCodeError] = useState(false);
   const {query} = props;
+
+  const handleClose = () => {
+    setShowCreateModal(false);
+    setValidated(false);
+    setShowActiveCodeError(false);
+  };
+
+  const naicsCodeIsActive = (naicsCode) => {
+    return query.allNaicsCodes.edges.some(
+      (edge) => edge.node.naicsCode === naicsCode
+    );
+  };
 
   const handleCreateNaicsCode = async (e: React.SyntheticEvent<any>) => {
     const form = e.currentTarget;
@@ -24,7 +37,9 @@ export const NaicsCodeTableContainer: React.FunctionComponent<Props> = (
     e.preventDefault();
     e.persist();
     setValidated(true);
-    if (form.checkValidity() === true) {
+
+    if (naicsCodeIsActive(e.target[0].value)) setShowActiveCodeError(true);
+    else if (form.checkValidity() === true) {
       const {environment} = props.relay;
       const variables = {
         input: {
@@ -38,7 +53,7 @@ export const NaicsCodeTableContainer: React.FunctionComponent<Props> = (
       } catch (e) {
         console.error(e);
       }
-      setShowCreateModal(false);
+      handleClose();
     }
   };
 
@@ -49,14 +64,15 @@ export const NaicsCodeTableContainer: React.FunctionComponent<Props> = (
           style={{marginTop: '-100px'}}
           onClick={() => setShowCreateModal(true)}
         >
-          New Naics Code
+          New NAICS Code
         </Button>
       </div>
       <CreateNaicsCodeModal
         validated={validated}
         onSubmit={handleCreateNaicsCode}
         show={showCreateModal}
-        onClose={() => setShowCreateModal(false)}
+        onClose={() => handleClose()}
+        showActiveCodeError={showActiveCodeError}
       />
       <Table striped bordered hover>
         <thead>
@@ -101,6 +117,7 @@ export default createFragmentContainer(NaicsCodeTableContainer, {
         edges {
           node {
             id
+            naicsCode
             ...NaicsCodeTableRow_naicsCode
           }
         }

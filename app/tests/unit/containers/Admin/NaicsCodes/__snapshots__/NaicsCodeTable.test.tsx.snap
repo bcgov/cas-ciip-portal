@@ -21,13 +21,14 @@ exports[`NaicsCodeTable should match the snapshot with the NaicsCodeTable contai
       }
       variant="primary"
     >
-      New Naics Code
+      New NAICS Code
     </Button>
   </div>
   <CreateNaicsCodeModal
     onClose={[Function]}
     onSubmit={[Function]}
     show={false}
+    showActiveCodeError={false}
     validated={false}
   />
   <ForwardRef
