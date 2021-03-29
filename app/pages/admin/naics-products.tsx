@@ -15,15 +15,24 @@ class NaicsProductsAssociations extends Component<Props> {
   static allowedGroups = ALLOWED_GROUPS;
   static isAccessProtected = true;
   static query = graphql`
-    query naicsProductsAssociationsQuery {
+    query naicsProductsAssociationsQuery($naicsCodeId: ID!) {
       query {
         ...NaicsCodeProductAssociation_query
+          @arguments(naicsCodeId: $naicsCodeId)
         session {
           ...defaultLayout_session
         }
       }
     }
   `;
+
+  static async getInitialProps() {
+    return {
+      variables: {
+        naicsCodeId: ''
+      }
+    };
+  }
 
   render() {
     const {query} = this.props;

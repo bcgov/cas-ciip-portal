@@ -1,9 +1,11 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Card, Col, Row} from 'react-bootstrap';
 import {NaicsCodeList} from 'components/Admin/NaicsCodeProduct/NaicsCodeList';
 import {createFragmentContainer, graphql} from 'react-relay';
 import {NaicsCodeProductAssociation_query} from '__generated__/NaicsCodeProductAssociation_query.graphql';
 import AllowableProductsSearch from './AllowableProductsSearch';
+import {useRouter} from 'next/router';
+import AllowableProductsTable from './AllowableProductsTable';
 
 interface Props {
   query: NaicsCodeProductAssociation_query;
@@ -12,13 +14,16 @@ interface Props {
 export const NaicsCodeProductAssociationContainer: React.FunctionComponent<Props> = ({
   query
 }) => {
-  const [currentNaics, setCurrentNaics] = useState('');
-
-  const naicsCodes = Object.fromEntries(
-    query.allNaicsCodes?.edges.map((e) => [
-      e.node.naicsCode,
-      e.node.naicsDescription
-    ])
+  const naicsCodes = query.allNaicsCodes?.edges.map((e) => {
+    return {
+      code: e.node.naicsCode,
+      id: e.node.id,
+      description: e.node.naicsDescription
+    };
+  });
+  const router = useRouter();
+  const currentNaics = naicsCodes.find(
+    (code) => code.id === router.query.naicsCodeId
   );
 
   return (
@@ -29,10 +34,7 @@ export const NaicsCodeProductAssociationContainer: React.FunctionComponent<Props
             <Card.Header className="bc-card-header">
               Select an Industry (NAICS) code:
             </Card.Header>
-            <NaicsCodeList
-              naicsCodes={naicsCodes}
-              selectionChanged={(naics) => setCurrentNaics(naics)}
-            />
+            <NaicsCodeList naicsCodes={naicsCodes} />
           </Card>
         </Col>
         <Col md="8">
@@ -41,7 +43,7 @@ export const NaicsCodeProductAssociationContainer: React.FunctionComponent<Props
               <Row>
                 <Col md="12">
                   <h3>
-                    {naicsCodes[currentNaics]} - {currentNaics}
+                    {currentNaics.code} - {currentNaics.description}
                   </h3>
                 </Col>
               </Row>
@@ -55,6 +57,12 @@ export const NaicsCodeProductAssociationContainer: React.FunctionComponent<Props
                       console.log({a, b});
                     }}
                   />
+                </Col>
+              </Row>
+              <br />
+              <Row>
+                <Col md="12">
+                  <AllowableProductsTable query={query.naicsCode} />
                 </Col>
               </Row>
             </>
@@ -80,15 +88,19 @@ export const NaicsCodeProductAssociationContainer: React.FunctionComponent<Props
 
 export default createFragmentContainer(NaicsCodeProductAssociationContainer, {
   query: graphql`
-    fragment NaicsCodeProductAssociation_query on Query {
+    fragment NaicsCodeProductAssociation_query on Query
+    @argumentDefinitions(naicsCodeId: {type: "ID!"}) {
       ...AllowableProductsSearch_query
+      naicsCode(id: $naicsCodeId) {
+        ...AllowableProductsTable_query
+      }
       allNaicsCodes(
         filter: {deletedAt: {isNull: true}}
         orderBy: NAICS_CODE_ASC
       ) {
         edges {
           node {
-            rowId
+            id
             naicsCode
             naicsDescription
           }

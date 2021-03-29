@@ -1,36 +1,29 @@
-import React, {useState} from 'react';
+import Link from 'next/link';
+import {useRouter} from 'next/router';
+import React from 'react';
 import {ListGroup} from 'react-bootstrap';
 
 interface Props {
-  naicsCodes: {
-    [code: string]: string;
-  };
-  selectionChanged: (naics: string) => void;
+  naicsCodes: {code: string; description: string; id: string}[];
 }
 
-export const NaicsCodeList: React.FunctionComponent<Props> = ({
-  naicsCodes,
-  selectionChanged
-}) => {
-  const [activeNaics, setActiveNaics] = useState('');
-
-  const onClick = (naics: string) => {
-    setActiveNaics(naics);
-    selectionChanged(naics);
-  };
+export const NaicsCodeList: React.FunctionComponent<Props> = ({naicsCodes}) => {
+  const router = useRouter();
 
   return (
     <ListGroup variant="flush">
-      {Object.entries(naicsCodes).map(([code, description]) => (
-        <ListGroup.Item
-          key={code}
-          onClick={() => onClick(code)}
-          active={activeNaics === code}
+      {naicsCodes.map(({code, description, id}) => (
+        <Link
+          key={id}
+          prefetch={false}
+          href={{pathname: router.pathname, query: {naicsCodeId: id}}}
         >
-          <b>{code}</b>
-          <br />
-          <small>{description}</small>
-        </ListGroup.Item>
+          <ListGroup.Item active={router.query?.naicsCodeId === id}>
+            <b>{code}</b>
+            <br />
+            <small>{description}</small>
+          </ListGroup.Item>
+        </Link>
       ))}
     </ListGroup>
   );

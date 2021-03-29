@@ -1,6 +1,8 @@
 import React from 'react';
+import {Alert, Button, Table} from 'react-bootstrap';
 import {createFragmentContainer, graphql} from 'react-relay';
 import {AllowableProductsTable_query} from '__generated__/AllowableProductsTable_query.graphql';
+import {faCheck} from '@fortawesome/free-solid-svg-icons';
 
 interface Props {
   query: AllowableProductsTable_query;
@@ -9,11 +11,49 @@ interface Props {
 export const AllowableProductsTableComponent: React.FunctionComponent<Props> = (
   props
 ) => {
+  if (props.query.productNaicsCodesByNaicsCodeId.edges.length === 0) {
+    return (
+      <Alert variant="secondary" id="no-search-results">
+        No allowed products have been set for this NAICS code.
+      </Alert>
+    );
+  }
+
   return (
     <>
-      {props.query.productNaicsCodesByNaicsCodeId.edges.map((e) => (
-        <p>{e.node.productByProductId.productName}</p>
-      ))}
+      <Table striped bordered hover>
+        <thead>
+          <tr>
+            <th scope="col">Product Name</th>
+            <th scope="col">Mandatory</th>
+            <th scope="col" />
+          </tr>
+        </thead>
+        <tbody>
+          {props.query.productNaicsCodesByNaicsCodeId.edges.map((e) => (
+            <tr>
+              <td>{e.node.productByProductId.productName}</td>
+              <td className="centered">
+                {e.node.isMandatory ? <b>{faCheck} Yes</b> : 'No'}
+              </td>
+              <td className="centered">
+                <Button variant="outline-danger" size="sm">
+                  Delete
+                </Button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </Table>
+      <style jsx global>{`
+        .table thead th {
+          color: white;
+          background: #003366;
+        }
+        .table td.centered {
+          text-align: center;
+        }
+      `}</style>
     </>
   );
 };
@@ -21,8 +61,6 @@ export const AllowableProductsTableComponent: React.FunctionComponent<Props> = (
 export default createFragmentContainer(AllowableProductsTableComponent, {
   query: graphql`
     fragment AllowableProductsTable_query on NaicsCode {
-      rowId
-      naicsCode
       productNaicsCodesByNaicsCodeId {
         edges {
           node {

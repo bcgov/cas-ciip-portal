@@ -1,29 +1,8 @@
-import {JSONSchema7} from 'json-schema';
-import JsonSchemaForm, {UiSchema} from '@rjsf/core';
-import React, {useState} from 'react';
-import {Button, Card} from 'react-bootstrap';
+import React from 'react';
+import {Button, Card, Col, Row} from 'react-bootstrap';
 import {createFragmentContainer, graphql} from 'react-relay';
-import SearchDropdownWidget from 'components/Forms/SearchDropdownWidget';
 import {AllowableProductsSearch_query} from '__generated__/AllowableProductsSearch_query.graphql';
-import ProductRowIdField from 'containers/Forms/ProductRowIdField';
-
-const schema: JSONSchema7 = {
-  type: 'object',
-  properties: {
-    productRowId: {
-      type: 'integer'
-    }
-  }
-};
-
-const uiSchema: UiSchema = {
-  productRowId: {
-    'ui:col-md': 8,
-    'ui:widget': 'SearchWidget',
-    'ui:field': 'productRowId',
-    'ui:placeholder': 'Search Products...'
-  }
-};
+import SearchDropdownComponent from 'components/SearchDropdown';
 
 interface Props {
   query: AllowableProductsSearch_query;
@@ -35,18 +14,14 @@ interface Props {
 export const AllowableProductsSearchContainer: React.FunctionComponent<Props> = (
   props
 ) => {
-  const [selectedProductId] = useState<number>(undefined);
+  const onAddClick = () => {};
 
-  const CUSTOM_FIELDS = {
-    productRowId: (props) => {
-      return <ProductRowIdField query={props.formContext.query} {...props} />;
-    }
-  };
-
-  const onAddClick = (mandatory: boolean) => {
-    if (selectedProductId !== undefined)
-      props.addAllowedProduct(selectedProductId, mandatory);
-  };
+  const typeaheadOptions = props.query?.allProducts?.edges.map((e) => {
+    return {
+      id: e.node.id,
+      name: e.node.productName
+    };
+  });
 
   return (
     <Card>
@@ -54,17 +29,28 @@ export const AllowableProductsSearchContainer: React.FunctionComponent<Props> = 
         Add an Allowed Product
       </Card.Header>
       <Card.Body>
-        <JsonSchemaForm
-          formContext={{query: props.query}}
-          formData={{productRowId: undefined}}
-          fields={CUSTOM_FIELDS}
-          widgets={{SearchWidget: SearchDropdownWidget}}
-          schema={schema}
-          uiSchema={uiSchema}
-        >
-          <Button onClick={() => onAddClick(true)}>Add Mandatory</Button>
-          <Button onClick={() => onAddClick(false)}>Add Optional</Button>
-        </JsonSchemaForm>
+        <Row>
+          <Col className="text-right mb-2">
+            Is reporting this product required?
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <SearchDropdownComponent
+              id="product-naics-search"
+              inputProps={{id: 'product-naics-search-typeahead'}}
+              options={typeaheadOptions}
+              onChange={() => {}}
+              placeholder="Search Products ..."
+            />
+          </Col>
+          <Col md="auto">
+            <Button onClick={() => onAddClick(true)}>Add as Mandatory</Button>{' '}
+            <Button variant="secondary" onClick={() => onAddClick(false)}>
+              Add as Optional
+            </Button>
+          </Col>
+        </Row>
       </Card.Body>
     </Card>
   );
@@ -73,7 +59,14 @@ export const AllowableProductsSearchContainer: React.FunctionComponent<Props> = 
 export default createFragmentContainer(AllowableProductsSearchContainer, {
   query: graphql`
     fragment AllowableProductsSearch_query on Query {
-      ...ProductRowIdField_query
+      allProducts(filter: {productState: {equalTo: PUBLISHED}}) {
+        edges {
+          node {
+            id
+            productName
+          }
+        }
+      }
     }
   `
 });
