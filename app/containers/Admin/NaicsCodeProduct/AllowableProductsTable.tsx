@@ -3,6 +3,7 @@ import {Alert, Button, Table} from 'react-bootstrap';
 import {createFragmentContainer, graphql} from 'react-relay';
 import {AllowableProductsTable_query} from '__generated__/AllowableProductsTable_query.graphql';
 import {faCheck} from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
 interface Props {
   query: AllowableProductsTable_query;
@@ -11,7 +12,7 @@ interface Props {
 export const AllowableProductsTableComponent: React.FunctionComponent<Props> = (
   props
 ) => {
-  if (props.query.productNaicsCodesByNaicsCodeId.edges.length === 0) {
+  if (!props.query?.productNaicsCodesByNaicsCodeId.edges.length) {
     return (
       <Alert variant="secondary" id="no-search-results">
         No allowed products have been set for this NAICS code.
@@ -25,7 +26,9 @@ export const AllowableProductsTableComponent: React.FunctionComponent<Props> = (
         <thead>
           <tr>
             <th scope="col">Product Name</th>
-            <th scope="col">Mandatory</th>
+            <th scope="col" className="centered">
+              Mandatory
+            </th>
             <th scope="col" />
           </tr>
         </thead>
@@ -34,7 +37,14 @@ export const AllowableProductsTableComponent: React.FunctionComponent<Props> = (
             <tr>
               <td>{e.node.productByProductId.productName}</td>
               <td className="centered">
-                {e.node.isMandatory ? <b>{faCheck} Yes</b> : 'No'}
+                {e.node.isMandatory ? (
+                  <>
+                    <FontAwesomeIcon icon={faCheck} />
+                    <b> Yes</b>
+                  </>
+                ) : (
+                  'No'
+                )}
               </td>
               <td className="centered">
                 <Button variant="outline-danger" size="sm">
@@ -50,7 +60,8 @@ export const AllowableProductsTableComponent: React.FunctionComponent<Props> = (
           color: white;
           background: #003366;
         }
-        .table td.centered {
+        .table td.centered,
+        .table th.centered {
           text-align: center;
         }
       `}</style>
