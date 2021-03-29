@@ -2,7 +2,9 @@ import React, {useState} from 'react';
 import {ListGroup} from 'react-bootstrap';
 
 interface Props {
-  naicsCodes: string[];
+  naicsCodes: {
+    [code: string]: string;
+  };
   selectionChanged: (naics: string) => void;
 }
 
@@ -19,12 +21,15 @@ export const NaicsCodeList: React.FunctionComponent<Props> = ({
 
   return (
     <ListGroup variant="flush">
-      {naicsCodes.map((code) => (
+      {Object.entries(naicsCodes).map(([code, description]) => (
         <ListGroup.Item
+          key={code}
           onClick={() => onClick(code)}
           active={activeNaics === code}
         >
-          {code}
+          <b>{code}</b>
+          <br />
+          <small>{description}</small>
         </ListGroup.Item>
       ))}
     </ListGroup>
