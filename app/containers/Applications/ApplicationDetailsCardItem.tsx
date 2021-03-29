@@ -68,14 +68,14 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
   const [isOpen, setIsOpen] = useState(false);
 
   // Select the correct form result to diff to by matching formJson slugs
-  const diffTo = diffToResults.find(
+  const diffTo = diffToResults?.find(
     ({node}) => node.formJsonByFormId.slug === formJsonByFormId.slug
-  )?.formResult;
+  )?.node.formResult;
 
   // Select the correct form result to diff from by matching formJson slugs
-  const diffFrom = diffFromResults.find(
+  const diffFrom = diffFromResults?.find(
     ({node}) => node.formJsonByFormId.slug === formJsonByFormId.slug
-  )?.formResult;
+  )?.node.formResult;
 
   const {formData, idDiffMap} = useJsonSchemaDiff(
     formResult,
