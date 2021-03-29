@@ -26,13 +26,9 @@ export const NaicsCodeTableContainer: React.FunctionComponent<Props> = (
   };
 
   const naicsCodeIsActive = (naicsCode) => {
-    let codeExists = false;
-    query.allNaicsCodes.edges.forEach((edge) => {
-      if (edge.node.naicsCode === naicsCode) {
-        codeExists = true;
-      }
-    });
-    return codeExists;
+    return query.allNaicsCodes.edges.some(
+      (edge) => edge.node.naicsCode === naicsCode
+    );
   };
 
   const handleCreateNaicsCode = async (e: React.SyntheticEvent<any>) => {
@@ -40,10 +36,10 @@ export const NaicsCodeTableContainer: React.FunctionComponent<Props> = (
     e.stopPropagation();
     e.preventDefault();
     e.persist();
+    setValidated(true);
 
     if (naicsCodeIsActive(e.target[0].value)) setShowActiveCodeError(true);
     else if (form.checkValidity() === true) {
-      setValidated(true);
       const {environment} = props.relay;
       const variables = {
         input: {
