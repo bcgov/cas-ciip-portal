@@ -90,29 +90,13 @@ exports[`ApplicationDetailsCardItemComponent should render the individual summar
             "showDiff": undefined,
           }
         }
-        formData={
-          Object {
-            " $refType": "ApplicationDetailsCardItem_formResult",
-            "formJsonByFormId": Object {
-              "formJson": Object {
-                "schema": Object {
-                  "title": "Fuel UsageCollapse",
-                },
-                "uiSchema": Object {},
-              },
-              "name": "Fuel Usage",
-              "slug": "fuel",
-            },
-            "formResult": Object {},
-          }
-        }
+        formData={Object {}}
         idPrefix="fuel-usage"
         liveOmit={true}
         liveValidate={false}
         noHtml5Validate={false}
         noValidate={false}
         omitExtraData={true}
-        onChange={[Function]}
         schema={
           Object {
             "title": "Fuel UsageCollapse",

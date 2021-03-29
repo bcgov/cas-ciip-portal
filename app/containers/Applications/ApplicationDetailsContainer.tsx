@@ -19,7 +19,6 @@ interface Props {
   review: boolean;
   // Boolean indicates whether or not this item is being rendered by the summary component & should be liveValidated
   liveValidate: boolean;
-  setHasErrors?: (...args: any[]) => void;
   setApplicationDetailsRendered?: (boolean) => void;
 }
 
@@ -157,7 +156,6 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = (
             formResult={node}
             query={props.query.query}
             showDiff={showDiff}
-            setHasErrors={props.setHasErrors}
           />
         ))}
       </div>

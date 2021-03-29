@@ -1,11 +1,13 @@
-import React, {useState} from 'react';
+import React, {useState, useMemo} from 'react';
 import {Card} from 'react-bootstrap';
+import validateJsonSchema from '@rjsf/core/dist/cjs/validate';
 import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
 import SubmitApplication from 'components/SubmitApplication';
 import {ApplicationWizardConfirmation_query} from 'ApplicationWizardConfirmation_query.graphql';
 import {ApplicationWizardConfirmation_application} from 'ApplicationWizardConfirmation_application.graphql';
 import ApplicationDetailsContainer from './ApplicationDetailsContainer';
 import ApplicationOverrideJustification from 'components/Application/ApplicationOverrideJustification';
+import {FormJson} from 'next-env';
 
 /*
  * The ApplicationWizardConfirmation renders a summary of the data submitted in the application,
@@ -18,12 +20,29 @@ interface Props {
   relay: RelayProp;
 }
 
-export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Props> = (
-  props
-) => {
-  // State of hasErrors is set to null until the child component ApplicationDetailsContainer returns a valid true/false decision
-  const [hasErrors, setHasErrors] = useState(false);
-  const revision = props.application.latestDraftRevision;
+export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Props> = ({
+  application,
+  query
+}) => {
+  const hasErrors = useMemo(() => {
+    return application.orderedFormResults.edges.some(
+      ({node: {formResult, formJsonByFormId}}) => {
+        const {schema, customFormats} = formJsonByFormId.formJson as FormJson;
+
+        const {errors} = validateJsonSchema(
+          formResult,
+          schema,
+          undefined,
+          undefined,
+          undefined,
+          customFormats
+        );
+        return errors.length > 0;
+      }
+    );
+  }, [application]);
+
+  const revision = application.latestDraftRevision;
   const [overrideActive, setOverrideActive] = useState(
     revision.overrideJustification !== null
   );
@@ -42,18 +61,17 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
         overrideActive={overrideActive}
         setOverrideActive={setOverrideActive}
         applicationOverrideJustification={
-          props.application.latestDraftRevision.overrideJustification
+          application.latestDraftRevision.overrideJustification
         }
-        revisionId={props.application.latestDraftRevision.id}
+        revisionId={application.latestDraftRevision.id}
         hasErrors={hasErrors}
         applicationDetailsRendered={applicationDetailsRendered}
       />
       <ApplicationDetailsContainer
         liveValidate
-        query={props.query}
-        application={props.application}
+        query={query}
+        application={application}
         review={false}
-        setHasErrors={setHasErrors}
         setApplicationDetailsRendered={setApplicationDetailsRendered}
       />
       <br />
@@ -78,7 +96,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
             </Card.Body>
           </Card>
           <br />
-          <SubmitApplication application={props.application} />
+          <SubmitApplication application={application} />
         </>
       )}
       <style jsx global>
@@ -106,12 +124,20 @@ export default createFragmentContainer(ApplicationWizardConfirmationComponent, {
     fragment ApplicationWizardConfirmation_application on Application
     @argumentDefinitions(version: {type: "String!"}) {
       id
-      rowId
       ...SubmitApplication_application
       ...ApplicationDetailsContainer_application @arguments(version: $version)
+      orderedFormResults(versionNumberInput: $version) {
+        edges {
+          node {
+            formResult
+            formJsonByFormId {
+              formJson
+            }
+          }
+        }
+      }
       latestDraftRevision {
         id
-        versionNumber
         overrideJustification
       }
     }

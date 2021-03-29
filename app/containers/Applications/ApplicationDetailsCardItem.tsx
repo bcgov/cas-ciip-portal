@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Button, Card, Collapse, Col, Row} from 'react-bootstrap';
 import {createFragmentContainer, graphql} from 'react-relay';
-import JsonSchemaForm, {AjvError, ErrorSchema} from '@rjsf/core';
+import JsonSchemaForm, {AjvError} from '@rjsf/core';
 import {FormJson} from 'next-env';
 import {ApplicationDetailsCardItem_formResult} from '__generated__/ApplicationDetailsCardItem_formResult.graphql';
 import {ApplicationDetailsCardItem_query} from '__generated__/ApplicationDetailsCardItem_query.graphql';
@@ -27,7 +27,6 @@ interface Props {
   showDiff: boolean;
   // Boolean indicates whether or not to liveValidate the results (true when rendered by the summary component)
   liveValidate: boolean;
-  setHasErrors?: (...args: any[]) => void;
 }
 
 /*
@@ -39,8 +38,7 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
   diffToResults,
   query,
   showDiff,
-  liveValidate,
-  setHasErrors
+  liveValidate
 }) => {
   const {formJsonByFormId} = formResult;
   const {formJson} = formJsonByFormId;
@@ -52,16 +50,6 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
 
   const transformErrors = (errors: AjvError[]) => {
     return customTransformErrors(errors, formJson);
-  };
-
-  const handleChange = (_formData, errorSchema: ErrorSchema) => {
-    if (setHasErrors) {
-      if (errorSchema?.__errors) {
-        setHasErrors(true);
-      } else {
-        setHasErrors(false);
-      }
-    }
   };
 
   // Expands or collapses the form_result card
@@ -127,7 +115,6 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
             schema={schema}
             idPrefix={formIdPrefix}
             uiSchema={uiSchema}
-            onChange={handleChange}
             ObjectFieldTemplate={FormObjectFieldTemplate}
             formData={formData}
             formContext={{
