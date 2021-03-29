@@ -65,14 +65,14 @@ const CUSTOM_FIELDS: Record<string, React.FunctionComponent<FieldProps>> = {
       return (
         <>
           <i id={id}>[No Data Entered]</i>
-          {ErrorIcon}
+          <ErrorIcon {...props} />
         </>
       );
 
     return (
       <>
         <span id={id}>{displayValue}</span>
-        {ErrorIcon}
+        <ErrorIcon {...props} />
       </>
     );
   },
@@ -101,7 +101,15 @@ const CUSTOM_FIELDS: Record<string, React.FunctionComponent<FieldProps>> = {
 
     return (
       <span id={id}>
-        {formData ? <>Yes {ErrorIcon}</> : <>No {ErrorIcon}</>}{' '}
+        {formData ? (
+          <>
+            Yes <ErrorIcon {...props} />
+          </>
+        ) : (
+          <>
+            No <ErrorIcon {...props} />
+          </>
+        )}{' '}
       </span>
     );
   },
@@ -133,7 +141,7 @@ const CUSTOM_FIELDS: Record<string, React.FunctionComponent<FieldProps>> = {
       return (
         <>
           <i id={id}>[No Data Entered]</i>
-          {ErrorIcon}
+          <ErrorIcon {...props} />
         </>
       );
     const displayValue = getDisplayValue(schema, formData);
@@ -183,7 +191,7 @@ const CUSTOM_FIELDS: Record<string, React.FunctionComponent<FieldProps>> = {
           displayType="text"
           value={displayValue}
         />
-        {ErrorIcon}
+        <ErrorIcon {...props} />
       </>
     );
   }

@@ -78,7 +78,7 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
   )?.node.formResult;
 
   const {formData, idDiffMap} = useJsonSchemaDiff(
-    formResult,
+    formResult.formResult,
     showDiff,
     formIdPrefix,
     diffFrom,
