@@ -73,16 +73,16 @@ insert into ggircs_portal.form_result(application_id, version_number, form_id, f
   values
     (1, 0, 1, '{}'),
     (1, 0, 2, '{}'),
-    (1, 0, 3, '[{}]'),
-    (1, 0, 4, '[{}]'),
+    (1, 0, 3, '[]'),
+    (1, 0, 4, '[]'),
     (3, 0, 1, '{}'),
     (3, 0, 2, '{}'),
-    (3, 0, 3, '[{}]'),
-    (3, 0, 4, '[{}]'),
+    (3, 0, 3, '[]'),
+    (3, 0, 4, '[]'),
     (4, 0, 1, '{}'),
     (4, 0, 2, '{}'),
-    (4, 0, 3, '[{}]'),
-    (4, 0, 4, '[{}]');
+    (4, 0, 3, '[]'),
+    (4, 0, 4, '[]');
 
 
 -- set different updated_at values for applications 1 & 2 (should update) / 3 & 4 (shouldn't update)
@@ -174,7 +174,7 @@ select is(
 
 select is(
   (select form_result from ggircs_portal.form_result where application_id=1 and version_number=0 and form_id=4),
-  '[{}]'::jsonb,
+  '[]'::jsonb,
   'Refresh function did nothing to the production form for application 1'
 );
 
