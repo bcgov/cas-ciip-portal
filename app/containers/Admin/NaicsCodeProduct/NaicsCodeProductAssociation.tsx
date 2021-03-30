@@ -51,11 +51,7 @@ export const NaicsCodeProductAssociationContainer: React.FunctionComponent<Props
               </Row>
               <Row>
                 <Col md="12">
-                  <AllowableProductsSearch
-                    naicsCodeRowId={currentNaics.rowId}
-                    naicsCodeId={currentNaics.id}
-                    query={query}
-                  />
+                  <AllowableProductsSearch query={query} />
                 </Col>
               </Row>
               <br />

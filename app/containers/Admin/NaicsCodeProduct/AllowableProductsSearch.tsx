@@ -9,17 +9,16 @@ import createProductNaicsCodeMutation from 'mutations/product_naics_code/createP
 interface Props {
   relay: RelayProp;
   query: AllowableProductsSearch_query;
-  naicsCodeRowId: number;
-  naicsCodeId: string;
 }
 
-export const AllowableProductsSearchContainer: React.FunctionComponent<Props> = (
-  props
-) => {
-  const existingProductIds = props.query.naicsCode.productNaicsCodesByNaicsCodeId.edges.map(
+export const AllowableProductsSearchContainer: React.FunctionComponent<Props> = ({
+  relay,
+  query
+}) => {
+  const existingProductIds = query.naicsCode.productNaicsCodesByNaicsCodeId.edges.map(
     (e) => e.node.productId
   );
-  const initialAllowableProducts = props.query?.allProducts?.edges
+  const initialAllowableProducts = query.allProducts.edges
     .map((e) => {
       return {
         id: e.node.rowId,
@@ -33,14 +32,12 @@ export const AllowableProductsSearchContainer: React.FunctionComponent<Props> = 
     initialAllowableProducts
   );
 
-  const disableAddingProducts = selectedProducts.length === 0;
-
   const addAllowableProduct = async (productId: number, mandatory: boolean) => {
-    const {environment} = props.relay;
+    const {environment} = relay;
     const variables: createProductNaicsCodeMutationVariables = {
       input: {
         isMandatoryInput: mandatory,
-        naicsCodeIdInput: props.naicsCodeRowId,
+        naicsCodeIdInput: query.naicsCode.rowId,
         productIdInput: productId
       }
     };
@@ -49,7 +46,7 @@ export const AllowableProductsSearchContainer: React.FunctionComponent<Props> = 
       await createProductNaicsCodeMutation(
         environment,
         variables,
-        props.naicsCodeId
+        query.naicsCode.id
       );
     } catch (e) {
       console.error(e);
@@ -57,7 +54,7 @@ export const AllowableProductsSearchContainer: React.FunctionComponent<Props> = 
   };
 
   const onAddClick = (mandatory: boolean) => {
-    if (!disableAddingProducts) {
+    if (selectedProducts.length > 0) {
       addAllowableProduct(selectedProducts[0].id, mandatory);
       setAllowableProducts(
         allowableProducts.filter(
@@ -94,13 +91,13 @@ export const AllowableProductsSearchContainer: React.FunctionComponent<Props> = 
           </Col>
           <Col md="auto">
             <Button
-              disabled={disableAddingProducts}
+              disabled={selectedProducts.length === 0}
               onClick={() => onAddClick(true)}
             >
               Add as Mandatory
             </Button>{' '}
             <Button
-              disabled={disableAddingProducts}
+              disabled={selectedProducts.length === 0}
               variant="secondary"
               onClick={() => onAddClick(false)}
             >
@@ -118,6 +115,8 @@ export default createFragmentContainer(AllowableProductsSearchContainer, {
     fragment AllowableProductsSearch_query on Query
     @argumentDefinitions(naicsCodeId: {type: "ID!"}) {
       naicsCode(id: $naicsCodeId) {
+        id
+        rowId
         productNaicsCodesByNaicsCodeId(first: 2147483647) {
           edges {
             node {
