@@ -6,7 +6,7 @@
 
 begin;
 
-create table ggircs_portal.application_validation_function (
+create table ggircs_portal_private.application_validation_function (
   id integer primary key generated always as identity,
   validation_function_name varchar(1000) not null,
   validation_description varchar(1000) not null,
