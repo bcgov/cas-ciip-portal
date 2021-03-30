@@ -102,11 +102,6 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
             flex-direction: column;
             justify-content: center;
           }
-          h1 {
-            font-size: 30px;
-            display: inline-block;
-            margin-bottom: 0;
-          }
         `}
       </style>
       <style jsx global>

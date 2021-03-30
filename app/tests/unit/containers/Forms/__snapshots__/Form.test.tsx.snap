@@ -2,7 +2,7 @@
 
 exports[`The Form Component should match the snapshot 1`] = `
 <div
-  className="jsx-1245585032 "
+  className="jsx-1563044622 "
 >
   <Alert
     closeLabel="Close alert"
@@ -26,10 +26,10 @@ exports[`The Form Component should match the snapshot 1`] = `
     Note: Your form input will be saved automatically as you type.
   </Alert>
   <div
-    className="jsx-1245585032 card"
+    className="jsx-1563044622 card"
   >
     <div
-      className="jsx-1245585032 card-header"
+      className="jsx-1563044622 card-header"
     >
       <Row
         noGutters={false}
@@ -38,7 +38,7 @@ exports[`The Form Component should match the snapshot 1`] = `
           md={8}
         >
           <h1
-            className="jsx-1245585032"
+            className="jsx-1563044622"
           >
             Foo
           </h1>
@@ -58,7 +58,7 @@ exports[`The Form Component should match the snapshot 1`] = `
       </Row>
     </div>
     <div
-      className="jsx-1245585032"
+      className="jsx-1563044622"
       style={
         Object {
           "padding": "0 2em 2em 2em",
@@ -716,16 +716,16 @@ exports[`The Form Component should match the snapshot 1`] = `
     }
   </JSXStyle>
   <JSXStyle
-    id="1245585032"
+    id="1563044622"
   >
-    .card.jsx-1245585032{border-color:#a4a4a4;background-color:#f4f4f4;}.card-header.jsx-1245585032{background-color:#036;color:#fff;}.card-header.jsx-1245585032 h1.jsx-1245585032{margin-bottom:0;}
+    .card.jsx-1563044622{border-color:#a4a4a4;background-color:#f4f4f4;}.card-header.jsx-1563044622{background-color:#036;color:#fff;}.card-header.jsx-1563044622 h1.jsx-1563044622{margin-bottom:0;font-size:30px;display:inline-block;}
   </JSXStyle>
 </div>
 `;
 
 exports[`The Form Component should not render an alert reminder to check the guidance if no product requires emission allocation 1`] = `
 <div
-  className="jsx-1245585032 "
+  className="jsx-1563044622 "
 >
   <Alert
     closeLabel="Close alert"
@@ -749,10 +749,10 @@ exports[`The Form Component should not render an alert reminder to check the gui
     Note: Your form input will be saved automatically as you type.
   </Alert>
   <div
-    className="jsx-1245585032 card"
+    className="jsx-1563044622 card"
   >
     <div
-      className="jsx-1245585032 card-header"
+      className="jsx-1563044622 card-header"
     >
       <Row
         noGutters={false}
@@ -761,7 +761,7 @@ exports[`The Form Component should not render an alert reminder to check the gui
           md={8}
         >
           <h1
-            className="jsx-1245585032"
+            className="jsx-1563044622"
           >
             Foo
           </h1>
@@ -781,7 +781,7 @@ exports[`The Form Component should not render an alert reminder to check the gui
       </Row>
     </div>
     <div
-      className="jsx-1245585032"
+      className="jsx-1563044622"
       style={
         Object {
           "padding": "0 2em 2em 2em",
@@ -1459,16 +1459,16 @@ exports[`The Form Component should not render an alert reminder to check the gui
     }
   </JSXStyle>
   <JSXStyle
-    id="1245585032"
+    id="1563044622"
   >
-    .card.jsx-1245585032{border-color:#a4a4a4;background-color:#f4f4f4;}.card-header.jsx-1245585032{background-color:#036;color:#fff;}.card-header.jsx-1245585032 h1.jsx-1245585032{margin-bottom:0;}
+    .card.jsx-1563044622{border-color:#a4a4a4;background-color:#f4f4f4;}.card-header.jsx-1563044622{background-color:#036;color:#fff;}.card-header.jsx-1563044622 h1.jsx-1563044622{margin-bottom:0;font-size:30px;display:inline-block;}
   </JSXStyle>
 </div>
 `;
 
 exports[`The Form Component should render alert reminder to check the guidance if any product requires emission allocation 1`] = `
 <div
-  className="jsx-1245585032 "
+  className="jsx-1563044622 "
 >
   <Alert
     closeLabel="Close alert"
@@ -1492,10 +1492,10 @@ exports[`The Form Component should render alert reminder to check the guidance i
     Note: Your form input will be saved automatically as you type.
   </Alert>
   <div
-    className="jsx-1245585032 card"
+    className="jsx-1563044622 card"
   >
     <div
-      className="jsx-1245585032 card-header"
+      className="jsx-1563044622 card-header"
     >
       <Row
         noGutters={false}
@@ -1504,7 +1504,7 @@ exports[`The Form Component should render alert reminder to check the guidance i
           md={8}
         >
           <h1
-            className="jsx-1245585032"
+            className="jsx-1563044622"
           >
             Foo
           </h1>
@@ -1524,7 +1524,7 @@ exports[`The Form Component should render alert reminder to check the guidance i
       </Row>
     </div>
     <div
-      className="jsx-1245585032"
+      className="jsx-1563044622"
       style={
         Object {
           "padding": "0 2em 2em 2em",
@@ -2226,9 +2226,9 @@ exports[`The Form Component should render alert reminder to check the guidance i
     }
   </JSXStyle>
   <JSXStyle
-    id="1245585032"
+    id="1563044622"
   >
-    .card.jsx-1245585032{border-color:#a4a4a4;background-color:#f4f4f4;}.card-header.jsx-1245585032{background-color:#036;color:#fff;}.card-header.jsx-1245585032 h1.jsx-1245585032{margin-bottom:0;}
+    .card.jsx-1563044622{border-color:#a4a4a4;background-color:#f4f4f4;}.card-header.jsx-1563044622{background-color:#036;color:#fff;}.card-header.jsx-1563044622 h1.jsx-1563044622{margin-bottom:0;font-size:30px;display:inline-block;}
   </JSXStyle>
 </div>
 `;

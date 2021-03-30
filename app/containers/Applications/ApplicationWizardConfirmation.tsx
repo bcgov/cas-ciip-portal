@@ -126,6 +126,9 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
       )}
       <style jsx global>
         {`
+          h1 {
+            font-size: 30px;
+          }
           .errors {
             margin-left: 20px;
             padding: 20px;

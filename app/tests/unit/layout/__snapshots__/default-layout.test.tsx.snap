@@ -2,14 +2,14 @@
 
 exports[`The DefaultLayout component matches the last accepted Snapshot 1`] = `
 <div
-  className="jsx-1441402825 page-wrap"
+  className="jsx-3949047837 page-wrap"
 >
   <HeaderLayout
     isLoggedIn={false}
     isRegistered={false}
   />
   <main
-    className="jsx-1441402825"
+    className="jsx-3949047837"
   >
     <Container
       className="content narrow"
@@ -19,9 +19,9 @@ exports[`The DefaultLayout component matches the last accepted Snapshot 1`] = `
   </main>
   <Footer />
   <JSXStyle
-    id="309934731"
+    id="616434335"
   >
-    .page-wrap.jsx-1441402825{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;min-height:100vh;}main.jsx-1441402825{-webkit-box-flex:1;-webkit-flex-grow:1;-ms-flex-positive:1;flex-grow:1;}.title-container.jsx-1441402825{height:100%;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;}h1.jsx-1441402825{font-size:30px;display:inline-block;margin-bottom:0;}
+    .page-wrap.jsx-3949047837{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;min-height:100vh;}main.jsx-3949047837{-webkit-box-flex:1;-webkit-flex-grow:1;-ms-flex-positive:1;flex-grow:1;}.title-container.jsx-3949047837{height:100%;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;}
   </JSXStyle>
   <JSXStyle
     id="1603055883"
