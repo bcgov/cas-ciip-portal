@@ -14,7 +14,7 @@ begin;
       and ars.version_number = new.version_number
       order by ars.id desc limit 1;
 
-    if (app_status='submitted') then
+    if (app_status='submitted' and new.version_number > 0) then
       raise exception 'Form_result is immutable after application has been submitted';
     end if;
 

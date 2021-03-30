@@ -26480,6 +26480,11 @@ type FormJson implements Node {
   """The person who updated the form"""
   createdBy: Int
 
+  """
+  The default_form_result column defines the shape of an empty form_result created from this form_json row
+  """
+  defaultFormResult: JSON
+
   """The date the form was deleted"""
   deletedAt: Datetime
 
@@ -27106,6 +27111,9 @@ input FormJsonCondition {
   """Checks for equality with the object’s `createdBy` field."""
   createdBy: Int
 
+  """Checks for equality with the object’s `defaultFormResult` field."""
+  defaultFormResult: JSON
+
   """Checks for equality with the object’s `deletedAt` field."""
   deletedAt: Datetime
 
@@ -27158,6 +27166,9 @@ input FormJsonFilter {
 
   """Filter by the object’s `createdBy` field."""
   createdBy: IntFilter
+
+  """Filter by the object’s `defaultFormResult` field."""
+  defaultFormResult: JSONFilter
 
   """Filter by the object’s `deletedAt` field."""
   deletedAt: DatetimeFilter
@@ -27213,6 +27224,11 @@ input FormJsonInput {
   """The person who updated the form"""
   createdBy: Int
 
+  """
+  The default_form_result column defines the shape of an empty form_result created from this form_json row
+  """
+  defaultFormResult: JSON
+
   """The date the form was deleted"""
   deletedAt: Datetime
 
@@ -27263,6 +27279,11 @@ input FormJsonPatch {
 
   """The person who updated the form"""
   createdBy: Int
+
+  """
+  The default_form_result column defines the shape of an empty form_result created from this form_json row
+  """
+  defaultFormResult: JSON
 
   """The date the form was deleted"""
   deletedAt: Datetime
@@ -27337,6 +27358,8 @@ enum FormJsonsOrderBy {
   CREATED_AT_DESC
   CREATED_BY_ASC
   CREATED_BY_DESC
+  DEFAULT_FORM_RESULT_ASC
+  DEFAULT_FORM_RESULT_DESC
   DELETED_AT_ASC
   DELETED_AT_DESC
   DELETED_BY_ASC
