@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Button, Card, Col, Row} from 'react-bootstrap';
 import {createFragmentContainer, graphql} from 'react-relay';
 import {AllowableProductsSearch_query} from '__generated__/AllowableProductsSearch_query.graphql';
@@ -6,22 +6,32 @@ import SearchDropdownComponent from 'components/SearchDropdown';
 
 interface Props {
   query: AllowableProductsSearch_query;
-  naicsCodeId: number;
+  naicsCodeRowId: number;
   existingProductIds: number[];
-  addAllowedProduct: (productRowId: number, mandatory: boolean) => void;
+  addAllowableProduct(productId: number, mandatory: boolean);
 }
 
 export const AllowableProductsSearchContainer: React.FunctionComponent<Props> = (
   props
 ) => {
-  const onAddClick = () => {};
+  const [selectedProductId, setSelectedProductId] = useState<number>(undefined);
 
-  const typeaheadOptions = props.query?.allProducts?.edges.map((e) => {
-    return {
-      id: e.node.id,
-      name: e.node.productName
-    };
-  });
+  const disableAddingProducts =
+    selectedProductId === null || selectedProductId === undefined;
+
+  const onAddClick = (mandatory: boolean) => {
+    if (!disableAddingProducts)
+      props.addAllowableProduct(selectedProductId, mandatory);
+  };
+
+  const typeaheadOptions = props.query?.allProducts?.edges
+    .map((e) => {
+      return {
+        id: e.node.rowId,
+        name: e.node.productName
+      };
+    })
+    .filter((option) => props.existingProductIds.includes(option.id));
 
   return (
     <Card>
@@ -40,13 +50,24 @@ export const AllowableProductsSearchContainer: React.FunctionComponent<Props> = 
               id="product-naics-search"
               inputProps={{id: 'product-naics-search-typeahead'}}
               options={typeaheadOptions}
-              onChange={() => {}}
+              onChange={(items) => {
+                setSelectedProductId(items[0]?.id as number);
+              }}
               placeholder="Search Products ..."
             />
           </Col>
           <Col md="auto">
-            <Button onClick={() => onAddClick(true)}>Add as Mandatory</Button>{' '}
-            <Button variant="secondary" onClick={() => onAddClick(false)}>
+            <Button
+              disabled={disableAddingProducts}
+              onClick={() => onAddClick(true)}
+            >
+              Add as Mandatory
+            </Button>{' '}
+            <Button
+              disabled={disableAddingProducts}
+              variant="secondary"
+              onClick={() => onAddClick(false)}
+            >
               Add as Optional
             </Button>
           </Col>
@@ -62,7 +83,7 @@ export default createFragmentContainer(AllowableProductsSearchContainer, {
       allProducts(filter: {productState: {equalTo: PUBLISHED}}) {
         edges {
           node {
-            id
+            rowId
             productName
           }
         }

@@ -72,7 +72,10 @@ export const AllowableProductsTableComponent: React.FunctionComponent<Props> = (
 export default createFragmentContainer(AllowableProductsTableComponent, {
   query: graphql`
     fragment AllowableProductsTable_query on NaicsCode {
-      productNaicsCodesByNaicsCodeId {
+      productNaicsCodesByNaicsCodeId(first: 2147483647)
+        @connection(
+          key: "AllowableProductsTable_productNaicsCodesByNaicsCodeId"
+        ) {
         edges {
           node {
             productByProductId {
