@@ -20,6 +20,7 @@ interface Props {
   showSubheader?: boolean;
   session: defaultLayout_session;
   width?: 'narrow' | 'wide';
+  fixedHeader?: boolean;
   help?: {
     title: string;
     helpMessage: string;
@@ -31,6 +32,7 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
   title,
   titleControls,
   showSubheader,
+  fixedHeader = false,
   session,
   width = 'narrow',
   help
@@ -40,8 +42,9 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
   });
 
   return (
-    <div className="page-wrap">
+    <div className={`page-wrap ${fixedHeader ? 'has-fixed-header' : ''}`}>
       <Header
+        fixed={fixedHeader}
         isLoggedIn={Boolean(session)}
         isRegistered={Boolean(session?.ciipUserBySub)}
       >
@@ -94,6 +97,9 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
           }
           main {
             flex-grow: 1;
+          }
+          .page-wrap.has-fixed-header main {
+            padding-top: 68px;
           }
 
           .title-container {
