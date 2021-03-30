@@ -1,18 +1,18 @@
 import React from 'react';
-import {Alert, Button, Table} from 'react-bootstrap';
-import {createFragmentContainer, graphql} from 'react-relay';
-import {faCheck} from '@fortawesome/free-solid-svg-icons';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {AllowableProductsTable_query} from '__generated__/AllowableProductsTable_query.graphql';
+import {Alert, Table} from 'react-bootstrap';
+import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
+import AllowableProductsTableRow from './AllowableProductsTableRow';
+import {AllowableProductsTable_naicsCode} from '__generated__/AllowableProductsTable_naicsCode.graphql';
 
 interface Props {
-  query: AllowableProductsTable_query;
+  relay: RelayProp;
+  naicsCode: AllowableProductsTable_naicsCode;
 }
 
 export const AllowableProductsTableComponent: React.FunctionComponent<Props> = (
   props
 ) => {
-  if (!props.query?.productNaicsCodesByNaicsCodeId.edges.length) {
+  if (!props.naicsCode.productNaicsCodesByNaicsCodeId.edges.length) {
     return (
       <Alert variant="secondary" id="no-search-results">
         No allowed products have been set for this NAICS code.
@@ -33,25 +33,11 @@ export const AllowableProductsTableComponent: React.FunctionComponent<Props> = (
           </tr>
         </thead>
         <tbody>
-          {props.query.productNaicsCodesByNaicsCodeId.edges.map((e) => (
-            <tr key={e.node.productByProductId.id}>
-              <td>{e.node.productByProductId.productName}</td>
-              <td className="centered">
-                {e.node.isMandatory ? (
-                  <>
-                    <FontAwesomeIcon icon={faCheck} />
-                    <b> Yes</b>
-                  </>
-                ) : (
-                  'No'
-                )}
-              </td>
-              <td className="centered">
-                <Button variant="outline-danger" size="sm">
-                  Delete
-                </Button>
-              </td>
-            </tr>
+          {props.naicsCode.productNaicsCodesByNaicsCodeId.edges.map((e) => (
+            <AllowableProductsTableRow
+              key={e.node.id}
+              productNaicsCode={e.node}
+            />
           ))}
         </tbody>
       </Table>
@@ -70,19 +56,19 @@ export const AllowableProductsTableComponent: React.FunctionComponent<Props> = (
 };
 
 export default createFragmentContainer(AllowableProductsTableComponent, {
-  query: graphql`
-    fragment AllowableProductsTable_query on NaicsCode {
-      productNaicsCodesByNaicsCodeId(first: 2147483647)
+  naicsCode: graphql`
+    fragment AllowableProductsTable_naicsCode on NaicsCode {
+      productNaicsCodesByNaicsCodeId(
+        first: 2147483647
+        filter: {deletedAt: {isNull: true}}
+      )
         @connection(
           key: "AllowableProductsTable_productNaicsCodesByNaicsCodeId"
         ) {
         edges {
           node {
-            productByProductId {
-              id
-              productName
-            }
-            isMandatory
+            id
+            ...AllowableProductsTableRow_productNaicsCode
           }
         }
       }

@@ -15,10 +15,8 @@ const mutation = graphql`
     createProductNaicsCode(input: $input) {
       productNaicsCodeEdge {
         node {
-          productByProductId {
-            productName
-          }
-          isMandatory
+          id
+          ...AllowableProductsTableRow_productNaicsCode
         }
       }
     }
@@ -28,9 +26,9 @@ const mutation = graphql`
 const createProductNaicsCodeMutation = async (
   environment: RelayModernEnvironment,
   variables: createProductNaicsCodeMutationVariables,
-  naicsCodeId: string
+  naicsCodeId: string,
+  connectionKey: string
 ) => {
-  const connectionKey = 'AllowableProductsTable_productNaicsCodesByNaicsCodeId';
   const configs: DeclarativeMutationConfig[] = [
     {
       type: 'RANGE_ADD',

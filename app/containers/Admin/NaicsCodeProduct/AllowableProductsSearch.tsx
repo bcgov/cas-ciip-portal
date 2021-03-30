@@ -46,7 +46,8 @@ export const AllowableProductsSearchContainer: React.FunctionComponent<Props> = 
       await createProductNaicsCodeMutation(
         environment,
         variables,
-        query.naicsCode.id
+        query.naicsCode.id,
+        'AllowableProductsTable_productNaicsCodesByNaicsCodeId'
       );
     } catch (e) {
       console.error(e);
@@ -117,9 +118,13 @@ export default createFragmentContainer(AllowableProductsSearchContainer, {
       naicsCode(id: $naicsCodeId) {
         id
         rowId
-        productNaicsCodesByNaicsCodeId(first: 2147483647) {
+        productNaicsCodesByNaicsCodeId(
+          first: 2147483647
+          filter: {deletedAt: {isNull: true}}
+        ) {
           edges {
             node {
+              deletedAt
               productId
             }
           }

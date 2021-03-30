@@ -57,7 +57,7 @@ export const NaicsCodeProductAssociationContainer: React.FunctionComponent<Props
               <br />
               <Row>
                 <Col md="12">
-                  <AllowableProductsTable query={query.naicsCode} />
+                  <AllowableProductsTable naicsCode={query.naicsCode} />
                 </Col>
               </Row>
             </>
@@ -87,7 +87,7 @@ export default createFragmentContainer(NaicsCodeProductAssociationContainer, {
     @argumentDefinitions(naicsCodeId: {type: "ID!"}) {
       ...AllowableProductsSearch_query @arguments(naicsCodeId: $naicsCodeId)
       naicsCode(id: $naicsCodeId) {
-        ...AllowableProductsTable_query
+        ...AllowableProductsTable_naicsCode
       }
       allNaicsCodes(
         filter: {deletedAt: {isNull: true}}
