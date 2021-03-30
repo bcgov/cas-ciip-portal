@@ -1,14 +1,16 @@
 import React, {useState} from 'react';
 import {Button, Card, Col, Row} from 'react-bootstrap';
-import {createFragmentContainer, graphql} from 'react-relay';
+import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
 import {AllowableProductsSearch_query} from '__generated__/AllowableProductsSearch_query.graphql';
 import SearchDropdownComponent from 'components/SearchDropdown';
+import {createProductNaicsCodeMutationVariables} from '__generated__/createProductNaicsCodeMutation.graphql';
+import createProductNaicsCodeMutation from 'mutations/product_naics_code/createProductNaicsCodeMutation';
 
 interface Props {
+  relay: RelayProp;
   query: AllowableProductsSearch_query;
   naicsCodeRowId: number;
-  existingProductIds: number[];
-  addAllowableProduct(productId: number, mandatory: boolean);
+  naicsCodeId: string;
 }
 
 export const AllowableProductsSearchContainer: React.FunctionComponent<Props> = (
@@ -19,19 +21,41 @@ export const AllowableProductsSearchContainer: React.FunctionComponent<Props> = 
   const disableAddingProducts =
     selectedProductId === null || selectedProductId === undefined;
 
-  const onAddClick = (mandatory: boolean) => {
-    if (!disableAddingProducts)
-      props.addAllowableProduct(selectedProductId, mandatory);
+  const addAllowableProduct = async (productId: number, mandatory: boolean) => {
+    const {environment} = props.relay;
+    const variables: createProductNaicsCodeMutationVariables = {
+      input: {
+        isMandatoryInput: mandatory,
+        naicsCodeIdInput: props.naicsCodeRowId,
+        productIdInput: productId
+      }
+    };
+
+    try {
+      await createProductNaicsCodeMutation(
+        environment,
+        variables,
+        props.naicsCodeId
+      );
+    } catch (e) {
+      console.error(e);
+    }
   };
 
-  const typeaheadOptions = props.query?.allProducts?.edges
-    .map((e) => {
-      return {
-        id: e.node.rowId,
-        name: e.node.productName
-      };
-    })
-    .filter((option) => props.existingProductIds.includes(option.id));
+  const onAddClick = (mandatory: boolean) => {
+    if (!disableAddingProducts)
+      addAllowableProduct(selectedProductId, mandatory);
+  };
+
+  console.log(props);
+
+  const typeaheadOptions = props.query?.allProducts?.edges.map((e) => {
+    return {
+      id: e.node.rowId,
+      name: e.node.productName
+    };
+  });
+  //.filter((option) => !existingProductIds.includes(option.id));
 
   return (
     <Card>

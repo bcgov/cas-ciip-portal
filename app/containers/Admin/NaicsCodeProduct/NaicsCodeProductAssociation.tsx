@@ -6,8 +6,6 @@ import {NaicsCodeProductAssociation_query} from '__generated__/NaicsCodeProductA
 import AllowableProductsSearch from './AllowableProductsSearch';
 import {useRouter} from 'next/router';
 import AllowableProductsTable from './AllowableProductsTable';
-import {createProductNaicsCodeMutationVariables} from '__generated__/createProductNaicsCodeMutation.graphql';
-import createProductNaicsCodeMutation from 'mutations/product_naics_code/createProductNaicsCodeMutation';
 
 interface Props {
   relay: RelayProp;
@@ -15,7 +13,6 @@ interface Props {
 }
 
 export const NaicsCodeProductAssociationContainer: React.FunctionComponent<Props> = ({
-  relay,
   query
 }) => {
   const naicsCodes = query.allNaicsCodes?.edges.map((e) => {
@@ -30,29 +27,6 @@ export const NaicsCodeProductAssociationContainer: React.FunctionComponent<Props
   const currentNaics = naicsCodes.find(
     (code) => code.id === router.query.naicsCodeId
   );
-
-  const addAllowableProduct = async (productId: number, mandatory: boolean) => {
-    const {environment} = relay;
-    const variables: createProductNaicsCodeMutationVariables = {
-      input: {
-        isMandatoryInput: mandatory,
-        naicsCodeIdInput: currentNaics.rowId,
-        productIdInput: productId
-      }
-    };
-
-    try {
-      await createProductNaicsCodeMutation(
-        environment,
-        variables,
-        currentNaics.id
-      );
-    } catch (e) {
-      console.error(e);
-    }
-  };
-
-  console.log(query);
 
   return (
     <>
@@ -79,9 +53,8 @@ export const NaicsCodeProductAssociationContainer: React.FunctionComponent<Props
                 <Col md="12">
                   <AllowableProductsSearch
                     naicsCodeRowId={currentNaics.rowId}
+                    naicsCodeId={currentNaics.id}
                     query={query}
-                    existingProductIds={[]}
-                    addAllowableProduct={addAllowableProduct}
                   />
                 </Col>
               </Row>

@@ -1,9 +1,9 @@
 import React from 'react';
 import {Alert, Button, Table} from 'react-bootstrap';
 import {createFragmentContainer, graphql} from 'react-relay';
-import {AllowableProductsTable_query} from '__generated__/AllowableProductsTable_query.graphql';
 import {faCheck} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {AllowableProductsTable_query} from '__generated__/AllowableProductsTable_query.graphql';
 
 interface Props {
   query: AllowableProductsTable_query;
