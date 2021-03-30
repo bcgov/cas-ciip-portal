@@ -39,7 +39,7 @@ begin
 
 end;
 
-$function$ language plpgsql strict stable;
+$function$ language plpgsql strict volatile;
 
 grant execute on function ggircs_portal.application_validation to ciip_administrator, ciip_analyst, ciip_industry_user;
 
