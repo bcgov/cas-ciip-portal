@@ -127,19 +127,19 @@ select is(
 select is(
   ((select updated_at from ggircs_portal.form_result where application_id=3 and version_number=0 and form_id=1) < now() - interval '12 hours'),
   true::boolean,
-  'Application with id 3 was not updated by the refresh function because form_result.updated_by was after swrs.imported_at'
+  'Application with id 3 was not updated by the refresh function because form_result.updated_at was after swrs.imported_at'
 );
 
 select is(
   ((select updated_at from ggircs_portal.form_result where application_id=4 and version_number=0 and form_id=1) < now() - interval '12 hours'),
   true::boolean,
-  'Application with id 4 was not updated by the refresh function because form_result.updated_by was after swrs.imported_at'
+  'Application with id 4 was not updated by the refresh function because form_result.updated_at was after swrs.imported_at'
 );
 
 select is(
   ((select updated_at from ggircs_portal.form_result where application_id=1 and version_number=0 and form_id=1) > now() - interval '12 hours'),
   true::boolean,
-  'Application with id 1 was updated by the refresh function because form_result.updated_by was before swrs.imported_at'
+  'Application with id 1 was updated by the refresh function because form_result.updated_at was before swrs.imported_at'
 );
 
 select is(
