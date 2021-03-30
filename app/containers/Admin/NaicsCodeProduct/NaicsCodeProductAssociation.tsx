@@ -89,7 +89,7 @@ export default createFragmentContainer(NaicsCodeProductAssociationContainer, {
   query: graphql`
     fragment NaicsCodeProductAssociation_query on Query
     @argumentDefinitions(naicsCodeId: {type: "ID!"}) {
-      ...AllowableProductsSearch_query
+      ...AllowableProductsSearch_query @arguments(naicsCodeId: $naicsCodeId)
       naicsCode(id: $naicsCodeId) {
         ...AllowableProductsTable_query
       }

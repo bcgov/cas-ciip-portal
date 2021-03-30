@@ -34,7 +34,7 @@ export const AllowableProductsTableComponent: React.FunctionComponent<Props> = (
         </thead>
         <tbody>
           {props.query.productNaicsCodesByNaicsCodeId.edges.map((e) => (
-            <tr>
+            <tr key={e.node.productByProductId.id}>
               <td>{e.node.productByProductId.productName}</td>
               <td className="centered">
                 {e.node.isMandatory ? (
@@ -79,6 +79,7 @@ export default createFragmentContainer(AllowableProductsTableComponent, {
         edges {
           node {
             productByProductId {
+              id
               productName
             }
             isMandatory

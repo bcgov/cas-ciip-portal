@@ -16,10 +16,24 @@ interface Props {
 export const AllowableProductsSearchContainer: React.FunctionComponent<Props> = (
   props
 ) => {
-  const [selectedProductId, setSelectedProductId] = useState<number>(undefined);
+  const existingProductIds = props.query.naicsCode.productNaicsCodesByNaicsCodeId.edges.map(
+    (e) => e.node.productId
+  );
+  const initialAllowableProducts = props.query?.allProducts?.edges
+    .map((e) => {
+      return {
+        id: e.node.rowId,
+        name: e.node.productName
+      };
+    })
+    .filter((option) => !existingProductIds.includes(option.id));
 
-  const disableAddingProducts =
-    selectedProductId === null || selectedProductId === undefined;
+  const [selectedProducts, setSelectedProducts] = useState([]);
+  const [allowableProducts, setAllowableProducts] = useState(
+    initialAllowableProducts
+  );
+
+  const disableAddingProducts = selectedProducts.length === 0;
 
   const addAllowableProduct = async (productId: number, mandatory: boolean) => {
     const {environment} = props.relay;
@@ -43,19 +57,16 @@ export const AllowableProductsSearchContainer: React.FunctionComponent<Props> = 
   };
 
   const onAddClick = (mandatory: boolean) => {
-    if (!disableAddingProducts)
-      addAllowableProduct(selectedProductId, mandatory);
+    if (!disableAddingProducts) {
+      addAllowableProduct(selectedProducts[0].id, mandatory);
+      setAllowableProducts(
+        allowableProducts.filter(
+          (allowableProduct) => allowableProduct.id !== selectedProducts[0].id
+        )
+      );
+      setSelectedProducts([]);
+    }
   };
-
-  console.log(props);
-
-  const typeaheadOptions = props.query?.allProducts?.edges.map((e) => {
-    return {
-      id: e.node.rowId,
-      name: e.node.productName
-    };
-  });
-  //.filter((option) => !existingProductIds.includes(option.id));
 
   return (
     <Card>
@@ -73,10 +84,11 @@ export const AllowableProductsSearchContainer: React.FunctionComponent<Props> = 
             <SearchDropdownComponent
               id="product-naics-search"
               inputProps={{id: 'product-naics-search-typeahead'}}
-              options={typeaheadOptions}
+              options={allowableProducts}
               onChange={(items) => {
-                setSelectedProductId(items[0]?.id as number);
+                setSelectedProducts(items);
               }}
+              selected={selectedProducts}
               placeholder="Search Products ..."
             />
           </Col>
@@ -103,7 +115,17 @@ export const AllowableProductsSearchContainer: React.FunctionComponent<Props> = 
 
 export default createFragmentContainer(AllowableProductsSearchContainer, {
   query: graphql`
-    fragment AllowableProductsSearch_query on Query {
+    fragment AllowableProductsSearch_query on Query
+    @argumentDefinitions(naicsCodeId: {type: "ID!"}) {
+      naicsCode(id: $naicsCodeId) {
+        productNaicsCodesByNaicsCodeId(first: 2147483647) {
+          edges {
+            node {
+              productId
+            }
+          }
+        }
+      }
       allProducts(filter: {productState: {equalTo: PUBLISHED}}) {
         edges {
           node {
