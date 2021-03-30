@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(3);
+select plan(4);
 
 select has_function(
   'ggircs_portal', 'create_application_mutation_chain', array['integer'],
@@ -28,6 +28,12 @@ select ggircs_portal.create_application_mutation_chain((select id from ggircs_po
 select is(
   (select report_id from ggircs_portal.application where id = 1), 42::integer,
   'create_application_mutation_chain copies the report_id from the facility table to the application table'
+);
+
+select is(
+  (select form_result from ggircs_portal.form_result where application_id=1 and version_number=1 and form_id=1),
+  (select default_form_result from ggircs_portal.form_json where id=1),
+  'The initial empty form_result is derived from the form_json.default_form_result column'
 );
 
 -- Set the timestamp to a time where the application window is closed
