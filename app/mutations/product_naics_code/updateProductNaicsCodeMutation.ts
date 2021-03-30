@@ -40,7 +40,7 @@ const updateProductNaicsCodeMutation = async (
   };
 
   const m = new BaseMutation<updateProductNaicsCodeMutationType>(
-    'update-product-naics_code-mutation'
+    'update-product_naics_code-mutation'
   );
   return m.performMutation(
     environment,

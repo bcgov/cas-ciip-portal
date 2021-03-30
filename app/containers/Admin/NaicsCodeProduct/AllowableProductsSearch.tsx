@@ -121,7 +121,11 @@ export default createFragmentContainer(AllowableProductsSearchContainer, {
         productNaicsCodesByNaicsCodeId(
           first: 2147483647
           filter: {deletedAt: {isNull: true}}
-        ) {
+        )
+          @connection(
+            key: "AllowableProductsTable_productNaicsCodesByNaicsCodeId"
+            filters: []
+          ) {
           edges {
             node {
               deletedAt
