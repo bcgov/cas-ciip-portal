@@ -1,45 +1,39 @@
 import {faCheck} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import DeleteConfirmationModal from 'components/Admin/DeleteConfirmationModal';
+import {nowMoment} from 'functions/formatDates';
+import updateProductNaicsCodeMutation from 'mutations/product_naics_code/updateProductNaicsCodeMutation';
 import React, {useState} from 'react';
 import {Button} from 'react-bootstrap';
-import {createFragmentContainer, graphql} from 'react-relay';
+import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
 import {AllowableProductsTableRow_productNaicsCode} from '__generated__/AllowableProductsTableRow_productNaicsCode.graphql';
 
 interface Props {
+  relay: RelayProp;
   productNaicsCode: AllowableProductsTableRow_productNaicsCode;
 }
 
 export const AllowableProductsTableRowComponent: React.FunctionComponent<Props> = ({
+  relay,
   productNaicsCode
 }) => {
-  // const deleteProductNaicsCode = async (productNaicsCodeId: string) => {
-  //   const {environment} = props.relay;
-  //   const variables = {
-  //     input: {
-  //       id: productNaicsCodeId,
-  //       productNaicsCodePatch: {
-  //         deletedAt: nowMoment().format('YYYY-MM-DDTHH:mm:ss')
-  //       }
-  //     }
-  //   };
+  const deleteProductNaicsCode = async () => {
+    const {environment} = relay;
+    const variables = {
+      input: {
+        id: productNaicsCode.id,
+        productNaicsCodePatch: {
+          deletedAt: nowMoment().format('YYYY-MM-DDTHH:mm:ss')
+        }
+      }
+    };
 
-  //   await updateProductNaicsCodeMutation(
-  //     environment,
-  //     variables,
-  //     'AllowableProductsTable_productNaicsCodesByNaicsCodeId'
-  //   );
-  // };
-
-  // const onDeleteClick = (productNaicsCodeId: string, productName: string) => {
-  //   setDeleteContent({
-  //     deleteName: 'Allowable Product',
-  //     deleteItem: productName,
-  //     deleteItemDescription: ''
-  //   });
-  //   setDeleteCallback(async () => deleteProductNaicsCode(productNaicsCodeId));
-  //   setShowDeleteModal(true);
-  // };
+    await updateProductNaicsCodeMutation(
+      environment,
+      variables,
+      'AllowableProductsTable_productNaicsCodesByNaicsCodeId'
+    );
+  };
 
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
@@ -53,7 +47,7 @@ export const AllowableProductsTableRowComponent: React.FunctionComponent<Props> 
     <>
       <DeleteConfirmationModal
         deleteObject={deleteObject}
-        handleDelete={async () => {}}
+        handleDelete={deleteProductNaicsCode}
         show={showDeleteModal}
         onClose={() => setShowDeleteModal(false)}
       />
@@ -94,6 +88,7 @@ export default createFragmentContainer(AllowableProductsTableRowComponent, {
       }
       isMandatory
       deletedAt
+      id
     }
   `
 });

@@ -26,8 +26,7 @@ const mutation = graphql`
 const createProductNaicsCodeMutation = async (
   environment: RelayModernEnvironment,
   variables: createProductNaicsCodeMutationVariables,
-  naicsCodeId: string,
-  connectionKey: string
+  naicsCodeId: string
 ) => {
   const configs: DeclarativeMutationConfig[] = [
     {
@@ -35,7 +34,7 @@ const createProductNaicsCodeMutation = async (
       parentID: naicsCodeId,
       connectionInfo: [
         {
-          key: connectionKey,
+          key: 'AllowableProductsTable_productNaicsCodesByNaicsCodeId',
           rangeBehavior: 'append'
         }
       ],
