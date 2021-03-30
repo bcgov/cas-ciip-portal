@@ -1,5 +1,22 @@
 import diff from 'deep-diff';
 
+const addObjectToDiffMap = (path, lhs, rhs, idDiffMap) => {
+  if (typeof lhs !== 'object' && typeof rhs !== 'object') {
+    idDiffMap[path] = {lhs: lhs ?? null, rhs: rhs ?? null};
+    return;
+  }
+  if (typeof lhs === 'object' || typeof rhs === 'object') {
+    const keys = new Set<string>();
+
+    if (lhs) Object.keys(lhs).forEach((k) => keys.add(k));
+    if (rhs) Object.keys(rhs).forEach((k) => keys.add(k));
+
+    keys.forEach((k) =>
+      addObjectToDiffMap(`${path}_${k}`, lhs?.[k], rhs?.[k], idDiffMap)
+    );
+  }
+};
+
 /**
  *
  * @param formData the form data to display when not diffing
@@ -59,10 +76,12 @@ const useJsonSchemaDiff = (
         }
       } else if (difference.path) {
         const {lhs, rhs} = difference;
-        idDiffMap[[formIdPrefix, ...difference.path].join('_')] = {
-          lhs: lhs ?? null,
-          rhs: rhs ?? null
-        };
+        addObjectToDiffMap(
+          [formIdPrefix, ...difference.path].join('_'),
+          lhs,
+          rhs,
+          idDiffMap
+        );
       }
     });
   }

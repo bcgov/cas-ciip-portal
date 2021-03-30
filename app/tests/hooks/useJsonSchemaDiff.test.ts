@@ -52,6 +52,20 @@ describe('The useJsonSchemaDiff hook', () => {
       });
     });
 
+    it('should return field-level differences when a nested object is added', () => {
+      const lhs = {};
+      const rhs = {
+        a: {
+          b: 'foo'
+        }
+      };
+      const result = useJsonSchemaDiff(rhs, true, prefix, lhs, rhs);
+      expect(result.formData).toStrictEqual(rhs);
+      expect(result.idDiffMap).toStrictEqual({
+        [`${prefix}_a_b`]: {lhs: null, rhs: 'foo'}
+      });
+    });
+
     it('should return differences when a value is added', () => {
       const lhs = {
         a: 1,
