@@ -11,13 +11,8 @@ declare
   temp_row record;
   execute_string text;
   result boolean;
+  return_result record;
 begin
-
-  create temp table result_set(
-    validation_description varchar(1000),
-    validation_failed_message varchar(1000),
-    is_ok boolean
-  );
 
   for temp_row in
     select * from ggircs_portal.application_validation_function
@@ -28,18 +23,13 @@ begin
         using app.id
         into result;
 
-      insert into result_set (validation_description, validation_failed_message, is_ok)
-        values (temp_row.validation_description, temp_row.validation_failed_message, result);
+      return query select temp_row.validation_description, temp_row.validation_failed_message, result as is_ok;
 
   end loop;
 
-  return query ( select * from result_set );
-
-  drop table result_set;
-
 end;
 
-$function$ language plpgsql strict volatile;
+$function$ language plpgsql strict stable;
 
 grant execute on function ggircs_portal.application_validation to ciip_administrator, ciip_analyst, ciip_industry_user;
 
