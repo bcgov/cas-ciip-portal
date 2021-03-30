@@ -2,6 +2,6 @@
 
 begin;
 
-drop table ggircs_portal_private.application_validation_function;
+drop table ggircs_portal.application_validation_function;
 
 commit;
