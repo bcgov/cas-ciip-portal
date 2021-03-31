@@ -1,6 +1,6 @@
 import React from 'react';
 import {Card, Col, Row} from 'react-bootstrap';
-import {NaicsCodeList} from 'components/Admin/NaicsCodeProduct/NaicsCodeList';
+import {NaicsCodeList} from 'components/Admin/NaicsCodeList';
 import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
 import {NaicsCodeProductAssociation_query} from '__generated__/NaicsCodeProductAssociation_query.graphql';
 import AllowableProductsSearch from './AllowableProductsSearch';
