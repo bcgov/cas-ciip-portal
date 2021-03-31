@@ -37,7 +37,7 @@ export const AllowableProductsTableRowComponent: React.FunctionComponent<Props> 
       variables,
       naicsCodeId,
       productNaicsCode,
-      'AllowableProductsTable_productNaicsCodesByNaicsCodeId'
+      'AllowableProducts_productNaicsCodesByNaicsCodeId'
     );
   };
 

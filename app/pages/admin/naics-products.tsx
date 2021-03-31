@@ -3,7 +3,7 @@ import {graphql} from 'react-relay';
 import {naicsProductsAssociationsQueryResponse} from 'naicsProductsAssociationsQuery.graphql';
 import DefaultLayout from 'layouts/default-layout';
 import {ADMIN_GROUP} from 'data/group-constants';
-import NaicsCodeProductAssociationComponent from 'containers/Admin/NaicsCodeProduct/NaicsCodeProductAssociation';
+import NaicsCodeProductAssociationComponent from 'containers/Admin/ProductNaicsCode/NaicsCodeProductAssociation';
 
 const ALLOWED_GROUPS = ADMIN_GROUP;
 

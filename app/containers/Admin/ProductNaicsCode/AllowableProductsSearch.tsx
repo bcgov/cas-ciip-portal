@@ -47,7 +47,7 @@ export const AllowableProductsSearchContainer: React.FunctionComponent<Props> = 
         environment,
         variables,
         query.naicsCode.id,
-        'AllowableProductsTable_productNaicsCodesByNaicsCodeId'
+        'AllowableProducts_productNaicsCodesByNaicsCodeId'
       );
     } catch (e) {
       console.error(e);
@@ -118,7 +118,7 @@ export default createFragmentContainer(AllowableProductsSearchContainer, {
           filter: {deletedAt: {isNull: true}}
         )
           @connection(
-            key: "AllowableProductsTable_productNaicsCodesByNaicsCodeId"
+            key: "AllowableProducts_productNaicsCodesByNaicsCodeId"
             filters: []
           ) {
           edges {

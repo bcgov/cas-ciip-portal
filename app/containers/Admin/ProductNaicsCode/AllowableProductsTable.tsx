@@ -65,7 +65,7 @@ export default createFragmentContainer(AllowableProductsTableComponent, {
         filter: {deletedAt: {isNull: true}}
       )
         @connection(
-          key: "AllowableProductsTable_productNaicsCodesByNaicsCodeId"
+          key: "AllowableProducts_productNaicsCodesByNaicsCodeId"
           filters: []
         ) {
         edges {
