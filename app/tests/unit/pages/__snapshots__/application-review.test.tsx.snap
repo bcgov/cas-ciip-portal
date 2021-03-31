@@ -2,6 +2,7 @@
 
 exports[`The application-review page matches the last accepted Snapshot 1`] = `
 <Relay(DefaultLayout)
+  fixedHeader={true}
   session={
     Object {
       " $fragmentRefs": Object {
@@ -11,30 +12,36 @@ exports[`The application-review page matches the last accepted Snapshot 1`] = `
   }
   width="wide"
 >
-  <Relay(ApplicationRevisionStatusComponent)
-    applicationRevisionStatus={
-      Object {
-        " $fragmentRefs": Object {
-          "ApplicationRevisionStatusContainer_applicationRevisionStatus": true,
-        },
-      }
-    }
-    applicationRowId={1}
-  />
-  <ApplicationOverrideNotification
-    overrideJustification={null}
-  />
-  <hr
-    className="jsx-1070550671"
-  />
   <Row
     className="application-container"
     noGutters={false}
   >
-    <Col
-      className="application-body"
-      md={8}
+    <div
+      className="col-md-10
+             col-xxl-10
+             offset-md-1"
+      id="application-body"
     >
+      <Relay(ApplicationRevisionStatusComponent)
+        applicationRevisionStatus={
+          Object {
+            " $fragmentRefs": Object {
+              "ApplicationRevisionStatusContainer_applicationRevisionStatus": true,
+            },
+          }
+        }
+        applicationRowId={1}
+      />
+      <button
+        onClick={[Function]}
+        type="button"
+      >
+        Click to toggle review comments
+      </button>
+      <ApplicationOverrideNotification
+        overrideJustification={null}
+      />
+      <hr />
       <Relay(ApplicationDetailsComponent)
         application={
           Object {
@@ -91,20 +98,7 @@ exports[`The application-review page matches the last accepted Snapshot 1`] = `
           }
         }
       />
-    </Col>
-    <Col
-      className="review-step-box"
-      md={4}
-    >
-      <ApplicationReviewStep
-        reviewStep="Technical"
-      />
-    </Col>
+    </div>
   </Row>
-  <JSXStyle
-    id="1070550671"
-  >
-    .container.jsx-1070550671{display:none;}
-  </JSXStyle>
 </Relay(DefaultLayout)>
 `;
