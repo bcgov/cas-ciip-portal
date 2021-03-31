@@ -9,7 +9,7 @@ import ApplicationDetails from 'containers/Applications/ApplicationDetailsContai
 import ApplicationOverrideNotification from 'components/Application/ApplicationOverrideNotificationCard';
 import {CiipPageComponentProps} from 'next-env';
 import {INCENTIVE_ANALYST, ADMIN_GROUP} from 'data/group-constants';
-import ReviewSidebar from 'components/Application/ReviewSidebar';
+import ReviewSidebar from 'containers/Admin/ApplicationReview/ReviewSidebar';
 
 const ALLOWED_GROUPS = [INCENTIVE_ANALYST, ...ADMIN_GROUP];
 
