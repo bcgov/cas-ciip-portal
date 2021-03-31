@@ -43,9 +43,10 @@ short_name,
 description,
 form_json,
 prepopulate_from_ciip,
-prepopulate_from_swrs
+prepopulate_from_swrs,
+default_form_result
 ) values
-('admin', 'admin-2018', 'admin', 'admin', '{}', false, false);
+('admin', 'admin-2018', 'admin', 'admin', '{}', false, false, '{}');
 
 insert into ggircs_portal.ciip_application_wizard(form_id, form_position, is_active)
 values ((select id from ggircs_portal.form_json order by id desc limit 1), 0, false);

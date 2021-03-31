@@ -225,6 +225,7 @@ describe('When reviewing a submitted application as an analyst', () => {
     // Production Form
     cy.visit(productionFormUrl);
     cy.get('div.card-header').contains('Form input saved');
+    cy.contains('Add a Product').click();
     cy.contains('Continue').click();
     cy.get('.rbt +div .error-detail').contains('is a required property');
     cy.get('#root_0_productRowId').click();
