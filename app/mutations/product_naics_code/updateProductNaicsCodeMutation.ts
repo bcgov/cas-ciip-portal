@@ -6,6 +6,7 @@ import {
 } from 'updateProductNaicsCodeMutation.graphql';
 import BaseMutation from 'mutations/BaseMutation';
 import {ConnectionHandler, RecordSourceSelectorProxy} from 'relay-runtime';
+import {AllowableProductsTableRow_productNaicsCode} from '__generated__/AllowableProductsTableRow_productNaicsCode.graphql';
 
 const mutation = graphql`
   mutation updateProductNaicsCodeMutation(
@@ -13,7 +14,8 @@ const mutation = graphql`
   ) {
     updateProductNaicsCode(input: $input) {
       productNaicsCode {
-        deletedAt
+        id
+        ...AllowableProductsTableRow_productNaicsCode
       }
     }
   }
@@ -23,19 +25,23 @@ const mutation = graphql`
 const updateProductNaicsCodeMutation = async (
   environment: RelayModernEnvironment,
   variables: updateProductNaicsCodeMutationVariables,
+  naicsCodeId: string,
+  optimisticProductNaicsCode: AllowableProductsTableRow_productNaicsCode,
   connectionKey: string
 ) => {
   const optimisticResponse = {
     updateProductNaicsCode: {
       productNaicsCode: {
         id: variables.input.id,
-        ...variables.input.productNaicsCodePatch
+        ...variables.input.productNaicsCodePatch,
+        ...optimisticProductNaicsCode
       }
     }
   };
+
   const updater = (store: RecordSourceSelectorProxy) => {
-    // connectionID is passed as input to the mutation/subscription
-    const connection = store.get(connectionKey);
+    const record = store.get(naicsCodeId);
+    const connection = ConnectionHandler.getConnection(record, connectionKey);
     ConnectionHandler.deleteNode(connection, variables.input.id);
   };
 

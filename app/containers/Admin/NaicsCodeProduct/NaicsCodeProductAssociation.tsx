@@ -40,7 +40,7 @@ export const NaicsCodeProductAssociationContainer: React.FunctionComponent<Props
           </Card>
         </Col>
         <Col md="8">
-          {currentNaics && (
+          {currentNaics && query.naicsCode && (
             <>
               <Row>
                 <Col md="12">

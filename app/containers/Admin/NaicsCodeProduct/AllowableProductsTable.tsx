@@ -35,6 +35,7 @@ export const AllowableProductsTableComponent: React.FunctionComponent<Props> = (
         <tbody>
           {props.naicsCode.productNaicsCodesByNaicsCodeId.edges.map((e) => (
             <AllowableProductsTableRow
+              naicsCodeId={props.naicsCode.id}
               key={e.node.id}
               productNaicsCode={e.node}
             />
@@ -58,6 +59,7 @@ export const AllowableProductsTableComponent: React.FunctionComponent<Props> = (
 export default createFragmentContainer(AllowableProductsTableComponent, {
   naicsCode: graphql`
     fragment AllowableProductsTable_naicsCode on NaicsCode {
+      id
       productNaicsCodesByNaicsCodeId(
         first: 2147483647
         filter: {deletedAt: {isNull: true}}

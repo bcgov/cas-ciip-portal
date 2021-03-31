@@ -16,6 +16,7 @@ const mutation = graphql`
       productNaicsCodeEdge {
         node {
           id
+          productId
           ...AllowableProductsTableRow_productNaicsCode
         }
       }

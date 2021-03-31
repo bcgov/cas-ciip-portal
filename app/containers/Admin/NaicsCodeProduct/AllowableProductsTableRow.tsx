@@ -11,12 +11,16 @@ import {AllowableProductsTableRow_productNaicsCode} from '__generated__/Allowabl
 interface Props {
   relay: RelayProp;
   productNaicsCode: AllowableProductsTableRow_productNaicsCode;
+  naicsCodeId: string;
 }
 
 export const AllowableProductsTableRowComponent: React.FunctionComponent<Props> = ({
   relay,
-  productNaicsCode
+  productNaicsCode,
+  naicsCodeId
 }) => {
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+
   const deleteProductNaicsCode = async () => {
     const {environment} = relay;
     const variables = {
@@ -31,11 +35,11 @@ export const AllowableProductsTableRowComponent: React.FunctionComponent<Props> 
     await updateProductNaicsCodeMutation(
       environment,
       variables,
+      naicsCodeId,
+      productNaicsCode,
       'AllowableProductsTable_productNaicsCodesByNaicsCodeId'
     );
   };
-
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   const deleteObject = {
     deleteName: 'allowed Product',

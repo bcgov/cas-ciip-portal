@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useMemo, useState} from 'react';
 import {Button, Card, Col, Row} from 'react-bootstrap';
 import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
 import {AllowableProductsSearch_query} from '__generated__/AllowableProductsSearch_query.graphql';
@@ -15,22 +15,22 @@ export const AllowableProductsSearchContainer: React.FunctionComponent<Props> = 
   relay,
   query
 }) => {
-  const existingProductIds = query.naicsCode.productNaicsCodesByNaicsCodeId.edges.map(
-    (e) => e.node.productId
-  );
-  const initialAllowableProducts = query.allProducts.edges
-    .map((e) => {
-      return {
-        id: e.node.rowId,
-        name: e.node.productName
-      };
-    })
-    .filter((option) => !existingProductIds.includes(option.id));
+  const allowableProducts = useMemo(() => {
+    const existingProductIds = query.naicsCode.productNaicsCodesByNaicsCodeId.edges.map(
+      (e) => e.node.productId
+    );
+
+    return query.allProducts.edges
+      .map((e) => {
+        return {
+          id: e.node.rowId,
+          name: e.node.productName
+        };
+      })
+      .filter((option) => !existingProductIds.includes(option.id));
+  }, [query]);
 
   const [selectedProducts, setSelectedProducts] = useState([]);
-  const [allowableProducts, setAllowableProducts] = useState(
-    initialAllowableProducts
-  );
 
   const addAllowableProduct = async (productId: number, mandatory: boolean) => {
     const {environment} = relay;
@@ -57,11 +57,6 @@ export const AllowableProductsSearchContainer: React.FunctionComponent<Props> = 
   const onAddClick = (mandatory: boolean) => {
     if (selectedProducts.length > 0) {
       addAllowableProduct(selectedProducts[0].id, mandatory);
-      setAllowableProducts(
-        allowableProducts.filter(
-          (allowableProduct) => allowableProduct.id !== selectedProducts[0].id
-        )
-      );
       setSelectedProducts([]);
     }
   };
@@ -128,6 +123,7 @@ export default createFragmentContainer(AllowableProductsSearchContainer, {
           ) {
           edges {
             node {
+              id
               deletedAt
               productId
             }
