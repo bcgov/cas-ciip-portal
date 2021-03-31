@@ -12,192 +12,189 @@ import FuelField from 'containers/Forms/FuelField';
 import EmissionCategoryRowIdField from 'containers/Forms/EmissionCategoryRowIdField';
 import NaicsField from 'containers/Forms/NaicsField';
 
-const customFields = (
-  showDiff: boolean,
-  diffPathArray: any[],
-  diffArray: any[],
-  handleEnums: (...args: any[]) => any,
-  previousIsEmpty: boolean,
-  setHasErrors: (...args: any[]) => any
-) => {
-  const setErrorIcon: (...args: any[]) => object = (props) => {
-    if (props?.errorSchema?.__errors || props.rawErrors) {
-      setHasErrors(true);
-      return <FontAwesomeIcon color="red" icon={faExclamationTriangle} />;
-    }
+// Some formData values are numbers that map to enums, this function uses the number values to return the enum names stored in the schema
+const getDisplayValue = (schema, value) => {
+  if (schema.enum && schema.enumNames) {
+    // TODO: needs a fix on jsonschema types (missing enumNames)
+    const enumIndex = schema.enum.indexOf(value);
+    if (enumIndex === -1) return null;
+    return schema.enumNames[enumIndex];
+  }
 
-    return undefined;
-  };
-
-  const CUSTOM_FIELDS: Record<string, React.FunctionComponent<FieldProps>> = {
-    TitleField: (props) => <h3>{props.title}</h3>,
-    StringField: (props) => {
-      const errorIcon: object = setErrorIcon(props);
-
-      const {idSchema, formData} = props;
-      const id = idSchema?.$id;
-      let prevValue;
-      let hasDiff = false;
-      if (showDiff) {
-        hasDiff = diffPathArray.includes(id.replace(/^[^_]*_/g, ''));
-        prevValue =
-          diffArray[diffPathArray.indexOf(id.replace(/^[^_]*_/g, ''))];
-
-        if ((hasDiff || previousIsEmpty) && prevValue !== formData) {
-          prevValue = handleEnums(props, false, prevValue);
-          const currentValue = handleEnums(props, true, prevValue);
-
-          return (
-            <>
-              <span id={id && `${id}-diffFrom`} className="diffFrom">
-                {prevValue ?? <i>[No Data Entered]</i>}
-              </span>
-              &nbsp;---&gt;&nbsp;
-              <span id={id && `${id}-diffTo`} className="diffTo">
-                {currentValue ?? <i>[No Data Entered]</i>}
-              </span>
-            </>
-          );
-        }
-      }
-
-      if (formData === null || formData === undefined || formData === '')
-        return (
-          <>
-            <i id={id}>[No Data Entered]</i>
-            {errorIcon}
-          </>
-        );
-
-      const value = handleEnums(props, true, prevValue);
-      return (
-        <>
-          <span id={id}>{value}</span>
-          {errorIcon}
-        </>
-      );
-    },
-    BooleanField: (props) => {
-      const errorIcon = setErrorIcon(props);
-
-      const {idSchema, formData} = props;
-      const id = idSchema?.$id;
-      const hasDiff = diffPathArray.includes(
-        idSchema.$id.replace(/^[^_]*_/g, '')
-      );
-
-      if (showDiff && hasDiff) {
-        const prevValue =
-          diffArray[
-            diffPathArray.indexOf(idSchema.$id.replace(/^[^_]*_/g, ''))
-          ];
-        return (
-          <>
-            <span id={`${id}-diffFrom`} className="diffFrom">
-              {prevValue ? 'Yes' : 'No'}
-            </span>
-            &nbsp;---&gt;&nbsp;
-            <span id={`${id}-diffTo`} className="diffTo">
-              {formData ? 'Yes' : 'No'}
-            </span>
-          </>
-        );
-      }
-
-      return (
-        <span id={id}>
-          {formData ? <>Yes {errorIcon}</> : <>No {errorIcon}</>}{' '}
-        </span>
-      );
-    },
-    naics: (props) => <NaicsField query={props.formContext.query} {...props} />,
-    emissionSource: EmissionSourceFields,
-    emissionGas: (props) => (
-      <EmissionGasFields setHasErrors={setHasErrors} {...props} />
-    ),
-    product: (props) => (
-      <ProductField query={props.formContext.query} {...props} />
-    ),
-    productRowId: (props) => (
-      <ProductRowIdField query={props.formContext.query} {...props} />
-    ),
-    fuel: (props) => <FuelField query={props.formContext.query} {...props} />,
-    fuelRowId: (props) => (
-      <FuelRowIdField query={props.formContext.query} {...props} />
-    ),
-    emissionCategoryRowId: (props) => (
-      <EmissionCategoryRowIdField query={props.formContext.query} {...props} />
-    ),
-    NumberField: (props) => {
-      const errorIcon = setErrorIcon(props);
-
-      const {idSchema, formData} = props;
-      const id = idSchema?.$id;
-      if (formData === null || formData === undefined || formData === '')
-        return (
-          <>
-            <i id={id}>[No Data Entered]</i>
-            {errorIcon}
-          </>
-        );
-
-      let prevValue;
-      let hasDiff = false;
-      if (showDiff) {
-        hasDiff = diffPathArray.includes(id.replace(/^[^_]*_/g, ''));
-        prevValue =
-          diffArray[diffPathArray.indexOf(id.replace(/^[^_]*_/g, ''))];
-        if (hasDiff || previousIsEmpty) {
-          prevValue = handleEnums(props, false, prevValue);
-          const currentValue = handleEnums(props, true, prevValue);
-
-          return (
-            <>
-              <span className="diffFrom">
-                {prevValue ? (
-                  <NumberFormat
-                    thousandSeparator
-                    id={id && `${id}-diffFrom`}
-                    displayType="text"
-                    value={prevValue}
-                  />
-                ) : (
-                  <i id={id && `${id}-diffFrom`}>[No Data Entered]</i>
-                )}
-              </span>
-              &nbsp;---&gt;&nbsp;
-              <span className="diffTo">
-                {currentValue ? (
-                  <NumberFormat
-                    thousandSeparator
-                    id={id && `${id}-diffTo`}
-                    displayType="text"
-                    value={currentValue}
-                  />
-                ) : (
-                  <i id={id && `${id}-diffTo`}>[No Data Entered]</i>
-                )}
-              </span>
-            </>
-          );
-        }
-      }
-
-      const value = handleEnums(props, true, prevValue);
-      return (
-        <>
-          <NumberFormat
-            thousandSeparator
-            id={id}
-            displayType="text"
-            value={value}
-          />
-          {errorIcon}
-        </>
-      );
-    }
-  };
-  return CUSTOM_FIELDS;
+  return value;
 };
 
-export default customFields;
+const ErrorIcon: React.FunctionComponent<FieldProps> = (props) => {
+  if (props?.errorSchema?.__errors || props.rawErrors) {
+    return <FontAwesomeIcon color="red" icon={faExclamationTriangle} />;
+  }
+
+  return null;
+};
+
+const CUSTOM_FIELDS: Record<string, React.FunctionComponent<FieldProps>> = {
+  TitleField: (props) => <h3>{props.title}</h3>,
+  StringField: (props) => {
+    const {
+      idSchema,
+      schema,
+      formData,
+      formContext: {showDiff, idDiffMap}
+    } = props;
+    const displayValue = getDisplayValue(schema, formData);
+    const id = idSchema?.$id;
+    if (showDiff) {
+      const diff = idDiffMap?.[id];
+
+      if (diff) {
+        return (
+          <>
+            <span id={id && `${id}-diffFrom`} className="diffFrom">
+              {getDisplayValue(schema, diff.lhs) ?? <i>[No Data Entered]</i>}
+            </span>
+            &nbsp;---&gt;&nbsp;
+            <span id={id && `${id}-diffTo`} className="diffTo">
+              {getDisplayValue(schema, diff.rhs) ?? <i>[No Data Entered]</i>}
+            </span>
+          </>
+        );
+      }
+    }
+
+    if (formData === null || formData === undefined || formData === '')
+      return (
+        <>
+          <i id={id}>[No Data Entered]</i>
+          <ErrorIcon {...props} />
+        </>
+      );
+
+    return (
+      <>
+        <span id={id}>{displayValue}</span>
+        <ErrorIcon {...props} />
+      </>
+    );
+  },
+  BooleanField: (props) => {
+    const {
+      idSchema,
+      formData,
+      formContext: {showDiff, idDiffMap}
+    } = props;
+    const id = idSchema?.$id;
+    const diff = idDiffMap?.[id];
+
+    if (showDiff && diff) {
+      return (
+        <>
+          <span id={`${id}-diffFrom`} className="diffFrom">
+            {diff.lhs ? 'Yes' : 'No'}
+          </span>
+          &nbsp;---&gt;&nbsp;
+          <span id={`${id}-diffTo`} className="diffTo">
+            {diff.rhs ? 'Yes' : 'No'}
+          </span>
+        </>
+      );
+    }
+
+    return (
+      <span id={id}>
+        {formData ? (
+          <>
+            Yes <ErrorIcon {...props} />
+          </>
+        ) : (
+          <>
+            No <ErrorIcon {...props} />
+          </>
+        )}{' '}
+      </span>
+    );
+  },
+  naics: (props) => <NaicsField query={props.formContext.query} {...props} />,
+  emissionSource: EmissionSourceFields,
+  emissionGas: (props) => <EmissionGasFields {...props} />,
+  product: (props) => (
+    <ProductField query={props.formContext.query} {...props} />
+  ),
+  productRowId: (props) => (
+    <ProductRowIdField query={props.formContext.query} {...props} />
+  ),
+  fuel: (props) => <FuelField query={props.formContext.query} {...props} />,
+  fuelRowId: (props) => (
+    <FuelRowIdField query={props.formContext.query} {...props} />
+  ),
+  emissionCategoryRowId: (props) => (
+    <EmissionCategoryRowIdField query={props.formContext.query} {...props} />
+  ),
+  NumberField: (props) => {
+    const {
+      idSchema,
+      formData,
+      schema,
+      formContext: {showDiff, idDiffMap}
+    } = props;
+    const id = idSchema?.$id;
+    if (formData === null || formData === undefined || formData === '')
+      return (
+        <>
+          <i id={id}>[No Data Entered]</i>
+          <ErrorIcon {...props} />
+        </>
+      );
+    const displayValue = getDisplayValue(schema, formData);
+
+    const diff = idDiffMap?.[id];
+
+    if (showDiff && diff) {
+      const lhs = getDisplayValue(schema, diff.lhs);
+      const rhs = getDisplayValue(schema, diff.rhs);
+
+      return (
+        <>
+          <span className="diffFrom">
+            {lhs !== null && lhs !== undefined ? (
+              <NumberFormat
+                thousandSeparator
+                id={id && `${id}-diffFrom`}
+                displayType="text"
+                value={lhs}
+              />
+            ) : (
+              <i id={id && `${id}-diffFrom`}>[No Data Entered]</i>
+            )}
+          </span>
+          &nbsp;---&gt;&nbsp;
+          <span className="diffTo">
+            {rhs !== null && rhs !== undefined ? (
+              <NumberFormat
+                thousandSeparator
+                id={id && `${id}-diffTo`}
+                displayType="text"
+                value={rhs}
+              />
+            ) : (
+              <i id={id && `${id}-diffTo`}>[No Data Entered]</i>
+            )}
+          </span>
+        </>
+      );
+    }
+
+    return (
+      <>
+        <NumberFormat
+          thousandSeparator
+          id={id}
+          displayType="text"
+          value={displayValue}
+        />
+        <ErrorIcon {...props} />
+      </>
+    );
+  }
+};
+
+export default CUSTOM_FIELDS;

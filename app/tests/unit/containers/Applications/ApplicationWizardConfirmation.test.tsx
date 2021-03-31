@@ -1,9 +1,43 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 import {ApplicationWizardConfirmationComponent} from 'containers/Applications/ApplicationWizardConfirmation';
+import {ApplicationWizardConfirmation_application} from '__generated__/ApplicationWizardConfirmation_application.graphql';
 
 describe('The Confirmation Component', () => {
-  it('Match the snapshot and show the submit application button', () => {
+  const application: ApplicationWizardConfirmation_application = {
+    ' $refType': 'ApplicationWizardConfirmation_application',
+    ' $fragmentRefs': {
+      SubmitApplication_application: true,
+      ApplicationDetailsContainer_application: true
+    },
+    id: 'abc',
+    latestDraftRevision: {
+      id: 'abc',
+      overrideJustification: null
+    },
+    orderedFormResults: {
+      edges: [
+        {
+          node: {
+            formResult: {foo: 'bar'},
+            formJsonByFormId: {
+              formJson: {
+                schema: {
+                  type: 'object',
+                  properties: {
+                    foo: {type: 'string'}
+                  },
+                  required: ['foo']
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  };
+
+  it('shows the "submit application" button when there is no validation error', () => {
     const wrapper = shallow(
       <ApplicationWizardConfirmationComponent
         query={{
@@ -12,26 +46,44 @@ describe('The Confirmation Component', () => {
           },
           ' $refType': 'ApplicationWizardConfirmation_query'
         }}
-        application={{
-          ' $refType': 'ApplicationWizardConfirmation_application',
-          ' $fragmentRefs': {
-            SubmitApplication_application: true,
-            ApplicationDetailsContainer_application: true
-          },
-          id: 'abc',
-          rowId: 1,
-          latestDraftRevision: {
-            id: 'abc',
-            versionNumber: 1,
-            overrideJustification: null
-          }
-        }}
+        application={application}
         relay={null}
       />
     );
     expect(wrapper).toMatchSnapshot();
     expect(wrapper.find('Relay(SubmitApplicationComponent)').exists()).toBe(
       true
+    );
+  });
+  it('shows a message instead of the "submit application" button when there are validation errors', () => {
+    const applicationWithError = {
+      ...application,
+      orderedFormResults: {
+        edges: [
+          {
+            node: {
+              ...application.orderedFormResults.edges[0].node,
+              formResult: {}
+            }
+          }
+        ]
+      }
+    };
+    const wrapper = shallow(
+      <ApplicationWizardConfirmationComponent
+        query={{
+          ' $fragmentRefs': {
+            ApplicationDetailsContainer_query: true
+          },
+          ' $refType': 'ApplicationWizardConfirmation_query'
+        }}
+        application={applicationWithError}
+        relay={null}
+      />
+    );
+    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.find('Relay(SubmitApplicationComponent)').exists()).toBe(
+      false
     );
   });
 
@@ -44,20 +96,7 @@ describe('The Confirmation Component', () => {
           },
           ' $refType': 'ApplicationWizardConfirmation_query'
         }}
-        application={{
-          ' $refType': 'ApplicationWizardConfirmation_application',
-          ' $fragmentRefs': {
-            SubmitApplication_application: true,
-            ApplicationDetailsContainer_application: true
-          },
-          id: 'abc',
-          rowId: 1,
-          latestDraftRevision: {
-            id: 'abc',
-            versionNumber: 1,
-            overrideJustification: null
-          }
-        }}
+        application={application}
         relay={null}
       />
     );
@@ -75,6 +114,13 @@ describe('The Confirmation Component', () => {
   });
 
   it('should render the override justification component with the right props if an override is currently set', () => {
+    const applicationWithOverride = {
+      ...application,
+      latestDraftRevision: {
+        ...application.latestDraftRevision,
+        overrideJustification: 'I did a bad thing and I dont want to fix it'
+      }
+    };
     const wrapper = shallow(
       <ApplicationWizardConfirmationComponent
         query={{
@@ -83,20 +129,7 @@ describe('The Confirmation Component', () => {
           },
           ' $refType': 'ApplicationWizardConfirmation_query'
         }}
-        application={{
-          ' $refType': 'ApplicationWizardConfirmation_application',
-          ' $fragmentRefs': {
-            SubmitApplication_application: true,
-            ApplicationDetailsContainer_application: true
-          },
-          id: 'abc',
-          rowId: 1,
-          latestDraftRevision: {
-            id: 'abc',
-            versionNumber: 1,
-            overrideJustification: 'I did a bad thing and I dont want to fix it'
-          }
-        }}
+        application={applicationWithOverride}
         relay={null}
       />
     );

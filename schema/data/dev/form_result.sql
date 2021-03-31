@@ -61,10 +61,16 @@ begin;
       "emissionCategoryRowId": 1
     },
     {
-      "fuelRowId": 11,
+      "fuelRowId": 10,
       "quantity": 40120,
       "fuelUnits": "kL",
       "emissionCategoryRowId": 3
+    },
+    {
+      "fuelRowId": 12,
+      "quantity": 40,
+      "fuelUnits": "kL",
+      "emissionCategoryRowId": 2
     }
   ]'),
   ('[
@@ -73,15 +79,6 @@ begin;
       "productRowId": 29,
       "productUnits": "MWh",
       "productEmissions": 5900,
-      "requiresEmissionAllocation": true,
-      "requiresProductAmount": true,
-      "isCiipProduct": true
-    },
-    {
-      "productAmount": 12000,
-      "productRowId": 26,
-      "productUnits": "t",
-      "productEmissions": 1300,
       "requiresEmissionAllocation": true,
       "requiresProductAmount": true,
       "isCiipProduct": true
