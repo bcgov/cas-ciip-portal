@@ -20,7 +20,6 @@ const addObjectToDiffMap = (path, lhs, rhs, idDiffMap) => {
 /**
  *
  * @param formData the form data to display when not diffing
- * @param showDiff whether or not the diff should be performed
  * @param formIdPrefix
  * @param lhs
  * @param rhs
@@ -28,12 +27,10 @@ const addObjectToDiffMap = (path, lhs, rhs, idDiffMap) => {
  */
 const useJsonSchemaDiff = (
   formData: any,
-  showDiff: boolean,
   formIdPrefix: string,
   lhs?: any,
   rhs?: any
 ) => {
-  if (!showDiff) return {formData};
   const idDiffMap: Record<string, {lhs: any; rhs: any}> = {};
   const differences = diff(lhs, rhs);
   let newFormData = Array.isArray(rhs) ? [...rhs] : {...rhs};
@@ -57,10 +54,8 @@ const useJsonSchemaDiff = (
             };
           });
         } else if (difference.item.kind === 'D') {
-          const deletedItem = {};
           // Deleted an element from the array
           Object.keys(difference.item.lhs).forEach((key) => {
-            deletedItem[key] = null;
             idDiffMap[`${arrayElementPath}_${key}`] = {
               lhs: difference.item.lhs[key],
               rhs: null

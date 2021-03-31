@@ -1,13 +1,7 @@
-import useJsonSchemaDiff from 'hooks/useJsonSchemaDiff';
+import jsonSchemaDiff from 'lib/jsonSchemaDiff';
 
-describe('The useJsonSchemaDiff hook', () => {
+describe('The jsonSchemaDiff function', () => {
   const prefix = 'myPrefix';
-  it('should only return the formData if showDiff is false', () => {
-    const formData = {a: 1};
-    const result = useJsonSchemaDiff(formData, false, prefix);
-    expect(result.formData).toBe(formData);
-    expect(result.idDiffMap).toBeUndefined();
-  });
 
   describe('when receiving two objects', () => {
     it('should not return differences objects are identical', () => {
@@ -25,7 +19,7 @@ describe('The useJsonSchemaDiff hook', () => {
           d: 'bar'
         }
       };
-      const result = useJsonSchemaDiff(rhs, true, prefix, lhs, rhs);
+      const result = jsonSchemaDiff(rhs, prefix, lhs, rhs);
       expect(result.formData).toStrictEqual(rhs);
       expect(result.idDiffMap).toStrictEqual({});
     });
@@ -44,7 +38,7 @@ describe('The useJsonSchemaDiff hook', () => {
           d: 'baz'
         }
       };
-      const result = useJsonSchemaDiff(rhs, true, prefix, lhs, rhs);
+      const result = jsonSchemaDiff(rhs, prefix, lhs, rhs);
       expect(result.formData).toStrictEqual(rhs);
       expect(result.idDiffMap).toStrictEqual({
         [`${prefix}_a`]: {lhs: 1, rhs: 42},
@@ -59,7 +53,7 @@ describe('The useJsonSchemaDiff hook', () => {
           b: 'foo'
         }
       };
-      const result = useJsonSchemaDiff(rhs, true, prefix, lhs, rhs);
+      const result = jsonSchemaDiff(rhs, prefix, lhs, rhs);
       expect(result.formData).toStrictEqual(rhs);
       expect(result.idDiffMap).toStrictEqual({
         [`${prefix}_a_b`]: {lhs: null, rhs: 'foo'}
@@ -81,7 +75,7 @@ describe('The useJsonSchemaDiff hook', () => {
           e: 42
         }
       };
-      const result = useJsonSchemaDiff(rhs, true, prefix, lhs, rhs);
+      const result = jsonSchemaDiff(rhs, prefix, lhs, rhs);
       expect(result.formData).toStrictEqual(rhs);
       expect(result.idDiffMap).toStrictEqual({
         [`${prefix}_b`]: {lhs: null, rhs: 'foo'},
@@ -104,7 +98,7 @@ describe('The useJsonSchemaDiff hook', () => {
           d: 'bar'
         }
       };
-      const result = useJsonSchemaDiff(rhs, true, prefix, lhs, rhs);
+      const result = jsonSchemaDiff(rhs, prefix, lhs, rhs);
       expect(result.formData).toStrictEqual(rhs);
       expect(result.idDiffMap).toStrictEqual({
         [`${prefix}_a`]: {lhs: 1, rhs: null},
@@ -117,7 +111,7 @@ describe('The useJsonSchemaDiff hook', () => {
     it('should return no differences when the arrays are identical', () => {
       const lhs = [{a: 1}, {b: 'foo'}, {c: 'bar'}];
       const rhs = [{a: 1}, {b: 'foo'}, {c: 'bar'}];
-      const result = useJsonSchemaDiff(rhs, true, prefix, lhs, rhs);
+      const result = jsonSchemaDiff(rhs, prefix, lhs, rhs);
       expect(result.formData).toStrictEqual(rhs);
       expect(result.idDiffMap).toStrictEqual({});
     });
@@ -125,7 +119,7 @@ describe('The useJsonSchemaDiff hook', () => {
     it('should return differences when an object in the array is modified', () => {
       const lhs = [{a: 1}, {b: 'foo'}, {c: 'bar'}];
       const rhs = [{a: 42}, {b: 'foo'}, {c: 'baz'}];
-      const result = useJsonSchemaDiff(rhs, true, prefix, lhs, rhs);
+      const result = jsonSchemaDiff(rhs, prefix, lhs, rhs);
       expect(result.formData).toStrictEqual(rhs);
       expect(result.idDiffMap).toStrictEqual({
         [`${prefix}_0_a`]: {lhs: 1, rhs: 42},
@@ -135,7 +129,7 @@ describe('The useJsonSchemaDiff hook', () => {
     it('should return differences when an object is added to the array', () => {
       const lhs = [{a: 1}];
       const rhs = [{a: 1}, {b: 'foo'}, {c: 'baz'}];
-      const result = useJsonSchemaDiff(rhs, true, prefix, lhs, rhs);
+      const result = jsonSchemaDiff(rhs, prefix, lhs, rhs);
       expect(result.formData).toStrictEqual(rhs);
       expect(result.idDiffMap).toStrictEqual({
         [`${prefix}_1_b`]: {lhs: null, rhs: 'foo'},
@@ -146,7 +140,7 @@ describe('The useJsonSchemaDiff hook', () => {
       it('should return differences', () => {
         const lhs = [{a: 1}, {b: 'foo'}, {c: 'bar'}];
         const rhs = [{a: 1}];
-        const result = useJsonSchemaDiff(rhs, true, prefix, lhs, rhs);
+        const result = jsonSchemaDiff(rhs, prefix, lhs, rhs);
         expect(result.idDiffMap).toStrictEqual({
           [`${prefix}_1_b`]: {lhs: 'foo', rhs: null},
           [`${prefix}_2_c`]: {lhs: 'bar', rhs: null}
@@ -155,7 +149,7 @@ describe('The useJsonSchemaDiff hook', () => {
       it('should return an amended formData with the elements that were deleted', () => {
         const lhs = [{a: 1}, {b: 'foo'}, {c: 'bar'}];
         const rhs = [{a: 42}];
-        const result = useJsonSchemaDiff(rhs, true, prefix, lhs, rhs);
+        const result = jsonSchemaDiff(rhs, prefix, lhs, rhs);
         expect(result.formData).toStrictEqual([...rhs, {b: 'foo'}, {c: 'bar'}]);
       });
     });

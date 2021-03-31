@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useMemo} from 'react';
 import {Button, Card, Collapse, Col, Row} from 'react-bootstrap';
 import {createFragmentContainer, graphql} from 'react-relay';
 import JsonSchemaForm, {AjvError} from '@rjsf/core';
@@ -10,7 +10,7 @@ import SummaryFormArrayFieldTemplate from 'containers/Forms/SummaryFormArrayFiel
 import SummaryFormFieldTemplate from 'containers/Forms/SummaryFormFieldTemplate';
 import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
 import {customTransformErrors} from 'functions/customTransformErrors';
-import useJsonSchemaDiff from 'hooks/useJsonSchemaDiff';
+import jsonSchemaDiff from 'lib/jsonSchemaDiff';
 
 interface Props {
   // The form_result used by the fragment
@@ -55,23 +55,27 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
   // Expands or collapses the form_result card
   const [isOpen, setIsOpen] = useState(false);
 
-  // Select the correct form result to diff to by matching formJson slugs
-  const diffTo = diffToResults?.find(
-    ({node}) => node.formJsonByFormId.slug === formJsonByFormId.slug
-  )?.node.formResult;
+  const {formData, idDiffMap} = useMemo(() => {
+    if (!showDiff)
+      return {formData: formResult.formResult, idDiffMap: undefined};
 
-  // Select the correct form result to diff from by matching formJson slugs
-  const diffFrom = diffFromResults?.find(
-    ({node}) => node.formJsonByFormId.slug === formJsonByFormId.slug
-  )?.node.formResult;
+    // Select the correct form result to diff to by matching formJson slugs
+    const diffTo = diffToResults?.find(
+      ({node}) => node.formJsonByFormId.slug === formJsonByFormId.slug
+    )?.node.formResult;
 
-  const {formData, idDiffMap} = useJsonSchemaDiff(
-    formResult.formResult,
-    showDiff,
-    formIdPrefix,
-    diffFrom,
-    diffTo
-  );
+    // Select the correct form result to diff from by matching formJson slugs
+    const diffFrom = diffFromResults?.find(
+      ({node}) => node.formJsonByFormId.slug === formJsonByFormId.slug
+    )?.node.formResult;
+
+    return jsonSchemaDiff(
+      formResult.formResult,
+      formIdPrefix,
+      diffFrom,
+      diffTo
+    );
+  }, [formResult, diffFromResults, diffToResults, formIdPrefix, showDiff]);
 
   const classTag = formJsonByFormId.slug;
   // Override submit button for each form with an empty fragment
