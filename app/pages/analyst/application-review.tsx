@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {graphql} from 'react-relay';
 import {applicationReviewQueryResponse} from 'applicationReviewQuery.graphql';
-import {Row} from 'react-bootstrap';
+import {Row, Button, OverlayTrigger, Tooltip} from 'react-bootstrap';
 import IncentiveCalculatorContainer from 'containers/Incentives/IncentiveCalculatorContainer';
 import ApplicationRevisionStatusContainer from 'containers/Applications/ApplicationRevisionStatusContainer';
 import DefaultLayout from 'layouts/default-layout';
@@ -10,6 +10,9 @@ import ApplicationOverrideNotification from 'components/Application/ApplicationO
 import {CiipPageComponentProps} from 'next-env';
 import {INCENTIVE_ANALYST, ADMIN_GROUP} from 'data/group-constants';
 import ReviewSidebar from 'containers/Admin/ApplicationReview/ReviewSidebar';
+import HelpButton from 'components/helpers/HelpButton';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faArrowUp} from '@fortawesome/free-solid-svg-icons';
 
 const ALLOWED_GROUPS = [INCENTIVE_ANALYST, ...ADMIN_GROUP];
 
@@ -97,7 +100,12 @@ class ApplicationReview extends Component<Props> {
     const {session} = query || {};
 
     return (
-      <DefaultLayout session={session} width="wide" fixedHeader>
+      <DefaultLayout
+        session={session}
+        width="wide"
+        fixedHeader
+        disableHelpButton
+      >
         <Row className="application-container">
           <div
             id="application-body"
@@ -128,6 +136,36 @@ class ApplicationReview extends Component<Props> {
             <IncentiveCalculatorContainer
               applicationRevision={query.applicationRevision}
             />
+            <OverlayTrigger
+              placement="top"
+              overlay={(props) => (
+                <Tooltip id="scroll-to-top" {...props}>
+                  Return to top of page
+                </Tooltip>
+              )}
+            >
+              <Button
+                id="to-top"
+                variant="dark"
+                type="button"
+                onClick={() => {
+                  const main = document.body.getElementsByTagName('main')[0];
+                  main?.scrollIntoView();
+                }}
+                style={{
+                  borderRadius: '50%',
+                  position: 'fixed',
+                  bottom: '0.6rem',
+                  left: '0.6rem',
+                  width: 50,
+                  height: 50,
+                  boxShadow:
+                    '0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.4)'
+                }}
+              >
+                <FontAwesomeIcon size="lg" icon={faArrowUp} />
+              </Button>
+            </OverlayTrigger>
           </div>
           {this.state.isSidebarOpened && (
             <ReviewSidebar
@@ -147,12 +185,8 @@ class ApplicationReview extends Component<Props> {
               }}
             />
           )}
+          {!this.state.isSidebarOpened && <HelpButton isInternalUser />}
         </Row>
-        <style jsx global>{`
-          #help-button {
-            right: 500px !important;
-          }
-        `}</style>
       </DefaultLayout>
     );
   }

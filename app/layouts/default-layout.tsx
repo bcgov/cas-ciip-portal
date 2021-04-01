@@ -25,6 +25,7 @@ interface Props {
     title: string;
     helpMessage: string;
   };
+  disableHelpButton?: boolean;
 }
 
 const DefaultLayout: React.FunctionComponent<Props> = ({
@@ -35,7 +36,8 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
   fixedHeader = false,
   session,
   width = 'narrow',
-  help
+  help,
+  disableHelpButton = false
 }) => {
   const isInternalUser = [INCENTIVE_ANALYST, ...ADMIN_GROUP].some((role) => {
     return session?.userGroups.includes(role);
@@ -83,7 +85,7 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
         <Container id="page-content" className={`content ${width}`}>
           {children}
         </Container>
-        {Boolean(session) && isInternalUser && (
+        {Boolean(session) && isInternalUser && !disableHelpButton && (
           <HelpButton isInternalUser={isInternalUser} />
         )}
       </main>
