@@ -124,7 +124,6 @@ export default createFragmentContainer(AllowableProductsSearchContainer, {
           edges {
             node {
               id
-              deletedAt
               productId
             }
           }
