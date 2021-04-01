@@ -1,5 +1,180 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`The Confirmation Component should not render the validation alert if there are validations where isOk is true, but none where isOk is false 1`] = `
+<Fragment>
+  <h1
+    className="jsx-733094270"
+  >
+    Summary of your application:
+  </h1>
+  <p
+    className="jsx-733094270"
+    style={
+      Object {
+        "fontSize": "1.25rem",
+        "fontWeight": 500,
+      }
+    }
+  >
+    Please review the information you have provided before continuing.
+  </p>
+  <br
+    className="jsx-733094270"
+  />
+  <Relay(ApplicationOverrideJustificationComponent)
+    applicationDetailsRendered={false}
+    applicationOverrideJustification={null}
+    hasErrors={false}
+    overrideActive={false}
+    revisionId="abc"
+    setOverrideActive={[Function]}
+  />
+  <Relay(ApplicationDetailsComponent)
+    application={
+      Object {
+        " $fragmentRefs": Object {
+          "ApplicationDetailsContainer_application": true,
+          "SubmitApplication_application": true,
+        },
+        " $refType": "ApplicationWizardConfirmation_application",
+        "id": "abc",
+        "latestDraftRevision": Object {
+          "id": "abc",
+          "overrideJustification": null,
+        },
+        "orderedFormResults": Object {
+          "edges": Array [
+            Object {
+              "node": Object {
+                "formJsonByFormId": Object {
+                  "formJson": Object {
+                    "schema": Object {
+                      "properties": Object {
+                        "foo": Object {
+                          "type": "string",
+                        },
+                      },
+                      "required": Array [
+                        "foo",
+                      ],
+                      "type": "object",
+                    },
+                  },
+                },
+                "formResult": Object {
+                  "foo": "bar",
+                },
+              },
+            },
+          ],
+        },
+        "validation": Object {
+          "edges": Array [
+            Object {
+              "node": Object {
+                "isOk": true,
+                "validationDescription": "do not render me",
+                "validationFailedMessage": "I passed",
+              },
+            },
+          ],
+        },
+      }
+    }
+    liveValidate={true}
+    query={
+      Object {
+        " $fragmentRefs": Object {
+          "ApplicationDetailsContainer_query": true,
+        },
+        " $refType": "ApplicationWizardConfirmation_query",
+      }
+    }
+    review={false}
+    setApplicationDetailsRendered={[Function]}
+  />
+  <br
+    className="jsx-733094270"
+  />
+  <Card
+    body={false}
+    id="next-step"
+  >
+    <CardHeader>
+      <h2
+        className="jsx-733094270"
+      >
+        Before you submit
+      </h2>
+    </CardHeader>
+    <CardBody>
+      By submitting the application the applicant agrees that the information contained on this application, or information contained in emission reports under the Greenhouse Gas Industrial Reporting and Control Act, may be disclosed to British Columbia government employees, contractors and agencies for the purpose of administering the CleanBC Program for Industry or the Greenhouse Gas Industrial Reporting and Control Act.
+    </CardBody>
+  </Card>
+  <br
+    className="jsx-733094270"
+  />
+  <Relay(SubmitApplicationComponent)
+    application={
+      Object {
+        " $fragmentRefs": Object {
+          "ApplicationDetailsContainer_application": true,
+          "SubmitApplication_application": true,
+        },
+        " $refType": "ApplicationWizardConfirmation_application",
+        "id": "abc",
+        "latestDraftRevision": Object {
+          "id": "abc",
+          "overrideJustification": null,
+        },
+        "orderedFormResults": Object {
+          "edges": Array [
+            Object {
+              "node": Object {
+                "formJsonByFormId": Object {
+                  "formJson": Object {
+                    "schema": Object {
+                      "properties": Object {
+                        "foo": Object {
+                          "type": "string",
+                        },
+                      },
+                      "required": Array [
+                        "foo",
+                      ],
+                      "type": "object",
+                    },
+                  },
+                },
+                "formResult": Object {
+                  "foo": "bar",
+                },
+              },
+            },
+          ],
+        },
+        "validation": Object {
+          "edges": Array [
+            Object {
+              "node": Object {
+                "isOk": true,
+                "validationDescription": "do not render me",
+                "validationFailedMessage": "I passed",
+              },
+            },
+          ],
+        },
+      }
+    }
+  />
+  <JSXStyle
+    id="733094270"
+  >
+    .errors{margin-left:20px;padding:20px;background:#ce5c5c;color:white;font-size:20px;}@media print{.print-hide{display:none !important;}}
+  </JSXStyle>
+</Fragment>
+`;
+
 exports[`The Confirmation Component should render the override justification component with the right props if an override is currently set 1`] = `
 <Fragment>
   <h1
@@ -67,6 +242,9 @@ exports[`The Confirmation Component should render the override justification com
               },
             },
           ],
+        },
+        "validation": Object {
+          "edges": Array [],
         },
       }
     }
@@ -141,6 +319,9 @@ exports[`The Confirmation Component should render the override justification com
               },
             },
           ],
+        },
+        "validation": Object {
+          "edges": Array [],
         },
       }
     }
@@ -221,6 +402,9 @@ exports[`The Confirmation Component should render the override justification com
             },
           ],
         },
+        "validation": Object {
+          "edges": Array [],
+        },
       }
     }
     liveValidate={true}
@@ -291,6 +475,216 @@ exports[`The Confirmation Component should render the override justification com
                 "formResult": Object {
                   "foo": "bar",
                 },
+              },
+            },
+          ],
+        },
+        "validation": Object {
+          "edges": Array [],
+        },
+      }
+    }
+  />
+  <JSXStyle
+    id="733094270"
+  >
+    .errors{margin-left:20px;padding:20px;background:#ce5c5c;color:white;font-size:20px;}@media print{.print-hide{display:none !important;}}
+  </JSXStyle>
+</Fragment>
+`;
+
+exports[`The Confirmation Component should render the validation alert if there are validations where isOk is false 1`] = `
+<Fragment>
+  <h1
+    className="jsx-733094270"
+  >
+    Summary of your application:
+  </h1>
+  <p
+    className="jsx-733094270"
+    style={
+      Object {
+        "fontSize": "1.25rem",
+        "fontWeight": 500,
+      }
+    }
+  >
+    Please review the information you have provided before continuing.
+  </p>
+  <Alert
+    closeLabel="Close alert"
+    show={true}
+    transition={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "defaultProps": Object {
+          "appear": false,
+          "in": false,
+          "mountOnEnter": false,
+          "timeout": 300,
+          "unmountOnExit": false,
+        },
+        "displayName": "Fade",
+        "render": [Function],
+      }
+    }
+    variant="warning"
+  >
+    <p>
+      <strong>
+        Some inconsistencies were found in your application. If possible, please address the following items before submitting:
+      </strong>
+    </p>
+    <ul>
+      <li
+        key="failed"
+      >
+        I failed
+      </li>
+    </ul>
+  </Alert>
+  <br
+    className="jsx-733094270"
+  />
+  <Relay(ApplicationOverrideJustificationComponent)
+    applicationDetailsRendered={false}
+    applicationOverrideJustification={null}
+    hasErrors={false}
+    overrideActive={false}
+    revisionId="abc"
+    setOverrideActive={[Function]}
+  />
+  <Relay(ApplicationDetailsComponent)
+    application={
+      Object {
+        " $fragmentRefs": Object {
+          "ApplicationDetailsContainer_application": true,
+          "SubmitApplication_application": true,
+        },
+        " $refType": "ApplicationWizardConfirmation_application",
+        "id": "abc",
+        "latestDraftRevision": Object {
+          "id": "abc",
+          "overrideJustification": null,
+        },
+        "orderedFormResults": Object {
+          "edges": Array [
+            Object {
+              "node": Object {
+                "formJsonByFormId": Object {
+                  "formJson": Object {
+                    "schema": Object {
+                      "properties": Object {
+                        "foo": Object {
+                          "type": "string",
+                        },
+                      },
+                      "required": Array [
+                        "foo",
+                      ],
+                      "type": "object",
+                    },
+                  },
+                },
+                "formResult": Object {
+                  "foo": "bar",
+                },
+              },
+            },
+          ],
+        },
+        "validation": Object {
+          "edges": Array [
+            Object {
+              "node": Object {
+                "isOk": false,
+                "validationDescription": "failed",
+                "validationFailedMessage": "I failed",
+              },
+            },
+          ],
+        },
+      }
+    }
+    liveValidate={true}
+    query={
+      Object {
+        " $fragmentRefs": Object {
+          "ApplicationDetailsContainer_query": true,
+        },
+        " $refType": "ApplicationWizardConfirmation_query",
+      }
+    }
+    review={false}
+    setApplicationDetailsRendered={[Function]}
+  />
+  <br
+    className="jsx-733094270"
+  />
+  <Card
+    body={false}
+    id="next-step"
+  >
+    <CardHeader>
+      <h2
+        className="jsx-733094270"
+      >
+        Before you submit
+      </h2>
+    </CardHeader>
+    <CardBody>
+      By submitting the application the applicant agrees that the information contained on this application, or information contained in emission reports under the Greenhouse Gas Industrial Reporting and Control Act, may be disclosed to British Columbia government employees, contractors and agencies for the purpose of administering the CleanBC Program for Industry or the Greenhouse Gas Industrial Reporting and Control Act.
+    </CardBody>
+  </Card>
+  <br
+    className="jsx-733094270"
+  />
+  <Relay(SubmitApplicationComponent)
+    application={
+      Object {
+        " $fragmentRefs": Object {
+          "ApplicationDetailsContainer_application": true,
+          "SubmitApplication_application": true,
+        },
+        " $refType": "ApplicationWizardConfirmation_application",
+        "id": "abc",
+        "latestDraftRevision": Object {
+          "id": "abc",
+          "overrideJustification": null,
+        },
+        "orderedFormResults": Object {
+          "edges": Array [
+            Object {
+              "node": Object {
+                "formJsonByFormId": Object {
+                  "formJson": Object {
+                    "schema": Object {
+                      "properties": Object {
+                        "foo": Object {
+                          "type": "string",
+                        },
+                      },
+                      "required": Array [
+                        "foo",
+                      ],
+                      "type": "object",
+                    },
+                  },
+                },
+                "formResult": Object {
+                  "foo": "bar",
+                },
+              },
+            },
+          ],
+        },
+        "validation": Object {
+          "edges": Array [
+            Object {
+              "node": Object {
+                "isOk": false,
+                "validationDescription": "failed",
+                "validationFailedMessage": "I failed",
               },
             },
           ],
@@ -371,6 +765,9 @@ exports[`The Confirmation Component shows a message instead of the "submit appli
               },
             },
           ],
+        },
+        "validation": Object {
+          "edges": Array [],
         },
       }
     }
@@ -470,6 +867,9 @@ exports[`The Confirmation Component shows the "submit application" button when t
             },
           ],
         },
+        "validation": Object {
+          "edges": Array [],
+        },
       }
     }
     liveValidate={true}
@@ -543,6 +943,9 @@ exports[`The Confirmation Component shows the "submit application" button when t
               },
             },
           ],
+        },
+        "validation": Object {
+          "edges": Array [],
         },
       }
     }
