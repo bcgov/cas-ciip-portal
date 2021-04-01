@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`the product naics page matches the last accepted Snapshot 1`] = `
+<Relay(DefaultLayout)
+  session={
+    Object {
+      " $fragmentRefs": Object {
+        "defaultLayout_session": true,
+      },
+    }
+  }
+  title="Allowable Products by Industry (NAICS)"
+>
+  <Relay(ProductNaicsCodeAssociationContainer)
+    query={
+      Object {
+        " $fragmentRefs": Object {
+          "ProductNaicsCodeAssociation_query": true,
+        },
+        "session": Object {
+          " $fragmentRefs": Object {
+            "defaultLayout_session": true,
+          },
+        },
+      }
+    }
+  />
+</Relay(DefaultLayout)>
+`;

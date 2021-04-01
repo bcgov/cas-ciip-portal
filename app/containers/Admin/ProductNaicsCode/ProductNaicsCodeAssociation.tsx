@@ -2,17 +2,17 @@ import React from 'react';
 import {Card, Col, Row} from 'react-bootstrap';
 import {NaicsCodeList} from 'components/Admin/NaicsCodeList';
 import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
-import {NaicsCodeProductAssociation_query} from '__generated__/NaicsCodeProductAssociation_query.graphql';
 import AllowableProductsSearch from './AllowableProductsSearch';
 import {useRouter} from 'next/router';
 import AllowableProductsTable from './AllowableProductsTable';
+import {ProductNaicsCodeAssociation_query} from '__generated__/ProductNaicsCodeAssociation_query.graphql';
 
 interface Props {
   relay: RelayProp;
-  query: NaicsCodeProductAssociation_query;
+  query: ProductNaicsCodeAssociation_query;
 }
 
-export const NaicsCodeProductAssociationContainer: React.FunctionComponent<Props> = ({
+export const ProductNaicsCodeAssociationContainer: React.FunctionComponent<Props> = ({
   query
 }) => {
   const naicsCodes = query.allNaicsCodes?.edges.map((e) => {
@@ -81,9 +81,9 @@ export const NaicsCodeProductAssociationContainer: React.FunctionComponent<Props
   );
 };
 
-export default createFragmentContainer(NaicsCodeProductAssociationContainer, {
+export default createFragmentContainer(ProductNaicsCodeAssociationContainer, {
   query: graphql`
-    fragment NaicsCodeProductAssociation_query on Query
+    fragment ProductNaicsCodeAssociation_query on Query
     @argumentDefinitions(naicsCodeId: {type: "ID!"}) {
       ...AllowableProductsSearch_query @arguments(naicsCodeId: $naicsCodeId)
       naicsCode(id: $naicsCodeId) {
