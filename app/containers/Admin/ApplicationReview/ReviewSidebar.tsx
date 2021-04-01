@@ -2,10 +2,12 @@ import React, {useState} from 'react';
 import {Button} from 'react-bootstrap';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faCheck, faLock} from '@fortawesome/free-solid-svg-icons';
-import {graphql, createFragmentContainer} from 'react-relay';
+import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
 import {ReviewSidebar_generalComments} from '__generated__/ReviewSidebar_generalComments.graphql';
 import {ReviewSidebar_internalComments} from '__generated__/ReviewSidebar_internalComments.graphql';
 import ReviewComment from 'components/Admin/ReviewComment';
+import updateReviewCommentMutation from 'mutations/application/updateReviewCommentMutation';
+import {nowMoment} from 'functions/formatDates';
 
 interface Props {
   isCompleted: boolean;
@@ -14,6 +16,7 @@ interface Props {
   onCompletionToggle: (boolean) => void;
   generalComments: ReviewSidebar_generalComments;
   internalComments: ReviewSidebar_internalComments;
+  relay: RelayProp;
 }
 
 const getCommentsToShow = (comments, showResolved) => {
@@ -26,7 +29,8 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
   onClose,
   onCompletionToggle,
   generalComments,
-  internalComments
+  internalComments,
+  relay
 }) => {
   const [showingResolved, setShowingResolved] = useState(false);
   const toggleResolved = () => setShowingResolved((current) => !current);
@@ -53,6 +57,30 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
       Mark this review step completed
     </Button>
   );
+  const resolveComment = async (id, resolve) => {
+    const {environment} = relay;
+    const variables = {
+      input: {
+        id,
+        reviewCommentPatch: {
+          resolved: resolve
+        }
+      }
+    };
+    await updateReviewCommentMutation(environment, variables);
+  };
+  const deleteComment = async (id) => {
+    const {environment} = relay;
+    const variables = {
+      input: {
+        id,
+        reviewCommentPatch: {
+          deletedAt: nowMoment().format('YYYY-MM-DDTHH:mm:ss')
+        }
+      }
+    };
+    await updateReviewCommentMutation(environment, variables);
+  };
   return (
     <div id="sidebar" className="col-md-5 col-lg-4 col-xxl-3">
       <button
@@ -96,13 +124,25 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
         ) : (
           <ul aria-labelledby="general-comments-label">
             {generalCommentsToShow.map(
-              ({node: {id, description, createdAt, ciipUserByCreatedBy}}) => (
+              ({
+                node: {
+                  id,
+                  description,
+                  createdAt,
+                  ciipUserByCreatedBy,
+                  resolved
+                }
+              }) => (
                 <ReviewComment
                   key={id}
+                  id={id}
                   description={description}
                   createdAt={createdAt}
                   createdBy={`${ciipUserByCreatedBy.firstName} ${ciipUserByCreatedBy.lastName}`}
                   viewOnly={isCompleted}
+                  isResolved={resolved}
+                  onResolveToggle={resolveComment}
+                  onDelete={deleteComment}
                 />
               )
             )}
@@ -119,13 +159,25 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
         ) : (
           <ul aria-labelledby="internal-comments-label">
             {internalCommentsToShow.map(
-              ({node: {id, description, createdAt, ciipUserByCreatedBy}}) => (
+              ({
+                node: {
+                  id,
+                  description,
+                  createdAt,
+                  ciipUserByCreatedBy,
+                  resolved
+                }
+              }) => (
                 <ReviewComment
                   key={id}
+                  id={id}
                   description={description}
                   createdAt={createdAt}
                   createdBy={`${ciipUserByCreatedBy.firstName} ${ciipUserByCreatedBy.lastName}`}
                   viewOnly={isCompleted}
+                  isResolved={resolved}
+                  onResolveToggle={resolveComment}
+                  onDelete={deleteComment}
                 />
               )
             )}

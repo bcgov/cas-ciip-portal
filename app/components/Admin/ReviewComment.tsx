@@ -1,21 +1,29 @@
 import React from 'react';
-import {Button} from 'react-bootstrap';
+import {Button, OverlayTrigger, Tooltip} from 'react-bootstrap';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faTrash} from '@fortawesome/free-solid-svg-icons';
 import {dateTimeFormat} from 'functions/formatDates';
 
 interface Props {
+  id: string;
   description: string;
   createdAt: string;
   createdBy: string;
   viewOnly: boolean;
+  isResolved: boolean;
+  onResolveToggle: (id: string, resolve: boolean) => void;
+  onDelete: (id: string) => void;
 }
 
 export const ReviewComment: React.FunctionComponent<Props> = ({
+  id,
   description,
   createdAt,
   createdBy,
-  viewOnly
+  viewOnly,
+  isResolved,
+  onResolveToggle,
+  onDelete
 }) => {
   return (
     <li>
@@ -32,17 +40,27 @@ export const ReviewComment: React.FunctionComponent<Props> = ({
             size="sm"
             variant="outline-primary"
             style={{marginRight: '0.5em'}}
+            onClick={() => onResolveToggle(id, !isResolved)}
           >
-            Resolve
+            {`${isResolved ? 'Unresolve' : 'Resolve'}`}
           </Button>
-          <Button
-            size="sm"
-            aria-label="Delete"
-            variant="secondary"
-            title="Delete"
+          <OverlayTrigger
+            placement="top"
+            overlay={(props) => (
+              <Tooltip id="delete" {...props}>
+                Delete comment
+              </Tooltip>
+            )}
           >
-            <FontAwesomeIcon icon={faTrash} />
-          </Button>
+            <Button
+              size="sm"
+              aria-label="Delete"
+              variant="secondary"
+              onClick={() => onDelete(id)}
+            >
+              <FontAwesomeIcon icon={faTrash} />
+            </Button>
+          </OverlayTrigger>
         </div>
       )}
       <style jsx>{`
