@@ -1,5 +1,5 @@
 import React, {useState, useMemo} from 'react';
-import {Card} from 'react-bootstrap';
+import {Card, Alert} from 'react-bootstrap';
 import validateJsonSchema from '@rjsf/core/dist/cjs/validate';
 import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
 import SubmitApplication from 'components/SubmitApplication';
@@ -50,12 +50,37 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
     false
   );
 
+  const hasValidationWarnings = application.validation.edges.some(
+    ({node}) => node.isOk === false
+  );
+
+  const validationAlert = (
+    <Alert variant="warning">
+      <p>
+        <strong>
+          Some inconsistencies were found in your application. If possible,
+          please address the following items before submitting:
+        </strong>
+      </p>
+      <ul>
+        {application.validation.edges
+          .filter(({node}) => node.isOk === false)
+          .map(({node}) => (
+            <li key={node.validationDescription}>
+              {node.validationFailedMessage}
+            </li>
+          ))}
+      </ul>
+    </Alert>
+  );
+
   return (
     <>
       <h1>Summary of your application:</h1>
       <p style={{fontSize: '1.25rem', fontWeight: 500}}>
         Please review the information you have provided before continuing.
       </p>
+      {hasValidationWarnings && validationAlert}
       <br />
       <ApplicationOverrideJustification
         overrideActive={overrideActive}
@@ -139,6 +164,15 @@ export default createFragmentContainer(ApplicationWizardConfirmationComponent, {
       latestDraftRevision {
         id
         overrideJustification
+      }
+      validation {
+        edges {
+          node {
+            validationDescription
+            validationFailedMessage
+            isOk
+          }
+        }
       }
     }
   `,
