@@ -16,6 +16,10 @@ interface Props {
   internalComments: ReviewSidebar_internalComments;
 }
 
+const getCommentsToShow = (comments, showResolved) => {
+  return comments.filter((c) => showResolved || !c.node.resolved);
+};
+
 export const ReviewSidebar: React.FunctionComponent<Props> = ({
   isCompleted,
   reviewStep,
@@ -26,6 +30,14 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
 }) => {
   const [showingResolved, setShowingResolved] = useState(false);
   const toggleResolved = () => setShowingResolved((current) => !current);
+  const generalCommentsToShow = getCommentsToShow(
+    generalComments.edges,
+    showingResolved
+  );
+  const internalCommentsToShow = getCommentsToShow(
+    internalComments.edges,
+    showingResolved
+  );
   const markCompletedButton = (
     <Button
       variant="outline-primary"
@@ -79,11 +91,11 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
             <em>(Visible to applicant)</em>
           </small>
         </h3>
-        {generalComments.edges.length === 0 ? (
+        {generalCommentsToShow.length === 0 ? (
           <p className="empty-comments">No general comments to show.</p>
         ) : (
           <ul aria-labelledby="general-comments-label">
-            {generalComments.edges.map(
+            {generalCommentsToShow.map(
               ({node: {id, description, createdAt, ciipUserByCreatedBy}}) => (
                 <ReviewComment
                   key={id}
@@ -102,11 +114,11 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
             <em>(Not visible to applicant)</em>
           </small>
         </h3>
-        {internalComments.edges.length === 0 ? (
+        {internalCommentsToShow.length === 0 ? (
           <p className="empty-comments">No internal comments to show.</p>
         ) : (
           <ul aria-labelledby="internal-comments-label">
-            {internalComments.edges.map(
+            {internalCommentsToShow.map(
               ({node: {id, description, createdAt, ciipUserByCreatedBy}}) => (
                 <ReviewComment
                   key={id}
