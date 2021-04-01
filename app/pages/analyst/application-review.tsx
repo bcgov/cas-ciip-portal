@@ -43,20 +43,26 @@ class ApplicationReview extends Component<Props> {
             edges {
               node {
                 internalComments: reviewCommentsByApplicationReviewStepId(
-                  filter: {commentType: {equalTo: INTERNAL}}
+                  filter: {
+                    commentType: {equalTo: INTERNAL}
+                    deletedAt: {isNull: true}
+                  }
                 ) {
                   edges {
                     node {
-                      id
+                      ...ReviewSidebar_internalComments
                     }
                   }
                 }
                 generalComments: reviewCommentsByApplicationReviewStepId(
-                  filter: {commentType: {equalTo: GENERAL}}
+                  filter: {
+                    commentType: {equalTo: GENERAL}
+                    deletedAt: {isNull: true}
+                  }
                 ) {
                   edges {
                     node {
-                      id
+                      ...ReviewSidebar_internalComments
                     }
                   }
                 }
@@ -73,13 +79,14 @@ class ApplicationReview extends Component<Props> {
       }
     }
   `;
-  state = {isSidebarOpened: false};
+  state = {isSidebarOpened: false, currentStepIsCompleted: false};
+
   constructor(props) {
     super(props);
     this.toggleSidebar = this.toggleSidebar.bind(this);
   }
   toggleSidebar() {
-    this.setState((state) => {
+    this.setState((state: {isSidebarOpened: boolean}) => {
       return {isSidebarOpened: !state.isSidebarOpened};
     });
   }
@@ -94,9 +101,12 @@ class ApplicationReview extends Component<Props> {
         <Row className="application-container">
           <div
             id="application-body"
-            className={`col-md-${this.state.isSidebarOpened ? 8 : 10}
+            className={`
+             col-md-${this.state.isSidebarOpened ? 7 : 10}
+             col-lg-${this.state.isSidebarOpened ? 8 : 10}
              col-xxl-${this.state.isSidebarOpened ? 9 : 10}
-             offset-md-${this.state.isSidebarOpened ? 0 : 1}`}
+             offset-md-${this.state.isSidebarOpened ? 0 : 1}
+             offset-lg-${this.state.isSidebarOpened ? 0 : 1}`}
           >
             <ApplicationRevisionStatusContainer
               applicationRevisionStatus={query.application.reviewRevisionStatus}
@@ -121,14 +131,28 @@ class ApplicationReview extends Component<Props> {
           </div>
           {this.state.isSidebarOpened && (
             <ReviewSidebar
+              internalComments={query.application.internalComments}
+              generalComments={query.application.generalComments}
               reviewStep="Technical"
+              isCompleted={this.state.currentStepIsCompleted}
               onClose={this.toggleSidebar}
-              onCompleted={() => {
-                console.log('implement me in 2293');
+              onCompletionToggle={(isCompleted) => {
+                this.setState((state) => {
+                  return {
+                    ...state,
+                    currentStepIsCompleted: isCompleted
+                  };
+                });
+                console.log('implement me properly in 2293');
               }}
             />
           )}
         </Row>
+        <style jsx global>{`
+          #help-button {
+            right: 500px !important;
+          }
+        `}</style>
       </DefaultLayout>
     );
   }

@@ -17,9 +17,12 @@ exports[`The application-review page matches the last accepted Snapshot 1`] = `
     noGutters={false}
   >
     <div
-      className="col-md-10
+      className="
+             col-md-10
+             col-lg-10
              col-xxl-10
-             offset-md-1"
+             offset-md-1
+             offset-lg-1"
       id="application-body"
     >
       <Relay(ApplicationRevisionStatusComponent)

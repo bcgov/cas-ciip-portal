@@ -1,21 +1,48 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Button} from 'react-bootstrap';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faCheck} from '@fortawesome/free-solid-svg-icons';
+import {faCheck, faLock} from '@fortawesome/free-solid-svg-icons';
+import {graphql, createFragmentContainer} from 'react-relay';
+import {ReviewSidebar_generalComments} from '__generated__/ReviewSidebar_generalComments.graphql';
+import {ReviewSidebar_internalComments} from '__generated__/ReviewSidebar_internalComments.graphql';
+import ReviewComment from 'components/Admin/ReviewComment';
 
 interface Props {
+  isCompleted: boolean;
   reviewStep: string;
   onClose: () => void;
-  onCompleted: () => void;
+  onCompletionToggle: (boolean) => void;
+  generalComments: ReviewSidebar_generalComments;
+  internalComments: ReviewSidebar_internalComments;
 }
 
-export const ApplicationReviewStep: React.FunctionComponent<Props> = ({
+export const ReviewSidebar: React.FunctionComponent<Props> = ({
+  isCompleted,
   reviewStep,
   onClose,
-  onCompleted
+  onCompletionToggle,
+  generalComments,
+  internalComments
 }) => {
+  const [showingResolved, setShowingResolved] = useState(false);
+  const toggleResolved = () => setShowingResolved((current) => !current);
+  const markCompletedButton = (
+    <Button
+      variant="outline-primary"
+      type="button"
+      onClick={() => onCompletionToggle(true)}
+      style={{
+        padding: '0.75rem .9rem',
+        display: 'block',
+        margin: 'auto'
+      }}
+    >
+      <FontAwesomeIcon icon={faCheck} style={{marginRight: '0.5rem'}} />
+      Mark this review step completed
+    </Button>
+  );
   return (
-    <div id="sidebar" className="col-md-4 col-xxl-3">
+    <div id="sidebar" className="col-md-5 col-lg-4 col-xxl-3">
       <button
         type="button"
         id="close"
@@ -25,41 +52,79 @@ export const ApplicationReviewStep: React.FunctionComponent<Props> = ({
         ×
       </button>
       <h2>{reviewStep} Review</h2>
-      <Button
-        variant="outline-primary"
-        type="button"
-        onClick={onCompleted}
-        style={{
-          padding: '0.75rem .9rem',
-          display: 'block',
-          margin: 'auto'
-        }}
-      >
-        <FontAwesomeIcon icon={faCheck} style={{marginRight: '0.5rem'}} />
-        Mark this review step completed
-      </Button>
+      {isCompleted ? (
+        <p className="mark-incomplete">
+          <FontAwesomeIcon icon={faCheck} style={{marginRight: 2}} />
+          <span> This review step has been completed. </span>
+          <Button
+            variant="link"
+            style={{
+              padding: '0 0 2px 0',
+              fontSize: '0.9rem',
+              lineHeight: 1,
+              display: 'inline'
+            }}
+            onClick={() => onCompletionToggle(false)}
+          >
+            Mark incomplete
+          </Button>
+        </p>
+      ) : (
+        markCompletedButton
+      )}
       <div id="scrollable-comments" tabIndex={0}>
-        HELLO HELLO HELLO HELLO HELLO HELLO HELLO HELLO HELLO HELLO HELLO HELLO
-        HELLO HELLO HELLO HELLO HELLO HELLO HELLO HELLO HELLO HELLO HELLO HELLO
-        HELLO HELLO HELLO HELLO HELLO HELLO HELLO HELLO HELLO HELLO HELLO HELLO
-        HELLO HELLO HELLO HELLO HELLO HELLO HELLO HELLO HELLO HELLO HELLO HELLO
-        HELLO HELLO sd sdjf sdjfh lk ie dsdfo o od pd j h y ii k k i i i y y y y
-        j j n n b g g g g g j u i k j n k l m n b b v v h k i k j n k l m n b b
-        v v h k h k i k j n k l m n b b v v h k i k j n k l m n b b v v h k i k
-        j n k l m n b b v v h k i k j n k l m n b b v v h k i k j n k l m n b b
-        v v h k i k j n k l m n b b v v h k i k j n k l m n b b v v h k i k j n
-        k l m n b b v v h k i k j n k l m n b b v v h k i k j n k l m n b b v v
-        h k i k j n k l m n b b v v h k i k j n k l m n b b v v h k i k j n k l
-        m n b b v v h k i k j n k l m n b b v v h k i k j n k l m n b b v v h k
-        i k j n k l m n b b v v h k i k j n k l m n b b v v h k i k j n k l m n
-        b b v v h k i k j n k l m n b b v v h k i k j n k l m n b b v v h k i k
-        j n k l m n b b v v
+        <h3 id="general-comments-label">
+          General Comments{' '}
+          <small>
+            <em>(Visible to applicant)</em>
+          </small>
+        </h3>
+        {generalComments.edges.length === 0 ? (
+          <p className="empty-comments">No general comments to show.</p>
+        ) : (
+          <ul aria-labelledby="general-comments-label">
+            {generalComments.edges.map(
+              ({node: {id, description, createdAt, ciipUserByCreatedBy}}) => (
+                <ReviewComment
+                  key={id}
+                  description={description}
+                  createdAt={createdAt}
+                  createdBy={`${ciipUserByCreatedBy.firstName} ${ciipUserByCreatedBy.lastName}`}
+                  viewOnly={isCompleted}
+                />
+              )
+            )}
+          </ul>
+        )}
+        <h3 id="internal-comments-label">
+          Internal Comments <FontAwesomeIcon icon={faLock} />{' '}
+          <small>
+            <em>(Not visible to applicant)</em>
+          </small>
+        </h3>
+        {internalComments.edges.length === 0 ? (
+          <p className="empty-comments">No internal comments to show.</p>
+        ) : (
+          <ul aria-labelledby="internal-comments-label">
+            {internalComments.edges.map(
+              ({node: {id, description, createdAt, ciipUserByCreatedBy}}) => (
+                <ReviewComment
+                  key={id}
+                  description={description}
+                  createdAt={createdAt}
+                  createdBy={`${ciipUserByCreatedBy.firstName} ${ciipUserByCreatedBy.lastName}`}
+                  viewOnly={isCompleted}
+                />
+              )
+            )}
+          </ul>
+        )}
       </div>
       <div id="button-footer">
-        <Button variant="link" style={{padding: 0}}>
-          Show Resolved
+        <Button variant="link" style={{padding: 0}} onClick={toggleResolved}>
+          {`${showingResolved ? 'Hide' : 'Show'} resolved comments`}
         </Button>
-        <Button variant="primary">+ New Comment</Button>
+        {!isCompleted && <Button variant="primary">+ New Comment</Button>}
       </div>
       <style jsx>{`
         #sidebar {
@@ -85,11 +150,23 @@ export const ApplicationReviewStep: React.FunctionComponent<Props> = ({
           margin: 15px 0;
           text-align: center;
         }
+        h3 {
+          font-size: 1em;
+          font-weight: bold;
+          margin: 5px 0 15px 0;
+        }
+        h3:not(:first-of-type) {
+          margin-top: 2em;
+        }
         #scrollable-comments {
           overflow-y: scroll;
-          height: calc(100% - 108px - 3rem - 53px);
-          margin: 1.5rem 0;
-          padding: 0.5em 0.7em 0 0.5em;
+          height: calc(100% - 108px - 2.4rem - 53px);
+          margin: 1.2rem 0;
+          padding: 0.7rem;
+          border-radius: 4px;
+        }
+        #scrollable-comments:hover {
+          box-shadow: inset 0 0px 7px -1px #999;
         }
         #scrollable-comments::-webkit-scrollbar {
           -webkit-appearance: none;
@@ -108,9 +185,62 @@ export const ApplicationReviewStep: React.FunctionComponent<Props> = ({
           display: flex;
           justify-content: space-between;
         }
+        .mark-incomplete {
+          line-height: 1;
+          font-size: 0.9em;
+          text-align: center;
+          margin: 35px 0;
+        }
+        h3 ~ ul,
+        h3 ~ p {
+          padding-left: 0.3em;
+        }
+        ul:last-of-type {
+          margin: 0;
+        }
+        .empty-comments {
+          font-style: italic;
+          font-size: 0.9em;
+          margin-bottom: 0;
+          line-height: 1.5;
+          color: #666;
+        }
       `}</style>
     </div>
   );
 };
 
-export default ApplicationReviewStep;
+export default createFragmentContainer(ReviewSidebar, {
+  generalComments: graphql`
+    fragment ReviewSidebar_generalComments on ReviewCommentsConnection {
+      edges {
+        node {
+          id
+          description
+          createdAt
+          resolved
+          ciipUserByCreatedBy {
+            firstName
+            lastName
+          }
+        }
+      }
+    }
+  `,
+  internalComments: graphql`
+    fragment ReviewSidebar_internalComments on ReviewCommentsConnection {
+      edges {
+        node {
+          id
+          description
+          createdAt
+          resolved
+          ciipUserByCreatedBy {
+            firstName
+            lastName
+          }
+        }
+      }
+    }
+  `
+});
