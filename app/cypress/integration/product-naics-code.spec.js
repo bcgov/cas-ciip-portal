@@ -12,6 +12,10 @@ describe('the product naics code association page', () => {
     // Testing initial state
     cy.get('.list-group').find('.list-group-item').should('have.length', 5);
     cy.get('#page-content').contains('Please select a NAICS code');
+    cy.get('body').happoScreenshot({
+      component: 'Allowable products per NAICS code',
+      variant: 'no NAICS code selected'
+    });
 
     // Testing adding an allowable product
     cy.get('.list-group').find('.list-group-item:nth-child(3)').click();
@@ -21,6 +25,10 @@ describe('the product naics code association page', () => {
       'admin/naics-products?naicsCodeId=WyJuYWljc19jb2RlcyIsM10%3D'
     );
     cy.get('#no-search-results');
+    cy.get('body').happoScreenshot({
+      component: 'Allowable products per NAICS code',
+      variant: 'no products allowed'
+    });
 
     cy.get('#product-naics-search-typeahead').click();
     cy.get('.dropdown-menu').find('li').should('have.length', 4);
@@ -32,6 +40,10 @@ describe('the product naics code association page', () => {
     cy.get('table tbody').find('tr').contains('Product B');
     cy.get('table tbody').find('tr').contains('Yes');
     cy.get('#no-search-results').should('not.exist');
+    cy.get('body').happoScreenshot({
+      component: 'Allowable products per NAICS code',
+      variant: 'one product allowed'
+    });
 
     // Make sure it's gone from the available products in the dropdown
     cy.get('#product-naics-search-typeahead').click();
