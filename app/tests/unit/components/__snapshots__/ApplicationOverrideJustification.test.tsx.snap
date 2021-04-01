@@ -104,10 +104,19 @@ exports[`OverrideJustification Should allow the user to save a justification if 
     variant="danger"
   >
     <Accordion>
+      <p
+        className="jsx-905902600"
+      >
+        <strong
+          className="jsx-905902600"
+        >
+          Your application contains errors
+        </strong>
+      </p>
       <div
         className="jsx-905902600 override-accordion"
       >
-        Your application contains errors shown below that must be fixed before submission. You may either correct these or alternatively, override and provide justification. Your justification will be reviewed by CAS and may cause a delay in processing your application.
+        Please correct the errors shown below before submitting. Alternatively, you may provide justification to override this and submit without corrections. Your justification will be reviewed by CAS and may cause a delay in processing your application.
         <ForwardRef
           as={
             Object {
