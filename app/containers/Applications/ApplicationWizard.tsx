@@ -6,6 +6,7 @@ import {ApplicationWizard_query} from 'ApplicationWizard_query.graphql';
 import ApplicationWizardStep from './ApplicationWizardStep';
 import LoadingSpinner from 'components/LoadingSpinner';
 import ApplicationDecision from 'components/Application/ApplicationDecision';
+import ViewApplicationPage from 'pages/reporter/application/[applicationId]/version/[versionNumber]/view';
 
 const setRouterQueryParam = (router, key, value, replace = false) => {
   const newUrl = {
@@ -62,13 +63,12 @@ export const ApplicationWizardComponent: React.FunctionComponent<Props> = ({
         }
       });
     else
-      router.replace({
-        pathname: '/reporter/view-application',
-        query: {
-          ...router.query,
-          version: latestSubmittedRevision.versionNumber
-        }
-      });
+      router.replace(
+        ViewApplicationPage.getHref(
+          application.id,
+          latestSubmittedRevision.versionNumber
+        )
+      );
     return null;
   }
 

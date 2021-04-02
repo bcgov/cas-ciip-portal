@@ -6,6 +6,7 @@ import {useRouter} from 'next/router';
 import createApplicationMutation from 'mutations/application/createApplicationMutation';
 import {ApplyButtonContainer_applyButtonDetails} from 'ApplyButtonContainer_applyButtonDetails.graphql';
 import {ApplyButtonContainer_query} from 'ApplyButtonContainer_query.graphql';
+import ViewApplication from 'pages/reporter/application/[applicationId]/version/[versionNumber]/view';
 interface Props {
   reportingYear: number;
   relay: RelayProp;
@@ -195,13 +196,10 @@ export const ApplyButton: React.FunctionComponent<Props> = ({
     return (
       <Link
         passHref
-        href={{
-          pathname: '/reporter/view-application',
-          query: {
-            applicationId,
-            version: latestSubmittedVersionNumber
-          }
-        }}
+        href={ViewApplication.getHref(
+          applicationId,
+          latestSubmittedVersionNumber
+        )}
       >
         <Button variant="primary">View Submitted Application</Button>
       </Link>
