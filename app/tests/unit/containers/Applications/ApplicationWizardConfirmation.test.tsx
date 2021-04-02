@@ -34,6 +34,9 @@ describe('The Confirmation Component', () => {
           }
         }
       ]
+    },
+    validation: {
+      edges: []
     }
   };
 
@@ -144,5 +147,67 @@ describe('The Confirmation Component', () => {
         .find('Relay(ApplicationOverrideJustificationComponent)')
         .prop('overrideActive')
     ).toBe(true);
+  });
+
+  it('should render the validation alert if there are validations where isOk is false', () => {
+    const applicationWithValidationErrors = {
+      ...application,
+      validation: {
+        edges: [
+          {
+            node: {
+              validationFailedMessage: 'I failed',
+              isOk: false,
+              validationDescription: 'failed'
+            }
+          }
+        ]
+      }
+    };
+    const wrapper = shallow(
+      <ApplicationWizardConfirmationComponent
+        query={{
+          ' $fragmentRefs': {
+            ApplicationDetailsContainer_query: true
+          },
+          ' $refType': 'ApplicationWizardConfirmation_query'
+        }}
+        application={applicationWithValidationErrors}
+        relay={null}
+      />
+    );
+    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.find('li').text()).toBe('I failed');
+  });
+
+  it('should not render the validation alert if there are validations where isOk is true, but none where isOk is false', () => {
+    const applicationWithValidationErrors = {
+      ...application,
+      validation: {
+        edges: [
+          {
+            node: {
+              validationFailedMessage: 'I passed',
+              isOk: true,
+              validationDescription: 'do not render me'
+            }
+          }
+        ]
+      }
+    };
+    const wrapper = shallow(
+      <ApplicationWizardConfirmationComponent
+        query={{
+          ' $fragmentRefs': {
+            ApplicationDetailsContainer_query: true
+          },
+          ' $refType': 'ApplicationWizardConfirmation_query'
+        }}
+        application={applicationWithValidationErrors}
+        relay={null}
+      />
+    );
+    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.exists('Alert')).toBe(false);
   });
 });

@@ -120,12 +120,14 @@ export const ApplicationOverrideJustificationComponent: React.FunctionComponent<
     <>
       <Alert variant="danger">
         <Accordion>
+          <p>
+            <strong>Your application contains errors</strong>
+          </p>
           <div className="override-accordion">
-            Your application contains errors shown below that must be fixed
-            before submission. You may either correct these or alternatively,
-            override and provide justification. Your justification will be
-            reviewed by CAS and may cause a delay in processing your
-            application.
+            Please correct the errors shown below before submitting.
+            Alternatively, you may provide justification to override this and
+            submit without corrections. Your justification will be reviewed by
+            CAS and may cause a delay in processing your application.
             <Accordion.Toggle
               as={Button}
               variant="secondary"
