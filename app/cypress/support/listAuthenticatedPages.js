@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-function getRoutes(currentPath, ignoreFolders) {
+function getRoutes(currentPath, ignoreFolders = []) {
   const json = {};
   const entries = fs.readdirSync(currentPath, {withFileTypes: true});
 
