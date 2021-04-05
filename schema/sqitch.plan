@@ -300,3 +300,4 @@ computed_columns/application_revision_ordered_form_results 2021-04-09T14:47:48Z 
 computed_columns/application_current_user_can_edit [computed_columns/application_current_user_can_edit@v1.16.0] 2021-04-13T23:05:23Z Matthieu Foucault <matthieu@button.is> # drop unnecessary computed column
 @v2.0.0 2021-04-14T22:14:52Z Kristen Cooke <kristen@button.is> # release v2.0.0
 swrs_functions/get_carbon_tax_data [swrs_functions/get_carbon_tax_data@v2.0.0] 2021-04-15T17:07:24Z Dylan Leard <dylan@button.is> # Migration: use fuel_carbon_tax_details_id fkey in fuel_charge join
+computed_columns/application_revision_naics_code [tables/form_result tables/application_revision] 2021-04-05T17:14:23Z Dylan Leard <dylan@button.is> # Computed column returns a row from the naics_code table for an application revision
