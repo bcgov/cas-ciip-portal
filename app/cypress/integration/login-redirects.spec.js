@@ -1,5 +1,5 @@
+// TODO: delete once all routes are updated to not have required query params
 const REQUIRED_QUERY_PARAMS = {
-  facilities: '?organisationRowId=200',
   application: `?applicationId=${encodeURIComponent(
     window.btoa('["applications", 1]')
   )}&version=1&formResultId=${encodeURIComponent(
@@ -11,17 +11,18 @@ const REQUIRED_QUERY_PARAMS = {
   'new-application-disclaimer': `?applicationId=${encodeURIComponent(
     window.btoa('["applications", 1]')
   )}&version=1`,
-  certify: `?applicationId=${encodeURIComponent(
-    window.btoa('["applications", 2]')
-  )}&version=1`,
-  'certification-redirect': `?rowId=${encodeURIComponent(
-    'sss999'
-  )}&id=${encodeURIComponent(window.btoa('["applications", 2]'))}`,
   'application-review': `?applicationId=${encodeURIComponent(
     window.btoa('["applications", 3]')
   )}&applicationRevisionId=${encodeURIComponent(
     window.btoa('["application_revisions", 3, 1]')
   )}&version=1`
+};
+
+const QUERY_PARAMS = {
+  '/reporter/application/[applicationId]/version/[versionNumber]/view': {
+    applicationId: encodeURIComponent(window.btoa('["applications", 1]')),
+    versionNumber: '1'
+  }
 };
 
 let DEBUG;
@@ -39,6 +40,13 @@ function testRedirectsForScopedPages(scope, pages) {
       let url = `/${scope}/${page}${
         page in REQUIRED_QUERY_PARAMS ? REQUIRED_QUERY_PARAMS[page] : ''
       }`;
+
+      if (url in QUERY_PARAMS) {
+        for (const [param, value] of Object.entries(QUERY_PARAMS[url])) {
+          url.replace(`[${param}]`, value);
+        }
+      }
+
       if (page === 'index') url = `/${scope}`;
 
       cy.visit(url);
