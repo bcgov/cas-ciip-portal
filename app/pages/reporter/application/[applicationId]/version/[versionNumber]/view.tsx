@@ -89,6 +89,12 @@ class ViewApplication extends Component<Props> {
     );
     const status =
       application?.applicationRevisionStatus?.applicationRevisionStatus;
+
+    if (!status) {
+      router.push('/404');
+      return null;
+    }
+
     const changesRequested = status === 'REQUESTED_CHANGES';
     const hasBeenReviewed = status !== 'SUBMITTED' && status !== 'DRAFT';
 

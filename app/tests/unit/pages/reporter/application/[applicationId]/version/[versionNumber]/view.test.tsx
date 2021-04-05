@@ -40,7 +40,8 @@ const router: any = {
   query: {
     applicationId: 'testing',
     versionNumber: '1'
-  }
+  },
+  push: jest.fn()
 };
 
 describe('View submitted application page', () => {
@@ -49,6 +50,14 @@ describe('View submitted application page', () => {
     expect(
       r.find('Relay(ApplicationDetailsComponent)').first().prop('query')
     ).toBe(query);
+  });
+
+  it('redirects to the 404 page if the application is missing', () => {
+    const r = shallow(
+      <ViewApplication query={{...query, application: null}} router={router} />
+    );
+    expect(r).toBeEmpty();
+    expect(router.push).toBeCalledWith('/404');
   });
 
   it('does not show an application decision when unreviewed', () => {
