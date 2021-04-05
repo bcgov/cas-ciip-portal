@@ -33,40 +33,6 @@ type Application implements Node {
     """The method to use when ordering `ApplicationReviewStep`."""
     orderBy: [ApplicationReviewStepsOrderBy!] = [PRIMARY_KEY_ASC]
   ): ApplicationReviewStepsConnection!
-
-  """Reads and enables pagination through a set of `ApplicationReviewStep`."""
-  applicationReviewStepsByReviewCommentApplicationIdAndApplicationReviewStepId(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: ApplicationReviewStepCondition
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: ApplicationReviewStepFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `ApplicationReviewStep`."""
-    orderBy: [ApplicationReviewStepsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): ApplicationApplicationReviewStepsByReviewCommentApplicationIdAndApplicationReviewStepIdManyToManyConnection!
   applicationRevisionByStringVersionNumber(versionNumberInput: String): ApplicationRevision
 
   """Reads and enables pagination through a set of `ApplicationRevision`."""
@@ -522,108 +488,6 @@ type Application implements Node {
     orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
   ): ApplicationCiipUsersByFormResultApplicationIdAndUpdatedByManyToManyConnection!
 
-  """Reads and enables pagination through a set of `CiipUser`."""
-  ciipUsersByReviewCommentApplicationIdAndCreatedBy(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: CiipUserCondition
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: CiipUserFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `CiipUser`."""
-    orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
-  ): ApplicationCiipUsersByReviewCommentApplicationIdAndCreatedByManyToManyConnection!
-
-  """Reads and enables pagination through a set of `CiipUser`."""
-  ciipUsersByReviewCommentApplicationIdAndDeletedBy(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: CiipUserCondition
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: CiipUserFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `CiipUser`."""
-    orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
-  ): ApplicationCiipUsersByReviewCommentApplicationIdAndDeletedByManyToManyConnection!
-
-  """Reads and enables pagination through a set of `CiipUser`."""
-  ciipUsersByReviewCommentApplicationIdAndUpdatedBy(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: CiipUserCondition
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: CiipUserFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `CiipUser`."""
-    orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
-  ): ApplicationCiipUsersByReviewCommentApplicationIdAndUpdatedByManyToManyConnection!
-
   """
   returns a boolean value based on whether the current user has edit permission on the application
   """
@@ -878,40 +742,6 @@ type Application implements Node {
   """Reads a single `ReportingYear` that is related to this `Application`."""
   reportingYearByReportingYear: ReportingYear
 
-  """Reads and enables pagination through a set of `ReviewComment`."""
-  reviewCommentsByApplicationId(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: ReviewCommentCondition
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: ReviewCommentFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `ReviewComment`."""
-    orderBy: [ReviewCommentsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): ReviewCommentsConnection!
-
   """Reads and enables pagination through a set of `ReviewStep`."""
   reviewStepsByApplicationReviewStepApplicationIdAndReviewStepId(
     """Read all values in the set after (below) this cursor."""
@@ -990,73 +820,6 @@ type Application implements Node {
     """
     offset: Int
   ): ApplicationValidationResultsConnection!
-}
-
-"""
-A connection to a list of `ApplicationReviewStep` values, with data from `ReviewComment`.
-"""
-type ApplicationApplicationReviewStepsByReviewCommentApplicationIdAndApplicationReviewStepIdManyToManyConnection {
-  """
-  A list of edges which contains the `ApplicationReviewStep`, info from the
-  `ReviewComment`, and the cursor to aid in pagination.
-  """
-  edges: [ApplicationApplicationReviewStepsByReviewCommentApplicationIdAndApplicationReviewStepIdManyToManyEdge!]!
-
-  """A list of `ApplicationReviewStep` objects."""
-  nodes: [ApplicationReviewStep]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """
-  The count of *all* `ApplicationReviewStep` you could get from the connection.
-  """
-  totalCount: Int!
-}
-
-"""
-A `ApplicationReviewStep` edge in the connection, with data from `ReviewComment`.
-"""
-type ApplicationApplicationReviewStepsByReviewCommentApplicationIdAndApplicationReviewStepIdManyToManyEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `ApplicationReviewStep` at the end of the edge."""
-  node: ApplicationReviewStep
-
-  """Reads and enables pagination through a set of `ReviewComment`."""
-  reviewCommentsByApplicationReviewStepId(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: ReviewCommentCondition
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: ReviewCommentFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `ReviewComment`."""
-    orderBy: [ReviewCommentsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): ReviewCommentsConnection!
 }
 
 """
@@ -1758,192 +1521,6 @@ type ApplicationCiipUsersByFormResultApplicationIdAndUpdatedByManyToManyEdge {
 }
 
 """
-A connection to a list of `CiipUser` values, with data from `ReviewComment`.
-"""
-type ApplicationCiipUsersByReviewCommentApplicationIdAndCreatedByManyToManyConnection {
-  """
-  A list of edges which contains the `CiipUser`, info from the `ReviewComment`, and the cursor to aid in pagination.
-  """
-  edges: [ApplicationCiipUsersByReviewCommentApplicationIdAndCreatedByManyToManyEdge!]!
-
-  """A list of `CiipUser` objects."""
-  nodes: [CiipUser]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """The count of *all* `CiipUser` you could get from the connection."""
-  totalCount: Int!
-}
-
-"""A `CiipUser` edge in the connection, with data from `ReviewComment`."""
-type ApplicationCiipUsersByReviewCommentApplicationIdAndCreatedByManyToManyEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `CiipUser` at the end of the edge."""
-  node: CiipUser
-
-  """Reads and enables pagination through a set of `ReviewComment`."""
-  reviewCommentsByCreatedBy(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: ReviewCommentCondition
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: ReviewCommentFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `ReviewComment`."""
-    orderBy: [ReviewCommentsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): ReviewCommentsConnection!
-}
-
-"""
-A connection to a list of `CiipUser` values, with data from `ReviewComment`.
-"""
-type ApplicationCiipUsersByReviewCommentApplicationIdAndDeletedByManyToManyConnection {
-  """
-  A list of edges which contains the `CiipUser`, info from the `ReviewComment`, and the cursor to aid in pagination.
-  """
-  edges: [ApplicationCiipUsersByReviewCommentApplicationIdAndDeletedByManyToManyEdge!]!
-
-  """A list of `CiipUser` objects."""
-  nodes: [CiipUser]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """The count of *all* `CiipUser` you could get from the connection."""
-  totalCount: Int!
-}
-
-"""A `CiipUser` edge in the connection, with data from `ReviewComment`."""
-type ApplicationCiipUsersByReviewCommentApplicationIdAndDeletedByManyToManyEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `CiipUser` at the end of the edge."""
-  node: CiipUser
-
-  """Reads and enables pagination through a set of `ReviewComment`."""
-  reviewCommentsByDeletedBy(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: ReviewCommentCondition
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: ReviewCommentFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `ReviewComment`."""
-    orderBy: [ReviewCommentsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): ReviewCommentsConnection!
-}
-
-"""
-A connection to a list of `CiipUser` values, with data from `ReviewComment`.
-"""
-type ApplicationCiipUsersByReviewCommentApplicationIdAndUpdatedByManyToManyConnection {
-  """
-  A list of edges which contains the `CiipUser`, info from the `ReviewComment`, and the cursor to aid in pagination.
-  """
-  edges: [ApplicationCiipUsersByReviewCommentApplicationIdAndUpdatedByManyToManyEdge!]!
-
-  """A list of `CiipUser` objects."""
-  nodes: [CiipUser]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """The count of *all* `CiipUser` you could get from the connection."""
-  totalCount: Int!
-}
-
-"""A `CiipUser` edge in the connection, with data from `ReviewComment`."""
-type ApplicationCiipUsersByReviewCommentApplicationIdAndUpdatedByManyToManyEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `CiipUser` at the end of the edge."""
-  node: CiipUser
-
-  """Reads and enables pagination through a set of `ReviewComment`."""
-  reviewCommentsByUpdatedBy(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: ReviewCommentCondition
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: ReviewCommentFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `ReviewComment`."""
-    orderBy: [ReviewCommentsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): ReviewCommentsConnection!
-}
-
-"""
 A condition to be used against `Application` object types. All fields are tested
 for equality and combined with a logical ‘and.’
 """
@@ -2286,40 +1863,6 @@ type ApplicationReviewStep implements Node {
   """
   applicationId: Int!
 
-  """Reads and enables pagination through a set of `Application`."""
-  applicationsByReviewCommentApplicationReviewStepIdAndApplicationId(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: ApplicationCondition
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: ApplicationFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `Application`."""
-    orderBy: [ApplicationsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): ApplicationReviewStepApplicationsByReviewCommentApplicationReviewStepIdAndApplicationIdManyToManyConnection!
-
   """
   Reads a single `CiipUser` that is related to this `ApplicationReviewStep`.
   """
@@ -2487,70 +2030,6 @@ type ApplicationReviewStep implements Node {
   The ID of the user who last updated this application_review_step, references ciip_user.id
   """
   updatedBy: Int
-}
-
-"""
-A connection to a list of `Application` values, with data from `ReviewComment`.
-"""
-type ApplicationReviewStepApplicationsByReviewCommentApplicationReviewStepIdAndApplicationIdManyToManyConnection {
-  """
-  A list of edges which contains the `Application`, info from the `ReviewComment`, and the cursor to aid in pagination.
-  """
-  edges: [ApplicationReviewStepApplicationsByReviewCommentApplicationReviewStepIdAndApplicationIdManyToManyEdge!]!
-
-  """A list of `Application` objects."""
-  nodes: [Application]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """The count of *all* `Application` you could get from the connection."""
-  totalCount: Int!
-}
-
-"""
-A `Application` edge in the connection, with data from `ReviewComment`.
-"""
-type ApplicationReviewStepApplicationsByReviewCommentApplicationReviewStepIdAndApplicationIdManyToManyEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `Application` at the end of the edge."""
-  node: Application
-
-  """Reads and enables pagination through a set of `ReviewComment`."""
-  reviewCommentsByApplicationId(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: ReviewCommentCondition
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: ReviewCommentFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `ReviewComment`."""
-    orderBy: [ReviewCommentsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): ReviewCommentsConnection!
 }
 
 """
@@ -6064,108 +5543,6 @@ type CiipUser implements Node {
     """The method to use when ordering `Application`."""
     orderBy: [ApplicationsOrderBy!] = [PRIMARY_KEY_ASC]
   ): CiipUserApplicationsByFormResultUpdatedByAndApplicationIdManyToManyConnection!
-
-  """Reads and enables pagination through a set of `Application`."""
-  applicationsByReviewCommentCreatedByAndApplicationId(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: ApplicationCondition
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: ApplicationFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `Application`."""
-    orderBy: [ApplicationsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): CiipUserApplicationsByReviewCommentCreatedByAndApplicationIdManyToManyConnection!
-
-  """Reads and enables pagination through a set of `Application`."""
-  applicationsByReviewCommentDeletedByAndApplicationId(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: ApplicationCondition
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: ApplicationFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `Application`."""
-    orderBy: [ApplicationsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): CiipUserApplicationsByReviewCommentDeletedByAndApplicationIdManyToManyConnection!
-
-  """Reads and enables pagination through a set of `Application`."""
-  applicationsByReviewCommentUpdatedByAndApplicationId(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: ApplicationCondition
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: ApplicationFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `Application`."""
-    orderBy: [ApplicationsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): CiipUserApplicationsByReviewCommentUpdatedByAndApplicationIdManyToManyConnection!
 
   """Reads and enables pagination through a set of `Benchmark`."""
   benchmarksByCreatedBy(
@@ -13174,198 +12551,6 @@ type CiipUserApplicationsByFormResultUpdatedByAndApplicationIdManyToManyEdge {
 
   """The `Application` at the end of the edge."""
   node: Application
-}
-
-"""
-A connection to a list of `Application` values, with data from `ReviewComment`.
-"""
-type CiipUserApplicationsByReviewCommentCreatedByAndApplicationIdManyToManyConnection {
-  """
-  A list of edges which contains the `Application`, info from the `ReviewComment`, and the cursor to aid in pagination.
-  """
-  edges: [CiipUserApplicationsByReviewCommentCreatedByAndApplicationIdManyToManyEdge!]!
-
-  """A list of `Application` objects."""
-  nodes: [Application]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """The count of *all* `Application` you could get from the connection."""
-  totalCount: Int!
-}
-
-"""
-A `Application` edge in the connection, with data from `ReviewComment`.
-"""
-type CiipUserApplicationsByReviewCommentCreatedByAndApplicationIdManyToManyEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `Application` at the end of the edge."""
-  node: Application
-
-  """Reads and enables pagination through a set of `ReviewComment`."""
-  reviewCommentsByApplicationId(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: ReviewCommentCondition
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: ReviewCommentFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `ReviewComment`."""
-    orderBy: [ReviewCommentsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): ReviewCommentsConnection!
-}
-
-"""
-A connection to a list of `Application` values, with data from `ReviewComment`.
-"""
-type CiipUserApplicationsByReviewCommentDeletedByAndApplicationIdManyToManyConnection {
-  """
-  A list of edges which contains the `Application`, info from the `ReviewComment`, and the cursor to aid in pagination.
-  """
-  edges: [CiipUserApplicationsByReviewCommentDeletedByAndApplicationIdManyToManyEdge!]!
-
-  """A list of `Application` objects."""
-  nodes: [Application]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """The count of *all* `Application` you could get from the connection."""
-  totalCount: Int!
-}
-
-"""
-A `Application` edge in the connection, with data from `ReviewComment`.
-"""
-type CiipUserApplicationsByReviewCommentDeletedByAndApplicationIdManyToManyEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `Application` at the end of the edge."""
-  node: Application
-
-  """Reads and enables pagination through a set of `ReviewComment`."""
-  reviewCommentsByApplicationId(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: ReviewCommentCondition
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: ReviewCommentFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `ReviewComment`."""
-    orderBy: [ReviewCommentsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): ReviewCommentsConnection!
-}
-
-"""
-A connection to a list of `Application` values, with data from `ReviewComment`.
-"""
-type CiipUserApplicationsByReviewCommentUpdatedByAndApplicationIdManyToManyConnection {
-  """
-  A list of edges which contains the `Application`, info from the `ReviewComment`, and the cursor to aid in pagination.
-  """
-  edges: [CiipUserApplicationsByReviewCommentUpdatedByAndApplicationIdManyToManyEdge!]!
-
-  """A list of `Application` objects."""
-  nodes: [Application]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """The count of *all* `Application` you could get from the connection."""
-  totalCount: Int!
-}
-
-"""
-A `Application` edge in the connection, with data from `ReviewComment`.
-"""
-type CiipUserApplicationsByReviewCommentUpdatedByAndApplicationIdManyToManyEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `Application` at the end of the edge."""
-  node: Application
-
-  """Reads and enables pagination through a set of `ReviewComment`."""
-  reviewCommentsByApplicationId(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: ReviewCommentCondition
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: ReviewCommentFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `ReviewComment`."""
-    orderBy: [ReviewCommentsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): ReviewCommentsConnection!
 }
 
 """
@@ -23366,9 +22551,6 @@ input CreateReviewCommentInput {
 
 """The output of our create `ReviewComment` mutation."""
 type CreateReviewCommentPayload {
-  """Reads a single `Application` that is related to this `ReviewComment`."""
-  applicationByApplicationId: Application
-
   """
   Reads a single `ApplicationReviewStep` that is related to this `ReviewComment`.
   """
@@ -24823,9 +24005,6 @@ input DeleteReviewCommentInput {
 
 """The output of our delete `ReviewComment` mutation."""
 type DeleteReviewCommentPayload {
-  """Reads a single `Application` that is related to this `ReviewComment`."""
-  applicationByApplicationId: Application
-
   """
   Reads a single `ApplicationReviewStep` that is related to this `ReviewComment`.
   """
@@ -37153,12 +36332,6 @@ enum ReportingYearsOrderBy {
 
 """Table containing the information for a CIIP review_comment"""
 type ReviewComment implements Node {
-  """Reads a single `Application` that is related to this `ReviewComment`."""
-  applicationByApplicationId: Application
-
-  """Foreign Key to application"""
-  applicationId: Int!
-
   """
   Reads a single `ApplicationReviewStep` that is related to this `ReviewComment`.
   """
@@ -37167,7 +36340,7 @@ type ReviewComment implements Node {
   """
   Foreign key to application_review_step. Defines the review step that this comment belongs to.
   """
-  applicationReviewStepId: Int
+  applicationReviewStepId: Int!
 
   """Reads a single `CiipUser` that is related to this `ReviewComment`."""
   ciipUserByCreatedBy: CiipUser
@@ -37219,9 +36392,6 @@ A condition to be used against `ReviewComment` object types. All fields are
 tested for equality and combined with a logical ‘and.’
 """
 input ReviewCommentCondition {
-  """Checks for equality with the object’s `applicationId` field."""
-  applicationId: Int
-
   """Checks for equality with the object’s `applicationReviewStepId` field."""
   applicationReviewStepId: Int
 
@@ -37262,9 +36432,6 @@ A filter to be used against `ReviewComment` object types. All fields are combine
 input ReviewCommentFilter {
   """Checks for all expressions in this list."""
   and: [ReviewCommentFilter!]
-
-  """Filter by the object’s `applicationId` field."""
-  applicationId: IntFilter
 
   """Filter by the object’s `applicationReviewStepId` field."""
   applicationReviewStepId: IntFilter
@@ -37308,13 +36475,10 @@ input ReviewCommentFilter {
 
 """An input for mutations affecting `ReviewComment`"""
 input ReviewCommentInput {
-  """Foreign Key to application"""
-  applicationId: Int!
-
   """
   Foreign key to application_review_step. Defines the review step that this comment belongs to.
   """
-  applicationReviewStepId: Int
+  applicationReviewStepId: Int!
 
   """The type of the review_comment (determines who can see the comment)"""
   commentType: ReviewCommentType
@@ -37348,9 +36512,6 @@ input ReviewCommentInput {
 Represents an update to a `ReviewComment`. Fields that are set will be updated.
 """
 input ReviewCommentPatch {
-  """Foreign Key to application"""
-  applicationId: Int
-
   """
   Foreign key to application_review_step. Defines the review step that this comment belongs to.
   """
@@ -37412,8 +36573,6 @@ type ReviewCommentsEdge {
 
 """Methods to use when ordering `ReviewComment`."""
 enum ReviewCommentsOrderBy {
-  APPLICATION_ID_ASC
-  APPLICATION_ID_DESC
   APPLICATION_REVIEW_STEP_ID_ASC
   APPLICATION_REVIEW_STEP_ID_DESC
   COMMENT_TYPE_ASC
@@ -39605,9 +38764,6 @@ input UpdateReviewCommentInput {
 
 """The output of our update `ReviewComment` mutation."""
 type UpdateReviewCommentPayload {
-  """Reads a single `Application` that is related to this `ReviewComment`."""
-  applicationByApplicationId: Application
-
   """
   Reads a single `ApplicationReviewStep` that is related to this `ReviewComment`.
   """
