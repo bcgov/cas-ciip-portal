@@ -27,10 +27,10 @@ exports[`The apply button should render a View Application button if an applicat
 <Link
   href={
     Object {
-      "pathname": "/reporter/view-application",
+      "pathname": "/reporter/application/[applicationId]/version/[versionNumber]/view",
       "query": Object {
         "applicationId": "foo",
-        "version": 1,
+        "versionNumber": 1,
       },
     }
   }
@@ -50,10 +50,10 @@ exports[`The apply button should render a View Application button if an applicat
 <Link
   href={
     Object {
-      "pathname": "/reporter/view-application",
+      "pathname": "/reporter/application/[applicationId]/version/[versionNumber]/view",
       "query": Object {
         "applicationId": "foo",
-        "version": 1,
+        "versionNumber": 1,
       },
     }
   }
@@ -73,10 +73,10 @@ exports[`The apply button should render a View Application button if an applicat
 <Link
   href={
     Object {
-      "pathname": "/reporter/view-application",
+      "pathname": "/reporter/application/[applicationId]/version/[versionNumber]/view",
       "query": Object {
         "applicationId": "foo",
-        "version": 1,
+        "versionNumber": 1,
       },
     }
   }
@@ -96,10 +96,10 @@ exports[`The apply button should render a View Application button if an applicat
 <Link
   href={
     Object {
-      "pathname": "/reporter/view-application",
+      "pathname": "/reporter/application/[applicationId]/version/[versionNumber]/view",
       "query": Object {
         "applicationId": "foo",
-        "version": 1,
+        "versionNumber": 1,
       },
     }
   }

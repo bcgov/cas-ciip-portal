@@ -68,7 +68,10 @@ class ViewApplication extends Component<Props> {
     }
   `;
 
-  static getHref = (applicationId: string, versionNumber: string | number) => ({
+  static getRoute = (
+    applicationId: string,
+    versionNumber: string | number
+  ) => ({
     pathname:
       '/reporter/application/[applicationId]/version/[versionNumber]/view',
     query: {
@@ -94,11 +97,10 @@ class ViewApplication extends Component<Props> {
       application.latestSubmittedRevision?.versionNumber;
     const latestDraftRevision = application.latestDraftRevision?.versionNumber;
 
-    console.log(latestSubmittedRevision, thisVersion);
     const newerSubmissionExists = latestSubmittedRevision > thisVersion;
     const newerDraftExists = latestDraftRevision > latestSubmittedRevision;
 
-    const latestSubmissionHref = ViewApplication.getHref(
+    const latestSubmissionHref = ViewApplication.getRoute(
       router.query.applicationId.toString(),
       latestSubmittedRevision
     );

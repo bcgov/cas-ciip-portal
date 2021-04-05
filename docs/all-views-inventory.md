@@ -9,7 +9,7 @@ Link to each heading for details. Asterisk\* denotes pages that [require certain
 - [New Application Disclaimer page: `/reporter/new-application-disclaimer`\*](#new-application-disclaimer)
 - [Application page: `/reporter/application`\*](#application)
 - [Submission Complete page: `/reporter/complete-submit`](#submission-complete)
-- [View Submitted Application page: `/reporter/view-application`\*](#view-application)
+- [View Submitted Application page: `/reporter/application/[applicationId]/version/[versionNumber]/view`\*](#view-application)
 
 ### [Analyst](#analyst-role)
 
@@ -127,64 +127,14 @@ Interstitial page shown after submitting an application, which confirms the appl
 
 <a id="view-application"></a>
 
-### View Submitted Application page: `/reporter/view-application`\*
+### View Submitted Application page: `/reporter/application/[applicationId]/version/[versionNumber]/view`\*
 
-View a submitted application, including comments made by the analyst who reviewed the applications. The application can be downloaded as PDF.
-
-\* Required query parameters:
-
-- `applicationId`
-- `version`
+View a submitted application, including comments made by the analyst who reviewed the applications.
 
 #### Shared components:
 
 - `ApplicationComments`
 - `ApplicationDetailsContainer`
-
-<a id="certification-redirect"></a>
-
-### Certification redirect page `/certifier/certification-redirect`\*
-
-Summarizes who is requesting that the user certify an application, and for which operator and facility. Links to the individual certification page with application details and signing interface. This page is the same URL shared by the reporter with the certifier when they click "Submit for Certification" on an application, through an automated email and/or the copy-to-clipboard feature.
-
-As with all other pages requiring login, certifiers following the link in their email who are not already logged in will first be redirected through login and back to this page.
-
-\* Required query parameters:
-
-- `rowId` (refers to the corresponding `certification_url`)
-- `id` (refers to the corresponding `application_revision`)
-
-<a id="certification"></a>
-
-### Application Certification page `/certifier/certify`\*
-
-Displays the detailed data submitted in the application to be certified and provides a signature interface with legal disclaimer (displayed in a scrollable area) that is agreed to when certifying the application. A link is provided to expand the disclaimer text as full page in a new tab. The signature interface can be used by clicking and dragging the pointer within the signature box, or by uploading a signature image. The application can be downloaded as PDF.
-
-\* Required query parameters:
-
-- `applicationId`
-- `version`
-
-#### Shared components:
-
-- `ApplicationDetailsContainer`
-- `CertificationSignature`
-- `SignatureDisclaimerCard`
-  - `LegalDisclaimerText`
-
-<a id="certification-requests"></a>
-
-### Certification Requests and Batch Certification page `/certifier/requests`
-
-View requests made to certify applications addressed to the user's email address, including links to view the individual application details. List is searchable and sortable by facility, operator, request status, certifier and certification date; certifiers with many requests can select multiple requests to show the signing interface and certify all selected applications at once.
-
-Once certified, the requests do not disappear, serving as a historical record of applications the user has certified.
-
-#### Shared components:
-
-- `CertificationSignature`
-- `SignatureDisclaimerCard`
-  - `LegalDisclaimerText`
 
 ---
 

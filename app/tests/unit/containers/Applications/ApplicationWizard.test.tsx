@@ -46,7 +46,7 @@ describe('The application wizard component', () => {
         />
       );
 
-      expect(replaceFn).toBeCalledWith(ViewApplication.getHref('id123', '1'));
+      expect(replaceFn).toBeCalledWith(ViewApplication.getRoute('id123', 1));
     });
 
     it('should redirect to the page for the latest draft version if there is one', () => {

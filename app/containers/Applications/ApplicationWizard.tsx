@@ -64,7 +64,7 @@ export const ApplicationWizardComponent: React.FunctionComponent<Props> = ({
       });
     else
       router.replace(
-        ViewApplicationPage.getHref(
+        ViewApplicationPage.getRoute(
           application.id,
           latestSubmittedRevision.versionNumber
         )

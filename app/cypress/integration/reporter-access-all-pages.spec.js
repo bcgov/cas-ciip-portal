@@ -33,7 +33,10 @@ describe('When logged in as a reporter', () => {
     cy.url().should('include', '/reporter/facilities');
     cy.get('tr');
     cy.contains('View Submitted').click();
-    cy.url().should('include', '/reporter/view-application');
+    cy.url().should(
+      'include',
+      `/reporter/application/${applicationId}/version/1/view`
+    );
     cy.get('.admin');
   });
 });

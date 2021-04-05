@@ -29,7 +29,7 @@ const createConfirmationMail = ({
           <p>Your application on behalf of <strong>${operatorName}</strong> for facility <strong>${facilityName}</strong> has been received.</p>
           <p>You will receive notification via email when a decision on your application has been made, or if changes are requested.</p>
           <p>You can <a href="${createUrl(
-            `reporter/view-application?applicationId=${encodedAppId}&version=${versionNumber}`
+            `/reporter/application/${encodedAppId}/version/${versionNumber}/view`
           )}">view your submitted application here</a> and monitor the status of your application(s) <a href="${createUrl(
     `reporter/facilities?organisationRowId=${organisationId}`
   )}">on the Operation Facilities dashboard</a>.</p>

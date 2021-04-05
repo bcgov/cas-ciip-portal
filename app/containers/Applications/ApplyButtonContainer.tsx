@@ -196,7 +196,7 @@ export const ApplyButton: React.FunctionComponent<Props> = ({
     return (
       <Link
         passHref
-        href={ViewApplication.getHref(
+        href={ViewApplication.getRoute(
           applicationId,
           latestSubmittedVersionNumber
         )}
