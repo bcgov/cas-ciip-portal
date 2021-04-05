@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(21);
+select plan(22);
 
 -- Table exists
 select has_table(
@@ -67,6 +67,11 @@ insert into ggircs_portal.review_step (step_name, is_active) values ('test_step1
 insert into ggircs_portal.review_step (step_name, is_active) values ('test_step2', false);
 insert into ggircs_portal.application_review_step(application_id, review_step_id, is_complete)
   values (1,1,false);
+
+set jwt.claims.sub to '11111111-1111-1111-1111-111111111111';
+insert into ggircs_portal.ciip_user(id, uuid) overriding system value
+values (999, '11111111-1111-1111-1111-111111111111');
+insert into ggircs_portal.ciip_user_organisation(id, user_id, organisation_id, status) overriding system value values(1, 999, 1, 'approved');
 
 -- Row level security tests
 
@@ -144,12 +149,16 @@ select throws_like(
 set role ciip_industry_user;
 select concat('current user is: ', (select current_user));
 
-select throws_like(
-  $$
-    select * from ggircs_portal.application_review_step;
-  $$,
-  'permission denied%',
-    'reporter cannot view table application_review_step'
+select is(
+  (select count(*) from ggircs_portal.application_review_step),
+  2::bigint,
+    'reporter can view rows from table application_review_step where the rows relate to one of their applications'
+);
+
+select is(
+  (select count(*) from ggircs_portal.application_review_step where application_id = 2),
+  0::bigint,
+    'reporter cannot view rows from table application_review_step where the rows do not relate to one of their applications'
 );
 
 select throws_like(

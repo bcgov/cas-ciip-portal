@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(40);
+select plan(37);
 
 -- Table exists
 select has_table(
@@ -18,18 +18,8 @@ select col_is_pk(
 );
 
 select col_is_fk(
-  'ggircs_portal', 'review_comment', 'application_id',
-  'review_comment has foreign key on application_id referencing ggircs_portal.application'
-);
-
-select col_is_fk(
   'ggircs_portal', 'review_comment', 'application_review_step_id',
   'review_comment has foreign key on application_review_step_id referencing ggircs_portal.application_review_step'
-);
-
-select has_index(
-  'ggircs_portal', 'review_comment', 'ggircs_portal_review_comment_application_foreign_key',
-  'review_comment has an index on its foreign key (application_id)'
 );
 
 select has_index(
@@ -40,7 +30,6 @@ select has_index(
 -- Columns
 select columns_are('ggircs_portal'::name, 'review_comment'::name, array[
   'id'::name,
-  'application_id'::name,
   'application_review_step_id'::name,
   'description'::name,
   'comment_type'::name,
@@ -54,7 +43,6 @@ select columns_are('ggircs_portal'::name, 'review_comment'::name, array[
 ]);
 
 select col_type_is('ggircs_portal', 'review_comment', 'id', 'integer', 'id column should be type integer');
-select col_type_is('ggircs_portal', 'review_comment', 'application_id', 'integer', 'application_id column should be type integer');
 select col_type_is('ggircs_portal', 'review_comment', 'application_review_step_id', 'integer', 'application_review_step_id column should be type integer');
 select col_type_is('ggircs_portal', 'review_comment', 'description', 'character varying(100000)', 'review_comment column should be type varchar(10000)');
 select col_type_is('ggircs_portal', 'review_comment', 'comment_type', 'ggircs_portal.review_comment_type', 'comment_type column should be type review_comment_type');
@@ -66,7 +54,7 @@ select col_type_is('ggircs_portal', 'review_comment', 'deleted_at', 'timestamp w
 select col_type_is('ggircs_portal', 'review_comment', 'deleted_by', 'integer', 'deleted_by column should be type integer');
 
 select col_not_null('ggircs_portal', 'review_comment', 'id', 'id column should not be nullable');
-select col_not_null('ggircs_portal', 'review_comment', 'application_id', 'application_id column should not be nullable');
+select col_not_null('ggircs_portal', 'review_comment', 'application_review_step_id', 'application_review_step_id column should not be nullable');
 select col_not_null('ggircs_portal', 'review_comment', 'created_at', 'created_at column should not be nullable');
 select col_not_null('ggircs_portal', 'review_comment', 'updated_at', 'updated_at column should not be nullable');
 
@@ -98,7 +86,8 @@ insert into ggircs_portal.organisation(id) overriding system value values(999), 
 insert into ggircs_portal.facility(id, organisation_id) overriding system value values(999, 999), (1000, 1000);
 insert into ggircs_portal.application(id, facility_id) overriding system value values(999, 999), (1000, 1000);
 insert into ggircs_portal.ciip_user_organisation(id, user_id, organisation_id, status) overriding system value values(999, 999, 999, 'approved'), (1000, 1000, 1000, 'approved');
-insert into ggircs_portal.review_comment(id, application_id, description, comment_type, created_by, resolved) overriding system value
+insert into ggircs_portal.application_review_step(id, application_id, review_step_id) overriding system value values (999, 999, 1), (1000, 1000, 1);
+insert into ggircs_portal.review_comment(id, application_review_step_id, description, comment_type, created_by, resolved) overriding system value
   values
     (999, 999, 'User can see this', 'general', 999, false),
     (1000, 999, 'User cannot see this', 'internal', 1,false),
@@ -120,7 +109,7 @@ select results_eq(
 
 select lives_ok(
   $$
-    insert into ggircs_portal.review_comment (id, application_id) overriding system value
+    insert into ggircs_portal.review_comment (id, application_review_step_id) overriding system value
     values (1003, 1000);
   $$,
     'ciip_administrator can insert data in review_comment table'
@@ -128,7 +117,7 @@ select lives_ok(
 
 select lives_ok(
   $$
-    update ggircs_portal.review_comment set description='I made this' where id=1001;
+    update ggircs_portal.review_comment set description='I made this' where id=1003;
   $$,
     'ciip_administrator can change data in review_comment table'
 );
@@ -143,7 +132,7 @@ select results_eq(
 
 select throws_like(
   $$
-    delete from ggircs_portal.review_comment where id = 1001;
+    delete from ggircs_portal.review_comment;
   $$,
   'permission denied%',
     'Administrator cannot delete rows from table_review_comment'
@@ -172,7 +161,7 @@ select is_empty (
 
 select throws_like(
   $$
-    insert into ggircs_portal.review_comment(application_id) values (1002);
+    insert into ggircs_portal.review_comment(application_review_step_id) values (1);
   $$,
   'permission denied%',
     'Industry User cannot create a row in ggircs_portal.review_comment'
@@ -180,7 +169,7 @@ select throws_like(
 
 select throws_like(
   $$
-    update ggircs_portal.review_comment set description = 'denied' where application_id=999
+    update ggircs_portal.review_comment set description = 'denied' where application_review_step_id = 999
   $$,
   'permission denied%',
     'Industry User cannot update rows in table_review_comment'
@@ -188,19 +177,19 @@ select throws_like(
 
 select throws_like(
   $$
-    delete from ggircs_portal.review_comment where application_id=999
+    delete from ggircs_portal.review_comment;
   $$,
   'permission denied%',
     'Industry User cannot delete rows from table_review_comment'
 );
 
 set role ciip_administrator;
-update ggircs_portal.ciip_user_organisation set status='pending' where id=999;
+update ggircs_portal.ciip_user_organisation set status='pending' where id = 999;
 
 set role ciip_industry_user;
 select is_empty(
   $$
-    select * from ggircs_portal.review_comment where application_id= 999;
+    select * from ggircs_portal.review_comment where application_review_step_id = 999
   $$,
   'Industry User cannot access review_comments where org access has not been approved'
 );
@@ -220,8 +209,8 @@ select results_eq(
 
 select lives_ok(
   $$
-    insert into ggircs_portal.review_comment(id, application_id, created_by) overriding system value
-    values (1005,999,999);
+    insert into ggircs_portal.review_comment(id, application_review_step_id, created_by) overriding system value
+    values (1005,1000,999);
   $$,
     'Analyst can insert into table review_comment'
 );
@@ -254,7 +243,7 @@ select results_eq(
 
 select throws_like(
   $$
-    delete from ggircs_portal.review_comment where application_id = 999;
+    delete from ggircs_portal.review_comment;
   $$,
   'permission denied%',
     'Analyst cannot delete rows from table review_comment'
