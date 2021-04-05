@@ -15,22 +15,20 @@ begin;
   -- Set a jwt token so that the created_by columns are not null on creation of application;
   set jwt.claims.sub to '00000000-0000-0000-0000-000000000000';
 
+  -- Disable trigger to override default behaviour and manually assign a legacy review_step below
+  alter table ggircs_portal.application_revision_status disable trigger _create_or_refresh_review_step;
    -- Create applications
   select 'Calling ggircs_portal.create_application_mutation_chain: ';
   select ggircs_portal.create_application_mutation_chain(2);
   select ggircs_portal.create_application_mutation_chain(3);
 
-  insert into ggircs_portal.certification_url(id, application_id, version_number)
-  overriding system value
-  values ('\xad58dd1b39a4dff1cc1e0bb1dce2d80793b85e1be4d465f6b598aa5e44558065', 3, 1)
-  on conflict(id) do update set application_id=excluded.application_id, version_number=excluded.version_number;
-
-  update ggircs_portal.certification_url set certification_signature = 'signed' where application_id =3 and version_number=1;
-
+  -- Set application submitted
   update ggircs_portal.application_revision_status set application_revision_status='submitted' where application_id=3 and version_number=1;
-  -- Create an application revision on application id=3
-  insert into ggircs_portal.review_comment(application_id, description, comment_type)
-    values (3,'This is a comment','general');
+  -- Create a legacy application_review_step for the 2018 application with ID=3
+  insert into ggircs_portal.application_review_step(application_id, review_step_id) values (3,1);
+  -- Create a comment
+  insert into ggircs_portal.review_comment(description, comment_type, application_review_step_id)
+    values ('This is a comment','general', (select id from ggircs_portal.application_review_step where application_id=3));
   update ggircs_portal.application_revision_status set application_revision_status='requested changes' where application_id=3 and version_number=1;
 
   -- Set legal_disclaimer_accepted to true for application id=3
@@ -39,5 +37,6 @@ begin;
 
   alter table ggircs_portal.application_revision_status enable trigger _status_change_email;
   alter table ggircs_portal.application enable trigger _send_draft_application_email;
+  alter table ggircs_portal.application_revision_status enable trigger _create_or_refresh_review_step;
 
 commit;

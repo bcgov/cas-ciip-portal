@@ -25,6 +25,7 @@ create index ggircs_portal_application_review_step_review_step_foreign_key on gg
 do
 $grant$
 begin
+
 -- Grant ciip_administrator permissions
 perform ggircs_portal_private.grant_permissions('select', 'application_review_step', 'ciip_administrator');
 perform ggircs_portal_private.grant_permissions('insert', 'application_review_step', 'ciip_administrator');
@@ -34,6 +35,9 @@ perform ggircs_portal_private.grant_permissions('update', 'application_review_st
 perform ggircs_portal_private.grant_permissions('select', 'application_review_step', 'ciip_analyst');
 perform ggircs_portal_private.grant_permissions('insert', 'application_review_step', 'ciip_analyst');
 perform ggircs_portal_private.grant_permissions('update', 'application_review_step', 'ciip_analyst');
+
+-- Grant ciip_analyst permissions
+perform ggircs_portal_private.grant_permissions('select', 'application_review_step', 'ciip_industry_user');
 
 end
 $grant$;

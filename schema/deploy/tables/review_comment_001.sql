@@ -30,4 +30,6 @@ select ggircs_portal_private.create_review_steps();
 
 drop function ggircs_portal_private.create_review_steps;
 
+alter table ggircs_portal.review_comment alter column application_review_step_id set not null;
+
 commit;

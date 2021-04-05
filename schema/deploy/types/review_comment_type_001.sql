@@ -16,6 +16,21 @@ alter table ggircs_portal.review_comment alter column comment_type type ggircs_p
   using comment_type::text::ggircs_portal.review_comment_type;
 drop type ggircs_portal.review_comment_type_old;
 
+create or replace function ggircs_portal_private.get_valid_review_comments()
+returns setof integer as
+$fn$
+  select ars.id from ggircs_portal.application_review_step ars
+    join ggircs_portal.application a
+      on ars.application_id = a.id
+    join ggircs_portal.facility f
+      on a.facility_id = f.id
+    join ggircs_portal.ciip_user_organisation cuo
+      on f.organisation_id = cuo.organisation_id
+    join ggircs_portal.ciip_user cu
+      on cuo.user_id = cu.id
+      and cu.uuid = (select sub from ggircs_portal.session())
+$fn$ language sql strict stable;
+
 -- Re-implement RLS 'select' policy for ciip_industry_user with proper 'using' statment
 select ggircs_portal_private.upsert_policy(
   'ciip_industry_user_select_review_comment',
@@ -23,9 +38,11 @@ select ggircs_portal_private.upsert_policy(
   'select',
   'ciip_industry_user',
   $$
-    application_id in (select ggircs_portal_private.get_valid_review_comments())
+    application_review_step_id in (select ggircs_portal_private.get_valid_review_comments())
     and comment_type!='internal'
   $$
 );
+
+alter table ggircs_portal.review_comment drop column application_id;
 
 commit;
