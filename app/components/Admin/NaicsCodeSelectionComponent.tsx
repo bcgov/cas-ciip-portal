@@ -37,8 +37,12 @@ export const NaicsCodeSelectionComponent: React.FunctionComponent<Props> = ({
           ))}
         </ListGroup>
       </div>
-      <style jsx>
+      <style jsx global>
         {`
+          .list-group-item.active {
+            background-color: #38598a;
+            color: white;
+          }
           .scrollable {
             overflow-y: scroll;
             max-height: calc(100vh - 108px - 60px - 2.4rem - 146px);
