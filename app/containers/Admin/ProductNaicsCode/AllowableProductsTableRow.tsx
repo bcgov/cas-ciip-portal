@@ -32,7 +32,7 @@ export const AllowableProductsTableRowComponent: React.FunctionComponent<Props> 
   };
 
   const deleteModalContent = {
-    deleteName: 'allowed Product',
+    deleteName: 'allowed product',
     deleteItem: productNaicsCode.productByProductId.productName,
     deleteItemDescription: ''
   };
