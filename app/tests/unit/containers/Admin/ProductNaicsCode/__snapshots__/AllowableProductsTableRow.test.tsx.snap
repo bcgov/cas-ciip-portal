@@ -7,7 +7,7 @@ exports[`The allowable product table row for a given NAICS code Should render NO
       Object {
         "deleteItem": "One fancy non-mandatory product",
         "deleteItemDescription": "",
-        "deleteName": "allowed Product",
+        "deleteName": "allowed product",
       }
     }
     handleDelete={[Function]}
@@ -47,7 +47,7 @@ exports[`The allowable product table row for a given NAICS code Should render YE
       Object {
         "deleteItem": "One fancy non-mandatory product",
         "deleteItemDescription": "",
-        "deleteName": "allowed Product",
+        "deleteName": "allowed product",
       }
     }
     handleDelete={[Function]}

@@ -29,49 +29,60 @@ Array [
                   Select an Industry (NAICS) code:
                 </div>
               </CardHeader>
-              <ListGroup
-                variant="flush"
-              >
-                <ForwardRef
-                  as="div"
-                  className="list-group list-group-flush"
-                  onSelect={[Function]}
+              Array [
+                <div
+                  className="jsx-2355707765 scrollable"
+                  tabIndex={0}
                 >
-                  <div
-                    className="list-group list-group-flush"
-                    onKeyDown={[Function]}
+                  <ListGroup
+                    variant="flush"
                   >
-                    <ListGroupItem
-                      active={false}
-                      disabled={false}
-                      onClick={[Function]}
+                    <ForwardRef
+                      as="div"
+                      className="list-group list-group-flush"
+                      onSelect={[Function]}
                     >
-                      <ForwardRef
-                        as="div"
-                        className="list-group-item"
-                        disabled={false}
-                        eventKey={null}
-                        onClick={[Function]}
+                      <div
+                        className="list-group list-group-flush"
+                        onKeyDown={[Function]}
                       >
-                        <div
-                          className="list-group-item"
-                          data-rb-event-key={null}
+                        <ListGroupItem
+                          action={true}
+                          active={false}
                           disabled={false}
                           onClick={[Function]}
                         >
-                          <b>
-                            123
-                          </b>
-                          <br />
-                          <small>
-                            test code
-                          </small>
-                        </div>
-                      </ForwardRef>
-                    </ListGroupItem>
-                  </div>
-                </ForwardRef>
-              </ListGroup>
+                          <ForwardRef
+                            as="button"
+                            className="list-group-item list-group-item-action"
+                            disabled={false}
+                            eventKey={null}
+                            onClick={[Function]}
+                          >
+                            <button
+                              className="list-group-item list-group-item-action"
+                              data-rb-event-key={null}
+                              disabled={false}
+                              onClick={[Function]}
+                            >
+                              test code
+                              <br
+                                className="jsx-2355707765"
+                              />
+                              <b
+                                className="jsx-2355707765"
+                              >
+                                123
+                              </b>
+                            </button>
+                          </ForwardRef>
+                        </ListGroupItem>
+                      </div>
+                    </ForwardRef>
+                  </ListGroup>
+                </div>,
+                "",
+              ]
             </div>
           </Card>
         </div>
@@ -134,49 +145,60 @@ Array [
                   Select an Industry (NAICS) code:
                 </div>
               </CardHeader>
-              <ListGroup
-                variant="flush"
-              >
-                <ForwardRef
-                  as="div"
-                  className="list-group list-group-flush"
-                  onSelect={[Function]}
+              Array [
+                <div
+                  className="jsx-2355707765 scrollable"
+                  tabIndex={0}
                 >
-                  <div
-                    className="list-group list-group-flush"
-                    onKeyDown={[Function]}
+                  <ListGroup
+                    variant="flush"
                   >
-                    <ListGroupItem
-                      active={true}
-                      disabled={false}
-                      onClick={[Function]}
+                    <ForwardRef
+                      as="div"
+                      className="list-group list-group-flush"
+                      onSelect={[Function]}
                     >
-                      <ForwardRef
-                        as="div"
-                        className="list-group-item active"
-                        disabled={false}
-                        eventKey={null}
-                        onClick={[Function]}
+                      <div
+                        className="list-group list-group-flush"
+                        onKeyDown={[Function]}
                       >
-                        <div
-                          className="list-group-item active"
-                          data-rb-event-key={null}
+                        <ListGroupItem
+                          action={true}
+                          active={true}
                           disabled={false}
                           onClick={[Function]}
                         >
-                          <b>
-                            1234
-                          </b>
-                          <br />
-                          <small>
-                            test code
-                          </small>
-                        </div>
-                      </ForwardRef>
-                    </ListGroupItem>
-                  </div>
-                </ForwardRef>
-              </ListGroup>
+                          <ForwardRef
+                            as="button"
+                            className="list-group-item active list-group-item-action"
+                            disabled={false}
+                            eventKey={null}
+                            onClick={[Function]}
+                          >
+                            <button
+                              className="list-group-item active list-group-item-action"
+                              data-rb-event-key={null}
+                              disabled={false}
+                              onClick={[Function]}
+                            >
+                              test code
+                              <br
+                                className="jsx-2355707765"
+                              />
+                              <b
+                                className="jsx-2355707765"
+                              >
+                                1234
+                              </b>
+                            </button>
+                          </ForwardRef>
+                        </ListGroupItem>
+                      </div>
+                    </ForwardRef>
+                  </ListGroup>
+                </div>,
+                "",
+              ]
             </div>
           </Card>
         </div>

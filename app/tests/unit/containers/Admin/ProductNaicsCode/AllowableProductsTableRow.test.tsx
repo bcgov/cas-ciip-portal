@@ -67,7 +67,7 @@ describe('The allowable product table row for a given NAICS code', () => {
   it('Should call the delete mutation when confirming the modal', () => {
     const spy = jest
       .spyOn(
-        require('mutations/product_naics_code/updateProductNaicsCodeMutation'),
+        require('mutations/product_naics_code/deleteProductNaicsCodeMutation'),
         'default'
       )
       .mockImplementation(() => {});
@@ -90,22 +90,10 @@ describe('The allowable product table row for a given NAICS code', () => {
     expect(spy).toBeCalledTimes(1);
     expect(spy).toBeCalledWith(
       'relay env',
-      {
-        input: {
-          id: 'abcd',
-          productNaicsCodePatch: {deletedAt: expect.any(String)}
-        }
-      },
       'A-relay-ID',
       {
         ' $refType': 'AllowableProductsTableRow_productNaicsCode',
-        deletedAt: null,
-        id: 'abcd',
-        isMandatory: false,
-        productByProductId: {
-          id: 'abc',
-          productName: 'One fancy non-mandatory product'
-        }
+        ...productNaicsCode
       },
       'AllowableProducts_productNaicsCodesByNaicsCodeId'
     );
