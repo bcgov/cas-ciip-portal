@@ -58,8 +58,6 @@ export const LinkedProductModalComponent: React.FunctionComponent<Props> = ({
   query,
   linkData
 }) => {
-  console.log(linkData);
-
   const CUSTOM_FIELDS = {
     productRowId: (props) => {
       return (
