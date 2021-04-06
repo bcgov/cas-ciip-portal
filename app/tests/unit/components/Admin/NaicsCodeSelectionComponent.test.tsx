@@ -1,6 +1,6 @@
 import * as nextRouter from 'next/router';
 import React from 'react';
-import {NaicsCodeList} from 'components/Admin/NaicsCodeList';
+import {NaicsCodeSelectionComponent} from 'components/Admin/NaicsCodeSelectionComponent';
 import {mount} from 'enzyme';
 
 nextRouter.useRouter = jest.fn();
@@ -24,7 +24,9 @@ describe('The NaicsCodeList component', () => {
       }
     ];
 
-    const componentUnderTest = mount(<NaicsCodeList naicsCodes={naicsCodes} />);
+    const componentUnderTest = mount(
+      <NaicsCodeSelectionComponent naicsCodes={naicsCodes} />
+    );
     expect(componentUnderTest).toMatchSnapshot();
   });
 });

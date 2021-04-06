@@ -1,6 +1,6 @@
 import React from 'react';
 import {Card, Col, Row} from 'react-bootstrap';
-import {NaicsCodeList} from 'components/Admin/NaicsCodeList';
+import {NaicsCodeSelectionComponent} from 'components/Admin/NaicsCodeSelectionComponent';
 import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
 import AllowableProductsSearch from './AllowableProductsSearch';
 import {useRouter} from 'next/router';
@@ -36,7 +36,7 @@ export const ProductNaicsCodeAssociationContainer: React.FunctionComponent<Props
             <Card.Header className="bc-card-header">
               Select an Industry (NAICS) code:
             </Card.Header>
-            <NaicsCodeList naicsCodes={naicsCodes} />
+            <NaicsCodeSelectionComponent naicsCodes={naicsCodes} />
           </Card>
         </Col>
         <Col md="8">
