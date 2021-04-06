@@ -1,8 +1,7 @@
 import {faCheck} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import DeleteConfirmationModal from 'components/Admin/DeleteConfirmationModal';
-import {nowMoment} from 'functions/formatDates';
-import updateProductNaicsCodeMutation from 'mutations/product_naics_code/updateProductNaicsCodeMutation';
+import deleteProductNaicsCodeMutation from 'mutations/product_naics_code/deleteProductNaicsCodeMutation';
 import React, {useState} from 'react';
 import {Button} from 'react-bootstrap';
 import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
@@ -23,25 +22,16 @@ export const AllowableProductsTableRowComponent: React.FunctionComponent<Props> 
 
   const deleteProductNaicsCode = async () => {
     const {environment} = relay;
-    const variables = {
-      input: {
-        id: productNaicsCode.id,
-        productNaicsCodePatch: {
-          deletedAt: nowMoment().format('YYYY-MM-DDTHH:mm:ss')
-        }
-      }
-    };
 
-    await updateProductNaicsCodeMutation(
+    await deleteProductNaicsCodeMutation(
       environment,
-      variables,
       naicsCodeId,
       productNaicsCode,
       'AllowableProducts_productNaicsCodesByNaicsCodeId'
     );
   };
 
-  const deleteObject = {
+  const deleteModalContent = {
     deleteName: 'allowed Product',
     deleteItem: productNaicsCode.productByProductId.productName,
     deleteItemDescription: ''
@@ -50,7 +40,7 @@ export const AllowableProductsTableRowComponent: React.FunctionComponent<Props> 
   return (
     <>
       <DeleteConfirmationModal
-        deleteObject={deleteObject}
+        deleteObject={deleteModalContent}
         handleDelete={deleteProductNaicsCode}
         show={showDeleteModal}
         onClose={() => setShowDeleteModal(false)}
