@@ -25,5 +25,8 @@ describe('When logged in as an admin', () => {
     cy.visit('/admin/naics-codes');
     cy.url().should('include', '/admin/naics-codes');
     cy.get('tr');
+    cy.visit('/admin/naics-products');
+    cy.url().should('include', '/admin/naics-products');
+    cy.get('.card');
   });
 });

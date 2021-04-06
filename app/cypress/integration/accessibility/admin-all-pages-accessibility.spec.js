@@ -39,6 +39,15 @@ describe('When logged in as an admin', () => {
     cy.checkA11y();
   });
 
+  it('The allowable products page has no detectable ally violations on load', () => {
+    cy.visit('/admin/naics-products');
+    cy.url().should('include', '/admin/naics-products');
+    cy.get('.list-group-item:nth-child(1)').click();
+    cy.injectAxe();
+    cy.get('#page-content');
+    cy.checkA11y();
+  });
+
   it('The products & benchmarks new product modal has no detectable ally violations on open', () => {
     cy.visit('/admin/products-benchmarks');
     cy.url().should('include', '/admin/products-benchmarks');
