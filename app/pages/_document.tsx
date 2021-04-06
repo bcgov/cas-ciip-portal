@@ -42,7 +42,7 @@ class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
-          {CONFIG.ENABLE_ANALYTICS === 'true' && <Analytics />}
+          {CONFIG?.ENABLE_ANALYTICS === 'true' && <Analytics />}
         </body>
       </Html>
     );
