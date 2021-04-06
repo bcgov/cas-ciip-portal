@@ -18,7 +18,7 @@ describe('When logged in as a reporter', () => {
     cy.url().should('include', '/reporter/new-application-disclaimer');
     cy.contains('Consent and continue').click();
     cy.url().should('include', '/reporter/application');
-    const applicationId = window.btoa('["applications", 2]');
+    const applicationId = window.btoa('["applications",2]');
     cy.visit(
       `/reporter/application?applicationId=${applicationId}&confirmationPage=true&version=1`
     );
