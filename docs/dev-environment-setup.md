@@ -19,7 +19,7 @@ The purpose of this exercise is to enable a developer new to the project to get 
 
 [asdf](https://asdf-vm.com/#/) is a universal package manager used in this project to install and manage versions of the tools listed in [`.tool-versions`](../.tool-versions). To do this, several asdf plugins will be installed as well.
 
-- [Install asdf](https://asdf-vm.com/#/core-manage-asdf) using your system's package manager
+- [Install asdf](https://asdf-vm.com/#/core-manage-asdf) using your system's package manager & follow instructions to add it to your shell.
 - From the project root, run `make install_asdf_tools`, which installs the [additional asdf plugins](https://asdf-vm.com/#/plugins-all) needed to manage the various tools in [`.tool-versions`](../.tool-versions).
   - this script also [imports the Node.js release team's OpenPGP keys](https://xscode.com/asdf-vm/asdf-nodejs) for checksum verification.
   - the script also attempts to install Postgres `--with-libxml` via asdf to include a database plugin for XML. Your system will need `libxml2` installed for this.
@@ -244,6 +244,12 @@ Front-end unit tests are heavily snapshot-based. Work that changes the DOM will 
 ```
 cd schema && make unit
 ```
+
+If `pg_prove` can't be found and you installed perl via Homebrew, make sure the perl libraries are on your path.
+
+`find /usr/local -name pg_prove`
+
+`export PATH="/usr/local/Cellar/perl/5.32.1_1/bin:$PATH"`
 
 ### End-to-end Tests with Cypress
 
