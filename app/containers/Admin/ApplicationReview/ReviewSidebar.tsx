@@ -3,45 +3,35 @@ import {Button} from 'react-bootstrap';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faCheck, faLock} from '@fortawesome/free-solid-svg-icons';
 import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
-import {ReviewSidebar_generalComments} from '__generated__/ReviewSidebar_generalComments.graphql';
-import {ReviewSidebar_internalComments} from '__generated__/ReviewSidebar_internalComments.graphql';
+import {ReviewSidebar_applicationReviewStep} from '__generated__/ReviewSidebar_applicationReviewStep.graphql';
 import ReviewComment from 'components/Admin/ReviewComment';
 import updateReviewCommentMutation from 'mutations/application/updateReviewCommentMutation';
 import {nowMoment} from 'functions/formatDates';
+import {capitalize} from 'lib/text-transforms';
 
 interface Props {
   isCompleted: boolean;
-  reviewStep: string;
   onClose: () => void;
   onCompletionToggle: (boolean) => void;
-  generalComments: ReviewSidebar_generalComments;
-  internalComments: ReviewSidebar_internalComments;
+  applicationReviewStep: ReviewSidebar_applicationReviewStep;
   relay: RelayProp;
 }
 
-const getCommentsToShow = (comments, showResolved) => {
-  return comments.filter((c) => showResolved || !c.node.resolved);
-};
-
 export const ReviewSidebar: React.FunctionComponent<Props> = ({
   isCompleted,
-  reviewStep,
   onClose,
   onCompletionToggle,
-  generalComments,
-  internalComments,
+  applicationReviewStep,
   relay
 }) => {
   const [showingResolved, setShowingResolved] = useState(false);
   const toggleResolved = () => setShowingResolved((current) => !current);
-  const generalCommentsToShow = getCommentsToShow(
-    generalComments.edges,
-    showingResolved
+  const reviewStepName = capitalize(
+    applicationReviewStep.reviewStepByReviewStepId.stepName
   );
-  const internalCommentsToShow = getCommentsToShow(
-    internalComments.edges,
-    showingResolved
-  );
+
+  const generalComments = applicationReviewStep.generalComments.edges;
+  const internalComments = applicationReviewStep.internalComments.edges;
   const markCompletedButton = (
     <Button
       variant="outline-primary"
@@ -86,12 +76,12 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
       <button
         type="button"
         id="close"
-        aria-label={`Close ${reviewStep} Review`}
+        aria-label={`Close ${reviewStepName} Review`}
         onClick={onClose}
       >
         ×
       </button>
-      <h2>{reviewStep} Review</h2>
+      <h2>{reviewStepName} Review</h2>
       {isCompleted ? (
         <p className="mark-incomplete">
           <FontAwesomeIcon icon={faCheck} style={{marginRight: 2}} />
@@ -119,11 +109,11 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
             <em>(Visible to applicant)</em>
           </small>
         </h3>
-        {generalCommentsToShow.length === 0 ? (
+        {generalComments.length === 0 ? (
           <p className="empty-comments">No general comments to show.</p>
         ) : (
           <ul aria-labelledby="general-comments-label">
-            {generalCommentsToShow.map(
+            {generalComments.map(
               ({
                 node: {
                   id,
@@ -154,11 +144,11 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
             <em>(Not visible to applicant)</em>
           </small>
         </h3>
-        {internalCommentsToShow.length === 0 ? (
+        {internalComments.length === 0 ? (
           <p className="empty-comments">No internal comments to show.</p>
         ) : (
           <ul aria-labelledby="internal-comments-label">
-            {internalCommentsToShow.map(
+            {internalComments.map(
               ({
                 node: {
                   id,
@@ -275,33 +265,43 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
 };
 
 export default createFragmentContainer(ReviewSidebar, {
-  generalComments: graphql`
-    fragment ReviewSidebar_generalComments on ReviewCommentsConnection {
-      edges {
-        node {
-          id
-          description
-          createdAt
-          resolved
-          ciipUserByCreatedBy {
-            firstName
-            lastName
+  applicationReviewStep: graphql`
+    fragment ReviewSidebar_applicationReviewStep on ApplicationReviewStep {
+      isComplete
+      reviewStepByReviewStepId {
+        stepName
+      }
+      internalComments: reviewCommentsByApplicationReviewStepId(
+        first: 2147483647
+        filter: {commentType: {equalTo: INTERNAL}, deletedAt: {isNull: true}}
+      ) @connection(key: "ReviewSidebar_internalComments", filters: []) {
+        edges {
+          node {
+            id
+            description
+            createdAt
+            resolved
+            ciipUserByCreatedBy {
+              firstName
+              lastName
+            }
           }
         }
       }
-    }
-  `,
-  internalComments: graphql`
-    fragment ReviewSidebar_internalComments on ReviewCommentsConnection {
-      edges {
-        node {
-          id
-          description
-          createdAt
-          resolved
-          ciipUserByCreatedBy {
-            firstName
-            lastName
+      generalComments: reviewCommentsByApplicationReviewStepId(
+        first: 2147483647
+        filter: {commentType: {equalTo: GENERAL}, deletedAt: {isNull: true}}
+      ) @connection(key: "ReviewSidebar_generalComments", filters: []) {
+        edges {
+          node {
+            id
+            description
+            createdAt
+            resolved
+            ciipUserByCreatedBy {
+              firstName
+              lastName
+            }
           }
         }
       }

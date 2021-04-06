@@ -45,30 +45,7 @@ class ApplicationReview extends Component<Props> {
           applicationReviewStepsByApplicationId {
             edges {
               node {
-                internalComments: reviewCommentsByApplicationReviewStepId(
-                  filter: {
-                    commentType: {equalTo: INTERNAL}
-                    deletedAt: {isNull: true}
-                  }
-                ) {
-                  edges {
-                    node {
-                      ...ReviewSidebar_internalComments
-                    }
-                  }
-                }
-                generalComments: reviewCommentsByApplicationReviewStepId(
-                  filter: {
-                    commentType: {equalTo: GENERAL}
-                    deletedAt: {isNull: true}
-                  }
-                ) {
-                  edges {
-                    node {
-                      ...ReviewSidebar_internalComments
-                    }
-                  }
-                }
+                ...ReviewSidebar_applicationReviewStep
               }
             }
           }
@@ -169,9 +146,10 @@ class ApplicationReview extends Component<Props> {
           </div>
           {this.state.isSidebarOpened && (
             <ReviewSidebar
-              internalComments={query.application.internalComments}
-              generalComments={query.application.generalComments}
-              reviewStep="Technical"
+              applicationReviewStep={
+                query.application.applicationReviewStepsByApplicationId.edges[0]
+                  .node
+              }
               isCompleted={this.state.currentStepIsCompleted}
               onClose={this.toggleSidebar}
               onCompletionToggle={(isCompleted) => {
