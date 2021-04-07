@@ -117,10 +117,18 @@ const CUSTOM_FIELDS: Record<string, React.FunctionComponent<FieldProps>> = {
   emissionSource: EmissionSourceFields,
   emissionGas: (props) => <EmissionGasFields {...props} />,
   product: (props) => (
-    <ProductField query={props.formContext.query} {...props} />
+    <ProductField
+      naicsCode={props.formContext.applicationRevision.naicsCode}
+      query={props.formContext.query}
+      {...props}
+    />
   ),
   productRowId: (props) => (
-    <ProductRowIdField query={props.formContext.query} {...props} />
+    <ProductRowIdField
+      naicsCode={props.formContext.applicationRevision.naicsCode}
+      query={props.formContext.query}
+      {...props}
+    />
   ),
   fuel: (props) => <FuelField query={props.formContext.query} {...props} />,
   fuelRowId: (props) => (

@@ -39,7 +39,7 @@ export const ProductFieldComponent: React.FunctionComponent<Props> = (
   };
 
   const productInNaicsCode = (formData, naicsCode) => {
-    return naicsCode.allProductsByNaicsCode.edges.some(
+    return naicsCode?.allProductsByNaicsCode.edges.some(
       (edge) =>
         edge.node.rowId === formData.productRowId || !formData.productRowId
     );

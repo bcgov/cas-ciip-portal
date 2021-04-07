@@ -5,6 +5,7 @@ import JsonSchemaForm, {AjvError} from '@rjsf/core';
 import {FormJson} from 'next-env';
 import {ApplicationDetailsCardItem_formResult} from '__generated__/ApplicationDetailsCardItem_formResult.graphql';
 import {ApplicationDetailsCardItem_query} from '__generated__/ApplicationDetailsCardItem_query.graphql';
+import {ApplicationDetailsCardItem_applicationRevision} from '__generated__/ApplicationDetailsCardItem_applicationRevision.graphql';
 import customFields from 'components/Application/ApplicationDetailsCardItemCustomFields';
 import SummaryFormArrayFieldTemplate from 'containers/Forms/SummaryFormArrayFieldTemplate';
 import SummaryFormFieldTemplate from 'containers/Forms/SummaryFormFieldTemplate';
@@ -27,6 +28,8 @@ interface Props {
   showDiff: boolean;
   // Boolean indicates whether or not to liveValidate the results (true when rendered by the summary component)
   liveValidate: boolean;
+  // The latest application_revision used by the fragment (Draft if in progress, Submitted if in review)
+  applicationRevision: ApplicationDetailsCardItem_applicationRevision;
 }
 
 /*
@@ -38,7 +41,8 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
   diffToResults,
   query,
   showDiff,
-  liveValidate
+  liveValidate,
+  applicationRevision
 }) => {
   const {formJsonByFormId} = formResult;
   const {formJson} = formJsonByFormId;
@@ -123,6 +127,7 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
             formData={formData}
             formContext={{
               query,
+              applicationRevision,
               showDiff,
               idDiffMap
             }}
@@ -177,6 +182,15 @@ export default createFragmentContainer(ApplicationDetailsCardItemComponent, {
       ...FuelField_query
       ...FuelRowIdField_query
       ...EmissionCategoryRowIdField_query
+    }
+  `,
+  applicationRevision: graphql`
+    fragment ApplicationDetailsCardItem_applicationRevision on ApplicationRevision {
+      naicsCode {
+        id
+        ...ProductRowIdField_naicsCode
+        ...ProductField_naicsCode
+      }
     }
   `
 });
