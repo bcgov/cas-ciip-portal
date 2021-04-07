@@ -16,7 +16,7 @@ import EmissionGasFields from './EmissionGasFields';
 import EmissionSourceFields from './EmissionSourceFields';
 import ProductField from './ProductField';
 import EmissionField from './EmissionField';
-import ProductRowIdByNaicsField from './ProductRowIdByNaicsField';
+import ProductRowIdField from './ProductRowIdField';
 import FuelRowIdField from './FuelRowIdField';
 import NumberField from './NumberField';
 import EmissionCategoryRowIdField from './EmissionCategoryRowIdField';
@@ -47,17 +47,15 @@ const CUSTOM_FIELDS = {
   emission: (props) => (
     <EmissionField query={props.formContext.query} {...props} />
   ),
-  productRowId: (props) => {
-    console.log(props.formContext.query);
-    return (
-      <ProductRowIdByNaicsField
-        naicsCode={
-          props.formContext.query.application.latestDraftRevision.naicsCode
-        }
-        {...props}
-      />
-    );
-  },
+  productRowId: (props) => (
+    <ProductRowIdField
+      naicsCode={
+        props.formContext.query.application.latestDraftRevision.naicsCode
+      }
+      query={props.formContext.query}
+      {...props}
+    />
+  ),
   fuelRowId: (props) => (
     <FuelRowIdField query={props.formContext.query} {...props} />
   ),
@@ -206,6 +204,7 @@ export default createFragmentContainer(FormComponent, {
       ...FuelField_query
       ...FuelRowIdField_query
       ...ProductField_query
+      ...ProductRowIdField_query
       ...EmissionCategoryRowIdField_query
       products: allProducts(condition: {productState: PUBLISHED}) {
         edges {

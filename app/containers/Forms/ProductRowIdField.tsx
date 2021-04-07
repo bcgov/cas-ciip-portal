@@ -3,9 +3,11 @@ import {InputGroup} from 'react-bootstrap';
 import {FieldProps} from '@rjsf/core';
 import {createFragmentContainer, graphql} from 'react-relay';
 import {ProductRowIdField_query} from 'ProductRowIdField_query.graphql';
+import {ProductRowIdField_naicsCode} from 'ProductRowIdField_naicsCode.graphql';
 
 interface Props extends FieldProps<number> {
   query: ProductRowIdField_query;
+  naicsCode?: ProductRowIdField_naicsCode;
 }
 
 /**
@@ -27,26 +29,42 @@ export const ProductRowIdFieldComponent: React.FunctionComponent<Props> = (
    * Other props are passed as-is to the StringField.
    * If this component is rendered from the admin product-benchmark link product modal, the energy products are removed from the choices.
    */
-  const fieldProps = useMemo(
-    () => ({
+
+  const fieldProps = useMemo(() => {
+    let productIds;
+    let productNames;
+    if (props.isLinkModal) {
+      productIds = props.query.published.edges
+        .filter(({node}) => node.rowId > lastEnergyProductIndex)
+        .map(({node}) => node.rowId);
+
+      productNames = props.query.published.edges
+        .filter(({node}) => node.rowId > lastEnergyProductIndex)
+        .map(({node}) => node.productName);
+    } else if (props.naicsCode) {
+      productIds = props.naicsCode.productsByNaicsCode.edges.map(
+        ({node}) => node.rowId
+      );
+      productNames = props.naicsCode.productsByNaicsCode.edges.map(
+        ({node}) => node.productName
+      );
+    } else {
+      productIds = props.query.published.edges.map(({node}) => node.rowId);
+      productNames = props.query.published.edges.map(
+        ({node}) => node.productName
+      );
+    }
+    return {
       ...props,
       schema: {
         ...props.schema,
-        enum: props.isLinkModal
-          ? props.query.published.edges
-              .filter(({node}) => node.rowId > lastEnergyProductIndex)
-              .map(({node}) => node.rowId)
-          : props.query.published.edges.map(({node}) => node.rowId),
-        enumNames: props.isLinkModal
-          ? props.query.published.edges
-              .filter(({node}) => node.rowId > lastEnergyProductIndex)
-              .map(({node}) => node.productName)
-          : props.query.published.edges.map(({node}) => node.productName)
+        enum: productIds,
+        enumNames: productNames,
+        b: 'asdf'
       },
       query: undefined
-    }),
-    [props]
-  );
+    };
+  }, [props]);
 
   /**
    * Contains all products, split into arrays of published / archived product IDs and names.
@@ -56,17 +74,57 @@ export const ProductRowIdFieldComponent: React.FunctionComponent<Props> = (
       publishedProductIds: props.query.published.edges.map(
         ({node}) => node.rowId
       ),
+      publishedProductNames: props.query.published.edges.map(
+        ({node}) => node.productName
+      ),
       archivedProductIds: props.query.archived.edges.map(
         ({node}) => node.rowId
       ),
       archivedProductNames: props.query.archived.edges.map(
         ({node}) => node.productName
+      ),
+      productIdsByNaicsCode: props.naicsCode?.productsByNaicsCode.edges.map(
+        ({node}) => node.rowId
       )
     }),
     [props]
   );
 
-  // Pass the fieldProps for published product
+  const invalidProduct = (productName) => (
+    <InputGroup className="mb-3">
+      <InputGroup.Prepend>
+        <InputGroup.Text>{productName}</InputGroup.Text>
+      </InputGroup.Prepend>
+    </InputGroup>
+  );
+
+  if (props.naicsCode) {
+    if (
+      (allProducts.productIdsByNaicsCode.includes(props.formData) &&
+        !allProducts.archivedProductIds.includes(props.formData)) ||
+      props.formData === undefined
+    )
+      return <props.registry.fields.StringField {...fieldProps} />;
+
+    const productIdsNotInNaicsCode = [
+      ...allProducts.publishedProductIds,
+      ...allProducts.archivedProductIds
+    ];
+    const productNamesNotInNaicsCode = [
+      ...allProducts.publishedProductNames,
+      ...allProducts.archivedProductNames
+    ];
+    const productIdOutsideNaicsCode = productIdsNotInNaicsCode.indexOf(
+      props.formData
+    );
+
+    return (
+      <div>
+        {invalidProduct(productNamesNotInNaicsCode[productIdOutsideNaicsCode])}
+      </div>
+    );
+  }
+
   if (
     allProducts.publishedProductIds.includes(props.formData) ||
     props.formData === undefined
@@ -76,22 +134,17 @@ export const ProductRowIdFieldComponent: React.FunctionComponent<Props> = (
   // Render a disabled text input for an archived product
   const archivedIndex = allProducts.archivedProductIds.indexOf(props.formData);
   return (
-    <div>
-      <InputGroup className="mb-3">
-        <InputGroup.Prepend>
-          <InputGroup.Text>
-            {allProducts.archivedProductNames[archivedIndex]}
-          </InputGroup.Text>
-        </InputGroup.Prepend>
-      </InputGroup>
-    </div>
+    <div>{invalidProduct(allProducts.archivedProductNames[archivedIndex])}</div>
   );
 };
 
 export default createFragmentContainer(ProductRowIdFieldComponent, {
   query: graphql`
     fragment ProductRowIdField_query on Query {
-      published: allProducts(condition: {productState: PUBLISHED}) {
+      published: allProducts(
+        filter: {productState: {equalTo: PUBLISHED}}
+        orderBy: PRODUCT_NAME_ASC
+      ) {
         edges {
           node {
             rowId
@@ -100,7 +153,27 @@ export default createFragmentContainer(ProductRowIdFieldComponent, {
           }
         }
       }
-      archived: allProducts(condition: {productState: ARCHIVED}) {
+      archived: allProducts(
+        filter: {productState: {equalTo: ARCHIVED}}
+        orderBy: PRODUCT_NAME_ASC
+      ) {
+        edges {
+          node {
+            rowId
+            productName
+            productState
+          }
+        }
+      }
+    }
+  `,
+  naicsCode: graphql`
+    fragment ProductRowIdField_naicsCode on NaicsCode {
+      id
+      productsByNaicsCode: productsByProductNaicsCodeNaicsCodeIdAndProductId(
+        filter: {productState: {equalTo: PUBLISHED}}
+        orderBy: PRODUCT_NAME_ASC
+      ) {
         edges {
           node {
             rowId
