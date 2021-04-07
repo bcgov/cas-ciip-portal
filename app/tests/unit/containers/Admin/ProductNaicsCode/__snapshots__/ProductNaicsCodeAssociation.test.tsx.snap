@@ -3,6 +3,45 @@
 exports[`The product naics code association component renders a list of naics codes and a helper message when no naics is selected 1`] = `
 Array [
   <Row
+    className="mb-5"
+    noGutters={false}
+  >
+    <div
+      className="mb-5 row"
+    >
+      <Col
+        className="col-md-auto"
+      >
+        <div
+          className="col-md-auto col"
+        >
+          <a
+            className="jsx-4064971042 alert-link"
+            href="/admin/naics-codes"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+          >
+            Manage Industry (NAICS) Codes
+          </a>
+        </div>
+      </Col>
+      <Col>
+        <div
+          className="col"
+        >
+          <a
+            className="jsx-4064971042 alert-link"
+            href="/admin/products-benchmarks"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+          >
+            Manage Products
+          </a>
+        </div>
+      </Col>
+    </div>
+  </Row>,
+  <Row
     noGutters={false}
   >
     <div
@@ -31,7 +70,7 @@ Array [
               </CardHeader>
               Array [
                 <div
-                  className="jsx-3265743183 scrollable"
+                  className="jsx-547883214 scrollable"
                   tabIndex={0}
                 >
                   <ListGroup
@@ -67,10 +106,10 @@ Array [
                             >
                               test code
                               <br
-                                className="jsx-3265743183"
+                                className="jsx-547883214"
                               />
                               <b
-                                className="jsx-3265743183"
+                                className="jsx-547883214"
                               >
                                 123
                               </b>
@@ -81,6 +120,7 @@ Array [
                     </ForwardRef>
                   </ListGroup>
                 </div>,
+                "",
                 "",
               ]
             </div>
@@ -119,6 +159,45 @@ Array [
 exports[`The product naics code association component renders the associated components when a naics is selected 1`] = `
 Array [
   <Row
+    className="mb-5"
+    noGutters={false}
+  >
+    <div
+      className="mb-5 row"
+    >
+      <Col
+        className="col-md-auto"
+      >
+        <div
+          className="col-md-auto col"
+        >
+          <a
+            className="jsx-4064971042 alert-link"
+            href="/admin/naics-codes"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+          >
+            Manage Industry (NAICS) Codes
+          </a>
+        </div>
+      </Col>
+      <Col>
+        <div
+          className="col"
+        >
+          <a
+            className="jsx-4064971042 alert-link"
+            href="/admin/products-benchmarks"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+          >
+            Manage Products
+          </a>
+        </div>
+      </Col>
+    </div>
+  </Row>,
+  <Row
     noGutters={false}
   >
     <div
@@ -147,7 +226,7 @@ Array [
               </CardHeader>
               Array [
                 <div
-                  className="jsx-3265743183 scrollable"
+                  className="jsx-547883214 scrollable"
                   tabIndex={0}
                 >
                   <ListGroup
@@ -183,10 +262,10 @@ Array [
                             >
                               test code
                               <br
-                                className="jsx-3265743183"
+                                className="jsx-547883214"
                               />
                               <b
-                                className="jsx-3265743183"
+                                className="jsx-547883214"
                               >
                                 1234
                               </b>
@@ -197,6 +276,7 @@ Array [
                     </ForwardRef>
                   </ListGroup>
                 </div>,
+                "",
                 "",
               ]
             </div>

@@ -43,6 +43,11 @@ export const NaicsCodeSelectionComponent: React.FunctionComponent<Props> = ({
             background-color: #38598a;
             color: white;
           }
+        `}
+      </style>
+      <style jsx>
+        {`{
+
           .scrollable {
             overflow-y: scroll;
             max-height: calc(100vh - 108px - 60px - 2.4rem - 146px);

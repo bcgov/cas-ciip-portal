@@ -6,6 +6,7 @@ import AllowableProductsSearch from './AllowableProductsSearch';
 import {useRouter} from 'next/router';
 import AllowableProductsTable from './AllowableProductsTable';
 import {ProductNaicsCodeAssociation_query} from '__generated__/ProductNaicsCodeAssociation_query.graphql';
+import Link from 'next/link';
 
 interface Props {
   relay: RelayProp;
@@ -30,6 +31,22 @@ export const ProductNaicsCodeAssociationContainer: React.FunctionComponent<Props
 
   return (
     <>
+      <Row className="mb-5">
+        <Col className="col-md-auto">
+          <Link href="/admin/naics-codes" passHref>
+            <a href="#" className="alert-link">
+              Manage Industry (NAICS) Codes
+            </a>
+          </Link>
+        </Col>
+        <Col>
+          <Link href="/admin/products-benchmarks" passHref>
+            <a href="#" className="alert-link">
+              Manage Products
+            </a>
+          </Link>
+        </Col>
+      </Row>
       <Row>
         <Col md="4">
           <Card>
