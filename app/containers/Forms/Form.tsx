@@ -42,7 +42,13 @@ const CUSTOM_FIELDS = {
   emissionSource: EmissionSourceFields,
   emissionGas: EmissionGasFields,
   product: (props) => (
-    <ProductField query={props.formContext.query} {...props} />
+    <ProductField
+      naicsCode={
+        props.formContext.query.application.latestDraftRevision.naicsCode
+      }
+      query={props.formContext.query}
+      {...props}
+    />
   ),
   emission: (props) => (
     <EmissionField query={props.formContext.query} {...props} />
