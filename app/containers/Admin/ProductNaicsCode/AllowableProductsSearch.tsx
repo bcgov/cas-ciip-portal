@@ -30,7 +30,10 @@ export const AllowableProductsSearchContainer: React.FunctionComponent<Props> = 
       .filter((option) => !existingProductIds.includes(option.id));
   }, [query]);
 
-  const [selectedProducts, setSelectedProducts] = useState([]);
+  const [selectedProduct, setSelectedProduct] = useState<{
+    id: string | number;
+    name: string;
+  }>();
 
   const addAllowableProduct = async (productId: number, mandatory: boolean) => {
     const {environment} = relay;
@@ -55,9 +58,9 @@ export const AllowableProductsSearchContainer: React.FunctionComponent<Props> = 
   };
 
   const onAddClick = (mandatory: boolean) => {
-    if (selectedProducts.length > 0) {
-      addAllowableProduct(selectedProducts[0].id, mandatory);
-      setSelectedProducts([]);
+    if (selectedProduct) {
+      addAllowableProduct(selectedProduct.id as number, mandatory);
+      setSelectedProduct(undefined);
     }
   };
 
@@ -79,21 +82,21 @@ export const AllowableProductsSearchContainer: React.FunctionComponent<Props> = 
               inputProps={{id: 'product-naics-search-typeahead'}}
               options={allowableProducts}
               onChange={(items) => {
-                setSelectedProducts(items);
+                setSelectedProduct(items[0]);
               }}
-              selected={selectedProducts}
+              selected={selectedProduct ? [selectedProduct] : []}
               placeholder="Search Products ..."
             />
           </Col>
           <Col md="auto">
             <Button
-              disabled={selectedProducts.length === 0}
+              disabled={!selectedProduct}
               onClick={() => onAddClick(true)}
             >
               Add as Mandatory
             </Button>{' '}
             <Button
-              disabled={selectedProducts.length === 0}
+              disabled={!selectedProduct}
               variant="secondary"
               onClick={() => onAddClick(false)}
             >
