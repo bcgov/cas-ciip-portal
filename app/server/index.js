@@ -29,6 +29,7 @@ const {run} = require('graphile-worker');
 const path = require('path');
 const namespaceMap = require('../data/kc-namespace-map');
 const printPdf = require('./routes/print-pdf');
+const redirectRouter = require('./redirects');
 const cookieParser = require('cookie-parser');
 const databaseConnectionService = require('./db/databaseConnectionService');
 
@@ -105,6 +106,9 @@ app.prepare().then(async () => {
   const server = express();
 
   server.use(morgan('combined'));
+
+  server.use(redirectRouter);
+
   // Enable serving ACME HTTP-01 challenge response written to disk by acme.sh
   // https://letsencrypt.org/docs/challenge-types/#http-01-challenge
   // https://github.com/acmesh-official/acme.sh

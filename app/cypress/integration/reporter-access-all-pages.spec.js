@@ -38,5 +38,14 @@ describe('When logged in as a reporter', () => {
       `/reporter/application/${applicationId}/version/1/view`
     );
     cy.get('.admin');
+
+    // test permanent redirection from the v1 view-application page
+    cy.visit(
+      `/reporter/view-application?applicationId=${applicationId}&version=1`
+    );
+    cy.url().should(
+      'include',
+      `/reporter/application/${applicationId}/version/1/view`
+    );
   });
 });
