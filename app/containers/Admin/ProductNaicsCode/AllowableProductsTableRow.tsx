@@ -69,6 +69,11 @@ export const AllowableProductsTableRowComponent: React.FunctionComponent<Props> 
           </Button>
         </td>
       </tr>
+      <style jsx>{`
+        td.centered {
+          text-align: center;
+        }
+      `}</style>
     </>
   );
 };

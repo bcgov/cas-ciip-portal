@@ -14,17 +14,21 @@ exports[`The allowable product table row for a given NAICS code Should render NO
     onClose={[Function]}
     show={false}
   />
-  <tr>
-    <td>
+  <tr
+    className="jsx-4022232599"
+  >
+    <td
+      className="jsx-4022232599"
+    >
       One fancy non-mandatory product
     </td>
     <td
-      className="centered"
+      className="jsx-4022232599 centered"
     >
       No
     </td>
     <td
-      className="centered"
+      className="jsx-4022232599 centered"
     >
       <Button
         active={false}
@@ -37,6 +41,11 @@ exports[`The allowable product table row for a given NAICS code Should render NO
       </Button>
     </td>
   </tr>
+  <JSXStyle
+    id="4022232599"
+  >
+    td.centered.jsx-4022232599{text-align:center;}
+  </JSXStyle>
 </Fragment>
 `;
 
@@ -54,12 +63,16 @@ exports[`The allowable product table row for a given NAICS code Should render YE
     onClose={[Function]}
     show={false}
   />
-  <tr>
-    <td>
+  <tr
+    className="jsx-4022232599"
+  >
+    <td
+      className="jsx-4022232599"
+    >
       One fancy non-mandatory product
     </td>
     <td
-      className="centered"
+      className="jsx-4022232599 centered"
     >
       <FontAwesomeIcon
         border={false}
@@ -92,12 +105,14 @@ exports[`The allowable product table row for a given NAICS code Should render YE
         title=""
         transform={null}
       />
-      <b>
+      <b
+        className="jsx-4022232599"
+      >
          Yes
       </b>
     </td>
     <td
-      className="centered"
+      className="jsx-4022232599 centered"
     >
       <Button
         active={false}
@@ -110,5 +125,10 @@ exports[`The allowable product table row for a given NAICS code Should render YE
       </Button>
     </td>
   </tr>
+  <JSXStyle
+    id="4022232599"
+  >
+    td.centered.jsx-4022232599{text-align:center;}
+  </JSXStyle>
 </Fragment>
 `;

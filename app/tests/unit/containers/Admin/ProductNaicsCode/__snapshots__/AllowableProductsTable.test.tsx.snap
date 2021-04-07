@@ -33,31 +33,31 @@ exports[`The allowable products table for a NAICS code should render sorted tabl
     striped={true}
   >
     <thead
-      className="jsx-950168517"
+      className="jsx-1511681825"
     >
       <tr
-        className="jsx-950168517"
+        className="jsx-1511681825"
       >
         <th
-          className="jsx-950168517"
+          className="jsx-1511681825"
           scope="col"
         >
           Product Name
         </th>
         <th
-          className="jsx-950168517 centered"
+          className="jsx-1511681825 centered"
           scope="col"
         >
           Mandatory
         </th>
         <th
-          className="jsx-950168517"
+          className="jsx-1511681825"
           scope="col"
         />
       </tr>
     </thead>
     <tbody
-      className="jsx-950168517"
+      className="jsx-1511681825"
     >
       <Relay(AllowableProductsTableRowComponent)
         key="test-id-1"
@@ -107,9 +107,9 @@ exports[`The allowable products table for a NAICS code should render sorted tabl
     </tbody>
   </ForwardRef>
   <JSXStyle
-    id="950168517"
+    id="1511681825"
   >
-    .table thead th{color:white;background:#003366;}.table td.centered,.table th.centered{text-align:center;}
+    th.jsx-1511681825{color:white;background:#003366;}th.centered.jsx-1511681825{text-align:center;}
   </JSXStyle>
 </Fragment>
 `;

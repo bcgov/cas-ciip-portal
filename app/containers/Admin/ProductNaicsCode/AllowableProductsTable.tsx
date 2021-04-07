@@ -52,13 +52,12 @@ export const AllowableProductsTableComponent: React.FunctionComponent<Props> = (
           ))}
         </tbody>
       </Table>
-      <style jsx global>{`
-        .table thead th {
+      <style jsx>{`
+        th {
           color: white;
           background: #003366;
         }
-        .table td.centered,
-        .table th.centered {
+        th.centered {
           text-align: center;
         }
       `}</style>
