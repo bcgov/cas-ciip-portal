@@ -1,5 +1,5 @@
 import React, {useMemo} from 'react';
-import {InputGroup} from 'react-bootstrap';
+import {InputGroup, Alert} from 'react-bootstrap';
 import {FieldProps} from '@rjsf/core';
 import {createFragmentContainer, graphql} from 'react-relay';
 import {ProductRowIdField_query} from 'ProductRowIdField_query.graphql';
@@ -29,6 +29,14 @@ export const ProductRowIdFieldComponent: React.FunctionComponent<Props> = (
    * Other props are passed as-is to the StringField.
    * If this component is rendered from the admin product-benchmark link product modal, the energy products are removed from the choices.
    */
+
+  if (!props.naicsCode && !props.isLinkModal)
+    return (
+      <Alert variant="danger">
+        We did not find any products associated with your NAICS code. Please
+        verify the NAICS code entered in the Admin tab exists and is correct.
+      </Alert>
+    );
 
   const fieldProps = useMemo(() => {
     let productIds;

@@ -29,21 +29,17 @@ export const ProductFieldComponent: React.FunctionComponent<Props> = (
 ) => {
   const {formData, query, naicsCode, onChange} = props;
 
-  // TODO: Clean up this function with array.some() as noted in https://github.com/bcgov/cas-ciip-portal/pull/621
-  const productIsPublished = (formData, query) => {
-    const product = query.allProducts.edges.find(
-      ({node}) => node.rowId === formData.productRowId
-    )?.node;
-    if (product?.productState === 'PUBLISHED' || !product) return true;
-    return false;
-  };
+  const productIsPublished = (formData, query) =>
+    query.allProducts.edges.some(
+      ({node}) =>
+        node.rowId === formData.productRowId &&
+        node.productState === 'PUBLISHED'
+    ) || !formData.productRowId;
 
-  const productInNaicsCode = (formData, naicsCode) => {
-    return naicsCode?.allProductsByNaicsCode.edges.some(
-      (edge) =>
-        edge.node.rowId === formData.productRowId || !formData.productRowId
-    );
-  };
+  const productInNaicsCode = (formData, naicsCode) =>
+    naicsCode?.allProductsByNaicsCode.edges.some(
+      (edge) => edge.node.rowId === formData.productRowId
+    ) || !formData.productRowId;
 
   const handleProductChange = (productRowId: number) => {
     const product = query.allProducts.edges.find(
