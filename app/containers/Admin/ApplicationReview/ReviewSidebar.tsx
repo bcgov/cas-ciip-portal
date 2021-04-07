@@ -6,6 +6,7 @@ import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
 import {ReviewSidebar_applicationReviewStep} from '__generated__/ReviewSidebar_applicationReviewStep.graphql';
 import ReviewComment from 'components/Admin/ReviewComment';
 import updateReviewCommentMutation from 'mutations/application/updateReviewCommentMutation';
+import deleteReviewCommentMutation from 'mutations/application/deleteReviewCommentMutation';
 import {nowMoment} from 'functions/formatDates';
 import {capitalize} from 'lib/text-transforms';
 
@@ -59,7 +60,7 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
     };
     await updateReviewCommentMutation(environment, variables);
   };
-  const deleteComment = async (id) => {
+  const deleteComment = async (id, commentType) => {
     const {environment} = relay;
     const variables = {
       input: {
@@ -69,7 +70,13 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
         }
       }
     };
-    await updateReviewCommentMutation(environment, variables);
+
+    await deleteReviewCommentMutation(
+      environment,
+      variables,
+      applicationReviewStep.id,
+      `ReviewSidebar_${commentType}Comments`
+    );
   };
   return (
     <div id="sidebar" className="col-md-5 col-lg-4 col-xxl-3">
@@ -132,7 +139,7 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
                   viewOnly={isCompleted}
                   isResolved={resolved}
                   onResolveToggle={resolveComment}
-                  onDelete={deleteComment}
+                  onDelete={(id) => deleteComment(id, 'general')}
                 />
               )
             )}
@@ -167,7 +174,7 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
                   viewOnly={isCompleted}
                   isResolved={resolved}
                   onResolveToggle={resolveComment}
-                  onDelete={deleteComment}
+                  onDelete={(id) => deleteComment(id, 'internal')}
                 />
               )
             )}
@@ -267,6 +274,7 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
 export default createFragmentContainer(ReviewSidebar, {
   applicationReviewStep: graphql`
     fragment ReviewSidebar_applicationReviewStep on ApplicationReviewStep {
+      id
       isComplete
       reviewStepByReviewStepId {
         stepName
