@@ -132,7 +132,10 @@ export default createFragmentContainer(AllowableProductsSearchContainer, {
           }
         }
       }
-      allProducts(filter: {productState: {equalTo: PUBLISHED}}) {
+      allProducts(
+        filter: {productState: {equalTo: PUBLISHED}}
+        orderBy: PRODUCT_NAME_ASC
+      ) {
         edges {
           node {
             rowId
