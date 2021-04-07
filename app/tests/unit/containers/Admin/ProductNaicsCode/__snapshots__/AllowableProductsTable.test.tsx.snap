@@ -25,7 +25,7 @@ exports[`The allowable products table for a NAICS code should render an alert bo
 </Alert>
 `;
 
-exports[`The allowable products table for a NAICS code should render table rows when there are  allowable products 1`] = `
+exports[`The allowable products table for a NAICS code should render sorted table rows when there are allowable products 1`] = `
 <Fragment>
   <ForwardRef
     bordered={true}
@@ -68,18 +68,9 @@ exports[`The allowable products table for a NAICS code should render table rows 
               "AllowableProductsTableRow_productNaicsCode": true,
             },
             "id": "test-id-1",
-          }
-        }
-      />
-      <Relay(AllowableProductsTableRowComponent)
-        key="test-id-2"
-        naicsCodeId="test_ID"
-        productNaicsCode={
-          Object {
-            " $fragmentRefs": Object {
-              "AllowableProductsTableRow_productNaicsCode": true,
+            "productByProductId": Object {
+              "productName": "A",
             },
-            "id": "test-id-2",
           }
         }
       />
@@ -92,6 +83,24 @@ exports[`The allowable products table for a NAICS code should render table rows 
               "AllowableProductsTableRow_productNaicsCode": true,
             },
             "id": "test-id-3",
+            "productByProductId": Object {
+              "productName": "B",
+            },
+          }
+        }
+      />
+      <Relay(AllowableProductsTableRowComponent)
+        key="test-id-2"
+        naicsCodeId="test_ID"
+        productNaicsCode={
+          Object {
+            " $fragmentRefs": Object {
+              "AllowableProductsTableRow_productNaicsCode": true,
+            },
+            "id": "test-id-2",
+            "productByProductId": Object {
+              "productName": "C",
+            },
           }
         }
       />

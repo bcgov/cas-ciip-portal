@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useMemo} from 'react';
 import {Alert, Table} from 'react-bootstrap';
 import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
 import AllowableProductsTableRow from './AllowableProductsTableRow';
@@ -12,6 +12,16 @@ interface Props {
 export const AllowableProductsTableComponent: React.FunctionComponent<Props> = (
   props
 ) => {
+  const sortedProductNaicsCodes = useMemo(() => {
+    return props.naicsCode.productNaicsCodesByNaicsCodeId.edges
+      .map((e) => e.node)
+      .sort((a, b) =>
+        a.productByProductId.productName.localeCompare(
+          b.productByProductId.productName
+        )
+      );
+  }, [props.naicsCode.productNaicsCodesByNaicsCodeId.edges]);
+
   if (!props.naicsCode.productNaicsCodesByNaicsCodeId.edges.length) {
     return (
       <Alert variant="secondary" id="no-search-results">
@@ -33,11 +43,11 @@ export const AllowableProductsTableComponent: React.FunctionComponent<Props> = (
           </tr>
         </thead>
         <tbody>
-          {props.naicsCode.productNaicsCodesByNaicsCodeId.edges.map((e) => (
+          {sortedProductNaicsCodes.map((productNaicsCode) => (
             <AllowableProductsTableRow
               naicsCodeId={props.naicsCode.id}
-              key={e.node.id}
-              productNaicsCode={e.node}
+              key={productNaicsCode.id}
+              productNaicsCode={productNaicsCode}
             />
           ))}
         </tbody>
@@ -71,6 +81,9 @@ export default createFragmentContainer(AllowableProductsTableComponent, {
         edges {
           node {
             id
+            productByProductId {
+              productName
+            }
             ...AllowableProductsTableRow_productNaicsCode
           }
         }

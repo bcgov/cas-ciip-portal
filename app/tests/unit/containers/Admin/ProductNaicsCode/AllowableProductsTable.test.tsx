@@ -3,7 +3,7 @@ import {AllowableProductsTableComponent} from 'containers/Admin/ProductNaicsCode
 import {shallow} from 'enzyme';
 
 describe('The allowable products table for a NAICS code', () => {
-  it('should render table rows when there are  allowable products', () => {
+  it('should render sorted table rows when there are allowable products', () => {
     const componentUnderTest = shallow(
       <AllowableProductsTableComponent
         relay={{environment: 'test-env'} as any}
@@ -17,6 +17,9 @@ describe('The allowable products table for a NAICS code', () => {
                   id: 'test-id-1',
                   ' $fragmentRefs': {
                     AllowableProductsTableRow_productNaicsCode: true
+                  },
+                  productByProductId: {
+                    productName: 'A'
                   }
                 }
               },
@@ -25,6 +28,9 @@ describe('The allowable products table for a NAICS code', () => {
                   id: 'test-id-2',
                   ' $fragmentRefs': {
                     AllowableProductsTableRow_productNaicsCode: true
+                  },
+                  productByProductId: {
+                    productName: 'C'
                   }
                 }
               },
@@ -33,6 +39,9 @@ describe('The allowable products table for a NAICS code', () => {
                   id: 'test-id-3',
                   ' $fragmentRefs': {
                     AllowableProductsTableRow_productNaicsCode: true
+                  },
+                  productByProductId: {
+                    productName: 'B'
                   }
                 }
               }
