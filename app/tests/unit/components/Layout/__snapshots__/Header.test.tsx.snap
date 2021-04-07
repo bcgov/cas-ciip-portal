@@ -2,6 +2,7 @@
 
 exports[`matches the last accepted Snapshot 1`] = `
 <header
+<<<<<<< 7246f74fa5840f871038040e796bf20946692ecc
   className="jsx-2785271651 "
 >
   <div
@@ -13,11 +14,25 @@ exports[`matches the last accepted Snapshot 1`] = `
     >
       <div
         className="jsx-2785271651 header-left"
+=======
+  className="jsx-3638156034"
+>
+  <div
+    className="jsx-3638156034 nav-header"
+  >
+    <nav
+      aria-label="Main"
+      className="jsx-3638156034"
+    >
+      <div
+        className="jsx-3638156034 header-left"
+>>>>>>> test: update snapshots
       >
         <Link
           href="/"
         >
           <a
+<<<<<<< 7246f74fa5840f871038040e796bf20946692ecc
             className="jsx-2785271651"
           >
             <picture
@@ -25,25 +40,46 @@ exports[`matches the last accepted Snapshot 1`] = `
             >
               <source
                 className="jsx-2785271651"
+=======
+            className="jsx-3638156034"
+          >
+            <picture
+              className="jsx-3638156034"
+            >
+              <source
+                className="jsx-3638156034"
+>>>>>>> test: update snapshots
                 media="(max-width: 767.98px)"
                 srcSet="/static/bcid-reverse.svg"
               />
               <img
                 alt="logo for Province of British Columbia CleanBC"
+<<<<<<< 7246f74fa5840f871038040e796bf20946692ecc
                 className="jsx-2785271651"
+=======
+                className="jsx-3638156034"
+>>>>>>> test: update snapshots
                 src="/static/BCID_CleanBC_rev_tagline_colour.svg"
               />
             </picture>
           </a>
         </Link>
         <h2
+<<<<<<< 7246f74fa5840f871038040e796bf20946692ecc
           className="jsx-2785271651"
+=======
+          className="jsx-3638156034"
+>>>>>>> test: update snapshots
         >
           CleanBC Industrial Incentive Program
         </h2>
         <button
           aria-label="Menu toggle"
+<<<<<<< 7246f74fa5840f871038040e796bf20946692ecc
           className="jsx-2785271651"
+=======
+          className="jsx-3638156034"
+>>>>>>> test: update snapshots
           id="menu-toggle"
           onClick={[Function]}
           type="button"
@@ -83,7 +119,11 @@ exports[`matches the last accepted Snapshot 1`] = `
         </button>
       </div>
       <ul
+<<<<<<< 7246f74fa5840f871038040e796bf20946692ecc
         className="jsx-2785271651 header-right"
+=======
+        className="jsx-3638156034 header-right"
+>>>>>>> test: update snapshots
         style={
           Object {
             "display": "none",
@@ -91,24 +131,40 @@ exports[`matches the last accepted Snapshot 1`] = `
         }
       >
         <li
+<<<<<<< 7246f74fa5840f871038040e796bf20946692ecc
           className="jsx-2785271651"
+=======
+          className="jsx-3638156034"
+>>>>>>> test: update snapshots
         >
           <Link
             href="/register"
           >
             <a
+<<<<<<< 7246f74fa5840f871038040e796bf20946692ecc
               className="jsx-2785271651 nav-button"
+=======
+              className="jsx-3638156034 nav-button"
+>>>>>>> test: update snapshots
             >
               Register
             </a>
           </Link>
         </li>
         <li
+<<<<<<< 7246f74fa5840f871038040e796bf20946692ecc
           className="jsx-2785271651"
         >
           <LoginForm>
             <button
               className="jsx-2785271651 nav-button"
+=======
+          className="jsx-3638156034"
+        >
+          <LoginForm>
+            <button
+              className="jsx-3638156034 nav-button"
+>>>>>>> test: update snapshots
               type="submit"
             >
               Login
@@ -119,6 +175,7 @@ exports[`matches the last accepted Snapshot 1`] = `
     </nav>
   </div>
   <JSXStyle
+<<<<<<< 7246f74fa5840f871038040e796bf20946692ecc
     dynamic={
       Array [
         "(min-width: 992px)",
@@ -127,6 +184,11 @@ exports[`matches the last accepted Snapshot 1`] = `
     id="3476864869"
   >
     header.fixed.__jsx-style-dynamic-selector{position:fixed;z-index:1;width:100%;}.nav-header.__jsx-style-dynamic-selector{background-color:#036;border-bottom:2px solid #fcba19;padding:10px;color:#fff;}h2.__jsx-style-dynamic-selector{font-weight:normal;font-size:calc(1rem + 1vw);margin:0 0.5em;text-align:center;}.header-left.__jsx-style-dynamic-selector{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;width:100%;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;}.header-left.__jsx-style-dynamic-selector img.__jsx-style-dynamic-selector{height:46px;}.header-right.__jsx-style-dynamic-selector{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:100%;text-align:right;margin:0;padding:0.8em 1em 0 0;}nav.__jsx-style-dynamic-selector{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}li.__jsx-style-dynamic-selector{list-style-type:none;}button.__jsx-style-dynamic-selector{background:none;border:none;}.nav-button.__jsx-style-dynamic-selector{color:#f8f9fa;display:inline-block;text-align:center;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;background-color:transparent;border:1px solid transparent;padding:0.375rem 0.75rem;font-size:1rem;border-radius:0.25rem;-webkit-transition:color 0.15s ease-in-out, background-color 0.15s ease-in-out,border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;transition:color 0.15s ease-in-out, background-color 0.15s ease-in-out,border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;}@media screen and (min-width: 992px){nav.__jsx-style-dynamic-selector{-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;padding:0 15px;}.header-left.__jsx-style-dynamic-selector{width:auto;}header.__jsx-style-dynamic-selector h2.__jsx-style-dynamic-selector{margin:0 0 0 18px;}button#menu-toggle.__jsx-style-dynamic-selector{display:none;}.header-right.__jsx-style-dynamic-selector{-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;width:auto;text-align:right;margin:0;padding:0;}.nav-button.__jsx-style-dynamic-selector{border-color:#f8f9fa;}li.__jsx-style-dynamic-selector{padding-left:12px;}}@media screen and (min-width:1092px){header.__jsx-style-dynamic-selector h2.__jsx-style-dynamic-selector{font-size:2rem;}}@media screen and (min-width:1200px){nav.__jsx-style-dynamic-selector{max-width:1140px;margin-left:auto;margin-right:auto;}}
+=======
+    id="3638156034"
+  >
+    .nav-header.jsx-3638156034{background-color:#036;border-bottom:2px solid #fcba19;padding:10px;color:#fff;}h2.jsx-3638156034{font-weight:normal;font-size:calc(1rem + 1vw);margin:0 0.5em;text-align:center;}.header-left.jsx-3638156034{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;width:100%;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;}.header-left.jsx-3638156034 img.jsx-3638156034{height:46px;}.header-right.jsx-3638156034{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:100%;text-align:right;margin:0;padding:0.8em 1em 0 0;}nav.jsx-3638156034{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}li.jsx-3638156034{list-style-type:none;}button.jsx-3638156034{background:none;border:none;}.nav-button.jsx-3638156034{color:#f8f9fa;display:inline-block;text-align:center;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;background-color:transparent;border:1px solid transparent;padding:0.375rem 0.75rem;font-size:1rem;border-radius:0.25rem;-webkit-transition:color 0.15s ease-in-out, background-color 0.15s ease-in-out,border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;transition:color 0.15s ease-in-out, background-color 0.15s ease-in-out,border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;}@media screen and (min-width: 992px){nav.jsx-3638156034{-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;padding:0 15px;}.header-left.jsx-3638156034{width:auto;}header.jsx-3638156034 h2.jsx-3638156034{margin:0 0 0 18px;}button#menu-toggle.jsx-3638156034{display:none;}.header-right.jsx-3638156034{-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;width:auto;text-align:right;margin:0;padding:0;}.nav-button.jsx-3638156034{border-color:#f8f9fa;}li.jsx-3638156034{padding-left:12px;}}@media screen and (min-width:1092px){header.jsx-3638156034 h2.jsx-3638156034{font-size:2rem;}}@media screen and (min-width:1200px){nav.jsx-3638156034{max-width:1140px;margin-left:auto;margin-right:auto;}}
+>>>>>>> test: update snapshots
   </JSXStyle>
 </header>
 `;

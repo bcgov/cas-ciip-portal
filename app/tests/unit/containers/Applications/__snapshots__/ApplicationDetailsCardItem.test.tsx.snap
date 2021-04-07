@@ -80,6 +80,7 @@ exports[`ApplicationDetailsCardItemComponent should render the individual summar
         }
         formContext={
           Object {
+            "applicationRevision": undefined,
             "idDiffMap": undefined,
             "query": Object {
               " $fragmentRefs": Object {
