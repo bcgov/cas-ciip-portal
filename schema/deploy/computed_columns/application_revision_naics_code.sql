@@ -14,8 +14,8 @@ create or replace function ggircs_portal.application_revision_naics_code(app ggi
         join ggircs_portal.form_json
         on form_result.form_id = form_json.id
         and form_json.slug in ('admin', 'admin-2018')
-        and form_result.application_id = 1
-        and form_result.version_number = 1
+        and form_result.application_id = app.application_id
+        and form_result.version_number = app.version_number
       )
       select * from ggircs_portal.naics_code where naics_code = (select naics from x);
 
