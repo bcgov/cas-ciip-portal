@@ -9,7 +9,7 @@ interface Props extends FieldProps {
   query: FuelField_query;
 }
 
-const FuelField: React.FunctionComponent<Props> = (props) => {
+export const FuelFieldComponent: React.FunctionComponent<Props> = (props) => {
   const {formData, query, onChange} = props;
 
   const isFuelArchived =
@@ -50,7 +50,7 @@ const FuelField: React.FunctionComponent<Props> = (props) => {
   );
 };
 
-export default createFragmentContainer(FuelField, {
+export default createFragmentContainer(FuelFieldComponent, {
   query: graphql`
     fragment FuelField_query on Query {
       allFuels {
