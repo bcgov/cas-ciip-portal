@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(12);
+select plan(13);
 
 -- Following dev data (including prod) should exist
 
@@ -19,6 +19,7 @@ prepare benchmark_data as select * from ggircs_portal.benchmark;
 prepare user_data as select * from ggircs_portal.ciip_user;
 prepare application_data as select * from ggircs_portal.application;
 prepare form_result_data as select * from ggircs_portal.form_result;
+prepare product_naics_code_data as select * from ggircs_portal.product_naics_code;
 
 select isnt_empty('reporting_year_data', 'reporting_year table should not be empty');
 select isnt_empty('form_json_data', 'form_json table should not be empty');
@@ -32,6 +33,7 @@ select isnt_empty('benchmark_data', 'benchmark table should not be empty');
 select isnt_empty('user_data', 'ciip_user table should be empty');
 select isnt_empty('application_data', 'application table should be empty');
 select isnt_empty('form_result_data', 'form_result table should be empty');
+select isnt_empty('product_naics_code_data', 'product_naics_code table should not be empty');
 
 select finish();
 rollback;
