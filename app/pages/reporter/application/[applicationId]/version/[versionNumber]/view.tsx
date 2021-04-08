@@ -24,7 +24,7 @@ class ViewApplication extends Component<Props> {
   static allowedGroups = ALLOWED_GROUPS;
   static isAccessProtected = true;
   static query = graphql`
-    query viewApplicationQuery($applicationId: ID!, $version: String!) {
+    query viewApplicationQuery($applicationId: ID!, $versionNumber: String!) {
       query {
         session {
           ...defaultLayout_session
@@ -32,8 +32,8 @@ class ViewApplication extends Component<Props> {
         ...ApplicationDetailsContainer_query
           @arguments(
             applicationId: $applicationId
-            oldVersion: $version
-            newVersion: $version
+            oldVersion: $versionNumber
+            newVersion: $versionNumber
           )
 
         application(id: $applicationId) {
@@ -47,7 +47,7 @@ class ViewApplication extends Component<Props> {
           latestSubmittedRevision {
             versionNumber
           }
-          applicationRevisionStatus(versionNumberInput: $version) {
+          applicationRevisionStatus(versionNumberInput: $versionNumber) {
             applicationRevisionStatus
           }
           reviewCommentsByApplicationId(
@@ -56,41 +56,49 @@ class ViewApplication extends Component<Props> {
             edges {
               node {
                 description
-                resolved
-                commentType
-              }
-            }
-          }
-          orderedFormResults(versionNumberInput: $version) {
-            edges {
-              node {
-                id
-                ...ApplicationCommentsContainer_formResult
               }
             }
           }
           ...ReviseApplicationButtonContainer_application
 
           ...ApplicationDetailsContainer_application
-            @arguments(version: $version)
+            @arguments(version: $versionNumber)
         }
       }
     }
   `;
 
+  static getRoute = (
+    applicationId: string,
+    versionNumber: string | number
+  ) => ({
+    pathname:
+      '/reporter/application/[applicationId]/version/[versionNumber]/view',
+    query: {
+      applicationId,
+      versionNumber
+    }
+  });
+
   render() {
     const {session} = this.props.query;
-    const {query} = this.props;
+    const {query, router} = this.props;
     const {application} = query;
     const reviewComments = application?.reviewCommentsByApplicationId.edges.map(
       (result) => result.node.description
     );
     const status =
       application?.applicationRevisionStatus?.applicationRevisionStatus;
+
+    if (!status) {
+      router.push('/404');
+      return null;
+    }
+
     const changesRequested = status === 'REQUESTED_CHANGES';
     const hasBeenReviewed = status !== 'SUBMITTED' && status !== 'DRAFT';
 
-    const thisVersion = Number(this.props.router.query.version);
+    const thisVersion = Number(router.query.versionNumber);
     const latestSubmittedRevision =
       application.latestSubmittedRevision?.versionNumber;
     const latestDraftRevision = application.latestDraftRevision?.versionNumber;
@@ -98,16 +106,17 @@ class ViewApplication extends Component<Props> {
     const newerSubmissionExists = latestSubmittedRevision > thisVersion;
     const newerDraftExists = latestDraftRevision > latestSubmittedRevision;
 
-    const latestSubmissionURL = `/reporter/view-application?applicationId=${encodeURIComponent(
-      this.props.router.query.applicationId.toString()
-    )}&version=${latestSubmittedRevision}`;
+    const latestSubmissionHref = ViewApplication.getRoute(
+      router.query.applicationId.toString(),
+      latestSubmittedRevision
+    );
     const viewLatestSubmissionButton = (
       <>
         <p style={{margin: '1rem 0'}}>
           <strong>Note:</strong> There is a more recently submitted version of
           this application.
         </p>
-        <Link passHref href={latestSubmissionURL}>
+        <Link passHref href={latestSubmissionHref}>
           <Button variant="primary">View most recent submission</Button>
         </Link>
       </>
@@ -153,13 +162,13 @@ class ViewApplication extends Component<Props> {
       >
         <Row>
           <Col md={12}>
+            {newerSubmissionExists && (
+              <Alert variant="secondary">
+                {newerSubmissionExists && viewLatestSubmissionButton}
+              </Alert>
+            )}
             {hasBeenReviewed && (
               <>
-                {newerSubmissionExists && (
-                  <Alert variant="secondary">
-                    {newerSubmissionExists && viewLatestSubmissionButton}
-                  </Alert>
-                )}
                 <ApplicationDecision
                   actionRequired={changesRequested && !newerSubmissionExists}
                   decision={status}

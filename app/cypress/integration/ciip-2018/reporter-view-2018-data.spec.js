@@ -6,9 +6,8 @@ describe('When viewing an application from the 2018 reporting year', () => {
   });
 
   it('The view-application page renders the 2018 ciip data', () => {
-    cy.visit(
-      '/reporter/view-application?applicationId=WyJhcHBsaWNhdGlvbnMiLDFd&version=1'
-    );
+    const applicationId = btoa('["applications",1]');
+    cy.visit(`/reporter/application/${applicationId}/version/1/view`);
     cy.contains('Facility Description');
     cy.contains('orgBookLegalName');
     cy.contains('Application Type');

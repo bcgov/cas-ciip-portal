@@ -1,6 +1,7 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 import {ApplicationWizardComponent} from 'containers/Applications/ApplicationWizard';
+import ViewApplication from 'pages/reporter/application/[applicationId]/version/[versionNumber]/view';
 
 describe('The application wizard component', () => {
   describe('when given an immutable application version', () => {
@@ -18,7 +19,7 @@ describe('The application wizard component', () => {
       }));
     });
 
-    it('should redirect to the view-application page if this is the latest version', () => {
+    it('should redirect to the view application page if this is the latest version', () => {
       shallow(
         <ApplicationWizardComponent
           query={{
@@ -45,13 +46,7 @@ describe('The application wizard component', () => {
         />
       );
 
-      expect(replaceFn).toBeCalledWith({
-        pathname: '/reporter/view-application',
-        query: {
-          applicationId: 'id123',
-          version: 1
-        }
-      });
+      expect(replaceFn).toBeCalledWith(ViewApplication.getRoute('id123', 1));
     });
 
     it('should redirect to the page for the latest draft version if there is one', () => {

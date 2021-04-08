@@ -1,6 +1,6 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import ViewApplication from 'pages/reporter/view-application';
+import ViewApplication from 'pages/reporter/application/[applicationId]/version/[versionNumber]/view';
 import {viewApplicationQueryResponse} from 'viewApplicationQuery.graphql';
 
 const query: viewApplicationQueryResponse['query'] = {
@@ -30,40 +30,34 @@ const query: viewApplicationQueryResponse['query'] = {
       ReviseApplicationButtonContainer_application: true,
       ApplicationDetailsContainer_application: true
     },
-    orderedFormResults: {
-      edges: [
-        {
-          node: {
-            id: 'abc',
-            ' $fragmentRefs': {
-              ApplicationCommentsContainer_formResult: true
-            }
-          }
-        }
-      ]
-    },
     reviewCommentsByApplicationId: {
       edges: []
     }
   }
 };
 
+const router: any = {
+  query: {
+    applicationId: 'testing',
+    versionNumber: '1'
+  },
+  push: jest.fn()
+};
+
 describe('View submitted application page', () => {
   it('passes a query to the ApplicationDetailsComponent component', () => {
-    const r = shallow(
-      <ViewApplication
-        query={query}
-        router={{
-          query: {
-            applicationId: 'testing',
-            version: '1'
-          }
-        }}
-      />
-    );
+    const r = shallow(<ViewApplication query={query} router={router} />);
     expect(
       r.find('Relay(ApplicationDetailsComponent)').first().prop('query')
     ).toBe(query);
+  });
+
+  it('redirects to the 404 page if the application is missing', () => {
+    const r = shallow(
+      <ViewApplication query={{...query, application: null}} router={router} />
+    );
+    expect(r).toBeEmpty();
+    expect(router.push).toBeCalledWith('/404');
   });
 
   it('does not show an application decision when unreviewed', () => {
@@ -75,12 +69,7 @@ describe('View submitted application page', () => {
             ...query.application
           }
         }}
-        router={{
-          query: {
-            applicationId: 'testing',
-            version: '1'
-          }
-        }}
+        router={router}
       />
     );
     expect(r.find('ApplicationDecision')).toBeEmpty();
@@ -106,12 +95,7 @@ describe('View submitted application page', () => {
             }
           }
         }}
-        router={{
-          query: {
-            applicationId: 'testing',
-            version: '1'
-          }
-        }}
+        router={router}
       />
     );
     expect(r.find('ApplicationDecision').first().prop('decision')).toBe(
@@ -145,12 +129,7 @@ describe('View submitted application page', () => {
             }
           }
         }}
-        router={{
-          query: {
-            applicationId: 'testing',
-            version: '1'
-          }
-        }}
+        router={router}
       />
     );
     expect(r.find('ApplicationDecision').first().prop('decision')).toBe(
@@ -189,21 +168,14 @@ describe('View submitted application page', () => {
               edges: [
                 {
                   node: {
-                    description: comments[0],
-                    resolved: false,
-                    commentType: 'GENERAL'
+                    description: comments[0]
                   }
                 }
               ]
             }
           }
         }}
-        router={{
-          query: {
-            applicationId: 'testing',
-            version: '1'
-          }
-        }}
+        router={router}
       />
     );
     expect(r.find('ApplicationDecision').first().prop('decision')).toBe(
@@ -245,21 +217,14 @@ describe('View submitted application page', () => {
               edges: [
                 {
                   node: {
-                    description: comments[0],
-                    resolved: false,
-                    commentType: 'GENERAL'
+                    description: comments[0]
                   }
                 }
               ]
             }
           }
         }}
-        router={{
-          query: {
-            applicationId: 'testing',
-            version: '1'
-          }
-        }}
+        router={router}
       />
     );
     expect(r.find('ApplicationDecision').first().prop('decision')).toBe(
@@ -297,21 +262,14 @@ describe('View submitted application page', () => {
               edges: [
                 {
                   node: {
-                    description: 'This is a comment',
-                    resolved: false,
-                    commentType: 'GENERAL'
+                    description: 'This is a comment'
                   }
                 }
               ]
             }
           }
         }}
-        router={{
-          query: {
-            applicationId: 'testing',
-            version: '1'
-          }
-        }}
+        router={router}
       />
     );
     expect(r.exists('Button')).toBe(true);
@@ -339,21 +297,14 @@ describe('View submitted application page', () => {
               edges: [
                 {
                   node: {
-                    description: 'This is a comment',
-                    resolved: false,
-                    commentType: 'GENERAL'
+                    description: 'This is a comment'
                   }
                 }
               ]
             }
           }
         }}
-        router={{
-          query: {
-            applicationId: 'testing',
-            version: '1'
-          }
-        }}
+        router={router}
       />
     );
     expect(r).toMatchSnapshot();
@@ -381,21 +332,14 @@ describe('View submitted application page', () => {
               edges: [
                 {
                   node: {
-                    description: 'This is a comment',
-                    resolved: false,
-                    commentType: 'GENERAL'
+                    description: 'This is a comment'
                   }
                 }
               ]
             }
           }
         }}
-        router={{
-          query: {
-            applicationId: 'testing',
-            version: '1'
-          }
-        }}
+        router={router}
       />
     );
     expect(r).toMatchSnapshot();

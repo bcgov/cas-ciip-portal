@@ -29,7 +29,7 @@ const createAmendmentMail = ({
           <ul>
             <li><strong>Please log in to the CIIP Portal and address the requested changes.</strong> Your timely attention to this request will reduce the amount of time required to process your incentive payment.</li>
             <li>After logging in, <a href=${createUrl(
-              `reporter/view-application?applicationId=${encodedAppId}&version=${versionNumber}`
+              `reporter/application/${encodedAppId}/version/${versionNumber}/view`
             )}>view the submitted application</a> for the facility named above.</li>
             <li>Review the feedback, including requested changes, which are found in the communication pane on the right side of the window.</li>
             <li>To update the application, click the green "Revise Application" button at the bottom of the page.</li>
