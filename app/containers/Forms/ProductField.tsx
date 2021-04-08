@@ -87,11 +87,15 @@ export const ProductFieldComponent: React.FunctionComponent<Props> = (
     </Alert>
   );
 
+  const disableField =
+    !productIsPublished(formData, query) ||
+    !productInNaicsCode(formData, naicsCode);
+
   return (
     <>
       {!productIsPublished(formData, query) && archivedAlert}
       {!productInNaicsCode(formData, naicsCode) && notInNaicsAlert}
-      <ObjectField {...props} disabled onChange={handleChange} />
+      <ObjectField {...props} disabled={disableField} onChange={handleChange} />
     </>
   );
 };
