@@ -30,6 +30,12 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
 
   const generalComments = applicationReviewStep.generalComments.edges;
   const internalComments = applicationReviewStep.internalComments.edges;
+  const noGeneralCommentsToShow =
+    generalComments.length === 0 ||
+    (!showingResolved && generalComments.every((c) => c.node.resolved));
+  const noInternalCommentsToShow =
+    internalComments.length === 0 ||
+    (!showingResolved && internalComments.every((c) => c.node.resolved));
 
   const markReviewStepComplete = async (isComplete) => {
     const {environment} = relay;
@@ -45,6 +51,7 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
   };
   const markCompletedButton = (
     <Button
+      id="markCompleted"
       variant="outline-primary"
       type="button"
       onClick={() => markReviewStepComplete(true)}
@@ -126,7 +133,7 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
             <em>(Visible to applicant)</em>
           </small>
         </h3>
-        {generalComments.length === 0 ? (
+        {noGeneralCommentsToShow ? (
           <p className="empty-comments">No general comments to show.</p>
         ) : (
           <ul aria-labelledby="general-comments-label">
@@ -139,19 +146,22 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
                   ciipUserByCreatedBy,
                   resolved
                 }
-              }) => (
-                <ReviewComment
-                  key={id}
-                  id={id}
-                  description={description}
-                  createdAt={createdAt}
-                  createdBy={`${ciipUserByCreatedBy.firstName} ${ciipUserByCreatedBy.lastName}`}
-                  viewOnly={applicationReviewStep.isComplete}
-                  isResolved={resolved}
-                  onResolveToggle={resolveComment}
-                  onDelete={(id) => deleteComment(id, 'general')}
-                />
-              )
+              }) => {
+                const showComment = showingResolved || !resolved;
+                return !showComment ? null : (
+                  <ReviewComment
+                    key={id}
+                    id={id}
+                    description={description}
+                    createdAt={createdAt}
+                    createdBy={`${ciipUserByCreatedBy.firstName} ${ciipUserByCreatedBy.lastName}`}
+                    viewOnly={applicationReviewStep.isComplete}
+                    isResolved={resolved}
+                    onResolveToggle={resolveComment}
+                    onDelete={(id) => deleteComment(id, 'general')}
+                  />
+                );
+              }
             )}
           </ul>
         )}
@@ -161,7 +171,7 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
             <em>(Not visible to applicant)</em>
           </small>
         </h3>
-        {internalComments.length === 0 ? (
+        {noInternalCommentsToShow ? (
           <p className="empty-comments">No internal comments to show.</p>
         ) : (
           <ul aria-labelledby="internal-comments-label">
@@ -174,19 +184,22 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
                   ciipUserByCreatedBy,
                   resolved
                 }
-              }) => (
-                <ReviewComment
-                  key={id}
-                  id={id}
-                  description={description}
-                  createdAt={createdAt}
-                  createdBy={`${ciipUserByCreatedBy.firstName} ${ciipUserByCreatedBy.lastName}`}
-                  viewOnly={applicationReviewStep.isComplete}
-                  isResolved={resolved}
-                  onResolveToggle={resolveComment}
-                  onDelete={(id) => deleteComment(id, 'internal')}
-                />
-              )
+              }) => {
+                const showComment = showingResolved || !resolved;
+                return !showComment ? null : (
+                  <ReviewComment
+                    key={id}
+                    id={id}
+                    description={description}
+                    createdAt={createdAt}
+                    createdBy={`${ciipUserByCreatedBy.firstName} ${ciipUserByCreatedBy.lastName}`}
+                    viewOnly={applicationReviewStep.isComplete}
+                    isResolved={resolved}
+                    onResolveToggle={resolveComment}
+                    onDelete={(id) => deleteComment(id, 'internal')}
+                  />
+                );
+              }
             )}
           </ul>
         )}
