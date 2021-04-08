@@ -8,6 +8,7 @@ import {ProductRowIdField_naicsCode} from 'ProductRowIdField_naicsCode.graphql';
 interface Props extends FieldProps<number> {
   query: ProductRowIdField_query;
   naicsCode?: ProductRowIdField_naicsCode;
+  isLinkModal?: boolean;
 }
 
 /**
@@ -65,8 +66,7 @@ export const ProductRowIdFieldComponent: React.FunctionComponent<Props> = (
       schema: {
         ...props.schema,
         enum: productIds,
-        enumNames: productNames,
-        b: 'asdf'
+        enumNames: productNames
       },
       query: undefined
     };
