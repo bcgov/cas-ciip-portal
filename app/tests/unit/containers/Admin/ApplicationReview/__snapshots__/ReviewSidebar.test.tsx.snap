@@ -1,0 +1,393 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ReviewSidebar should match the last accepted snapshot (no comments) 1`] = `
+<div
+  className="jsx-4079194577 col-md-5 col-lg-4 col-xxl-3"
+  id="sidebar"
+>
+  <button
+    aria-label="Close Technical Review"
+    className="jsx-4079194577"
+    id="close"
+    onClick={[Function]}
+    type="button"
+  >
+    ×
+  </button>
+  <h2
+    className="jsx-4079194577"
+  >
+    Technical
+     Review
+  </h2>
+  <Button
+    active={false}
+    disabled={false}
+    id="markCompleted"
+    onClick={[Function]}
+    style={
+      Object {
+        "display": "block",
+        "margin": "auto",
+        "padding": "0.75rem .9rem",
+      }
+    }
+    type="button"
+    variant="outline-primary"
+  >
+    <FontAwesomeIcon
+      border={false}
+      className=""
+      fixedWidth={false}
+      flip={null}
+      icon={
+        Object {
+          "icon": Array [
+            512,
+            512,
+            Array [],
+            "f00c",
+            "M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z",
+          ],
+          "iconName": "check",
+          "prefix": "fas",
+        }
+      }
+      inverse={false}
+      listItem={false}
+      mask={null}
+      pull={null}
+      pulse={false}
+      rotation={null}
+      size={null}
+      spin={false}
+      style={
+        Object {
+          "marginRight": "0.5rem",
+        }
+      }
+      swapOpacity={false}
+      symbol={false}
+      title=""
+      transform={null}
+    />
+    Mark this review step completed
+  </Button>
+  <div
+    className="jsx-4079194577"
+    id="scrollable-comments"
+    tabIndex={0}
+  >
+    <h3
+      className="jsx-4079194577"
+      id="general-comments-label"
+    >
+      General Comments
+       
+      <small
+        className="jsx-4079194577"
+      >
+        <em
+          className="jsx-4079194577"
+        >
+          (Visible to applicant)
+        </em>
+      </small>
+    </h3>
+    <p
+      className="jsx-4079194577 empty-comments"
+    >
+      No general comments to show.
+    </p>
+    <h3
+      className="jsx-4079194577"
+      id="internal-comments-label"
+    >
+      Internal Comments 
+      <FontAwesomeIcon
+        border={false}
+        className=""
+        fixedWidth={false}
+        flip={null}
+        icon={
+          Object {
+            "icon": Array [
+              448,
+              512,
+              Array [],
+              "f023",
+              "M400 224h-24v-72C376 68.2 307.8 0 224 0S72 68.2 72 152v72H48c-26.5 0-48 21.5-48 48v192c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V272c0-26.5-21.5-48-48-48zm-104 0H152v-72c0-39.7 32.3-72 72-72s72 32.3 72 72v72z",
+            ],
+            "iconName": "lock",
+            "prefix": "fas",
+          }
+        }
+        inverse={false}
+        listItem={false}
+        mask={null}
+        pull={null}
+        pulse={false}
+        rotation={null}
+        size={null}
+        spin={false}
+        swapOpacity={false}
+        symbol={false}
+        title=""
+        transform={null}
+      />
+       
+      <small
+        className="jsx-4079194577"
+      >
+        <em
+          className="jsx-4079194577"
+        >
+          (Not visible to applicant)
+        </em>
+      </small>
+    </h3>
+    <p
+      className="jsx-4079194577 empty-comments"
+    >
+      No internal comments to show.
+    </p>
+  </div>
+  <div
+    className="jsx-4079194577"
+    id="button-footer"
+  >
+    <Button
+      active={false}
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "padding": 0,
+        }
+      }
+      variant="link"
+    >
+      Show resolved comments
+    </Button>
+    <Button
+      active={false}
+      disabled={false}
+      variant="primary"
+    >
+      + New Comment
+    </Button>
+  </div>
+  <JSXStyle
+    id="4079194577"
+  >
+    #sidebar.jsx-4079194577{position:fixed;top:68px;right:0;height:calc(100% - 68px);background:#f7f7f7;border:1px solid transparent;border-left-color:#dfdfdf;padding:0 1.5em;}#close.jsx-4079194577{font-size:2.2rem;position:absolute;top:0;left:1rem;cursor:pointer;border:none;background:none;}h2.jsx-4079194577{margin:15px 0;text-align:center;}h3.jsx-4079194577{font-size:1em;font-weight:bold;margin:5px 0 15px 0;}h3.jsx-4079194577:not(:first-of-type){margin-top:2em;}#scrollable-comments.jsx-4079194577{overflow-y:scroll;height:calc(100% - 108px - 2.4rem - 53px);margin:1.2rem 0;padding:0.7rem;border-radius:4px;}#scrollable-comments.jsx-4079194577:hover{box-shadow:inset 0 0px 7px -1px #999;}#scrollable-comments.jsx-4079194577::-webkit-scrollbar{-webkit-appearance:none;width:8px;}#scrollable-comments.jsx-4079194577::-webkit-scrollbar-thumb{border-radius:4px;background-color:rgba(0,0,0,0.5);box-shadow:0 0 1px rgba(255,255,255,0.5);}#button-footer.jsx-4079194577{position:absolute;bottom:0;margin-bottom:15px;width:calc(100% - 3em);display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;}.mark-incomplete.jsx-4079194577{line-height:1;font-size:0.9em;text-align:center;margin:35px 0;}h3.jsx-4079194577~ul.jsx-4079194577,h3.jsx-4079194577~p.jsx-4079194577{padding-left:0.3em;}ul.jsx-4079194577:last-of-type{margin:0;}.empty-comments.jsx-4079194577{font-style:italic;font-size:0.9em;margin-bottom:0;line-height:1.5;color:#666;}
+  </JSXStyle>
+</div>
+`;
+
+exports[`ReviewSidebar should match the last accepted snapshot (with comments) 1`] = `
+<div
+  className="jsx-4079194577 col-md-5 col-lg-4 col-xxl-3"
+  id="sidebar"
+>
+  <button
+    aria-label="Close Technical Review"
+    className="jsx-4079194577"
+    id="close"
+    onClick={[Function]}
+    type="button"
+  >
+    ×
+  </button>
+  <h2
+    className="jsx-4079194577"
+  >
+    Technical
+     Review
+  </h2>
+  <Button
+    active={false}
+    disabled={false}
+    id="markCompleted"
+    onClick={[Function]}
+    style={
+      Object {
+        "display": "block",
+        "margin": "auto",
+        "padding": "0.75rem .9rem",
+      }
+    }
+    type="button"
+    variant="outline-primary"
+  >
+    <FontAwesomeIcon
+      border={false}
+      className=""
+      fixedWidth={false}
+      flip={null}
+      icon={
+        Object {
+          "icon": Array [
+            512,
+            512,
+            Array [],
+            "f00c",
+            "M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z",
+          ],
+          "iconName": "check",
+          "prefix": "fas",
+        }
+      }
+      inverse={false}
+      listItem={false}
+      mask={null}
+      pull={null}
+      pulse={false}
+      rotation={null}
+      size={null}
+      spin={false}
+      style={
+        Object {
+          "marginRight": "0.5rem",
+        }
+      }
+      swapOpacity={false}
+      symbol={false}
+      title=""
+      transform={null}
+    />
+    Mark this review step completed
+  </Button>
+  <div
+    className="jsx-4079194577"
+    id="scrollable-comments"
+    tabIndex={0}
+  >
+    <h3
+      className="jsx-4079194577"
+      id="general-comments-label"
+    >
+      General Comments
+       
+      <small
+        className="jsx-4079194577"
+      >
+        <em
+          className="jsx-4079194577"
+        >
+          (Visible to applicant)
+        </em>
+      </small>
+    </h3>
+    <ul
+      aria-labelledby="general-comments-label"
+      className="jsx-4079194577"
+    >
+      <ReviewComment
+        createdAt="2021-04-08T03:01:35.585Z"
+        createdBy="Old MacDonald"
+        description="This is an unresolved general comment."
+        id="wxy"
+        isResolved={false}
+        key="wxy"
+        onDelete={[Function]}
+        onResolveToggle={[Function]}
+        viewOnly={false}
+      />
+    </ul>
+    <h3
+      className="jsx-4079194577"
+      id="internal-comments-label"
+    >
+      Internal Comments 
+      <FontAwesomeIcon
+        border={false}
+        className=""
+        fixedWidth={false}
+        flip={null}
+        icon={
+          Object {
+            "icon": Array [
+              448,
+              512,
+              Array [],
+              "f023",
+              "M400 224h-24v-72C376 68.2 307.8 0 224 0S72 68.2 72 152v72H48c-26.5 0-48 21.5-48 48v192c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V272c0-26.5-21.5-48-48-48zm-104 0H152v-72c0-39.7 32.3-72 72-72s72 32.3 72 72v72z",
+            ],
+            "iconName": "lock",
+            "prefix": "fas",
+          }
+        }
+        inverse={false}
+        listItem={false}
+        mask={null}
+        pull={null}
+        pulse={false}
+        rotation={null}
+        size={null}
+        spin={false}
+        swapOpacity={false}
+        symbol={false}
+        title=""
+        transform={null}
+      />
+       
+      <small
+        className="jsx-4079194577"
+      >
+        <em
+          className="jsx-4079194577"
+        >
+          (Not visible to applicant)
+        </em>
+      </small>
+    </h3>
+    <ul
+      aria-labelledby="internal-comments-label"
+      className="jsx-4079194577"
+    >
+      <ReviewComment
+        createdAt="2021-04-08T03:01:35.585Z"
+        createdBy="Old MacDonald"
+        description="This is an unresolved internal comment."
+        id="xyz"
+        isResolved={false}
+        key="xyz"
+        onDelete={[Function]}
+        onResolveToggle={[Function]}
+        viewOnly={false}
+      />
+    </ul>
+  </div>
+  <div
+    className="jsx-4079194577"
+    id="button-footer"
+  >
+    <Button
+      active={false}
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "padding": 0,
+        }
+      }
+      variant="link"
+    >
+      Show resolved comments
+    </Button>
+    <Button
+      active={false}
+      disabled={false}
+      variant="primary"
+    >
+      + New Comment
+    </Button>
+  </div>
+  <JSXStyle
+    id="4079194577"
+  >
+    #sidebar.jsx-4079194577{position:fixed;top:68px;right:0;height:calc(100% - 68px);background:#f7f7f7;border:1px solid transparent;border-left-color:#dfdfdf;padding:0 1.5em;}#close.jsx-4079194577{font-size:2.2rem;position:absolute;top:0;left:1rem;cursor:pointer;border:none;background:none;}h2.jsx-4079194577{margin:15px 0;text-align:center;}h3.jsx-4079194577{font-size:1em;font-weight:bold;margin:5px 0 15px 0;}h3.jsx-4079194577:not(:first-of-type){margin-top:2em;}#scrollable-comments.jsx-4079194577{overflow-y:scroll;height:calc(100% - 108px - 2.4rem - 53px);margin:1.2rem 0;padding:0.7rem;border-radius:4px;}#scrollable-comments.jsx-4079194577:hover{box-shadow:inset 0 0px 7px -1px #999;}#scrollable-comments.jsx-4079194577::-webkit-scrollbar{-webkit-appearance:none;width:8px;}#scrollable-comments.jsx-4079194577::-webkit-scrollbar-thumb{border-radius:4px;background-color:rgba(0,0,0,0.5);box-shadow:0 0 1px rgba(255,255,255,0.5);}#button-footer.jsx-4079194577{position:absolute;bottom:0;margin-bottom:15px;width:calc(100% - 3em);display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;}.mark-incomplete.jsx-4079194577{line-height:1;font-size:0.9em;text-align:center;margin:35px 0;}h3.jsx-4079194577~ul.jsx-4079194577,h3.jsx-4079194577~p.jsx-4079194577{padding-left:0.3em;}ul.jsx-4079194577:last-of-type{margin:0;}.empty-comments.jsx-4079194577{font-style:italic;font-size:0.9em;margin-bottom:0;line-height:1.5;color:#666;}
+  </JSXStyle>
+</div>
+`;
