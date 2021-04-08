@@ -59,12 +59,8 @@ const LinkedProduct: React.FunctionComponent<Props> = ({
     }
   };
 
-  const handleChange = (option: {id: number; name: string}) =>
+  const handleChange = (option: {id: string | number; name: string}[]) =>
     setSelected(option);
-
-  const handleBlur = () => null;
-
-  const handleMenuToggle = () => null;
 
   // const removeLinkedProduct = () => {
   //   console.log('remove product');
@@ -128,8 +124,8 @@ const LinkedProduct: React.FunctionComponent<Props> = ({
                 placeholder="Search Products.."
                 selected={selected}
                 onChange={handleChange}
-                onBlur={handleBlur}
-                onMenuToggle={handleMenuToggle}
+                onBlur={() => null}
+                onMenuToggle={() => null}
               />
             </Col>
             <Col md={2}>
