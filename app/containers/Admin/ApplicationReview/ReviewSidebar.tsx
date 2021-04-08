@@ -7,21 +7,18 @@ import {ReviewSidebar_applicationReviewStep} from '__generated__/ReviewSidebar_a
 import ReviewComment from 'components/Admin/ReviewComment';
 import updateReviewCommentMutation from 'mutations/application_review_step/updateReviewCommentMutation';
 import deleteReviewCommentMutation from 'mutations/application_review_step/deleteReviewCommentMutation';
+import updateApplicationReviewStepMutation from 'mutations/application_review_step/updateApplicationReviewStepMutation';
 import {nowMoment} from 'functions/formatDates';
 import {capitalize} from 'lib/text-transforms';
 
 interface Props {
-  isCompleted: boolean;
   onClose: () => void;
-  onCompletionToggle: (boolean) => void;
   applicationReviewStep: ReviewSidebar_applicationReviewStep;
   relay: RelayProp;
 }
 
 export const ReviewSidebar: React.FunctionComponent<Props> = ({
-  isCompleted,
   onClose,
-  onCompletionToggle,
   applicationReviewStep,
   relay
 }) => {
@@ -33,11 +30,24 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
 
   const generalComments = applicationReviewStep.generalComments.edges;
   const internalComments = applicationReviewStep.internalComments.edges;
+
+  const markReviewStepComplete = async (isComplete) => {
+    const {environment} = relay;
+    const variables = {
+      input: {
+        id: applicationReviewStep.id,
+        applicationReviewStepPatch: {
+          isComplete
+        }
+      }
+    };
+    await updateApplicationReviewStepMutation(environment, variables);
+  };
   const markCompletedButton = (
     <Button
       variant="outline-primary"
       type="button"
-      onClick={() => onCompletionToggle(true)}
+      onClick={() => markReviewStepComplete(true)}
       style={{
         padding: '0.75rem .9rem',
         display: 'block',
@@ -89,7 +99,7 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
         ×
       </button>
       <h2>{reviewStepName} Review</h2>
-      {isCompleted ? (
+      {applicationReviewStep.isComplete ? (
         <p className="mark-incomplete">
           <FontAwesomeIcon icon={faCheck} style={{marginRight: 2}} />
           <span> This review step has been completed. </span>
@@ -101,7 +111,7 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
               lineHeight: 1,
               display: 'inline'
             }}
-            onClick={() => onCompletionToggle(false)}
+            onClick={() => markReviewStepComplete(false)}
           >
             Mark incomplete
           </Button>
@@ -136,7 +146,7 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
                   description={description}
                   createdAt={createdAt}
                   createdBy={`${ciipUserByCreatedBy.firstName} ${ciipUserByCreatedBy.lastName}`}
-                  viewOnly={isCompleted}
+                  viewOnly={applicationReviewStep.isComplete}
                   isResolved={resolved}
                   onResolveToggle={resolveComment}
                   onDelete={(id) => deleteComment(id, 'general')}
@@ -171,7 +181,7 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
                   description={description}
                   createdAt={createdAt}
                   createdBy={`${ciipUserByCreatedBy.firstName} ${ciipUserByCreatedBy.lastName}`}
-                  viewOnly={isCompleted}
+                  viewOnly={applicationReviewStep.isComplete}
                   isResolved={resolved}
                   onResolveToggle={resolveComment}
                   onDelete={(id) => deleteComment(id, 'internal')}
@@ -185,7 +195,9 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
         <Button variant="link" style={{padding: 0}} onClick={toggleResolved}>
           {`${showingResolved ? 'Hide' : 'Show'} resolved comments`}
         </Button>
-        {!isCompleted && <Button variant="primary">+ New Comment</Button>}
+        {!applicationReviewStep.isComplete && (
+          <Button variant="primary">+ New Comment</Button>
+        )}
       </div>
       <style jsx>{`
         #sidebar {

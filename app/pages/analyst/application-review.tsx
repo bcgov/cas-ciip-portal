@@ -59,7 +59,7 @@ class ApplicationReview extends Component<Props> {
       }
     }
   `;
-  state = {isSidebarOpened: false, currentStepIsCompleted: false};
+  state = {isSidebarOpened: false};
 
   constructor(props) {
     super(props);
@@ -150,17 +150,7 @@ class ApplicationReview extends Component<Props> {
                 query.application.applicationReviewStepsByApplicationId.edges[0]
                   .node
               }
-              isCompleted={this.state.currentStepIsCompleted}
               onClose={this.toggleSidebar}
-              onCompletionToggle={(isCompleted) => {
-                this.setState((state) => {
-                  return {
-                    ...state,
-                    currentStepIsCompleted: isCompleted
-                  };
-                });
-                console.log('implement me properly in 2293');
-              }}
             />
           )}
           {!this.state.isSidebarOpened && <HelpButton isInternalUser />}
