@@ -31,4 +31,10 @@ insert into ggircs_portal.naics_code(naics_code, ciip_sector, naics_description)
 values
 ('777777', 'Gambling Industry', 'Left-hand actuated slot machines');
 
+-- Create naics-product relationship for tested product
+insert into ggircs_portal.product_naics_code(naics_code_id, product_id)
+values ((select id from ggircs_portal.naics_code where naics_code='777777'), (select id from ggircs_portal.product where product_name ilike 'Aluminum%'));
+
+update ggircs_portal.form_result set form_result = '{"operator": {"naics": "777777"}}' where form_id=1;
+
 commit;

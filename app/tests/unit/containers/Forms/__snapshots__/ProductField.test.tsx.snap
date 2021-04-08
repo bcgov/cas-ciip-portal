@@ -584,7 +584,7 @@ exports[`The ProductionFields Component with published product matched to a naic
 <Fragment>
   <ObjectField
     autofocus={false}
-    disabled={true}
+    disabled={false}
     errorSchema={null}
     formContext={Object {}}
     formData={

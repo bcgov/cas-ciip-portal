@@ -32,7 +32,7 @@ describe('When viewing an application in draft as a reporter', () => {
     // Operator details
     cy.get('#root_operator_name').clear().type('John Smith');
     cy.get('#root_operator_tradeName').clear().type('Acme Co');
-    cy.get('#root_operator_naics').clear().type('abcd');
+    cy.get('#root_operator_naics').clear().type('1234');
     cy.get('#root_operator_bcCorporateRegistryNumber')
       .clear()
       .type('111112222233333');
