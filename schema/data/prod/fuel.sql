@@ -92,9 +92,9 @@ values
   -- Flared Natural Gas was previously named Flared Natural Gas CH4
   -- It was renamed and the swrs_fuel_mapping_id was updated as applicants for the CIIP 2019 applications
   -- were instructed to report an amount of natural gas under this fuel
-  (86,'Flared Natural Gas','m3', 'active', 95),
+  (86,'Flared Natural Gas','m3', 'archived', 95),
   (87,'Flared Natural Gas N20','m3', 'archived', 147),
-  (88,'Vented Natural Gas','m3', 'active', 148)
+  (88,'Vented Natural Gas','m3', 'archived', 148)
 on conflict(id) do update set
 units=excluded.units,
 state=excluded.state,
