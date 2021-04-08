@@ -3,6 +3,7 @@ import {FieldProps} from '@rjsf/core';
 import {createFragmentContainer, graphql} from 'react-relay';
 import {FuelField_query} from 'FuelField_query.graphql';
 import ObjectField from '@rjsf/core/dist/cjs/components/fields/ObjectField';
+import {Alert} from 'react-bootstrap';
 
 interface Props extends FieldProps {
   query: FuelField_query;
@@ -10,6 +11,12 @@ interface Props extends FieldProps {
 
 const FuelField: React.FunctionComponent<Props> = (props) => {
   const {formData, query, onChange} = props;
+
+  const isFuelArchived =
+    formData.fuelRowId !== undefined &&
+    query.allFuels.edges.some(
+      ({node}) => node.state === 'archived' && node.rowId === formData.fuelRowId
+    );
 
   const handlefuelChange = (fuelRowId: number) => {
     const fuel = query.allFuels.edges.find(({node}) => node.rowId === fuelRowId)
@@ -26,17 +33,32 @@ const FuelField: React.FunctionComponent<Props> = (props) => {
     else handlefuelChange(fuel.fuelRowId);
   };
 
-  return <ObjectField {...props} onChange={handleChange} />;
+  return (
+    <>
+      {isFuelArchived && (
+        <Alert variant="danger">
+          <strong>Warning:</strong> This fuel has been archived. Please remove
+          it and select an appropriate alternative.
+        </Alert>
+      )}
+      <ObjectField
+        {...props}
+        disabled={isFuelArchived}
+        onChange={handleChange}
+      />
+    </>
+  );
 };
 
 export default createFragmentContainer(FuelField, {
   query: graphql`
     fragment FuelField_query on Query {
-      allFuels(condition: {state: "active"}) {
+      allFuels {
         edges {
           node {
             units
             rowId
+            state
           }
         }
       }
