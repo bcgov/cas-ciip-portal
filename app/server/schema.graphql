@@ -26995,6 +26995,9 @@ type Fuel implements Node {
   """Reads a single `CiipUser` that is related to this `Fuel`."""
   ciipUserByUpdatedBy: CiipUser
 
+  """Metadata about this fuel row"""
+  comments: String
+
   """Creation date of row"""
   createdAt: Datetime!
 
@@ -27048,6 +27051,9 @@ type Fuel implements Node {
 A condition to be used against `Fuel` object types. All fields are tested for equality and combined with a logical ‘and.’
 """
 input FuelCondition {
+  """Checks for equality with the object’s `comments` field."""
+  comments: String
+
   """Checks for equality with the object’s `createdAt` field."""
   createdAt: Datetime
 
@@ -27178,6 +27184,9 @@ input FuelFilter {
   """Checks for all expressions in this list."""
   and: [FuelFilter!]
 
+  """Filter by the object’s `comments` field."""
+  comments: StringFilter
+
   """Filter by the object’s `createdAt` field."""
   createdAt: DatetimeFilter
 
@@ -27226,6 +27235,9 @@ input FuelFilter {
 
 """An input for mutations affecting `Fuel`"""
 input FuelInput {
+  """Metadata about this fuel row"""
+  comments: String
+
   """Creation date of row"""
   createdAt: Datetime
 
@@ -27269,6 +27281,9 @@ input FuelInput {
 
 """Represents an update to a `Fuel`. Fields that are set will be updated."""
 input FuelPatch {
+  """Metadata about this fuel row"""
+  comments: String
+
   """Creation date of row"""
   createdAt: Datetime
 
@@ -27338,6 +27353,8 @@ type FuelsEdge {
 
 """Methods to use when ordering `Fuel`."""
 enum FuelsOrderBy {
+  COMMENTS_ASC
+  COMMENTS_DESC
   CREATED_AT_ASC
   CREATED_AT_DESC
   CREATED_BY_ASC
