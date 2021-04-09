@@ -53,4 +53,24 @@ comment on column ggircs_portal.application_review_step.is_complete is 'The bool
 comment on column ggircs_portal.application_review_step.updated_at is 'Timestamp of when this application_review_step was last updated';
 comment on column ggircs_portal.application_review_step.updated_by is 'The ID of the user who last updated this application_review_step, references ciip_user.id';
 
+create or replace function ggircs_portal_private.create_review_steps()
+  returns void as $$
+declare
+  temp_row record;
+begin
+    for temp_row in
+      select id from ggircs_portal.application
+    loop
+      insert into ggircs_portal.application_review_step(application_id, review_step_id, is_complete)
+      values (temp_row.id, (select id from ggircs_portal.review_step where step_name = 'other'), true)
+      on conflict("application_id", "review_step_id") do nothing;
+    end loop;
+end;
+$$ language plpgsql volatile;
+
+-- Data migration: create 'other' review steps for all existing applications
+select ggircs_portal_private.create_review_steps();
+
+drop function ggircs_portal_private.create_review_steps;
+
 commit;
