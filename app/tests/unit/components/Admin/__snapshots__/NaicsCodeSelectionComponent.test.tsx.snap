@@ -3,7 +3,7 @@
 exports[`The NaicsCodeList component should render a list of NAICS codes 1`] = `
 Array [
   <div
-    className="jsx-547883214 scrollable"
+    className="jsx-3751310415 scrollable"
     tabIndex={0}
   >
     <ListGroup
@@ -39,10 +39,10 @@ Array [
               >
                 description_1
                 <br
-                  className="jsx-547883214"
+                  className="jsx-3751310415"
                 />
                 <b
-                  className="jsx-547883214"
+                  className="jsx-3751310415"
                 >
                   123ABC
                 </b>
@@ -70,10 +70,10 @@ Array [
               >
                 some other description
                 <br
-                  className="jsx-547883214"
+                  className="jsx-3751310415"
                 />
                 <b
-                  className="jsx-547883214"
+                  className="jsx-3751310415"
                 >
                   999999
                 </b>
