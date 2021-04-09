@@ -66,7 +66,10 @@ export const FuelRowIdFieldComponent: React.FunctionComponent<Props> = (
 export default createFragmentContainer(FuelRowIdFieldComponent, {
   query: graphql`
     fragment FuelRowIdField_query on Query {
-      activeFuels: allFuels(condition: {state: "active"}) {
+      activeFuels: allFuels(
+        filter: {state: {equalTo: "active"}}
+        orderBy: NAME_ASC
+      ) {
         edges {
           node {
             rowId
@@ -74,7 +77,7 @@ export default createFragmentContainer(FuelRowIdFieldComponent, {
           }
         }
       }
-      archivedFuels: allFuels(condition: {state: "archived"}) {
+      archivedFuels: allFuels(filter: {state: {equalTo: "archived"}}) {
         edges {
           node {
             rowId
