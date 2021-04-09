@@ -120,10 +120,10 @@ exports[`Linked Prdocuts should match the last snapshot 1`] = `
           md={7}
         >
           <SearchDropdownComponent
-            id="search products"
+            id="search-products"
             inputProps={
               Object {
-                "id": "abc",
+                "id": "search-products",
               }
             }
             onBlur={[Function]}
@@ -196,6 +196,7 @@ exports[`Linked Prdocuts should match the last snapshot 1`] = `
             >
               <tr
                 className="jsx-868046180"
+                key="asdf"
               >
                 <td
                   className="jsx-868046180"

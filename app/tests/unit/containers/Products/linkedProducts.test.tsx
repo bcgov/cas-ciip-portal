@@ -1,6 +1,6 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import {LinkedProducts} from 'containers/Products/LinkedProducts';
+import {LinkedProductsContainer} from 'containers/Products/LinkedProducts';
 
 describe('Linked Prdocuts', () => {
   it('should match the last snapshot', async () => {
@@ -42,7 +42,7 @@ describe('Linked Prdocuts', () => {
     };
 
     const r = shallow(
-      <LinkedProducts
+      <LinkedProductsContainer
         query={query}
         product={product}
         relay={null}

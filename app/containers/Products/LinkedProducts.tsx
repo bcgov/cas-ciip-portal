@@ -15,7 +15,7 @@ interface Props {
   relay: RelayProp;
 }
 
-export const LinkedProducts: React.FunctionComponent<Props> = ({
+export const LinkedProductsContainer: React.FunctionComponent<Props> = ({
   product,
   setLinkProductModalShow,
   query,
@@ -161,7 +161,7 @@ export const LinkedProducts: React.FunctionComponent<Props> = ({
                 </thead>
                 <tbody>
                   {product.linkedProductsByProductId.edges.map(({node}) => (
-                    <tr>
+                    <tr key={node.id}>
                       <td>{node.productByLinkedProductId.productName}</td>
                       <td style={{textAlign: 'center'}}>
                         <Button
@@ -198,7 +198,7 @@ export const LinkedProducts: React.FunctionComponent<Props> = ({
   );
 };
 
-export default createFragmentContainer(LinkedProducts, {
+export default createFragmentContainer(LinkedProductsContainer, {
   product: graphql`
     fragment LinkedProducts_product on Product {
       id
