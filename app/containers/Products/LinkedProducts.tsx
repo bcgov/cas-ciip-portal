@@ -131,9 +131,9 @@ export const LinkedProducts: React.FunctionComponent<Props> = ({
             </Col>
             <Col md={7}>
               <SearchDropdown
-                id="search products"
+                id="search-products"
                 options={searchOptions}
-                inputProps={{id: product.id}}
+                inputProps={{id: 'search-products'}}
                 placeholder="Search Products.."
                 selected={selected}
                 onChange={handleChange}

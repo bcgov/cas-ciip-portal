@@ -92,13 +92,16 @@ describe('The products and benchmark page', () => {
     cy.visit('/admin/products-benchmarks');
     cy.get('#page-content');
     openLinkedProducts(1);
-    cy.get('#root-add').click();
-    cy.get('#root_0_productRowId').clear().type('Product B');
-    cy.get('.dropdown-item').contains('Product B').click();
-    cy.get('.save-button').click();
+    cy.get('#search-products').clear().type('Product B');
+    cy.get('#search-products-item-0 > .dropdown-item').click();
+    cy.get('.col-md-2 > .btn').click();
+    cy.get('tbody.jsx-868046180 > tr.jsx-868046180 > :nth-child(1)').contains(
+      'Product B'
+    );
+    cy.get('.col-md-1 > .btn').click();
     openLinkedProducts(1);
-    cy.get('.remove-button-container > .btn').click();
-    cy.get('.save-button').click();
+    cy.get('[style="text-align: center;"] > .btn').click();
+    cy.get('.col-md-1 > .btn').click();
     openLinkedProducts(1);
     cy.get('.modal-body > .container')
       .contains('Product B')
