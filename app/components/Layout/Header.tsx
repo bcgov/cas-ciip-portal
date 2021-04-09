@@ -7,7 +7,12 @@ import {faBars} from '@fortawesome/free-solid-svg-icons';
 
 const DESKTOP_BREAKPOINT_QUERY = '(min-width: 992px)';
 
-const HeaderLayout = ({isLoggedIn = false, isRegistered = false, children}) => {
+const HeaderLayout = ({
+  isLoggedIn = false,
+  isRegistered = false,
+  fixed = false,
+  children
+}) => {
   let mediaMatch;
   /**
    * Window isn't available at first for statically optimized pages like the 404 page:
@@ -33,7 +38,7 @@ const HeaderLayout = ({isLoggedIn = false, isRegistered = false, children}) => {
   };
 
   return (
-    <header>
+    <header className={`${fixed ? 'fixed' : ''}`}>
       <div className="nav-header">
         <nav aria-label="Main">
           <div className="header-left">
@@ -115,7 +120,11 @@ const HeaderLayout = ({isLoggedIn = false, isRegistered = false, children}) => {
           * Justified flex layout accommodating a smaller logo and main nav
           * is accessible behind hamburger menu instead of button links.
           */
-
+          header.fixed {
+            position: fixed;
+            z-index: 1;
+            width: 100%;
+          }
           .nav-header {
             background-color: #036;
             border-bottom: 2px solid #fcba19;

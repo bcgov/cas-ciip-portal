@@ -12,17 +12,10 @@ import {
 import {ConnectionHandler} from 'relay-runtime';
 
 const mutation = graphql`
-  mutation deleteReviewCommentMutation(
-    $input: UpdateReviewCommentInput!
-    $applicationId: ID!
-    $version: String!
-  ) {
+  mutation deleteReviewCommentMutation($input: UpdateReviewCommentInput!) {
     updateReviewComment(input: $input) {
-      query {
-        application(id: $applicationId) {
-          ...ApplicationDetailsContainer_application
-            @arguments(version: $version)
-        }
+      reviewComment {
+        id
       }
     }
   }
@@ -31,13 +24,14 @@ const mutation = graphql`
 const deleteReviewCommentMutation = async (
   environment: RelayModernEnvironment,
   variables: updateReviewCommentMutationVariables,
-  formResultId: string
+  applicationReviewStepId: string,
+  connectionKey: string
 ) => {
   const updater: SelectorStoreUpdater<RecordSourceProxy> = (store) => {
-    const formResultRoot = store.get(formResultId);
+    const applicationReviewStepRoot = store.get(applicationReviewStepId);
     const commentConnection = ConnectionHandler.getConnection(
-      formResultRoot,
-      'stand-in connection'
+      applicationReviewStepRoot,
+      connectionKey
     );
     ConnectionHandler.deleteNode(commentConnection, variables.input.id);
   };
@@ -50,3 +44,4 @@ const deleteReviewCommentMutation = async (
 };
 
 export default deleteReviewCommentMutation;
+export {mutation};

@@ -181,6 +181,8 @@ export const FormComponent: React.FunctionComponent<Props> = ({
         }
         .card-header h1 {
           margin-bottom: 0;
+          font-size: 30px;
+          display: inline-block;
         }
       `}</style>
     </div>

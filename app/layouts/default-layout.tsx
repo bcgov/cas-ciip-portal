@@ -20,10 +20,12 @@ interface Props {
   showSubheader?: boolean;
   session: defaultLayout_session;
   width?: 'narrow' | 'wide';
+  fixedHeader?: boolean;
   help?: {
     title: string;
     helpMessage: string;
   };
+  disableHelpButton?: boolean;
 }
 
 const DefaultLayout: React.FunctionComponent<Props> = ({
@@ -31,17 +33,20 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
   title,
   titleControls,
   showSubheader,
+  fixedHeader = false,
   session,
   width = 'narrow',
-  help
+  help,
+  disableHelpButton = false
 }) => {
   const isInternalUser = [INCENTIVE_ANALYST, ...ADMIN_GROUP].some((role) => {
     return session?.userGroups.includes(role);
   });
 
   return (
-    <div className="page-wrap">
+    <div className={`page-wrap ${fixedHeader ? 'has-fixed-header' : ''}`}>
       <Header
+        fixed={fixedHeader}
         isLoggedIn={Boolean(session)}
         isRegistered={Boolean(session?.ciipUserBySub)}
       >
@@ -80,7 +85,7 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
         <Container id="page-content" className={`content ${width}`}>
           {children}
         </Container>
-        {Boolean(session) && isInternalUser && (
+        {Boolean(session) && isInternalUser && !disableHelpButton && (
           <HelpButton isInternalUser={isInternalUser} />
         )}
       </main>
@@ -95,17 +100,15 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
           main {
             flex-grow: 1;
           }
+          .page-wrap.has-fixed-header main {
+            padding-top: 68px;
+          }
 
           .title-container {
             height: 100%;
             display: flex;
             flex-direction: column;
             justify-content: center;
-          }
-          h1 {
-            font-size: 30px;
-            display: inline-block;
-            margin-bottom: 0;
           }
         `}
       </style>
