@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`The application-review page matches the last accepted Snapshot 1`] = `
+exports[`The application-review page matches the last snapshot (with review sidebar closed) 1`] = `
 <Relay(DefaultLayout)
   disableHelpButton={true}
   fixedHeader={true}
@@ -190,6 +190,208 @@ exports[`The application-review page matches the last accepted Snapshot 1`] = `
     </div>
     <HelpButton
       isInternalUser={true}
+    />
+  </Row>
+</Relay(DefaultLayout)>
+`;
+
+exports[`The application-review page matches the last snapshot (with review sidebar opened) 1`] = `
+<Relay(DefaultLayout)
+  disableHelpButton={true}
+  fixedHeader={true}
+  session={
+    Object {
+      " $fragmentRefs": Object {
+        "defaultLayout_session": true,
+      },
+    }
+  }
+  width="wide"
+>
+  <Row
+    className="application-container"
+    noGutters={false}
+  >
+    <div
+      className="
+             col-md-7
+             col-lg-8
+             col-xxl-9
+             offset-md-0
+             offset-lg-0"
+      id="application-body"
+    >
+      <Relay(ApplicationRevisionStatusComponent)
+        applicationRevisionStatus={
+          Object {
+            " $fragmentRefs": Object {
+              "ApplicationRevisionStatusContainer_applicationRevisionStatus": true,
+            },
+          }
+        }
+        applicationRowId={1}
+      />
+      <button
+        onClick={[Function]}
+        type="button"
+      >
+        Click to toggle review comments
+      </button>
+      <ApplicationOverrideNotification
+        overrideJustification={null}
+      />
+      <hr />
+      <Relay(ApplicationDetailsComponent)
+        application={
+          Object {
+            " $fragmentRefs": Object {
+              "ApplicationDetailsContainer_application": true,
+            },
+            "applicationReviewStepsByApplicationId": Object {
+              "edges": Array [
+                Object {
+                  "node": Object {
+                    " $fragmentRefs": Object {
+                      "ReviewSidebar_applicationReviewStep": true,
+                    },
+                  },
+                },
+              ],
+            },
+            "reviewRevisionStatus": Object {
+              " $fragmentRefs": Object {
+                "ApplicationRevisionStatusContainer_applicationRevisionStatus": true,
+              },
+            },
+            "rowId": 1,
+          }
+        }
+        liveValidate={false}
+        query={
+          Object {
+            " $fragmentRefs": Object {
+              "ApplicationDetailsContainer_query": true,
+            },
+            "application": Object {
+              " $fragmentRefs": Object {
+                "ApplicationDetailsContainer_application": true,
+              },
+              "applicationReviewStepsByApplicationId": Object {
+                "edges": Array [
+                  Object {
+                    "node": Object {
+                      " $fragmentRefs": Object {
+                        "ReviewSidebar_applicationReviewStep": true,
+                      },
+                    },
+                  },
+                ],
+              },
+              "reviewRevisionStatus": Object {
+                " $fragmentRefs": Object {
+                  "ApplicationRevisionStatusContainer_applicationRevisionStatus": true,
+                },
+              },
+              "rowId": 1,
+            },
+            "applicationRevision": Object {
+              " $fragmentRefs": Object {
+                "IncentiveCalculatorContainer_applicationRevision": true,
+              },
+              "overrideJustification": null,
+            },
+            "session": Object {
+              " $fragmentRefs": Object {
+                "defaultLayout_session": true,
+              },
+            },
+          }
+        }
+        review={true}
+      />
+      <Relay(IncentiveCalculator)
+        applicationRevision={
+          Object {
+            " $fragmentRefs": Object {
+              "IncentiveCalculatorContainer_applicationRevision": true,
+            },
+            "overrideJustification": null,
+          }
+        }
+      />
+      <OverlayTrigger
+        defaultShow={false}
+        overlay={[Function]}
+        placement="top"
+        trigger={
+          Array [
+            "hover",
+            "focus",
+          ]
+        }
+      >
+        <Button
+          active={false}
+          disabled={false}
+          id="to-top"
+          onClick={[Function]}
+          style={
+            Object {
+              "borderRadius": "50%",
+              "bottom": "0.6rem",
+              "boxShadow": "0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.4)",
+              "height": 50,
+              "left": "0.6rem",
+              "position": "fixed",
+              "width": 50,
+            }
+          }
+          type="button"
+          variant="dark"
+        >
+          <FontAwesomeIcon
+            border={false}
+            className=""
+            fixedWidth={false}
+            flip={null}
+            icon={
+              Object {
+                "icon": Array [
+                  448,
+                  512,
+                  Array [],
+                  "f062",
+                  "M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z",
+                ],
+                "iconName": "arrow-up",
+                "prefix": "fas",
+              }
+            }
+            inverse={false}
+            listItem={false}
+            mask={null}
+            pull={null}
+            pulse={false}
+            rotation={null}
+            size="lg"
+            spin={false}
+            swapOpacity={false}
+            symbol={false}
+            title=""
+            transform={null}
+          />
+        </Button>
+      </OverlayTrigger>
+    </div>
+    <Relay(ReviewSidebar)
+      applicationReviewStep={
+        Object {
+          " $fragmentRefs": Object {
+            "ReviewSidebar_applicationReviewStep": true,
+          },
+        }
+      }
+      onClose={[Function]}
     />
   </Row>
 </Relay(DefaultLayout)>

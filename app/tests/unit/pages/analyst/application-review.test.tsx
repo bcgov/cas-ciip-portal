@@ -45,7 +45,7 @@ const getTestQuery = () => {
 };
 
 describe('The application-review page', () => {
-  it('matches the last accepted Snapshot', () => {
+  it('matches the last snapshot (with review sidebar closed)', () => {
     const query = getTestQuery();
     const wrapper = shallow(
       <ApplicationReview
@@ -54,6 +54,42 @@ describe('The application-review page', () => {
       />
     );
     expect(wrapper).toMatchSnapshot();
+  });
+
+  it('matches the last snapshot (with review sidebar opened)', () => {
+    const query = getTestQuery();
+    const wrapper = shallow(
+      <ApplicationReview
+        router={null}
+        query={query as applicationReviewQueryResponse['query']}
+      />
+    );
+    expect(wrapper.exists('Relay(ReviewSidebar)')).toBeFalse();
+    // Open the sidebar:
+    wrapper
+      .find('button')
+      .filterWhere((n) => n.text() === 'Click to toggle review comments')
+      .simulate('click');
+    expect(wrapper.exists('Relay(ReviewSidebar)')).toBeTrue();
+    expect(wrapper.exists('HelpButton')).toBeFalse();
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('renders the HelpButton only when the review sidebar is closed', () => {
+    const query = getTestQuery();
+    const wrapper = shallow(
+      <ApplicationReview
+        router={null}
+        query={query as applicationReviewQueryResponse['query']}
+      />
+    );
+    expect(wrapper.exists('HelpButton')).toBeTrue();
+    // Open the sidebar:
+    wrapper
+      .find('button')
+      .filterWhere((n) => n.text() === 'Click to toggle review comments')
+      .simulate('click');
+    expect(wrapper.exists('HelpButton')).toBeFalse();
   });
 
   it('passes the applicationRevision prop to the IncentiveCalculator', () => {
