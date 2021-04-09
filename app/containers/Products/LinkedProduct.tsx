@@ -9,7 +9,6 @@ import createLinkedProductMutation from 'mutations/linked_product/createLinkedPr
 
 interface Props {
   product: LinkedProduct_product;
-  linkProductModalShow: boolean;
   setLinkProductModalShow: (boolean) => void;
   query: LinkedProduct_query;
   relay: RelayProp;
@@ -17,7 +16,6 @@ interface Props {
 
 const LinkedProduct: React.FunctionComponent<Props> = ({
   product,
-  linkProductModalShow,
   setLinkProductModalShow,
   query,
   relay
@@ -70,7 +68,7 @@ const LinkedProduct: React.FunctionComponent<Props> = ({
     <Modal
       centered
       size="xl"
-      show={linkProductModalShow}
+      show
       onHide={() => {
         setLinkProductModalShow(false);
       }}

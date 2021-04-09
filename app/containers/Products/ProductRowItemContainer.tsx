@@ -216,12 +216,13 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
       </tr>
       {editProductModal}
       {editBenchmarkModal}
-      <LinkedProduct
-        product={product}
-        linkProductModalShow={linkProductModalShow}
-        setLinkProductModalShow={setLinkProductModalShow}
-        query={query}
-      />
+      {linkProductModalShow && (
+        <LinkedProduct
+          product={product}
+          setLinkProductModalShow={setLinkProductModalShow}
+          query={query}
+        />
+      )}
       <style jsx global>
         {`
           .hidden-title label {
