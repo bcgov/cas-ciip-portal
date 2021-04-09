@@ -16,13 +16,6 @@ const mutation = graphql`
     updateReviewComment(input: $input) {
       reviewComment {
         id
-        description
-        createdAt
-        resolved
-        ciipUserByCreatedBy {
-          firstName
-          lastName
-        }
       }
     }
   }
