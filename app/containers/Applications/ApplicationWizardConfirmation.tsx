@@ -4,7 +4,7 @@ import validateJsonSchema from '@rjsf/core/dist/cjs/validate';
 import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
 import SubmitApplication from 'components/SubmitApplication';
 import {ApplicationWizardConfirmation_query} from 'ApplicationWizardConfirmation_query.graphql';
-import {ApplicationWizardConfirmation_application} from 'ApplicationWizardConfirmation_application.graphql';
+import {ApplicationWizardConfirmation_applicationRevision} from 'ApplicationWizardConfirmation_applicationRevision.graphql';
 import ApplicationDetailsContainer from './ApplicationDetailsContainer';
 import ApplicationOverrideJustification from 'components/Application/ApplicationOverrideJustification';
 import {FormJson} from 'next-env';
@@ -16,16 +16,16 @@ import {FormJson} from 'next-env';
 
 interface Props {
   query: ApplicationWizardConfirmation_query;
-  application: ApplicationWizardConfirmation_application;
+  applicationRevision: ApplicationWizardConfirmation_applicationRevision;
   relay: RelayProp;
 }
 
 export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Props> = ({
-  application,
+  applicationRevision,
   query
 }) => {
   const hasErrors = useMemo(() => {
-    return application.orderedFormResults.edges.some(
+    return applicationRevision.orderedFormResults.edges.some(
       ({node: {formResult, formJsonByFormId}}) => {
         const {schema, customFormats} = formJsonByFormId.formJson as FormJson;
 
@@ -40,17 +40,16 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
         return errors.length > 0;
       }
     );
-  }, [application]);
+  }, [applicationRevision]);
 
-  const revision = application.latestDraftRevision;
   const [overrideActive, setOverrideActive] = useState(
-    revision.overrideJustification !== null
+    applicationRevision.overrideJustification !== null
   );
   const [applicationDetailsRendered, setApplicationDetailsRendered] = useState(
     false
   );
 
-  const hasValidationWarnings = application.validation.edges.some(
+  const hasValidationWarnings = applicationRevision.validation.edges.some(
     ({node}) => node.isOk === false
   );
 
@@ -63,7 +62,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
         </strong>
       </p>
       <ul>
-        {application.validation.edges
+        {applicationRevision.validation.edges
           .filter(({node}) => node.isOk === false)
           .map(({node}) => (
             <li key={node.validationDescription}>
@@ -86,16 +85,16 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
         overrideActive={overrideActive}
         setOverrideActive={setOverrideActive}
         applicationOverrideJustification={
-          application.latestDraftRevision.overrideJustification
+          applicationRevision.overrideJustification
         }
-        revisionId={application.latestDraftRevision.id}
+        revisionId={applicationRevision.id}
         hasErrors={hasErrors}
         applicationDetailsRendered={applicationDetailsRendered}
       />
       <ApplicationDetailsContainer
         liveValidate
         query={query}
-        application={application}
+        applicationRevision={applicationRevision}
         review={false}
         setApplicationDetailsRendered={setApplicationDetailsRendered}
       />
@@ -121,7 +120,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
             </Card.Body>
           </Card>
           <br />
-          <SubmitApplication application={application} />
+          <SubmitApplication applicationRevision={applicationRevision} />
         </>
       )}
       <style jsx global>
@@ -148,13 +147,13 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
 };
 
 export default createFragmentContainer(ApplicationWizardConfirmationComponent, {
-  application: graphql`
-    fragment ApplicationWizardConfirmation_application on Application
-    @argumentDefinitions(version: {type: "String!"}) {
+  applicationRevision: graphql`
+    fragment ApplicationWizardConfirmation_applicationRevision on ApplicationRevision {
       id
-      ...SubmitApplication_application
-      ...ApplicationDetailsContainer_application @arguments(version: $version)
-      orderedFormResults(versionNumberInput: $version) {
+      overrideJustification
+      ...SubmitApplication_applicationRevision
+      ...ApplicationDetailsContainer_applicationRevision
+      orderedFormResults {
         edges {
           node {
             formResult
@@ -163,10 +162,6 @@ export default createFragmentContainer(ApplicationWizardConfirmationComponent, {
             }
           }
         }
-      }
-      latestDraftRevision {
-        id
-        overrideJustification
       }
       validation {
         edges {
@@ -182,11 +177,6 @@ export default createFragmentContainer(ApplicationWizardConfirmationComponent, {
   query: graphql`
     fragment ApplicationWizardConfirmation_query on Query {
       ...ApplicationDetailsContainer_query
-        @arguments(
-          applicationId: $applicationId
-          oldVersion: $version
-          newVersion: $version
-        )
     }
   `
 });

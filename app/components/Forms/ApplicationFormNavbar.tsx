@@ -2,36 +2,33 @@ import React from 'react';
 import {Nav} from 'react-bootstrap';
 import {createFragmentContainer, graphql} from 'react-relay';
 import Link from 'next/link';
-import {ApplicationFormNavbar_application} from 'ApplicationFormNavbar_application.graphql';
+import {ApplicationFormNavbar_applicationRevision} from 'ApplicationFormNavbar_applicationRevision.graphql';
+import ApplicationPage from 'pages/reporter/application/[applicationId]';
 
 interface Props {
-  application: ApplicationFormNavbar_application;
-  formResultId: string;
+  applicationRevision: ApplicationFormNavbar_applicationRevision;
+  selectedFormId: string;
   confirmationPage: boolean;
-  version: string;
 }
 
-const ApplicationFormNavbarComponent: React.FunctionComponent<Props> = (
-  props
-) => {
-  const {application} = props;
+const ApplicationFormNavbarComponent: React.FunctionComponent<Props> = ({
+  applicationRevision,
+  selectedFormId,
+  confirmationPage
+}) => {
   return (
     <div className="nav-guide-container">
       <Nav justify className="nav-guide" variant="pills">
-        {application.orderedFormResults.edges.map(({node}) => (
+        {applicationRevision.orderedFormResults.edges.map(({node}) => (
           <Nav.Item key={node.id}>
             <Link
               passHref
-              href={{
-                pathname: '/reporter/application',
-                query: {
-                  formResultId: node.id,
-                  applicationId: application.id,
-                  version: props.version
-                }
-              }}
+              href={ApplicationPage.getRoute(
+                applicationRevision.applicationByApplicationId.id,
+                node.formJsonByFormId.id
+              )}
             >
-              <Nav.Link active={node.id === props.formResultId}>
+              <Nav.Link active={node.id === selectedFormId}>
                 {node.formJsonByFormId.name}{' '}
               </Nav.Link>
             </Link>
@@ -40,16 +37,13 @@ const ApplicationFormNavbarComponent: React.FunctionComponent<Props> = (
         <Nav.Item key="submit">
           <Link
             passHref
-            href={{
-              pathname: '/reporter/application',
-              query: {
-                applicationId: application.id,
-                confirmationPage: true,
-                version: props.version
-              }
-            }}
+            href={ApplicationPage.getRoute(
+              applicationRevision.applicationByApplicationId.id,
+              undefined,
+              true
+            )}
           >
-            <Nav.Link active={props.confirmationPage}>Summary</Nav.Link>
+            <Nav.Link active={confirmationPage}>Summary</Nav.Link>
           </Link>
         </Nav.Item>
         <style jsx global>{`
@@ -94,14 +88,17 @@ const ApplicationFormNavbarComponent: React.FunctionComponent<Props> = (
 };
 
 export default createFragmentContainer(ApplicationFormNavbarComponent, {
-  application: graphql`
-    fragment ApplicationFormNavbar_application on Application {
-      id
-      orderedFormResults(versionNumberInput: $version) {
+  applicationRevision: graphql`
+    fragment ApplicationFormNavbar_applicationRevision on ApplicationRevision {
+      applicationByApplicationId {
+        id
+      }
+      orderedFormResults {
         edges {
           node {
             id
             formJsonByFormId {
+              id
               name
             }
           }

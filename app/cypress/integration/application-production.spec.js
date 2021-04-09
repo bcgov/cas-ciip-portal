@@ -8,11 +8,9 @@ describe('The production tab', () => {
   beforeEach(() => {
     cy.sqlFixture('fixtures/production-draft-form-result-setup');
     cy.mockLogin('reporter');
-    const applicationId = window.btoa('["applications", 1]');
-    const formResultId = window.btoa('["form_results", 4]');
-    cy.visit(
-      `/reporter/application?formResultId=${formResultId}&applicationId=${applicationId}&version=1`
-    );
+    const applicationId = window.btoa('["applications",1]');
+    const formId = window.btoa('["form_jsons",4]');
+    cy.visit(`/reporter/application/${applicationId}?formId=${formId}`);
   });
 
   it('Should render the aluminum product', () => {

@@ -29,6 +29,7 @@ import MissingProductsComponent from 'components/product/MissingProductsComponen
 
 interface Props {
   query: Form_query;
+  ciipFormResult;
   onComplete: (e: IChangeEvent) => void;
   onValueChanged?: (e: IChangeEvent, es?: ErrorSchema) => void;
   isSaved: boolean;
@@ -60,17 +61,17 @@ const CUSTOM_FIELDS = {
 
 export const FormComponent: React.FunctionComponent<Props> = ({
   query,
+  ciipFormResult,
   isSaved,
   onComplete,
   onValueChanged
 }) => {
   const [hasErrors, setHasErrors] = useState(false);
-  const {result} = query || {};
+  if (!ciipFormResult) return null;
   const {
     formJsonByFormId: {name, formJson, ciipApplicationWizardByFormId},
     formResult
-  } = result || {formJsonByFormId: {}};
-  if (!result) return null;
+  } = ciipFormResult;
   const {schema, uiSchema, customFormats} = formJson as FormJson;
 
   const transformErrors = (errors: AjvError[]) => {
@@ -191,24 +192,13 @@ export const FormComponent: React.FunctionComponent<Props> = ({
 
 export default createFragmentContainer(FormComponent, {
   query: graphql`
-    fragment Form_query on Query
-    @argumentDefinitions(formResultId: {type: "ID!"}) {
+    fragment Form_query on Query {
       ...NaicsField_query
       ...FuelField_query
       ...FuelRowIdField_query
       ...ProductField_query
       ...ProductRowIdField_query
       ...EmissionCategoryRowIdField_query
-      result: formResult(id: $formResultId) {
-        formResult
-        formJsonByFormId {
-          name
-          formJson
-          ciipApplicationWizardByFormId {
-            formPosition
-          }
-        }
-      }
       products: allProducts(condition: {productState: PUBLISHED}) {
         edges {
           node {
@@ -224,6 +214,18 @@ export default createFragmentContainer(FormComponent, {
               }
             }
           }
+        }
+      }
+    }
+  `,
+  ciipFormResult: graphql`
+    fragment Form_ciipFormResult on FormResult {
+      formResult
+      formJsonByFormId {
+        name
+        formJson
+        ciipApplicationWizardByFormId {
+          formPosition
         }
       }
     }

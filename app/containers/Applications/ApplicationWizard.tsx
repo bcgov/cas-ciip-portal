@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useMemo} from 'react';
 import {useRouter} from 'next/router';
 import {graphql, createFragmentContainer} from 'react-relay';
 import ApplicationFormNavbar from 'components/Forms/ApplicationFormNavbar';
@@ -6,7 +6,7 @@ import {ApplicationWizard_query} from 'ApplicationWizard_query.graphql';
 import ApplicationWizardStep from './ApplicationWizardStep';
 import LoadingSpinner from 'components/LoadingSpinner';
 import ApplicationDecision from 'components/Application/ApplicationDecision';
-import ViewApplicationPage from 'pages/reporter/application/[applicationId]/version/[versionNumber]/view';
+import {ApplicationWizard_applicationRevision} from '__generated__/ApplicationWizard_applicationRevision.graphql';
 
 const setRouterQueryParam = (router, key, value, replace = false) => {
   const newUrl = {
@@ -22,6 +22,7 @@ const setRouterQueryParam = (router, key, value, replace = false) => {
 
 interface Props {
   query: ApplicationWizard_query;
+  applicationRevision: ApplicationWizard_applicationRevision;
   loading: boolean;
 }
 
@@ -32,19 +33,18 @@ interface Props {
  */
 export const ApplicationWizardComponent: React.FunctionComponent<Props> = ({
   query,
+  applicationRevision,
   loading
 }) => {
-  const {application} = query || {};
   const router = useRouter();
-  const {formResultId} = router.query;
+  const {formId} = router.query;
   const confirmationPage = Boolean(router.query.confirmationPage);
   const {
     orderedFormResults: {edges: orderedFormResults},
-    latestDraftRevision,
-    latestSubmittedRevision,
-    applicationRevisionByStringVersionNumber: applicationRevision
-  } = application;
-  const reviewSteps = application?.applicationReviewStepsByApplicationId.edges;
+    applicationByApplicationId
+  } = applicationRevision;
+  const reviewSteps =
+    applicationByApplicationId?.applicationReviewStepsByApplicationId.edges;
   // Merge review comments from all applicationReviewSteps into one list:
   const reviewComments = reviewSteps.reduce((mergedStepComments, step) => {
     const stepComments =
@@ -54,36 +54,20 @@ export const ApplicationWizardComponent: React.FunctionComponent<Props> = ({
       ...stepComments.map((step) => step.node.description)
     ];
   }, []);
-  const revisionInProgress =
-    latestSubmittedRevision?.versionNumber < latestDraftRevision.versionNumber;
+  const revisionInProgress = applicationRevision.versionNumber > 1;
 
-  // Redirect a reporter trying to edit an application revision that was already submitted
-  if (applicationRevision.isImmutable) {
-    if (
-      latestDraftRevision.versionNumber > latestSubmittedRevision.versionNumber
-    )
-      router.replace({
-        pathname: router.pathname,
-        query: {
-          ...router.query,
-          version: latestDraftRevision.versionNumber
-        }
-      });
-    else
-      router.replace(
-        ViewApplicationPage.getRoute(
-          application.id,
-          latestSubmittedRevision.versionNumber
-        )
-      );
-    return null;
-  }
+  const formResult = useMemo(() => {
+    if (!formId) return null;
+    return orderedFormResults.find(
+      ({node}) => formId === node.formJsonByFormId.id
+    );
+  }, [orderedFormResults, formId]);
 
-  if (!confirmationPage && !formResultId) {
+  if (!confirmationPage && !formResult) {
     setRouterQueryParam(
       router,
-      'formResultId',
-      orderedFormResults[0].node.id,
+      'formId',
+      orderedFormResults[0].node.formJsonByFormId.id,
       true
       // If we're landing on the wizard page
       // We want to trigger a replace instead of a push in that case
@@ -93,14 +77,13 @@ export const ApplicationWizardComponent: React.FunctionComponent<Props> = ({
 
   const onStepComplete = () => {
     for (let i = 0; i < orderedFormResults.length; i++) {
-      if (orderedFormResults[i].node.id === formResultId) {
+      if (orderedFormResults[i].node.formJsonByFormId.id === formId) {
         const goToConfirmation = i === orderedFormResults.length - 1;
-        const formResultId = goToConfirmation
+        const formId = goToConfirmation
           ? undefined
-          : orderedFormResults[i + 1].node.id;
+          : orderedFormResults[i + 1].node.formJsonByFormId.id;
 
-        if (!goToConfirmation)
-          setRouterQueryParam(router, 'formResultId', formResultId);
+        if (!goToConfirmation) setRouterQueryParam(router, 'formId', formId);
         else {
           const url = {
             pathName: router.pathname,
@@ -127,14 +110,15 @@ export const ApplicationWizardComponent: React.FunctionComponent<Props> = ({
   return (
     <>
       <ApplicationFormNavbar
-        application={query.application}
-        formResultId={formResultId as string}
+        applicationRevision={applicationRevision}
+        selectedFormId={formId as string}
         confirmationPage={confirmationPage}
-        version={router.query.version as string}
       />
       {!loading && (
         <ApplicationWizardStep
           query={query}
+          applicationRevision={applicationRevision}
+          formResult={formResult}
           confirmationPage={confirmationPage}
           onStepComplete={onStepComplete}
           review={review}
@@ -147,31 +131,16 @@ export const ApplicationWizardComponent: React.FunctionComponent<Props> = ({
 
 export default createFragmentContainer(ApplicationWizardComponent, {
   query: graphql`
-    fragment ApplicationWizard_query on Query
-    @argumentDefinitions(
-      formResultId: {type: "ID!"}
-      applicationId: {type: "ID!"}
-      version: {type: "String!"}
-    ) {
-      application(id: $applicationId) {
-        id
-        currentUserCanEdit
-        orderedFormResults(versionNumberInput: $version) {
-          edges {
-            node {
-              id
-            }
-          }
-        }
-        latestDraftRevision {
-          versionNumber
-        }
-        latestSubmittedRevision {
-          versionNumber
-        }
-        applicationRevisionByStringVersionNumber(versionNumberInput: $version) {
-          isImmutable
-        }
+    fragment ApplicationWizard_query on Query {
+      ...ApplicationWizardStep_query
+    }
+  `,
+  applicationRevision: graphql`
+    fragment ApplicationWizard_applicationRevision on ApplicationRevision {
+      ...ApplicationFormNavbar_applicationRevision
+      ...ApplicationWizardStep_applicationRevision
+      versionNumber
+      applicationByApplicationId {
         applicationReviewStepsByApplicationId {
           edges {
             node {
@@ -187,14 +156,17 @@ export default createFragmentContainer(ApplicationWizardComponent, {
             }
           }
         }
-        ...ApplicationFormNavbar_application
       }
-      ...ApplicationWizardStep_query
-        @arguments(
-          formResultId: $formResultId
-          applicationId: $applicationId
-          version: $version
-        )
+      orderedFormResults {
+        edges {
+          node {
+            formJsonByFormId {
+              id
+            }
+            ...ApplicationWizardStep_formResult
+          }
+        }
+      }
     }
   `
 });
