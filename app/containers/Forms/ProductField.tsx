@@ -27,13 +27,14 @@ export const ProductFieldComponent: React.FunctionComponent<Props> = (
 ) => {
   const {formData, query, onChange} = props;
 
-  const productIsPublished =
-    formData.productRowId === undefined ||
-    query.allProducts.edges.some(
-      ({node}) =>
-        node.productState === 'PUBLISHED' &&
-        node.rowId === formData.productRowId
-    );
+  // TODO: Clean up this function with array.some() as noted in https://github.com/bcgov/cas-ciip-portal/pull/621
+  const productIsPublished = (formData, query) => {
+    const product = query.allProducts.edges.find(
+      ({node}) => node.rowId === formData.productRowId
+    )?.node;
+    if (product?.productState === 'PUBLISHED' || !product) return true;
+    return false;
+  };
 
   const handleProductChange = (productRowId: number) => {
     const product = query.allProducts.edges.find(
@@ -64,20 +65,16 @@ export const ProductFieldComponent: React.FunctionComponent<Props> = (
     else handleProductChange(product.productRowId);
   };
 
-  return (
+  return productIsPublished(formData, query) ? (
+    <ObjectField {...props} onChange={handleChange} />
+  ) : (
     <>
-      {!productIsPublished && (
-        <Alert variant="danger">
-          <strong>Warning:</strong> This version of the Product or Service has
-          been archived. Please remove it and select an appropriate replacement
-          (it may have the same name)
-        </Alert>
-      )}
-      <ObjectField
-        {...props}
-        disabled={!productIsPublished}
-        onChange={handleChange}
-      />
+      <Alert variant="danger">
+        <strong>Warning:</strong> This version of the Product or Service has
+        been archived. Please remove it and select an appropriate replacement
+        (it may have the same name)
+      </Alert>
+      <ObjectField {...props} disabled onChange={handleChange} />
     </>
   );
 };

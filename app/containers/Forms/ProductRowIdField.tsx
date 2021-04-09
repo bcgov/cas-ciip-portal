@@ -76,11 +76,15 @@ export const ProductRowIdFieldComponent: React.FunctionComponent<Props> = (
   // Render a disabled text input for an archived product
   const archivedIndex = allProducts.archivedProductIds.indexOf(props.formData);
   return (
-    <InputGroup>
-      <InputGroup.Text className="col-md-12">
-        {allProducts.archivedProductNames[archivedIndex]}
-      </InputGroup.Text>
-    </InputGroup>
+    <div>
+      <InputGroup className="mb-3">
+        <InputGroup.Prepend>
+          <InputGroup.Text>
+            {allProducts.archivedProductNames[archivedIndex]}
+          </InputGroup.Text>
+        </InputGroup.Prepend>
+      </InputGroup>
+    </div>
   );
 };
 
