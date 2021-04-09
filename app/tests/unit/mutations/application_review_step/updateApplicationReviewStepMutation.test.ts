@@ -56,6 +56,6 @@ describe('updateApplicationReviewStepMutation', () => {
     expect(
       typeof test.data.updateApplicationReviewStep.applicationReviewStep
         .isComplete
-    ).toBe('boolean');
+    ).toBeOneOf([true, false, null]);
   });
 });
