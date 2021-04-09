@@ -3,7 +3,7 @@
 
 BEGIN;
 
-alter table ggircs_portal.fuel add column comments text;
+alter table ggircs_portal.fuel add column comments varchar(10000);
 
 comment on column ggircs_portal.fuel.comments is 'Metadata about this fuel row';
 
