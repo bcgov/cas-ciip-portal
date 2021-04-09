@@ -21,7 +21,10 @@ export const LinkedProductsContainer: React.FunctionComponent<Props> = ({
   query,
   relay
 }) => {
-  const [selected, setSelected] = useState(null);
+  const [selected, setSelected] = useState<{
+    id: string | number;
+    name: string;
+  }>();
   const {nonEnergyProducts} = query;
   const currentlyLinkedProductIds = product.linkedProductsByProductId.edges.map(
     ({node}) => node.linkedProductId
@@ -41,12 +44,15 @@ export const LinkedProductsContainer: React.FunctionComponent<Props> = ({
   );
 
   const handleCreateLinkedProduct = async () => {
-    if (selected && !currentlyLinkedProductIds.includes(selected[0].id)) {
+    if (
+      selected &&
+      !currentlyLinkedProductIds.includes(selected.id as number)
+    ) {
       const variables = {
         input: {
           linkedProduct: {
             productId: product.rowId,
-            linkedProductId: selected[0].id,
+            linkedProductId: selected.id as number,
             isDeleted: false
           }
         }
@@ -58,9 +64,6 @@ export const LinkedProductsContainer: React.FunctionComponent<Props> = ({
       );
     }
   };
-
-  const handleChange = (option: {id: string | number; name: string}[]) =>
-    setSelected(option);
 
   const handleDeleteLinkedProduct = async (linkedProduct) => {
     const {environment} = relay;
@@ -135,8 +138,10 @@ export const LinkedProductsContainer: React.FunctionComponent<Props> = ({
                 options={searchOptions}
                 inputProps={{id: 'search-products'}}
                 placeholder="Search Products.."
-                selected={selected}
-                onChange={handleChange}
+                selected={selected ? [selected] : []}
+                onChange={(option: {id: string | number; name: string}[]) =>
+                  setSelected(option[0])
+                }
                 onBlur={() => null}
                 onMenuToggle={() => null}
               />
