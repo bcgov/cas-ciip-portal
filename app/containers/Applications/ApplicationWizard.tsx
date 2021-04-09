@@ -44,9 +44,16 @@ export const ApplicationWizardComponent: React.FunctionComponent<Props> = ({
     latestSubmittedRevision,
     applicationRevisionByStringVersionNumber: applicationRevision
   } = application;
-  const reviewComments = query.application.reviewCommentsByApplicationId?.edges.map(
-    ({node}) => node.description
-  );
+  const reviewSteps = application?.applicationReviewStepsByApplicationId.edges;
+  // Merge review comments from all applicationReviewSteps into one list:
+  const reviewComments = reviewSteps.reduce((mergedStepComments, step) => {
+    const stepComments =
+      step.node.reviewCommentsByApplicationReviewStepId.edges;
+    return [
+      ...mergedStepComments,
+      ...stepComments.map((step) => step.node.description)
+    ];
+  }, []);
   const revisionInProgress =
     latestSubmittedRevision?.versionNumber < latestDraftRevision.versionNumber;
 
@@ -165,12 +172,18 @@ export default createFragmentContainer(ApplicationWizardComponent, {
         applicationRevisionByStringVersionNumber(versionNumberInput: $version) {
           isImmutable
         }
-        reviewCommentsByApplicationId(
-          filter: {resolved: {isNull: true}, deletedBy: {isNull: true}}
-        ) {
+        applicationReviewStepsByApplicationId {
           edges {
             node {
-              description
+              reviewCommentsByApplicationReviewStepId(
+                filter: {resolved: {isNull: true}, deletedBy: {isNull: true}}
+              ) {
+                edges {
+                  node {
+                    description
+                  }
+                }
+              }
             }
           }
         }

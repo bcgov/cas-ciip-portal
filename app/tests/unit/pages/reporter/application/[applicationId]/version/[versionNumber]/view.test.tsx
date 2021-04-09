@@ -3,37 +3,54 @@ import {shallow} from 'enzyme';
 import ViewApplication from 'pages/reporter/application/[applicationId]/version/[versionNumber]/view';
 import {viewApplicationQueryResponse} from 'viewApplicationQuery.graphql';
 
-const query: viewApplicationQueryResponse['query'] = {
-  ' $fragmentRefs': {
-    ApplicationDetailsContainer_query: true
-  },
-  session: {
+const getTestQuery = (options?) => {
+  return {
     ' $fragmentRefs': {
-      defaultLayout_session: true
+      ApplicationDetailsContainer_query: true
+    },
+    session: {
+      ' $fragmentRefs': {
+        defaultLayout_session: true
+      }
+    },
+    application: {
+      rowId: 1,
+      facilityByFacilityId: {
+        bcghgid: '123456'
+      },
+      latestDraftRevision: {
+        versionNumber: 1
+      },
+      latestSubmittedRevision: {
+        versionNumber: 1
+      },
+      applicationRevisionStatus: {
+        applicationRevisionStatus:
+          options?.applicationRevisionStatus || 'SUBMITTED'
+      },
+      applicationReviewStepsByApplicationId: {
+        edges: [
+          {
+            node: {
+              reviewCommentsByApplicationReviewStepId: {
+                edges: [
+                  {
+                    node: {
+                      description: options?.comment || 'This is a comment.'
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      },
+      ' $fragmentRefs': {
+        ReviseApplicationButtonContainer_application: true,
+        ApplicationDetailsContainer_application: true
+      }
     }
-  },
-  application: {
-    rowId: 1,
-    facilityByFacilityId: {
-      bcghgid: '123456'
-    },
-    latestDraftRevision: {
-      versionNumber: 1
-    },
-    latestSubmittedRevision: {
-      versionNumber: 1
-    },
-    applicationRevisionStatus: {
-      applicationRevisionStatus: 'SUBMITTED'
-    },
-    ' $fragmentRefs': {
-      ReviseApplicationButtonContainer_application: true,
-      ApplicationDetailsContainer_application: true
-    },
-    reviewCommentsByApplicationId: {
-      edges: []
-    }
-  }
+  };
 };
 
 const router: any = {
@@ -46,29 +63,38 @@ const router: any = {
 
 describe('View submitted application page', () => {
   it('passes a query to the ApplicationDetailsComponent component', () => {
-    const r = shallow(<ViewApplication query={query} router={router} />);
+    const data = getTestQuery();
+    const r = shallow(
+      <ViewApplication
+        query={data as viewApplicationQueryResponse['query']}
+        router={router}
+      />
+    );
     expect(
       r.find('Relay(ApplicationDetailsComponent)').first().prop('query')
-    ).toBe(query);
+    ).toBe(data);
   });
 
   it('redirects to the 404 page if the application is missing', () => {
+    const data = {
+      ...getTestQuery(),
+      application: null
+    };
     const r = shallow(
-      <ViewApplication query={{...query, application: null}} router={router} />
+      <ViewApplication
+        query={data as viewApplicationQueryResponse['query']}
+        router={router}
+      />
     );
     expect(r).toBeEmpty();
     expect(router.push).toBeCalledWith('/404');
   });
 
   it('does not show an application decision when unreviewed', () => {
+    const data = getTestQuery();
     const r = shallow(
       <ViewApplication
-        query={{
-          ...query,
-          application: {
-            ...query.application
-          }
-        }}
+        query={data as viewApplicationQueryResponse['query']}
         router={router}
       />
     );
@@ -78,23 +104,10 @@ describe('View submitted application page', () => {
 
   it('shows approval when reviewed and approved', () => {
     const decision = 'APPROVED';
+    const data = getTestQuery({applicationRevisionStatus: decision});
     const r = shallow(
       <ViewApplication
-        query={{
-          ...query,
-          application: {
-            ...query.application,
-            latestDraftRevision: {
-              versionNumber: 1
-            },
-            latestSubmittedRevision: {
-              versionNumber: 1
-            },
-            applicationRevisionStatus: {
-              applicationRevisionStatus: decision
-            }
-          }
-        }}
+        query={data as viewApplicationQueryResponse['query']}
         router={router}
       />
     );
@@ -104,31 +117,15 @@ describe('View submitted application page', () => {
     expect(
       r.find('ApplicationDecision').first().prop('actionRequired')
     ).toBeFalse();
-    expect(
-      r.find('ApplicationDecision').first().prop('reviewComments')
-    ).toBeEmpty();
     expect(r).toMatchSnapshot();
   });
 
   it('shows rejection when reviewed and rejected', () => {
     const decision = 'REJECTED';
+    const data = getTestQuery({applicationRevisionStatus: decision});
     const r = shallow(
       <ViewApplication
-        query={{
-          ...query,
-          application: {
-            ...query.application,
-            latestDraftRevision: {
-              versionNumber: 1
-            },
-            latestSubmittedRevision: {
-              versionNumber: 1
-            },
-            applicationRevisionStatus: {
-              applicationRevisionStatus: decision
-            }
-          }
-        }}
+        query={data as viewApplicationQueryResponse['query']}
         router={router}
       />
     );
@@ -138,9 +135,6 @@ describe('View submitted application page', () => {
     expect(
       r.find('ApplicationDecision').first().prop('actionRequired')
     ).toBeFalse();
-    expect(
-      r.find('ApplicationDecision').first().prop('reviewComments')
-    ).toBeEmpty();
     expect(r).toMatchSnapshot();
   });
 
@@ -149,32 +143,13 @@ describe('View submitted application page', () => {
     const comments = [
       'We cannot accept applications from facilities that are either not regulated under GGIRCA, or which paid no carbon tax in 2020.'
     ];
+    const data = getTestQuery({
+      applicationRevisionStatus: decision,
+      comment: comments[0]
+    });
     const r = shallow(
       <ViewApplication
-        query={{
-          ...query,
-          application: {
-            ...query.application,
-            latestDraftRevision: {
-              versionNumber: 1
-            },
-            latestSubmittedRevision: {
-              versionNumber: 1
-            },
-            applicationRevisionStatus: {
-              applicationRevisionStatus: decision
-            },
-            reviewCommentsByApplicationId: {
-              edges: [
-                {
-                  node: {
-                    description: comments[0]
-                  }
-                }
-              ]
-            }
-          }
-        }}
+        query={data as viewApplicationQueryResponse['query']}
         router={router}
       />
     );
@@ -198,32 +173,13 @@ describe('View submitted application page', () => {
     const comments = [
       'The operator name is slightly different from a previous match we have on file: should it be "Virtucon Limited" instead of "Virtucon Ltd"?'
     ];
+    const data = getTestQuery({
+      applicationRevisionStatus: decision,
+      comment: comments[0]
+    });
     const r = shallow(
       <ViewApplication
-        query={{
-          ...query,
-          application: {
-            ...query.application,
-            latestDraftRevision: {
-              versionNumber: 1
-            },
-            latestSubmittedRevision: {
-              versionNumber: 1
-            },
-            applicationRevisionStatus: {
-              applicationRevisionStatus: decision
-            },
-            reviewCommentsByApplicationId: {
-              edges: [
-                {
-                  node: {
-                    description: comments[0]
-                  }
-                }
-              ]
-            }
-          }
-        }}
+        query={data as viewApplicationQueryResponse['query']}
         router={router}
       />
     );
@@ -243,32 +199,19 @@ describe('View submitted application page', () => {
   });
 
   it('displays a "Resume latest draft" button when changes are requested, and there is already a newer draft (not submitted)', () => {
+    const data = getTestQuery({applicationRevisionStatus: 'REQUESTED_CHANGES'});
+    const query = {
+      ...data,
+      application: {
+        ...data.application,
+        latestDraftRevision: {
+          versionNumber: 2
+        }
+      }
+    };
     const r = shallow(
       <ViewApplication
-        query={{
-          ...query,
-          application: {
-            ...query.application,
-            latestDraftRevision: {
-              versionNumber: 2
-            },
-            latestSubmittedRevision: {
-              versionNumber: 1
-            },
-            applicationRevisionStatus: {
-              applicationRevisionStatus: 'REQUESTED_CHANGES'
-            },
-            reviewCommentsByApplicationId: {
-              edges: [
-                {
-                  node: {
-                    description: 'This is a comment'
-                  }
-                }
-              ]
-            }
-          }
-        }}
+        query={query as viewApplicationQueryResponse['query']}
         router={router}
       />
     );
@@ -278,32 +221,22 @@ describe('View submitted application page', () => {
   });
 
   it('should render a "View most recent submission" button when viewing an older submission (viewed version < last submitted version)', () => {
+    const data = getTestQuery({applicationRevisionStatus: 'REQUESTED_CHANGES'});
+    const query = {
+      ...data,
+      application: {
+        ...data.application,
+        latestDraftRevision: {
+          versionNumber: 2
+        },
+        latestSubmittedRevision: {
+          versionNumber: 2
+        }
+      }
+    };
     const r = shallow(
       <ViewApplication
-        query={{
-          ...query,
-          application: {
-            ...query.application,
-            latestDraftRevision: {
-              versionNumber: 2
-            },
-            latestSubmittedRevision: {
-              versionNumber: 2
-            },
-            applicationRevisionStatus: {
-              applicationRevisionStatus: 'REQUESTED_CHANGES'
-            },
-            reviewCommentsByApplicationId: {
-              edges: [
-                {
-                  node: {
-                    description: 'This is a comment'
-                  }
-                }
-              ]
-            }
-          }
-        }}
+        query={query as viewApplicationQueryResponse['query']}
         router={router}
       />
     );
@@ -313,32 +246,22 @@ describe('View submitted application page', () => {
   });
 
   it('should render a "View most recent submission" button when viewing an older submission that has BOTH a newer submission, and at least two newer drafts', () => {
+    const data = getTestQuery({applicationRevisionStatus: 'REQUESTED_CHANGES'});
+    const query = {
+      ...data,
+      application: {
+        ...data.application,
+        latestDraftRevision: {
+          versionNumber: 3
+        },
+        latestSubmittedRevision: {
+          versionNumber: 2
+        }
+      }
+    };
     const r = shallow(
       <ViewApplication
-        query={{
-          ...query,
-          application: {
-            ...query.application,
-            latestDraftRevision: {
-              versionNumber: 3
-            },
-            latestSubmittedRevision: {
-              versionNumber: 2
-            },
-            applicationRevisionStatus: {
-              applicationRevisionStatus: 'REQUESTED_CHANGES'
-            },
-            reviewCommentsByApplicationId: {
-              edges: [
-                {
-                  node: {
-                    description: 'This is a comment'
-                  }
-                }
-              ]
-            }
-          }
-        }}
+        query={query as viewApplicationQueryResponse['query']}
         router={router}
       />
     );

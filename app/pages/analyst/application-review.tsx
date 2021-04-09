@@ -39,21 +39,27 @@ class ApplicationReview extends Component<Props> {
           }
           ...ApplicationDetailsContainer_application
             @arguments(version: $version)
-          internalComments: reviewCommentsByApplicationId(
-            filter: {commentType: {equalTo: INTERNAL}}
-          ) {
+          applicationReviewStepsByApplicationId {
             edges {
               node {
-                id
-              }
-            }
-          }
-          generalComments: reviewCommentsByApplicationId(
-            filter: {commentType: {equalTo: GENERAL}}
-          ) {
-            edges {
-              node {
-                id
+                internalComments: reviewCommentsByApplicationReviewStepId(
+                  filter: {commentType: {equalTo: INTERNAL}}
+                ) {
+                  edges {
+                    node {
+                      id
+                    }
+                  }
+                }
+                generalComments: reviewCommentsByApplicationReviewStepId(
+                  filter: {commentType: {equalTo: GENERAL}}
+                ) {
+                  edges {
+                    node {
+                      id
+                    }
+                  }
+                }
               }
             }
           }

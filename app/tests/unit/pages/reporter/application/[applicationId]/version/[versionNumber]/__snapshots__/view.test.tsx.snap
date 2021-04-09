@@ -32,7 +32,7 @@ exports[`View submitted application page displays a "Resume latest draft" button
         decision="REQUESTED_CHANGES"
         reviewComments={
           Array [
-            "This is a comment",
+            "This is a comment.",
           ]
         }
       >
@@ -69,6 +69,23 @@ exports[`View submitted application page displays a "Resume latest draft" button
               "ApplicationDetailsContainer_application": true,
               "ReviseApplicationButtonContainer_application": true,
             },
+            "applicationReviewStepsByApplicationId": Object {
+              "edges": Array [
+                Object {
+                  "node": Object {
+                    "reviewCommentsByApplicationReviewStepId": Object {
+                      "edges": Array [
+                        Object {
+                          "node": Object {
+                            "description": "This is a comment.",
+                          },
+                        },
+                      ],
+                    },
+                  },
+                },
+              ],
+            },
             "applicationRevisionStatus": Object {
               "applicationRevisionStatus": "REQUESTED_CHANGES",
             },
@@ -80,15 +97,6 @@ exports[`View submitted application page displays a "Resume latest draft" button
             },
             "latestSubmittedRevision": Object {
               "versionNumber": 1,
-            },
-            "reviewCommentsByApplicationId": Object {
-              "edges": Array [
-                Object {
-                  "node": Object {
-                    "description": "This is a comment",
-                  },
-                },
-              ],
             },
             "rowId": 1,
           }
@@ -104,6 +112,23 @@ exports[`View submitted application page displays a "Resume latest draft" button
                 "ApplicationDetailsContainer_application": true,
                 "ReviseApplicationButtonContainer_application": true,
               },
+              "applicationReviewStepsByApplicationId": Object {
+                "edges": Array [
+                  Object {
+                    "node": Object {
+                      "reviewCommentsByApplicationReviewStepId": Object {
+                        "edges": Array [
+                          Object {
+                            "node": Object {
+                              "description": "This is a comment.",
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  },
+                ],
+              },
               "applicationRevisionStatus": Object {
                 "applicationRevisionStatus": "REQUESTED_CHANGES",
               },
@@ -115,15 +140,6 @@ exports[`View submitted application page displays a "Resume latest draft" button
               },
               "latestSubmittedRevision": Object {
                 "versionNumber": 1,
-              },
-              "reviewCommentsByApplicationId": Object {
-                "edges": Array [
-                  Object {
-                    "node": Object {
-                      "description": "This is a comment",
-                    },
-                  },
-                ],
               },
               "rowId": 1,
             },
@@ -184,6 +200,23 @@ exports[`View submitted application page displays a "Revise" button when changes
                 "ApplicationDetailsContainer_application": true,
                 "ReviseApplicationButtonContainer_application": true,
               },
+              "applicationReviewStepsByApplicationId": Object {
+                "edges": Array [
+                  Object {
+                    "node": Object {
+                      "reviewCommentsByApplicationReviewStepId": Object {
+                        "edges": Array [
+                          Object {
+                            "node": Object {
+                              "description": "The operator name is slightly different from a previous match we have on file: should it be \\"Virtucon Limited\\" instead of \\"Virtucon Ltd\\"?",
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  },
+                ],
+              },
               "applicationRevisionStatus": Object {
                 "applicationRevisionStatus": "REQUESTED_CHANGES",
               },
@@ -195,15 +228,6 @@ exports[`View submitted application page displays a "Revise" button when changes
               },
               "latestSubmittedRevision": Object {
                 "versionNumber": 1,
-              },
-              "reviewCommentsByApplicationId": Object {
-                "edges": Array [
-                  Object {
-                    "node": Object {
-                      "description": "The operator name is slightly different from a previous match we have on file: should it be \\"Virtucon Limited\\" instead of \\"Virtucon Ltd\\"?",
-                    },
-                  },
-                ],
               },
               "rowId": 1,
             }
@@ -217,6 +241,23 @@ exports[`View submitted application page displays a "Revise" button when changes
               "ApplicationDetailsContainer_application": true,
               "ReviseApplicationButtonContainer_application": true,
             },
+            "applicationReviewStepsByApplicationId": Object {
+              "edges": Array [
+                Object {
+                  "node": Object {
+                    "reviewCommentsByApplicationReviewStepId": Object {
+                      "edges": Array [
+                        Object {
+                          "node": Object {
+                            "description": "The operator name is slightly different from a previous match we have on file: should it be \\"Virtucon Limited\\" instead of \\"Virtucon Ltd\\"?",
+                          },
+                        },
+                      ],
+                    },
+                  },
+                },
+              ],
+            },
             "applicationRevisionStatus": Object {
               "applicationRevisionStatus": "REQUESTED_CHANGES",
             },
@@ -228,15 +269,6 @@ exports[`View submitted application page displays a "Revise" button when changes
             },
             "latestSubmittedRevision": Object {
               "versionNumber": 1,
-            },
-            "reviewCommentsByApplicationId": Object {
-              "edges": Array [
-                Object {
-                  "node": Object {
-                    "description": "The operator name is slightly different from a previous match we have on file: should it be \\"Virtucon Limited\\" instead of \\"Virtucon Ltd\\"?",
-                  },
-                },
-              ],
             },
             "rowId": 1,
           }
@@ -252,6 +284,23 @@ exports[`View submitted application page displays a "Revise" button when changes
                 "ApplicationDetailsContainer_application": true,
                 "ReviseApplicationButtonContainer_application": true,
               },
+              "applicationReviewStepsByApplicationId": Object {
+                "edges": Array [
+                  Object {
+                    "node": Object {
+                      "reviewCommentsByApplicationReviewStepId": Object {
+                        "edges": Array [
+                          Object {
+                            "node": Object {
+                              "description": "The operator name is slightly different from a previous match we have on file: should it be \\"Virtucon Limited\\" instead of \\"Virtucon Ltd\\"?",
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  },
+                ],
+              },
               "applicationRevisionStatus": Object {
                 "applicationRevisionStatus": "REQUESTED_CHANGES",
               },
@@ -263,15 +312,6 @@ exports[`View submitted application page displays a "Revise" button when changes
               },
               "latestSubmittedRevision": Object {
                 "versionNumber": 1,
-              },
-              "reviewCommentsByApplicationId": Object {
-                "edges": Array [
-                  Object {
-                    "node": Object {
-                      "description": "The operator name is slightly different from a previous match we have on file: should it be \\"Virtucon Limited\\" instead of \\"Virtucon Ltd\\"?",
-                    },
-                  },
-                ],
               },
               "rowId": 1,
             },
@@ -323,6 +363,23 @@ exports[`View submitted application page does not show an application decision w
               "ApplicationDetailsContainer_application": true,
               "ReviseApplicationButtonContainer_application": true,
             },
+            "applicationReviewStepsByApplicationId": Object {
+              "edges": Array [
+                Object {
+                  "node": Object {
+                    "reviewCommentsByApplicationReviewStepId": Object {
+                      "edges": Array [
+                        Object {
+                          "node": Object {
+                            "description": "This is a comment.",
+                          },
+                        },
+                      ],
+                    },
+                  },
+                },
+              ],
+            },
             "applicationRevisionStatus": Object {
               "applicationRevisionStatus": "SUBMITTED",
             },
@@ -334,9 +391,6 @@ exports[`View submitted application page does not show an application decision w
             },
             "latestSubmittedRevision": Object {
               "versionNumber": 1,
-            },
-            "reviewCommentsByApplicationId": Object {
-              "edges": Array [],
             },
             "rowId": 1,
           }
@@ -352,6 +406,23 @@ exports[`View submitted application page does not show an application decision w
                 "ApplicationDetailsContainer_application": true,
                 "ReviseApplicationButtonContainer_application": true,
               },
+              "applicationReviewStepsByApplicationId": Object {
+                "edges": Array [
+                  Object {
+                    "node": Object {
+                      "reviewCommentsByApplicationReviewStepId": Object {
+                        "edges": Array [
+                          Object {
+                            "node": Object {
+                              "description": "This is a comment.",
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  },
+                ],
+              },
               "applicationRevisionStatus": Object {
                 "applicationRevisionStatus": "SUBMITTED",
               },
@@ -363,9 +434,6 @@ exports[`View submitted application page does not show an application decision w
               },
               "latestSubmittedRevision": Object {
                 "versionNumber": 1,
-              },
-              "reviewCommentsByApplicationId": Object {
-                "edges": Array [],
               },
               "rowId": 1,
             },
@@ -467,7 +535,7 @@ exports[`View submitted application page should render a "View most recent submi
         decision="REQUESTED_CHANGES"
         reviewComments={
           Array [
-            "This is a comment",
+            "This is a comment.",
           ]
         }
       />
@@ -477,6 +545,23 @@ exports[`View submitted application page should render a "View most recent submi
             " $fragmentRefs": Object {
               "ApplicationDetailsContainer_application": true,
               "ReviseApplicationButtonContainer_application": true,
+            },
+            "applicationReviewStepsByApplicationId": Object {
+              "edges": Array [
+                Object {
+                  "node": Object {
+                    "reviewCommentsByApplicationReviewStepId": Object {
+                      "edges": Array [
+                        Object {
+                          "node": Object {
+                            "description": "This is a comment.",
+                          },
+                        },
+                      ],
+                    },
+                  },
+                },
+              ],
             },
             "applicationRevisionStatus": Object {
               "applicationRevisionStatus": "REQUESTED_CHANGES",
@@ -489,15 +574,6 @@ exports[`View submitted application page should render a "View most recent submi
             },
             "latestSubmittedRevision": Object {
               "versionNumber": 2,
-            },
-            "reviewCommentsByApplicationId": Object {
-              "edges": Array [
-                Object {
-                  "node": Object {
-                    "description": "This is a comment",
-                  },
-                },
-              ],
             },
             "rowId": 1,
           }
@@ -513,6 +589,23 @@ exports[`View submitted application page should render a "View most recent submi
                 "ApplicationDetailsContainer_application": true,
                 "ReviseApplicationButtonContainer_application": true,
               },
+              "applicationReviewStepsByApplicationId": Object {
+                "edges": Array [
+                  Object {
+                    "node": Object {
+                      "reviewCommentsByApplicationReviewStepId": Object {
+                        "edges": Array [
+                          Object {
+                            "node": Object {
+                              "description": "This is a comment.",
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  },
+                ],
+              },
               "applicationRevisionStatus": Object {
                 "applicationRevisionStatus": "REQUESTED_CHANGES",
               },
@@ -524,15 +617,6 @@ exports[`View submitted application page should render a "View most recent submi
               },
               "latestSubmittedRevision": Object {
                 "versionNumber": 2,
-              },
-              "reviewCommentsByApplicationId": Object {
-                "edges": Array [
-                  Object {
-                    "node": Object {
-                      "description": "This is a comment",
-                    },
-                  },
-                ],
               },
               "rowId": 1,
             },
@@ -634,7 +718,7 @@ exports[`View submitted application page should render a "View most recent submi
         decision="REQUESTED_CHANGES"
         reviewComments={
           Array [
-            "This is a comment",
+            "This is a comment.",
           ]
         }
       />
@@ -644,6 +728,23 @@ exports[`View submitted application page should render a "View most recent submi
             " $fragmentRefs": Object {
               "ApplicationDetailsContainer_application": true,
               "ReviseApplicationButtonContainer_application": true,
+            },
+            "applicationReviewStepsByApplicationId": Object {
+              "edges": Array [
+                Object {
+                  "node": Object {
+                    "reviewCommentsByApplicationReviewStepId": Object {
+                      "edges": Array [
+                        Object {
+                          "node": Object {
+                            "description": "This is a comment.",
+                          },
+                        },
+                      ],
+                    },
+                  },
+                },
+              ],
             },
             "applicationRevisionStatus": Object {
               "applicationRevisionStatus": "REQUESTED_CHANGES",
@@ -656,15 +757,6 @@ exports[`View submitted application page should render a "View most recent submi
             },
             "latestSubmittedRevision": Object {
               "versionNumber": 2,
-            },
-            "reviewCommentsByApplicationId": Object {
-              "edges": Array [
-                Object {
-                  "node": Object {
-                    "description": "This is a comment",
-                  },
-                },
-              ],
             },
             "rowId": 1,
           }
@@ -680,6 +772,23 @@ exports[`View submitted application page should render a "View most recent submi
                 "ApplicationDetailsContainer_application": true,
                 "ReviseApplicationButtonContainer_application": true,
               },
+              "applicationReviewStepsByApplicationId": Object {
+                "edges": Array [
+                  Object {
+                    "node": Object {
+                      "reviewCommentsByApplicationReviewStepId": Object {
+                        "edges": Array [
+                          Object {
+                            "node": Object {
+                              "description": "This is a comment.",
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  },
+                ],
+              },
               "applicationRevisionStatus": Object {
                 "applicationRevisionStatus": "REQUESTED_CHANGES",
               },
@@ -691,15 +800,6 @@ exports[`View submitted application page should render a "View most recent submi
               },
               "latestSubmittedRevision": Object {
                 "versionNumber": 2,
-              },
-              "reviewCommentsByApplicationId": Object {
-                "edges": Array [
-                  Object {
-                    "node": Object {
-                      "description": "This is a comment",
-                    },
-                  },
-                ],
               },
               "rowId": 1,
             },
@@ -747,7 +847,11 @@ exports[`View submitted application page shows approval when reviewed and approv
       <ApplicationDecision
         actionRequired={false}
         decision="APPROVED"
-        reviewComments={Array []}
+        reviewComments={
+          Array [
+            "This is a comment.",
+          ]
+        }
       />
       <Relay(ApplicationDetailsComponent)
         application={
@@ -755,6 +859,23 @@ exports[`View submitted application page shows approval when reviewed and approv
             " $fragmentRefs": Object {
               "ApplicationDetailsContainer_application": true,
               "ReviseApplicationButtonContainer_application": true,
+            },
+            "applicationReviewStepsByApplicationId": Object {
+              "edges": Array [
+                Object {
+                  "node": Object {
+                    "reviewCommentsByApplicationReviewStepId": Object {
+                      "edges": Array [
+                        Object {
+                          "node": Object {
+                            "description": "This is a comment.",
+                          },
+                        },
+                      ],
+                    },
+                  },
+                },
+              ],
             },
             "applicationRevisionStatus": Object {
               "applicationRevisionStatus": "APPROVED",
@@ -767,9 +888,6 @@ exports[`View submitted application page shows approval when reviewed and approv
             },
             "latestSubmittedRevision": Object {
               "versionNumber": 1,
-            },
-            "reviewCommentsByApplicationId": Object {
-              "edges": Array [],
             },
             "rowId": 1,
           }
@@ -785,6 +903,23 @@ exports[`View submitted application page shows approval when reviewed and approv
                 "ApplicationDetailsContainer_application": true,
                 "ReviseApplicationButtonContainer_application": true,
               },
+              "applicationReviewStepsByApplicationId": Object {
+                "edges": Array [
+                  Object {
+                    "node": Object {
+                      "reviewCommentsByApplicationReviewStepId": Object {
+                        "edges": Array [
+                          Object {
+                            "node": Object {
+                              "description": "This is a comment.",
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  },
+                ],
+              },
               "applicationRevisionStatus": Object {
                 "applicationRevisionStatus": "APPROVED",
               },
@@ -796,9 +931,6 @@ exports[`View submitted application page shows approval when reviewed and approv
               },
               "latestSubmittedRevision": Object {
                 "versionNumber": 1,
-              },
-              "reviewCommentsByApplicationId": Object {
-                "edges": Array [],
               },
               "rowId": 1,
             },
@@ -846,7 +978,11 @@ exports[`View submitted application page shows rejection when reviewed and rejec
       <ApplicationDecision
         actionRequired={false}
         decision="REJECTED"
-        reviewComments={Array []}
+        reviewComments={
+          Array [
+            "This is a comment.",
+          ]
+        }
       />
       <Relay(ApplicationDetailsComponent)
         application={
@@ -854,6 +990,23 @@ exports[`View submitted application page shows rejection when reviewed and rejec
             " $fragmentRefs": Object {
               "ApplicationDetailsContainer_application": true,
               "ReviseApplicationButtonContainer_application": true,
+            },
+            "applicationReviewStepsByApplicationId": Object {
+              "edges": Array [
+                Object {
+                  "node": Object {
+                    "reviewCommentsByApplicationReviewStepId": Object {
+                      "edges": Array [
+                        Object {
+                          "node": Object {
+                            "description": "This is a comment.",
+                          },
+                        },
+                      ],
+                    },
+                  },
+                },
+              ],
             },
             "applicationRevisionStatus": Object {
               "applicationRevisionStatus": "REJECTED",
@@ -866,9 +1019,6 @@ exports[`View submitted application page shows rejection when reviewed and rejec
             },
             "latestSubmittedRevision": Object {
               "versionNumber": 1,
-            },
-            "reviewCommentsByApplicationId": Object {
-              "edges": Array [],
             },
             "rowId": 1,
           }
@@ -884,6 +1034,23 @@ exports[`View submitted application page shows rejection when reviewed and rejec
                 "ApplicationDetailsContainer_application": true,
                 "ReviseApplicationButtonContainer_application": true,
               },
+              "applicationReviewStepsByApplicationId": Object {
+                "edges": Array [
+                  Object {
+                    "node": Object {
+                      "reviewCommentsByApplicationReviewStepId": Object {
+                        "edges": Array [
+                          Object {
+                            "node": Object {
+                              "description": "This is a comment.",
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  },
+                ],
+              },
               "applicationRevisionStatus": Object {
                 "applicationRevisionStatus": "REJECTED",
               },
@@ -895,9 +1062,6 @@ exports[`View submitted application page shows rejection when reviewed and rejec
               },
               "latestSubmittedRevision": Object {
                 "versionNumber": 1,
-              },
-              "reviewCommentsByApplicationId": Object {
-                "edges": Array [],
               },
               "rowId": 1,
             },
@@ -958,6 +1122,23 @@ exports[`View submitted application page shows reviewer comments when reviewed a
               "ApplicationDetailsContainer_application": true,
               "ReviseApplicationButtonContainer_application": true,
             },
+            "applicationReviewStepsByApplicationId": Object {
+              "edges": Array [
+                Object {
+                  "node": Object {
+                    "reviewCommentsByApplicationReviewStepId": Object {
+                      "edges": Array [
+                        Object {
+                          "node": Object {
+                            "description": "We cannot accept applications from facilities that are either not regulated under GGIRCA, or which paid no carbon tax in 2020.",
+                          },
+                        },
+                      ],
+                    },
+                  },
+                },
+              ],
+            },
             "applicationRevisionStatus": Object {
               "applicationRevisionStatus": "REJECTED",
             },
@@ -969,15 +1150,6 @@ exports[`View submitted application page shows reviewer comments when reviewed a
             },
             "latestSubmittedRevision": Object {
               "versionNumber": 1,
-            },
-            "reviewCommentsByApplicationId": Object {
-              "edges": Array [
-                Object {
-                  "node": Object {
-                    "description": "We cannot accept applications from facilities that are either not regulated under GGIRCA, or which paid no carbon tax in 2020.",
-                  },
-                },
-              ],
             },
             "rowId": 1,
           }
@@ -993,6 +1165,23 @@ exports[`View submitted application page shows reviewer comments when reviewed a
                 "ApplicationDetailsContainer_application": true,
                 "ReviseApplicationButtonContainer_application": true,
               },
+              "applicationReviewStepsByApplicationId": Object {
+                "edges": Array [
+                  Object {
+                    "node": Object {
+                      "reviewCommentsByApplicationReviewStepId": Object {
+                        "edges": Array [
+                          Object {
+                            "node": Object {
+                              "description": "We cannot accept applications from facilities that are either not regulated under GGIRCA, or which paid no carbon tax in 2020.",
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  },
+                ],
+              },
               "applicationRevisionStatus": Object {
                 "applicationRevisionStatus": "REJECTED",
               },
@@ -1004,15 +1193,6 @@ exports[`View submitted application page shows reviewer comments when reviewed a
               },
               "latestSubmittedRevision": Object {
                 "versionNumber": 1,
-              },
-              "reviewCommentsByApplicationId": Object {
-                "edges": Array [
-                  Object {
-                    "node": Object {
-                      "description": "We cannot accept applications from facilities that are either not regulated under GGIRCA, or which paid no carbon tax in 2020.",
-                    },
-                  },
-                ],
               },
               "rowId": 1,
             },
