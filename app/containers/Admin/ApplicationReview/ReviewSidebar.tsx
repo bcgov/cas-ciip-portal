@@ -95,6 +95,26 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
       `ReviewSidebar_${commentType}Comments`
     );
   };
+
+  const renderComment = (
+    commentType,
+    {id, description, createdAt, ciipUserByCreatedBy, resolved}
+  ) => {
+    return (
+      <ReviewComment
+        key={id}
+        id={id}
+        description={description}
+        createdAt={createdAt}
+        createdBy={`${ciipUserByCreatedBy.firstName} ${ciipUserByCreatedBy.lastName}`}
+        viewOnly={applicationReviewStep.isComplete}
+        isResolved={resolved}
+        onResolveToggle={resolveComment}
+        onDelete={(id) => deleteComment(id, commentType)}
+      />
+    );
+  };
+
   return (
     <div id="sidebar" className="col-md-5 col-lg-4 col-xxl-3">
       <button
@@ -137,32 +157,12 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
           <p className="empty-comments">No general comments to show.</p>
         ) : (
           <ul aria-labelledby="general-comments-label">
-            {generalComments.map(
-              ({
-                node: {
-                  id,
-                  description,
-                  createdAt,
-                  ciipUserByCreatedBy,
-                  resolved
-                }
-              }) => {
-                const showComment = showingResolved || !resolved;
-                return !showComment ? null : (
-                  <ReviewComment
-                    key={id}
-                    id={id}
-                    description={description}
-                    createdAt={createdAt}
-                    createdBy={`${ciipUserByCreatedBy.firstName} ${ciipUserByCreatedBy.lastName}`}
-                    viewOnly={applicationReviewStep.isComplete}
-                    isResolved={resolved}
-                    onResolveToggle={resolveComment}
-                    onDelete={(id) => deleteComment(id, 'general')}
-                  />
-                );
-              }
-            )}
+            {generalComments.map((comment) => {
+              const showComment = showingResolved || !comment.node.resolved;
+              return showComment
+                ? renderComment('general', comment.node)
+                : null;
+            })}
           </ul>
         )}
         <h3 id="internal-comments-label">
@@ -175,32 +175,12 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
           <p className="empty-comments">No internal comments to show.</p>
         ) : (
           <ul aria-labelledby="internal-comments-label">
-            {internalComments.map(
-              ({
-                node: {
-                  id,
-                  description,
-                  createdAt,
-                  ciipUserByCreatedBy,
-                  resolved
-                }
-              }) => {
-                const showComment = showingResolved || !resolved;
-                return !showComment ? null : (
-                  <ReviewComment
-                    key={id}
-                    id={id}
-                    description={description}
-                    createdAt={createdAt}
-                    createdBy={`${ciipUserByCreatedBy.firstName} ${ciipUserByCreatedBy.lastName}`}
-                    viewOnly={applicationReviewStep.isComplete}
-                    isResolved={resolved}
-                    onResolveToggle={resolveComment}
-                    onDelete={(id) => deleteComment(id, 'internal')}
-                  />
-                );
-              }
-            )}
+            {internalComments.map((comment) => {
+              const showComment = showingResolved || !comment.node.resolved;
+              return showComment
+                ? renderComment('internal', comment.node)
+                : null;
+            })}
           </ul>
         )}
       </div>
