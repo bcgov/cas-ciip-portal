@@ -49,6 +49,7 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
         fixed={fixedHeader}
         isLoggedIn={Boolean(session)}
         isRegistered={Boolean(session?.ciipUserBySub)}
+        user={session?.ciipUserBySub}
       >
         {runtimeConfig.SITEWIDE_NOTICE && (
           <SiteNoticeBanner content={runtimeConfig.SITEWIDE_NOTICE} />
@@ -196,6 +197,9 @@ export default createFragmentContainer(DefaultLayout, {
     fragment defaultLayout_session on JwtToken {
       ciipUserBySub {
         __typename
+        firstName
+        lastName
+        emailAddress
       }
       userGroups
     }

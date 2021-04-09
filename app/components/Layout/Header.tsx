@@ -1,9 +1,9 @@
 import React, {useState, useRef} from 'react';
-import {Form} from 'react-bootstrap';
+import {Form, Dropdown} from 'react-bootstrap';
 import Link from 'next/link';
 import LoginButton from 'components/LoginButton';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faBars} from '@fortawesome/free-solid-svg-icons';
+import {faUser} from '@fortawesome/free-solid-svg-icons';
 
 const DESKTOP_BREAKPOINT_QUERY = '(min-width: 992px)';
 
@@ -11,6 +11,7 @@ const HeaderLayout = ({
   isLoggedIn = false,
   isRegistered = false,
   fixed = false,
+  user = null,
   children
 }) => {
   let mediaMatch;
@@ -35,6 +36,12 @@ const HeaderLayout = ({
         return;
       return !prev;
     });
+  };
+
+  const submitForm = (e) => {
+    if (e.which === 13) {
+      e.currentTarget.submit();
+    }
   };
 
   return (
@@ -63,7 +70,7 @@ const HeaderLayout = ({
               aria-label="Menu toggle"
               onClick={toggleNavMenu}
             >
-              <FontAwesomeIcon color="white" icon={faBars} size="2x" />
+              <FontAwesomeIcon color="white" icon={faUser} size="2x" />
             </button>
           </div>
           <ul
@@ -81,18 +88,44 @@ const HeaderLayout = ({
               <>
                 {isRegistered && (
                   <li>
-                    <Link href="/user/profile">
-                      <a className="nav-button">Profile</a>
-                    </Link>
+                    <Dropdown alignRight>
+                      <Dropdown.Toggle variant="primary" id="dropdown-basic">
+                        <FontAwesomeIcon
+                          color="white"
+                          icon={faUser}
+                          size="1x"
+                        />
+                      </Dropdown.Toggle>
+                      <Dropdown.Menu
+                        id="dropdown-basic-button"
+                        title="Dropdown button"
+                      >
+                        <Dropdown.Item as={Link} href="/user/profile">
+                          <a className="dropdown-item text-right">
+                            <div>
+                              <span>{user.firstName}</span>{' '}
+                              <span>{user.lastName}</span>
+                            </div>
+                            <div className="small text-muted text-nowrap">
+                              {user.emailAddress}
+                            </div>
+                          </a>
+                        </Dropdown.Item>
+                        <Dropdown.Item
+                          as={Form}
+                          action="/logout"
+                          method="post"
+                          tabIndex={0}
+                          onKeyPress={submitForm}
+                        >
+                          <button type="submit" className="text-right">
+                            Logout
+                          </button>
+                        </Dropdown.Item>
+                      </Dropdown.Menu>
+                    </Dropdown>
                   </li>
                 )}
-                <li>
-                  <Form action="/logout" method="post">
-                    <button type="submit" className="nav-button">
-                      Logout
-                    </button>
-                  </Form>
-                </li>
               </>
             ) : (
               <>
@@ -165,6 +198,9 @@ const HeaderLayout = ({
           button {
             background: none;
             border: none;
+            color: inherit;
+            padding: 0;
+            width: 100%;
           }
           .nav-button {
             color: #f8f9fa;
