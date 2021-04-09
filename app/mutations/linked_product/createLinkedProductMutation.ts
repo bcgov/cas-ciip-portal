@@ -28,7 +28,7 @@ const createLinkedProductMutation = async (
   variables: createLinkedProductMutationVariables,
   parentProductId: string
 ) => {
-  const connectionKey = 'LinkedProduct_linkedProductsByProductId';
+  const connectionKey = 'LinkedProducts_linkedProductsByProductId';
   const configs: DeclarativeMutationConfig[] = [
     {
       type: 'RANGE_ADD',

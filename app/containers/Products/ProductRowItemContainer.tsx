@@ -13,7 +13,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faCog} from '@fortawesome/free-solid-svg-icons';
 import InnerModal from './InnerProductBenchmarkModal';
 import {dateTimeFormat} from 'functions/formatDates';
-import LinkedProduct from './LinkedProduct';
+import LinkedProducts from './LinkedProducts';
 
 interface Props {
   relay: RelayProp;
@@ -217,7 +217,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
       {editProductModal}
       {editBenchmarkModal}
       {linkProductModalShow && (
-        <LinkedProduct
+        <LinkedProducts
           product={product}
           setLinkProductModalShow={setLinkProductModalShow}
           query={query}
@@ -288,7 +288,7 @@ export default createFragmentContainer(ProductRowItemComponent, {
           }
         }
       }
-      ...LinkedProduct_product
+      ...LinkedProducts_product
     }
   `,
   query: graphql`
@@ -303,7 +303,7 @@ export default createFragmentContainer(ProductRowItemComponent, {
           }
         }
       }
-      ...LinkedProduct_query
+      ...LinkedProducts_query
     }
   `
 });

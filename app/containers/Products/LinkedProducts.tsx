@@ -1,7 +1,7 @@
 import React, {useMemo, useState} from 'react';
 import {Modal, Container, Col, Row, Button, Table} from 'react-bootstrap';
-import {LinkedProduct_product} from 'LinkedProduct_product.graphql';
-import {LinkedProduct_query} from 'LinkedProduct_query.graphql';
+import {LinkedProducts_product} from 'LinkedProducts_product.graphql';
+import {LinkedProducts_query} from 'LinkedProducts_query.graphql';
 import SearchDropdown from 'components/SearchDropdown';
 import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
 import createLinkedProductMutation from 'mutations/linked_product/createLinkedProductMutation';
@@ -9,13 +9,13 @@ import deleteLinkedProductMutation from 'mutations/linked_product/deleteLinkedPr
 import {nowMoment} from 'functions/formatDates';
 
 interface Props {
-  product: LinkedProduct_product;
+  product: LinkedProducts_product;
   setLinkProductModalShow: (boolean) => void;
-  query: LinkedProduct_query;
+  query: LinkedProducts_query;
   relay: RelayProp;
 }
 
-const LinkedProduct: React.FunctionComponent<Props> = ({
+const LinkedProducts: React.FunctionComponent<Props> = ({
   product,
   setLinkProductModalShow,
   query,
@@ -41,7 +41,7 @@ const LinkedProduct: React.FunctionComponent<Props> = ({
   );
 
   const handleCreateLinkedProduct = async () => {
-    if (selected) {
+    if (selected && !currentlyLinkedProductIds.includes(selected[0].id)) {
       const variables = {
         input: {
           linkedProduct: {
@@ -198,16 +198,20 @@ const LinkedProduct: React.FunctionComponent<Props> = ({
   );
 };
 
-export default createFragmentContainer(LinkedProduct, {
+export default createFragmentContainer(LinkedProducts, {
   product: graphql`
-    fragment LinkedProduct_product on Product {
+    fragment LinkedProducts_product on Product {
       id
       rowId
       productName
       linkedProductsByProductId(
         first: 2147483647
         filter: {deletedAt: {isNull: true}}
-      ) @connection(key: "LinkedProduct_linkedProductsByProductId") {
+      )
+        @connection(
+          key: "LinkedProducts_linkedProductsByProductId"
+          filters: []
+        ) {
         __id
         edges {
           node {
@@ -223,7 +227,7 @@ export default createFragmentContainer(LinkedProduct, {
     }
   `,
   query: graphql`
-    fragment LinkedProduct_query on Query {
+    fragment LinkedProducts_query on Query {
       nonEnergyProducts: allProducts(
         filter: {isEnergyProduct: {equalTo: false}}
         orderBy: PRODUCT_NAME_ASC
