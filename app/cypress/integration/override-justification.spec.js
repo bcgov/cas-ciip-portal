@@ -1,4 +1,4 @@
-// describe('When an applicaiton has errors', () => {
+// describe('When an application has errors', () => {
 //   before(() => {
 //     cy.cleanSchema();
 //     cy.deployProdData();
@@ -63,7 +63,7 @@
 //   });
 // });
 
-describe('When an applicaiton does not have errors', () => {
+describe('When an application does not have errors', () => {
   beforeEach(() => {
     cy.cleanSchema();
     cy.deployProdData();
@@ -85,15 +85,20 @@ describe('When an applicaiton does not have errors', () => {
     const applicationId = window.btoa('["applications",2]');
     cy.visit(`/reporter/application/${applicationId}?confirmationPage=true`);
     cy.url().should('include', '/reporter/application');
+    // clear the operator name in the admin page
     cy.get(':nth-child(1) > .nav-link').click();
     cy.get('#root_operator_name').clear();
     cy.get('.card-header').contains('Form input saved');
+
+    // go to the summary page and add an override justification
     cy.get('.nav-guide > :nth-child(5)').click();
     cy.get('.errors').should('contain', 'contains errors');
     cy.get('.override-accordion > .btn').click();
     cy.get('#overrideJustification').clear().type('delete me when fixed');
     cy.get('.btn-success').click();
     cy.get('.alert-secondary').should('contain', 'delete me when fixed');
+
+    // go back to the admin page to fix the issue
     cy.get(':nth-child(1) > .nav-link').click();
     cy.get('#root_operator_name').clear().type('whoops');
     cy.get('.card-header').contains('Form input saved');
@@ -103,10 +108,14 @@ describe('When an applicaiton does not have errors', () => {
     cy.get('.override-accordion > .btn').should('not.exist');
     cy.get(':nth-child(1) > .nav-link').click();
     cy.get('#root_operator_name').clear();
+    cy.get('.card-header').contains('Form input saved');
+
     cy.get('.nav-guide > :nth-child(5)').click();
     cy.get('.errors').should('contain', 'contains errors');
     cy.get('.override-accordion > .btn').click();
-    cy.get('.alert-secondary').should('not.contain', 'delete me when fixed');
-    cy.wait(500);
+    cy.get('#overrideJustification').should(
+      'not.contain',
+      'delete me when fixed'
+    );
   });
 });
