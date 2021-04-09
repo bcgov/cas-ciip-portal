@@ -50,7 +50,7 @@ export const NaicsCodeSelectionComponent: React.FunctionComponent<Props> = ({
 
           .scrollable {
             overflow-y: scroll;
-            max-height: calc(100vh - 108px - 60px - 2.4rem - 146px);
+            max-height: calc(100vh - 180px);
           }
           .scrollable::-webkit-scrollbar {
             -webkit-appearance: none;

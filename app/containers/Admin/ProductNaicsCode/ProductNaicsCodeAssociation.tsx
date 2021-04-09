@@ -88,7 +88,7 @@ export const ProductNaicsCodeAssociationContainer: React.FunctionComponent<Props
           )}
         </Col>
       </Row>
-      <style jsx>{`
+      <style jsx global>{`
         .bc-card-header {
           color: white;
           background: #003366;
