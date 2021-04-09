@@ -19,6 +19,17 @@ describe('The application-review page', () => {
         ' $fragmentRefs': {
           ApplicationRevisionStatusContainer_applicationRevisionStatus: true
         }
+      },
+      applicationReviewStepsByApplicationId: {
+        edges: [
+          {
+            node: {
+              ' $fragmentRefs': {
+                ReviewSidebar_applicationReviewStep: true
+              }
+            }
+          }
+        ]
       }
     },
     applicationRevision: {
@@ -63,6 +74,17 @@ describe('The application-review page', () => {
           ' $fragmentRefs': {
             ApplicationRevisionStatusContainer_applicationRevisionStatus: true
           }
+        },
+        applicationReviewStepsByApplicationId: {
+          edges: [
+            {
+              node: {
+                ' $fragmentRefs': {
+                  ReviewSidebar_applicationReviewStep: true
+                }
+              }
+            }
+          ]
         }
       },
       applicationRevision: {

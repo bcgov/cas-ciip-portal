@@ -52,6 +52,17 @@ exports[`The application-review page matches the last accepted Snapshot 1`] = `
             " $fragmentRefs": Object {
               "ApplicationDetailsContainer_application": true,
             },
+            "applicationReviewStepsByApplicationId": Object {
+              "edges": Array [
+                Object {
+                  "node": Object {
+                    " $fragmentRefs": Object {
+                      "ReviewSidebar_applicationReviewStep": true,
+                    },
+                  },
+                },
+              ],
+            },
             "reviewRevisionStatus": Object {
               " $fragmentRefs": Object {
                 "ApplicationRevisionStatusContainer_applicationRevisionStatus": true,
@@ -69,6 +80,17 @@ exports[`The application-review page matches the last accepted Snapshot 1`] = `
             "application": Object {
               " $fragmentRefs": Object {
                 "ApplicationDetailsContainer_application": true,
+              },
+              "applicationReviewStepsByApplicationId": Object {
+                "edges": Array [
+                  Object {
+                    "node": Object {
+                      " $fragmentRefs": Object {
+                        "ReviewSidebar_applicationReviewStep": true,
+                      },
+                    },
+                  },
+                ],
               },
               "reviewRevisionStatus": Object {
                 " $fragmentRefs": Object {
