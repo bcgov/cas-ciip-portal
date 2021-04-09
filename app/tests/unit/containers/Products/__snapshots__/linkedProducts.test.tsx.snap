@@ -1,0 +1,256 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Linked Prdocuts should match the last snapshot 1`] = `
+<Modal
+  animation={true}
+  autoFocus={true}
+  backdrop={true}
+  centered={true}
+  dialogAs={
+    Object {
+      "$$typeof": Symbol(react.forward_ref),
+      "displayName": "ModalDialog",
+      "render": [Function],
+    }
+  }
+  enforceFocus={true}
+  keyboard={true}
+  onHide={[Function]}
+  restoreFocus={true}
+  show={true}
+  size="xl"
+>
+  <ModalHeader
+    closeButton={true}
+    closeLabel="Close"
+    style={
+      Object {
+        "background": "#003366",
+        "color": "white",
+      }
+    }
+  >
+    <ModalTitle>
+      Product Associations
+    </ModalTitle>
+  </ModalHeader>
+  <ModalBody
+    style={
+      Object {
+        "background": "#f5f5f5",
+      }
+    }
+  >
+    <Container
+      fluid={false}
+    >
+      <Row
+        noGutters={false}
+      >
+        <Col
+          md={12}
+        >
+          <h5
+            className="jsx-868046180"
+          >
+            Add/Edit Associations
+          </h5>
+          <hr
+            className="jsx-868046180"
+          />
+          <p
+            className="jsx-868046180"
+          >
+            When you specify one or more products on the right, applications reporting the product on the left will be prompted to report these products as well.
+          </p>
+          <p
+            className="jsx-868046180"
+          >
+            Press the '+' button and select a product to add an association, press the '-' button to remove an association. Deleting an association will not delete the products themselves.
+          </p>
+          <p
+            className="jsx-868046180"
+          >
+            Once you have created all the necessary associations, press 'Save' to apply them.
+          </p>
+          <hr
+            className="jsx-868046180"
+          />
+          <br
+            className="jsx-868046180"
+          />
+        </Col>
+      </Row>
+      <Row
+        noGutters={false}
+      >
+        <Col
+          md={3}
+        >
+          <h4
+            className="jsx-868046180"
+          >
+            Product Name:
+          </h4>
+        </Col>
+        <Col
+          md={9}
+        >
+          <h4
+            className="jsx-868046180"
+          >
+            Associated Products:
+          </h4>
+        </Col>
+      </Row>
+       
+      <Row
+        noGutters={false}
+      >
+        <Col
+          md={3}
+        >
+          <h5
+            className="jsx-868046180"
+          >
+            test product 1
+          </h5>
+        </Col>
+        <Col
+          md={7}
+        >
+          <SearchDropdownComponent
+            id="search products"
+            inputProps={
+              Object {
+                "id": "abc",
+              }
+            }
+            onBlur={[Function]}
+            onChange={[Function]}
+            onMenuToggle={[Function]}
+            options={Array []}
+            placeholder="Search Products.."
+            selected={null}
+          />
+        </Col>
+        <Col
+          md={2}
+        >
+          <Button
+            active={false}
+            disabled={false}
+            onClick={[Function]}
+            variant="outline-primary"
+          >
+            + Link Product
+          </Button>
+        </Col>
+      </Row>
+      <Row
+        noGutters={false}
+        style={
+          Object {
+            "marginTop": "20px",
+          }
+        }
+      >
+        <Col
+          md={
+            Object {
+              "offset": 3,
+              "span": 9,
+            }
+          }
+        >
+          <ForwardRef
+            bordered={true}
+            hover={true}
+            striped={true}
+          >
+            <thead
+              className="jsx-868046180"
+              style={
+                Object {
+                  "textAlign": "center",
+                }
+              }
+            >
+              <tr
+                className="jsx-868046180"
+              >
+                <th
+                  className="jsx-868046180"
+                >
+                  Product
+                </th>
+                <th
+                  className="jsx-868046180"
+                >
+                  Remove
+                </th>
+              </tr>
+            </thead>
+            <tbody
+              className="jsx-868046180"
+            >
+              <tr
+                className="jsx-868046180"
+              >
+                <td
+                  className="jsx-868046180"
+                >
+                  linked product 1
+                </td>
+                <td
+                  className="jsx-868046180"
+                  style={
+                    Object {
+                      "textAlign": "center",
+                    }
+                  }
+                >
+                  <Button
+                    active={false}
+                    disabled={false}
+                    onClick={[Function]}
+                    variant="outline-danger"
+                  >
+                    -
+                  </Button>
+                </td>
+              </tr>
+            </tbody>
+          </ForwardRef>
+        </Col>
+      </Row>
+      <Row
+        noGutters={false}
+      >
+        <Col
+          md={
+            Object {
+              "offset": 11,
+              "span": 1,
+            }
+          }
+        >
+          <Button
+            active={false}
+            disabled={false}
+            onClick={[Function]}
+            variant="secondary"
+          >
+            Close
+          </Button>
+        </Col>
+      </Row>
+    </Container>
+  </ModalBody>
+  <JSXStyle
+    id="868046180"
+  >
+    .close{color:white;}
+  </JSXStyle>
+</Modal>
+`;

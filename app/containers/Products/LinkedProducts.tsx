@@ -15,7 +15,7 @@ interface Props {
   relay: RelayProp;
 }
 
-const LinkedProducts: React.FunctionComponent<Props> = ({
+export const LinkedProducts: React.FunctionComponent<Props> = ({
   product,
   setLinkProductModalShow,
   query,
