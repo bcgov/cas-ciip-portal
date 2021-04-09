@@ -44,3 +44,4 @@ const deleteReviewCommentMutation = async (
 };
 
 export default deleteReviewCommentMutation;
+export {mutation};
