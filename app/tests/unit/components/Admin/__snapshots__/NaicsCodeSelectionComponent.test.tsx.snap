@@ -1,0 +1,90 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The NaicsCodeList component should render a list of NAICS codes 1`] = `
+Array [
+  <div
+    className="jsx-3751310415 scrollable"
+    tabIndex={0}
+  >
+    <ListGroup
+      variant="flush"
+    >
+      <ForwardRef
+        as="div"
+        className="list-group list-group-flush"
+        onSelect={[Function]}
+      >
+        <div
+          className="list-group list-group-flush"
+          onKeyDown={[Function]}
+        >
+          <ListGroupItem
+            action={true}
+            active={false}
+            disabled={false}
+            onClick={[Function]}
+          >
+            <ForwardRef
+              as="button"
+              className="list-group-item list-group-item-action"
+              disabled={false}
+              eventKey={null}
+              onClick={[Function]}
+            >
+              <button
+                className="list-group-item list-group-item-action"
+                data-rb-event-key={null}
+                disabled={false}
+                onClick={[Function]}
+              >
+                description_1
+                <br
+                  className="jsx-3751310415"
+                />
+                <b
+                  className="jsx-3751310415"
+                >
+                  123ABC
+                </b>
+              </button>
+            </ForwardRef>
+          </ListGroupItem>
+          <ListGroupItem
+            action={true}
+            active={false}
+            disabled={false}
+            onClick={[Function]}
+          >
+            <ForwardRef
+              as="button"
+              className="list-group-item list-group-item-action"
+              disabled={false}
+              eventKey={null}
+              onClick={[Function]}
+            >
+              <button
+                className="list-group-item list-group-item-action"
+                data-rb-event-key={null}
+                disabled={false}
+                onClick={[Function]}
+              >
+                some other description
+                <br
+                  className="jsx-3751310415"
+                />
+                <b
+                  className="jsx-3751310415"
+                >
+                  999999
+                </b>
+              </button>
+            </ForwardRef>
+          </ListGroupItem>
+        </div>
+      </ForwardRef>
+    </ListGroup>
+  </div>,
+  "",
+  "",
+]
+`;

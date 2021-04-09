@@ -37,10 +37,6 @@ const SearchDropdownWidget: React.FunctionComponent<WidgetProps> = ({
     onBlur(id, value);
   };
 
-  const handleMenuToggle = (...args) => {
-    console.log('menu toggle', args);
-  };
-
   return (
     <SearchDropdown
       id={id}
@@ -50,7 +46,6 @@ const SearchDropdownWidget: React.FunctionComponent<WidgetProps> = ({
       selected={getSelected()}
       onChange={handleChange}
       onBlur={handleBlur}
-      onMenuToggle={handleMenuToggle}
     />
   );
 };

@@ -10,6 +10,7 @@ import ProgramAdministration from 'components/Dashboard/programAdministration';
 import ReportAProblem from 'components/Dashboard/reportAProblem';
 import getConfig from 'next/config';
 import {ADMIN_GROUP} from 'data/group-constants';
+import FormConfiguration from 'components/Dashboard/formConfiguration';
 
 const ALLOWED_GROUPS = ADMIN_GROUP;
 
@@ -40,6 +41,7 @@ class Admin extends Component<Props> {
           <Row>
             <ProgramAdministration />
             <ReportingOperations />
+            <FormConfiguration />
             <UserManagement />
             <ReportAProblem
               supportUrl={

@@ -1,0 +1,297 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The product naics code association component renders a list of naics codes and a helper message when no naics is selected 1`] = `
+Array [
+  <Row
+    className="mb-5"
+    noGutters={false}
+  >
+    <div
+      className="mb-5 row"
+    >
+      <Col
+        className="col-md-auto"
+      >
+        <div
+          className="col-md-auto col"
+        >
+          <a
+            className="jsx-4064971042 alert-link"
+            href="/admin/naics-codes"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+          >
+            Manage Industry (NAICS) Codes
+          </a>
+        </div>
+      </Col>
+      <Col>
+        <div
+          className="col"
+        >
+          <a
+            className="jsx-4064971042 alert-link"
+            href="/admin/products-benchmarks"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+          >
+            Manage Products
+          </a>
+        </div>
+      </Col>
+    </div>
+  </Row>,
+  <Row
+    noGutters={false}
+  >
+    <div
+      className="row"
+    >
+      <Col
+        md="4"
+      >
+        <div
+          className="col-md-4"
+        >
+          <Card
+            body={false}
+          >
+            <div
+              className="card"
+            >
+              <CardHeader
+                className="bc-card-header"
+              >
+                <div
+                  className="bc-card-header card-header"
+                >
+                  Select an Industry (NAICS) code:
+                </div>
+              </CardHeader>
+              Array [
+                <div
+                  className="jsx-3751310415 scrollable"
+                  tabIndex={0}
+                >
+                  <ListGroup
+                    variant="flush"
+                  >
+                    <ForwardRef
+                      as="div"
+                      className="list-group list-group-flush"
+                      onSelect={[Function]}
+                    >
+                      <div
+                        className="list-group list-group-flush"
+                        onKeyDown={[Function]}
+                      >
+                        <ListGroupItem
+                          action={true}
+                          active={false}
+                          disabled={false}
+                          onClick={[Function]}
+                        >
+                          <ForwardRef
+                            as="button"
+                            className="list-group-item list-group-item-action"
+                            disabled={false}
+                            eventKey={null}
+                            onClick={[Function]}
+                          >
+                            <button
+                              className="list-group-item list-group-item-action"
+                              data-rb-event-key={null}
+                              disabled={false}
+                              onClick={[Function]}
+                            >
+                              test code
+                              <br
+                                className="jsx-3751310415"
+                              />
+                              <b
+                                className="jsx-3751310415"
+                              >
+                                123
+                              </b>
+                            </button>
+                          </ForwardRef>
+                        </ListGroupItem>
+                      </div>
+                    </ForwardRef>
+                  </ListGroup>
+                </div>,
+                "",
+                "",
+              ]
+            </div>
+          </Card>
+        </div>
+      </Col>
+      <Col
+        md="8"
+      >
+        <div
+          className="col-md-8"
+        >
+          <Row
+            noGutters={false}
+          >
+            <div
+              className="row"
+            >
+              <Col>
+                <div
+                  className="col"
+                >
+                  Please select a NAICS code on the left to add allowable products
+                </div>
+              </Col>
+            </div>
+          </Row>
+        </div>
+      </Col>
+    </div>
+  </Row>,
+  "",
+]
+`;
+
+exports[`The product naics code association component renders the associated components when a naics is selected 1`] = `
+Array [
+  <Row
+    className="mb-5"
+    noGutters={false}
+  >
+    <div
+      className="mb-5 row"
+    >
+      <Col
+        className="col-md-auto"
+      >
+        <div
+          className="col-md-auto col"
+        >
+          <a
+            className="jsx-4064971042 alert-link"
+            href="/admin/naics-codes"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+          >
+            Manage Industry (NAICS) Codes
+          </a>
+        </div>
+      </Col>
+      <Col>
+        <div
+          className="col"
+        >
+          <a
+            className="jsx-4064971042 alert-link"
+            href="/admin/products-benchmarks"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+          >
+            Manage Products
+          </a>
+        </div>
+      </Col>
+    </div>
+  </Row>,
+  <Row
+    noGutters={false}
+  >
+    <div
+      className="row"
+    >
+      <Col
+        md="4"
+      >
+        <div
+          className="col-md-4"
+        >
+          <Card
+            body={false}
+          >
+            <div
+              className="card"
+            >
+              <CardHeader
+                className="bc-card-header"
+              >
+                <div
+                  className="bc-card-header card-header"
+                >
+                  Select an Industry (NAICS) code:
+                </div>
+              </CardHeader>
+              Array [
+                <div
+                  className="jsx-3751310415 scrollable"
+                  tabIndex={0}
+                >
+                  <ListGroup
+                    variant="flush"
+                  >
+                    <ForwardRef
+                      as="div"
+                      className="list-group list-group-flush"
+                      onSelect={[Function]}
+                    >
+                      <div
+                        className="list-group list-group-flush"
+                        onKeyDown={[Function]}
+                      >
+                        <ListGroupItem
+                          action={true}
+                          active={true}
+                          disabled={false}
+                          onClick={[Function]}
+                        >
+                          <ForwardRef
+                            as="button"
+                            className="list-group-item active list-group-item-action"
+                            disabled={false}
+                            eventKey={null}
+                            onClick={[Function]}
+                          >
+                            <button
+                              className="list-group-item active list-group-item-action"
+                              data-rb-event-key={null}
+                              disabled={false}
+                              onClick={[Function]}
+                            >
+                              test code
+                              <br
+                                className="jsx-3751310415"
+                              />
+                              <b
+                                className="jsx-3751310415"
+                              >
+                                1234
+                              </b>
+                            </button>
+                          </ForwardRef>
+                        </ListGroupItem>
+                      </div>
+                    </ForwardRef>
+                  </ListGroup>
+                </div>,
+                "",
+                "",
+              ]
+            </div>
+          </Card>
+        </div>
+      </Col>
+      <Col
+        md="8"
+      >
+        <div
+          className="col-md-8"
+        />
+      </Col>
+    </div>
+  </Row>,
+  "",
+]
+`;

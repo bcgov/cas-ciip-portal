@@ -1,0 +1,115 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The allowable products table for a NAICS code should render an alert box when there are no allowable products 1`] = `
+<Alert
+  closeLabel="Close alert"
+  id="no-search-results"
+  show={true}
+  transition={
+    Object {
+      "$$typeof": Symbol(react.forward_ref),
+      "defaultProps": Object {
+        "appear": false,
+        "in": false,
+        "mountOnEnter": false,
+        "timeout": 300,
+        "unmountOnExit": false,
+      },
+      "displayName": "Fade",
+      "render": [Function],
+    }
+  }
+  variant="secondary"
+>
+  No allowed products have been set for this NAICS code.
+</Alert>
+`;
+
+exports[`The allowable products table for a NAICS code should render sorted table rows when there are allowable products 1`] = `
+<Fragment>
+  <ForwardRef
+    bordered={true}
+    hover={true}
+    striped={true}
+  >
+    <thead
+      className="jsx-1511681825"
+    >
+      <tr
+        className="jsx-1511681825"
+      >
+        <th
+          className="jsx-1511681825"
+          scope="col"
+        >
+          Product Name
+        </th>
+        <th
+          className="jsx-1511681825 centered"
+          scope="col"
+        >
+          Mandatory
+        </th>
+        <th
+          className="jsx-1511681825"
+          scope="col"
+        />
+      </tr>
+    </thead>
+    <tbody
+      className="jsx-1511681825"
+    >
+      <Relay(AllowableProductsTableRowComponent)
+        key="test-id-1"
+        naicsCodeId="test_ID"
+        productNaicsCode={
+          Object {
+            " $fragmentRefs": Object {
+              "AllowableProductsTableRow_productNaicsCode": true,
+            },
+            "id": "test-id-1",
+            "productByProductId": Object {
+              "productName": "A",
+            },
+          }
+        }
+      />
+      <Relay(AllowableProductsTableRowComponent)
+        key="test-id-3"
+        naicsCodeId="test_ID"
+        productNaicsCode={
+          Object {
+            " $fragmentRefs": Object {
+              "AllowableProductsTableRow_productNaicsCode": true,
+            },
+            "id": "test-id-3",
+            "productByProductId": Object {
+              "productName": "B",
+            },
+          }
+        }
+      />
+      <Relay(AllowableProductsTableRowComponent)
+        key="test-id-2"
+        naicsCodeId="test_ID"
+        productNaicsCode={
+          Object {
+            " $fragmentRefs": Object {
+              "AllowableProductsTableRow_productNaicsCode": true,
+            },
+            "id": "test-id-2",
+            "productByProductId": Object {
+              "productName": "C",
+            },
+          }
+        }
+      />
+    </tbody>
+  </ForwardRef>
+  <JSXStyle
+    id="1511681825"
+  >
+    th.jsx-1511681825{color:white;background:#003366;}th.centered.jsx-1511681825{text-align:center;}
+  </JSXStyle>
+</Fragment>
+`;

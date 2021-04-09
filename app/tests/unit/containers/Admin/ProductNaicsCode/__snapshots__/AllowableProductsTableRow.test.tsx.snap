@@ -1,0 +1,134 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The allowable product table row for a given NAICS code Should render NO for a non-mandatory product 1`] = `
+<Fragment>
+  <DeleteConfirmationModal
+    deleteObject={
+      Object {
+        "deleteItem": "One fancy non-mandatory product",
+        "deleteItemDescription": "",
+        "deleteName": "allowed product",
+      }
+    }
+    handleDelete={[Function]}
+    onClose={[Function]}
+    show={false}
+  />
+  <tr
+    className="jsx-4022232599"
+  >
+    <td
+      className="jsx-4022232599"
+    >
+      One fancy non-mandatory product
+    </td>
+    <td
+      className="jsx-4022232599 centered"
+    >
+      No
+    </td>
+    <td
+      className="jsx-4022232599 centered"
+    >
+      <Button
+        active={false}
+        disabled={false}
+        onClick={[Function]}
+        size="sm"
+        variant="outline-danger"
+      >
+        Delete
+      </Button>
+    </td>
+  </tr>
+  <JSXStyle
+    id="4022232599"
+  >
+    td.centered.jsx-4022232599{text-align:center;}
+  </JSXStyle>
+</Fragment>
+`;
+
+exports[`The allowable product table row for a given NAICS code Should render YES and a checkmark for a mandatory product 1`] = `
+<Fragment>
+  <DeleteConfirmationModal
+    deleteObject={
+      Object {
+        "deleteItem": "One fancy non-mandatory product",
+        "deleteItemDescription": "",
+        "deleteName": "allowed product",
+      }
+    }
+    handleDelete={[Function]}
+    onClose={[Function]}
+    show={false}
+  />
+  <tr
+    className="jsx-4022232599"
+  >
+    <td
+      className="jsx-4022232599"
+    >
+      One fancy non-mandatory product
+    </td>
+    <td
+      className="jsx-4022232599 centered"
+    >
+      <FontAwesomeIcon
+        border={false}
+        className=""
+        fixedWidth={false}
+        flip={null}
+        icon={
+          Object {
+            "icon": Array [
+              512,
+              512,
+              Array [],
+              "f00c",
+              "M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z",
+            ],
+            "iconName": "check",
+            "prefix": "fas",
+          }
+        }
+        inverse={false}
+        listItem={false}
+        mask={null}
+        pull={null}
+        pulse={false}
+        rotation={null}
+        size={null}
+        spin={false}
+        swapOpacity={false}
+        symbol={false}
+        title=""
+        transform={null}
+      />
+      <b
+        className="jsx-4022232599"
+      >
+         Yes
+      </b>
+    </td>
+    <td
+      className="jsx-4022232599 centered"
+    >
+      <Button
+        active={false}
+        disabled={false}
+        onClick={[Function]}
+        size="sm"
+        variant="outline-danger"
+      >
+        Delete
+      </Button>
+    </td>
+  </tr>
+  <JSXStyle
+    id="4022232599"
+  >
+    td.centered.jsx-4022232599{text-align:center;}
+  </JSXStyle>
+</Fragment>
+`;
