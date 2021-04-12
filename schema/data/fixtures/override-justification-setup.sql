@@ -9,7 +9,6 @@ do \$$
     disable_triggers := '
       {
         "application": ["_send_draft_application_email"],
-        "certification_url": ["_signed_by_certifier_email", "_certification_request_email"],
         "application_revision_status": ["_status_change_email"],
         "ciip_user_organisation": ["_send_access_approved_email", "_send_request_for_access_email", "_set_user_id"]
       }
