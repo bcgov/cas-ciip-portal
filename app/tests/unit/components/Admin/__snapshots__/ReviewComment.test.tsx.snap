@@ -1,0 +1,265 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ReviewComment interactable (viewOnly = false) comments should match the last accepted snapshot 1`] = `
+<li
+  className="jsx-3479457452"
+>
+  <div
+    className="jsx-3479457452 text-block"
+  >
+    <p
+      className="jsx-3479457452"
+    >
+      Here is a comment for testing.
+    </p>
+    <p
+      className="jsx-3479457452 timestamp"
+    >
+      <span
+        className="jsx-3479457452"
+      >
+        Old MacDonald
+      </span>
+      Apr 7, 2021 08:01 PM (PDT)
+    </p>
+  </div>
+  <div
+    className="jsx-3479457452"
+  >
+    <Button
+      active={false}
+      disabled={false}
+      onClick={[Function]}
+      size="sm"
+      style={
+        Object {
+          "marginRight": "0.5em",
+        }
+      }
+      variant="outline-primary"
+    >
+      Resolve
+    </Button>
+    <OverlayTrigger
+      defaultShow={false}
+      overlay={[Function]}
+      placement="top"
+      trigger={
+        Array [
+          "hover",
+          "focus",
+        ]
+      }
+    >
+      <Button
+        active={false}
+        aria-label="Delete"
+        disabled={false}
+        onClick={[Function]}
+        size="sm"
+        variant="secondary"
+      >
+        <FontAwesomeIcon
+          border={false}
+          className=""
+          fixedWidth={false}
+          flip={null}
+          icon={
+            Object {
+              "icon": Array [
+                448,
+                512,
+                Array [],
+                "f1f8",
+                "M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z",
+              ],
+              "iconName": "trash",
+              "prefix": "fas",
+            }
+          }
+          inverse={false}
+          listItem={false}
+          mask={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          size={null}
+          spin={false}
+          swapOpacity={false}
+          symbol={false}
+          title=""
+          transform={null}
+        />
+      </Button>
+    </OverlayTrigger>
+  </div>
+  <JSXStyle
+    id="3479457452"
+  >
+    li.jsx-3479457452{list-style-type:none;padding:0;margin-bottom:1rem;width:100%;display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;}li.jsx-3479457452:last-of-type{margin:0;}.text-block.jsx-3479457452{max-width:calc(100% - 120px - 0.5rem);}.text-block.jsx-3479457452~div.jsx-3479457452{margin-left:0.5rem;}p.jsx-3479457452{margin-bottom:0.5em;line-height:1.2;font-size:0.9rem;}.timestamp.jsx-3479457452{font-size:0.8rem;margin-bottom:0;line-height:1.5;color:#666;}.timestamp.jsx-3479457452 span.jsx-3479457452{margin-right:0.5em;}
+  </JSXStyle>
+</li>
+`;
+
+exports[`ReviewComment interactable (viewOnly = false) comments should match the last accepted snapshot 2`] = `
+<li
+  className="jsx-3479457452"
+>
+  <div
+    className="jsx-3479457452 text-block"
+  >
+    <p
+      className="jsx-3479457452"
+    >
+      Here is a comment for testing.
+    </p>
+    <p
+      className="jsx-3479457452 timestamp"
+    >
+      <span
+        className="jsx-3479457452"
+      >
+        Old MacDonald
+      </span>
+      Apr 7, 2021 08:01 PM (PDT)
+    </p>
+  </div>
+  <div
+    className="jsx-3479457452"
+  >
+    <Button
+      active={false}
+      disabled={false}
+      onClick={[Function]}
+      size="sm"
+      style={
+        Object {
+          "marginRight": "0.5em",
+        }
+      }
+      variant="outline-primary"
+    >
+      Unresolve
+    </Button>
+    <OverlayTrigger
+      defaultShow={false}
+      overlay={[Function]}
+      placement="top"
+      trigger={
+        Array [
+          "hover",
+          "focus",
+        ]
+      }
+    >
+      <Button
+        active={false}
+        aria-label="Delete"
+        disabled={false}
+        onClick={[Function]}
+        size="sm"
+        variant="secondary"
+      >
+        <FontAwesomeIcon
+          border={false}
+          className=""
+          fixedWidth={false}
+          flip={null}
+          icon={
+            Object {
+              "icon": Array [
+                448,
+                512,
+                Array [],
+                "f1f8",
+                "M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z",
+              ],
+              "iconName": "trash",
+              "prefix": "fas",
+            }
+          }
+          inverse={false}
+          listItem={false}
+          mask={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          size={null}
+          spin={false}
+          swapOpacity={false}
+          symbol={false}
+          title=""
+          transform={null}
+        />
+      </Button>
+    </OverlayTrigger>
+  </div>
+  <JSXStyle
+    id="3479457452"
+  >
+    li.jsx-3479457452{list-style-type:none;padding:0;margin-bottom:1rem;width:100%;display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;}li.jsx-3479457452:last-of-type{margin:0;}.text-block.jsx-3479457452{max-width:calc(100% - 120px - 0.5rem);}.text-block.jsx-3479457452~div.jsx-3479457452{margin-left:0.5rem;}p.jsx-3479457452{margin-bottom:0.5em;line-height:1.2;font-size:0.9rem;}.timestamp.jsx-3479457452{font-size:0.8rem;margin-bottom:0;line-height:1.5;color:#666;}.timestamp.jsx-3479457452 span.jsx-3479457452{margin-right:0.5em;}
+  </JSXStyle>
+</li>
+`;
+
+exports[`ReviewComment non-interactable (viewOnly) comments should match the last accepted snapshot 1`] = `
+<li
+  className="jsx-3479457452"
+>
+  <div
+    className="jsx-3479457452 text-block"
+  >
+    <p
+      className="jsx-3479457452"
+    >
+      Here is a comment for testing.
+    </p>
+    <p
+      className="jsx-3479457452 timestamp"
+    >
+      <span
+        className="jsx-3479457452"
+      >
+        Old MacDonald
+      </span>
+      Apr 7, 2021 08:01 PM (PDT)
+    </p>
+  </div>
+  <JSXStyle
+    id="3479457452"
+  >
+    li.jsx-3479457452{list-style-type:none;padding:0;margin-bottom:1rem;width:100%;display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;}li.jsx-3479457452:last-of-type{margin:0;}.text-block.jsx-3479457452{max-width:calc(100% - 120px - 0.5rem);}.text-block.jsx-3479457452~div.jsx-3479457452{margin-left:0.5rem;}p.jsx-3479457452{margin-bottom:0.5em;line-height:1.2;font-size:0.9rem;}.timestamp.jsx-3479457452{font-size:0.8rem;margin-bottom:0;line-height:1.5;color:#666;}.timestamp.jsx-3479457452 span.jsx-3479457452{margin-right:0.5em;}
+  </JSXStyle>
+</li>
+`;
+
+exports[`ReviewComment non-interactable (viewOnly) comments should match the last accepted snapshot 2`] = `
+<li
+  className="jsx-3479457452"
+>
+  <div
+    className="jsx-3479457452 text-block"
+  >
+    <p
+      className="jsx-3479457452"
+    >
+      Here is a comment for testing.
+    </p>
+    <p
+      className="jsx-3479457452 timestamp"
+    >
+      <span
+        className="jsx-3479457452"
+      >
+        Old MacDonald
+      </span>
+      Apr 7, 2021 08:01 PM (PDT)
+    </p>
+  </div>
+  <JSXStyle
+    id="3479457452"
+  >
+    li.jsx-3479457452{list-style-type:none;padding:0;margin-bottom:1rem;width:100%;display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;}li.jsx-3479457452:last-of-type{margin:0;}.text-block.jsx-3479457452{max-width:calc(100% - 120px - 0.5rem);}.text-block.jsx-3479457452~div.jsx-3479457452{margin-left:0.5rem;}p.jsx-3479457452{margin-bottom:0.5em;line-height:1.2;font-size:0.9rem;}.timestamp.jsx-3479457452{font-size:0.8rem;margin-bottom:0;line-height:1.5;color:#666;}.timestamp.jsx-3479457452 span.jsx-3479457452{margin-right:0.5em;}
+  </JSXStyle>
+</li>
+`;

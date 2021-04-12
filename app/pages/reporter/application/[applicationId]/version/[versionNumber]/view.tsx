@@ -50,12 +50,18 @@ class ViewApplication extends Component<Props> {
           applicationRevisionStatus(versionNumberInput: $versionNumber) {
             applicationRevisionStatus
           }
-          reviewCommentsByApplicationId(
-            filter: {resolved: {isNull: true}, deletedBy: {isNull: true}}
-          ) {
+          applicationReviewStepsByApplicationId {
             edges {
               node {
-                description
+                reviewCommentsByApplicationReviewStepId(
+                  filter: {resolved: {isNull: true}, deletedAt: {isNull: true}}
+                ) {
+                  edges {
+                    node {
+                      description
+                    }
+                  }
+                }
               }
             }
           }
@@ -84,9 +90,17 @@ class ViewApplication extends Component<Props> {
     const {session} = this.props.query;
     const {query, router} = this.props;
     const {application} = query;
-    const reviewComments = application?.reviewCommentsByApplicationId.edges.map(
-      (result) => result.node.description
-    );
+    const reviewSteps =
+      application?.applicationReviewStepsByApplicationId.edges;
+    // Merge review comments from all applicationReviewSteps into one list:
+    const reviewComments = reviewSteps?.reduce((mergedStepComments, step) => {
+      const stepComments =
+        step.node.reviewCommentsByApplicationReviewStepId.edges;
+      return [
+        ...mergedStepComments,
+        ...stepComments.map((step) => step.node.description)
+      ];
+    }, []);
     const status =
       application?.applicationRevisionStatus?.applicationRevisionStatus;
 

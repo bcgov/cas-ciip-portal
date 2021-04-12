@@ -11,7 +11,6 @@ const mutation = graphql`
     updateReviewComment(input: $input) {
       reviewComment {
         resolved
-        ...ApplicationCommentsByForm_reviewComment
       }
     }
   }

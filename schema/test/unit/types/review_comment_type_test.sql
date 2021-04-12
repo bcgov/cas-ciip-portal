@@ -16,8 +16,8 @@ select has_enum(
 select enum_has_labels(
   'ggircs_portal',
   'review_comment_type',
-  ARRAY['approval', 'general', 'internal', 'requested change'],
-  'Type review_comment_type should have enum labels {approval, general, internal, requested change}'
+  ARRAY['general', 'internal'],
+  'Type review_comment_type should have enum labels {general, internal}'
 );
 
 select finish();

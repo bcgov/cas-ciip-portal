@@ -4,23 +4,6 @@
 
 begin;
 
-  create or replace function ggircs_portal.form_result_has_unresolved_comments(form_result ggircs_portal.form_result)
-  returns boolean
-  as
-  $body$
-    declare
-    begin
-        return (select exists(select * from ggircs_portal.review_comment rc
-                             where rc.application_id = form_result.application_id
-                             and rc.form_id = form_result.form_id
-                             and rc.comment_type = 'requested change'
-                             and rc.deleted_by is null));
-    end;
-  $body$
-  language 'plpgsql' stable;
-
-  grant execute on function ggircs_portal.form_result_has_unresolved_comments to ciip_administrator, ciip_analyst, ciip_industry_user;
-
-comment on function ggircs_portal.form_result_has_unresolved_comments is 'Computed column for graphql to return a boolean value for whether a form result has unresolved comments';
+  drop function ggircs_portal.form_result_has_unresolved_comments;
 
 commit;

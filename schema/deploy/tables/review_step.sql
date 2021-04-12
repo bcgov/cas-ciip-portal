@@ -33,6 +33,6 @@ comment on column ggircs_portal.review_step.is_active is 'Boolean value indicate
 
 -- Create initial review step rows
 insert into ggircs_portal.review_step(step_name, is_active)
-  values ('legacy', false), ('administrative', true), ('technical', true);
+  values ('other', false), ('administrative', true), ('technical', true);
 
 commit;
