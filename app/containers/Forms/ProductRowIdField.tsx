@@ -68,8 +68,8 @@ export const ProductRowIdFieldComponent: React.FunctionComponent<Props> = (
   );
 
   const invalidProduct = (productName) => (
-    <InputGroup className="mb-3">
-      <InputGroup.Text>{productName}</InputGroup.Text>
+    <InputGroup>
+      <InputGroup.Text className="col-md-12">{productName}</InputGroup.Text>
     </InputGroup>
   );
   // If product is valid (associated with reported NAICS code && not archived), render the Stringfield with fieldProps.
@@ -105,8 +105,6 @@ export default createFragmentContainer(ProductRowIdFieldComponent, {
           node {
             rowId
             productName
-            productState
-            isEnergyProduct
           }
         }
       }
@@ -118,7 +116,6 @@ export default createFragmentContainer(ProductRowIdFieldComponent, {
           node {
             rowId
             productName
-            productState
           }
         }
       }
@@ -126,7 +123,6 @@ export default createFragmentContainer(ProductRowIdFieldComponent, {
   `,
   naicsCode: graphql`
     fragment ProductRowIdField_naicsCode on NaicsCode {
-      id
       productsByNaicsCode: productsByProductNaicsCodeNaicsCodeIdAndProductId(
         filter: {productState: {equalTo: PUBLISHED}}
         orderBy: PRODUCT_NAME_ASC
@@ -135,7 +131,6 @@ export default createFragmentContainer(ProductRowIdFieldComponent, {
           node {
             rowId
             productName
-            productState
           }
         }
       }

@@ -138,14 +138,12 @@ export default createFragmentContainer(ProductFieldComponent, {
   `,
   naicsCode: graphql`
     fragment ProductField_naicsCode on NaicsCode {
-      id
       allProductsByNaicsCode: productsByProductNaicsCodeNaicsCodeIdAndProductId(
         orderBy: PRODUCT_NAME_ASC
       ) {
         edges {
           node {
             rowId
-            productName
             productState
           }
         }
