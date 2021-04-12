@@ -11,11 +11,9 @@ import createBenchmarkMutation from 'mutations/benchmark/createBenchmarkMutation
 import benchmarkSchemaFunction from './benchmark-schema';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faCog} from '@fortawesome/free-solid-svg-icons';
-import createLinkedProductMutation from 'mutations/linked_product/createLinkedProductMutation';
-import updateLinkedProductMutation from 'mutations/linked_product/updateLinkedProductMutation';
 import InnerModal from './InnerProductBenchmarkModal';
-import LinkedProductModal from './LinkedProductModal';
 import {dateTimeFormat} from 'functions/formatDates';
+import LinkedProducts from './LinkedProducts';
 
 interface Props {
   relay: RelayProp;
@@ -119,78 +117,6 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
     setBenchmarkModalShow(false);
   };
 
-  const createLinkedProduct = async (newLink: number) => {
-    const variables = {
-      input: {
-        linkedProduct: {
-          productId: product.rowId,
-          linkedProductId: newLink,
-          isDeleted: false
-        }
-      },
-      productId: product.id
-    };
-
-    await createLinkedProductMutation(relay.environment, variables);
-  };
-
-  const removeLinkedProduct = async (removeLink: {
-    productRowId: number;
-    linkId: number;
-  }) => {
-    const variables = {
-      input: {
-        rowId: removeLink.linkId,
-        linkedProductPatch: {
-          productId: product.rowId,
-          linkedProductId: removeLink.productRowId,
-          isDeleted: true
-        }
-      }
-    };
-
-    await updateLinkedProductMutation(relay.environment, variables);
-  };
-
-  const getLinkData = () => {
-    const dataArray = [];
-    if (!product) return [];
-    product.linkedProduct?.edges?.forEach((edge) => {
-      const dataObject = {productRowId: null, linkId: null};
-      dataObject.productRowId = edge.node.linkedProductId;
-      dataObject.linkId = edge.node.rowId;
-      dataArray.push(dataObject);
-    });
-    return dataArray;
-  };
-
-  const linkData = getLinkData();
-
-  const saveLinkedProducts = async (newData: IChangeEvent) => {
-    const previousLinks = [];
-    const newLinks = [];
-
-    linkData.forEach((obj) => {
-      previousLinks.push(obj.productRowId);
-    });
-    newData.formData.forEach((obj) => {
-      newLinks.push(obj.productRowId);
-    });
-
-    newLinks.forEach(async (id) => {
-      if (!previousLinks.includes(id)) {
-        await createLinkedProduct(id);
-      }
-    });
-
-    previousLinks.forEach(async (id, index) => {
-      if (!newLinks.includes(id)) {
-        await removeLinkedProduct(linkData[index]);
-      }
-    });
-    setLinkProductModalShow(false);
-  };
-
   /** Modals **/
 
   const editProductModal = (
@@ -290,14 +216,13 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
       </tr>
       {editProductModal}
       {editBenchmarkModal}
-      <LinkedProductModal
-        product={product}
-        linkProductModalShow={linkProductModalShow}
-        setLinkProductModalShow={setLinkProductModalShow}
-        query={query}
-        saveLinkedProducts={saveLinkedProducts}
-        linkData={linkData}
-      />
+      {linkProductModalShow && (
+        <LinkedProducts
+          product={product}
+          setLinkProductModalShow={setLinkProductModalShow}
+          query={query}
+        />
+      )}
       <style jsx global>
         {`
           .hidden-title label {
@@ -363,15 +288,7 @@ export default createFragmentContainer(ProductRowItemComponent, {
           }
         }
       }
-      linkedProduct {
-        edges {
-          node {
-            rowId
-            rowId
-            linkedProductId
-          }
-        }
-      }
+      ...LinkedProducts_product
     }
   `,
   query: graphql`
@@ -386,7 +303,7 @@ export default createFragmentContainer(ProductRowItemComponent, {
           }
         }
       }
-      ...ProductRowIdField_query
+      ...LinkedProducts_query
     }
   `
 });

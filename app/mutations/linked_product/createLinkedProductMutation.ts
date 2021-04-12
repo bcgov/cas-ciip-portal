@@ -1,4 +1,4 @@
-import {graphql} from 'react-relay';
+import {graphql, DeclarativeMutationConfig} from 'react-relay';
 import {
   createLinkedProductMutation as createLinkedProductMutationType,
   createLinkedProductMutationVariables
@@ -7,33 +7,46 @@ import RelayModernEnvironment from 'relay-runtime/lib/store/RelayModernEnvironme
 import BaseMutation from 'mutations/BaseMutation';
 
 const mutation = graphql`
-  mutation createLinkedProductMutation(
-    $input: CreateLinkedProductInput!
-    $productId: ID!
-  ) {
+  mutation createLinkedProductMutation($input: CreateLinkedProductInput!) {
     createLinkedProduct(input: $input) {
-      linkedProduct {
-        id
-        rowId
-        productId
-        linkedProductId
-      }
-      query {
-        product(id: $productId) {
-          ...ProductRowItemContainer_product
+      linkedProductEdge {
+        node {
+          id
+          rowId
+          linkedProductId
+          productByLinkedProductId {
+            productName
+          }
         }
       }
     }
   }
 `;
 
-const createProductMutation = async (
+const createLinkedProductMutation = async (
   environment: RelayModernEnvironment,
-  variables: createLinkedProductMutationVariables
+  variables: createLinkedProductMutationVariables,
+  parentProductId: string
 ) => {
+  const connectionKey = 'LinkedProducts_linkedProductsByProductId';
+  const configs: DeclarativeMutationConfig[] = [
+    {
+      type: 'RANGE_ADD',
+      parentID: parentProductId,
+      connectionInfo: [
+        {
+          key: connectionKey,
+          rangeBehavior: 'append'
+        }
+      ],
+      edgeName: 'linkedProductEdge'
+    }
+  ];
+
   return new BaseMutation<createLinkedProductMutationType>(
-    'create-product-mutation'
+    'create-linked-product-mutation',
+    configs
   ).performMutation(environment, mutation, variables);
 };
 
-export default createProductMutation;
+export default createLinkedProductMutation;
