@@ -5,6 +5,7 @@ import {
   deleteLinkedProductMutationVariables
 } from 'deleteLinkedProductMutation.graphql';
 import BaseMutation from 'mutations/BaseMutation';
+import {nowMoment} from 'functions/formatDates';
 
 import {RecordSourceSelectorProxy, ConnectionHandler} from 'relay-runtime';
 
@@ -23,11 +24,14 @@ const deleteLinkedProductMutation = async (
   variables: deleteLinkedProductMutationVariables,
   connectionId: string
 ) => {
+  variables.input.linkedProductPatch.isDeleted = true;
+  variables.input.linkedProductPatch.deletedAt = nowMoment().format(
+    'YYYY-MM-DDTHH:mm:ss'
+  );
   const optimisticResponse = {
     updateLinkedProduct: {
       linkedProduct: {
-        id: variables.input.id,
-        ...variables.input.linkedProductPatch
+        id: variables.input.id
       }
     }
   };

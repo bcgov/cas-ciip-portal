@@ -6,7 +6,6 @@ import SearchDropdown from 'components/SearchDropdown';
 import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
 import createLinkedProductMutation from 'mutations/linked_product/createLinkedProductMutation';
 import deleteLinkedProductMutation from 'mutations/linked_product/deleteLinkedProductMutation';
-import {nowMoment} from 'functions/formatDates';
 
 interface Props {
   product: LinkedProducts_product;
@@ -35,12 +34,13 @@ export const LinkedProductsContainer: React.FunctionComponent<Props> = ({
       nonEnergyProducts.edges
         .filter(
           ({node}) =>
-            ![product.rowId, ...currentlyLinkedProductIds].includes(node.rowId)
+            product.rowId !== node.rowId &&
+            !currentlyLinkedProductIds.includes(node.rowId)
         )
         .map(({node}) => {
           return {id: node.rowId, name: node.productName};
         }),
-    [nonEnergyProducts]
+    [nonEnergyProducts, currentlyLinkedProductIds]
   );
 
   const handleCreateLinkedProduct = async () => {
@@ -71,9 +71,7 @@ export const LinkedProductsContainer: React.FunctionComponent<Props> = ({
       input: {
         id: linkedProduct.id,
         linkedProductPatch: {
-          linkedProductId: linkedProduct.linkedProductId,
-          isDeleted: true,
-          deletedAt: nowMoment().format('YYYY-MM-DDTHH:mm:ss')
+          linkedProductId: linkedProduct.linkedProductId
         }
       }
     };
@@ -137,7 +135,7 @@ export const LinkedProductsContainer: React.FunctionComponent<Props> = ({
                 id="search-products"
                 options={searchOptions}
                 inputProps={{id: 'search-products'}}
-                placeholder="Search Products.."
+                placeholder="Search Products..."
                 selected={selected ? [selected] : []}
                 onChange={(option: {id: string | number; name: string}[]) =>
                   setSelected(option[0])
