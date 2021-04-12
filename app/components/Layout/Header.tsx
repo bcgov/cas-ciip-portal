@@ -70,7 +70,7 @@ const HeaderLayout = ({
               aria-label="Menu toggle"
               onClick={toggleNavMenu}
             >
-              <FontAwesomeIcon color="white" icon={faUser} size="2x" />
+              <FontAwesomeIcon color="#036" icon={faUser} size="2x" />
             </button>
           </div>
           <ul
@@ -232,6 +232,11 @@ const HeaderLayout = ({
             transition: color 0.15s ease-in-out,
               background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
               box-shadow 0.15s ease-in-out;
+          }
+          #menu-toggle {
+            background: #f8f9fa;
+            border-radius: 100%;
+            padding: 0.375rem 0.7rem;
           }
 
           /* Small desktop and up:
