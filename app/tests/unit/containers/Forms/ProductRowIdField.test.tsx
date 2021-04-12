@@ -18,17 +18,13 @@ describe('The ProductionRowIdField Component with published product matched to a
         {
           node: {
             rowId: 1,
-            productName: 'foo',
-            productState: 'PUBLISHED',
-            isEnergyProduct: false
+            productName: 'foo'
           }
         },
         {
           node: {
             rowId: 2,
-            productName: 'dontrenderme',
-            productState: 'PUBLISHED',
-            isEnergyProduct: false
+            productName: 'dontrenderme'
           }
         }
       ]
@@ -38,8 +34,7 @@ describe('The ProductionRowIdField Component with published product matched to a
         {
           node: {
             rowId: 3,
-            productName: 'bar',
-            productState: 'ARCHIVED'
+            productName: 'bar'
           }
         }
       ]
@@ -47,14 +42,12 @@ describe('The ProductionRowIdField Component with published product matched to a
   };
   const naicsCode: ProductRowIdField_naicsCode = {
     ' $refType': 'ProductRowIdField_naicsCode',
-    id: 'abc',
     productsByNaicsCode: {
       edges: [
         {
           node: {
             rowId: 1,
-            productName: 'foo',
-            productState: 'PUBLISHED'
+            productName: 'foo'
           }
         }
       ]
@@ -118,8 +111,7 @@ describe('The ProductionRowIdField Component with archived product', () => {
         {
           node: {
             rowId: 1,
-            productName: 'bar',
-            productState: 'ARCHIVED'
+            productName: 'bar'
           }
         }
       ]
@@ -127,7 +119,6 @@ describe('The ProductionRowIdField Component with archived product', () => {
   };
   const naicsCode: ProductRowIdField_naicsCode = {
     ' $refType': 'ProductRowIdField_naicsCode',
-    id: 'abc',
     productsByNaicsCode: {
       edges: []
     }
@@ -178,17 +169,13 @@ describe('The ProductionFields Component without naics code', () => {
         {
           node: {
             rowId: 1,
-            productName: 'foo',
-            productState: 'PUBLISHED',
-            isEnergyProduct: false
+            productName: 'foo'
           }
         },
         {
           node: {
             rowId: 1,
-            productName: 'dontrenderme',
-            productState: 'PUBLISHED',
-            isEnergyProduct: false
+            productName: 'dontrenderme'
           }
         }
       ]
@@ -198,8 +185,7 @@ describe('The ProductionFields Component without naics code', () => {
         {
           node: {
             rowId: 2,
-            productName: 'bar',
-            productState: 'ARCHIVED'
+            productName: 'bar'
           }
         }
       ]

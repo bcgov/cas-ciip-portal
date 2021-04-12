@@ -52,14 +52,12 @@ exports[`The ProductionFields Component with archived product matched to a naics
           "edges": Array [
             Object {
               "node": Object {
-                "productName": "bar",
                 "productState": "ARCHIVED",
                 "rowId": 1,
               },
             },
           ],
         },
-        "id": "abc",
       }
     }
     name="product"
@@ -354,14 +352,12 @@ exports[`The ProductionFields Component with archived product not matched to a n
           "edges": Array [
             Object {
               "node": Object {
-                "productName": "baz",
                 "productState": "ARCHIVED",
                 "rowId": 2,
               },
             },
           ],
         },
-        "id": "abc",
       }
     }
     name="product"
@@ -844,14 +840,12 @@ exports[`The ProductionFields Component with published product matched to a naic
           "edges": Array [
             Object {
               "node": Object {
-                "productName": "bar",
                 "productState": "PUBLISHED",
                 "rowId": 1,
               },
             },
           ],
         },
-        "id": "abc",
       }
     }
     name="product"
@@ -1122,14 +1116,12 @@ exports[`The ProductionFields Component with published product not matched to a 
           "edges": Array [
             Object {
               "node": Object {
-                "productName": "baz",
                 "productState": "PUBLISHED",
                 "rowId": 2,
               },
             },
           ],
         },
-        "id": "abc",
       }
     }
     name="product"

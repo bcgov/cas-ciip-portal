@@ -37,13 +37,11 @@ describe('The ProductionFields Component with published product matched to a nai
   };
   const naicsCode: ProductField_naicsCode = {
     ' $refType': 'ProductField_naicsCode',
-    id: 'abc',
     allProductsByNaicsCode: {
       edges: [
         {
           node: {
             rowId: 1,
-            productName: 'bar',
             productState: 'PUBLISHED'
           }
         }
@@ -121,13 +119,11 @@ describe('The ProductionFields Component with published product not matched to a
   };
   const naicsCode: ProductField_naicsCode = {
     ' $refType': 'ProductField_naicsCode',
-    id: 'abc',
     allProductsByNaicsCode: {
       edges: [
         {
           node: {
             rowId: 2,
-            productName: 'baz',
             productState: 'PUBLISHED'
           }
         }
@@ -208,13 +204,11 @@ describe('The ProductionFields Component with archived product matched to a naic
 
   const naicsCode: ProductField_naicsCode = {
     ' $refType': 'ProductField_naicsCode',
-    id: 'abc',
     allProductsByNaicsCode: {
       edges: [
         {
           node: {
             rowId: 1,
-            productName: 'bar',
             productState: 'ARCHIVED'
           }
         }
@@ -295,13 +289,11 @@ describe('The ProductionFields Component with archived product not matched to a 
 
   const naicsCode: ProductField_naicsCode = {
     ' $refType': 'ProductField_naicsCode',
-    id: 'abc',
     allProductsByNaicsCode: {
       edges: [
         {
           node: {
             rowId: 2,
-            productName: 'baz',
             productState: 'ARCHIVED'
           }
         }

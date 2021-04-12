@@ -2,10 +2,10 @@
 
 exports[`The ProductionFields Component without naics code should match the snapshot 1`] = `
 <div>
-  <InputGroup
-    className="mb-3"
-  >
-    <InputGroupText>
+  <InputGroup>
+    <InputGroupText
+      className="col-md-12"
+    >
       foo
     </InputGroupText>
   </InputGroup>
@@ -14,10 +14,10 @@ exports[`The ProductionFields Component without naics code should match the snap
 
 exports[`The ProductionRowIdField Component with archived product should match the snapshot 1`] = `
 <div>
-  <InputGroup
-    className="mb-3"
-  >
-    <InputGroupText>
+  <InputGroup>
+    <InputGroupText
+      className="col-md-12"
+    >
       bar
     </InputGroupText>
   </InputGroup>
@@ -39,13 +39,11 @@ exports[`The ProductionRowIdField Component with published product matched to a 
   naicsCode={
     Object {
       " $refType": "ProductRowIdField_naicsCode",
-      "id": "abc",
       "productsByNaicsCode": Object {
         "edges": Array [
           Object {
             "node": Object {
               "productName": "foo",
-              "productState": "PUBLISHED",
               "rowId": 1,
             },
           },
