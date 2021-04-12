@@ -131,7 +131,7 @@ exports[`Linked Prdocuts should match the last snapshot 1`] = `
             onMenuToggle={[Function]}
             options={Array []}
             placeholder="Search Products.."
-            selected={null}
+            selected={Array []}
           />
         </Col>
         <Col
