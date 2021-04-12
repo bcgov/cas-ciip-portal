@@ -35,6 +35,11 @@ type Application implements Node {
   ): ApplicationReviewStepsConnection!
   applicationRevisionByStringVersionNumber(versionNumberInput: String): ApplicationRevision
 
+  """
+  Computed column for graphql to traverse to an application_revision_status from application
+  """
+  applicationRevisionStatus(versionNumberInput: String): ApplicationRevisionStatus
+
   """Reads and enables pagination through a set of `ApplicationRevision`."""
   applicationRevisionsByApplicationId(
     """Read all values in the set after (below) this cursor."""
@@ -70,13 +75,7 @@ type Application implements Node {
   ): ApplicationRevisionsConnection!
 
   """
-  Computed column for graphql to traverse to an application_revision_status from application
-  """
-  applicationRevisionStatus(versionNumberInput: String): ApplicationRevisionStatus
-
-  """
-  This function is a wrapper to return bcghgid as a scalar from the composite
-  return of the application_facility computed column
+  This function is a wrapper to return bcghgid as a scalar from the composite return of the application_facility computed column
   """
   bcghgid: String
 
@@ -646,8 +645,7 @@ type Application implements Node {
   id: ID!
 
   """
-  Computed column for graphql to retrieve a given application_revision when
-  given a version number as String (e.g. from a router query)
+  Computed column for graphql to retrieve a given application_revision when given a version number as String (e.g. from a router query)
   """
   latestDraftRevision: ApplicationRevision
 
@@ -780,16 +778,12 @@ type Application implements Node {
   rowId: Int!
 
   """
-  This function is a wrapper to return application_revision_status as a scalar
-  from the composite return of the application_application_revision_status
-  computed column
+  This function is a wrapper to return application_revision_status as a scalar from the composite return of the application_application_revision_status computed column
   """
   status: CiipApplicationRevisionStatus
 
   """
-  This function is a wrapper to return created_at (as submission_date) as a
-  scalar from the composite return of the
-  application_application_revision_status computed column
+  This function is a wrapper to return created_at (as submission_date) as a scalar from the composite return of the application_application_revision_status computed column
   """
   submissionDate: Datetime
 
@@ -1777,8 +1771,7 @@ A connection to a list of `Organisation` values, with data from `FacilityApplica
 """
 type ApplicationOrganisationsByFacilityApplicationApplicationIdAndOrganisationIdManyToManyConnection {
   """
-  A list of edges which contains the `Organisation`, info from the
-  `FacilityApplication`, and the cursor to aid in pagination.
+  A list of edges which contains the `Organisation`, info from the `FacilityApplication`, and the cursor to aid in pagination.
   """
   edges: [ApplicationOrganisationsByFacilityApplicationApplicationIdAndOrganisationIdManyToManyEdge!]!
 
@@ -1848,9 +1841,7 @@ input ApplicationPatch {
 }
 
 """
-Information about specific review steps and their state(is_complete). An
-application can not move out of a pending review without all required
-review_steps being complete.
+Information about specific review steps and their state(is_complete). An application can not move out of a pending review without all required review_steps being complete.
 """
 type ApplicationReviewStep implements Node {
   """
@@ -2325,8 +2316,7 @@ A connection to a list of `ReviewStep` values, with data from `ApplicationReview
 """
 type ApplicationReviewStepsByApplicationReviewStepApplicationIdAndReviewStepIdManyToManyConnection {
   """
-  A list of edges which contains the `ReviewStep`, info from the
-  `ApplicationReviewStep`, and the cursor to aid in pagination.
+  A list of edges which contains the `ReviewStep`, info from the `ApplicationReviewStep`, and the cursor to aid in pagination.
   """
   edges: [ApplicationReviewStepsByApplicationReviewStepApplicationIdAndReviewStepIdManyToManyEdge!]!
 
@@ -2809,61 +2799,6 @@ input ApplicationRevisionPatch {
   versionNumber: Int
 }
 
-"""A connection to a list of `ApplicationRevision` values."""
-type ApplicationRevisionsConnection {
-  """
-  A list of edges which contains the `ApplicationRevision` and cursor to aid in pagination.
-  """
-  edges: [ApplicationRevisionsEdge!]!
-
-  """A list of `ApplicationRevision` objects."""
-  nodes: [ApplicationRevision]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """
-  The count of *all* `ApplicationRevision` you could get from the connection.
-  """
-  totalCount: Int!
-}
-
-"""A `ApplicationRevision` edge in the connection."""
-type ApplicationRevisionsEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `ApplicationRevision` at the end of the edge."""
-  node: ApplicationRevision
-}
-
-"""Methods to use when ordering `ApplicationRevision`."""
-enum ApplicationRevisionsOrderBy {
-  APPLICATION_ID_ASC
-  APPLICATION_ID_DESC
-  CREATED_AT_ASC
-  CREATED_AT_DESC
-  CREATED_BY_ASC
-  CREATED_BY_DESC
-  DELETED_AT_ASC
-  DELETED_AT_DESC
-  DELETED_BY_ASC
-  DELETED_BY_DESC
-  LEGAL_DISCLAIMER_ACCEPTED_ASC
-  LEGAL_DISCLAIMER_ACCEPTED_DESC
-  NATURAL
-  OVERRIDE_JUSTIFICATION_ASC
-  OVERRIDE_JUSTIFICATION_DESC
-  PRIMARY_KEY_ASC
-  PRIMARY_KEY_DESC
-  UPDATED_AT_ASC
-  UPDATED_AT_DESC
-  UPDATED_BY_ASC
-  UPDATED_BY_DESC
-  VERSION_NUMBER_ASC
-  VERSION_NUMBER_DESC
-}
-
 """The application revision status data"""
 type ApplicationRevisionStatus implements Node {
   """The foreign key to application used for reference and join"""
@@ -2958,61 +2893,6 @@ input ApplicationRevisionStatusCondition {
 
   """Checks for equality with the object’s `versionNumber` field."""
   versionNumber: Int
-}
-
-"""A connection to a list of `ApplicationRevisionStatus` values."""
-type ApplicationRevisionStatusesConnection {
-  """
-  A list of edges which contains the `ApplicationRevisionStatus` and cursor to aid in pagination.
-  """
-  edges: [ApplicationRevisionStatusesEdge!]!
-
-  """A list of `ApplicationRevisionStatus` objects."""
-  nodes: [ApplicationRevisionStatus]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """
-  The count of *all* `ApplicationRevisionStatus` you could get from the connection.
-  """
-  totalCount: Int!
-}
-
-"""A `ApplicationRevisionStatus` edge in the connection."""
-type ApplicationRevisionStatusesEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `ApplicationRevisionStatus` at the end of the edge."""
-  node: ApplicationRevisionStatus
-}
-
-"""Methods to use when ordering `ApplicationRevisionStatus`."""
-enum ApplicationRevisionStatusesOrderBy {
-  APPLICATION_ID_ASC
-  APPLICATION_ID_DESC
-  APPLICATION_REVISION_STATUS_ASC
-  APPLICATION_REVISION_STATUS_DESC
-  CREATED_AT_ASC
-  CREATED_AT_DESC
-  CREATED_BY_ASC
-  CREATED_BY_DESC
-  DELETED_AT_ASC
-  DELETED_AT_DESC
-  DELETED_BY_ASC
-  DELETED_BY_DESC
-  ID_ASC
-  ID_DESC
-  NATURAL
-  PRIMARY_KEY_ASC
-  PRIMARY_KEY_DESC
-  UPDATED_AT_ASC
-  UPDATED_AT_DESC
-  UPDATED_BY_ASC
-  UPDATED_BY_DESC
-  VERSION_NUMBER_ASC
-  VERSION_NUMBER_DESC
 }
 
 """
@@ -3121,60 +3001,118 @@ input ApplicationRevisionStatusPatch {
   versionNumber: Int
 }
 
-"""A connection to a list of `Application` values."""
-type ApplicationsConnection {
+"""A connection to a list of `ApplicationRevisionStatus` values."""
+type ApplicationRevisionStatusesConnection {
   """
-  A list of edges which contains the `Application` and cursor to aid in pagination.
+  A list of edges which contains the `ApplicationRevisionStatus` and cursor to aid in pagination.
   """
-  edges: [ApplicationsEdge!]!
+  edges: [ApplicationRevisionStatusesEdge!]!
 
-  """A list of `Application` objects."""
-  nodes: [Application]!
+  """A list of `ApplicationRevisionStatus` objects."""
+  nodes: [ApplicationRevisionStatus]!
 
   """Information to aid in pagination."""
   pageInfo: PageInfo!
 
-  """The count of *all* `Application` you could get from the connection."""
+  """
+  The count of *all* `ApplicationRevisionStatus` you could get from the connection.
+  """
   totalCount: Int!
 }
 
-"""A `Application` edge in the connection."""
-type ApplicationsEdge {
+"""A `ApplicationRevisionStatus` edge in the connection."""
+type ApplicationRevisionStatusesEdge {
   """A cursor for use in pagination."""
   cursor: Cursor
 
-  """The `Application` at the end of the edge."""
-  node: Application
+  """The `ApplicationRevisionStatus` at the end of the edge."""
+  node: ApplicationRevisionStatus
 }
 
-"""Methods to use when ordering `Application`."""
-enum ApplicationsOrderBy {
-  BCGHGID_ASC
-  BCGHGID_DESC
-  FACILITY_ID_ASC
-  FACILITY_ID_DESC
-  FACILITY_NAME_ASC
-  FACILITY_NAME_DESC
+"""Methods to use when ordering `ApplicationRevisionStatus`."""
+enum ApplicationRevisionStatusesOrderBy {
+  APPLICATION_ID_ASC
+  APPLICATION_ID_DESC
+  APPLICATION_REVISION_STATUS_ASC
+  APPLICATION_REVISION_STATUS_DESC
+  CREATED_AT_ASC
+  CREATED_AT_DESC
+  CREATED_BY_ASC
+  CREATED_BY_DESC
+  DELETED_AT_ASC
+  DELETED_AT_DESC
+  DELETED_BY_ASC
+  DELETED_BY_DESC
   ID_ASC
   ID_DESC
   NATURAL
-  OPERATOR_NAME_ASC
-  OPERATOR_NAME_DESC
   PRIMARY_KEY_ASC
   PRIMARY_KEY_DESC
-  REPORT_ID_ASC
-  REPORT_ID_DESC
-  REPORTING_YEAR_ASC
-  REPORTING_YEAR_DESC
-  STATUS_ASC
-  STATUS_DESC
-  SUBMISSION_DATE_ASC
-  SUBMISSION_DATE_DESC
+  UPDATED_AT_ASC
+  UPDATED_AT_DESC
+  UPDATED_BY_ASC
+  UPDATED_BY_DESC
+  VERSION_NUMBER_ASC
+  VERSION_NUMBER_DESC
+}
+
+"""A connection to a list of `ApplicationRevision` values."""
+type ApplicationRevisionsConnection {
+  """
+  A list of edges which contains the `ApplicationRevision` and cursor to aid in pagination.
+  """
+  edges: [ApplicationRevisionsEdge!]!
+
+  """A list of `ApplicationRevision` objects."""
+  nodes: [ApplicationRevision]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """
+  The count of *all* `ApplicationRevision` you could get from the connection.
+  """
+  totalCount: Int!
+}
+
+"""A `ApplicationRevision` edge in the connection."""
+type ApplicationRevisionsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `ApplicationRevision` at the end of the edge."""
+  node: ApplicationRevision
+}
+
+"""Methods to use when ordering `ApplicationRevision`."""
+enum ApplicationRevisionsOrderBy {
+  APPLICATION_ID_ASC
+  APPLICATION_ID_DESC
+  CREATED_AT_ASC
+  CREATED_AT_DESC
+  CREATED_BY_ASC
+  CREATED_BY_DESC
+  DELETED_AT_ASC
+  DELETED_AT_DESC
+  DELETED_BY_ASC
+  DELETED_BY_DESC
+  LEGAL_DISCLAIMER_ACCEPTED_ASC
+  LEGAL_DISCLAIMER_ACCEPTED_DESC
+  NATURAL
+  OVERRIDE_JUSTIFICATION_ASC
+  OVERRIDE_JUSTIFICATION_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+  UPDATED_AT_ASC
+  UPDATED_AT_DESC
+  UPDATED_BY_ASC
+  UPDATED_BY_DESC
+  VERSION_NUMBER_ASC
+  VERSION_NUMBER_DESC
 }
 
 """
-Table contains data about validation functions. The validation_function_name is
-called in a validation function to iterate over all validation functions in this table
+Table contains data about validation functions. The validation_function_name is called in a validation function to iterate over all validation functions in this table
 """
 type ApplicationValidationFunction implements Node {
   """
@@ -3344,6 +3282,57 @@ type ApplicationValidationResultsEdge {
 
   """The `ApplicationValidationResult` at the end of the edge."""
   node: ApplicationValidationResult
+}
+
+"""A connection to a list of `Application` values."""
+type ApplicationsConnection {
+  """
+  A list of edges which contains the `Application` and cursor to aid in pagination.
+  """
+  edges: [ApplicationsEdge!]!
+
+  """A list of `Application` objects."""
+  nodes: [Application]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `Application` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `Application` edge in the connection."""
+type ApplicationsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `Application` at the end of the edge."""
+  node: Application
+}
+
+"""Methods to use when ordering `Application`."""
+enum ApplicationsOrderBy {
+  BCGHGID_ASC
+  BCGHGID_DESC
+  FACILITY_ID_ASC
+  FACILITY_ID_DESC
+  FACILITY_NAME_ASC
+  FACILITY_NAME_DESC
+  ID_ASC
+  ID_DESC
+  NATURAL
+  OPERATOR_NAME_ASC
+  OPERATOR_NAME_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+  REPORTING_YEAR_ASC
+  REPORTING_YEAR_DESC
+  REPORT_ID_ASC
+  REPORT_ID_DESC
+  STATUS_ASC
+  STATUS_DESC
+  SUBMISSION_DATE_ASC
+  SUBMISSION_DATE_DESC
 }
 
 """Table containing the benchmark and eligibility threshold for a product"""
@@ -3810,8 +3799,8 @@ type CarbonTaxDataEdge {
 }
 
 type CarbonTaxDatum {
-  carbonTaxed: Boolean
   carbonTaxRate: BigFloat
+  carbonTaxed: Boolean
   ctaRateUnits: String
   fuelCharge: BigFloat
   fuelMappingId: Int
@@ -3827,11 +3816,11 @@ input CarbonTaxDatumFilter {
   """Checks for all expressions in this list."""
   and: [CarbonTaxDatumFilter!]
 
-  """Filter by the object’s `carbonTaxed` field."""
-  carbonTaxed: BooleanFilter
-
   """Filter by the object’s `carbonTaxRate` field."""
   carbonTaxRate: BigFloatFilter
+
+  """Filter by the object’s `carbonTaxed` field."""
+  carbonTaxed: BooleanFilter
 
   """Filter by the object’s `ctaRateUnits` field."""
   ctaRateUnits: StringFilter
@@ -4960,108 +4949,6 @@ type CiipUser implements Node {
     orderBy: [ApplicationReviewStepsOrderBy!] = [PRIMARY_KEY_ASC]
   ): ApplicationReviewStepsConnection!
 
-  """Reads and enables pagination through a set of `ApplicationRevision`."""
-  applicationRevisionsByCreatedBy(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: ApplicationRevisionCondition
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: ApplicationRevisionFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `ApplicationRevision`."""
-    orderBy: [ApplicationRevisionsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): ApplicationRevisionsConnection!
-
-  """Reads and enables pagination through a set of `ApplicationRevision`."""
-  applicationRevisionsByDeletedBy(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: ApplicationRevisionCondition
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: ApplicationRevisionFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `ApplicationRevision`."""
-    orderBy: [ApplicationRevisionsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): ApplicationRevisionsConnection!
-
-  """Reads and enables pagination through a set of `ApplicationRevision`."""
-  applicationRevisionsByUpdatedBy(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: ApplicationRevisionCondition
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: ApplicationRevisionFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `ApplicationRevision`."""
-    orderBy: [ApplicationRevisionsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): ApplicationRevisionsConnection!
-
   """
   Reads and enables pagination through a set of `ApplicationRevisionStatus`.
   """
@@ -5169,6 +5056,108 @@ type CiipUser implements Node {
     """The method to use when ordering `ApplicationRevisionStatus`."""
     orderBy: [ApplicationRevisionStatusesOrderBy!] = [PRIMARY_KEY_ASC]
   ): ApplicationRevisionStatusesConnection!
+
+  """Reads and enables pagination through a set of `ApplicationRevision`."""
+  applicationRevisionsByCreatedBy(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ApplicationRevisionCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: ApplicationRevisionFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `ApplicationRevision`."""
+    orderBy: [ApplicationRevisionsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ApplicationRevisionsConnection!
+
+  """Reads and enables pagination through a set of `ApplicationRevision`."""
+  applicationRevisionsByDeletedBy(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ApplicationRevisionCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: ApplicationRevisionFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `ApplicationRevision`."""
+    orderBy: [ApplicationRevisionsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ApplicationRevisionsConnection!
+
+  """Reads and enables pagination through a set of `ApplicationRevision`."""
+  applicationRevisionsByUpdatedBy(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ApplicationRevisionCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: ApplicationRevisionFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `ApplicationRevision`."""
+    orderBy: [ApplicationRevisionsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ApplicationRevisionsConnection!
 
   """Reads and enables pagination through a set of `Application`."""
   applicationsByApplicationReviewStepUpdatedByAndApplicationId(
@@ -11655,8 +11644,7 @@ A connection to a list of `ApplicationReviewStep` values, with data from `Review
 """
 type CiipUserApplicationReviewStepsByReviewCommentCreatedByAndApplicationReviewStepIdManyToManyConnection {
   """
-  A list of edges which contains the `ApplicationReviewStep`, info from the
-  `ReviewComment`, and the cursor to aid in pagination.
+  A list of edges which contains the `ApplicationReviewStep`, info from the `ReviewComment`, and the cursor to aid in pagination.
   """
   edges: [CiipUserApplicationReviewStepsByReviewCommentCreatedByAndApplicationReviewStepIdManyToManyEdge!]!
 
@@ -11722,8 +11710,7 @@ A connection to a list of `ApplicationReviewStep` values, with data from `Review
 """
 type CiipUserApplicationReviewStepsByReviewCommentDeletedByAndApplicationReviewStepIdManyToManyConnection {
   """
-  A list of edges which contains the `ApplicationReviewStep`, info from the
-  `ReviewComment`, and the cursor to aid in pagination.
+  A list of edges which contains the `ApplicationReviewStep`, info from the `ReviewComment`, and the cursor to aid in pagination.
   """
   edges: [CiipUserApplicationReviewStepsByReviewCommentDeletedByAndApplicationReviewStepIdManyToManyEdge!]!
 
@@ -11789,8 +11776,7 @@ A connection to a list of `ApplicationReviewStep` values, with data from `Review
 """
 type CiipUserApplicationReviewStepsByReviewCommentUpdatedByAndApplicationReviewStepIdManyToManyConnection {
   """
-  A list of edges which contains the `ApplicationReviewStep`, info from the
-  `ReviewComment`, and the cursor to aid in pagination.
+  A list of edges which contains the `ApplicationReviewStep`, info from the `ReviewComment`, and the cursor to aid in pagination.
   """
   edges: [CiipUserApplicationReviewStepsByReviewCommentUpdatedByAndApplicationReviewStepIdManyToManyEdge!]!
 
@@ -11856,8 +11842,7 @@ A connection to a list of `Application` values, with data from `ApplicationRevie
 """
 type CiipUserApplicationsByApplicationReviewStepUpdatedByAndApplicationIdManyToManyConnection {
   """
-  A list of edges which contains the `Application`, info from the
-  `ApplicationReviewStep`, and the cursor to aid in pagination.
+  A list of edges which contains the `Application`, info from the `ApplicationReviewStep`, and the cursor to aid in pagination.
   """
   edges: [CiipUserApplicationsByApplicationReviewStepUpdatedByAndApplicationIdManyToManyEdge!]!
 
@@ -11921,8 +11906,7 @@ A connection to a list of `Application` values, with data from `ApplicationRevis
 """
 type CiipUserApplicationsByApplicationRevisionCreatedByAndApplicationIdManyToManyConnection {
   """
-  A list of edges which contains the `Application`, info from the
-  `ApplicationRevision`, and the cursor to aid in pagination.
+  A list of edges which contains the `Application`, info from the `ApplicationRevision`, and the cursor to aid in pagination.
   """
   edges: [CiipUserApplicationsByApplicationRevisionCreatedByAndApplicationIdManyToManyEdge!]!
 
@@ -11986,8 +11970,7 @@ A connection to a list of `Application` values, with data from `ApplicationRevis
 """
 type CiipUserApplicationsByApplicationRevisionDeletedByAndApplicationIdManyToManyConnection {
   """
-  A list of edges which contains the `Application`, info from the
-  `ApplicationRevision`, and the cursor to aid in pagination.
+  A list of edges which contains the `Application`, info from the `ApplicationRevision`, and the cursor to aid in pagination.
   """
   edges: [CiipUserApplicationsByApplicationRevisionDeletedByAndApplicationIdManyToManyEdge!]!
 
@@ -12051,8 +12034,7 @@ A connection to a list of `Application` values, with data from `ApplicationRevis
 """
 type CiipUserApplicationsByApplicationRevisionUpdatedByAndApplicationIdManyToManyConnection {
   """
-  A list of edges which contains the `Application`, info from the
-  `ApplicationRevision`, and the cursor to aid in pagination.
+  A list of edges which contains the `Application`, info from the `ApplicationRevision`, and the cursor to aid in pagination.
   """
   edges: [CiipUserApplicationsByApplicationRevisionUpdatedByAndApplicationIdManyToManyEdge!]!
 
@@ -12814,8 +12796,7 @@ A connection to a list of `CiipUser` values, with data from `ApplicationRevision
 """
 type CiipUserCiipUsersByApplicationRevisionStatusCreatedByAndDeletedByManyToManyConnection {
   """
-  A list of edges which contains the `CiipUser`, info from the
-  `ApplicationRevisionStatus`, and the cursor to aid in pagination.
+  A list of edges which contains the `CiipUser`, info from the `ApplicationRevisionStatus`, and the cursor to aid in pagination.
   """
   edges: [CiipUserCiipUsersByApplicationRevisionStatusCreatedByAndDeletedByManyToManyEdge!]!
 
@@ -12881,8 +12862,7 @@ A connection to a list of `CiipUser` values, with data from `ApplicationRevision
 """
 type CiipUserCiipUsersByApplicationRevisionStatusCreatedByAndUpdatedByManyToManyConnection {
   """
-  A list of edges which contains the `CiipUser`, info from the
-  `ApplicationRevisionStatus`, and the cursor to aid in pagination.
+  A list of edges which contains the `CiipUser`, info from the `ApplicationRevisionStatus`, and the cursor to aid in pagination.
   """
   edges: [CiipUserCiipUsersByApplicationRevisionStatusCreatedByAndUpdatedByManyToManyEdge!]!
 
@@ -12948,8 +12928,7 @@ A connection to a list of `CiipUser` values, with data from `ApplicationRevision
 """
 type CiipUserCiipUsersByApplicationRevisionStatusDeletedByAndCreatedByManyToManyConnection {
   """
-  A list of edges which contains the `CiipUser`, info from the
-  `ApplicationRevisionStatus`, and the cursor to aid in pagination.
+  A list of edges which contains the `CiipUser`, info from the `ApplicationRevisionStatus`, and the cursor to aid in pagination.
   """
   edges: [CiipUserCiipUsersByApplicationRevisionStatusDeletedByAndCreatedByManyToManyEdge!]!
 
@@ -13015,8 +12994,7 @@ A connection to a list of `CiipUser` values, with data from `ApplicationRevision
 """
 type CiipUserCiipUsersByApplicationRevisionStatusDeletedByAndUpdatedByManyToManyConnection {
   """
-  A list of edges which contains the `CiipUser`, info from the
-  `ApplicationRevisionStatus`, and the cursor to aid in pagination.
+  A list of edges which contains the `CiipUser`, info from the `ApplicationRevisionStatus`, and the cursor to aid in pagination.
   """
   edges: [CiipUserCiipUsersByApplicationRevisionStatusDeletedByAndUpdatedByManyToManyEdge!]!
 
@@ -13082,8 +13060,7 @@ A connection to a list of `CiipUser` values, with data from `ApplicationRevision
 """
 type CiipUserCiipUsersByApplicationRevisionStatusUpdatedByAndCreatedByManyToManyConnection {
   """
-  A list of edges which contains the `CiipUser`, info from the
-  `ApplicationRevisionStatus`, and the cursor to aid in pagination.
+  A list of edges which contains the `CiipUser`, info from the `ApplicationRevisionStatus`, and the cursor to aid in pagination.
   """
   edges: [CiipUserCiipUsersByApplicationRevisionStatusUpdatedByAndCreatedByManyToManyEdge!]!
 
@@ -13149,8 +13126,7 @@ A connection to a list of `CiipUser` values, with data from `ApplicationRevision
 """
 type CiipUserCiipUsersByApplicationRevisionStatusUpdatedByAndDeletedByManyToManyConnection {
   """
-  A list of edges which contains the `CiipUser`, info from the
-  `ApplicationRevisionStatus`, and the cursor to aid in pagination.
+  A list of edges which contains the `CiipUser`, info from the `ApplicationRevisionStatus`, and the cursor to aid in pagination.
   """
   edges: [CiipUserCiipUsersByApplicationRevisionStatusUpdatedByAndDeletedByManyToManyEdge!]!
 
@@ -18993,8 +18969,7 @@ A connection to a list of `EmissionCategory` values, with data from `EmissionCat
 """
 type CiipUserEmissionCategoriesByEmissionCategoryGasCreatedByAndEmissionCategoryIdManyToManyConnection {
   """
-  A list of edges which contains the `EmissionCategory`, info from the
-  `EmissionCategoryGas`, and the cursor to aid in pagination.
+  A list of edges which contains the `EmissionCategory`, info from the `EmissionCategoryGas`, and the cursor to aid in pagination.
   """
   edges: [CiipUserEmissionCategoriesByEmissionCategoryGasCreatedByAndEmissionCategoryIdManyToManyEdge!]!
 
@@ -19060,8 +19035,7 @@ A connection to a list of `EmissionCategory` values, with data from `EmissionCat
 """
 type CiipUserEmissionCategoriesByEmissionCategoryGasDeletedByAndEmissionCategoryIdManyToManyConnection {
   """
-  A list of edges which contains the `EmissionCategory`, info from the
-  `EmissionCategoryGas`, and the cursor to aid in pagination.
+  A list of edges which contains the `EmissionCategory`, info from the `EmissionCategoryGas`, and the cursor to aid in pagination.
   """
   edges: [CiipUserEmissionCategoriesByEmissionCategoryGasDeletedByAndEmissionCategoryIdManyToManyEdge!]!
 
@@ -19127,8 +19101,7 @@ A connection to a list of `EmissionCategory` values, with data from `EmissionCat
 """
 type CiipUserEmissionCategoriesByEmissionCategoryGasUpdatedByAndEmissionCategoryIdManyToManyConnection {
   """
-  A list of edges which contains the `EmissionCategory`, info from the
-  `EmissionCategoryGas`, and the cursor to aid in pagination.
+  A list of edges which contains the `EmissionCategory`, info from the `EmissionCategoryGas`, and the cursor to aid in pagination.
   """
   edges: [CiipUserEmissionCategoriesByEmissionCategoryGasUpdatedByAndEmissionCategoryIdManyToManyEdge!]!
 
@@ -19979,13 +19952,60 @@ input CiipUserOrganisationPatch {
   userId: Int
 }
 
+enum CiipUserOrganisationStatus {
+  APPROVED
+  PENDING
+  REJECTED
+}
+
+"""
+A filter to be used against CiipUserOrganisationStatus fields. All fields are combined with a logical ‘and.’
+"""
+input CiipUserOrganisationStatusFilter {
+  """
+  Not equal to the specified value, treating null like an ordinary value.
+  """
+  distinctFrom: CiipUserOrganisationStatus
+
+  """Equal to the specified value."""
+  equalTo: CiipUserOrganisationStatus
+
+  """Greater than the specified value."""
+  greaterThan: CiipUserOrganisationStatus
+
+  """Greater than or equal to the specified value."""
+  greaterThanOrEqualTo: CiipUserOrganisationStatus
+
+  """Included in the specified list."""
+  in: [CiipUserOrganisationStatus!]
+
+  """
+  Is null (if `true` is specified) or is not null (if `false` is specified).
+  """
+  isNull: Boolean
+
+  """Less than the specified value."""
+  lessThan: CiipUserOrganisationStatus
+
+  """Less than or equal to the specified value."""
+  lessThanOrEqualTo: CiipUserOrganisationStatus
+
+  """Equal to the specified value, treating null like an ordinary value."""
+  notDistinctFrom: CiipUserOrganisationStatus
+
+  """Not equal to the specified value."""
+  notEqualTo: CiipUserOrganisationStatus
+
+  """Not included in the specified list."""
+  notIn: [CiipUserOrganisationStatus!]
+}
+
 """
 A connection to a list of `Organisation` values, with data from `CiipUserOrganisation`.
 """
 type CiipUserOrganisationsByCiipUserOrganisationUserIdAndOrganisationIdManyToManyConnection {
   """
-  A list of edges which contains the `Organisation`, info from the
-  `CiipUserOrganisation`, and the cursor to aid in pagination.
+  A list of edges which contains the `Organisation`, info from the `CiipUserOrganisation`, and the cursor to aid in pagination.
   """
   edges: [CiipUserOrganisationsByCiipUserOrganisationUserIdAndOrganisationIdManyToManyEdge!]!
 
@@ -20093,54 +20113,6 @@ enum CiipUserOrganisationsOrderBy {
   STATUS_DESC
   USER_ID_ASC
   USER_ID_DESC
-}
-
-enum CiipUserOrganisationStatus {
-  APPROVED
-  PENDING
-  REJECTED
-}
-
-"""
-A filter to be used against CiipUserOrganisationStatus fields. All fields are combined with a logical ‘and.’
-"""
-input CiipUserOrganisationStatusFilter {
-  """
-  Not equal to the specified value, treating null like an ordinary value.
-  """
-  distinctFrom: CiipUserOrganisationStatus
-
-  """Equal to the specified value."""
-  equalTo: CiipUserOrganisationStatus
-
-  """Greater than the specified value."""
-  greaterThan: CiipUserOrganisationStatus
-
-  """Greater than or equal to the specified value."""
-  greaterThanOrEqualTo: CiipUserOrganisationStatus
-
-  """Included in the specified list."""
-  in: [CiipUserOrganisationStatus!]
-
-  """
-  Is null (if `true` is specified) or is not null (if `false` is specified).
-  """
-  isNull: Boolean
-
-  """Less than the specified value."""
-  lessThan: CiipUserOrganisationStatus
-
-  """Less than or equal to the specified value."""
-  lessThanOrEqualTo: CiipUserOrganisationStatus
-
-  """Equal to the specified value, treating null like an ordinary value."""
-  notDistinctFrom: CiipUserOrganisationStatus
-
-  """Not equal to the specified value."""
-  notEqualTo: CiipUserOrganisationStatus
-
-  """Not included in the specified list."""
-  notIn: [CiipUserOrganisationStatus!]
 }
 
 """
@@ -21305,8 +21277,7 @@ A connection to a list of `ReviewStep` values, with data from `ApplicationReview
 """
 type CiipUserReviewStepsByApplicationReviewStepUpdatedByAndReviewStepIdManyToManyConnection {
   """
-  A list of edges which contains the `ReviewStep`, info from the
-  `ApplicationReviewStep`, and the cursor to aid in pagination.
+  A list of edges which contains the `ReviewStep`, info from the `ApplicationReviewStep`, and the cursor to aid in pagination.
   """
   edges: [CiipUserReviewStepsByApplicationReviewStepUpdatedByAndReviewStepIdManyToManyEdge!]!
 
@@ -24736,6 +24707,112 @@ input EmissionCategoryGasCondition {
 }
 
 """
+A filter to be used against `EmissionCategoryGas` object types. All fields are combined with a logical ‘and.’
+"""
+input EmissionCategoryGasFilter {
+  """Checks for all expressions in this list."""
+  and: [EmissionCategoryGasFilter!]
+
+  """Filter by the object’s `createdAt` field."""
+  createdAt: DatetimeFilter
+
+  """Filter by the object’s `createdBy` field."""
+  createdBy: IntFilter
+
+  """Filter by the object’s `deletedAt` field."""
+  deletedAt: DatetimeFilter
+
+  """Filter by the object’s `deletedBy` field."""
+  deletedBy: IntFilter
+
+  """Filter by the object’s `emissionCategoryDescription` field."""
+  emissionCategoryDescription: StringFilter
+
+  """Filter by the object’s `emissionCategoryId` field."""
+  emissionCategoryId: IntFilter
+
+  """Filter by the object’s `gasId` field."""
+  gasId: IntFilter
+
+  """Negates the expression."""
+  not: EmissionCategoryGasFilter
+
+  """Checks for any expressions in this list."""
+  or: [EmissionCategoryGasFilter!]
+
+  """Filter by the object’s `rowId` field."""
+  rowId: IntFilter
+
+  """Filter by the object’s `updatedAt` field."""
+  updatedAt: DatetimeFilter
+
+  """Filter by the object’s `updatedBy` field."""
+  updatedBy: IntFilter
+}
+
+"""An input for mutations affecting `EmissionCategoryGas`"""
+input EmissionCategoryGasInput {
+  """Creation date of row"""
+  createdAt: Datetime
+
+  """Creator of row"""
+  createdBy: Int
+
+  """Date of deletion"""
+  deletedAt: Datetime
+
+  """The user who deleted the row"""
+  deletedBy: Int
+
+  """The description of the emission category"""
+  emissionCategoryDescription: String
+
+  """Foreign key to emission_category"""
+  emissionCategoryId: Int
+
+  """Foreign key to gas"""
+  gasId: Int
+
+  """Updated date of row"""
+  updatedAt: Datetime
+
+  """Updator of row"""
+  updatedBy: Int
+}
+
+"""
+Represents an update to a `EmissionCategoryGas`. Fields that are set will be updated.
+"""
+input EmissionCategoryGasPatch {
+  """Creation date of row"""
+  createdAt: Datetime
+
+  """Creator of row"""
+  createdBy: Int
+
+  """Date of deletion"""
+  deletedAt: Datetime
+
+  """The user who deleted the row"""
+  deletedBy: Int
+
+  """The description of the emission category"""
+  emissionCategoryDescription: String
+
+  """Foreign key to emission_category"""
+  emissionCategoryId: Int
+
+  """Foreign key to gas"""
+  gasId: Int
+
+  """Updated date of row"""
+  updatedAt: Datetime
+
+  """Updator of row"""
+  updatedBy: Int
+}
+
+"""
 A connection to a list of `Gas` values, with data from `EmissionCategoryGas`.
 """
 type EmissionCategoryGasesByEmissionCategoryGasEmissionCategoryIdAndGasIdManyToManyConnection {
@@ -24850,112 +24927,6 @@ enum EmissionCategoryGasesOrderBy {
   UPDATED_AT_DESC
   UPDATED_BY_ASC
   UPDATED_BY_DESC
-}
-
-"""
-A filter to be used against `EmissionCategoryGas` object types. All fields are combined with a logical ‘and.’
-"""
-input EmissionCategoryGasFilter {
-  """Checks for all expressions in this list."""
-  and: [EmissionCategoryGasFilter!]
-
-  """Filter by the object’s `createdAt` field."""
-  createdAt: DatetimeFilter
-
-  """Filter by the object’s `createdBy` field."""
-  createdBy: IntFilter
-
-  """Filter by the object’s `deletedAt` field."""
-  deletedAt: DatetimeFilter
-
-  """Filter by the object’s `deletedBy` field."""
-  deletedBy: IntFilter
-
-  """Filter by the object’s `emissionCategoryDescription` field."""
-  emissionCategoryDescription: StringFilter
-
-  """Filter by the object’s `emissionCategoryId` field."""
-  emissionCategoryId: IntFilter
-
-  """Filter by the object’s `gasId` field."""
-  gasId: IntFilter
-
-  """Negates the expression."""
-  not: EmissionCategoryGasFilter
-
-  """Checks for any expressions in this list."""
-  or: [EmissionCategoryGasFilter!]
-
-  """Filter by the object’s `rowId` field."""
-  rowId: IntFilter
-
-  """Filter by the object’s `updatedAt` field."""
-  updatedAt: DatetimeFilter
-
-  """Filter by the object’s `updatedBy` field."""
-  updatedBy: IntFilter
-}
-
-"""An input for mutations affecting `EmissionCategoryGas`"""
-input EmissionCategoryGasInput {
-  """Creation date of row"""
-  createdAt: Datetime
-
-  """Creator of row"""
-  createdBy: Int
-
-  """Date of deletion"""
-  deletedAt: Datetime
-
-  """The user who deleted the row"""
-  deletedBy: Int
-
-  """The description of the emission category"""
-  emissionCategoryDescription: String
-
-  """Foreign key to emission_category"""
-  emissionCategoryId: Int
-
-  """Foreign key to gas"""
-  gasId: Int
-
-  """Updated date of row"""
-  updatedAt: Datetime
-
-  """Updator of row"""
-  updatedBy: Int
-}
-
-"""
-Represents an update to a `EmissionCategoryGas`. Fields that are set will be updated.
-"""
-input EmissionCategoryGasPatch {
-  """Creation date of row"""
-  createdAt: Datetime
-
-  """Creator of row"""
-  createdBy: Int
-
-  """Date of deletion"""
-  deletedAt: Datetime
-
-  """The user who deleted the row"""
-  deletedBy: Int
-
-  """The description of the emission category"""
-  emissionCategoryDescription: String
-
-  """Foreign key to emission_category"""
-  emissionCategoryId: Int
-
-  """Foreign key to gas"""
-  gasId: Int
-
-  """Updated date of row"""
-  updatedAt: Datetime
-
-  """Updator of row"""
-  updatedBy: Int
 }
 
 """An input for mutations affecting `EmissionCategory`"""
@@ -25420,8 +25391,7 @@ A connection to a list of `Application` values, with data from `FacilityApplicat
 """
 type FacilityApplicationsByFacilityApplicationFacilityIdAndApplicationIdManyToManyConnection {
   """
-  A list of edges which contains the `Application`, info from the
-  `FacilityApplication`, and the cursor to aid in pagination.
+  A list of edges which contains the `Application`, info from the `FacilityApplication`, and the cursor to aid in pagination.
   """
   edges: [FacilityApplicationsByFacilityApplicationFacilityIdAndApplicationIdManyToManyEdge!]!
 
@@ -25477,8 +25447,7 @@ A connection to a list of `Application` values, with data from `FacilitySearchRe
 """
 type FacilityApplicationsByFacilitySearchResultFacilityIdAndApplicationIdManyToManyConnection {
   """
-  A list of edges which contains the `Application`, info from the
-  `FacilitySearchResult`, and the cursor to aid in pagination.
+  A list of edges which contains the `Application`, info from the `FacilitySearchResult`, and the cursor to aid in pagination.
   """
   edges: [FacilityApplicationsByFacilitySearchResultFacilityIdAndApplicationIdManyToManyEdge!]!
 
@@ -25686,8 +25655,7 @@ A connection to a list of `Organisation` values, with data from `FacilityApplica
 """
 type FacilityOrganisationsByFacilityApplicationFacilityIdAndOrganisationIdManyToManyConnection {
   """
-  A list of edges which contains the `Organisation`, info from the
-  `FacilityApplication`, and the cursor to aid in pagination.
+  A list of edges which contains the `Organisation`, info from the `FacilityApplication`, and the cursor to aid in pagination.
   """
   edges: [FacilityOrganisationsByFacilityApplicationFacilityIdAndOrganisationIdManyToManyEdge!]!
 
@@ -27850,8 +27818,7 @@ A connection to a list of `EmissionCategory` values, with data from `EmissionCat
 """
 type GasEmissionCategoriesByEmissionCategoryGasGasIdAndEmissionCategoryIdManyToManyConnection {
   """
-  A list of edges which contains the `EmissionCategory`, info from the
-  `EmissionCategoryGas`, and the cursor to aid in pagination.
+  A list of edges which contains the `EmissionCategory`, info from the `EmissionCategoryGas`, and the cursor to aid in pagination.
   """
   edges: [GasEmissionCategoriesByEmissionCategoryGasGasIdAndEmissionCategoryIdManyToManyEdge!]!
 
@@ -27910,59 +27877,6 @@ type GasEmissionCategoriesByEmissionCategoryGasGasIdAndEmissionCategoryIdManyToM
 
   """The `EmissionCategory` at the end of the edge."""
   node: EmissionCategory
-}
-
-"""A connection to a list of `Gas` values."""
-type GasesConnection {
-  """
-  A list of edges which contains the `Gas` and cursor to aid in pagination.
-  """
-  edges: [GasesEdge!]!
-
-  """A list of `Gas` objects."""
-  nodes: [Gas]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """The count of *all* `Gas` you could get from the connection."""
-  totalCount: Int!
-}
-
-"""A `Gas` edge in the connection."""
-type GasesEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `Gas` at the end of the edge."""
-  node: Gas
-}
-
-"""Methods to use when ordering `Gas`."""
-enum GasesOrderBy {
-  CREATED_AT_ASC
-  CREATED_AT_DESC
-  CREATED_BY_ASC
-  CREATED_BY_DESC
-  DELETED_AT_ASC
-  DELETED_AT_DESC
-  DELETED_BY_ASC
-  DELETED_BY_DESC
-  GAS_DESCRIPTION_ASC
-  GAS_DESCRIPTION_DESC
-  GAS_TYPE_ASC
-  GAS_TYPE_DESC
-  GWP_ASC
-  GWP_DESC
-  ID_ASC
-  ID_DESC
-  NATURAL
-  PRIMARY_KEY_ASC
-  PRIMARY_KEY_DESC
-  UPDATED_AT_ASC
-  UPDATED_AT_DESC
-  UPDATED_BY_ASC
-  UPDATED_BY_DESC
 }
 
 """
@@ -28067,6 +27981,59 @@ input GasPatch {
 
   """Updator of row"""
   updatedBy: Int
+}
+
+"""A connection to a list of `Gas` values."""
+type GasesConnection {
+  """
+  A list of edges which contains the `Gas` and cursor to aid in pagination.
+  """
+  edges: [GasesEdge!]!
+
+  """A list of `Gas` objects."""
+  nodes: [Gas]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `Gas` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `Gas` edge in the connection."""
+type GasesEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `Gas` at the end of the edge."""
+  node: Gas
+}
+
+"""Methods to use when ordering `Gas`."""
+enum GasesOrderBy {
+  CREATED_AT_ASC
+  CREATED_AT_DESC
+  CREATED_BY_ASC
+  CREATED_BY_DESC
+  DELETED_AT_ASC
+  DELETED_AT_DESC
+  DELETED_BY_ASC
+  DELETED_BY_DESC
+  GAS_DESCRIPTION_ASC
+  GAS_DESCRIPTION_DESC
+  GAS_TYPE_ASC
+  GAS_TYPE_DESC
+  GWP_ASC
+  GWP_DESC
+  ID_ASC
+  ID_DESC
+  NATURAL
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+  UPDATED_AT_ASC
+  UPDATED_AT_DESC
+  UPDATED_BY_ASC
+  UPDATED_BY_DESC
 }
 
 """All input for the `importSwrsOrganisationFacility` mutation."""
@@ -28365,9 +28332,7 @@ type JwtToken {
 }
 
 """
-Table containing the information for the links between CIIP products. A link
-from product_id -> linked_product_id requires linked_product_id to be reported
-if product_id is reported
+Table containing the information for the links between CIIP products. A link from product_id -> linked_product_id requires linked_product_id to be reported if product_id is reported
 """
 type LinkedProduct implements Node {
   """Reads a single `CiipUser` that is related to this `LinkedProduct`."""
@@ -28836,8 +28801,7 @@ type Mutation {
   ): CreateLinkedProductPayload
 
   """
-  This custom create mutation does an upsert on conflict of the naics_code
-  column, updating the description and setting the deleted at/by columsn to null
+  This custom create mutation does an upsert on conflict of the naics_code column, updating the description and setting the deleted at/by columsn to null
   """
   createNaicsCode(
     """
@@ -28863,9 +28827,7 @@ type Mutation {
   ): CreateProductPayload
 
   """
-  This custom create mutation does an upsert on conflict of the product_id &
-  naics_code_id columns, updating the is_mandatory column & setting the deleted
-  at/by columns to null
+  This custom create mutation does an upsert on conflict of the product_id & naics_code_id columns, updating the is_mandatory column & setting the deleted at/by columns to null
   """
   createProductNaicsCode(
     """
@@ -29734,9 +29696,7 @@ type Mutation {
 }
 
 """
-Table contains naics codes & their descriptions. NAICS is an acronym for North
-American Industry Classification System and is used to categorize industrial
-operations into sectors.
+Table contains naics codes & their descriptions. NAICS is an acronym for North American Industry Classification System and is used to categorize industrial operations into sectors.
 """
 type NaicsCode implements Node {
   """
@@ -29873,8 +29833,7 @@ type NaicsCode implements Node {
   id: ID!
 
   """
-  The naics_code, NAICS is an acronym for North American Industry Classification
-  System and is used to categorize industrial operations into sectors.
+  The naics_code, NAICS is an acronym for North American Industry Classification System and is used to categorize industrial operations into sectors.
   """
   naicsCode: String!
 
@@ -30253,8 +30212,7 @@ input NaicsCodePatch {
   deletedBy: Int
 
   """
-  The naics_code, NAICS is an acronym for North American Industry Classification
-  System and is used to categorize industrial operations into sectors.
+  The naics_code, NAICS is an acronym for North American Industry Classification System and is used to categorize industrial operations into sectors.
   """
   naicsCode: String
 
@@ -30636,8 +30594,7 @@ A connection to a list of `Application` values, with data from `FacilityApplicat
 """
 type OrganisationApplicationsByFacilityApplicationOrganisationIdAndApplicationIdManyToManyConnection {
   """
-  A list of edges which contains the `Application`, info from the
-  `FacilityApplication`, and the cursor to aid in pagination.
+  A list of edges which contains the `Application`, info from the `FacilityApplication`, and the cursor to aid in pagination.
   """
   edges: [OrganisationApplicationsByFacilityApplicationOrganisationIdAndApplicationIdManyToManyEdge!]!
 
@@ -31065,10 +31022,10 @@ enum OrganisationsOrderBy {
   OPERATOR_TRADE_NAME_DESC
   PRIMARY_KEY_ASC
   PRIMARY_KEY_DESC
-  REPORT_ID_ASC
-  REPORT_ID_DESC
   REPORTING_YEAR_ASC
   REPORTING_YEAR_DESC
+  REPORT_ID_ASC
+  REPORT_ID_DESC
   SWRS_ORGANISATION_ID_ASC
   SWRS_ORGANISATION_ID_DESC
   SWRS_REPORT_ID_ASC
@@ -31093,22 +31050,17 @@ type PageInfo {
 """Table containing the information for a CIIP product"""
 type Product implements Node {
   """
-  Boolean value indicates if EIO facility emissions should be added to the
-  facility emissions when calculating the product emission intensity
+  Boolean value indicates if EIO facility emissions should be added to the facility emissions when calculating the product emission intensity
   """
   addEmissionsFromEios: Boolean!
 
   """
-  Boolean value indicates if purchased electricity emissions should be added to
-  the facility emissions when calculating the product emission intensity
-  (applies only to products where requires_emission_allocation is false)
+  Boolean value indicates if purchased electricity emissions should be added to the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)
   """
   addPurchasedElectricityEmissions: Boolean!
 
   """
-  Boolean value indicates if purchased heat emissions should be added to the
-  facility emissions when calculating the product emission intensity (applies
-  only to products where requires_emission_allocation is false)
+  Boolean value indicates if purchased heat emissions should be added to the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)
   """
   addPurchasedHeatEmissions: Boolean!
 
@@ -31772,6 +31724,11 @@ type Product implements Node {
   """The name of the product"""
   productName: String!
 
+  """
+  The current state of the product within the lifecycle (draft, published, archived)
+  """
+  productState: CiipProductState!
+
   """Reads and enables pagination through a set of `Product`."""
   productsByLinkedProductLinkedProductIdAndProductId(
     """Read all values in the set after (below) this cursor."""
@@ -31839,11 +31796,6 @@ type Product implements Node {
     """The method to use when ordering `Product`."""
     orderBy: [ProductsOrderBy!] = [PRIMARY_KEY_ASC]
   ): ProductProductsByLinkedProductProductIdAndLinkedProductIdManyToManyConnection!
-
-  """
-  The current state of the product within the lifecycle (draft, published, archived)
-  """
-  productState: CiipProductState!
 
   """Reads and enables pagination through a set of `ReportingYear`."""
   reportingYearsByBenchmarkProductIdAndEndReportingYear(
@@ -31927,30 +31879,22 @@ type Product implements Node {
   rowId: Int!
 
   """
-  Boolean value indicates if exported electricity emissions should be subtracted
-  from the facility emissions when calculating the product emission intensity
-  (applies only to products where requires_emission_allocation is false)
+  Boolean value indicates if exported electricity emissions should be subtracted from the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)
   """
   subtractExportedElectricityEmissions: Boolean!
 
   """
-  Boolean value indicates if exported heat emissions should be subtracted from
-  the facility emissions when calculating the product emission intensity
-  (applies only to products where requires_emission_allocation is false)
+  Boolean value indicates if exported heat emissions should be subtracted from the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)
   """
   subtractExportedHeatEmissions: Boolean!
 
   """
-  Boolean value indicates if generated electricity emissions should be
-  subtracted from the facility emissions when calculating the product emission
-  intensity (applies only to products where requires_emission_allocation is false)
+  Boolean value indicates if generated electricity emissions should be subtracted from the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)
   """
   subtractGeneratedElectricityEmissions: Boolean!
 
   """
-  Boolean value indicates if generated heat emissions should be subtracted from
-  the facility emissions when calculating the product emission intensity
-  (applies only to products where requires_emission_allocation is false)
+  Boolean value indicates if generated heat emissions should be subtracted from the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)
   """
   subtractGeneratedHeatEmissions: Boolean!
 
@@ -32888,22 +32832,17 @@ input ProductFilter {
 """An input for mutations affecting `Product`"""
 input ProductInput {
   """
-  Boolean value indicates if EIO facility emissions should be added to the
-  facility emissions when calculating the product emission intensity
+  Boolean value indicates if EIO facility emissions should be added to the facility emissions when calculating the product emission intensity
   """
   addEmissionsFromEios: Boolean
 
   """
-  Boolean value indicates if purchased electricity emissions should be added to
-  the facility emissions when calculating the product emission intensity
-  (applies only to products where requires_emission_allocation is false)
+  Boolean value indicates if purchased electricity emissions should be added to the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)
   """
   addPurchasedElectricityEmissions: Boolean
 
   """
-  Boolean value indicates if purchased heat emissions should be added to the
-  facility emissions when calculating the product emission intensity (applies
-  only to products where requires_emission_allocation is false)
+  Boolean value indicates if purchased heat emissions should be added to the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)
   """
   addPurchasedHeatEmissions: Boolean
 
@@ -32953,30 +32892,22 @@ input ProductInput {
   requiresProductAmount: Boolean
 
   """
-  Boolean value indicates if exported electricity emissions should be subtracted
-  from the facility emissions when calculating the product emission intensity
-  (applies only to products where requires_emission_allocation is false)
+  Boolean value indicates if exported electricity emissions should be subtracted from the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)
   """
   subtractExportedElectricityEmissions: Boolean
 
   """
-  Boolean value indicates if exported heat emissions should be subtracted from
-  the facility emissions when calculating the product emission intensity
-  (applies only to products where requires_emission_allocation is false)
+  Boolean value indicates if exported heat emissions should be subtracted from the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)
   """
   subtractExportedHeatEmissions: Boolean
 
   """
-  Boolean value indicates if generated electricity emissions should be
-  subtracted from the facility emissions when calculating the product emission
-  intensity (applies only to products where requires_emission_allocation is false)
+  Boolean value indicates if generated electricity emissions should be subtracted from the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)
   """
   subtractGeneratedElectricityEmissions: Boolean
 
   """
-  Boolean value indicates if generated heat emissions should be subtracted from
-  the facility emissions when calculating the product emission intensity
-  (applies only to products where requires_emission_allocation is false)
+  Boolean value indicates if generated heat emissions should be subtracted from the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)
   """
   subtractGeneratedHeatEmissions: Boolean
 
@@ -32991,9 +32922,7 @@ input ProductInput {
 }
 
 """
-Defines which products can be reported in a facility with a given naics code.
-NAICS is an acronym for North American Industry Classification System and is
-used to categorize industrial operations into sectors.
+Defines which products can be reported in a facility with a given naics code. NAICS is an acronym for North American Industry Classification System and is used to categorize industrial operations into sectors.
 """
 type ProductNaicsCode implements Node {
   """Reads a single `CiipUser` that is related to this `ProductNaicsCode`."""
@@ -33287,22 +33216,17 @@ Represents an update to a `Product`. Fields that are set will be updated.
 """
 input ProductPatch {
   """
-  Boolean value indicates if EIO facility emissions should be added to the
-  facility emissions when calculating the product emission intensity
+  Boolean value indicates if EIO facility emissions should be added to the facility emissions when calculating the product emission intensity
   """
   addEmissionsFromEios: Boolean
 
   """
-  Boolean value indicates if purchased electricity emissions should be added to
-  the facility emissions when calculating the product emission intensity
-  (applies only to products where requires_emission_allocation is false)
+  Boolean value indicates if purchased electricity emissions should be added to the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)
   """
   addPurchasedElectricityEmissions: Boolean
 
   """
-  Boolean value indicates if purchased heat emissions should be added to the
-  facility emissions when calculating the product emission intensity (applies
-  only to products where requires_emission_allocation is false)
+  Boolean value indicates if purchased heat emissions should be added to the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)
   """
   addPurchasedHeatEmissions: Boolean
 
@@ -33352,30 +33276,22 @@ input ProductPatch {
   requiresProductAmount: Boolean
 
   """
-  Boolean value indicates if exported electricity emissions should be subtracted
-  from the facility emissions when calculating the product emission intensity
-  (applies only to products where requires_emission_allocation is false)
+  Boolean value indicates if exported electricity emissions should be subtracted from the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)
   """
   subtractExportedElectricityEmissions: Boolean
 
   """
-  Boolean value indicates if exported heat emissions should be subtracted from
-  the facility emissions when calculating the product emission intensity
-  (applies only to products where requires_emission_allocation is false)
+  Boolean value indicates if exported heat emissions should be subtracted from the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)
   """
   subtractExportedHeatEmissions: Boolean
 
   """
-  Boolean value indicates if generated electricity emissions should be
-  subtracted from the facility emissions when calculating the product emission
-  intensity (applies only to products where requires_emission_allocation is false)
+  Boolean value indicates if generated electricity emissions should be subtracted from the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)
   """
   subtractGeneratedElectricityEmissions: Boolean
 
   """
-  Boolean value indicates if generated heat emissions should be subtracted from
-  the facility emissions when calculating the product emission intensity
-  (applies only to products where requires_emission_allocation is false)
+  Boolean value indicates if generated heat emissions should be subtracted from the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)
   """
   subtractGeneratedHeatEmissions: Boolean
 
@@ -33754,40 +33670,6 @@ type Query implements Node {
     orderBy: [ApplicationReviewStepsOrderBy!] = [PRIMARY_KEY_ASC]
   ): ApplicationReviewStepsConnection
 
-  """Reads and enables pagination through a set of `ApplicationRevision`."""
-  allApplicationRevisions(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: ApplicationRevisionCondition
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: ApplicationRevisionFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `ApplicationRevision`."""
-    orderBy: [ApplicationRevisionsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): ApplicationRevisionsConnection
-
   """
   Reads and enables pagination through a set of `ApplicationRevisionStatus`.
   """
@@ -33824,8 +33706,8 @@ type Query implements Node {
     orderBy: [ApplicationRevisionStatusesOrderBy!] = [PRIMARY_KEY_ASC]
   ): ApplicationRevisionStatusesConnection
 
-  """Reads and enables pagination through a set of `Application`."""
-  allApplications(
+  """Reads and enables pagination through a set of `ApplicationRevision`."""
+  allApplicationRevisions(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -33835,12 +33717,12 @@ type Query implements Node {
     """
     A condition to be used in determining which values should be returned by the collection.
     """
-    condition: ApplicationCondition
+    condition: ApplicationRevisionCondition
 
     """
     A filter to be used in determining which values should be returned by the collection.
     """
-    filter: ApplicationFilter
+    filter: ApplicationRevisionFilter
 
     """Only read the first `n` values of the set."""
     first: Int
@@ -33854,9 +33736,9 @@ type Query implements Node {
     """
     offset: Int
 
-    """The method to use when ordering `Application`."""
-    orderBy: [ApplicationsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): ApplicationsConnection
+    """The method to use when ordering `ApplicationRevision`."""
+    orderBy: [ApplicationRevisionsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ApplicationRevisionsConnection
 
   """
   Reads and enables pagination through a set of `ApplicationValidationFunction`.
@@ -33893,6 +33775,40 @@ type Query implements Node {
     """The method to use when ordering `ApplicationValidationFunction`."""
     orderBy: [ApplicationValidationFunctionsOrderBy!] = [PRIMARY_KEY_ASC]
   ): ApplicationValidationFunctionsConnection
+
+  """Reads and enables pagination through a set of `Application`."""
+  allApplications(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ApplicationCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: ApplicationFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `Application`."""
+    orderBy: [ApplicationsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ApplicationsConnection
 
   """Reads and enables pagination through a set of `Benchmark`."""
   allBenchmarks(
@@ -34750,7 +34666,7 @@ type Query implements Node {
     based pagination. May not be used with `last`.
     """
     offset: Int
-  ): FacilityApplicationsConnection!
+  ): FacilityApplicationsConnection
   facilityByRowId(rowId: Int!): Facility
 
   """Reads a single `FormJson` using its globally unique `ID`."""
@@ -34808,7 +34724,7 @@ type Query implements Node {
     based pagination. May not be used with `last`.
     """
     offset: Int
-  ): CarbonTaxDataConnection!
+  ): CarbonTaxDataConnection
 
   """Reads and enables pagination through a set of `EmissionDatum`."""
   getSwrsEmissionData(
@@ -34836,7 +34752,7 @@ type Query implements Node {
     """
     offset: Int
     reportingYear: Int
-  ): EmissionDataConnection!
+  ): EmissionDataConnection
   getSwrsFacilityData(facilityId: Int, reportingYear: Int): FacilityDatum
 
   """Reads and enables pagination through a set of `FuelDatum`."""
@@ -34865,7 +34781,7 @@ type Query implements Node {
     """
     offset: Int
     reportingYear: Int
-  ): FuelDataConnection!
+  ): FuelDataConnection
   getSwrsOperatorContactData(facilityId: Int, reportingYear: Int): OperatorContactDatum
   getSwrsOrganisationData(facilityId: Int, reportingYear: Int): OrganisationDatum
 
@@ -34995,7 +34911,7 @@ type Query implements Node {
     organisationRowId: String
     searchField: String
     searchValue: String
-  ): FacilitiesConnection!
+  ): FacilitiesConnection
   session: JwtToken
 }
 
@@ -36545,6 +36461,53 @@ input ReviewCommentPatch {
   updatedBy: Int
 }
 
+enum ReviewCommentType {
+  GENERAL
+  INTERNAL
+}
+
+"""
+A filter to be used against ReviewCommentType fields. All fields are combined with a logical ‘and.’
+"""
+input ReviewCommentTypeFilter {
+  """
+  Not equal to the specified value, treating null like an ordinary value.
+  """
+  distinctFrom: ReviewCommentType
+
+  """Equal to the specified value."""
+  equalTo: ReviewCommentType
+
+  """Greater than the specified value."""
+  greaterThan: ReviewCommentType
+
+  """Greater than or equal to the specified value."""
+  greaterThanOrEqualTo: ReviewCommentType
+
+  """Included in the specified list."""
+  in: [ReviewCommentType!]
+
+  """
+  Is null (if `true` is specified) or is not null (if `false` is specified).
+  """
+  isNull: Boolean
+
+  """Less than the specified value."""
+  lessThan: ReviewCommentType
+
+  """Less than or equal to the specified value."""
+  lessThanOrEqualTo: ReviewCommentType
+
+  """Equal to the specified value, treating null like an ordinary value."""
+  notDistinctFrom: ReviewCommentType
+
+  """Not equal to the specified value."""
+  notEqualTo: ReviewCommentType
+
+  """Not included in the specified list."""
+  notIn: [ReviewCommentType!]
+}
+
 """A connection to a list of `ReviewComment` values."""
 type ReviewCommentsConnection {
   """
@@ -36600,56 +36563,8 @@ enum ReviewCommentsOrderBy {
   UPDATED_BY_DESC
 }
 
-enum ReviewCommentType {
-  GENERAL
-  INTERNAL
-}
-
 """
-A filter to be used against ReviewCommentType fields. All fields are combined with a logical ‘and.’
-"""
-input ReviewCommentTypeFilter {
-  """
-  Not equal to the specified value, treating null like an ordinary value.
-  """
-  distinctFrom: ReviewCommentType
-
-  """Equal to the specified value."""
-  equalTo: ReviewCommentType
-
-  """Greater than the specified value."""
-  greaterThan: ReviewCommentType
-
-  """Greater than or equal to the specified value."""
-  greaterThanOrEqualTo: ReviewCommentType
-
-  """Included in the specified list."""
-  in: [ReviewCommentType!]
-
-  """
-  Is null (if `true` is specified) or is not null (if `false` is specified).
-  """
-  isNull: Boolean
-
-  """Less than the specified value."""
-  lessThan: ReviewCommentType
-
-  """Less than or equal to the specified value."""
-  lessThanOrEqualTo: ReviewCommentType
-
-  """Equal to the specified value, treating null like an ordinary value."""
-  notDistinctFrom: ReviewCommentType
-
-  """Not equal to the specified value."""
-  notEqualTo: ReviewCommentType
-
-  """Not included in the specified list."""
-  notIn: [ReviewCommentType!]
-}
-
-"""
-Table contains a unique step_name and a boolean is_active column to indicate if
-the step_name is currently in use when reviewing an application
+Table contains a unique step_name and a boolean is_active column to indicate if the step_name is currently in use when reviewing an application
 """
 type ReviewStep implements Node {
   """Reads and enables pagination through a set of `ApplicationReviewStep`."""
@@ -36776,8 +36691,7 @@ A connection to a list of `Application` values, with data from `ApplicationRevie
 """
 type ReviewStepApplicationsByApplicationReviewStepReviewStepIdAndApplicationIdManyToManyConnection {
   """
-  A list of edges which contains the `Application`, info from the
-  `ApplicationReviewStep`, and the cursor to aid in pagination.
+  A list of edges which contains the `Application`, info from the `ApplicationReviewStep`, and the cursor to aid in pagination.
   """
   edges: [ReviewStepApplicationsByApplicationReviewStepReviewStepIdAndApplicationIdManyToManyEdge!]!
 
@@ -37042,14 +36956,14 @@ input StringFilter {
   """Included in the specified list."""
   in: [String!]
 
+  """Included in the specified list (case-insensitive)."""
+  inInsensitive: [String!]
+
   """Contains the specified string (case-sensitive)."""
   includes: String
 
   """Contains the specified string (case-insensitive)."""
   includesInsensitive: String
-
-  """Included in the specified list (case-insensitive)."""
-  inInsensitive: [String!]
 
   """
   Is null (if `true` is specified) or is not null (if `false` is specified).
@@ -37069,14 +36983,12 @@ input StringFilter {
   lessThanOrEqualToInsensitive: String
 
   """
-  Matches the specified pattern (case-sensitive). An underscore (_) matches any
-  single character; a percent sign (%) matches any sequence of zero or more characters.
+  Matches the specified pattern (case-sensitive). An underscore (_) matches any single character; a percent sign (%) matches any sequence of zero or more characters.
   """
   like: String
 
   """
-  Matches the specified pattern (case-insensitive). An underscore (_) matches
-  any single character; a percent sign (%) matches any sequence of zero or more characters.
+  Matches the specified pattern (case-insensitive). An underscore (_) matches any single character; a percent sign (%) matches any sequence of zero or more characters.
   """
   likeInsensitive: String
 
@@ -37103,26 +37015,22 @@ input StringFilter {
   """Not included in the specified list."""
   notIn: [String!]
 
+  """Not included in the specified list (case-insensitive)."""
+  notInInsensitive: [String!]
+
   """Does not contain the specified string (case-sensitive)."""
   notIncludes: String
 
   """Does not contain the specified string (case-insensitive)."""
   notIncludesInsensitive: String
 
-  """Not included in the specified list (case-insensitive)."""
-  notInInsensitive: [String!]
-
   """
-  Does not match the specified pattern (case-sensitive). An underscore (_)
-  matches any single character; a percent sign (%) matches any sequence of zero
-  or more characters.
+  Does not match the specified pattern (case-sensitive). An underscore (_) matches any single character; a percent sign (%) matches any sequence of zero or more characters.
   """
   notLike: String
 
   """
-  Does not match the specified pattern (case-insensitive). An underscore (_)
-  matches any single character; a percent sign (%) matches any sequence of zero
-  or more characters.
+  Does not match the specified pattern (case-insensitive). An underscore (_) matches any single character; a percent sign (%) matches any sequence of zero or more characters.
   """
   notLikeInsensitive: String
 
@@ -37137,6 +37045,53 @@ input StringFilter {
 
   """Starts with the specified string (case-insensitive)."""
   startsWithInsensitive: String
+}
+
+"""
+A universally unique identifier as defined by [RFC 4122](https://tools.ietf.org/html/rfc4122).
+"""
+scalar UUID
+
+"""
+A filter to be used against UUID fields. All fields are combined with a logical ‘and.’
+"""
+input UUIDFilter {
+  """
+  Not equal to the specified value, treating null like an ordinary value.
+  """
+  distinctFrom: UUID
+
+  """Equal to the specified value."""
+  equalTo: UUID
+
+  """Greater than the specified value."""
+  greaterThan: UUID
+
+  """Greater than or equal to the specified value."""
+  greaterThanOrEqualTo: UUID
+
+  """Included in the specified list."""
+  in: [UUID!]
+
+  """
+  Is null (if `true` is specified) or is not null (if `false` is specified).
+  """
+  isNull: Boolean
+
+  """Less than the specified value."""
+  lessThan: UUID
+
+  """Less than or equal to the specified value."""
+  lessThanOrEqualTo: UUID
+
+  """Equal to the specified value, treating null like an ordinary value."""
+  notDistinctFrom: UUID
+
+  """Not equal to the specified value."""
+  notEqualTo: UUID
+
+  """Not included in the specified list."""
+  notIn: [UUID!]
 }
 
 """All input for the `updateApplicationByRowId` mutation."""
@@ -38873,51 +38828,4 @@ type UpdateReviewStepPayload {
     """The method to use when ordering `ReviewStep`."""
     orderBy: [ReviewStepsOrderBy!] = [PRIMARY_KEY_ASC]
   ): ReviewStepsEdge
-}
-
-"""
-A universally unique identifier as defined by [RFC 4122](https://tools.ietf.org/html/rfc4122).
-"""
-scalar UUID
-
-"""
-A filter to be used against UUID fields. All fields are combined with a logical ‘and.’
-"""
-input UUIDFilter {
-  """
-  Not equal to the specified value, treating null like an ordinary value.
-  """
-  distinctFrom: UUID
-
-  """Equal to the specified value."""
-  equalTo: UUID
-
-  """Greater than the specified value."""
-  greaterThan: UUID
-
-  """Greater than or equal to the specified value."""
-  greaterThanOrEqualTo: UUID
-
-  """Included in the specified list."""
-  in: [UUID!]
-
-  """
-  Is null (if `true` is specified) or is not null (if `false` is specified).
-  """
-  isNull: Boolean
-
-  """Less than the specified value."""
-  lessThan: UUID
-
-  """Less than or equal to the specified value."""
-  lessThanOrEqualTo: UUID
-
-  """Equal to the specified value, treating null like an ordinary value."""
-  notDistinctFrom: UUID
-
-  """Not equal to the specified value."""
-  notEqualTo: UUID
-
-  """Not included in the specified list."""
-  notIn: [UUID!]
 }

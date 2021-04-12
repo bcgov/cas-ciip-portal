@@ -38,7 +38,7 @@ const PageRedirectHandler: React.FunctionComponent<Props> = ({
         environment,
         sessionQuery,
         {}
-      );
+      ).toPromise();
       if (isAccessProtected && !response?.session) {
         router.push({
           pathname: '/login-redirect',
