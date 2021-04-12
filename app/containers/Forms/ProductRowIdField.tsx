@@ -1,5 +1,5 @@
 import React, {useMemo} from 'react';
-import {InputGroup, Alert} from 'react-bootstrap';
+import {InputGroup} from 'react-bootstrap';
 import {FieldProps} from '@rjsf/core';
 import {createFragmentContainer, graphql} from 'react-relay';
 import {ProductRowIdField_query} from 'ProductRowIdField_query.graphql';
@@ -8,17 +8,14 @@ import {ProductRowIdField_naicsCode} from 'ProductRowIdField_naicsCode.graphql';
 interface Props extends FieldProps<number> {
   query: ProductRowIdField_query;
   naicsCode?: ProductRowIdField_naicsCode;
-  isLinkModal?: boolean;
 }
 
 /**
- * Separates active products from archived products & renders according to the product's state.
- * For active products, the fieldProps are generated & either a search dropdown component is rendered
- * or the value is rendered based on what is defined in the currentjsonschema form registry.
- * For archived proucts, a readonly input is rendered with the name of the archived product.
- * This split based on the state of the product allows archived products to be rendered in the product form,
- * but since only the active products are passed to the field props, these products are not available to be selected
- * from the search dropdown component when filling out an application.
+ * Provides a list of products filtered by NAICS code for selection/display.
+ * If a product is not associated with the NAICS code reported in the Administration data it is not
+ * selectable from the dropdown.
+ * If an invalid (not associated with the reported NAICS code or in 'archived' state) is reported, it
+ * is rendered as a disabled input.
  */
 export const ProductRowIdFieldComponent: React.FunctionComponent<Props> = (
   props
@@ -26,54 +23,28 @@ export const ProductRowIdFieldComponent: React.FunctionComponent<Props> = (
   /**
    * Injects the list of products in the schema, and remove `query` from the props
    * Other props are passed as-is to the StringField.
-   * If this component is rendered from the admin product-benchmark link product modal, the energy products are removed from the choices.
    */
-
-  if (!props.naicsCode && !props.isLinkModal)
-    return (
-      <Alert variant="danger">
-        We did not find any products associated with your NAICS code. Please
-        verify the NAICS code entered in the Admin tab exists and is correct.
-      </Alert>
+  const fieldProps = useMemo(() => {
+    const productIds = props.naicsCode?.productsByNaicsCode?.edges.map(
+      ({node}) => node.rowId
+    );
+    const productNames = props.naicsCode?.productsByNaicsCode?.edges.map(
+      ({node}) => node.productName
     );
 
-  const fieldProps = useMemo(() => {
-    let productIds;
-    let productNames;
-    if (props.isLinkModal) {
-      productIds = props.query.published.edges
-        .filter(({node}) => node.isEnergyProduct === false)
-        .map(({node}) => node.rowId);
-
-      productNames = props.query.published.edges
-        .filter(({node}) => node.isEnergyProduct === false)
-        .map(({node}) => node.productName);
-    } else if (props.naicsCode) {
-      productIds = props.naicsCode.productsByNaicsCode.edges.map(
-        ({node}) => node.rowId
-      );
-      productNames = props.naicsCode.productsByNaicsCode.edges.map(
-        ({node}) => node.productName
-      );
-    } else {
-      productIds = props.query.published.edges.map(({node}) => node.rowId);
-      productNames = props.query.published.edges.map(
-        ({node}) => node.productName
-      );
-    }
     return {
       ...props,
       schema: {
         ...props.schema,
-        enum: productIds,
-        enumNames: productNames
+        enum: productIds || [],
+        enumNames: productNames || []
       },
       query: undefined
     };
   }, [props]);
 
   /**
-   * Contains all products, split into arrays of published / archived product IDs and names.
+   * Contains all products, split into arrays of published / archived / (published products filtered by NAICS code) product IDs and names.
    */
   const allProducts = useMemo(
     () => ({
@@ -98,50 +69,29 @@ export const ProductRowIdFieldComponent: React.FunctionComponent<Props> = (
 
   const invalidProduct = (productName) => (
     <InputGroup className="mb-3">
-      <InputGroup.Prepend>
-        <InputGroup.Text>{productName}</InputGroup.Text>
-      </InputGroup.Prepend>
+      <InputGroup.Text>{productName}</InputGroup.Text>
     </InputGroup>
   );
-
-  if (props.naicsCode) {
-    if (
-      (allProducts.productIdsByNaicsCode.includes(props.formData) &&
-        !allProducts.archivedProductIds.includes(props.formData)) ||
-      props.formData === undefined
-    )
-      return <props.registry.fields.StringField {...fieldProps} />;
-
-    const productIdsNotInNaicsCode = [
-      ...allProducts.publishedProductIds,
-      ...allProducts.archivedProductIds
-    ];
-    const productNamesNotInNaicsCode = [
-      ...allProducts.publishedProductNames,
-      ...allProducts.archivedProductNames
-    ];
-    const productIdOutsideNaicsCode = productIdsNotInNaicsCode.indexOf(
-      props.formData
-    );
-
-    return (
-      <div>
-        {invalidProduct(productNamesNotInNaicsCode[productIdOutsideNaicsCode])}
-      </div>
-    );
-  }
-
+  // If product is valid (associated with reported NAICS code && not archived), render the Stringfield with fieldProps.
   if (
-    allProducts.publishedProductIds.includes(props.formData) ||
+    (allProducts.productIdsByNaicsCode?.includes(props.formData) &&
+      !allProducts.archivedProductIds.includes(props.formData)) ||
     props.formData === undefined
   )
     return <props.registry.fields.StringField {...fieldProps} />;
 
-  // Render a disabled text input for an archived product
-  const archivedIndex = allProducts.archivedProductIds.indexOf(props.formData);
-  return (
-    <div>{invalidProduct(allProducts.archivedProductNames[archivedIndex])}</div>
-  );
+  // Else get the invalid product from the list of all products in the database & render the name as a disabled input.
+  const invalidProductIds = [
+    ...allProducts.publishedProductIds,
+    ...allProducts.archivedProductIds
+  ];
+  const invalidProductNames = [
+    ...allProducts.publishedProductNames,
+    ...allProducts.archivedProductNames
+  ];
+  const invalidProductId = invalidProductIds.indexOf(props.formData);
+
+  return <div>{invalidProduct(invalidProductNames[invalidProductId])}</div>;
 };
 
 export default createFragmentContainer(ProductRowIdFieldComponent, {
