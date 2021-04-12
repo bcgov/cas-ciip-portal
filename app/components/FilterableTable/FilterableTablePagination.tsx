@@ -78,7 +78,7 @@ const FilterableTablePagination: React.FunctionComponent<Props> = ({
           <Dropdown.Menu>
             {PAGE_SIZE_OPTIONS.map((option) => (
               <Dropdown.Item
-                ref={option}
+                key={option}
                 onClick={() => onPageSizeChange(option)}
               >
                 {option}

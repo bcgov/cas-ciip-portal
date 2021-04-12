@@ -33,6 +33,7 @@ exports[`PaginationBar should not render the Pagination component if Math.ceil(t
             }
           }
           disabled={false}
+          key="20"
           onClick={[Function]}
         >
           20
@@ -46,6 +47,7 @@ exports[`PaginationBar should not render the Pagination component if Math.ceil(t
             }
           }
           disabled={false}
+          key="50"
           onClick={[Function]}
         >
           50
@@ -59,6 +61,7 @@ exports[`PaginationBar should not render the Pagination component if Math.ceil(t
             }
           }
           disabled={false}
+          key="100"
           onClick={[Function]}
         >
           100
@@ -107,6 +110,7 @@ exports[`PaginationBar should render a maximum of 9 pagination pages if Math.cei
             }
           }
           disabled={false}
+          key="20"
           onClick={[Function]}
         >
           20
@@ -120,6 +124,7 @@ exports[`PaginationBar should render a maximum of 9 pagination pages if Math.cei
             }
           }
           disabled={false}
+          key="50"
           onClick={[Function]}
         >
           50
@@ -133,6 +138,7 @@ exports[`PaginationBar should render a maximum of 9 pagination pages if Math.cei
             }
           }
           disabled={false}
+          key="100"
           onClick={[Function]}
         >
           100
@@ -287,6 +293,7 @@ exports[`PaginationBar should render the Pagination component if Math.ceil(total
             }
           }
           disabled={false}
+          key="20"
           onClick={[Function]}
         >
           20
@@ -300,6 +307,7 @@ exports[`PaginationBar should render the Pagination component if Math.ceil(total
             }
           }
           disabled={false}
+          key="50"
           onClick={[Function]}
         >
           50
@@ -313,6 +321,7 @@ exports[`PaginationBar should render the Pagination component if Math.ceil(total
             }
           }
           disabled={false}
+          key="100"
           onClick={[Function]}
         >
           100
