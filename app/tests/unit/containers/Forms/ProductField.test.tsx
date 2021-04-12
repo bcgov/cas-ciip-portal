@@ -346,13 +346,60 @@ describe('The ProductionFields Component with archived product not matched to a 
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('should not render the archived warning and the not in naics warning', () => {
+  it('should render the archived warning and the not in naics warning', () => {
     const wrapper = shallow(<ProductFieldComponent {...props} />);
     expect(wrapper.find('Alert').at(0).text()).toContain(
       'Product or Service has been archived'
     );
     expect(wrapper.find('Alert').at(1).text()).toContain(
       'Product or Service is not associated with the NAICS code'
+    );
+  });
+});
+
+describe('The ProductionFields Component with no naics code', () => {
+  const query: ProductField_query = {
+    ' $refType': 'ProductField_query',
+    allProducts: {
+      edges: []
+    }
+  };
+
+  const idSchema: any = {$id: 'product_0'};
+  const props = {
+    schema: productionSchema.schema.definitions.product as JSONSchema7,
+    uiSchema: productionSchema.uiSchema,
+    idSchema,
+    autofocus: false,
+    disabled: false,
+    errorSchema: null,
+    formContext: {},
+    readonly: false,
+    required: false,
+    registry: {
+      ...getDefaultRegistry(),
+      ArrayFieldTemplate: FormArrayFieldTemplate,
+      ObjectFieldTemplate: FormObjectFieldTemplate,
+      FieldTemplate: FormFieldTemplate
+    } as any,
+
+    name: 'product',
+    query,
+    naicsCode: null,
+    formData: {},
+    onChange: jest.fn(),
+    onBlur: jest.fn()
+  };
+
+  it('should match the snapshot', () => {
+    const wrapper = shallow(<ProductFieldComponent {...props} />);
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should render the no products found warning', () => {
+    const wrapper = shallow(<ProductFieldComponent {...props} />);
+    expect(wrapper.find('Alert').at(0).text()).toContain(
+      'No products were found'
     );
   });
 });
