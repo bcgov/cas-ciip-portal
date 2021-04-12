@@ -39,7 +39,7 @@ const HeaderLayout = ({
   };
 
   const submitForm = (e) => {
-    if (e.which === 13) {
+    if (e.key === 'Enter' || e.which === 13) {
       e.currentTarget.submit();
     }
   };
