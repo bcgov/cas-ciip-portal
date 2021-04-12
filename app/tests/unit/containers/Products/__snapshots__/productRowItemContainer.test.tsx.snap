@@ -154,6 +154,9 @@ exports[`ProductList should match the previous snapshot 1`] = `
         PUBLISHED
       </Badge>
     </td>
+    <td
+      className="jsx-3501624252"
+    />
   </tr>
   <Modal
     animation={true}

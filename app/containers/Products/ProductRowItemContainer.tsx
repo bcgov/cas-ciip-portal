@@ -213,6 +213,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
             {product.productState}
           </Badge>
         </td>
+        <td />
       </tr>
       {editProductModal}
       {editBenchmarkModal}
