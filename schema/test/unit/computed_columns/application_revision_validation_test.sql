@@ -42,12 +42,12 @@ values
 ('truthy', 'this is always true', 'passed');
 
 -- Call function
-with record as (select row(application.*)::ggircs_portal.application_revision from ggircs_portal.application_revision where applicationId=1 and versionNumber=1)
+with record as (select row(application_revision.*)::ggircs_portal.application_revision from ggircs_portal.application_revision where applicationId=1 and versionNumber=1)
       select * from ggircs_portal.application_revision_validation((select * from record)) order by is_ok desc limit 1;
 
 select results_eq(
   $$
-    with record as (select row(application.*)::ggircs_portal.application_revision from ggircs_portal.application_revision where applicationId=1 and versionNumber=1)
+    with record as (select row(application_revision.*)::ggircs_portal.application_revision from ggircs_portal.application_revision where applicationId=1 and versionNumber=1)
       select count(*) from ggircs_portal.application_revision_validation((select * from record))
   $$,
   $$
@@ -58,7 +58,7 @@ select results_eq(
 
 select results_eq(
   $$
-    with record as (select row(application.*)::ggircs_portal.application_revision from ggircs_portal.application_revision where applicationId=1 and versionNumber=1)
+    with record as (select row(application_revision.*)::ggircs_portal.application_revision from ggircs_portal.application_revision where applicationId=1 and versionNumber=1)
       select validation_description, validation_failed_message, is_ok from ggircs_portal.application_revision_validation((select * from record)) order by is_ok asc limit 1
   $$,
   $$
@@ -69,7 +69,7 @@ select results_eq(
 
 select results_eq(
   $$
-    with record as (select row(application.*)::ggircs_portal.application_revision from ggircs_portal.application_revision where applicationId=1 and versionNumber=1)
+    with record as (select row(application_revision.*)::ggircs_portal.application_revision from ggircs_portal.application_revision where applicationId=1 and versionNumber=1)
       select validation_description, validation_failed_message, is_ok from ggircs_portal.application_revision_validation((select * from record)) order by is_ok desc limit 1
   $$,
   $$
