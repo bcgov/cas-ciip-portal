@@ -87,44 +87,66 @@ const HeaderLayout = ({
             {isLoggedIn ? (
               <>
                 {isRegistered && (
-                  <li>
-                    <Dropdown alignRight>
-                      <Dropdown.Toggle variant="primary" id="dropdown-basic">
-                        <FontAwesomeIcon
-                          color="white"
-                          icon={faUser}
-                          size="1x"
-                        />
-                      </Dropdown.Toggle>
-                      <Dropdown.Menu
-                        id="dropdown-basic-button"
-                        title="Dropdown button"
-                      >
-                        <Dropdown.Item as={Link} href="/user/profile">
-                          <a className="dropdown-item text-right">
-                            <div>
-                              <span>{user.firstName}</span>{' '}
-                              <span>{user.lastName}</span>
-                            </div>
-                            <div className="small text-muted text-nowrap">
-                              {user.emailAddress}
-                            </div>
-                          </a>
-                        </Dropdown.Item>
-                        <Dropdown.Item
-                          as={Form}
-                          action="/logout"
-                          method="post"
-                          tabIndex={0}
-                          onKeyPress={submitForm}
+                  <>
+                    <li className="d-none d-lg-block">
+                      <Dropdown alignRight>
+                        <Dropdown.Toggle variant="primary" id="dropdown-basic">
+                          <FontAwesomeIcon
+                            color="white"
+                            icon={faUser}
+                            size="1x"
+                          />
+                        </Dropdown.Toggle>
+                        <Dropdown.Menu
+                          id="dropdown-basic-button"
+                          title="Dropdown button"
                         >
-                          <button type="submit" className="text-right">
-                            Logout
-                          </button>
-                        </Dropdown.Item>
-                      </Dropdown.Menu>
-                    </Dropdown>
-                  </li>
+                          <Dropdown.Item as={Link} href="/user/profile">
+                            <a className="dropdown-item text-right">
+                              <div>
+                                <span>{user.firstName}</span>{' '}
+                                <span>{user.lastName}</span>
+                              </div>
+                              <div className="small text-muted text-nowrap">
+                                {user.emailAddress}
+                              </div>
+                            </a>
+                          </Dropdown.Item>
+                          <Dropdown.Item
+                            as={Form}
+                            action="/logout"
+                            method="post"
+                            tabIndex={0}
+                            onKeyPress={submitForm}
+                          >
+                            <button type="submit" className="text-right">
+                              Logout
+                            </button>
+                          </Dropdown.Item>
+                        </Dropdown.Menu>
+                      </Dropdown>
+                    </li>
+                    <li className="d-lg-none">
+                      <Link href="/user/profile">
+                        <a className="nav-button text-right">
+                          <div>
+                            <span>{user.firstName}</span>{' '}
+                            <span>{user.lastName}</span>
+                          </div>
+                          <div className="small text-nowrap">
+                            {user.emailAddress}
+                          </div>
+                        </a>
+                      </Link>
+                    </li>
+                    <li className="d-lg-none">
+                      <Form action="/logout" method="post">
+                        <button type="submit" className="nav-button text-right">
+                          Logout
+                        </button>
+                      </Form>
+                    </li>
+                  </>
                 )}
               </>
             ) : (
@@ -199,7 +221,6 @@ const HeaderLayout = ({
             background: none;
             border: none;
             color: inherit;
-            padding: 0;
             width: 100%;
           }
           .nav-button {
