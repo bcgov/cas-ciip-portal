@@ -3,7 +3,7 @@ import {Form, Dropdown} from 'react-bootstrap';
 import Link from 'next/link';
 import LoginButton from 'components/LoginButton';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faUser} from '@fortawesome/free-solid-svg-icons';
+import {faBars, faUser} from '@fortawesome/free-solid-svg-icons';
 
 const DESKTOP_BREAKPOINT_QUERY = '(min-width: 992px)';
 
@@ -69,8 +69,13 @@ const HeaderLayout = ({
               type="button"
               aria-label="Menu toggle"
               onClick={toggleNavMenu}
+              className={isLoggedIn ? 'logged-in' : null}
             >
-              <FontAwesomeIcon color="#036" icon={faUser} size="2x" />
+              <FontAwesomeIcon
+                color={isLoggedIn ? '#036' : 'white'}
+                icon={isLoggedIn ? faUser : faBars}
+                size="2x"
+              />
             </button>
           </div>
           <ul
@@ -233,7 +238,7 @@ const HeaderLayout = ({
               background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
               box-shadow 0.15s ease-in-out;
           }
-          #menu-toggle {
+          #menu-toggle.logged-in {
             background: #f8f9fa;
             border-radius: 100%;
             padding: 0.375rem 0.7rem;
