@@ -4,6 +4,7 @@ import {graphql, createFragmentContainer} from 'react-relay';
 import {defaultLayout_session} from '__generated__/defaultLayout_session.graphql';
 import getConfig from 'next/config';
 import Header from 'components/Layout/Header';
+import UserProfileDropdownContainer from 'containers/User/UserProfileDropdown';
 import Footer from 'components/Layout/Footer';
 import Subheader from 'components/Layout/Subheader';
 import Help from 'components/helpers/Help';
@@ -49,7 +50,11 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
         fixed={fixedHeader}
         isLoggedIn={Boolean(session)}
         isRegistered={Boolean(session?.ciipUserBySub)}
-        user={session?.ciipUserBySub}
+        userProfileDropdown={
+          <UserProfileDropdownContainer
+            user={session ? session.ciipUserBySub : null}
+          />
+        }
       >
         {runtimeConfig.SITEWIDE_NOTICE && (
           <SiteNoticeBanner content={runtimeConfig.SITEWIDE_NOTICE} />
@@ -197,9 +202,7 @@ export default createFragmentContainer(DefaultLayout, {
     fragment defaultLayout_session on JwtToken {
       ciipUserBySub {
         __typename
-        firstName
-        lastName
-        emailAddress
+        ...UserProfileDropdown_user
       }
       userGroups
     }
