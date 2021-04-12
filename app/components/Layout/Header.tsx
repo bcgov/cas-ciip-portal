@@ -90,17 +90,14 @@ const HeaderLayout = ({
                   <>
                     <li className="d-none d-lg-block">
                       <Dropdown alignRight>
-                        <Dropdown.Toggle variant="primary" id="dropdown-basic">
+                        <Dropdown.Toggle variant="primary">
                           <FontAwesomeIcon
                             color="white"
                             icon={faUser}
                             size="1x"
                           />
                         </Dropdown.Toggle>
-                        <Dropdown.Menu
-                          id="dropdown-basic-button"
-                          title="Dropdown button"
-                        >
+                        <Dropdown.Menu>
                           <Dropdown.Item as={Link} href="/user/profile">
                             <a className="dropdown-item text-right">
                               <div>
@@ -119,7 +116,7 @@ const HeaderLayout = ({
                             tabIndex={0}
                             onKeyPress={submitForm}
                           >
-                            <button type="submit" className="text-right">
+                            <button type="submit" className="w-100 text-right">
                               Logout
                             </button>
                           </Dropdown.Item>
@@ -221,7 +218,6 @@ const HeaderLayout = ({
             background: none;
             border: none;
             color: inherit;
-            width: 100%;
           }
           .nav-button {
             color: #f8f9fa;
