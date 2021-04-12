@@ -41,6 +41,9 @@ export const ProductFieldComponent: React.FunctionComponent<Props> = (
       (edge) => edge.node.rowId === formData.productRowId
     ) || !formData.productRowId;
 
+  const hasSelectableProducts = (naicsCode) =>
+    naicsCode?.allProductsByNaicsCode?.edges.length > 0;
+
   const handleProductChange = (productRowId: number) => {
     const product = query.allProducts.edges.find(
       ({node}) => node.rowId === productRowId
@@ -73,8 +76,8 @@ export const ProductFieldComponent: React.FunctionComponent<Props> = (
   const archivedAlert = (
     <Alert variant="danger">
       <strong>Warning:</strong> This version of the Product or Service has been
-      archived. Please remove it and select an appropriate replacement (it may
-      have the same name)
+      archived. This archived product should be removed and an appropriate
+      replacement selected (it may have the same name).
     </Alert>
   );
 
@@ -82,8 +85,16 @@ export const ProductFieldComponent: React.FunctionComponent<Props> = (
     <Alert variant="danger">
       <strong>Warning:</strong> This Product or Service is not associated with
       the NAICS code reported in this application. Please review the guidance
-      documents for a list of the valid products for your sector or verify the
-      NAICS code reported in the Admin tab is correct.
+      documents for a list of the valid products for this sector or verify the
+      NAICS code reported in the Administration data is correct.
+    </Alert>
+  );
+
+  const noProductsToSelect = (
+    <Alert variant="danger">
+      <strong>Warning:</strong> No products were found matching the reported
+      NAICS code. Please verify the NAICS code reported in the Administration
+      data.
     </Alert>
   );
 
@@ -95,6 +106,7 @@ export const ProductFieldComponent: React.FunctionComponent<Props> = (
     <>
       {!productIsPublished(formData, query) && archivedAlert}
       {!productInNaicsCode(formData, naicsCode) && notInNaicsAlert}
+      {!hasSelectableProducts(naicsCode) && noProductsToSelect}
       <ObjectField {...props} disabled={disableField} onChange={handleChange} />
     </>
   );
