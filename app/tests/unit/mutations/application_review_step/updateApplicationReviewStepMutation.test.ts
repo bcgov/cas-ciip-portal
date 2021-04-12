@@ -54,8 +54,7 @@ describe('updateApplicationReviewStepMutation', () => {
     });
     expect(test).toBeDefined();
     expect(
-      typeof test.data.updateApplicationReviewStep.applicationReviewStep
-        .isComplete
+      test.data.updateApplicationReviewStep.applicationReviewStep.isComplete
     ).toBeOneOf([true, false, null]);
   });
 });
