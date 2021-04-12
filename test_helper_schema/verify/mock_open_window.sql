@@ -2,6 +2,6 @@
 
 BEGIN;
 
-select pg_get_functiondef('test_helper.mock_open_window()'::regprocedure);
+select pg_get_functiondef('test_helper.mock_open_window(int)'::regprocedure);
 
 ROLLBACK;
