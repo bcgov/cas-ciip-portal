@@ -1,14 +1,9 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 import {ProductFieldComponent} from 'containers/Forms/ProductField';
-import productionSchema from 'schema/data/prod/form_json/production.json';
-import {JSONSchema7} from 'json-schema';
-import {getDefaultRegistry} from '@rjsf/core/dist/cjs/utils';
-import FormArrayFieldTemplate from 'containers/Forms/FormArrayFieldTemplate';
-import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
-import FormFieldTemplate from 'containers/Forms/FormFieldTemplate';
 import {ProductField_query} from '__generated__/ProductField_query.graphql';
 import {ProductField_naicsCode} from '__generated__/ProductField_naicsCode.graphql';
+import {createDefaultJsonSchemaFormProps} from 'tests/json-schema-utils';
 
 describe('The ProductionFields Component with published product matched to a naics code', () => {
   const query: ProductField_query = {
@@ -49,27 +44,8 @@ describe('The ProductionFields Component with published product matched to a nai
     }
   };
 
-  const idSchema: any = {$id: 'product_0'};
   const props = {
-    schema: productionSchema.schema.definitions.product as JSONSchema7,
-    uiSchema: productionSchema.uiSchema,
-    idSchema,
-    autofocus: false,
-    disabled: false,
-    errorSchema: null,
-    formContext: {},
-    readonly: false,
-    required: false,
-    registry: {
-      ...getDefaultRegistry(),
-      ArrayFieldTemplate: FormArrayFieldTemplate,
-      ObjectFieldTemplate: FormObjectFieldTemplate,
-      FieldTemplate: FormFieldTemplate
-    } as any,
-
-    name: 'product',
-    query,
-    naicsCode,
+    ...createDefaultJsonSchemaFormProps(),
     formData: {
       productRowId: 1,
       productUnits: 'bar',
@@ -77,8 +53,8 @@ describe('The ProductionFields Component with published product matched to a nai
       productAmount: 456,
       requiresEmissionAllocation: true
     },
-    onChange: jest.fn(),
-    onBlur: jest.fn()
+    query,
+    naicsCode
   };
 
   it('should match the snapshot when rendering a product', () => {
@@ -131,27 +107,8 @@ describe('The ProductionFields Component with published product not matched to a
     }
   };
 
-  const idSchema: any = {$id: 'product_0'};
   const props = {
-    schema: productionSchema.schema.definitions.product as JSONSchema7,
-    uiSchema: productionSchema.uiSchema,
-    idSchema,
-    autofocus: false,
-    disabled: false,
-    errorSchema: null,
-    formContext: {},
-    readonly: false,
-    required: false,
-    registry: {
-      ...getDefaultRegistry(),
-      ArrayFieldTemplate: FormArrayFieldTemplate,
-      ObjectFieldTemplate: FormObjectFieldTemplate,
-      FieldTemplate: FormFieldTemplate
-    } as any,
-
-    name: 'product',
-    query,
-    naicsCode,
+    ...createDefaultJsonSchemaFormProps(),
     formData: {
       productRowId: 1,
       productUnits: 'bar',
@@ -159,8 +116,8 @@ describe('The ProductionFields Component with published product not matched to a
       productAmount: 456,
       requiresEmissionAllocation: true
     },
-    onChange: jest.fn(),
-    onBlur: jest.fn()
+    query,
+    naicsCode
   };
 
   it('should match the snapshot when rendering a product not matched to a naics code', () => {
@@ -216,27 +173,8 @@ describe('The ProductionFields Component with archived product matched to a naic
     }
   };
 
-  const idSchema: any = {$id: 'product_0'};
   const props = {
-    schema: productionSchema.schema.definitions.product as JSONSchema7,
-    uiSchema: productionSchema.uiSchema,
-    idSchema,
-    autofocus: false,
-    disabled: false,
-    errorSchema: null,
-    formContext: {},
-    readonly: false,
-    required: false,
-    registry: {
-      ...getDefaultRegistry(),
-      ArrayFieldTemplate: FormArrayFieldTemplate,
-      ObjectFieldTemplate: FormObjectFieldTemplate,
-      FieldTemplate: FormFieldTemplate
-    } as any,
-
-    name: 'product',
-    query,
-    naicsCode,
+    ...createDefaultJsonSchemaFormProps(),
     formData: {
       productRowId: 1,
       productUnits: 'bar',
@@ -244,8 +182,8 @@ describe('The ProductionFields Component with archived product matched to a naic
       productAmount: 456,
       requiresEmissionAllocation: true
     },
-    onChange: jest.fn(),
-    onBlur: jest.fn()
+    query,
+    naicsCode
   };
 
   it('should match the snapshot when rendering an archived product', () => {
@@ -301,27 +239,8 @@ describe('The ProductionFields Component with archived product not matched to a 
     }
   };
 
-  const idSchema: any = {$id: 'product_0'};
   const props = {
-    schema: productionSchema.schema.definitions.product as JSONSchema7,
-    uiSchema: productionSchema.uiSchema,
-    idSchema,
-    autofocus: false,
-    disabled: false,
-    errorSchema: null,
-    formContext: {},
-    readonly: false,
-    required: false,
-    registry: {
-      ...getDefaultRegistry(),
-      ArrayFieldTemplate: FormArrayFieldTemplate,
-      ObjectFieldTemplate: FormObjectFieldTemplate,
-      FieldTemplate: FormFieldTemplate
-    } as any,
-
-    name: 'product',
-    query,
-    naicsCode,
+    ...createDefaultJsonSchemaFormProps(),
     formData: {
       productRowId: 1,
       productUnits: 'bar',
@@ -329,8 +248,8 @@ describe('The ProductionFields Component with archived product not matched to a 
       productAmount: 456,
       requiresEmissionAllocation: true
     },
-    onChange: jest.fn(),
-    onBlur: jest.fn()
+    query,
+    naicsCode
   };
 
   it('should match the snapshot when rendering an archived product not matched to a naics code', () => {
@@ -357,30 +276,10 @@ describe('The ProductionFields Component with no naics code', () => {
     }
   };
 
-  const idSchema: any = {$id: 'product_0'};
   const props = {
-    schema: productionSchema.schema.definitions.product as JSONSchema7,
-    uiSchema: productionSchema.uiSchema,
-    idSchema,
-    autofocus: false,
-    disabled: false,
-    errorSchema: null,
-    formContext: {},
-    readonly: false,
-    required: false,
-    registry: {
-      ...getDefaultRegistry(),
-      ArrayFieldTemplate: FormArrayFieldTemplate,
-      ObjectFieldTemplate: FormObjectFieldTemplate,
-      FieldTemplate: FormFieldTemplate
-    } as any,
-
-    name: 'product',
-    query,
-    naicsCode: null,
+    ...createDefaultJsonSchemaFormProps(),
     formData: {},
-    onChange: jest.fn(),
-    onBlur: jest.fn()
+    query
   };
 
   it('should match the snapshot', () => {

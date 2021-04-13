@@ -29,7 +29,7 @@ exports[`The ProductionFields Component with archived product matched to a naics
   <ObjectField
     autofocus={false}
     disabled={true}
-    errorSchema={null}
+    errorSchema={Object {}}
     formContext={Object {}}
     formData={
       Object {
@@ -42,7 +42,7 @@ exports[`The ProductionFields Component with archived product matched to a naics
     }
     idSchema={
       Object {
-        "$id": "product_0",
+        "$id": null,
       }
     }
     naicsCode={
@@ -60,7 +60,7 @@ exports[`The ProductionFields Component with archived product matched to a naics
         },
       }
     }
-    name="product"
+    name=""
     onBlur={[MockFunction]}
     onChange={[Function]}
     query={
@@ -92,9 +92,6 @@ exports[`The ProductionFields Component with archived product matched to a naics
     readonly={false}
     registry={
       Object {
-        "ArrayFieldTemplate": [Function],
-        "FieldTemplate": [Function],
-        "ObjectFieldTemplate": [Function],
         "definitions": Object {},
         "fields": Object {
           "AnyOfField": [Function],
@@ -136,142 +133,8 @@ exports[`The ProductionFields Component with archived product matched to a naics
       }
     }
     required={false}
-    schema={
-      Object {
-        "dependencies": Object {
-          "requiresEmissionAllocation": Object {
-            "oneOf": Array [
-              Object {
-                "properties": Object {
-                  "requiresEmissionAllocation": Object {
-                    "const": false,
-                  },
-                },
-              },
-              Object {
-                "properties": Object {
-                  "productEmissions": Object {
-                    "minimum": 0,
-                    "title": "Emissions allocated to product",
-                    "type": "number",
-                  },
-                  "requiresEmissionAllocation": Object {
-                    "const": true,
-                  },
-                },
-                "required": Array [
-                  "productEmissions",
-                ],
-              },
-            ],
-          },
-          "requiresProductAmount": Object {
-            "oneOf": Array [
-              Object {
-                "properties": Object {
-                  "productAmount": Object {
-                    "minimum": 0,
-                    "title": "Annual Production Amount",
-                    "type": "number",
-                  },
-                  "productUnits": Object {
-                    "title": "Units",
-                    "type": "string",
-                  },
-                  "requiresProductAmount": Object {
-                    "const": true,
-                  },
-                },
-                "required": Array [
-                  "productAmount",
-                ],
-              },
-              Object {
-                "properties": Object {
-                  "requiresProductAmount": Object {
-                    "const": false,
-                  },
-                },
-              },
-            ],
-          },
-        },
-        "properties": Object {
-          "comments": Object {
-            "type": "string",
-          },
-          "isEnergyProduct": Object {
-            "type": "boolean",
-          },
-          "productRowId": Object {
-            "title": "Product or Service",
-            "type": "integer",
-          },
-          "requiresEmissionAllocation": Object {
-            "type": "boolean",
-          },
-          "requiresProductAmount": Object {
-            "type": "boolean",
-          },
-        },
-        "required": Array [
-          "productRowId",
-          "requiresEmissionAllocation",
-          "requiresProductAmount",
-        ],
-        "type": "object",
-      }
-    }
-    uiSchema={
-      Object {
-        "items": Object {
-          "comments": Object {
-            "ui:col-md": 12,
-            "ui:field": "ProblemReportField",
-            "ui:options": Object {
-              "disableRenderingIfEmpty": true,
-              "label": false,
-            },
-          },
-          "isEnergyProduct": Object {
-            "ui:widget": "hidden",
-          },
-          "productAmount": Object {
-            "ui:col-md": 4,
-            "ui:help": "Report the annual production for the product, following the guidance document provided",
-          },
-          "productEmissions": Object {
-            "ui:col-md": 4,
-            "ui:help": "Report emissions associated to CIIP product, in tCO2e",
-          },
-          "productRowId": Object {
-            "ui:col-md": 12,
-            "ui:field": "productRowId",
-            "ui:widget": "SearchWidget",
-          },
-          "productUnits": Object {
-            "ui:col-md": 4,
-            "ui:readonly": true,
-          },
-          "requiresEmissionAllocation": Object {
-            "ui:widget": "hidden",
-          },
-          "requiresProductAmount": Object {
-            "ui:widget": "hidden",
-          },
-          "ui:field": "product",
-          "ui:order": Array [
-            "comments",
-            "productRowId",
-            "productAmount",
-            "productUnits",
-            "*",
-          ],
-        },
-        "ui:add-text": "Add a Product",
-        "ui:remove-text": "Remove Product",
-      }
-    }
+    schema={Object {}}
+    uiSchema={Object {}}
   />
 </Fragment>
 `;
@@ -329,7 +192,7 @@ exports[`The ProductionFields Component with archived product not matched to a n
   <ObjectField
     autofocus={false}
     disabled={true}
-    errorSchema={null}
+    errorSchema={Object {}}
     formContext={Object {}}
     formData={
       Object {
@@ -342,7 +205,7 @@ exports[`The ProductionFields Component with archived product not matched to a n
     }
     idSchema={
       Object {
-        "$id": "product_0",
+        "$id": null,
       }
     }
     naicsCode={
@@ -360,7 +223,7 @@ exports[`The ProductionFields Component with archived product not matched to a n
         },
       }
     }
-    name="product"
+    name=""
     onBlur={[MockFunction]}
     onChange={[Function]}
     query={
@@ -392,9 +255,6 @@ exports[`The ProductionFields Component with archived product not matched to a n
     readonly={false}
     registry={
       Object {
-        "ArrayFieldTemplate": [Function],
-        "FieldTemplate": [Function],
-        "ObjectFieldTemplate": [Function],
         "definitions": Object {},
         "fields": Object {
           "AnyOfField": [Function],
@@ -436,142 +296,8 @@ exports[`The ProductionFields Component with archived product not matched to a n
       }
     }
     required={false}
-    schema={
-      Object {
-        "dependencies": Object {
-          "requiresEmissionAllocation": Object {
-            "oneOf": Array [
-              Object {
-                "properties": Object {
-                  "requiresEmissionAllocation": Object {
-                    "const": false,
-                  },
-                },
-              },
-              Object {
-                "properties": Object {
-                  "productEmissions": Object {
-                    "minimum": 0,
-                    "title": "Emissions allocated to product",
-                    "type": "number",
-                  },
-                  "requiresEmissionAllocation": Object {
-                    "const": true,
-                  },
-                },
-                "required": Array [
-                  "productEmissions",
-                ],
-              },
-            ],
-          },
-          "requiresProductAmount": Object {
-            "oneOf": Array [
-              Object {
-                "properties": Object {
-                  "productAmount": Object {
-                    "minimum": 0,
-                    "title": "Annual Production Amount",
-                    "type": "number",
-                  },
-                  "productUnits": Object {
-                    "title": "Units",
-                    "type": "string",
-                  },
-                  "requiresProductAmount": Object {
-                    "const": true,
-                  },
-                },
-                "required": Array [
-                  "productAmount",
-                ],
-              },
-              Object {
-                "properties": Object {
-                  "requiresProductAmount": Object {
-                    "const": false,
-                  },
-                },
-              },
-            ],
-          },
-        },
-        "properties": Object {
-          "comments": Object {
-            "type": "string",
-          },
-          "isEnergyProduct": Object {
-            "type": "boolean",
-          },
-          "productRowId": Object {
-            "title": "Product or Service",
-            "type": "integer",
-          },
-          "requiresEmissionAllocation": Object {
-            "type": "boolean",
-          },
-          "requiresProductAmount": Object {
-            "type": "boolean",
-          },
-        },
-        "required": Array [
-          "productRowId",
-          "requiresEmissionAllocation",
-          "requiresProductAmount",
-        ],
-        "type": "object",
-      }
-    }
-    uiSchema={
-      Object {
-        "items": Object {
-          "comments": Object {
-            "ui:col-md": 12,
-            "ui:field": "ProblemReportField",
-            "ui:options": Object {
-              "disableRenderingIfEmpty": true,
-              "label": false,
-            },
-          },
-          "isEnergyProduct": Object {
-            "ui:widget": "hidden",
-          },
-          "productAmount": Object {
-            "ui:col-md": 4,
-            "ui:help": "Report the annual production for the product, following the guidance document provided",
-          },
-          "productEmissions": Object {
-            "ui:col-md": 4,
-            "ui:help": "Report emissions associated to CIIP product, in tCO2e",
-          },
-          "productRowId": Object {
-            "ui:col-md": 12,
-            "ui:field": "productRowId",
-            "ui:widget": "SearchWidget",
-          },
-          "productUnits": Object {
-            "ui:col-md": 4,
-            "ui:readonly": true,
-          },
-          "requiresEmissionAllocation": Object {
-            "ui:widget": "hidden",
-          },
-          "requiresProductAmount": Object {
-            "ui:widget": "hidden",
-          },
-          "ui:field": "product",
-          "ui:order": Array [
-            "comments",
-            "productRowId",
-            "productAmount",
-            "productUnits",
-            "*",
-          ],
-        },
-        "ui:add-text": "Add a Product",
-        "ui:remove-text": "Remove Product",
-      }
-    }
+    schema={Object {}}
+    uiSchema={Object {}}
   />
 </Fragment>
 `;
@@ -605,16 +331,15 @@ exports[`The ProductionFields Component with no naics code should match the snap
   <ObjectField
     autofocus={false}
     disabled={false}
-    errorSchema={null}
+    errorSchema={Object {}}
     formContext={Object {}}
     formData={Object {}}
     idSchema={
       Object {
-        "$id": "product_0",
+        "$id": null,
       }
     }
-    naicsCode={null}
-    name="product"
+    name=""
     onBlur={[MockFunction]}
     onChange={[Function]}
     query={
@@ -628,9 +353,6 @@ exports[`The ProductionFields Component with no naics code should match the snap
     readonly={false}
     registry={
       Object {
-        "ArrayFieldTemplate": [Function],
-        "FieldTemplate": [Function],
-        "ObjectFieldTemplate": [Function],
         "definitions": Object {},
         "fields": Object {
           "AnyOfField": [Function],
@@ -672,142 +394,8 @@ exports[`The ProductionFields Component with no naics code should match the snap
       }
     }
     required={false}
-    schema={
-      Object {
-        "dependencies": Object {
-          "requiresEmissionAllocation": Object {
-            "oneOf": Array [
-              Object {
-                "properties": Object {
-                  "requiresEmissionAllocation": Object {
-                    "const": false,
-                  },
-                },
-              },
-              Object {
-                "properties": Object {
-                  "productEmissions": Object {
-                    "minimum": 0,
-                    "title": "Emissions allocated to product",
-                    "type": "number",
-                  },
-                  "requiresEmissionAllocation": Object {
-                    "const": true,
-                  },
-                },
-                "required": Array [
-                  "productEmissions",
-                ],
-              },
-            ],
-          },
-          "requiresProductAmount": Object {
-            "oneOf": Array [
-              Object {
-                "properties": Object {
-                  "productAmount": Object {
-                    "minimum": 0,
-                    "title": "Annual Production Amount",
-                    "type": "number",
-                  },
-                  "productUnits": Object {
-                    "title": "Units",
-                    "type": "string",
-                  },
-                  "requiresProductAmount": Object {
-                    "const": true,
-                  },
-                },
-                "required": Array [
-                  "productAmount",
-                ],
-              },
-              Object {
-                "properties": Object {
-                  "requiresProductAmount": Object {
-                    "const": false,
-                  },
-                },
-              },
-            ],
-          },
-        },
-        "properties": Object {
-          "comments": Object {
-            "type": "string",
-          },
-          "isEnergyProduct": Object {
-            "type": "boolean",
-          },
-          "productRowId": Object {
-            "title": "Product or Service",
-            "type": "integer",
-          },
-          "requiresEmissionAllocation": Object {
-            "type": "boolean",
-          },
-          "requiresProductAmount": Object {
-            "type": "boolean",
-          },
-        },
-        "required": Array [
-          "productRowId",
-          "requiresEmissionAllocation",
-          "requiresProductAmount",
-        ],
-        "type": "object",
-      }
-    }
-    uiSchema={
-      Object {
-        "items": Object {
-          "comments": Object {
-            "ui:col-md": 12,
-            "ui:field": "ProblemReportField",
-            "ui:options": Object {
-              "disableRenderingIfEmpty": true,
-              "label": false,
-            },
-          },
-          "isEnergyProduct": Object {
-            "ui:widget": "hidden",
-          },
-          "productAmount": Object {
-            "ui:col-md": 4,
-            "ui:help": "Report the annual production for the product, following the guidance document provided",
-          },
-          "productEmissions": Object {
-            "ui:col-md": 4,
-            "ui:help": "Report emissions associated to CIIP product, in tCO2e",
-          },
-          "productRowId": Object {
-            "ui:col-md": 12,
-            "ui:field": "productRowId",
-            "ui:widget": "SearchWidget",
-          },
-          "productUnits": Object {
-            "ui:col-md": 4,
-            "ui:readonly": true,
-          },
-          "requiresEmissionAllocation": Object {
-            "ui:widget": "hidden",
-          },
-          "requiresProductAmount": Object {
-            "ui:widget": "hidden",
-          },
-          "ui:field": "product",
-          "ui:order": Array [
-            "comments",
-            "productRowId",
-            "productAmount",
-            "productUnits",
-            "*",
-          ],
-        },
-        "ui:add-text": "Add a Product",
-        "ui:remove-text": "Remove Product",
-      }
-    }
+    schema={Object {}}
+    uiSchema={Object {}}
   />
 </Fragment>
 `;
@@ -817,7 +405,7 @@ exports[`The ProductionFields Component with published product matched to a naic
   <ObjectField
     autofocus={false}
     disabled={false}
-    errorSchema={null}
+    errorSchema={Object {}}
     formContext={Object {}}
     formData={
       Object {
@@ -830,7 +418,7 @@ exports[`The ProductionFields Component with published product matched to a naic
     }
     idSchema={
       Object {
-        "$id": "product_0",
+        "$id": null,
       }
     }
     naicsCode={
@@ -848,7 +436,7 @@ exports[`The ProductionFields Component with published product matched to a naic
         },
       }
     }
-    name="product"
+    name=""
     onBlur={[MockFunction]}
     onChange={[Function]}
     query={
@@ -880,9 +468,6 @@ exports[`The ProductionFields Component with published product matched to a naic
     readonly={false}
     registry={
       Object {
-        "ArrayFieldTemplate": [Function],
-        "FieldTemplate": [Function],
-        "ObjectFieldTemplate": [Function],
         "definitions": Object {},
         "fields": Object {
           "AnyOfField": [Function],
@@ -924,142 +509,8 @@ exports[`The ProductionFields Component with published product matched to a naic
       }
     }
     required={false}
-    schema={
-      Object {
-        "dependencies": Object {
-          "requiresEmissionAllocation": Object {
-            "oneOf": Array [
-              Object {
-                "properties": Object {
-                  "requiresEmissionAllocation": Object {
-                    "const": false,
-                  },
-                },
-              },
-              Object {
-                "properties": Object {
-                  "productEmissions": Object {
-                    "minimum": 0,
-                    "title": "Emissions allocated to product",
-                    "type": "number",
-                  },
-                  "requiresEmissionAllocation": Object {
-                    "const": true,
-                  },
-                },
-                "required": Array [
-                  "productEmissions",
-                ],
-              },
-            ],
-          },
-          "requiresProductAmount": Object {
-            "oneOf": Array [
-              Object {
-                "properties": Object {
-                  "productAmount": Object {
-                    "minimum": 0,
-                    "title": "Annual Production Amount",
-                    "type": "number",
-                  },
-                  "productUnits": Object {
-                    "title": "Units",
-                    "type": "string",
-                  },
-                  "requiresProductAmount": Object {
-                    "const": true,
-                  },
-                },
-                "required": Array [
-                  "productAmount",
-                ],
-              },
-              Object {
-                "properties": Object {
-                  "requiresProductAmount": Object {
-                    "const": false,
-                  },
-                },
-              },
-            ],
-          },
-        },
-        "properties": Object {
-          "comments": Object {
-            "type": "string",
-          },
-          "isEnergyProduct": Object {
-            "type": "boolean",
-          },
-          "productRowId": Object {
-            "title": "Product or Service",
-            "type": "integer",
-          },
-          "requiresEmissionAllocation": Object {
-            "type": "boolean",
-          },
-          "requiresProductAmount": Object {
-            "type": "boolean",
-          },
-        },
-        "required": Array [
-          "productRowId",
-          "requiresEmissionAllocation",
-          "requiresProductAmount",
-        ],
-        "type": "object",
-      }
-    }
-    uiSchema={
-      Object {
-        "items": Object {
-          "comments": Object {
-            "ui:col-md": 12,
-            "ui:field": "ProblemReportField",
-            "ui:options": Object {
-              "disableRenderingIfEmpty": true,
-              "label": false,
-            },
-          },
-          "isEnergyProduct": Object {
-            "ui:widget": "hidden",
-          },
-          "productAmount": Object {
-            "ui:col-md": 4,
-            "ui:help": "Report the annual production for the product, following the guidance document provided",
-          },
-          "productEmissions": Object {
-            "ui:col-md": 4,
-            "ui:help": "Report emissions associated to CIIP product, in tCO2e",
-          },
-          "productRowId": Object {
-            "ui:col-md": 12,
-            "ui:field": "productRowId",
-            "ui:widget": "SearchWidget",
-          },
-          "productUnits": Object {
-            "ui:col-md": 4,
-            "ui:readonly": true,
-          },
-          "requiresEmissionAllocation": Object {
-            "ui:widget": "hidden",
-          },
-          "requiresProductAmount": Object {
-            "ui:widget": "hidden",
-          },
-          "ui:field": "product",
-          "ui:order": Array [
-            "comments",
-            "productRowId",
-            "productAmount",
-            "productUnits",
-            "*",
-          ],
-        },
-        "ui:add-text": "Add a Product",
-        "ui:remove-text": "Remove Product",
-      }
-    }
+    schema={Object {}}
+    uiSchema={Object {}}
   />
 </Fragment>
 `;
@@ -1093,7 +544,7 @@ exports[`The ProductionFields Component with published product not matched to a 
   <ObjectField
     autofocus={false}
     disabled={true}
-    errorSchema={null}
+    errorSchema={Object {}}
     formContext={Object {}}
     formData={
       Object {
@@ -1106,7 +557,7 @@ exports[`The ProductionFields Component with published product not matched to a 
     }
     idSchema={
       Object {
-        "$id": "product_0",
+        "$id": null,
       }
     }
     naicsCode={
@@ -1124,7 +575,7 @@ exports[`The ProductionFields Component with published product not matched to a 
         },
       }
     }
-    name="product"
+    name=""
     onBlur={[MockFunction]}
     onChange={[Function]}
     query={
@@ -1156,9 +607,6 @@ exports[`The ProductionFields Component with published product not matched to a 
     readonly={false}
     registry={
       Object {
-        "ArrayFieldTemplate": [Function],
-        "FieldTemplate": [Function],
-        "ObjectFieldTemplate": [Function],
         "definitions": Object {},
         "fields": Object {
           "AnyOfField": [Function],
@@ -1200,142 +648,8 @@ exports[`The ProductionFields Component with published product not matched to a 
       }
     }
     required={false}
-    schema={
-      Object {
-        "dependencies": Object {
-          "requiresEmissionAllocation": Object {
-            "oneOf": Array [
-              Object {
-                "properties": Object {
-                  "requiresEmissionAllocation": Object {
-                    "const": false,
-                  },
-                },
-              },
-              Object {
-                "properties": Object {
-                  "productEmissions": Object {
-                    "minimum": 0,
-                    "title": "Emissions allocated to product",
-                    "type": "number",
-                  },
-                  "requiresEmissionAllocation": Object {
-                    "const": true,
-                  },
-                },
-                "required": Array [
-                  "productEmissions",
-                ],
-              },
-            ],
-          },
-          "requiresProductAmount": Object {
-            "oneOf": Array [
-              Object {
-                "properties": Object {
-                  "productAmount": Object {
-                    "minimum": 0,
-                    "title": "Annual Production Amount",
-                    "type": "number",
-                  },
-                  "productUnits": Object {
-                    "title": "Units",
-                    "type": "string",
-                  },
-                  "requiresProductAmount": Object {
-                    "const": true,
-                  },
-                },
-                "required": Array [
-                  "productAmount",
-                ],
-              },
-              Object {
-                "properties": Object {
-                  "requiresProductAmount": Object {
-                    "const": false,
-                  },
-                },
-              },
-            ],
-          },
-        },
-        "properties": Object {
-          "comments": Object {
-            "type": "string",
-          },
-          "isEnergyProduct": Object {
-            "type": "boolean",
-          },
-          "productRowId": Object {
-            "title": "Product or Service",
-            "type": "integer",
-          },
-          "requiresEmissionAllocation": Object {
-            "type": "boolean",
-          },
-          "requiresProductAmount": Object {
-            "type": "boolean",
-          },
-        },
-        "required": Array [
-          "productRowId",
-          "requiresEmissionAllocation",
-          "requiresProductAmount",
-        ],
-        "type": "object",
-      }
-    }
-    uiSchema={
-      Object {
-        "items": Object {
-          "comments": Object {
-            "ui:col-md": 12,
-            "ui:field": "ProblemReportField",
-            "ui:options": Object {
-              "disableRenderingIfEmpty": true,
-              "label": false,
-            },
-          },
-          "isEnergyProduct": Object {
-            "ui:widget": "hidden",
-          },
-          "productAmount": Object {
-            "ui:col-md": 4,
-            "ui:help": "Report the annual production for the product, following the guidance document provided",
-          },
-          "productEmissions": Object {
-            "ui:col-md": 4,
-            "ui:help": "Report emissions associated to CIIP product, in tCO2e",
-          },
-          "productRowId": Object {
-            "ui:col-md": 12,
-            "ui:field": "productRowId",
-            "ui:widget": "SearchWidget",
-          },
-          "productUnits": Object {
-            "ui:col-md": 4,
-            "ui:readonly": true,
-          },
-          "requiresEmissionAllocation": Object {
-            "ui:widget": "hidden",
-          },
-          "requiresProductAmount": Object {
-            "ui:widget": "hidden",
-          },
-          "ui:field": "product",
-          "ui:order": Array [
-            "comments",
-            "productRowId",
-            "productAmount",
-            "productUnits",
-            "*",
-          ],
-        },
-        "ui:add-text": "Add a Product",
-        "ui:remove-text": "Remove Product",
-      }
-    }
+    schema={Object {}}
+    uiSchema={Object {}}
   />
 </Fragment>
 `;
