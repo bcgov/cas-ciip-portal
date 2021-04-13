@@ -7,18 +7,7 @@ import ApplicationWizardStep from './ApplicationWizardStep';
 import LoadingSpinner from 'components/LoadingSpinner';
 import ApplicationDecision from 'components/Application/ApplicationDecision';
 import {ApplicationWizard_applicationRevision} from 'ApplicationWizard_applicationRevision.graphql';
-
-const setRouterQueryParam = (router, key, value, replace = false) => {
-  const newUrl = {
-    pathname: router.pathname,
-    query: {
-      ...router.query,
-      [key]: value
-    }
-  };
-  if (replace) router.replace(newUrl, newUrl, {shallow: true});
-  else router.push(newUrl, newUrl, {shallow: true});
-};
+import ApplicationPage from 'pages/reporter/application/[applicationId]';
 
 interface Props {
   query: ApplicationWizard_query;
@@ -65,14 +54,11 @@ export const ApplicationWizardComponent: React.FunctionComponent<Props> = ({
 
   if (orderedFormResults.length === 0) return null;
   if (!confirmationPage && !formResult) {
-    setRouterQueryParam(
-      router,
-      'formId',
-      orderedFormResults[0].node.formJsonByFormId.id,
-      true
-      // If we're landing on the wizard page
-      // We want to trigger a replace instead of a push in that case
+    const newRoute = ApplicationPage.getRoute(
+      applicationByApplicationId.id,
+      orderedFormResults[0].node.formJsonByFormId.id
     );
+    router.replace(newRoute, newRoute, {shallow: true});
     return null;
   }
 
@@ -80,22 +66,19 @@ export const ApplicationWizardComponent: React.FunctionComponent<Props> = ({
     for (let i = 0; i < orderedFormResults.length; i++) {
       if (orderedFormResults[i].node.formJsonByFormId.id === formId) {
         const goToConfirmation = i === orderedFormResults.length - 1;
-        const formId = goToConfirmation
+        const nextFormId = goToConfirmation
           ? undefined
           : orderedFormResults[i + 1].node.formJsonByFormId.id;
 
-        if (!goToConfirmation) setRouterQueryParam(router, 'formId', formId);
-        else {
-          const url = {
-            pathName: router.pathname,
-            query: {
-              ...router.query,
-              formId: undefined,
-              confirmationPage: true
-            }
-          };
-          router.push(url, url, {shallow: true});
-        }
+        const newUrl = goToConfirmation
+          ? ApplicationPage.getRoute(
+              applicationByApplicationId.id,
+              undefined,
+              true
+            )
+          : ApplicationPage.getRoute(applicationByApplicationId.id, nextFormId);
+
+        router.push(newUrl, newUrl, {shallow: true});
       }
     }
   };
@@ -142,6 +125,7 @@ export default createFragmentContainer(ApplicationWizardComponent, {
       ...ApplicationWizardStep_applicationRevision
       versionNumber
       applicationByApplicationId {
+        id
         applicationReviewStepsByApplicationId {
           edges {
             node {

@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {ReactElement} from 'react';
 import {shallow} from 'enzyme';
 import {ApplicationWizardComponent} from 'containers/Applications/ApplicationWizard';
 import {ApplicationWizard_query} from 'ApplicationWizard_query.graphql';
 import {ApplicationWizard_applicationRevision} from '__generated__/ApplicationWizard_applicationRevision.graphql';
+import ApplicationPage from 'pages/reporter/application/[applicationId]';
 
 describe('The application wizard component', () => {
   const queryFragment: ApplicationWizard_query = {
@@ -26,10 +27,19 @@ describe('The application wizard component', () => {
             },
             formJsonByFormId: {id: 'form1'}
           }
+        },
+        {
+          node: {
+            ' $fragmentRefs': {
+              ApplicationWizardStep_formResult: true
+            },
+            formJsonByFormId: {id: 'form2'}
+          }
         }
       ]
     },
     applicationByApplicationId: {
+      id: 'id123',
       applicationReviewStepsByApplicationId: {
         edges: [
           {
@@ -44,6 +54,19 @@ describe('The application wizard component', () => {
                 ]
               }
             }
+          },
+          {
+            node: {
+              reviewCommentsByApplicationReviewStepId: {
+                edges: [
+                  {
+                    node: {
+                      description: 'This is another test comment.'
+                    }
+                  }
+                ]
+              }
+            }
           }
         ]
       }
@@ -51,16 +74,20 @@ describe('The application wizard component', () => {
   };
 
   let replaceFn;
+  let pushFn;
+  let useRouter;
   beforeEach(() => {
-    const useRouter = jest.spyOn(require('next/router'), 'useRouter');
+    useRouter = jest.spyOn(require('next/router'), 'useRouter');
     replaceFn = jest.fn();
+    pushFn = jest.fn();
     useRouter.mockImplementation(() => ({
       pathname: '/reporter/application/[applicationId]',
       query: {
         applicationId: 'id123',
         formId: 'form1'
       },
-      replace: replaceFn
+      replace: replaceFn,
+      push: pushFn
     }));
   });
 
@@ -98,13 +125,127 @@ describe('The application wizard component', () => {
     ).toBeTruthy();
   });
 
-  it('passes a single list of comments to the ApplicationDecision component', () => {});
+  it('passes a single list of comments to the ApplicationDecision component', () => {
+    const wrapper = shallow(
+      <ApplicationWizardComponent
+        applicationRevision={{...applicationRevisionFragment, versionNumber: 2}}
+        query={queryFragment}
+      />
+    );
 
-  it("passes a form result to ApplicationWizardStep based on the query string's formId", () => {});
+    const applicationDecision: ReactElement = wrapper
+      .find('Relay(ApplicationWizardStep)')
+      .first()
+      .prop('review');
 
-  it('triggers a redirect to display the first form if formId is not present in the query string', () => {});
+    expect(applicationDecision.props.reviewComments).toEqual([
+      'This is a test comment.',
+      'This is another test comment.'
+    ]);
+  });
 
-  it('navigates to the next step when a step is completed', () => {});
+  it("passes a form result to ApplicationWizardStep based on the query string's formId", () => {
+    let wrapper = shallow(
+      <ApplicationWizardComponent
+        applicationRevision={applicationRevisionFragment}
+        query={queryFragment}
+      />
+    );
 
-  it('navigates to the summary page when the last step is completed', () => {});
+    expect(
+      wrapper.find('Relay(ApplicationWizardStep)').first().prop('formResult')
+    ).toEqual(applicationRevisionFragment.orderedFormResults.edges[0].node);
+
+    useRouter.mockImplementation(() => ({
+      pathname: '/reporter/application/[applicationId]',
+      query: {
+        applicationId: 'id123',
+        formId: 'form2'
+      },
+      replace: replaceFn,
+      push: pushFn
+    }));
+
+    wrapper = shallow(
+      <ApplicationWizardComponent
+        applicationRevision={applicationRevisionFragment}
+        query={queryFragment}
+      />
+    );
+
+    expect(
+      wrapper.find('Relay(ApplicationWizardStep)').first().prop('formResult')
+    ).toEqual(applicationRevisionFragment.orderedFormResults.edges[1].node);
+  });
+
+  it('triggers a redirect to display the first form if formId is not present in the query string', () => {
+    useRouter.mockImplementation(() => ({
+      pathname: '/reporter/application/[applicationId]',
+      query: {
+        applicationId: 'id123'
+      },
+      replace: replaceFn,
+      push: pushFn
+    }));
+
+    shallow(
+      <ApplicationWizardComponent
+        applicationRevision={applicationRevisionFragment}
+        query={queryFragment}
+      />
+    );
+    const newRoute = ApplicationPage.getRoute('id123', 'form1', false);
+
+    expect(replaceFn).toBeCalledWith(newRoute, newRoute, {shallow: true});
+  });
+
+  it('navigates to the next step when a step is completed', () => {
+    const wrapper = shallow(
+      <ApplicationWizardComponent
+        applicationRevision={applicationRevisionFragment}
+        query={queryFragment}
+      />
+    );
+
+    const onStepComplete: () => void = wrapper
+      .find('Relay(ApplicationWizardStep)')
+      .first()
+      .prop('onStepComplete');
+
+    onStepComplete();
+
+    const newRoute = ApplicationPage.getRoute('id123', 'form2', false);
+
+    expect(pushFn).toBeCalledWith(newRoute, newRoute, {shallow: true});
+  });
+
+  it('navigates to the summary page when the last step is completed', () => {
+    useRouter.mockImplementation(() => ({
+      pathname: '/reporter/application/[applicationId]',
+      query: {
+        applicationId: 'id123',
+        formId: 'form2'
+      },
+      replace: replaceFn,
+      push: pushFn
+    }));
+
+    const wrapper = shallow(
+      <ApplicationWizardComponent
+        applicationRevision={applicationRevisionFragment}
+        query={queryFragment}
+      />
+    );
+
+    const onStepComplete: () => void = wrapper
+      .find('Relay(ApplicationWizardStep)')
+      .first()
+      .prop('onStepComplete');
+
+    onStepComplete();
+
+    const newRoute = ApplicationPage.getRoute('id123', undefined, true);
+
+    expect(pushFn).toBeCalledWith(newRoute, newRoute, {shallow: true});
+  });
 });
