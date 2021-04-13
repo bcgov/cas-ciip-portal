@@ -63,7 +63,6 @@ const HeaderLayout = ({
               aria-label="Menu toggle"
               onClick={toggleNavMenu}
               className={isLoggedIn ? 'logged-in' : null}
-              style={{flex: '0 0 48px', height: '45px', padding: 0}}
             >
               <FontAwesomeIcon
                 color={isLoggedIn ? '#036' : 'white'}
@@ -74,7 +73,11 @@ const HeaderLayout = ({
           </div>
           <ul
             className="header-right"
-            style={navMenuHidden ? {display: 'none'} : {display: 'flex'}}
+            style={
+              navMenuHidden
+                ? {display: 'none'}
+                : {display: 'flex', alignItems: 'center'}
+            }
           >
             {isRegistered ? (
               <li>
@@ -152,6 +155,11 @@ const HeaderLayout = ({
           }
           li {
             list-style-type: none;
+          }
+          #menu-toggle {
+            flex: '0 0 48px';
+            height: '45px';
+            padding: 0;
           }
           #menu-toggle.logged-in {
             background: #f8f9fa;

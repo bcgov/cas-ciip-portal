@@ -23,7 +23,17 @@ const UserProfileDropdown: React.FunctionComponent<Props> = ({user}) => {
       <li className="d-none d-lg-block">
         <Dropdown alignRight>
           <Dropdown.Toggle variant="primary">
-            <FontAwesomeIcon color="white" icon={faUser} size="1x" />
+            <div className="user-icon">
+              <FontAwesomeIcon
+                color="#036"
+                icon={faUser}
+                style={{
+                  fontSize: '30px',
+                  verticalAlign: 'middle',
+                  paddingBottom: '2px'
+                }}
+              />
+            </div>
           </Dropdown.Toggle>
           <Dropdown.Menu>
             <Dropdown.Item as={Link} href="/user/profile">
@@ -67,6 +77,16 @@ const UserProfileDropdown: React.FunctionComponent<Props> = ({user}) => {
           </button>
         </Form>
       </li>
+      <style jsx>{`
+        .user-icon {
+          background: #f8f9fa;
+          border-radius: 100%;
+          display: inline-block;
+          height: 45px;
+          line-height: 45px;
+          width: 48px;
+        }
+      `}</style>
     </>
   );
 };
