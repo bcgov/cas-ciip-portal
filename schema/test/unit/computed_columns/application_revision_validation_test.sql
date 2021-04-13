@@ -11,7 +11,7 @@ select has_function(
 );
 
 -- Test setup
-create or replace function ggircs_portal.falsy(id int)
+create or replace function ggircs_portal.falsy(ggircs_portal.application_revision)
   returns boolean as
   $func$
     begin
@@ -20,7 +20,7 @@ create or replace function ggircs_portal.falsy(id int)
   $func$
 language 'plpgsql' stable;
 
-create or replace function ggircs_portal.truthy(id int)
+create or replace function ggircs_portal.truthy(ggircs_portal.application_revision)
   returns boolean as
   $function$
     begin
@@ -42,12 +42,12 @@ values
 ('truthy', 'this is always true', 'passed');
 
 -- Call function
-with record as (select row(application_revision.*)::ggircs_portal.application_revision from ggircs_portal.application_revision where applicationId=1 and versionNumber=1)
+with record as (select row(application_revision.*)::ggircs_portal.application_revision from ggircs_portal.application_revision where application_id=1 and version_number=1)
       select * from ggircs_portal.application_revision_validation((select * from record)) order by is_ok desc limit 1;
 
 select results_eq(
   $$
-    with record as (select row(application_revision.*)::ggircs_portal.application_revision from ggircs_portal.application_revision where applicationId=1 and versionNumber=1)
+    with record as (select row(application_revision.*)::ggircs_portal.application_revision from ggircs_portal.application_revision where application_id=1 and version_number=1)
       select count(*) from ggircs_portal.application_revision_validation((select * from record))
   $$,
   $$
@@ -58,7 +58,7 @@ select results_eq(
 
 select results_eq(
   $$
-    with record as (select row(application_revision.*)::ggircs_portal.application_revision from ggircs_portal.application_revision where applicationId=1 and versionNumber=1)
+    with record as (select row(application_revision.*)::ggircs_portal.application_revision from ggircs_portal.application_revision where application_id=1 and version_number=1)
       select validation_description, validation_failed_message, is_ok from ggircs_portal.application_revision_validation((select * from record)) order by is_ok asc limit 1
   $$,
   $$
@@ -69,7 +69,7 @@ select results_eq(
 
 select results_eq(
   $$
-    with record as (select row(application_revision.*)::ggircs_portal.application_revision from ggircs_portal.application_revision where applicationId=1 and versionNumber=1)
+    with record as (select row(application_revision.*)::ggircs_portal.application_revision from ggircs_portal.application_revision where application_id=1 and version_number=1)
       select validation_description, validation_failed_message, is_ok from ggircs_portal.application_revision_validation((select * from record)) order by is_ok desc limit 1
   $$,
   $$
