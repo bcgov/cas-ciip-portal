@@ -49,7 +49,7 @@ exports[`View submitted application page displays a "Resume latest draft" button
            This application has been revised in a more recent draft.
         </p>
         <Link
-          href="/reporter/application?applicationId=testing&version=2"
+          href="/reporter/application/testing"
         >
           <a>
             <Button

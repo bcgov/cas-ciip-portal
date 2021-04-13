@@ -172,10 +172,8 @@ describe('Confirmation emails', () => {
   });
 
   it('should send an email to the reporter and to the admin when application has been submitted', () => {
-    const applicationId = window.btoa('["applications", 1]');
-    cy.visit(
-      `/reporter/application?applicationId=${applicationId}&confirmationPage=true&version=1`
-    );
+    const applicationId = window.btoa('["applications",1]');
+    cy.visit(`/reporter/application/${applicationId}?confirmationPage=true`);
     cy.url().should('include', '/reporter/application');
     cy.get('.admin');
     cy.contains('Submit Application').click();

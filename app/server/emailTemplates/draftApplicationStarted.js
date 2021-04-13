@@ -8,11 +8,11 @@ const createDraftApplicationStartedMail = ({
   facilityName,
   contactEmail
 }) => {
-  const appId = Buffer.from(`["applications", ${applicationId}]`).toString(
+  const appId = Buffer.from(`["applications",${applicationId}]`).toString(
     'base64'
   );
   const applicationURL = createUrl(
-    `reporter/application?applicationId=${encodeURIComponent(appId)}&version=1`
+    `reporter/application/${encodeURIComponent(appId)}`
   );
   return `
     <table align="center" border="1" cellpadding="0" cellspacing="0" width="600">

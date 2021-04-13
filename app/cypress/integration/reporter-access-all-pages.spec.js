@@ -19,9 +19,7 @@ describe('When logged in as a reporter', () => {
     cy.contains('Consent and continue').click();
     cy.url().should('include', '/reporter/application');
     const applicationId = window.btoa('["applications",2]');
-    cy.visit(
-      `/reporter/application?applicationId=${applicationId}&confirmationPage=true&version=1`
-    );
+    cy.visit(`/reporter/application/${applicationId}?confirmationPage=true`);
     cy.url().should('include', '/reporter/application');
 
     cy.get('.btn').contains('Submit Application').click();
