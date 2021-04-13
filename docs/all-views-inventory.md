@@ -7,7 +7,7 @@ Link to each heading for details. Asterisk\* denotes pages that [require certain
 - [Reporter Dashboard: `/reporter`](#reporter-dash)
 - [Facilities page, _aka._ "My Applications": `/reporter/facilities`](#facilities)
 - [New Application Disclaimer page: `/reporter/new-application-disclaimer`\*](#new-application-disclaimer)
-- [Application page: `/reporter/application`\*](#application)
+- [Application page: `/reporter/application/[applicationId]`\*](#application)
 - [Submission Complete page: `/reporter/complete-submit`](#submission-complete)
 - [View Submitted Application page: `/reporter/application/[applicationId]/version/[versionNumber]/view`\*](#view-application)
 
@@ -97,22 +97,18 @@ Interstitial page that collects the reporter's consent before allowing a new app
 
 <a id="application"></a>
 
-### Application page: `/reporter/application`\*
+### Application page: `/reporter/application/[applicationId]`\*
 
 A set of forms, displayed in sequential tabs, allowing reporters to apply for CIIP for a specified facility.
 
-The form tab (ie: Emissions, etc.) initially displayed on loading this page is controlled by the value of the `formResultId` query parameter. Further, the page can be loaded to display the Summary tab by appending the parameter: `confirmationPage=true` _instead_ of `formResultId`.
+The form tab (ie: Emissions, etc.) initially displayed on loading this page is controlled by the value of the `formId` query parameter. Further, the page can be loaded to display the Summary tab by appending the parameter: `confirmationPage=true` _instead_ of `formId`.
 
 Form validation helps ensure the integrity of data entered before submission; however, this can be overridden by the reporter with a message justifying their reasons for not being able to fix the validation errors.
 
-The current state of the application can be downloaded as PDF from the Summary tab.
+\* Optional query parameters:
 
-\* Required query parameters:
-
-- `applicationId`
-- `version`
-- `formResultId` (except when `confirmationPage` is present)
-- \[optional parameter for showing Summary tab\]: `confirmationPage=true`
+- `formId`: if not present and `confirmationPage` is not `true`, the app will automatically set it to the first form's id
+- `confirmationPage`: if set to `true` and `formId` is not present, the app will display the Summary tab
 
 #### Shared components:
 
