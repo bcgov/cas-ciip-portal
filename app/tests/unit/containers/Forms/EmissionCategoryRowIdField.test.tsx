@@ -4,32 +4,15 @@ import {
   EmissionCategoryRowIdFieldComponent,
   Props
 } from 'containers/Forms/EmissionCategoryRowIdField';
-import {getDefaultRegistry} from '@rjsf/core/dist/cjs/utils';
+import {createDefaultJsonSchemaFormProps} from 'tests/json-schema-utils';
 
 describe('The EmissionCategoryRowIdField component', () => {
   it('injects the category ids and names in the json schema', () => {
-    const idSchema: any = {$id: 'emissionCategoryRowId'}; // TODO: revise type after react-jsonschema-form v2 is used
     const props: Props = {
-      name: 'emissionCategoryRowId',
-      schema: {
-        type: 'number',
-        title: 'emission category'
-      },
-      uiSchema: {},
-      idSchema,
-      formData: 1,
-      errorSchema: null,
-      onChange: jest.fn,
-      onBlur: jest.fn,
-      registry: getDefaultRegistry(),
-      formContext: null,
-      autofocus: false,
-      disabled: false,
-      readonly: false,
-      required: true,
+      ...createDefaultJsonSchemaFormProps(),
       query: {
         ' $refType': 'EmissionCategoryRowIdField_query',
-        allEmissionCategories: {
+        activeEmissionCategories: {
           edges: [
             {
               node: {
@@ -44,8 +27,14 @@ describe('The EmissionCategoryRowIdField component', () => {
               }
             }
           ]
+        },
+        archivedEmissionCategories: {
+          edges: []
         }
-      }
+      },
+      formData: 1,
+      name: 'emissionCategoryRowId',
+      required: true
     };
     const renderedField = shallow(
       <EmissionCategoryRowIdFieldComponent {...props} />
@@ -54,5 +43,34 @@ describe('The EmissionCategoryRowIdField component', () => {
     const fieldSchemaProp = renderedField.prop('schema');
     expect(fieldSchemaProp.enum).toHaveLength(2);
     expect(fieldSchemaProp.enumNames).toHaveLength(2);
+  });
+
+  it('Renders an uneditable <span> element if the emission category is archived', () => {
+    const props: Props = {
+      ...createDefaultJsonSchemaFormProps(),
+      query: {
+        ' $refType': 'EmissionCategoryRowIdField_query',
+        activeEmissionCategories: {
+          edges: []
+        },
+        archivedEmissionCategories: {
+          edges: [
+            {
+              node: {
+                rowId: 100,
+                displayName: 'Deleted Emission Category'
+              }
+            }
+          ]
+        }
+      },
+      formData: 100,
+      name: 'emissionCategoryRowId',
+      required: true
+    };
+    const renderedField = shallow(
+      <EmissionCategoryRowIdFieldComponent {...props} />
+    );
+    expect(renderedField).toMatchSnapshot();
   });
 });

@@ -1,20 +1,28 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`The EmissionCategoryRowIdField component Renders an uneditable <span> element if the emission category is archived 1`] = `
+<span
+  className="col-md-12"
+>
+  Deleted Emission Category
+</span>
+`;
+
 exports[`The EmissionCategoryRowIdField component injects the category ids and names in the json schema 1`] = `
 <StringField
   autofocus={false}
   disabled={false}
-  errorSchema={null}
-  formContext={null}
+  errorSchema={Object {}}
+  formContext={Object {}}
   formData={1}
   idSchema={
     Object {
-      "$id": "emissionCategoryRowId",
+      "$id": null,
     }
   }
   name="emissionCategoryRowId"
-  onBlur={[Function]}
-  onChange={[Function]}
+  onBlur={[MockFunction]}
+  onChange={[MockFunction]}
   readonly={false}
   registry={
     Object {
@@ -69,8 +77,6 @@ exports[`The EmissionCategoryRowIdField component injects the category ids and n
         "cat A",
         "cat B",
       ],
-      "title": "emission category",
-      "type": "number",
     }
   }
   uiSchema={Object {}}
