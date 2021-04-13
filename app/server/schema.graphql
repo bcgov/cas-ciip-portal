@@ -487,11 +487,6 @@ type Application implements Node {
     orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
   ): ApplicationCiipUsersByFormResultApplicationIdAndUpdatedByManyToManyConnection!
 
-  """
-  returns a boolean value based on whether the current user has edit permission on the application
-  """
-  currentUserCanEdit: Boolean
-
   """Reads and enables pagination through a set of `Facility`."""
   facilitiesByFacilityApplicationApplicationIdAndFacilityId(
     """Read all values in the set after (below) this cursor."""
@@ -1625,9 +1620,6 @@ input ApplicationFilter {
 
   """Filter by the object’s `bcghgid` field."""
   bcghgid: StringFilter
-
-  """Filter by the object’s `currentUserCanEdit` field."""
-  currentUserCanEdit: BooleanFilter
 
   """Filter by the object’s `facilityId` field."""
   facilityId: IntFilter

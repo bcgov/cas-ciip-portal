@@ -297,3 +297,4 @@ tables/review_comment_001 [tables/review_comment] 2021-03-16T22:47:13Z Dylan Lea
 types/review_comment_type_001 [types/review_comment_type] 2021-03-16T20:16:04Z Dylan Leard <dylan@button.is> # Migration: Changes Data! all 'approval' or 'requested changes' comments are changed to general in this migration. enum type is truncated to only includ general/internal
 tables/fuel_001 [tables/fuel] 2021-04-08T21:59:59Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # adding a comments column to store additional metadata
 computed_columns/application_revision_ordered_form_results 2021-04-09T14:47:48Z Matthieu Foucault <matthieu@button.is> # add a computed column to get the form columns for an application revision
+computed_columns/application_current_user_can_edit [computed_columns/application_current_user_can_edit@v1.16.0] 2021-04-13T23:05:23Z Matthieu Foucault <matthieu@button.is> # drop unnecessary computed column
