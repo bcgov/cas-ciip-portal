@@ -5,11 +5,13 @@ import {Row, Col} from 'react-bootstrap';
 import Form from 'containers/Forms/Form';
 import updateFormResultMutation from 'mutations/form/updateFormResultMutation';
 import ApplicationWizardConfirmation from './ApplicationWizardConfirmation';
+import {ApplicationWizardStep_formResult} from 'ApplicationWizardStep_formResult.graphql';
+import {ApplicationWizardStep_applicationRevision} from 'ApplicationWizardStep_applicationRevision.graphql';
 
 interface Props {
   query: ApplicationWizardStep_query;
-  formResult;
-  applicationRevision;
+  formResult: ApplicationWizardStep_formResult;
+  applicationRevision: ApplicationWizardStep_applicationRevision;
   review: React.ReactNode;
   onStepComplete: () => void;
   confirmationPage: boolean;
@@ -29,7 +31,7 @@ const ApplicationWizardStep: React.FunctionComponent<Props> = ({
   confirmationPage,
   relay
 }) => {
-  if (!formResult || !applicationRevision) return null;
+  if ((!formResult && !confirmationPage) || !applicationRevision) return null;
 
   const [isSaved, setSaved] = useState(true);
   // Function: store the form result
@@ -77,6 +79,7 @@ const ApplicationWizardStep: React.FunctionComponent<Props> = ({
         </Row>
       );
     }
+    console.log('confirmation', confirmation);
     return confirmation;
   }
 
@@ -114,6 +117,7 @@ export default createFragmentContainer(ApplicationWizardStep, {
   `,
   formResult: graphql`
     fragment ApplicationWizardStep_formResult on FormResult {
+      id
       ...Form_ciipFormResult
     }
   `

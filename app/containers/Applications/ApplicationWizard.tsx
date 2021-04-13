@@ -6,7 +6,7 @@ import {ApplicationWizard_query} from 'ApplicationWizard_query.graphql';
 import ApplicationWizardStep from './ApplicationWizardStep';
 import LoadingSpinner from 'components/LoadingSpinner';
 import ApplicationDecision from 'components/Application/ApplicationDecision';
-import {ApplicationWizard_applicationRevision} from '__generated__/ApplicationWizard_applicationRevision.graphql';
+import {ApplicationWizard_applicationRevision} from 'ApplicationWizard_applicationRevision.graphql';
 
 const setRouterQueryParam = (router, key, value, replace = false) => {
   const newUrl = {
@@ -60,7 +60,7 @@ export const ApplicationWizardComponent: React.FunctionComponent<Props> = ({
     if (!formId) return null;
     return orderedFormResults.find(
       ({node}) => formId === node.formJsonByFormId.id
-    );
+    )?.node;
   }, [orderedFormResults, formId]);
 
   if (orderedFormResults.length === 0) return null;
@@ -90,7 +90,7 @@ export const ApplicationWizardComponent: React.FunctionComponent<Props> = ({
             pathName: router.pathname,
             query: {
               ...router.query,
-              formResultId: undefined,
+              formId: undefined,
               confirmationPage: true
             }
           };
