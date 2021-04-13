@@ -1,0 +1,156 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The FuelRowIdField component renders an active fuel as a StringField 1`] = `
+<StringField
+  autofocus={false}
+  disabled={false}
+  errorSchema={Object {}}
+  formContext={Object {}}
+  formData={1}
+  idSchema={
+    Object {
+      "$id": null,
+    }
+  }
+  name=""
+  onBlur={[MockFunction]}
+  onChange={[MockFunction]}
+  readonly={false}
+  registry={
+    Object {
+      "definitions": Object {},
+      "fields": Object {
+        "AnyOfField": [Function],
+        "ArrayField": [Function],
+        "BooleanField": [Function],
+        "DescriptionField": [Function],
+        "NullField": [Function],
+        "NumberField": [Function],
+        "ObjectField": [Function],
+        "OneOfField": [Function],
+        "SchemaField": [Function],
+        "StringField": [Function],
+        "TitleField": [Function],
+        "UnsupportedField": [Function],
+      },
+      "formContext": Object {},
+      "rootSchema": Object {},
+      "widgets": Object {
+        "AltDateTimeWidget": [Function],
+        "AltDateWidget": [Function],
+        "BaseInput": [Function],
+        "CheckboxWidget": [Function],
+        "CheckboxesWidget": [Function],
+        "ColorWidget": [Function],
+        "DateTimeWidget": [Function],
+        "DateWidget": [Function],
+        "EmailWidget": [Function],
+        "FileWidget": [Function],
+        "HiddenWidget": [Function],
+        "PasswordWidget": [Function],
+        "RadioWidget": [Function],
+        "RangeWidget": [Function],
+        "SelectWidget": [Function],
+        "TextWidget": [Function],
+        "TextareaWidget": [Function],
+        "URLWidget": [Function],
+        "UpDownWidget": [Function],
+      },
+    }
+  }
+  required={false}
+  schema={
+    Object {
+      "enum": Array [
+        1,
+      ],
+      "enumNames": Array [
+        "active fuel",
+      ],
+    }
+  }
+  uiSchema={Object {}}
+/>
+`;
+
+exports[`The FuelRowIdField component renders an archived fuel as an input group 1`] = `
+<InputGroup>
+  <InputGroupText
+    className="col-md-12"
+  >
+    archived fuel
+  </InputGroupText>
+</InputGroup>
+`;
+
+exports[`The FuelRowIdField component renders an undefined form data as a StringField 1`] = `
+<StringField
+  autofocus={false}
+  disabled={false}
+  errorSchema={Object {}}
+  formContext={Object {}}
+  idSchema={
+    Object {
+      "$id": null,
+    }
+  }
+  name=""
+  onBlur={[MockFunction]}
+  onChange={[MockFunction]}
+  readonly={false}
+  registry={
+    Object {
+      "definitions": Object {},
+      "fields": Object {
+        "AnyOfField": [Function],
+        "ArrayField": [Function],
+        "BooleanField": [Function],
+        "DescriptionField": [Function],
+        "NullField": [Function],
+        "NumberField": [Function],
+        "ObjectField": [Function],
+        "OneOfField": [Function],
+        "SchemaField": [Function],
+        "StringField": [Function],
+        "TitleField": [Function],
+        "UnsupportedField": [Function],
+      },
+      "formContext": Object {},
+      "rootSchema": Object {},
+      "widgets": Object {
+        "AltDateTimeWidget": [Function],
+        "AltDateWidget": [Function],
+        "BaseInput": [Function],
+        "CheckboxWidget": [Function],
+        "CheckboxesWidget": [Function],
+        "ColorWidget": [Function],
+        "DateTimeWidget": [Function],
+        "DateWidget": [Function],
+        "EmailWidget": [Function],
+        "FileWidget": [Function],
+        "HiddenWidget": [Function],
+        "PasswordWidget": [Function],
+        "RadioWidget": [Function],
+        "RangeWidget": [Function],
+        "SelectWidget": [Function],
+        "TextWidget": [Function],
+        "TextareaWidget": [Function],
+        "URLWidget": [Function],
+        "UpDownWidget": [Function],
+      },
+    }
+  }
+  required={false}
+  schema={
+    Object {
+      "enum": Array [
+        1,
+      ],
+      "enumNames": Array [
+        "active fuel",
+      ],
+    }
+  }
+  uiSchema={Object {}}
+/>
+`;
