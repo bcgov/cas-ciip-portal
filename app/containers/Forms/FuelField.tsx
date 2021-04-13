@@ -3,7 +3,6 @@ import {FieldProps} from '@rjsf/core';
 import {createFragmentContainer, graphql} from 'react-relay';
 import {FuelField_query} from 'FuelField_query.graphql';
 import ObjectField from '@rjsf/core/dist/cjs/components/fields/ObjectField';
-import {Alert} from 'react-bootstrap';
 
 interface Props extends FieldProps {
   query: FuelField_query;
@@ -34,19 +33,7 @@ export const FuelFieldComponent: React.FunctionComponent<Props> = (props) => {
   };
 
   return (
-    <>
-      {isFuelArchived && (
-        <Alert variant="danger">
-          <strong>Warning:</strong> This fuel has been archived. Please remove
-          it and select an appropriate alternative.
-        </Alert>
-      )}
-      <ObjectField
-        {...props}
-        disabled={isFuelArchived}
-        onChange={handleChange}
-      />
-    </>
+    <ObjectField {...props} disabled={isFuelArchived} onChange={handleChange} />
   );
 };
 
