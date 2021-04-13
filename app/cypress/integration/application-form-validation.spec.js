@@ -3,19 +3,19 @@ describe('When viewing an application in draft as a reporter', () => {
     '["applications",1]'
   )}`;
 
-  const adminFormUrl = `${applicationUrl}&formId=${window.btoa(
+  const adminFormUrl = `${applicationUrl}?formId=${window.btoa(
     '["form_jsons",1]'
   )}`;
-  const emissionFormUrl = `${applicationUrl}&formId=${window.btoa(
+  const emissionFormUrl = `${applicationUrl}?formId=${window.btoa(
     '["form_jsons",2]'
   )}`;
-  const fuelFormUrl = `${applicationUrl}&formId=${window.btoa(
+  const fuelFormUrl = `${applicationUrl}?formId=${window.btoa(
     '["form_jsons",3]'
   )}`;
-  const productionFormUrl = `${applicationUrl}&formId=${window.btoa(
+  const productionFormUrl = `${applicationUrl}?formId=${window.btoa(
     '["form_jsons",4]'
   )}`;
-  const summaryPageUrl = `${applicationUrl}&confirmationPage=true}`;
+  const summaryPageUrl = `${applicationUrl}?confirmationPage=true`;
 
   beforeEach(() => {
     cy.cleanSchema();

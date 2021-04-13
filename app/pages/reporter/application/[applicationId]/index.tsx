@@ -66,7 +66,7 @@ class ApplicationPage extends Component<Props> {
     const {query, router} = this.props;
     const {session} = query || {};
     const {application} = query || {};
-
+    console.log(query);
     // Route to 404 page if no application is present
     if (!application) {
       router.push({pathname: '/404'});

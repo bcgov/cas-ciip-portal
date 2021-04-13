@@ -22,6 +22,10 @@ describe('When logged in as a reporter', () => {
     cy.visit(`/reporter/application/${applicationId}?confirmationPage=true`);
     cy.url().should('include', '/reporter/application');
 
+    // test permanent redirection from the v1 application page
+    cy.visit(`/reporter/application?applicationId=${applicationId}&version=1`);
+    cy.url().should('include', `/reporter/application/${applicationId}`);
+
     cy.get('.btn').contains('Submit Application').click();
     cy.url().should('include', '/reporter/complete-submit');
     cy.contains('Dashboard').click();

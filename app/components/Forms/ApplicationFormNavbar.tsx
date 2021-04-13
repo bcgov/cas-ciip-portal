@@ -28,7 +28,7 @@ const ApplicationFormNavbarComponent: React.FunctionComponent<Props> = ({
                 node.formJsonByFormId.id
               )}
             >
-              <Nav.Link active={node.id === selectedFormId}>
+              <Nav.Link active={node.formJsonByFormId.id === selectedFormId}>
                 {node.formJsonByFormId.name}{' '}
               </Nav.Link>
             </Link>

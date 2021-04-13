@@ -38,7 +38,7 @@ export const ApplicationWizardComponent: React.FunctionComponent<Props> = ({
 }) => {
   const router = useRouter();
   const {formId} = router.query;
-  const confirmationPage = Boolean(router.query.confirmationPage);
+  const confirmationPage = router.query.confirmationPage === 'true';
   const {
     orderedFormResults: {edges: orderedFormResults},
     applicationByApplicationId
