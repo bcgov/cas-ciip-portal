@@ -34,13 +34,6 @@ update ggircs_portal.form_result set form_result = '{"operator": {"naics": "1234
 
 insert into ggircs_portal.naics_code(naics_code, naics_description) values ('123456', 'test naics'), ('654321', 'test naics2');
 
-select * from ggircs_portal.application_revision;
-
-with record as (
-      select row(application_revision.*)::ggircs_portal.application_revision
-      from ggircs_portal.application_revision where application_id = 1 and version_number = 1
-    ) select naics_code from ggircs_portal.application_revision_naics_code((select * from record));
-
 select is (
   (
     with record as (
