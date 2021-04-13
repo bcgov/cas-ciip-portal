@@ -87,6 +87,7 @@ describe('When an applicaiton does not have errors', () => {
     cy.url().should('include', '/reporter/application');
     cy.get(':nth-child(1) > .nav-link').click();
     cy.get('#root_operator_name').clear();
+    cy.get('.card-header').contains('Form input saved');
     cy.get('.nav-guide > :nth-child(5)').click();
     cy.get('.errors').should('contain', 'contains errors');
     cy.get('.override-accordion > .btn').click();
@@ -95,7 +96,10 @@ describe('When an applicaiton does not have errors', () => {
     cy.get('.alert-secondary').should('contain', 'delete me when fixed');
     cy.get(':nth-child(1) > .nav-link').click();
     cy.get('#root_operator_name').clear().type('whoops');
+    cy.get('.card-header').contains('Form input saved');
+
     cy.get('.nav-guide > :nth-child(5)').click();
+    cy.get('#administration-data_operator_name').should('contain', 'whoops');
     cy.get('.override-accordion > .btn').should('not.exist');
     cy.get(':nth-child(1) > .nav-link').click();
     cy.get('#root_operator_name').clear();
