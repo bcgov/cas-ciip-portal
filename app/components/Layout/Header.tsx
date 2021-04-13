@@ -63,6 +63,7 @@ const HeaderLayout = ({
               aria-label="Menu toggle"
               onClick={toggleNavMenu}
               className={isLoggedIn ? 'logged-in' : null}
+              style={{flex: '0 0 48px', height: '45px', padding: 0}}
             >
               <FontAwesomeIcon
                 color={isLoggedIn ? '#036' : 'white'}
@@ -152,29 +153,9 @@ const HeaderLayout = ({
           li {
             list-style-type: none;
           }
-          button {
-            background: none;
-            border: none;
-            color: inherit;
-          }
-          .nav-button {
-            color: #f8f9fa;
-            display: inline-block;
-            text-align: center;
-            user-select: none;
-            background-color: transparent;
-            border: 1px solid transparent;
-            padding: 0.375rem 0.75rem;
-            font-size: 1rem;
-            border-radius: 0.25rem;
-            transition: color 0.15s ease-in-out,
-              background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
-              box-shadow 0.15s ease-in-out;
-          }
           #menu-toggle.logged-in {
             background: #f8f9fa;
             border-radius: 100%;
-            padding: 0.375rem 0.7rem;
           }
 
           /* Small desktop and up:
@@ -233,6 +214,27 @@ const HeaderLayout = ({
           }
         `}
       </style>
+      <style jsx global>{`
+        nav button {
+          background: none;
+          border: none;
+          color: inherit;
+        }
+        .nav-button {
+          color: #f8f9fa;
+          display: inline-block;
+          text-align: center;
+          user-select: none;
+          background-color: transparent;
+          border: 1px solid transparent;
+          padding: 0.375rem 0.75rem;
+          font-size: 1rem;
+          border-radius: 0.25rem;
+          transition: color 0.15s ease-in-out,
+            background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
+            box-shadow 0.15s ease-in-out;
+        }
+      `}</style>
     </header>
   );
 };
