@@ -192,15 +192,6 @@ const HeaderLayout = ({
             }
           }
 
-          /* Custom query to prevent title heading from wrapping in screen widths
-          * between 992px to 1092px:
-          */
-          @media screen and (min-width: 1092px) {
-            header h2 {
-              font-size: 2rem;
-            }
-          }
-
           /* Larger desktops and up:
           * Gives same effect as .container class on nav to align its contents
           * with page grid:
