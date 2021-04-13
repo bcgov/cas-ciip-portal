@@ -24,6 +24,8 @@ const queryWithOrganisations: Organisations_query = {
           {
             node: {
               id: 'OrgId',
+              organisationId: 1,
+              status: 'PENDING',
               ' $fragmentRefs': {UserOrganisation_userOrganisation: true}
             }
           }
@@ -42,7 +44,6 @@ describe('Organisations', () => {
       <OrganisationsComponent
         query={queryWithoutOrganisations}
         relay={null}
-        flagCertRequests={false}
         orgInput={null}
         selectedOrg={null}
         confirmOrg={null}
@@ -59,7 +60,6 @@ describe('Organisations', () => {
       <OrganisationsComponent
         query={queryWithOrganisations}
         relay={null}
-        flagCertRequests={false}
         orgInput={null}
         selectedOrg={null}
         confirmOrg={null}
@@ -76,23 +76,5 @@ describe('Organisations', () => {
       queryWithOrganisations.session.ciipUserBySub.ciipUserOrganisationsByUserId
         .edges[0].node
     );
-  });
-
-  it('should announce there are certification requests to view', async () => {
-    const r = shallow(
-      <OrganisationsComponent
-        flagCertRequests
-        query={queryWithOrganisations}
-        relay={null}
-        orgInput={null}
-        selectedOrg={null}
-        confirmOrg={null}
-        handleInputChange={null}
-        handleContextChange={null}
-        handleOrgChange={null}
-        handleOrgConfirm={null}
-      />
-    );
-    expect(r).toMatchSnapshot();
   });
 });

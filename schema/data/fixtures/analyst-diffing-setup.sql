@@ -25,9 +25,6 @@ select test_helper.create_applications(1, True, False);
 -- Create new revision for diffing
 select ggircs_portal.create_application_revision_mutation_chain(1,1);
 
--- Certify application
-select test_helper.certify_application(1,1,7);
-
 -- Submit versions
 insert into ggircs_portal.application_revision_status(application_id, version_number, application_revision_status)
   values (1,1,'submitted');

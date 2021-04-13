@@ -28,7 +28,7 @@ const QUERY_PARAMS = {
 let DEBUG;
 
 // Uncomment this to limit tests to a single page:
-// DEBUG = 'certification-redirect';
+// DEBUG = 'view-application';
 
 const {AUTHENTICATED_PAGES} = Cypress.env;
 
