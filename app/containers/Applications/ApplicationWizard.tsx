@@ -23,7 +23,7 @@ const setRouterQueryParam = (router, key, value, replace = false) => {
 interface Props {
   query: ApplicationWizard_query;
   applicationRevision: ApplicationWizard_applicationRevision;
-  loading: boolean;
+  loading?: boolean;
 }
 
 /*
@@ -63,6 +63,7 @@ export const ApplicationWizardComponent: React.FunctionComponent<Props> = ({
     );
   }, [orderedFormResults, formId]);
 
+  if (orderedFormResults.length === 0) return null;
   if (!confirmationPage && !formResult) {
     setRouterQueryParam(
       router,

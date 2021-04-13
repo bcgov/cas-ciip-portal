@@ -1,35 +1,44 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 import {FormComponent} from 'containers/Forms/Form';
+import {Form_query} from '__generated__/Form_query.graphql';
+import {Form_ciipFormResult} from '__generated__/Form_ciipFormResult.graphql';
 
 describe('The Form Component', () => {
+  const queryFragment: Form_query = {
+    ' $fragmentRefs': {
+      NaicsField_query: true,
+      FuelField_query: true,
+      ProductField_query: true,
+      FuelRowIdField_query: true,
+      ProductRowIdField_query: true,
+      EmissionCategoryRowIdField_query: true
+    },
+    ' $refType': 'Form_query',
+
+    products: {
+      edges: []
+    }
+  };
+
+  const ciipFormResultFragment: Form_ciipFormResult = {
+    ' $refType': 'Form_ciipFormResult',
+    formResult: {},
+    formJsonByFormId: {
+      formJson: {schema: {}},
+      ciipApplicationWizardByFormId: {
+        formPosition: 0
+      },
+      name: 'Foo'
+    }
+  };
+
   it('should match the snapshot', () => {
     const wrapper = shallow(
       <FormComponent
         isSaved
-        query={{
-          ' $fragmentRefs': {
-            FuelField_query: true,
-            FuelRowIdField_query: true,
-            ProductField_query: true,
-            ProductRowIdField_query: true,
-            EmissionCategoryRowIdField_query: true
-          },
-          ' $refType': 'Form_query',
-          result: {
-            formResult: {},
-            formJsonByFormId: {
-              formJson: {schema: {}},
-              ciipApplicationWizardByFormId: {
-                formPosition: 1
-              },
-              name: 'Foo'
-            }
-          },
-          products: {
-            edges: []
-          }
-        }}
+        query={queryFragment}
+        ciipFormResult={ciipFormResultFragment}
         onComplete={jest.fn()}
       />
     );
@@ -40,29 +49,8 @@ describe('The Form Component', () => {
     const wrapper = shallow(
       <FormComponent
         isSaved
-        query={{
-          ' $fragmentRefs': {
-            FuelField_query: true,
-            ProductField_query: true,
-            FuelRowIdField_query: true,
-            ProductRowIdField_query: true,
-            EmissionCategoryRowIdField_query: true
-          },
-          ' $refType': 'Form_query',
-          result: {
-            formResult: {},
-            formJsonByFormId: {
-              formJson: {schema: {}},
-              ciipApplicationWizardByFormId: {
-                formPosition: 0
-              },
-              name: 'Foo'
-            }
-          },
-          products: {
-            edges: []
-          }
-        }}
+        query={queryFragment}
+        ciipFormResult={ciipFormResultFragment}
         onComplete={jest.fn()}
       />
     );
@@ -75,27 +63,16 @@ describe('The Form Component', () => {
     const wrapper = shallow(
       <FormComponent
         isSaved
-        query={{
-          ' $fragmentRefs': {
-            FuelField_query: true,
-            ProductField_query: true,
-            FuelRowIdField_query: true,
-            ProductRowIdField_query: true,
-            EmissionCategoryRowIdField_query: true
-          },
-          ' $refType': 'Form_query',
-          result: {
-            formResult: [{requiresEmissionAllocation: false}],
-            formJsonByFormId: {
-              formJson: {schema: {}},
-              ciipApplicationWizardByFormId: {
-                formPosition: 3
-              },
-              name: 'Foo'
-            }
-          },
-          products: {
-            edges: []
+        query={queryFragment}
+        ciipFormResult={{
+          ' $refType': 'Form_ciipFormResult',
+          formResult: [{requiresEmissionAllocation: false}],
+          formJsonByFormId: {
+            formJson: {schema: {}},
+            ciipApplicationWizardByFormId: {
+              formPosition: 3
+            },
+            name: 'Foo'
           }
         }}
         onComplete={jest.fn()}
@@ -109,27 +86,16 @@ describe('The Form Component', () => {
     const wrapper = shallow(
       <FormComponent
         isSaved
-        query={{
-          ' $fragmentRefs': {
-            FuelField_query: true,
-            ProductField_query: true,
-            FuelRowIdField_query: true,
-            ProductRowIdField_query: true,
-            EmissionCategoryRowIdField_query: true
-          },
-          ' $refType': 'Form_query',
-          result: {
-            formResult: [{requiresEmissionAllocation: true}],
-            formJsonByFormId: {
-              formJson: {schema: {}},
-              ciipApplicationWizardByFormId: {
-                formPosition: 3
-              },
-              name: 'Foo'
-            }
-          },
-          products: {
-            edges: []
+        query={queryFragment}
+        ciipFormResult={{
+          ' $refType': 'Form_ciipFormResult',
+          formResult: [{requiresEmissionAllocation: true}],
+          formJsonByFormId: {
+            formJson: {schema: {}},
+            ciipApplicationWizardByFormId: {
+              formPosition: 3
+            },
+            name: 'Foo'
           }
         }}
         onComplete={jest.fn()}

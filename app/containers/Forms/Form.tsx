@@ -26,10 +26,11 @@ import SavingIndicator from 'components/helpers/SavingIndicator';
 import NaicsField from './NaicsField';
 import productFieldValidation from './validation/productFieldValidation';
 import MissingProductsComponent from 'components/product/MissingProductsComponent';
+import {Form_ciipFormResult} from 'Form_ciipFormResult.graphql';
 
 interface Props {
   query: Form_query;
-  ciipFormResult;
+  ciipFormResult: Form_ciipFormResult;
   onComplete: (e: IChangeEvent) => void;
   onValueChanged?: (e: IChangeEvent, es?: ErrorSchema) => void;
   isSaved: boolean;

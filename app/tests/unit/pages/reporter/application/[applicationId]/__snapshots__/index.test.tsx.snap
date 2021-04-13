@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`The /reporter/application page matches the last accepted Snapshot 1`] = `
+exports[`The /reporter/application/[applicationId] page matches the last accepted Snapshot 1`] = `
 <Relay(DefaultLayout)
   session={
     Object {
@@ -18,10 +18,24 @@ exports[`The /reporter/application page matches the last accepted Snapshot 1`] =
     <br
       className="jsx-2575158560"
     />
+    Version Number: 
+    2
+    <br
+      className="jsx-2575158560"
+    />
     BC GHG ID: 
     1234
   </div>
   <Relay(ApplicationWizardComponent)
+    applicationRevision={
+      Object {
+        " $fragmentRefs": Object {
+          "ApplicationWizard_applicationRevision": true,
+        },
+        "legalDisclaimerAccepted": true,
+        "versionNumber": 2,
+      }
+    }
     query={
       Object {
         " $fragmentRefs": Object {
@@ -33,7 +47,13 @@ exports[`The /reporter/application page matches the last accepted Snapshot 1`] =
           },
           "id": "1",
           "latestDraftRevision": Object {
+            " $fragmentRefs": Object {
+              "ApplicationWizard_applicationRevision": true,
+            },
             "legalDisclaimerAccepted": true,
+            "versionNumber": 2,
+          },
+          "latestSubmittedRevision": Object {
             "versionNumber": 1,
           },
           "rowId": 1,

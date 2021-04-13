@@ -47,28 +47,52 @@ exports[`The application-review page matches the last snapshot (with review side
       />
       <hr />
       <Relay(ApplicationDetailsComponent)
-        application={
+        applicationRevision={
           Object {
             " $fragmentRefs": Object {
-              "ApplicationDetailsContainer_application": true,
+              "IncentiveCalculatorContainer_applicationRevision": true,
             },
-            "applicationReviewStepsByApplicationId": Object {
-              "edges": Array [
-                Object {
-                  "node": Object {
-                    " $fragmentRefs": Object {
-                      "ReviewSidebar_applicationReviewStep": true,
+            "overrideJustification": null,
+          }
+        }
+        diffQuery={
+          Object {
+            " $fragmentRefs": Object {
+              "ApplicationDetailsContainer_query": true,
+            },
+            "application": Object {
+              " $fragmentRefs": Object {
+                "ApplicationDetailsContainer_application": true,
+              },
+              "applicationReviewStepsByApplicationId": Object {
+                "edges": Array [
+                  Object {
+                    "node": Object {
+                      " $fragmentRefs": Object {
+                        "ReviewSidebar_applicationReviewStep": true,
+                      },
                     },
                   },
+                ],
+              },
+              "reviewRevisionStatus": Object {
+                " $fragmentRefs": Object {
+                  "ApplicationRevisionStatusContainer_applicationRevisionStatus": true,
                 },
-              ],
+              },
+              "rowId": 1,
             },
-            "reviewRevisionStatus": Object {
+            "applicationRevision": Object {
               " $fragmentRefs": Object {
-                "ApplicationRevisionStatusContainer_applicationRevisionStatus": true,
+                "IncentiveCalculatorContainer_applicationRevision": true,
+              },
+              "overrideJustification": null,
+            },
+            "session": Object {
+              " $fragmentRefs": Object {
+                "defaultLayout_session": true,
               },
             },
-            "rowId": 1,
           }
         }
         liveValidate={false}
@@ -242,28 +266,52 @@ exports[`The application-review page matches the last snapshot (with review side
       />
       <hr />
       <Relay(ApplicationDetailsComponent)
-        application={
+        applicationRevision={
           Object {
             " $fragmentRefs": Object {
-              "ApplicationDetailsContainer_application": true,
+              "IncentiveCalculatorContainer_applicationRevision": true,
             },
-            "applicationReviewStepsByApplicationId": Object {
-              "edges": Array [
-                Object {
-                  "node": Object {
-                    " $fragmentRefs": Object {
-                      "ReviewSidebar_applicationReviewStep": true,
+            "overrideJustification": null,
+          }
+        }
+        diffQuery={
+          Object {
+            " $fragmentRefs": Object {
+              "ApplicationDetailsContainer_query": true,
+            },
+            "application": Object {
+              " $fragmentRefs": Object {
+                "ApplicationDetailsContainer_application": true,
+              },
+              "applicationReviewStepsByApplicationId": Object {
+                "edges": Array [
+                  Object {
+                    "node": Object {
+                      " $fragmentRefs": Object {
+                        "ReviewSidebar_applicationReviewStep": true,
+                      },
                     },
                   },
+                ],
+              },
+              "reviewRevisionStatus": Object {
+                " $fragmentRefs": Object {
+                  "ApplicationRevisionStatusContainer_applicationRevisionStatus": true,
                 },
-              ],
+              },
+              "rowId": 1,
             },
-            "reviewRevisionStatus": Object {
+            "applicationRevision": Object {
               " $fragmentRefs": Object {
-                "ApplicationRevisionStatusContainer_applicationRevisionStatus": true,
+                "IncentiveCalculatorContainer_applicationRevision": true,
+              },
+              "overrideJustification": null,
+            },
+            "session": Object {
+              " $fragmentRefs": Object {
+                "defaultLayout_session": true,
               },
             },
-            "rowId": 1,
           }
         }
         liveValidate={false}
