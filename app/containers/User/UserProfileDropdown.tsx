@@ -21,7 +21,7 @@ const UserProfileDropdown: React.FunctionComponent<Props> = ({user}) => {
   return (
     <>
       <li className="d-none d-lg-block">
-        <Dropdown alignRight>
+        <Dropdown alignRight style={{paddingLeft: '6px'}}>
           <Dropdown.Toggle variant="primary" aria-label="User menu toggle">
             <div className="user-icon">
               <FontAwesomeIcon
