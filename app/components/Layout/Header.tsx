@@ -67,17 +67,17 @@ const HeaderLayout = ({
               <FontAwesomeIcon
                 color={isLoggedIn ? '#036' : 'white'}
                 icon={isLoggedIn ? faUser : faBars}
-                size="2x"
+                style={{
+                  fontSize: '30px',
+                  verticalAlign: 'middle',
+                  paddingBottom: '2px'
+                }}
               />
             </button>
           </div>
           <ul
             className="header-right"
-            style={
-              navMenuHidden
-                ? {display: 'none'}
-                : {display: 'flex', alignItems: 'center'}
-            }
+            style={navMenuHidden ? {display: 'none'} : {display: 'flex'}}
           >
             {isRegistered ? (
               <li>
@@ -157,8 +157,10 @@ const HeaderLayout = ({
             list-style-type: none;
           }
           #menu-toggle {
-            flex: '0 0 48px';
-            height: '45px';
+            flex-grow: 0;
+            flex-shrink: 0;
+            flex-basis: 48px;
+            height: 45px;
             padding: 0;
           }
           #menu-toggle.logged-in {
@@ -186,6 +188,7 @@ const HeaderLayout = ({
               display: none;
             }
             .header-right {
+              align-items: center;
               flex-direction: row;
               width: auto;
               text-align: right;
