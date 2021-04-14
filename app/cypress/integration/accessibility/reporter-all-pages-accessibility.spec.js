@@ -36,11 +36,9 @@ describe('When logged in as a reporter', () => {
 
   it('The application admin tab has no detectable ally violations on load', () => {
     cy.sqlFixture('fixtures/set-legal-disclaimer-true');
-    const applicationId = window.btoa('["applications", 2]');
-    const formResultId = window.btoa('["form_results",5]');
-    cy.visit(
-      `/reporter/application?applicationId=${applicationId}&&version=1&formResultId=${formResultId}`
-    );
+    const applicationId = window.btoa('["applications",2]');
+    const formId = window.btoa('["form_jsons",1]');
+    cy.visit(`/reporter/application/${applicationId}?formId=${formId}`);
     cy.get('#page-content');
     cy.contains('Administration');
     cy.injectAxe();
@@ -50,11 +48,9 @@ describe('When logged in as a reporter', () => {
 
   it('The application emissions tab has no detectable ally violations on load', () => {
     cy.sqlFixture('fixtures/set-legal-disclaimer-true');
-    const applicationId = window.btoa('["applications", 2]');
-    const formResultId = window.btoa('["form_results",6]');
-    cy.visit(
-      `/reporter/application?applicationId=${applicationId}&&version=1&formResultId=${formResultId}`
-    );
+    const applicationId = window.btoa('["applications",2]');
+    const formId = window.btoa('["form_jsons",2]');
+    cy.visit(`/reporter/application/${applicationId}?formId=${formId}`);
     cy.get('#page-content');
     cy.contains('Emission');
     cy.injectAxe();
@@ -64,11 +60,9 @@ describe('When logged in as a reporter', () => {
 
   it('The application fuel tab has no detectable ally violations on load', () => {
     cy.sqlFixture('fixtures/set-legal-disclaimer-true');
-    const applicationId = window.btoa('["applications", 2]');
-    const formResultId = window.btoa('["form_results",7]');
-    cy.visit(
-      `/reporter/application?applicationId=${applicationId}&&version=1&formResultId=${formResultId}`
-    );
+    const applicationId = window.btoa('["applications",2]');
+    const formId = window.btoa('["form_jsons",3]');
+    cy.visit(`/reporter/application/${applicationId}?formId=${formId}`);
     cy.get('#page-content');
     cy.contains('Fuel');
     cy.injectAxe();
@@ -79,10 +73,8 @@ describe('When logged in as a reporter', () => {
   it('The application production tab has no detectable ally violations on load', () => {
     cy.sqlFixture('fixtures/set-legal-disclaimer-true');
     const applicationId = window.btoa('["applications", 2]');
-    const formResultId = window.btoa('["form_results",8]');
-    cy.visit(
-      `/reporter/application?applicationId=${applicationId}&&version=1&formResultId=${formResultId}`
-    );
+    const formId = window.btoa('["form_jsons",4]');
+    cy.visit(`/reporter/application/${applicationId}?formId=${formId}`);
     cy.get('#page-content');
     cy.contains('Production');
     cy.injectAxe();
@@ -92,10 +84,8 @@ describe('When logged in as a reporter', () => {
 
   it('The application summary page has no detectable ally violations on load', () => {
     cy.sqlFixture('fixtures/set-legal-disclaimer-true');
-    const applicationId = window.btoa('["applications", 2]');
-    cy.visit(
-      `/reporter/application?applicationId=${applicationId}&confirmationPage=true&version=1`
-    );
+    const applicationId = window.btoa('["applications",2]');
+    cy.visit(`/reporter/application/${applicationId}?confirmationPage=true`);
     cy.contains('Submit Application');
     cy.get('#page-content');
     cy.injectAxe();

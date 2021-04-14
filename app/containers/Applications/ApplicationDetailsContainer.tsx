@@ -3,7 +3,9 @@ import {Dropdown, Form, Row, Col /*Button*/} from 'react-bootstrap';
 import DropdownMenuItemComponent from 'components/DropdownMenuItemComponent';
 import {createRefetchContainer, graphql, RelayRefetchProp} from 'react-relay';
 import {ApplicationDetailsContainer_query} from 'ApplicationDetailsContainer_query.graphql';
-import {ApplicationDetailsContainer_application} from 'ApplicationDetailsContainer_application.graphql';
+import {ApplicationDetailsContainer_applicationRevision} from 'ApplicationDetailsContainer_applicationRevision.graphql';
+import {ApplicationDetailsContainer_diffQuery} from 'ApplicationDetailsContainer_diffQuery.graphql';
+
 import ApplicationDetailsCardItem from './ApplicationDetailsCardItem';
 // import FileDownload from 'js-file-download';
 
@@ -14,7 +16,8 @@ import ApplicationDetailsCardItem from './ApplicationDetailsCardItem';
 
 interface Props {
   query: ApplicationDetailsContainer_query;
-  application: ApplicationDetailsContainer_application;
+  diffQuery?: ApplicationDetailsContainer_diffQuery;
+  applicationRevision: ApplicationDetailsContainer_applicationRevision;
   relay: RelayRefetchProp;
   review: boolean;
   // Boolean indicates whether or not this item is being rendered by the summary component & should be liveValidated
@@ -22,21 +25,28 @@ interface Props {
   setApplicationDetailsRendered?: (boolean) => void;
 }
 
-export const ApplicationDetailsComponent: React.FunctionComponent<Props> = (
-  props
-) => {
-  const formResults = props.application.orderedFormResults.edges;
-  const diffFromResults = props.review
-    ? props?.query?.old?.orderedFormResults?.edges
+export const ApplicationDetailsComponent: React.FunctionComponent<Props> = ({
+  query,
+  diffQuery,
+  applicationRevision,
+  relay,
+  review,
+  liveValidate,
+  setApplicationDetailsRendered
+}) => {
+  const {applicationByApplicationId: application} = applicationRevision;
+  const formResults = applicationRevision.orderedFormResults.edges;
+  const diffFromResults = review
+    ? diffQuery?.old?.orderedFormResults?.edges
     : undefined;
 
   const [oldDiffVersion, setOldDiffVersion] = useState(
     (
-      props.application.orderedFormResults.edges[0].node.versionNumber - 1
+      applicationRevision.orderedFormResults.edges[0].node.versionNumber - 1
     ).toString()
   );
   const [newDiffVersion, setNewDiffVersion] = useState(
-    props.application.orderedFormResults.edges[0].node.versionNumber.toString()
+    applicationRevision.orderedFormResults.edges[0].node.versionNumber.toString()
   );
   const [showDiff, setShowDiff] = useState(false);
 
@@ -44,25 +54,12 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = (
     const refetchVariables = {
       oldVersion: oldDiffVersion,
       newVersion: newDiffVersion,
-      applicationId: props.application.id
+      applicationId: application.id
     };
-    props.relay.refetch(refetchVariables);
-  }, [oldDiffVersion, newDiffVersion, props.application.id, props.relay]);
+    relay.refetch(refetchVariables);
+  }, [oldDiffVersion, newDiffVersion, applicationRevision, relay]);
 
-  // const handleDownloadPdf = async () => {
-  //   const response = await fetch('/print-pdf', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify({html: document.documentElement.outerHTML})
-  //   });
-  //   const blob = await response.blob();
-  //   FileDownload(blob, 'CIIP_Application.pdf');
-  // };
-
-  if (props.setApplicationDetailsRendered)
-    props.setApplicationDetailsRendered(true);
+  if (setApplicationDetailsRendered) setApplicationDetailsRendered(true);
   return (
     <>
       <Row>
@@ -89,7 +86,7 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = (
                     : 'Version '.concat(oldDiffVersion)}
                 </Dropdown.Toggle>
                 <Dropdown.Menu style={{width: '100%'}}>
-                  {props.application.applicationRevisionsByApplicationId.edges.map(
+                  {application.applicationRevisionsByApplicationId.edges.map(
                     ({node}, index) =>
                       index >= Number(newDiffVersion) ||
                       index === Number(oldDiffVersion) ? null : (
@@ -116,12 +113,12 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = (
                   id="dropdown-new"
                 >
                   {Number(newDiffVersion) ===
-                  props.application.latestSubmittedRevision.versionNumber
+                  application.latestSubmittedRevision.versionNumber
                     ? `current (V${newDiffVersion})`
                     : 'Version '.concat(newDiffVersion)}
                 </Dropdown.Toggle>
                 <Dropdown.Menu style={{width: '100%'}}>
-                  {props.application.applicationRevisionsByApplicationId.edges.map(
+                  {application.applicationRevisionsByApplicationId.edges.map(
                     ({node}, index) =>
                       index <= Number(oldDiffVersion) ? null : (
                         <DropdownMenuItemComponent
@@ -130,8 +127,7 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = (
                           itemFunc={setNewDiffVersion}
                           itemTitle={
                             node.versionNumber ===
-                            props.application.latestSubmittedRevision
-                              .versionNumber
+                            application.latestSubmittedRevision.versionNumber
                               ? `current (V${node.versionNumber})`
                               : node.versionNumber
                           }
@@ -150,11 +146,11 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = (
         {formResults.map(({node}) => (
           <ApplicationDetailsCardItem
             key={node.id}
-            liveValidate={props.liveValidate}
+            liveValidate={liveValidate}
             diffFromResults={diffFromResults}
-            diffToResults={props.query.new.orderedFormResults.edges}
+            diffToResults={diffQuery?.new?.orderedFormResults.edges}
             formResult={node}
-            query={props.query.query}
+            query={query}
             showDiff={showDiff}
           />
         ))}
@@ -179,15 +175,17 @@ export default createRefetchContainer(
   ApplicationDetailsComponent,
   {
     query: graphql`
-      fragment ApplicationDetailsContainer_query on Query
+      fragment ApplicationDetailsContainer_query on Query {
+        ...ApplicationDetailsCardItem_query
+      }
+    `,
+    diffQuery: graphql`
+      fragment ApplicationDetailsContainer_diffQuery on Query
       @argumentDefinitions(
         applicationId: {type: "ID!"}
         newVersion: {type: "String"}
         oldVersion: {type: "String"}
       ) {
-        query {
-          ...ApplicationDetailsCardItem_query
-        }
         old: application(id: $applicationId) {
           orderedFormResults(versionNumberInput: $oldVersion) {
             edges {
@@ -218,11 +216,10 @@ export default createRefetchContainer(
         }
       }
     `,
-    application: graphql`
-      fragment ApplicationDetailsContainer_application on Application
-      @argumentDefinitions(version: {type: "String!"}) {
-        id
-        orderedFormResults(versionNumberInput: $version) {
+    applicationRevision: graphql`
+      fragment ApplicationDetailsContainer_applicationRevision on ApplicationRevision {
+        versionNumber
+        orderedFormResults {
           edges {
             node {
               id
@@ -231,15 +228,17 @@ export default createRefetchContainer(
             }
           }
         }
-        latestSubmittedRevision {
-          versionNumber
-        }
-        applicationRevisionsByApplicationId {
-          totalCount
-          edges {
-            node {
-              id
-              versionNumber
+        applicationByApplicationId {
+          id
+          latestSubmittedRevision {
+            versionNumber
+          }
+          applicationRevisionsByApplicationId {
+            edges {
+              node {
+                id
+                versionNumber
+              }
             }
           }
         }
@@ -253,7 +252,7 @@ export default createRefetchContainer(
       $applicationId: ID!
     ) {
       query {
-        ...ApplicationDetailsContainer_query
+        ...ApplicationDetailsContainer_diffQuery
           @arguments(
             oldVersion: $oldVersion
             newVersion: $newVersion

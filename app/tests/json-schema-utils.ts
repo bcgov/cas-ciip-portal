@@ -18,7 +18,7 @@ const createDefaultJsonSchemaFormProps = () => {
   return {
     schema: {},
     uiSchema: {},
-    idSchema: {$id: null},
+    idSchema: {$id: 'myField'},
     formData: null,
     errorSchema: {},
     onChange: jest.fn(),

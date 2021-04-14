@@ -38,7 +38,7 @@ exports[`The Fuel Field renders an alert box and a disabled form when the form d
     }
     idSchema={
       Object {
-        "$id": null,
+        "$id": "myField",
       }
     }
     name=""
@@ -124,7 +124,7 @@ exports[`The Fuel Field renders an interactive form when the form data fuel is a
     }
     idSchema={
       Object {
-        "$id": null,
+        "$id": "myField",
       }
     }
     name=""
@@ -210,7 +210,7 @@ exports[`The Fuel Field renders an interactive form when the form data is undefi
     }
     idSchema={
       Object {
-        "$id": null,
+        "$id": "myField",
       }
     }
     name=""

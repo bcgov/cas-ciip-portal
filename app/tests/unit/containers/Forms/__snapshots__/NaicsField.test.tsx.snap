@@ -5,7 +5,7 @@ exports[`The Naics Field custom field Displays (<code> - <description>) when the
   autoFocus={false}
   className="form-control"
   disabled={false}
-  id={null}
+  id="myField"
   onBlur={[Function]}
   onChange={[Function]}
   required={false}
@@ -35,7 +35,7 @@ Array [
     autoFocus={false}
     className="form-control"
     disabled={false}
-    id={null}
+    id="myField"
     onBlur={[Function]}
     onChange={[Function]}
     required={false}
@@ -103,7 +103,7 @@ exports[`The Naics Field custom field Displays the list of returned NAICS codes 
   autoFocus={false}
   className="form-control"
   disabled={false}
-  id={null}
+  id="myField"
   onBlur={[Function]}
   onChange={[Function]}
   required={false}

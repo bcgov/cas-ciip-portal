@@ -14,9 +14,12 @@ function listFiles(basePath, currentSubDir = '', arrayOfFiles = []) {
         arrayOfFiles
       );
     } else {
-      arrayOfFiles.push(
-        path.join(currentSubDir, path.basename(file.name, '.tsx'))
-      );
+      const basename = path.basename(file.name, '.tsx');
+      if (basename === 'index') {
+        arrayOfFiles.push(currentSubDir);
+      } else {
+        arrayOfFiles.push(path.join(currentSubDir, basename));
+      }
     }
   });
 

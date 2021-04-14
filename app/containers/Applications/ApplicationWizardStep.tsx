@@ -5,9 +5,13 @@ import {Row, Col} from 'react-bootstrap';
 import Form from 'containers/Forms/Form';
 import updateFormResultMutation from 'mutations/form/updateFormResultMutation';
 import ApplicationWizardConfirmation from './ApplicationWizardConfirmation';
+import {ApplicationWizardStep_formResult} from 'ApplicationWizardStep_formResult.graphql';
+import {ApplicationWizardStep_applicationRevision} from 'ApplicationWizardStep_applicationRevision.graphql';
 
 interface Props {
   query: ApplicationWizardStep_query;
+  formResult: ApplicationWizardStep_formResult;
+  applicationRevision: ApplicationWizardStep_applicationRevision;
   review: React.ReactNode;
   onStepComplete: () => void;
   confirmationPage: boolean;
@@ -20,12 +24,14 @@ interface Props {
  */
 const ApplicationWizardStep: React.FunctionComponent<Props> = ({
   query,
+  formResult,
+  applicationRevision,
   review,
   onStepComplete,
   confirmationPage,
   relay
 }) => {
-  const {application, formResult} = query;
+  if ((!formResult && !confirmationPage) || !applicationRevision) return null;
 
   const [isSaved, setSaved] = useState(true);
   // Function: store the form result
@@ -47,7 +53,6 @@ const ApplicationWizardStep: React.FunctionComponent<Props> = ({
     setSaved(true);
   };
 
-  // Define a callback methods on survey complete
   const onComplete = (result) => {
     const formData = result.data;
     storeResult(formData);
@@ -63,7 +68,7 @@ const ApplicationWizardStep: React.FunctionComponent<Props> = ({
     const confirmation = (
       <ApplicationWizardConfirmation
         query={query}
-        application={query.application}
+        applicationRevision={applicationRevision}
       />
     );
     if (review) {
@@ -74,15 +79,14 @@ const ApplicationWizardStep: React.FunctionComponent<Props> = ({
         </Row>
       );
     }
+    console.log('confirmation', confirmation);
     return confirmation;
   }
-  if (!formResult) return null;
-
-  if (!application) return null;
 
   const form = (
     <Form
       query={query}
+      ciipFormResult={formResult}
       isSaved={isSaved}
       onComplete={onComplete}
       onValueChanged={onValueChanged}
@@ -101,23 +105,20 @@ const ApplicationWizardStep: React.FunctionComponent<Props> = ({
 
 export default createFragmentContainer(ApplicationWizardStep, {
   query: graphql`
-    fragment ApplicationWizardStep_query on Query
-    @argumentDefinitions(
-      formResultId: {type: "ID!"}
-      applicationId: {type: "ID!"}
-      version: {type: "String!"}
-    ) {
-      ...Form_query @arguments(formResultId: $formResultId)
+    fragment ApplicationWizardStep_query on Query {
+      ...Form_query
       ...ApplicationWizardConfirmation_query
-
-      formResult(id: $formResultId) {
-        id
-        formResult
-      }
-      application(id: $applicationId) {
-        ...ApplicationWizardConfirmation_application
-          @arguments(version: $version)
-      }
+    }
+  `,
+  applicationRevision: graphql`
+    fragment ApplicationWizardStep_applicationRevision on ApplicationRevision {
+      ...ApplicationWizardConfirmation_applicationRevision
+    }
+  `,
+  formResult: graphql`
+    fragment ApplicationWizardStep_formResult on FormResult {
+      id
+      ...Form_ciipFormResult
     }
   `
 });

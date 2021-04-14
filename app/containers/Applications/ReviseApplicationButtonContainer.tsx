@@ -4,6 +4,7 @@ import {Button} from 'react-bootstrap';
 import createApplicationRevisionMutation from 'mutations/application/createApplicationRevisionMutation';
 import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
 import {ReviseApplicationButtonContainer_application} from 'ReviseApplicationButtonContainer_application.graphql';
+import ApplicationPage from 'pages/reporter/application/[applicationId]';
 
 interface Props {
   application: ReviseApplicationButtonContainer_application;
@@ -28,26 +29,9 @@ export const ReviseApplicationButton: React.FunctionComponent<Props> = ({
       }
     };
 
-    const response = await createApplicationRevisionMutation(
-      relay.environment,
-      variables
-    );
+    await createApplicationRevisionMutation(relay.environment, variables);
 
-    const newVersion =
-      response.createApplicationRevisionMutationChain.applicationRevision
-        .versionNumber;
-    const lastSubmittedVersion =
-      response.createApplicationRevisionMutationChain.applicationRevision
-        .applicationByApplicationId.latestSubmittedRevision.versionNumber;
-
-    router.push({
-      pathname: '/reporter/application',
-      query: {
-        applicationId: application.id,
-        version: newVersion,
-        previousVersion: lastSubmittedVersion
-      }
-    });
+    router.push(ApplicationPage.getRoute(application.id));
   };
 
   return (

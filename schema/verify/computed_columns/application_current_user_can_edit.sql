@@ -2,6 +2,6 @@
 
 begin;
 
-select pg_get_functiondef('ggircs_portal.application_current_user_can_edit(ggircs_portal.application)'::regprocedure);
+select ggircs_portal_private.verify_function_not_present('ggircs_portal.application_current_user_can_edit');
 
 rollback;

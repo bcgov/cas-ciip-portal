@@ -30,11 +30,6 @@ class ViewApplication extends Component<Props> {
           ...defaultLayout_session
         }
         ...ApplicationDetailsContainer_query
-          @arguments(
-            applicationId: $applicationId
-            oldVersion: $versionNumber
-            newVersion: $versionNumber
-          )
 
         application(id: $applicationId) {
           rowId
@@ -66,9 +61,11 @@ class ViewApplication extends Component<Props> {
             }
           }
           ...ReviseApplicationButtonContainer_application
-
-          ...ApplicationDetailsContainer_application
-            @arguments(version: $versionNumber)
+          applicationRevisionByStringVersionNumber(
+            versionNumberInput: $versionNumber
+          ) {
+            ...ApplicationDetailsContainer_applicationRevision
+          }
         }
       }
     }
@@ -136,9 +133,9 @@ class ViewApplication extends Component<Props> {
       </>
     );
 
-    const newerDraftURL = `/reporter/application?applicationId=${encodeURIComponent(
+    const newerDraftURL = `/reporter/application/${encodeURIComponent(
       this.props.router.query.applicationId.toString()
-    )}&version=${latestDraftRevision}`;
+    )}`;
     const resumeLatestDraftButton = (
       <>
         <p style={{margin: '1rem 0'}}>
@@ -203,7 +200,9 @@ class ViewApplication extends Component<Props> {
             )}
             <ApplicationDetails
               query={query}
-              application={query.application}
+              applicationRevision={
+                application.applicationRevisionByStringVersionNumber
+              }
               review={false}
               liveValidate={false}
             />

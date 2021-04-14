@@ -35,4 +35,14 @@ redirectRouter.get('/reporter/view-application', (req, res) => {
   );
 });
 
+redirectRouter.get('/reporter/application', (req, res) => {
+  const {applicationId} = req.query;
+  if (!applicationId || !isValidApplicationId(applicationId)) {
+    res.redirect('/404');
+    return;
+  }
+
+  res.redirect(`/reporter/application/${applicationId}`);
+});
+
 module.exports = redirectRouter;

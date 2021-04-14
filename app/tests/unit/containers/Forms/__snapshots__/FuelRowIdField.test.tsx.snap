@@ -9,7 +9,7 @@ exports[`The FuelRowIdField component renders an active fuel as a StringField 1`
   formData={1}
   idSchema={
     Object {
-      "$id": null,
+      "$id": "myField",
     }
   }
   name=""
@@ -91,7 +91,7 @@ exports[`The FuelRowIdField component renders an undefined form data as a String
   formContext={Object {}}
   idSchema={
     Object {
-      "$id": null,
+      "$id": "myField",
     }
   }
   name=""

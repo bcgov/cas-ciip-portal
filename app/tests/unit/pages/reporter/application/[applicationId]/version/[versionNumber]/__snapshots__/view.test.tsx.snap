@@ -49,7 +49,7 @@ exports[`View submitted application page displays a "Resume latest draft" button
            This application has been revised in a more recent draft.
         </p>
         <Link
-          href="/reporter/application?applicationId=testing&version=2"
+          href="/reporter/application/testing"
         >
           <a>
             <Button
@@ -63,44 +63,6 @@ exports[`View submitted application page displays a "Resume latest draft" button
         </Link>
       </ApplicationDecision>
       <Relay(ApplicationDetailsComponent)
-        application={
-          Object {
-            " $fragmentRefs": Object {
-              "ApplicationDetailsContainer_application": true,
-              "ReviseApplicationButtonContainer_application": true,
-            },
-            "applicationReviewStepsByApplicationId": Object {
-              "edges": Array [
-                Object {
-                  "node": Object {
-                    "reviewCommentsByApplicationReviewStepId": Object {
-                      "edges": Array [
-                        Object {
-                          "node": Object {
-                            "description": "This is a comment.",
-                          },
-                        },
-                      ],
-                    },
-                  },
-                },
-              ],
-            },
-            "applicationRevisionStatus": Object {
-              "applicationRevisionStatus": "REQUESTED_CHANGES",
-            },
-            "facilityByFacilityId": Object {
-              "bcghgid": "123456",
-            },
-            "latestDraftRevision": Object {
-              "versionNumber": 2,
-            },
-            "latestSubmittedRevision": Object {
-              "versionNumber": 1,
-            },
-            "rowId": 1,
-          }
-        }
         liveValidate={false}
         query={
           Object {
@@ -235,44 +197,6 @@ exports[`View submitted application page displays a "Revise" button when changes
         />
       </ApplicationDecision>
       <Relay(ApplicationDetailsComponent)
-        application={
-          Object {
-            " $fragmentRefs": Object {
-              "ApplicationDetailsContainer_application": true,
-              "ReviseApplicationButtonContainer_application": true,
-            },
-            "applicationReviewStepsByApplicationId": Object {
-              "edges": Array [
-                Object {
-                  "node": Object {
-                    "reviewCommentsByApplicationReviewStepId": Object {
-                      "edges": Array [
-                        Object {
-                          "node": Object {
-                            "description": "The operator name is slightly different from a previous match we have on file: should it be \\"Virtucon Limited\\" instead of \\"Virtucon Ltd\\"?",
-                          },
-                        },
-                      ],
-                    },
-                  },
-                },
-              ],
-            },
-            "applicationRevisionStatus": Object {
-              "applicationRevisionStatus": "REQUESTED_CHANGES",
-            },
-            "facilityByFacilityId": Object {
-              "bcghgid": "123456",
-            },
-            "latestDraftRevision": Object {
-              "versionNumber": 1,
-            },
-            "latestSubmittedRevision": Object {
-              "versionNumber": 1,
-            },
-            "rowId": 1,
-          }
-        }
         liveValidate={false}
         query={
           Object {
@@ -357,44 +281,6 @@ exports[`View submitted application page does not show an application decision w
       md={12}
     >
       <Relay(ApplicationDetailsComponent)
-        application={
-          Object {
-            " $fragmentRefs": Object {
-              "ApplicationDetailsContainer_application": true,
-              "ReviseApplicationButtonContainer_application": true,
-            },
-            "applicationReviewStepsByApplicationId": Object {
-              "edges": Array [
-                Object {
-                  "node": Object {
-                    "reviewCommentsByApplicationReviewStepId": Object {
-                      "edges": Array [
-                        Object {
-                          "node": Object {
-                            "description": "This is a comment.",
-                          },
-                        },
-                      ],
-                    },
-                  },
-                },
-              ],
-            },
-            "applicationRevisionStatus": Object {
-              "applicationRevisionStatus": "SUBMITTED",
-            },
-            "facilityByFacilityId": Object {
-              "bcghgid": "123456",
-            },
-            "latestDraftRevision": Object {
-              "versionNumber": 1,
-            },
-            "latestSubmittedRevision": Object {
-              "versionNumber": 1,
-            },
-            "rowId": 1,
-          }
-        }
         liveValidate={false}
         query={
           Object {
@@ -540,44 +426,6 @@ exports[`View submitted application page should render a "View most recent submi
         }
       />
       <Relay(ApplicationDetailsComponent)
-        application={
-          Object {
-            " $fragmentRefs": Object {
-              "ApplicationDetailsContainer_application": true,
-              "ReviseApplicationButtonContainer_application": true,
-            },
-            "applicationReviewStepsByApplicationId": Object {
-              "edges": Array [
-                Object {
-                  "node": Object {
-                    "reviewCommentsByApplicationReviewStepId": Object {
-                      "edges": Array [
-                        Object {
-                          "node": Object {
-                            "description": "This is a comment.",
-                          },
-                        },
-                      ],
-                    },
-                  },
-                },
-              ],
-            },
-            "applicationRevisionStatus": Object {
-              "applicationRevisionStatus": "REQUESTED_CHANGES",
-            },
-            "facilityByFacilityId": Object {
-              "bcghgid": "123456",
-            },
-            "latestDraftRevision": Object {
-              "versionNumber": 2,
-            },
-            "latestSubmittedRevision": Object {
-              "versionNumber": 2,
-            },
-            "rowId": 1,
-          }
-        }
         liveValidate={false}
         query={
           Object {
@@ -723,44 +571,6 @@ exports[`View submitted application page should render a "View most recent submi
         }
       />
       <Relay(ApplicationDetailsComponent)
-        application={
-          Object {
-            " $fragmentRefs": Object {
-              "ApplicationDetailsContainer_application": true,
-              "ReviseApplicationButtonContainer_application": true,
-            },
-            "applicationReviewStepsByApplicationId": Object {
-              "edges": Array [
-                Object {
-                  "node": Object {
-                    "reviewCommentsByApplicationReviewStepId": Object {
-                      "edges": Array [
-                        Object {
-                          "node": Object {
-                            "description": "This is a comment.",
-                          },
-                        },
-                      ],
-                    },
-                  },
-                },
-              ],
-            },
-            "applicationRevisionStatus": Object {
-              "applicationRevisionStatus": "REQUESTED_CHANGES",
-            },
-            "facilityByFacilityId": Object {
-              "bcghgid": "123456",
-            },
-            "latestDraftRevision": Object {
-              "versionNumber": 3,
-            },
-            "latestSubmittedRevision": Object {
-              "versionNumber": 2,
-            },
-            "rowId": 1,
-          }
-        }
         liveValidate={false}
         query={
           Object {
@@ -854,44 +664,6 @@ exports[`View submitted application page shows approval when reviewed and approv
         }
       />
       <Relay(ApplicationDetailsComponent)
-        application={
-          Object {
-            " $fragmentRefs": Object {
-              "ApplicationDetailsContainer_application": true,
-              "ReviseApplicationButtonContainer_application": true,
-            },
-            "applicationReviewStepsByApplicationId": Object {
-              "edges": Array [
-                Object {
-                  "node": Object {
-                    "reviewCommentsByApplicationReviewStepId": Object {
-                      "edges": Array [
-                        Object {
-                          "node": Object {
-                            "description": "This is a comment.",
-                          },
-                        },
-                      ],
-                    },
-                  },
-                },
-              ],
-            },
-            "applicationRevisionStatus": Object {
-              "applicationRevisionStatus": "APPROVED",
-            },
-            "facilityByFacilityId": Object {
-              "bcghgid": "123456",
-            },
-            "latestDraftRevision": Object {
-              "versionNumber": 1,
-            },
-            "latestSubmittedRevision": Object {
-              "versionNumber": 1,
-            },
-            "rowId": 1,
-          }
-        }
         liveValidate={false}
         query={
           Object {
@@ -985,44 +757,6 @@ exports[`View submitted application page shows rejection when reviewed and rejec
         }
       />
       <Relay(ApplicationDetailsComponent)
-        application={
-          Object {
-            " $fragmentRefs": Object {
-              "ApplicationDetailsContainer_application": true,
-              "ReviseApplicationButtonContainer_application": true,
-            },
-            "applicationReviewStepsByApplicationId": Object {
-              "edges": Array [
-                Object {
-                  "node": Object {
-                    "reviewCommentsByApplicationReviewStepId": Object {
-                      "edges": Array [
-                        Object {
-                          "node": Object {
-                            "description": "This is a comment.",
-                          },
-                        },
-                      ],
-                    },
-                  },
-                },
-              ],
-            },
-            "applicationRevisionStatus": Object {
-              "applicationRevisionStatus": "REJECTED",
-            },
-            "facilityByFacilityId": Object {
-              "bcghgid": "123456",
-            },
-            "latestDraftRevision": Object {
-              "versionNumber": 1,
-            },
-            "latestSubmittedRevision": Object {
-              "versionNumber": 1,
-            },
-            "rowId": 1,
-          }
-        }
         liveValidate={false}
         query={
           Object {
@@ -1116,44 +850,6 @@ exports[`View submitted application page shows reviewer comments when reviewed a
         }
       />
       <Relay(ApplicationDetailsComponent)
-        application={
-          Object {
-            " $fragmentRefs": Object {
-              "ApplicationDetailsContainer_application": true,
-              "ReviseApplicationButtonContainer_application": true,
-            },
-            "applicationReviewStepsByApplicationId": Object {
-              "edges": Array [
-                Object {
-                  "node": Object {
-                    "reviewCommentsByApplicationReviewStepId": Object {
-                      "edges": Array [
-                        Object {
-                          "node": Object {
-                            "description": "We cannot accept applications from facilities that are either not regulated under GGIRCA, or which paid no carbon tax in 2020.",
-                          },
-                        },
-                      ],
-                    },
-                  },
-                },
-              ],
-            },
-            "applicationRevisionStatus": Object {
-              "applicationRevisionStatus": "REJECTED",
-            },
-            "facilityByFacilityId": Object {
-              "bcghgid": "123456",
-            },
-            "latestDraftRevision": Object {
-              "versionNumber": 1,
-            },
-            "latestSubmittedRevision": Object {
-              "versionNumber": 1,
-            },
-            "rowId": 1,
-          }
-        }
         liveValidate={false}
         query={
           Object {

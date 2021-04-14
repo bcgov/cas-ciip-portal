@@ -7,6 +7,7 @@ import createApplicationMutation from 'mutations/application/createApplicationMu
 import {ApplyButtonContainer_applyButtonDetails} from 'ApplyButtonContainer_applyButtonDetails.graphql';
 import {ApplyButtonContainer_query} from 'ApplyButtonContainer_query.graphql';
 import ViewApplication from 'pages/reporter/application/[applicationId]/version/[versionNumber]/view';
+import ApplicationPage from 'pages/reporter/application/[applicationId]';
 interface Props {
   reportingYear: number;
   relay: RelayProp;
@@ -172,15 +173,17 @@ export const ApplyButton: React.FunctionComponent<Props> = ({
     return (
       <Link
         passHref
-        href={{
-          pathname: latestDraftlegalDisclaimerAccepted
-            ? '/reporter/application'
-            : '/reporter/new-application-disclaimer',
-          query: {
-            applicationId,
-            version: latestDraftVersionNumber
-          }
-        }}
+        href={
+          latestDraftlegalDisclaimerAccepted
+            ? ApplicationPage.getRoute(applicationId)
+            : {
+                pathname: '/reporter/new-application-disclaimer',
+                query: {
+                  applicationId,
+                  version: latestDraftVersionNumber
+                }
+              }
+        }
       >
         <Button variant="primary">Resume CIIP application</Button>
       </Link>

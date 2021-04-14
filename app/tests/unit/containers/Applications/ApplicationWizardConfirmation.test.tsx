@@ -1,20 +1,17 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 import {ApplicationWizardConfirmationComponent} from 'containers/Applications/ApplicationWizardConfirmation';
-import {ApplicationWizardConfirmation_application} from '__generated__/ApplicationWizardConfirmation_application.graphql';
+import {ApplicationWizardConfirmation_applicationRevision} from 'ApplicationWizardConfirmation_applicationRevision.graphql';
 
 describe('The Confirmation Component', () => {
-  const application: ApplicationWizardConfirmation_application = {
-    ' $refType': 'ApplicationWizardConfirmation_application',
+  const applicationRevision: ApplicationWizardConfirmation_applicationRevision = {
+    ' $refType': 'ApplicationWizardConfirmation_applicationRevision',
     ' $fragmentRefs': {
-      SubmitApplication_application: true,
-      ApplicationDetailsContainer_application: true
+      SubmitApplication_applicationRevision: true,
+      ApplicationDetailsContainer_applicationRevision: true
     },
     id: 'abc',
-    latestDraftRevision: {
-      id: 'abc',
-      overrideJustification: null
-    },
+    overrideJustification: null,
     orderedFormResults: {
       edges: [
         {
@@ -49,7 +46,7 @@ describe('The Confirmation Component', () => {
           },
           ' $refType': 'ApplicationWizardConfirmation_query'
         }}
-        application={application}
+        applicationRevision={applicationRevision}
         relay={null}
       />
     );
@@ -60,12 +57,12 @@ describe('The Confirmation Component', () => {
   });
   it('shows a message instead of the "submit application" button when there are validation errors', () => {
     const applicationWithError = {
-      ...application,
+      ...applicationRevision,
       orderedFormResults: {
         edges: [
           {
             node: {
-              ...application.orderedFormResults.edges[0].node,
+              ...applicationRevision.orderedFormResults.edges[0].node,
               formResult: {}
             }
           }
@@ -80,7 +77,7 @@ describe('The Confirmation Component', () => {
           },
           ' $refType': 'ApplicationWizardConfirmation_query'
         }}
-        application={applicationWithError}
+        applicationRevision={applicationWithError}
         relay={null}
       />
     );
@@ -99,7 +96,7 @@ describe('The Confirmation Component', () => {
           },
           ' $refType': 'ApplicationWizardConfirmation_query'
         }}
-        application={application}
+        applicationRevision={applicationRevision}
         relay={null}
       />
     );
@@ -118,11 +115,8 @@ describe('The Confirmation Component', () => {
 
   it('should render the override justification component with the right props if an override is currently set', () => {
     const applicationWithOverride = {
-      ...application,
-      latestDraftRevision: {
-        ...application.latestDraftRevision,
-        overrideJustification: 'I did a bad thing and I dont want to fix it'
-      }
+      ...applicationRevision,
+      overrideJustification: 'I did a bad thing and I dont want to fix it'
     };
     const wrapper = shallow(
       <ApplicationWizardConfirmationComponent
@@ -132,7 +126,7 @@ describe('The Confirmation Component', () => {
           },
           ' $refType': 'ApplicationWizardConfirmation_query'
         }}
-        application={applicationWithOverride}
+        applicationRevision={applicationWithOverride}
         relay={null}
       />
     );
@@ -151,7 +145,7 @@ describe('The Confirmation Component', () => {
 
   it('should render the validation alert if there are validations where isOk is false', () => {
     const applicationWithValidationErrors = {
-      ...application,
+      ...applicationRevision,
       validation: {
         edges: [
           {
@@ -172,7 +166,7 @@ describe('The Confirmation Component', () => {
           },
           ' $refType': 'ApplicationWizardConfirmation_query'
         }}
-        application={applicationWithValidationErrors}
+        applicationRevision={applicationWithValidationErrors}
         relay={null}
       />
     );
@@ -182,7 +176,7 @@ describe('The Confirmation Component', () => {
 
   it('should not render the validation alert if there are validations where isOk is true, but none where isOk is false', () => {
     const applicationWithValidationErrors = {
-      ...application,
+      ...applicationRevision,
       validation: {
         edges: [
           {
@@ -203,7 +197,7 @@ describe('The Confirmation Component', () => {
           },
           ' $refType': 'ApplicationWizardConfirmation_query'
         }}
-        application={applicationWithValidationErrors}
+        applicationRevision={applicationWithValidationErrors}
         relay={null}
       />
     );

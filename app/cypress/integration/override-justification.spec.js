@@ -7,9 +7,9 @@
 
 //   it('The reporter should be able to create, edit and delete an override justification for the errors in the application', () => {
 //     cy.mockLogin('reporter');
-//     const applicationId = window.btoa('["applications", 1]');
+//     const applicationId = window.btoa('["applications",1]');
 //     cy.visit(
-//       `/reporter/application?applicationId=${applicationId}&confirmationPage=true&version=1`
+//       `/reporter/application/${applicationId}?confirmationPage=true&version=1`
 //     );
 //     cy.url().should('include', '/reporter/application');
 //     // Application has errors
@@ -37,9 +37,9 @@
 
 //   it('The reporter should see their override justification and be able to submit', () => {
 //     cy.mockLogin('reporter');
-//     const applicationId = window.btoa('["applications", 1]');
+//     const applicationId = window.btoa('["applications",1]');
 //     cy.visit(
-//       `/reporter/application?applicationId=${applicationId}&confirmationPage=true&version=1`
+//       `/reporter/application/${applicationId}?confirmationPage=true`
 //     );
 //     cy.url().should('include', '/reporter/application');
 //     cy.get('.alert-secondary').should('contain', 'justified');
@@ -74,9 +74,7 @@ describe('When an applicaiton does not have errors', () => {
   it('The override justification box should not appear', () => {
     cy.mockLogin('reporter');
     const applicationId = window.btoa('["applications", 2]');
-    cy.visit(
-      `/reporter/application?applicationId=${applicationId}&confirmationPage=true&version=1`
-    );
+    cy.visit(`/reporter/application/${applicationId}?confirmationPage=true`);
     cy.url().should('include', '/reporter/application');
     cy.get('.btn').contains('Submit Application');
     cy.get('.override-accordion > .btn').should('not.exist');
@@ -84,13 +82,12 @@ describe('When an applicaiton does not have errors', () => {
 
   it('the justification should be automatically deleted if no more errors exist', () => {
     cy.mockLogin('reporter');
-    const applicationId = window.btoa('["applications", 2]');
-    cy.visit(
-      `/reporter/application?applicationId=${applicationId}&confirmationPage=true&version=1`
-    );
+    const applicationId = window.btoa('["applications",2]');
+    cy.visit(`/reporter/application/${applicationId}?confirmationPage=true`);
     cy.url().should('include', '/reporter/application');
     cy.get(':nth-child(1) > .nav-link').click();
     cy.get('#root_operator_name').clear();
+    cy.get('.card-header').contains('Form input saved');
     cy.get('.nav-guide > :nth-child(5)').click();
     cy.get('.errors').should('contain', 'contains errors');
     cy.get('.override-accordion > .btn').click();
@@ -99,7 +96,10 @@ describe('When an applicaiton does not have errors', () => {
     cy.get('.alert-secondary').should('contain', 'delete me when fixed');
     cy.get(':nth-child(1) > .nav-link').click();
     cy.get('#root_operator_name').clear().type('whoops');
+    cy.get('.card-header').contains('Form input saved');
+
     cy.get('.nav-guide > :nth-child(5)').click();
+    cy.get('#administration-data_operator_name').should('contain', 'whoops');
     cy.get('.override-accordion > .btn').should('not.exist');
     cy.get(':nth-child(1) > .nav-link').click();
     cy.get('#root_operator_name').clear();

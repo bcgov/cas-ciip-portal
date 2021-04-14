@@ -4,6 +4,7 @@ import {useRouter} from 'next/router';
 import {Button} from 'react-bootstrap';
 import updateApplicationRevisionMutation from 'mutations/application/updateApplicationRevisionMutation';
 import {ApplicationConsent_application} from 'ApplicationConsent_application.graphql';
+import ApplicationPage from 'pages/reporter/application/[applicationId]';
 
 interface Props {
   application: ApplicationConsent_application;
@@ -28,13 +29,7 @@ export const ApplicationConsent: React.FunctionComponent<Props> = (props) => {
 
     await updateApplicationRevisionMutation(environment, variables);
 
-    router.push({
-      pathname: '/reporter/application',
-      query: {
-        applicationId: props.application.id,
-        version: props.application.latestDraftRevision.versionNumber
-      }
-    });
+    router.push(ApplicationPage.getRoute(props.application.id));
   };
 
   return (

@@ -73,24 +73,13 @@ exports[`The Form Component should match the snapshot 1`] = `
               "EmissionCategoryRowIdField_query": true,
               "FuelField_query": true,
               "FuelRowIdField_query": true,
+              "NaicsField_query": true,
               "ProductField_query": true,
               "ProductRowIdField_query": true,
             },
             " $refType": "Form_query",
             "products": Object {
               "edges": Array [],
-            },
-            "result": Object {
-              "formJsonByFormId": Object {
-                "ciipApplicationWizardByFormId": Object {
-                  "formPosition": 1,
-                },
-                "formJson": Object {
-                  "schema": Object {},
-                },
-                "name": "Foo",
-              },
-              "formResult": Object {},
             },
           }
         }
@@ -123,24 +112,13 @@ exports[`The Form Component should match the snapshot 1`] = `
                 "EmissionCategoryRowIdField_query": true,
                 "FuelField_query": true,
                 "FuelRowIdField_query": true,
+                "NaicsField_query": true,
                 "ProductField_query": true,
                 "ProductRowIdField_query": true,
               },
               " $refType": "Form_query",
               "products": Object {
                 "edges": Array [],
-              },
-              "result": Object {
-                "formJsonByFormId": Object {
-                  "ciipApplicationWizardByFormId": Object {
-                    "formPosition": 1,
-                  },
-                  "formJson": Object {
-                    "schema": Object {},
-                  },
-                  "name": "Foo",
-                },
-                "formResult": Object {},
               },
             },
           }
@@ -802,28 +780,13 @@ exports[`The Form Component should not render an alert reminder to check the gui
               "EmissionCategoryRowIdField_query": true,
               "FuelField_query": true,
               "FuelRowIdField_query": true,
+              "NaicsField_query": true,
               "ProductField_query": true,
               "ProductRowIdField_query": true,
             },
             " $refType": "Form_query",
             "products": Object {
               "edges": Array [],
-            },
-            "result": Object {
-              "formJsonByFormId": Object {
-                "ciipApplicationWizardByFormId": Object {
-                  "formPosition": 3,
-                },
-                "formJson": Object {
-                  "schema": Object {},
-                },
-                "name": "Foo",
-              },
-              "formResult": Array [
-                Object {
-                  "requiresEmissionAllocation": false,
-                },
-              ],
             },
           }
         }
@@ -856,28 +819,13 @@ exports[`The Form Component should not render an alert reminder to check the gui
                 "EmissionCategoryRowIdField_query": true,
                 "FuelField_query": true,
                 "FuelRowIdField_query": true,
+                "NaicsField_query": true,
                 "ProductField_query": true,
                 "ProductRowIdField_query": true,
               },
               " $refType": "Form_query",
               "products": Object {
                 "edges": Array [],
-              },
-              "result": Object {
-                "formJsonByFormId": Object {
-                  "ciipApplicationWizardByFormId": Object {
-                    "formPosition": 3,
-                  },
-                  "formJson": Object {
-                    "schema": Object {},
-                  },
-                  "name": "Foo",
-                },
-                "formResult": Array [
-                  Object {
-                    "requiresEmissionAllocation": false,
-                  },
-                ],
               },
             },
           }
@@ -1545,28 +1493,13 @@ exports[`The Form Component should render alert reminder to check the guidance i
               "EmissionCategoryRowIdField_query": true,
               "FuelField_query": true,
               "FuelRowIdField_query": true,
+              "NaicsField_query": true,
               "ProductField_query": true,
               "ProductRowIdField_query": true,
             },
             " $refType": "Form_query",
             "products": Object {
               "edges": Array [],
-            },
-            "result": Object {
-              "formJsonByFormId": Object {
-                "ciipApplicationWizardByFormId": Object {
-                  "formPosition": 3,
-                },
-                "formJson": Object {
-                  "schema": Object {},
-                },
-                "name": "Foo",
-              },
-              "formResult": Array [
-                Object {
-                  "requiresEmissionAllocation": true,
-                },
-              ],
             },
           }
         }
@@ -1599,28 +1532,13 @@ exports[`The Form Component should render alert reminder to check the guidance i
                 "EmissionCategoryRowIdField_query": true,
                 "FuelField_query": true,
                 "FuelRowIdField_query": true,
+                "NaicsField_query": true,
                 "ProductField_query": true,
                 "ProductRowIdField_query": true,
               },
               " $refType": "Form_query",
               "products": Object {
                 "edges": Array [],
-              },
-              "result": Object {
-                "formJsonByFormId": Object {
-                  "ciipApplicationWizardByFormId": Object {
-                    "formPosition": 3,
-                  },
-                  "formJson": Object {
-                    "schema": Object {},
-                  },
-                  "name": "Foo",
-                },
-                "formResult": Array [
-                  Object {
-                    "requiresEmissionAllocation": true,
-                  },
-                ],
               },
             },
           }

@@ -30,18 +30,14 @@ exports[`The Confirmation Component should not render the validation alert if th
     setOverrideActive={[Function]}
   />
   <Relay(ApplicationDetailsComponent)
-    application={
+    applicationRevision={
       Object {
         " $fragmentRefs": Object {
-          "ApplicationDetailsContainer_application": true,
-          "SubmitApplication_application": true,
+          "ApplicationDetailsContainer_applicationRevision": true,
+          "SubmitApplication_applicationRevision": true,
         },
-        " $refType": "ApplicationWizardConfirmation_application",
+        " $refType": "ApplicationWizardConfirmation_applicationRevision",
         "id": "abc",
-        "latestDraftRevision": Object {
-          "id": "abc",
-          "overrideJustification": null,
-        },
         "orderedFormResults": Object {
           "edges": Array [
             Object {
@@ -68,6 +64,7 @@ exports[`The Confirmation Component should not render the validation alert if th
             },
           ],
         },
+        "overrideJustification": null,
         "validation": Object {
           "edges": Array [
             Object {
@@ -115,18 +112,14 @@ exports[`The Confirmation Component should not render the validation alert if th
     className="jsx-1284301984"
   />
   <Relay(SubmitApplicationComponent)
-    application={
+    applicationRevision={
       Object {
         " $fragmentRefs": Object {
-          "ApplicationDetailsContainer_application": true,
-          "SubmitApplication_application": true,
+          "ApplicationDetailsContainer_applicationRevision": true,
+          "SubmitApplication_applicationRevision": true,
         },
-        " $refType": "ApplicationWizardConfirmation_application",
+        " $refType": "ApplicationWizardConfirmation_applicationRevision",
         "id": "abc",
-        "latestDraftRevision": Object {
-          "id": "abc",
-          "overrideJustification": null,
-        },
         "orderedFormResults": Object {
           "edges": Array [
             Object {
@@ -153,6 +146,7 @@ exports[`The Confirmation Component should not render the validation alert if th
             },
           ],
         },
+        "overrideJustification": null,
         "validation": Object {
           "edges": Array [
             Object {
@@ -205,18 +199,14 @@ exports[`The Confirmation Component should render the override justification com
     setOverrideActive={[Function]}
   />
   <Relay(ApplicationDetailsComponent)
-    application={
+    applicationRevision={
       Object {
         " $fragmentRefs": Object {
-          "ApplicationDetailsContainer_application": true,
-          "SubmitApplication_application": true,
+          "ApplicationDetailsContainer_applicationRevision": true,
+          "SubmitApplication_applicationRevision": true,
         },
-        " $refType": "ApplicationWizardConfirmation_application",
+        " $refType": "ApplicationWizardConfirmation_applicationRevision",
         "id": "abc",
-        "latestDraftRevision": Object {
-          "id": "abc",
-          "overrideJustification": "I did a bad thing and I dont want to fix it",
-        },
         "orderedFormResults": Object {
           "edges": Array [
             Object {
@@ -243,6 +233,7 @@ exports[`The Confirmation Component should render the override justification com
             },
           ],
         },
+        "overrideJustification": "I did a bad thing and I dont want to fix it",
         "validation": Object {
           "edges": Array [],
         },
@@ -282,18 +273,14 @@ exports[`The Confirmation Component should render the override justification com
     className="jsx-1284301984"
   />
   <Relay(SubmitApplicationComponent)
-    application={
+    applicationRevision={
       Object {
         " $fragmentRefs": Object {
-          "ApplicationDetailsContainer_application": true,
-          "SubmitApplication_application": true,
+          "ApplicationDetailsContainer_applicationRevision": true,
+          "SubmitApplication_applicationRevision": true,
         },
-        " $refType": "ApplicationWizardConfirmation_application",
+        " $refType": "ApplicationWizardConfirmation_applicationRevision",
         "id": "abc",
-        "latestDraftRevision": Object {
-          "id": "abc",
-          "overrideJustification": "I did a bad thing and I dont want to fix it",
-        },
         "orderedFormResults": Object {
           "edges": Array [
             Object {
@@ -320,6 +307,7 @@ exports[`The Confirmation Component should render the override justification com
             },
           ],
         },
+        "overrideJustification": "I did a bad thing and I dont want to fix it",
         "validation": Object {
           "edges": Array [],
         },
@@ -364,18 +352,14 @@ exports[`The Confirmation Component should render the override justification com
     setOverrideActive={[Function]}
   />
   <Relay(ApplicationDetailsComponent)
-    application={
+    applicationRevision={
       Object {
         " $fragmentRefs": Object {
-          "ApplicationDetailsContainer_application": true,
-          "SubmitApplication_application": true,
+          "ApplicationDetailsContainer_applicationRevision": true,
+          "SubmitApplication_applicationRevision": true,
         },
-        " $refType": "ApplicationWizardConfirmation_application",
+        " $refType": "ApplicationWizardConfirmation_applicationRevision",
         "id": "abc",
-        "latestDraftRevision": Object {
-          "id": "abc",
-          "overrideJustification": null,
-        },
         "orderedFormResults": Object {
           "edges": Array [
             Object {
@@ -402,6 +386,7 @@ exports[`The Confirmation Component should render the override justification com
             },
           ],
         },
+        "overrideJustification": null,
         "validation": Object {
           "edges": Array [],
         },
@@ -441,18 +426,14 @@ exports[`The Confirmation Component should render the override justification com
     className="jsx-1284301984"
   />
   <Relay(SubmitApplicationComponent)
-    application={
+    applicationRevision={
       Object {
         " $fragmentRefs": Object {
-          "ApplicationDetailsContainer_application": true,
-          "SubmitApplication_application": true,
+          "ApplicationDetailsContainer_applicationRevision": true,
+          "SubmitApplication_applicationRevision": true,
         },
-        " $refType": "ApplicationWizardConfirmation_application",
+        " $refType": "ApplicationWizardConfirmation_applicationRevision",
         "id": "abc",
-        "latestDraftRevision": Object {
-          "id": "abc",
-          "overrideJustification": null,
-        },
         "orderedFormResults": Object {
           "edges": Array [
             Object {
@@ -479,6 +460,7 @@ exports[`The Confirmation Component should render the override justification com
             },
           ],
         },
+        "overrideJustification": null,
         "validation": Object {
           "edges": Array [],
         },
@@ -555,18 +537,14 @@ exports[`The Confirmation Component should render the validation alert if there 
     setOverrideActive={[Function]}
   />
   <Relay(ApplicationDetailsComponent)
-    application={
+    applicationRevision={
       Object {
         " $fragmentRefs": Object {
-          "ApplicationDetailsContainer_application": true,
-          "SubmitApplication_application": true,
+          "ApplicationDetailsContainer_applicationRevision": true,
+          "SubmitApplication_applicationRevision": true,
         },
-        " $refType": "ApplicationWizardConfirmation_application",
+        " $refType": "ApplicationWizardConfirmation_applicationRevision",
         "id": "abc",
-        "latestDraftRevision": Object {
-          "id": "abc",
-          "overrideJustification": null,
-        },
         "orderedFormResults": Object {
           "edges": Array [
             Object {
@@ -593,6 +571,7 @@ exports[`The Confirmation Component should render the validation alert if there 
             },
           ],
         },
+        "overrideJustification": null,
         "validation": Object {
           "edges": Array [
             Object {
@@ -640,18 +619,14 @@ exports[`The Confirmation Component should render the validation alert if there 
     className="jsx-1284301984"
   />
   <Relay(SubmitApplicationComponent)
-    application={
+    applicationRevision={
       Object {
         " $fragmentRefs": Object {
-          "ApplicationDetailsContainer_application": true,
-          "SubmitApplication_application": true,
+          "ApplicationDetailsContainer_applicationRevision": true,
+          "SubmitApplication_applicationRevision": true,
         },
-        " $refType": "ApplicationWizardConfirmation_application",
+        " $refType": "ApplicationWizardConfirmation_applicationRevision",
         "id": "abc",
-        "latestDraftRevision": Object {
-          "id": "abc",
-          "overrideJustification": null,
-        },
         "orderedFormResults": Object {
           "edges": Array [
             Object {
@@ -678,6 +653,7 @@ exports[`The Confirmation Component should render the validation alert if there 
             },
           ],
         },
+        "overrideJustification": null,
         "validation": Object {
           "edges": Array [
             Object {
@@ -730,18 +706,14 @@ exports[`The Confirmation Component shows a message instead of the "submit appli
     setOverrideActive={[Function]}
   />
   <Relay(ApplicationDetailsComponent)
-    application={
+    applicationRevision={
       Object {
         " $fragmentRefs": Object {
-          "ApplicationDetailsContainer_application": true,
-          "SubmitApplication_application": true,
+          "ApplicationDetailsContainer_applicationRevision": true,
+          "SubmitApplication_applicationRevision": true,
         },
-        " $refType": "ApplicationWizardConfirmation_application",
+        " $refType": "ApplicationWizardConfirmation_applicationRevision",
         "id": "abc",
-        "latestDraftRevision": Object {
-          "id": "abc",
-          "overrideJustification": null,
-        },
         "orderedFormResults": Object {
           "edges": Array [
             Object {
@@ -766,6 +738,7 @@ exports[`The Confirmation Component shows a message instead of the "submit appli
             },
           ],
         },
+        "overrideJustification": null,
         "validation": Object {
           "edges": Array [],
         },
@@ -829,18 +802,14 @@ exports[`The Confirmation Component shows the "submit application" button when t
     setOverrideActive={[Function]}
   />
   <Relay(ApplicationDetailsComponent)
-    application={
+    applicationRevision={
       Object {
         " $fragmentRefs": Object {
-          "ApplicationDetailsContainer_application": true,
-          "SubmitApplication_application": true,
+          "ApplicationDetailsContainer_applicationRevision": true,
+          "SubmitApplication_applicationRevision": true,
         },
-        " $refType": "ApplicationWizardConfirmation_application",
+        " $refType": "ApplicationWizardConfirmation_applicationRevision",
         "id": "abc",
-        "latestDraftRevision": Object {
-          "id": "abc",
-          "overrideJustification": null,
-        },
         "orderedFormResults": Object {
           "edges": Array [
             Object {
@@ -867,6 +836,7 @@ exports[`The Confirmation Component shows the "submit application" button when t
             },
           ],
         },
+        "overrideJustification": null,
         "validation": Object {
           "edges": Array [],
         },
@@ -906,18 +876,14 @@ exports[`The Confirmation Component shows the "submit application" button when t
     className="jsx-1284301984"
   />
   <Relay(SubmitApplicationComponent)
-    application={
+    applicationRevision={
       Object {
         " $fragmentRefs": Object {
-          "ApplicationDetailsContainer_application": true,
-          "SubmitApplication_application": true,
+          "ApplicationDetailsContainer_applicationRevision": true,
+          "SubmitApplication_applicationRevision": true,
         },
-        " $refType": "ApplicationWizardConfirmation_application",
+        " $refType": "ApplicationWizardConfirmation_applicationRevision",
         "id": "abc",
-        "latestDraftRevision": Object {
-          "id": "abc",
-          "overrideJustification": null,
-        },
         "orderedFormResults": Object {
           "edges": Array [
             Object {
@@ -944,6 +910,7 @@ exports[`The Confirmation Component shows the "submit application" button when t
             },
           ],
         },
+        "overrideJustification": null,
         "validation": Object {
           "edges": Array [],
         },

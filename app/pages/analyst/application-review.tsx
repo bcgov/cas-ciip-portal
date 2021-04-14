@@ -40,8 +40,6 @@ class ApplicationReview extends Component<Props> {
           ) {
             ...ApplicationRevisionStatusContainer_applicationRevisionStatus
           }
-          ...ApplicationDetailsContainer_application
-            @arguments(version: $version)
           applicationReviewStepsByApplicationId {
             edges {
               node {
@@ -51,10 +49,12 @@ class ApplicationReview extends Component<Props> {
           }
         }
         applicationRevision(id: $applicationRevisionId) {
+          ...ApplicationDetailsContainer_applicationRevision
           overrideJustification
           ...IncentiveCalculatorContainer_applicationRevision
         }
         ...ApplicationDetailsContainer_query
+        ...ApplicationDetailsContainer_diffQuery
           @arguments(applicationId: $applicationId, newVersion: $version)
       }
     }
@@ -107,7 +107,8 @@ class ApplicationReview extends Component<Props> {
             <ApplicationDetails
               review
               query={query}
-              application={query.application}
+              diffQuery={query}
+              applicationRevision={query.applicationRevision}
               liveValidate={false}
             />
             <IncentiveCalculatorContainer

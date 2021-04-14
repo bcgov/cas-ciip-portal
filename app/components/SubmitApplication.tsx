@@ -4,25 +4,26 @@ import {useRouter} from 'next/router';
 import {Button} from 'react-bootstrap';
 import {CiipApplicationRevisionStatus} from 'createApplicationRevisionStatusMutation.graphql';
 import createApplicationRevisionStatusMutation from 'mutations/application/createApplicationRevisionStatusMutation';
-import {SubmitApplication_application} from 'SubmitApplication_application.graphql';
+import {SubmitApplication_applicationRevision} from 'SubmitApplication_applicationRevision.graphql';
 
 interface Props {
-  application: SubmitApplication_application;
+  applicationRevision: SubmitApplication_applicationRevision;
   relay: RelayProp;
 }
 
-export const SubmitApplicationComponent: React.FunctionComponent<Props> = (
-  props
-) => {
+export const SubmitApplicationComponent: React.FunctionComponent<Props> = ({
+  applicationRevision,
+  relay
+}) => {
   const router = useRouter();
   // Change application status to 'submitted' on application submit
   const submitApplication = async () => {
-    const {environment} = props.relay;
+    const {environment} = relay;
     const variables = {
       input: {
         applicationRevisionStatus: {
-          applicationId: props.application.rowId,
-          versionNumber: props.application.latestDraftRevision.versionNumber,
+          applicationId: applicationRevision.applicationId,
+          versionNumber: applicationRevision.versionNumber,
           applicationRevisionStatus: 'SUBMITTED' as CiipApplicationRevisionStatus
         }
       }
@@ -48,12 +49,10 @@ export const SubmitApplicationComponent: React.FunctionComponent<Props> = (
 };
 
 export default createFragmentContainer(SubmitApplicationComponent, {
-  application: graphql`
-    fragment SubmitApplication_application on Application {
-      rowId
-      latestDraftRevision {
-        versionNumber
-      }
+  applicationRevision: graphql`
+    fragment SubmitApplication_applicationRevision on ApplicationRevision {
+      applicationId
+      versionNumber
     }
   `
 });
