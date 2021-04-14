@@ -27,5 +27,5 @@ Steps 1.2 could automate 1.3 to 1.6. See https://github.com/conventional-changel
   * checkout `master` and pull to ensure your local master is up to date
   * `git merge develop --ff-only` to fast-forward the master branch
   * `git push origin master`
-- 2.4 The CIIP application should be ready to be deployed to the test and productions environment via https://cas-shipit.pathfinder.gov.bc.ca/
+- 2.4 The CIIP application should be ready to be deployed to the test and productions environment via https://cas-shipit.apps.silver.devops.gov.bc.ca/
 - 2.5 Add a `CIIP <version>` tag to the YouTrack cards corresponding to the commits being released.
