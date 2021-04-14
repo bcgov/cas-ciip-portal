@@ -153,9 +153,11 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = ({
             query={query}
             showDiff={showDiff}
             applicationRevision={
-              props.review
-                ? props.application.latestSubmittedRevision
-                : props.application.latestDraftRevision
+              review
+                ? applicationRevision.applicationByApplicationId
+                    .latestSubmittedRevision
+                : applicationRevision.applicationByApplicationId
+                    .latestDraftRevision
             }
           />
         ))}
