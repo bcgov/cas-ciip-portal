@@ -29,19 +29,19 @@ export const ProductFieldComponent: React.FunctionComponent<Props> = (
 ) => {
   const {formData, query, naicsCode, onChange} = props;
 
-  const productIsPublished = (formData, query) =>
+  const productIsPublished =
     query.allProducts.edges.some(
       ({node}) =>
         node.rowId === formData.productRowId &&
         node.productState === 'PUBLISHED'
     ) || !formData.productRowId;
 
-  const productInNaicsCode = (formData, naicsCode) =>
+  const productInNaicsCode =
     naicsCode?.allProductsByNaicsCode.edges.some(
       (edge) => edge.node.rowId === formData.productRowId
     ) || !formData.productRowId;
 
-  const hasSelectableProducts = (naicsCode) =>
+  const hasSelectableProducts =
     naicsCode?.allProductsByNaicsCode?.edges.length > 0;
 
   const handleProductChange = (productRowId: number) => {
@@ -98,15 +98,13 @@ export const ProductFieldComponent: React.FunctionComponent<Props> = (
     </Alert>
   );
 
-  const disableField =
-    !productIsPublished(formData, query) ||
-    !productInNaicsCode(formData, naicsCode);
+  const disableField = !productIsPublished || !productInNaicsCode;
 
   return (
     <>
-      {!productIsPublished(formData, query) && archivedAlert}
-      {!productInNaicsCode(formData, naicsCode) && notInNaicsAlert}
-      {!hasSelectableProducts(naicsCode) && noProductsToSelect}
+      {!productIsPublished && archivedAlert}
+      {!productInNaicsCode && notInNaicsAlert}
+      {!hasSelectableProducts && noProductsToSelect}
       <ObjectField {...props} disabled={disableField} onChange={handleChange} />
     </>
   );
