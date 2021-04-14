@@ -79,7 +79,6 @@ const ApplicationWizardStep: React.FunctionComponent<Props> = ({
         </Row>
       );
     }
-    console.log('confirmation', confirmation);
     return confirmation;
   }
 

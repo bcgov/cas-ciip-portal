@@ -44,7 +44,8 @@ const CUSTOM_FIELDS = {
   product: (props) => (
     <ProductField
       naicsCode={
-        props.formContext.query.application.latestDraftRevision.naicsCode
+        props.formContext.ciipFormResult.applicationByApplicationId
+          .latestDraftRevision.naicsCode
       }
       query={props.formContext.query}
       {...props}
@@ -56,7 +57,8 @@ const CUSTOM_FIELDS = {
   productRowId: (props) => (
     <ProductRowIdField
       naicsCode={
-        props.formContext.query.application.latestDraftRevision.naicsCode
+        props.formContext.ciipFormResult.applicationByApplicationId
+          .latestDraftRevision.naicsCode
       }
       query={props.formContext.query}
       {...props}
@@ -139,7 +141,7 @@ export const FormComponent: React.FunctionComponent<Props> = ({
             showErrorList={false}
             ArrayFieldTemplate={FormArrayFieldTemplate}
             FieldTemplate={FormFieldTemplate}
-            formContext={{query}}
+            formContext={{query, ciipFormResult}}
             formData={formResult}
             fields={CUSTOM_FIELDS}
             widgets={{SearchWidget: SearchDropdownWidget}}
@@ -244,7 +246,8 @@ export default createFragmentContainer(FormComponent, {
       applicationByApplicationId {
         latestDraftRevision {
           naicsCode {
-            ...ProductRowIdByNaicsField_naicsCode
+            ...ProductRowIdField_naicsCode
+            ...ProductField_naicsCode
           }
         }
       }

@@ -2581,7 +2581,11 @@ type ApplicationRevision implements Node {
   legalDisclaimerAccepted: Boolean!
 
   """
-<<<<<<< 8a4e581ffa7fe6213a1b21bf241a3c1c4f9f2918
+  This computed column returns the associated naics_code table row for the application_revision passed in via the parameters
+  """
+  naicsCode: NaicsCode
+
+  """
   Returns the form results for this application revision, ordered by the with the order defined by the application wizard
   """
   orderedFormResults(
@@ -2608,11 +2612,6 @@ type ApplicationRevision implements Node {
     """
     offset: Int
   ): FormResultsConnection!
-=======
-  This computed column returns the associated naics_code table row for the application_revision passed in via the parameters
-  """
-  naicsCode: NaicsCode
->>>>>>> feat: filtered product fragment
 
   """
   Reporter defined justification for overriding error validation when submitting this revision
