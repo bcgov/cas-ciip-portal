@@ -8,6 +8,11 @@ exports[`The DefaultLayout component matches the last accepted Snapshot 1`] = `
     fixed={false}
     isLoggedIn={false}
     isRegistered={false}
+    userProfileDropdown={
+      <Relay(UserProfileDropdown)
+        user={null}
+      />
+    }
   />
   <main
     className="jsx-1428985990"
