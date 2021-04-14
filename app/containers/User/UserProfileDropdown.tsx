@@ -22,7 +22,7 @@ const UserProfileDropdown: React.FunctionComponent<Props> = ({user}) => {
     <>
       <li className="d-none d-lg-block">
         <Dropdown alignRight>
-          <Dropdown.Toggle variant="primary">
+          <Dropdown.Toggle variant="primary" aria-label="User menu toggle">
             <div className="user-icon">
               <FontAwesomeIcon
                 color="#036"
