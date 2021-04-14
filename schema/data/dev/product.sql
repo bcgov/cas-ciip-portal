@@ -39,7 +39,9 @@ values
 (38, 'Petroleum Refining','BC refining complexity factor unit','published',true, true, false, false),
 (39, 'Wood pellets', 'bone dry tonnes','published', true, true, false, false),
 (40, 'Wood chips', 'bone dry tonnes','published', true, true, false, false),
-(41, 'Waste rendering', 'tonnes','published', true, true, false, false)
+(41, 'Waste rendering', 'tonnes','published', true, true, false, false),
+-- An archived product for test purposes
+(42, 'Test Product', 'tonnes','archived', true, true, false, false)
 
 -- NOTE: Any changes to this file affects prod/energy_product.sql.
 --       Remember to update the IDs as necessary in that file as well.

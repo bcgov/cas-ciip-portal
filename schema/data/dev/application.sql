@@ -23,11 +23,20 @@ begin;
   select ggircs_portal.create_application_mutation_chain(1);
   select ggircs_portal.create_application_mutation_chain(2);
 
+  select ggircs_portal.create_application_mutation_chain(10);
+  select ggircs_portal.create_application_mutation_chain(11);
+  select ggircs_portal.create_application_mutation_chain(12);
+
   -- Create an application revision on application id=1
   select ggircs_portal.create_application_revision_mutation_chain(1,1);
+  select ggircs_portal.create_application_revision_mutation_chain(3,1);
 
   -- Set legal_disclaimer_accepted to true for application id=1
   update ggircs_portal.application_revision set legal_disclaimer_accepted = true where application_id=1;
+
+  update ggircs_portal.application_revision set legal_disclaimer_accepted = true where application_id=3;
+  update ggircs_portal.application_revision set legal_disclaimer_accepted = true where application_id=4;
+  update ggircs_portal.application_revision set legal_disclaimer_accepted = true where application_id=5;
 
   alter table ggircs_portal.application_revision_status enable trigger _status_change_email;
   alter table ggircs_portal.application enable trigger _send_draft_application_email;
