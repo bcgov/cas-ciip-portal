@@ -2,11 +2,12 @@ import React from 'react';
 import Link from 'next/link';
 import getConfig from 'next/config';
 
-const Footer = () => {
+const Footer = ({children}) => {
   const supportEmail = getConfig()?.publicRuntimeConfig.SUPPORT_EMAIL;
   const mailtoLink = `mailto:${supportEmail}?subject=Feedback: CIIP Website`;
   return (
     <footer className="footer">
+      {children}
       <div className="container">
         <ul>
           <li>

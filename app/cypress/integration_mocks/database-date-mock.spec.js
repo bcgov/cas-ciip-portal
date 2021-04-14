@@ -5,6 +5,6 @@ describe('Has a control that allows changing the date time', () => {
 
   it('contains the mocked database field', () => {
     cy.visit('/');
-    cy.get('header').get('#mock-database-date-picker');
+    cy.get('footer').get('#mock-database-date-picker');
   });
 });

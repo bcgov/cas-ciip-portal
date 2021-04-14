@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Container, Row, Col} from 'react-bootstrap';
+import {Button} from 'react-bootstrap';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import {useCookies} from 'react-cookie';
@@ -8,7 +8,6 @@ interface CookieProps {
   cookies: {[name: string]: any};
   setCookie: (name: string, value: any, options?: any) => void;
   removeCookie: (name: string, options?: any) => void;
-  id: string;
 }
 
 class InternalCookieDayPickerInput extends React.Component<CookieProps> {
@@ -68,34 +67,38 @@ class InternalCookieDayPickerInput extends React.Component<CookieProps> {
   render() {
     const {selectedDay} = this.state;
     return (
-      <Container fluid id={this.props.id}>
-        <Row>
-          <Col className="text-right align-self-center">
-            {selectedDay && (
-              <>Mocked database date: {selectedDay.toISOString()}</>
-            )}
-            {!selectedDay && <>Database date: today</>}
-          </Col>
-          <Col xs="auto">
-            <DatePicker
-              onChange={this.handleDayChange}
-              selected={selectedDay}
-              showMonthDropdown
-              showYearDropdown
-            />
-          </Col>
-          <Col xs="auto">
-            <Button onClick={this.reset} size="sm">
-              Reset
-            </Button>
-          </Col>
-        </Row>
-      </Container>
+      <div id="mock-database-date-picker">
+        <Button onClick={this.reset} size="sm">
+          Reset
+        </Button>
+        {selectedDay && <>Mocked database date:</>}
+        {!selectedDay && <>Database date: today</>}
+        <DatePicker
+          onChange={this.handleDayChange}
+          selected={selectedDay}
+          showMonthDropdown
+          showYearDropdown
+        />
+        <style jsx global>{`
+          #mock-database-date-picker {
+            display: inline-block;
+            position: relative;
+            top: -60px;
+            left: 100px;
+            max-width: 26.5rem;
+            font-size: 0.875rem;
+            color: #000;
+          }
+          #mock-database-date-picker > * {
+            margin: 0 0.5em;
+          }
+        `}</style>
+      </div>
     );
   }
 }
 
-const CookieDayPickerInput = (props) => {
+const CookieDayPickerInput = () => {
   const [cookies, setCookie, removeCookie] = useCookies([
     InternalCookieDayPickerInput.MockTimeCookieIdentifier
   ]);
@@ -104,7 +107,6 @@ const CookieDayPickerInput = (props) => {
       cookies={cookies}
       setCookie={setCookie}
       removeCookie={removeCookie}
-      id={props.id}
     />
   );
 };
