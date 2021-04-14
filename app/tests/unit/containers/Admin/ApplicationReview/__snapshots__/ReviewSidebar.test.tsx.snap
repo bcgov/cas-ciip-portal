@@ -2,12 +2,12 @@
 
 exports[`ReviewSidebar should match the last accepted snapshot (no comments) 1`] = `
 <div
-  className="jsx-4079194577 col-md-5 col-lg-4 col-xxl-3"
+  className="jsx-3598414504 col-md-5 col-lg-4 col-xxl-3"
   id="sidebar"
 >
   <button
     aria-label="Close Technical Review"
-    className="jsx-4079194577"
+    className="jsx-3598414504"
     id="close"
     onClick={[Function]}
     type="button"
@@ -15,7 +15,7 @@ exports[`ReviewSidebar should match the last accepted snapshot (no comments) 1`]
     ×
   </button>
   <h2
-    className="jsx-4079194577"
+    className="jsx-3598414504"
   >
     Technical
      Review
@@ -74,33 +74,33 @@ exports[`ReviewSidebar should match the last accepted snapshot (no comments) 1`]
     Mark this review step completed
   </Button>
   <div
-    className="jsx-4079194577"
+    className="jsx-3598414504"
     id="scrollable-comments"
     tabIndex={0}
   >
     <h3
-      className="jsx-4079194577"
+      className="jsx-3598414504"
       id="general-comments-label"
     >
       General Comments
        
       <small
-        className="jsx-4079194577"
+        className="jsx-3598414504"
       >
         <em
-          className="jsx-4079194577"
+          className="jsx-3598414504"
         >
           (Visible to applicant)
         </em>
       </small>
     </h3>
     <p
-      className="jsx-4079194577 empty-comments"
+      className="jsx-3598414504 empty-comments"
     >
       No general comments to show.
     </p>
     <h3
-      className="jsx-4079194577"
+      className="jsx-3598414504"
       id="internal-comments-label"
     >
       Internal Comments 
@@ -137,23 +137,23 @@ exports[`ReviewSidebar should match the last accepted snapshot (no comments) 1`]
       />
        
       <small
-        className="jsx-4079194577"
+        className="jsx-3598414504"
       >
         <em
-          className="jsx-4079194577"
+          className="jsx-3598414504"
         >
           (Not visible to applicant)
         </em>
       </small>
     </h3>
     <p
-      className="jsx-4079194577 empty-comments"
+      className="jsx-3598414504 empty-comments"
     >
       No internal comments to show.
     </p>
   </div>
   <div
-    className="jsx-4079194577"
+    className="jsx-3598414504"
     id="button-footer"
   >
     <Button
@@ -178,21 +178,27 @@ exports[`ReviewSidebar should match the last accepted snapshot (no comments) 1`]
     </Button>
   </div>
   <JSXStyle
-    id="4079194577"
+    dynamic={
+      Array [
+        68,
+        68,
+      ]
+    }
+    id="3059376100"
   >
-    #sidebar.jsx-4079194577{position:fixed;top:68px;right:0;height:calc(100% - 68px);background:#f7f7f7;border:1px solid transparent;border-left-color:#dfdfdf;padding:0 1.5em;}#close.jsx-4079194577{font-size:2.2rem;position:absolute;top:0;left:1rem;cursor:pointer;border:none;background:none;}h2.jsx-4079194577{margin:15px 0;text-align:center;}h3.jsx-4079194577{font-size:1em;font-weight:bold;margin:5px 0 15px 0;}h3.jsx-4079194577:not(:first-of-type){margin-top:2em;}#scrollable-comments.jsx-4079194577{overflow-y:scroll;height:calc(100% - 108px - 2.4rem - 53px);margin:1.2rem 0;padding:0.7rem;border-radius:4px;}#scrollable-comments.jsx-4079194577:hover{box-shadow:inset 0 0px 7px -1px #999;}#scrollable-comments.jsx-4079194577::-webkit-scrollbar{-webkit-appearance:none;width:8px;}#scrollable-comments.jsx-4079194577::-webkit-scrollbar-thumb{border-radius:4px;background-color:rgba(0,0,0,0.5);box-shadow:0 0 1px rgba(255,255,255,0.5);}#button-footer.jsx-4079194577{position:absolute;bottom:0;margin-bottom:15px;width:calc(100% - 3em);display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;}.mark-incomplete.jsx-4079194577{line-height:1;font-size:0.9em;text-align:center;margin:35px 0;}h3.jsx-4079194577~ul.jsx-4079194577,h3.jsx-4079194577~p.jsx-4079194577{padding-left:0.3em;}ul.jsx-4079194577:last-of-type{margin:0;}.empty-comments.jsx-4079194577{font-style:italic;font-size:0.9em;margin-bottom:0;line-height:1.5;color:#666;}
+    #sidebar.__jsx-style-dynamic-selector{position:fixed;top:68px;right:0;height:calc(100% - 68px);background:#f7f7f7;border:1px solid transparent;border-left-color:#dfdfdf;padding:0 1.5em;}#close.__jsx-style-dynamic-selector{font-size:2.2rem;position:absolute;top:0;left:1rem;cursor:pointer;border:none;background:none;}h2.__jsx-style-dynamic-selector{margin:15px 0;text-align:center;}h3.__jsx-style-dynamic-selector{font-size:1em;font-weight:bold;margin:5px 0 15px 0;}h3.__jsx-style-dynamic-selector:not(:first-of-type){margin-top:2em;}#scrollable-comments.__jsx-style-dynamic-selector{overflow-y:scroll;height:calc(100% - 108px - 2.4rem - 53px);margin:1.2rem 0;padding:0.7rem;border-radius:4px;}#scrollable-comments.__jsx-style-dynamic-selector:hover{box-shadow:inset 0 0px 7px -1px #999;}#scrollable-comments.__jsx-style-dynamic-selector::-webkit-scrollbar{-webkit-appearance:none;width:8px;}#scrollable-comments.__jsx-style-dynamic-selector::-webkit-scrollbar-thumb{border-radius:4px;background-color:rgba(0,0,0,0.5);box-shadow:0 0 1px rgba(255,255,255,0.5);}#button-footer.__jsx-style-dynamic-selector{position:absolute;bottom:0;margin-bottom:15px;width:calc(100% - 3em);display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;}.mark-incomplete.__jsx-style-dynamic-selector{line-height:1;font-size:0.9em;text-align:center;margin:35px 0;}h3.__jsx-style-dynamic-selector~ul.__jsx-style-dynamic-selector,h3.__jsx-style-dynamic-selector~p.__jsx-style-dynamic-selector{padding-left:0.3em;}ul.__jsx-style-dynamic-selector:last-of-type{margin:0;}.empty-comments.__jsx-style-dynamic-selector{font-style:italic;font-size:0.9em;margin-bottom:0;line-height:1.5;color:#666;}
   </JSXStyle>
 </div>
 `;
 
 exports[`ReviewSidebar should match the last accepted snapshot (with comments) 1`] = `
 <div
-  className="jsx-4079194577 col-md-5 col-lg-4 col-xxl-3"
+  className="jsx-3598414504 col-md-5 col-lg-4 col-xxl-3"
   id="sidebar"
 >
   <button
     aria-label="Close Technical Review"
-    className="jsx-4079194577"
+    className="jsx-3598414504"
     id="close"
     onClick={[Function]}
     type="button"
@@ -200,7 +206,7 @@ exports[`ReviewSidebar should match the last accepted snapshot (with comments) 1
     ×
   </button>
   <h2
-    className="jsx-4079194577"
+    className="jsx-3598414504"
   >
     Technical
      Review
@@ -259,21 +265,21 @@ exports[`ReviewSidebar should match the last accepted snapshot (with comments) 1
     Mark this review step completed
   </Button>
   <div
-    className="jsx-4079194577"
+    className="jsx-3598414504"
     id="scrollable-comments"
     tabIndex={0}
   >
     <h3
-      className="jsx-4079194577"
+      className="jsx-3598414504"
       id="general-comments-label"
     >
       General Comments
        
       <small
-        className="jsx-4079194577"
+        className="jsx-3598414504"
       >
         <em
-          className="jsx-4079194577"
+          className="jsx-3598414504"
         >
           (Visible to applicant)
         </em>
@@ -281,7 +287,7 @@ exports[`ReviewSidebar should match the last accepted snapshot (with comments) 1
     </h3>
     <ul
       aria-labelledby="general-comments-label"
-      className="jsx-4079194577"
+      className="jsx-3598414504"
     >
       <ReviewComment
         createdAt="2021-04-08T03:01:35.585Z"
@@ -296,7 +302,7 @@ exports[`ReviewSidebar should match the last accepted snapshot (with comments) 1
       />
     </ul>
     <h3
-      className="jsx-4079194577"
+      className="jsx-3598414504"
       id="internal-comments-label"
     >
       Internal Comments 
@@ -333,10 +339,10 @@ exports[`ReviewSidebar should match the last accepted snapshot (with comments) 1
       />
        
       <small
-        className="jsx-4079194577"
+        className="jsx-3598414504"
       >
         <em
-          className="jsx-4079194577"
+          className="jsx-3598414504"
         >
           (Not visible to applicant)
         </em>
@@ -344,7 +350,7 @@ exports[`ReviewSidebar should match the last accepted snapshot (with comments) 1
     </h3>
     <ul
       aria-labelledby="internal-comments-label"
-      className="jsx-4079194577"
+      className="jsx-3598414504"
     >
       <ReviewComment
         createdAt="2021-04-08T03:01:35.585Z"
@@ -360,7 +366,7 @@ exports[`ReviewSidebar should match the last accepted snapshot (with comments) 1
     </ul>
   </div>
   <div
-    className="jsx-4079194577"
+    className="jsx-3598414504"
     id="button-footer"
   >
     <Button
@@ -385,9 +391,15 @@ exports[`ReviewSidebar should match the last accepted snapshot (with comments) 1
     </Button>
   </div>
   <JSXStyle
-    id="4079194577"
+    dynamic={
+      Array [
+        68,
+        68,
+      ]
+    }
+    id="3059376100"
   >
-    #sidebar.jsx-4079194577{position:fixed;top:68px;right:0;height:calc(100% - 68px);background:#f7f7f7;border:1px solid transparent;border-left-color:#dfdfdf;padding:0 1.5em;}#close.jsx-4079194577{font-size:2.2rem;position:absolute;top:0;left:1rem;cursor:pointer;border:none;background:none;}h2.jsx-4079194577{margin:15px 0;text-align:center;}h3.jsx-4079194577{font-size:1em;font-weight:bold;margin:5px 0 15px 0;}h3.jsx-4079194577:not(:first-of-type){margin-top:2em;}#scrollable-comments.jsx-4079194577{overflow-y:scroll;height:calc(100% - 108px - 2.4rem - 53px);margin:1.2rem 0;padding:0.7rem;border-radius:4px;}#scrollable-comments.jsx-4079194577:hover{box-shadow:inset 0 0px 7px -1px #999;}#scrollable-comments.jsx-4079194577::-webkit-scrollbar{-webkit-appearance:none;width:8px;}#scrollable-comments.jsx-4079194577::-webkit-scrollbar-thumb{border-radius:4px;background-color:rgba(0,0,0,0.5);box-shadow:0 0 1px rgba(255,255,255,0.5);}#button-footer.jsx-4079194577{position:absolute;bottom:0;margin-bottom:15px;width:calc(100% - 3em);display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;}.mark-incomplete.jsx-4079194577{line-height:1;font-size:0.9em;text-align:center;margin:35px 0;}h3.jsx-4079194577~ul.jsx-4079194577,h3.jsx-4079194577~p.jsx-4079194577{padding-left:0.3em;}ul.jsx-4079194577:last-of-type{margin:0;}.empty-comments.jsx-4079194577{font-style:italic;font-size:0.9em;margin-bottom:0;line-height:1.5;color:#666;}
+    #sidebar.__jsx-style-dynamic-selector{position:fixed;top:68px;right:0;height:calc(100% - 68px);background:#f7f7f7;border:1px solid transparent;border-left-color:#dfdfdf;padding:0 1.5em;}#close.__jsx-style-dynamic-selector{font-size:2.2rem;position:absolute;top:0;left:1rem;cursor:pointer;border:none;background:none;}h2.__jsx-style-dynamic-selector{margin:15px 0;text-align:center;}h3.__jsx-style-dynamic-selector{font-size:1em;font-weight:bold;margin:5px 0 15px 0;}h3.__jsx-style-dynamic-selector:not(:first-of-type){margin-top:2em;}#scrollable-comments.__jsx-style-dynamic-selector{overflow-y:scroll;height:calc(100% - 108px - 2.4rem - 53px);margin:1.2rem 0;padding:0.7rem;border-radius:4px;}#scrollable-comments.__jsx-style-dynamic-selector:hover{box-shadow:inset 0 0px 7px -1px #999;}#scrollable-comments.__jsx-style-dynamic-selector::-webkit-scrollbar{-webkit-appearance:none;width:8px;}#scrollable-comments.__jsx-style-dynamic-selector::-webkit-scrollbar-thumb{border-radius:4px;background-color:rgba(0,0,0,0.5);box-shadow:0 0 1px rgba(255,255,255,0.5);}#button-footer.__jsx-style-dynamic-selector{position:absolute;bottom:0;margin-bottom:15px;width:calc(100% - 3em);display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;}.mark-incomplete.__jsx-style-dynamic-selector{line-height:1;font-size:0.9em;text-align:center;margin:35px 0;}h3.__jsx-style-dynamic-selector~ul.__jsx-style-dynamic-selector,h3.__jsx-style-dynamic-selector~p.__jsx-style-dynamic-selector{padding-left:0.3em;}ul.__jsx-style-dynamic-selector:last-of-type{margin:0;}.empty-comments.__jsx-style-dynamic-selector{font-style:italic;font-size:0.9em;margin-bottom:0;line-height:1.5;color:#666;}
   </JSXStyle>
 </div>
 `;
