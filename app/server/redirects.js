@@ -45,4 +45,21 @@ redirectRouter.get('/reporter/application', (req, res) => {
   res.redirect(`/reporter/application/${applicationId}`);
 });
 
+redirectRouter.get('/reporter/new-application-disclaimer', (req, res) => {
+  const {applicationId, version} = req.query;
+  if (
+    !applicationId ||
+    !version ||
+    !isValidApplicationId(applicationId) ||
+    Number.isNaN(Number(version))
+  ) {
+    res.redirect('/404');
+    return;
+  }
+
+  res.redirect(
+    `/reporter/application/${applicationId}/version/${version}/disclaimer`
+  );
+});
+
 module.exports = redirectRouter;

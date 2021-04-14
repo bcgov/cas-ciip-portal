@@ -46,11 +46,13 @@ exports[`Interstitial application legal disclaimer page matches the last accepte
         or not supported by evidence related to fuel usage and tax paid, and acknowledges that any repayment amount may be deducted from a following year's incentive payment, or other payments due to the Operator from the Province.
       </CardText>
       <Relay(ApplicationConsent)
-        application={
+        applicationRevision={
           Object {
             " $fragmentRefs": Object {
-              "ApplicationConsent_application": true,
+              "ApplicationConsent_applicationRevision": true,
             },
+            "legalDisclaimerAccepted": false,
+            "versionNumber": 1,
           }
         }
       />

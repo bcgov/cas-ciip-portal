@@ -4,10 +4,11 @@ exports[`The apply button should render a Resume Application button if an applic
 <Link
   href={
     Object {
-      "pathname": "/reporter/new-application-disclaimer",
+      "pathname": "/reporter/application/[applicationId]/version/[versionNumber]/disclaimer",
       "query": Object {
         "applicationId": "foo",
-        "version": 1,
+        "hasSwrsReport": true,
+        "versionNumber": 1,
       },
     }
   }

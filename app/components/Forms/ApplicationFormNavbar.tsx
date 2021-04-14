@@ -3,7 +3,7 @@ import {Nav} from 'react-bootstrap';
 import {createFragmentContainer, graphql} from 'react-relay';
 import Link from 'next/link';
 import {ApplicationFormNavbar_applicationRevision} from 'ApplicationFormNavbar_applicationRevision.graphql';
-import ApplicationPage from 'pages/reporter/application/[applicationId]';
+import {getApplicationPageRoute} from 'routes';
 
 interface Props {
   applicationRevision: ApplicationFormNavbar_applicationRevision;
@@ -23,7 +23,7 @@ const ApplicationFormNavbarComponent: React.FunctionComponent<Props> = ({
           <Nav.Item key={node.id}>
             <Link
               passHref
-              href={ApplicationPage.getRoute(
+              href={getApplicationPageRoute(
                 applicationRevision.applicationByApplicationId.id,
                 node.formJsonByFormId.id
               )}
@@ -37,7 +37,7 @@ const ApplicationFormNavbarComponent: React.FunctionComponent<Props> = ({
         <Nav.Item key="submit">
           <Link
             passHref
-            href={ApplicationPage.getRoute(
+            href={getApplicationPageRoute(
               applicationRevision.applicationByApplicationId.id,
               undefined,
               true

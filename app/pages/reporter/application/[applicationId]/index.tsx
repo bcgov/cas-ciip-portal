@@ -6,7 +6,10 @@ import DefaultLayout from 'layouts/default-layout';
 import ApplicationWizard from 'containers/Applications/ApplicationWizard';
 import {USER} from 'data/group-constants';
 import {NextRouter} from 'next/router';
-import ViewApplication from './version/[versionNumber]/view';
+import {
+  getApplicationDisclaimerPageRoute,
+  getViewApplicationPageRoute
+} from 'routes';
 
 const ALLOWED_GROUPS = [USER];
 
@@ -23,6 +26,7 @@ class ApplicationPage extends Component<Props> {
         application(id: $applicationId) {
           id
           rowId
+          reportId
           latestDraftRevision {
             ...ApplicationWizard_applicationRevision
             versionNumber
@@ -49,19 +53,6 @@ class ApplicationPage extends Component<Props> {
     }
   });
 
-  static getRoute = (
-    applicationId: string,
-    formId?: string,
-    confirmationPage = false
-  ) => ({
-    pathname: '/reporter/application/[applicationId]/',
-    query: {
-      applicationId,
-      formId,
-      confirmationPage
-    }
-  });
-
   render() {
     const {query, router} = this.props;
     const {session} = query || {};
@@ -80,7 +71,7 @@ class ApplicationPage extends Component<Props> {
         application.latestDraftRevision.versionNumber
     ) {
       router.push(
-        ViewApplication.getRoute(
+        getViewApplicationPageRoute(
           application.id,
           application.latestDraftRevision.versionNumber
         )
@@ -88,13 +79,13 @@ class ApplicationPage extends Component<Props> {
     }
 
     if (!application?.latestDraftRevision?.legalDisclaimerAccepted) {
-      router.push({
-        pathname: '/reporter/new-application-disclaimer',
-        query: {
-          applicationId: application.id,
-          version: application.latestDraftRevision.versionNumber
-        }
-      });
+      router.push(
+        getApplicationDisclaimerPageRoute(
+          application.id,
+          application.latestDraftRevision.versionNumber,
+          Boolean(application.reportId)
+        )
+      );
       return null;
     }
 

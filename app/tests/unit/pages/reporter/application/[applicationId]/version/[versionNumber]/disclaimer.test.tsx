@@ -1,17 +1,25 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import NewApplicationDisclaimer from 'pages/reporter/new-application-disclaimer';
-import {newApplicationDisclaimerQueryResponse} from 'newApplicationDisclaimerQuery.graphql';
+import NewApplicationDisclaimer from 'pages/reporter/application/[applicationId]/version/[versionNumber]/disclaimer';
+import {disclaimerNewApplicationQueryResponse} from 'disclaimerNewApplicationQuery.graphql';
 
-const query: newApplicationDisclaimerQueryResponse['query'] = {
+const query: disclaimerNewApplicationQueryResponse['query'] = {
   session: {
     ' $fragmentRefs': {
       defaultLayout_session: true
     }
   },
   application: {
-    ' $fragmentRefs': {
-      ApplicationConsent_application: true
+    id: 'skjdh839',
+    applicationRevisionByStringVersionNumber: {
+      ' $fragmentRefs': {
+        ApplicationConsent_applicationRevision: true
+      },
+      legalDisclaimerAccepted: false,
+      versionNumber: 1
+    },
+    latestDraftRevision: {
+      versionNumber: 1
     }
   }
 };
@@ -36,7 +44,10 @@ describe('Interstitial application legal disclaimer page', () => {
       <NewApplicationDisclaimer query={query} router={router} />
     );
     expect(
-      wrapper.find('Relay(ApplicationConsent)').first().prop('application')
-    ).toBe(query.application);
+      wrapper
+        .find('Relay(ApplicationConsent)')
+        .first()
+        .prop('applicationRevision')
+    ).toBe(query.application.applicationRevisionByStringVersionNumber);
   });
 });

@@ -3,7 +3,7 @@ import {shallow} from 'enzyme';
 import {ApplicationWizardComponent} from 'containers/Applications/ApplicationWizard';
 import {ApplicationWizard_query} from 'ApplicationWizard_query.graphql';
 import {ApplicationWizard_applicationRevision} from '__generated__/ApplicationWizard_applicationRevision.graphql';
-import ApplicationPage from 'pages/reporter/application/[applicationId]';
+import {getApplicationPageRoute} from 'routes';
 
 describe('The application wizard component', () => {
   const queryFragment: ApplicationWizard_query = {
@@ -194,7 +194,7 @@ describe('The application wizard component', () => {
         query={queryFragment}
       />
     );
-    const newRoute = ApplicationPage.getRoute('id123', 'form1', false);
+    const newRoute = getApplicationPageRoute('id123', 'form1', false);
 
     expect(replaceFn).toBeCalledWith(newRoute, newRoute, {shallow: true});
   });
@@ -214,7 +214,7 @@ describe('The application wizard component', () => {
 
     onStepComplete();
 
-    const newRoute = ApplicationPage.getRoute('id123', 'form2', false);
+    const newRoute = getApplicationPageRoute('id123', 'form2', false);
 
     expect(pushFn).toBeCalledWith(newRoute, newRoute, {shallow: true});
   });
@@ -244,7 +244,7 @@ describe('The application wizard component', () => {
 
     onStepComplete();
 
-    const newRoute = ApplicationPage.getRoute('id123', undefined, true);
+    const newRoute = getApplicationPageRoute('id123', undefined, true);
 
     expect(pushFn).toBeCalledWith(newRoute, newRoute, {shallow: true});
   });

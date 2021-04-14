@@ -7,7 +7,7 @@ import ApplicationWizardStep from './ApplicationWizardStep';
 import LoadingSpinner from 'components/LoadingSpinner';
 import ApplicationDecision from 'components/Application/ApplicationDecision';
 import {ApplicationWizard_applicationRevision} from 'ApplicationWizard_applicationRevision.graphql';
-import ApplicationPage from 'pages/reporter/application/[applicationId]';
+import {getApplicationPageRoute} from 'routes';
 
 interface Props {
   query: ApplicationWizard_query;
@@ -54,7 +54,7 @@ export const ApplicationWizardComponent: React.FunctionComponent<Props> = ({
 
   if (orderedFormResults.length === 0) return null;
   if (!confirmationPage && !formResult) {
-    const newRoute = ApplicationPage.getRoute(
+    const newRoute = getApplicationPageRoute(
       applicationByApplicationId.id,
       orderedFormResults[0].node.formJsonByFormId.id
     );
@@ -71,12 +71,12 @@ export const ApplicationWizardComponent: React.FunctionComponent<Props> = ({
           : orderedFormResults[i + 1].node.formJsonByFormId.id;
 
         const newUrl = goToConfirmation
-          ? ApplicationPage.getRoute(
+          ? getApplicationPageRoute(
               applicationByApplicationId.id,
               undefined,
               true
             )
-          : ApplicationPage.getRoute(applicationByApplicationId.id, nextFormId);
+          : getApplicationPageRoute(applicationByApplicationId.id, nextFormId);
 
         router.push(newUrl, newUrl, {shallow: true});
       }
