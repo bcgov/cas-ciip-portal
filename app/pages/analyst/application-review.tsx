@@ -8,12 +8,14 @@ import DefaultLayout from 'layouts/default-layout';
 import ApplicationDetails from 'containers/Applications/ApplicationDetailsContainer';
 import ApplicationOverrideNotification from 'components/Application/ApplicationOverrideNotificationCard';
 import {CiipPageComponentProps} from 'next-env';
+import getConfig from 'next/config';
 import {INCENTIVE_ANALYST, ADMIN_GROUP} from 'data/group-constants';
 import ReviewSidebar from 'containers/Admin/ApplicationReview/ReviewSidebar';
 import HelpButton from 'components/helpers/HelpButton';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faArrowUp} from '@fortawesome/free-solid-svg-icons';
 
+const runtimeConfig = getConfig()?.publicRuntimeConfig ?? {};
 const ALLOWED_GROUPS = [INCENTIVE_ANALYST, ...ADMIN_GROUP];
 
 interface Props extends CiipPageComponentProps {
@@ -152,6 +154,7 @@ class ApplicationReview extends Component<Props> {
                   .node
               }
               onClose={this.toggleSidebar}
+              headerOffset={runtimeConfig.SITEWIDE_NOTICE ? 108 : undefined}
             />
           )}
           {!this.state.isSidebarOpened && <HelpButton isInternalUser />}

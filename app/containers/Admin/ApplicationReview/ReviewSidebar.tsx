@@ -15,12 +15,14 @@ interface Props {
   onClose: () => void;
   applicationReviewStep: ReviewSidebar_applicationReviewStep;
   relay: RelayProp;
+  headerOffset?: number;
 }
 
 export const ReviewSidebar: React.FunctionComponent<Props> = ({
   onClose,
   applicationReviewStep,
-  relay
+  relay,
+  headerOffset = 68
 }) => {
   const [showingResolved, setShowingResolved] = useState(false);
   const toggleResolved = () => setShowingResolved((current) => !current);
@@ -195,9 +197,9 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
       <style jsx>{`
         #sidebar {
           position: fixed;
-          top: 68px;
+          top: ${headerOffset}px;
           right: 0;
-          height: calc(100% - 68px);
+          height: calc(100% - ${headerOffset}px);
           background: #f7f7f7;
           border: 1px solid transparent;
           border-left-color: #dfdfdf;
