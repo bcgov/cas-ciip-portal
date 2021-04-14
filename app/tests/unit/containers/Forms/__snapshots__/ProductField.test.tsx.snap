@@ -42,7 +42,7 @@ exports[`The ProductionFields Component with archived product matched to a naics
     }
     idSchema={
       Object {
-        "$id": null,
+        "$id": "myField",
       }
     }
     naicsCode={
@@ -205,7 +205,7 @@ exports[`The ProductionFields Component with archived product not matched to a n
     }
     idSchema={
       Object {
-        "$id": null,
+        "$id": "myField",
       }
     }
     naicsCode={
@@ -336,7 +336,7 @@ exports[`The ProductionFields Component with no naics code should match the snap
     formData={Object {}}
     idSchema={
       Object {
-        "$id": null,
+        "$id": "myField",
       }
     }
     name=""
@@ -418,7 +418,7 @@ exports[`The ProductionFields Component with published product matched to a naic
     }
     idSchema={
       Object {
-        "$id": null,
+        "$id": "myField",
       }
     }
     naicsCode={
@@ -557,7 +557,7 @@ exports[`The ProductionFields Component with published product not matched to a 
     }
     idSchema={
       Object {
-        "$id": null,
+        "$id": "myField",
       }
     }
     naicsCode={

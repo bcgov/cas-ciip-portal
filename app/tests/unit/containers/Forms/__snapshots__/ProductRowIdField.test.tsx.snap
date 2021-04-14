@@ -33,7 +33,7 @@ exports[`The ProductionRowIdField Component with published product matched to a 
   formData={1}
   idSchema={
     Object {
-      "$id": null,
+      "$id": "myField",
     }
   }
   naicsCode={
