@@ -152,13 +152,6 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = ({
             formResult={node}
             query={query}
             showDiff={showDiff}
-            applicationRevision={
-              review
-                ? applicationRevision.applicationByApplicationId
-                    .latestSubmittedRevision
-                : applicationRevision.applicationByApplicationId
-                    .latestDraftRevision
-            }
           />
         ))}
       </div>
@@ -236,10 +229,6 @@ export default createRefetchContainer(
           id
           latestSubmittedRevision {
             versionNumber
-            ...ApplicationDetailsCardItem_applicationRevision
-          }
-          latestDraftRevision {
-            ...ApplicationDetailsCardItem_applicationRevision
           }
           applicationRevisionsByApplicationId {
             edges {
