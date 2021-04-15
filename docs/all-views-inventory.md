@@ -6,7 +6,7 @@ Link to each heading for details. Asterisk\* denotes pages that [require certain
 
 - [Reporter Dashboard: `/reporter`](#reporter-dash)
 - [Facilities page, _aka._ "My Applications": `/reporter/facilities`](#facilities)
-- [New Application Disclaimer page: `/reporter/new-application-disclaimer`\*](#new-application-disclaimer)
+- [New Application Disclaimer page: `/reporter/application/[applicationId]/version/[versionNumber]/disclaimer`\*](#new-application-disclaimer)
 - [Application page: `/reporter/application/[applicationId]`\*](#application)
 - [Submission Complete page: `/reporter/complete-submit`](#submission-complete)
 - [View Submitted Application page: `/reporter/application/[applicationId]/version/[versionNumber]/view`\*](#view-application)
@@ -86,7 +86,7 @@ View facilities for operators to which the user has access and on behalf of whic
 
 <a id="new-application-disclaimer"></a>
 
-### New Application Disclaimer page: `/reporter/new-application-disclaimer`\*
+### New Application Disclaimer page: `/reporter/application/[applicationId]/version/[versionNumber]/disclaimer`\*
 
 Interstitial page that collects the reporter's consent before allowing a new application to be started.
 
