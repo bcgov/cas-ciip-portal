@@ -6,11 +6,17 @@ import {faBars, faUser} from '@fortawesome/free-solid-svg-icons';
 
 const DESKTOP_BREAKPOINT_QUERY = '(min-width: 992px)';
 
-const HeaderLayout = ({
+interface Props {
+  isLoggedIn?: boolean;
+  isRegistered?: boolean;
+  fixed?: boolean;
+  userProfileDropdown?: React.ReactNode;
+}
+const HeaderLayout: React.FunctionComponent<Props> = ({
   isLoggedIn = false,
   isRegistered = false,
   fixed = false,
-  userProfileDropdown = null,
+  userProfileDropdown,
   children
 }) => {
   let mediaMatch;
@@ -87,7 +93,7 @@ const HeaderLayout = ({
               </li>
             ) : null}
             {isLoggedIn ? (
-              <>{isRegistered && <>{userProfileDropdown}</>}</>
+              isRegistered && userProfileDropdown
             ) : (
               <>
                 <li>

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`UserProfileDropdown matches snapshot 1`] = `
+exports[`UserProfileDropdown matches desktop snapshot 1`] = `
 <Fragment>
   <li
     className="jsx-1979462723 d-none d-lg-block"
@@ -81,19 +81,19 @@ exports[`UserProfileDropdown matches snapshot 1`] = `
               <span
                 className="jsx-1979462723"
               >
-                Hamza
+                Test
               </span>
                
               <span
                 className="jsx-1979462723"
               >
-                Javed
+                Tester
               </span>
             </div>
             <div
               className="jsx-1979462723 small text-muted text-nowrap"
             >
-              hamza@button.is
+              really-long-email-to-see-wrapping@button.is
             </div>
           </a>
         </DropdownItem>
@@ -224,19 +224,284 @@ exports[`UserProfileDropdown matches snapshot 1`] = `
           <span
             className="jsx-1979462723"
           >
-            Hamza
+            Test
           </span>
            
           <span
             className="jsx-1979462723"
           >
-            Javed
+            Tester
           </span>
         </div>
         <div
           className="jsx-1979462723 small text-nowrap"
         >
-          hamza@button.is
+          really-long-email-to-see-wrapping@button.is
+        </div>
+      </a>
+    </Link>
+  </li>
+  <li
+    className="jsx-1979462723 d-lg-none"
+  >
+    <Form
+      action="/logout"
+      inline={false}
+      method="post"
+    >
+      <button
+        className="jsx-1979462723 nav-button text-right"
+        type="submit"
+      >
+        Logout
+      </button>
+    </Form>
+  </li>
+  <JSXStyle
+    id="1979462723"
+  >
+    .user-icon.jsx-1979462723{background:#f8f9fa;border-radius:100%;display:inline-block;height:45px;line-height:45px;width:48px;}
+  </JSXStyle>
+</Fragment>
+`;
+
+exports[`UserProfileDropdown matches mobile snapshot 1`] = `
+<Fragment>
+  <li
+    className="jsx-1979462723 d-none d-lg-block"
+  >
+    <Dropdown
+      alignRight={true}
+      navbar={false}
+      style={
+        Object {
+          "paddingLeft": "6px",
+        }
+      }
+    >
+      <DropdownToggle
+        aria-label="User menu toggle"
+        variant="primary"
+      >
+        <div
+          className="jsx-1979462723 user-icon"
+        >
+          <FontAwesomeIcon
+            border={false}
+            className=""
+            color="#036"
+            fixedWidth={false}
+            flip={null}
+            icon={
+              Object {
+                "icon": Array [
+                  448,
+                  512,
+                  Array [],
+                  "f007",
+                  "M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm89.6 32h-16.7c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16h-16.7C60.2 288 0 348.2 0 422.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-74.2-60.2-134.4-134.4-134.4z",
+                ],
+                "iconName": "user",
+                "prefix": "fas",
+              }
+            }
+            inverse={false}
+            listItem={false}
+            mask={null}
+            pull={null}
+            pulse={false}
+            rotation={null}
+            size={null}
+            spin={false}
+            style={
+              Object {
+                "fontSize": "30px",
+                "paddingBottom": "2px",
+                "verticalAlign": "middle",
+              }
+            }
+            swapOpacity={false}
+            symbol={false}
+            title=""
+            transform={null}
+          />
+        </div>
+      </DropdownToggle>
+      <DropdownMenu
+        align="left"
+        alignRight={false}
+        flip={true}
+      >
+        <DropdownItem
+          as={[Function]}
+          disabled={false}
+          href="/user/profile"
+        >
+          <a
+            className="jsx-1979462723 dropdown-item text-right"
+          >
+            <div
+              className="jsx-1979462723"
+            >
+              <span
+                className="jsx-1979462723"
+              >
+                Test
+              </span>
+               
+              <span
+                className="jsx-1979462723"
+              >
+                Tester
+              </span>
+            </div>
+            <div
+              className="jsx-1979462723 small text-muted text-nowrap"
+            >
+              really-long-email-to-see-wrapping@button.is
+            </div>
+          </a>
+        </DropdownItem>
+        <DropdownItem
+          action="/logout"
+          as={
+            Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "Check": Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "Input": Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "displayName": "FormCheckInput",
+                  "render": [Function],
+                },
+                "Label": Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "displayName": "FormCheckLabel",
+                  "render": [Function],
+                },
+                "displayName": "FormCheck",
+                "render": [Function],
+              },
+              "Control": Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "Feedback": Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "displayName": "Feedback",
+                  "propTypes": Object {
+                    "as": [Function],
+                    "tooltip": [Function],
+                    "type": [Function],
+                  },
+                  "render": [Function],
+                },
+                "displayName": "FormControl",
+                "render": [Function],
+              },
+              "File": Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "Input": Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "displayName": "FormFileInput",
+                  "render": [Function],
+                },
+                "Label": Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "displayName": "FormFileLabel",
+                  "render": [Function],
+                },
+                "displayName": "FormFile",
+                "render": [Function],
+              },
+              "Group": Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "displayName": "FormGroup",
+                "render": [Function],
+              },
+              "Label": Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "defaultProps": Object {
+                  "column": false,
+                  "srOnly": false,
+                },
+                "displayName": "FormLabel",
+                "render": [Function],
+              },
+              "Row": Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "defaultProps": undefined,
+                "displayName": "FormRow",
+                "render": [Function],
+              },
+              "Switch": Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "Input": Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "displayName": "FormCheckInput",
+                  "render": [Function],
+                },
+                "Label": Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "displayName": "FormCheckLabel",
+                  "render": [Function],
+                },
+                "displayName": "Switch",
+                "render": [Function],
+              },
+              "Text": Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "displayName": "FormText",
+                "render": [Function],
+              },
+              "defaultProps": Object {
+                "inline": false,
+              },
+              "displayName": "Form",
+              "render": [Function],
+            }
+          }
+          disabled={false}
+          method="post"
+          onKeyPress={[Function]}
+          tabIndex={0}
+        >
+          <button
+            className="jsx-1979462723 w-100 text-right"
+            type="submit"
+          >
+            Logout
+          </button>
+        </DropdownItem>
+      </DropdownMenu>
+    </Dropdown>
+  </li>
+  <li
+    className="jsx-1979462723 d-lg-none"
+  >
+    <Link
+      href="/user/profile"
+    >
+      <a
+        className="jsx-1979462723 nav-button text-right"
+      >
+        <div
+          className="jsx-1979462723"
+        >
+          <span
+            className="jsx-1979462723"
+          >
+            Test
+          </span>
+           
+          <span
+            className="jsx-1979462723"
+          >
+            Tester
+          </span>
+        </div>
+        <div
+          className="jsx-1979462723 small text-nowrap"
+        >
+          really-long-email-to-see-wrapping@button.is
         </div>
       </a>
     </Link>

@@ -12,8 +12,10 @@ exports[`The DefaultLayout component when logged in matches the last accepted Sn
       <Relay(UserProfileDropdown)
         user={
           Object {
-            " $fragmentRefs": null,
-            "__typename": "qq",
+            " $fragmentRefs": Object {
+              "UserProfileDropdown_user": true,
+            },
+            " $refType": "UserProfileDropdown_user",
             "emailAddress": "test-tester@testing.com",
             "firstName": "Test",
             "lastName": "Tester",

@@ -1,6 +1,7 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 import {DefaultLayoutComponent} from 'layouts/default-layout';
+import {defaultLayout_session} from '__generated__/defaultLayout_session.graphql';
 
 describe('The DefaultLayout component', () => {
   it('when logged out matches the last accepted Snapshot', () => {
@@ -9,22 +10,25 @@ describe('The DefaultLayout component', () => {
   });
 
   it('when logged in matches the last accepted Snapshot', () => {
-    const mockRefType: any = null;
-    const user = {
-      __typename: 'qq',
-      firstName: 'Test',
-      lastName: 'Tester',
-      emailAddress: 'test-tester@testing.com',
-      ' $fragmentRefs': mockRefType
+    const session = {
+      ' $refType': 'defaultLayout_session',
+      ciipUserBySub: {
+        ' $refType': 'UserProfileDropdown_user',
+        firstName: 'Test',
+        lastName: 'Tester',
+        emailAddress: 'test-tester@testing.com',
+        ' $fragmentRefs': {
+          UserProfileDropdown_user: true
+        }
+      },
+      userGroups: [],
+      ' $fragmentRefs': {
+        defaultLayout_session: true
+      }
     };
+
     const wrapper = shallow(
-      <DefaultLayoutComponent
-        session={{
-          ciipUserBySub: user,
-          userGroups: [],
-          ' $refType': mockRefType
-        }}
-      />
+      <DefaultLayoutComponent session={session as defaultLayout_session} />
     );
     expect(wrapper).toMatchSnapshot();
   });
