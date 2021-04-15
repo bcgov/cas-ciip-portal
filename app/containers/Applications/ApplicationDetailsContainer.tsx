@@ -63,7 +63,7 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = ({
   return (
     <>
       <Row>
-        <Col md={{offset: 2}}>
+        <Col>
           {diffFromResults ? (
             <Form.Check
               label="Compare data between versions"
