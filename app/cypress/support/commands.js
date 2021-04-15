@@ -34,8 +34,8 @@ Cypress.Commands.add('login', (username, password) => {
 });
 
 Cypress.Commands.add('logout', () => {
-  cy.clearCookie('mocks.auth');
-  cy.request('/logout');
+  cy.get('header').contains('Logout').click();
+  cy.url().should('equal', Cypress.config().baseUrl + '/');
 });
 
 Cypress.Commands.add('mockLogin', (roleName) => {
