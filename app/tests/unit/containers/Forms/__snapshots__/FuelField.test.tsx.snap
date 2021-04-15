@@ -13,27 +13,22 @@ exports[`The Fuel Field renders a disabled form when the form data fuel is archi
   }
   idSchema={
     Object {
-      "$id": null,
+      "$id": "myField",
     }
-    idSchema={
-      Object {
-        "$id": "myField",
-      }
-    }
-    name=""
-    onBlur={[MockFunction]}
-    onChange={[Function]}
-    query={
-      Object {
-        " $refType": "FuelField_query",
-        "allFuels": Object {
-          "edges": Array [
-            Object {
-              "node": Object {
-                "rowId": 1,
-                "state": "archived",
-                "units": "unit",
-              },
+  }
+  name=""
+  onBlur={[MockFunction]}
+  onChange={[Function]}
+  query={
+    Object {
+      " $refType": "FuelField_query",
+      "allFuels": Object {
+        "edges": Array [
+          Object {
+            "node": Object {
+              "rowId": 1,
+              "state": "archived",
+              "units": "unit",
             },
           },
         ],
@@ -99,10 +94,10 @@ exports[`The Fuel Field renders an interactive form when the form data fuel is a
     Object {
       "fuelRowId": 1,
     }
-    idSchema={
-      Object {
-        "$id": "myField",
-      }
+  }
+  idSchema={
+    Object {
+      "$id": "myField",
     }
   }
   name=""
@@ -183,10 +178,10 @@ exports[`The Fuel Field renders an interactive form when the form data is undefi
     Object {
       "fuelRowId": undefined,
     }
-    idSchema={
-      Object {
-        "$id": "myField",
-      }
+  }
+  idSchema={
+    Object {
+      "$id": "myField",
     }
   }
   name=""

@@ -17,7 +17,7 @@ exports[`The EmissionCategoryRowIdField component injects the category ids and n
   formData={1}
   idSchema={
     Object {
-      "$id": null,
+      "$id": "myField",
     }
   }
   name="emissionCategoryRowId"
