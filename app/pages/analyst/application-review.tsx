@@ -10,6 +10,7 @@ import ApplicationOverrideNotification from 'components/Application/ApplicationO
 import {CiipPageComponentProps} from 'next-env';
 import getConfig from 'next/config';
 import {INCENTIVE_ANALYST, ADMIN_GROUP} from 'data/group-constants';
+import ApplicationReviewStepSelector from 'containers/Admin/ApplicationReview/ApplicationReviewStepSelector';
 import ReviewSidebar from 'containers/Admin/ApplicationReview/ReviewSidebar';
 import HelpButton from 'components/helpers/HelpButton';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
@@ -45,9 +46,11 @@ class ApplicationReview extends Component<Props> {
           applicationReviewStepsByApplicationId {
             edges {
               node {
+                reviewStepId
                 ...ReviewSidebar_applicationReviewStep
               }
             }
+            ...ApplicationReviewStepSelector_applicationReviewSteps
           }
         }
         applicationRevision(id: $applicationRevisionId) {
@@ -61,18 +64,31 @@ class ApplicationReview extends Component<Props> {
       }
     }
   `;
-  state = {isSidebarOpened: false};
+  state = {isSidebarOpened: false, selectedReviewStep: null};
 
   constructor(props) {
     super(props);
-    this.toggleSidebar = this.toggleSidebar.bind(this);
+    this.closeSidebar = this.closeSidebar.bind(this);
+    this.selectReviewStep = this.selectReviewStep.bind(this);
   }
-  toggleSidebar() {
-    this.setState((state: {isSidebarOpened: boolean}) => {
-      return {isSidebarOpened: !state.isSidebarOpened};
+  closeSidebar() {
+    this.setState((state) => {
+      return {
+        ...state,
+        selectedReviewStep: null,
+        isSidebarOpened: false
+      };
     });
   }
-
+  selectReviewStep(applicationReviewStep) {
+    this.setState((state) => {
+      return {
+        ...state,
+        selectedReviewStep: applicationReviewStep,
+        isSidebarOpened: true
+      };
+    });
+  }
   render() {
     const {query} = this.props;
     const {overrideJustification} = query?.applicationRevision;
@@ -99,9 +115,13 @@ class ApplicationReview extends Component<Props> {
               applicationRevisionStatus={query.application.reviewRevisionStatus}
               applicationRowId={query.application.rowId}
             />
-            <button type="button" onClick={this.toggleSidebar}>
-              Click to toggle review comments
-            </button>
+            <ApplicationReviewStepSelector
+              applicationReviewSteps={
+                query.application.applicationReviewStepsByApplicationId
+              }
+              selectedStep={this.state.selectedReviewStep}
+              onSelectStep={this.selectReviewStep}
+            />
             <ApplicationOverrideNotification
               overrideJustification={overrideJustification}
             />
@@ -149,11 +169,8 @@ class ApplicationReview extends Component<Props> {
           </div>
           {this.state.isSidebarOpened && (
             <ReviewSidebar
-              applicationReviewStep={
-                query.application.applicationReviewStepsByApplicationId.edges[0]
-                  .node
-              }
-              onClose={this.toggleSidebar}
+              applicationReviewStep={this.state.selectedReviewStep}
+              onClose={this.closeSidebar}
               headerOffset={runtimeConfig.SITEWIDE_NOTICE ? 108 : undefined}
             />
           )}

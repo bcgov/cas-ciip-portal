@@ -1,5 +1,13 @@
 import React, {useState} from 'react';
-import {Row, Col, Dropdown, Button, Badge, Modal} from 'react-bootstrap';
+import {
+  Row,
+  Col,
+  Dropdown,
+  Button,
+  Badge,
+  Modal,
+  ListGroup
+} from 'react-bootstrap';
 import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
 import DropdownMenuItemComponent from 'components/DropdownMenuItemComponent';
 import createApplicationRevisionStatusMutation from 'mutations/application/createApplicationRevisionStatusMutation';
@@ -103,10 +111,8 @@ export const ApplicationRevisionStatusComponent: React.FunctionComponent<Props> 
 
   return (
     <>
+      <h1>Application #[FILL ME IN]</h1>
       <Row>
-        <Col md={3}>
-          <h3>Application Status*: </h3>
-        </Col>
         {confirmStatusChangeModal}
         {isCurrentVersion ? (
           <Col md={2}>
@@ -162,19 +168,12 @@ export const ApplicationRevisionStatusComponent: React.FunctionComponent<Props> 
           </Col>
         )}
       </Row>
-      <Row>
-        <Col md={12}>
-          <p>
-            * Status changes will be immediately confirmed to the applicant by
-            email notification.
-            <br />
-            <span style={{marginLeft: '0.7em'}}>
-              General comments will become visible to the applicant once the
-              application status is updated.
-            </span>
-          </p>
-        </Col>
-      </Row>
+      <style jsx>{`
+        h1 {
+          font-size: 1.75rem;
+          margin-bottom: 20px;
+        }
+      `}</style>
     </>
   );
 };
