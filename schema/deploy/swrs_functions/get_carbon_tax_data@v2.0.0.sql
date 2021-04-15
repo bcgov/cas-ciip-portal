@@ -7,6 +7,17 @@
 
 begin;
 
+  create type ggircs_portal.carbon_tax_data as (
+      fuel_mapping_id int,
+      carbon_taxed boolean,
+      cta_rate_units varchar(1000),
+      unit_conversion_factor int,
+      fuel_charge numeric,
+      rate_start_date date,
+      rate_end_date date,
+      carbon_tax_rate numeric
+  );
+
   create or replace function ggircs_portal.get_carbon_tax_data()
   returns setof ggircs_portal.carbon_tax_data
   as
