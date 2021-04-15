@@ -1,5 +1,7 @@
 import React from 'react';
-import {shallow} from 'enzyme';
+import {act} from 'react-dom/test-utils';
+import {shallow, mount} from 'enzyme';
+import {Dropdown} from 'react-bootstrap';
 import {UserProfileDropdownComponent} from 'containers/User/UserProfileDropdown';
 import {UserProfileDropdown_user} from '__generated__/UserProfileDropdown_user.graphql';
 
@@ -9,19 +11,29 @@ const user = {
   emailAddress: 'really-long-email-to-see-wrapping@button.is',
   ' $refType': 'UserProfileDropdown_user'
 };
-let render;
-describe('UserProfileDropdown', () => {
-  it('matches mobile snapshot', () => {
-    render = shallow(
+
+describe('UserProfileDropdown desktop', () => {
+  it('matches snapshot', () => {
+    const wrapper = shallow(
       <UserProfileDropdownComponent user={user as UserProfileDropdown_user} />
     );
-    expect(render).toMatchSnapshot();
+    expect(wrapper).toMatchSnapshot();
   });
 
-  it('matches desktop snapshot', () => {
-    render = shallow(
+  it('opens a user menu', () => {
+    const wrapper = mount(
       <UserProfileDropdownComponent user={user as UserProfileDropdown_user} />
     );
-    expect(render).toMatchSnapshot();
+    act(() => {
+      wrapper.find(Dropdown.Toggle).simulate('click');
+    });
+
+    wrapper.update();
+
+    const menuText = wrapper.find('.dropdown-menu.show').text();
+    expect(menuText.includes('Test Tester')).toBe(true);
+    expect(
+      menuText.includes('really-long-email-to-see-wrapping@button.is')
+    ).toBe(true);
   });
 });
