@@ -4,8 +4,9 @@
   "screenshotOnRunFailure": false,
   "defaultCommandTimeout": 10000,
   "ignoreTestFiles": "*.example*",
-  "env": {
-    "RETRIES": 3
+  "retries": {
+    "runMode": 3,
+    "openMode": 0
   },
   "fixturesFolder": "../schema/data"
 }
