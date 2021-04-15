@@ -85,7 +85,7 @@ begin;
     }
   ]');
 
-  select 'Updating form_results for application id=1: ';
+  select 'Updating form_results for applications id 1, 3 and 4';
   do $$
   declare
     temp_row record;
@@ -96,17 +96,87 @@ begin;
       update ggircs_portal.form_result
         set form_result = (select dummy_result from dummy_results where id = temp_row.index)
         where form_id = temp_row.form_id
-        and application_id = 1
+        and application_id in (1, 3, 4)
         and version_number = 1;
       raise notice 'Form Result(version_number 1): % has been updated', (select name from ggircs_portal.form_json where id = temp_row.form_id);
       -- New set of form_results for diffing
       update ggircs_portal.form_result
         set form_result = (select dummy_result from dummy_results where id = (temp_row.index + (select count(form_id) from ggircs_portal.ciip_application_wizard)))
         where form_id = temp_row.form_id
-        and application_id = 1
+        and application_id in (1, 3)
         and version_number = 2;
       raise notice 'Form Result(version_number 2): % has been updated', (select name from ggircs_portal.form_json where id = temp_row.form_id);
     end loop;
+  end;
+  $$;
+
+  -- Updating a submitted application with expired fuels, emission category and products
+  do $$
+  begin
+    update ggircs_portal.form_result
+    set form_result = (select dummy_result from dummy_results where id = 1)
+    where form_id = 1
+    and application_id = 5
+    and version_number = 1;
+
+    update ggircs_portal.form_result
+    set form_result = (select dummy_result from dummy_results where id = 2)
+    where form_id = 2
+    and application_id = 5
+    and version_number = 1;
+
+    -- One active fuel, one active fuel with deprecated emission category, and one deprecated fuel
+    update ggircs_portal.form_result
+    set form_result = ('[
+        {
+          "fuelRowId": 6,
+          "quantity": 10,
+          "fuelUnits": "t",
+          "emissionCategoryRowId": 1
+        },
+        {
+          "fuelRowId": 6,
+          "quantity": 40120,
+          "fuelUnits": "kL",
+          "emissionCategoryRowId": 9
+        },
+        {
+          "fuelRowId": 86,
+          "quantity": 4000,
+          "fuelUnits": "m3",
+          "emissionCategoryRowId": 2
+        }
+      ]')::jsonb
+    where form_id = 3
+    and application_id = 5
+    and version_number = 1;
+
+    -- One active product and one inactive product
+    update ggircs_portal.form_result
+    set form_result = ('[
+        {
+          "productAmount": 8760000,
+          "productRowId": 29,
+          "productUnits": "MWh",
+          "productEmissions": 5900,
+          "requiresEmissionAllocation": true,
+          "requiresProductAmount": true,
+          "isCiipProduct": true
+        },
+        {
+          "productAmount": 12000,
+          "productRowId": 42,
+          "productUnits": "t",
+          "productEmissions": 1300,
+          "requiresEmissionAllocation": true,
+          "requiresProductAmount": true,
+          "isCiipProduct": true
+        }
+      ]')::jsonb
+    where form_id = 4
+    and application_id = 5
+    and version_number = 1;
+
   end;
   $$;
 

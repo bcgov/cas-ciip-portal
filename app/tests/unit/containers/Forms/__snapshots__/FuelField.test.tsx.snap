@@ -1,283 +1,253 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`The Fuel Field renders an alert box and a disabled form when the form data fuel is archived 1`] = `
-<Fragment>
-  <Alert
-    closeLabel="Close alert"
-    show={true}
-    transition={
-      Object {
-        "$$typeof": Symbol(react.forward_ref),
-        "defaultProps": Object {
-          "appear": false,
-          "in": false,
-          "mountOnEnter": false,
-          "timeout": 300,
-          "unmountOnExit": false,
-        },
-        "displayName": "Fade",
-        "render": [Function],
-      }
+exports[`The Fuel Field renders a disabled form when the form data fuel is archived 1`] = `
+<ObjectField
+  autofocus={false}
+  disabled={true}
+  errorSchema={Object {}}
+  formContext={Object {}}
+  formData={
+    Object {
+      "fuelRowId": 1,
     }
-    variant="danger"
-  >
-    <strong>
-      Warning:
-    </strong>
-     This fuel has been archived. Please remove it and select an appropriate alternative.
-  </Alert>
-  <ObjectField
-    autofocus={false}
-    disabled={true}
-    errorSchema={Object {}}
-    formContext={Object {}}
-    formData={
-      Object {
-        "fuelRowId": 1,
-      }
+  }
+  idSchema={
+    Object {
+      "$id": "myField",
     }
-    idSchema={
-      Object {
-        "$id": "myField",
-      }
-    }
-    name=""
-    onBlur={[MockFunction]}
-    onChange={[Function]}
-    query={
-      Object {
-        " $refType": "FuelField_query",
-        "allFuels": Object {
-          "edges": Array [
-            Object {
-              "node": Object {
-                "rowId": 1,
-                "state": "archived",
-                "units": "unit",
-              },
+  }
+  name=""
+  onBlur={[MockFunction]}
+  onChange={[Function]}
+  query={
+    Object {
+      " $refType": "FuelField_query",
+      "allFuels": Object {
+        "edges": Array [
+          Object {
+            "node": Object {
+              "rowId": 1,
+              "state": "archived",
+              "units": "unit",
             },
-          ],
-        },
-      }
+          },
+        ],
+      },
     }
-    readonly={false}
-    registry={
-      Object {
-        "definitions": Object {},
-        "fields": Object {
-          "AnyOfField": [Function],
-          "ArrayField": [Function],
-          "BooleanField": [Function],
-          "DescriptionField": [Function],
-          "NullField": [Function],
-          "NumberField": [Function],
-          "ObjectField": undefined,
-          "OneOfField": [Function],
-          "SchemaField": [Function],
-          "StringField": [Function],
-          "TitleField": [Function],
-          "UnsupportedField": [Function],
-        },
-        "formContext": Object {},
-        "rootSchema": Object {},
-        "widgets": Object {
-          "AltDateTimeWidget": [Function],
-          "AltDateWidget": [Function],
-          "BaseInput": [Function],
-          "CheckboxWidget": [Function],
-          "CheckboxesWidget": [Function],
-          "ColorWidget": [Function],
-          "DateTimeWidget": [Function],
-          "DateWidget": [Function],
-          "EmailWidget": [Function],
-          "FileWidget": [Function],
-          "HiddenWidget": [Function],
-          "PasswordWidget": [Function],
-          "RadioWidget": [Function],
-          "RangeWidget": [Function],
-          "SelectWidget": [Function],
-          "TextWidget": [Function],
-          "TextareaWidget": [Function],
-          "URLWidget": [Function],
-          "UpDownWidget": [Function],
-        },
-      }
+  }
+  readonly={false}
+  registry={
+    Object {
+      "definitions": Object {},
+      "fields": Object {
+        "AnyOfField": [Function],
+        "ArrayField": [Function],
+        "BooleanField": [Function],
+        "DescriptionField": [Function],
+        "NullField": [Function],
+        "NumberField": [Function],
+        "ObjectField": undefined,
+        "OneOfField": [Function],
+        "SchemaField": [Function],
+        "StringField": [Function],
+        "TitleField": [Function],
+        "UnsupportedField": [Function],
+      },
+      "formContext": Object {},
+      "rootSchema": Object {},
+      "widgets": Object {
+        "AltDateTimeWidget": [Function],
+        "AltDateWidget": [Function],
+        "BaseInput": [Function],
+        "CheckboxWidget": [Function],
+        "CheckboxesWidget": [Function],
+        "ColorWidget": [Function],
+        "DateTimeWidget": [Function],
+        "DateWidget": [Function],
+        "EmailWidget": [Function],
+        "FileWidget": [Function],
+        "HiddenWidget": [Function],
+        "PasswordWidget": [Function],
+        "RadioWidget": [Function],
+        "RangeWidget": [Function],
+        "SelectWidget": [Function],
+        "TextWidget": [Function],
+        "TextareaWidget": [Function],
+        "URLWidget": [Function],
+        "UpDownWidget": [Function],
+      },
     }
-    required={false}
-    schema={Object {}}
-    uiSchema={Object {}}
-  />
-</Fragment>
+  }
+  required={false}
+  schema={Object {}}
+  uiSchema={Object {}}
+/>
 `;
 
 exports[`The Fuel Field renders an interactive form when the form data fuel is active 1`] = `
-<Fragment>
-  <ObjectField
-    autofocus={false}
-    disabled={false}
-    errorSchema={Object {}}
-    formContext={Object {}}
-    formData={
-      Object {
-        "fuelRowId": 1,
-      }
+<ObjectField
+  autofocus={false}
+  disabled={false}
+  errorSchema={Object {}}
+  formContext={Object {}}
+  formData={
+    Object {
+      "fuelRowId": 1,
     }
-    idSchema={
-      Object {
-        "$id": "myField",
-      }
+  }
+  idSchema={
+    Object {
+      "$id": "myField",
     }
-    name=""
-    onBlur={[MockFunction]}
-    onChange={[Function]}
-    query={
-      Object {
-        " $refType": "FuelField_query",
-        "allFuels": Object {
-          "edges": Array [
-            Object {
-              "node": Object {
-                "rowId": 1,
-                "state": "published",
-                "units": "unit",
-              },
+  }
+  name=""
+  onBlur={[MockFunction]}
+  onChange={[Function]}
+  query={
+    Object {
+      " $refType": "FuelField_query",
+      "allFuels": Object {
+        "edges": Array [
+          Object {
+            "node": Object {
+              "rowId": 1,
+              "state": "published",
+              "units": "unit",
             },
-          ],
-        },
-      }
+          },
+        ],
+      },
     }
-    readonly={false}
-    registry={
-      Object {
-        "definitions": Object {},
-        "fields": Object {
-          "AnyOfField": [Function],
-          "ArrayField": [Function],
-          "BooleanField": [Function],
-          "DescriptionField": [Function],
-          "NullField": [Function],
-          "NumberField": [Function],
-          "ObjectField": undefined,
-          "OneOfField": [Function],
-          "SchemaField": [Function],
-          "StringField": [Function],
-          "TitleField": [Function],
-          "UnsupportedField": [Function],
-        },
-        "formContext": Object {},
-        "rootSchema": Object {},
-        "widgets": Object {
-          "AltDateTimeWidget": [Function],
-          "AltDateWidget": [Function],
-          "BaseInput": [Function],
-          "CheckboxWidget": [Function],
-          "CheckboxesWidget": [Function],
-          "ColorWidget": [Function],
-          "DateTimeWidget": [Function],
-          "DateWidget": [Function],
-          "EmailWidget": [Function],
-          "FileWidget": [Function],
-          "HiddenWidget": [Function],
-          "PasswordWidget": [Function],
-          "RadioWidget": [Function],
-          "RangeWidget": [Function],
-          "SelectWidget": [Function],
-          "TextWidget": [Function],
-          "TextareaWidget": [Function],
-          "URLWidget": [Function],
-          "UpDownWidget": [Function],
-        },
-      }
+  }
+  readonly={false}
+  registry={
+    Object {
+      "definitions": Object {},
+      "fields": Object {
+        "AnyOfField": [Function],
+        "ArrayField": [Function],
+        "BooleanField": [Function],
+        "DescriptionField": [Function],
+        "NullField": [Function],
+        "NumberField": [Function],
+        "ObjectField": undefined,
+        "OneOfField": [Function],
+        "SchemaField": [Function],
+        "StringField": [Function],
+        "TitleField": [Function],
+        "UnsupportedField": [Function],
+      },
+      "formContext": Object {},
+      "rootSchema": Object {},
+      "widgets": Object {
+        "AltDateTimeWidget": [Function],
+        "AltDateWidget": [Function],
+        "BaseInput": [Function],
+        "CheckboxWidget": [Function],
+        "CheckboxesWidget": [Function],
+        "ColorWidget": [Function],
+        "DateTimeWidget": [Function],
+        "DateWidget": [Function],
+        "EmailWidget": [Function],
+        "FileWidget": [Function],
+        "HiddenWidget": [Function],
+        "PasswordWidget": [Function],
+        "RadioWidget": [Function],
+        "RangeWidget": [Function],
+        "SelectWidget": [Function],
+        "TextWidget": [Function],
+        "TextareaWidget": [Function],
+        "URLWidget": [Function],
+        "UpDownWidget": [Function],
+      },
     }
-    required={false}
-    schema={Object {}}
-    uiSchema={Object {}}
-  />
-</Fragment>
+  }
+  required={false}
+  schema={Object {}}
+  uiSchema={Object {}}
+/>
 `;
 
 exports[`The Fuel Field renders an interactive form when the form data is undefined 1`] = `
-<Fragment>
-  <ObjectField
-    autofocus={false}
-    disabled={false}
-    errorSchema={Object {}}
-    formContext={Object {}}
-    formData={
-      Object {
-        "fuelRowId": undefined,
-      }
+<ObjectField
+  autofocus={false}
+  disabled={false}
+  errorSchema={Object {}}
+  formContext={Object {}}
+  formData={
+    Object {
+      "fuelRowId": undefined,
     }
-    idSchema={
-      Object {
-        "$id": "myField",
-      }
+  }
+  idSchema={
+    Object {
+      "$id": "myField",
     }
-    name=""
-    onBlur={[MockFunction]}
-    onChange={[Function]}
-    query={
-      Object {
-        " $refType": "FuelField_query",
-        "allFuels": Object {
-          "edges": Array [
-            Object {
-              "node": Object {
-                "rowId": 1,
-                "state": "published",
-                "units": "unit",
-              },
+  }
+  name=""
+  onBlur={[MockFunction]}
+  onChange={[Function]}
+  query={
+    Object {
+      " $refType": "FuelField_query",
+      "allFuels": Object {
+        "edges": Array [
+          Object {
+            "node": Object {
+              "rowId": 1,
+              "state": "published",
+              "units": "unit",
             },
-          ],
-        },
-      }
+          },
+        ],
+      },
     }
-    readonly={false}
-    registry={
-      Object {
-        "definitions": Object {},
-        "fields": Object {
-          "AnyOfField": [Function],
-          "ArrayField": [Function],
-          "BooleanField": [Function],
-          "DescriptionField": [Function],
-          "NullField": [Function],
-          "NumberField": [Function],
-          "ObjectField": undefined,
-          "OneOfField": [Function],
-          "SchemaField": [Function],
-          "StringField": [Function],
-          "TitleField": [Function],
-          "UnsupportedField": [Function],
-        },
-        "formContext": Object {},
-        "rootSchema": Object {},
-        "widgets": Object {
-          "AltDateTimeWidget": [Function],
-          "AltDateWidget": [Function],
-          "BaseInput": [Function],
-          "CheckboxWidget": [Function],
-          "CheckboxesWidget": [Function],
-          "ColorWidget": [Function],
-          "DateTimeWidget": [Function],
-          "DateWidget": [Function],
-          "EmailWidget": [Function],
-          "FileWidget": [Function],
-          "HiddenWidget": [Function],
-          "PasswordWidget": [Function],
-          "RadioWidget": [Function],
-          "RangeWidget": [Function],
-          "SelectWidget": [Function],
-          "TextWidget": [Function],
-          "TextareaWidget": [Function],
-          "URLWidget": [Function],
-          "UpDownWidget": [Function],
-        },
-      }
+  }
+  readonly={false}
+  registry={
+    Object {
+      "definitions": Object {},
+      "fields": Object {
+        "AnyOfField": [Function],
+        "ArrayField": [Function],
+        "BooleanField": [Function],
+        "DescriptionField": [Function],
+        "NullField": [Function],
+        "NumberField": [Function],
+        "ObjectField": undefined,
+        "OneOfField": [Function],
+        "SchemaField": [Function],
+        "StringField": [Function],
+        "TitleField": [Function],
+        "UnsupportedField": [Function],
+      },
+      "formContext": Object {},
+      "rootSchema": Object {},
+      "widgets": Object {
+        "AltDateTimeWidget": [Function],
+        "AltDateWidget": [Function],
+        "BaseInput": [Function],
+        "CheckboxWidget": [Function],
+        "CheckboxesWidget": [Function],
+        "ColorWidget": [Function],
+        "DateTimeWidget": [Function],
+        "DateWidget": [Function],
+        "EmailWidget": [Function],
+        "FileWidget": [Function],
+        "HiddenWidget": [Function],
+        "PasswordWidget": [Function],
+        "RadioWidget": [Function],
+        "RangeWidget": [Function],
+        "SelectWidget": [Function],
+        "TextWidget": [Function],
+        "TextareaWidget": [Function],
+        "URLWidget": [Function],
+        "UpDownWidget": [Function],
+      },
     }
-    required={false}
-    schema={Object {}}
-    uiSchema={Object {}}
-  />
-</Fragment>
+  }
+  required={false}
+  schema={Object {}}
+  uiSchema={Object {}}
+/>
 `;

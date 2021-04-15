@@ -63,7 +63,7 @@ describe('The Fuel Field', () => {
     expect(component.find('ObjectField').at(0).prop('disabled')).toBe(false);
   });
 
-  it('renders an alert box and a disabled form when the form data fuel is archived', () => {
+  it('renders a disabled form when the form data fuel is archived', () => {
     const testQuery: FuelField_query = {
       allFuels: {
         edges: [

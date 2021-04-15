@@ -126,7 +126,7 @@ select results_eq(
   $$
     select count(*) from ggircs_portal.ciip_user_organisation
   $$,
-  ARRAY[5::bigint],
+  ARRAY[8::bigint],
   'Analyst can select all from table ciip_user_organisation'
 );
 

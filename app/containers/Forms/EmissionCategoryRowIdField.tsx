@@ -22,10 +22,10 @@ export const EmissionCategoryRowIdFieldComponent: React.FunctionComponent<Props>
       ...props,
       schema: {
         ...props.schema,
-        enum: props.query.allEmissionCategories.edges.map(
+        enum: props.query.activeEmissionCategories.edges.map(
           ({node}) => node.rowId
         ),
-        enumNames: props.query.allEmissionCategories.edges.map(
+        enumNames: props.query.activeEmissionCategories.edges.map(
           ({node}) => node.displayName
         )
       },
@@ -34,13 +34,39 @@ export const EmissionCategoryRowIdFieldComponent: React.FunctionComponent<Props>
     [props]
   );
 
+  // If the form data is set to an archived emission category, we return a text field
+  if (props.formData !== undefined) {
+    const archivedEmissionCategory = props.query.archivedEmissionCategories.edges.find(
+      ({node}) => node.rowId === props.formData
+    );
+
+    if (archivedEmissionCategory !== undefined)
+      return (
+        <span className="col-md-12">
+          {archivedEmissionCategory.node.displayName}
+        </span>
+      );
+  }
+
   return <props.registry.fields.StringField {...fieldProps} />;
 };
 
 export default createFragmentContainer(EmissionCategoryRowIdFieldComponent, {
   query: graphql`
     fragment EmissionCategoryRowIdField_query on Query {
-      allEmissionCategories {
+      activeEmissionCategories: allEmissionCategories(
+        filter: {deletedAt: {isNull: true}}
+      ) {
+        edges {
+          node {
+            rowId
+            displayName
+          }
+        }
+      }
+      archivedEmissionCategories: allEmissionCategories(
+        filter: {deletedAt: {isNull: false}}
+      ) {
         edges {
           node {
             rowId

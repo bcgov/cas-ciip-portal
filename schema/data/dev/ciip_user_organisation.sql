@@ -13,12 +13,16 @@ begin;
   alter table ggircs_portal.ciip_user_organisation
     disable trigger _send_access_approved_email;
 
+  -- giving cypresstestreporter access to some organisations by default
   with rows as (
   insert into ggircs_portal.ciip_user_organisation(id, user_id, organisation_id, status)
   overriding system value
   values
   (1, 3, 8, 'approved'),
-  (2, 3, 7, 'approved')
+  (2, 3, 7, 'approved'),
+  (3, 6, 1, 'approved'),
+  (4, 6, 7, 'approved'),
+  (5, 6, 8, 'approved')
   on conflict(id) do update set
     user_id=excluded.user_id,
     organisation_id=excluded.organisation_id,
