@@ -73,14 +73,13 @@ export const ApplyButton: React.FunctionComponent<Props> = ({
 
       const response = await createApplicationMutation(environment, variables);
 
-      router.push({
-        pathname: '/reporter/new-application-disclaimer',
-        query: {
-          applicationId: response.createApplicationMutationChain.application.id,
-          version: 1,
+      router.push(
+        getApplicationDisclaimerPageRoute(
+          response.createApplicationMutationChain.application.id,
+          1,
           hasSwrsReport
-        }
-      });
+        )
+      );
     };
 
     const missingReportModal = (
