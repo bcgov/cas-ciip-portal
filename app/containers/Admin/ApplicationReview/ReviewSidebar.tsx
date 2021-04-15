@@ -27,23 +27,23 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
   const [showingResolved, setShowingResolved] = useState(false);
   const toggleResolved = () => setShowingResolved((current) => !current);
   const reviewStepName = capitalize(
-    applicationReviewStep.reviewStepByReviewStepId.stepName
+    applicationReviewStep?.reviewStepByReviewStepId?.stepName
   );
 
-  const generalComments = applicationReviewStep.generalComments.edges;
-  const internalComments = applicationReviewStep.internalComments.edges;
+  const generalComments = applicationReviewStep?.generalComments?.edges;
+  const internalComments = applicationReviewStep?.internalComments?.edges;
   const noGeneralCommentsToShow =
-    generalComments.length === 0 ||
-    (!showingResolved && generalComments.every((c) => c.node.resolved));
+    generalComments?.length === 0 ||
+    (!showingResolved && generalComments?.every((c) => c.node.resolved));
   const noInternalCommentsToShow =
-    internalComments.length === 0 ||
-    (!showingResolved && internalComments.every((c) => c.node.resolved));
+    internalComments?.length === 0 ||
+    (!showingResolved && internalComments?.every((c) => c.node.resolved));
 
   const markReviewStepComplete = async (isComplete) => {
     const {environment} = relay;
     const variables = {
       input: {
-        id: applicationReviewStep.id,
+        id: applicationReviewStep?.id,
         applicationReviewStepPatch: {
           isComplete
         }
@@ -93,7 +93,7 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
     await deleteReviewCommentMutation(
       environment,
       variables,
-      applicationReviewStep.id,
+      applicationReviewStep?.id,
       `ReviewSidebar_${commentType}Comments`
     );
   };
@@ -109,7 +109,7 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
         description={description}
         createdAt={createdAt}
         createdBy={`${ciipUserByCreatedBy.firstName} ${ciipUserByCreatedBy.lastName}`}
-        viewOnly={applicationReviewStep.isComplete}
+        viewOnly={applicationReviewStep?.isComplete}
         isResolved={resolved}
         onResolveToggle={resolveComment}
         onDelete={(id) => deleteComment(id, commentType)}
@@ -128,7 +128,7 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
         ×
       </button>
       <h2>{reviewStepName} Review</h2>
-      {applicationReviewStep.isComplete ? (
+      {applicationReviewStep?.isComplete ? (
         <p className="mark-incomplete">
           <FontAwesomeIcon icon={faCheck} style={{marginRight: 2}} />
           <span> This review step has been completed. </span>
@@ -159,7 +159,7 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
           <p className="empty-comments">No general comments to show.</p>
         ) : (
           <ul aria-labelledby="general-comments-label">
-            {generalComments.map((comment) => {
+            {generalComments?.map((comment) => {
               const showComment = showingResolved || !comment.node.resolved;
               return showComment
                 ? renderComment('general', comment.node)
@@ -177,7 +177,7 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
           <p className="empty-comments">No internal comments to show.</p>
         ) : (
           <ul aria-labelledby="internal-comments-label">
-            {internalComments.map((comment) => {
+            {internalComments?.map((comment) => {
               const showComment = showingResolved || !comment.node.resolved;
               return showComment
                 ? renderComment('internal', comment.node)
@@ -190,7 +190,7 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
         <Button variant="link" style={{padding: 0}} onClick={toggleResolved}>
           {`${showingResolved ? 'Hide' : 'Show'} resolved comments`}
         </Button>
-        {!applicationReviewStep.isComplete && (
+        {!applicationReviewStep?.isComplete && (
           <Button variant="primary">+ New Comment</Button>
         )}
       </div>
