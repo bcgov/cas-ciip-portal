@@ -7,28 +7,33 @@ import {ApplicationDetailsCardItem_formResult} from '__generated__/ApplicationDe
 describe('ApplicationDetailsCardItemComponent', () => {
   it('should render the individual summary confirmation card component', () => {
     const formResult = {
-      ' $refType': 'ApplicationDetailsCardItem_formResult',
+      ' $refType': 'ApplicationDetailsCardItem_formResult' as any,
       formResult: {},
       formJsonByFormId: {
         name: 'Fuel Usage',
         formJson: {schema: {title: 'Fuel UsageCollapse'}, uiSchema: {}},
         slug: 'fuel'
-      }
+      },
+      applicationRevisionByApplicationIdAndVersionNumber: null
     };
-    const query = {
+    const query: ApplicationDetailsCardItem_query = {
+      ' $refType': 'ApplicationDetailsCardItem_query',
       ' $fragmentRefs': {
-        ' $refType': 'ProductField_query',
-        ProductField_query: true
+        ProductField_query: true as true,
+        ProductRowIdField_query: true as true,
+        NaicsField_query: true as true,
+        FuelField_query: true as true,
+        FuelRowIdField_query: true as true,
+        EmissionCategoryRowIdField_query: true as true
       }
     };
-    const previousFormResult = {};
 
     const r = shallow(
       <ApplicationDetailsCardItemComponent
         query={query}
         formResult={formResult}
-        previousFormResult={previousFormResult}
-        review={false}
+        showDiff={false}
+        liveValidate={false}
         diffToResults={[]}
       />
     );
@@ -43,7 +48,8 @@ describe('ApplicationDetailsCardItemComponent', () => {
         name: 'Fuel Usage',
         formJson: {schema: {title: 'Fuel UsageCollapse'}, uiSchema: {}},
         slug: 'fuel'
-      }
+      },
+      applicationRevisionByApplicationIdAndVersionNumber: null
     };
     const query: ApplicationDetailsCardItem_query = {
       ' $fragmentRefs': {
