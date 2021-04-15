@@ -1,12 +1,6 @@
 import path from 'path';
 // TODO: delete once all routes are updated to not have required query params
 const REQUIRED_QUERY_PARAMS = {
-  'view-application': `?applicationId=${encodeURIComponent(
-    window.btoa('["applications", 1]')
-  )}&version=1`,
-  'new-application-disclaimer': `?applicationId=${encodeURIComponent(
-    window.btoa('["applications", 1]')
-  )}&version=1`,
   'application-review': `?applicationId=${encodeURIComponent(
     window.btoa('["applications", 3]')
   )}&applicationRevisionId=${encodeURIComponent(
@@ -21,6 +15,10 @@ const QUERY_PARAMS = {
   },
   '/reporter/application/[applicationId]': {
     applicationId: encodeURIComponent(window.btoa('["applications",1]'))
+  },
+  '/reporter/application/[applicationId]/version/[versionNumber]/disclaimer': {
+    applicationId: encodeURIComponent(window.btoa('["applications",1]')),
+    versionNumber: '1'
   }
 };
 
