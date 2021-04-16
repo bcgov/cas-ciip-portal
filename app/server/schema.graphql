@@ -34663,6 +34663,7 @@ type Query implements Node {
     id: ID!
   ): CiipUserOrganisation
   ciipUserOrganisationByRowId(rowId: Int!): CiipUserOrganisation
+  defaultDisplayedReportingYear: ReportingYear
 
   """Reads a single `EmissionCategory` using its globally unique `ID`."""
   emissionCategory(

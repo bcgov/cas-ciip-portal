@@ -21,7 +21,21 @@ exports[`FacilitiesListContainer should match the previous snapshot 1`] = `
               },
               " $refType": "FacilitiesListContainer_query",
               "allReportingYears": Object {
-                "edges": Array [],
+                "edges": Array [
+                  Object {
+                    "node": Object {
+                      "reportingYear": 2019,
+                    },
+                  },
+                  Object {
+                    "node": Object {
+                      "reportingYear": 2020,
+                    },
+                  },
+                ],
+              },
+              "defaultDisplayedReportingYear": Object {
+                "reportingYear": 2020,
               },
               "facilityApplicationByReportingYear": Object {
                 "edges": Array [
@@ -38,7 +52,7 @@ exports[`FacilitiesListContainer should match the previous snapshot 1`] = `
               },
             }
           }
-          reportingYear={2019}
+          reportingYear={2020}
         />
       </tbody>
     }
@@ -46,8 +60,11 @@ exports[`FacilitiesListContainer should match the previous snapshot 1`] = `
       Array [
         ReportingPeriodFilter {
           "Component": [Function],
-          "_defaultValue": 2019,
-          "_reportingPeriods": Array [],
+          "_defaultValue": 2020,
+          "_reportingPeriods": Array [
+            2019,
+            2020,
+          ],
           "argName": "reportingYear",
           "castValue": [Function],
           "isSearchEnabled": true,

@@ -26,7 +26,7 @@ class FacilitiesList extends Component<Props> {
       $organisationRowId: Int
       $offset: Int
       $pageSize: Int
-      $reportingYear: Int = 2019
+      $reportingYear: Int
       $lastSwrsReportingYear: Int
       $facilityBcghgid: String
     ) {

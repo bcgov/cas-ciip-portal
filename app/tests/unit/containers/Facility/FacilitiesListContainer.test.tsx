@@ -23,8 +23,22 @@ describe('FacilitiesListContainer', () => {
           }
         ]
       },
+      defaultDisplayedReportingYear: {
+        reportingYear: 2020
+      },
       allReportingYears: {
-        edges: []
+        edges: [
+          {
+            node: {
+              reportingYear: 2019
+            }
+          },
+          {
+            node: {
+              reportingYear: 2020
+            }
+          }
+        ]
       }
     };
     const useRouter = jest.spyOn(require('next/router'), 'useRouter');
