@@ -29,7 +29,10 @@ const getTestQuery = () => {
               }
             }
           }
-        ]
+        ],
+        ' $fragmentRefs': {
+          ApplicationReviewStepSelector_applicationReviewSteps: true
+        }
       }
     },
     applicationRevision: {
@@ -66,10 +69,12 @@ describe('The application-review page', () => {
     );
     expect(wrapper.exists('Relay(ReviewSidebar)')).toBeFalse();
     // Open the sidebar:
-    wrapper
-      .find('button')
-      .filterWhere((n) => n.text() === 'Click to toggle review comments')
-      .simulate('click');
+    wrapper.setState((state) => {
+      return {
+        ...state,
+        isSidebarOpened: true
+      };
+    });
     expect(wrapper.exists('Relay(ReviewSidebar)')).toBeTrue();
     expect(wrapper.exists('HelpButton')).toBeFalse();
     expect(wrapper).toMatchSnapshot();
@@ -85,10 +90,12 @@ describe('The application-review page', () => {
     );
     expect(wrapper.exists('HelpButton')).toBeTrue();
     // Open the sidebar:
-    wrapper
-      .find('button')
-      .filterWhere((n) => n.text() === 'Click to toggle review comments')
-      .simulate('click');
+    wrapper.setState((state) => {
+      return {
+        ...state,
+        isSidebarOpened: true
+      };
+    });
     expect(wrapper.exists('HelpButton')).toBeFalse();
   });
 

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Row, Col, ListGroup} from 'react-bootstrap';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faCheck} from '@fortawesome/free-solid-svg-icons';
@@ -29,11 +29,15 @@ export const ApplicationReviewStepSelector: React.FunctionComponent<Props> = ({
       <Col md={5}>
         <ListGroup as="ul" role="listbox">
           {steps.map((edge) => {
-            const {reviewStepId} = edge.node;
+            const {reviewStepId, isComplete} = edge.node;
             const isSelectedStep = edge.node === selectedStep;
+            const callToAction = `${isComplete ? '' : 'Open'} ${capitalize(
+              edge.node.reviewStepByReviewStepId.stepName
+            )} review ${isComplete ? 'completed' : ''}`;
             return (
               <ListGroup.Item
                 as="li"
+                action
                 role="option"
                 tabIndex={0}
                 key={reviewStepId}
@@ -43,19 +47,35 @@ export const ApplicationReviewStepSelector: React.FunctionComponent<Props> = ({
                 onKeyDown={(e) => {
                   if (e.key === 'Enter') onSelectStep(edge.node);
                 }}
-                style={{cursor: 'pointer'}}
+                style={{
+                  cursor: 'pointer',
+                  position: 'relative',
+                  paddingLeft: '3rem'
+                }}
               >
-                {capitalize(edge.node.reviewStepByReviewStepId.stepName)}
+                {isComplete && (
+                  <FontAwesomeIcon
+                    icon={faCheck}
+                    style={{
+                      position: 'absolute',
+                      left: '1.2rem',
+                      top: 'calc(50% - 0.5em)'
+                    }}
+                  />
+                )}
+                {callToAction}
               </ListGroup.Item>
             );
           })}
           <ListGroup.Item
             as="li"
+            action
             role="option"
             key="decision"
             tabIndex={0}
             disabled
             aria-disabled
+            style={{cursor: 'pointer', paddingLeft: '3rem'}}
           >
             Make a decision or request changes
           </ListGroup.Item>
