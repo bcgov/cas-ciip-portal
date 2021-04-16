@@ -110,71 +110,61 @@ export const ApplicationRevisionStatusComponent: React.FunctionComponent<Props> 
   } = props.applicationRevisionStatus.applicationRevisionByApplicationIdAndVersionNumber;
 
   return (
-    <>
-      <h1>Application #[FILL ME IN]</h1>
-      <Row>
-        {confirmStatusChangeModal}
-        {isCurrentVersion ? (
-          <Col md={2}>
-            <Dropdown style={{width: '100%'}}>
-              <Dropdown.Toggle
-                pill
-                as={Badge}
-                style={{
-                  padding: '0.6em 1em',
-                  fontSize: '1em',
-                  textTransform: 'uppercase'
-                }}
-                variant={
-                  statusBadgeColor[
-                    props.applicationRevisionStatus.applicationRevisionStatus
-                  ]
-                }
-                id="dropdown"
-              >
-                {getUserFriendlyStatusLabel(
-                  props.applicationRevisionStatus.applicationRevisionStatus
-                )}
-              </Dropdown.Toggle>
-              <Dropdown.Menu style={{width: '100%'}}>
-                {Object.keys(statusBadgeColor)
-                  .filter(
-                    (status) =>
-                      !['DRAFT', currentRevisionStatus].includes(status)
-                  )
-                  .map((status) => (
-                    <DropdownMenuItemComponent
-                      key={status}
-                      itemEventKey={status}
-                      itemFunc={renderStatusConfirmationModal}
-                      itemTitle={getUserFriendlyStatusLabel(status)}
-                    />
-                  ))}
-              </Dropdown.Menu>
-            </Dropdown>
-          </Col>
-        ) : (
-          <Col md={2}>
-            <Button
-              disabled
+    <Row>
+      {confirmStatusChangeModal}
+      {isCurrentVersion ? (
+        <Col md={2}>
+          <Dropdown style={{width: '100%'}}>
+            <Dropdown.Toggle
+              pill
+              as={Badge}
+              style={{
+                padding: '0.6em 1em',
+                fontSize: '1em',
+                textTransform: 'uppercase'
+              }}
               variant={
                 statusBadgeColor[
                   props.applicationRevisionStatus.applicationRevisionStatus
                 ]
               }
+              id="dropdown"
             >
-              {props.applicationRevisionStatus.applicationRevisionStatus}
-            </Button>
-          </Col>
-        )}
-      </Row>
-      <style jsx>{`
-        h1 {
-          font-size: 1.75rem;
-          margin-bottom: 20px;
-        }
-      `}</style>
-    </>
+              {getUserFriendlyStatusLabel(
+                props.applicationRevisionStatus.applicationRevisionStatus
+              )}
+            </Dropdown.Toggle>
+            <Dropdown.Menu style={{width: '100%'}}>
+              {Object.keys(statusBadgeColor)
+                .filter(
+                  (status) => !['DRAFT', currentRevisionStatus].includes(status)
+                )
+                .map((status) => (
+                  <DropdownMenuItemComponent
+                    key={status}
+                    itemEventKey={status}
+                    itemFunc={renderStatusConfirmationModal}
+                    itemTitle={getUserFriendlyStatusLabel(status)}
+                  />
+                ))}
+            </Dropdown.Menu>
+          </Dropdown>
+        </Col>
+      ) : (
+        <Col md={2}>
+          <Button
+            disabled
+            variant={
+              statusBadgeColor[
+                props.applicationRevisionStatus.applicationRevisionStatus
+              ]
+            }
+          >
+            {props.applicationRevisionStatus.applicationRevisionStatus}
+          </Button>
+        </Col>
+      )}
+    </Row>
   );
 };
 

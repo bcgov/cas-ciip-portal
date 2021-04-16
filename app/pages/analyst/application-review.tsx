@@ -101,7 +101,7 @@ class ApplicationReview extends Component<Props> {
         fixedHeader
         disableHelpButton
       >
-        <Row className="application-container">
+        <Row>
           <div
             id="application-body"
             className={`
@@ -111,6 +111,7 @@ class ApplicationReview extends Component<Props> {
              offset-md-${this.state.isSidebarOpened ? 0 : 1}
              offset-lg-${this.state.isSidebarOpened ? 0 : 1}`}
           >
+            <h1>{`Application #${query.application.rowId}`}</h1>
             <ApplicationRevisionStatusContainer
               applicationRevisionStatus={query.application.reviewRevisionStatus}
               applicationRowId={query.application.rowId}
@@ -176,6 +177,12 @@ class ApplicationReview extends Component<Props> {
           )}
           {!this.state.isSidebarOpened && <HelpButton isInternalUser />}
         </Row>
+        <style jsx>{`
+          h1 {
+            font-size: 1.75rem;
+            margin-bottom: 20px;
+          }
+        `}</style>
       </DefaultLayout>
     );
   }
