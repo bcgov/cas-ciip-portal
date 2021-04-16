@@ -23,7 +23,12 @@ interface Props extends CiipPageComponentProps {
   query: applicationReviewQueryResponse['query'];
 }
 
-class ApplicationReview extends Component<Props> {
+interface State {
+  selectedReviewStepId: string;
+  isSidebarOpened: boolean;
+}
+
+class ApplicationReview extends Component<Props, State> {
   static allowedGroups = ALLOWED_GROUPS;
   static isAccessProtected = true;
   static query = graphql`
@@ -46,6 +51,7 @@ class ApplicationReview extends Component<Props> {
           applicationReviewStepsByApplicationId {
             edges {
               node {
+                id
                 reviewStepId
                 ...ReviewSidebar_applicationReviewStep
               }
@@ -64,27 +70,35 @@ class ApplicationReview extends Component<Props> {
       }
     }
   `;
-  state = {isSidebarOpened: false, selectedReviewStep: null};
+  state = {isSidebarOpened: false, selectedReviewStepId: null};
 
   constructor(props) {
     super(props);
     this.closeSidebar = this.closeSidebar.bind(this);
     this.selectReviewStep = this.selectReviewStep.bind(this);
+    this.findStepById = this.findStepById.bind(this);
   }
   closeSidebar() {
     this.setState((state) => {
       return {
         ...state,
-        selectedReviewStep: null,
+        selectedReviewStepId: null,
         isSidebarOpened: false
       };
     });
   }
-  selectReviewStep(applicationReviewStep) {
+  findStepById(stepId) {
+    return this.props.query.application.applicationReviewStepsByApplicationId.edges.find(
+      (edge) => {
+        return edge.node.id === stepId;
+      }
+    )?.node;
+  }
+  selectReviewStep(appReviewStepId: string) {
     this.setState((state) => {
       return {
         ...state,
-        selectedReviewStep: applicationReviewStep,
+        selectedReviewStepId: appReviewStepId,
         isSidebarOpened: true
       };
     });
@@ -124,7 +138,7 @@ class ApplicationReview extends Component<Props> {
               applicationReviewSteps={
                 query.application.applicationReviewStepsByApplicationId
               }
-              selectedStep={this.state.selectedReviewStep}
+              selectedStep={this.state.selectedReviewStepId}
               onSelectStep={this.selectReviewStep}
             />
             <ApplicationOverrideNotification
@@ -174,7 +188,9 @@ class ApplicationReview extends Component<Props> {
           </div>
           {this.state.isSidebarOpened && (
             <ReviewSidebar
-              applicationReviewStep={this.state.selectedReviewStep}
+              applicationReviewStep={this.findStepById(
+                this.state.selectedReviewStepId
+              )}
               onClose={this.closeSidebar}
               headerOffset={runtimeConfig.SITEWIDE_NOTICE ? 108 : undefined}
             />

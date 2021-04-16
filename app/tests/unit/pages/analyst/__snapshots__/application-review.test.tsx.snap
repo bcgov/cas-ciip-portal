@@ -489,7 +489,6 @@ exports[`The application-review page matches the last snapshot (with review side
       </OverlayTrigger>
     </div>
     <Relay(ReviewSidebar)
-      applicationReviewStep={null}
       onClose={[Function]}
     />
   </Row>

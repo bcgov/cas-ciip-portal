@@ -4,16 +4,13 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faCheck} from '@fortawesome/free-solid-svg-icons';
 import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
 import {ApplicationReviewStepSelector_applicationReviewSteps} from '__generated__/ApplicationReviewStepSelector_applicationReviewSteps.graphql';
-import updateApplicationReviewStepMutation from 'mutations/application_review_step/updateApplicationReviewStepMutation';
 import {capitalize} from 'lib/text-transforms';
 
 interface Props {
   applicationReviewSteps: ApplicationReviewStepSelector_applicationReviewSteps;
   relay: RelayProp;
-  selectedStep: ApplicationReviewStepSelector_applicationReviewSteps['edges']['node'];
-  onSelectStep: (
-    step: ApplicationReviewStepSelector_applicationReviewSteps['edges']['node']
-  ) => void;
+  selectedStep: string;
+  onSelectStep: (stepId: string) => void;
 }
 
 export const ApplicationReviewStepSelector: React.FunctionComponent<Props> = ({
@@ -23,14 +20,13 @@ export const ApplicationReviewStepSelector: React.FunctionComponent<Props> = ({
   onSelectStep
 }) => {
   const steps = applicationReviewSteps.edges;
-  console.log('selector: selected step is ', selectedStep);
   return (
     <Row>
       <Col md={5}>
         <ListGroup as="ul" role="listbox">
           {steps.map((edge) => {
             const {reviewStepId, isComplete} = edge.node;
-            const isSelectedStep = edge.node === selectedStep;
+            const isSelectedStep = edge.node.id === selectedStep;
             const callToAction = `${isComplete ? '' : 'Open'} ${capitalize(
               edge.node.reviewStepByReviewStepId.stepName
             )} review ${isComplete ? 'completed' : ''}`;
@@ -43,9 +39,9 @@ export const ApplicationReviewStepSelector: React.FunctionComponent<Props> = ({
                 key={reviewStepId}
                 aria-selected={isSelectedStep}
                 active={isSelectedStep}
-                onClick={() => onSelectStep(edge.node)}
+                onClick={() => onSelectStep(edge.node.id)}
                 onKeyDown={(e) => {
-                  if (e.key === 'Enter') onSelectStep(edge.node);
+                  if (e.key === 'Enter') onSelectStep(edge.node.id);
                 }}
                 style={{
                   cursor: 'pointer',
@@ -90,6 +86,7 @@ export default createFragmentContainer(ApplicationReviewStepSelector, {
     fragment ApplicationReviewStepSelector_applicationReviewSteps on ApplicationReviewStepsConnection {
       edges {
         node {
+          id
           isComplete
           reviewStepId
           reviewStepByReviewStepId {
