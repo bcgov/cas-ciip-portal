@@ -197,10 +197,13 @@ class ApplicationReview extends Component<Props, State> {
           )}
           {!this.state.isSidebarOpened && <HelpButton isInternalUser />}
         </Row>
-        <style jsx>{`
+        <style jsx global>{`
           h1 {
-            font-size: 1.75rem;
             margin-bottom: 20px;
+          }
+          .list-group-item.active {
+            z-index: auto;
+            background: #38598a;
           }
         `}</style>
       </DefaultLayout>

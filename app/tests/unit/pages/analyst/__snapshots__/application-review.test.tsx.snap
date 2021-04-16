@@ -17,7 +17,7 @@ exports[`The application-review page matches the last snapshot (with review side
     noGutters={false}
   >
     <div
-      className="jsx-2513507238 
+      className="jsx-2573804510 
              col-md-10
              col-lg-10
              col-xxl-10
@@ -26,7 +26,7 @@ exports[`The application-review page matches the last snapshot (with review side
       id="application-body"
     >
       <h1
-        className="jsx-2513507238"
+        className="jsx-2573804510"
       >
         Application #1
         <Relay(ApplicationRevisionStatusComponent)
@@ -64,7 +64,7 @@ exports[`The application-review page matches the last snapshot (with review side
         overrideJustification={null}
       />
       <hr
-        className="jsx-2513507238"
+        className="jsx-2573804510"
       />
       <Relay(ApplicationDetailsComponent)
         applicationRevision={
@@ -243,9 +243,9 @@ exports[`The application-review page matches the last snapshot (with review side
     />
   </Row>
   <JSXStyle
-    id="2513507238"
+    id="2573804510"
   >
-    h1.jsx-2513507238{font-size:1.75rem;margin-bottom:20px;}
+    h1{margin-bottom:20px;}.list-group-item.active{z-index:auto;background:#38598a;}
   </JSXStyle>
 </Relay(DefaultLayout)>
 `;
@@ -267,7 +267,7 @@ exports[`The application-review page matches the last snapshot (with review side
     noGutters={false}
   >
     <div
-      className="jsx-2513507238 
+      className="jsx-2573804510 
              col-md-7
              col-lg-8
              col-xxl-9
@@ -276,7 +276,7 @@ exports[`The application-review page matches the last snapshot (with review side
       id="application-body"
     >
       <h1
-        className="jsx-2513507238"
+        className="jsx-2573804510"
       >
         Application #1
         <Relay(ApplicationRevisionStatusComponent)
@@ -314,7 +314,7 @@ exports[`The application-review page matches the last snapshot (with review side
         overrideJustification={null}
       />
       <hr
-        className="jsx-2513507238"
+        className="jsx-2573804510"
       />
       <Relay(ApplicationDetailsComponent)
         applicationRevision={
@@ -493,9 +493,9 @@ exports[`The application-review page matches the last snapshot (with review side
     />
   </Row>
   <JSXStyle
-    id="2513507238"
+    id="2573804510"
   >
-    h1.jsx-2513507238{font-size:1.75rem;margin-bottom:20px;}
+    h1{margin-bottom:20px;}.list-group-item.active{z-index:auto;background:#38598a;}
   </JSXStyle>
 </Relay(DefaultLayout)>
 `;

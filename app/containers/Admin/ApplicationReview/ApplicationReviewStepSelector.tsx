@@ -2,20 +2,18 @@ import React from 'react';
 import {Row, Col, ListGroup} from 'react-bootstrap';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faCheck} from '@fortawesome/free-solid-svg-icons';
-import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
+import {graphql, createFragmentContainer} from 'react-relay';
 import {ApplicationReviewStepSelector_applicationReviewSteps} from '__generated__/ApplicationReviewStepSelector_applicationReviewSteps.graphql';
 import {capitalize} from 'lib/text-transforms';
 
 interface Props {
   applicationReviewSteps: ApplicationReviewStepSelector_applicationReviewSteps;
-  relay: RelayProp;
   selectedStep: string;
   onSelectStep: (stepId: string) => void;
 }
 
 export const ApplicationReviewStepSelector: React.FunctionComponent<Props> = ({
   applicationReviewSteps,
-  relay,
   selectedStep,
   onSelectStep
 }) => {
