@@ -1,5 +1,4 @@
 import React from 'react';
-import {act} from 'react-dom/test-utils';
 import {shallow, mount} from 'enzyme';
 import {Dropdown} from 'react-bootstrap';
 import {UserProfileDropdownComponent} from 'containers/User/UserProfileDropdown';
@@ -24,10 +23,8 @@ describe('UserProfileDropdown desktop', () => {
     const wrapper = mount(
       <UserProfileDropdownComponent user={user as UserProfileDropdown_user} />
     );
-    act(() => {
-      wrapper.find(Dropdown.Toggle).simulate('click');
-    });
 
+    wrapper.find(Dropdown.Toggle).simulate('click');
     wrapper.update();
 
     const menuText = wrapper.find('.dropdown-menu.show').text();
@@ -35,5 +32,6 @@ describe('UserProfileDropdown desktop', () => {
     expect(
       menuText.includes('really-long-email-to-see-wrapping@button.is')
     ).toBe(true);
+    wrapper.unmount();
   });
 });

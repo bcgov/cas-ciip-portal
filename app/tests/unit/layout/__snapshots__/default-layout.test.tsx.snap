@@ -15,10 +15,6 @@ exports[`The DefaultLayout component when logged in matches the last accepted Sn
             " $fragmentRefs": Object {
               "UserProfileDropdown_user": true,
             },
-            " $refType": "UserProfileDropdown_user",
-            "emailAddress": "test-tester@testing.com",
-            "firstName": "Test",
-            "lastName": "Tester",
           }
         }
       />
