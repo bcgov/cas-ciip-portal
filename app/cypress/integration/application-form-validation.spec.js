@@ -32,7 +32,8 @@ describe('When viewing an application in draft as a reporter', () => {
     // Operator details
     cy.get('#root_operator_name').clear().type('John Smith');
     cy.get('#root_operator_tradeName').clear().type('Acme Co');
-    cy.get('#root_operator_naics').clear().type('1234');
+    cy.get('#root_operator_naics').clear();
+    cy.get('#root_operator_naics').type('1234');
     cy.get('#root_operator_bcCorporateRegistryNumber')
       .clear()
       .type('111112222233333');
@@ -203,6 +204,8 @@ describe('When viewing an application in draft as a reporter', () => {
     cy.visit(fuelFormUrl);
 
     // Fix invalid data
+    cy.contains('Remove').click();
+    cy.contains('Add').click();
     cy.get('#root_0_fuelRowId').type('Diesel');
     cy.get('#root_0_fuelRowId-item-1 > .dropdown-item').click();
     cy.get('#root_0_quantity').type('42');
@@ -248,7 +251,10 @@ describe('When viewing an application in draft as a reporter', () => {
     cy.visit(productionFormUrl);
 
     // Fix invalid data
-    cy.get('#root_0_productRowId').clear().type('Aluminum');
+    cy.contains('Remove').click();
+    cy.contains('Add').click();
+    cy.get('#root_0_productRowId').clear();
+    cy.get('#root_0_productRowId').type('Aluminum');
     cy.get('.dropdown-item').click();
     cy.get('#root_0_productAmount').type('123');
     cy.get('#root_0_productEmissions').type('456');
