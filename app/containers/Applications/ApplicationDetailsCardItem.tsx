@@ -5,12 +5,18 @@ import JsonSchemaForm, {AjvError} from '@rjsf/core';
 import {FormJson} from 'next-env';
 import {ApplicationDetailsCardItem_formResult} from '__generated__/ApplicationDetailsCardItem_formResult.graphql';
 import {ApplicationDetailsCardItem_query} from '__generated__/ApplicationDetailsCardItem_query.graphql';
-import customFields from 'components/Application/ApplicationDetailsCardItemCustomFields';
+import customBasicFields from 'components/Application/ApplicationDetailsCardItemCustomFields';
 import SummaryFormArrayFieldTemplate from 'containers/Forms/SummaryFormArrayFieldTemplate';
 import SummaryFormFieldTemplate from 'containers/Forms/SummaryFormFieldTemplate';
 import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
 import {customTransformErrors} from 'functions/customTransformErrors';
 import jsonSchemaDiff from 'lib/jsonSchemaDiff';
+import FuelRowIdField from 'containers/Forms/FuelRowIdField';
+import FuelField from 'containers/Forms/FuelField';
+import EmissionCategoryRowIdField from 'containers/Forms/EmissionCategoryRowIdField';
+import NaicsField from 'containers/Forms/NaicsField';
+import ProductField from 'containers/Forms/ProductField';
+import ProductRowIdField from 'containers/Forms/ProductRowIdField';
 
 interface Props {
   // The form_result used by the fragment
@@ -81,6 +87,40 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
   // Override submit button for each form with an empty fragment
   // eslint-disable-next-line react/jsx-no-useless-fragment
   const buttonOverride = <></>;
+
+  const customFragmentFields = {
+    naics: (props) => <NaicsField query={query} {...props} />,
+    product: (props) => (
+      <ProductField
+        naicsCode={
+          formResult.applicationRevisionByApplicationIdAndVersionNumber
+            .naicsCode
+        }
+        query={query}
+        {...props}
+      />
+    ),
+    productRowId: (props) => (
+      <ProductRowIdField
+        naicsCode={
+          formResult.applicationRevisionByApplicationIdAndVersionNumber
+            .naicsCode
+        }
+        query={query}
+        {...props}
+      />
+    ),
+    fuel: (props) => <FuelField query={query} {...props} />,
+    fuelRowId: (props) => <FuelRowIdField query={query} {...props} />,
+    emissionCategoryRowId: (props) => (
+      <EmissionCategoryRowIdField query={query} {...props} />
+    )
+  };
+
+  const customFields = {
+    ...customBasicFields,
+    ...customFragmentFields
+  };
 
   return (
     <Card
@@ -166,6 +206,12 @@ export default createFragmentContainer(ApplicationDetailsCardItemComponent, {
         name
         slug
         formJson
+      }
+      applicationRevisionByApplicationIdAndVersionNumber {
+        naicsCode {
+          ...ProductRowIdField_naicsCode
+          ...ProductField_naicsCode
+        }
       }
     }
   `,

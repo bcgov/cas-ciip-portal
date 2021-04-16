@@ -1,0 +1,655 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The ProductionFields Component with archived product matched to a naics code should match the snapshot when rendering an archived product 1`] = `
+<Fragment>
+  <Alert
+    closeLabel="Close alert"
+    show={true}
+    transition={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "defaultProps": Object {
+          "appear": false,
+          "in": false,
+          "mountOnEnter": false,
+          "timeout": 300,
+          "unmountOnExit": false,
+        },
+        "displayName": "Fade",
+        "render": [Function],
+      }
+    }
+    variant="danger"
+  >
+    <strong>
+      Warning:
+    </strong>
+     This version of the Product or Service has been archived. This archived product should be removed and an appropriate replacement selected (it may have the same name).
+  </Alert>
+  <ObjectField
+    autofocus={false}
+    disabled={true}
+    errorSchema={Object {}}
+    formContext={Object {}}
+    formData={
+      Object {
+        "productAmount": 456,
+        "productEmissions": 123,
+        "productRowId": 1,
+        "productUnits": "bar",
+        "requiresEmissionAllocation": true,
+      }
+    }
+    idSchema={
+      Object {
+        "$id": "myField",
+      }
+    }
+    naicsCode={
+      Object {
+        " $refType": "ProductField_naicsCode",
+        "allProductsByNaicsCode": Object {
+          "edges": Array [
+            Object {
+              "node": Object {
+                "productState": "ARCHIVED",
+                "rowId": 1,
+              },
+            },
+          ],
+        },
+      }
+    }
+    name=""
+    onBlur={[MockFunction]}
+    onChange={[Function]}
+    query={
+      Object {
+        " $refType": "ProductField_query",
+        "allProducts": Object {
+          "edges": Array [
+            Object {
+              "node": Object {
+                "addEmissionsFromEios": false,
+                "addPurchasedElectricityEmissions": false,
+                "addPurchasedHeatEmissions": false,
+                "isEnergyProduct": false,
+                "productState": "ARCHIVED",
+                "requiresEmissionAllocation": true,
+                "requiresProductAmount": true,
+                "rowId": 1,
+                "subtractExportedElectricityEmissions": false,
+                "subtractExportedHeatEmissions": false,
+                "subtractGeneratedElectricityEmissions": false,
+                "subtractGeneratedHeatEmissions": false,
+                "units": "bar",
+              },
+            },
+          ],
+        },
+      }
+    }
+    readonly={false}
+    registry={
+      Object {
+        "definitions": Object {},
+        "fields": Object {
+          "AnyOfField": [Function],
+          "ArrayField": [Function],
+          "BooleanField": [Function],
+          "DescriptionField": [Function],
+          "NullField": [Function],
+          "NumberField": [Function],
+          "ObjectField": undefined,
+          "OneOfField": [Function],
+          "SchemaField": [Function],
+          "StringField": [Function],
+          "TitleField": [Function],
+          "UnsupportedField": [Function],
+        },
+        "formContext": Object {},
+        "rootSchema": Object {},
+        "widgets": Object {
+          "AltDateTimeWidget": [Function],
+          "AltDateWidget": [Function],
+          "BaseInput": [Function],
+          "CheckboxWidget": [Function],
+          "CheckboxesWidget": [Function],
+          "ColorWidget": [Function],
+          "DateTimeWidget": [Function],
+          "DateWidget": [Function],
+          "EmailWidget": [Function],
+          "FileWidget": [Function],
+          "HiddenWidget": [Function],
+          "PasswordWidget": [Function],
+          "RadioWidget": [Function],
+          "RangeWidget": [Function],
+          "SelectWidget": [Function],
+          "TextWidget": [Function],
+          "TextareaWidget": [Function],
+          "URLWidget": [Function],
+          "UpDownWidget": [Function],
+        },
+      }
+    }
+    required={false}
+    schema={Object {}}
+    uiSchema={Object {}}
+  />
+</Fragment>
+`;
+
+exports[`The ProductionFields Component with archived product not matched to a naics code should match the snapshot when rendering an archived product not matched to a naics code 1`] = `
+<Fragment>
+  <Alert
+    closeLabel="Close alert"
+    show={true}
+    transition={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "defaultProps": Object {
+          "appear": false,
+          "in": false,
+          "mountOnEnter": false,
+          "timeout": 300,
+          "unmountOnExit": false,
+        },
+        "displayName": "Fade",
+        "render": [Function],
+      }
+    }
+    variant="danger"
+  >
+    <strong>
+      Warning:
+    </strong>
+     This version of the Product or Service has been archived. This archived product should be removed and an appropriate replacement selected (it may have the same name).
+  </Alert>
+  <Alert
+    closeLabel="Close alert"
+    show={true}
+    transition={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "defaultProps": Object {
+          "appear": false,
+          "in": false,
+          "mountOnEnter": false,
+          "timeout": 300,
+          "unmountOnExit": false,
+        },
+        "displayName": "Fade",
+        "render": [Function],
+      }
+    }
+    variant="danger"
+  >
+    <strong>
+      Warning:
+    </strong>
+     This Product or Service is not associated with the NAICS code reported in this application. Please review the guidance documents for a list of the valid products for this sector or verify the NAICS code reported in the Administration data is correct.
+  </Alert>
+  <ObjectField
+    autofocus={false}
+    disabled={true}
+    errorSchema={Object {}}
+    formContext={Object {}}
+    formData={
+      Object {
+        "productAmount": 456,
+        "productEmissions": 123,
+        "productRowId": 1,
+        "productUnits": "bar",
+        "requiresEmissionAllocation": true,
+      }
+    }
+    idSchema={
+      Object {
+        "$id": "myField",
+      }
+    }
+    naicsCode={
+      Object {
+        " $refType": "ProductField_naicsCode",
+        "allProductsByNaicsCode": Object {
+          "edges": Array [
+            Object {
+              "node": Object {
+                "productState": "ARCHIVED",
+                "rowId": 2,
+              },
+            },
+          ],
+        },
+      }
+    }
+    name=""
+    onBlur={[MockFunction]}
+    onChange={[Function]}
+    query={
+      Object {
+        " $refType": "ProductField_query",
+        "allProducts": Object {
+          "edges": Array [
+            Object {
+              "node": Object {
+                "addEmissionsFromEios": false,
+                "addPurchasedElectricityEmissions": false,
+                "addPurchasedHeatEmissions": false,
+                "isEnergyProduct": false,
+                "productState": "ARCHIVED",
+                "requiresEmissionAllocation": true,
+                "requiresProductAmount": true,
+                "rowId": 1,
+                "subtractExportedElectricityEmissions": false,
+                "subtractExportedHeatEmissions": false,
+                "subtractGeneratedElectricityEmissions": false,
+                "subtractGeneratedHeatEmissions": false,
+                "units": "bar",
+              },
+            },
+          ],
+        },
+      }
+    }
+    readonly={false}
+    registry={
+      Object {
+        "definitions": Object {},
+        "fields": Object {
+          "AnyOfField": [Function],
+          "ArrayField": [Function],
+          "BooleanField": [Function],
+          "DescriptionField": [Function],
+          "NullField": [Function],
+          "NumberField": [Function],
+          "ObjectField": undefined,
+          "OneOfField": [Function],
+          "SchemaField": [Function],
+          "StringField": [Function],
+          "TitleField": [Function],
+          "UnsupportedField": [Function],
+        },
+        "formContext": Object {},
+        "rootSchema": Object {},
+        "widgets": Object {
+          "AltDateTimeWidget": [Function],
+          "AltDateWidget": [Function],
+          "BaseInput": [Function],
+          "CheckboxWidget": [Function],
+          "CheckboxesWidget": [Function],
+          "ColorWidget": [Function],
+          "DateTimeWidget": [Function],
+          "DateWidget": [Function],
+          "EmailWidget": [Function],
+          "FileWidget": [Function],
+          "HiddenWidget": [Function],
+          "PasswordWidget": [Function],
+          "RadioWidget": [Function],
+          "RangeWidget": [Function],
+          "SelectWidget": [Function],
+          "TextWidget": [Function],
+          "TextareaWidget": [Function],
+          "URLWidget": [Function],
+          "UpDownWidget": [Function],
+        },
+      }
+    }
+    required={false}
+    schema={Object {}}
+    uiSchema={Object {}}
+  />
+</Fragment>
+`;
+
+exports[`The ProductionFields Component with no naics code should match the snapshot 1`] = `
+<Fragment>
+  <Alert
+    closeLabel="Close alert"
+    show={true}
+    transition={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "defaultProps": Object {
+          "appear": false,
+          "in": false,
+          "mountOnEnter": false,
+          "timeout": 300,
+          "unmountOnExit": false,
+        },
+        "displayName": "Fade",
+        "render": [Function],
+      }
+    }
+    variant="danger"
+  >
+    <strong>
+      Warning:
+    </strong>
+     No products were found matching the reported NAICS code. Please verify the NAICS code reported in the Administration data.
+  </Alert>
+  <ObjectField
+    autofocus={false}
+    disabled={false}
+    errorSchema={Object {}}
+    formContext={Object {}}
+    formData={Object {}}
+    idSchema={
+      Object {
+        "$id": "myField",
+      }
+    }
+    name=""
+    onBlur={[MockFunction]}
+    onChange={[Function]}
+    query={
+      Object {
+        " $refType": "ProductField_query",
+        "allProducts": Object {
+          "edges": Array [],
+        },
+      }
+    }
+    readonly={false}
+    registry={
+      Object {
+        "definitions": Object {},
+        "fields": Object {
+          "AnyOfField": [Function],
+          "ArrayField": [Function],
+          "BooleanField": [Function],
+          "DescriptionField": [Function],
+          "NullField": [Function],
+          "NumberField": [Function],
+          "ObjectField": undefined,
+          "OneOfField": [Function],
+          "SchemaField": [Function],
+          "StringField": [Function],
+          "TitleField": [Function],
+          "UnsupportedField": [Function],
+        },
+        "formContext": Object {},
+        "rootSchema": Object {},
+        "widgets": Object {
+          "AltDateTimeWidget": [Function],
+          "AltDateWidget": [Function],
+          "BaseInput": [Function],
+          "CheckboxWidget": [Function],
+          "CheckboxesWidget": [Function],
+          "ColorWidget": [Function],
+          "DateTimeWidget": [Function],
+          "DateWidget": [Function],
+          "EmailWidget": [Function],
+          "FileWidget": [Function],
+          "HiddenWidget": [Function],
+          "PasswordWidget": [Function],
+          "RadioWidget": [Function],
+          "RangeWidget": [Function],
+          "SelectWidget": [Function],
+          "TextWidget": [Function],
+          "TextareaWidget": [Function],
+          "URLWidget": [Function],
+          "UpDownWidget": [Function],
+        },
+      }
+    }
+    required={false}
+    schema={Object {}}
+    uiSchema={Object {}}
+  />
+</Fragment>
+`;
+
+exports[`The ProductionFields Component with published product matched to a naics code should match the snapshot when rendering a product 1`] = `
+<Fragment>
+  <ObjectField
+    autofocus={false}
+    disabled={false}
+    errorSchema={Object {}}
+    formContext={Object {}}
+    formData={
+      Object {
+        "productAmount": 456,
+        "productEmissions": 123,
+        "productRowId": 1,
+        "productUnits": "bar",
+        "requiresEmissionAllocation": true,
+      }
+    }
+    idSchema={
+      Object {
+        "$id": "myField",
+      }
+    }
+    naicsCode={
+      Object {
+        " $refType": "ProductField_naicsCode",
+        "allProductsByNaicsCode": Object {
+          "edges": Array [
+            Object {
+              "node": Object {
+                "productState": "PUBLISHED",
+                "rowId": 1,
+              },
+            },
+          ],
+        },
+      }
+    }
+    name=""
+    onBlur={[MockFunction]}
+    onChange={[Function]}
+    query={
+      Object {
+        " $refType": "ProductField_query",
+        "allProducts": Object {
+          "edges": Array [
+            Object {
+              "node": Object {
+                "addEmissionsFromEios": false,
+                "addPurchasedElectricityEmissions": false,
+                "addPurchasedHeatEmissions": false,
+                "isEnergyProduct": false,
+                "productState": "PUBLISHED",
+                "requiresEmissionAllocation": true,
+                "requiresProductAmount": true,
+                "rowId": 1,
+                "subtractExportedElectricityEmissions": false,
+                "subtractExportedHeatEmissions": false,
+                "subtractGeneratedElectricityEmissions": false,
+                "subtractGeneratedHeatEmissions": false,
+                "units": "bar",
+              },
+            },
+          ],
+        },
+      }
+    }
+    readonly={false}
+    registry={
+      Object {
+        "definitions": Object {},
+        "fields": Object {
+          "AnyOfField": [Function],
+          "ArrayField": [Function],
+          "BooleanField": [Function],
+          "DescriptionField": [Function],
+          "NullField": [Function],
+          "NumberField": [Function],
+          "ObjectField": undefined,
+          "OneOfField": [Function],
+          "SchemaField": [Function],
+          "StringField": [Function],
+          "TitleField": [Function],
+          "UnsupportedField": [Function],
+        },
+        "formContext": Object {},
+        "rootSchema": Object {},
+        "widgets": Object {
+          "AltDateTimeWidget": [Function],
+          "AltDateWidget": [Function],
+          "BaseInput": [Function],
+          "CheckboxWidget": [Function],
+          "CheckboxesWidget": [Function],
+          "ColorWidget": [Function],
+          "DateTimeWidget": [Function],
+          "DateWidget": [Function],
+          "EmailWidget": [Function],
+          "FileWidget": [Function],
+          "HiddenWidget": [Function],
+          "PasswordWidget": [Function],
+          "RadioWidget": [Function],
+          "RangeWidget": [Function],
+          "SelectWidget": [Function],
+          "TextWidget": [Function],
+          "TextareaWidget": [Function],
+          "URLWidget": [Function],
+          "UpDownWidget": [Function],
+        },
+      }
+    }
+    required={false}
+    schema={Object {}}
+    uiSchema={Object {}}
+  />
+</Fragment>
+`;
+
+exports[`The ProductionFields Component with published product not matched to a naics code should match the snapshot when rendering a product not matched to a naics code 1`] = `
+<Fragment>
+  <Alert
+    closeLabel="Close alert"
+    show={true}
+    transition={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "defaultProps": Object {
+          "appear": false,
+          "in": false,
+          "mountOnEnter": false,
+          "timeout": 300,
+          "unmountOnExit": false,
+        },
+        "displayName": "Fade",
+        "render": [Function],
+      }
+    }
+    variant="danger"
+  >
+    <strong>
+      Warning:
+    </strong>
+     This Product or Service is not associated with the NAICS code reported in this application. Please review the guidance documents for a list of the valid products for this sector or verify the NAICS code reported in the Administration data is correct.
+  </Alert>
+  <ObjectField
+    autofocus={false}
+    disabled={true}
+    errorSchema={Object {}}
+    formContext={Object {}}
+    formData={
+      Object {
+        "productAmount": 456,
+        "productEmissions": 123,
+        "productRowId": 1,
+        "productUnits": "bar",
+        "requiresEmissionAllocation": true,
+      }
+    }
+    idSchema={
+      Object {
+        "$id": "myField",
+      }
+    }
+    naicsCode={
+      Object {
+        " $refType": "ProductField_naicsCode",
+        "allProductsByNaicsCode": Object {
+          "edges": Array [
+            Object {
+              "node": Object {
+                "productState": "PUBLISHED",
+                "rowId": 2,
+              },
+            },
+          ],
+        },
+      }
+    }
+    name=""
+    onBlur={[MockFunction]}
+    onChange={[Function]}
+    query={
+      Object {
+        " $refType": "ProductField_query",
+        "allProducts": Object {
+          "edges": Array [
+            Object {
+              "node": Object {
+                "addEmissionsFromEios": false,
+                "addPurchasedElectricityEmissions": false,
+                "addPurchasedHeatEmissions": false,
+                "isEnergyProduct": false,
+                "productState": "PUBLISHED",
+                "requiresEmissionAllocation": true,
+                "requiresProductAmount": true,
+                "rowId": 1,
+                "subtractExportedElectricityEmissions": false,
+                "subtractExportedHeatEmissions": false,
+                "subtractGeneratedElectricityEmissions": false,
+                "subtractGeneratedHeatEmissions": false,
+                "units": "bar",
+              },
+            },
+          ],
+        },
+      }
+    }
+    readonly={false}
+    registry={
+      Object {
+        "definitions": Object {},
+        "fields": Object {
+          "AnyOfField": [Function],
+          "ArrayField": [Function],
+          "BooleanField": [Function],
+          "DescriptionField": [Function],
+          "NullField": [Function],
+          "NumberField": [Function],
+          "ObjectField": undefined,
+          "OneOfField": [Function],
+          "SchemaField": [Function],
+          "StringField": [Function],
+          "TitleField": [Function],
+          "UnsupportedField": [Function],
+        },
+        "formContext": Object {},
+        "rootSchema": Object {},
+        "widgets": Object {
+          "AltDateTimeWidget": [Function],
+          "AltDateWidget": [Function],
+          "BaseInput": [Function],
+          "CheckboxWidget": [Function],
+          "CheckboxesWidget": [Function],
+          "ColorWidget": [Function],
+          "DateTimeWidget": [Function],
+          "DateWidget": [Function],
+          "EmailWidget": [Function],
+          "FileWidget": [Function],
+          "HiddenWidget": [Function],
+          "PasswordWidget": [Function],
+          "RadioWidget": [Function],
+          "RangeWidget": [Function],
+          "SelectWidget": [Function],
+          "TextWidget": [Function],
+          "TextareaWidget": [Function],
+          "URLWidget": [Function],
+          "UpDownWidget": [Function],
+        },
+      }
+    }
+    required={false}
+    schema={Object {}}
+    uiSchema={Object {}}
+  />
+</Fragment>
+`;

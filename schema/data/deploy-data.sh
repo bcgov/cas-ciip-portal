@@ -219,6 +219,7 @@ deployDevData() {
   _psql -f "./dev/application-2018.sql"
   _psql -f "./dev/application_submission.sql"
   _psql -f "./dev/linked_product.sql"
+  _psql -f "./dev/product_naics_code.sql"
   return 0;
 }
 

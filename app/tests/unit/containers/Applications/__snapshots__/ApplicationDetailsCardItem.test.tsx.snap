@@ -83,11 +83,16 @@ exports[`ApplicationDetailsCardItemComponent should render the individual summar
             "idDiffMap": undefined,
             "query": Object {
               " $fragmentRefs": Object {
-                " $refType": "ProductField_query",
+                "EmissionCategoryRowIdField_query": true,
+                "FuelField_query": true,
+                "FuelRowIdField_query": true,
+                "NaicsField_query": true,
                 "ProductField_query": true,
+                "ProductRowIdField_query": true,
               },
+              " $refType": "ApplicationDetailsCardItem_query",
             },
-            "showDiff": undefined,
+            "showDiff": false,
           }
         }
         formData={Object {}}

@@ -36,30 +36,6 @@ interface Props {
   isSaved: boolean;
 }
 
-const CUSTOM_FIELDS = {
-  naics: (props) => <NaicsField query={props.formContext.query} {...props} />,
-  fuel: (props) => <FuelFields query={props.formContext.query} {...props} />,
-  emissionSource: EmissionSourceFields,
-  emissionGas: EmissionGasFields,
-  product: (props) => (
-    <ProductField query={props.formContext.query} {...props} />
-  ),
-  emission: (props) => (
-    <EmissionField query={props.formContext.query} {...props} />
-  ),
-  productRowId: (props) => (
-    <ProductRowIdField query={props.formContext.query} {...props} />
-  ),
-  fuelRowId: (props) => (
-    <FuelRowIdField query={props.formContext.query} {...props} />
-  ),
-  emissionCategoryRowId: (props) => (
-    <EmissionCategoryRowIdField query={props.formContext.query} {...props} />
-  ),
-  NumberField,
-  ProblemReportField
-};
-
 export const FormComponent: React.FunctionComponent<Props> = ({
   query,
   ciipFormResult,
@@ -67,6 +43,40 @@ export const FormComponent: React.FunctionComponent<Props> = ({
   onComplete,
   onValueChanged
 }) => {
+  const CUSTOM_FIELDS = {
+    naics: (props) => <NaicsField query={query} {...props} />,
+    fuel: (props) => <FuelFields query={query} {...props} />,
+    emissionSource: EmissionSourceFields,
+    emissionGas: EmissionGasFields,
+    product: (props) => (
+      <ProductField
+        naicsCode={
+          ciipFormResult.applicationByApplicationId.latestDraftRevision
+            .naicsCode
+        }
+        query={query}
+        {...props}
+      />
+    ),
+    emission: (props) => <EmissionField query={query} {...props} />,
+    productRowId: (props) => (
+      <ProductRowIdField
+        naicsCode={
+          ciipFormResult.applicationByApplicationId.latestDraftRevision
+            .naicsCode
+        }
+        query={query}
+        {...props}
+      />
+    ),
+    fuelRowId: (props) => <FuelRowIdField query={query} {...props} />,
+    emissionCategoryRowId: (props) => (
+      <EmissionCategoryRowIdField query={query} {...props} />
+    ),
+    NumberField,
+    ProblemReportField
+  };
+
   const [hasErrors, setHasErrors] = useState(false);
   if (!ciipFormResult) return null;
   const {
@@ -227,6 +237,14 @@ export default createFragmentContainer(FormComponent, {
         formJson
         ciipApplicationWizardByFormId {
           formPosition
+        }
+      }
+      applicationByApplicationId {
+        latestDraftRevision {
+          naicsCode {
+            ...ProductRowIdField_naicsCode
+            ...ProductField_naicsCode
+          }
         }
       }
     }

@@ -1,0 +1,113 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The ProductionFields Component without naics code should match the snapshot 1`] = `
+<div>
+  <InputGroup>
+    <InputGroupText
+      className="col-md-12"
+    >
+      foo
+    </InputGroupText>
+  </InputGroup>
+</div>
+`;
+
+exports[`The ProductionRowIdField Component with archived product should match the snapshot 1`] = `
+<div>
+  <InputGroup>
+    <InputGroupText
+      className="col-md-12"
+    >
+      bar
+    </InputGroupText>
+  </InputGroup>
+</div>
+`;
+
+exports[`The ProductionRowIdField Component with published product matched to a naics code should match the snapshot 1`] = `
+<StringField
+  autofocus={false}
+  disabled={false}
+  errorSchema={Object {}}
+  formContext={Object {}}
+  formData={1}
+  idSchema={
+    Object {
+      "$id": "myField",
+    }
+  }
+  naicsCode={
+    Object {
+      " $refType": "ProductRowIdField_naicsCode",
+      "productsByNaicsCode": Object {
+        "edges": Array [
+          Object {
+            "node": Object {
+              "productName": "foo",
+              "rowId": 1,
+            },
+          },
+        ],
+      },
+    }
+  }
+  name=""
+  onBlur={[MockFunction]}
+  onChange={[MockFunction]}
+  readonly={false}
+  registry={
+    Object {
+      "definitions": Object {},
+      "fields": Object {
+        "AnyOfField": [Function],
+        "ArrayField": [Function],
+        "BooleanField": [Function],
+        "DescriptionField": [Function],
+        "NullField": [Function],
+        "NumberField": [Function],
+        "ObjectField": [Function],
+        "OneOfField": [Function],
+        "SchemaField": [Function],
+        "StringField": [Function],
+        "TitleField": [Function],
+        "UnsupportedField": [Function],
+      },
+      "formContext": Object {},
+      "rootSchema": Object {},
+      "widgets": Object {
+        "AltDateTimeWidget": [Function],
+        "AltDateWidget": [Function],
+        "BaseInput": [Function],
+        "CheckboxWidget": [Function],
+        "CheckboxesWidget": [Function],
+        "ColorWidget": [Function],
+        "DateTimeWidget": [Function],
+        "DateWidget": [Function],
+        "EmailWidget": [Function],
+        "FileWidget": [Function],
+        "HiddenWidget": [Function],
+        "PasswordWidget": [Function],
+        "RadioWidget": [Function],
+        "RangeWidget": [Function],
+        "SelectWidget": [Function],
+        "TextWidget": [Function],
+        "TextareaWidget": [Function],
+        "URLWidget": [Function],
+        "UpDownWidget": [Function],
+      },
+    }
+  }
+  required={false}
+  schema={
+    Object {
+      "enum": Array [
+        1,
+      ],
+      "enumNames": Array [
+        "foo",
+      ],
+    }
+  }
+  uiSchema={Object {}}
+/>
+`;

@@ -3,109 +3,134 @@ import {InputGroup} from 'react-bootstrap';
 import {FieldProps} from '@rjsf/core';
 import {createFragmentContainer, graphql} from 'react-relay';
 import {ProductRowIdField_query} from 'ProductRowIdField_query.graphql';
+import {ProductRowIdField_naicsCode} from 'ProductRowIdField_naicsCode.graphql';
 
 interface Props extends FieldProps<number> {
   query: ProductRowIdField_query;
+  naicsCode?: ProductRowIdField_naicsCode;
 }
 
 /**
- * Separates active products from archived products & renders according to the product's state.
- * For active products, the fieldProps are generated & either a search dropdown component is rendered
- * or the value is rendered based on what is defined in the currentjsonschema form registry.
- * For archived proucts, a readonly input is rendered with the name of the archived product.
- * This split based on the state of the product allows archived products to be rendered in the product form,
- * but since only the active products are passed to the field props, these products are not available to be selected
- * from the search dropdown component when filling out an application.
+ * Provides a list of products filtered by NAICS code for selection/display.
+ * If a product is not associated with the NAICS code reported in the Administration data it is not
+ * selectable from the dropdown.
+ * If an invalid (not associated with the reported NAICS code or in 'archived' state) is reported, it
+ * is rendered as a disabled input.
  */
 export const ProductRowIdFieldComponent: React.FunctionComponent<Props> = (
   props
 ) => {
-  // The last id in the Product table for energy products (ids 1-7)
-  const lastEnergyProductIndex = 7;
   /**
    * Injects the list of products in the schema, and remove `query` from the props
    * Other props are passed as-is to the StringField.
-   * If this component is rendered from the admin product-benchmark link product modal, the energy products are removed from the choices.
    */
-  const fieldProps = useMemo(
-    () => ({
+  const fieldProps = useMemo(() => {
+    const productIds = props.naicsCode?.productsByNaicsCode?.edges.map(
+      ({node}) => node.rowId
+    );
+    const productNames = props.naicsCode?.productsByNaicsCode?.edges.map(
+      ({node}) => node.productName
+    );
+
+    return {
       ...props,
       schema: {
         ...props.schema,
-        enum: props.isLinkModal
-          ? props.query.published.edges
-              .filter(({node}) => node.rowId > lastEnergyProductIndex)
-              .map(({node}) => node.rowId)
-          : props.query.published.edges.map(({node}) => node.rowId),
-        enumNames: props.isLinkModal
-          ? props.query.published.edges
-              .filter(({node}) => node.rowId > lastEnergyProductIndex)
-              .map(({node}) => node.productName)
-          : props.query.published.edges.map(({node}) => node.productName)
+        enum: productIds || [],
+        enumNames: productNames || []
       },
       query: undefined
-    }),
-    [props]
-  );
+    };
+  }, [props]);
 
   /**
-   * Contains all products, split into arrays of published / archived product IDs and names.
+   * Contains all products, split into arrays of published / archived / (published products filtered by NAICS code) product IDs and names.
    */
   const allProducts = useMemo(
     () => ({
       publishedProductIds: props.query.published.edges.map(
         ({node}) => node.rowId
       ),
+      publishedProductNames: props.query.published.edges.map(
+        ({node}) => node.productName
+      ),
       archivedProductIds: props.query.archived.edges.map(
         ({node}) => node.rowId
       ),
       archivedProductNames: props.query.archived.edges.map(
         ({node}) => node.productName
+      ),
+      productIdsByNaicsCode: props.naicsCode?.productsByNaicsCode.edges.map(
+        ({node}) => node.rowId
       )
     }),
     [props]
   );
 
-  // Pass the fieldProps for published product
+  const invalidProduct = (productName) => (
+    <InputGroup>
+      <InputGroup.Text className="col-md-12">{productName}</InputGroup.Text>
+    </InputGroup>
+  );
+  // If product is valid (associated with reported NAICS code && not archived), render the Stringfield with fieldProps.
   if (
-    allProducts.publishedProductIds.includes(props.formData) ||
+    (allProducts.productIdsByNaicsCode?.includes(props.formData) &&
+      !allProducts.archivedProductIds.includes(props.formData)) ||
     props.formData === undefined
   )
     return <props.registry.fields.StringField {...fieldProps} />;
 
-  // Render a disabled text input for an archived product
-  const archivedIndex = allProducts.archivedProductIds.indexOf(props.formData);
-  return (
-    <div>
-      <InputGroup className="mb-3">
-        <InputGroup.Prepend>
-          <InputGroup.Text>
-            {allProducts.archivedProductNames[archivedIndex]}
-          </InputGroup.Text>
-        </InputGroup.Prepend>
-      </InputGroup>
-    </div>
-  );
+  // Else get the invalid product from the list of all products in the database & render the name as a disabled input.
+  const invalidProductIds = [
+    ...allProducts.publishedProductIds,
+    ...allProducts.archivedProductIds
+  ];
+  const invalidProductNames = [
+    ...allProducts.publishedProductNames,
+    ...allProducts.archivedProductNames
+  ];
+  const invalidProductId = invalidProductIds.indexOf(props.formData);
+
+  return <div>{invalidProduct(invalidProductNames[invalidProductId])}</div>;
 };
 
 export default createFragmentContainer(ProductRowIdFieldComponent, {
   query: graphql`
     fragment ProductRowIdField_query on Query {
-      published: allProducts(condition: {productState: PUBLISHED}) {
+      published: allProducts(
+        filter: {productState: {equalTo: PUBLISHED}}
+        orderBy: PRODUCT_NAME_ASC
+      ) {
         edges {
           node {
             rowId
             productName
-            productState
           }
         }
       }
-      archived: allProducts(condition: {productState: ARCHIVED}) {
+      archived: allProducts(
+        filter: {productState: {equalTo: ARCHIVED}}
+        orderBy: PRODUCT_NAME_ASC
+      ) {
         edges {
           node {
             rowId
             productName
-            productState
+          }
+        }
+      }
+    }
+  `,
+  naicsCode: graphql`
+    fragment ProductRowIdField_naicsCode on NaicsCode {
+      productsByNaicsCode: productsByProductNaicsCodeNaicsCodeIdAndProductId(
+        filter: {productState: {equalTo: PUBLISHED}}
+        orderBy: PRODUCT_NAME_ASC
+      ) {
+        edges {
+          node {
+            rowId
+            productName
           }
         }
       }

@@ -1,16 +1,10 @@
 import React from 'react';
 import EmissionGasFields from 'containers/Forms/EmissionGasFields';
 import EmissionSourceFields from 'containers/Forms/EmissionSourceFields';
-import ProductField from 'containers/Forms/ProductField';
-import ProductRowIdField from 'containers/Forms/ProductRowIdField';
 import {FieldProps} from '@rjsf/core';
 import NumberFormat from 'react-number-format';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faExclamationTriangle} from '@fortawesome/free-solid-svg-icons';
-import FuelRowIdField from 'containers/Forms/FuelRowIdField';
-import FuelField from 'containers/Forms/FuelField';
-import EmissionCategoryRowIdField from 'containers/Forms/EmissionCategoryRowIdField';
-import NaicsField from 'containers/Forms/NaicsField';
 
 // Some formData values are numbers that map to enums, this function uses the number values to return the enum names stored in the schema
 const getDisplayValue = (schema, value) => {
@@ -113,22 +107,8 @@ const CUSTOM_FIELDS: Record<string, React.FunctionComponent<FieldProps>> = {
       </span>
     );
   },
-  naics: (props) => <NaicsField query={props.formContext.query} {...props} />,
   emissionSource: EmissionSourceFields,
   emissionGas: (props) => <EmissionGasFields {...props} />,
-  product: (props) => (
-    <ProductField query={props.formContext.query} {...props} />
-  ),
-  productRowId: (props) => (
-    <ProductRowIdField query={props.formContext.query} {...props} />
-  ),
-  fuel: (props) => <FuelField query={props.formContext.query} {...props} />,
-  fuelRowId: (props) => (
-    <FuelRowIdField query={props.formContext.query} {...props} />
-  ),
-  emissionCategoryRowId: (props) => (
-    <EmissionCategoryRowIdField query={props.formContext.query} {...props} />
-  ),
   NumberField: (props) => {
     const {
       idSchema,

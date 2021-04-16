@@ -2581,6 +2581,11 @@ type ApplicationRevision implements Node {
   legalDisclaimerAccepted: Boolean!
 
   """
+  This computed column returns the associated naics_code table row for the application_revision passed in via the parameters
+  """
+  naicsCode: NaicsCode
+
+  """
   Returns the form results for this application revision, ordered by the with the order defined by the application wizard
   """
   orderedFormResults(

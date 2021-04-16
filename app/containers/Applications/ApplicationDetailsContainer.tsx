@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Dropdown, Form, Row, Col /*Button*/} from 'react-bootstrap';
+import {Dropdown, Form, Row, Col} from 'react-bootstrap';
 import DropdownMenuItemComponent from 'components/DropdownMenuItemComponent';
 import {createRefetchContainer, graphql, RelayRefetchProp} from 'react-relay';
 import {ApplicationDetailsContainer_query} from 'ApplicationDetailsContainer_query.graphql';
@@ -155,9 +155,6 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = ({
           />
         ))}
       </div>
-      {/* <Button variant="primary" onClick={handleDownloadPdf}>
-        Download PDF
-      </Button> */}
       <style jsx global>{`
         @media print {
           header .header-right,
