@@ -1,7 +1,7 @@
 import React from 'react';
 import {Row, Col, ListGroup} from 'react-bootstrap';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faCheck} from '@fortawesome/free-solid-svg-icons';
+import {faCheck, faComments} from '@fortawesome/free-solid-svg-icons';
 import {graphql, createFragmentContainer} from 'react-relay';
 import {ApplicationReviewStepSelector_applicationReviewSteps} from '__generated__/ApplicationReviewStepSelector_applicationReviewSteps.graphql';
 import {capitalize} from 'lib/text-transforms';
@@ -18,6 +18,16 @@ export const ApplicationReviewStepSelector: React.FunctionComponent<Props> = ({
   onSelectStep
 }) => {
   const steps = applicationReviewSteps.edges;
+  const renderStepStatusIcon = (icon) => (
+    <FontAwesomeIcon
+      icon={icon}
+      style={{
+        position: 'absolute',
+        left: '1.2rem',
+        top: 'calc(50% - 0.5em)'
+      }}
+    />
+  );
   return (
     <Row>
       <Col md={5}>
@@ -46,16 +56,7 @@ export const ApplicationReviewStepSelector: React.FunctionComponent<Props> = ({
                   paddingLeft: '3rem'
                 }}
               >
-                {isComplete && (
-                  <FontAwesomeIcon
-                    icon={faCheck}
-                    style={{
-                      position: 'absolute',
-                      left: '1.2rem',
-                      top: 'calc(50% - 0.5em)'
-                    }}
-                  />
-                )}
+                {renderStepStatusIcon(isComplete ? faCheck : faComments)}
                 {callToAction}
               </ListGroup.Item>
             );
