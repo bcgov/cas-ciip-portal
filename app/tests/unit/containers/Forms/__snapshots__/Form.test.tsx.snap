@@ -107,19 +107,6 @@ exports[`The Form Component should match the snapshot 1`] = `
         }
         formContext={
           Object {
-            "ciipFormResult": Object {
-              " $refType": "Form_ciipFormResult",
-              "formJsonByFormId": Object {
-                "ciipApplicationWizardByFormId": Object {
-                  "formPosition": 0,
-                },
-                "formJson": Object {
-                  "schema": Object {},
-                },
-                "name": "Foo",
-              },
-              "formResult": Object {},
-            },
             "query": Object {
               " $fragmentRefs": Object {
                 "EmissionCategoryRowIdField_query": true,
@@ -827,23 +814,6 @@ exports[`The Form Component should not render an alert reminder to check the gui
         }
         formContext={
           Object {
-            "ciipFormResult": Object {
-              " $refType": "Form_ciipFormResult",
-              "formJsonByFormId": Object {
-                "ciipApplicationWizardByFormId": Object {
-                  "formPosition": 3,
-                },
-                "formJson": Object {
-                  "schema": Object {},
-                },
-                "name": "Foo",
-              },
-              "formResult": Array [
-                Object {
-                  "requiresEmissionAllocation": false,
-                },
-              ],
-            },
             "query": Object {
               " $fragmentRefs": Object {
                 "EmissionCategoryRowIdField_query": true,
@@ -1557,23 +1527,6 @@ exports[`The Form Component should render alert reminder to check the guidance i
         }
         formContext={
           Object {
-            "ciipFormResult": Object {
-              " $refType": "Form_ciipFormResult",
-              "formJsonByFormId": Object {
-                "ciipApplicationWizardByFormId": Object {
-                  "formPosition": 3,
-                },
-                "formJson": Object {
-                  "schema": Object {},
-                },
-                "name": "Foo",
-              },
-              "formResult": Array [
-                Object {
-                  "requiresEmissionAllocation": true,
-                },
-              ],
-            },
             "query": Object {
               " $fragmentRefs": Object {
                 "EmissionCategoryRowIdField_query": true,
