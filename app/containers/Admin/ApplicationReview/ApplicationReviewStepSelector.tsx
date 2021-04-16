@@ -21,7 +21,7 @@ export const ApplicationReviewStepSelector: React.FunctionComponent<Props> = ({
   return (
     <Row>
       <Col md={5}>
-        <ListGroup as="ul" role="listbox">
+        <ListGroup as="ul">
           {steps.map((edge) => {
             const {reviewStepId, isComplete} = edge.node;
             const isSelectedStep = edge.node.id === selectedStep;
@@ -32,7 +32,6 @@ export const ApplicationReviewStepSelector: React.FunctionComponent<Props> = ({
               <ListGroup.Item
                 as="li"
                 action
-                role="option"
                 tabIndex={0}
                 key={reviewStepId}
                 aria-selected={isSelectedStep}
@@ -64,7 +63,6 @@ export const ApplicationReviewStepSelector: React.FunctionComponent<Props> = ({
           <ListGroup.Item
             as="li"
             action
-            role="option"
             key="decision"
             tabIndex={0}
             disabled
