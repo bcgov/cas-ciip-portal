@@ -111,11 +111,15 @@ class ApplicationReview extends Component<Props> {
              offset-md-${this.state.isSidebarOpened ? 0 : 1}
              offset-lg-${this.state.isSidebarOpened ? 0 : 1}`}
           >
-            <h1>{`Application #${query.application.rowId}`}</h1>
-            <ApplicationRevisionStatusContainer
-              applicationRevisionStatus={query.application.reviewRevisionStatus}
-              applicationRowId={query.application.rowId}
-            />
+            <h1>
+              {`Application #${query.application.rowId}`}
+              <ApplicationRevisionStatusContainer
+                applicationRevisionStatus={
+                  query.application.reviewRevisionStatus
+                }
+                applicationRowId={query.application.rowId}
+              />
+            </h1>
             <ApplicationReviewStepSelector
               applicationReviewSteps={
                 query.application.applicationReviewStepsByApplicationId

@@ -29,17 +29,17 @@ exports[`The application-review page matches the last snapshot (with review side
         className="jsx-2513507238"
       >
         Application #1
-      </h1>
-      <Relay(ApplicationRevisionStatusComponent)
-        applicationRevisionStatus={
-          Object {
-            " $fragmentRefs": Object {
-              "ApplicationRevisionStatusContainer_applicationRevisionStatus": true,
-            },
+        <Relay(ApplicationRevisionStatusComponent)
+          applicationRevisionStatus={
+            Object {
+              " $fragmentRefs": Object {
+                "ApplicationRevisionStatusContainer_applicationRevisionStatus": true,
+              },
+            }
           }
-        }
-        applicationRowId={1}
-      />
+          applicationRowId={1}
+        />
+      </h1>
       <Relay(ApplicationReviewStepSelector)
         applicationReviewSteps={
           Object {
@@ -279,17 +279,17 @@ exports[`The application-review page matches the last snapshot (with review side
         className="jsx-2513507238"
       >
         Application #1
-      </h1>
-      <Relay(ApplicationRevisionStatusComponent)
-        applicationRevisionStatus={
-          Object {
-            " $fragmentRefs": Object {
-              "ApplicationRevisionStatusContainer_applicationRevisionStatus": true,
-            },
+        <Relay(ApplicationRevisionStatusComponent)
+          applicationRevisionStatus={
+            Object {
+              " $fragmentRefs": Object {
+                "ApplicationRevisionStatusContainer_applicationRevisionStatus": true,
+              },
+            }
           }
-        }
-        applicationRowId={1}
-      />
+          applicationRowId={1}
+        />
+      </h1>
       <Relay(ApplicationReviewStepSelector)
         applicationReviewSteps={
           Object {

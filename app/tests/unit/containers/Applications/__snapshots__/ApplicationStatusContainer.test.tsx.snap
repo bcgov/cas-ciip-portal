@@ -1,9 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ApplicationRevisionStatusItem should render the application status in a disabled button if isCurrentVersion is false 1`] = `
-<Row
-  noGutters={false}
->
+<Fragment>
   <Modal
     animation={true}
     autoFocus={true}
@@ -53,24 +51,24 @@ exports[`ApplicationRevisionStatusItem should render the application status in a
       </Button>
     </ModalFooter>
   </Modal>
-  <Col
-    md={2}
+  <Button
+    active={false}
+    disabled={true}
+    style={
+      Object {
+        "fontSize": "1rem",
+        "marginLeft": "2rem",
+      }
+    }
+    variant="info"
   >
-    <Button
-      active={false}
-      disabled={true}
-      variant="info"
-    >
-      SUBMITTED
-    </Button>
-  </Col>
-</Row>
+    SUBMITTED
+  </Button>
+</Fragment>
 `;
 
 exports[`ApplicationRevisionStatusItem should render the application status in a dropdown if isCurrentVersion is true 1`] = `
-<Row
-  noGutters={false}
->
+<Fragment>
   <Modal
     animation={true}
     autoFocus={true}
@@ -120,71 +118,70 @@ exports[`ApplicationRevisionStatusItem should render the application status in a
       </Button>
     </ModalFooter>
   </Modal>
-  <Col
-    md={2}
+  <Dropdown
+    as="span"
+    navbar={false}
+    style={
+      Object {
+        "fontSize": "1rem",
+        "marginLeft": "2rem",
+        "width": "100%",
+      }
+    }
   >
-    <Dropdown
-      navbar={false}
+    <DropdownToggle
+      as={
+        Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "defaultProps": Object {
+            "pill": false,
+          },
+          "displayName": "Badge",
+          "render": [Function],
+        }
+      }
+      id="dropdown"
+      pill={true}
+      style={
+        Object {
+          "fontSize": "1em",
+          "padding": "0.6em 1em",
+          "textTransform": "uppercase",
+        }
+      }
+      variant="info"
+    >
+      Submitted
+    </DropdownToggle>
+    <DropdownMenu
+      align="left"
+      alignRight={false}
+      flip={true}
       style={
         Object {
           "width": "100%",
         }
       }
     >
-      <DropdownToggle
-        as={
-          Object {
-            "$$typeof": Symbol(react.forward_ref),
-            "defaultProps": Object {
-              "pill": false,
-            },
-            "displayName": "Badge",
-            "render": [Function],
-          }
-        }
-        id="dropdown"
-        pill={true}
-        style={
-          Object {
-            "fontSize": "1em",
-            "padding": "0.6em 1em",
-            "textTransform": "uppercase",
-          }
-        }
-        variant="info"
-      >
-        Submitted
-      </DropdownToggle>
-      <DropdownMenu
-        align="left"
-        alignRight={false}
-        flip={true}
-        style={
-          Object {
-            "width": "100%",
-          }
-        }
-      >
-        <DropdownMenuItemComponent
-          itemEventKey="REJECTED"
-          itemFunc={[Function]}
-          itemTitle="Rejected"
-          key="REJECTED"
-        />
-        <DropdownMenuItemComponent
-          itemEventKey="APPROVED"
-          itemFunc={[Function]}
-          itemTitle="Approved"
-          key="APPROVED"
-        />
-        <DropdownMenuItemComponent
-          itemEventKey="REQUESTED_CHANGES"
-          itemFunc={[Function]}
-          itemTitle="Changes requested"
-          key="REQUESTED_CHANGES"
-        />
-      </DropdownMenu>
-    </Dropdown>
-  </Col>
-</Row>
+      <DropdownMenuItemComponent
+        itemEventKey="REJECTED"
+        itemFunc={[Function]}
+        itemTitle="Rejected"
+        key="REJECTED"
+      />
+      <DropdownMenuItemComponent
+        itemEventKey="APPROVED"
+        itemFunc={[Function]}
+        itemTitle="Approved"
+        key="APPROVED"
+      />
+      <DropdownMenuItemComponent
+        itemEventKey="REQUESTED_CHANGES"
+        itemFunc={[Function]}
+        itemTitle="Changes requested"
+        key="REQUESTED_CHANGES"
+      />
+    </DropdownMenu>
+  </Dropdown>
+</Fragment>
 `;
