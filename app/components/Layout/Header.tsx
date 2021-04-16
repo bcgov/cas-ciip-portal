@@ -3,6 +3,29 @@ import Link from 'next/link';
 import LoginButton from 'components/LoginButton';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faBars, faUser} from '@fortawesome/free-solid-svg-icons';
+import css from 'styled-jsx/css';
+
+export const ButtonCSS = css`
+  button {
+    background: none;
+    border: none;
+    color: inherit;
+  }
+
+  .nav-button {
+    color: #f8f9fa;
+    display: inline-block;
+    text-align: center;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    border-radius: 0.25rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+      border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+`;
 
 const DESKTOP_BREAKPOINT_QUERY = '(min-width: 992px)';
 
@@ -114,6 +137,7 @@ const HeaderLayout: React.FunctionComponent<Props> = ({
         </nav>
       </div>
       {children}
+      <style jsx>{ButtonCSS}</style>
       <style jsx>
         {`
           /* Mobile-first styles:
@@ -222,27 +246,6 @@ const HeaderLayout: React.FunctionComponent<Props> = ({
           }
         `}
       </style>
-      <style jsx global>{`
-        nav button {
-          background: none;
-          border: none;
-          color: inherit;
-        }
-        .nav-button {
-          color: #f8f9fa;
-          display: inline-block;
-          text-align: center;
-          user-select: none;
-          background-color: transparent;
-          border: 1px solid transparent;
-          padding: 0.375rem 0.75rem;
-          font-size: 1rem;
-          border-radius: 0.25rem;
-          transition: color 0.15s ease-in-out,
-            background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
-            box-shadow 0.15s ease-in-out;
-        }
-      `}</style>
     </header>
   );
 };

@@ -3,7 +3,7 @@
 exports[`UserProfileDropdown desktop matches snapshot 1`] = `
 <Fragment>
   <li
-    className="jsx-1979462723 d-none d-lg-block"
+    className="jsx-1979462723 jsx-1444636411 d-none d-lg-block"
   >
     <Dropdown
       alignRight={true}
@@ -19,7 +19,7 @@ exports[`UserProfileDropdown desktop matches snapshot 1`] = `
         variant="primary"
       >
         <div
-          className="jsx-1979462723 user-icon"
+          className="jsx-1979462723 jsx-1444636411 user-icon"
         >
           <FontAwesomeIcon
             border={false}
@@ -73,25 +73,25 @@ exports[`UserProfileDropdown desktop matches snapshot 1`] = `
           href="/user/profile"
         >
           <a
-            className="jsx-1979462723 dropdown-item text-right"
+            className="jsx-1979462723 jsx-1444636411 dropdown-item text-right"
           >
             <div
-              className="jsx-1979462723"
+              className="jsx-1979462723 jsx-1444636411"
             >
               <span
-                className="jsx-1979462723"
+                className="jsx-1979462723 jsx-1444636411"
               >
                 Test
               </span>
                
               <span
-                className="jsx-1979462723"
+                className="jsx-1979462723 jsx-1444636411"
               >
                 Tester
               </span>
             </div>
             <div
-              className="jsx-1979462723 small text-muted text-nowrap"
+              className="jsx-1979462723 jsx-1444636411 small text-muted text-nowrap"
             >
               really-long-email-to-see-wrapping@button.is
             </div>
@@ -200,7 +200,7 @@ exports[`UserProfileDropdown desktop matches snapshot 1`] = `
           tabIndex={0}
         >
           <button
-            className="jsx-1979462723 w-100 text-right"
+            className="jsx-1979462723 jsx-1444636411 w-100 text-right"
             type="submit"
           >
             Logout
@@ -210,31 +210,31 @@ exports[`UserProfileDropdown desktop matches snapshot 1`] = `
     </Dropdown>
   </li>
   <li
-    className="jsx-1979462723 d-lg-none"
+    className="jsx-1979462723 jsx-1444636411 d-lg-none"
   >
     <Link
       href="/user/profile"
     >
       <a
-        className="jsx-1979462723 nav-button text-right"
+        className="jsx-1979462723 jsx-1444636411 nav-button text-right"
       >
         <div
-          className="jsx-1979462723"
+          className="jsx-1979462723 jsx-1444636411"
         >
           <span
-            className="jsx-1979462723"
+            className="jsx-1979462723 jsx-1444636411"
           >
             Test
           </span>
            
           <span
-            className="jsx-1979462723"
+            className="jsx-1979462723 jsx-1444636411"
           >
             Tester
           </span>
         </div>
         <div
-          className="jsx-1979462723 small text-nowrap"
+          className="jsx-1979462723 jsx-1444636411 small text-nowrap"
         >
           really-long-email-to-see-wrapping@button.is
         </div>
@@ -242,7 +242,7 @@ exports[`UserProfileDropdown desktop matches snapshot 1`] = `
     </Link>
   </li>
   <li
-    className="jsx-1979462723 d-lg-none"
+    className="jsx-1979462723 jsx-1444636411 d-lg-none"
   >
     <Form
       action="/logout"
@@ -250,13 +250,638 @@ exports[`UserProfileDropdown desktop matches snapshot 1`] = `
       method="post"
     >
       <button
-        className="jsx-1979462723 nav-button text-right"
+        className="jsx-1979462723 jsx-1444636411 nav-button text-right"
         type="submit"
       >
         Logout
       </button>
     </Form>
   </li>
+  <JSXStyle
+    id="1444636411"
+  >
+    b
+    u
+    t
+    t
+    o
+    n
+    .
+    j
+    s
+    x
+    -
+    1
+    4
+    4
+    4
+    6
+    3
+    6
+    4
+    1
+    1
+    {
+    b
+    a
+    c
+    k
+    g
+    r
+    o
+    u
+    n
+    d
+    :
+    n
+    o
+    n
+    e
+    ;
+    b
+    o
+    r
+    d
+    e
+    r
+    :
+    n
+    o
+    n
+    e
+    ;
+    c
+    o
+    l
+    o
+    r
+    :
+    i
+    n
+    h
+    e
+    r
+    i
+    t
+    ;
+    }
+    .
+    n
+    a
+    v
+    -
+    b
+    u
+    t
+    t
+    o
+    n
+    .
+    j
+    s
+    x
+    -
+    1
+    4
+    4
+    4
+    6
+    3
+    6
+    4
+    1
+    1
+    {
+    c
+    o
+    l
+    o
+    r
+    :
+    #
+    f
+    8
+    f
+    9
+    f
+    a
+    ;
+    d
+    i
+    s
+    p
+    l
+    a
+    y
+    :
+    i
+    n
+    l
+    i
+    n
+    e
+    -
+    b
+    l
+    o
+    c
+    k
+    ;
+    t
+    e
+    x
+    t
+    -
+    a
+    l
+    i
+    g
+    n
+    :
+    c
+    e
+    n
+    t
+    e
+    r
+    ;
+    -
+    w
+    e
+    b
+    k
+    i
+    t
+    -
+    u
+    s
+    e
+    r
+    -
+    s
+    e
+    l
+    e
+    c
+    t
+    :
+    n
+    o
+    n
+    e
+    ;
+    -
+    m
+    o
+    z
+    -
+    u
+    s
+    e
+    r
+    -
+    s
+    e
+    l
+    e
+    c
+    t
+    :
+    n
+    o
+    n
+    e
+    ;
+    -
+    m
+    s
+    -
+    u
+    s
+    e
+    r
+    -
+    s
+    e
+    l
+    e
+    c
+    t
+    :
+    n
+    o
+    n
+    e
+    ;
+    u
+    s
+    e
+    r
+    -
+    s
+    e
+    l
+    e
+    c
+    t
+    :
+    n
+    o
+    n
+    e
+    ;
+    b
+    a
+    c
+    k
+    g
+    r
+    o
+    u
+    n
+    d
+    -
+    c
+    o
+    l
+    o
+    r
+    :
+    t
+    r
+    a
+    n
+    s
+    p
+    a
+    r
+    e
+    n
+    t
+    ;
+    b
+    o
+    r
+    d
+    e
+    r
+    :
+    1
+    p
+    x
+     
+    s
+    o
+    l
+    i
+    d
+     
+    t
+    r
+    a
+    n
+    s
+    p
+    a
+    r
+    e
+    n
+    t
+    ;
+    p
+    a
+    d
+    d
+    i
+    n
+    g
+    :
+    0
+    .
+    3
+    7
+    5
+    r
+    e
+    m
+     
+    0
+    .
+    7
+    5
+    r
+    e
+    m
+    ;
+    f
+    o
+    n
+    t
+    -
+    s
+    i
+    z
+    e
+    :
+    1
+    r
+    e
+    m
+    ;
+    b
+    o
+    r
+    d
+    e
+    r
+    -
+    r
+    a
+    d
+    i
+    u
+    s
+    :
+    0
+    .
+    2
+    5
+    r
+    e
+    m
+    ;
+    -
+    w
+    e
+    b
+    k
+    i
+    t
+    -
+    t
+    r
+    a
+    n
+    s
+    i
+    t
+    i
+    o
+    n
+    :
+    c
+    o
+    l
+    o
+    r
+     
+    0
+    .
+    1
+    5
+    s
+     
+    e
+    a
+    s
+    e
+    -
+    i
+    n
+    -
+    o
+    u
+    t
+    ,
+    b
+    a
+    c
+    k
+    g
+    r
+    o
+    u
+    n
+    d
+    -
+    c
+    o
+    l
+    o
+    r
+     
+    0
+    .
+    1
+    5
+    s
+     
+    e
+    a
+    s
+    e
+    -
+    i
+    n
+    -
+    o
+    u
+    t
+    ,
+     
+    b
+    o
+    r
+    d
+    e
+    r
+    -
+    c
+    o
+    l
+    o
+    r
+     
+    0
+    .
+    1
+    5
+    s
+     
+    e
+    a
+    s
+    e
+    -
+    i
+    n
+    -
+    o
+    u
+    t
+    ,
+    b
+    o
+    x
+    -
+    s
+    h
+    a
+    d
+    o
+    w
+     
+    0
+    .
+    1
+    5
+    s
+     
+    e
+    a
+    s
+    e
+    -
+    i
+    n
+    -
+    o
+    u
+    t
+    ;
+    t
+    r
+    a
+    n
+    s
+    i
+    t
+    i
+    o
+    n
+    :
+    c
+    o
+    l
+    o
+    r
+     
+    0
+    .
+    1
+    5
+    s
+     
+    e
+    a
+    s
+    e
+    -
+    i
+    n
+    -
+    o
+    u
+    t
+    ,
+    b
+    a
+    c
+    k
+    g
+    r
+    o
+    u
+    n
+    d
+    -
+    c
+    o
+    l
+    o
+    r
+     
+    0
+    .
+    1
+    5
+    s
+     
+    e
+    a
+    s
+    e
+    -
+    i
+    n
+    -
+    o
+    u
+    t
+    ,
+     
+    b
+    o
+    r
+    d
+    e
+    r
+    -
+    c
+    o
+    l
+    o
+    r
+     
+    0
+    .
+    1
+    5
+    s
+     
+    e
+    a
+    s
+    e
+    -
+    i
+    n
+    -
+    o
+    u
+    t
+    ,
+    b
+    o
+    x
+    -
+    s
+    h
+    a
+    d
+    o
+    w
+     
+    0
+    .
+    1
+    5
+    s
+     
+    e
+    a
+    s
+    e
+    -
+    i
+    n
+    -
+    o
+    u
+    t
+    ;
+    }
+  </JSXStyle>
   <JSXStyle
     id="1979462723"
   >

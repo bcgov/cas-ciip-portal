@@ -5,6 +5,7 @@ import Link from 'next/link';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faUser} from '@fortawesome/free-solid-svg-icons';
 import {UserProfileDropdown_user} from '__generated__/UserProfileDropdown_user.graphql';
+import {ButtonCSS} from 'components/Layout/Header';
 
 interface Props {
   user: UserProfileDropdown_user;
@@ -77,6 +78,7 @@ const UserProfileDropdown: React.FunctionComponent<Props> = ({user}) => {
           </button>
         </Form>
       </li>
+      <style jsx>{ButtonCSS}</style>
       <style jsx>{`
         .user-icon {
           background: #f8f9fa;
