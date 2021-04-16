@@ -62,6 +62,11 @@ class NewApplicationDisclaimer extends Component<Props> {
       latestDraftRevision
     } = application;
 
+    if (!applicationRevision || !latestDraftRevision) {
+      router.push('/404');
+      return null;
+    }
+
     if (
       latestDraftRevision.versionNumber !== applicationRevision.versionNumber
     ) {
