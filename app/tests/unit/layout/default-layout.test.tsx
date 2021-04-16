@@ -31,10 +31,6 @@ describe('The DefaultLayout component', () => {
       .find('HeaderLayout')
       .prop('userProfileDropdown');
 
-    expect(userProfileDropdown.props.user).toEqual({
-      ' $fragmentRefs': {
-        UserProfileDropdown_user: true
-      }
-    });
+    expect(userProfileDropdown.props.user).toEqual(session.ciipUserBySub);
   });
 });
