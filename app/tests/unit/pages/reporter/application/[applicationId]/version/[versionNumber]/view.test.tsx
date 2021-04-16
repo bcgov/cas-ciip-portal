@@ -4,7 +4,7 @@ import ViewApplication from 'pages/reporter/application/[applicationId]/version/
 import {viewApplicationQueryResponse} from 'viewApplicationQuery.graphql';
 
 const getTestQuery = (options?) => {
-  return {
+  const data: viewApplicationQueryResponse['query'] = {
     ' $fragmentRefs': {
       ApplicationDetailsContainer_query: true
     },
@@ -45,12 +45,17 @@ const getTestQuery = (options?) => {
           }
         ]
       },
+      applicationRevisionByStringVersionNumber: {
+        ' $fragmentRefs': {
+          ApplicationDetailsContainer_applicationRevision: true
+        }
+      },
       ' $fragmentRefs': {
-        ReviseApplicationButtonContainer_application: true,
-        ApplicationDetailsContainer_application: true
+        ReviseApplicationButtonContainer_application: true
       }
     }
   };
+  return data;
 };
 
 const router: any = {
@@ -64,12 +69,7 @@ const router: any = {
 describe('View submitted application page', () => {
   it('passes a query to the ApplicationDetailsComponent component', () => {
     const data = getTestQuery();
-    const r = shallow(
-      <ViewApplication
-        query={data as viewApplicationQueryResponse['query']}
-        router={router}
-      />
-    );
+    const r = shallow(<ViewApplication query={data} router={router} />);
     expect(
       r.find('Relay(ApplicationDetailsComponent)').first().prop('query')
     ).toBe(data);
@@ -80,24 +80,14 @@ describe('View submitted application page', () => {
       ...getTestQuery(),
       application: null
     };
-    const r = shallow(
-      <ViewApplication
-        query={data as viewApplicationQueryResponse['query']}
-        router={router}
-      />
-    );
+    const r = shallow(<ViewApplication query={data} router={router} />);
     expect(r).toBeEmpty();
     expect(router.push).toBeCalledWith('/404');
   });
 
   it('does not show an application decision when unreviewed', () => {
     const data = getTestQuery();
-    const r = shallow(
-      <ViewApplication
-        query={data as viewApplicationQueryResponse['query']}
-        router={router}
-      />
-    );
+    const r = shallow(<ViewApplication query={data} router={router} />);
     expect(r.find('ApplicationDecision')).toBeEmpty();
     expect(r).toMatchSnapshot();
   });
@@ -105,12 +95,7 @@ describe('View submitted application page', () => {
   it('shows approval when reviewed and approved', () => {
     const decision = 'APPROVED';
     const data = getTestQuery({applicationRevisionStatus: decision});
-    const r = shallow(
-      <ViewApplication
-        query={data as viewApplicationQueryResponse['query']}
-        router={router}
-      />
-    );
+    const r = shallow(<ViewApplication query={data} router={router} />);
     expect(r.find('ApplicationDecision').first().prop('decision')).toBe(
       decision
     );
@@ -123,12 +108,7 @@ describe('View submitted application page', () => {
   it('shows rejection when reviewed and rejected', () => {
     const decision = 'REJECTED';
     const data = getTestQuery({applicationRevisionStatus: decision});
-    const r = shallow(
-      <ViewApplication
-        query={data as viewApplicationQueryResponse['query']}
-        router={router}
-      />
-    );
+    const r = shallow(<ViewApplication query={data} router={router} />);
     expect(r.find('ApplicationDecision').first().prop('decision')).toBe(
       decision
     );
@@ -147,12 +127,7 @@ describe('View submitted application page', () => {
       applicationRevisionStatus: decision,
       comment: comments[0]
     });
-    const r = shallow(
-      <ViewApplication
-        query={data as viewApplicationQueryResponse['query']}
-        router={router}
-      />
-    );
+    const r = shallow(<ViewApplication query={data} router={router} />);
     expect(r.find('ApplicationDecision').first().prop('decision')).toBe(
       decision
     );
@@ -177,12 +152,7 @@ describe('View submitted application page', () => {
       applicationRevisionStatus: decision,
       comment: comments[0]
     });
-    const r = shallow(
-      <ViewApplication
-        query={data as viewApplicationQueryResponse['query']}
-        router={router}
-      />
-    );
+    const r = shallow(<ViewApplication query={data} router={router} />);
     expect(r.find('ApplicationDecision').first().prop('decision')).toBe(
       decision
     );
@@ -209,12 +179,7 @@ describe('View submitted application page', () => {
         }
       }
     };
-    const r = shallow(
-      <ViewApplication
-        query={query as viewApplicationQueryResponse['query']}
-        router={router}
-      />
-    );
+    const r = shallow(<ViewApplication query={query} router={router} />);
     expect(r.exists('Button')).toBe(true);
     expect(r.find('Button').text()).toBe('Resume latest draft');
     expect(r).toMatchSnapshot();
@@ -234,12 +199,7 @@ describe('View submitted application page', () => {
         }
       }
     };
-    const r = shallow(
-      <ViewApplication
-        query={query as viewApplicationQueryResponse['query']}
-        router={router}
-      />
-    );
+    const r = shallow(<ViewApplication query={query} router={router} />);
     expect(r).toMatchSnapshot();
     expect(r.exists('Button')).toBe(true);
     expect(r.find('Button').text()).toBe('View most recent submission');
@@ -259,12 +219,7 @@ describe('View submitted application page', () => {
         }
       }
     };
-    const r = shallow(
-      <ViewApplication
-        query={query as viewApplicationQueryResponse['query']}
-        router={router}
-      />
-    );
+    const r = shallow(<ViewApplication query={query} router={router} />);
     expect(r).toMatchSnapshot();
     expect(r.exists('Button')).toBe(true);
     expect(r.find('Button').text()).toBe('View most recent submission');

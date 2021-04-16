@@ -1,6 +1,8 @@
 /*
   This set of e2e tests test the real login function,
   and doesn't mock the login
+  There are suspected side-effects causing subsequent tests to encounter flaky failures,
+  so this test suite should be run last (hence the file name starting with zz)
 */
 
 describe('When logged in as a reporter', () => {

@@ -4,7 +4,7 @@ import {Button} from 'react-bootstrap';
 import createApplicationRevisionMutation from 'mutations/application/createApplicationRevisionMutation';
 import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
 import {ReviseApplicationButtonContainer_application} from 'ReviseApplicationButtonContainer_application.graphql';
-import ApplicationPage from 'pages/reporter/application/[applicationId]';
+import {getApplicationPageRoute} from 'routes';
 
 interface Props {
   application: ReviseApplicationButtonContainer_application;
@@ -31,7 +31,7 @@ export const ReviseApplicationButton: React.FunctionComponent<Props> = ({
 
     await createApplicationRevisionMutation(relay.environment, variables);
 
-    router.push(ApplicationPage.getRoute(application.id));
+    router.push(getApplicationPageRoute(application.id));
   };
 
   return (

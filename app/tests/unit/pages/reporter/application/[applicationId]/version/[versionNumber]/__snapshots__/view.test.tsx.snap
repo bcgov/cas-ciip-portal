@@ -63,6 +63,13 @@ exports[`View submitted application page displays a "Resume latest draft" button
         </Link>
       </ApplicationDecision>
       <Relay(ApplicationDetailsComponent)
+        applicationRevision={
+          Object {
+            " $fragmentRefs": Object {
+              "ApplicationDetailsContainer_applicationRevision": true,
+            },
+          }
+        }
         liveValidate={false}
         query={
           Object {
@@ -71,7 +78,6 @@ exports[`View submitted application page displays a "Resume latest draft" button
             },
             "application": Object {
               " $fragmentRefs": Object {
-                "ApplicationDetailsContainer_application": true,
                 "ReviseApplicationButtonContainer_application": true,
               },
               "applicationReviewStepsByApplicationId": Object {
@@ -90,6 +96,11 @@ exports[`View submitted application page displays a "Resume latest draft" button
                     },
                   },
                 ],
+              },
+              "applicationRevisionByStringVersionNumber": Object {
+                " $fragmentRefs": Object {
+                  "ApplicationDetailsContainer_applicationRevision": true,
+                },
               },
               "applicationRevisionStatus": Object {
                 "applicationRevisionStatus": "REQUESTED_CHANGES",
@@ -159,7 +170,6 @@ exports[`View submitted application page displays a "Revise" button when changes
           application={
             Object {
               " $fragmentRefs": Object {
-                "ApplicationDetailsContainer_application": true,
                 "ReviseApplicationButtonContainer_application": true,
               },
               "applicationReviewStepsByApplicationId": Object {
@@ -178,6 +188,11 @@ exports[`View submitted application page displays a "Revise" button when changes
                     },
                   },
                 ],
+              },
+              "applicationRevisionByStringVersionNumber": Object {
+                " $fragmentRefs": Object {
+                  "ApplicationDetailsContainer_applicationRevision": true,
+                },
               },
               "applicationRevisionStatus": Object {
                 "applicationRevisionStatus": "REQUESTED_CHANGES",
@@ -197,6 +212,13 @@ exports[`View submitted application page displays a "Revise" button when changes
         />
       </ApplicationDecision>
       <Relay(ApplicationDetailsComponent)
+        applicationRevision={
+          Object {
+            " $fragmentRefs": Object {
+              "ApplicationDetailsContainer_applicationRevision": true,
+            },
+          }
+        }
         liveValidate={false}
         query={
           Object {
@@ -205,7 +227,6 @@ exports[`View submitted application page displays a "Revise" button when changes
             },
             "application": Object {
               " $fragmentRefs": Object {
-                "ApplicationDetailsContainer_application": true,
                 "ReviseApplicationButtonContainer_application": true,
               },
               "applicationReviewStepsByApplicationId": Object {
@@ -224,6 +245,11 @@ exports[`View submitted application page displays a "Revise" button when changes
                     },
                   },
                 ],
+              },
+              "applicationRevisionByStringVersionNumber": Object {
+                " $fragmentRefs": Object {
+                  "ApplicationDetailsContainer_applicationRevision": true,
+                },
               },
               "applicationRevisionStatus": Object {
                 "applicationRevisionStatus": "REQUESTED_CHANGES",
@@ -281,6 +307,13 @@ exports[`View submitted application page does not show an application decision w
       md={12}
     >
       <Relay(ApplicationDetailsComponent)
+        applicationRevision={
+          Object {
+            " $fragmentRefs": Object {
+              "ApplicationDetailsContainer_applicationRevision": true,
+            },
+          }
+        }
         liveValidate={false}
         query={
           Object {
@@ -289,7 +322,6 @@ exports[`View submitted application page does not show an application decision w
             },
             "application": Object {
               " $fragmentRefs": Object {
-                "ApplicationDetailsContainer_application": true,
                 "ReviseApplicationButtonContainer_application": true,
               },
               "applicationReviewStepsByApplicationId": Object {
@@ -308,6 +340,11 @@ exports[`View submitted application page does not show an application decision w
                     },
                   },
                 ],
+              },
+              "applicationRevisionByStringVersionNumber": Object {
+                " $fragmentRefs": Object {
+                  "ApplicationDetailsContainer_applicationRevision": true,
+                },
               },
               "applicationRevisionStatus": Object {
                 "applicationRevisionStatus": "SUBMITTED",
@@ -426,6 +463,13 @@ exports[`View submitted application page should render a "View most recent submi
         }
       />
       <Relay(ApplicationDetailsComponent)
+        applicationRevision={
+          Object {
+            " $fragmentRefs": Object {
+              "ApplicationDetailsContainer_applicationRevision": true,
+            },
+          }
+        }
         liveValidate={false}
         query={
           Object {
@@ -434,7 +478,6 @@ exports[`View submitted application page should render a "View most recent submi
             },
             "application": Object {
               " $fragmentRefs": Object {
-                "ApplicationDetailsContainer_application": true,
                 "ReviseApplicationButtonContainer_application": true,
               },
               "applicationReviewStepsByApplicationId": Object {
@@ -453,6 +496,11 @@ exports[`View submitted application page should render a "View most recent submi
                     },
                   },
                 ],
+              },
+              "applicationRevisionByStringVersionNumber": Object {
+                " $fragmentRefs": Object {
+                  "ApplicationDetailsContainer_applicationRevision": true,
+                },
               },
               "applicationRevisionStatus": Object {
                 "applicationRevisionStatus": "REQUESTED_CHANGES",
@@ -571,6 +619,13 @@ exports[`View submitted application page should render a "View most recent submi
         }
       />
       <Relay(ApplicationDetailsComponent)
+        applicationRevision={
+          Object {
+            " $fragmentRefs": Object {
+              "ApplicationDetailsContainer_applicationRevision": true,
+            },
+          }
+        }
         liveValidate={false}
         query={
           Object {
@@ -579,7 +634,6 @@ exports[`View submitted application page should render a "View most recent submi
             },
             "application": Object {
               " $fragmentRefs": Object {
-                "ApplicationDetailsContainer_application": true,
                 "ReviseApplicationButtonContainer_application": true,
               },
               "applicationReviewStepsByApplicationId": Object {
@@ -598,6 +652,11 @@ exports[`View submitted application page should render a "View most recent submi
                     },
                   },
                 ],
+              },
+              "applicationRevisionByStringVersionNumber": Object {
+                " $fragmentRefs": Object {
+                  "ApplicationDetailsContainer_applicationRevision": true,
+                },
               },
               "applicationRevisionStatus": Object {
                 "applicationRevisionStatus": "REQUESTED_CHANGES",
@@ -664,6 +723,13 @@ exports[`View submitted application page shows approval when reviewed and approv
         }
       />
       <Relay(ApplicationDetailsComponent)
+        applicationRevision={
+          Object {
+            " $fragmentRefs": Object {
+              "ApplicationDetailsContainer_applicationRevision": true,
+            },
+          }
+        }
         liveValidate={false}
         query={
           Object {
@@ -672,7 +738,6 @@ exports[`View submitted application page shows approval when reviewed and approv
             },
             "application": Object {
               " $fragmentRefs": Object {
-                "ApplicationDetailsContainer_application": true,
                 "ReviseApplicationButtonContainer_application": true,
               },
               "applicationReviewStepsByApplicationId": Object {
@@ -691,6 +756,11 @@ exports[`View submitted application page shows approval when reviewed and approv
                     },
                   },
                 ],
+              },
+              "applicationRevisionByStringVersionNumber": Object {
+                " $fragmentRefs": Object {
+                  "ApplicationDetailsContainer_applicationRevision": true,
+                },
               },
               "applicationRevisionStatus": Object {
                 "applicationRevisionStatus": "APPROVED",
@@ -757,6 +827,13 @@ exports[`View submitted application page shows rejection when reviewed and rejec
         }
       />
       <Relay(ApplicationDetailsComponent)
+        applicationRevision={
+          Object {
+            " $fragmentRefs": Object {
+              "ApplicationDetailsContainer_applicationRevision": true,
+            },
+          }
+        }
         liveValidate={false}
         query={
           Object {
@@ -765,7 +842,6 @@ exports[`View submitted application page shows rejection when reviewed and rejec
             },
             "application": Object {
               " $fragmentRefs": Object {
-                "ApplicationDetailsContainer_application": true,
                 "ReviseApplicationButtonContainer_application": true,
               },
               "applicationReviewStepsByApplicationId": Object {
@@ -784,6 +860,11 @@ exports[`View submitted application page shows rejection when reviewed and rejec
                     },
                   },
                 ],
+              },
+              "applicationRevisionByStringVersionNumber": Object {
+                " $fragmentRefs": Object {
+                  "ApplicationDetailsContainer_applicationRevision": true,
+                },
               },
               "applicationRevisionStatus": Object {
                 "applicationRevisionStatus": "REJECTED",
@@ -850,6 +931,13 @@ exports[`View submitted application page shows reviewer comments when reviewed a
         }
       />
       <Relay(ApplicationDetailsComponent)
+        applicationRevision={
+          Object {
+            " $fragmentRefs": Object {
+              "ApplicationDetailsContainer_applicationRevision": true,
+            },
+          }
+        }
         liveValidate={false}
         query={
           Object {
@@ -858,7 +946,6 @@ exports[`View submitted application page shows reviewer comments when reviewed a
             },
             "application": Object {
               " $fragmentRefs": Object {
-                "ApplicationDetailsContainer_application": true,
                 "ReviseApplicationButtonContainer_application": true,
               },
               "applicationReviewStepsByApplicationId": Object {
@@ -877,6 +964,11 @@ exports[`View submitted application page shows reviewer comments when reviewed a
                     },
                   },
                 ],
+              },
+              "applicationRevisionByStringVersionNumber": Object {
+                " $fragmentRefs": Object {
+                  "ApplicationDetailsContainer_applicationRevision": true,
+                },
               },
               "applicationRevisionStatus": Object {
                 "applicationRevisionStatus": "REJECTED",

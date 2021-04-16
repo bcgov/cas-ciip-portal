@@ -9,6 +9,7 @@ import ApplicationDecision from 'components/Application/ApplicationDecision';
 import Link from 'next/link';
 import DefaultLayout from 'layouts/default-layout';
 import {USER} from 'data/group-constants';
+import {getViewApplicationPageRoute} from 'routes';
 
 const ALLOWED_GROUPS = [USER];
 
@@ -71,18 +72,6 @@ class ViewApplication extends Component<Props> {
     }
   `;
 
-  static getRoute = (
-    applicationId: string,
-    versionNumber: string | number
-  ) => ({
-    pathname:
-      '/reporter/application/[applicationId]/version/[versionNumber]/view',
-    query: {
-      applicationId,
-      versionNumber
-    }
-  });
-
   render() {
     const {session} = this.props.query;
     const {query, router} = this.props;
@@ -117,7 +106,7 @@ class ViewApplication extends Component<Props> {
     const newerSubmissionExists = latestSubmittedRevision > thisVersion;
     const newerDraftExists = latestDraftRevision > latestSubmittedRevision;
 
-    const latestSubmissionHref = ViewApplication.getRoute(
+    const latestSubmissionHref = getViewApplicationPageRoute(
       router.query.applicationId.toString(),
       latestSubmittedRevision
     );

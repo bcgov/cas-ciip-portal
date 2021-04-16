@@ -1,30 +1,47 @@
 import React, {Component} from 'react';
 import {graphql} from 'react-relay';
 import {Card, Alert} from 'react-bootstrap';
-import {newApplicationDisclaimerQueryResponse} from 'newApplicationDisclaimerQuery.graphql';
+import {disclaimerNewApplicationQueryResponse} from 'disclaimerNewApplicationQuery.graphql';
 import ApplicationConsent from 'containers/Applications/ApplicationConsent';
 import {CiipPageComponentProps} from 'next-env';
 import {NextRouter} from 'next/router';
 import DefaultLayout from 'layouts/default-layout';
 import {USER} from 'data/group-constants';
+import {
+  getApplicationDisclaimerPageRoute,
+  getApplicationPageRoute
+} from 'routes';
 
 const ALLOWED_GROUPS = [USER];
 
 interface Props extends CiipPageComponentProps {
-  query: newApplicationDisclaimerQueryResponse['query'];
+  query: disclaimerNewApplicationQueryResponse['query'];
   router: NextRouter;
 }
 class NewApplicationDisclaimer extends Component<Props> {
   static allowedGroups = ALLOWED_GROUPS;
   static isAccessProtected = true;
   static query = graphql`
-    query newApplicationDisclaimerQuery($applicationId: ID!) {
+    query disclaimerNewApplicationQuery(
+      $applicationId: ID!
+      $versionNumber: String!
+    ) {
       query {
         session {
           ...defaultLayout_session
         }
         application(id: $applicationId) {
-          ...ApplicationConsent_application
+          id
+          applicationRevisionByStringVersionNumber(
+            versionNumberInput: $versionNumber
+          ) {
+            versionNumber
+            legalDisclaimerAccepted
+            ...ApplicationConsent_applicationRevision
+          }
+          latestDraftRevision {
+            versionNumber
+          }
         }
       }
     }
@@ -33,15 +50,41 @@ class NewApplicationDisclaimer extends Component<Props> {
   render() {
     const {query, router} = this.props;
     const {session, application} = query || {};
-    const {query: queryparams} = router;
+    const {hasSwrsReport} = router.query;
 
-    const {hasSwrsReport} = queryparams;
-    const hasImportedReport = hasSwrsReport === 'true';
+    if (!application) {
+      router.push('/404');
+      return null;
+    }
 
-    let ImportMessage = null;
+    const {
+      applicationRevisionByStringVersionNumber: applicationRevision,
+      latestDraftRevision
+    } = application;
 
-    if (hasImportedReport) {
-      ImportMessage = (
+    if (!applicationRevision || !latestDraftRevision) {
+      router.push('/404');
+      return null;
+    }
+
+    if (
+      latestDraftRevision.versionNumber !== applicationRevision.versionNumber
+    ) {
+      router.replace(
+        getApplicationDisclaimerPageRoute(
+          application.id,
+          latestDraftRevision.versionNumber,
+          hasSwrsReport as string
+        )
+      );
+    }
+
+    if (applicationRevision.legalDisclaimerAccepted) {
+      router.replace(getApplicationPageRoute(application.id));
+    }
+
+    const importMessage =
+      hasSwrsReport === 'true' ? (
         <Alert variant="info">
           We found an emissions report for this facility, and imported the
           relevant information:
@@ -51,8 +94,7 @@ class NewApplicationDisclaimer extends Component<Props> {
           complete the forms with the additional information required for your
           CIIP application.
         </Alert>
-      );
-    }
+      ) : null;
 
     return (
       <DefaultLayout session={session} title="Legal Disclaimer">
@@ -84,8 +126,8 @@ class NewApplicationDisclaimer extends Component<Props> {
               the Operator from the Province.
             </Card.Text>
 
-            {ImportMessage}
-            <ApplicationConsent application={application} />
+            {importMessage}
+            <ApplicationConsent applicationRevision={applicationRevision} />
           </Card.Body>
         </Card>
       </DefaultLayout>

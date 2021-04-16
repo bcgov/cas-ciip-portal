@@ -28,7 +28,7 @@ describe('When logged in as a reporter', () => {
   it('The new application disclaimer page has no detectable ally violations on load', () => {
     cy.visit('/reporter/facilities');
     cy.contains('Resume').click();
-    cy.url().should('include', '/reporter/new-application-disclaimer');
+    cy.url().should('include', '/disclaimer');
     cy.injectAxe();
     cy.get('#page-content');
     cy.checkA11y();

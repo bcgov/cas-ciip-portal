@@ -3,33 +3,37 @@ import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
 import {useRouter} from 'next/router';
 import {Button} from 'react-bootstrap';
 import updateApplicationRevisionMutation from 'mutations/application/updateApplicationRevisionMutation';
-import {ApplicationConsent_application} from 'ApplicationConsent_application.graphql';
-import ApplicationPage from 'pages/reporter/application/[applicationId]';
+import {ApplicationConsent_applicationRevision} from 'ApplicationConsent_applicationRevision.graphql';
+import {getApplicationPageRoute} from 'routes';
 
 interface Props {
-  application: ApplicationConsent_application;
+  applicationRevision: ApplicationConsent_applicationRevision;
   relay: RelayProp;
 }
 
-export const ApplicationConsent: React.FunctionComponent<Props> = (props) => {
+export const ApplicationConsent: React.FunctionComponent<Props> = ({
+  applicationRevision,
+  relay
+}) => {
   const router = useRouter();
 
   const handleContinueClick = async () => {
-    const {environment} = props.relay;
+    const {environment} = relay;
 
     const variables = {
       input: {
-        id: props.application.latestDraftRevision.id,
+        id: applicationRevision.id,
         applicationRevisionPatch: {
-          legalDisclaimerAccepted: true,
-          versionNumber: props.application.latestDraftRevision.versionNumber
+          legalDisclaimerAccepted: true
         }
       }
     };
 
     await updateApplicationRevisionMutation(environment, variables);
 
-    router.push(ApplicationPage.getRoute(props.application.id));
+    router.push(
+      getApplicationPageRoute(applicationRevision.applicationByApplicationId.id)
+    );
   };
 
   return (
@@ -40,12 +44,11 @@ export const ApplicationConsent: React.FunctionComponent<Props> = (props) => {
 };
 
 export default createFragmentContainer(ApplicationConsent, {
-  application: graphql`
-    fragment ApplicationConsent_application on Application {
+  applicationRevision: graphql`
+    fragment ApplicationConsent_applicationRevision on ApplicationRevision {
       id
-      latestDraftRevision {
+      applicationByApplicationId {
         id
-        versionNumber
       }
     }
   `

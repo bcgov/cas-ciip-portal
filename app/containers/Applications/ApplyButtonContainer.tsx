@@ -6,8 +6,11 @@ import {useRouter} from 'next/router';
 import createApplicationMutation from 'mutations/application/createApplicationMutation';
 import {ApplyButtonContainer_applyButtonDetails} from 'ApplyButtonContainer_applyButtonDetails.graphql';
 import {ApplyButtonContainer_query} from 'ApplyButtonContainer_query.graphql';
-import ViewApplication from 'pages/reporter/application/[applicationId]/version/[versionNumber]/view';
-import ApplicationPage from 'pages/reporter/application/[applicationId]';
+import {
+  getApplicationDisclaimerPageRoute,
+  getApplicationPageRoute,
+  getViewApplicationPageRoute
+} from 'routes';
 interface Props {
   reportingYear: number;
   relay: RelayProp;
@@ -70,14 +73,13 @@ export const ApplyButton: React.FunctionComponent<Props> = ({
 
       const response = await createApplicationMutation(environment, variables);
 
-      router.push({
-        pathname: '/reporter/new-application-disclaimer',
-        query: {
-          applicationId: response.createApplicationMutationChain.application.id,
-          version: 1,
+      router.push(
+        getApplicationDisclaimerPageRoute(
+          response.createApplicationMutationChain.application.id,
+          1,
           hasSwrsReport
-        }
-      });
+        )
+      );
     };
 
     const missingReportModal = (
@@ -175,14 +177,12 @@ export const ApplyButton: React.FunctionComponent<Props> = ({
         passHref
         href={
           latestDraftlegalDisclaimerAccepted
-            ? ApplicationPage.getRoute(applicationId)
-            : {
-                pathname: '/reporter/new-application-disclaimer',
-                query: {
-                  applicationId,
-                  version: latestDraftVersionNumber
-                }
-              }
+            ? getApplicationPageRoute(applicationId)
+            : getApplicationDisclaimerPageRoute(
+                applicationId,
+                latestDraftVersionNumber,
+                hasSwrsReport
+              )
         }
       >
         <Button variant="primary">Resume CIIP application</Button>
@@ -199,7 +199,7 @@ export const ApplyButton: React.FunctionComponent<Props> = ({
     return (
       <Link
         passHref
-        href={ViewApplication.getRoute(
+        href={getViewApplicationPageRoute(
           applicationId,
           latestSubmittedVersionNumber
         )}

@@ -15,10 +15,24 @@ describe('When logged in as a reporter', () => {
     cy.get('tbody > tr:nth-child(2) .btn')
       .contains('Resume CIIP application')
       .click();
-    cy.url().should('include', '/reporter/new-application-disclaimer');
+
+    const applicationId = window.btoa('["applications",2]');
+    cy.url().should(
+      'include',
+      `/reporter/application/${applicationId}/version/1/disclaimer`
+    );
+
+    // test permanent redirection from the v1 application disclaimer page
+    cy.visit(
+      `/reporter/new-application-disclaimer?applicationId=${applicationId}&version=1`
+    );
+    cy.url().should(
+      'include',
+      `/reporter/application/${applicationId}/version/1/disclaimer`
+    );
+
     cy.contains('Consent and continue').click();
     cy.url().should('include', '/reporter/application');
-    const applicationId = window.btoa('["applications",2]');
     // test permanent redirection from the v1 application page
     cy.visit(`/reporter/application?applicationId=${applicationId}&version=1`);
     cy.url().should('include', `/reporter/application/${applicationId}`);
