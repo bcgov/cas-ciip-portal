@@ -1,5 +1,5 @@
 import React from 'react';
-import {shallow} from 'enzyme';
+import {shallow, mount} from 'enzyme';
 import {ReviewSidebar} from 'containers/Admin/ApplicationReview/ReviewSidebar';
 import {ReviewSidebar_applicationReviewStep} from '__generated__/ReviewSidebar_applicationReviewStep.graphql';
 
@@ -85,6 +85,14 @@ const applicationReviewStepWithComments = () => {
     ...applicationReviewStep(),
     internalComments: internalComments(),
     generalComments: generalComments()
+  };
+};
+
+const applicationReviewStepWithAllCommentsResolved = () => {
+  return {
+    ...applicationReviewStep(),
+    internalComments: {edges: [internalComments().edges[1]]},
+    generalComments: {edges: [generalComments().edges[1]]}
   };
 };
 
@@ -190,6 +198,52 @@ describe('ReviewSidebar', () => {
     r.find('button#close').simulate('click');
     expect(onClose).toBeCalled();
   });
+  it('a confirmation modal is shown when there are unresolved comments on trying to mark the step completed', () => {
+    const spy = jest.spyOn(
+      require('mutations/application_review_step/updateApplicationReviewStepMutation'),
+      'default'
+    );
+    const relay = {environment: null};
+    const data = applicationReviewStepWithComments();
+    const r = mount(
+      <ReviewSidebar
+        applicationReviewStep={data as ReviewSidebar_applicationReviewStep}
+        onClose={() => {}}
+        relay={relay as any}
+      />
+    );
+    r.find('Button#markCompleted').simulate('click');
+    expect(r.find('GenericConfirmationModal').exists()).toBeTrue();
+    expect(spy).not.toHaveBeenCalled();
+  });
+  it('no confirmation modal is shown when all comments are resolved and marking the step completed', () => {
+    const spy = jest.spyOn(
+      require('mutations/application_review_step/updateApplicationReviewStepMutation'),
+      'default'
+    );
+    const relay = {environment: null};
+    const data = applicationReviewStepWithAllCommentsResolved();
+    const r = mount(
+      <ReviewSidebar
+        applicationReviewStep={data as ReviewSidebar_applicationReviewStep}
+        onClose={() => {}}
+        relay={relay as any}
+      />
+    );
+    r.find('Button#markCompleted').simulate('click');
+    expect(r.find('GenericConfirmationModal').exists()).toBeFalse();
+    expect(spy).toBeCalledWith(null, {
+      input: {
+        id: 'abc',
+        applicationReviewStepPatch: {
+          isComplete: true
+        }
+      }
+    });
+    expect(
+      r.find('Button').filterWhere((n) => n.text() === 'Mark incomplete')
+    ).toBeTruthy();
+  });
   it('marking the review step completed disables the ability to resolve/delete comments', () => {
     const spy = jest.spyOn(
       require('mutations/application_review_step/updateApplicationReviewStepMutation'),
@@ -197,7 +251,7 @@ describe('ReviewSidebar', () => {
     );
     const relay = {environment: null};
     const data = applicationReviewStepWithComments();
-    const r = shallow(
+    const r = mount(
       <ReviewSidebar
         applicationReviewStep={data as ReviewSidebar_applicationReviewStep}
         onClose={() => {}}
@@ -207,6 +261,7 @@ describe('ReviewSidebar', () => {
     expect(r.find('ReviewComment').first().prop('viewOnly')).toBeFalse();
 
     r.find('Button#markCompleted').simulate('click');
+    r.find('Button#confirm').simulate('click');
     expect(spy).toBeCalledWith(null, {
       input: {
         id: 'abc',

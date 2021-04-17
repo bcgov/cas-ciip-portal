@@ -10,6 +10,7 @@ import deleteReviewCommentMutation from 'mutations/application_review_step/delet
 import updateApplicationReviewStepMutation from 'mutations/application_review_step/updateApplicationReviewStepMutation';
 import {nowMoment} from 'functions/formatDates';
 import {capitalize} from 'lib/text-transforms';
+import GenericConfirmationModal from 'components/GenericConfirmationModal';
 
 interface Props {
   onClose: () => void;
@@ -25,6 +26,10 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
   headerOffset = 68
 }) => {
   const [showingResolved, setShowingResolved] = useState(false);
+  const [
+    showUnresolvedCommentsModal,
+    setShowUnresolvedCommentsModal
+  ] = useState(false);
   const toggleResolved = () => setShowingResolved((current) => !current);
   const reviewStepName = capitalize(
     applicationReviewStep?.reviewStepByReviewStepId?.stepName
@@ -32,12 +37,18 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
 
   const generalComments = applicationReviewStep?.generalComments?.edges;
   const internalComments = applicationReviewStep?.internalComments?.edges;
+  const allGeneralCommentsAreResolved = generalComments?.every(
+    (c) => c.node.resolved
+  );
+  const allInternalCommentsAreResolved = internalComments?.every(
+    (c) => c.node.resolved
+  );
   const noGeneralCommentsToShow =
     generalComments?.length === 0 ||
-    (!showingResolved && generalComments?.every((c) => c.node.resolved));
+    (!showingResolved && allGeneralCommentsAreResolved);
   const noInternalCommentsToShow =
     internalComments?.length === 0 ||
-    (!showingResolved && internalComments?.every((c) => c.node.resolved));
+    (!showingResolved && allInternalCommentsAreResolved);
 
   const markReviewStepComplete = async (isComplete) => {
     const {environment} = relay;
@@ -51,12 +62,21 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
     };
     await updateApplicationReviewStepMutation(environment, variables);
   };
+
+  const confirmCommentsResolvedBeforeMarkCompleted = () => {
+    const allCommentsAreResolved =
+      allGeneralCommentsAreResolved && allInternalCommentsAreResolved;
+    if (allCommentsAreResolved) markReviewStepComplete(true);
+    else {
+      setShowUnresolvedCommentsModal(true);
+    }
+  };
   const markCompletedButton = (
     <Button
       id="markCompleted"
       variant="outline-primary"
       type="button"
-      onClick={() => markReviewStepComplete(true)}
+      onClick={confirmCommentsResolvedBeforeMarkCompleted}
       style={{
         padding: '0.75rem .9rem',
         display: 'block',
@@ -116,6 +136,40 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
       />
     );
   };
+
+  const confirmCommentsResolvedModal = (
+    <GenericConfirmationModal
+      show={showUnresolvedCommentsModal}
+      title={`Confirm ${applicationReviewStep?.reviewStepByReviewStepId?.stepName} review is completed`}
+      onConfirm={() => {
+        markReviewStepComplete(true);
+        setShowUnresolvedCommentsModal(false);
+      }}
+      size="lg"
+      onCancel={() => setShowUnresolvedCommentsModal(false)}
+      confirmButtonVariant="outline-primary"
+      cancelButtonVariant="primary"
+      cancelButtonText="Cancel and resolve comments"
+      confirmButtonText="Mark this review step completed"
+    >
+      <div style={{padding: '1em 1em 0 1em'}}>
+        <p>
+          There are <strong>unresolved comments</strong> in this review step.
+          Are you sure you want to mark it completed?
+        </p>
+        <p>
+          Don&apos;t worry - marking a step completed isn&apos;t final. You can
+          still mark it incomplete to add more comments before making an
+          application decision.
+        </p>
+        <p>
+          If you continue,{' '}
+          <strong>unresolved comments will be seen by the applicant</strong>{' '}
+          when you make an application decision or request changes.
+        </p>
+      </div>
+    </GenericConfirmationModal>
+  );
 
   return (
     <div id="sidebar" className="col-md-5 col-lg-4 col-xxl-3">
@@ -194,6 +248,7 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
           <Button variant="primary">+ New Comment</Button>
         )}
       </div>
+      {showUnresolvedCommentsModal && confirmCommentsResolvedModal}
       <style jsx>{`
         #sidebar {
           position: fixed;
