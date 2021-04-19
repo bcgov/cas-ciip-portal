@@ -46,6 +46,7 @@ class ApplicationReview extends Component<Props, State> {
           reviewRevisionStatus: applicationRevisionStatus(
             versionNumberInput: $version
           ) {
+            applicationRevisionStatus
             ...ApplicationRevisionStatusContainer_applicationRevisionStatus
           }
           applicationReviewStepsByApplicationId {
@@ -105,6 +106,7 @@ class ApplicationReview extends Component<Props, State> {
   render() {
     const {query} = this.props;
     const {overrideJustification} = query?.applicationRevision;
+    const {applicationRevisionStatus} = query?.application.reviewRevisionStatus;
     const {session} = query || {};
 
     return (
@@ -136,6 +138,10 @@ class ApplicationReview extends Component<Props, State> {
             <ApplicationReviewStepSelector
               applicationReviewSteps={
                 query.application.applicationReviewStepsByApplicationId
+              }
+              decisionOrChangeRequestStatus={applicationRevisionStatus}
+              onDecisionOrChangeRequestAction={() =>
+                console.log('implement me in 2294')
               }
               selectedStep={this.state.selectedReviewStepId}
               onSelectStep={this.selectReviewStep}

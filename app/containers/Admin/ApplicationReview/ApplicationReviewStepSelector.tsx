@@ -1,7 +1,12 @@
 import React from 'react';
 import {Row, Col, ListGroup} from 'react-bootstrap';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faCheck, faComments} from '@fortawesome/free-solid-svg-icons';
+import {
+  faCheck,
+  faComments,
+  faTimes,
+  faHourglassHalf
+} from '@fortawesome/free-solid-svg-icons';
 import {graphql, createFragmentContainer} from 'react-relay';
 import {ApplicationReviewStepSelector_applicationReviewSteps} from '__generated__/ApplicationReviewStepSelector_applicationReviewSteps.graphql';
 import {capitalize} from 'lib/text-transforms';
@@ -10,14 +15,46 @@ interface Props {
   applicationReviewSteps: ApplicationReviewStepSelector_applicationReviewSteps;
   selectedStep: string;
   onSelectStep: (stepId: string) => void;
+  decisionOrChangeRequestStatus:
+    | 'SUBMITTED'
+    | 'APPROVED'
+    | 'REJECTED'
+    | 'REQUESTED_CHANGES';
+  onDecisionOrChangeRequestAction: () => void;
 }
+
+const DECISION_BS_VARIANT = {
+  SUBMITTED: undefined,
+  APPROVED: 'success',
+  REJECTED: 'danger',
+  REQUESTED_CHANGES: 'secondary'
+};
+
+const DECISION_ICON = {
+  APPROVED: faCheck,
+  REJECTED: faTimes,
+  REQUESTED_CHANGES: faHourglassHalf
+};
+
+const DECISION_BUTTON_TEXT = {
+  SUBMITTED: 'Make a decision or request changes',
+  APPROVED: 'Application has been approved and applicant notified',
+  REJECTED: 'Application has been rejected and applicant notified',
+  REQUESTED_CHANGES: 'Changes have been requested and applicant notified'
+};
 
 export const ApplicationReviewStepSelector: React.FunctionComponent<Props> = ({
   applicationReviewSteps,
   selectedStep,
-  onSelectStep
+  onSelectStep,
+  decisionOrChangeRequestStatus,
+  onDecisionOrChangeRequestAction
 }) => {
   const steps = applicationReviewSteps.edges;
+  const allStepsAreComplete = steps.every((edge) => edge.node.isComplete);
+  const decisionHasBeenMade = decisionOrChangeRequestStatus !== 'SUBMITTED';
+  const decisionOrChangeRequestIsDisabled =
+    !allStepsAreComplete || decisionHasBeenMade;
   const renderStepStatusIcon = (icon) => (
     <FontAwesomeIcon
       icon={icon}
@@ -31,7 +68,7 @@ export const ApplicationReviewStepSelector: React.FunctionComponent<Props> = ({
   return (
     <Row>
       <Col md={5}>
-        <ListGroup as="ul">
+        <ListGroup as="ul" id="selector">
           {steps.map((edge) => {
             const {reviewStepId, isComplete} = edge.node;
             const isSelectedStep = edge.node.id === selectedStep;
@@ -66,14 +103,47 @@ export const ApplicationReviewStepSelector: React.FunctionComponent<Props> = ({
             action
             key="decision"
             tabIndex={0}
-            disabled
-            aria-disabled
+            variant={DECISION_BS_VARIANT[decisionOrChangeRequestStatus]}
             style={{cursor: 'pointer', paddingLeft: '3rem'}}
+            disabled={decisionOrChangeRequestIsDisabled}
+            aria-disabled={decisionOrChangeRequestIsDisabled}
+            onClick={onDecisionOrChangeRequestAction}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' && !decisionOrChangeRequestIsDisabled)
+                onDecisionOrChangeRequestAction();
+            }}
           >
-            Make a decision or request changes
+            {decisionHasBeenMade && (
+              <FontAwesomeIcon
+                icon={DECISION_ICON[decisionOrChangeRequestStatus]}
+                style={{
+                  position: 'absolute',
+                  left: '1.2rem',
+                  top: 'calc(50% - 0.5em)'
+                }}
+              />
+            )}
+            {DECISION_BUTTON_TEXT[decisionOrChangeRequestStatus]}
           </ListGroup.Item>
         </ListGroup>
       </Col>
+      <style jsx global>{`
+        #selector .list-group-item-danger.disabled,
+        .list-group-item-danger:disabled {
+          color: #721c24;
+          background-color: #f5c6cb;
+        }
+        #selector .list-group-item-success.disabled,
+        .list-group-item-success:disabled {
+          color: #155724;
+          background-color: #c3e6cb;
+        }
+        #selector .list-group-item-secondary.disabled,
+        .list-group-item-secondary:disabled {
+          color: #383d41;
+          background-color: #d6d8db;
+        }
+      `}</style>
     </Row>
   );
 };

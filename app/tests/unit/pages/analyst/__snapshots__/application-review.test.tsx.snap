@@ -57,6 +57,7 @@ exports[`The application-review page matches the last snapshot (with review side
             ],
           }
         }
+        onDecisionOrChangeRequestAction={[Function]}
         onSelectStep={[Function]}
         selectedStep={null}
       />
@@ -307,6 +308,7 @@ exports[`The application-review page matches the last snapshot (with review side
             ],
           }
         }
+        onDecisionOrChangeRequestAction={[Function]}
         onSelectStep={[Function]}
         selectedStep={null}
       />
