@@ -78,6 +78,7 @@ exports[`The Confirmation Component should not render the validation alert if th
         },
       }
     }
+    diffQuery={null}
     liveValidate={true}
     query={
       Object {
@@ -239,6 +240,7 @@ exports[`The Confirmation Component should render the override justification com
         },
       }
     }
+    diffQuery={null}
     liveValidate={true}
     query={
       Object {
@@ -392,6 +394,7 @@ exports[`The Confirmation Component should render the override justification com
         },
       }
     }
+    diffQuery={null}
     liveValidate={true}
     query={
       Object {
@@ -585,6 +588,7 @@ exports[`The Confirmation Component should render the validation alert if there 
         },
       }
     }
+    diffQuery={null}
     liveValidate={true}
     query={
       Object {
@@ -744,6 +748,7 @@ exports[`The Confirmation Component shows a message instead of the "submit appli
         },
       }
     }
+    diffQuery={null}
     liveValidate={true}
     query={
       Object {
@@ -842,6 +847,7 @@ exports[`The Confirmation Component shows the "submit application" button when t
         },
       }
     }
+    diffQuery={null}
     liveValidate={true}
     query={
       Object {
