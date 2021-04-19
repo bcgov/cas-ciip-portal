@@ -3,16 +3,12 @@
     "type": "object",
     "properties": {
       "comments": {
-        "type":"string"
+        "type": "string"
       },
       "facility": {
         "type": "object",
         "title": "Facility Information",
-        "required": [
-          "bcghgid",
-          "facilityName",
-          "facilityType"
-        ],
+        "required": ["bcghgid", "facilityName", "facilityType"],
         "properties": {
           "bcghgid": {
             "type": "string",
@@ -24,14 +20,7 @@
             "title": "Facility Name"
           },
           "facilityType": {
-            "enum": [
-              "IF_a",
-              "IF_b",
-              "L_c",
-              "SFO",
-              "LFO",
-              "EIO"
-            ],
+            "enum": ["IF_a", "IF_b", "L_c", "SFO", "LFO", "EIO"],
             "type": "string",
             "title": "Facility Type"
           }
@@ -40,12 +29,7 @@
       "operator": {
         "type": "object",
         "title": "Operator Information",
-        "required": [
-          "name",
-          "naics",
-          "tradeName",
-          "bcCorporateRegistryNumber"
-        ],
+        "required": ["name", "naics", "tradeName", "bcCorporateRegistryNumber"],
         "properties": {
           "name": {
             "type": "string",
@@ -74,13 +58,7 @@
       "operationalRepresentative": {
         "type": "object",
         "title": "Operational Representative",
-        "required": [
-          "email",
-          "phone",
-          "lastName",
-          "position",
-          "firstName"
-        ],
+        "required": ["email", "phone", "lastName", "position", "firstName"],
         "properties": {
           "email": {
             "type": "string",
@@ -113,12 +91,7 @@
     "definitions": {
       "address": {
         "type": "object",
-        "required": [
-          "streetAddress",
-          "postalCode",
-          "province",
-          "city"
-        ],
+        "required": ["streetAddress", "postalCode", "province", "city"],
         "properties": {
           "city": {
             "type": "string",
@@ -166,11 +139,7 @@
       "ui:col-md": 12
     },
     "facility": {
-      "ui:order": [
-        "facilityName",
-        "facilityType",
-        "bcghgid"
-      ]
+      "ui:order": ["facilityName", "facilityType", "bcghgid"]
     },
     "operator": {
       "naics": {
@@ -187,12 +156,7 @@
         "mailingAddress"
       ],
       "mailingAddress": {
-        "ui:order": [
-          "streetAddress",
-          "city",
-          "postalCode",
-          "province"
-        ],
+        "ui:order": ["streetAddress", "city", "postalCode", "province"],
         "postalCode": {
           "ui:placeholder": "ex: A1A 1A1"
         }
@@ -222,12 +186,7 @@
         "mailingAddress"
       ],
       "mailingAddress": {
-        "ui:order": [
-          "streetAddress",
-          "city",
-          "postalCode",
-          "province"
-        ],
+        "ui:order": ["streetAddress", "city", "postalCode", "province"],
         "postalCode": {
           "ui:placeholder": "ex: A1A 1A1"
         }
@@ -242,6 +201,7 @@
   "customFormatsErrorMessages": {
     "bcghgid": "BCGHGID code should be numeric",
     "bcCorporateRegistryNumber": "BC Corporate Registry number should be 1-3 letters followed by 7 digits",
-    "postal-code": "Format should be A1A 1A1"
+    "postal-code": "Format should be A1A 1A1",
+    "email": "Please enter a valid email address, eg: mail@example.com"
   }
 }
