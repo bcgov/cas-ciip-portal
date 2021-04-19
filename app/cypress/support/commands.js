@@ -34,7 +34,7 @@ Cypress.Commands.add('login', (username, password) => {
 });
 
 Cypress.Commands.add('logout', () => {
-  cy.get('header .user-icon').click();
+  cy.get('header #user-icon').click();
   cy.get('header').contains('Logout').click();
   cy.url().should('equal', Cypress.config().baseUrl + '/');
 });
