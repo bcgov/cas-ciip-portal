@@ -14,16 +14,79 @@ exports[`Contact page matches the last accepted Snapshot 1`] = `
   <Container
     fluid={false}
   >
-    <p>
-      Please email
+    <Alert
+      closeLabel="Close alert"
+      show={true}
+      transition={
+        Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "defaultProps": Object {
+            "appear": false,
+            "in": false,
+            "mountOnEnter": false,
+            "timeout": 300,
+            "unmountOnExit": false,
+          },
+          "displayName": "Fade",
+          "render": [Function],
+        }
+      }
+      variant="info"
+    >
+      <FontAwesomeIcon
+        border={false}
+        className=""
+        fixedWidth={false}
+        flip={null}
+        icon={
+          Object {
+            "icon": Array [
+              512,
+              512,
+              Array [],
+              "f05a",
+              "M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z",
+            ],
+            "iconName": "info-circle",
+            "prefix": "fas",
+          }
+        }
+        inverse={false}
+        listItem={false}
+        mask={null}
+        pull={null}
+        pulse={false}
+        rotation={null}
+        size={null}
+        spin={false}
+        swapOpacity={false}
+        symbol={false}
+        title=""
+        transform={null}
+      />
+      <span
+        className="pl-2"
+      >
+        For help with your CIIP application, or questions about the CleanBC Industrial Incentive Program, please email
+         
+        <a
+          href="mailto:GHGRegulator@gov.bc.ca?subject=Support Request (CIIP)"
+        >
+          GHGRegulator@gov.bc.ca
+        </a>
+      </span>
+    </Alert>
+    <p
+      className="px-4 py-3"
+    >
+      To report a website error, contact the development team at
        
       <a
-        href="mailto:GHGRegulator@gov.bc.ca?subject=CIIP Portal Inquiry"
+        href="mailto:ggircs@gov.bc.ca?subject=Support Request (CIIP)"
       >
-        GHGRegulator@gov.bc.ca
+        ggircs@gov.bc.ca
       </a>
-       
-      with any questions or concerns.
+      .
     </p>
   </Container>
 </Relay(DefaultLayout)>
