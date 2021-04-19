@@ -23,18 +23,30 @@ const UserProfileDropdown: React.FunctionComponent<Props> = ({user}) => {
     <>
       <li className="d-none d-lg-block">
         <Dropdown alignRight style={{paddingLeft: '6px'}}>
-          <Dropdown.Toggle variant="primary" aria-label="User menu toggle">
-            <div className="user-icon">
-              <FontAwesomeIcon
-                color="#036"
-                icon={faUser}
-                style={{
-                  fontSize: '30px',
-                  verticalAlign: 'middle',
-                  paddingBottom: '2px'
-                }}
-              />
-            </div>
+          <Dropdown.Toggle
+            id="user-icon"
+            as="button"
+            variant="primary"
+            aria-label="User menu toggle"
+            style={{
+                borderRadius: '50%',
+                width: 40,
+                height: 40,
+                border: 'none',
+                background: '#fff',
+                position:    'relative'
+              }}
+            >
+            <FontAwesomeIcon
+              color="#036"
+              icon={faUser}
+              style={{
+                fontSize: '30px',
+                verticalAlign: 'middle',
+                height: '0.8em',
+                paddingBottom: '2px'
+              }}
+            />
           </Dropdown.Toggle>
           <Dropdown.Menu>
             <Dropdown.Item as={Link} href="/user/profile">
@@ -79,14 +91,12 @@ const UserProfileDropdown: React.FunctionComponent<Props> = ({user}) => {
         </Form>
       </li>
       <style jsx>{ButtonCSS}</style>
-      <style jsx>{`
-        .user-icon {
-          background: #f8f9fa;
-          border-radius: 100%;
-          display: inline-block;
-          height: 45px;
-          line-height: 45px;
-          width: 48px;
+      <style jsx global>{`
+        #user-icon.dropdown-toggle::after {
+          position: absolute;
+          right: -14px;
+          top: 46%;
+          color: #fff;
         }
       `}</style>
     </>
