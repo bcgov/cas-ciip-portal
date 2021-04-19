@@ -99,6 +99,7 @@ const HeaderLayout: React.FunctionComponent<Props> = ({
                 style={{
                   fontSize: '30px',
                   verticalAlign: 'middle',
+                  height: '0.8em',
                   paddingBottom: '2px'
                 }}
               />
@@ -189,13 +190,13 @@ const HeaderLayout: React.FunctionComponent<Props> = ({
           #menu-toggle {
             flex-grow: 0;
             flex-shrink: 0;
-            flex-basis: 48px;
-            height: 45px;
+            flex-basis: 40px;
+            height: 40px;
             padding: 0;
           }
           #menu-toggle.logged-in {
             background: #f8f9fa;
-            border-radius: 100%;
+            border-radius: 50%;
           }
 
           /* Small desktop and up:

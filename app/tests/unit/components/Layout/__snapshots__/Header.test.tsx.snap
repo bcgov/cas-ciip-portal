@@ -2,48 +2,48 @@
 
 exports[`matches the last accepted Snapshot 1`] = `
 <header
-  className="jsx-1444636411 jsx-633563271 "
+  className="jsx-1444636411 jsx-1094355366 "
 >
   <div
-    className="jsx-1444636411 jsx-633563271 nav-header"
+    className="jsx-1444636411 jsx-1094355366 nav-header"
   >
     <nav
       aria-label="Main"
-      className="jsx-1444636411 jsx-633563271"
+      className="jsx-1444636411 jsx-1094355366"
     >
       <div
-        className="jsx-1444636411 jsx-633563271 header-left"
+        className="jsx-1444636411 jsx-1094355366 header-left"
       >
         <Link
           href="/"
         >
           <a
-            className="jsx-1444636411 jsx-633563271"
+            className="jsx-1444636411 jsx-1094355366"
           >
             <picture
-              className="jsx-1444636411 jsx-633563271"
+              className="jsx-1444636411 jsx-1094355366"
             >
               <source
-                className="jsx-1444636411 jsx-633563271"
+                className="jsx-1444636411 jsx-1094355366"
                 media="(max-width: 767.98px)"
                 srcSet="/static/bcid-reverse.svg"
               />
               <img
                 alt="logo for Province of British Columbia CleanBC"
-                className="jsx-1444636411 jsx-633563271"
+                className="jsx-1444636411 jsx-1094355366"
                 src="/static/BCID_CleanBC_rev_tagline_colour.svg"
               />
             </picture>
           </a>
         </Link>
         <h2
-          className="jsx-1444636411 jsx-633563271"
+          className="jsx-1444636411 jsx-1094355366"
         >
           CleanBC Industrial Incentive Program
         </h2>
         <button
           aria-label="Menu toggle"
-          className="jsx-1444636411 jsx-633563271 "
+          className="jsx-1444636411 jsx-1094355366 "
           id="menu-toggle"
           onClick={[Function]}
           type="button"
@@ -78,6 +78,7 @@ exports[`matches the last accepted Snapshot 1`] = `
             style={
               Object {
                 "fontSize": "30px",
+                "height": "0.8em",
                 "paddingBottom": "2px",
                 "verticalAlign": "middle",
               }
@@ -90,7 +91,7 @@ exports[`matches the last accepted Snapshot 1`] = `
         </button>
       </div>
       <ul
-        className="jsx-1444636411 jsx-633563271 header-right"
+        className="jsx-1444636411 jsx-1094355366 header-right"
         style={
           Object {
             "display": "none",
@@ -98,24 +99,24 @@ exports[`matches the last accepted Snapshot 1`] = `
         }
       >
         <li
-          className="jsx-1444636411 jsx-633563271"
+          className="jsx-1444636411 jsx-1094355366"
         >
           <Link
             href="/register"
           >
             <a
-              className="jsx-1444636411 jsx-633563271 nav-button"
+              className="jsx-1444636411 jsx-1094355366 nav-button"
             >
               Register
             </a>
           </Link>
         </li>
         <li
-          className="jsx-1444636411 jsx-633563271"
+          className="jsx-1444636411 jsx-1094355366"
         >
           <LoginForm>
             <button
-              className="jsx-1444636411 jsx-633563271 nav-button"
+              className="jsx-1444636411 jsx-1094355366 nav-button"
               type="submit"
             >
               Login
@@ -756,9 +757,9 @@ exports[`matches the last accepted Snapshot 1`] = `
         "(min-width: 992px)",
       ]
     }
-    id="2618898380"
+    id="2352758570"
   >
-    header.fixed.__jsx-style-dynamic-selector{position:fixed;z-index:1;width:100%;}.nav-header.__jsx-style-dynamic-selector{background-color:#036;border-bottom:2px solid #fcba19;padding:10px;color:#fff;}h2.__jsx-style-dynamic-selector{font-weight:normal;font-size:calc(1rem + 1vw);margin:0 0.5em;text-align:center;}.header-left.__jsx-style-dynamic-selector{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;width:100%;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;}.header-left.__jsx-style-dynamic-selector img.__jsx-style-dynamic-selector{height:46px;}.header-right.__jsx-style-dynamic-selector{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:100%;text-align:right;margin:0;padding:0.8em 1em 0 0;}nav.__jsx-style-dynamic-selector{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}li.__jsx-style-dynamic-selector{list-style-type:none;}#menu-toggle.__jsx-style-dynamic-selector{-webkit-box-flex:0;-webkit-flex-grow:0;-ms-flex-positive:0;flex-grow:0;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;-webkit-flex-basis:48px;-ms-flex-preferred-size:48px;flex-basis:48px;height:45px;padding:0;}#menu-toggle.logged-in.__jsx-style-dynamic-selector{background:#f8f9fa;border-radius:100%;}@media screen and (min-width: 992px){nav.__jsx-style-dynamic-selector{-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;padding:0 15px;}.header-left.__jsx-style-dynamic-selector{width:auto;}header.__jsx-style-dynamic-selector h2.__jsx-style-dynamic-selector{margin:0 0 0 18px;}button#menu-toggle.__jsx-style-dynamic-selector{display:none;}.header-right.__jsx-style-dynamic-selector{-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;width:auto;text-align:right;margin:0;padding:0;}.nav-button.__jsx-style-dynamic-selector{border-color:#f8f9fa;}li.__jsx-style-dynamic-selector{padding-left:12px;}}@media screen and (min-width:1200px){nav.__jsx-style-dynamic-selector{max-width:1140px;margin-left:auto;margin-right:auto;}}
+    header.fixed.__jsx-style-dynamic-selector{position:fixed;z-index:1;width:100%;}.nav-header.__jsx-style-dynamic-selector{background-color:#036;border-bottom:2px solid #fcba19;padding:10px;color:#fff;}h2.__jsx-style-dynamic-selector{font-weight:normal;font-size:calc(1rem + 1vw);margin:0 0.5em;text-align:center;}.header-left.__jsx-style-dynamic-selector{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;width:100%;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;}.header-left.__jsx-style-dynamic-selector img.__jsx-style-dynamic-selector{height:46px;}.header-right.__jsx-style-dynamic-selector{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:100%;text-align:right;margin:0;padding:0.8em 1em 0 0;}nav.__jsx-style-dynamic-selector{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}li.__jsx-style-dynamic-selector{list-style-type:none;}#menu-toggle.__jsx-style-dynamic-selector{-webkit-box-flex:0;-webkit-flex-grow:0;-ms-flex-positive:0;flex-grow:0;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;-webkit-flex-basis:40px;-ms-flex-preferred-size:40px;flex-basis:40px;height:40px;padding:0;}#menu-toggle.logged-in.__jsx-style-dynamic-selector{background:#f8f9fa;border-radius:50%;}@media screen and (min-width: 992px){nav.__jsx-style-dynamic-selector{-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;padding:0 15px;}.header-left.__jsx-style-dynamic-selector{width:auto;}header.__jsx-style-dynamic-selector h2.__jsx-style-dynamic-selector{margin:0 0 0 18px;}button#menu-toggle.__jsx-style-dynamic-selector{display:none;}.header-right.__jsx-style-dynamic-selector{-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;width:auto;text-align:right;margin:0;padding:0;}.nav-button.__jsx-style-dynamic-selector{border-color:#f8f9fa;}li.__jsx-style-dynamic-selector{padding-left:12px;}}@media screen and (min-width:1200px){nav.__jsx-style-dynamic-selector{max-width:1140px;margin-left:auto;margin-right:auto;}}
   </JSXStyle>
 </header>
 `;

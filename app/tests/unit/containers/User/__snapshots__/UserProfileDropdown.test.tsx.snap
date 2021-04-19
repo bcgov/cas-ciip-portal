@@ -3,7 +3,7 @@
 exports[`UserProfileDropdown desktop matches snapshot 1`] = `
 <Fragment>
   <li
-    className="jsx-1979462723 jsx-1444636411 d-none d-lg-block"
+    className="jsx-1261654342 jsx-1444636411 d-none d-lg-block"
   >
     <Dropdown
       alignRight={true}
@@ -16,51 +16,60 @@ exports[`UserProfileDropdown desktop matches snapshot 1`] = `
     >
       <DropdownToggle
         aria-label="User menu toggle"
+        as="button"
+        id="user-icon"
+        style={
+          Object {
+            "background": "#fff",
+            "border": "none",
+            "borderRadius": "50%",
+            "height": 40,
+            "position": "relative",
+            "width": 40,
+          }
+        }
         variant="primary"
       >
-        <div
-          className="jsx-1979462723 jsx-1444636411 user-icon"
-        >
-          <FontAwesomeIcon
-            border={false}
-            className=""
-            color="#036"
-            fixedWidth={false}
-            flip={null}
-            icon={
-              Object {
-                "icon": Array [
-                  448,
-                  512,
-                  Array [],
-                  "f007",
-                  "M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm89.6 32h-16.7c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16h-16.7C60.2 288 0 348.2 0 422.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-74.2-60.2-134.4-134.4-134.4z",
-                ],
-                "iconName": "user",
-                "prefix": "fas",
-              }
+        <FontAwesomeIcon
+          border={false}
+          className=""
+          color="#036"
+          fixedWidth={false}
+          flip={null}
+          icon={
+            Object {
+              "icon": Array [
+                448,
+                512,
+                Array [],
+                "f007",
+                "M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm89.6 32h-16.7c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16h-16.7C60.2 288 0 348.2 0 422.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-74.2-60.2-134.4-134.4-134.4z",
+              ],
+              "iconName": "user",
+              "prefix": "fas",
             }
-            inverse={false}
-            listItem={false}
-            mask={null}
-            pull={null}
-            pulse={false}
-            rotation={null}
-            size={null}
-            spin={false}
-            style={
-              Object {
-                "fontSize": "30px",
-                "paddingBottom": "2px",
-                "verticalAlign": "middle",
-              }
+          }
+          inverse={false}
+          listItem={false}
+          mask={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          size={null}
+          spin={false}
+          style={
+            Object {
+              "fontSize": "30px",
+              "height": "0.8em",
+              "paddingBottom": "2px",
+              "verticalAlign": "middle",
             }
-            swapOpacity={false}
-            symbol={false}
-            title=""
-            transform={null}
-          />
-        </div>
+          }
+          swapOpacity={false}
+          symbol={false}
+          title=""
+          transform={null}
+        />
       </DropdownToggle>
       <DropdownMenu
         align="left"
@@ -73,25 +82,25 @@ exports[`UserProfileDropdown desktop matches snapshot 1`] = `
           href="/user/profile"
         >
           <a
-            className="jsx-1979462723 jsx-1444636411 dropdown-item text-right"
+            className="jsx-1261654342 jsx-1444636411 dropdown-item text-right"
           >
             <div
-              className="jsx-1979462723 jsx-1444636411"
+              className="jsx-1261654342 jsx-1444636411"
             >
               <span
-                className="jsx-1979462723 jsx-1444636411"
+                className="jsx-1261654342 jsx-1444636411"
               >
                 Test
               </span>
                
               <span
-                className="jsx-1979462723 jsx-1444636411"
+                className="jsx-1261654342 jsx-1444636411"
               >
                 Tester
               </span>
             </div>
             <div
-              className="jsx-1979462723 jsx-1444636411 small text-muted text-nowrap"
+              className="jsx-1261654342 jsx-1444636411 small text-muted text-nowrap"
             >
               really-long-email-to-see-wrapping@button.is
             </div>
@@ -200,7 +209,7 @@ exports[`UserProfileDropdown desktop matches snapshot 1`] = `
           tabIndex={0}
         >
           <button
-            className="jsx-1979462723 jsx-1444636411 w-100 text-right"
+            className="jsx-1261654342 jsx-1444636411 w-100 text-right"
             type="submit"
           >
             Logout
@@ -210,31 +219,31 @@ exports[`UserProfileDropdown desktop matches snapshot 1`] = `
     </Dropdown>
   </li>
   <li
-    className="jsx-1979462723 jsx-1444636411 d-lg-none"
+    className="jsx-1261654342 jsx-1444636411 d-lg-none"
   >
     <Link
       href="/user/profile"
     >
       <a
-        className="jsx-1979462723 jsx-1444636411 nav-button text-right"
+        className="jsx-1261654342 jsx-1444636411 nav-button text-right"
       >
         <div
-          className="jsx-1979462723 jsx-1444636411"
+          className="jsx-1261654342 jsx-1444636411"
         >
           <span
-            className="jsx-1979462723 jsx-1444636411"
+            className="jsx-1261654342 jsx-1444636411"
           >
             Test
           </span>
            
           <span
-            className="jsx-1979462723 jsx-1444636411"
+            className="jsx-1261654342 jsx-1444636411"
           >
             Tester
           </span>
         </div>
         <div
-          className="jsx-1979462723 jsx-1444636411 small text-nowrap"
+          className="jsx-1261654342 jsx-1444636411 small text-nowrap"
         >
           really-long-email-to-see-wrapping@button.is
         </div>
@@ -242,7 +251,7 @@ exports[`UserProfileDropdown desktop matches snapshot 1`] = `
     </Link>
   </li>
   <li
-    className="jsx-1979462723 jsx-1444636411 d-lg-none"
+    className="jsx-1261654342 jsx-1444636411 d-lg-none"
   >
     <Form
       action="/logout"
@@ -250,7 +259,7 @@ exports[`UserProfileDropdown desktop matches snapshot 1`] = `
       method="post"
     >
       <button
-        className="jsx-1979462723 jsx-1444636411 nav-button text-right"
+        className="jsx-1261654342 jsx-1444636411 nav-button text-right"
         type="submit"
       >
         Logout
@@ -883,9 +892,9 @@ exports[`UserProfileDropdown desktop matches snapshot 1`] = `
     }
   </JSXStyle>
   <JSXStyle
-    id="1979462723"
+    id="1261654342"
   >
-    .user-icon.jsx-1979462723{background:#f8f9fa;border-radius:100%;display:inline-block;height:45px;line-height:45px;width:48px;}
+    #user-icon.dropdown-toggle::after{position:absolute;right:-14px;top:46%;color:#fff;}
   </JSXStyle>
 </Fragment>
 `;

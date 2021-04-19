@@ -29,14 +29,14 @@ const UserProfileDropdown: React.FunctionComponent<Props> = ({user}) => {
             variant="primary"
             aria-label="User menu toggle"
             style={{
-                borderRadius: '50%',
-                width: 40,
-                height: 40,
-                border: 'none',
-                background: '#fff',
-                position:    'relative'
-              }}
-            >
+              borderRadius: '50%',
+              width: 40,
+              height: 40,
+              border: 'none',
+              background: '#fff',
+              position: 'relative'
+            }}
+          >
             <FontAwesomeIcon
               color="#036"
               icon={faUser}
