@@ -1,0 +1,900 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserProfileDropdown desktop matches snapshot 1`] = `
+<Fragment>
+  <li
+    className="jsx-1261654342 jsx-1444636411 d-none d-lg-block"
+  >
+    <Dropdown
+      alignRight={true}
+      navbar={false}
+      style={
+        Object {
+          "paddingLeft": "6px",
+        }
+      }
+    >
+      <DropdownToggle
+        aria-label="User menu toggle"
+        as="button"
+        id="user-icon"
+        style={
+          Object {
+            "background": "#fff",
+            "border": "none",
+            "borderRadius": "50%",
+            "height": 40,
+            "position": "relative",
+            "width": 40,
+          }
+        }
+        variant="primary"
+      >
+        <FontAwesomeIcon
+          border={false}
+          className=""
+          color="#036"
+          fixedWidth={false}
+          flip={null}
+          icon={
+            Object {
+              "icon": Array [
+                448,
+                512,
+                Array [],
+                "f007",
+                "M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm89.6 32h-16.7c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16h-16.7C60.2 288 0 348.2 0 422.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-74.2-60.2-134.4-134.4-134.4z",
+              ],
+              "iconName": "user",
+              "prefix": "fas",
+            }
+          }
+          inverse={false}
+          listItem={false}
+          mask={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          size={null}
+          spin={false}
+          style={
+            Object {
+              "fontSize": "30px",
+              "height": "0.8em",
+              "paddingBottom": "2px",
+              "verticalAlign": "middle",
+            }
+          }
+          swapOpacity={false}
+          symbol={false}
+          title=""
+          transform={null}
+        />
+      </DropdownToggle>
+      <DropdownMenu
+        align="left"
+        alignRight={false}
+        flip={true}
+      >
+        <DropdownItem
+          as={[Function]}
+          disabled={false}
+          href="/user/profile"
+        >
+          <a
+            className="jsx-1261654342 jsx-1444636411 dropdown-item text-right"
+          >
+            <div
+              className="jsx-1261654342 jsx-1444636411"
+            >
+              <span
+                className="jsx-1261654342 jsx-1444636411"
+              >
+                Test
+              </span>
+               
+              <span
+                className="jsx-1261654342 jsx-1444636411"
+              >
+                Tester
+              </span>
+            </div>
+            <div
+              className="jsx-1261654342 jsx-1444636411 small text-muted"
+            >
+              really-long-email-to-see-wrapping@button.is
+            </div>
+          </a>
+        </DropdownItem>
+        <DropdownItem
+          action="/logout"
+          as={
+            Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "Check": Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "Input": Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "displayName": "FormCheckInput",
+                  "render": [Function],
+                },
+                "Label": Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "displayName": "FormCheckLabel",
+                  "render": [Function],
+                },
+                "displayName": "FormCheck",
+                "render": [Function],
+              },
+              "Control": Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "Feedback": Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "displayName": "Feedback",
+                  "propTypes": Object {
+                    "as": [Function],
+                    "tooltip": [Function],
+                    "type": [Function],
+                  },
+                  "render": [Function],
+                },
+                "displayName": "FormControl",
+                "render": [Function],
+              },
+              "File": Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "Input": Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "displayName": "FormFileInput",
+                  "render": [Function],
+                },
+                "Label": Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "displayName": "FormFileLabel",
+                  "render": [Function],
+                },
+                "displayName": "FormFile",
+                "render": [Function],
+              },
+              "Group": Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "displayName": "FormGroup",
+                "render": [Function],
+              },
+              "Label": Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "defaultProps": Object {
+                  "column": false,
+                  "srOnly": false,
+                },
+                "displayName": "FormLabel",
+                "render": [Function],
+              },
+              "Row": Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "defaultProps": undefined,
+                "displayName": "FormRow",
+                "render": [Function],
+              },
+              "Switch": Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "Input": Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "displayName": "FormCheckInput",
+                  "render": [Function],
+                },
+                "Label": Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "displayName": "FormCheckLabel",
+                  "render": [Function],
+                },
+                "displayName": "Switch",
+                "render": [Function],
+              },
+              "Text": Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "displayName": "FormText",
+                "render": [Function],
+              },
+              "defaultProps": Object {
+                "inline": false,
+              },
+              "displayName": "Form",
+              "render": [Function],
+            }
+          }
+          disabled={false}
+          method="post"
+          onKeyPress={[Function]}
+          tabIndex={0}
+        >
+          <button
+            className="jsx-1261654342 jsx-1444636411 w-100 text-right"
+            type="submit"
+          >
+            Logout
+          </button>
+        </DropdownItem>
+      </DropdownMenu>
+    </Dropdown>
+  </li>
+  <li
+    className="jsx-1261654342 jsx-1444636411 d-lg-none"
+  >
+    <Link
+      href="/user/profile"
+    >
+      <a
+        className="jsx-1261654342 jsx-1444636411 nav-button text-right"
+      >
+        <div
+          className="jsx-1261654342 jsx-1444636411"
+        >
+          <span
+            className="jsx-1261654342 jsx-1444636411"
+          >
+            Test
+          </span>
+           
+          <span
+            className="jsx-1261654342 jsx-1444636411"
+          >
+            Tester
+          </span>
+        </div>
+        <div
+          className="jsx-1261654342 jsx-1444636411 small"
+        >
+          really-long-email-to-see-wrapping@button.is
+        </div>
+      </a>
+    </Link>
+  </li>
+  <li
+    className="jsx-1261654342 jsx-1444636411 d-lg-none"
+  >
+    <Form
+      action="/logout"
+      inline={false}
+      method="post"
+    >
+      <button
+        className="jsx-1261654342 jsx-1444636411 nav-button text-right"
+        type="submit"
+      >
+        Logout
+      </button>
+    </Form>
+  </li>
+  <JSXStyle
+    id="1444636411"
+  >
+    b
+    u
+    t
+    t
+    o
+    n
+    .
+    j
+    s
+    x
+    -
+    1
+    4
+    4
+    4
+    6
+    3
+    6
+    4
+    1
+    1
+    {
+    b
+    a
+    c
+    k
+    g
+    r
+    o
+    u
+    n
+    d
+    :
+    n
+    o
+    n
+    e
+    ;
+    b
+    o
+    r
+    d
+    e
+    r
+    :
+    n
+    o
+    n
+    e
+    ;
+    c
+    o
+    l
+    o
+    r
+    :
+    i
+    n
+    h
+    e
+    r
+    i
+    t
+    ;
+    }
+    .
+    n
+    a
+    v
+    -
+    b
+    u
+    t
+    t
+    o
+    n
+    .
+    j
+    s
+    x
+    -
+    1
+    4
+    4
+    4
+    6
+    3
+    6
+    4
+    1
+    1
+    {
+    c
+    o
+    l
+    o
+    r
+    :
+    #
+    f
+    8
+    f
+    9
+    f
+    a
+    ;
+    d
+    i
+    s
+    p
+    l
+    a
+    y
+    :
+    i
+    n
+    l
+    i
+    n
+    e
+    -
+    b
+    l
+    o
+    c
+    k
+    ;
+    t
+    e
+    x
+    t
+    -
+    a
+    l
+    i
+    g
+    n
+    :
+    c
+    e
+    n
+    t
+    e
+    r
+    ;
+    -
+    w
+    e
+    b
+    k
+    i
+    t
+    -
+    u
+    s
+    e
+    r
+    -
+    s
+    e
+    l
+    e
+    c
+    t
+    :
+    n
+    o
+    n
+    e
+    ;
+    -
+    m
+    o
+    z
+    -
+    u
+    s
+    e
+    r
+    -
+    s
+    e
+    l
+    e
+    c
+    t
+    :
+    n
+    o
+    n
+    e
+    ;
+    -
+    m
+    s
+    -
+    u
+    s
+    e
+    r
+    -
+    s
+    e
+    l
+    e
+    c
+    t
+    :
+    n
+    o
+    n
+    e
+    ;
+    u
+    s
+    e
+    r
+    -
+    s
+    e
+    l
+    e
+    c
+    t
+    :
+    n
+    o
+    n
+    e
+    ;
+    b
+    a
+    c
+    k
+    g
+    r
+    o
+    u
+    n
+    d
+    -
+    c
+    o
+    l
+    o
+    r
+    :
+    t
+    r
+    a
+    n
+    s
+    p
+    a
+    r
+    e
+    n
+    t
+    ;
+    b
+    o
+    r
+    d
+    e
+    r
+    :
+    1
+    p
+    x
+     
+    s
+    o
+    l
+    i
+    d
+     
+    t
+    r
+    a
+    n
+    s
+    p
+    a
+    r
+    e
+    n
+    t
+    ;
+    p
+    a
+    d
+    d
+    i
+    n
+    g
+    :
+    0
+    .
+    3
+    7
+    5
+    r
+    e
+    m
+     
+    0
+    .
+    7
+    5
+    r
+    e
+    m
+    ;
+    f
+    o
+    n
+    t
+    -
+    s
+    i
+    z
+    e
+    :
+    1
+    r
+    e
+    m
+    ;
+    b
+    o
+    r
+    d
+    e
+    r
+    -
+    r
+    a
+    d
+    i
+    u
+    s
+    :
+    0
+    .
+    2
+    5
+    r
+    e
+    m
+    ;
+    -
+    w
+    e
+    b
+    k
+    i
+    t
+    -
+    t
+    r
+    a
+    n
+    s
+    i
+    t
+    i
+    o
+    n
+    :
+    c
+    o
+    l
+    o
+    r
+     
+    0
+    .
+    1
+    5
+    s
+     
+    e
+    a
+    s
+    e
+    -
+    i
+    n
+    -
+    o
+    u
+    t
+    ,
+    b
+    a
+    c
+    k
+    g
+    r
+    o
+    u
+    n
+    d
+    -
+    c
+    o
+    l
+    o
+    r
+     
+    0
+    .
+    1
+    5
+    s
+     
+    e
+    a
+    s
+    e
+    -
+    i
+    n
+    -
+    o
+    u
+    t
+    ,
+     
+    b
+    o
+    r
+    d
+    e
+    r
+    -
+    c
+    o
+    l
+    o
+    r
+     
+    0
+    .
+    1
+    5
+    s
+     
+    e
+    a
+    s
+    e
+    -
+    i
+    n
+    -
+    o
+    u
+    t
+    ,
+    b
+    o
+    x
+    -
+    s
+    h
+    a
+    d
+    o
+    w
+     
+    0
+    .
+    1
+    5
+    s
+     
+    e
+    a
+    s
+    e
+    -
+    i
+    n
+    -
+    o
+    u
+    t
+    ;
+    t
+    r
+    a
+    n
+    s
+    i
+    t
+    i
+    o
+    n
+    :
+    c
+    o
+    l
+    o
+    r
+     
+    0
+    .
+    1
+    5
+    s
+     
+    e
+    a
+    s
+    e
+    -
+    i
+    n
+    -
+    o
+    u
+    t
+    ,
+    b
+    a
+    c
+    k
+    g
+    r
+    o
+    u
+    n
+    d
+    -
+    c
+    o
+    l
+    o
+    r
+     
+    0
+    .
+    1
+    5
+    s
+     
+    e
+    a
+    s
+    e
+    -
+    i
+    n
+    -
+    o
+    u
+    t
+    ,
+     
+    b
+    o
+    r
+    d
+    e
+    r
+    -
+    c
+    o
+    l
+    o
+    r
+     
+    0
+    .
+    1
+    5
+    s
+     
+    e
+    a
+    s
+    e
+    -
+    i
+    n
+    -
+    o
+    u
+    t
+    ,
+    b
+    o
+    x
+    -
+    s
+    h
+    a
+    d
+    o
+    w
+     
+    0
+    .
+    1
+    5
+    s
+     
+    e
+    a
+    s
+    e
+    -
+    i
+    n
+    -
+    o
+    u
+    t
+    ;
+    }
+  </JSXStyle>
+  <JSXStyle
+    id="1261654342"
+  >
+    #user-icon.dropdown-toggle::after{position:absolute;right:-14px;top:46%;color:#fff;}
+  </JSXStyle>
+</Fragment>
+`;

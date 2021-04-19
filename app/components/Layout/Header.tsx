@@ -1,16 +1,45 @@
 import React, {useState, useRef} from 'react';
-import {Form} from 'react-bootstrap';
 import Link from 'next/link';
 import LoginButton from 'components/LoginButton';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faBars} from '@fortawesome/free-solid-svg-icons';
+import {faBars, faUser} from '@fortawesome/free-solid-svg-icons';
+import css from 'styled-jsx/css';
+
+export const ButtonCSS = css`
+  button {
+    background: none;
+    border: none;
+    color: inherit;
+  }
+
+  .nav-button {
+    color: #f8f9fa;
+    display: inline-block;
+    text-align: center;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    border-radius: 0.25rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+      border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+`;
 
 const DESKTOP_BREAKPOINT_QUERY = '(min-width: 992px)';
 
-const HeaderLayout = ({
+interface Props {
+  isLoggedIn?: boolean;
+  isRegistered?: boolean;
+  fixed?: boolean;
+  userProfileDropdown?: React.ReactNode;
+}
+const HeaderLayout: React.FunctionComponent<Props> = ({
   isLoggedIn = false,
   isRegistered = false,
   fixed = false,
+  userProfileDropdown,
   children
 }) => {
   let mediaMatch;
@@ -62,8 +91,18 @@ const HeaderLayout = ({
               type="button"
               aria-label="Menu toggle"
               onClick={toggleNavMenu}
+              className={isLoggedIn ? 'logged-in' : null}
             >
-              <FontAwesomeIcon color="white" icon={faBars} size="2x" />
+              <FontAwesomeIcon
+                color={isLoggedIn ? '#036' : 'white'}
+                icon={isLoggedIn ? faUser : faBars}
+                style={{
+                  fontSize: '30px',
+                  verticalAlign: 'middle',
+                  height: '0.8em',
+                  paddingBottom: '2px'
+                }}
+              />
             </button>
           </div>
           <ul
@@ -78,22 +117,7 @@ const HeaderLayout = ({
               </li>
             ) : null}
             {isLoggedIn ? (
-              <>
-                {isRegistered && (
-                  <li>
-                    <Link href="/user/profile">
-                      <a className="nav-button">Profile</a>
-                    </Link>
-                  </li>
-                )}
-                <li>
-                  <Form action="/logout" method="post">
-                    <button type="submit" className="nav-button">
-                      Logout
-                    </button>
-                  </Form>
-                </li>
-              </>
+              isRegistered && userProfileDropdown
             ) : (
               <>
                 <li>
@@ -114,6 +138,7 @@ const HeaderLayout = ({
         </nav>
       </div>
       {children}
+      <style jsx>{ButtonCSS}</style>
       <style jsx>
         {`
           /* Mobile-first styles:
@@ -162,23 +187,16 @@ const HeaderLayout = ({
           li {
             list-style-type: none;
           }
-          button {
-            background: none;
-            border: none;
+          #menu-toggle {
+            flex-grow: 0;
+            flex-shrink: 0;
+            flex-basis: 40px;
+            height: 40px;
+            padding: 0;
           }
-          .nav-button {
-            color: #f8f9fa;
-            display: inline-block;
-            text-align: center;
-            user-select: none;
-            background-color: transparent;
-            border: 1px solid transparent;
-            padding: 0.375rem 0.75rem;
-            font-size: 1rem;
-            border-radius: 0.25rem;
-            transition: color 0.15s ease-in-out,
-              background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
-              box-shadow 0.15s ease-in-out;
+          #menu-toggle.logged-in {
+            background: #f8f9fa;
+            border-radius: 50%;
           }
 
           /* Small desktop and up:
@@ -201,6 +219,7 @@ const HeaderLayout = ({
               display: none;
             }
             .header-right {
+              align-items: center;
               flex-direction: row;
               width: auto;
               text-align: right;
@@ -212,15 +231,6 @@ const HeaderLayout = ({
             }
             li {
               padding-left: 12px;
-            }
-          }
-
-          /* Custom query to prevent title heading from wrapping in screen widths
-          * between 992px to 1092px:
-          */
-          @media screen and (min-width: 1092px) {
-            header h2 {
-              font-size: 2rem;
             }
           }
 
