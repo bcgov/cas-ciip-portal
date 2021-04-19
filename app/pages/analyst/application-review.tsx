@@ -52,7 +52,6 @@ class ApplicationReview extends Component<Props, State> {
             edges {
               node {
                 id
-                reviewStepId
                 ...ReviewSidebar_applicationReviewStep
               }
             }
