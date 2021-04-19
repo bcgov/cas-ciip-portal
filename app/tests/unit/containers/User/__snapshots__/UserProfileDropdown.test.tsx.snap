@@ -100,7 +100,7 @@ exports[`UserProfileDropdown desktop matches snapshot 1`] = `
               </span>
             </div>
             <div
-              className="jsx-1261654342 jsx-1444636411 small text-muted text-nowrap"
+              className="jsx-1261654342 jsx-1444636411 small text-muted"
             >
               really-long-email-to-see-wrapping@button.is
             </div>
@@ -243,7 +243,7 @@ exports[`UserProfileDropdown desktop matches snapshot 1`] = `
           </span>
         </div>
         <div
-          className="jsx-1261654342 jsx-1444636411 small text-nowrap"
+          className="jsx-1261654342 jsx-1444636411 small"
         >
           really-long-email-to-see-wrapping@button.is
         </div>

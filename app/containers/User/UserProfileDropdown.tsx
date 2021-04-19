@@ -54,9 +54,7 @@ const UserProfileDropdown: React.FunctionComponent<Props> = ({user}) => {
                 <div>
                   <span>{user.firstName}</span> <span>{user.lastName}</span>
                 </div>
-                <div className="small text-muted text-nowrap">
-                  {user.emailAddress}
-                </div>
+                <div className="small text-muted">{user.emailAddress}</div>
               </a>
             </Dropdown.Item>
             <Dropdown.Item
@@ -79,7 +77,7 @@ const UserProfileDropdown: React.FunctionComponent<Props> = ({user}) => {
             <div>
               <span>{user.firstName}</span> <span>{user.lastName}</span>
             </div>
-            <div className="small text-nowrap">{user.emailAddress}</div>
+            <div className="small">{user.emailAddress}</div>
           </a>
         </Link>
       </li>
