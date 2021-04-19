@@ -97,6 +97,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
         applicationRevision={applicationRevision}
         review={false}
         setApplicationDetailsRendered={setApplicationDetailsRendered}
+        diffQuery={null}
       />
       <br />
       {hasErrors && !overrideActive ? (
