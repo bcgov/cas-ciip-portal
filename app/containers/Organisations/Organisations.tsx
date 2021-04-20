@@ -6,13 +6,16 @@ import {
   Button,
   FormControl,
   Alert,
-  Card
+  Card,
+  Row,
+  Col
 } from 'react-bootstrap';
 import {Organisations_query} from 'Organisations_query.graphql';
 import RelayModernEnvironment from 'relay-runtime/lib/store/RelayModernEnvironment';
 import LoadingSpinner from 'components/LoadingSpinner';
 import Organisation from './Organisation';
 import UserOrganisation from './UserOrganisation';
+import ProgressStepIndicator from 'components/ProgressStepIndicator';
 
 interface Props {
   query: Organisations_query;
@@ -61,6 +64,12 @@ export const OrganisationsComponent: React.FunctionComponent<Props> = (
   const userOrgs = session.ciipUserBySub.ciipUserOrganisationsByUserId.edges;
   return (
     <>
+      <Row>
+        <Col>
+          <ProgressStepIndicator />
+        </Col>
+      </Row>
+      <br />
       <Card bg="light">
         <Card.Body>
           Operator, Operator Representative, and Reporting Operation are defined
