@@ -90,7 +90,6 @@ export const FormComponent: React.FunctionComponent<Props> = ({
   const {schema, uiSchema, customFormats} = formJson as FormJson;
 
   const transformErrors = (errors: AjvError[]) => {
-    console.log(errors);
     return customTransformErrors(errors, formJson);
   };
 
