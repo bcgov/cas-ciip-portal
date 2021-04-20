@@ -70,10 +70,8 @@ exports[`Contact page matches the last accepted Snapshot 1`] = `
         For help with your CIIP application, or questions about the CleanBC Industrial Incentive Program, please email
          
         <a
-          href="mailto:GHGRegulator@gov.bc.ca?subject=Support Request (CIIP)"
-        >
-          GHGRegulator@gov.bc.ca
-        </a>
+          href="mailto:#"
+        />
       </span>
     </Alert>
     <p
@@ -82,10 +80,8 @@ exports[`Contact page matches the last accepted Snapshot 1`] = `
       To report a website error, contact the development team at
        
       <a
-        href="mailto:ggircs@gov.bc.ca?subject=Support Request (CIIP)"
-      >
-        ggircs@gov.bc.ca
-      </a>
+        href="mailto:#"
+      />
       .
     </p>
   </Container>

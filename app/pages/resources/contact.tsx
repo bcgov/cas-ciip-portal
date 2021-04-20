@@ -29,9 +29,16 @@ class Contact extends Component<Props> {
     const {query} = this.props;
     const {session} = query || {};
     const supportEmail = getConfig()?.publicRuntimeConfig.SUPPORT_EMAIL;
+    const supportMailToUrl = supportEmail
+      ? `mailto:${supportEmail}?subject=Support Request (CIIP)`
+      : '#';
     const adminEmail = getEmailShortForm(
       getConfig()?.publicRuntimeConfig.ADMIN_EMAIL
     );
+    const adminMailToUrl = supportEmail
+      ? `mailto:${adminEmail}?subject=Support Request (CIIP)`
+      : '#';
+
     return (
       <DefaultLayout session={session} title="Contact Us">
         <Container>
@@ -40,17 +47,12 @@ class Contact extends Component<Props> {
             <span className="pl-2">
               For help with your CIIP application, or questions about the
               CleanBC Industrial Incentive Program, please email{' '}
-              <a href={`mailto:${adminEmail}?subject=Support Request (CIIP)`}>
-                {adminEmail}
-              </a>
+              <a href={adminMailToUrl}>{adminEmail}</a>
             </span>
           </Alert>
           <p className="px-4 py-3">
             To report a website error, contact the development team at{' '}
-            <a href={`mailto:${supportEmail}?subject=Support Request (CIIP)`}>
-              {supportEmail}
-            </a>
-            .
+            <a href={supportMailToUrl}>{supportEmail}</a>.
           </p>
         </Container>
       </DefaultLayout>
