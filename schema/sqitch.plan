@@ -304,3 +304,4 @@ computed_columns/application_revision_naics_code [tables/form_result tables/appl
 queries/default_displayed_reporting_year 2021-04-16T21:15:17Z Matthieu Foucault <matthieu@button.is> # add a function that returns the reporting year displayed by default, based on the currently opened reporting year
 queries/facility_application_by_reporting_year [queries/facility_application_by_reporting_year@v2.0.0 queries/default_displayed_reporting_year] 2021-04-16T21:17:27Z Matthieu Foucault <matthieu@button.is> # allow facility_application_by_reporting_year to not have a reporting year
 @v2.1.0 2021-04-21T21:07:05Z Dylan Leard <dylan@button.is> # release v2.1.0
+tables/gas_001 [tables/gas] 2021-04-20T17:48:20Z Dylan Leard <dylan@button.is> # Migration: add is_ciip_emission column to gas table
