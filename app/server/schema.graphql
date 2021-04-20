@@ -27109,9 +27109,7 @@ type Fuel implements Node {
   """Reads a single `CiipUser` that is related to this `Fuel`."""
   ciipUserByUpdatedBy: CiipUser
 
-  """
-  boolean column indicates whether this row should be included when totalling emissions in the context of CIIP (CleanBC Industrial Incentive Program)
-  """
+  """Metadata about this fuel row"""
   comments: String
 
   """Creation date of row"""
@@ -27351,9 +27349,7 @@ input FuelFilter {
 
 """An input for mutations affecting `Fuel`"""
 input FuelInput {
-  """
-  boolean column indicates whether this row should be included when totalling emissions in the context of CIIP (CleanBC Industrial Incentive Program)
-  """
+  """Metadata about this fuel row"""
   comments: String
 
   """Creation date of row"""
@@ -27399,9 +27395,7 @@ input FuelInput {
 
 """Represents an update to a `Fuel`. Fields that are set will be updated."""
 input FuelPatch {
-  """
-  boolean column indicates whether this row should be included when totalling emissions in the context of CIIP (CleanBC Industrial Incentive Program)
-  """
+  """Metadata about this fuel row"""
   comments: String
 
   """Creation date of row"""
