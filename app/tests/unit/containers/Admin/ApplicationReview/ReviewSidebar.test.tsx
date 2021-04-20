@@ -102,6 +102,7 @@ describe('ReviewSidebar', () => {
     const data = applicationReviewStepWithComments();
     const r = shallow(
       <ReviewSidebar
+        isFinalized={false}
         applicationReviewStep={data as ReviewSidebar_applicationReviewStep}
         onClose={() => {}}
         relay={relay as any}
@@ -114,6 +115,20 @@ describe('ReviewSidebar', () => {
     const data = applicationReviewStep();
     const r = shallow(
       <ReviewSidebar
+        isFinalized={false}
+        applicationReviewStep={data as ReviewSidebar_applicationReviewStep}
+        onClose={() => {}}
+        relay={relay as any}
+      />
+    );
+    expect(r).toMatchSnapshot();
+  });
+  it('should match the last accepted snapshot (review finalized, decision has been made)', async () => {
+    const relay = {environment: null};
+    const data = applicationReviewStepWithAllCommentsResolved();
+    const r = shallow(
+      <ReviewSidebar
+        isFinalized
         applicationReviewStep={data as ReviewSidebar_applicationReviewStep}
         onClose={() => {}}
         relay={relay as any}
@@ -126,6 +141,7 @@ describe('ReviewSidebar', () => {
     const data = applicationReviewStepWithComments();
     const r = shallow(
       <ReviewSidebar
+        isFinalized={false}
         applicationReviewStep={data as ReviewSidebar_applicationReviewStep}
         onClose={() => {}}
         relay={relay as any}
@@ -140,6 +156,7 @@ describe('ReviewSidebar', () => {
     const data = applicationReviewStepWithComments();
     const r = shallow(
       <ReviewSidebar
+        isFinalized={false}
         applicationReviewStep={data as ReviewSidebar_applicationReviewStep}
         onClose={() => {}}
         relay={relay as any}
@@ -190,6 +207,7 @@ describe('ReviewSidebar', () => {
     const data = applicationReviewStepWithComments();
     const r = shallow(
       <ReviewSidebar
+        isFinalized={false}
         applicationReviewStep={data as ReviewSidebar_applicationReviewStep}
         onClose={onClose}
         relay={relay as any}
@@ -207,6 +225,7 @@ describe('ReviewSidebar', () => {
     const data = applicationReviewStepWithComments();
     const r = mount(
       <ReviewSidebar
+        isFinalized={false}
         applicationReviewStep={data as ReviewSidebar_applicationReviewStep}
         onClose={() => {}}
         relay={relay as any}
@@ -225,6 +244,7 @@ describe('ReviewSidebar', () => {
     const data = applicationReviewStepWithAllCommentsResolved();
     const r = mount(
       <ReviewSidebar
+        isFinalized={false}
         applicationReviewStep={data as ReviewSidebar_applicationReviewStep}
         onClose={() => {}}
         relay={relay as any}
@@ -253,6 +273,7 @@ describe('ReviewSidebar', () => {
     const data = applicationReviewStepWithComments();
     const r = mount(
       <ReviewSidebar
+        isFinalized={false}
         applicationReviewStep={data as ReviewSidebar_applicationReviewStep}
         onClose={() => {}}
         relay={relay as any}
@@ -286,6 +307,7 @@ describe('ReviewSidebar', () => {
     };
     const r = shallow(
       <ReviewSidebar
+        isFinalized={false}
         applicationReviewStep={data as ReviewSidebar_applicationReviewStep}
         onClose={() => {}}
         relay={relay as any}

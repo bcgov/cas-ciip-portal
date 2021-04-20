@@ -39,6 +39,7 @@ class ApplicationReview extends Component<Props, State> {
     ) {
       query {
         session {
+          userGroups
           ...defaultLayout_session
         }
         application(id: $applicationId) {
@@ -108,6 +109,7 @@ class ApplicationReview extends Component<Props, State> {
     const {overrideJustification} = query?.applicationRevision;
     const {applicationRevisionStatus} = query?.application.reviewRevisionStatus;
     const {session} = query || {};
+    const currentReviewIsFinalized = applicationRevisionStatus !== 'SUBMITTED';
 
     return (
       <DefaultLayout
@@ -196,6 +198,7 @@ class ApplicationReview extends Component<Props, State> {
               applicationReviewStep={this.findStepById(
                 this.state.selectedReviewStepId
               )}
+              isFinalized={currentReviewIsFinalized}
               onClose={this.closeSidebar}
               headerOffset={runtimeConfig.SITEWIDE_NOTICE ? 108 : undefined}
             />

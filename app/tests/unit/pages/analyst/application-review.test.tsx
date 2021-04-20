@@ -1,11 +1,16 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 import ApplicationReview from 'pages/analyst/application-review';
-import {applicationReviewQueryResponse} from 'applicationReviewQuery.graphql';
+import {
+  applicationReviewQueryResponse,
+  CiipApplicationRevisionStatus
+} from 'applicationReviewQuery.graphql';
+import {INCENTIVE_ANALYST} from 'data/group-constants';
 
-const getTestQuery = () => {
+const getTestQuery = (applicationRevisionStatus = 'SUBMITTED') => {
   return {
     session: {
+      userGroups: [INCENTIVE_ANALYST],
       ' $fragmentRefs': {
         defaultLayout_session: true
       }
@@ -16,6 +21,7 @@ const getTestQuery = () => {
       },
       rowId: 1,
       reviewRevisionStatus: {
+        applicationRevisionStatus: applicationRevisionStatus as CiipApplicationRevisionStatus,
         ' $fragmentRefs': {
           ApplicationRevisionStatusContainer_applicationRevisionStatus: true
         }
@@ -24,6 +30,7 @@ const getTestQuery = () => {
         edges: [
           {
             node: {
+              id: 'abc',
               ' $fragmentRefs': {
                 ReviewSidebar_applicationReviewStep: true
               }
@@ -38,11 +45,13 @@ const getTestQuery = () => {
     applicationRevision: {
       overrideJustification: null,
       ' $fragmentRefs': {
-        IncentiveCalculatorContainer_applicationRevision: true
+        IncentiveCalculatorContainer_applicationRevision: true,
+        ApplicationDetailsContainer_applicationRevision: true
       }
     },
     ' $fragmentRefs': {
-      ApplicationDetailsContainer_query: true
+      ApplicationDetailsContainer_query: true,
+      ApplicationDetailsContainer_diffQuery: true
     }
   };
 };
@@ -78,6 +87,42 @@ describe('The application-review page', () => {
     expect(wrapper.exists('Relay(ReviewSidebar)')).toBeTrue();
     expect(wrapper.exists('HelpButton')).toBeFalse();
     expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should render the ReviewSidebar with finalized review if an application decision has been made', () => {
+    const query = getTestQuery('APPROVED');
+    const wrapper = shallow(
+      <ApplicationReview
+        router={null}
+        query={query as applicationReviewQueryResponse['query']}
+      />
+    );
+    wrapper.setState((state) => {
+      return {
+        ...state,
+        isSidebarOpened: true
+      };
+    });
+    expect(wrapper.find('Relay(ReviewSidebar)').prop('isFinalized')).toBeTrue();
+  });
+
+  it('should render the ReviewSidebar in a non-finalized state if no decision has been made on the application', () => {
+    const query = getTestQuery('SUBMITTED');
+    const wrapper = shallow(
+      <ApplicationReview
+        router={null}
+        query={query as applicationReviewQueryResponse['query']}
+      />
+    );
+    wrapper.setState((state) => {
+      return {
+        ...state,
+        isSidebarOpened: true
+      };
+    });
+    expect(
+      wrapper.find('Relay(ReviewSidebar)').prop('isFinalized')
+    ).toBeFalse();
   });
 
   it('renders the HelpButton only when the review sidebar is closed', () => {
@@ -121,7 +166,8 @@ describe('The application-review page', () => {
       applicationRevision: {
         overrideJustification: 'oops',
         ' $fragmentRefs': {
-          IncentiveCalculatorContainer_applicationRevision: true
+          IncentiveCalculatorContainer_applicationRevision: true,
+          ApplicationDetailsContainer_applicationRevision: true
         }
       }
     };

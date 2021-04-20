@@ -15,6 +15,7 @@ import GenericConfirmationModal from 'components/GenericConfirmationModal';
 interface Props {
   onClose: () => void;
   applicationReviewStep: ReviewSidebar_applicationReviewStep;
+  isFinalized: boolean;
   relay: RelayProp;
   headerOffset?: number;
 }
@@ -22,6 +23,7 @@ interface Props {
 export const ReviewSidebar: React.FunctionComponent<Props> = ({
   onClose,
   applicationReviewStep,
+  isFinalized,
   relay,
   headerOffset = 68
 }) => {
@@ -86,6 +88,24 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
       <FontAwesomeIcon icon={faCheck} style={{marginRight: '0.5rem'}} />
       Mark this review step completed
     </Button>
+  );
+  const markIncompleteButton = (
+    <p className="mark-incomplete">
+      <FontAwesomeIcon icon={faCheck} style={{marginRight: 2}} />
+      <span> This review step has been completed. </span>
+      <Button
+        variant="link"
+        style={{
+          padding: '0 0 2px 0',
+          fontSize: '0.9rem',
+          lineHeight: 1,
+          display: 'inline'
+        }}
+        onClick={() => markReviewStepComplete(false)}
+      >
+        Mark incomplete
+      </Button>
+    </p>
   );
   const resolveComment = async (id, resolve) => {
     const {environment} = relay;
@@ -182,26 +202,10 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
         ×
       </button>
       <h2>{reviewStepName} Review</h2>
-      {applicationReviewStep?.isComplete ? (
-        <p className="mark-incomplete">
-          <FontAwesomeIcon icon={faCheck} style={{marginRight: 2}} />
-          <span> This review step has been completed. </span>
-          <Button
-            variant="link"
-            style={{
-              padding: '0 0 2px 0',
-              fontSize: '0.9rem',
-              lineHeight: 1,
-              display: 'inline'
-            }}
-            onClick={() => markReviewStepComplete(false)}
-          >
-            Mark incomplete
-          </Button>
-        </p>
-      ) : (
-        markCompletedButton
-      )}
+      {!isFinalized &&
+        (applicationReviewStep?.isComplete
+          ? markIncompleteButton
+          : markCompletedButton)}
       <div id="scrollable-comments" tabIndex={0}>
         <h3 id="general-comments-label">
           General Comments{' '}
