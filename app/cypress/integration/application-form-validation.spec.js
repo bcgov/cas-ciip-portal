@@ -169,7 +169,7 @@ describe('When viewing an application in draft as a reporter', () => {
     cy.visit(emissionFormUrl);
 
     // Fix invalid data
-    cy.get('#root_sourceTypes_0_gases_0_annualEmission').type('42');
+    cy.get('#root_sourceTypes_0_gases_0_annualEmission').clear().type('42');
     cy.get('body').happoScreenshot({component: 'Emissions form'});
     cy.get('div.card-header').contains('Form input saved');
     cy.contains('Continue').click();
@@ -208,7 +208,7 @@ describe('When viewing an application in draft as a reporter', () => {
     cy.contains('Add').click();
     cy.get('#root_0_fuelRowId').type('Diesel');
     cy.get('#root_0_fuelRowId-item-1 > .dropdown-item').click();
-    cy.get('#root_0_quantity').type('42');
+    cy.get('#root_0_quantity').type('4');
     cy.get('#root_0_emissionCategoryRowId').select(
       'General Stationary Combustion'
     );
@@ -256,8 +256,8 @@ describe('When viewing an application in draft as a reporter', () => {
     cy.get('#root_0_productRowId').clear();
     cy.get('#root_0_productRowId').type('Aluminum');
     cy.get('.dropdown-item').click();
-    cy.get('#root_0_productAmount').type('123');
-    cy.get('#root_0_productEmissions').type('456');
+    cy.get('#root_0_productAmount').type('1');
+    cy.get('#root_0_productEmissions').type('4');
 
     cy.get('body').happoScreenshot({
       component: 'Products and Energy Form'
