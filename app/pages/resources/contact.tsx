@@ -3,9 +3,11 @@ import {Container, Alert} from 'react-bootstrap';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faInfoCircle} from '@fortawesome/free-solid-svg-icons';
 import {graphql} from 'react-relay';
+import getConfig from 'next/config';
 import {CiipPageComponentProps} from 'next-env';
 import {contactQueryResponse} from 'contactQuery.graphql';
 import DefaultLayout from 'layouts/default-layout';
+const getEmailShortForm = require('app/server/helpers/getEmailShortForm.js');
 
 interface Props extends CiipPageComponentProps {
   query: contactQueryResponse['query'];
@@ -26,6 +28,10 @@ class Contact extends Component<Props> {
   render() {
     const {query} = this.props;
     const {session} = query || {};
+    const supportEmail = getConfig()?.publicRuntimeConfig.SUPPORT_EMAIL;
+    const adminEmail = getEmailShortForm(
+      getConfig()?.publicRuntimeConfig.ADMIN_EMAIL
+    );
     return (
       <DefaultLayout session={session} title="Contact Us">
         <Container>
@@ -34,15 +40,15 @@ class Contact extends Component<Props> {
             <span className="pl-2">
               For help with your CIIP application, or questions about the
               CleanBC Industrial Incentive Program, please email{' '}
-              <a href="mailto:GHGRegulator@gov.bc.ca?subject=Support Request (CIIP)">
-                GHGRegulator@gov.bc.ca
+              <a href={`mailto:${adminEmail}?subject=Support Request (CIIP)`}>
+                {adminEmail}
               </a>
             </span>
           </Alert>
           <p className="px-4 py-3">
             To report a website error, contact the development team at{' '}
-            <a href="mailto:ggircs@gov.bc.ca?subject=Support Request (CIIP)">
-              ggircs@gov.bc.ca
+            <a href={`mailto:${supportEmail}?subject=Support Request (CIIP)`}>
+              {supportEmail}
             </a>
             .
           </p>
