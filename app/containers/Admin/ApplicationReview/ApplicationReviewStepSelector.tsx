@@ -84,7 +84,6 @@ export const ApplicationReviewStepSelector: React.FunctionComponent<Props> = ({
                 action
                 tabIndex={0}
                 key={reviewStepId}
-                aria-selected={isSelectedStep}
                 active={isSelectedStep}
                 onClick={() => onSelectStep(edge.node.id)}
                 onKeyDown={(e) => {

@@ -17,7 +17,7 @@ export const IncentiveCalculator: React.FunctionComponent<Props> = ({
     <>
       <Jumbotron>
         <div style={{marginBottom: '30px'}}>
-          <h5>Incentive by Product:</h5>
+          <h2>Incentive by Product:</h2>
           <p>
             This formula gives the partial incentive for each product reported
             in <br />
@@ -53,6 +53,12 @@ export const IncentiveCalculator: React.FunctionComponent<Props> = ({
           ))}
         </tbody>
       </Table>
+      <style jsx>{`
+        h2 {
+          font-size: 1.25rem;
+          margin-botton: 0.5rem;
+        }
+      `}</style>
     </>
   );
 };

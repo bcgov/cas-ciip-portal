@@ -188,6 +188,7 @@ class ApplicationReview extends Component<Props, State> {
             >
               <Button
                 id="to-top"
+                aria-label="Return to top of page"
                 variant="dark"
                 type="button"
                 onClick={() => {
