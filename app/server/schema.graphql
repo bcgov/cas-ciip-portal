@@ -2618,6 +2618,34 @@ type ApplicationRevision implements Node {
   """
   overrideJustification: String
 
+  """
+  Computed column to retrieve the sum of ciip emissions reported for an application_revision
+  """
+  totalCiipEmissions(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: ApplicationRevisionTotalCiipEmissionsRecordFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+  ): ApplicationRevisionTotalCiipEmissionsConnection!
+
   """The date the application revision status was updated"""
   updatedAt: Datetime!
 
@@ -3079,6 +3107,63 @@ enum ApplicationRevisionStatusesOrderBy {
   UPDATED_BY_DESC
   VERSION_NUMBER_ASC
   VERSION_NUMBER_DESC
+}
+
+"""
+A `ApplicationRevisionTotalCiipEmissionsRecord` edge in the connection.
+"""
+type ApplicationRevisionTotalCiipEmissionEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """
+  The `ApplicationRevisionTotalCiipEmissionsRecord` at the end of the edge.
+  """
+  node: ApplicationRevisionTotalCiipEmissionsRecord
+}
+
+"""
+A connection to a list of `ApplicationRevisionTotalCiipEmissionsRecord` values.
+"""
+type ApplicationRevisionTotalCiipEmissionsConnection {
+  """
+  A list of edges which contains the `ApplicationRevisionTotalCiipEmissionsRecord` and cursor to aid in pagination.
+  """
+  edges: [ApplicationRevisionTotalCiipEmissionEdge!]!
+
+  """A list of `ApplicationRevisionTotalCiipEmissionsRecord` objects."""
+  nodes: [ApplicationRevisionTotalCiipEmissionsRecord]!
+
+  """
+  The count of *all* `ApplicationRevisionTotalCiipEmissionsRecord` you could get from the connection.
+  """
+  totalCount: Int!
+}
+
+"""The return type of our `totalCiipEmissions` query."""
+type ApplicationRevisionTotalCiipEmissionsRecord {
+  totalCiipAnnualEmissions: BigFloat
+  totalCiipCo2EEmissions: BigFloat
+}
+
+"""
+A filter to be used against `ApplicationRevisionTotalCiipEmissionsRecord` object types. All fields are combined with a logical ‘and.’
+"""
+input ApplicationRevisionTotalCiipEmissionsRecordFilter {
+  """Checks for all expressions in this list."""
+  and: [ApplicationRevisionTotalCiipEmissionsRecordFilter!]
+
+  """Negates the expression."""
+  not: ApplicationRevisionTotalCiipEmissionsRecordFilter
+
+  """Checks for any expressions in this list."""
+  or: [ApplicationRevisionTotalCiipEmissionsRecordFilter!]
+
+  """Filter by the object’s `totalCiipAnnualEmissions` field."""
+  totalCiipAnnualEmissions: BigFloatFilter
+
+  """Filter by the object’s `totalCiipCo2EEmissions` field."""
+  totalCiipCo2EEmissions: BigFloatFilter
 }
 
 """
@@ -27024,7 +27109,9 @@ type Fuel implements Node {
   """Reads a single `CiipUser` that is related to this `Fuel`."""
   ciipUserByUpdatedBy: CiipUser
 
-  """Metadata about this fuel row"""
+  """
+  boolean column indicates whether this row should be included when totalling emissions in the context of CIIP (CleanBC Industrial Incentive Program)
+  """
   comments: String
 
   """Creation date of row"""
@@ -27264,7 +27351,9 @@ input FuelFilter {
 
 """An input for mutations affecting `Fuel`"""
 input FuelInput {
-  """Metadata about this fuel row"""
+  """
+  boolean column indicates whether this row should be included when totalling emissions in the context of CIIP (CleanBC Industrial Incentive Program)
+  """
   comments: String
 
   """Creation date of row"""
@@ -27310,7 +27399,9 @@ input FuelInput {
 
 """Represents an update to a `Fuel`. Fields that are set will be updated."""
 input FuelPatch {
-  """Metadata about this fuel row"""
+  """
+  boolean column indicates whether this row should be included when totalling emissions in the context of CIIP (CleanBC Industrial Incentive Program)
+  """
   comments: String
 
   """Creation date of row"""
@@ -27622,6 +27713,11 @@ type Gas implements Node {
   """
   id: ID!
 
+  """
+  boolean column indicates whether this row should be included when totalling emissions in the context of CIIP (CleanBC Industrial Incentive Program)
+  """
+  isCiipEmission: Boolean
+
   """Unique ID for the gas"""
   rowId: Int!
 
@@ -27849,6 +27945,9 @@ input GasCondition {
   """Checks for equality with the object’s `gwp` field."""
   gwp: BigFloat
 
+  """Checks for equality with the object’s `isCiipEmission` field."""
+  isCiipEmission: Boolean
+
   """Checks for equality with the object’s `rowId` field."""
   rowId: Int
 
@@ -27953,6 +28052,9 @@ input GasFilter {
   """Filter by the object’s `gwp` field."""
   gwp: BigFloatFilter
 
+  """Filter by the object’s `isCiipEmission` field."""
+  isCiipEmission: BooleanFilter
+
   """Negates the expression."""
   not: GasFilter
 
@@ -27992,6 +28094,11 @@ input GasInput {
   """Global warming potential of the gas"""
   gwp: BigFloat
 
+  """
+  boolean column indicates whether this row should be included when totalling emissions in the context of CIIP (CleanBC Industrial Incentive Program)
+  """
+  isCiipEmission: Boolean
+
   """Updated date of row"""
   updatedAt: Datetime
 
@@ -28021,6 +28128,11 @@ input GasPatch {
 
   """Global warming potential of the gas"""
   gwp: BigFloat
+
+  """
+  boolean column indicates whether this row should be included when totalling emissions in the context of CIIP (CleanBC Industrial Incentive Program)
+  """
+  isCiipEmission: Boolean
 
   """Updated date of row"""
   updatedAt: Datetime
@@ -28073,6 +28185,8 @@ enum GasesOrderBy {
   GWP_DESC
   ID_ASC
   ID_DESC
+  IS_CIIP_EMISSION_ASC
+  IS_CIIP_EMISSION_DESC
   NATURAL
   PRIMARY_KEY_ASC
   PRIMARY_KEY_DESC
