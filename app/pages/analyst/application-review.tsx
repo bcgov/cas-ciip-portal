@@ -109,7 +109,18 @@ class ApplicationReview extends Component<Props, State> {
     const {overrideJustification} = query?.applicationRevision;
     const {applicationRevisionStatus} = query?.application.reviewRevisionStatus;
     const {session} = query || {};
-    const currentReviewIsFinalized = applicationRevisionStatus !== 'SUBMITTED';
+    const isUserAdmin = query?.session.userGroups.some((groupConst) =>
+      ADMIN_GROUP.includes(groupConst)
+    );
+    const currentReviewIsFinalized =
+      this.props.query?.application.reviewRevisionStatus
+        .applicationRevisionStatus !== 'SUBMITTED';
+
+    const handleChangeDecision = () => {
+      console.log(
+        'implement me in 2294 - should open the decision dialog with admin-only option to revert (to SUBMITTED status)'
+      );
+    };
 
     return (
       <DefaultLayout
@@ -147,6 +158,11 @@ class ApplicationReview extends Component<Props, State> {
               }
               selectedStep={this.state.selectedReviewStepId}
               onSelectStep={this.selectReviewStep}
+              changeDecision={
+                isUserAdmin && currentReviewIsFinalized
+                  ? handleChangeDecision
+                  : undefined
+              }
             />
             <ApplicationOverrideNotification
               overrideJustification={overrideJustification}

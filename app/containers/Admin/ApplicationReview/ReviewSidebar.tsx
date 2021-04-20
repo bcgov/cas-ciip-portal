@@ -149,7 +149,7 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
         description={description}
         createdAt={createdAt}
         createdBy={`${ciipUserByCreatedBy.firstName} ${ciipUserByCreatedBy.lastName}`}
-        viewOnly={applicationReviewStep?.isComplete}
+        viewOnly={isFinalized || applicationReviewStep?.isComplete}
         isResolved={resolved}
         onResolveToggle={resolveComment}
         onDelete={(id) => deleteComment(id, commentType)}
@@ -248,7 +248,7 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
         <Button variant="link" style={{padding: 0}} onClick={toggleResolved}>
           {`${showingResolved ? 'Hide' : 'Show'} resolved comments`}
         </Button>
-        {!applicationReviewStep?.isComplete && (
+        {!isFinalized && !applicationReviewStep?.isComplete && (
           <Button variant="primary">+ New Comment</Button>
         )}
       </div>

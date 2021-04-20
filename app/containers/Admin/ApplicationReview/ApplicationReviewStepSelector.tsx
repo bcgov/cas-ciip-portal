@@ -1,11 +1,12 @@
 import React from 'react';
-import {Row, Col, ListGroup} from 'react-bootstrap';
+import {Row, Button, ListGroup} from 'react-bootstrap';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {
   faCheck,
   faComments,
   faTimes,
-  faHourglassHalf
+  faHourglassHalf,
+  faKey
 } from '@fortawesome/free-solid-svg-icons';
 import {graphql, createFragmentContainer} from 'react-relay';
 import {ApplicationReviewStepSelector_applicationReviewSteps} from '__generated__/ApplicationReviewStepSelector_applicationReviewSteps.graphql';
@@ -21,6 +22,7 @@ interface Props {
     | 'REJECTED'
     | 'REQUESTED_CHANGES';
   onDecisionOrChangeRequestAction: () => void;
+  changeDecision?: () => void;
 }
 
 const DECISION_BS_VARIANT = {
@@ -48,7 +50,8 @@ export const ApplicationReviewStepSelector: React.FunctionComponent<Props> = ({
   selectedStep,
   onSelectStep,
   decisionOrChangeRequestStatus,
-  onDecisionOrChangeRequestAction
+  onDecisionOrChangeRequestAction,
+  changeDecision
 }) => {
   const steps = applicationReviewSteps.edges;
   const allStepsAreComplete = steps.every((edge) => edge.node.isComplete);
@@ -67,7 +70,7 @@ export const ApplicationReviewStepSelector: React.FunctionComponent<Props> = ({
   );
   return (
     <Row>
-      <Col md={5}>
+      <div className="col-xxl-6 col-xl-7 col-lg-8 col-md-10">
         <ListGroup as="ul" id="selector">
           {steps.map((edge) => {
             const {reviewStepId, isComplete} = edge.node;
@@ -126,7 +129,24 @@ export const ApplicationReviewStepSelector: React.FunctionComponent<Props> = ({
             {DECISION_BUTTON_TEXT[decisionOrChangeRequestStatus]}
           </ListGroup.Item>
         </ListGroup>
-      </Col>
+      </div>
+      <div
+        id="change-decision"
+        className="col-md-12 col-lg-4 col-xl-5 col-xxl-6"
+      >
+        {changeDecision && (
+          <Button variant="link" onClick={changeDecision}>
+            <FontAwesomeIcon icon={faKey} style={{marginRight: 8}} />
+            Change decision
+          </Button>
+        )}
+      </div>
+      <style jsx>{`
+        #change-decision {
+          display: flex;
+          align-items: flex-end;
+        }
+      `}</style>
       <style jsx global>{`
         #selector .list-group-item-danger.disabled,
         .list-group-item-danger:disabled {
