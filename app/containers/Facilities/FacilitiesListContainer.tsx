@@ -40,13 +40,15 @@ const filters: TableFilter[] = [
 export const FacilitiesList: React.FunctionComponent<Props> = ({query}) => {
   const {
     facilityApplicationByReportingYear: {edges, totalCount},
-    allReportingYears: {edges: reportingYears}
+    allReportingYears: {edges: reportingYears},
+    defaultDisplayedReportingYear
   } = query;
 
   const router = useRouter();
   const selectedReportingYear = useMemo(
     () =>
-      safeJsonParse(router.query.filterArgs as string).reportingYear || 2019,
+      safeJsonParse(router.query.filterArgs as string).reportingYear ||
+      defaultDisplayedReportingYear.reportingYear,
     [router]
   );
 
@@ -72,7 +74,7 @@ export const FacilitiesList: React.FunctionComponent<Props> = ({query}) => {
   const reportingPeriodFilter = new ReportingPeriodFilter(
     'reportingYear',
     selectableReportingYears,
-    2019
+    defaultDisplayedReportingYear.reportingYear
   );
 
   return (
@@ -136,6 +138,10 @@ export default createFragmentContainer(FacilitiesList, {
             reportingYear
           }
         }
+      }
+
+      defaultDisplayedReportingYear {
+        reportingYear
       }
     }
   `
