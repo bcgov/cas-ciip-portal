@@ -32,7 +32,8 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
   begin
 
     -- Get emissions for facility
-    select total_ciip_co2e_emissions from ggircs_portal.application_revision_total_ciip_emissions(application_revision) into em_facility;
+    select sum(annual_co2e) into em_facility from ggircs_portal.ciip_emission
+    where version_number = application_revision.version_number and application_id = application_revision.application_id and gas_type != 'CO2';
 
     -- Get reporting year for application
     select reporting_year into app_reporting_year from ggircs_portal.application
@@ -132,15 +133,6 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
                 and _product.product_name = 'Sold electricity'
             ), 0);
           end if;
-          if product_data.subtract_generated_electricity_emissions then
-            em_product = em_product - coalesce((
-              select p.product_emissions
-              from unnest(reported_products) p
-              join ggircs_portal.product _product on
-                p.product_id = _product.id
-                and _product.product_name = 'Generated electricity'
-            ), 0);
-          end if;
           if product_data.add_purchased_heat_emissions then
             em_product = em_product + coalesce((
               select p.product_emissions
@@ -157,15 +149,6 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
               join ggircs_portal.product _product on
                 p.product_id = _product.id
                 and _product.product_name = 'Sold heat'
-            ), 0);
-          end if;
-          if product_data.subtract_generated_heat_emissions then
-            em_product = em_product - coalesce((
-              select p.product_emissions
-              from unnest(reported_products) p
-              join ggircs_portal.product _product on
-                p.product_id = _product.id
-                and _product.product_name = 'Generated heat'
             ), 0);
           end if;
           if product_data.add_emissions_from_eios then

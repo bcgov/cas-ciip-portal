@@ -306,3 +306,4 @@ queries/facility_application_by_reporting_year [queries/facility_application_by_
 @v2.1.0 2021-04-21T21:07:05Z Dylan Leard <dylan@button.is> # release v2.1.0
 tables/gas_001 [tables/gas] 2021-04-20T17:48:20Z Dylan Leard <dylan@button.is> # Migration: add is_ciip_emission column to gas table
 computed_columns/application_revision_total_ciip_emissions [tables/gas_001 views/ciip_emission] 2021-04-20T18:28:40Z Dylan Leard <dylan@button.is> # Add computed column that returns the total ciip emissions for an application revision
+computed_columns/application_revision_ciip_incentive [computed_columns/application_revision_ciip_incentive@v2.0.0] 2021-04-20T21:55:26Z Dylan Leard <dylan@button.is> # Migration: use ciip_total_emissions computed column to retrieve total facility emissions
