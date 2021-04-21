@@ -29,14 +29,14 @@ begin;
 
       -- Set application submitted
       update ggircs_portal.application_revision_status set application_revision_status='submitted' where application_id=app_id and version_number=1;
-      -- Create a legacy application_review_step for the 2018 application with ID=3
+      -- Create a legacy application_review_step for the submitted 2018 application
       insert into ggircs_portal.application_review_step(application_id, review_step_id) values (app_id,1);
       -- Create a comment
       insert into ggircs_portal.review_comment(description, comment_type, application_review_step_id)
         values ('This is a comment','general', (select id from ggircs_portal.application_review_step where application_id=app_id));
       update ggircs_portal.application_revision_status set application_revision_status='requested changes' where application_id=app_id and version_number=1;
 
-      -- Set legal_disclaimer_accepted to true for application id=3
+      -- Set legal_disclaimer_accepted to true for the submitted 2018 application
       update ggircs_portal.application_revision set legal_disclaimer_accepted = true where application_id=app_id;
 
     end;
