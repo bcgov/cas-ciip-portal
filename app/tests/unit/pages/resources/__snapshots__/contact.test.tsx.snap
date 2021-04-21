@@ -70,7 +70,7 @@ exports[`Contact page matches the last accepted Snapshot 1`] = `
         For help with your CIIP application, or questions about the CleanBC Industrial Incentive Program, please email
          
         <a
-          href="mailto:#"
+          href="#"
         />
       </span>
     </Alert>
@@ -80,7 +80,7 @@ exports[`Contact page matches the last accepted Snapshot 1`] = `
       To report a website error, contact the development team at
        
       <a
-        href="mailto:#"
+        href="#"
       />
       .
     </p>

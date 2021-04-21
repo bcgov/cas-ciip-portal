@@ -10,6 +10,7 @@ import {
   Row,
   Col
 } from 'react-bootstrap';
+import getConfig from 'next/config';
 import {Organisations_query} from 'Organisations_query.graphql';
 import RelayModernEnvironment from 'relay-runtime/lib/store/RelayModernEnvironment';
 import LoadingSpinner from 'components/LoadingSpinner';
@@ -34,6 +35,10 @@ export const OrganisationsComponent: React.FunctionComponent<Props> = (
   props
 ) => {
   const {session, allOrganisations} = props.query;
+  const adminEmail = getConfig()?.publicRuntimeConfig.ADMIN_EMAIL;
+  const adminMailToUrl = adminEmail
+    ? `mailto:${adminEmail}?subject=CIIP Portal Inquiry`
+    : '#';
   if (!session) return <LoadingSpinner />;
 
   const changeInput = (event) => {
@@ -198,9 +203,7 @@ export const OrganisationsComponent: React.FunctionComponent<Props> = (
                   </p>
                   <p>
                     Please email{' '}
-                    <Alert.Link href="mailto:GHGRegulator@gov.bc.ca?subject=CIIP Portal Inquiry">
-                      GHGRegulator@gov.bc.ca
-                    </Alert.Link>{' '}
+                    <Alert.Link href={adminMailToUrl}>{adminEmail}</Alert.Link>{' '}
                     if you have any questions.
                   </p>
                 </Alert>
@@ -240,8 +243,7 @@ export const OrganisationsComponent: React.FunctionComponent<Props> = (
             )}
             <hr />
             If you cannot find your operator in the list, please{' '}
-            <a href="mailto:ghgregulator@gov.bc.ca">contact CAS</a> for
-            assistance.
+            <a href={adminMailToUrl}>contact CAS</a> for assistance.
             <style jsx>
               {`
                 .org-scroll {

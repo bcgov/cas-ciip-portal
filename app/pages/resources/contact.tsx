@@ -7,7 +7,6 @@ import getConfig from 'next/config';
 import {CiipPageComponentProps} from 'next-env';
 import {contactQueryResponse} from 'contactQuery.graphql';
 import DefaultLayout from 'layouts/default-layout';
-const getEmailShortForm = require('app/server/helpers/getEmailShortForm.js');
 
 interface Props extends CiipPageComponentProps {
   query: contactQueryResponse['query'];
@@ -32,10 +31,8 @@ class Contact extends Component<Props> {
     const supportMailToUrl = supportEmail
       ? `mailto:${supportEmail}?subject=Support Request (CIIP)`
       : '#';
-    const adminEmail = getEmailShortForm(
-      getConfig()?.publicRuntimeConfig.ADMIN_EMAIL
-    );
-    const adminMailToUrl = supportEmail
+    const adminEmail = getConfig()?.publicRuntimeConfig.ADMIN_EMAIL;
+    const adminMailToUrl = adminEmail
       ? `mailto:${adminEmail}?subject=Support Request (CIIP)`
       : '#';
 
