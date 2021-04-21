@@ -9,6 +9,7 @@ import {
   faKey
 } from '@fortawesome/free-solid-svg-icons';
 import {graphql, createFragmentContainer} from 'react-relay';
+import {CiipApplicationRevisionStatus} from 'applicationReviewQuery.graphql';
 import {ApplicationReviewStepSelector_applicationReviewSteps} from '__generated__/ApplicationReviewStepSelector_applicationReviewSteps.graphql';
 import {capitalize} from 'lib/text-transforms';
 
@@ -16,11 +17,7 @@ interface Props {
   applicationReviewSteps: ApplicationReviewStepSelector_applicationReviewSteps;
   selectedStep: string;
   onSelectStep: (stepId: string) => void;
-  decisionOrChangeRequestStatus:
-    | 'SUBMITTED'
-    | 'APPROVED'
-    | 'REJECTED'
-    | 'REQUESTED_CHANGES';
+  decisionOrChangeRequestStatus: CiipApplicationRevisionStatus;
   onDecisionOrChangeRequestAction: () => void;
   changeDecision?: () => void;
 }
@@ -80,6 +77,7 @@ export const ApplicationReviewStepSelector: React.FunctionComponent<Props> = ({
             )} review ${isComplete ? 'completed' : ''}`;
             return (
               <ListGroup.Item
+                className="review-step-option"
                 as="li"
                 action
                 tabIndex={0}
@@ -101,6 +99,7 @@ export const ApplicationReviewStepSelector: React.FunctionComponent<Props> = ({
             );
           })}
           <ListGroup.Item
+            id="open-decision-dialog"
             as="li"
             action
             key="decision"
@@ -129,17 +128,14 @@ export const ApplicationReviewStepSelector: React.FunctionComponent<Props> = ({
           </ListGroup.Item>
         </ListGroup>
       </div>
-      <div
-        id="change-decision"
-        className="col-md-12 col-lg-4 col-xl-5 col-xxl-6"
-      >
         {changeDecision && (
-          <Button variant="link" onClick={changeDecision}>
-            <FontAwesomeIcon icon={faKey} style={{marginRight: 8}} />
-            Change decision
-          </Button>
+          <div id="change-decision" className="col-md-12 col-lg-4 col-xl-5 col-xxl-6">
+            <Button variant="link" onClick={changeDecision}>
+              <FontAwesomeIcon icon={faKey} style={{marginRight: 8}} />
+              Change decision
+            </Button>
+          </div>
         )}
-      </div>
       <style jsx>{`
         #change-decision {
           display: flex;
