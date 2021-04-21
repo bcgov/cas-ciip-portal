@@ -12,14 +12,17 @@ exports[`Organisations should render no organisations if the user has not reques
             Object {
               "badgeStyle": "warning",
               "description": "Request access to apply",
+              "number": 1,
             },
             Object {
               "badgeStyle": "info",
               "description": "CleanBC reviews request",
+              "number": 2,
             },
             Object {
               "badgeStyle": "success",
               "description": "Request approved",
+              "number": 3,
             },
           ]
         }
@@ -202,14 +205,17 @@ exports[`Organisations should render the user's requested organisations 1`] = `
             Object {
               "badgeStyle": "warning",
               "description": "Request access to apply",
+              "number": 1,
             },
             Object {
               "badgeStyle": "info",
               "description": "CleanBC reviews request",
+              "number": 2,
             },
             Object {
               "badgeStyle": "success",
               "description": "Request approved",
+              "number": 3,
             },
           ]
         }
@@ -259,17 +265,17 @@ exports[`Organisations should render the user's requested organisations 1`] = `
         className="jsx-1706603431"
       >
         <th
-          className="jsx-1706603431"
+          className="jsx-1706603431 col-md-8"
         >
           Operator
         </th>
         <th
-          className="jsx-1706603431"
+          className="jsx-1706603431 col-md-2"
         >
           Access Status
         </th>
         <th
-          className="jsx-1706603431"
+          className="jsx-1706603431 col-md-2"
         >
           Operations/Facilities
         </th>

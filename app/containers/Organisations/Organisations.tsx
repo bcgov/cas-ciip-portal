@@ -114,9 +114,9 @@ export const OrganisationsComponent: React.FunctionComponent<Props> = (
         >
           <thead>
             <tr>
-              <th>Operator</th>
-              <th>Access Status</th>
-              <th>Operations/Facilities</th>
+              <th className="col-md-8">Operator</th>
+              <th className="col-md-2">Access Status</th>
+              <th className="col-md-2">Operations/Facilities</th>
             </tr>
           </thead>
           <tbody>
