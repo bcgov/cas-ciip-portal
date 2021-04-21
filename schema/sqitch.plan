@@ -303,3 +303,4 @@ swrs_functions/get_carbon_tax_data [swrs_functions/get_carbon_tax_data@v2.0.0] 2
 computed_columns/application_revision_naics_code [tables/form_result tables/application_revision] 2021-04-05T17:14:23Z Dylan Leard <dylan@button.is> # Computed column returns a row from the naics_code table for an application revision
 queries/default_displayed_reporting_year 2021-04-16T21:15:17Z Matthieu Foucault <matthieu@button.is> # add a function that returns the reporting year displayed by default, based on the currently opened reporting year
 queries/facility_application_by_reporting_year [queries/facility_application_by_reporting_year@v2.0.0 queries/default_displayed_reporting_year] 2021-04-16T21:17:27Z Matthieu Foucault <matthieu@button.is> # allow facility_application_by_reporting_year to not have a reporting year
+@v2.1.0 2021-04-21T21:07:05Z Dylan Leard <dylan@button.is> # release v2.1.0
