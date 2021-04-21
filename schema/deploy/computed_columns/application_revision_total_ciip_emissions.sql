@@ -6,9 +6,9 @@ begin;
 
 -- Computed column returns the sum of (ciip) emissions for an application revision.
 create or replace function ggircs_portal.application_revision_total_ciip_emissions(application_revision ggircs_portal.application_revision)
-returns table (total_ciip_co2e_emissions numeric, total_ciip_annual_emissions numeric)
+returns numeric
   as $$
-    select sum(annual_co2e) as total_ciip_co2e_emissions, sum(annual_emission) as total_ciip_annual_emissions from ggircs_portal.ciip_emission ce
+    select sum(annual_co2e) as total_ciip_co2e_emissions from ggircs_portal.ciip_emission ce
     join ggircs_portal.gas
     on ce.gas_type = gas.gas_type
     and ce.version_number = application_revision.version_number

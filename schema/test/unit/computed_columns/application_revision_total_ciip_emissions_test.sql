@@ -51,18 +51,6 @@ select results_eq (
   'total_ciip_emissions function ignores emissions where is_ciip_emission = false when returning the sum of annual_co2e'
 );
 
-select results_eq (
-  $$
-    with record as (select row(application_revision.*)::ggircs_portal.application_revision from ggircs_portal.application_revision where application_id = 1 and version_number = 1)
-    select total_ciip_annual_emissions::numeric from ggircs_portal.application_revision_total_ciip_emissions((select * from record))
-  $$,
-  $$
-    select sum(annual_emission)::numeric - (select sum(annual_emission)::numeric from ggircs_portal.ciip_emission where version_number=1 and application_id=1 and gas_type ='CO2bioC')::numeric from ggircs_portal.ciip_emission
-    where version_number = 1 and application_id = 1
-  $$,
-  'total_ciip_emissions function ignores emissions where is_ciip_emission = false when returning the sum of annual_emission'
-);
-
 update ggircs_portal.form_result
 set form_result =
 '{"sourceTypes": [{"gases": [{"gwp": 1, "gasType": "CO2nonbio", "annualCO2e": 10, "annualEmission": 5, "gasDescription": "Carbon dioxide from non-biomass"}, {"gwp": 1, "gasType": "CO2", "annualCO2e": 20, "annualEmission": 10, "gasDescription": "Carbon dioxide from biomass not listed in Schedule C of GGERR"}]}]}'
@@ -71,10 +59,10 @@ where application_id=1;
 select results_eq (
   $$
     with record as (select row(application_revision.*)::ggircs_portal.application_revision from ggircs_portal.application_revision where application_id = 1 and version_number = 1)
-    select total_ciip_annual_emissions::numeric from ggircs_portal.application_revision_total_ciip_emissions((select * from record))
+    select total_ciip_c02e_emissions::numeric from ggircs_portal.application_revision_total_ciip_emissions((select * from record))
   $$,
   $$
-    select sum(annual_emission)::numeric - (select sum(annual_emission)::numeric from ggircs_portal.ciip_emission where version_number=1 and application_id=1 and gas_type ='CO2')::numeric from ggircs_portal.ciip_emission
+    select sum(annual_co2e)::numeric - (select sum(annual_emission)::numeric from ggircs_portal.ciip_emission where version_number=1 and application_id=1 and gas_type ='CO2')::numeric from ggircs_portal.ciip_emission
     where version_number = 1 and application_id = 1
   $$,
   'total_ciip_emissions function ignores the legacy catchall CO2 emissions when returning the sum of annual_emission'
