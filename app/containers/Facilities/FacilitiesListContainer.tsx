@@ -1,5 +1,6 @@
 import React, {useMemo} from 'react';
 import {graphql, createFragmentContainer} from 'react-relay';
+import getConfig from 'next/config';
 import {FacilitiesListContainer_query} from 'FacilitiesListContainer_query.graphql';
 import FacilitiesRowItemContainer from './FacilitiesRowItemContainer';
 import {
@@ -44,6 +45,9 @@ export const FacilitiesList: React.FunctionComponent<Props> = ({query}) => {
     defaultDisplayedReportingYear
   } = query;
 
+  const adminEmail = getConfig()?.publicRuntimeConfig.ADMIN_EMAIL;
+  const adminMailToUrl = adminEmail ? `mailto:${adminEmail}` : '#';
+
   const router = useRouter();
   const selectedReportingYear = useMemo(
     () =>
@@ -87,7 +91,7 @@ export const FacilitiesList: React.FunctionComponent<Props> = ({query}) => {
         totalCount={totalCount}
       />
       If you cannot find your facility in the list, please{' '}
-      <a href="mailto:ghgregulator@gov.bc.ca">contact CAS</a> for assistance.
+      <a href={adminMailToUrl}>contact CAS</a> at {adminEmail} for assistance.
     </>
   );
 };
