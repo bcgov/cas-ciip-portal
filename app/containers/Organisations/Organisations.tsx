@@ -72,15 +72,18 @@ export const OrganisationsComponent: React.FunctionComponent<Props> = (
             steps={[
               {
                 description: 'Request access to apply',
-                badgeStyle: StatusBadgeColor.INITIAL
+                badgeStyle: StatusBadgeColor.INITIAL,
+                number: 1
               },
               {
                 description: 'CleanBC reviews request',
-                badgeStyle: StatusBadgeColor.PENDING
+                badgeStyle: StatusBadgeColor.PENDING,
+                number: 2
               },
               {
                 description: 'Request approved',
-                badgeStyle: StatusBadgeColor.APPROVED
+                badgeStyle: StatusBadgeColor.APPROVED,
+                number: 3
               }
             ]}
           />
