@@ -377,8 +377,8 @@ jobs:
           name: run end-to-end tests with happo and cypress
           environment:
             SMTP_CONNECTION_STRING: smtp://@localhost:1025
-            SENDER_EMAIL: BCCAS <example@cas.com>
-            ADMIN_EMAIL: GHG Regulator <GHGRegulator@gov.bc.ca>
+            SENDER_EMAIL: example@cas.com
+            ADMIN_EMAIL: GHGRegulator@gov.bc.ca
             ENABLE_DB_MOCKS_COOKIES_ONLY: "true" # Allow cookies to be set by cypress
           command: |
             source ~/.asdf/asdf.sh
