@@ -43,32 +43,21 @@ export const ProgressStepIndicator: React.FunctionComponent<Props> = ({
     <>
       <div>
         <ProgressBar now={0} />
-        <div className="d-flex flex-row justify-content-between">
+        <div className="d-flex flex-row justify-content-between mb-3">
           {steps.map((step, index) => (
             <NumberedCircle number={index + 1} style={step.badgeStyle} />
           ))}
         </div>
-
-        <br />
-        <br />
-
         <Row>
           {steps.map((step) => (
             <Col className="stepDescription">{step.description}</Col>
           ))}
         </Row>
-
-        <br />
-        <br />
-        <div className="d-flex flex-row justify-content-between flex-nowrap">
-          {steps.map((step) => (
-            <span>{step.description}</span>
-          ))}
-        </div>
       </div>
       <style jsx global>{`
         .stepDescription {
           text-align: center;
+          font-weight: 500;
         }
         .stepDescription:first-child {
           text-align: left;

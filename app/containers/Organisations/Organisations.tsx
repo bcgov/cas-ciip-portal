@@ -16,6 +16,7 @@ import LoadingSpinner from 'components/LoadingSpinner';
 import Organisation from './Organisation';
 import UserOrganisation from './UserOrganisation';
 import ProgressStepIndicator from 'components/ProgressStepIndicator';
+import StatusBadgeColor from 'components/helpers/StatusBadgeColor';
 
 interface Props {
   query: Organisations_query;
@@ -71,23 +72,15 @@ export const OrganisationsComponent: React.FunctionComponent<Props> = (
             steps={[
               {
                 description: 'Request access to apply',
-                badgeStyle: 'danger'
+                badgeStyle: StatusBadgeColor.INITIAL
               },
               {
                 description: 'CleanBC reviews request',
-                badgeStyle: 'primary'
+                badgeStyle: StatusBadgeColor.PENDING
               },
               {
                 description: 'Request approved',
-                badgeStyle: 'primary'
-              },
-              {
-                description: 'MORE',
-                badgeStyle: 'warning'
-              },
-              {
-                description: 'MORE',
-                badgeStyle: 'warning'
+                badgeStyle: StatusBadgeColor.APPROVED
               }
             ]}
           />
