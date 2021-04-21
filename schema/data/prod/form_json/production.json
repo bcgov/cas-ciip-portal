@@ -9,7 +9,7 @@
         "type": "object",
         "properties": {
           "comments": {
-            "type":"string"
+            "type": "string"
           },
           "productRowId": {
             "title": "Product or Service",
@@ -51,30 +51,36 @@
               }
             ]
           },
-          "requiresProductAmount" : {
-            "oneOf": [{
-              "properties": {
-                "requiresProductAmount": { "const": true },
-                "productAmount": {
-                  "title": "Annual Production Amount",
-                  "type": "number",
-                  "minimum": 0
+          "requiresProductAmount": {
+            "oneOf": [
+              {
+                "properties": {
+                  "requiresProductAmount": { "const": true },
+                  "productAmount": {
+                    "title": "Annual Production Amount",
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "productUnits": {
+                    "title": "Units",
+                    "type": "string"
+                  }
                 },
-                "productUnits": {
-                  "title": "Units",
-                  "type": "string"
-                }
+                "required": ["productAmount"]
               },
-              "required": ["productAmount"]
-            },
-            {
-              "properties": {
-                "requiresProductAmount": { "const": false }
+              {
+                "properties": {
+                  "requiresProductAmount": { "const": false }
+                }
               }
-            }]
+            ]
           }
         },
-        "required": ["productRowId", "requiresEmissionAllocation", "requiresProductAmount"]
+        "required": [
+          "productRowId",
+          "requiresEmissionAllocation",
+          "requiresProductAmount"
+        ]
       }
     }
   },
@@ -83,7 +89,7 @@
     "ui:remove-text": "Remove Product",
     "items": {
       "comments": {
-        "ui:field": "ProblemReportField",
+        "ui:field": "AddCommentField",
         "ui:options": {
           "label": false,
           "disableRenderingIfEmpty": true
@@ -91,7 +97,13 @@
         "ui:col-md": 12
       },
       "ui:field": "product",
-      "ui:order": ["comments", "productRowId", "productAmount", "productUnits", "*"],
+      "ui:order": [
+        "comments",
+        "productRowId",
+        "productAmount",
+        "productUnits",
+        "*"
+      ],
       "productRowId": {
         "ui:col-md": 12,
         "ui:widget": "SearchWidget",
@@ -112,7 +124,6 @@
       "requiresEmissionAllocation": { "ui:widget": "hidden" },
       "requiresProductAmount": { "ui:widget": "hidden" },
       "isEnergyProduct": { "ui:widget": "hidden" }
-
     }
   }
 }

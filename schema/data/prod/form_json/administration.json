@@ -130,7 +130,7 @@
   },
   "uiSchema": {
     "comments": {
-      "ui:field": "ProblemReportField",
+      "ui:field": "AddCommentField",
       "ui:options": {
         "label": false,
         "disableRenderingIfEmpty": true

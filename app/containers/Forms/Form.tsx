@@ -20,7 +20,7 @@ import ProductRowIdField from './ProductRowIdField';
 import FuelRowIdField from './FuelRowIdField';
 import NumberField from './NumberField';
 import EmissionCategoryRowIdField from './EmissionCategoryRowIdField';
-import ProblemReportField from 'components/Forms/ProblemReportField';
+import AddCommentField from 'components/Forms/AddCommentField';
 import {customTransformErrors} from 'functions/customTransformErrors';
 import SavingIndicator from 'components/helpers/SavingIndicator';
 import NaicsField from './NaicsField';
@@ -71,7 +71,7 @@ const CUSTOM_FIELDS = {
     <EmissionCategoryRowIdField query={props.formContext.query} {...props} />
   ),
   NumberField,
-  ProblemReportField
+  AddCommentField
 };
 
 export const FormComponent: React.FunctionComponent<Props> = ({

@@ -1,9 +1,9 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import ProblemReportField from 'components/Forms/ProblemReportField';
+import AddCommentField from 'components/Forms/AddCommentField';
 import {JSONSchema7TypeName} from 'json-schema';
 
-describe('The ProblemReportField component', () => {
+describe('The AddCommentField component', () => {
   const defaultProps = {
     schema: {
       type: 'string' as JSONSchema7TypeName
@@ -23,7 +23,7 @@ describe('The ProblemReportField component', () => {
   };
   it('Should match the snapshot', () => {
     const wrapper = shallow(
-      <ProblemReportField formData="Some text" {...defaultProps} />
+      <AddCommentField formData="Some text" {...defaultProps} />
     );
     // Expand the field to show the text area
     wrapper.find('Button').simulate('click');

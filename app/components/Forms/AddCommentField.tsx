@@ -2,17 +2,16 @@ import React, {useState} from 'react';
 import {FieldProps} from '@rjsf/core';
 import {Form, Button} from 'react-bootstrap';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {
-  faExclamationCircle,
-  faQuestionCircle
-} from '@fortawesome/free-solid-svg-icons';
-const ProblemReportField: React.FunctionComponent<FieldProps<string>> = (
+import {faCommentAlt} from '@fortawesome/free-solid-svg-icons';
+import {toast} from 'react-toastify';
+
+const AddCommentField: React.FunctionComponent<FieldProps<string>> = (
   props
 ) => {
   const [expanded, setExpanded] = useState(false);
   const [value, setValue] = useState(props.formData);
-  const title = props.formData ? 'Edit Reported Problem' : 'Report a Problem';
-  const titleIcon = props.formData ? faExclamationCircle : faQuestionCircle;
+  const title = props.formData ? 'Edit comment' : 'Add a comment';
+
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setValue(e.target.value);
   };
@@ -25,6 +24,13 @@ const ProblemReportField: React.FunctionComponent<FieldProps<string>> = (
   const handleSave = () => {
     props.onChange(value);
     setExpanded(false);
+    toast.success(
+      'Your comment was saved for review upon application submission',
+      {
+        autoClose: 5000,
+        position: 'top-center'
+      }
+    );
   };
 
   return (
@@ -52,21 +58,23 @@ const ProblemReportField: React.FunctionComponent<FieldProps<string>> = (
       `}</style>
       <span className="title">
         <Button variant="link" onClick={() => setExpanded(true)}>
-          <FontAwesomeIcon icon={titleIcon} />
+          <FontAwesomeIcon icon={faCommentAlt} />
           &nbsp;
           {title}
         </Button>
       </span>
       {expanded && (
         <div className="report-field">
+          <legend>CIIP Application Comment</legend>
+
           <p>
-            Please leave a detailed message below explaining any issues
-            encountered on this page.
-            <br />
-            This message will be sent with your application when it is
-            submitted.
-            <br />A representative from the Climate Action Secretariat may
-            contact you for further clarification.
+            This area is only for leaving a comment regarding the data that you
+            reported on this page. This comment will be visible by the person
+            reviewing this CIIP application once the application is submitted.
+          </p>
+          <p>
+            For any technical issue, or to review documentation, please click on
+            the help bubble in the bottom right of your screen.
           </p>
           <Form.Control
             as="textarea"
@@ -83,7 +91,7 @@ const ProblemReportField: React.FunctionComponent<FieldProps<string>> = (
               variant="success"
               onClick={handleSave}
             >
-              Save Note
+              Save Comment
             </Button>
           </div>
         </div>
@@ -92,4 +100,4 @@ const ProblemReportField: React.FunctionComponent<FieldProps<string>> = (
   );
 };
 
-export default ProblemReportField;
+export default AddCommentField;
