@@ -379,6 +379,7 @@ jobs:
             SMTP_CONNECTION_STRING: smtp://@localhost:1025
             SENDER_EMAIL: example@cas.com
             ADMIN_EMAIL: GHGRegulator@gov.bc.ca
+            SUPPORT_EMAIL: ggircs@gov.bc.ca
             ENABLE_DB_MOCKS_COOKIES_ONLY: "true" # Allow cookies to be set by cypress
           command: |
             source ~/.asdf/asdf.sh
