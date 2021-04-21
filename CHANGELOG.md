@@ -2,6 +2,54 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/bcgov/cas-ciip-portal/compare/v2.0.0...v2.1.0) (2021-04-21)
+
+
+### Features
+
+* add and update snapshots ([610608a](https://github.com/bcgov/cas-ciip-portal/commit/610608aff6f5edebdb6cb85b95a5b4327984d48d))
+* add aria-label to dropdown ([cac246b](https://github.com/bcgov/cas-ciip-portal/commit/cac246b9b572f2b6939bec15c188c16090f48783))
+* add computed column to retrive naics code ([7376d92](https://github.com/bcgov/cas-ciip-portal/commit/7376d92bcbcb9ce8546e2bce553a01b0e14afdb9))
+* add user icon dropdown button desktop ([a50b8c3](https://github.com/bcgov/cas-ciip-portal/commit/a50b8c3909cd7a2b95d6508d46577b7d09d58418))
+* adjust icon ([2e175a7](https://github.com/bcgov/cas-ciip-portal/commit/2e175a75eb743fa4b898dbf938ff27d6d0aaa9f5))
+* application disclaimer page redirects to 404 if data is missing ([123bdcb](https://github.com/bcgov/cas-ciip-portal/commit/123bdcb3fcd303c7bc1c0b01a4f4abf799f85da4))
+* change desktop icon appearance ([bc9bb18](https://github.com/bcgov/cas-ciip-portal/commit/bc9bb18015b60c094867b3ba19c80ca9fceb73be))
+* dropdown check ([9e1f308](https://github.com/bcgov/cas-ciip-portal/commit/9e1f30844b4b91a2e6f39747d78ffaebc55d2a07))
+* emission category shows a text-only element when deleted_by is set ([95ea889](https://github.com/bcgov/cas-ciip-portal/commit/95ea8897d900d47aedfdcc64564d3a3df98f44a4))
+* facilities page defaults to the current reporting year ([c866ef9](https://github.com/bcgov/cas-ciip-portal/commit/c866ef90c11f2de81368f943055f674703c44912))
+* filter Form product dropdown by naics code ([cef66a7](https://github.com/bcgov/cas-ciip-portal/commit/cef66a71e8842a0263538dbd70a2d5575d7d43ee))
+* filtered product fragment ([e54e0c4](https://github.com/bcgov/cas-ciip-portal/commit/e54e0c426c9a1c5a27333a54518cf6db1bc1fac5))
+* improve tests ([01a16f5](https://github.com/bcgov/cas-ciip-portal/commit/01a16f557aa418a87167f6443d059c1f11744378))
+* keycode api update ([a4857cf](https://github.com/bcgov/cas-ciip-portal/commit/a4857cf792abb09c8d5e2575ca5e4cd38af8d16e))
+* mobile button fix ([99d2d36](https://github.com/bcgov/cas-ciip-portal/commit/99d2d362ba9e8dcebb84292b48bd01e4966af7e8))
+* mobile icon style ([6e3de09](https://github.com/bcgov/cas-ciip-portal/commit/6e3de098bb1d55909cafdd3497c0b81870d529d6))
+* mobile styles looking ok ([6895df7](https://github.com/bcgov/cas-ciip-portal/commit/6895df7eb08728253e04fdc7c43ceaa4f22e70f0))
+* new application disclaimer uses nextjs dynamic routes ([fde2a56](https://github.com/bcgov/cas-ciip-portal/commit/fde2a566b9818b6f0c93c2633b859872a86ab939))
+* not logged in mobile view ([8447f2f](https://github.com/bcgov/cas-ciip-portal/commit/8447f2f271c0e019f210cde64bbe576fbe725d8c))
+* refactor logged in header menu to container ([3a110c5](https://github.com/bcgov/cas-ciip-portal/commit/3a110c56a3b68849d1fe4f5d98f9b2ebd99448d6))
+* remove outdated media query ([848f259](https://github.com/bcgov/cas-ciip-portal/commit/848f2595540e03faa081f232d40d2299b9dd8269))
+* reorganise css ([62cb82f](https://github.com/bcgov/cas-ciip-portal/commit/62cb82f07b0912e04687b03c174138d2750fe087))
+* review updates ([f3cc819](https://github.com/bcgov/cas-ciip-portal/commit/f3cc8190aaf6ca65f3524b77cab77e607a9141b9))
+* setting a deleted_at value for the 'other' emission category ([3e3e7ca](https://github.com/bcgov/cas-ciip-portal/commit/3e3e7caf0c9f3d9d27bb31e923ce22df994d48c7))
+* show correct data if the application is in review ([4c41876](https://github.com/bcgov/cas-ciip-portal/commit/4c4187630053247ab1cbdfac95d73d5eda307b78))
+* show warning if product not in naics code ([44f0bdf](https://github.com/bcgov/cas-ciip-portal/commit/44f0bdfefc93db0627aa7aaff97b509fcc283402))
+* style update ([2654b8f](https://github.com/bcgov/cas-ciip-portal/commit/2654b8f2a6c1b094588ae5692e86fa0e2fb041e9))
+* update cypress command ([9336940](https://github.com/bcgov/cas-ciip-portal/commit/93369403db62fd8b450524d982007f12f5a78b34))
+* update Header snapshot ([343df49](https://github.com/bcgov/cas-ciip-portal/commit/343df490ee4afa4c2bcc4b3def475a7a047c26bf))
+* update Header snapshot ([ab8a95a](https://github.com/bcgov/cas-ciip-portal/commit/ab8a95ac757da27d21139c830a3944def139fba3))
+* update snapshots ([2344f49](https://github.com/bcgov/cas-ciip-portal/commit/2344f49f8db0b31605ddad2bf77c475d1bdf58d7))
+* update styles ([2df49a6](https://github.com/bcgov/cas-ciip-portal/commit/2df49a636091f2f177385f0bfba56e73324fd261))
+* update test check ([dd1ec8b](https://github.com/bcgov/cas-ciip-portal/commit/dd1ec8b34a53c5619d4f86ce87800efd33acfece))
+* use updated application disclaimer route in `ApplyButtonContainer` ([f8b1e74](https://github.com/bcgov/cas-ciip-portal/commit/f8b1e740f45c3c6bdcd59fd05d70d3db2f392f43))
+
+
+### Bug Fixes
+
+* improve email validation message ([b2b4272](https://github.com/bcgov/cas-ciip-portal/commit/b2b42728074c9618da2efd4fa719dc5e5ba208b3))
+* input focus bug (use formContext) ([7403ab1](https://github.com/bcgov/cas-ciip-portal/commit/7403ab1d0d726054eeeb020736f6b677269aa607))
+* undo debugging ([2ebca87](https://github.com/bcgov/cas-ciip-portal/commit/2ebca8744231054625e00194417e99c7a560ade7))
+* update cypress selector ([e63fc50](https://github.com/bcgov/cas-ciip-portal/commit/e63fc50f0c8ccba94d67af56312ff066aebcd974))
+
 ## [2.0.0](https://github.com/bcgov/cas-ciip-portal/compare/v1.18.0...v2.0.0) (2021-04-14)
 
 
