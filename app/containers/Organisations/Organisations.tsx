@@ -62,11 +62,35 @@ export const OrganisationsComponent: React.FunctionComponent<Props> = (
   };
 
   const userOrgs = session.ciipUserBySub.ciipUserOrganisationsByUserId.edges;
+
   return (
     <>
       <Row>
         <Col>
-          <ProgressStepIndicator />
+          <ProgressStepIndicator
+            steps={[
+              {
+                description: 'Request access to apply',
+                badgeStyle: 'danger'
+              },
+              {
+                description: 'CleanBC reviews request',
+                badgeStyle: 'primary'
+              },
+              {
+                description: 'Request approved',
+                badgeStyle: 'primary'
+              },
+              {
+                description: 'MORE',
+                badgeStyle: 'warning'
+              },
+              {
+                description: 'MORE',
+                badgeStyle: 'warning'
+              }
+            ]}
+          />
         </Col>
       </Row>
       <br />
