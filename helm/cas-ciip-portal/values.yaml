@@ -59,8 +59,8 @@ dag:
 
 env:
   smtpConnectionString: smtp://apps.smtp.gov.bc.ca/?port=25&ignoreTLS=true&secure=false
-  senderEmail: BCCAS <no-reply.cas@gov.bc.ca>
-  adminEmail: GHG Regulator <GHGRegulator@gov.bc.ca>
+  senderEmail: no-reply.cas@gov.bc.ca
+  adminEmail: GHGRegulator@gov.bc.ca
   supportEmail: ggircs@gov.bc.ca
   enableDbMocks: false
 
