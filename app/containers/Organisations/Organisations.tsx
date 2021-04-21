@@ -267,7 +267,6 @@ export default createFragmentContainer(OrganisationsComponent, {
               node {
                 id
                 organisationId
-                status
                 ...UserOrganisation_userOrganisation
               }
             }
