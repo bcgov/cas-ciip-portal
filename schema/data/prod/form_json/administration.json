@@ -37,7 +37,6 @@
           },
           "naics": {
             "type": "string",
-            "format": "naics",
             "title": "NAICS code"
           },
           "tradeName": {
