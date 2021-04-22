@@ -10,6 +10,9 @@ describe('When logged in as a reporter', () => {
     cy.visit('/reporter');
     cy.url().should('include', '/reporter');
     cy.get('tr');
+    cy.get('body').happoScreenshot({
+      component: 'Reporter organisation access list'
+    });
     cy.contains('View Facilities').click();
     cy.url().should('include', '/reporter/facilities');
     cy.get('tbody > tr:nth-child(2) .btn')
