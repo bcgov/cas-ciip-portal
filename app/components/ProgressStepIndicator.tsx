@@ -1,5 +1,5 @@
 import React from 'react';
-import {Col, ProgressBar, Row} from 'react-bootstrap';
+import {Col, Row} from 'react-bootstrap';
 import {Variant} from 'react-bootstrap/esm/types';
 
 interface NumberCircleProps {
@@ -24,12 +24,11 @@ const NumberedCircle: React.FunctionComponent<NumberCircleProps> = ({
       <div className={`numberedCircle badge-${style}`}>{number}</div>
       <style jsx>{`
         .numberedCircle {
-          margin-top: -29px;
-          width: 38px;
-          line-height: 37px;
+          margin-top: -1.75rem;
+          width: 2.44rem;
+          line-height: 2.44rem;
           border-radius: 50%;
           text-align: center;
-          font-size: 16px;
           font-weight: bold;
         }
       `}</style>
@@ -42,25 +41,33 @@ export const ProgressStepIndicator: React.FunctionComponent<Props> = ({
 }) => {
   return (
     <>
-      <div>
-        <ProgressBar now={0} />
-        <div className="d-flex flex-row justify-content-between mb-3">
-          {steps.map((step) => (
-            <NumberedCircle
-              key={`circle-${step.number}`}
-              number={step.number}
-              style={step.badgeStyle}
-            />
-          ))}
-        </div>
-        <Row>
-          {steps.map((step) => (
-            <Col key={`description-${step.number}`} className="stepDescription">
-              {step.description}
-            </Col>
-          ))}
-        </Row>
+      <div className="progress ml-1 mr-1">
+        <div
+          role="progressbar"
+          className="progress-bar"
+          aria-valuenow={0}
+          aria-valuemin={0}
+          aria-valuemax={100}
+          aria-label="operator-progress-indicator"
+          style={{width: '0%'}}
+        />
       </div>
+      <div className="d-flex flex-row justify-content-between mb-3">
+        {steps.map((step) => (
+          <NumberedCircle
+            key={`circle-${step.number}`}
+            number={step.number}
+            style={step.badgeStyle}
+          />
+        ))}
+      </div>
+      <Row>
+        {steps.map((step) => (
+          <Col key={`description-${step.number}`} className="stepDescription">
+            {step.description}
+          </Col>
+        ))}
+      </Row>
       <style jsx global>{`
         .stepDescription {
           text-align: center;
