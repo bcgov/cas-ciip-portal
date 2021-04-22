@@ -13,7 +13,6 @@ returns numeric
     on ce.gas_type = gas.gas_type
     and ce.version_number = application_revision.version_number
     and ce.application_id = application_revision.application_id
-    and ce.gas_type != 'CO2'
     and gas.is_ciip_emission = true;
   $$ language sql stable;
 
