@@ -17,9 +17,13 @@ exports[`Reporter Dashboard Should render properly 1`] = `
   title="My Operators"
 >
   <Row
+    className="justify-content-md-center"
     noGutters={false}
   >
-    <Col>
+    <Col
+      lg={8}
+      md={10}
+    >
       <Relay(OrganisationsComponent)
         confirmOrg={false}
         handleContextChange={[Function]}
