@@ -78,7 +78,7 @@ export default class Reporter extends Component<Props> {
     return (
       <DefaultLayout showSubheader session={session} title="My Operators">
         <Row className="justify-content-md-center">
-          <Col md={12} lg={10}>
+          <Col md={10} lg={8}>
             <Organisations
               query={query}
               orgInput={this.state.orgInput}
