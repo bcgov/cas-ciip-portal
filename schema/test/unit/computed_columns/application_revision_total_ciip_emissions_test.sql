@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(4);
+select plan(3);
 
 select has_function(
   'ggircs_portal', 'application_revision_total_ciip_emissions',
@@ -42,7 +42,7 @@ where version_number = 1 and application_id = 1;
 select results_eq (
   $$
     with record as (select row(application_revision.*)::ggircs_portal.application_revision from ggircs_portal.application_revision where application_id = 1 and version_number = 1)
-    select total_ciip_co2e_emissions::numeric from ggircs_portal.application_revision_total_ciip_emissions((select * from record))
+    select ggircs_portal.application_revision_total_ciip_emissions((select * from record))
   $$,
   $$
     select sum(annual_co2e)::numeric - (select sum(annual_co2e)::numeric from ggircs_portal.ciip_emission where version_number=1 and application_id=1 and gas_type ='CO2bioC')::numeric from ggircs_portal.ciip_emission
@@ -59,10 +59,10 @@ where application_id=1;
 select results_eq (
   $$
     with record as (select row(application_revision.*)::ggircs_portal.application_revision from ggircs_portal.application_revision where application_id = 1 and version_number = 1)
-    select total_ciip_c02e_emissions::numeric from ggircs_portal.application_revision_total_ciip_emissions((select * from record))
+    select ggircs_portal.application_revision_total_ciip_emissions((select * from record))
   $$,
   $$
-    select sum(annual_co2e)::numeric - (select sum(annual_emission)::numeric from ggircs_portal.ciip_emission where version_number=1 and application_id=1 and gas_type ='CO2')::numeric from ggircs_portal.ciip_emission
+    select sum(annual_co2e)::numeric - (select sum(annual_co2e)::numeric from ggircs_portal.ciip_emission where version_number=1 and application_id=1 and gas_type ='CO2')::numeric from ggircs_portal.ciip_emission
     where version_number = 1 and application_id = 1
   $$,
   'total_ciip_emissions function ignores the legacy catchall CO2 emissions when returning the sum of annual_emission'
