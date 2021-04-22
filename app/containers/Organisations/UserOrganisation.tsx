@@ -2,18 +2,13 @@ import React from 'react';
 import {graphql, createFragmentContainer} from 'react-relay';
 import {Badge} from 'react-bootstrap';
 import Link from 'next/link';
+import statusBadgeColor from 'components/helpers/StatusBadgeColor';
 
 export const UserOrganisationComponent = (props) => {
   const {userOrganisation} = props;
   if (!userOrganisation) {
     return null;
   }
-
-  const statusBadgeColor = {
-    REJECTED: 'danger',
-    PENDING: 'info',
-    APPROVED: 'success'
-  };
 
   return (
     <tr>
@@ -59,11 +54,8 @@ export const UserOrganisationComponent = (props) => {
 export default createFragmentContainer(UserOrganisationComponent, {
   userOrganisation: graphql`
     fragment UserOrganisation_userOrganisation on CiipUserOrganisation {
-      id
       status
-      organisationId
       organisationByOrganisationId {
-        id
         rowId
         operatorName
       }

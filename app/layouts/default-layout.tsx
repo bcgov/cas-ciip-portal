@@ -188,6 +188,10 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
           .btn-success {
             background-color: #24883e;
           }
+          .badge-info,
+          .btn-info {
+            background-color: #197ea3;
+          }
         `}
       </style>
     </div>

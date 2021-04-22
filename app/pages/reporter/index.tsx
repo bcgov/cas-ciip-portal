@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Col, Row, ListGroup} from 'react-bootstrap';
+import {Col, Row} from 'react-bootstrap';
 import {graphql} from 'react-relay';
 import {NextRouter} from 'next/router';
 import {reporterQueryResponse} from 'reporterQuery.graphql';
@@ -55,7 +55,7 @@ export default class Reporter extends Component<Props> {
 
   handleOrgConfirm = async (active, environment) => {
     const {id: userId, rowId} = this.props.query.session.ciipUserBySub;
-    const response = await createUserOrganisationMutation(
+    await createUserOrganisationMutation(
       environment,
       {
         input: {
@@ -69,7 +69,6 @@ export default class Reporter extends Component<Props> {
       },
       userId
     );
-    console.log(response);
   };
 
   render() {
@@ -78,8 +77,8 @@ export default class Reporter extends Component<Props> {
 
     return (
       <DefaultLayout showSubheader session={session} title="My Operators">
-        <Row>
-          <Col md={{span: 8}}>
+        <Row className="justify-content-md-center">
+          <Col md={10} lg={8}>
             <Organisations
               query={query}
               orgInput={this.state.orgInput}
@@ -91,65 +90,12 @@ export default class Reporter extends Component<Props> {
               handleOrgConfirm={this.handleOrgConfirm}
             />
           </Col>
-          <Col md={4}>
-            <h2 style={{marginBottom: '20px'}}>How to apply for CIIP</h2>
-            <div className="how-to-apply">
-              <ListGroup>
-                <ListGroup.Item>
-                  <strong>Step 1:</strong>
-                  <br />
-                  Request access to apply on behalf of an Operation as an
-                  applicant.
-                </ListGroup.Item>
-                <ListGroup.Item>
-                  <strong>Step 2:</strong>
-                  <br />
-                  CIIP administrators will review and approve your request.{' '}
-                </ListGroup.Item>
-                <ListGroup.Item>
-                  <strong>Step 3:</strong>
-                  <br />
-                  Applicants will fill out an application for the Operation and
-                  send it to a Certifying Official.
-                </ListGroup.Item>
-                <ListGroup.Item>
-                  <strong>Step 4:</strong>
-                  <br />
-                  The Certifying Official reviews and signs off on the
-                  application.
-                </ListGroup.Item>
-                <ListGroup.Item>
-                  <strong>Step 5:</strong>
-                  <br />
-                  The applicant submits the application for assessment by the
-                  Ministry.
-                </ListGroup.Item>
-                <ListGroup.Item>
-                  <strong>Step 6:</strong>
-                  <br />
-                  CIIP administrators review the application.
-                </ListGroup.Item>
-                <ListGroup.Item>
-                  <strong>Step 7:</strong>
-                  <br />
-                  If any changes are required, the applicant will be requested
-                  to revise the application.
-                </ListGroup.Item>
-                <ListGroup.Item>
-                  <strong>Step 8:</strong>
-                  <br />
-                  Once processed, the applicant will receive a grant letter with
-                  further details on the expected incentive payment.
-                </ListGroup.Item>
-              </ListGroup>
-            </div>
-          </Col>
         </Row>
         <style>{`
-      h2 {
-        font-size: 1.25rem;
-      }
-    `}</style>
+          h2 {
+            font-size: 1.25rem;
+          }
+        `}</style>
       </DefaultLayout>
     );
   }

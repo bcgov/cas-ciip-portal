@@ -6,13 +6,17 @@ import {
   Button,
   FormControl,
   Alert,
-  Card
+  Card,
+  Row,
+  Col
 } from 'react-bootstrap';
 import {Organisations_query} from 'Organisations_query.graphql';
 import RelayModernEnvironment from 'relay-runtime/lib/store/RelayModernEnvironment';
 import LoadingSpinner from 'components/LoadingSpinner';
 import Organisation from './Organisation';
 import UserOrganisation from './UserOrganisation';
+import ProgressStepIndicator from 'components/ProgressStepIndicator';
+import StatusBadgeColor from 'components/helpers/StatusBadgeColor';
 
 interface Props {
   query: Organisations_query;
@@ -59,8 +63,33 @@ export const OrganisationsComponent: React.FunctionComponent<Props> = (
   };
 
   const userOrgs = session.ciipUserBySub.ciipUserOrganisationsByUserId.edges;
+
   return (
     <>
+      <Row>
+        <Col>
+          <ProgressStepIndicator
+            steps={[
+              {
+                description: 'Request access to apply',
+                badgeStyle: StatusBadgeColor.INITIAL,
+                number: 1
+              },
+              {
+                description: 'CleanBC reviews request',
+                badgeStyle: StatusBadgeColor.PENDING,
+                number: 2
+              },
+              {
+                description: 'Request approved',
+                badgeStyle: StatusBadgeColor.APPROVED,
+                number: 3
+              }
+            ]}
+          />
+        </Col>
+      </Row>
+      <br />
       <Card bg="light">
         <Card.Body>
           Operator, Operator Representative, and Reporting Operation are defined
@@ -85,9 +114,9 @@ export const OrganisationsComponent: React.FunctionComponent<Props> = (
         >
           <thead>
             <tr>
-              <th>Operator</th>
-              <th>Access Status</th>
-              <th>Operations/Facilities</th>
+              <th className="col-md-8">Operator</th>
+              <th className="col-md-2">Access Status</th>
+              <th className="col-md-2">Operations/Facilities</th>
             </tr>
           </thead>
           <tbody>
@@ -241,7 +270,6 @@ export default createFragmentContainer(OrganisationsComponent, {
               node {
                 id
                 organisationId
-                status
                 ...UserOrganisation_userOrganisation
               }
             }
