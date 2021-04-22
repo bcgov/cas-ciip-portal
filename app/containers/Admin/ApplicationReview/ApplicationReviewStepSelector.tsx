@@ -131,14 +131,17 @@ export const ApplicationReviewStepSelector: React.FunctionComponent<Props> = ({
           </ListGroup.Item>
         </ListGroup>
       </div>
-        {changeDecision && (
-          <div id="change-decision" className="col-md-12 col-lg-4 col-xl-5 col-xxl-6">
-            <Button variant="link" onClick={changeDecision}>
-              <FontAwesomeIcon icon={faKey} style={{marginRight: 8}} />
-              Change decision
-            </Button>
-          </div>
-        )}
+      {changeDecision && (
+        <div
+          id="change-decision"
+          className="col-md-12 col-lg-4 col-xl-5 col-xxl-6"
+        >
+          <Button variant="link" onClick={changeDecision}>
+            <FontAwesomeIcon icon={faKey} style={{marginRight: 8}} />
+            Change decision
+          </Button>
+        </div>
+      )}
       <style jsx>{`
         #change-decision {
           display: flex;
