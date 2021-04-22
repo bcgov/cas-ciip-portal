@@ -9,7 +9,7 @@ describe('The Progress Step Indicator', () => {
     expect(componentUnderTest).toMatchSnapshot();
   });
 
-  it('Matches snapshot with 3 tests', () => {
+  it('Matches snapshot with 3 steps', () => {
     const componentUnderTest = mount(
       <ProgressStepIndicator
         steps={[
@@ -36,18 +36,40 @@ describe('The Progress Step Indicator', () => {
     expect(componentUnderTest.find('div.stepDescription')).toHaveLength(3);
   });
 
-  const stepCountTestCases = [1, 2, 3, 4, 5, 6];
-  test.each(stepCountTestCases)('Generates %p progress items', (stepCount) => {
-    const steps = Array.from({length: stepCount}, (_, index) => ({
-      badgeStyle: StatusBadgeColor.PENDING,
-      description: `test step ${index}`,
-      number: index
-    }));
+  const stepCountTestCases = [
+    [1, StatusBadgeColor.APPROVED],
+    [2, StatusBadgeColor.PENDING],
+    [3, StatusBadgeColor.INITIAL],
+    [4, StatusBadgeColor.REJECTED],
+    [5, StatusBadgeColor.APPROVED],
+    [6, StatusBadgeColor.PENDING]
+  ];
+  test.each(stepCountTestCases)(
+    'Generates %p progress items',
+    (stepCount: number, status: string) => {
+      const steps = Array.from({length: stepCount}, (_, index) => ({
+        badgeStyle: status,
+        description: `test step ${index}`,
+        number: index
+      }));
 
-    const componentUnderTest = mount(<ProgressStepIndicator steps={steps} />);
-    expect(componentUnderTest.find('.numberedCircle')).toHaveLength(stepCount);
-    expect(componentUnderTest.find('div.stepDescription')).toHaveLength(
-      stepCount
-    );
-  });
+      const componentUnderTest = mount(<ProgressStepIndicator steps={steps} />);
+      expect(componentUnderTest.find('.numberedCircle')).toHaveLength(
+        stepCount
+      );
+      componentUnderTest.find('.numberedCircle').forEach((wrapper, index) => {
+        expect(wrapper.text()).toBe(`${index}`);
+        expect(wrapper.hasClass('badge-' + status)).toBeTrue();
+      });
+
+      expect(componentUnderTest.find('div.stepDescription')).toHaveLength(
+        stepCount
+      );
+      componentUnderTest
+        .find('div.stepDescription')
+        .forEach((wrapper, index) => {
+          expect(wrapper.text()).toBe('test step ' + index);
+        });
+    }
+  );
 });

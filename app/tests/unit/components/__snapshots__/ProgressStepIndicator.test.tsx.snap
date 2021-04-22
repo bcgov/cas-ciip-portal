@@ -1,103 +1,90 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`The Progress Step Indicator Matches snapshot with 3 tests 1`] = `
+exports[`The Progress Step Indicator Matches snapshot with 3 steps 1`] = `
 Array [
   <div
-    className="jsx-3094041220"
+    className="jsx-3094041220 progress ml-1 mr-1"
   >
-    <ProgressBar
-      animated={false}
-      isChild={false}
-      max={100}
-      min={0}
-      now={0}
-      srOnly={false}
-      striped={false}
-    >
-      <div
-        className="progress"
-      >
-        <div
-          aria-valuemax={100}
-          aria-valuemin={0}
-          aria-valuenow={0}
-          className="progress-bar"
-          role="progressbar"
-          style={
-            Object {
-              "width": "0%",
-            }
-          }
-        />
-      </div>
-    </ProgressBar>
     <div
-      className="jsx-3094041220 d-flex flex-row justify-content-between mb-3"
-    >
-      Array [
-        <div
-          className="jsx-2986000160 numberedCircle badge-success"
-        >
-          99
-        </div>,
-        "",
-      ]
-      Array [
-        <div
-          className="jsx-2986000160 numberedCircle badge-success"
-        >
-          100
-        </div>,
-        "",
-      ]
-      Array [
-        <div
-          className="jsx-2986000160 numberedCircle badge-danger"
-        >
-          110
-        </div>,
-        "",
-      ]
-    </div>
-    <Row
-      noGutters={false}
-    >
-      <div
-        className="row"
-      >
-        <Col
-          className="stepDescription"
-          key="description-99"
-        >
-          <div
-            className="stepDescription col"
-          >
-            test step 1
-          </div>
-        </Col>
-        <Col
-          className="stepDescription"
-          key="description-100"
-        >
-          <div
-            className="stepDescription col"
-          >
-            test step 2
-          </div>
-        </Col>
-        <Col
-          className="stepDescription"
-          key="description-110"
-        >
-          <div
-            className="stepDescription col"
-          >
-            test step 3
-          </div>
-        </Col>
-      </div>
-    </Row>
+      aria-label="operator-progress-indicator"
+      aria-valuemax={100}
+      aria-valuemin={0}
+      aria-valuenow={0}
+      className="jsx-3094041220 progress-bar"
+      role="progressbar"
+      style={
+        Object {
+          "width": "0%",
+        }
+      }
+    />
   </div>,
+  <div
+    className="jsx-3094041220 d-flex flex-row justify-content-between mb-3"
+  >
+    Array [
+      <div
+        className="jsx-1375059393 numberedCircle badge-success"
+      >
+        99
+      </div>,
+      "",
+    ]
+    Array [
+      <div
+        className="jsx-1375059393 numberedCircle badge-success"
+      >
+        100
+      </div>,
+      "",
+    ]
+    Array [
+      <div
+        className="jsx-1375059393 numberedCircle badge-danger"
+      >
+        110
+      </div>,
+      "",
+    ]
+  </div>,
+  <Row
+    noGutters={false}
+  >
+    <div
+      className="row"
+    >
+      <Col
+        className="stepDescription"
+        key="description-99"
+      >
+        <div
+          className="stepDescription col"
+        >
+          test step 1
+        </div>
+      </Col>
+      <Col
+        className="stepDescription"
+        key="description-100"
+      >
+        <div
+          className="stepDescription col"
+        >
+          test step 2
+        </div>
+      </Col>
+      <Col
+        className="stepDescription"
+        key="description-110"
+      >
+        <div
+          className="stepDescription col"
+        >
+          test step 3
+        </div>
+      </Col>
+    </div>
+  </Row>,
   "",
 ]
 `;
@@ -105,45 +92,32 @@ Array [
 exports[`The Progress Step Indicator Renders with no steps 1`] = `
 Array [
   <div
-    className="jsx-3094041220"
+    className="jsx-3094041220 progress ml-1 mr-1"
   >
-    <ProgressBar
-      animated={false}
-      isChild={false}
-      max={100}
-      min={0}
-      now={0}
-      srOnly={false}
-      striped={false}
-    >
-      <div
-        className="progress"
-      >
-        <div
-          aria-valuemax={100}
-          aria-valuemin={0}
-          aria-valuenow={0}
-          className="progress-bar"
-          role="progressbar"
-          style={
-            Object {
-              "width": "0%",
-            }
-          }
-        />
-      </div>
-    </ProgressBar>
     <div
-      className="jsx-3094041220 d-flex flex-row justify-content-between mb-3"
+      aria-label="operator-progress-indicator"
+      aria-valuemax={100}
+      aria-valuemin={0}
+      aria-valuenow={0}
+      className="jsx-3094041220 progress-bar"
+      role="progressbar"
+      style={
+        Object {
+          "width": "0%",
+        }
+      }
     />
-    <Row
-      noGutters={false}
-    >
-      <div
-        className="row"
-      />
-    </Row>
   </div>,
+  <div
+    className="jsx-3094041220 d-flex flex-row justify-content-between mb-3"
+  />,
+  <Row
+    noGutters={false}
+  >
+    <div
+      className="row"
+    />
+  </Row>,
   "",
 ]
 `;
