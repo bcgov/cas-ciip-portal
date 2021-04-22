@@ -24,6 +24,34 @@ exports[`Reporter Dashboard Should render properly 1`] = `
       lg={8}
       md={10}
     >
+      <Row
+        noGutters={false}
+      >
+        <Col>
+          <ProgressStepIndicator
+            steps={
+              Array [
+                Object {
+                  "badgeStyle": "warning",
+                  "description": "Request access to apply",
+                  "number": 1,
+                },
+                Object {
+                  "badgeStyle": "info",
+                  "description": "CleanBC reviews request",
+                  "number": 2,
+                },
+                Object {
+                  "badgeStyle": "success",
+                  "description": "Request approved",
+                  "number": 3,
+                },
+              ]
+            }
+          />
+        </Col>
+      </Row>
+      <br />
       <Relay(OrganisationsComponent)
         confirmOrg={false}
         handleContextChange={[Function]}

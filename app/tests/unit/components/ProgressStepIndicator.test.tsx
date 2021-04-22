@@ -9,9 +9,10 @@ describe('The Progress Step Indicator', () => {
     expect(componentUnderTest).toMatchSnapshot();
   });
 
-  it('Matches snapshot with 3 steps', () => {
+  it('Matches snapshot with 3 steps and a title', () => {
     const componentUnderTest = mount(
       <ProgressStepIndicator
+        title="This is a TEST TITLE"
         steps={[
           {
             badgeStyle: StatusBadgeColor.APPROVED,
