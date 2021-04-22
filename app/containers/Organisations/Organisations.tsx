@@ -6,9 +6,7 @@ import {
   Button,
   FormControl,
   Alert,
-  Card,
-  Row,
-  Col
+  Card
 } from 'react-bootstrap';
 import getConfig from 'next/config';
 import {Organisations_query} from 'Organisations_query.graphql';
@@ -16,8 +14,6 @@ import RelayModernEnvironment from 'relay-runtime/lib/store/RelayModernEnvironme
 import LoadingSpinner from 'components/LoadingSpinner';
 import Organisation from './Organisation';
 import UserOrganisation from './UserOrganisation';
-import ProgressStepIndicator from 'components/ProgressStepIndicator';
-import StatusBadgeColor from 'components/helpers/StatusBadgeColor';
 
 interface Props {
   query: Organisations_query;
@@ -71,30 +67,6 @@ export const OrganisationsComponent: React.FunctionComponent<Props> = (
 
   return (
     <>
-      <Row>
-        <Col>
-          <ProgressStepIndicator
-            steps={[
-              {
-                description: 'Request access to apply',
-                badgeStyle: StatusBadgeColor.INITIAL,
-                number: 1
-              },
-              {
-                description: 'CleanBC reviews request',
-                badgeStyle: StatusBadgeColor.PENDING,
-                number: 2
-              },
-              {
-                description: 'Request approved',
-                badgeStyle: StatusBadgeColor.APPROVED,
-                number: 3
-              }
-            ]}
-          />
-        </Col>
-      </Row>
-      <br />
       <Card bg="light">
         <Card.Body>
           Operator, Operator Representative, and Reporting Operation are defined

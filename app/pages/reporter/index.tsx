@@ -7,6 +7,8 @@ import Organisations from 'containers/Organisations/Organisations';
 import DefaultLayout from 'layouts/default-layout';
 import {createUserOrganisationMutation} from 'mutations/user_organisation/createUserOrganisation';
 import {USER} from 'data/group-constants';
+import ProgressStepIndicator from 'components/ProgressStepIndicator';
+import StatusBadgeColor from 'components/helpers/StatusBadgeColor';
 
 const ALLOWED_GROUPS = [USER];
 
@@ -79,6 +81,30 @@ export default class Reporter extends Component<Props> {
       <DefaultLayout showSubheader session={session} title="My Operators">
         <Row className="justify-content-md-center">
           <Col md={10} lg={8}>
+            <Row>
+              <Col>
+                <ProgressStepIndicator
+                  steps={[
+                    {
+                      description: 'Request access to apply',
+                      badgeStyle: StatusBadgeColor.INITIAL,
+                      number: 1
+                    },
+                    {
+                      description: 'CleanBC reviews request',
+                      badgeStyle: StatusBadgeColor.PENDING,
+                      number: 2
+                    },
+                    {
+                      description: 'Request approved',
+                      badgeStyle: StatusBadgeColor.APPROVED,
+                      number: 3
+                    }
+                  ]}
+                />
+              </Col>
+            </Row>
+            <br />
             <Organisations
               query={query}
               orgInput={this.state.orgInput}
