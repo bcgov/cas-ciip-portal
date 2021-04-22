@@ -6,6 +6,9 @@ import DefaultLayout from 'layouts/default-layout';
 import FacilitiesListContainer from 'containers/Facilities/FacilitiesListContainer';
 import {USER} from 'data/group-constants';
 import {DEFAULT_PAGE_SIZE} from 'components/FilterableTable/FilterableTablePagination';
+import {Col, Row} from 'react-bootstrap';
+import ProgressStepIndicator from 'components/ProgressStepIndicator';
+import StatusBadgeColor from 'components/helpers/StatusBadgeColor';
 
 const ALLOWED_GROUPS = [USER];
 
@@ -70,6 +73,37 @@ class FacilitiesList extends Component<Props> {
         title="Facilities"
         width="wide"
       >
+        <Row className="justify-content-md-center">
+          <Col>
+            <ProgressStepIndicator
+              title="Steps to Apply for an Operator's Facility"
+              steps={[
+                {
+                  description: 'CIIP Application not started',
+                  badgeStyle: StatusBadgeColor.NONE,
+                  number: 1
+                },
+                {
+                  description: 'Application in progress',
+                  badgeStyle: StatusBadgeColor.INITIAL,
+                  number: 2
+                },
+                {
+                  description: 'Application submitted and in review',
+                  badgeStyle: StatusBadgeColor.PENDING,
+                  number: 3
+                },
+                {
+                  description: 'Application approved or rejected',
+                  badgeStyle: StatusBadgeColor.APPROVED,
+                  number: 4
+                }
+              ]}
+            />
+          </Col>
+        </Row>
+        <br />
+        <br />
         <FacilitiesListContainer query={query} />
       </DefaultLayout>
     );
