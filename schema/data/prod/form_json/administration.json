@@ -166,9 +166,9 @@
     },
     "ui:order": [
       "comments",
+      "facility",
       "operator",
-      "operationalRepresentative",
-      "facility"
+      "operationalRepresentative"
     ],
     "operationalRepresentative": {
       "phone": {
