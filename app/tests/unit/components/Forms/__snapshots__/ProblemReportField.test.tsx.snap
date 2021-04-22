@@ -54,27 +54,31 @@ exports[`The AddCommentField component Should match the snapshot 1`] = `
   <div
     className="jsx-2736636148 report-field"
   >
-    <legend
+    <fieldset
       className="jsx-2736636148"
     >
-      CIIP Application Comment
-    </legend>
-    <p
-      className="jsx-2736636148"
-    >
-      This area is only for leaving a comment regarding the data that you reported on this page. This comment will be visible by the person reviewing this CIIP application once the application is submitted.
-    </p>
-    <p
-      className="jsx-2736636148"
-    >
-      For any technical issue, or to review documentation, please click on the help bubble in the bottom right of your screen.
-    </p>
-    <FormControl
-      as="textarea"
-      onChange={[Function]}
-      rows={8}
-      value="Some text"
-    />
+      <legend
+        className="jsx-2736636148"
+      >
+        CIIP Application Comment
+      </legend>
+      <p
+        className="jsx-2736636148"
+      >
+        This area is only for leaving a comment regarding the data that you reported on this page. This comment will be visible by the person reviewing this CIIP application once the application is submitted.
+      </p>
+      <p
+        className="jsx-2736636148"
+      >
+        For any technical issue, or to review documentation, please click on the help button in the bottom right of your screen.
+      </p>
+      <FormControl
+        as="textarea"
+        onChange={[Function]}
+        rows={8}
+        value="Some text"
+      />
+    </fieldset>
     <div
       className="jsx-2736636148 controls"
     >

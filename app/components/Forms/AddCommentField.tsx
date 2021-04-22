@@ -24,13 +24,10 @@ const AddCommentField: React.FunctionComponent<FieldProps<string>> = (
   const handleSave = () => {
     props.onChange(value);
     setExpanded(false);
-    toast.success(
-      'Your comment was saved for review upon application submission',
-      {
-        autoClose: 5000,
-        position: 'top-center'
-      }
-    );
+    toast.success('Your comment was saved.', {
+      autoClose: 5000,
+      position: 'top-center'
+    });
   };
 
   return (
@@ -65,23 +62,26 @@ const AddCommentField: React.FunctionComponent<FieldProps<string>> = (
       </span>
       {expanded && (
         <div className="report-field">
-          <legend>CIIP Application Comment</legend>
+          <fieldset>
+            <legend>CIIP Application Comment</legend>
 
-          <p>
-            This area is only for leaving a comment regarding the data that you
-            reported on this page. This comment will be visible by the person
-            reviewing this CIIP application once the application is submitted.
-          </p>
-          <p>
-            For any technical issue, or to review documentation, please click on
-            the help bubble in the bottom right of your screen.
-          </p>
-          <Form.Control
-            as="textarea"
-            rows={8}
-            value={value}
-            onChange={handleChange}
-          />
+            <p>
+              This area is only for leaving a comment regarding the data that
+              you reported on this page. This comment will be visible by the
+              person reviewing this CIIP application once the application is
+              submitted.
+            </p>
+            <p>
+              For any technical issue, or to review documentation, please click
+              on the help button in the bottom right of your screen.
+            </p>
+            <Form.Control
+              as="textarea"
+              rows={8}
+              value={value}
+              onChange={handleChange}
+            />
+          </fieldset>
           <div className="controls">
             <Button variant="outline-dark" onClick={handleCancel}>
               Cancel
