@@ -130,10 +130,8 @@ exports[`Organisations should render no organisations if the user has not reques
               Please email
                
               <AlertLink
-                href="mailto:GHGRegulator@gov.bc.ca?subject=CIIP Portal Inquiry"
-              >
-                GHGRegulator@gov.bc.ca
-              </AlertLink>
+                href="#"
+              />
                
               if you have any questions.
             </p>
@@ -177,7 +175,7 @@ exports[`Organisations should render no organisations if the user has not reques
          
         <a
           className="jsx-3491480756"
-          href="mailto:ghgregulator@gov.bc.ca"
+          href="#"
         >
           contact CAS
         </a>
@@ -380,10 +378,8 @@ exports[`Organisations should render the user's requested organisations 1`] = `
               Please email
                
               <AlertLink
-                href="mailto:GHGRegulator@gov.bc.ca?subject=CIIP Portal Inquiry"
-              >
-                GHGRegulator@gov.bc.ca
-              </AlertLink>
+                href="#"
+              />
                
               if you have any questions.
             </p>
@@ -427,7 +423,7 @@ exports[`Organisations should render the user's requested organisations 1`] = `
          
         <a
           className="jsx-3491480756"
-          href="mailto:ghgregulator@gov.bc.ca"
+          href="#"
         >
           contact CAS
         </a>

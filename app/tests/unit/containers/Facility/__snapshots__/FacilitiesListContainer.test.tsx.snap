@@ -200,10 +200,11 @@ exports[`FacilitiesListContainer should match the previous snapshot 1`] = `
   If you cannot find your facility in the list, please
    
   <a
-    href="mailto:ghgregulator@gov.bc.ca"
+    href="#"
   >
     contact CAS
   </a>
+   at 
    for assistance.
 </Fragment>
 `;

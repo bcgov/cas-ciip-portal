@@ -170,14 +170,13 @@ exports[`The apply button should render a warning modal if no swrs report exists
          or its regulations.
       </p>
       <p>
-        For any questions, please
-         
+        For any questions, please 
         <a
-          href="mailto: ghgregulator@gov.bc.ca"
+          href="#"
         >
           contact
         </a>
-         the Climate Action Secretariat at GHGRegulator@gov.bc.ca
+         the Climate Action Secretariat at 
       </p>
     </ModalBody>
     <ModalFooter>
@@ -264,14 +263,13 @@ exports[`The apply button should render an Apply For CIIP button if no applicati
          or its regulations.
       </p>
       <p>
-        For any questions, please
-         
+        For any questions, please 
         <a
-          href="mailto: ghgregulator@gov.bc.ca"
+          href="#"
         >
           contact
         </a>
-         the Climate Action Secretariat at GHGRegulator@gov.bc.ca
+         the Climate Action Secretariat at 
       </p>
     </ModalBody>
     <ModalFooter>

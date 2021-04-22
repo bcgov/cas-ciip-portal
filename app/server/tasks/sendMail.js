@@ -9,10 +9,11 @@ const createOrganisationAccessApprovedMail = require('../emailTemplates/organisa
 const createNotifyAdminApplicationSubmittedMail = require('../emailTemplates/notifyAdminApplicationSubmitted.js');
 const createNotifyAdminAccessRequestMail = require('../emailTemplates/notifyAdminOrganisationAccess');
 const createDraftApplicationStartedMail = require('../emailTemplates/draftApplicationStarted');
-const getEmailShortForm = require('../helpers/getEmailShortForm');
 dotenv.config();
 
-const ADMIN_EMAIL_SHORT = getEmailShortForm(process.env.ADMIN_EMAIL);
+const adminEmail = process.env.ADMIN_EMAIL;
+const receiverEmail = `GHG Regulator <${adminEmail}>`;
+const senderEmail = `CIIP Admin, BC Climate Action Secretariat <${process.env.SENDER_EMAIL}>`;
 
 module.exports = async ({
   type,
@@ -49,7 +50,7 @@ module.exports = async ({
         email,
         firstName,
         lastName,
-        contactEmail: ADMIN_EMAIL_SHORT
+        contactEmail: adminEmail
       });
       break;
     // Confirmation of CIIP Application submission
@@ -64,7 +65,7 @@ module.exports = async ({
         operatorName,
         organisationId,
         versionNumber,
-        contactEmail: ADMIN_EMAIL_SHORT
+        contactEmail: adminEmail
       });
       break;
     case 'status_change_approved':
@@ -77,7 +78,7 @@ module.exports = async ({
         operatorName,
         organisationId,
         status,
-        contactEmail: ADMIN_EMAIL_SHORT
+        contactEmail: adminEmail
       });
       break;
     case 'status_change_rejected':
@@ -89,7 +90,7 @@ module.exports = async ({
         facilityName,
         operatorName,
         status,
-        contactEmail: ADMIN_EMAIL_SHORT
+        contactEmail: adminEmail
       });
       break;
     case 'status_change_requested_changes':
@@ -102,7 +103,7 @@ module.exports = async ({
         facilityName,
         operatorName,
         versionNumber,
-        contactEmail: ADMIN_EMAIL_SHORT
+        contactEmail: adminEmail
       });
       break;
     case 'request_for_organisation_access':
@@ -113,7 +114,7 @@ module.exports = async ({
         lastName,
         facilityName,
         operatorName,
-        contactEmail: ADMIN_EMAIL_SHORT
+        contactEmail: adminEmail
       });
       break;
     case 'organisation_access_approved':
@@ -124,7 +125,7 @@ module.exports = async ({
         lastName,
         operatorName,
         organisationId,
-        contactEmail: ADMIN_EMAIL_SHORT
+        contactEmail: adminEmail
       });
       break;
     case 'notify_admin_submitted':
@@ -135,7 +136,7 @@ module.exports = async ({
         operatorName,
         versionNumber
       });
-      email = process.env.ADMIN_EMAIL;
+      email = receiverEmail;
       break;
     case 'notify_admin_organisation_access':
       subject = 'CIIP Organisation Access Request';
@@ -144,7 +145,7 @@ module.exports = async ({
         lastName,
         operatorName
       });
-      email = process.env.ADMIN_EMAIL;
+      email = receiverEmail;
       break;
     case 'draft_application_started':
       subject = 'CIIP Draft Application Started';
@@ -155,7 +156,7 @@ module.exports = async ({
         email,
         operatorName,
         facilityName,
-        contactEmail: ADMIN_EMAIL_SHORT
+        contactEmail: adminEmail
       });
       break;
     default:
@@ -169,7 +170,7 @@ module.exports = async ({
   }
 
   const message = {
-    from: process.env.SENDER_EMAIL,
+    from: senderEmail,
     to: email,
     subject,
     html: htmlContent

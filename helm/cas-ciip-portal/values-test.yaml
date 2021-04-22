@@ -4,8 +4,8 @@ route:
 
 env:
   smtpConnectionString: smtp://cas-ciip-portal-mailhog:1025
-  senderEmail: BC Climate Action Secretariat <no-reply-dev.cas@gov.bc.ca>
-  adminEmail: CIIP Admin, BC Climate Action Secretariat <admin@ciip.test>
+  senderEmail: no-reply-dev.cas@gov.bc.ca
+  adminEmail: admin@ciip.test
   enableDbMocks: true
 
 analytics:

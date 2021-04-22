@@ -3,6 +3,7 @@ import {Button, Modal} from 'react-bootstrap';
 import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
 import Link from 'next/link';
 import {useRouter} from 'next/router';
+import getConfig from 'next/config';
 import createApplicationMutation from 'mutations/application/createApplicationMutation';
 import {ApplyButtonContainer_applyButtonDetails} from 'ApplyButtonContainer_applyButtonDetails.graphql';
 import {ApplyButtonContainer_query} from 'ApplyButtonContainer_query.graphql';
@@ -33,6 +34,9 @@ export const ApplyButton: React.FunctionComponent<Props> = ({
   const applicationId = applicationByApplicationId?.id;
   const [showMissingReportModal, setShowMissingReportModal] = useState(false);
   const [applyButtonClicked, setApplyButtonClicked] = useState(false);
+
+  const adminEmail = getConfig()?.publicRuntimeConfig.ADMIN_EMAIL;
+  const adminMailToUrl = adminEmail ? `mailto:${adminEmail}` : '#';
 
   const router = useRouter();
 
@@ -117,9 +121,8 @@ export const ApplyButton: React.FunctionComponent<Props> = ({
             its regulations.
           </p>
           <p>
-            For any questions, please{' '}
-            <a href="mailto: ghgregulator@gov.bc.ca">contact</a> the Climate
-            Action Secretariat at GHGRegulator@gov.bc.ca
+            For any questions, please <a href={adminMailToUrl}>contact</a> the
+            Climate Action Secretariat at {adminEmail}
           </p>
         </Modal.Body>
         <Modal.Footer>
