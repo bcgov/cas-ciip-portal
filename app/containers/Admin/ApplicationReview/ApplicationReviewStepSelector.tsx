@@ -108,7 +108,10 @@ export const ApplicationReviewStepSelector: React.FunctionComponent<Props> = ({
             style={{cursor: 'pointer', paddingLeft: '3rem'}}
             disabled={decisionOrChangeRequestIsDisabled}
             aria-disabled={decisionOrChangeRequestIsDisabled}
-            onClick={onDecisionOrChangeRequestAction}
+            onClick={() => {
+              if (!decisionOrChangeRequestIsDisabled)
+                onDecisionOrChangeRequestAction();
+            }}
             onKeyDown={(e) => {
               if (e.key === 'Enter' && !decisionOrChangeRequestIsDisabled)
                 onDecisionOrChangeRequestAction();

@@ -1,16 +1,19 @@
 import React from 'react';
-import {shallow} from 'enzyme';
+import {shallow, mount} from 'enzyme';
 import ApplicationReview from 'pages/analyst/application-review';
 import {
   applicationReviewQueryResponse,
   CiipApplicationRevisionStatus
 } from 'applicationReviewQuery.graphql';
-import {INCENTIVE_ANALYST} from 'data/group-constants';
+import {INCENTIVE_ANALYST, INCENTIVE_ADMINISTRATOR} from 'data/group-constants';
 
-const getTestQuery = (applicationRevisionStatus = 'SUBMITTED') => {
+const getTestQuery = (
+  applicationRevisionStatus = 'SUBMITTED',
+  userGroup = INCENTIVE_ANALYST
+) => {
   return {
     session: {
-      userGroups: [INCENTIVE_ANALYST],
+      userGroups: [userGroup],
       ' $fragmentRefs': {
         defaultLayout_session: true
       }
@@ -89,24 +92,7 @@ describe('The application-review page', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('should render the ReviewSidebar with finalized review if an application decision has been made', () => {
-    const query = getTestQuery('APPROVED');
-    const wrapper = shallow(
-      <ApplicationReview
-        router={null}
-        query={query as applicationReviewQueryResponse['query']}
-      />
-    );
-    wrapper.setState((state) => {
-      return {
-        ...state,
-        isSidebarOpened: true
-      };
-    });
-    expect(wrapper.find('Relay(ReviewSidebar)').prop('isFinalized')).toBeTrue();
-  });
-
-  it('should render the ReviewSidebar in a non-finalized state if no decision has been made on the application', () => {
+  it('should render the review step selector and sidebar with non-finalized state if no application decision has been made', () => {
     const query = getTestQuery('SUBMITTED');
     const wrapper = shallow(
       <ApplicationReview
@@ -123,6 +109,47 @@ describe('The application-review page', () => {
     expect(
       wrapper.find('Relay(ReviewSidebar)').prop('isFinalized')
     ).toBeFalse();
+    expect(
+      wrapper
+        .find('Relay(ApplicationReviewStepSelector)')
+        .prop('decisionOrChangeRequestStatus')
+    ).toEqual('SUBMITTED');
+  });
+
+  it('should render the review step selector and sidebar showing finalized review if an application decision has been made', () => {
+    const query = getTestQuery('APPROVED');
+    const wrapper = shallow(
+      <ApplicationReview
+        router={null}
+        query={query as applicationReviewQueryResponse['query']}
+      />
+    );
+    wrapper.setState((state) => {
+      return {
+        ...state,
+        isSidebarOpened: true
+      };
+    });
+    expect(wrapper.find('Relay(ReviewSidebar)').prop('isFinalized')).toBeTrue();
+    expect(
+      wrapper
+        .find('Relay(ApplicationReviewStepSelector)')
+        .prop('decisionOrChangeRequestStatus')
+    ).not.toEqual('SUBMITTED');
+  });
+
+  it('should enable the ability to change an application decision if user is an admin', () => {
+    const query = getTestQuery('REJECTED', INCENTIVE_ADMINISTRATOR);
+    const wrapper = shallow(
+      <ApplicationReview
+        router={null}
+        query={query as applicationReviewQueryResponse['query']}
+      />
+    );
+    const changeDecisionHandler = wrapper
+      .find('Relay(ApplicationReviewStepSelector)')
+      .prop('changeDecision');
+    expect(changeDecisionHandler).toBeDefined();
   });
 
   it('renders the HelpButton only when the review sidebar is closed', () => {

@@ -1,0 +1,2445 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ApplicationReviewStepSelector "make a decision or request changes" button is disabled once a decision has been made 1`] = `
+<Row
+  noGutters={false}
+>
+  <div
+    className="jsx-118784165 col-xxl-6 col-xl-7 col-lg-8 col-md-10"
+  >
+    <ListGroup
+      as="ul"
+      id="selector"
+    >
+      <ListGroupItem
+        action={true}
+        active={false}
+        as="li"
+        className="review-step-option"
+        disabled={false}
+        key="1"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        style={
+          Object {
+            "cursor": "pointer",
+            "paddingLeft": "3rem",
+            "position": "relative",
+          }
+        }
+        tabIndex={0}
+      >
+        <FontAwesomeIcon
+          border={false}
+          className=""
+          fixedWidth={false}
+          flip={null}
+          icon={
+            Object {
+              "icon": Array [
+                576,
+                512,
+                Array [],
+                "f086",
+                "M416 192c0-88.4-93.1-160-208-160S0 103.6 0 192c0 34.3 14.1 65.9 38 92-13.4 30.2-35.5 54.2-35.8 54.5-2.2 2.3-2.8 5.7-1.5 8.7S4.8 352 8 352c36.6 0 66.9-12.3 88.7-25 32.2 15.7 70.3 25 111.3 25 114.9 0 208-71.6 208-160zm122 220c23.9-26 38-57.7 38-92 0-66.9-53.5-124.2-129.3-148.1.9 6.6 1.3 13.3 1.3 20.1 0 105.9-107.7 192-240 192-10.8 0-21.3-.8-31.7-1.9C207.8 439.6 281.8 480 368 480c41 0 79.1-9.2 111.3-25 21.8 12.7 52.1 25 88.7 25 3.2 0 6.1-1.9 7.3-4.8 1.3-2.9.7-6.3-1.5-8.7-.3-.3-22.4-24.2-35.8-54.5z",
+              ],
+              "iconName": "comments",
+              "prefix": "fas",
+            }
+          }
+          inverse={false}
+          listItem={false}
+          mask={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          size={null}
+          spin={false}
+          style={
+            Object {
+              "left": "1.2rem",
+              "position": "absolute",
+              "top": "calc(50% - 0.5em)",
+            }
+          }
+          swapOpacity={false}
+          symbol={false}
+          title=""
+          transform={null}
+        />
+        Open Administrative review 
+      </ListGroupItem>
+      <ListGroupItem
+        action={true}
+        active={false}
+        as="li"
+        className="review-step-option"
+        disabled={false}
+        key="2"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        style={
+          Object {
+            "cursor": "pointer",
+            "paddingLeft": "3rem",
+            "position": "relative",
+          }
+        }
+        tabIndex={0}
+      >
+        <FontAwesomeIcon
+          border={false}
+          className=""
+          fixedWidth={false}
+          flip={null}
+          icon={
+            Object {
+              "icon": Array [
+                576,
+                512,
+                Array [],
+                "f086",
+                "M416 192c0-88.4-93.1-160-208-160S0 103.6 0 192c0 34.3 14.1 65.9 38 92-13.4 30.2-35.5 54.2-35.8 54.5-2.2 2.3-2.8 5.7-1.5 8.7S4.8 352 8 352c36.6 0 66.9-12.3 88.7-25 32.2 15.7 70.3 25 111.3 25 114.9 0 208-71.6 208-160zm122 220c23.9-26 38-57.7 38-92 0-66.9-53.5-124.2-129.3-148.1.9 6.6 1.3 13.3 1.3 20.1 0 105.9-107.7 192-240 192-10.8 0-21.3-.8-31.7-1.9C207.8 439.6 281.8 480 368 480c41 0 79.1-9.2 111.3-25 21.8 12.7 52.1 25 88.7 25 3.2 0 6.1-1.9 7.3-4.8 1.3-2.9.7-6.3-1.5-8.7-.3-.3-22.4-24.2-35.8-54.5z",
+              ],
+              "iconName": "comments",
+              "prefix": "fas",
+            }
+          }
+          inverse={false}
+          listItem={false}
+          mask={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          size={null}
+          spin={false}
+          style={
+            Object {
+              "left": "1.2rem",
+              "position": "absolute",
+              "top": "calc(50% - 0.5em)",
+            }
+          }
+          swapOpacity={false}
+          symbol={false}
+          title=""
+          transform={null}
+        />
+        Open Technical review 
+      </ListGroupItem>
+      <ListGroupItem
+        action={true}
+        active={false}
+        as="li"
+        className="review-step-option"
+        disabled={false}
+        key="3"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        style={
+          Object {
+            "cursor": "pointer",
+            "paddingLeft": "3rem",
+            "position": "relative",
+          }
+        }
+        tabIndex={0}
+      >
+        <FontAwesomeIcon
+          border={false}
+          className=""
+          fixedWidth={false}
+          flip={null}
+          icon={
+            Object {
+              "icon": Array [
+                576,
+                512,
+                Array [],
+                "f086",
+                "M416 192c0-88.4-93.1-160-208-160S0 103.6 0 192c0 34.3 14.1 65.9 38 92-13.4 30.2-35.5 54.2-35.8 54.5-2.2 2.3-2.8 5.7-1.5 8.7S4.8 352 8 352c36.6 0 66.9-12.3 88.7-25 32.2 15.7 70.3 25 111.3 25 114.9 0 208-71.6 208-160zm122 220c23.9-26 38-57.7 38-92 0-66.9-53.5-124.2-129.3-148.1.9 6.6 1.3 13.3 1.3 20.1 0 105.9-107.7 192-240 192-10.8 0-21.3-.8-31.7-1.9C207.8 439.6 281.8 480 368 480c41 0 79.1-9.2 111.3-25 21.8 12.7 52.1 25 88.7 25 3.2 0 6.1-1.9 7.3-4.8 1.3-2.9.7-6.3-1.5-8.7-.3-.3-22.4-24.2-35.8-54.5z",
+              ],
+              "iconName": "comments",
+              "prefix": "fas",
+            }
+          }
+          inverse={false}
+          listItem={false}
+          mask={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          size={null}
+          spin={false}
+          style={
+            Object {
+              "left": "1.2rem",
+              "position": "absolute",
+              "top": "calc(50% - 0.5em)",
+            }
+          }
+          swapOpacity={false}
+          symbol={false}
+          title=""
+          transform={null}
+        />
+        Open Another review 
+      </ListGroupItem>
+      <ListGroupItem
+        action={true}
+        active={false}
+        aria-disabled={true}
+        as="li"
+        disabled={true}
+        id="open-decision-dialog"
+        key="decision"
+        onClick={[MockFunction]}
+        onKeyDown={[Function]}
+        style={
+          Object {
+            "cursor": "pointer",
+            "paddingLeft": "3rem",
+          }
+        }
+        tabIndex={0}
+        variant="danger"
+      >
+        <FontAwesomeIcon
+          border={false}
+          className=""
+          fixedWidth={false}
+          flip={null}
+          icon={
+            Object {
+              "icon": Array [
+                352,
+                512,
+                Array [],
+                "f00d",
+                "M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z",
+              ],
+              "iconName": "times",
+              "prefix": "fas",
+            }
+          }
+          inverse={false}
+          listItem={false}
+          mask={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          size={null}
+          spin={false}
+          style={
+            Object {
+              "left": "1.2rem",
+              "position": "absolute",
+              "top": "calc(50% - 0.5em)",
+            }
+          }
+          swapOpacity={false}
+          symbol={false}
+          title=""
+          transform={null}
+        />
+        Application has been rejected and applicant notified
+      </ListGroupItem>
+    </ListGroup>
+  </div>
+  <JSXStyle
+    id="1973324808"
+  >
+    #change-decision.jsx-118784165{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:flex-end;-webkit-box-align:flex-end;-ms-flex-align:flex-end;align-items:flex-end;}
+  </JSXStyle>
+  <JSXStyle
+    id="1693080580"
+  >
+    #selector .list-group-item-danger.disabled,.list-group-item-danger:disabled{color:#721c24;background-color:#f5c6cb;}#selector .list-group-item-success.disabled,.list-group-item-success:disabled{color:#155724;background-color:#c3e6cb;}#selector .list-group-item-secondary.disabled,.list-group-item-secondary:disabled{color:#383d41;background-color:#d6d8db;}
+  </JSXStyle>
+</Row>
+`;
+
+exports[`ApplicationReviewStepSelector "make a decision or request changes" button is disabled until all review steps are complete 1`] = `
+<Row
+  noGutters={false}
+>
+  <div
+    className="jsx-118784165 col-xxl-6 col-xl-7 col-lg-8 col-md-10"
+  >
+    <ListGroup
+      as="ul"
+      id="selector"
+    >
+      <ListGroupItem
+        action={true}
+        active={false}
+        as="li"
+        className="review-step-option"
+        disabled={false}
+        key="1"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        style={
+          Object {
+            "cursor": "pointer",
+            "paddingLeft": "3rem",
+            "position": "relative",
+          }
+        }
+        tabIndex={0}
+      >
+        <FontAwesomeIcon
+          border={false}
+          className=""
+          fixedWidth={false}
+          flip={null}
+          icon={
+            Object {
+              "icon": Array [
+                512,
+                512,
+                Array [],
+                "f00c",
+                "M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z",
+              ],
+              "iconName": "check",
+              "prefix": "fas",
+            }
+          }
+          inverse={false}
+          listItem={false}
+          mask={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          size={null}
+          spin={false}
+          style={
+            Object {
+              "left": "1.2rem",
+              "position": "absolute",
+              "top": "calc(50% - 0.5em)",
+            }
+          }
+          swapOpacity={false}
+          symbol={false}
+          title=""
+          transform={null}
+        />
+         Administrative review completed
+      </ListGroupItem>
+      <ListGroupItem
+        action={true}
+        active={false}
+        as="li"
+        className="review-step-option"
+        disabled={false}
+        key="2"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        style={
+          Object {
+            "cursor": "pointer",
+            "paddingLeft": "3rem",
+            "position": "relative",
+          }
+        }
+        tabIndex={0}
+      >
+        <FontAwesomeIcon
+          border={false}
+          className=""
+          fixedWidth={false}
+          flip={null}
+          icon={
+            Object {
+              "icon": Array [
+                576,
+                512,
+                Array [],
+                "f086",
+                "M416 192c0-88.4-93.1-160-208-160S0 103.6 0 192c0 34.3 14.1 65.9 38 92-13.4 30.2-35.5 54.2-35.8 54.5-2.2 2.3-2.8 5.7-1.5 8.7S4.8 352 8 352c36.6 0 66.9-12.3 88.7-25 32.2 15.7 70.3 25 111.3 25 114.9 0 208-71.6 208-160zm122 220c23.9-26 38-57.7 38-92 0-66.9-53.5-124.2-129.3-148.1.9 6.6 1.3 13.3 1.3 20.1 0 105.9-107.7 192-240 192-10.8 0-21.3-.8-31.7-1.9C207.8 439.6 281.8 480 368 480c41 0 79.1-9.2 111.3-25 21.8 12.7 52.1 25 88.7 25 3.2 0 6.1-1.9 7.3-4.8 1.3-2.9.7-6.3-1.5-8.7-.3-.3-22.4-24.2-35.8-54.5z",
+              ],
+              "iconName": "comments",
+              "prefix": "fas",
+            }
+          }
+          inverse={false}
+          listItem={false}
+          mask={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          size={null}
+          spin={false}
+          style={
+            Object {
+              "left": "1.2rem",
+              "position": "absolute",
+              "top": "calc(50% - 0.5em)",
+            }
+          }
+          swapOpacity={false}
+          symbol={false}
+          title=""
+          transform={null}
+        />
+        Open Technical review 
+      </ListGroupItem>
+      <ListGroupItem
+        action={true}
+        active={false}
+        as="li"
+        className="review-step-option"
+        disabled={false}
+        key="3"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        style={
+          Object {
+            "cursor": "pointer",
+            "paddingLeft": "3rem",
+            "position": "relative",
+          }
+        }
+        tabIndex={0}
+      >
+        <FontAwesomeIcon
+          border={false}
+          className=""
+          fixedWidth={false}
+          flip={null}
+          icon={
+            Object {
+              "icon": Array [
+                576,
+                512,
+                Array [],
+                "f086",
+                "M416 192c0-88.4-93.1-160-208-160S0 103.6 0 192c0 34.3 14.1 65.9 38 92-13.4 30.2-35.5 54.2-35.8 54.5-2.2 2.3-2.8 5.7-1.5 8.7S4.8 352 8 352c36.6 0 66.9-12.3 88.7-25 32.2 15.7 70.3 25 111.3 25 114.9 0 208-71.6 208-160zm122 220c23.9-26 38-57.7 38-92 0-66.9-53.5-124.2-129.3-148.1.9 6.6 1.3 13.3 1.3 20.1 0 105.9-107.7 192-240 192-10.8 0-21.3-.8-31.7-1.9C207.8 439.6 281.8 480 368 480c41 0 79.1-9.2 111.3-25 21.8 12.7 52.1 25 88.7 25 3.2 0 6.1-1.9 7.3-4.8 1.3-2.9.7-6.3-1.5-8.7-.3-.3-22.4-24.2-35.8-54.5z",
+              ],
+              "iconName": "comments",
+              "prefix": "fas",
+            }
+          }
+          inverse={false}
+          listItem={false}
+          mask={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          size={null}
+          spin={false}
+          style={
+            Object {
+              "left": "1.2rem",
+              "position": "absolute",
+              "top": "calc(50% - 0.5em)",
+            }
+          }
+          swapOpacity={false}
+          symbol={false}
+          title=""
+          transform={null}
+        />
+        Open Another review 
+      </ListGroupItem>
+      <ListGroupItem
+        action={true}
+        active={false}
+        aria-disabled={true}
+        as="li"
+        disabled={true}
+        id="open-decision-dialog"
+        key="decision"
+        onClick={[MockFunction]}
+        onKeyDown={[Function]}
+        style={
+          Object {
+            "cursor": "pointer",
+            "paddingLeft": "3rem",
+          }
+        }
+        tabIndex={0}
+      >
+        Make a decision or request changes
+      </ListGroupItem>
+    </ListGroup>
+  </div>
+  <JSXStyle
+    id="1973324808"
+  >
+    #change-decision.jsx-118784165{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:flex-end;-webkit-box-align:flex-end;-ms-flex-align:flex-end;align-items:flex-end;}
+  </JSXStyle>
+  <JSXStyle
+    id="1693080580"
+  >
+    #selector .list-group-item-danger.disabled,.list-group-item-danger:disabled{color:#721c24;background-color:#f5c6cb;}#selector .list-group-item-success.disabled,.list-group-item-success:disabled{color:#155724;background-color:#c3e6cb;}#selector .list-group-item-secondary.disabled,.list-group-item-secondary:disabled{color:#383d41;background-color:#d6d8db;}
+  </JSXStyle>
+</Row>
+`;
+
+exports[`ApplicationReviewStepSelector "make a decision or request changes" button is disabled until all review steps are complete 2`] = `
+<Row
+  noGutters={false}
+>
+  <div
+    className="jsx-118784165 col-xxl-6 col-xl-7 col-lg-8 col-md-10"
+  >
+    <ListGroup
+      as="ul"
+      id="selector"
+    >
+      <ListGroupItem
+        action={true}
+        active={false}
+        as="li"
+        className="review-step-option"
+        disabled={false}
+        key="1"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        style={
+          Object {
+            "cursor": "pointer",
+            "paddingLeft": "3rem",
+            "position": "relative",
+          }
+        }
+        tabIndex={0}
+      >
+        <FontAwesomeIcon
+          border={false}
+          className=""
+          fixedWidth={false}
+          flip={null}
+          icon={
+            Object {
+              "icon": Array [
+                512,
+                512,
+                Array [],
+                "f00c",
+                "M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z",
+              ],
+              "iconName": "check",
+              "prefix": "fas",
+            }
+          }
+          inverse={false}
+          listItem={false}
+          mask={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          size={null}
+          spin={false}
+          style={
+            Object {
+              "left": "1.2rem",
+              "position": "absolute",
+              "top": "calc(50% - 0.5em)",
+            }
+          }
+          swapOpacity={false}
+          symbol={false}
+          title=""
+          transform={null}
+        />
+         Administrative review completed
+      </ListGroupItem>
+      <ListGroupItem
+        action={true}
+        active={false}
+        as="li"
+        className="review-step-option"
+        disabled={false}
+        key="2"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        style={
+          Object {
+            "cursor": "pointer",
+            "paddingLeft": "3rem",
+            "position": "relative",
+          }
+        }
+        tabIndex={0}
+      >
+        <FontAwesomeIcon
+          border={false}
+          className=""
+          fixedWidth={false}
+          flip={null}
+          icon={
+            Object {
+              "icon": Array [
+                512,
+                512,
+                Array [],
+                "f00c",
+                "M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z",
+              ],
+              "iconName": "check",
+              "prefix": "fas",
+            }
+          }
+          inverse={false}
+          listItem={false}
+          mask={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          size={null}
+          spin={false}
+          style={
+            Object {
+              "left": "1.2rem",
+              "position": "absolute",
+              "top": "calc(50% - 0.5em)",
+            }
+          }
+          swapOpacity={false}
+          symbol={false}
+          title=""
+          transform={null}
+        />
+         Technical review completed
+      </ListGroupItem>
+      <ListGroupItem
+        action={true}
+        active={false}
+        as="li"
+        className="review-step-option"
+        disabled={false}
+        key="3"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        style={
+          Object {
+            "cursor": "pointer",
+            "paddingLeft": "3rem",
+            "position": "relative",
+          }
+        }
+        tabIndex={0}
+      >
+        <FontAwesomeIcon
+          border={false}
+          className=""
+          fixedWidth={false}
+          flip={null}
+          icon={
+            Object {
+              "icon": Array [
+                512,
+                512,
+                Array [],
+                "f00c",
+                "M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z",
+              ],
+              "iconName": "check",
+              "prefix": "fas",
+            }
+          }
+          inverse={false}
+          listItem={false}
+          mask={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          size={null}
+          spin={false}
+          style={
+            Object {
+              "left": "1.2rem",
+              "position": "absolute",
+              "top": "calc(50% - 0.5em)",
+            }
+          }
+          swapOpacity={false}
+          symbol={false}
+          title=""
+          transform={null}
+        />
+         Another review completed
+      </ListGroupItem>
+      <ListGroupItem
+        action={true}
+        active={false}
+        aria-disabled={false}
+        as="li"
+        disabled={false}
+        id="open-decision-dialog"
+        key="decision"
+        onClick={[MockFunction]}
+        onKeyDown={[Function]}
+        style={
+          Object {
+            "cursor": "pointer",
+            "paddingLeft": "3rem",
+          }
+        }
+        tabIndex={0}
+      >
+        Make a decision or request changes
+      </ListGroupItem>
+    </ListGroup>
+  </div>
+  <JSXStyle
+    id="1973324808"
+  >
+    #change-decision.jsx-118784165{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:flex-end;-webkit-box-align:flex-end;-ms-flex-align:flex-end;align-items:flex-end;}
+  </JSXStyle>
+  <JSXStyle
+    id="1693080580"
+  >
+    #selector .list-group-item-danger.disabled,.list-group-item-danger:disabled{color:#721c24;background-color:#f5c6cb;}#selector .list-group-item-success.disabled,.list-group-item-success:disabled{color:#155724;background-color:#c3e6cb;}#selector .list-group-item-secondary.disabled,.list-group-item-secondary:disabled{color:#383d41;background-color:#d6d8db;}
+  </JSXStyle>
+</Row>
+`;
+
+exports[`ApplicationReviewStepSelector has no selected steps when \`selectedStep\` is null 1`] = `
+<Row
+  noGutters={false}
+>
+  <div
+    className="jsx-118784165 col-xxl-6 col-xl-7 col-lg-8 col-md-10"
+  >
+    <ListGroup
+      as="ul"
+      id="selector"
+    >
+      <ListGroupItem
+        action={true}
+        active={false}
+        as="li"
+        className="review-step-option"
+        disabled={false}
+        key="1"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        style={
+          Object {
+            "cursor": "pointer",
+            "paddingLeft": "3rem",
+            "position": "relative",
+          }
+        }
+        tabIndex={0}
+      >
+        <FontAwesomeIcon
+          border={false}
+          className=""
+          fixedWidth={false}
+          flip={null}
+          icon={
+            Object {
+              "icon": Array [
+                576,
+                512,
+                Array [],
+                "f086",
+                "M416 192c0-88.4-93.1-160-208-160S0 103.6 0 192c0 34.3 14.1 65.9 38 92-13.4 30.2-35.5 54.2-35.8 54.5-2.2 2.3-2.8 5.7-1.5 8.7S4.8 352 8 352c36.6 0 66.9-12.3 88.7-25 32.2 15.7 70.3 25 111.3 25 114.9 0 208-71.6 208-160zm122 220c23.9-26 38-57.7 38-92 0-66.9-53.5-124.2-129.3-148.1.9 6.6 1.3 13.3 1.3 20.1 0 105.9-107.7 192-240 192-10.8 0-21.3-.8-31.7-1.9C207.8 439.6 281.8 480 368 480c41 0 79.1-9.2 111.3-25 21.8 12.7 52.1 25 88.7 25 3.2 0 6.1-1.9 7.3-4.8 1.3-2.9.7-6.3-1.5-8.7-.3-.3-22.4-24.2-35.8-54.5z",
+              ],
+              "iconName": "comments",
+              "prefix": "fas",
+            }
+          }
+          inverse={false}
+          listItem={false}
+          mask={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          size={null}
+          spin={false}
+          style={
+            Object {
+              "left": "1.2rem",
+              "position": "absolute",
+              "top": "calc(50% - 0.5em)",
+            }
+          }
+          swapOpacity={false}
+          symbol={false}
+          title=""
+          transform={null}
+        />
+        Open Administrative review 
+      </ListGroupItem>
+      <ListGroupItem
+        action={true}
+        active={false}
+        as="li"
+        className="review-step-option"
+        disabled={false}
+        key="2"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        style={
+          Object {
+            "cursor": "pointer",
+            "paddingLeft": "3rem",
+            "position": "relative",
+          }
+        }
+        tabIndex={0}
+      >
+        <FontAwesomeIcon
+          border={false}
+          className=""
+          fixedWidth={false}
+          flip={null}
+          icon={
+            Object {
+              "icon": Array [
+                576,
+                512,
+                Array [],
+                "f086",
+                "M416 192c0-88.4-93.1-160-208-160S0 103.6 0 192c0 34.3 14.1 65.9 38 92-13.4 30.2-35.5 54.2-35.8 54.5-2.2 2.3-2.8 5.7-1.5 8.7S4.8 352 8 352c36.6 0 66.9-12.3 88.7-25 32.2 15.7 70.3 25 111.3 25 114.9 0 208-71.6 208-160zm122 220c23.9-26 38-57.7 38-92 0-66.9-53.5-124.2-129.3-148.1.9 6.6 1.3 13.3 1.3 20.1 0 105.9-107.7 192-240 192-10.8 0-21.3-.8-31.7-1.9C207.8 439.6 281.8 480 368 480c41 0 79.1-9.2 111.3-25 21.8 12.7 52.1 25 88.7 25 3.2 0 6.1-1.9 7.3-4.8 1.3-2.9.7-6.3-1.5-8.7-.3-.3-22.4-24.2-35.8-54.5z",
+              ],
+              "iconName": "comments",
+              "prefix": "fas",
+            }
+          }
+          inverse={false}
+          listItem={false}
+          mask={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          size={null}
+          spin={false}
+          style={
+            Object {
+              "left": "1.2rem",
+              "position": "absolute",
+              "top": "calc(50% - 0.5em)",
+            }
+          }
+          swapOpacity={false}
+          symbol={false}
+          title=""
+          transform={null}
+        />
+        Open Technical review 
+      </ListGroupItem>
+      <ListGroupItem
+        action={true}
+        active={false}
+        as="li"
+        className="review-step-option"
+        disabled={false}
+        key="3"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        style={
+          Object {
+            "cursor": "pointer",
+            "paddingLeft": "3rem",
+            "position": "relative",
+          }
+        }
+        tabIndex={0}
+      >
+        <FontAwesomeIcon
+          border={false}
+          className=""
+          fixedWidth={false}
+          flip={null}
+          icon={
+            Object {
+              "icon": Array [
+                576,
+                512,
+                Array [],
+                "f086",
+                "M416 192c0-88.4-93.1-160-208-160S0 103.6 0 192c0 34.3 14.1 65.9 38 92-13.4 30.2-35.5 54.2-35.8 54.5-2.2 2.3-2.8 5.7-1.5 8.7S4.8 352 8 352c36.6 0 66.9-12.3 88.7-25 32.2 15.7 70.3 25 111.3 25 114.9 0 208-71.6 208-160zm122 220c23.9-26 38-57.7 38-92 0-66.9-53.5-124.2-129.3-148.1.9 6.6 1.3 13.3 1.3 20.1 0 105.9-107.7 192-240 192-10.8 0-21.3-.8-31.7-1.9C207.8 439.6 281.8 480 368 480c41 0 79.1-9.2 111.3-25 21.8 12.7 52.1 25 88.7 25 3.2 0 6.1-1.9 7.3-4.8 1.3-2.9.7-6.3-1.5-8.7-.3-.3-22.4-24.2-35.8-54.5z",
+              ],
+              "iconName": "comments",
+              "prefix": "fas",
+            }
+          }
+          inverse={false}
+          listItem={false}
+          mask={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          size={null}
+          spin={false}
+          style={
+            Object {
+              "left": "1.2rem",
+              "position": "absolute",
+              "top": "calc(50% - 0.5em)",
+            }
+          }
+          swapOpacity={false}
+          symbol={false}
+          title=""
+          transform={null}
+        />
+        Open Another review 
+      </ListGroupItem>
+      <ListGroupItem
+        action={true}
+        active={false}
+        aria-disabled={true}
+        as="li"
+        disabled={true}
+        id="open-decision-dialog"
+        key="decision"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        style={
+          Object {
+            "cursor": "pointer",
+            "paddingLeft": "3rem",
+          }
+        }
+        tabIndex={0}
+      >
+        Make a decision or request changes
+      </ListGroupItem>
+    </ListGroup>
+  </div>
+  <JSXStyle
+    id="1973324808"
+  >
+    #change-decision.jsx-118784165{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:flex-end;-webkit-box-align:flex-end;-ms-flex-align:flex-end;align-items:flex-end;}
+  </JSXStyle>
+  <JSXStyle
+    id="1693080580"
+  >
+    #selector .list-group-item-danger.disabled,.list-group-item-danger:disabled{color:#721c24;background-color:#f5c6cb;}#selector .list-group-item-success.disabled,.list-group-item-success:disabled{color:#155724;background-color:#c3e6cb;}#selector .list-group-item-secondary.disabled,.list-group-item-secondary:disabled{color:#383d41;background-color:#d6d8db;}
+  </JSXStyle>
+</Row>
+`;
+
+exports[`ApplicationReviewStepSelector shows optional "Change decision" button 1`] = `
+<Row
+  noGutters={false}
+>
+  <div
+    className="jsx-118784165 col-xxl-6 col-xl-7 col-lg-8 col-md-10"
+  >
+    <ListGroup
+      as="ul"
+      id="selector"
+    >
+      <ListGroupItem
+        action={true}
+        active={false}
+        as="li"
+        className="review-step-option"
+        disabled={false}
+        key="1"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        style={
+          Object {
+            "cursor": "pointer",
+            "paddingLeft": "3rem",
+            "position": "relative",
+          }
+        }
+        tabIndex={0}
+      >
+        <FontAwesomeIcon
+          border={false}
+          className=""
+          fixedWidth={false}
+          flip={null}
+          icon={
+            Object {
+              "icon": Array [
+                576,
+                512,
+                Array [],
+                "f086",
+                "M416 192c0-88.4-93.1-160-208-160S0 103.6 0 192c0 34.3 14.1 65.9 38 92-13.4 30.2-35.5 54.2-35.8 54.5-2.2 2.3-2.8 5.7-1.5 8.7S4.8 352 8 352c36.6 0 66.9-12.3 88.7-25 32.2 15.7 70.3 25 111.3 25 114.9 0 208-71.6 208-160zm122 220c23.9-26 38-57.7 38-92 0-66.9-53.5-124.2-129.3-148.1.9 6.6 1.3 13.3 1.3 20.1 0 105.9-107.7 192-240 192-10.8 0-21.3-.8-31.7-1.9C207.8 439.6 281.8 480 368 480c41 0 79.1-9.2 111.3-25 21.8 12.7 52.1 25 88.7 25 3.2 0 6.1-1.9 7.3-4.8 1.3-2.9.7-6.3-1.5-8.7-.3-.3-22.4-24.2-35.8-54.5z",
+              ],
+              "iconName": "comments",
+              "prefix": "fas",
+            }
+          }
+          inverse={false}
+          listItem={false}
+          mask={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          size={null}
+          spin={false}
+          style={
+            Object {
+              "left": "1.2rem",
+              "position": "absolute",
+              "top": "calc(50% - 0.5em)",
+            }
+          }
+          swapOpacity={false}
+          symbol={false}
+          title=""
+          transform={null}
+        />
+        Open Administrative review 
+      </ListGroupItem>
+      <ListGroupItem
+        action={true}
+        active={false}
+        as="li"
+        className="review-step-option"
+        disabled={false}
+        key="2"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        style={
+          Object {
+            "cursor": "pointer",
+            "paddingLeft": "3rem",
+            "position": "relative",
+          }
+        }
+        tabIndex={0}
+      >
+        <FontAwesomeIcon
+          border={false}
+          className=""
+          fixedWidth={false}
+          flip={null}
+          icon={
+            Object {
+              "icon": Array [
+                576,
+                512,
+                Array [],
+                "f086",
+                "M416 192c0-88.4-93.1-160-208-160S0 103.6 0 192c0 34.3 14.1 65.9 38 92-13.4 30.2-35.5 54.2-35.8 54.5-2.2 2.3-2.8 5.7-1.5 8.7S4.8 352 8 352c36.6 0 66.9-12.3 88.7-25 32.2 15.7 70.3 25 111.3 25 114.9 0 208-71.6 208-160zm122 220c23.9-26 38-57.7 38-92 0-66.9-53.5-124.2-129.3-148.1.9 6.6 1.3 13.3 1.3 20.1 0 105.9-107.7 192-240 192-10.8 0-21.3-.8-31.7-1.9C207.8 439.6 281.8 480 368 480c41 0 79.1-9.2 111.3-25 21.8 12.7 52.1 25 88.7 25 3.2 0 6.1-1.9 7.3-4.8 1.3-2.9.7-6.3-1.5-8.7-.3-.3-22.4-24.2-35.8-54.5z",
+              ],
+              "iconName": "comments",
+              "prefix": "fas",
+            }
+          }
+          inverse={false}
+          listItem={false}
+          mask={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          size={null}
+          spin={false}
+          style={
+            Object {
+              "left": "1.2rem",
+              "position": "absolute",
+              "top": "calc(50% - 0.5em)",
+            }
+          }
+          swapOpacity={false}
+          symbol={false}
+          title=""
+          transform={null}
+        />
+        Open Technical review 
+      </ListGroupItem>
+      <ListGroupItem
+        action={true}
+        active={false}
+        as="li"
+        className="review-step-option"
+        disabled={false}
+        key="3"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        style={
+          Object {
+            "cursor": "pointer",
+            "paddingLeft": "3rem",
+            "position": "relative",
+          }
+        }
+        tabIndex={0}
+      >
+        <FontAwesomeIcon
+          border={false}
+          className=""
+          fixedWidth={false}
+          flip={null}
+          icon={
+            Object {
+              "icon": Array [
+                576,
+                512,
+                Array [],
+                "f086",
+                "M416 192c0-88.4-93.1-160-208-160S0 103.6 0 192c0 34.3 14.1 65.9 38 92-13.4 30.2-35.5 54.2-35.8 54.5-2.2 2.3-2.8 5.7-1.5 8.7S4.8 352 8 352c36.6 0 66.9-12.3 88.7-25 32.2 15.7 70.3 25 111.3 25 114.9 0 208-71.6 208-160zm122 220c23.9-26 38-57.7 38-92 0-66.9-53.5-124.2-129.3-148.1.9 6.6 1.3 13.3 1.3 20.1 0 105.9-107.7 192-240 192-10.8 0-21.3-.8-31.7-1.9C207.8 439.6 281.8 480 368 480c41 0 79.1-9.2 111.3-25 21.8 12.7 52.1 25 88.7 25 3.2 0 6.1-1.9 7.3-4.8 1.3-2.9.7-6.3-1.5-8.7-.3-.3-22.4-24.2-35.8-54.5z",
+              ],
+              "iconName": "comments",
+              "prefix": "fas",
+            }
+          }
+          inverse={false}
+          listItem={false}
+          mask={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          size={null}
+          spin={false}
+          style={
+            Object {
+              "left": "1.2rem",
+              "position": "absolute",
+              "top": "calc(50% - 0.5em)",
+            }
+          }
+          swapOpacity={false}
+          symbol={false}
+          title=""
+          transform={null}
+        />
+        Open Another review 
+      </ListGroupItem>
+      <ListGroupItem
+        action={true}
+        active={false}
+        aria-disabled={true}
+        as="li"
+        disabled={true}
+        id="open-decision-dialog"
+        key="decision"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        style={
+          Object {
+            "cursor": "pointer",
+            "paddingLeft": "3rem",
+          }
+        }
+        tabIndex={0}
+        variant="danger"
+      >
+        <FontAwesomeIcon
+          border={false}
+          className=""
+          fixedWidth={false}
+          flip={null}
+          icon={
+            Object {
+              "icon": Array [
+                352,
+                512,
+                Array [],
+                "f00d",
+                "M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z",
+              ],
+              "iconName": "times",
+              "prefix": "fas",
+            }
+          }
+          inverse={false}
+          listItem={false}
+          mask={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          size={null}
+          spin={false}
+          style={
+            Object {
+              "left": "1.2rem",
+              "position": "absolute",
+              "top": "calc(50% - 0.5em)",
+            }
+          }
+          swapOpacity={false}
+          symbol={false}
+          title=""
+          transform={null}
+        />
+        Application has been rejected and applicant notified
+      </ListGroupItem>
+    </ListGroup>
+  </div>
+  <div
+    className="jsx-118784165 col-md-12 col-lg-4 col-xl-5 col-xxl-6"
+    id="change-decision"
+  >
+    <Button
+      active={false}
+      disabled={false}
+      onClick={[MockFunction]}
+      variant="link"
+    >
+      <FontAwesomeIcon
+        border={false}
+        className=""
+        fixedWidth={false}
+        flip={null}
+        icon={
+          Object {
+            "icon": Array [
+              512,
+              512,
+              Array [],
+              "f084",
+              "M512 176.001C512 273.203 433.202 352 336 352c-11.22 0-22.19-1.062-32.827-3.069l-24.012 27.014A23.999 23.999 0 0 1 261.223 384H224v40c0 13.255-10.745 24-24 24h-40v40c0 13.255-10.745 24-24 24H24c-13.255 0-24-10.745-24-24v-78.059c0-6.365 2.529-12.47 7.029-16.971l161.802-161.802C163.108 213.814 160 195.271 160 176 160 78.798 238.797.001 335.999 0 433.488-.001 512 78.511 512 176.001zM336 128c0 26.51 21.49 48 48 48s48-21.49 48-48-21.49-48-48-48-48 21.49-48 48z",
+            ],
+            "iconName": "key",
+            "prefix": "fas",
+          }
+        }
+        inverse={false}
+        listItem={false}
+        mask={null}
+        pull={null}
+        pulse={false}
+        rotation={null}
+        size={null}
+        spin={false}
+        style={
+          Object {
+            "marginRight": 8,
+          }
+        }
+        swapOpacity={false}
+        symbol={false}
+        title=""
+        transform={null}
+      />
+      Change decision
+    </Button>
+  </div>
+  <JSXStyle
+    id="1973324808"
+  >
+    #change-decision.jsx-118784165{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:flex-end;-webkit-box-align:flex-end;-ms-flex-align:flex-end;align-items:flex-end;}
+  </JSXStyle>
+  <JSXStyle
+    id="1693080580"
+  >
+    #selector .list-group-item-danger.disabled,.list-group-item-danger:disabled{color:#721c24;background-color:#f5c6cb;}#selector .list-group-item-success.disabled,.list-group-item-success:disabled{color:#155724;background-color:#c3e6cb;}#selector .list-group-item-secondary.disabled,.list-group-item-secondary:disabled{color:#383d41;background-color:#d6d8db;}
+  </JSXStyle>
+</Row>
+`;
+
+exports[`ApplicationReviewStepSelector shows the application decision if a decision has been made) 1`] = `
+<Row
+  noGutters={false}
+>
+  <div
+    className="jsx-118784165 col-xxl-6 col-xl-7 col-lg-8 col-md-10"
+  >
+    <ListGroup
+      as="ul"
+      id="selector"
+    >
+      <ListGroupItem
+        action={true}
+        active={false}
+        as="li"
+        className="review-step-option"
+        disabled={false}
+        key="1"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        style={
+          Object {
+            "cursor": "pointer",
+            "paddingLeft": "3rem",
+            "position": "relative",
+          }
+        }
+        tabIndex={0}
+      >
+        <FontAwesomeIcon
+          border={false}
+          className=""
+          fixedWidth={false}
+          flip={null}
+          icon={
+            Object {
+              "icon": Array [
+                576,
+                512,
+                Array [],
+                "f086",
+                "M416 192c0-88.4-93.1-160-208-160S0 103.6 0 192c0 34.3 14.1 65.9 38 92-13.4 30.2-35.5 54.2-35.8 54.5-2.2 2.3-2.8 5.7-1.5 8.7S4.8 352 8 352c36.6 0 66.9-12.3 88.7-25 32.2 15.7 70.3 25 111.3 25 114.9 0 208-71.6 208-160zm122 220c23.9-26 38-57.7 38-92 0-66.9-53.5-124.2-129.3-148.1.9 6.6 1.3 13.3 1.3 20.1 0 105.9-107.7 192-240 192-10.8 0-21.3-.8-31.7-1.9C207.8 439.6 281.8 480 368 480c41 0 79.1-9.2 111.3-25 21.8 12.7 52.1 25 88.7 25 3.2 0 6.1-1.9 7.3-4.8 1.3-2.9.7-6.3-1.5-8.7-.3-.3-22.4-24.2-35.8-54.5z",
+              ],
+              "iconName": "comments",
+              "prefix": "fas",
+            }
+          }
+          inverse={false}
+          listItem={false}
+          mask={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          size={null}
+          spin={false}
+          style={
+            Object {
+              "left": "1.2rem",
+              "position": "absolute",
+              "top": "calc(50% - 0.5em)",
+            }
+          }
+          swapOpacity={false}
+          symbol={false}
+          title=""
+          transform={null}
+        />
+        Open Administrative review 
+      </ListGroupItem>
+      <ListGroupItem
+        action={true}
+        active={false}
+        as="li"
+        className="review-step-option"
+        disabled={false}
+        key="2"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        style={
+          Object {
+            "cursor": "pointer",
+            "paddingLeft": "3rem",
+            "position": "relative",
+          }
+        }
+        tabIndex={0}
+      >
+        <FontAwesomeIcon
+          border={false}
+          className=""
+          fixedWidth={false}
+          flip={null}
+          icon={
+            Object {
+              "icon": Array [
+                576,
+                512,
+                Array [],
+                "f086",
+                "M416 192c0-88.4-93.1-160-208-160S0 103.6 0 192c0 34.3 14.1 65.9 38 92-13.4 30.2-35.5 54.2-35.8 54.5-2.2 2.3-2.8 5.7-1.5 8.7S4.8 352 8 352c36.6 0 66.9-12.3 88.7-25 32.2 15.7 70.3 25 111.3 25 114.9 0 208-71.6 208-160zm122 220c23.9-26 38-57.7 38-92 0-66.9-53.5-124.2-129.3-148.1.9 6.6 1.3 13.3 1.3 20.1 0 105.9-107.7 192-240 192-10.8 0-21.3-.8-31.7-1.9C207.8 439.6 281.8 480 368 480c41 0 79.1-9.2 111.3-25 21.8 12.7 52.1 25 88.7 25 3.2 0 6.1-1.9 7.3-4.8 1.3-2.9.7-6.3-1.5-8.7-.3-.3-22.4-24.2-35.8-54.5z",
+              ],
+              "iconName": "comments",
+              "prefix": "fas",
+            }
+          }
+          inverse={false}
+          listItem={false}
+          mask={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          size={null}
+          spin={false}
+          style={
+            Object {
+              "left": "1.2rem",
+              "position": "absolute",
+              "top": "calc(50% - 0.5em)",
+            }
+          }
+          swapOpacity={false}
+          symbol={false}
+          title=""
+          transform={null}
+        />
+        Open Technical review 
+      </ListGroupItem>
+      <ListGroupItem
+        action={true}
+        active={false}
+        as="li"
+        className="review-step-option"
+        disabled={false}
+        key="3"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        style={
+          Object {
+            "cursor": "pointer",
+            "paddingLeft": "3rem",
+            "position": "relative",
+          }
+        }
+        tabIndex={0}
+      >
+        <FontAwesomeIcon
+          border={false}
+          className=""
+          fixedWidth={false}
+          flip={null}
+          icon={
+            Object {
+              "icon": Array [
+                576,
+                512,
+                Array [],
+                "f086",
+                "M416 192c0-88.4-93.1-160-208-160S0 103.6 0 192c0 34.3 14.1 65.9 38 92-13.4 30.2-35.5 54.2-35.8 54.5-2.2 2.3-2.8 5.7-1.5 8.7S4.8 352 8 352c36.6 0 66.9-12.3 88.7-25 32.2 15.7 70.3 25 111.3 25 114.9 0 208-71.6 208-160zm122 220c23.9-26 38-57.7 38-92 0-66.9-53.5-124.2-129.3-148.1.9 6.6 1.3 13.3 1.3 20.1 0 105.9-107.7 192-240 192-10.8 0-21.3-.8-31.7-1.9C207.8 439.6 281.8 480 368 480c41 0 79.1-9.2 111.3-25 21.8 12.7 52.1 25 88.7 25 3.2 0 6.1-1.9 7.3-4.8 1.3-2.9.7-6.3-1.5-8.7-.3-.3-22.4-24.2-35.8-54.5z",
+              ],
+              "iconName": "comments",
+              "prefix": "fas",
+            }
+          }
+          inverse={false}
+          listItem={false}
+          mask={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          size={null}
+          spin={false}
+          style={
+            Object {
+              "left": "1.2rem",
+              "position": "absolute",
+              "top": "calc(50% - 0.5em)",
+            }
+          }
+          swapOpacity={false}
+          symbol={false}
+          title=""
+          transform={null}
+        />
+        Open Another review 
+      </ListGroupItem>
+      <ListGroupItem
+        action={true}
+        active={false}
+        aria-disabled={true}
+        as="li"
+        disabled={true}
+        id="open-decision-dialog"
+        key="decision"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        style={
+          Object {
+            "cursor": "pointer",
+            "paddingLeft": "3rem",
+          }
+        }
+        tabIndex={0}
+        variant="success"
+      >
+        <FontAwesomeIcon
+          border={false}
+          className=""
+          fixedWidth={false}
+          flip={null}
+          icon={
+            Object {
+              "icon": Array [
+                512,
+                512,
+                Array [],
+                "f00c",
+                "M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z",
+              ],
+              "iconName": "check",
+              "prefix": "fas",
+            }
+          }
+          inverse={false}
+          listItem={false}
+          mask={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          size={null}
+          spin={false}
+          style={
+            Object {
+              "left": "1.2rem",
+              "position": "absolute",
+              "top": "calc(50% - 0.5em)",
+            }
+          }
+          swapOpacity={false}
+          symbol={false}
+          title=""
+          transform={null}
+        />
+        Application has been approved and applicant notified
+      </ListGroupItem>
+    </ListGroup>
+  </div>
+  <JSXStyle
+    id="1973324808"
+  >
+    #change-decision.jsx-118784165{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:flex-end;-webkit-box-align:flex-end;-ms-flex-align:flex-end;align-items:flex-end;}
+  </JSXStyle>
+  <JSXStyle
+    id="1693080580"
+  >
+    #selector .list-group-item-danger.disabled,.list-group-item-danger:disabled{color:#721c24;background-color:#f5c6cb;}#selector .list-group-item-success.disabled,.list-group-item-success:disabled{color:#155724;background-color:#c3e6cb;}#selector .list-group-item-secondary.disabled,.list-group-item-secondary:disabled{color:#383d41;background-color:#d6d8db;}
+  </JSXStyle>
+</Row>
+`;
+
+exports[`ApplicationReviewStepSelector shows the application decision if a decision has been made) 2`] = `
+<Row
+  noGutters={false}
+>
+  <div
+    className="jsx-118784165 col-xxl-6 col-xl-7 col-lg-8 col-md-10"
+  >
+    <ListGroup
+      as="ul"
+      id="selector"
+    >
+      <ListGroupItem
+        action={true}
+        active={false}
+        as="li"
+        className="review-step-option"
+        disabled={false}
+        key="1"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        style={
+          Object {
+            "cursor": "pointer",
+            "paddingLeft": "3rem",
+            "position": "relative",
+          }
+        }
+        tabIndex={0}
+      >
+        <FontAwesomeIcon
+          border={false}
+          className=""
+          fixedWidth={false}
+          flip={null}
+          icon={
+            Object {
+              "icon": Array [
+                576,
+                512,
+                Array [],
+                "f086",
+                "M416 192c0-88.4-93.1-160-208-160S0 103.6 0 192c0 34.3 14.1 65.9 38 92-13.4 30.2-35.5 54.2-35.8 54.5-2.2 2.3-2.8 5.7-1.5 8.7S4.8 352 8 352c36.6 0 66.9-12.3 88.7-25 32.2 15.7 70.3 25 111.3 25 114.9 0 208-71.6 208-160zm122 220c23.9-26 38-57.7 38-92 0-66.9-53.5-124.2-129.3-148.1.9 6.6 1.3 13.3 1.3 20.1 0 105.9-107.7 192-240 192-10.8 0-21.3-.8-31.7-1.9C207.8 439.6 281.8 480 368 480c41 0 79.1-9.2 111.3-25 21.8 12.7 52.1 25 88.7 25 3.2 0 6.1-1.9 7.3-4.8 1.3-2.9.7-6.3-1.5-8.7-.3-.3-22.4-24.2-35.8-54.5z",
+              ],
+              "iconName": "comments",
+              "prefix": "fas",
+            }
+          }
+          inverse={false}
+          listItem={false}
+          mask={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          size={null}
+          spin={false}
+          style={
+            Object {
+              "left": "1.2rem",
+              "position": "absolute",
+              "top": "calc(50% - 0.5em)",
+            }
+          }
+          swapOpacity={false}
+          symbol={false}
+          title=""
+          transform={null}
+        />
+        Open Administrative review 
+      </ListGroupItem>
+      <ListGroupItem
+        action={true}
+        active={false}
+        as="li"
+        className="review-step-option"
+        disabled={false}
+        key="2"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        style={
+          Object {
+            "cursor": "pointer",
+            "paddingLeft": "3rem",
+            "position": "relative",
+          }
+        }
+        tabIndex={0}
+      >
+        <FontAwesomeIcon
+          border={false}
+          className=""
+          fixedWidth={false}
+          flip={null}
+          icon={
+            Object {
+              "icon": Array [
+                576,
+                512,
+                Array [],
+                "f086",
+                "M416 192c0-88.4-93.1-160-208-160S0 103.6 0 192c0 34.3 14.1 65.9 38 92-13.4 30.2-35.5 54.2-35.8 54.5-2.2 2.3-2.8 5.7-1.5 8.7S4.8 352 8 352c36.6 0 66.9-12.3 88.7-25 32.2 15.7 70.3 25 111.3 25 114.9 0 208-71.6 208-160zm122 220c23.9-26 38-57.7 38-92 0-66.9-53.5-124.2-129.3-148.1.9 6.6 1.3 13.3 1.3 20.1 0 105.9-107.7 192-240 192-10.8 0-21.3-.8-31.7-1.9C207.8 439.6 281.8 480 368 480c41 0 79.1-9.2 111.3-25 21.8 12.7 52.1 25 88.7 25 3.2 0 6.1-1.9 7.3-4.8 1.3-2.9.7-6.3-1.5-8.7-.3-.3-22.4-24.2-35.8-54.5z",
+              ],
+              "iconName": "comments",
+              "prefix": "fas",
+            }
+          }
+          inverse={false}
+          listItem={false}
+          mask={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          size={null}
+          spin={false}
+          style={
+            Object {
+              "left": "1.2rem",
+              "position": "absolute",
+              "top": "calc(50% - 0.5em)",
+            }
+          }
+          swapOpacity={false}
+          symbol={false}
+          title=""
+          transform={null}
+        />
+        Open Technical review 
+      </ListGroupItem>
+      <ListGroupItem
+        action={true}
+        active={false}
+        as="li"
+        className="review-step-option"
+        disabled={false}
+        key="3"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        style={
+          Object {
+            "cursor": "pointer",
+            "paddingLeft": "3rem",
+            "position": "relative",
+          }
+        }
+        tabIndex={0}
+      >
+        <FontAwesomeIcon
+          border={false}
+          className=""
+          fixedWidth={false}
+          flip={null}
+          icon={
+            Object {
+              "icon": Array [
+                576,
+                512,
+                Array [],
+                "f086",
+                "M416 192c0-88.4-93.1-160-208-160S0 103.6 0 192c0 34.3 14.1 65.9 38 92-13.4 30.2-35.5 54.2-35.8 54.5-2.2 2.3-2.8 5.7-1.5 8.7S4.8 352 8 352c36.6 0 66.9-12.3 88.7-25 32.2 15.7 70.3 25 111.3 25 114.9 0 208-71.6 208-160zm122 220c23.9-26 38-57.7 38-92 0-66.9-53.5-124.2-129.3-148.1.9 6.6 1.3 13.3 1.3 20.1 0 105.9-107.7 192-240 192-10.8 0-21.3-.8-31.7-1.9C207.8 439.6 281.8 480 368 480c41 0 79.1-9.2 111.3-25 21.8 12.7 52.1 25 88.7 25 3.2 0 6.1-1.9 7.3-4.8 1.3-2.9.7-6.3-1.5-8.7-.3-.3-22.4-24.2-35.8-54.5z",
+              ],
+              "iconName": "comments",
+              "prefix": "fas",
+            }
+          }
+          inverse={false}
+          listItem={false}
+          mask={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          size={null}
+          spin={false}
+          style={
+            Object {
+              "left": "1.2rem",
+              "position": "absolute",
+              "top": "calc(50% - 0.5em)",
+            }
+          }
+          swapOpacity={false}
+          symbol={false}
+          title=""
+          transform={null}
+        />
+        Open Another review 
+      </ListGroupItem>
+      <ListGroupItem
+        action={true}
+        active={false}
+        aria-disabled={true}
+        as="li"
+        disabled={true}
+        id="open-decision-dialog"
+        key="decision"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        style={
+          Object {
+            "cursor": "pointer",
+            "paddingLeft": "3rem",
+          }
+        }
+        tabIndex={0}
+        variant="danger"
+      >
+        <FontAwesomeIcon
+          border={false}
+          className=""
+          fixedWidth={false}
+          flip={null}
+          icon={
+            Object {
+              "icon": Array [
+                352,
+                512,
+                Array [],
+                "f00d",
+                "M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z",
+              ],
+              "iconName": "times",
+              "prefix": "fas",
+            }
+          }
+          inverse={false}
+          listItem={false}
+          mask={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          size={null}
+          spin={false}
+          style={
+            Object {
+              "left": "1.2rem",
+              "position": "absolute",
+              "top": "calc(50% - 0.5em)",
+            }
+          }
+          swapOpacity={false}
+          symbol={false}
+          title=""
+          transform={null}
+        />
+        Application has been rejected and applicant notified
+      </ListGroupItem>
+    </ListGroup>
+  </div>
+  <JSXStyle
+    id="1973324808"
+  >
+    #change-decision.jsx-118784165{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:flex-end;-webkit-box-align:flex-end;-ms-flex-align:flex-end;align-items:flex-end;}
+  </JSXStyle>
+  <JSXStyle
+    id="1693080580"
+  >
+    #selector .list-group-item-danger.disabled,.list-group-item-danger:disabled{color:#721c24;background-color:#f5c6cb;}#selector .list-group-item-success.disabled,.list-group-item-success:disabled{color:#155724;background-color:#c3e6cb;}#selector .list-group-item-secondary.disabled,.list-group-item-secondary:disabled{color:#383d41;background-color:#d6d8db;}
+  </JSXStyle>
+</Row>
+`;
+
+exports[`ApplicationReviewStepSelector shows the application decision if a decision has been made) 3`] = `
+<Row
+  noGutters={false}
+>
+  <div
+    className="jsx-118784165 col-xxl-6 col-xl-7 col-lg-8 col-md-10"
+  >
+    <ListGroup
+      as="ul"
+      id="selector"
+    >
+      <ListGroupItem
+        action={true}
+        active={false}
+        as="li"
+        className="review-step-option"
+        disabled={false}
+        key="1"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        style={
+          Object {
+            "cursor": "pointer",
+            "paddingLeft": "3rem",
+            "position": "relative",
+          }
+        }
+        tabIndex={0}
+      >
+        <FontAwesomeIcon
+          border={false}
+          className=""
+          fixedWidth={false}
+          flip={null}
+          icon={
+            Object {
+              "icon": Array [
+                576,
+                512,
+                Array [],
+                "f086",
+                "M416 192c0-88.4-93.1-160-208-160S0 103.6 0 192c0 34.3 14.1 65.9 38 92-13.4 30.2-35.5 54.2-35.8 54.5-2.2 2.3-2.8 5.7-1.5 8.7S4.8 352 8 352c36.6 0 66.9-12.3 88.7-25 32.2 15.7 70.3 25 111.3 25 114.9 0 208-71.6 208-160zm122 220c23.9-26 38-57.7 38-92 0-66.9-53.5-124.2-129.3-148.1.9 6.6 1.3 13.3 1.3 20.1 0 105.9-107.7 192-240 192-10.8 0-21.3-.8-31.7-1.9C207.8 439.6 281.8 480 368 480c41 0 79.1-9.2 111.3-25 21.8 12.7 52.1 25 88.7 25 3.2 0 6.1-1.9 7.3-4.8 1.3-2.9.7-6.3-1.5-8.7-.3-.3-22.4-24.2-35.8-54.5z",
+              ],
+              "iconName": "comments",
+              "prefix": "fas",
+            }
+          }
+          inverse={false}
+          listItem={false}
+          mask={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          size={null}
+          spin={false}
+          style={
+            Object {
+              "left": "1.2rem",
+              "position": "absolute",
+              "top": "calc(50% - 0.5em)",
+            }
+          }
+          swapOpacity={false}
+          symbol={false}
+          title=""
+          transform={null}
+        />
+        Open Administrative review 
+      </ListGroupItem>
+      <ListGroupItem
+        action={true}
+        active={false}
+        as="li"
+        className="review-step-option"
+        disabled={false}
+        key="2"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        style={
+          Object {
+            "cursor": "pointer",
+            "paddingLeft": "3rem",
+            "position": "relative",
+          }
+        }
+        tabIndex={0}
+      >
+        <FontAwesomeIcon
+          border={false}
+          className=""
+          fixedWidth={false}
+          flip={null}
+          icon={
+            Object {
+              "icon": Array [
+                576,
+                512,
+                Array [],
+                "f086",
+                "M416 192c0-88.4-93.1-160-208-160S0 103.6 0 192c0 34.3 14.1 65.9 38 92-13.4 30.2-35.5 54.2-35.8 54.5-2.2 2.3-2.8 5.7-1.5 8.7S4.8 352 8 352c36.6 0 66.9-12.3 88.7-25 32.2 15.7 70.3 25 111.3 25 114.9 0 208-71.6 208-160zm122 220c23.9-26 38-57.7 38-92 0-66.9-53.5-124.2-129.3-148.1.9 6.6 1.3 13.3 1.3 20.1 0 105.9-107.7 192-240 192-10.8 0-21.3-.8-31.7-1.9C207.8 439.6 281.8 480 368 480c41 0 79.1-9.2 111.3-25 21.8 12.7 52.1 25 88.7 25 3.2 0 6.1-1.9 7.3-4.8 1.3-2.9.7-6.3-1.5-8.7-.3-.3-22.4-24.2-35.8-54.5z",
+              ],
+              "iconName": "comments",
+              "prefix": "fas",
+            }
+          }
+          inverse={false}
+          listItem={false}
+          mask={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          size={null}
+          spin={false}
+          style={
+            Object {
+              "left": "1.2rem",
+              "position": "absolute",
+              "top": "calc(50% - 0.5em)",
+            }
+          }
+          swapOpacity={false}
+          symbol={false}
+          title=""
+          transform={null}
+        />
+        Open Technical review 
+      </ListGroupItem>
+      <ListGroupItem
+        action={true}
+        active={false}
+        as="li"
+        className="review-step-option"
+        disabled={false}
+        key="3"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        style={
+          Object {
+            "cursor": "pointer",
+            "paddingLeft": "3rem",
+            "position": "relative",
+          }
+        }
+        tabIndex={0}
+      >
+        <FontAwesomeIcon
+          border={false}
+          className=""
+          fixedWidth={false}
+          flip={null}
+          icon={
+            Object {
+              "icon": Array [
+                576,
+                512,
+                Array [],
+                "f086",
+                "M416 192c0-88.4-93.1-160-208-160S0 103.6 0 192c0 34.3 14.1 65.9 38 92-13.4 30.2-35.5 54.2-35.8 54.5-2.2 2.3-2.8 5.7-1.5 8.7S4.8 352 8 352c36.6 0 66.9-12.3 88.7-25 32.2 15.7 70.3 25 111.3 25 114.9 0 208-71.6 208-160zm122 220c23.9-26 38-57.7 38-92 0-66.9-53.5-124.2-129.3-148.1.9 6.6 1.3 13.3 1.3 20.1 0 105.9-107.7 192-240 192-10.8 0-21.3-.8-31.7-1.9C207.8 439.6 281.8 480 368 480c41 0 79.1-9.2 111.3-25 21.8 12.7 52.1 25 88.7 25 3.2 0 6.1-1.9 7.3-4.8 1.3-2.9.7-6.3-1.5-8.7-.3-.3-22.4-24.2-35.8-54.5z",
+              ],
+              "iconName": "comments",
+              "prefix": "fas",
+            }
+          }
+          inverse={false}
+          listItem={false}
+          mask={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          size={null}
+          spin={false}
+          style={
+            Object {
+              "left": "1.2rem",
+              "position": "absolute",
+              "top": "calc(50% - 0.5em)",
+            }
+          }
+          swapOpacity={false}
+          symbol={false}
+          title=""
+          transform={null}
+        />
+        Open Another review 
+      </ListGroupItem>
+      <ListGroupItem
+        action={true}
+        active={false}
+        aria-disabled={true}
+        as="li"
+        disabled={true}
+        id="open-decision-dialog"
+        key="decision"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        style={
+          Object {
+            "cursor": "pointer",
+            "paddingLeft": "3rem",
+          }
+        }
+        tabIndex={0}
+        variant="secondary"
+      >
+        <FontAwesomeIcon
+          border={false}
+          className=""
+          fixedWidth={false}
+          flip={null}
+          icon={
+            Object {
+              "icon": Array [
+                384,
+                512,
+                Array [],
+                "f252",
+                "M360 0H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24 0 90.965 51.016 167.734 120.842 192C75.016 280.266 24 357.035 24 448c-13.255 0-24 10.745-24 24v16c0 13.255 10.745 24 24 24h336c13.255 0 24-10.745 24-24v-16c0-13.255-10.745-24-24-24 0-90.965-51.016-167.734-120.842-192C308.984 231.734 360 154.965 360 64c13.255 0 24-10.745 24-24V24c0-13.255-10.745-24-24-24zm-75.078 384H99.08c17.059-46.797 52.096-80 92.92-80 40.821 0 75.862 33.196 92.922 80zm.019-256H99.078C91.988 108.548 88 86.748 88 64h208c0 22.805-3.987 44.587-11.059 64z",
+              ],
+              "iconName": "hourglass-half",
+              "prefix": "fas",
+            }
+          }
+          inverse={false}
+          listItem={false}
+          mask={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          size={null}
+          spin={false}
+          style={
+            Object {
+              "left": "1.2rem",
+              "position": "absolute",
+              "top": "calc(50% - 0.5em)",
+            }
+          }
+          swapOpacity={false}
+          symbol={false}
+          title=""
+          transform={null}
+        />
+        Changes have been requested and applicant notified
+      </ListGroupItem>
+    </ListGroup>
+  </div>
+  <JSXStyle
+    id="1973324808"
+  >
+    #change-decision.jsx-118784165{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:flex-end;-webkit-box-align:flex-end;-ms-flex-align:flex-end;align-items:flex-end;}
+  </JSXStyle>
+  <JSXStyle
+    id="1693080580"
+  >
+    #selector .list-group-item-danger.disabled,.list-group-item-danger:disabled{color:#721c24;background-color:#f5c6cb;}#selector .list-group-item-success.disabled,.list-group-item-success:disabled{color:#155724;background-color:#c3e6cb;}#selector .list-group-item-secondary.disabled,.list-group-item-secondary:disabled{color:#383d41;background-color:#d6d8db;}
+  </JSXStyle>
+</Row>
+`;
+
+exports[`ApplicationReviewStepSelector shows the selected selected step when \`selectedStep\` is specified 1`] = `
+<Row
+  noGutters={false}
+>
+  <div
+    className="jsx-118784165 col-xxl-6 col-xl-7 col-lg-8 col-md-10"
+  >
+    <ListGroup
+      as="ul"
+      id="selector"
+    >
+      <ListGroupItem
+        action={true}
+        active={false}
+        as="li"
+        className="review-step-option"
+        disabled={false}
+        key="1"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        style={
+          Object {
+            "cursor": "pointer",
+            "paddingLeft": "3rem",
+            "position": "relative",
+          }
+        }
+        tabIndex={0}
+      >
+        <FontAwesomeIcon
+          border={false}
+          className=""
+          fixedWidth={false}
+          flip={null}
+          icon={
+            Object {
+              "icon": Array [
+                576,
+                512,
+                Array [],
+                "f086",
+                "M416 192c0-88.4-93.1-160-208-160S0 103.6 0 192c0 34.3 14.1 65.9 38 92-13.4 30.2-35.5 54.2-35.8 54.5-2.2 2.3-2.8 5.7-1.5 8.7S4.8 352 8 352c36.6 0 66.9-12.3 88.7-25 32.2 15.7 70.3 25 111.3 25 114.9 0 208-71.6 208-160zm122 220c23.9-26 38-57.7 38-92 0-66.9-53.5-124.2-129.3-148.1.9 6.6 1.3 13.3 1.3 20.1 0 105.9-107.7 192-240 192-10.8 0-21.3-.8-31.7-1.9C207.8 439.6 281.8 480 368 480c41 0 79.1-9.2 111.3-25 21.8 12.7 52.1 25 88.7 25 3.2 0 6.1-1.9 7.3-4.8 1.3-2.9.7-6.3-1.5-8.7-.3-.3-22.4-24.2-35.8-54.5z",
+              ],
+              "iconName": "comments",
+              "prefix": "fas",
+            }
+          }
+          inverse={false}
+          listItem={false}
+          mask={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          size={null}
+          spin={false}
+          style={
+            Object {
+              "left": "1.2rem",
+              "position": "absolute",
+              "top": "calc(50% - 0.5em)",
+            }
+          }
+          swapOpacity={false}
+          symbol={false}
+          title=""
+          transform={null}
+        />
+        Open Administrative review 
+      </ListGroupItem>
+      <ListGroupItem
+        action={true}
+        active={true}
+        as="li"
+        className="review-step-option"
+        disabled={false}
+        key="2"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        style={
+          Object {
+            "cursor": "pointer",
+            "paddingLeft": "3rem",
+            "position": "relative",
+          }
+        }
+        tabIndex={0}
+      >
+        <FontAwesomeIcon
+          border={false}
+          className=""
+          fixedWidth={false}
+          flip={null}
+          icon={
+            Object {
+              "icon": Array [
+                576,
+                512,
+                Array [],
+                "f086",
+                "M416 192c0-88.4-93.1-160-208-160S0 103.6 0 192c0 34.3 14.1 65.9 38 92-13.4 30.2-35.5 54.2-35.8 54.5-2.2 2.3-2.8 5.7-1.5 8.7S4.8 352 8 352c36.6 0 66.9-12.3 88.7-25 32.2 15.7 70.3 25 111.3 25 114.9 0 208-71.6 208-160zm122 220c23.9-26 38-57.7 38-92 0-66.9-53.5-124.2-129.3-148.1.9 6.6 1.3 13.3 1.3 20.1 0 105.9-107.7 192-240 192-10.8 0-21.3-.8-31.7-1.9C207.8 439.6 281.8 480 368 480c41 0 79.1-9.2 111.3-25 21.8 12.7 52.1 25 88.7 25 3.2 0 6.1-1.9 7.3-4.8 1.3-2.9.7-6.3-1.5-8.7-.3-.3-22.4-24.2-35.8-54.5z",
+              ],
+              "iconName": "comments",
+              "prefix": "fas",
+            }
+          }
+          inverse={false}
+          listItem={false}
+          mask={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          size={null}
+          spin={false}
+          style={
+            Object {
+              "left": "1.2rem",
+              "position": "absolute",
+              "top": "calc(50% - 0.5em)",
+            }
+          }
+          swapOpacity={false}
+          symbol={false}
+          title=""
+          transform={null}
+        />
+        Open Technical review 
+      </ListGroupItem>
+      <ListGroupItem
+        action={true}
+        active={false}
+        as="li"
+        className="review-step-option"
+        disabled={false}
+        key="3"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        style={
+          Object {
+            "cursor": "pointer",
+            "paddingLeft": "3rem",
+            "position": "relative",
+          }
+        }
+        tabIndex={0}
+      >
+        <FontAwesomeIcon
+          border={false}
+          className=""
+          fixedWidth={false}
+          flip={null}
+          icon={
+            Object {
+              "icon": Array [
+                576,
+                512,
+                Array [],
+                "f086",
+                "M416 192c0-88.4-93.1-160-208-160S0 103.6 0 192c0 34.3 14.1 65.9 38 92-13.4 30.2-35.5 54.2-35.8 54.5-2.2 2.3-2.8 5.7-1.5 8.7S4.8 352 8 352c36.6 0 66.9-12.3 88.7-25 32.2 15.7 70.3 25 111.3 25 114.9 0 208-71.6 208-160zm122 220c23.9-26 38-57.7 38-92 0-66.9-53.5-124.2-129.3-148.1.9 6.6 1.3 13.3 1.3 20.1 0 105.9-107.7 192-240 192-10.8 0-21.3-.8-31.7-1.9C207.8 439.6 281.8 480 368 480c41 0 79.1-9.2 111.3-25 21.8 12.7 52.1 25 88.7 25 3.2 0 6.1-1.9 7.3-4.8 1.3-2.9.7-6.3-1.5-8.7-.3-.3-22.4-24.2-35.8-54.5z",
+              ],
+              "iconName": "comments",
+              "prefix": "fas",
+            }
+          }
+          inverse={false}
+          listItem={false}
+          mask={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          size={null}
+          spin={false}
+          style={
+            Object {
+              "left": "1.2rem",
+              "position": "absolute",
+              "top": "calc(50% - 0.5em)",
+            }
+          }
+          swapOpacity={false}
+          symbol={false}
+          title=""
+          transform={null}
+        />
+        Open Another review 
+      </ListGroupItem>
+      <ListGroupItem
+        action={true}
+        active={false}
+        aria-disabled={true}
+        as="li"
+        disabled={true}
+        id="open-decision-dialog"
+        key="decision"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        style={
+          Object {
+            "cursor": "pointer",
+            "paddingLeft": "3rem",
+          }
+        }
+        tabIndex={0}
+      >
+        Make a decision or request changes
+      </ListGroupItem>
+    </ListGroup>
+  </div>
+  <JSXStyle
+    id="1973324808"
+  >
+    #change-decision.jsx-118784165{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:flex-end;-webkit-box-align:flex-end;-ms-flex-align:flex-end;align-items:flex-end;}
+  </JSXStyle>
+  <JSXStyle
+    id="1693080580"
+  >
+    #selector .list-group-item-danger.disabled,.list-group-item-danger:disabled{color:#721c24;background-color:#f5c6cb;}#selector .list-group-item-success.disabled,.list-group-item-success:disabled{color:#155724;background-color:#c3e6cb;}#selector .list-group-item-secondary.disabled,.list-group-item-secondary:disabled{color:#383d41;background-color:#d6d8db;}
+  </JSXStyle>
+</Row>
+`;
+
+exports[`ApplicationReviewStepSelector shows which review steps are completed 1`] = `
+<Row
+  noGutters={false}
+>
+  <div
+    className="jsx-118784165 col-xxl-6 col-xl-7 col-lg-8 col-md-10"
+  >
+    <ListGroup
+      as="ul"
+      id="selector"
+    >
+      <ListGroupItem
+        action={true}
+        active={false}
+        as="li"
+        className="review-step-option"
+        disabled={false}
+        key="1"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        style={
+          Object {
+            "cursor": "pointer",
+            "paddingLeft": "3rem",
+            "position": "relative",
+          }
+        }
+        tabIndex={0}
+      >
+        <FontAwesomeIcon
+          border={false}
+          className=""
+          fixedWidth={false}
+          flip={null}
+          icon={
+            Object {
+              "icon": Array [
+                576,
+                512,
+                Array [],
+                "f086",
+                "M416 192c0-88.4-93.1-160-208-160S0 103.6 0 192c0 34.3 14.1 65.9 38 92-13.4 30.2-35.5 54.2-35.8 54.5-2.2 2.3-2.8 5.7-1.5 8.7S4.8 352 8 352c36.6 0 66.9-12.3 88.7-25 32.2 15.7 70.3 25 111.3 25 114.9 0 208-71.6 208-160zm122 220c23.9-26 38-57.7 38-92 0-66.9-53.5-124.2-129.3-148.1.9 6.6 1.3 13.3 1.3 20.1 0 105.9-107.7 192-240 192-10.8 0-21.3-.8-31.7-1.9C207.8 439.6 281.8 480 368 480c41 0 79.1-9.2 111.3-25 21.8 12.7 52.1 25 88.7 25 3.2 0 6.1-1.9 7.3-4.8 1.3-2.9.7-6.3-1.5-8.7-.3-.3-22.4-24.2-35.8-54.5z",
+              ],
+              "iconName": "comments",
+              "prefix": "fas",
+            }
+          }
+          inverse={false}
+          listItem={false}
+          mask={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          size={null}
+          spin={false}
+          style={
+            Object {
+              "left": "1.2rem",
+              "position": "absolute",
+              "top": "calc(50% - 0.5em)",
+            }
+          }
+          swapOpacity={false}
+          symbol={false}
+          title=""
+          transform={null}
+        />
+        Open Administrative review 
+      </ListGroupItem>
+      <ListGroupItem
+        action={true}
+        active={false}
+        as="li"
+        className="review-step-option"
+        disabled={false}
+        key="2"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        style={
+          Object {
+            "cursor": "pointer",
+            "paddingLeft": "3rem",
+            "position": "relative",
+          }
+        }
+        tabIndex={0}
+      >
+        <FontAwesomeIcon
+          border={false}
+          className=""
+          fixedWidth={false}
+          flip={null}
+          icon={
+            Object {
+              "icon": Array [
+                512,
+                512,
+                Array [],
+                "f00c",
+                "M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z",
+              ],
+              "iconName": "check",
+              "prefix": "fas",
+            }
+          }
+          inverse={false}
+          listItem={false}
+          mask={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          size={null}
+          spin={false}
+          style={
+            Object {
+              "left": "1.2rem",
+              "position": "absolute",
+              "top": "calc(50% - 0.5em)",
+            }
+          }
+          swapOpacity={false}
+          symbol={false}
+          title=""
+          transform={null}
+        />
+         Technical review completed
+      </ListGroupItem>
+      <ListGroupItem
+        action={true}
+        active={false}
+        as="li"
+        className="review-step-option"
+        disabled={false}
+        key="3"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        style={
+          Object {
+            "cursor": "pointer",
+            "paddingLeft": "3rem",
+            "position": "relative",
+          }
+        }
+        tabIndex={0}
+      >
+        <FontAwesomeIcon
+          border={false}
+          className=""
+          fixedWidth={false}
+          flip={null}
+          icon={
+            Object {
+              "icon": Array [
+                512,
+                512,
+                Array [],
+                "f00c",
+                "M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z",
+              ],
+              "iconName": "check",
+              "prefix": "fas",
+            }
+          }
+          inverse={false}
+          listItem={false}
+          mask={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          size={null}
+          spin={false}
+          style={
+            Object {
+              "left": "1.2rem",
+              "position": "absolute",
+              "top": "calc(50% - 0.5em)",
+            }
+          }
+          swapOpacity={false}
+          symbol={false}
+          title=""
+          transform={null}
+        />
+         Another review completed
+      </ListGroupItem>
+      <ListGroupItem
+        action={true}
+        active={false}
+        aria-disabled={true}
+        as="li"
+        disabled={true}
+        id="open-decision-dialog"
+        key="decision"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        style={
+          Object {
+            "cursor": "pointer",
+            "paddingLeft": "3rem",
+          }
+        }
+        tabIndex={0}
+      >
+        Make a decision or request changes
+      </ListGroupItem>
+    </ListGroup>
+  </div>
+  <JSXStyle
+    id="1973324808"
+  >
+    #change-decision.jsx-118784165{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:flex-end;-webkit-box-align:flex-end;-ms-flex-align:flex-end;align-items:flex-end;}
+  </JSXStyle>
+  <JSXStyle
+    id="1693080580"
+  >
+    #selector .list-group-item-danger.disabled,.list-group-item-danger:disabled{color:#721c24;background-color:#f5c6cb;}#selector .list-group-item-success.disabled,.list-group-item-success:disabled{color:#155724;background-color:#c3e6cb;}#selector .list-group-item-secondary.disabled,.list-group-item-secondary:disabled{color:#383d41;background-color:#d6d8db;}
+  </JSXStyle>
+</Row>
+`;
