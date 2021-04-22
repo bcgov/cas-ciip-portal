@@ -133,6 +133,15 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
                 and _product.product_name = 'Sold electricity'
             ), 0);
           end if;
+          if product_data.subtract_generated_electricity_emissions then
+            em_product = em_product - coalesce((
+              select p.product_emissions
+              from unnest(reported_products) p
+              join ggircs_portal.product _product on
+                p.product_id = _product.id
+                and _product.product_name = 'Generated electricity'
+            ), 0);
+          end if;
           if product_data.add_purchased_heat_emissions then
             em_product = em_product + coalesce((
               select p.product_emissions
@@ -149,6 +158,15 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
               join ggircs_portal.product _product on
                 p.product_id = _product.id
                 and _product.product_name = 'Sold heat'
+            ), 0);
+          end if;
+          if product_data.subtract_generated_heat_emissions then
+            em_product = em_product - coalesce((
+              select p.product_emissions
+              from unnest(reported_products) p
+              join ggircs_portal.product _product on
+                p.product_id = _product.id
+                and _product.product_name = 'Generated heat'
             ), 0);
           end if;
           if product_data.add_emissions_from_eios then

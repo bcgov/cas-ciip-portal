@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(15);
+select plan(17);
 
 create role test_superuser superuser;
 
@@ -12,6 +12,26 @@ select has_table(
   'ggircs_portal', 'gas',
   'ggircs_portal.gas should exist, and be a table'
 );
+
+select has_index(
+  'ggircs_portal',
+  'gas',
+  'gas_gas_type_uindex',
+  'gas has unique index: gas_gas_type_uindex' );
+
+select columns_are('ggircs_portal'::name, 'gas'::name, array[
+  'id'::name,
+  'gas_type'::name,
+  'gas_description'::name,
+  'gwp'::name,
+  'created_at'::name,
+  'created_by'::name,
+  'updated_at'::name,
+  'updated_by'::name,
+  'deleted_at'::name,
+  'deleted_by'::name,
+  'is_ciip_emission'::name
+]);
 
 -- Row level security tests --
 
