@@ -33,7 +33,7 @@ class Contact extends Component<Props> {
       : '#';
     const adminEmail = getConfig()?.publicRuntimeConfig.ADMIN_EMAIL;
     const adminMailToUrl = adminEmail
-      ? `mailto:${adminEmail}?subject=Support Request (CIIP)`
+      ? `mailto:${adminEmail}?subject=CIIP Inquiry`
       : '#';
 
     return (
