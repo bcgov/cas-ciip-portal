@@ -13,6 +13,7 @@ interface Props {
     description: string;
     badgeStyle: Variant;
   }>;
+  title?: string;
 }
 
 const NumberedCircle: React.FunctionComponent<NumberCircleProps> = ({
@@ -37,10 +38,19 @@ const NumberedCircle: React.FunctionComponent<NumberCircleProps> = ({
 };
 
 export const ProgressStepIndicator: React.FunctionComponent<Props> = ({
-  steps
+  steps,
+  title
 }) => {
   return (
     <>
+      {title && (
+        <Row>
+          <Col>
+            <h2>{title}</h2>
+          </Col>
+        </Row>
+      )}
+      <br />
       <div className="progress ml-1 mr-1">
         <div
           role="progressbar"
@@ -48,7 +58,7 @@ export const ProgressStepIndicator: React.FunctionComponent<Props> = ({
           aria-valuenow={0}
           aria-valuemin={0}
           aria-valuemax={100}
-          aria-label="operator-progress-indicator"
+          aria-label="progress-step-indicator"
           style={{width: '0%'}}
         />
       </div>
@@ -69,6 +79,9 @@ export const ProgressStepIndicator: React.FunctionComponent<Props> = ({
         ))}
       </Row>
       <style jsx global>{`
+        h2 {
+          font-size: 1.5rem;
+        }
         .stepDescription {
           text-align: center;
           font-weight: 500;
