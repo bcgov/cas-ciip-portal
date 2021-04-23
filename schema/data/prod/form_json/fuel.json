@@ -9,7 +9,7 @@
         "type": "object",
         "properties": {
           "comments": {
-            "type":"string"
+            "type": "string"
           },
           "fuelRowId": {
             "title": "Fuel Name",
@@ -28,7 +28,7 @@
             "type": "number"
           }
         },
-        "required": ["fuelRowId", "quantity","emissionCategoryRowId"]
+        "required": ["fuelRowId", "quantity", "emissionCategoryRowId"]
       }
     }
   },
@@ -37,7 +37,7 @@
     "ui:remove-text": "Remove fuel",
     "items": {
       "comments": {
-        "ui:field": "ProblemReportField",
+        "ui:field": "AddCommentField",
         "ui:options": {
           "label": false,
           "disableRenderingIfEmpty": true
@@ -45,7 +45,13 @@
         "ui:col-md": 12
       },
       "ui:field": "fuel",
-      "ui:order": ["comments", "fuelRowId", "quantity", "fuelUnits","emissionCategoryRowId"],
+      "ui:order": [
+        "comments",
+        "fuelRowId",
+        "quantity",
+        "fuelUnits",
+        "emissionCategoryRowId"
+      ],
       "fuelRowId": {
         "ui:widget": "SearchWidget",
         "ui:field": "fuelRowId",

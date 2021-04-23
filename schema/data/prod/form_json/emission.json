@@ -3,7 +3,7 @@
     "type": "object",
     "properties": {
       "comments": {
-        "type":"string"
+        "type": "string"
       },
       "sourceTypes": {
         "title": "Source Types",
@@ -63,17 +63,14 @@
   },
   "uiSchema": {
     "comments": {
-      "ui:field": "ProblemReportField",
+      "ui:field": "AddCommentField",
       "ui:options": {
         "label": false,
-        "disableRenderingIfEmpty" : true
+        "disableRenderingIfEmpty": true
       },
       "ui:col-md": 12
     },
-    "ui:order": [
-      "comments",
-      "sourceTypes"
-    ],
+    "ui:order": ["comments", "sourceTypes"],
     "ui:className": "emission-form no-col-padding",
     "ui:field": "emission",
     "sourceTypes": {
@@ -83,10 +80,7 @@
         "removable": false
       },
       "items": {
-        "ui:order": [
-          "sourceTypeName",
-          "gases"
-        ],
+        "ui:order": ["sourceTypeName", "gases"],
         "sourceTypeName": {
           "classNames": "hidden-title",
           "ui:col-md": 12,
