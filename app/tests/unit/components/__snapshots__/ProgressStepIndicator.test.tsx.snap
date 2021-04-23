@@ -113,9 +113,6 @@ Array [
 
 exports[`The Progress Step Indicator Renders with no steps 1`] = `
 Array [
-  <br
-    className="jsx-2298047210"
-  />,
   <div
     className="jsx-2298047210 progress ml-1 mr-1"
   >

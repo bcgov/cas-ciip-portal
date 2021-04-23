@@ -15,6 +15,10 @@ describe('When logged in as a reporter', () => {
     });
     cy.contains('View Facilities').click();
     cy.url().should('include', '/reporter/facilities');
+    cy.get('tr');
+    cy.get('body').happoScreenshot({
+      component: 'Reporter facility list'
+    });
     cy.get('tbody > tr:nth-child(2) .btn')
       .contains('Resume CIIP application')
       .click();

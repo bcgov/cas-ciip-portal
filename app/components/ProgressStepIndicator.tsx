@@ -44,13 +44,15 @@ export const ProgressStepIndicator: React.FunctionComponent<Props> = ({
   return (
     <>
       {title && (
-        <Row>
-          <Col>
-            <h2>{title}</h2>
-          </Col>
-        </Row>
+        <>
+          <Row>
+            <Col>
+              <h2>{title}</h2>
+            </Col>
+          </Row>
+          <br />
+        </>
       )}
-      <br />
       <div className="progress ml-1 mr-1">
         <div
           role="progressbar"
