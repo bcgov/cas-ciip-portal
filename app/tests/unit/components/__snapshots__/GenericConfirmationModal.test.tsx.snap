@@ -24,7 +24,7 @@ exports[`Generic Confirmation Modal should render a Bootstrap modal (with custom
     closeLabel="Close"
   >
     <h2
-      className="jsx-2580451210"
+      className="jsx-4105755554"
     >
       Are you sure you want to continue?
     </h2>
@@ -62,12 +62,12 @@ exports[`Generic Confirmation Modal should render a Bootstrap modal (with custom
   <JSXStyle
     id="3835795811"
   >
-    h2.jsx-2580451210{margin-bottom:0;}
+    h2.jsx-4105755554{margin-bottom:0;}
   </JSXStyle>
   <JSXStyle
-    id="2914746560"
+    id="2690782760"
   >
-    .modal-header{background:#036;color:#fff;}.btn-primary#confirm{background:#036;}.btn-primary#confirm:hover,.btn-primary#cancel:hover{background:#002040;border-color:#002040;}.btn-outline-primary#confirm,.btn-outline-primary#cancel{color:#036;border-color:#036;}.btn-outline-primary#confirm:hover,.btn-outline-primary#cancel:hover{color:#fff;background:#002040;}.btn-success#confirm{background:#24883e;}.btn-outline-success#confirm{color:#036;border-color:#036;}
+    .modal-header{background:#036;color:#fff;}.btn-primary#confirm{background:#036;}.btn-primary#confirm:hover,.btn-primary#cancel:hover{background:#002040;border-color:#002040;}.btn-outline-primary#confirm,.btn-outline-primary#cancel{color:#036;border-color:#036;}.btn-outline-primary#confirm:hover,.btn-outline-primary#cancel:hover{color:#fff;background:#002040;}
   </JSXStyle>
 </Modal>
 `;
@@ -96,7 +96,7 @@ exports[`Generic Confirmation Modal should render a default Bootstrap modal with
     closeLabel="Close"
   >
     <h2
-      className="jsx-2580451210"
+      className="jsx-4105755554"
     >
       Are you sure you want to continue?
     </h2>
@@ -125,12 +125,12 @@ exports[`Generic Confirmation Modal should render a default Bootstrap modal with
   <JSXStyle
     id="3835795811"
   >
-    h2.jsx-2580451210{margin-bottom:0;}
+    h2.jsx-4105755554{margin-bottom:0;}
   </JSXStyle>
   <JSXStyle
-    id="2914746560"
+    id="2690782760"
   >
-    .modal-header{background:#036;color:#fff;}.btn-primary#confirm{background:#036;}.btn-primary#confirm:hover,.btn-primary#cancel:hover{background:#002040;border-color:#002040;}.btn-outline-primary#confirm,.btn-outline-primary#cancel{color:#036;border-color:#036;}.btn-outline-primary#confirm:hover,.btn-outline-primary#cancel:hover{color:#fff;background:#002040;}.btn-success#confirm{background:#24883e;}.btn-outline-success#confirm{color:#036;border-color:#036;}
+    .modal-header{background:#036;color:#fff;}.btn-primary#confirm{background:#036;}.btn-primary#confirm:hover,.btn-primary#cancel:hover{background:#002040;border-color:#002040;}.btn-outline-primary#confirm,.btn-outline-primary#cancel{color:#036;border-color:#036;}.btn-outline-primary#confirm:hover,.btn-outline-primary#cancel:hover{color:#fff;background:#002040;}
   </JSXStyle>
 </Modal>
 `;

@@ -67,13 +67,6 @@ export const GenericConfirmationModal: React.FunctionComponent<Props> = ({
           color: #fff;
           background: #002040;
         }
-        .btn-success#confirm {
-          background: #24883e;
-        }
-        .btn-outline-success#confirm {
-          color: #036;
-          border-color: #036;
-        }
       `}</style>
     </Modal>
   );
