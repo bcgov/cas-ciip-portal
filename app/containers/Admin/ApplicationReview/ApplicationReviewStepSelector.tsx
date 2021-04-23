@@ -78,7 +78,7 @@ export const ApplicationReviewStepSelector: React.FunctionComponent<Props> = ({
     <Button
       variant="link"
       disabled
-      style={{color: '#343a40', textAlign: 'left'}}
+      style={{opacity: 1, color: '#343a40', textAlign: 'left'}}
     >
       <FontAwesomeIcon icon={faLock} style={{marginRight: 8}} />
       There is a newer draft of this application.
