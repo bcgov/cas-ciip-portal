@@ -7,10 +7,11 @@ import {
 } from 'applicationReviewQuery.graphql';
 import {INCENTIVE_ANALYST, INCENTIVE_ADMINISTRATOR} from 'data/group-constants';
 
-const getTestQuery = (
+const getTestQuery = ({
   applicationRevisionStatus = 'SUBMITTED',
-  userGroup = INCENTIVE_ANALYST
-) => {
+  userGroup = INCENTIVE_ANALYST,
+  isCurrentVersion = true
+}) => {
   return {
     session: {
       userGroups: [userGroup],
@@ -46,6 +47,7 @@ const getTestQuery = (
       }
     },
     applicationRevision: {
+      isCurrentVersion,
       overrideJustification: null,
       ' $fragmentRefs': {
         IncentiveCalculatorContainer_applicationRevision: true,
@@ -61,7 +63,7 @@ const getTestQuery = (
 
 describe('The application-review page', () => {
   it('matches the last snapshot (with review sidebar closed)', () => {
-    const query = getTestQuery();
+    const query = getTestQuery({});
     const wrapper = shallow(
       <ApplicationReview
         router={null}
@@ -72,7 +74,7 @@ describe('The application-review page', () => {
   });
 
   it('matches the last snapshot (with review sidebar opened)', () => {
-    const query = getTestQuery();
+    const query = getTestQuery({});
     const wrapper = shallow(
       <ApplicationReview
         router={null}
@@ -93,7 +95,7 @@ describe('The application-review page', () => {
   });
 
   it('should render the review step selector and sidebar with non-finalized state if no application decision has been made', () => {
-    const query = getTestQuery('SUBMITTED');
+    const query = getTestQuery({applicationRevisionStatus: 'SUBMITTED'});
     const wrapper = shallow(
       <ApplicationReview
         router={null}
@@ -117,7 +119,7 @@ describe('The application-review page', () => {
   });
 
   it('should render the review step selector and sidebar showing finalized review if an application decision has been made', () => {
-    const query = getTestQuery('APPROVED');
+    const query = getTestQuery({applicationRevisionStatus: 'APPROVED'});
     const wrapper = shallow(
       <ApplicationReview
         router={null}
@@ -139,7 +141,10 @@ describe('The application-review page', () => {
   });
 
   it('should enable the ability to change an application decision if user is an admin', () => {
-    const query = getTestQuery('REJECTED', INCENTIVE_ADMINISTRATOR);
+    const query = getTestQuery({
+      applicationRevisionStatus: 'REJECTED',
+      userGroup: INCENTIVE_ADMINISTRATOR
+    });
     const wrapper = shallow(
       <ApplicationReview
         router={null}
@@ -152,8 +157,31 @@ describe('The application-review page', () => {
     expect(changeDecisionHandler).toBeDefined();
   });
 
+  it('application decision cannot be changed if a newer draft exists', () => {
+    const query = getTestQuery({
+      applicationRevisionStatus: 'REQUESTED_CHANGES',
+      isCurrentVersion: false,
+      userGroup: INCENTIVE_ADMINISTRATOR
+    });
+    const wrapper = shallow(
+      <ApplicationReview
+        router={null}
+        query={query as applicationReviewQueryResponse['query']}
+      />
+    );
+    const changeDecisionHandler = wrapper
+      .find('Relay(ApplicationReviewStepSelector)')
+      .prop('changeDecision');
+    expect(changeDecisionHandler).toBeDefined();
+    expect(
+      wrapper
+        .find('Relay(ApplicationReviewStepSelector)')
+        .prop('newerDraftExists')
+    ).toBeTrue();
+  });
+
   it('renders the HelpButton only when the review sidebar is closed', () => {
-    const query = getTestQuery();
+    const query = getTestQuery({});
     const wrapper = shallow(
       <ApplicationReview
         router={null}
@@ -172,7 +200,7 @@ describe('The application-review page', () => {
   });
 
   it('passes the applicationRevision prop to the IncentiveCalculator', () => {
-    const query = getTestQuery();
+    const query = getTestQuery({});
     const wrapper = shallow(
       <ApplicationReview
         router={null}
@@ -188,14 +216,12 @@ describe('The application-review page', () => {
   });
 
   it('renders the ApplicationOverrideNotification component if an override has been set', () => {
+    const data = getTestQuery({});
     const overrideQuery = {
-      ...getTestQuery(),
+      ...data,
       applicationRevision: {
-        overrideJustification: 'oops',
-        ' $fragmentRefs': {
-          IncentiveCalculatorContainer_applicationRevision: true,
-          ApplicationDetailsContainer_applicationRevision: true
-        }
+        ...data.applicationRevision,
+        overrideJustification: 'oops'
       }
     };
     const wrapper = shallow(

@@ -193,7 +193,7 @@ exports[`ApplicationReviewStepSelector "make a decision or request changes" butt
         disabled={true}
         id="open-decision-dialog"
         key="decision"
-        onClick={[MockFunction]}
+        onClick={[Function]}
         onKeyDown={[Function]}
         style={
           Object {
@@ -452,7 +452,7 @@ exports[`ApplicationReviewStepSelector "make a decision or request changes" butt
         disabled={true}
         id="open-decision-dialog"
         key="decision"
-        onClick={[MockFunction]}
+        onClick={[Function]}
         onKeyDown={[Function]}
         style={
           Object {
@@ -672,7 +672,7 @@ exports[`ApplicationReviewStepSelector "make a decision or request changes" butt
         disabled={false}
         id="open-decision-dialog"
         key="decision"
-        onClick={[MockFunction]}
+        onClick={[Function]}
         onKeyDown={[Function]}
         style={
           Object {

@@ -50,6 +50,7 @@ const getTestElement = ({
   selectedStep = null,
   onSelectStep = () => {},
   onDecisionOrChangeRequestAction = () => {},
+  newerDraftExists = false,
   changeDecision = undefined,
   allStepsCompleted = false,
   completedSteps = []
@@ -64,6 +65,7 @@ const getTestElement = ({
       selectedStep={selectedStep}
       onSelectStep={onSelectStep}
       onDecisionOrChangeRequestAction={onDecisionOrChangeRequestAction}
+      newerDraftExists={newerDraftExists}
       changeDecision={changeDecision}
     />
   );
@@ -221,5 +223,32 @@ describe('ApplicationReviewStepSelector', () => {
     expect(enabled).toMatchSnapshot();
     button.simulate('click');
     expect(spy).toHaveBeenCalledTimes(1);
+  });
+  it('"Change decision" button is inactive if a newer draft exists', () => {
+    const spyForEnabled = jest.fn();
+    const spyForDisabled = jest.fn();
+    const enabled = shallow(
+      getTestElement({
+        status: 'REQUESTED_CHANGES',
+        newerDraftExists: false,
+        changeDecision: spyForEnabled
+      })
+    );
+    const disabled = shallow(
+      getTestElement({
+        status: 'REQUESTED_CHANGES',
+        newerDraftExists: true,
+        changeDecision: spyForDisabled
+      })
+    );
+    expect(
+      enabled.find('#change-decision Button').prop('disabled')
+    ).toBeFalse();
+    enabled.find('#change-decision Button').simulate('click');
+    expect(spyForEnabled).toHaveBeenCalledTimes(1);
+    expect(
+      disabled.find('#change-decision Button').prop('disabled')
+    ).toBeTrue();
+    expect(spyForDisabled).not.toHaveBeenCalled();
   });
 });

@@ -63,6 +63,7 @@ class ApplicationReview extends Component<Props, State> {
         applicationRevision(id: $applicationRevisionId) {
           ...ApplicationDetailsContainer_applicationRevision
           overrideJustification
+          isCurrentVersion
           ...IncentiveCalculatorContainer_applicationRevision
         }
         ...ApplicationDetailsContainer_query
@@ -106,7 +107,10 @@ class ApplicationReview extends Component<Props, State> {
   }
   render() {
     const {query} = this.props;
-    const {overrideJustification} = query?.applicationRevision;
+    const {
+      overrideJustification,
+      isCurrentVersion
+    } = query?.applicationRevision;
     const {applicationRevisionStatus} = query?.application.reviewRevisionStatus;
     const {session} = query || {};
     const isUserAdmin = query?.session.userGroups.some((groupConst) =>
@@ -158,6 +162,7 @@ class ApplicationReview extends Component<Props, State> {
               }
               selectedStep={this.state.selectedReviewStepId}
               onSelectStep={this.selectReviewStep}
+              newerDraftExists={!isCurrentVersion}
               changeDecision={
                 isUserAdmin && currentReviewIsFinalized
                   ? handleChangeDecision

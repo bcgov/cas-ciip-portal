@@ -4,6 +4,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {
   faCheck,
   faComments,
+  faLock,
   faTimes,
   faHourglassHalf,
   faKey
@@ -18,6 +19,7 @@ interface Props {
   selectedStep: string;
   onSelectStep: (stepId: string) => void;
   decisionOrChangeRequestStatus: CiipApplicationRevisionStatus;
+  newerDraftExists: boolean;
   onDecisionOrChangeRequestAction: () => void;
   changeDecision?: () => void;
 }
@@ -47,6 +49,7 @@ export const ApplicationReviewStepSelector: React.FunctionComponent<Props> = ({
   selectedStep,
   onSelectStep,
   decisionOrChangeRequestStatus,
+  newerDraftExists,
   onDecisionOrChangeRequestAction,
   changeDecision
 }) => {
@@ -64,6 +67,22 @@ export const ApplicationReviewStepSelector: React.FunctionComponent<Props> = ({
         top: 'calc(50% - 0.5em)'
       }}
     />
+  );
+  const changeDecisionButton = (
+    <Button variant="link" onClick={changeDecision}>
+      <FontAwesomeIcon icon={faKey} style={{marginRight: 8}} />
+      Change decision
+    </Button>
+  );
+  const newDraftIndicator = (
+    <Button
+      variant="link"
+      disabled
+      style={{color: '#343a40', textAlign: 'left'}}
+    >
+      <FontAwesomeIcon icon={faLock} style={{marginRight: 8}} />
+      There is a newer draft of this application.
+    </Button>
   );
   return (
     <Row>
@@ -136,10 +155,7 @@ export const ApplicationReviewStepSelector: React.FunctionComponent<Props> = ({
           id="change-decision"
           className="col-md-12 col-lg-4 col-xl-5 col-xxl-6"
         >
-          <Button variant="link" onClick={changeDecision}>
-            <FontAwesomeIcon icon={faKey} style={{marginRight: 8}} />
-            Change decision
-          </Button>
+          {newerDraftExists ? newDraftIndicator : changeDecisionButton}
         </div>
       )}
       <style jsx>{`
