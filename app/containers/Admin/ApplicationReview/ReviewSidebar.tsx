@@ -169,7 +169,7 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
       onCancel={() => setShowUnresolvedCommentsModal(false)}
       confirmButtonVariant="outline-primary"
       cancelButtonVariant="primary"
-      cancelButtonText="Cancel and resolve comments"
+      cancelButtonText="Cancel"
       confirmButtonText="Mark this review step completed"
     >
       <div style={{padding: '1em 1em 0 1em'}}>
