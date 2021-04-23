@@ -5,7 +5,7 @@ interface Props {
   show: boolean;
   title: string;
   onConfirm: () => void;
-  onCancel?: () => void;
+  onCancel: () => void;
   confirmButtonText?: string;
   cancelButtonText?: string;
   confirmButtonVariant?: string;
