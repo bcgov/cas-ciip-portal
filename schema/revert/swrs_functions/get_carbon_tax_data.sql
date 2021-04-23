@@ -1,11 +1,9 @@
 -- Deploy ggircs-portal:function_get_carbon_tax_data to pg
 -- requires: schema_ggircs_portal
 
-
--- deploy ggircs-portal:function_import_from_swrs to pg
--- requires: schema_ggircs_portal
-
 begin;
+
+  alter type ggircs_portal.carbon_tax_data add attribute carbon_taxed boolean;
 
   create or replace function ggircs_portal.get_carbon_tax_data()
   returns setof ggircs_portal.carbon_tax_data
@@ -37,8 +35,10 @@ begin;
         from swrs.fuel_mapping as fm
           join swrs.fuel_carbon_tax_details as ctd
           on fm.fuel_carbon_tax_details_id = ctd.id
+          join swrs.carbon_tax_act_fuel_type as cta
+          on ctd.carbon_tax_act_fuel_type_id = cta.id
           join swrs.fuel_charge as fc
-          on fc.fuel_mapping_id = fm.id
+          on fc.carbon_tax_act_fuel_type_id = cta.id
           join swrs.carbon_tax_rate_mapping on fc.start_date = carbon_tax_rate_mapping.rate_start_date
       );
       end if;

@@ -10,9 +10,11 @@ select has_function(
   'Function get_carbon_tax_data should exist'
 );
 
-select is(
+select * from ggircs_portal.get_carbon_tax_data() limit 1;
+
+select isnt(
   (select fuel_charge from ggircs_portal.get_carbon_tax_data() limit 1),
-  0.0783,
+  null,
   'The get_carbon_tax_data function should return a value');
 
 select finish();

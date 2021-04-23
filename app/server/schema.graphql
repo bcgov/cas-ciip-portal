@@ -3837,7 +3837,6 @@ type CarbonTaxDataEdge {
 
 type CarbonTaxDatum {
   carbonTaxRate: BigFloat
-  carbonTaxed: Boolean
   ctaRateUnits: String
   fuelCharge: BigFloat
   fuelMappingId: Int
@@ -3855,9 +3854,6 @@ input CarbonTaxDatumFilter {
 
   """Filter by the object’s `carbonTaxRate` field."""
   carbonTaxRate: BigFloatFilter
-
-  """Filter by the object’s `carbonTaxed` field."""
-  carbonTaxed: BooleanFilter
 
   """Filter by the object’s `ctaRateUnits` field."""
   ctaRateUnits: StringFilter

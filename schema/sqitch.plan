@@ -308,3 +308,5 @@ tables/gas_001 [tables/gas] 2021-04-20T17:48:20Z Dylan Leard <dylan@button.is> #
 computed_columns/application_revision_total_ciip_emissions [tables/gas_001 views/ciip_emission] 2021-04-20T18:28:40Z Dylan Leard <dylan@button.is> # Add computed column that returns the total ciip emissions for an application revision
 computed_columns/application_revision_ciip_incentive [computed_columns/application_revision_ciip_incentive@v2.0.0] 2021-04-20T21:55:26Z Dylan Leard <dylan@button.is> # Migration: use ciip_total_emissions computed column to retrieve total facility emissions
 tables/review_step_001 [tables/review_step] 2021-04-23T18:50:16Z Kristen Cooke <kristen@button.is> # Migration: Change 'other' review step name to 'application'
+views/ciip_carbon_tax_calculation [views/ciip_carbon_tax_calculation@v2.1.0] 2021-04-22T21:07:42Z Dylan Leard <dylan@button.is> # Migration: remove redundant (and unused) carbon_taxed return column
+swrs_functions/get_carbon_tax_data [swrs_functions/get_carbon_tax_data@v2.1.0] 2021-04-22T21:03:38Z Dylan Leard <dylan@button.is> # Migration: refactor function to join on new swrs.carbon_tax_act_fuel_type table
