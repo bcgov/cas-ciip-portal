@@ -25,6 +25,7 @@ exports[`Reporter Dashboard Should render properly 1`] = `
       md={10}
     >
       <Row
+        className="mb-4"
         noGutters={false}
       >
         <Col>
@@ -51,7 +52,6 @@ exports[`Reporter Dashboard Should render properly 1`] = `
           />
         </Col>
       </Row>
-      <br />
       <Relay(OrganisationsComponent)
         confirmOrg={false}
         handleContextChange={[Function]}

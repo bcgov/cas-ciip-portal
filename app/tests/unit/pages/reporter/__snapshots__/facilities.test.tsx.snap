@@ -14,7 +14,7 @@ exports[`The reporter facilities list page matches the snapshot 1`] = `
   width="wide"
 >
   <Row
-    className="justify-content-md-center"
+    className="justify-content-md-center mb-5"
     noGutters={false}
   >
     <Col>
@@ -47,8 +47,6 @@ exports[`The reporter facilities list page matches the snapshot 1`] = `
       />
     </Col>
   </Row>
-  <br />
-  <br />
   <Relay(FacilitiesList)
     query={
       Object {
