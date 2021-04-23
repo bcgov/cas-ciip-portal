@@ -86,12 +86,15 @@ export const ProgressStepIndicator: React.FunctionComponent<Props> = ({
         .progressStepIndicator :global(.stepDescription) {
           text-align: center;
           font-weight: 500;
+          flex-grow: 2; /* Items in the middle have twice the space under the circled number */
         }
         .progressStepIndicator :global(.stepDescription:first-child) {
           text-align: left;
+          flex-grow: 1;
         }
         .progressStepIndicator :global(.stepDescription:last-child) {
           text-align: right;
+          flex-grow: 1;
         }
       `}</style>
     </div>
