@@ -29,6 +29,9 @@ export const ApplicationOverrideNotification: React.FunctionComponent<Props> = (
           </Card>
         </Card.Body>
         <style jsx>{`
+          :global(#justification-card .bg-danger) {
+            color: #fff;
+          }
           #justification-card {
             margin: 1rem 0;
           }
