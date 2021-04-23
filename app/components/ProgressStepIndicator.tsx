@@ -42,15 +42,14 @@ export const ProgressStepIndicator: React.FunctionComponent<Props> = ({
   title
 }) => {
   return (
-    <>
+    <div className="progressStepIndicator">
       {title && (
         <>
-          <Row>
+          <Row className="mb-4">
             <Col>
               <h2>{title}</h2>
             </Col>
           </Row>
-          <br />
         </>
       )}
       <div className="progress ml-1 mr-1">
@@ -60,7 +59,7 @@ export const ProgressStepIndicator: React.FunctionComponent<Props> = ({
           aria-valuenow={0}
           aria-valuemin={0}
           aria-valuemax={100}
-          aria-label="progress-step-indicator"
+          aria-label="progress bar indicating the steps represented by this component"
           style={{width: '0%'}}
         />
       </div>
@@ -80,22 +79,22 @@ export const ProgressStepIndicator: React.FunctionComponent<Props> = ({
           </Col>
         ))}
       </Row>
-      <style jsx global>{`
+      <style jsx>{`
         h2 {
           font-size: 1.5rem;
         }
-        .stepDescription {
+        .progressStepIndicator :global(.stepDescription) {
           text-align: center;
           font-weight: 500;
         }
-        .stepDescription:first-child {
+        .progressStepIndicator :global(.stepDescription:first-child) {
           text-align: left;
         }
-        .stepDescription:last-child {
+        .progressStepIndicator :global(.stepDescription:last-child) {
           text-align: right;
         }
       `}</style>
-    </>
+    </div>
   );
 };
 
