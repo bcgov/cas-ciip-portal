@@ -2,34 +2,6 @@
 
 exports[`Organisations should render no organisations if the user has not requested any access 1`] = `
 <Fragment>
-  <Row
-    noGutters={false}
-  >
-    <Col>
-      <ProgressStepIndicator
-        steps={
-          Array [
-            Object {
-              "badgeStyle": "warning",
-              "description": "Request access to apply",
-              "number": 1,
-            },
-            Object {
-              "badgeStyle": "info",
-              "description": "CleanBC reviews request",
-              "number": 2,
-            },
-            Object {
-              "badgeStyle": "success",
-              "description": "Request approved",
-              "number": 3,
-            },
-          ]
-        }
-      />
-    </Col>
-  </Row>
-  <br />
   <Card
     bg="light"
     body={false}
@@ -193,34 +165,6 @@ exports[`Organisations should render no organisations if the user has not reques
 
 exports[`Organisations should render the user's requested organisations 1`] = `
 <Fragment>
-  <Row
-    noGutters={false}
-  >
-    <Col>
-      <ProgressStepIndicator
-        steps={
-          Array [
-            Object {
-              "badgeStyle": "warning",
-              "description": "Request access to apply",
-              "number": 1,
-            },
-            Object {
-              "badgeStyle": "info",
-              "description": "CleanBC reviews request",
-              "number": 2,
-            },
-            Object {
-              "badgeStyle": "success",
-              "description": "Request approved",
-              "number": 3,
-            },
-          ]
-        }
-      />
-    </Col>
-  </Row>
-  <br />
   <Card
     bg="light"
     body={false}

@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The reporter facilities list page matches the snapshot 1`] = `
+<Relay(DefaultLayout)
+  session={
+    Object {
+      " $fragmentRefs": Object {
+        "defaultLayout_session": true,
+      },
+    }
+  }
+  showSubheader={true}
+  title="Facilities"
+  width="wide"
+>
+  <Row
+    className="justify-content-md-center mb-5"
+    noGutters={false}
+  >
+    <Col>
+      <ProgressStepIndicator
+        steps={
+          Array [
+            Object {
+              "badgeStyle": "light",
+              "description": "CIIP Application not started",
+              "number": 1,
+            },
+            Object {
+              "badgeStyle": "warning",
+              "description": "Application in progress",
+              "number": 2,
+            },
+            Object {
+              "badgeStyle": "info",
+              "description": "Application submitted and in review",
+              "number": 3,
+            },
+            Object {
+              "badgeStyle": "success",
+              "description": "Application approved or rejected",
+              "number": 4,
+            },
+          ]
+        }
+        title="Steps to Apply for an Operator's Facility"
+      />
+    </Col>
+  </Row>
+  <Relay(FacilitiesList)
+    query={
+      Object {
+        " $fragmentRefs": Object {
+          "FacilitiesListContainer_query": true,
+        },
+        "session": Object {
+          " $fragmentRefs": Object {
+            "defaultLayout_session": true,
+          },
+        },
+      }
+    }
+  />
+</Relay(DefaultLayout)>
+`;

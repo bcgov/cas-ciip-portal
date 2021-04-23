@@ -1,16 +1,38 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`The Progress Step Indicator Matches snapshot with 3 steps 1`] = `
-Array [
-  <div
-    className="jsx-3094041220 progress ml-1 mr-1"
+exports[`The Progress Step Indicator Matches snapshot with 3 steps and a title 1`] = `
+<div
+  className="jsx-1128701548 progressStepIndicator"
+>
+  <Row
+    className="mb-4"
+    noGutters={false}
   >
     <div
-      aria-label="operator-progress-indicator"
+      className="mb-4 row"
+    >
+      <Col>
+        <div
+          className="col"
+        >
+          <h2
+            className="jsx-1128701548"
+          >
+            This is a TEST TITLE
+          </h2>
+        </div>
+      </Col>
+    </div>
+  </Row>
+  <div
+    className="jsx-1128701548 progress ml-1 mr-1"
+  >
+    <div
+      aria-label="progress bar indicating the steps represented by this component"
       aria-valuemax={100}
       aria-valuemin={0}
       aria-valuenow={0}
-      className="jsx-3094041220 progress-bar"
+      className="jsx-1128701548 progress-bar"
       role="progressbar"
       style={
         Object {
@@ -18,9 +40,9 @@ Array [
         }
       }
     />
-  </div>,
+  </div>
   <div
-    className="jsx-3094041220 d-flex flex-row justify-content-between mb-3"
+    className="jsx-1128701548 d-flex flex-row justify-content-between mb-3"
   >
     Array [
       <div
@@ -46,7 +68,7 @@ Array [
       </div>,
       "",
     ]
-  </div>,
+  </div>
   <Row
     noGutters={false}
   >
@@ -84,22 +106,23 @@ Array [
         </div>
       </Col>
     </div>
-  </Row>,
-  "",
-]
+  </Row>
+</div>
 `;
 
 exports[`The Progress Step Indicator Renders with no steps 1`] = `
-Array [
+<div
+  className="jsx-1128701548 progressStepIndicator"
+>
   <div
-    className="jsx-3094041220 progress ml-1 mr-1"
+    className="jsx-1128701548 progress ml-1 mr-1"
   >
     <div
-      aria-label="operator-progress-indicator"
+      aria-label="progress bar indicating the steps represented by this component"
       aria-valuemax={100}
       aria-valuemin={0}
       aria-valuenow={0}
-      className="jsx-3094041220 progress-bar"
+      className="jsx-1128701548 progress-bar"
       role="progressbar"
       style={
         Object {
@@ -107,17 +130,16 @@ Array [
         }
       }
     />
-  </div>,
+  </div>
   <div
-    className="jsx-3094041220 d-flex flex-row justify-content-between mb-3"
-  />,
+    className="jsx-1128701548 d-flex flex-row justify-content-between mb-3"
+  />
   <Row
     noGutters={false}
   >
     <div
       className="row"
     />
-  </Row>,
-  "",
-]
+  </Row>
+</div>
 `;

@@ -13,6 +13,7 @@ interface Props {
     description: string;
     badgeStyle: Variant;
   }>;
+  title?: string;
 }
 
 const NumberedCircle: React.FunctionComponent<NumberCircleProps> = ({
@@ -37,10 +38,20 @@ const NumberedCircle: React.FunctionComponent<NumberCircleProps> = ({
 };
 
 export const ProgressStepIndicator: React.FunctionComponent<Props> = ({
-  steps
+  steps,
+  title
 }) => {
   return (
-    <>
+    <div className="progressStepIndicator">
+      {title && (
+        <>
+          <Row className="mb-4">
+            <Col>
+              <h2>{title}</h2>
+            </Col>
+          </Row>
+        </>
+      )}
       <div className="progress ml-1 mr-1">
         <div
           role="progressbar"
@@ -48,7 +59,7 @@ export const ProgressStepIndicator: React.FunctionComponent<Props> = ({
           aria-valuenow={0}
           aria-valuemin={0}
           aria-valuemax={100}
-          aria-label="operator-progress-indicator"
+          aria-label="progress bar indicating the steps represented by this component"
           style={{width: '0%'}}
         />
       </div>
@@ -68,19 +79,25 @@ export const ProgressStepIndicator: React.FunctionComponent<Props> = ({
           </Col>
         ))}
       </Row>
-      <style jsx global>{`
-        .stepDescription {
+      <style jsx>{`
+        h2 {
+          font-size: 1.5rem;
+        }
+        .progressStepIndicator :global(.stepDescription) {
           text-align: center;
           font-weight: 500;
+          flex-grow: 2; /* Items in the middle have twice the space under the circled number */
         }
-        .stepDescription:first-child {
+        .progressStepIndicator :global(.stepDescription:first-child) {
           text-align: left;
+          flex-grow: 1;
         }
-        .stepDescription:last-child {
+        .progressStepIndicator :global(.stepDescription:last-child) {
           text-align: right;
+          flex-grow: 1;
         }
       `}</style>
-    </>
+    </div>
   );
 };
 
