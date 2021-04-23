@@ -81,7 +81,7 @@ export default class Reporter extends Component<Props> {
       <DefaultLayout showSubheader session={session} title="My Operators">
         <Row className="justify-content-md-center">
           <Col md={10} lg={8}>
-            <Row>
+            <Row className="mb-4">
               <Col>
                 <ProgressStepIndicator
                   steps={[
@@ -104,7 +104,6 @@ export default class Reporter extends Component<Props> {
                 />
               </Col>
             </Row>
-            <br />
             <Organisations
               query={query}
               orgInput={this.state.orgInput}

@@ -73,7 +73,7 @@ class FacilitiesList extends Component<Props> {
         title="Facilities"
         width="wide"
       >
-        <Row className="justify-content-md-center">
+        <Row className="justify-content-md-center mb-5">
           <Col>
             <ProgressStepIndicator
               title="Steps to Apply for an Operator's Facility"
@@ -102,8 +102,6 @@ class FacilitiesList extends Component<Props> {
             />
           </Col>
         </Row>
-        <br />
-        <br />
         <FacilitiesListContainer query={query} />
       </DefaultLayout>
     );
