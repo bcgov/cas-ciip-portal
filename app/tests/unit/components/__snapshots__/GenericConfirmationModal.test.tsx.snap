@@ -1,0 +1,136 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Generic Confirmation Modal should render a Bootstrap modal (with custom body content) 1`] = `
+<Modal
+  animation={true}
+  autoFocus={true}
+  backdrop={true}
+  centered={true}
+  dialogAs={
+    Object {
+      "$$typeof": Symbol(react.forward_ref),
+      "displayName": "ModalDialog",
+      "render": [Function],
+    }
+  }
+  enforceFocus={true}
+  keyboard={true}
+  onHide={[Function]}
+  restoreFocus={true}
+  show={true}
+>
+  <ModalHeader
+    closeButton={false}
+    closeLabel="Close"
+  >
+    <h2
+      className="jsx-4105755554"
+    >
+      Are you sure you want to continue?
+    </h2>
+  </ModalHeader>
+  <ModalBody>
+    <div>
+      <p>
+        There is something we want you to stop and consider before continuing.
+      </p>
+      <p>
+        Here is some more detail you should be aware of before confirming this action.
+      </p>
+    </div>
+  </ModalBody>
+  <ModalFooter>
+    <Button
+      active={false}
+      disabled={false}
+      id="cancel"
+      onClick={[Function]}
+      variant="secondary"
+    >
+      Cancel
+    </Button>
+    <Button
+      active={false}
+      disabled={false}
+      id="confirm"
+      onClick={[Function]}
+      variant="primary"
+    >
+      Confirm
+    </Button>
+  </ModalFooter>
+  <JSXStyle
+    id="3835795811"
+  >
+    h2.jsx-4105755554{margin-bottom:0;}
+  </JSXStyle>
+  <JSXStyle
+    id="2690782760"
+  >
+    .modal-header{background:#036;color:#fff;}.btn-primary#confirm{background:#036;}.btn-primary#confirm:hover,.btn-primary#cancel:hover{background:#002040;border-color:#002040;}.btn-outline-primary#confirm,.btn-outline-primary#cancel{color:#036;border-color:#036;}.btn-outline-primary#confirm:hover,.btn-outline-primary#cancel:hover{color:#fff;background:#002040;}
+  </JSXStyle>
+</Modal>
+`;
+
+exports[`Generic Confirmation Modal should render a default Bootstrap modal with Cancel and Confirm buttons (no body content) 1`] = `
+<Modal
+  animation={true}
+  autoFocus={true}
+  backdrop={true}
+  centered={true}
+  dialogAs={
+    Object {
+      "$$typeof": Symbol(react.forward_ref),
+      "displayName": "ModalDialog",
+      "render": [Function],
+    }
+  }
+  enforceFocus={true}
+  keyboard={true}
+  onHide={[Function]}
+  restoreFocus={true}
+  show={true}
+>
+  <ModalHeader
+    closeButton={false}
+    closeLabel="Close"
+  >
+    <h2
+      className="jsx-4105755554"
+    >
+      Are you sure you want to continue?
+    </h2>
+  </ModalHeader>
+  <ModalBody />
+  <ModalFooter>
+    <Button
+      active={false}
+      disabled={false}
+      id="cancel"
+      onClick={[Function]}
+      variant="secondary"
+    >
+      Cancel
+    </Button>
+    <Button
+      active={false}
+      disabled={false}
+      id="confirm"
+      onClick={[Function]}
+      variant="primary"
+    >
+      Confirm
+    </Button>
+  </ModalFooter>
+  <JSXStyle
+    id="3835795811"
+  >
+    h2.jsx-4105755554{margin-bottom:0;}
+  </JSXStyle>
+  <JSXStyle
+    id="2690782760"
+  >
+    .modal-header{background:#036;color:#fff;}.btn-primary#confirm{background:#036;}.btn-primary#confirm:hover,.btn-primary#cancel:hover{background:#002040;border-color:#002040;}.btn-outline-primary#confirm,.btn-outline-primary#cancel{color:#036;border-color:#036;}.btn-outline-primary#confirm:hover,.btn-outline-primary#cancel:hover{color:#fff;background:#002040;}
+  </JSXStyle>
+</Modal>
+`;

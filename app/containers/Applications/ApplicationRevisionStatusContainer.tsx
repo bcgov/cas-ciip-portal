@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Row, Col, Dropdown, Button, Badge, Modal} from 'react-bootstrap';
+import {Dropdown, Button, Badge, Modal} from 'react-bootstrap';
 import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
 import DropdownMenuItemComponent from 'components/DropdownMenuItemComponent';
 import createApplicationRevisionStatusMutation from 'mutations/application/createApplicationRevisionStatusMutation';
@@ -103,78 +103,59 @@ export const ApplicationRevisionStatusComponent: React.FunctionComponent<Props> 
 
   return (
     <>
-      <Row>
-        <Col md={3}>
-          <h3>Application Status*: </h3>
-        </Col>
-        {confirmStatusChangeModal}
-        {isCurrentVersion ? (
-          <Col md={2}>
-            <Dropdown style={{width: '100%'}}>
-              <Dropdown.Toggle
-                pill
-                as={Badge}
-                style={{
-                  padding: '0.6em 1em',
-                  fontSize: '1em',
-                  textTransform: 'uppercase'
-                }}
-                variant={
-                  statusBadgeColor[
-                    props.applicationRevisionStatus.applicationRevisionStatus
-                  ]
-                }
-                id="dropdown"
-              >
-                {getUserFriendlyStatusLabel(
-                  props.applicationRevisionStatus.applicationRevisionStatus
-                )}
-              </Dropdown.Toggle>
-              <Dropdown.Menu style={{width: '100%'}}>
-                {Object.keys(statusBadgeColor)
-                  .filter(
-                    (status) =>
-                      !['DRAFT', currentRevisionStatus].includes(status)
-                  )
-                  .map((status) => (
-                    <DropdownMenuItemComponent
-                      key={status}
-                      itemEventKey={status}
-                      itemFunc={renderStatusConfirmationModal}
-                      itemTitle={getUserFriendlyStatusLabel(status)}
-                    />
-                  ))}
-              </Dropdown.Menu>
-            </Dropdown>
-          </Col>
-        ) : (
-          <Col md={2}>
-            <Button
-              disabled
-              variant={
-                statusBadgeColor[
-                  props.applicationRevisionStatus.applicationRevisionStatus
-                ]
-              }
-            >
-              {props.applicationRevisionStatus.applicationRevisionStatus}
-            </Button>
-          </Col>
-        )}
-      </Row>
-      <Row>
-        <Col md={12}>
-          <p>
-            * Status changes will be immediately confirmed to the applicant by
-            email notification.
-            <br />
-            <span style={{marginLeft: '0.7em'}}>
-              General comments will become visible to the applicant once the
-              application status is updated.
-            </span>
-          </p>
-        </Col>
-      </Row>
+      {confirmStatusChangeModal}
+      {isCurrentVersion ? (
+        <Dropdown
+          as="span"
+          style={{width: '100%', fontSize: '1rem', marginLeft: '2rem'}}
+        >
+          <Dropdown.Toggle
+            pill
+            as={Badge}
+            style={{
+              padding: '0.6em 1em',
+              fontSize: '1em',
+              textTransform: 'uppercase'
+            }}
+            variant={
+              statusBadgeColor[
+                props.applicationRevisionStatus.applicationRevisionStatus
+              ]
+            }
+            id="dropdown"
+          >
+            {getUserFriendlyStatusLabel(
+              props.applicationRevisionStatus.applicationRevisionStatus
+            )}
+          </Dropdown.Toggle>
+          <Dropdown.Menu style={{width: '100%'}}>
+            {Object.keys(statusBadgeColor)
+              .filter(
+                (status) => !['DRAFT', currentRevisionStatus].includes(status)
+              )
+              .map((status) => (
+                <DropdownMenuItemComponent
+                  key={status}
+                  itemEventKey={status}
+                  itemFunc={renderStatusConfirmationModal}
+                  itemTitle={getUserFriendlyStatusLabel(status)}
+                />
+              ))}
+          </Dropdown.Menu>
+        </Dropdown>
+      ) : (
+        <Button
+          disabled
+          variant={
+            statusBadgeColor[
+              props.applicationRevisionStatus.applicationRevisionStatus
+            ]
+          }
+          style={{fontSize: '1rem', marginLeft: '2rem'}}
+        >
+          {props.applicationRevisionStatus.applicationRevisionStatus}
+        </Button>
+      )}
     </>
   );
 };

@@ -10,10 +10,12 @@ import deleteReviewCommentMutation from 'mutations/application_review_step/delet
 import updateApplicationReviewStepMutation from 'mutations/application_review_step/updateApplicationReviewStepMutation';
 import {nowMoment} from 'functions/formatDates';
 import {capitalize} from 'lib/text-transforms';
+import GenericConfirmationModal from 'components/GenericConfirmationModal';
 
 interface Props {
   onClose: () => void;
   applicationReviewStep: ReviewSidebar_applicationReviewStep;
+  isFinalized: boolean;
   relay: RelayProp;
   headerOffset?: number;
 }
@@ -21,29 +23,40 @@ interface Props {
 export const ReviewSidebar: React.FunctionComponent<Props> = ({
   onClose,
   applicationReviewStep,
+  isFinalized,
   relay,
   headerOffset = 68
 }) => {
   const [showingResolved, setShowingResolved] = useState(false);
+  const [
+    showUnresolvedCommentsModal,
+    setShowUnresolvedCommentsModal
+  ] = useState(false);
   const toggleResolved = () => setShowingResolved((current) => !current);
   const reviewStepName = capitalize(
-    applicationReviewStep.reviewStepByReviewStepId.stepName
+    applicationReviewStep?.reviewStepByReviewStepId?.stepName
   );
 
-  const generalComments = applicationReviewStep.generalComments.edges;
-  const internalComments = applicationReviewStep.internalComments.edges;
+  const generalComments = applicationReviewStep?.generalComments?.edges;
+  const internalComments = applicationReviewStep?.internalComments?.edges;
+  const allGeneralCommentsAreResolved = generalComments?.every(
+    (c) => c.node.resolved
+  );
+  const allInternalCommentsAreResolved = internalComments?.every(
+    (c) => c.node.resolved
+  );
   const noGeneralCommentsToShow =
-    generalComments.length === 0 ||
-    (!showingResolved && generalComments.every((c) => c.node.resolved));
+    generalComments?.length === 0 ||
+    (!showingResolved && allGeneralCommentsAreResolved);
   const noInternalCommentsToShow =
-    internalComments.length === 0 ||
-    (!showingResolved && internalComments.every((c) => c.node.resolved));
+    internalComments?.length === 0 ||
+    (!showingResolved && allInternalCommentsAreResolved);
 
   const markReviewStepComplete = async (isComplete) => {
     const {environment} = relay;
     const variables = {
       input: {
-        id: applicationReviewStep.id,
+        id: applicationReviewStep?.id,
         applicationReviewStepPatch: {
           isComplete
         }
@@ -51,12 +64,21 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
     };
     await updateApplicationReviewStepMutation(environment, variables);
   };
+
+  const confirmCommentsResolvedBeforeMarkCompleted = () => {
+    const allCommentsAreResolved =
+      allGeneralCommentsAreResolved && allInternalCommentsAreResolved;
+    if (allCommentsAreResolved) markReviewStepComplete(true);
+    else {
+      setShowUnresolvedCommentsModal(true);
+    }
+  };
   const markCompletedButton = (
     <Button
       id="markCompleted"
       variant="outline-primary"
       type="button"
-      onClick={() => markReviewStepComplete(true)}
+      onClick={confirmCommentsResolvedBeforeMarkCompleted}
       style={{
         padding: '0.75rem .9rem',
         display: 'block',
@@ -66,6 +88,24 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
       <FontAwesomeIcon icon={faCheck} style={{marginRight: '0.5rem'}} />
       Mark this review step completed
     </Button>
+  );
+  const markIncompleteButton = (
+    <p className="mark-incomplete">
+      <FontAwesomeIcon icon={faCheck} style={{marginRight: 2}} />
+      <span> This review step has been completed. </span>
+      <Button
+        variant="link"
+        style={{
+          padding: '0 0 2px 0',
+          fontSize: '0.9rem',
+          lineHeight: 1,
+          display: 'inline'
+        }}
+        onClick={() => markReviewStepComplete(false)}
+      >
+        Mark incomplete
+      </Button>
+    </p>
   );
   const resolveComment = async (id, resolve) => {
     const {environment} = relay;
@@ -93,7 +133,7 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
     await deleteReviewCommentMutation(
       environment,
       variables,
-      applicationReviewStep.id,
+      applicationReviewStep?.id,
       `ReviewSidebar_${commentType}Comments`
     );
   };
@@ -109,13 +149,47 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
         description={description}
         createdAt={createdAt}
         createdBy={`${ciipUserByCreatedBy.firstName} ${ciipUserByCreatedBy.lastName}`}
-        viewOnly={applicationReviewStep.isComplete}
+        viewOnly={isFinalized || applicationReviewStep?.isComplete}
         isResolved={resolved}
         onResolveToggle={resolveComment}
         onDelete={(id) => deleteComment(id, commentType)}
       />
     );
   };
+
+  const confirmCommentsResolvedModal = (
+    <GenericConfirmationModal
+      show={showUnresolvedCommentsModal}
+      title={`Confirm ${applicationReviewStep?.reviewStepByReviewStepId?.stepName} review is completed`}
+      onConfirm={() => {
+        markReviewStepComplete(true);
+        setShowUnresolvedCommentsModal(false);
+      }}
+      size="lg"
+      onCancel={() => setShowUnresolvedCommentsModal(false)}
+      confirmButtonVariant="outline-primary"
+      cancelButtonVariant="primary"
+      cancelButtonText="Cancel"
+      confirmButtonText="Mark this review step completed"
+    >
+      <div style={{padding: '1em 1em 0 1em'}}>
+        <p>
+          There are <strong>unresolved comments</strong> in this review step.
+          Are you sure you want to mark it completed?
+        </p>
+        <p>
+          Don&apos;t worry - marking a step completed isn&apos;t final. You can
+          still mark it incomplete to add more comments before making an
+          application decision.
+        </p>
+        <p>
+          If you continue,{' '}
+          <strong>unresolved comments will be seen by the applicant</strong>{' '}
+          when you make an application decision or request changes.
+        </p>
+      </div>
+    </GenericConfirmationModal>
+  );
 
   return (
     <div id="sidebar" className="col-md-5 col-lg-4 col-xxl-3">
@@ -128,26 +202,10 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
         ×
       </button>
       <h2>{reviewStepName} Review</h2>
-      {applicationReviewStep.isComplete ? (
-        <p className="mark-incomplete">
-          <FontAwesomeIcon icon={faCheck} style={{marginRight: 2}} />
-          <span> This review step has been completed. </span>
-          <Button
-            variant="link"
-            style={{
-              padding: '0 0 2px 0',
-              fontSize: '0.9rem',
-              lineHeight: 1,
-              display: 'inline'
-            }}
-            onClick={() => markReviewStepComplete(false)}
-          >
-            Mark incomplete
-          </Button>
-        </p>
-      ) : (
-        markCompletedButton
-      )}
+      {!isFinalized &&
+        (applicationReviewStep?.isComplete
+          ? markIncompleteButton
+          : markCompletedButton)}
       <div id="scrollable-comments" tabIndex={0}>
         <h3 id="general-comments-label">
           General Comments{' '}
@@ -159,7 +217,7 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
           <p className="empty-comments">No general comments to show.</p>
         ) : (
           <ul aria-labelledby="general-comments-label">
-            {generalComments.map((comment) => {
+            {generalComments?.map((comment) => {
               const showComment = showingResolved || !comment.node.resolved;
               return showComment
                 ? renderComment('general', comment.node)
@@ -177,7 +235,7 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
           <p className="empty-comments">No internal comments to show.</p>
         ) : (
           <ul aria-labelledby="internal-comments-label">
-            {internalComments.map((comment) => {
+            {internalComments?.map((comment) => {
               const showComment = showingResolved || !comment.node.resolved;
               return showComment
                 ? renderComment('internal', comment.node)
@@ -190,10 +248,11 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
         <Button variant="link" style={{padding: 0}} onClick={toggleResolved}>
           {`${showingResolved ? 'Hide' : 'Show'} resolved comments`}
         </Button>
-        {!applicationReviewStep.isComplete && (
+        {!isFinalized && !applicationReviewStep?.isComplete && (
           <Button variant="primary">+ New Comment</Button>
         )}
       </div>
+      {showUnresolvedCommentsModal && confirmCommentsResolvedModal}
       <style jsx>{`
         #sidebar {
           position: fixed;

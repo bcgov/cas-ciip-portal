@@ -10,6 +10,7 @@ import ApplicationOverrideNotification from 'components/Application/ApplicationO
 import {CiipPageComponentProps} from 'next-env';
 import getConfig from 'next/config';
 import {INCENTIVE_ANALYST, ADMIN_GROUP} from 'data/group-constants';
+import ApplicationReviewStepSelector from 'containers/Admin/ApplicationReview/ApplicationReviewStepSelector';
 import ReviewSidebar from 'containers/Admin/ApplicationReview/ReviewSidebar';
 import HelpButton from 'components/helpers/HelpButton';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
@@ -22,7 +23,12 @@ interface Props extends CiipPageComponentProps {
   query: applicationReviewQueryResponse['query'];
 }
 
-class ApplicationReview extends Component<Props> {
+interface State {
+  selectedReviewStepId: string;
+  isSidebarOpened: boolean;
+}
+
+class ApplicationReview extends Component<Props, State> {
   static allowedGroups = ALLOWED_GROUPS;
   static isAccessProtected = true;
   static query = graphql`
@@ -33,6 +39,7 @@ class ApplicationReview extends Component<Props> {
     ) {
       query {
         session {
+          userGroups
           ...defaultLayout_session
         }
         application(id: $applicationId) {
@@ -40,19 +47,23 @@ class ApplicationReview extends Component<Props> {
           reviewRevisionStatus: applicationRevisionStatus(
             versionNumberInput: $version
           ) {
+            applicationRevisionStatus
             ...ApplicationRevisionStatusContainer_applicationRevisionStatus
           }
           applicationReviewStepsByApplicationId {
             edges {
               node {
+                id
                 ...ReviewSidebar_applicationReviewStep
               }
             }
+            ...ApplicationReviewStepSelector_applicationReviewSteps
           }
         }
         applicationRevision(id: $applicationRevisionId) {
           ...ApplicationDetailsContainer_applicationRevision
           overrideJustification
+          isCurrentVersion
           ...IncentiveCalculatorContainer_applicationRevision
         }
         ...ApplicationDetailsContainer_query
@@ -61,22 +72,59 @@ class ApplicationReview extends Component<Props> {
       }
     }
   `;
-  state = {isSidebarOpened: false};
+  state = {isSidebarOpened: false, selectedReviewStepId: null};
 
   constructor(props) {
     super(props);
-    this.toggleSidebar = this.toggleSidebar.bind(this);
+    this.closeSidebar = this.closeSidebar.bind(this);
+    this.selectReviewStep = this.selectReviewStep.bind(this);
+    this.findStepById = this.findStepById.bind(this);
   }
-  toggleSidebar() {
-    this.setState((state: {isSidebarOpened: boolean}) => {
-      return {isSidebarOpened: !state.isSidebarOpened};
+  closeSidebar() {
+    this.setState((state) => {
+      return {
+        ...state,
+        selectedReviewStepId: null,
+        isSidebarOpened: false
+      };
     });
   }
-
+  findStepById(stepId) {
+    return this.props.query.application.applicationReviewStepsByApplicationId.edges.find(
+      (edge) => {
+        return edge.node.id === stepId;
+      }
+    )?.node;
+  }
+  selectReviewStep(appReviewStepId: string) {
+    this.setState((state) => {
+      return {
+        ...state,
+        selectedReviewStepId: appReviewStepId,
+        isSidebarOpened: true
+      };
+    });
+  }
   render() {
     const {query} = this.props;
-    const {overrideJustification} = query?.applicationRevision;
+    const {
+      overrideJustification,
+      isCurrentVersion
+    } = query?.applicationRevision;
+    const {applicationRevisionStatus} = query?.application.reviewRevisionStatus;
     const {session} = query || {};
+    const isUserAdmin = query?.session.userGroups.some((groupConst) =>
+      ADMIN_GROUP.includes(groupConst)
+    );
+    const currentReviewIsFinalized =
+      this.props.query?.application.reviewRevisionStatus
+        .applicationRevisionStatus !== 'SUBMITTED';
+
+    const handleChangeDecision = () => {
+      console.log(
+        'implement me in 2294 - should open the decision dialog with admin-only option to revert (to SUBMITTED status)'
+      );
+    };
 
     return (
       <DefaultLayout
@@ -85,7 +133,7 @@ class ApplicationReview extends Component<Props> {
         fixedHeader
         disableHelpButton
       >
-        <Row className="application-container">
+        <Row>
           <div
             id="application-body"
             className={`
@@ -95,16 +143,37 @@ class ApplicationReview extends Component<Props> {
              offset-md-${this.state.isSidebarOpened ? 0 : 1}
              offset-lg-${this.state.isSidebarOpened ? 0 : 1}`}
           >
-            <ApplicationRevisionStatusContainer
-              applicationRevisionStatus={query.application.reviewRevisionStatus}
-              applicationRowId={query.application.rowId}
+            <h1>
+              {`Application #${query.application.rowId}`}
+              <ApplicationRevisionStatusContainer
+                applicationRevisionStatus={
+                  query.application.reviewRevisionStatus
+                }
+                applicationRowId={query.application.rowId}
+              />
+            </h1>
+            <ApplicationReviewStepSelector
+              applicationReviewSteps={
+                query.application.applicationReviewStepsByApplicationId
+              }
+              decisionOrChangeRequestStatus={applicationRevisionStatus}
+              onDecisionOrChangeRequestAction={() =>
+                console.log('implement me in 2294')
+              }
+              selectedStep={this.state.selectedReviewStepId}
+              onSelectStep={this.selectReviewStep}
+              newerDraftExists={!isCurrentVersion}
+              changeDecision={
+                isUserAdmin && currentReviewIsFinalized
+                  ? handleChangeDecision
+                  : undefined
+              }
             />
-            <button type="button" onClick={this.toggleSidebar}>
-              Click to toggle review comments
-            </button>
-            <ApplicationOverrideNotification
-              overrideJustification={overrideJustification}
-            />
+            <Row style={{marginTop: 30}}>
+              <ApplicationOverrideNotification
+                overrideJustification={overrideJustification}
+              />
+            </Row>
             <hr />
             <ApplicationDetails
               review
@@ -126,6 +195,7 @@ class ApplicationReview extends Component<Props> {
             >
               <Button
                 id="to-top"
+                aria-label="Return to top of page"
                 variant="dark"
                 type="button"
                 onClick={() => {
@@ -149,16 +219,25 @@ class ApplicationReview extends Component<Props> {
           </div>
           {this.state.isSidebarOpened && (
             <ReviewSidebar
-              applicationReviewStep={
-                query.application.applicationReviewStepsByApplicationId.edges[0]
-                  .node
-              }
-              onClose={this.toggleSidebar}
+              applicationReviewStep={this.findStepById(
+                this.state.selectedReviewStepId
+              )}
+              isFinalized={currentReviewIsFinalized}
+              onClose={this.closeSidebar}
               headerOffset={runtimeConfig.SITEWIDE_NOTICE ? 108 : undefined}
             />
           )}
           {!this.state.isSidebarOpened && <HelpButton isInternalUser />}
         </Row>
+        <style jsx global>{`
+          h1 {
+            margin-bottom: 20px;
+          }
+          .list-group-item.active {
+            z-index: auto;
+            background: #38598a;
+          }
+        `}</style>
       </DefaultLayout>
     );
   }

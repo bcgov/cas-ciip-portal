@@ -9,16 +9,18 @@ exports[`The application-review page matches the last snapshot (with review side
       " $fragmentRefs": Object {
         "defaultLayout_session": true,
       },
+      "userGroups": Array [
+        "Incentive Analyst",
+      ],
     }
   }
   width="wide"
 >
   <Row
-    className="application-container"
     noGutters={false}
   >
     <div
-      className="
+      className="jsx-2573804510 
              col-md-10
              col-lg-10
              col-xxl-10
@@ -26,38 +28,76 @@ exports[`The application-review page matches the last snapshot (with review side
              offset-lg-1"
       id="application-body"
     >
-      <Relay(ApplicationRevisionStatusComponent)
-        applicationRevisionStatus={
+      <h1
+        className="jsx-2573804510"
+      >
+        Application #1
+        <Relay(ApplicationRevisionStatusComponent)
+          applicationRevisionStatus={
+            Object {
+              " $fragmentRefs": Object {
+                "ApplicationRevisionStatusContainer_applicationRevisionStatus": true,
+              },
+              "applicationRevisionStatus": "SUBMITTED",
+            }
+          }
+          applicationRowId={1}
+        />
+      </h1>
+      <Relay(ApplicationReviewStepSelector)
+        applicationReviewSteps={
           Object {
             " $fragmentRefs": Object {
-              "ApplicationRevisionStatusContainer_applicationRevisionStatus": true,
+              "ApplicationReviewStepSelector_applicationReviewSteps": true,
             },
+            "edges": Array [
+              Object {
+                "node": Object {
+                  " $fragmentRefs": Object {
+                    "ReviewSidebar_applicationReviewStep": true,
+                  },
+                  "id": "abc",
+                },
+              },
+            ],
           }
         }
-        applicationRowId={1}
+        decisionOrChangeRequestStatus="SUBMITTED"
+        newerDraftExists={false}
+        onDecisionOrChangeRequestAction={[Function]}
+        onSelectStep={[Function]}
+        selectedStep={null}
       />
-      <button
-        onClick={[Function]}
-        type="button"
+      <Row
+        noGutters={false}
+        style={
+          Object {
+            "marginTop": 30,
+          }
+        }
       >
-        Click to toggle review comments
-      </button>
-      <ApplicationOverrideNotification
-        overrideJustification={null}
+        <ApplicationOverrideNotification
+          overrideJustification={null}
+        />
+      </Row>
+      <hr
+        className="jsx-2573804510"
       />
-      <hr />
       <Relay(ApplicationDetailsComponent)
         applicationRevision={
           Object {
             " $fragmentRefs": Object {
+              "ApplicationDetailsContainer_applicationRevision": true,
               "IncentiveCalculatorContainer_applicationRevision": true,
             },
+            "isCurrentVersion": true,
             "overrideJustification": null,
           }
         }
         diffQuery={
           Object {
             " $fragmentRefs": Object {
+              "ApplicationDetailsContainer_diffQuery": true,
               "ApplicationDetailsContainer_query": true,
             },
             "application": Object {
@@ -65,12 +105,16 @@ exports[`The application-review page matches the last snapshot (with review side
                 "ApplicationDetailsContainer_application": true,
               },
               "applicationReviewStepsByApplicationId": Object {
+                " $fragmentRefs": Object {
+                  "ApplicationReviewStepSelector_applicationReviewSteps": true,
+                },
                 "edges": Array [
                   Object {
                     "node": Object {
                       " $fragmentRefs": Object {
                         "ReviewSidebar_applicationReviewStep": true,
                       },
+                      "id": "abc",
                     },
                   },
                 ],
@@ -79,19 +123,25 @@ exports[`The application-review page matches the last snapshot (with review side
                 " $fragmentRefs": Object {
                   "ApplicationRevisionStatusContainer_applicationRevisionStatus": true,
                 },
+                "applicationRevisionStatus": "SUBMITTED",
               },
               "rowId": 1,
             },
             "applicationRevision": Object {
               " $fragmentRefs": Object {
+                "ApplicationDetailsContainer_applicationRevision": true,
                 "IncentiveCalculatorContainer_applicationRevision": true,
               },
+              "isCurrentVersion": true,
               "overrideJustification": null,
             },
             "session": Object {
               " $fragmentRefs": Object {
                 "defaultLayout_session": true,
               },
+              "userGroups": Array [
+                "Incentive Analyst",
+              ],
             },
           }
         }
@@ -99,6 +149,7 @@ exports[`The application-review page matches the last snapshot (with review side
         query={
           Object {
             " $fragmentRefs": Object {
+              "ApplicationDetailsContainer_diffQuery": true,
               "ApplicationDetailsContainer_query": true,
             },
             "application": Object {
@@ -106,12 +157,16 @@ exports[`The application-review page matches the last snapshot (with review side
                 "ApplicationDetailsContainer_application": true,
               },
               "applicationReviewStepsByApplicationId": Object {
+                " $fragmentRefs": Object {
+                  "ApplicationReviewStepSelector_applicationReviewSteps": true,
+                },
                 "edges": Array [
                   Object {
                     "node": Object {
                       " $fragmentRefs": Object {
                         "ReviewSidebar_applicationReviewStep": true,
                       },
+                      "id": "abc",
                     },
                   },
                 ],
@@ -120,19 +175,25 @@ exports[`The application-review page matches the last snapshot (with review side
                 " $fragmentRefs": Object {
                   "ApplicationRevisionStatusContainer_applicationRevisionStatus": true,
                 },
+                "applicationRevisionStatus": "SUBMITTED",
               },
               "rowId": 1,
             },
             "applicationRevision": Object {
               " $fragmentRefs": Object {
+                "ApplicationDetailsContainer_applicationRevision": true,
                 "IncentiveCalculatorContainer_applicationRevision": true,
               },
+              "isCurrentVersion": true,
               "overrideJustification": null,
             },
             "session": Object {
               " $fragmentRefs": Object {
                 "defaultLayout_session": true,
               },
+              "userGroups": Array [
+                "Incentive Analyst",
+              ],
             },
           }
         }
@@ -142,8 +203,10 @@ exports[`The application-review page matches the last snapshot (with review side
         applicationRevision={
           Object {
             " $fragmentRefs": Object {
+              "ApplicationDetailsContainer_applicationRevision": true,
               "IncentiveCalculatorContainer_applicationRevision": true,
             },
+            "isCurrentVersion": true,
             "overrideJustification": null,
           }
         }
@@ -161,6 +224,7 @@ exports[`The application-review page matches the last snapshot (with review side
       >
         <Button
           active={false}
+          aria-label="Return to top of page"
           disabled={false}
           id="to-top"
           onClick={[Function]}
@@ -216,6 +280,11 @@ exports[`The application-review page matches the last snapshot (with review side
       isInternalUser={true}
     />
   </Row>
+  <JSXStyle
+    id="2573804510"
+  >
+    h1{margin-bottom:20px;}.list-group-item.active{z-index:auto;background:#38598a;}
+  </JSXStyle>
 </Relay(DefaultLayout)>
 `;
 
@@ -228,16 +297,18 @@ exports[`The application-review page matches the last snapshot (with review side
       " $fragmentRefs": Object {
         "defaultLayout_session": true,
       },
+      "userGroups": Array [
+        "Incentive Analyst",
+      ],
     }
   }
   width="wide"
 >
   <Row
-    className="application-container"
     noGutters={false}
   >
     <div
-      className="
+      className="jsx-2573804510 
              col-md-7
              col-lg-8
              col-xxl-9
@@ -245,38 +316,76 @@ exports[`The application-review page matches the last snapshot (with review side
              offset-lg-0"
       id="application-body"
     >
-      <Relay(ApplicationRevisionStatusComponent)
-        applicationRevisionStatus={
+      <h1
+        className="jsx-2573804510"
+      >
+        Application #1
+        <Relay(ApplicationRevisionStatusComponent)
+          applicationRevisionStatus={
+            Object {
+              " $fragmentRefs": Object {
+                "ApplicationRevisionStatusContainer_applicationRevisionStatus": true,
+              },
+              "applicationRevisionStatus": "SUBMITTED",
+            }
+          }
+          applicationRowId={1}
+        />
+      </h1>
+      <Relay(ApplicationReviewStepSelector)
+        applicationReviewSteps={
           Object {
             " $fragmentRefs": Object {
-              "ApplicationRevisionStatusContainer_applicationRevisionStatus": true,
+              "ApplicationReviewStepSelector_applicationReviewSteps": true,
             },
+            "edges": Array [
+              Object {
+                "node": Object {
+                  " $fragmentRefs": Object {
+                    "ReviewSidebar_applicationReviewStep": true,
+                  },
+                  "id": "abc",
+                },
+              },
+            ],
           }
         }
-        applicationRowId={1}
+        decisionOrChangeRequestStatus="SUBMITTED"
+        newerDraftExists={false}
+        onDecisionOrChangeRequestAction={[Function]}
+        onSelectStep={[Function]}
+        selectedStep={null}
       />
-      <button
-        onClick={[Function]}
-        type="button"
+      <Row
+        noGutters={false}
+        style={
+          Object {
+            "marginTop": 30,
+          }
+        }
       >
-        Click to toggle review comments
-      </button>
-      <ApplicationOverrideNotification
-        overrideJustification={null}
+        <ApplicationOverrideNotification
+          overrideJustification={null}
+        />
+      </Row>
+      <hr
+        className="jsx-2573804510"
       />
-      <hr />
       <Relay(ApplicationDetailsComponent)
         applicationRevision={
           Object {
             " $fragmentRefs": Object {
+              "ApplicationDetailsContainer_applicationRevision": true,
               "IncentiveCalculatorContainer_applicationRevision": true,
             },
+            "isCurrentVersion": true,
             "overrideJustification": null,
           }
         }
         diffQuery={
           Object {
             " $fragmentRefs": Object {
+              "ApplicationDetailsContainer_diffQuery": true,
               "ApplicationDetailsContainer_query": true,
             },
             "application": Object {
@@ -284,12 +393,16 @@ exports[`The application-review page matches the last snapshot (with review side
                 "ApplicationDetailsContainer_application": true,
               },
               "applicationReviewStepsByApplicationId": Object {
+                " $fragmentRefs": Object {
+                  "ApplicationReviewStepSelector_applicationReviewSteps": true,
+                },
                 "edges": Array [
                   Object {
                     "node": Object {
                       " $fragmentRefs": Object {
                         "ReviewSidebar_applicationReviewStep": true,
                       },
+                      "id": "abc",
                     },
                   },
                 ],
@@ -298,19 +411,25 @@ exports[`The application-review page matches the last snapshot (with review side
                 " $fragmentRefs": Object {
                   "ApplicationRevisionStatusContainer_applicationRevisionStatus": true,
                 },
+                "applicationRevisionStatus": "SUBMITTED",
               },
               "rowId": 1,
             },
             "applicationRevision": Object {
               " $fragmentRefs": Object {
+                "ApplicationDetailsContainer_applicationRevision": true,
                 "IncentiveCalculatorContainer_applicationRevision": true,
               },
+              "isCurrentVersion": true,
               "overrideJustification": null,
             },
             "session": Object {
               " $fragmentRefs": Object {
                 "defaultLayout_session": true,
               },
+              "userGroups": Array [
+                "Incentive Analyst",
+              ],
             },
           }
         }
@@ -318,6 +437,7 @@ exports[`The application-review page matches the last snapshot (with review side
         query={
           Object {
             " $fragmentRefs": Object {
+              "ApplicationDetailsContainer_diffQuery": true,
               "ApplicationDetailsContainer_query": true,
             },
             "application": Object {
@@ -325,12 +445,16 @@ exports[`The application-review page matches the last snapshot (with review side
                 "ApplicationDetailsContainer_application": true,
               },
               "applicationReviewStepsByApplicationId": Object {
+                " $fragmentRefs": Object {
+                  "ApplicationReviewStepSelector_applicationReviewSteps": true,
+                },
                 "edges": Array [
                   Object {
                     "node": Object {
                       " $fragmentRefs": Object {
                         "ReviewSidebar_applicationReviewStep": true,
                       },
+                      "id": "abc",
                     },
                   },
                 ],
@@ -339,19 +463,25 @@ exports[`The application-review page matches the last snapshot (with review side
                 " $fragmentRefs": Object {
                   "ApplicationRevisionStatusContainer_applicationRevisionStatus": true,
                 },
+                "applicationRevisionStatus": "SUBMITTED",
               },
               "rowId": 1,
             },
             "applicationRevision": Object {
               " $fragmentRefs": Object {
+                "ApplicationDetailsContainer_applicationRevision": true,
                 "IncentiveCalculatorContainer_applicationRevision": true,
               },
+              "isCurrentVersion": true,
               "overrideJustification": null,
             },
             "session": Object {
               " $fragmentRefs": Object {
                 "defaultLayout_session": true,
               },
+              "userGroups": Array [
+                "Incentive Analyst",
+              ],
             },
           }
         }
@@ -361,8 +491,10 @@ exports[`The application-review page matches the last snapshot (with review side
         applicationRevision={
           Object {
             " $fragmentRefs": Object {
+              "ApplicationDetailsContainer_applicationRevision": true,
               "IncentiveCalculatorContainer_applicationRevision": true,
             },
+            "isCurrentVersion": true,
             "overrideJustification": null,
           }
         }
@@ -380,6 +512,7 @@ exports[`The application-review page matches the last snapshot (with review side
       >
         <Button
           active={false}
+          aria-label="Return to top of page"
           disabled={false}
           id="to-top"
           onClick={[Function]}
@@ -432,15 +565,14 @@ exports[`The application-review page matches the last snapshot (with review side
       </OverlayTrigger>
     </div>
     <Relay(ReviewSidebar)
-      applicationReviewStep={
-        Object {
-          " $fragmentRefs": Object {
-            "ReviewSidebar_applicationReviewStep": true,
-          },
-        }
-      }
+      isFinalized={false}
       onClose={[Function]}
     />
   </Row>
+  <JSXStyle
+    id="2573804510"
+  >
+    h1{margin-bottom:20px;}.list-group-item.active{z-index:auto;background:#38598a;}
+  </JSXStyle>
 </Relay(DefaultLayout)>
 `;

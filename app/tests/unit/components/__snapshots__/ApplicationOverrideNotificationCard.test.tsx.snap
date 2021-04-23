@@ -17,7 +17,7 @@ exports[`OverrideNotificationCard Should render the notification card & justific
   >
     <CardText>
       <strong
-        className="jsx-576105227"
+        className="jsx-274203529"
       >
         There were errors in this application that the reporter has chosen to override. Justification for overriding the errors is provided in the box below:
       </strong>
@@ -26,7 +26,7 @@ exports[`OverrideNotificationCard Should render the notification card & justific
       body={false}
     >
       <div
-        className="jsx-576105227 scrollbar"
+        className="jsx-274203529 scrollbar"
         id="justification"
       >
         <CardBody>
@@ -36,9 +36,9 @@ exports[`OverrideNotificationCard Should render the notification card & justific
     </Card>
   </CardBody>
   <JSXStyle
-    id="576105227"
+    id="274203529"
   >
-    #justification-card.jsx-576105227{margin:1rem 0;}#justification.jsx-576105227{max-height:19.2em;background:#eee;overflow-y:scroll;}.scrollbar.jsx-576105227::-webkit-scrollbar{-webkit-appearance:none;width:8px;}.scrollbar.jsx-576105227::-webkit-scrollbar-thumb{border-radius:4px;background-color:rgba(0,0,0,0.5);box-shadow:0 0 1px rgba(255,255,255,0.5);}
+    #justification-card .bg-danger{color:#fff;}#justification-card{margin:1rem 15px;}#justification.jsx-274203529{max-height:19.2em;background:#eee;overflow-y:scroll;}.scrollbar.jsx-274203529::-webkit-scrollbar{-webkit-appearance:none;width:8px;}.scrollbar.jsx-274203529::-webkit-scrollbar-thumb{border-radius:4px;background-color:rgba(0,0,0,0.5);box-shadow:0 0 1px rgba(255,255,255,0.5);}
   </JSXStyle>
 </Card>
 `;
