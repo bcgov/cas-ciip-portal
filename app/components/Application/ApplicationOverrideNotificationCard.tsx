@@ -32,8 +32,8 @@ export const ApplicationOverrideNotification: React.FunctionComponent<Props> = (
           :global(#justification-card .bg-danger) {
             color: #fff;
           }
-          #justification-card {
-            margin: 1rem 0;
+          :global(#justification-card) {
+            margin: 1rem 15px;
           }
           #justification {
             max-height: 19.2em;

@@ -169,9 +169,11 @@ class ApplicationReview extends Component<Props, State> {
                   : undefined
               }
             />
-            <ApplicationOverrideNotification
-              overrideJustification={overrideJustification}
-            />
+            <Row style={{marginTop: 30}}>
+              <ApplicationOverrideNotification
+                overrideJustification={overrideJustification}
+              />
+            </Row>
             <hr />
             <ApplicationDetails
               review

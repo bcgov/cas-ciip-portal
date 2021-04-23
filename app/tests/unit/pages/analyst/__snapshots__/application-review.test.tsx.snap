@@ -68,9 +68,18 @@ exports[`The application-review page matches the last snapshot (with review side
         onSelectStep={[Function]}
         selectedStep={null}
       />
-      <ApplicationOverrideNotification
-        overrideJustification={null}
-      />
+      <Row
+        noGutters={false}
+        style={
+          Object {
+            "marginTop": 30,
+          }
+        }
+      >
+        <ApplicationOverrideNotification
+          overrideJustification={null}
+        />
+      </Row>
       <hr
         className="jsx-2573804510"
       />
@@ -347,9 +356,18 @@ exports[`The application-review page matches the last snapshot (with review side
         onSelectStep={[Function]}
         selectedStep={null}
       />
-      <ApplicationOverrideNotification
-        overrideJustification={null}
-      />
+      <Row
+        noGutters={false}
+        style={
+          Object {
+            "marginTop": 30,
+          }
+        }
+      >
+        <ApplicationOverrideNotification
+          overrideJustification={null}
+        />
+      </Row>
       <hr
         className="jsx-2573804510"
       />
