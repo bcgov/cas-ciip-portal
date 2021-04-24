@@ -7,6 +7,7 @@ const applicationReviewStep = () => {
   return {
     ' $refType': 'ReviewSidebar_applicationReviewStep',
     id: 'abc',
+    rowId: 4,
     isComplete: false,
     reviewStepByReviewStepId: {
       stepName: 'Technical'
