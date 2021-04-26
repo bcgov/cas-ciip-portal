@@ -67,7 +67,7 @@ exports[`ProductList should render the product list 1`] = `
         "isSortEnabled": true,
         "removeSearchHeader": undefined,
         "sortColumnName": "updated_at",
-        "title": "Modified (D/M/Y)",
+        "title": "Modified (Y/M/D)",
       },
       NumberFilter {
         "Component": [Function],
