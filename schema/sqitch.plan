@@ -312,3 +312,4 @@ views/ciip_carbon_tax_calculation [views/ciip_carbon_tax_calculation@v2.1.0] 202
 swrs_functions/get_carbon_tax_data [swrs_functions/get_carbon_tax_data@v2.1.0] 2021-04-22T21:03:38Z Dylan Leard <dylan@button.is> # Migration: refactor function to join on new swrs.carbon_tax_act_fuel_type table
 tables/application_003 [tables/application_002] 2021-04-26T16:50:55Z Dylan Leard <dylan@button.is> # Migration: add swrs_report_id to application table
 mutations/create_application_mutation_chain [mutations/create_application_mutation_chain@v2.1.0] 2021-04-26T17:34:19Z Dylan Leard <dylan@button.is> # Migration: insert swrs_report_id on new application creation
+swrs_functions/refresh_swrs_version_data [swrs_functions/refresh_swrs_version_data@v2.1.0 tables/application_003] 2021-04-26T17:49:38Z Dylan Leard <dylan@button.is> # Migration: use swrs_report_id to connect swrs.report to ggircs_portal.application
