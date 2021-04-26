@@ -4,6 +4,7 @@ import {organisationRequestsQueryResponse} from 'organisationRequestsQuery.graph
 import DefaultLayout from 'layouts/default-layout';
 import OrganisationRequestsTable from 'containers/Admin/OrganisationRequestsTable';
 import {INCENTIVE_ANALYST, ADMIN_GROUP} from 'data/group-constants';
+import {DEFAULT_PAGE_SIZE} from 'components/FilterableTable/FilterableTablePagination';
 
 const ALLOWED_GROUPS = [INCENTIVE_ANALYST, ...ADMIN_GROUP];
 
@@ -44,6 +45,16 @@ class OrganisationRequests extends Component<Props> {
       }
     }
   `;
+
+  static async getInitialProps() {
+    return {
+      variables: {
+        order_by: 'OPERATOR_NAME_ASC',
+        pageSize: DEFAULT_PAGE_SIZE,
+        offset: 0
+      }
+    };
+  }
 
   render() {
     const {query} = this.props;
