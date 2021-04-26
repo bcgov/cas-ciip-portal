@@ -33,23 +33,18 @@ select test_helper.create_test_users();
 select test_helper.create_applications(4, True, True);
 
 -- manipulate report_id, swrs_report_id and swrs_facility_id values to easily test the proper swrs data was imported
-update ggircs_portal.facility set report_id = 1, swrs_facility_id = 1 where id = 1;
-update ggircs_portal.facility set report_id = 2, swrs_facility_id = 2 where id = 2;
-update ggircs_portal.facility set report_id = 3, swrs_facility_id = 3 where id = 3;
-update ggircs_portal.facility set report_id = 5, swrs_facility_id = 5 where id = 4;
+update ggircs_portal.facility set swrs_facility_id = 1 where id = 1;
+update ggircs_portal.facility set swrs_facility_id = 2 where id = 2;
+update ggircs_portal.facility set swrs_facility_id = 3 where id = 3;
+update ggircs_portal.facility set swrs_facility_id = 5 where id = 4;
 
-update ggircs_portal.organisation set report_id = 1 where id = 1;
-update ggircs_portal.organisation set report_id = 2 where id = 2;
-update ggircs_portal.organisation set report_id = 3 where id = 3;
-update ggircs_portal.organisation set report_id = 5 where id = 4;
+update swrs.report set swrs_facility_id = 1, version= '1', reporting_period_duration = (select reporting_year from ggircs_portal.opened_reporting_year()) where id = 1;
+update swrs.report set swrs_facility_id = 2, version='1', reporting_period_duration = (select reporting_year from ggircs_portal.opened_reporting_year()) where id = 2;
+update swrs.report set swrs_facility_id = 3, version='1', reporting_period_duration = (select reporting_year from ggircs_portal.opened_reporting_year()) where id = 3;
+update swrs.report set swrs_facility_id = 5, version='1', reporting_period_duration = (select reporting_year from ggircs_portal.opened_reporting_year()) where id = 5;
 
-update swrs.report set swrs_facility_id = 1, reporting_period_duration = (select reporting_year from ggircs_portal.opened_reporting_year()) where id = 1;
-update swrs.report set swrs_facility_id = 2, reporting_period_duration = (select reporting_year from ggircs_portal.opened_reporting_year()) where id = 2;
-update swrs.report set swrs_facility_id = 3, reporting_period_duration = (select reporting_year from ggircs_portal.opened_reporting_year()) where id = 3;
-update swrs.report set swrs_facility_id = 5, reporting_period_duration = (select reporting_year from ggircs_portal.opened_reporting_year()) where id = 5;
-
--- Set different report_ids on applications 1&2, this should trigger the refresh function for these applications
-update ggircs_portal.application set report_id = 99, swrs_report_id = (
+-- Set different swrs_report_version on applications 1&2, this should trigger the refresh function for these applications
+update ggircs_portal.application set swrs_report_version = '99', swrs_report_id = (
   select r.swrs_report_id
   from swrs.report r
   join ggircs_portal.facility f
@@ -58,7 +53,7 @@ update ggircs_portal.application set report_id = 99, swrs_report_id = (
   on a.facility_id = f.id
   and r.reporting_period_duration = (select reporting_year from ggircs_portal.opened_reporting_year())
   and a.id = 1) where id = 1;
-update ggircs_portal.application set report_id = 100, swrs_report_id = (
+update ggircs_portal.application set swrs_report_version = '100', swrs_report_id = (
   select r.swrs_report_id
   from swrs.report r
   join ggircs_portal.facility f
@@ -68,8 +63,8 @@ update ggircs_portal.application set report_id = 100, swrs_report_id = (
   and r.reporting_period_duration = (select reporting_year from ggircs_portal.opened_reporting_year())
   and a.id=2) where id = 2;
 
--- Do not change the report_ids for applications 3&4, this should not trigger the refresh function for these applications
-update ggircs_portal.application set report_id = 3, swrs_report_id = (
+-- Do not change the swrs_report_version for applications 3&4, this should not trigger the refresh function for these applications
+update ggircs_portal.application set swrs_report_version = '1', swrs_report_id = (
   select r.swrs_report_id
   from swrs.report r
   join ggircs_portal.facility f
@@ -78,7 +73,7 @@ update ggircs_portal.application set report_id = 3, swrs_report_id = (
   on a.facility_id = f.id
   and r.reporting_period_duration = (select reporting_year from ggircs_portal.opened_reporting_year())
   and a.id = 3) where id = 3;
-update ggircs_portal.application set report_id = 5, swrs_report_id = (
+update ggircs_portal.application set swrs_report_version = '1', swrs_report_id = (
   select r.swrs_report_id
   from swrs.report r
   join ggircs_portal.facility f
@@ -158,19 +153,19 @@ select is(
 select is(
   ((select updated_at from ggircs_portal.form_result where application_id=3 and version_number=0 and form_id=1) < now() - interval '12 hours'),
   true::boolean,
-  'Application with id 3 was not updated by the refresh function because form_result.updated_at was after swrs.imported_at'
+  'Application with id 3 was not updated by the refresh function because report.version === application.swrs_report_version'
 );
 
 select is(
   ((select updated_at from ggircs_portal.form_result where application_id=4 and version_number=0 and form_id=1) < now() - interval '12 hours'),
   true::boolean,
-  'Application with id 4 was not updated by the refresh function because form_result.updated_at was after swrs.imported_at'
+  'Application with id 4 was not updated by the refresh function because report.version === application.swrs_report_version'
 );
 
 select is(
   ((select updated_at from ggircs_portal.form_result where application_id=1 and version_number=0 and form_id=1) > now() - interval '12 hours'),
   true::boolean,
-  'Application with id 1 was updated by the refresh function because form_result.updated_at was before swrs.imported_at'
+  'Application with id 1 was updated by the refresh function because because report.version !== application.swrs_report_version'
 );
 
 select is(
