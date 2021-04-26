@@ -8,7 +8,7 @@ export default class EnumFilter<T> extends TableFilter {
   enumValues: T[];
 
   constructor(display, argName, enumValues: T[]) {
-    super(display, argName);
+    super(display, argName, {sortable: false});
     this.enumValues = enumValues;
     this.searchOptionValues = enumValues.map((val) => {
       return {display: String(val), value: val};
