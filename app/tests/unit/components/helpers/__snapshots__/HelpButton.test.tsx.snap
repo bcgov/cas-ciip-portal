@@ -104,8 +104,9 @@ Array [
           ✉️
         </span>
         <a
-          className="jsx-327948841"
-          href="#"
+          href="/resources/contact"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
         >
           Contact us to request specific assistance
         </a>

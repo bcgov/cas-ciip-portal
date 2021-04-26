@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import Link from 'next/link';
 import getConfig from 'next/config';
 import {
   faQuestion,
@@ -15,14 +16,9 @@ const HelpButton: React.FunctionComponent<Props> = ({
   isInternalUser = true
 }) => {
   const supportEmail = getConfig()?.publicRuntimeConfig.SUPPORT_EMAIL;
-  const adminEmail = getConfig()?.publicRuntimeConfig.ADMIN_EMAIL;
-  const supportMailToUrl = supportEmail
+  const mailToUrl = supportEmail
     ? `mailto:${supportEmail}?subject=Internal Support Request`
     : '#';
-  const adminMailToUrl = adminEmail
-    ? `mailto:${adminEmail}?subject=Support Request (CIIP)`
-    : '#';
-  const mailToUrl = isInternalUser ? supportMailToUrl : adminMailToUrl;
   const docsUrl = isInternalUser
     ? 'https://github.com/bcgov/cas-ciip-portal/blob/master/docs/admin-analyst-guide.md'
     : 'https://github.com/bcgov/cas-ciip-portal/blob/master/docs/reporting-guide.md';
@@ -85,9 +81,9 @@ const HelpButton: React.FunctionComponent<Props> = ({
                 <span role="img" aria-label="letter emoji">
                   ✉️
                 </span>
-                <a href={mailToUrl}>
+                <Link href="/resources/contact">
                   Contact us to request specific assistance
-                </a>
+                </Link>
               </li>
             </ul>
           )}
