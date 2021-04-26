@@ -86,7 +86,7 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
         <Container id="page-content" className={`content ${width}`}>
           {children}
         </Container>
-        {Boolean(session) && isInternalUser && !disableHelpButton && (
+        {Boolean(session) && !disableHelpButton && (
           <HelpButton isInternalUser={isInternalUser} />
         )}
       </main>

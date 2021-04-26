@@ -15,12 +15,17 @@ const HelpButton: React.FunctionComponent<Props> = ({
   isInternalUser = true
 }) => {
   const supportEmail = getConfig()?.publicRuntimeConfig.SUPPORT_EMAIL;
-  const mailToUrl = supportEmail
+  const adminEmail = getConfig()?.publicRuntimeConfig.ADMIN_EMAIL;
+  const supportMailToUrl = supportEmail
     ? `mailto:${supportEmail}?subject=Internal Support Request`
     : '#';
+  const adminMailToUrl = adminEmail
+    ? `mailto:${adminEmail}?subject=Support Request (CIIP)`
+    : '#';
+  const mailToUrl = isInternalUser ? supportMailToUrl : adminMailToUrl;
   const docsUrl = isInternalUser
     ? 'https://github.com/bcgov/cas-ciip-portal/blob/master/docs/admin-analyst-guide.md'
-    : '#';
+    : 'https://github.com/bcgov/cas-ciip-portal/blob/master/docs/reporting-guide.md';
 
   const [isOpened, setIsOpened] = useState(false);
   const toggleHelpBubble = () => {
@@ -66,7 +71,25 @@ const HelpButton: React.FunctionComponent<Props> = ({
               </li>
             </ul>
           ) : (
-            ''
+            <ul>
+              <li>
+                <span role="img" aria-label="open book emoji">
+                  📖
+                </span>
+                <a href={docsUrl} target="_blank" rel="noopener noreferrer">
+                  See the help documentation
+                </a>
+              </li>
+              <li>OR</li>
+              <li>
+                <span role="img" aria-label="letter emoji">
+                  ✉️
+                </span>
+                <a href={mailToUrl}>
+                  Contact us to request specific assistance
+                </a>
+              </li>
+            </ul>
           )}
           <span className="triangle">◥</span>
         </div>
