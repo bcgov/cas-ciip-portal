@@ -73,14 +73,13 @@ Array [
         className="jsx-327948841"
       >
         <span
-          aria-label="open book emoji"
+          aria-hidden="true"
           className="jsx-327948841"
           role="img"
         >
           📖
         </span>
         <a
-          className="jsx-327948841"
           href="https://github.com/bcgov/cas-ciip-portal/blob/master/docs/reporting-guide.md"
           rel="noopener noreferrer"
           target="_blank"
@@ -97,7 +96,7 @@ Array [
         className="jsx-327948841"
       >
         <span
-          aria-label="letter emoji"
+          aria-hidden="true"
           className="jsx-327948841"
           role="img"
         >
@@ -107,6 +106,8 @@ Array [
           href="/resources/contact"
           onClick={[Function]}
           onMouseEnter={[Function]}
+          rel="noopener noreferrer"
+          target="_blank"
         >
           Contact us to request specific assistance
         </a>
@@ -221,14 +222,13 @@ Array [
         className="jsx-327948841"
       >
         <span
-          aria-label="waving hand emoji"
+          aria-hidden="true"
           className="jsx-327948841"
           role="img"
         >
           👋
         </span>
         <a
-          className="jsx-327948841"
           href="#"
         >
           Need to report a problem to the development team?
@@ -243,14 +243,13 @@ Array [
         className="jsx-327948841"
       >
         <span
-          aria-label="open book emoji"
+          aria-hidden="true"
           className="jsx-327948841"
           role="img"
         >
           📖
         </span>
         <a
-          className="jsx-327948841"
           href="https://github.com/bcgov/cas-ciip-portal/blob/master/docs/admin-analyst-guide.md"
           rel="noopener noreferrer"
           target="_blank"
