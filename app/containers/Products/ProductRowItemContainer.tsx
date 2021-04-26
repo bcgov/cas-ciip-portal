@@ -203,7 +203,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
             </Dropdown.Menu>
           </Dropdown>
         </td>
-        <td>{dateTimeFormat(product.updatedAt, 'days_numbered')}</td>
+        <td>{dateTimeFormat(product.updatedAt, 'date_year_first')}</td>
         <td>{currentBenchmark?.benchmark ?? null}</td>
         <td>{currentBenchmark?.eligibilityThreshold ?? null}</td>
         <td>{product.requiresEmissionAllocation ? 'Yes' : 'No'}</td>
