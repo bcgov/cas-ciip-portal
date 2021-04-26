@@ -28,6 +28,9 @@ exports[`The DefaultLayout component when logged in matches the last accepted Sn
       fluid={false}
       id="page-content"
     />
+    <HelpButton
+      isInternalUser={false}
+    />
   </main>
   <Footer />
   <JSXStyle

@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import Link from 'next/link';
 import getConfig from 'next/config';
 import {
   faQuestion,
@@ -20,7 +21,7 @@ const HelpButton: React.FunctionComponent<Props> = ({
     : '#';
   const docsUrl = isInternalUser
     ? 'https://github.com/bcgov/cas-ciip-portal/blob/master/docs/admin-analyst-guide.md'
-    : '#';
+    : 'https://github.com/bcgov/cas-ciip-portal/blob/master/docs/reporting-guide.md';
 
   const [isOpened, setIsOpened] = useState(false);
   const toggleHelpBubble = () => {
@@ -41,33 +42,46 @@ const HelpButton: React.FunctionComponent<Props> = ({
     </>
   );
   const closeIcon = <FontAwesomeIcon icon={faTimes} color="white" size="lg" />;
+
+  const option1 = isInternalUser ? (
+    <a href={mailToUrl}>Need to report a problem to the development team?</a>
+  ) : (
+    <a href={docsUrl} target="_blank" rel="noopener noreferrer">
+      See the help documentation
+    </a>
+  );
+
+  const option2 = isInternalUser ? (
+    <a href={docsUrl} target="_blank" rel="noopener noreferrer">
+      Looking for help documentation?
+    </a>
+  ) : (
+    <Link href="/resources/contact">
+      <a target="_blank" rel="noopener noreferrer">
+        Contact us to request specific assistance
+      </a>
+    </Link>
+  );
   return (
     <>
       {isOpened && (
         <div id="help-bubble">
-          {isInternalUser ? (
-            <ul>
-              <li>
-                <span role="img" aria-label="waving hand emoji">
-                  👋
-                </span>
-                <a href={mailToUrl}>
-                  Need to report a problem to the development team?
-                </a>
-              </li>
-              <li>OR</li>
-              <li>
-                <span role="img" aria-label="open book emoji">
-                  📖
-                </span>
-                <a href={docsUrl} target="_blank" rel="noopener noreferrer">
-                  Looking for help documentation?
-                </a>
-              </li>
-            </ul>
-          ) : (
-            ''
-          )}
+          <ul>
+            <li>
+              <span role="img" aria-hidden="true">
+                {isInternalUser ? '👋' : '📖'}
+              </span>
+              {option1}
+            </li>
+            <li>OR</li>
+            <li>
+              <span role="img" aria-hidden="true">
+                {isInternalUser ? '📖' : '✉️'}
+              </span>
+              {option2}
+            </li>
+          </ul>
+
           <span className="triangle">◥</span>
         </div>
       )}
