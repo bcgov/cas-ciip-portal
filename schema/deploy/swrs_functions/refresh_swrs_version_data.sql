@@ -16,15 +16,15 @@ declare
   new_form_result jsonb;
   query text;
   empty_form_result jsonb;
-  generated_report_id int;
+  swrs_version varchar(1000);
 begin
 
   for application_temp_row in select * from ggircs_portal.application
     loop
-      generated_report_id := (select r.id from swrs.report r where r.swrs_report_id = application_temp_row.swrs_report_id);
+      swrs_version := (select r.version from swrs.report r where r.swrs_report_id = application_temp_row.swrs_report_id);
 
       -- Create application_revision, status and form_results with version number = 0 if a report exists and the 0 version does not
-      if (generated_report_id is not null
+      if (swrs_version is not null
           and
           (select application_id from ggircs_portal.application_revision
           where application_id = application_temp_row.id and version_number = 0) is null
@@ -53,7 +53,7 @@ begin
           raise notice 'Created new swrs version (version 0) for application ID: %', application_temp_row.id;
 
       -- Do nothing if a swrs report does not exist
-      elsif (generated_report_id is not null and generated_report_id != application_temp_row.report_id) then
+      elsif (swrs_version is not null and swrs_version != application_temp_row.swrs_report_version) then
 
         for form_json_temp_row in select form_id from ggircs_portal.ciip_application_wizard where is_active=true
           loop
