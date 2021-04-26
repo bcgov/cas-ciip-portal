@@ -29,14 +29,10 @@ $$;
 
 select test_helper.mock_open_window();
 select test_helper.create_test_users();
+
 select test_helper.create_applications(4, True, True);
 
--- manipulate report_id and swrs_facility_id values to easily test the proper swrs data was imported
-update ggircs_portal.application set report_id = 1 where id = 1;
-update ggircs_portal.application set report_id = 2 where id = 2;
-update ggircs_portal.application set report_id = 3 where id = 3;
-update ggircs_portal.application set report_id = 5 where id = 4;
-
+-- manipulate report_id, swrs_report_id and swrs_facility_id values to easily test the proper swrs data was imported
 update ggircs_portal.facility set report_id = 1, swrs_facility_id = 1 where id = 1;
 update ggircs_portal.facility set report_id = 2, swrs_facility_id = 2 where id = 2;
 update ggircs_portal.facility set report_id = 3, swrs_facility_id = 3 where id = 3;
@@ -47,11 +43,50 @@ update ggircs_portal.organisation set report_id = 2 where id = 2;
 update ggircs_portal.organisation set report_id = 3 where id = 3;
 update ggircs_portal.organisation set report_id = 5 where id = 4;
 
+update swrs.report set swrs_facility_id = 1, reporting_period_duration = (select reporting_year from ggircs_portal.opened_reporting_year()) where id = 1;
+update swrs.report set swrs_facility_id = 2, reporting_period_duration = (select reporting_year from ggircs_portal.opened_reporting_year()) where id = 2;
+update swrs.report set swrs_facility_id = 3, reporting_period_duration = (select reporting_year from ggircs_portal.opened_reporting_year()) where id = 3;
+update swrs.report set swrs_facility_id = 5, reporting_period_duration = (select reporting_year from ggircs_portal.opened_reporting_year()) where id = 5;
 
-update swrs.report set swrs_facility_id = 1 where id = 1;
-update swrs.report set swrs_facility_id = 2 where id = 2;
-update swrs.report set swrs_facility_id = 3 where id = 3;
-update swrs.report set swrs_facility_id = 5 where id = 4;
+-- Set different report_ids on applications 1&2, this should trigger the refresh function for these applications
+update ggircs_portal.application set report_id = 99, swrs_report_id = (
+  select r.swrs_report_id
+  from swrs.report r
+  join ggircs_portal.facility f
+  on r.swrs_facility_id = f.swrs_facility_id
+  join ggircs_portal.application a
+  on a.facility_id = f.id
+  and r.reporting_period_duration = (select reporting_year from ggircs_portal.opened_reporting_year())
+  and a.id = 1) where id = 1;
+update ggircs_portal.application set report_id = 100, swrs_report_id = (
+  select r.swrs_report_id
+  from swrs.report r
+  join ggircs_portal.facility f
+  on r.swrs_facility_id = f.swrs_facility_id
+  join ggircs_portal.application a
+  on a.facility_id = f.id
+  and r.reporting_period_duration = (select reporting_year from ggircs_portal.opened_reporting_year())
+  and a.id=2) where id = 2;
+
+-- Do not change the report_ids for applications 3&4, this should not trigger the refresh function for these applications
+update ggircs_portal.application set report_id = 3, swrs_report_id = (
+  select r.swrs_report_id
+  from swrs.report r
+  join ggircs_portal.facility f
+  on r.swrs_facility_id = f.swrs_facility_id
+  join ggircs_portal.application a
+  on a.facility_id = f.id
+  and r.reporting_period_duration = (select reporting_year from ggircs_portal.opened_reporting_year())
+  and a.id = 3) where id = 3;
+update ggircs_portal.application set report_id = 5, swrs_report_id = (
+  select r.swrs_report_id
+  from swrs.report r
+  join ggircs_portal.facility f
+  on r.swrs_facility_id = f.swrs_facility_id
+  join ggircs_portal.application a
+  on a.facility_id = f.id
+  and r.reporting_period_duration = (select reporting_year from ggircs_portal.opened_reporting_year())
+  and a.id = 4) where id = 4;
 
 update swrs.emission set report_id = 1 where id = 1;
 update swrs.emission set report_id = 2 where id = 2;
@@ -85,15 +120,11 @@ insert into ggircs_portal.form_result(application_id, version_number, form_id, f
     (4, 0, 4, '[]');
 
 
--- set different updated_at values for applications 1 & 2 (should update) / 3 & 4 (shouldn't update)
+-- set updated_at values in order to assert changes on applications 1 & 2 (should update) / 3 & 4 (shouldn't update)
 update ggircs_portal.form_result set updated_at = now() - interval '3 days' where application_id < 3;
 update ggircs_portal.form_result set updated_at = now() - interval '1 day' where application_id >= 3;
 
 select test_helper.modify_triggers('enable');
-
--- set all swrs_reports to be imported between updated_at values for applications 1 & 2 / 3 & 4
-update swrs.report set imported_at = now() - interval '2 days';
-update swrs.report set reporting_period_duration = (select reporting_year from ggircs_portal.opened_reporting_year());
 
 select is(
   (select count(*) from ggircs_portal.form_result where application_id in (1,3,4) and version_number=0),
