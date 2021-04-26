@@ -1,10 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
-import getConfig from 'next/config';
 
 const Footer = ({children}) => {
-  const supportEmail = getConfig()?.publicRuntimeConfig.SUPPORT_EMAIL;
-  const mailtoLink = `mailto:${supportEmail}?subject=Feedback: CIIP Website`;
   return (
     <footer className="footer">
       {children}
@@ -34,7 +31,6 @@ const Footer = ({children}) => {
           <li>
             <Link href="/resources/contact">Contact Us</Link>
           </li>
-          <li>{supportEmail && <a href={mailtoLink}>Feedback</a>}</li>
         </ul>
       </div>
       <style jsx>
@@ -73,6 +69,10 @@ const Footer = ({children}) => {
             border-right: 1px solid #4b5e7e;
             padding-left: 5px;
             padding-right: 5px;
+          }
+
+          footer ul li:last-child > :global(a) {
+            border-right: none;
           }
 
           :focus {
