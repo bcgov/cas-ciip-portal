@@ -165,6 +165,10 @@ export const ApplicationReviewStepSelector: React.FunctionComponent<Props> = ({
         }
       `}</style>
       <style jsx global>{`
+        #selector .list-group-item.active {
+          z-index: auto;
+          background: #38598a;
+        }
         #selector .list-group-item-danger.disabled,
         .list-group-item-danger:disabled {
           color: #721c24;

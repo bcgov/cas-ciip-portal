@@ -233,10 +233,6 @@ class ApplicationReview extends Component<Props, State> {
           h1 {
             margin-bottom: 20px;
           }
-          .list-group-item.active {
-            z-index: auto;
-            background: #38598a;
-          }
         `}</style>
       </DefaultLayout>
     );
