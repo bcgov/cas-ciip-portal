@@ -4,7 +4,7 @@ reset client_min_messages;
 
 begin;
 
-select plan(9);
+select plan(10);
 
 select has_function(
   'ggircs_portal', 'import_swrs_organisation_facility',
@@ -40,6 +40,21 @@ select set_eq(
   'select swrs_facility_id from swrs.facility',
   'select swrs_facility_id from ggircs_portal.facility',
   'The import function imports every swrs_facility_id');
+
+select set_eq(
+  $$
+    with facility_latest_report as (
+      select max(r.reporting_period_duration) as reporting_period_duration, r.swrs_facility_id
+      from swrs.report r join swrs.facility f on r.id = f.report_id group by r.swrs_facility_id
+    )
+    select facility_bc_ghg_id
+    from swrs.facility f
+    join swrs.report r on r.id = f.report_id
+    join facility_latest_report flr on flr.swrs_facility_id = r.swrs_facility_id
+      and flr.reporting_period_duration = r.reporting_period_duration;
+  $$,
+  'select bcghgid from ggircs_portal.facility',
+  'The import function imports the bc ghg id from the latest report of each facility');
 
 set client_min_messages to warning;
 truncate table ggircs_portal.organisation restart identity cascade;
