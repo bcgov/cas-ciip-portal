@@ -141,7 +141,7 @@ exports[`FacilitiesListContainer should match the previous snapshot 1`] = `
             "REJECTED",
           ],
           "isSearchEnabled": true,
-          "isSortEnabled": true,
+          "isSortEnabled": false,
           "removeSearchHeader": undefined,
           "searchOptionValues": Array [
             Object {
