@@ -1,9 +1,6 @@
 -- Deploy ggircs-portal:database_functions/prune_orphan_swrs_orgs_and_facilities to pg
 -- requires: schema_ggircs_portal_private
 
--- This function looks at all the ciip portal organisations and facilities, and removes them if their swrs corresponding entry is not found.
--- Items which don't have a swrs id were added in CIIP and should be kept.
-
 begin;
 
 create or replace function ggircs_portal_private.prune_orphan_swrs_orgs_and_facilities()
@@ -40,6 +37,15 @@ $function$
   where id in (select id from orphan_ciip_org_ids);
 
 $function$ language sql;
+
+comment on function ggircs_portal_private.prune_orphan_swrs_orgs_and_facilities is
+$$
+  This function
+    - looks at all the ciip portal organisations and facilities, and removes them if their swrs corresponding entry is not found.
+    - removes any access records to the deleted organisations.
+
+  Items which dont have a swrs_id are assumed to be added in CIIP and should be kept.
+$$;
 
 select ggircs_portal_private.prune_orphan_swrs_orgs_and_facilities();
 
