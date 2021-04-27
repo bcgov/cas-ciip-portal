@@ -146,13 +146,11 @@ truncate ggircs_portal.application restart identity cascade;
 
 insert into ggircs_portal.application(
   facility_id,
-  reporting_year,
-  report_id
+  reporting_year
 )
 values (
   (select id from ggircs_portal.facility where facility_name = 'test facility'),
-  (select reporting_year from ggircs_portal.opened_reporting_year()),
-  (select report_id from ggircs_portal.facility where facility_name = 'test facility')
+  (select reporting_year from ggircs_portal.opened_reporting_year())
 );
 
 select close_application_window();

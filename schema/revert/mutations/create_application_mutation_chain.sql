@@ -18,8 +18,11 @@ begin
     raise exception 'The application window is closed';
   end if;
 
-  insert into ggircs_portal.application(facility_id, reporting_year)
-  values (facility_id_input, current_reporting_year) returning id into new_id;
+  insert into ggircs_portal.application(facility_id, reporting_year, report_id)
+  values (
+    facility_id_input, current_reporting_year,
+    (select report_id from ggircs_portal.facility where id = facility_id_input)
+  ) returning id into new_id;
 
   perform ggircs_portal.create_application_revision_mutation_chain(new_id, 0);
 
