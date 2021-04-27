@@ -329,3 +329,4 @@ swrs_functions/refresh_swrs_version_data [swrs_functions/refresh_swrs_version_da
 @v2.3.1 2021-04-29T17:39:15Z Dylan Leard <dylan@button.is> # release v2.3.1
 application_validation_functions/emission_total_matches_rev_zero 2021-04-28T15:44:50Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # Validation function that validates that for a given application revision, the emission total matches the revision zero (swrs) emission total
 computed_columns/application_revision_total_ciip_emissions [computed_columns/application_revision_total_ciip_emissions@v2.3.0] 2021-04-28T23:40:07Z Naomi Aro <naomi.aro@gov.bc.ca> # Don't use metabase view
+application_validation_functions/emission_category_missing_fuel [tables/application_revision_validation_function computed_columns/application_revision_validation] 2021-04-27T21:54:17Z Dylan Leard <dylan@button.is> # Validation function to determine if there a missing fuels based on the emission categories with reported emissions
