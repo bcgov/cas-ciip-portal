@@ -7,7 +7,8 @@ import {
   faLock,
   faTimes,
   faHourglassHalf,
-  faKey
+  faKey,
+  faEnvelope
 } from '@fortawesome/free-solid-svg-icons';
 import {graphql, createFragmentContainer} from 'react-relay';
 import {CiipApplicationRevisionStatus} from 'applicationReviewQuery.graphql';
@@ -38,7 +39,6 @@ const DECISION_ICON = {
 };
 
 const DECISION_BUTTON_TEXT = {
-  SUBMITTED: 'Make a decision or request changes',
   APPROVED: 'Application has been approved and applicant notified',
   REJECTED: 'Application has been rejected and applicant notified',
   REQUESTED_CHANGES: 'Changes have been requested and applicant notified'
@@ -121,6 +121,7 @@ export const ApplicationReviewStepSelector: React.FunctionComponent<Props> = ({
             id="open-decision-dialog"
             as="li"
             action
+            active={!decisionOrChangeRequestIsDisabled}
             key="decision"
             tabIndex={0}
             variant={DECISION_BS_VARIANT[decisionOrChangeRequestStatus]}
@@ -146,7 +147,27 @@ export const ApplicationReviewStepSelector: React.FunctionComponent<Props> = ({
                 }}
               />
             )}
-            {DECISION_BUTTON_TEXT[decisionOrChangeRequestStatus]}
+            {decisionHasBeenMade &&
+              DECISION_BUTTON_TEXT[decisionOrChangeRequestStatus]}
+            {!decisionHasBeenMade &&
+              (decisionOrChangeRequestIsDisabled ? (
+                <em>
+                  Complete the reviews above to make a decision or request
+                  changes
+                </em>
+              ) : (
+                <>
+                  <FontAwesomeIcon
+                    icon={faEnvelope}
+                    style={{
+                      position: 'absolute',
+                      left: '1.2rem',
+                      top: 'calc(50% - 0.5em)'
+                    }}
+                  />
+                  Make a decision or request changes
+                </>
+              ))}
           </ListGroup.Item>
         </ListGroup>
       </div>
@@ -168,6 +189,9 @@ export const ApplicationReviewStepSelector: React.FunctionComponent<Props> = ({
         #selector .list-group-item.active {
           z-index: auto;
           background: #38598a;
+        }
+        .list-group-item#open-decision-dialog.active {
+          background: #036;
         }
         #selector .list-group-item-danger.disabled,
         .list-group-item-danger:disabled {
