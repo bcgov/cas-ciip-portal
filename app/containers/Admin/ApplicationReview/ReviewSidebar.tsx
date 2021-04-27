@@ -275,6 +275,7 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
         </Button>
         {!isFinalized && !applicationReviewStep?.isComplete && (
           <Button
+            id="new-comment"
             variant="primary"
             onClick={() => setShowAddCommentModal(true)}
           >

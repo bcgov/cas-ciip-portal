@@ -172,6 +172,7 @@ exports[`ReviewSidebar should match the last accepted snapshot (no comments) 1`]
     <Button
       active={false}
       disabled={false}
+      id="new-comment"
       onClick={[Function]}
       variant="primary"
     >
@@ -529,6 +530,7 @@ exports[`ReviewSidebar should match the last accepted snapshot (with comments) 1
     <Button
       active={false}
       disabled={false}
+      id="new-comment"
       onClick={[Function]}
       variant="primary"
     >
