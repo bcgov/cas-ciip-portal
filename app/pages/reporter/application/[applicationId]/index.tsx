@@ -26,7 +26,7 @@ class ApplicationPage extends Component<Props> {
         application(id: $applicationId) {
           id
           rowId
-          reportId
+          swrsReportId
           latestDraftRevision {
             ...ApplicationWizard_applicationRevision
             versionNumber
@@ -83,7 +83,7 @@ class ApplicationPage extends Component<Props> {
         getApplicationDisclaimerPageRoute(
           application.id,
           application.latestDraftRevision.versionNumber,
-          Boolean(application.reportId)
+          Boolean(application.swrsReportId)
         )
       );
       return null;
