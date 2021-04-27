@@ -313,3 +313,4 @@ swrs_functions/get_carbon_tax_data [swrs_functions/get_carbon_tax_data@v2.1.0] 2
 tables/application_003 [tables/application_002] 2021-04-26T16:50:55Z Dylan Leard <dylan@button.is> # Migration: add swrs_report_id to application table
 mutations/create_application_mutation_chain [mutations/create_application_mutation_chain@v2.1.0] 2021-04-26T17:34:19Z Dylan Leard <dylan@button.is> # Migration: insert swrs_report_id on new application creation
 swrs_functions/refresh_swrs_version_data [swrs_functions/refresh_swrs_version_data@v2.1.0 tables/application_003] 2021-04-26T17:49:38Z Dylan Leard <dylan@button.is> # Migration: use swrs_report_id to connect swrs.report to ggircs_portal.application
+swrs_functions/import_swrs_organisation_facility [swrs_functions/import_swrs_organisation_facility@v2.1.0] 2021-04-26T23:58:45Z Matthieu Foucault <matthieu@button.is> # import facility bc ghg id from facility table

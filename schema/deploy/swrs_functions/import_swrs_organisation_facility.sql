@@ -64,11 +64,10 @@ begin
            swrs.facility.swrs_facility_id,
            swrs.facility.facility_name,
            swrs.facility.facility_type,
-           swrs.identifier.identifier_value
+           swrs.facility.facility_bc_ghg_id
     from swrs.facility
     join latest_reports on report_id = latest_reports.id
     join swrs.report on facility.report_id = report.id
-    left join swrs.identifier on facility.id = identifier.facility_bcghgid_id
     join ggircs_portal.organisation on ggircs_portal.organisation.swrs_organisation_id = swrs.report.swrs_organisation_id
   ) on conflict(swrs_facility_id) do update
   set organisation_id = excluded.organisation_id,
