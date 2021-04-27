@@ -9,14 +9,19 @@ export default class ApplicationStatusFilter extends EnumFilter<
   CiipApplicationRevisionStatus | 'NOT_STARTED'
 > {
   constructor(displayName: string, argName: string, nullValueArgName: string) {
-    super(displayName, argName, [
-      'NOT_STARTED',
-      'DRAFT',
-      'SUBMITTED',
-      'REQUESTED_CHANGES',
-      'APPROVED',
-      'REJECTED'
-    ]);
+    super(
+      displayName,
+      argName,
+      [
+        'NOT_STARTED',
+        'DRAFT',
+        'SUBMITTED',
+        'REQUESTED_CHANGES',
+        'APPROVED',
+        'REJECTED'
+      ],
+      {sortable: false}
+    );
     this._nullValueArgName = nullValueArgName;
   }
   _nullValueArgName: string;

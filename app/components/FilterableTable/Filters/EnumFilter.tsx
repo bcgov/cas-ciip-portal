@@ -1,14 +1,19 @@
 import {getUserFriendlyStatusLabel} from 'lib/text-transforms';
 import React from 'react';
 import {Form} from 'react-bootstrap';
-import TableFilter from './TableFilter';
+import TableFilter, {ISearchOptionSettings} from './TableFilter';
 import {FilterComponent} from './types';
 
 export default class EnumFilter<T> extends TableFilter {
   enumValues: T[];
 
-  constructor(display, argName, enumValues: T[]) {
-    super(display, argName, {sortable: false});
+  constructor(
+    display,
+    argName,
+    enumValues: T[],
+    settings?: ISearchOptionSettings
+  ) {
+    super(display, argName, settings);
     this.enumValues = enumValues;
     this.searchOptionValues = enumValues.map((val) => {
       return {display: String(val), value: val};
