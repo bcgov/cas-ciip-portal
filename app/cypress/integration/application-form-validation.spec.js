@@ -24,10 +24,16 @@ describe('When viewing an application in draft as a reporter', () => {
     cy.mockLogin('reporter');
   });
 
-  it('The application admin form shows validation errors', () => {
+  it.only('The application admin form shows validation errors', () => {
+    const comment = "I don't know my registry id";
     cy.visit(adminFormUrl);
     cy.get('#page-content');
     cy.get('body').happoScreenshot({component: 'Administration Form'});
+
+    // Add a comment to the admin form
+    cy.get('.btn').contains('Add a comment').click();
+    cy.get('.report-field textarea').type(comment);
+    cy.get('.report-field button').contains('Save Comment').click();
 
     // Operator details
     cy.get('#root_operator_name').clear().type('John Smith');
@@ -93,6 +99,9 @@ describe('When viewing an application in draft as a reporter', () => {
     ).contains('Format should be A1A 1A1');
 
     cy.visit(summaryPageUrl);
+
+    cy.get('#administration-data_comments').contains(comment);
+
     // Format error messages for should be explicit
     cy.get('#administration-data_operator_naics ~div .text-danger').contains(
       'is a required property'
