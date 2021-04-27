@@ -12,6 +12,7 @@ import getConfig from 'next/config';
 import {INCENTIVE_ANALYST, ADMIN_GROUP} from 'data/group-constants';
 import ApplicationReviewStepSelector from 'containers/Admin/ApplicationReview/ApplicationReviewStepSelector';
 import ReviewSidebar from 'containers/Admin/ApplicationReview/ReviewSidebar';
+import DecisionModal from 'containers/Admin/ApplicationReview/DecisionModal';
 import HelpButton from 'components/helpers/HelpButton';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faArrowUp} from '@fortawesome/free-solid-svg-icons';
@@ -48,6 +49,7 @@ class ApplicationReview extends Component<Props, State> {
             versionNumberInput: $version
           ) {
             applicationRevisionStatus
+            ...DecisionModal_applicationRevisionStatus
             ...ApplicationRevisionStatusContainer_applicationRevisionStatus
           }
           applicationReviewStepsByApplicationId {
@@ -72,13 +74,29 @@ class ApplicationReview extends Component<Props, State> {
       }
     }
   `;
-  state = {isSidebarOpened: false, selectedReviewStepId: null};
+  state = {
+    isSidebarOpened: false,
+    selectedReviewStepId: null,
+    showDecisionModal: false
+  };
 
   constructor(props) {
     super(props);
+    this.openDecisionModal = this.openDecisionModal.bind(this);
     this.closeSidebar = this.closeSidebar.bind(this);
+    this.closeDecisionModal = this.closeDecisionModal.bind(this);
     this.selectReviewStep = this.selectReviewStep.bind(this);
     this.findStepById = this.findStepById.bind(this);
+  }
+  openDecisionModal() {
+    this.setState((state) => {
+      return {...state, showDecisionModal: true};
+    });
+  }
+  closeDecisionModal() {
+    this.setState((state) => {
+      return {...state, showDecisionModal: false};
+    });
   }
   closeSidebar() {
     this.setState((state) => {
@@ -157,15 +175,13 @@ class ApplicationReview extends Component<Props, State> {
                 query.application.applicationReviewStepsByApplicationId
               }
               decisionOrChangeRequestStatus={applicationRevisionStatus}
-              onDecisionOrChangeRequestAction={() =>
-                console.log('implement me in 2294')
-              }
+              onDecisionOrChangeRequestAction={this.openDecisionModal}
               selectedStep={this.state.selectedReviewStepId}
               onSelectStep={this.selectReviewStep}
               newerDraftExists={!isCurrentVersion}
               changeDecision={
                 isUserAdmin && currentReviewIsFinalized
-                  ? handleChangeDecision
+                  ? this.openDecisionModal
                   : undefined
               }
             />
@@ -228,6 +244,12 @@ class ApplicationReview extends Component<Props, State> {
             />
           )}
           {!this.state.isSidebarOpened && <HelpButton isInternalUser />}
+          <DecisionModal
+            applicationRevisionStatus={query.application.reviewRevisionStatus}
+            show={this.state.showDecisionModal}
+            onDecision={this.closeDecisionModal}
+            onHide={this.closeDecisionModal}
+          />
         </Row>
         <style jsx global>{`
           h1 {

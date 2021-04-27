@@ -279,6 +279,19 @@ exports[`The application-review page matches the last snapshot (with review side
     <HelpButton
       isInternalUser={true}
     />
+    <Relay(DecisionModal)
+      applicationRevisionStatus={
+        Object {
+          " $fragmentRefs": Object {
+            "ApplicationRevisionStatusContainer_applicationRevisionStatus": true,
+          },
+          "applicationRevisionStatus": "SUBMITTED",
+        }
+      }
+      onDecision={[Function]}
+      onHide={[Function]}
+      show={false}
+    />
   </Row>
   <JSXStyle
     id="2536304384"
@@ -567,6 +580,19 @@ exports[`The application-review page matches the last snapshot (with review side
     <Relay(ReviewSidebar)
       isFinalized={false}
       onClose={[Function]}
+    />
+    <Relay(DecisionModal)
+      applicationRevisionStatus={
+        Object {
+          " $fragmentRefs": Object {
+            "ApplicationRevisionStatusContainer_applicationRevisionStatus": true,
+          },
+          "applicationRevisionStatus": "SUBMITTED",
+        }
+      }
+      onDecision={[Function]}
+      onHide={[Function]}
+      show={false}
     />
   </Row>
   <JSXStyle
