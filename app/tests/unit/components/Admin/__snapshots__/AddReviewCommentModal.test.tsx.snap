@@ -3,6 +3,7 @@
 exports[`Add Review Comment modal matches the last accepted snapshot ("internal" left unchecked) 1`] = `
 <Modal
   animation={true}
+  aria-labelledby="add-comment-title"
   autoFocus={true}
   backdrop={true}
   dialogAs={
@@ -26,21 +27,26 @@ exports[`Add Review Comment modal matches the last accepted snapshot ("internal"
   >
     <h2
       className="jsx-3493496686"
+      id="add-comment-title"
     />
   </ModalHeader>
   <ModalBody>
-    <FormLabel
-      column={false}
-      srOnly={false}
+    <FormGroup
+      controlId="comment"
     >
-      Comment:
-    </FormLabel>
-    <FormControl
-      as="textarea"
-      onChange={[Function]}
-      rows={3}
-      value=""
-    />
+      <FormLabel
+        column={false}
+        srOnly={false}
+      >
+        Comment:
+      </FormLabel>
+      <FormControl
+        as="textarea"
+        onChange={[Function]}
+        rows={3}
+        value=""
+      />
+    </FormGroup>
     <FormCheck>
       <FormCheckLabel>
         <FormCheckInput

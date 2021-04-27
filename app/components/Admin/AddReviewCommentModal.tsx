@@ -29,18 +29,26 @@ export const AddReviewCommentModal: React.FunctionComponent<Props> = ({
   };
 
   return (
-    <Modal id="add-comment-modal" size="lg" show={show} onHide={handleHide}>
+    <Modal
+      id="add-comment-modal"
+      size="lg"
+      show={show}
+      onHide={handleHide}
+      aria-labelledby="add-comment-title"
+    >
       <Modal.Header closeButton>
-        <h2>{title}</h2>
+        <h2 id="add-comment-title">{title}</h2>
       </Modal.Header>
       <Modal.Body>
-        <Form.Label>Comment:</Form.Label>
-        <Form.Control
-          as="textarea"
-          rows={3}
-          value={commentText}
-          onChange={(e) => setCommentText(e.target.value)}
-        />
+        <Form.Group controlId="comment">
+          <Form.Label>Comment:</Form.Label>
+          <Form.Control
+            as="textarea"
+            rows={3}
+            value={commentText}
+            onChange={(e) => setCommentText(e.target.value)}
+          />
+        </Form.Group>
         <FormCheck>
           <FormCheck.Label>
             <FormCheck.Input
