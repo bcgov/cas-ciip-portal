@@ -352,6 +352,29 @@ describe('ReviewSidebar', () => {
     modalOnHide();
     expect(r.find('AddReviewCommentModal').prop('show')).toBeFalse();
   });
+  it('saves new review comments and adds them to the application review step', () => {
+    const commentText = 'this is a test comment';
+    const isInternalComment = false;
+    const spy = jest.spyOn(
+      require('mutations/application_review_step/createReviewCommentMutation'),
+      'default'
+    );
+    const relay = {environment: null};
+    const r = shallow(
+      <ReviewSidebar
+        isFinalized={false}
+        applicationReviewStep={
+          applicationReviewStep() as ReviewSidebar_applicationReviewStep
+        }
+        onClose={() => {}}
+        relay={relay as any}
+      />
+    );
+    expect(spy).not.toHaveBeenCalled();
+    const modalOnSubmit = r.find('AddReviewCommentModal').prop('onSubmit');
+    modalOnSubmit({commentText, isInternalComment});
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
   it('sets the title for the add comments modal based on the selected review step', () => {
     const relay = {environment: null};
     const data1 = {

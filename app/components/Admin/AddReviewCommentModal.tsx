@@ -6,7 +6,7 @@ import {faLock, faEye} from '@fortawesome/free-solid-svg-icons';
 interface Props {
   show: boolean;
   title: string;
-  onSubmit: (detail: object) => void;
+  onSubmit: ({commentText: string, isInternalComment: boolean}) => void;
   onHide: () => void;
 }
 
