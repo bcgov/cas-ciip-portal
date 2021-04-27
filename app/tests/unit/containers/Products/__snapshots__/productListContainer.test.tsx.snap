@@ -61,13 +61,13 @@ exports[`ProductList should render the product list 1`] = `
       },
       SortOnlyFilter {
         "Component": [Function],
-        "argName": "date_modified",
+        "argName": "updated_at",
         "castValue": [Function],
         "isSearchEnabled": false,
         "isSortEnabled": true,
         "removeSearchHeader": undefined,
-        "sortColumnName": "date_modified",
-        "title": "Modified (D/M/Y)",
+        "sortColumnName": "updated_at",
+        "title": "Modified (Y/M/D)",
       },
       NumberFilter {
         "Component": [Function],

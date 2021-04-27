@@ -23,7 +23,7 @@ interface Props {
 const filters: TableFilter[] = [
   new TextFilter('Product', 'product_name'),
   new DisplayOnlyFilter('Settings'),
-  new SortOnlyFilter('Modified (D/M/Y)', 'date_modified'),
+  new SortOnlyFilter('Modified (Y/M/D)', 'updated_at'),
   new NumberFilter('Benchmark', 'current_benchmark'),
   new NumberFilter('Eligibility Threshold', 'current_eligibility_threshold'),
   new YesNoFilter('Allocation of Emissions', 'requires_emission_allocation'),
