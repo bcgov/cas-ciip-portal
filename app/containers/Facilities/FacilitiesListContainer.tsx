@@ -124,7 +124,7 @@ export default createFragmentContainer(FacilitiesList, {
           facilityName: {includesInsensitive: $facilityName}
           applicationStatus: {equalTo: $applicationStatus}
           applicationId: {isNull: $applicationIdIsNull, equalTo: $applicationId}
-          facilityBcghgid: {equalTo: $facilityBcghgid}
+          facilityBcghgid: {includes: $facilityBcghgid}
           lastSwrsReportingYear: {equalTo: $lastSwrsReportingYear}
         }
       ) {

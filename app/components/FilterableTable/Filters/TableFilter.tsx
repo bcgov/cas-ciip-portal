@@ -2,7 +2,7 @@ import React from 'react';
 import type {FilterComponent} from './types';
 import {Form} from 'react-bootstrap';
 
-interface ISearchOptionSettings {
+export interface ISearchOptionSettings {
   filterable?: boolean;
   sortable?: boolean;
   sortColumnName?: string;
