@@ -1,0 +1,121 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Add Review Comment modal matches the last accepted snapshot ("internal" left unchecked) 1`] = `
+<Modal
+  animation={true}
+  aria-labelledby="add-comment-title"
+  autoFocus={true}
+  backdrop={true}
+  dialogAs={
+    Object {
+      "$$typeof": Symbol(react.forward_ref),
+      "displayName": "ModalDialog",
+      "render": [Function],
+    }
+  }
+  enforceFocus={true}
+  id="add-comment-modal"
+  keyboard={true}
+  onHide={[Function]}
+  restoreFocus={true}
+  show={true}
+  size="lg"
+>
+  <ModalHeader
+    closeButton={true}
+    closeLabel="Close"
+  >
+    <h2
+      className="jsx-3493496686"
+      id="add-comment-title"
+    />
+  </ModalHeader>
+  <ModalBody>
+    <FormGroup
+      controlId="comment"
+    >
+      <FormLabel
+        column={false}
+        srOnly={false}
+      >
+        Comment:
+      </FormLabel>
+      <FormControl
+        as="textarea"
+        onChange={[Function]}
+        rows={3}
+        value=""
+      />
+    </FormGroup>
+    <FormCheck>
+      <FormCheckLabel>
+        <FormCheckInput
+          checked={false}
+          onChange={[Function]}
+        />
+        Visible for 
+        <strong
+          className="jsx-3493496686"
+        >
+          internal
+        </strong>
+         use only
+      </FormCheckLabel>
+    </FormCheck>
+  </ModalBody>
+  <ModalFooter>
+    <span
+      className="jsx-3493496686"
+    >
+      This comment will 
+       be visible to the applicant.
+      <FontAwesomeIcon
+        border={false}
+        className=""
+        fixedWidth={false}
+        flip={null}
+        icon={
+          Object {
+            "icon": Array [
+              576,
+              512,
+              Array [],
+              "f06e",
+              "M572.52 241.4C518.29 135.59 410.93 64 288 64S57.68 135.64 3.48 241.41a32.35 32.35 0 0 0 0 29.19C57.71 376.41 165.07 448 288 448s230.32-71.64 284.52-177.41a32.35 32.35 0 0 0 0-29.19zM288 400a144 144 0 1 1 144-144 143.93 143.93 0 0 1-144 144zm0-240a95.31 95.31 0 0 0-25.31 3.79 47.85 47.85 0 0 1-66.9 66.9A95.78 95.78 0 1 0 288 160z",
+            ],
+            "iconName": "eye",
+            "prefix": "fas",
+          }
+        }
+        id="visibility-icon"
+        inverse={false}
+        listItem={false}
+        mask={null}
+        pull={null}
+        pulse={false}
+        rotation={null}
+        size={null}
+        spin={false}
+        swapOpacity={false}
+        symbol={false}
+        title=""
+        transform={null}
+      />
+    </span>
+    <Button
+      active={false}
+      disabled={false}
+      id="submit"
+      onClick={[Function]}
+      variant="primary"
+    >
+      Add Comment
+    </Button>
+  </ModalFooter>
+  <JSXStyle
+    id="3493496686"
+  >
+    .modal-header{background:#036;color:#fff;}button.close{color:#fff;}#add-comment-modal .modal-body{padding:1rem 2rem;}#add-comment-modal .form-check{margin:1rem 0 0 0;}.form-check-label,.form-check-input{cursor:pointer;}#visibility-icon{margin:0 1em 0 0.5em;}h2.jsx-3493496686{margin:0;}
+  </JSXStyle>
+</Modal>
+`;

@@ -4,13 +4,16 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faCheck, faLock} from '@fortawesome/free-solid-svg-icons';
 import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
 import {ReviewSidebar_applicationReviewStep} from '__generated__/ReviewSidebar_applicationReviewStep.graphql';
+import {createReviewCommentMutationVariables} from '__generated__/createReviewCommentMutation.graphql';
 import ReviewComment from 'components/Admin/ReviewComment';
+import createReviewCommentMutation from 'mutations/application_review_step/createReviewCommentMutation';
 import updateReviewCommentMutation from 'mutations/application_review_step/updateReviewCommentMutation';
 import deleteReviewCommentMutation from 'mutations/application_review_step/deleteReviewCommentMutation';
 import updateApplicationReviewStepMutation from 'mutations/application_review_step/updateApplicationReviewStepMutation';
 import {nowMoment} from 'functions/formatDates';
 import {capitalize} from 'lib/text-transforms';
 import GenericConfirmationModal from 'components/GenericConfirmationModal';
+import AddReviewCommentModal from 'components/Admin/AddReviewCommentModal';
 
 interface Props {
   onClose: () => void;
@@ -32,6 +35,7 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
     showUnresolvedCommentsModal,
     setShowUnresolvedCommentsModal
   ] = useState(false);
+  const [showAddCommentModal, setShowAddCommentModal] = useState(false);
   const toggleResolved = () => setShowingResolved((current) => !current);
   const reviewStepName = capitalize(
     applicationReviewStep?.reviewStepByReviewStepId?.stepName
@@ -191,6 +195,27 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
     </GenericConfirmationModal>
   );
 
+  const handleAddReviewComment = async ({commentText, isInternalComment}) => {
+    const commentType = isInternalComment ? 'internal' : 'general';
+    const {environment} = relay;
+    const variables = {
+      input: {
+        reviewComment: {
+          applicationReviewStepId: applicationReviewStep.rowId,
+          commentType: commentType.toUpperCase(),
+          description: commentText
+        }
+      }
+    };
+    await createReviewCommentMutation(
+      environment,
+      variables as createReviewCommentMutationVariables,
+      applicationReviewStep.id,
+      `ReviewSidebar_${commentType}Comments`
+    );
+    setShowAddCommentModal(false);
+  };
+
   return (
     <div id="sidebar" className="col-md-5 col-lg-4 col-xxl-3">
       <button
@@ -249,10 +274,22 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
           {`${showingResolved ? 'Hide' : 'Show'} resolved comments`}
         </Button>
         {!isFinalized && !applicationReviewStep?.isComplete && (
-          <Button variant="primary">+ New Comment</Button>
+          <Button
+            id="new-comment"
+            variant="primary"
+            onClick={() => setShowAddCommentModal(true)}
+          >
+            + New Comment
+          </Button>
         )}
       </div>
       {showUnresolvedCommentsModal && confirmCommentsResolvedModal}
+      <AddReviewCommentModal
+        title={`Add comment to ${reviewStepName} Review`}
+        show={showAddCommentModal}
+        onSubmit={handleAddReviewComment}
+        onHide={() => setShowAddCommentModal(false)}
+      />
       <style jsx>{`
         #sidebar {
           position: fixed;
@@ -274,6 +311,9 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
           background: none;
         }
         h2 {
+          margin: 0;
+        }
+        #sidebar h2:first-of-type {
           margin: 15px 0;
           text-align: center;
         }
@@ -341,6 +381,7 @@ export default createFragmentContainer(ReviewSidebar, {
   applicationReviewStep: graphql`
     fragment ReviewSidebar_applicationReviewStep on ApplicationReviewStep {
       id
+      rowId
       isComplete
       reviewStepByReviewStepId {
         stepName

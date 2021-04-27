@@ -7,9 +7,10 @@ const applicationReviewStep = () => {
   return {
     ' $refType': 'ReviewSidebar_applicationReviewStep',
     id: 'abc',
+    rowId: 4,
     isComplete: false,
     reviewStepByReviewStepId: {
-      stepName: 'Technical'
+      stepName: 'technical'
     },
     generalComments: {
       edges: []
@@ -329,5 +330,86 @@ describe('ReviewSidebar', () => {
         .find('Button')
         .filterWhere((n) => n.text() === 'Mark this review step complete')
     ).toBeTruthy();
+  });
+  it('toggles a modal for adding review comments', () => {
+    const relay = {environment: null};
+    const r = shallow(
+      <ReviewSidebar
+        isFinalized={false}
+        applicationReviewStep={
+          applicationReviewStep() as ReviewSidebar_applicationReviewStep
+        }
+        onClose={() => {}}
+        relay={relay as any}
+      />
+    );
+    expect(r.find('AddReviewCommentModal').prop('show')).toBeFalse();
+    r.find('Button#new-comment').simulate('click');
+    expect(r.find('AddReviewCommentModal').prop('show')).toBeTrue();
+    const modalOnHide: () => void = r
+      .find('AddReviewCommentModal')
+      .prop('onHide');
+    modalOnHide();
+    expect(r.find('AddReviewCommentModal').prop('show')).toBeFalse();
+  });
+  it('saves new review comments and adds them to the application review step', () => {
+    const commentText = 'this is a test comment';
+    const isInternalComment = false;
+    const spy = jest.spyOn(
+      require('mutations/application_review_step/createReviewCommentMutation'),
+      'default'
+    );
+    const relay = {environment: null};
+    const r = shallow(
+      <ReviewSidebar
+        isFinalized={false}
+        applicationReviewStep={
+          applicationReviewStep() as ReviewSidebar_applicationReviewStep
+        }
+        onClose={() => {}}
+        relay={relay as any}
+      />
+    );
+    expect(spy).not.toHaveBeenCalled();
+    const modalOnSubmit = r.find('AddReviewCommentModal').prop('onSubmit');
+    modalOnSubmit({commentText, isInternalComment});
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+  it('sets the title for the add comments modal based on the selected review step', () => {
+    const relay = {environment: null};
+    const data1 = {
+      ...applicationReviewStep(),
+      reviewStepByReviewStepId: {
+        stepName: 'technical'
+      }
+    };
+    const data2 = {
+      ...applicationReviewStep(),
+      reviewStepByReviewStepId: {
+        stepName: 'random'
+      }
+    };
+    const r1 = shallow(
+      <ReviewSidebar
+        isFinalized={false}
+        applicationReviewStep={data1 as ReviewSidebar_applicationReviewStep}
+        onClose={() => {}}
+        relay={relay as any}
+      />
+    );
+    const r2 = shallow(
+      <ReviewSidebar
+        isFinalized={false}
+        applicationReviewStep={data2 as ReviewSidebar_applicationReviewStep}
+        onClose={() => {}}
+        relay={relay as any}
+      />
+    );
+    expect(
+      r1.find('AddReviewCommentModal').prop('title').includes('Technical')
+    ).toBeTrue();
+    expect(
+      r2.find('AddReviewCommentModal').prop('title').includes('Random')
+    ).toBeTrue();
   });
 });
