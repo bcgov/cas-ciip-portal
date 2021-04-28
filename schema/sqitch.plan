@@ -318,3 +318,5 @@ database_functions/prune_orphan_swrs_orgs_and_facilities [schema_ggircs_portal_p
 @v2.2.0 2021-04-28T17:11:59Z Matthieu Foucault <matthieu@button.is> # release v2.2.0
 types/emission_form_result [schema_ggircs_portal] 2021-04-28T15:57:04Z Dylan Leard <dylan@button.is> # Type defines the shape of an emission form_result
 computed_columns/application_revision_emission_form_result [tables/application_revision tables/form_result] 2021-04-28T15:53:12Z Dylan Leard <dylan@button.is> # Computed column to retrieve the emission data for an application revision
+types/emission_form_data [schema_ggircs_portal] 2021-04-28T15:57:04Z Dylan Leard <dylan@button.is> # Type defines the shape of an emission form_result
+computed_columns/application_revision_emission_form_data [tables/application_revision tables/form_result] 2021-04-28T15:53:12Z Dylan Leard <dylan@button.is> # Computed column to retrieve the emission data for an application revision

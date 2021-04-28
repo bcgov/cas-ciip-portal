@@ -2,6 +2,6 @@
 
 begin;
 
-drop type ggircs_portal.emission_form_result;
+drop type ggircs_portal.emission_form_data;
 
 commit;

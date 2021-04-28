@@ -1,11 +1,11 @@
--- Deploy ggircs-portal:computed_columns/application_revision_emission_form_result to pg
+-- Deploy ggircs-portal:computed_columns/application_revision_emission_form_data to pg
 -- requires: tables/application_revision
 -- requires: tables/form_result
 
 begin;
 
-create or replace function ggircs_portal.application_revision_emission_form_result(app_revision ggircs_portal.application_revision)
-    returns setof ggircs_portal.emission_form_result
+create or replace function ggircs_portal.application_revision_emission_form_data(app_revision ggircs_portal.application_revision)
+    returns setof ggircs_portal.emission_form_data
 as
 $function$
 
@@ -38,8 +38,8 @@ from gases;
 
 $function$ language 'sql' stable;
 
-grant execute on function ggircs_portal.application_revision_emission_form_result to ciip_administrator, ciip_analyst, ciip_industry_user;
+grant execute on function ggircs_portal.application_revision_emission_form_data to ciip_administrator, ciip_analyst, ciip_industry_user;
 
-comment on function ggircs_portal.application_revision_emission_form_result is 'Computed column returns the emission data as reported in a specific version of a CIIP (CleanBC Industrial Incentive Program) application';
+comment on function ggircs_portal.application_revision_emission_form_data is 'Computed column returns the emission data as reported in a specific version of a CIIP (CleanBC Industrial Incentive Program) application';
 
 commit;
