@@ -10,14 +10,14 @@ const FormFieldTemplate: React.FunctionComponent<FieldTemplateProps> = ({
   schema,
   classNames,
   hidden,
-  uiSchema
+  uiSchema,
+  formData
 }) => {
   if (hidden) return null;
 
   if (
     uiSchema['ui:options']?.disableRenderingIfEmpty &&
-    (children[0]?.props?.formData === null ||
-      children[0]?.props?.formData === undefined)
+    (formData === null || formData === undefined)
   )
     return null;
 

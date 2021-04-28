@@ -2804,10 +2804,10 @@
     lodash "^4.17.20"
     lodash-es "^4.17.20"
 
-"@rjsf/core@^2.4.2":
-  version "2.4.2"
-  resolved "https://registry.yarnpkg.com/@rjsf/core/-/core-2.4.2.tgz#ca2de19031ec00173082012cb0783d3f4ec977af"
-  integrity sha512-3EHpGiWryCx8kNv5TcKwnVtKlq08s2QvQTlwCF3pELqK9YQoa7SEsFQtZzU03wWk7o0Wvuig4BhJJKU8Dc2c5A==
+"@rjsf/core@^2.5.1":
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/@rjsf/core/-/core-2.5.1.tgz#95a842d22bab5f83929662fcd73739108e9f5cbb"
+  integrity sha512-km8NYScXNONaL5BiSLS6wyDj49pOLZtn0iXg7Zxlm921uuf3o2AAX5SuZS5kB4Zj2zlrVMrXESexfX6bxdDYHw==
   dependencies:
     "@babel/runtime-corejs2" "^7.8.7"
     "@types/json-schema" "^7.0.4"
