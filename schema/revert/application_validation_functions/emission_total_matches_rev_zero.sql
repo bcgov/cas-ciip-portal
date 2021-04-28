@@ -2,6 +2,6 @@
 
 begin;
 
--- XXX Add DDLs here.
+drop function ggircs_portal.emission_total_matches_rev_zero;
 
 commit;

@@ -2,6 +2,6 @@
 
 begin;
 
--- XXX Add verifications here.
+select pg_get_functiondef('ggircs_portal.emission_total_matches_rev_zero(ggircs_portal.application_revision)'::regprocedure);
 
 rollback;
