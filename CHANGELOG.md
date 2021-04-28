@@ -2,6 +2,57 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.2.0](https://github.com/bcgov/cas-ciip-portal/compare/v2.1.0...v2.2.0) (2021-04-28)
+
+
+### Features
+
+* add computed column for total ciip emissions ([06c14ab](https://github.com/bcgov/cas-ciip-portal/commit/06c14abe1eafec73455b3f796f4a5e621f08ca0a))
+* add is_ciip_emission column to gas table ([7b7fd54](https://github.com/bcgov/cas-ciip-portal/commit/7b7fd547c64cf499470933c636dc384a4548dece))
+* add review comment modal saves new comments ([b848074](https://github.com/bcgov/cas-ciip-portal/commit/b8480740035c18119fcde147eb0cb96a51f219e3))
+* adding new component for the progress indicator ([986cba5](https://github.com/bcgov/cas-ciip-portal/commit/986cba5c740cda5e24065af4010fe2233d17cf8d))
+* basic review step selector opens that step in sidebar ([0016571](https://github.com/bcgov/cas-ciip-portal/commit/00165717e779d4709fef16b8d2621ccf03f3d057))
+* confirm marking step complete when there are unresolved comments ([09abe5b](https://github.com/bcgov/cas-ciip-portal/commit/09abe5baf703ba8f4234f0506d0f717aab258007))
+* enable admins to change decision, preserving current functionality ([3596c7e](https://github.com/bcgov/cas-ciip-portal/commit/3596c7e91800fd9d616dafdbc317891216a50338))
+* enable HelpButton for reporters ([a0383c8](https://github.com/bcgov/cas-ciip-portal/commit/a0383c82beb3e27fd748afe6ef6000524a045683))
+* ensure decision cannot be changed if a newer draft exists ([b0cfa27](https://github.com/bcgov/cas-ciip-portal/commit/b0cfa27ddf0cdad578c6fc63c3c4d16e21c2e0aa))
+* finalize modification of review once decision has been made ([5ee53aa](https://github.com/bcgov/cas-ciip-portal/commit/5ee53aafdfc51e8cb642a7cc149b8ff44ab048e3))
+* import facility bc ghg id from facility table ([d13496e](https://github.com/bcgov/cas-ciip-portal/commit/d13496e73512f8fedc8d48c3322135878f7d8c6b))
+* migration removing orgs and facilities with no swrs equivalent ([cb6e11a](https://github.com/bcgov/cas-ciip-portal/commit/cb6e11a462d6328757a3de2e1565da5a1f429521))
+* progress step indicator formatting and coloring ([dfd5d0c](https://github.com/bcgov/cas-ciip-portal/commit/dfd5d0cce090cd2e899354024868ea3f1e66be01))
+* progress step indicator has a title and a light badge style ([9d6aae8](https://github.com/bcgov/cas-ciip-portal/commit/9d6aae8a2bd1bc19e605c0d61c75f05156071442))
+* remove Feedback from the footer ([eb41d65](https://github.com/bcgov/cas-ciip-portal/commit/eb41d65612e2a67771ddb1d8b9c12f3709fac542))
+* rename "report a problem" field to "add a comment" ([31f0485](https://github.com/bcgov/cas-ciip-portal/commit/31f04859fcc2010d3c9aed5d0c217f8bf65e97ad))
+* render comment icon in selector if step is incomplete ([6e4710c](https://github.com/bcgov/cas-ciip-portal/commit/6e4710c909c855e5ffffd6461264dee8eb00f8ee))
+* reorder admin form to allow quicker viewing of facility info ([44a1bf4](https://github.com/bcgov/cas-ciip-portal/commit/44a1bf41322dac75a90ccbad37323cfb4b9a5b02))
+* show completed status of review steps in selector ([c105ad7](https://github.com/bcgov/cas-ciip-portal/commit/c105ad751205f03f735f502749a3484ebb3f9ac4))
+* show decision status on 'make decision or request changes' button ([11c72fb](https://github.com/bcgov/cas-ciip-portal/commit/11c72fb722b118a79fe54f46dd8dde66bd6da566))
+* step indicator on reporter facilities page ([f8d10b9](https://github.com/bcgov/cas-ciip-portal/commit/f8d10b9c478802f582df54f5cce22dd80de9f4d7))
+* update review_step name from 'other' to 'application' ([90ce2f5](https://github.com/bcgov/cas-ciip-portal/commit/90ce2f5e2238193d4f08b3792352cec4b12beed5))
+
+
+### Bug Fixes
+
+* a11y contrast issue on -info buttons and badges ([7653ca0](https://github.com/bcgov/cas-ciip-portal/commit/7653ca073df7e9e1d707d2d079f53ff8c0d85266))
+* add missing getInitialProps on organisation-request page ([941b1aa](https://github.com/bcgov/cas-ciip-portal/commit/941b1aa8e63accec164fb39468bcfd7eb7221cbd))
+* add SUPPORT_EMAIL env var to circleCI ([a817d45](https://github.com/bcgov/cas-ciip-portal/commit/a817d45006f3b4bdc0cd066b0625540a4988b91e))
+* admin env var email is just email ([ba47bbf](https://github.com/bcgov/cas-ciip-portal/commit/ba47bbf26671578d49e7d502e0b8b40da06a187b))
+* allow ISearchOptionSettings to be passed to EnumFilter ([dcc092c](https://github.com/bcgov/cas-ciip-portal/commit/dcc092c4925c90e84e5e09aac4cd8d951f03b973))
+* facilityBcghgid includes and enum sort false ([518cf12](https://github.com/bcgov/cas-ciip-portal/commit/518cf12339a1dee047b986204f06795d1850f32e))
+* link to contact us page ([115cc31](https://github.com/bcgov/cas-ciip-portal/commit/115cc31dcef754579b67add9f71d2892a44d5b2a))
+* restore rendering of fields with disableRenderingIfEmpty ui option ([94db02e](https://github.com/bcgov/cas-ciip-portal/commit/94db02e57fd3c68be5b4b9d1304cfc4a6bb90405))
+* update admin subject line ([4873bf8](https://github.com/bcgov/cas-ciip-portal/commit/4873bf8e73daa697876fc6d923ea560a6d0a2817))
+* update circleci env vars ([88a849f](https://github.com/bcgov/cas-ciip-portal/commit/88a849febb44fbf097480fcbe41e66be07bec0a1))
+* update contact us page email locations ([9dfd397](https://github.com/bcgov/cas-ciip-portal/commit/9dfd397a258542d55b2f1936e8a4819afc724d8b))
+* update refresh_swrs_version_data function to key on swrs_report_id ([2043f52](https://github.com/bcgov/cas-ciip-portal/commit/2043f521d0e9121e69756dc4e3c194ad6c2670e5))
+* update sender name ([057dae7](https://github.com/bcgov/cas-ciip-portal/commit/057dae7e6ccd213422f9752f5c3a77415dbc3d3b))
+* update snapshot ([64d0b82](https://github.com/bcgov/cas-ciip-portal/commit/64d0b825b0575329f9289e5d8911706dcc185b2a))
+* update snapshots ([9085339](https://github.com/bcgov/cas-ciip-portal/commit/908533972bcb8d638a669945577f287116794d78))
+* update snapshots ([0b9f754](https://github.com/bcgov/cas-ciip-portal/commit/0b9f754437b2c1d092e7679da5b1a73aeb89f916))
+* use admin email env var ([d4a56d2](https://github.com/bcgov/cas-ciip-portal/commit/d4a56d254a7d718dd9ae225c147ca3837b80cac8))
+* use correct column name when sorting products by date ([8252e09](https://github.com/bcgov/cas-ciip-portal/commit/8252e094de478e6cab865596ca5246ae288f9ffb))
+* use email env variables ([cfa9d77](https://github.com/bcgov/cas-ciip-portal/commit/cfa9d7735867930db44ff80ed762035d4241c84c))
+
 ## [2.1.0](https://github.com/bcgov/cas-ciip-portal/compare/v2.0.0...v2.1.0) (2021-04-21)
 
 
