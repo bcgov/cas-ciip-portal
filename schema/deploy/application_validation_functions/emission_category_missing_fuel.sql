@@ -32,7 +32,7 @@ insert into ggircs_portal.application_revision_validation_function(validation_fu
 values (
   'emission_category_missing_fuel',
   'determines if any emission categories have emissions reported in a category, but no corresponding fuels reported for that category',
-  'no fuels, ya screwed up!'
+  'There are no reported fuels in some emission categories where emissions were reported. Please report fuels corresponding to all emission categories with reported emissions.'
 );
 
 commit;
