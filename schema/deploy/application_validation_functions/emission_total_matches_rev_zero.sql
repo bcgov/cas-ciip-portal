@@ -31,7 +31,7 @@ insert into ggircs_portal.application_revision_validation_function(
   validation_failed_message)
 values
   ('emission_total_matches_rev_zero',
-  'Validates that for an application revision, the matching swrs emissions (revision 0) are within 10 tCO2e'
+  'Validates that for an application revision, the matching swrs emissions (revision 0) are within 10 tCO2e',
   'Emissions reported in CIIP do not match emissions reported in SWRS. If the emissions as reported in CIIP are correct, please ensure you also update reported emissions in SWRS.'
   );
 
