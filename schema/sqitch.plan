@@ -320,3 +320,5 @@ types/emission_form_result [schema_ggircs_portal] 2021-04-28T15:57:04Z Dylan Lea
 computed_columns/application_revision_emission_form_result [tables/application_revision tables/form_result] 2021-04-28T15:53:12Z Dylan Leard <dylan@button.is> # Computed column to retrieve the emission data for an application revision
 types/emission_form_data [schema_ggircs_portal] 2021-04-28T15:57:04Z Dylan Leard <dylan@button.is> # Type defines the shape of an emission form_result
 computed_columns/application_revision_emission_form_data [tables/application_revision tables/form_result] 2021-04-28T15:53:12Z Dylan Leard <dylan@button.is> # Computed column to retrieve the emission data for an application revision
+types/fuel_form_data [schema_ggircs_portal] 2021-04-28T16:41:32Z Dylan Leard <dylan@button.is> # Type defines the shape of a fuel form result
+computed_columns/application_revision_fuel_form_data [tables/application_revision tables/form_result] 2021-04-28T16:45:36Z Dylan Leard <dylan@button.is> # Computed column to retrieve the fuel data for an application revision
