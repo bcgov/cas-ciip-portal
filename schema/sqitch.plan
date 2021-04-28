@@ -316,3 +316,5 @@ swrs_functions/refresh_swrs_version_data [swrs_functions/refresh_swrs_version_da
 swrs_functions/import_swrs_organisation_facility [swrs_functions/import_swrs_organisation_facility@v2.1.0] 2021-04-26T23:58:45Z Matthieu Foucault <matthieu@button.is> # import facility bc ghg id from facility table
 database_functions/prune_orphan_swrs_orgs_and_facilities [schema_ggircs_portal_private] 2021-04-27T19:01:27Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # Function that removes all facilities and organisations that have a swrs identifier not present in the swrs schema - meaning they have been removed by the ggircs ETL
 @v2.2.0 2021-04-28T17:11:59Z Matthieu Foucault <matthieu@button.is> # release v2.2.0
+types/emission_form_result [schema_ggircs_portal] 2021-04-28T15:57:04Z Dylan Leard <dylan@button.is> # Type defines the shape of an emission form_result
+computed_columns/application_revision_emission_form_result [tables/application_revision tables/form_result] 2021-04-28T15:53:12Z Dylan Leard <dylan@button.is> # Computed column to retrieve the emission data for an application revision
