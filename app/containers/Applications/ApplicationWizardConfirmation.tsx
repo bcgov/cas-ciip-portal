@@ -57,8 +57,9 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
     <Alert variant="warning">
       <p>
         <strong>
-          Some inconsistencies were found in your application. If possible,
-          please address the following items before submitting:
+          Some inconsistencies were found in your application. Please address
+          these items before submitting by correcting the reported values or
+          adding a comment in the relevant section to provide an explanation.
         </strong>
       </p>
       <ul>
