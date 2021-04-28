@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(15);
+select plan(16);
 
 select has_function(
   'ggircs_portal_private', 'refresh_swrs_version_data',
@@ -166,6 +166,12 @@ select is(
   ((select updated_at from ggircs_portal.form_result where application_id=1 and version_number=0 and form_id=1) > now() - interval '12 hours'),
   true::boolean,
   'Application with id 1 was updated by the refresh function because because report.version !== application.swrs_report_version'
+);
+
+select is(
+  (select swrs_report_version from ggircs_portal.application where id=1),
+  (select version from swrs.report where swrs_report_id = (select swrs_report_id from ggircs_portal.application where id =1)),
+  'The swrs_report_version was updated for application with id 1'
 );
 
 select is(
