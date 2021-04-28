@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(16);
+select plan(17);
 
 select has_function(
   'ggircs_portal_private', 'refresh_swrs_version_data',
@@ -142,6 +142,12 @@ select isnt_empty(
     select * from ggircs_portal.form_result where application_id=2 and version_number=0
   $$,
   'Refresh function created version 0 form_results for application with id = 2'
+);
+
+select is(
+  (select swrs_report_version from ggircs_portal.application where id=2),
+  (select version from swrs.report where swrs_report_id = (select swrs_report_id from ggircs_portal.application where id = 2)),
+  'The swrs_report_version was updated for application with id 2'
 );
 
 select is(
