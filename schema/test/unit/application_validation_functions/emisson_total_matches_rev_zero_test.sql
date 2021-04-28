@@ -3,11 +3,21 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(6);
+select plan(7);
 
 select has_function(
   'ggircs_portal', 'emission_total_matches_rev_zero', array['ggircs_portal.application_revision'],
   'Function emission_total_matches_rev_zero should exist'
+);
+
+select results_eq(
+  $$
+    select count(*) from ggircs_portal.application_revision_validation_function where validation_function_name = 'emission_total_matches_rev_zero';
+  $$,
+  $$
+    values (1::bigint)
+  $$,
+  'There should be a function named emission_total_matches_rev_zero in the validation table'
 );
 
 select test_helper.clean_ggircs_portal_schema();
