@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(1);
+select plan(3);
 
 select has_function(
   'ggircs_portal', 'emission_category_missing_fuel', array['ggircs_portal.application_revision'],
@@ -82,10 +82,19 @@ set form_result =
 }'
 where application_id=2 and version_number=1 and form_id=2;
 
-with record as (select row(application_revision.*)::ggircs_portal.application_revision from ggircs_portal.application_revision where application_id=1 and version_number=1)
-    select ggircs_portal.emission_category_missing_fuel((select * from record));
-with record as (select row(application_revision.*)::ggircs_portal.application_revision from ggircs_portal.application_revision where application_id=2 and version_number=1)
-    select ggircs_portal.emission_category_missing_fuel((select * from record));
+select is(
+  (with record as (select row(application_revision.*)::ggircs_portal.application_revision from ggircs_portal.application_revision where application_id=1 and version_number=1)
+    select ggircs_portal.emission_category_missing_fuel((select * from record))),
+  false,
+  'Function returns false when there are emission categories with an emission reported, but no corresponding fuel reported'
+);
+
+select is(
+  (with record as (select row(application_revision.*)::ggircs_portal.application_revision from ggircs_portal.application_revision where application_id=2 and version_number=1)
+    select ggircs_portal.emission_category_missing_fuel((select * from record))),
+  true,
+  'Function returns false when there are emission categories with an emission reported, but no corresponding fuel reported'
+);
 
 select finish();
 
