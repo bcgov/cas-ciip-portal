@@ -2,7 +2,7 @@
 
 begin;
 
-create or replace function ggircs_portal.emission_total_matches_rev_zero(application_revision ggircs_portal.application_revision)
+create or replace function ggircs_portal.emission_total_matches_rev_zero(app_rev ggircs_portal.application_revision)
   returns boolean as
   $func$
     declare
@@ -10,8 +10,8 @@ create or replace function ggircs_portal.emission_total_matches_rev_zero(applica
       total_ciip_emissions numeric;
       total_swrs_emissions numeric;
     begin
-      swrs_revision := (select * from ggircs_portal.application_revision where application_id = application_revision.application_id and version_number = 0);
-      total_ciip_emissions := ggircs_portal.application_revision_total_ciip_emissions(application_revision);
+      swrs_revision := (select row(application_revision.*)::ggircs_portal.application_revision from ggircs_portal.application_revision where application_id = app_rev.application_id and version_number = 0);
+      total_ciip_emissions := ggircs_portal.application_revision_total_ciip_emissions(app_rev);
       total_swrs_emissions := ggircs_portal.application_revision_total_ciip_emissions(swrs_revision);
 
       return abs(total_ciip_emissions - total_swrs_emissions) < 10;
