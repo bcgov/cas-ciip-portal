@@ -138,12 +138,6 @@ class ApplicationReview extends Component<Props, State> {
       this.props.query?.application.reviewRevisionStatus
         .applicationRevisionStatus !== 'SUBMITTED';
 
-    const handleChangeDecision = () => {
-      console.log(
-        'implement me in 2294 - should open the decision dialog with admin-only option to revert (to SUBMITTED status)'
-      );
-    };
-
     return (
       <DefaultLayout
         session={session}
