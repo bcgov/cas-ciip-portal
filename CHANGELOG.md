@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.3.0](https://github.com/bcgov/cas-ciip-portal/compare/v2.2.0...v2.3.0) (2021-04-28)
+
+
+### Features
+
+* add commputed column to retrieve production data ([2388a54](https://github.com/bcgov/cas-ciip-portal/commit/2388a5430bb931b4ad174c3c35d2de2d48ad9ba3))
+* add computed column to retrieve emission data ([d3ef5bc](https://github.com/bcgov/cas-ciip-portal/commit/d3ef5bc86443a24f7b1408ce4d7c071bb95254f4))
+* add computed column to retrieve fuel data ([0218d8d](https://github.com/bcgov/cas-ciip-portal/commit/0218d8da5192560455bb50ac4a6bb7545a2a7e43))
+
+
+### Bug Fixes
+
+* only check application window is open for version 1 of application ([b25c02a](https://github.com/bcgov/cas-ciip-portal/commit/b25c02a325bb32af34ae8b7e08d9935df86aefd0))
+
 ## [2.2.0](https://github.com/bcgov/cas-ciip-portal/compare/v2.1.0...v2.2.0) (2021-04-28)
 
 
