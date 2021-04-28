@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(8);
+select plan(9);
 
 select has_function(
   'ggircs_portal_private', 'ensure_window_open_submit_application_status',
@@ -53,6 +53,11 @@ select lives_ok(
 select lives_ok(
   $$insert into ggircs_portal.application_revision_status(application_id, version_number, application_revision_status) values (1, 1, 'rejected')$$,
   'The trigger does not throw when setting a status of requested changes'
+);
+
+select lives_ok(
+  $$insert into ggircs_portal.application_revision_status(application_id, version_number, application_revision_status) values (1, 0, 'submitted')$$,
+  'The trigger does not throw for version 0'
 );
 
 select finish();
