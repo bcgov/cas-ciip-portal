@@ -6,8 +6,8 @@ begin;
 select plan(2);
 
 select has_function(
-  'ggircs_portal', 'application_revision_fuel_form_data',
-  'Function application_revision_fuel_form_data should exist'
+  'ggircs_portal', 'application_revision_production_form_data',
+  'Function application_revision_production_form_data should exist'
 );
 
 -- Init tests
@@ -35,22 +35,13 @@ update ggircs_portal.form_result
 set form_result =
 '[
     {
-      "fuelRowId": 13,
-      "quantity": 10,
-      "fuelUnits": "t",
-      "emissionCategoryRowId": 1
-    },
-    {
-      "fuelRowId": 10,
-      "quantity": 40120,
-      "fuelUnits": "kL",
-      "emissionCategoryRowId": 3
-    },
-    {
-      "fuelRowId": 12,
-      "quantity": 40,
-      "fuelUnits": "kL",
-      "emissionCategoryRowId": 2
+      "productAmount": 8760000,
+      "productRowId": 29,
+      "productUnits": "MWh",
+      "productEmissions": 5900,
+      "requiresEmissionAllocation": true,
+      "requiresProductAmount": true,
+      "isCiipProduct": true
     }
   ]'
 where application_id=1;
@@ -59,10 +50,13 @@ update ggircs_portal.form_result
 set form_result =
 '[
     {
-      "fuelRowId": 1,
-      "quantity": 1011,
-      "fuelUnits": "t",
-      "emissionCategoryRowId": 1
+      "productAmount": 60000,
+      "productRowId": 29,
+      "productUnits": "MWh",
+      "productEmissions": 5900,
+      "requiresEmissionAllocation": true,
+      "requiresProductAmount": true,
+      "isCiipProduct": true
     }
   ]'
 where application_id=2;
@@ -70,12 +64,12 @@ where application_id=2;
 select results_eq(
   $$
     with record as (select row(application_revision.*)::ggircs_portal.application_revision from ggircs_portal.application_revision where application_id = 1 and version_number = 1)
-    select quantity from ggircs_portal.application_revision_fuel_form_data((select * from record))
+    select product_amount from ggircs_portal.application_revision_production_form_data((select * from record))
   $$,
   $$
-    select quantity from ggircs_portal.ciip_fuel where application_id=1 and version_number=1;
+    select product_amount from ggircs_portal.ciip_production where application_id=1 and version_number=1;
   $$,
-  'application_revision_fuel_form_data retrieves the fuel data for a specific application revision'
+  'application_revision_production_form_data retrieves the production data for a specific application revision'
 );
 
 select finish();
