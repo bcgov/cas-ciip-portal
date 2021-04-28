@@ -2549,6 +2549,34 @@ type ApplicationRevision implements Node {
   """The person who deleted the application revision status"""
   deletedBy: Int
 
+  """
+  Computed column returns the emission data as reported in a specific version of a CIIP (CleanBC Industrial Incentive Program) application
+  """
+  emissionFormData(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: EmissionFormDatumFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+  ): EmissionFormDataConnection!
+
   """Reads and enables pagination through a set of `FormResult`."""
   formResultsByApplicationIdAndVersionNumber(
     """Read all values in the set after (below) this cursor."""
@@ -2582,6 +2610,34 @@ type ApplicationRevision implements Node {
     """The method to use when ordering `FormResult`."""
     orderBy: [FormResultsOrderBy!] = [PRIMARY_KEY_ASC]
   ): FormResultsConnection!
+
+  """
+  Computed column returns the fuel data as reported in a specific version of a CIIP (CleanBC Industrial Incentive Program) application
+  """
+  fuelFormData(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: FuelFormDatumFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+  ): FuelFormDataConnection!
 
   """
   A globally unique identifier. Can be used in various places throughout the system to identify this single value.
@@ -2638,6 +2694,34 @@ type ApplicationRevision implements Node {
   Reporter defined justification for overriding error validation when submitting this revision
   """
   overrideJustification: String
+
+  """
+  Computed column returns the production data as reported in a specific version of a CIIP (CleanBC Industrial Incentive Program) application
+  """
+  productionFormData(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: ProductionFormDatumFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+  ): ProductionFormDataConnection!
 
   """
   Computed column to retrieve the sum of ciip emissions reported for an application_revision
@@ -25104,6 +25188,82 @@ input EmissionDatumFilter {
   reportId: IntFilter
 }
 
+"""A connection to a list of `EmissionFormDatum` values."""
+type EmissionFormDataConnection {
+  """
+  A list of edges which contains the `EmissionFormDatum` and cursor to aid in pagination.
+  """
+  edges: [EmissionFormDataEdge!]!
+
+  """A list of `EmissionFormDatum` objects."""
+  nodes: [EmissionFormDatum]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """
+  The count of *all* `EmissionFormDatum` you could get from the connection.
+  """
+  totalCount: Int!
+}
+
+"""A `EmissionFormDatum` edge in the connection."""
+type EmissionFormDataEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `EmissionFormDatum` at the end of the edge."""
+  node: EmissionFormDatum
+}
+
+"""
+Type defines the shape of the data contained in an emission form_result
+"""
+type EmissionFormDatum {
+  annualCo2E: BigFloat
+  annualEmission: BigFloat
+  comments: String
+  gasDescription: String
+  gasType: String
+  gwp: BigFloat
+  sourceTypeName: String
+}
+
+"""
+A filter to be used against `EmissionFormDatum` object types. All fields are combined with a logical ‘and.’
+"""
+input EmissionFormDatumFilter {
+  """Checks for all expressions in this list."""
+  and: [EmissionFormDatumFilter!]
+
+  """Filter by the object’s `annualCo2E` field."""
+  annualCo2E: BigFloatFilter
+
+  """Filter by the object’s `annualEmission` field."""
+  annualEmission: BigFloatFilter
+
+  """Filter by the object’s `comments` field."""
+  comments: StringFilter
+
+  """Filter by the object’s `gasDescription` field."""
+  gasDescription: StringFilter
+
+  """Filter by the object’s `gasType` field."""
+  gasType: StringFilter
+
+  """Filter by the object’s `gwp` field."""
+  gwp: BigFloatFilter
+
+  """Negates the expression."""
+  not: EmissionFormDatumFilter
+
+  """Checks for any expressions in this list."""
+  or: [EmissionFormDatumFilter!]
+
+  """Filter by the object’s `sourceTypeName` field."""
+  sourceTypeName: StringFilter
+}
+
 """A connection to a list of `Facility` values."""
 type FacilitiesConnection {
   """
@@ -27287,6 +27447,86 @@ input FuelFilter {
 
   """Filter by the object’s `updatedBy` field."""
   updatedBy: IntFilter
+}
+
+"""A connection to a list of `FuelFormDatum` values."""
+type FuelFormDataConnection {
+  """
+  A list of edges which contains the `FuelFormDatum` and cursor to aid in pagination.
+  """
+  edges: [FuelFormDataEdge!]!
+
+  """A list of `FuelFormDatum` objects."""
+  nodes: [FuelFormDatum]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `FuelFormDatum` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `FuelFormDatum` edge in the connection."""
+type FuelFormDataEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `FuelFormDatum` at the end of the edge."""
+  node: FuelFormDatum
+}
+
+"""Type defines the shape of the data contained in a fuel form_result"""
+type FuelFormDatum {
+  associatedEmissions: BigFloat
+  comments: String
+  emissionCategoryId: BigFloat
+  fuelDescription: String
+  fuelId: Int
+  fuelType: String
+  fuelTypeAlt: String
+  fuelUnits: String
+  quantity: BigFloat
+}
+
+"""
+A filter to be used against `FuelFormDatum` object types. All fields are combined with a logical ‘and.’
+"""
+input FuelFormDatumFilter {
+  """Checks for all expressions in this list."""
+  and: [FuelFormDatumFilter!]
+
+  """Filter by the object’s `associatedEmissions` field."""
+  associatedEmissions: BigFloatFilter
+
+  """Filter by the object’s `comments` field."""
+  comments: StringFilter
+
+  """Filter by the object’s `emissionCategoryId` field."""
+  emissionCategoryId: BigFloatFilter
+
+  """Filter by the object’s `fuelDescription` field."""
+  fuelDescription: StringFilter
+
+  """Filter by the object’s `fuelId` field."""
+  fuelId: IntFilter
+
+  """Filter by the object’s `fuelType` field."""
+  fuelType: StringFilter
+
+  """Filter by the object’s `fuelTypeAlt` field."""
+  fuelTypeAlt: StringFilter
+
+  """Filter by the object’s `fuelUnits` field."""
+  fuelUnits: StringFilter
+
+  """Negates the expression."""
+  not: FuelFormDatumFilter
+
+  """Checks for any expressions in this list."""
+  or: [FuelFormDatumFilter!]
+
+  """Filter by the object’s `quantity` field."""
+  quantity: BigFloatFilter
 }
 
 """An input for mutations affecting `Fuel`"""
@@ -33647,6 +33887,90 @@ type ProductReportingYearsByBenchmarkProductIdAndStartReportingYearManyToManyEdg
 
   """The `ReportingYear` at the end of the edge."""
   node: ReportingYear
+}
+
+"""A connection to a list of `ProductionFormDatum` values."""
+type ProductionFormDataConnection {
+  """
+  A list of edges which contains the `ProductionFormDatum` and cursor to aid in pagination.
+  """
+  edges: [ProductionFormDataEdge!]!
+
+  """A list of `ProductionFormDatum` objects."""
+  nodes: [ProductionFormDatum]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """
+  The count of *all* `ProductionFormDatum` you could get from the connection.
+  """
+  totalCount: Int!
+}
+
+"""A `ProductionFormDatum` edge in the connection."""
+type ProductionFormDataEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `ProductionFormDatum` at the end of the edge."""
+  node: ProductionFormDatum
+}
+
+"""
+Type defines the shape of the data contained in a production form_result
+"""
+type ProductionFormDatum {
+  associatedEmissions: BigFloat
+  comments: String
+  isEnergyProduct: Boolean
+  productAmount: BigFloat
+  productEmissions: BigFloat
+  productId: Int
+  productName: String
+  productUnits: String
+  requiresEmissionAllocation: Boolean
+}
+
+"""
+A filter to be used against `ProductionFormDatum` object types. All fields are combined with a logical ‘and.’
+"""
+input ProductionFormDatumFilter {
+  """Checks for all expressions in this list."""
+  and: [ProductionFormDatumFilter!]
+
+  """Filter by the object’s `associatedEmissions` field."""
+  associatedEmissions: BigFloatFilter
+
+  """Filter by the object’s `comments` field."""
+  comments: StringFilter
+
+  """Filter by the object’s `isEnergyProduct` field."""
+  isEnergyProduct: BooleanFilter
+
+  """Negates the expression."""
+  not: ProductionFormDatumFilter
+
+  """Checks for any expressions in this list."""
+  or: [ProductionFormDatumFilter!]
+
+  """Filter by the object’s `productAmount` field."""
+  productAmount: BigFloatFilter
+
+  """Filter by the object’s `productEmissions` field."""
+  productEmissions: BigFloatFilter
+
+  """Filter by the object’s `productId` field."""
+  productId: IntFilter
+
+  """Filter by the object’s `productName` field."""
+  productName: StringFilter
+
+  """Filter by the object’s `productUnits` field."""
+  productUnits: StringFilter
+
+  """Filter by the object’s `requiresEmissionAllocation` field."""
+  requiresEmissionAllocation: BooleanFilter
 }
 
 """A connection to a list of `Product` values."""
