@@ -41,7 +41,7 @@ set form_result =
       "emissionCategoryRowId": 1
     }
   ]'
-where application_id=1 and version_number=1 and form_id=3;
+where form_id=3;
 
 update ggircs_portal.form_result
 set form_result =
@@ -66,8 +66,27 @@ set form_result =
 }'
 where application_id=1 and version_number=1 and form_id=2;
 
+update ggircs_portal.form_result
+set form_result =
+'
+{
+  "sourceTypes": [
+    {
+      "gases":
+        [
+          {"gwp": 1, "gasType": "CO2nonbio", "annualCO2e": 10, "annualEmission": 5, "gasDescription": "Carbon dioxide from non-biomass"}
+        ],
+      "sourceTypeName": "General Stationary Combustion"
+    }
+  ]
+}'
+where application_id=2 and version_number=1 and form_id=2;
+
 with record as (select row(application_revision.*)::ggircs_portal.application_revision from ggircs_portal.application_revision where application_id=1 and version_number=1)
+    select ggircs_portal.emission_category_missing_fuel((select * from record));
+with record as (select row(application_revision.*)::ggircs_portal.application_revision from ggircs_portal.application_revision where application_id=2 and version_number=1)
     select ggircs_portal.emission_category_missing_fuel((select * from record));
 
 select finish();
+
 rollback;
