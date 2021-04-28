@@ -322,3 +322,4 @@ types/fuel_form_data [schema_ggircs_portal] 2021-04-28T16:41:32Z Dylan Leard <dy
 computed_columns/application_revision_fuel_form_data [tables/application_revision tables/form_result] 2021-04-28T16:45:36Z Dylan Leard <dylan@button.is> # Computed column to retrieve the fuel data for an application revision
 types/production_form_data [schema_ggircs_portal] 2021-04-28T16:55:58Z Dylan Leard <dylan@button.is> # Type defines the shape of a production form result
 computed_columns/application_revision_production_form_data [tables/application_revision tables/form_result] 2021-04-28T16:59:56Z Dylan Leard <dylan@button.is> # Computed column to retrive the production data for an application revision
+trigger_functions/ensure_window_open_submit_application_status [trigger_functions/ensure_window_open_submit_application_status@v2.2.0] 2021-04-28T20:58:50Z Dylan Leard <dylan@button.is> # Migration: only check version 1 in trigger (ignore v0)
