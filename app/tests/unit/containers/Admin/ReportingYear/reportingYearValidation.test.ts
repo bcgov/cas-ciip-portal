@@ -6,12 +6,10 @@ import {
   validateReportingDates,
   validateUniqueKey
 } from 'containers/Admin/ReportingYear/reportingYearValidation';
-import moment from 'moment-timezone';
+import {nowMoment} from 'functions/formatDates';
 
-const NOW = moment();
-const TODAY = `${NOW.year()}-${NOW.month() + 1}-${NOW.date()}T${NOW.hour()}:${
-  NOW.minute() + 10
-}:00-0${(-1 * NOW.utcOffset()) / 60}:00`;
+const NOW = nowMoment().add(10, 'minutes');
+const TODAY = NOW.format('YYYY-MM-DDTHH:mm:ss.SSSZ');
 
 interface FakeJsonSchemaErrors {
   __errors: [string?];
