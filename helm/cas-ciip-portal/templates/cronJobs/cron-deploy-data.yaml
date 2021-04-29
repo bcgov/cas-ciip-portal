@@ -14,13 +14,13 @@ spec:
   jobTemplate:
     spec:
       backoffLimit: 0
-      activeDeadlineSeconds: 600
+      activeDeadlineSeconds: 1800
       template:
         metadata:
           labels:
 {{ include "cas-ciip-portal.labels" . | indent 14 }}
         spec:
-          activeDeadlineSeconds: 600
+          activeDeadlineSeconds: 1800
           restartPolicy: Never
           containers:
             - env:
