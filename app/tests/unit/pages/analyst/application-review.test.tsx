@@ -47,8 +47,18 @@ const getTestQuery = ({
       }
     },
     applicationRevision: {
+      id: 'xyz',
       isCurrentVersion,
       overrideJustification: null,
+      statusesSincePageLoad: {
+        edges: [
+          {
+            node: {
+              applicationRevisionStatus: applicationRevisionStatus as CiipApplicationRevisionStatus
+            }
+          }
+        ]
+      },
       ' $fragmentRefs': {
         IncentiveCalculatorContainer_applicationRevision: true,
         ApplicationDetailsContainer_applicationRevision: true

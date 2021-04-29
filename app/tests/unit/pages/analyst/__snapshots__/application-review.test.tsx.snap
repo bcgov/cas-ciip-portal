@@ -90,8 +90,18 @@ exports[`The application-review page matches the last snapshot (with review side
               "ApplicationDetailsContainer_applicationRevision": true,
               "IncentiveCalculatorContainer_applicationRevision": true,
             },
+            "id": "xyz",
             "isCurrentVersion": true,
             "overrideJustification": null,
+            "statusesSincePageLoad": Object {
+              "edges": Array [
+                Object {
+                  "node": Object {
+                    "applicationRevisionStatus": "SUBMITTED",
+                  },
+                },
+              ],
+            },
           }
         }
         diffQuery={
@@ -132,8 +142,18 @@ exports[`The application-review page matches the last snapshot (with review side
                 "ApplicationDetailsContainer_applicationRevision": true,
                 "IncentiveCalculatorContainer_applicationRevision": true,
               },
+              "id": "xyz",
               "isCurrentVersion": true,
               "overrideJustification": null,
+              "statusesSincePageLoad": Object {
+                "edges": Array [
+                  Object {
+                    "node": Object {
+                      "applicationRevisionStatus": "SUBMITTED",
+                    },
+                  },
+                ],
+              },
             },
             "session": Object {
               " $fragmentRefs": Object {
@@ -184,8 +204,18 @@ exports[`The application-review page matches the last snapshot (with review side
                 "ApplicationDetailsContainer_applicationRevision": true,
                 "IncentiveCalculatorContainer_applicationRevision": true,
               },
+              "id": "xyz",
               "isCurrentVersion": true,
               "overrideJustification": null,
+              "statusesSincePageLoad": Object {
+                "edges": Array [
+                  Object {
+                    "node": Object {
+                      "applicationRevisionStatus": "SUBMITTED",
+                    },
+                  },
+                ],
+              },
             },
             "session": Object {
               " $fragmentRefs": Object {
@@ -206,8 +236,18 @@ exports[`The application-review page matches the last snapshot (with review side
               "ApplicationDetailsContainer_applicationRevision": true,
               "IncentiveCalculatorContainer_applicationRevision": true,
             },
+            "id": "xyz",
             "isCurrentVersion": true,
             "overrideJustification": null,
+            "statusesSincePageLoad": Object {
+              "edges": Array [
+                Object {
+                  "node": Object {
+                    "applicationRevisionStatus": "SUBMITTED",
+                  },
+                },
+              ],
+            },
           }
         }
       />
@@ -279,15 +319,8 @@ exports[`The application-review page matches the last snapshot (with review side
     <HelpButton
       isInternalUser={true}
     />
-    <Relay(DecisionModal)
-      applicationRevisionStatus={
-        Object {
-          " $fragmentRefs": Object {
-            "ApplicationRevisionStatusContainer_applicationRevisionStatus": true,
-          },
-          "applicationRevisionStatus": "SUBMITTED",
-        }
-      }
+    <DecisionModal
+      currentStatus="SUBMITTED"
       onDecision={[Function]}
       onHide={[Function]}
       show={false}
@@ -391,8 +424,18 @@ exports[`The application-review page matches the last snapshot (with review side
               "ApplicationDetailsContainer_applicationRevision": true,
               "IncentiveCalculatorContainer_applicationRevision": true,
             },
+            "id": "xyz",
             "isCurrentVersion": true,
             "overrideJustification": null,
+            "statusesSincePageLoad": Object {
+              "edges": Array [
+                Object {
+                  "node": Object {
+                    "applicationRevisionStatus": "SUBMITTED",
+                  },
+                },
+              ],
+            },
           }
         }
         diffQuery={
@@ -433,8 +476,18 @@ exports[`The application-review page matches the last snapshot (with review side
                 "ApplicationDetailsContainer_applicationRevision": true,
                 "IncentiveCalculatorContainer_applicationRevision": true,
               },
+              "id": "xyz",
               "isCurrentVersion": true,
               "overrideJustification": null,
+              "statusesSincePageLoad": Object {
+                "edges": Array [
+                  Object {
+                    "node": Object {
+                      "applicationRevisionStatus": "SUBMITTED",
+                    },
+                  },
+                ],
+              },
             },
             "session": Object {
               " $fragmentRefs": Object {
@@ -485,8 +538,18 @@ exports[`The application-review page matches the last snapshot (with review side
                 "ApplicationDetailsContainer_applicationRevision": true,
                 "IncentiveCalculatorContainer_applicationRevision": true,
               },
+              "id": "xyz",
               "isCurrentVersion": true,
               "overrideJustification": null,
+              "statusesSincePageLoad": Object {
+                "edges": Array [
+                  Object {
+                    "node": Object {
+                      "applicationRevisionStatus": "SUBMITTED",
+                    },
+                  },
+                ],
+              },
             },
             "session": Object {
               " $fragmentRefs": Object {
@@ -507,8 +570,18 @@ exports[`The application-review page matches the last snapshot (with review side
               "ApplicationDetailsContainer_applicationRevision": true,
               "IncentiveCalculatorContainer_applicationRevision": true,
             },
+            "id": "xyz",
             "isCurrentVersion": true,
             "overrideJustification": null,
+            "statusesSincePageLoad": Object {
+              "edges": Array [
+                Object {
+                  "node": Object {
+                    "applicationRevisionStatus": "SUBMITTED",
+                  },
+                },
+              ],
+            },
           }
         }
       />
@@ -581,15 +654,8 @@ exports[`The application-review page matches the last snapshot (with review side
       isFinalized={false}
       onClose={[Function]}
     />
-    <Relay(DecisionModal)
-      applicationRevisionStatus={
-        Object {
-          " $fragmentRefs": Object {
-            "ApplicationRevisionStatusContainer_applicationRevisionStatus": true,
-          },
-          "applicationRevisionStatus": "SUBMITTED",
-        }
-      }
+    <DecisionModal
+      currentStatus="SUBMITTED"
       onDecision={[Function]}
       onHide={[Function]}
       show={false}

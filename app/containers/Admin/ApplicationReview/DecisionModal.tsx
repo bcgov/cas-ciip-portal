@@ -1,8 +1,4 @@
 import React from 'react';
-import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
-import {DecisionModal_applicationRevisionStatus} from '__generated__/DecisionModal_applicationRevisionStatus.graphql';
-import createApplicationRevisionStatusMutation from 'mutations/application/createApplicationRevisionStatusMutation';
-import {CiipApplicationRevisionStatus} from 'createApplicationRevisionStatusMutation.graphql';
 import {Modal, Button, Alert} from 'react-bootstrap';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faEnvelope, faCheck, faTimes} from '@fortawesome/free-solid-svg-icons';
@@ -12,38 +8,21 @@ import {getUserFriendlyStatusLabel} from 'lib/text-transforms';
 interface Props {
   show: boolean;
   onHide: () => void;
-  onDecision: () => void;
-  relay: RelayProp;
-  applicationRevisionStatus: DecisionModal_applicationRevisionStatus;
+  onDecision: (decision: string) => void;
+  currentStatus: string;
 }
 
 export const DecisionModal: React.FunctionComponent<Props> = ({
   show,
   onHide,
   onDecision,
-  relay,
-  applicationRevisionStatus
+  currentStatus
 }) => {
-  const {applicationId, versionNumber} = applicationRevisionStatus;
-  const status = applicationRevisionStatus.applicationRevisionStatus;
-  const decisionHasBeenMade = status !== 'SUBMITTED';
+  const decisionHasBeenMade = currentStatus !== 'SUBMITTED';
   const title = decisionHasBeenMade
     ? `Revert Decision`
     : 'Make a Decision or Request Changes';
 
-  const saveDecision = async (decision) => {
-    onDecision();
-    const variables = {
-      input: {
-        applicationRevisionStatus: {
-          applicationId,
-          applicationRevisionStatus: decision as CiipApplicationRevisionStatus,
-          versionNumber
-        }
-      }
-    };
-    await createApplicationRevisionStatusMutation(relay.environment, variables);
-  };
   const makeDecisionContent = (
     <>
       <Modal.Body>
@@ -56,7 +35,7 @@ export const DecisionModal: React.FunctionComponent<Props> = ({
           <Button
             variant="outline-secondary"
             size="lg"
-            onClick={() => saveDecision('REQUESTED_CHANGES')}
+            onClick={() => onDecision('REQUESTED_CHANGES')}
           >
             <FontAwesomeIcon icon={faEnvelope} style={{marginRight: '0.5em'}} />
             Request Changes
@@ -67,7 +46,7 @@ export const DecisionModal: React.FunctionComponent<Props> = ({
         <Button
           variant="success"
           size="lg"
-          onClick={() => saveDecision('APPROVED')}
+          onClick={() => onDecision('APPROVED')}
         >
           <FontAwesomeIcon icon={faCheck} />
           Approve
@@ -76,7 +55,7 @@ export const DecisionModal: React.FunctionComponent<Props> = ({
         <Button
           variant="danger"
           size="lg"
-          onClick={() => saveDecision('REJECTED')}
+          onClick={() => onDecision('REJECTED')}
         >
           <FontAwesomeIcon icon={faTimes} />
           Reject
@@ -89,7 +68,7 @@ export const DecisionModal: React.FunctionComponent<Props> = ({
       <Modal.Body>
         <p>
           The applicant was notified by email of the following decision:{' '}
-          <strong>{getUserFriendlyStatusLabel(status)}</strong>
+          <strong>{getUserFriendlyStatusLabel(currentStatus)}</strong>
         </p>
         <p>Would you like to revert this decision?</p>
         <p>
@@ -98,7 +77,7 @@ export const DecisionModal: React.FunctionComponent<Props> = ({
           further changes to the review before making a new decision or
           requesting changes.
         </p>
-        {status === 'REQUESTED_CHANGES' && (
+        {currentStatus === 'REQUESTED_CHANGES' && (
           <Alert variant="secondary">
             <strong>Note:</strong> If the applicant begins drafting a new
             revision of the application, it will no longer be possible to revert
@@ -107,9 +86,7 @@ export const DecisionModal: React.FunctionComponent<Props> = ({
         )}
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={() => saveDecision('SUBMITTED')}>
-          Revert Decision
-        </Button>
+        <Button onClick={() => onDecision('SUBMITTED')}>Revert Decision</Button>
       </Modal.Footer>
     </>
   );
@@ -133,12 +110,4 @@ export const DecisionModal: React.FunctionComponent<Props> = ({
   );
 };
 
-export default createFragmentContainer(DecisionModal, {
-  applicationRevisionStatus: graphql`
-    fragment DecisionModal_applicationRevisionStatus on ApplicationRevisionStatus {
-      applicationRevisionStatus
-      applicationId
-      versionNumber
-    }
-  `
-});
+export default DecisionModal;

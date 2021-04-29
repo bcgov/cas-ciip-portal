@@ -4,6 +4,8 @@ import {applicationReviewQueryResponse} from 'applicationReviewQuery.graphql';
 import {Row, Button, OverlayTrigger, Tooltip} from 'react-bootstrap';
 import IncentiveCalculatorContainer from 'containers/Incentives/IncentiveCalculatorContainer';
 import ApplicationRevisionStatusContainer from 'containers/Applications/ApplicationRevisionStatusContainer';
+import {CiipApplicationRevisionStatus} from 'createApplicationRevisionStatusEdgeMutation.graphql';
+import createApplicationRevisionStatusEdgeMutation from 'mutations/application/createApplicationRevisionStatusEdgeMutation';
 import DefaultLayout from 'layouts/default-layout';
 import ApplicationDetails from 'containers/Applications/ApplicationDetailsContainer';
 import ApplicationOverrideNotification from 'components/Application/ApplicationOverrideNotificationCard';
@@ -49,7 +51,6 @@ class ApplicationReview extends Component<Props, State> {
             versionNumberInput: $version
           ) {
             applicationRevisionStatus
-            ...DecisionModal_applicationRevisionStatus
             ...ApplicationRevisionStatusContainer_applicationRevisionStatus
           }
           applicationReviewStepsByApplicationId {
@@ -63,10 +64,24 @@ class ApplicationReview extends Component<Props, State> {
           }
         }
         applicationRevision(id: $applicationRevisionId) {
+          id
           ...ApplicationDetailsContainer_applicationRevision
           overrideJustification
           isCurrentVersion
           ...IncentiveCalculatorContainer_applicationRevision
+          statusesSincePageLoad: applicationRevisionStatusesByApplicationIdAndVersionNumber(
+            last: 1
+          )
+            @connection(
+              key: "ApplicationReview_statusesSincePageLoad"
+              filters: []
+            ) {
+            edges {
+              node {
+                applicationRevisionStatus
+              }
+            }
+          }
         }
         ...ApplicationDetailsContainer_query
         ...ApplicationDetailsContainer_diffQuery
@@ -123,20 +138,41 @@ class ApplicationReview extends Component<Props, State> {
       };
     });
   }
+  async saveDecision(decision: CiipApplicationRevisionStatus) {
+    const variables = {
+      input: {
+        applicationRevisionStatus: {
+          applicationId: this.props.query.application.rowId,
+          applicationRevisionStatus: decision as CiipApplicationRevisionStatus,
+          versionNumber: 1
+        }
+      }
+    };
+    await createApplicationRevisionStatusEdgeMutation(
+      this.props.relayEnvironment,
+      variables,
+      this.props.query.applicationRevision.id,
+      'ApplicationReview_statusesSincePageLoad'
+    );
+  }
   render() {
     const {query} = this.props;
     const {
       overrideJustification,
       isCurrentVersion
     } = query?.applicationRevision;
-    const {applicationRevisionStatus} = query?.application.reviewRevisionStatus;
+    const statusesLength =
+      query?.applicationRevision.statusesSincePageLoad.edges.length;
+    const {
+      applicationRevisionStatus
+    } = query?.applicationRevision.statusesSincePageLoad.edges[
+      statusesLength - 1
+    ].node;
     const {session} = query || {};
     const isUserAdmin = query?.session.userGroups.some((groupConst) =>
       ADMIN_GROUP.includes(groupConst)
     );
-    const currentReviewIsFinalized =
-      this.props.query?.application.reviewRevisionStatus
-        .applicationRevisionStatus !== 'SUBMITTED';
+    const currentReviewIsFinalized = applicationRevisionStatus !== 'SUBMITTED';
 
     return (
       <DefaultLayout
@@ -239,9 +275,12 @@ class ApplicationReview extends Component<Props, State> {
           )}
           {!this.state.isSidebarOpened && <HelpButton isInternalUser />}
           <DecisionModal
-            applicationRevisionStatus={query.application.reviewRevisionStatus}
+            currentStatus={applicationRevisionStatus}
             show={this.state.showDecisionModal}
-            onDecision={this.closeDecisionModal}
+            onDecision={(decision) => {
+              this.saveDecision(decision as CiipApplicationRevisionStatus);
+              this.closeDecisionModal();
+            }}
             onHide={this.closeDecisionModal}
           />
         </Row>
