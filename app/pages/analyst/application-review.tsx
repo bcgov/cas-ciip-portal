@@ -3,7 +3,10 @@ import {graphql} from 'react-relay';
 import {applicationReviewQueryResponse} from 'applicationReviewQuery.graphql';
 import {Row, Button, OverlayTrigger, Tooltip} from 'react-bootstrap';
 import IncentiveCalculatorContainer from 'containers/Incentives/IncentiveCalculatorContainer';
-import {CiipApplicationRevisionStatus} from 'createApplicationRevisionStatusEdgeMutation.graphql';
+import {
+  CiipApplicationRevisionStatus,
+  createApplicationRevisionStatusEdgeMutationVariables
+} from 'createApplicationRevisionStatusEdgeMutation.graphql';
 import createApplicationRevisionStatusEdgeMutation from 'mutations/application/createApplicationRevisionStatusEdgeMutation';
 import DefaultLayout from 'layouts/default-layout';
 import ApplicationDetails from 'containers/Applications/ApplicationDetailsContainer';
@@ -143,7 +146,7 @@ class ApplicationReview extends Component<Props, State> {
     };
     await createApplicationRevisionStatusEdgeMutation(
       this.props.relayEnvironment,
-      variables,
+      variables as createApplicationRevisionStatusEdgeMutationVariables,
       this.props.query.applicationRevision.id,
       'ApplicationReview_statusesSincePageLoad'
     );
@@ -184,9 +187,7 @@ class ApplicationReview extends Component<Props, State> {
              offset-md-${this.state.isSidebarOpened ? 0 : 1}
              offset-lg-${this.state.isSidebarOpened ? 0 : 1}`}
           >
-            <h1>
-              {`Application #${query.application.rowId}`}
-            </h1>
+            <h1>{`Application #${query.application.rowId}`}</h1>
             <ApplicationReviewStepSelector
               applicationReviewSteps={
                 query.application.applicationReviewStepsByApplicationId
