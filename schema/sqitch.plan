@@ -326,3 +326,4 @@ trigger_functions/ensure_window_open_submit_application_status [trigger_function
 @v2.3.0 2021-04-28T21:29:52Z Matthieu Foucault <matthieu@button.is> # release v2.3.0
 tables/application_004 [tables/application_003] 2021-04-28T23:11:07Z Dylan Leard <dylan@button.is> # Migration: reset swrs_report_version to 1 (was set to current in last migration, which blocked updating via refresh_swrs_version_data())
 swrs_functions/refresh_swrs_version_data [swrs_functions/refresh_swrs_version_data@v2.3.0] 2021-04-28T23:15:05Z Dylan Leard <dylan@button.is> # Migration: Update swrs_report_version on update
+@v2.3.1 2021-04-29T17:39:15Z Dylan Leard <dylan@button.is> # release v2.3.1
