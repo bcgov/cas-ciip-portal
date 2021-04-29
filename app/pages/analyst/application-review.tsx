@@ -5,9 +5,9 @@ import {Row, Button, OverlayTrigger, Tooltip} from 'react-bootstrap';
 import IncentiveCalculatorContainer from 'containers/Incentives/IncentiveCalculatorContainer';
 import {
   CiipApplicationRevisionStatus,
-  createApplicationRevisionStatusMutationVariables
-} from 'createApplicationRevisionStatusMutation.graphql';
-import createApplicationRevisionStatusMutation from 'mutations/application/createApplicationRevisionStatusMutation';
+  analystCreateApplicationRevisionStatusMutationVariables
+} from 'analystCreateApplicationRevisionStatusMutation.graphql';
+import analystCreateApplicationRevisionStatusMutation from 'mutations/application/analystCreateApplicationRevisionStatusMutation';
 import DefaultLayout from 'layouts/default-layout';
 import ApplicationDetails from 'containers/Applications/ApplicationDetailsContainer';
 import ApplicationOverrideNotification from 'components/Application/ApplicationOverrideNotificationCard';
@@ -136,9 +136,9 @@ class ApplicationReview extends Component<Props, State> {
         }
       }
     };
-    await createApplicationRevisionStatusMutation(
+    await analystCreateApplicationRevisionStatusMutation(
       this.props.relayEnvironment,
-      variables as createApplicationRevisionStatusMutationVariables
+      variables as analystCreateApplicationRevisionStatusMutationVariables
     );
   }
   render() {

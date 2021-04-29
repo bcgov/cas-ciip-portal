@@ -13,20 +13,6 @@ const mutation = graphql`
     createApplicationRevisionStatus(input: $input) {
       applicationRevisionStatus {
         id
-        versionNumber
-        applicationRevisionByApplicationIdAndVersionNumber {
-          id
-          applicationRevisionStatus {
-            id
-            applicationRevisionStatus
-          }
-          applicationByApplicationId {
-            id
-            applicationReviewStepsByApplicationId {
-              ...ApplicationReviewStepSelector_applicationReviewSteps
-            }
-          }
-        }
       }
     }
   }
