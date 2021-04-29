@@ -5,20 +5,18 @@ begin;
 
 create or replace function ggircs_portal.emission_total_matches_rev_zero(app_rev ggircs_portal.application_revision)
   returns boolean as
-  $func$
-    declare
-      swrs_revision ggircs_portal.application_revision;
-      total_ciip_emissions numeric;
-      total_swrs_emissions numeric;
-    begin
-      swrs_revision := (select row(application_revision.*)::ggircs_portal.application_revision from ggircs_portal.application_revision where application_id = app_rev.application_id and version_number = 0);
-      total_ciip_emissions := ggircs_portal.application_revision_total_ciip_emissions(app_rev);
-      total_swrs_emissions := ggircs_portal.application_revision_total_ciip_emissions(swrs_revision);
-
-      return abs(total_ciip_emissions - total_swrs_emissions) < 10;
+  $function$
+    with swrs_revision as (
+      select row(application_revision.*)::ggircs_portal.application_revision
+      from ggircs_portal.application_revision
+      where application_id = app_rev.application_id
+        and version_number = 0)
+    select case
+      when (select count(*) from swrs_revision) = 0 then true
+      else abs(ggircs_portal.application_revision_total_ciip_emissions(app_rev) - ggircs_portal.application_revision_total_ciip_emissions((select * from swrs_revision))) < 10
     end;
-  $func$
-language 'plpgsql' stable;
+  $function$
+language 'sql' stable;
 
 comment on function ggircs_portal.emission_total_matches_rev_zero(app_rev ggircs_portal.application_revision) is
 'This validation function for a CIIP (CleanBC Industrial Incentive Program) application determines if the emissions reported match the emissions reported in SWRS.';

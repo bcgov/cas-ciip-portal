@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(7);
+select plan(8);
 
 select has_function(
   'ggircs_portal', 'emission_total_matches_rev_zero', array['ggircs_portal.application_revision'],
@@ -147,6 +147,29 @@ select results_eq (
     VALUES ('false'::boolean)
   $$,
   'mission_total_matches_rev_zero should return false when emissions are more than -10 apart'
+ );
+
+
+-- Should return true when there is no version zero in the system
+create or replace function ggircs_portal.application_revision_total_ciip_emissions(application_revision ggircs_portal.application_revision)
+returns numeric
+  as $$
+    select case
+      when application_revision.version_number = 1 then 123456.7
+      else 1.1
+    end;
+  $$ language sql stable;
+
+delete from ggircs_portal.application_revision where version_number=0;
+
+select results_eq (
+  $$
+    select ggircs_portal.emission_total_matches_rev_zero((select row(application_revision.*)::ggircs_portal.application_revision from ggircs_portal.application_revision where application_id=1 and version_number=1))
+  $$,
+  $$
+    VALUES ('true'::boolean)
+  $$,
+  'mission_total_matches_rev_zero should return true when there is no version 0'
  );
 
 select finish();
