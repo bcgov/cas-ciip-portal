@@ -327,3 +327,5 @@ trigger_functions/ensure_window_open_submit_application_status [trigger_function
 tables/application_004 [tables/application_003] 2021-04-28T23:11:07Z Dylan Leard <dylan@button.is> # Migration: reset swrs_report_version to 1 (was set to current in last migration, which blocked updating via refresh_swrs_version_data())
 swrs_functions/refresh_swrs_version_data [swrs_functions/refresh_swrs_version_data@v2.3.0] 2021-04-28T23:15:05Z Dylan Leard <dylan@button.is> # Migration: Update swrs_report_version on update
 @v2.3.1 2021-04-29T17:39:15Z Dylan Leard <dylan@button.is> # release v2.3.1
+application_validation_functions/emission_total_matches_rev_zero 2021-04-28T15:44:50Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # Validation function that validates that for a given application revision, the emission total matches the revision zero (swrs) emission total
+computed_columns/application_revision_total_ciip_emissions [computed_columns/application_revision_total_ciip_emissions@v2.3.0] 2021-04-28T23:40:07Z Naomi Aro <naomi.aro@gov.bc.ca> # Don't use metabase view
