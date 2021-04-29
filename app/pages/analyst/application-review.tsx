@@ -3,7 +3,6 @@ import {graphql} from 'react-relay';
 import {applicationReviewQueryResponse} from 'applicationReviewQuery.graphql';
 import {Row, Button, OverlayTrigger, Tooltip} from 'react-bootstrap';
 import IncentiveCalculatorContainer from 'containers/Incentives/IncentiveCalculatorContainer';
-import ApplicationRevisionStatusContainer from 'containers/Applications/ApplicationRevisionStatusContainer';
 import {CiipApplicationRevisionStatus} from 'createApplicationRevisionStatusEdgeMutation.graphql';
 import createApplicationRevisionStatusEdgeMutation from 'mutations/application/createApplicationRevisionStatusEdgeMutation';
 import DefaultLayout from 'layouts/default-layout';
@@ -47,12 +46,6 @@ class ApplicationReview extends Component<Props, State> {
         }
         application(id: $applicationId) {
           rowId
-          reviewRevisionStatus: applicationRevisionStatus(
-            versionNumberInput: $version
-          ) {
-            applicationRevisionStatus
-            ...ApplicationRevisionStatusContainer_applicationRevisionStatus
-          }
           applicationReviewStepsByApplicationId {
             edges {
               node {
@@ -193,12 +186,6 @@ class ApplicationReview extends Component<Props, State> {
           >
             <h1>
               {`Application #${query.application.rowId}`}
-              <ApplicationRevisionStatusContainer
-                applicationRevisionStatus={
-                  query.application.reviewRevisionStatus
-                }
-                applicationRowId={query.application.rowId}
-              />
             </h1>
             <ApplicationReviewStepSelector
               applicationReviewSteps={

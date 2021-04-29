@@ -32,17 +32,6 @@ exports[`The application-review page matches the last snapshot (with review side
         className="jsx-2536304384"
       >
         Application #1
-        <Relay(ApplicationRevisionStatusComponent)
-          applicationRevisionStatus={
-            Object {
-              " $fragmentRefs": Object {
-                "ApplicationRevisionStatusContainer_applicationRevisionStatus": true,
-              },
-              "applicationRevisionStatus": "SUBMITTED",
-            }
-          }
-          applicationRowId={1}
-        />
       </h1>
       <Relay(ApplicationReviewStepSelector)
         applicationReviewSteps={
@@ -366,17 +355,6 @@ exports[`The application-review page matches the last snapshot (with review side
         className="jsx-2536304384"
       >
         Application #1
-        <Relay(ApplicationRevisionStatusComponent)
-          applicationRevisionStatus={
-            Object {
-              " $fragmentRefs": Object {
-                "ApplicationRevisionStatusContainer_applicationRevisionStatus": true,
-              },
-              "applicationRevisionStatus": "SUBMITTED",
-            }
-          }
-          applicationRowId={1}
-        />
       </h1>
       <Relay(ApplicationReviewStepSelector)
         applicationReviewSteps={
