@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.3.1](https://github.com/bcgov/cas-ciip-portal/compare/v2.3.0...v2.3.1) (2021-04-29)
+
+
+### Bug Fixes
+
+* reset swrs_report_version to 1 ([8fcc221](https://github.com/bcgov/cas-ciip-portal/commit/8fcc22134ed3c1f3bfa00fb90628c416bf9cbd9b))
+* update swrs_report_version on update of version 0 ([17ee5be](https://github.com/bcgov/cas-ciip-portal/commit/17ee5be8f4f29c7b45e364263382967177fc9002))
+
 ## [2.3.0](https://github.com/bcgov/cas-ciip-portal/compare/v2.2.0...v2.3.0) (2021-04-28)
 
 
