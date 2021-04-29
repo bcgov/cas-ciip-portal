@@ -93,7 +93,7 @@ select is(
   (with record as (select row(application_revision.*)::ggircs_portal.application_revision from ggircs_portal.application_revision where application_id=2 and version_number=1)
     select ggircs_portal.emission_category_missing_fuel((select * from record))),
   true,
-  'Function returns false when there are emission categories with an emission reported, but no corresponding fuel reported'
+  'Function returns true when all emission categories with an emission reported have a corresponding fuel reported'
 );
 
 select finish();
