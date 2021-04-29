@@ -14,7 +14,7 @@ import getConfig from 'next/config';
 import {INCENTIVE_ANALYST, ADMIN_GROUP} from 'data/group-constants';
 import ApplicationReviewStepSelector from 'containers/Admin/ApplicationReview/ApplicationReviewStepSelector';
 import ReviewSidebar from 'containers/Admin/ApplicationReview/ReviewSidebar';
-import DecisionModal from 'containers/Admin/ApplicationReview/DecisionModal';
+import DecisionModal from 'components/Admin/ApplicationReview/DecisionModal';
 import HelpButton from 'components/helpers/HelpButton';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faArrowUp} from '@fortawesome/free-solid-svg-icons';
