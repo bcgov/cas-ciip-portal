@@ -21,7 +21,7 @@ language 'sql' stable;
 comment on function ggircs_portal.emission_total_matches_rev_zero(app_rev ggircs_portal.application_revision) is
 'This validation function for a CIIP (CleanBC Industrial Incentive Program) application determines if the emissions reported match the emissions reported in SWRS.';
 
-grant execute on function ggircs_portal.emission_total_matches_rev_zero to ciip_administrator, ciip_analyst, ciip_industry_user, ciip_guest;
+grant execute on function ggircs_portal.emission_total_matches_rev_zero to ciip_administrator, ciip_analyst, ciip_industry_user;
 
 insert into ggircs_portal.application_revision_validation_function(
   validation_function_name,
