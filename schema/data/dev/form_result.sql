@@ -727,13 +727,13 @@ begin;
   begin
     update ggircs_portal.form_result
     set form_result = (select dummy_result from dummy_results where id = 1)
-    where form_id = 1
+    where form_id = (select id from ggircs_portal.form_json where slug = 'admin-2020')
     and application_id = 5
     and version_number = 1;
 
     update ggircs_portal.form_result
     set form_result = (select dummy_result from dummy_results where id = 2)
-    where form_id = 2
+    where form_id = (select id from ggircs_portal.form_json where slug = 'emission')
     and application_id = 5
     and version_number = 1;
 
@@ -759,7 +759,7 @@ begin;
           "emissionCategoryRowId": 2
         }
       ]')::jsonb
-    where form_id = 3
+    where form_id = (select id from ggircs_portal.form_json where slug = 'fuel')
     and application_id = 5
     and version_number = 1;
 
@@ -785,7 +785,7 @@ begin;
           "isCiipProduct": true
         }
       ]')::jsonb
-    where form_id = 4
+    where form_id = (select id from ggircs_portal.form_json where slug = 'production')
     and application_id = 5
     and version_number = 1;
 
