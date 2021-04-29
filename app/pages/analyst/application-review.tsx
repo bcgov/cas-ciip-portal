@@ -5,9 +5,9 @@ import {Row, Button, OverlayTrigger, Tooltip} from 'react-bootstrap';
 import IncentiveCalculatorContainer from 'containers/Incentives/IncentiveCalculatorContainer';
 import {
   CiipApplicationRevisionStatus,
-  createApplicationRevisionStatusEdgeMutationVariables
-} from 'createApplicationRevisionStatusEdgeMutation.graphql';
-import createApplicationRevisionStatusEdgeMutation from 'mutations/application/createApplicationRevisionStatusEdgeMutation';
+  createApplicationRevisionStatusMutationVariables
+} from 'createApplicationRevisionStatusMutation.graphql';
+import createApplicationRevisionStatusMutation from 'mutations/application/createApplicationRevisionStatusMutation';
 import DefaultLayout from 'layouts/default-layout';
 import ApplicationDetails from 'containers/Applications/ApplicationDetailsContainer';
 import ApplicationOverrideNotification from 'components/Application/ApplicationOverrideNotificationCard';
@@ -37,11 +37,7 @@ class ApplicationReview extends Component<Props, State> {
   static allowedGroups = ALLOWED_GROUPS;
   static isAccessProtected = true;
   static query = graphql`
-    query applicationReviewQuery(
-      $applicationRevisionId: ID!
-      $applicationId: ID!
-      $version: String!
-    ) {
+    query applicationReviewQuery($applicationId: ID!, $version: String!) {
       query {
         session {
           userGroups
@@ -58,26 +54,20 @@ class ApplicationReview extends Component<Props, State> {
             }
             ...ApplicationReviewStepSelector_applicationReviewSteps
           }
-        }
-        applicationRevision(id: $applicationRevisionId) {
-          id
-          overrideJustification
-          isCurrentVersion
-          statusesSincePageLoad: applicationRevisionStatusesByApplicationIdAndVersionNumber(
-            last: 1
-          )
-            @connection(
-              key: "ApplicationReview_statusesSincePageLoad"
-              filters: []
-            ) {
-            edges {
-              node {
-                applicationRevisionStatus
-              }
+          applicationRevision: applicationRevisionByStringVersionNumber(
+            versionNumberInput: $version
+          ) {
+            id
+            versionNumber
+            overrideJustification
+            isCurrentVersion
+            applicationRevisionStatus {
+              id
+              applicationRevisionStatus
             }
+            ...ApplicationDetailsContainer_applicationRevision
+            ...IncentiveCalculatorContainer_applicationRevision
           }
-          ...ApplicationDetailsContainer_applicationRevision
-          ...IncentiveCalculatorContainer_applicationRevision
         }
         ...ApplicationDetailsContainer_query
         ...ApplicationDetailsContainer_diffQuery
@@ -135,20 +125,20 @@ class ApplicationReview extends Component<Props, State> {
     });
   }
   async saveDecision(decision: CiipApplicationRevisionStatus) {
+    const applicationId = this.props.query.application.rowId;
+    const {versionNumber} = this.props.query.application.applicationRevision;
     const variables = {
       input: {
         applicationRevisionStatus: {
-          applicationId: this.props.query.application.rowId,
+          applicationId,
           applicationRevisionStatus: decision as CiipApplicationRevisionStatus,
-          versionNumber: 1
+          versionNumber
         }
       }
     };
-    await createApplicationRevisionStatusEdgeMutation(
+    await createApplicationRevisionStatusMutation(
       this.props.relayEnvironment,
-      variables as createApplicationRevisionStatusEdgeMutationVariables,
-      this.props.query.applicationRevision.id,
-      'ApplicationReview_statusesSincePageLoad'
+      variables as createApplicationRevisionStatusMutationVariables
     );
   }
   render() {
@@ -156,14 +146,10 @@ class ApplicationReview extends Component<Props, State> {
     const {
       overrideJustification,
       isCurrentVersion
-    } = query?.applicationRevision;
-    const statusesLength =
-      query?.applicationRevision.statusesSincePageLoad.edges.length;
+    } = query?.application.applicationRevision;
     const {
       applicationRevisionStatus
-    } = query?.applicationRevision.statusesSincePageLoad.edges[
-      statusesLength - 1
-    ].node;
+    } = query?.application.applicationRevision.applicationRevisionStatus;
     const {session} = query || {};
     const isUserAdmin = query?.session.userGroups.some((groupConst) =>
       ADMIN_GROUP.includes(groupConst)
@@ -213,11 +199,11 @@ class ApplicationReview extends Component<Props, State> {
               review
               query={query}
               diffQuery={query}
-              applicationRevision={query.applicationRevision}
+              applicationRevision={query.application.applicationRevision}
               liveValidate={false}
             />
             <IncentiveCalculatorContainer
-              applicationRevision={query.applicationRevision}
+              applicationRevision={query.application.applicationRevision}
             />
             <OverlayTrigger
               placement="top"

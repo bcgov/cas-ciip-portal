@@ -44,24 +44,20 @@ const getTestQuery = ({
         ' $fragmentRefs': {
           ApplicationReviewStepSelector_applicationReviewSteps: true
         }
-      }
-    },
-    applicationRevision: {
-      id: 'xyz',
-      isCurrentVersion,
-      overrideJustification: null,
-      statusesSincePageLoad: {
-        edges: [
-          {
-            node: {
-              applicationRevisionStatus: applicationRevisionStatus as CiipApplicationRevisionStatus
-            }
-          }
-        ]
       },
-      ' $fragmentRefs': {
-        IncentiveCalculatorContainer_applicationRevision: true,
-        ApplicationDetailsContainer_applicationRevision: true
+      applicationRevision: {
+        id: 'xyz',
+        isCurrentVersion,
+        versionNumber: 1,
+        overrideJustification: null,
+        applicationRevisionStatus: {
+          id: 'jkl',
+          applicationRevisionStatus: applicationRevisionStatus as CiipApplicationRevisionStatus
+        },
+        ' $fragmentRefs': {
+          IncentiveCalculatorContainer_applicationRevision: true,
+          ApplicationDetailsContainer_applicationRevision: true
+        }
       }
     },
     ' $fragmentRefs': {
@@ -222,16 +218,19 @@ describe('The application-review page', () => {
         .find('Relay(IncentiveCalculator)')
         .first()
         .prop('applicationRevision')
-    ).toBe(query.applicationRevision);
+    ).toBe(query.application.applicationRevision);
   });
 
   it('renders the ApplicationOverrideNotification component if an override has been set', () => {
     const data = getTestQuery({});
     const overrideQuery = {
       ...data,
-      applicationRevision: {
-        ...data.applicationRevision,
-        overrideJustification: 'oops'
+      application: {
+        ...data.application,
+        applicationRevision: {
+          ...data.application.applicationRevision,
+          overrideJustification: 'oops'
+        }
       }
     };
     const wrapper = shallow(
