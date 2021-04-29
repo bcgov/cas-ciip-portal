@@ -5,7 +5,7 @@ import {faCheck, faLock} from '@fortawesome/free-solid-svg-icons';
 import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
 import {ReviewSidebar_applicationReviewStep} from '__generated__/ReviewSidebar_applicationReviewStep.graphql';
 import {createReviewCommentMutationVariables} from '__generated__/createReviewCommentMutation.graphql';
-import ReviewComment from 'components/Admin/ReviewComment';
+import ReviewComment from 'components/Admin/ApplicationReview/ReviewComment';
 import createReviewCommentMutation from 'mutations/application_review_step/createReviewCommentMutation';
 import updateReviewCommentMutation from 'mutations/application_review_step/updateReviewCommentMutation';
 import deleteReviewCommentMutation from 'mutations/application_review_step/deleteReviewCommentMutation';
@@ -13,7 +13,7 @@ import updateApplicationReviewStepMutation from 'mutations/application_review_st
 import {nowMoment} from 'functions/formatDates';
 import {capitalize} from 'lib/text-transforms';
 import GenericConfirmationModal from 'components/GenericConfirmationModal';
-import AddReviewCommentModal from 'components/Admin/AddReviewCommentModal';
+import AddReviewCommentModal from 'components/Admin/ApplicationReview/AddReviewCommentModal';
 
 interface Props {
   onClose: () => void;

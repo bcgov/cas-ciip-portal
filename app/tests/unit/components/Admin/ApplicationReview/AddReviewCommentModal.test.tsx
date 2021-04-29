@@ -1,7 +1,7 @@
 import React from 'react';
 import {act} from 'react-dom/test-utils';
 import {shallow, mount} from 'enzyme';
-import {AddReviewCommentModal} from 'components/Admin/AddReviewCommentModal';
+import {AddReviewCommentModal} from 'components/Admin/ApplicationReview/AddReviewCommentModal';
 
 const getTestElement = ({
   show = true,

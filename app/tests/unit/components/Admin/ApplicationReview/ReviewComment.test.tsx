@@ -1,6 +1,6 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import {ReviewComment} from 'components/Admin/ReviewComment';
+import {ReviewComment} from 'components/Admin/ApplicationReview/ReviewComment';
 
 describe('ReviewComment', () => {
   it('interactable (viewOnly = false) comments should match the last accepted snapshot', async () => {
