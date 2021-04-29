@@ -37,7 +37,7 @@ describe('When logged in as a reporter', () => {
   it('The application admin tab has no detectable ally violations on load', () => {
     cy.sqlFixture('fixtures/set-legal-disclaimer-true');
     const applicationId = window.btoa('["applications",2]');
-    const formId = window.btoa('["form_jsons",1]');
+    const formId = window.btoa('["form_jsons",5]');
     cy.visit(`/reporter/application/${applicationId}?formId=${formId}`);
     cy.get('#page-content');
     cy.contains('Administration');

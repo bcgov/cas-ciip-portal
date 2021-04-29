@@ -4,7 +4,7 @@ describe('When viewing an application in draft as a reporter', () => {
   )}`;
 
   const adminFormUrl = `${applicationUrl}?formId=${window.btoa(
-    '["form_jsons",1]'
+    '["form_jsons",5]'
   )}`;
   const emissionFormUrl = `${applicationUrl}?formId=${window.btoa(
     '["form_jsons",2]'

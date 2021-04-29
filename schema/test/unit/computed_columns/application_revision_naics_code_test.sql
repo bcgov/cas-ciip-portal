@@ -30,7 +30,10 @@ $$;
 select test_helper.mock_open_window();
 select test_helper.create_test_users();
 select test_helper.create_applications(1, True, True);
-update ggircs_portal.form_result set form_result = '{"operator": {"naics": "123456"}}' where application_id=1 and version_number=1 and form_id=1;
+update ggircs_portal.form_result set form_result = '{"operator": {"naics": "123456"}}'
+where application_id=1
+  and version_number=1
+  and form_id=(select id from ggircs_portal.form_json where slug = 'admin-2020');
 
 insert into ggircs_portal.naics_code(naics_code, naics_description) values ('123456', 'test naics'), ('654321', 'test naics2');
 

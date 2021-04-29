@@ -17,7 +17,9 @@ select throws_like(
   $$
     update ggircs_portal.form_result
     set form_result='{"operator":{"name": "updated"}}'
-    where application_id=1 and version_number=1 and form_id=1;
+    where application_id=1
+      and version_number=1
+      and form_id=(select id from ggircs_portal.form_json where slug='admin-2020');
   $$,
   'Form_result is immutable%',
   'Throws when attempting to update a form result from a submitted application'
@@ -33,7 +35,9 @@ select lives_ok(
   $$
     update ggircs_portal.form_result
     set form_result='{"operator":{"name": "start"}}'
-    where application_id=1 and version_number=1 and form_id=1;
+    where application_id=1
+      and version_number=1
+      and form_id=(select id from ggircs_portal.form_json where slug='admin-2020');
   $$,
   'Does not throw when application has not been submitted'
 );
