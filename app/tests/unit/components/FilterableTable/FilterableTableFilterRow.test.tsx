@@ -1,6 +1,6 @@
 import React from 'react';
 import FilterableTableFilterRow from 'components/FilterableTable/FilterableTableFilterRow';
-import {shallow, mount} from 'enzyme';
+import {mount} from 'enzyme';
 import {
   SortOnlyFilter,
   TableFilter,
@@ -9,12 +9,16 @@ import {
 
 describe('The filterable table headers component', () => {
   it('renders search and reset buttons', () => {
-    const rendered = shallow(
-      <FilterableTableFilterRow
-        filters={[]}
-        onSubmit={jest.fn()}
-        filterArgs={{}}
-      />
+    const rendered = mount(
+      <table>
+        <thead>
+          <FilterableTableFilterRow
+            filters={[]}
+            onSubmit={jest.fn()}
+            filterArgs={{}}
+          />
+        </thead>
+      </table>
     );
     expect(rendered).toMatchSnapshot();
     expect(
@@ -31,11 +35,15 @@ describe('The filterable table headers component', () => {
       new TextFilter('test2', 'test2')
     ];
     const rendered = mount(
-      <FilterableTableFilterRow
-        filters={filters}
-        onSubmit={jest.fn()}
-        filterArgs={{test: 'a', test2: 'b'}}
-      />
+      <table>
+        <thead>
+          <FilterableTableFilterRow
+            filters={filters}
+            onSubmit={jest.fn()}
+            filterArgs={{test: 'a', test2: 'b'}}
+          />
+        </thead>
+      </table>
     );
 
     expect(rendered).toMatchSnapshot();
@@ -49,11 +57,15 @@ describe('The filterable table headers component', () => {
       new TextFilter('test3', 'test3')
     ];
     const rendered = mount(
-      <FilterableTableFilterRow
-        filters={filters}
-        onSubmit={jest.fn()}
-        filterArgs={{}}
-      />
+      <table>
+        <thead>
+          <FilterableTableFilterRow
+            filters={filters}
+            onSubmit={jest.fn()}
+            filterArgs={{}}
+          />
+        </thead>
+      </table>
     );
 
     expect(rendered).toMatchSnapshot();
@@ -64,12 +76,16 @@ describe('The filterable table headers component', () => {
   it('should submit the filters if the "Enter" key is pressed', () => {
     const handleSubmit = jest.fn();
     const filters = [new TextFilter('test', 'test')];
-    const rendered = shallow(
-      <FilterableTableFilterRow
-        filters={filters}
-        onSubmit={handleSubmit}
-        filterArgs={{}}
-      />
+    const rendered = mount(
+      <table>
+        <thead>
+          <FilterableTableFilterRow
+            filters={filters}
+            onSubmit={handleSubmit}
+            filterArgs={{}}
+          />
+        </thead>
+      </table>
     );
 
     rendered.find('tr').first().simulate('keyDown', {key: 'Enter'});
