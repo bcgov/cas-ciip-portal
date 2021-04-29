@@ -4,4 +4,4 @@ begin;
 
 alter table ggircs_portal.form_json drop constraint form_json_slug_unique;
 
-drop;
+commit;
