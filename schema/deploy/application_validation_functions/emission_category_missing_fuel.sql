@@ -12,10 +12,11 @@ create or replace function ggircs_portal.emission_category_missing_fuel(app_revi
     select distinct(source_type_name) as reported_via_emission
     from ggircs_portal.application_revision_emission_form_data(app_revision) ed
     where ed.annual_co2e > 0
-  ), fuels as (
-    with fuel_data as (
-      select * from ggircs_portal.application_revision_fuel_form_data(app_revision)
-    )
+  ),
+  fuel_data as (
+    select * from ggircs_portal.application_revision_fuel_form_data(app_revision)
+  ),
+  fuels as (
     select distinct(display_name) as reported_via_fuel from ggircs_portal.emission_category ec
     join fuel_data
       on fuel_data.emission_category_id = ec.id
@@ -24,7 +25,7 @@ create or replace function ggircs_portal.emission_category_missing_fuel(app_revi
 
 $$ language sql stable;
 
-grant execute on function ggircs_portal.emission_category_missing_fuel to ciip_administrator, ciip_analyst, ciip_industry_user, ciip_guest;
+grant execute on function ggircs_portal.emission_category_missing_fuel to ciip_administrator, ciip_analyst, ciip_industry_user;
 
 comment on function ggircs_portal.emission_category_missing_fuel(ggircs_portal.application_revision) is 'This validation function for a CIIP (CleanBC Industrial Incentive Program) application determines if any emission categories have emissions reported in a category, but no corresponding fuels reported for that category';
 
