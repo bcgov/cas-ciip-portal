@@ -58,10 +58,8 @@ class ApplicationReview extends Component<Props, State> {
         }
         applicationRevision(id: $applicationRevisionId) {
           id
-          ...ApplicationDetailsContainer_applicationRevision
           overrideJustification
           isCurrentVersion
-          ...IncentiveCalculatorContainer_applicationRevision
           statusesSincePageLoad: applicationRevisionStatusesByApplicationIdAndVersionNumber(
             last: 1
           )
@@ -75,6 +73,8 @@ class ApplicationReview extends Component<Props, State> {
               }
             }
           }
+          ...ApplicationDetailsContainer_applicationRevision
+          ...IncentiveCalculatorContainer_applicationRevision
         }
         ...ApplicationDetailsContainer_query
         ...ApplicationDetailsContainer_diffQuery
