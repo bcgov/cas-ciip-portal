@@ -1,199 +1,225 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`The filterable table headers component only renders elements that are searchable 1`] = `
-<tr
-  className="jsx-870174952"
-  onKeyDown={[Function]}
->
-  <td />
-  <td />
-  <td>
-    <FormControl
-      aria-label="Filter by test3"
-      name="test3"
-      onChange={[Function]}
-      placeholder="Search"
-      value=""
+<table>
+  <thead>
+    <tr
+      className="jsx-870174952"
+      onKeyDown={[Function]}
     >
-      <input
-        aria-label="Filter by test3"
-        className="form-control"
-        name="test3"
-        onChange={[Function]}
-        placeholder="Search"
-        value=""
-      />
-    </FormControl>
-  </td>
-  <td
-    className="jsx-870174952 flex"
-  >
-    <Button
-      active={false}
-      disabled={false}
-      onClick={[Function]}
-      variant="outline-secondary"
-    >
-      <button
-        className="btn btn-outline-secondary"
-        disabled={false}
-        onClick={[Function]}
-        type="button"
+      <td />
+      <td />
+      <td>
+        <FormControl
+          aria-label="Filter by test3"
+          name="test3"
+          onChange={[Function]}
+          placeholder="Search"
+          value=""
+        >
+          <input
+            aria-label="Filter by test3"
+            className="form-control"
+            name="test3"
+            onChange={[Function]}
+            placeholder="Search"
+            value=""
+          />
+        </FormControl>
+      </td>
+      <td
+        className="jsx-870174952 flex"
       >
-        Clear
-      </button>
-    </Button>
-    <Button
-      active={false}
-      disabled={false}
-      onClick={[Function]}
-      style={
-        Object {
-          "marginLeft": "5px",
-        }
-      }
-      variant="primary"
-    >
-      <button
-        className="btn btn-primary"
-        disabled={false}
-        onClick={[Function]}
-        style={
-          Object {
-            "marginLeft": "5px",
+        <Button
+          active={false}
+          disabled={false}
+          onClick={[Function]}
+          variant="outline-secondary"
+        >
+          <button
+            className="btn btn-outline-secondary"
+            disabled={false}
+            onClick={[Function]}
+            type="button"
+          >
+            Clear
+          </button>
+        </Button>
+        <Button
+          active={false}
+          disabled={false}
+          onClick={[Function]}
+          style={
+            Object {
+              "marginLeft": "5px",
+            }
           }
-        }
-        type="button"
-      >
-        Apply
-      </button>
-    </Button>
-  </td>
-</tr>
+          variant="primary"
+        >
+          <button
+            className="btn btn-primary"
+            disabled={false}
+            onClick={[Function]}
+            style={
+              Object {
+                "marginLeft": "5px",
+              }
+            }
+            type="button"
+          >
+            Apply
+          </button>
+        </Button>
+      </td>
+    </tr>
+  </thead>
+</table>
 `;
 
 exports[`The filterable table headers component renders as many td elements as search options, plus one for the search buttons 1`] = `
-<tr
-  className="jsx-870174952"
-  onKeyDown={[Function]}
->
-  <td>
-    <FormControl
-      aria-label="Filter by test"
-      name="test"
-      onChange={[Function]}
-      placeholder="Search"
-      value="a"
+<table>
+  <thead>
+    <tr
+      className="jsx-870174952"
+      onKeyDown={[Function]}
     >
-      <input
-        aria-label="Filter by test"
-        className="form-control"
-        name="test"
-        onChange={[Function]}
-        placeholder="Search"
-        value="a"
-      />
-    </FormControl>
-  </td>
-  <td>
-    <FormControl
-      aria-label="Filter by test2"
-      name="test2"
-      onChange={[Function]}
-      placeholder="Search"
-      value="b"
-    >
-      <input
-        aria-label="Filter by test2"
-        className="form-control"
-        name="test2"
-        onChange={[Function]}
-        placeholder="Search"
-        value="b"
-      />
-    </FormControl>
-  </td>
-  <td
-    className="jsx-870174952 flex"
-  >
-    <Button
-      active={false}
-      disabled={false}
-      onClick={[Function]}
-      variant="outline-secondary"
-    >
-      <button
-        className="btn btn-outline-secondary"
-        disabled={false}
-        onClick={[Function]}
-        type="button"
+      <td>
+        <FormControl
+          aria-label="Filter by test"
+          name="test"
+          onChange={[Function]}
+          placeholder="Search"
+          value="a"
+        >
+          <input
+            aria-label="Filter by test"
+            className="form-control"
+            name="test"
+            onChange={[Function]}
+            placeholder="Search"
+            value="a"
+          />
+        </FormControl>
+      </td>
+      <td>
+        <FormControl
+          aria-label="Filter by test2"
+          name="test2"
+          onChange={[Function]}
+          placeholder="Search"
+          value="b"
+        >
+          <input
+            aria-label="Filter by test2"
+            className="form-control"
+            name="test2"
+            onChange={[Function]}
+            placeholder="Search"
+            value="b"
+          />
+        </FormControl>
+      </td>
+      <td
+        className="jsx-870174952 flex"
       >
-        Clear
-      </button>
-    </Button>
-    <Button
-      active={false}
-      disabled={false}
-      onClick={[Function]}
-      style={
-        Object {
-          "marginLeft": "5px",
-        }
-      }
-      variant="primary"
-    >
-      <button
-        className="btn btn-primary"
-        disabled={false}
-        onClick={[Function]}
-        style={
-          Object {
-            "marginLeft": "5px",
+        <Button
+          active={false}
+          disabled={false}
+          onClick={[Function]}
+          variant="outline-secondary"
+        >
+          <button
+            className="btn btn-outline-secondary"
+            disabled={false}
+            onClick={[Function]}
+            type="button"
+          >
+            Clear
+          </button>
+        </Button>
+        <Button
+          active={false}
+          disabled={false}
+          onClick={[Function]}
+          style={
+            Object {
+              "marginLeft": "5px",
+            }
           }
-        }
-        type="button"
-      >
-        Apply
-      </button>
-    </Button>
-  </td>
-</tr>
+          variant="primary"
+        >
+          <button
+            className="btn btn-primary"
+            disabled={false}
+            onClick={[Function]}
+            style={
+              Object {
+                "marginLeft": "5px",
+              }
+            }
+            type="button"
+          >
+            Apply
+          </button>
+        </Button>
+      </td>
+    </tr>
+  </thead>
+</table>
 `;
 
 exports[`The filterable table headers component renders search and reset buttons 1`] = `
-<tr
-  className="jsx-870174952"
-  onKeyDown={[Function]}
->
-  <td
-    className="jsx-870174952 flex"
-  >
-    <Button
-      active={false}
-      disabled={false}
-      onClick={[Function]}
-      variant="outline-secondary"
+<table>
+  <thead>
+    <tr
+      className="jsx-870174952"
+      onKeyDown={[Function]}
     >
-      Clear
-    </Button>
-    <Button
-      active={false}
-      disabled={false}
-      onClick={[Function]}
-      style={
-        Object {
-          "marginLeft": "5px",
-        }
-      }
-      variant="primary"
-    >
-      Apply
-    </Button>
-  </td>
-  <JSXStyle
-    id="870174952"
-  >
-    .flex.jsx-870174952{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;}
-  </JSXStyle>
-</tr>
+      <td
+        className="jsx-870174952 flex"
+      >
+        <Button
+          active={false}
+          disabled={false}
+          onClick={[Function]}
+          variant="outline-secondary"
+        >
+          <button
+            className="btn btn-outline-secondary"
+            disabled={false}
+            onClick={[Function]}
+            type="button"
+          >
+            Clear
+          </button>
+        </Button>
+        <Button
+          active={false}
+          disabled={false}
+          onClick={[Function]}
+          style={
+            Object {
+              "marginLeft": "5px",
+            }
+          }
+          variant="primary"
+        >
+          <button
+            className="btn btn-primary"
+            disabled={false}
+            onClick={[Function]}
+            style={
+              Object {
+                "marginLeft": "5px",
+              }
+            }
+            type="button"
+          >
+            Apply
+          </button>
+        </Button>
+      </td>
+    </tr>
+  </thead>
+</table>
 `;

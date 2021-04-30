@@ -218,10 +218,12 @@ describe('ReviewSidebar', () => {
     expect(onClose).toBeCalled();
   });
   it('a confirmation modal is shown when there are unresolved comments on trying to mark the step completed', () => {
-    const spy = jest.spyOn(
-      require('mutations/application_review_step/updateApplicationReviewStepMutation'),
-      'default'
-    );
+    const spy = jest
+      .spyOn(
+        require('mutations/application_review_step/updateApplicationReviewStepMutation'),
+        'default'
+      )
+      .mockImplementation(() => {});
     const relay = {environment: null};
     const data = applicationReviewStepWithComments();
     const r = mount(
@@ -237,16 +239,19 @@ describe('ReviewSidebar', () => {
     expect(spy).not.toHaveBeenCalled();
   });
   it('no confirmation modal is shown when all comments are resolved and marking the step completed', () => {
-    const spy = jest.spyOn(
-      require('mutations/application_review_step/updateApplicationReviewStepMutation'),
-      'default'
-    );
+    const spy = jest
+      .spyOn(
+        require('mutations/application_review_step/updateApplicationReviewStepMutation'),
+        'default'
+      )
+      .mockImplementation(() => {});
+
+    const data = applicationReviewStepWithAllCommentsResolved() as ReviewSidebar_applicationReviewStep;
     const relay = {environment: null};
-    const data = applicationReviewStepWithAllCommentsResolved();
     const r = mount(
       <ReviewSidebar
         isFinalized={false}
-        applicationReviewStep={data as ReviewSidebar_applicationReviewStep}
+        applicationReviewStep={data}
         onClose={() => {}}
         relay={relay as any}
       />
@@ -266,10 +271,12 @@ describe('ReviewSidebar', () => {
     ).toBeTruthy();
   });
   it('marking the review step completed disables the ability to resolve/delete comments', () => {
-    const spy = jest.spyOn(
-      require('mutations/application_review_step/updateApplicationReviewStepMutation'),
-      'default'
-    );
+    const spy = jest
+      .spyOn(
+        require('mutations/application_review_step/updateApplicationReviewStepMutation'),
+        'default'
+      )
+      .mockImplementation(() => {});
     const relay = {environment: null};
     const data = applicationReviewStepWithComments();
     const r = mount(
@@ -297,10 +304,12 @@ describe('ReviewSidebar', () => {
     ).toBeTruthy();
   });
   it('marking the review step incomplete enables the ability to resolve/delete comments', () => {
-    const spy = jest.spyOn(
-      require('mutations/application_review_step/updateApplicationReviewStepMutation'),
-      'default'
-    );
+    const spy = jest
+      .spyOn(
+        require('mutations/application_review_step/updateApplicationReviewStepMutation'),
+        'default'
+      )
+      .mockImplementation(() => {});
     const relay = {environment: null};
     const data = {
       ...applicationReviewStepWithComments(),
@@ -355,10 +364,12 @@ describe('ReviewSidebar', () => {
   it('saves new review comments and adds them to the application review step', () => {
     const commentText = 'this is a test comment';
     const isInternalComment = false;
-    const spy = jest.spyOn(
-      require('mutations/application_review_step/createReviewCommentMutation'),
-      'default'
-    );
+    const spy = jest
+      .spyOn(
+        require('mutations/application_review_step/createReviewCommentMutation'),
+        'default'
+      )
+      .mockImplementation(() => {});
     const relay = {environment: null};
     const r = shallow(
       <ReviewSidebar
