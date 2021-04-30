@@ -15,57 +15,64 @@ type FakeMutationType = {
   readonly variables: FakeMutationVariables;
 };
 
-/*
+describe('Toaster', () => {
+  /*
   Using createCiipUser to avoid having to create a dummy mutation in our production schema.
 */
-const mutation = graphql`
-  mutation ToasterMutation($input: CreateCiipUserInput!) {
-    createCiipUser(input: $input) {
-      ciipUser {
-        emailAddress
+  const mutation = graphql`
+    mutation ToasterMutation($input: CreateCiipUserInput!) {
+      createCiipUser(input: $input) {
+        ciipUser {
+          emailAddress
+        }
       }
     }
-  }
-`;
+  `;
 
-const fakeMutation = async (
-  environment: RelayModernEnvironment,
-  variables: FakeMutationVariables
-) => {
-  return new BaseMutation<FakeMutationType>('fake-mutation').performMutation(
-    environment,
-    mutation,
-    variables
-  );
-};
+  const fakeMutation = async (
+    environment: RelayModernEnvironment,
+    variables: FakeMutationVariables
+  ) => {
+    return new BaseMutation<FakeMutationType>('fake-mutation').performMutation(
+      environment,
+      mutation,
+      variables
+    );
+  };
 
-const {
-  createMockEnvironment,
-  MockPayloadGenerator
-} = require('relay-test-utils');
+  const {
+    createMockEnvironment,
+    MockPayloadGenerator
+  } = require('relay-test-utils');
 
-const environment = createMockEnvironment();
-jest.useFakeTimers();
-const fakeInput = {
-  input: {
-    ciipUser: {
-      emailAddress: 'test@test.com'
-    }
-  },
-  messages: {
-    success: 'Wohoo',
-    failure: 'Oops!'
-  }
-};
+  const environment = createMockEnvironment();
 
-const rejectToast = async () => {
-  fakeMutation(environment, fakeInput);
-  const operation = environment.mock.getMostRecentOperation();
-  environment.mock.reject(operation, MockPayloadGenerator.generate(operation));
-};
-
-describe('Toaster', () => {
   jest.useFakeTimers();
+
+  const fakeInput = {
+    input: {
+      ciipUser: {
+        emailAddress: 'test@test.com'
+      }
+    },
+    messages: {
+      success: 'Wohoo',
+      failure: 'Oops!'
+    }
+  };
+
+  const rejectToast = async () => {
+    const p = fakeMutation(environment, fakeInput);
+    const operation = environment.mock.getMostRecentOperation();
+    environment.mock.reject(
+      operation,
+      MockPayloadGenerator.generate(operation)
+    );
+
+    p.catch(() => {
+      /* await and gobble the error we triggered */
+    });
+  };
 
   it('correctly renders a failure notification when a failure notification is defined', () => {
     const App = () => (
