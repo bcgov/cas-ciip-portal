@@ -202,7 +202,30 @@ describe('ApplicationReviewStepSelector', () => {
     const button = wrapper.find('ListGroupItem#open-decision-dialog');
     expect(button.prop('disabled')).toBeTrue();
     expect(button.prop('aria-disabled')).toBeTrue();
-    wrapper.simulate('click');
+    button.simulate('click');
+    expect(spy).not.toHaveBeenCalled();
+    wrapper
+      .find('ListGroupItem#open-decision-dialog')
+      .simulate('keydown', {key: 'Enter'});
+    expect(spy).not.toHaveBeenCalled();
+  });
+  it('"make a decision or request changes" button is disabled if a newer draft exists', () => {
+    const spy = jest.fn();
+    const wrapper = shallow(
+      getTestElement({
+        status: 'SUBMITTED',
+        onDecisionOrChangeRequestAction: spy,
+        newerDraftExists: true
+      })
+    );
+    const button = wrapper.find('ListGroupItem#open-decision-dialog');
+    expect(button.prop('disabled')).toBeTrue();
+    expect(button.prop('aria-disabled')).toBeTrue();
+    button.simulate('click');
+    expect(spy).not.toHaveBeenCalled();
+    wrapper
+      .find('ListGroupItem#open-decision-dialog')
+      .simulate('keydown', {key: 'Enter'});
     expect(spy).not.toHaveBeenCalled();
   });
   it('shows optional "Change decision" button', () => {
