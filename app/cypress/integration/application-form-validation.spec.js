@@ -77,7 +77,7 @@ describe('When viewing an application in draft as a reporter', () => {
 
     // Facility details
     cy.get('#root_facility_facilityName').clear().type('Acme1');
-    cy.get('#root_facility_facilityType').select('LFO');
+    cy.get('#root_facility_facilityType').select('SFO');
 
     cy.get('div.card-header').contains('Form input saved');
     cy.contains('Continue').click();
