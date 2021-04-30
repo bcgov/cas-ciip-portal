@@ -57,7 +57,7 @@ export const ApplicationReviewStepSelector: React.FunctionComponent<Props> = ({
   const allStepsAreComplete = steps.every((edge) => edge.node.isComplete);
   const decisionHasBeenMade = decisionOrChangeRequestStatus !== 'SUBMITTED';
   const decisionOrChangeRequestIsDisabled =
-    !allStepsAreComplete || decisionHasBeenMade;
+    !allStepsAreComplete || decisionHasBeenMade || newerDraftExists;
   const renderStepStatusIcon = (icon) => (
     <FontAwesomeIcon
       icon={icon}
