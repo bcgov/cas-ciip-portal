@@ -60,7 +60,7 @@ describe('When logged in as a reporter', () => {
       'include',
       `/reporter/application/${applicationId}/version/1/view`
     );
-    cy.get('.admin');
+    cy.get('.admin-2020');
 
     // test permanent redirection from the v1 view-application page
     cy.visit(
