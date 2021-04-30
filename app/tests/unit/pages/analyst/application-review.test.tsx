@@ -24,6 +24,9 @@ const getTestQuery = ({
         ApplicationDetailsContainer_application: true
       },
       rowId: 1,
+      facilityByFacilityId: {
+        bcghgid: '456'
+      },
       reviewRevisionStatus: {
         applicationRevisionStatus: applicationRevisionStatus as CiipApplicationRevisionStatus,
         ' $fragmentRefs': {

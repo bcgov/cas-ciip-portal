@@ -16,7 +16,7 @@ import ReviewSidebar from 'containers/Admin/ApplicationReview/ReviewSidebar';
 import DecisionModal from 'components/Admin/ApplicationReview/DecisionModal';
 import HelpButton from 'components/helpers/HelpButton';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faArrowUp} from '@fortawesome/free-solid-svg-icons';
+import {faArrowUp, faInfoCircle} from '@fortawesome/free-solid-svg-icons';
 
 const runtimeConfig = getConfig()?.publicRuntimeConfig ?? {};
 const ALLOWED_GROUPS = [INCENTIVE_ANALYST, ...ADMIN_GROUP];
@@ -42,6 +42,9 @@ class ApplicationReview extends Component<Props, State> {
         }
         application(id: $applicationId) {
           rowId
+          facilityByFacilityId {
+            bcghgid
+          }
           applicationReviewStepsByApplicationId {
             edges {
               node {
@@ -142,8 +145,10 @@ class ApplicationReview extends Component<Props, State> {
     const {query} = this.props;
     const {
       overrideJustification,
-      isCurrentVersion
+      isCurrentVersion,
+      versionNumber
     } = query?.application.applicationRevision;
+    const {bcghgid} = query.application.facilityByFacilityId;
     const {
       applicationRevisionStatus
     } = query?.application.applicationRevision.applicationRevisionStatus;
@@ -170,7 +175,21 @@ class ApplicationReview extends Component<Props, State> {
              offset-md-${this.state.isSidebarOpened ? 0 : 1}
              offset-lg-${this.state.isSidebarOpened ? 0 : 1}`}
           >
-            <h1>{`Application #${query.application.rowId}`}</h1>
+            <div id="title" className="col-xxl-6 col-xl-7 col-lg-8 col-md-10">
+              <h1>{`Application #${query.application.rowId}`}</h1>
+              <p>
+                {versionNumber > 1 && (
+                  <span id="revised-tag">
+                    <FontAwesomeIcon
+                      icon={faInfoCircle}
+                      style={{marginRight: '0.5em'}}
+                    />
+                    Revised: version {versionNumber}
+                  </span>
+                )}
+                <span>BC GHG ID: {bcghgid}</span>
+              </p>
+            </div>
             <ApplicationReviewStepSelector
               applicationReviewSteps={
                 query.application.applicationReviewStepsByApplicationId
@@ -257,7 +276,27 @@ class ApplicationReview extends Component<Props, State> {
         </Row>
         <style jsx>{`
           h1 {
+            margin-bottom: 0.75rem;
+          }
+          #title {
             margin-bottom: 20px;
+            padding-left: 0;
+          }
+          #title p {
+            display: flex;
+            align-items: center;
+            line-height: 2rem;
+            color: #555;
+          }
+          #revised-tag {
+            flex-shrink: 0;
+            margin-right: 1rem;
+            color: #0053b3;
+            padding: 0.25rem 0.5rem;
+            font-size: 0.875rem;
+            line-height: 1.5;
+            border: 1px solid currentColor;
+            border-radius: 0.2rem;
           }
         `}</style>
       </DefaultLayout>
