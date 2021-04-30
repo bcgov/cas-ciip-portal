@@ -3,10 +3,7 @@ import {graphql} from 'react-relay';
 import {applicationReviewQueryResponse} from 'applicationReviewQuery.graphql';
 import {Row, Button, OverlayTrigger, Tooltip} from 'react-bootstrap';
 import IncentiveCalculatorContainer from 'containers/Incentives/IncentiveCalculatorContainer';
-import {
-  CiipApplicationRevisionStatus,
-  analystCreateApplicationRevisionStatusMutationVariables
-} from 'analystCreateApplicationRevisionStatusMutation.graphql';
+import {CiipApplicationRevisionStatus} from 'analystCreateApplicationRevisionStatusMutation.graphql';
 import analystCreateApplicationRevisionStatusMutation from 'mutations/application/analystCreateApplicationRevisionStatusMutation';
 import DefaultLayout from 'layouts/default-layout';
 import ApplicationDetails from 'containers/Applications/ApplicationDetailsContainer';
@@ -131,14 +128,14 @@ class ApplicationReview extends Component<Props, State> {
       input: {
         applicationRevisionStatus: {
           applicationId,
-          applicationRevisionStatus: decision as CiipApplicationRevisionStatus,
+          applicationRevisionStatus: decision,
           versionNumber
         }
       }
     };
     await analystCreateApplicationRevisionStatusMutation(
       this.props.relayEnvironment,
-      variables as analystCreateApplicationRevisionStatusMutationVariables
+      variables
     );
   }
   render() {
@@ -258,7 +255,7 @@ class ApplicationReview extends Component<Props, State> {
             onHide={this.closeDecisionModal}
           />
         </Row>
-        <style jsx global>{`
+        <style jsx>{`
           h1 {
             margin-bottom: 20px;
           }

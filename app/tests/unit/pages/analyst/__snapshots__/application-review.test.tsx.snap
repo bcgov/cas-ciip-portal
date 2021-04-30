@@ -302,7 +302,7 @@ exports[`The application-review page matches the last snapshot (with review side
   <JSXStyle
     id="2536304384"
   >
-    h1{margin-bottom:20px;}
+    h1.jsx-2536304384{margin-bottom:20px;}
   </JSXStyle>
 </Relay(DefaultLayout)>
 `;
@@ -610,7 +610,7 @@ exports[`The application-review page matches the last snapshot (with review side
   <JSXStyle
     id="2536304384"
   >
-    h1{margin-bottom:20px;}
+    h1.jsx-2536304384{margin-bottom:20px;}
   </JSXStyle>
 </Relay(DefaultLayout)>
 `;
