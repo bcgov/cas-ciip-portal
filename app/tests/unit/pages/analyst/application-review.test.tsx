@@ -149,6 +149,82 @@ describe('The application-review page', () => {
     ).not.toEqual('SUBMITTED');
   });
 
+  it('manages the toggle state of the decision modal', () => {
+    const query = getTestQuery({});
+    const wrapper = shallow(
+      <ApplicationReview
+        router={null}
+        query={query as applicationReviewQueryResponse['query']}
+      />
+    );
+    expect(wrapper.find('DecisionModal').exists()).toBeTrue();
+    expect(wrapper.find('DecisionModal').prop('show')).toBeFalse();
+
+    wrapper.setState((state) => {
+      return {
+        ...state,
+        showDecisionModal: true
+      };
+    });
+    expect(wrapper.find('DecisionModal').prop('show')).toBeTrue();
+
+    // Canceling out (clicking away or "x" button) the decision modal hides it
+    const decisionModalOnHide: () => void = wrapper
+      .find('DecisionModal')
+      .prop('onHide');
+    decisionModalOnHide();
+    expect(wrapper.state('showDecisionModal')).toBeFalse();
+    expect(wrapper.find('DecisionModal').prop('show')).toBeFalse();
+
+    // Step selector toggles decision modal open
+    const stepSelectorToggleOpen: () => void = wrapper
+      .find('Relay(ApplicationReviewStepSelector)')
+      .prop('onDecisionOrChangeRequestAction');
+    stepSelectorToggleOpen();
+    expect(wrapper.state('showDecisionModal')).toBeTrue();
+    expect(wrapper.find('DecisionModal').prop('show')).toBeTrue();
+
+    // Decision modal is closed after making a decision
+    const decisionModalOnDecisionAction: (
+      decision: string
+    ) => void = wrapper.find('DecisionModal').prop('onDecision');
+    decisionModalOnDecisionAction('APPROVED');
+    expect(wrapper.state('showDecisionModal')).toBeFalse();
+    expect(wrapper.find('DecisionModal').prop('show')).toBeFalse();
+  });
+
+  it('saves the application decision', () => {
+    const decision = 'REQUESTED_CHANGES';
+    const spy = jest.spyOn(
+      require('mutations/application/analystCreateApplicationRevisionStatusMutation'),
+      'default'
+    );
+    const query = getTestQuery({});
+    const wrapper = shallow(
+      <ApplicationReview
+        router={null}
+        query={query as applicationReviewQueryResponse['query']}
+      />
+    );
+    expect(spy).not.toHaveBeenCalled();
+    const onDecision: (
+      decision: CiipApplicationRevisionStatus
+    ) => void = wrapper.find('DecisionModal').prop('onDecision');
+    onDecision(decision);
+    expect(spy).toHaveBeenCalledTimes(1);
+
+    // Relay environment (first parameter) is undefined in unit tests:
+    expect(spy).toHaveBeenCalledWith(undefined, {
+      input: {
+        applicationRevisionStatus: {
+          applicationId: query.application.rowId,
+          applicationRevisionStatus: decision,
+          versionNumber: query.application.applicationRevision.versionNumber
+        }
+      }
+    });
+  });
+
   it('should enable the ability to change an application decision if user is an admin', () => {
     const query = getTestQuery({
       applicationRevisionStatus: 'REJECTED',
