@@ -334,3 +334,4 @@ application_validation_functions/emission_category_missing_fuel [tables/applicat
 tables/form_json_002 2021-04-28T18:17:56Z Matthieu Foucault <matthieu@button.is> # add unique constraint on ggircs_portal.form_json.slug
 views/ciip_admin [views/ciip_admin@v2.3.0] 2021-04-29T17:25:52Z Matthieu Foucault <matthieu@button.is> # add support for admin-2020 form data
 computed_columns/application_revision_naics_code [computed_columns/application_revision_naics_code@v2.3.0] 2021-04-29T17:50:32Z Matthieu Foucault <matthieu@button.is> # add support for admin-2020 form data
+swrs_functions/init_application_administration_form_result [swrs_functions/init_application_administration_form_result@v2.3.1] 2021-04-29T23:52:57Z Matthieu Foucault <matthieu@button.is> # update function for admin-2020 changes

@@ -78,13 +78,9 @@ describe('When viewing an application in draft as a reporter', () => {
     // Facility details
     cy.get('#root_facility_facilityName').clear().type('Acme1');
     cy.get('#root_facility_facilityType').select('LFO');
-    cy.get('#root_facility_bcghgid').clear().type('abcd');
 
     cy.get('div.card-header').contains('Form input saved');
     cy.contains('Continue').click();
-    cy.get('#root_facility_bcghgid +div .error-detail').contains(
-      'BCGHGID code should be numeric'
-    );
     cy.get('#root_operator_naics')
       .parents('.form-group')
       .get('.error-detail')
@@ -110,9 +106,6 @@ describe('When viewing an application in draft as a reporter', () => {
       'BC Corporate Registry number should be 1-3 letters followed by 7 digits'
     );
     cy.get('.admin-2020 > .collapse').contains('Format should be A1A 1A1');
-    cy.get('.admin-2020 > .collapse').contains(
-      'BCGHGID code should be numeric'
-    );
     cy.get('.admin-2020.summary-card').happoScreenshot({
       component: 'Admin Summary Card',
       variant: 'with errors'
@@ -139,7 +132,6 @@ describe('When viewing an application in draft as a reporter', () => {
     cy.visit(adminFormUrl);
 
     // Fix invalid data
-    cy.get('#root_facility_bcghgid').clear().type(11001100223);
     cy.get('#root_operator_naics').clear().type('777777');
     cy.get('.dropdown-item').click();
     cy.get('#root_operationalRepresentative_mailingAddress_postalCode')
