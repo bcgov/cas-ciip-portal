@@ -80,6 +80,76 @@
             "title": "Operational Representative Mailing Address"
           }
         }
+      },
+      "primaryContact": {
+        "type": "object",
+        "title": "Primary Application Contact",
+        "required": [
+          "email",
+          "phone",
+          "firstName",
+          "lastName",
+          "position",
+          "organization"
+        ],
+        "properties": {
+          "email": {
+            "type": "string",
+            "title": "Email Address",
+            "format": "email"
+          },
+          "phone": {
+            "type": "string",
+            "title": "Telephone Number"
+          },
+          "firstName": {
+            "type": "string",
+            "title": "First Name"
+          },
+          "lastName": {
+            "type": "string",
+            "title": "Last Name"
+          },
+          "position": {
+            "type": "string",
+            "title": "Position/Title"
+          },
+          "organization": {
+            "type": "string",
+            "title": "Organization"
+          }
+        }
+      },
+      "secondaryContact": {
+        "type": "object",
+        "title": "Secondary Application Contact",
+        "properties": {
+          "email": {
+            "type": "string",
+            "title": "Email Address",
+            "format": "email"
+          },
+          "phone": {
+            "type": "string",
+            "title": "Telephone Number"
+          },
+          "firstName": {
+            "type": "string",
+            "title": "First Name"
+          },
+          "lastName": {
+            "type": "string",
+            "title": "Last Name"
+          },
+          "position": {
+            "type": "string",
+            "title": "Position/Title"
+          },
+          "organization": {
+            "type": "string",
+            "title": "Organization"
+          }
+        }
       }
     },
     "definitions": {
@@ -163,7 +233,9 @@
       "comments",
       "facility",
       "operator",
-      "operationalRepresentative"
+      "operationalRepresentative",
+      "primaryContact",
+      "secondaryContact"
     ],
     "operationalRepresentative": {
       "phone": {
@@ -185,6 +257,38 @@
           "ui:placeholder": "ex: A1A 1A1"
         }
       }
+    },
+    "primaryContact": {
+      "phone": {
+        "ui:options": {
+          "inputType": "tel"
+        }
+      },
+      "ui:order": [
+        "firstName",
+        "lastName",
+        "position",
+        "organization",
+        "email",
+        "phone"
+      ],
+      "ui:description": "The person who should be contacted regarding this application"
+    },
+    "secondaryContact": {
+      "phone": {
+        "ui:options": {
+          "inputType": "tel"
+        }
+      },
+      "ui:order": [
+        "firstName",
+        "lastName",
+        "position",
+        "organization",
+        "email",
+        "phone"
+      ],
+      "ui:description": "Optional - Someone authorized to access this application"
     }
   },
   "customFormats": {
