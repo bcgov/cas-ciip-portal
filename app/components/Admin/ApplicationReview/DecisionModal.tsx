@@ -91,9 +91,15 @@ export const DecisionModal: React.FunctionComponent<Props> = ({
     </>
   );
   return (
-    <Modal show={show} centered size="lg" onHide={onHide}>
+    <Modal
+      show={show}
+      centered
+      size="lg"
+      onHide={onHide}
+      aria-labelledby="heading"
+    >
       <Modal.Header closeButton>
-        <h2>{title}</h2>
+        <h2 id="heading">{title}</h2>
       </Modal.Header>
       {!decisionHasBeenMade && makeDecisionContent}
       {decisionHasBeenMade && revertDecisionContent}
