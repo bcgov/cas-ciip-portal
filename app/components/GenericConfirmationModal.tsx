@@ -26,9 +26,15 @@ export const GenericConfirmationModal: React.FunctionComponent<Props> = ({
   size
 }) => {
   return (
-    <Modal onHide={onCancel} show={show} size={size} centered>
+    <Modal
+      onHide={onCancel}  
+      show={show}
+      size={size}
+      centered
+      aria-labelledby="modal-title"
+    >
       <Modal.Header>
-        <h2>{title}</h2>
+        <h2 id="modal-title">{title}</h2>
       </Modal.Header>
       <Modal.Body>{children}</Modal.Body>
       <Modal.Footer>
