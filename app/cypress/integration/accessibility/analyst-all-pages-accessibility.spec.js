@@ -34,7 +34,7 @@ describe('When logged in as an analyst', () => {
     cy.checkA11y();
   });
 
-  it.skip('The application review page has no detectable ally violations on load', () => {
+  it('The application review page has no detectable ally violations on load', () => {
     cy.visit('/analyst/applications');
     cy.contains('View Application').click();
     cy.url().should('include', '/analyst/application-review');
