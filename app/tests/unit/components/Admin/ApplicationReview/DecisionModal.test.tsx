@@ -61,6 +61,7 @@ describe('Application decision modal', () => {
     expect(spy).toHaveBeenCalledTimes(1);
   });
   it('clicking the "Approve" button fires the `onDecision` prop with the corresponding decision', () => {
+    const decision = 'APPROVED';
     const spy = jest.fn();
     const wrapper = shallow(
       getTestElement({currentStatus: 'SUBMITTED', onDecision: spy})
@@ -69,14 +70,15 @@ describe('Application decision modal', () => {
 
     const approveButton = wrapper
       .find('Button')
-      .findWhere((btn) => btn.prop('value') === 'APPROVED');
+      .findWhere((btn) => btn.prop('value') === decision);
 
     expect(approveButton.exists()).toBeTrue();
-    approveButton.simulate('click');
+    approveButton.simulate('click', {target: {value: decision}});
     expect(spy).toHaveBeenCalledTimes(1);
-    expect(spy).toHaveBeenCalledWith('APPROVED');
+    expect(spy).toHaveBeenCalledWith(decision);
   });
   it('clicking the "Reject" button fires the `onDecision` prop with the corresponding decision', () => {
+    const decision = 'REJECTED';
     const spy = jest.fn();
     const wrapper = shallow(
       getTestElement({currentStatus: 'SUBMITTED', onDecision: spy})
@@ -85,14 +87,15 @@ describe('Application decision modal', () => {
 
     const rejectButton = wrapper
       .find('Button')
-      .findWhere((btn) => btn.prop('value') === 'REJECTED');
+      .findWhere((btn) => btn.prop('value') === decision);
 
     expect(rejectButton.exists()).toBeTrue();
-    rejectButton.simulate('click');
+    rejectButton.simulate('click', {target: {value: decision}});
     expect(spy).toHaveBeenCalledTimes(1);
-    expect(spy).toHaveBeenCalledWith('REJECTED');
+    expect(spy).toHaveBeenCalledWith(decision);
   });
   it('clicking the "Request Changes" button fires the `onDecision` prop with the corresponding decision', () => {
+    const decision = 'REQUESTED_CHANGES';
     const spy = jest.fn();
     const wrapper = shallow(
       getTestElement({currentStatus: 'SUBMITTED', onDecision: spy})
@@ -101,14 +104,15 @@ describe('Application decision modal', () => {
 
     const requestChangesButton = wrapper
       .find('Button')
-      .findWhere((btn) => btn.prop('value') === 'REQUESTED_CHANGES');
+      .findWhere((btn) => btn.prop('value') === decision);
 
     expect(requestChangesButton.exists()).toBeTrue();
-    requestChangesButton.simulate('click');
+    requestChangesButton.simulate('click', {target: {value: decision}});
     expect(spy).toHaveBeenCalledTimes(1);
-    expect(spy).toHaveBeenCalledWith('REQUESTED_CHANGES');
+    expect(spy).toHaveBeenCalledWith(decision);
   });
   it('clicking the "Revert Decision" button fires the `onDecision` prop with the corresponding decision', () => {
+    const decision = 'SUBMITTED';
     const spy = jest.fn();
     const wrapper = shallow(
       getTestElement({currentStatus: 'APPROVED', onDecision: spy})
@@ -117,11 +121,11 @@ describe('Application decision modal', () => {
 
     const revertDecisionButton = wrapper
       .find('Button')
-      .findWhere((btn) => btn.prop('value') === 'SUBMITTED');
+      .findWhere((btn) => btn.prop('value') === decision);
 
     expect(revertDecisionButton.exists()).toBeTrue();
-    revertDecisionButton.simulate('click');
+    revertDecisionButton.simulate('click', {target: {value: decision}});
     expect(spy).toHaveBeenCalledTimes(1);
-    expect(spy).toHaveBeenCalledWith('SUBMITTED');
+    expect(spy).toHaveBeenCalledWith(decision);
   });
 });
