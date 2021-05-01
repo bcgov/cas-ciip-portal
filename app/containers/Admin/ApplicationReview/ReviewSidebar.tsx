@@ -83,11 +83,6 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
       variant="outline-primary"
       type="button"
       onClick={confirmCommentsResolvedBeforeMarkCompleted}
-      style={{
-        padding: '0.75rem .9rem',
-        display: 'block',
-        margin: 'auto'
-      }}
     >
       <FontAwesomeIcon icon={faCheck} style={{marginRight: '0.5rem'}} />
       Mark this review step completed
@@ -97,16 +92,7 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
     <p className="mark-incomplete">
       <FontAwesomeIcon icon={faCheck} style={{marginRight: 2}} />
       <span> This review step has been completed. </span>
-      <Button
-        variant="link"
-        style={{
-          padding: '0 0 2px 0',
-          fontSize: '0.9rem',
-          lineHeight: 1,
-          display: 'inline'
-        }}
-        onClick={() => markReviewStepComplete(false)}
-      >
+      <Button variant="link" onClick={() => markReviewStepComplete(false)}>
         Mark incomplete
       </Button>
     </p>
@@ -352,11 +338,22 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
           display: flex;
           justify-content: space-between;
         }
+        :global(button#markCompleted) {
+          padding: 0.75rem 0.9rem;
+          display: block;
+          margin: auto;
+        }
         .mark-incomplete {
           line-height: 1;
           font-size: 0.9em;
           text-align: center;
           margin: 35px 0;
+        }
+        :global(.mark-incomplete button) {
+          padding: 0 0 2px 0;
+          font-size: 0.9rem;
+          line-height: 1;
+          display: inline;
         }
         h3 ~ ul,
         h3 ~ p {

@@ -184,27 +184,22 @@ export const ApplicationReviewStepSelector: React.FunctionComponent<Props> = ({
           display: flex;
           align-items: flex-end;
         }
-      `}</style>
-      <style jsx global>{`
-        #selector .list-group-item.active {
+        :global(.list-group-item.active) {
           z-index: auto;
           background: #38598a;
         }
-        .list-group-item#open-decision-dialog.active {
+        :global(.list-group-item#open-decision-dialog.active) {
           background: #036;
         }
-        #selector .list-group-item-danger.disabled,
-        .list-group-item-danger:disabled {
+        :global(.list-group-item-danger.disabled, .list-group-item-danger:disabled) {
           color: #721c24;
           background-color: #f5c6cb;
         }
-        #selector .list-group-item-success.disabled,
-        .list-group-item-success:disabled {
+        :global(.list-group-item-success.disabled, .list-group-item-success:disabled) {
           color: #155724;
           background-color: #c3e6cb;
         }
-        #selector .list-group-item-secondary.disabled,
-        .list-group-item-secondary:disabled {
+        :global(.list-group-item-secondary.disabled, .list-group-item-secondary:disabled) {
           color: #383d41;
           background-color: #d6d8db;
         }

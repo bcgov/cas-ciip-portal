@@ -20,7 +20,7 @@ exports[`The application-review page matches the last snapshot (with review side
     noGutters={false}
   >
     <div
-      className="jsx-2119274657 
+      className="jsx-3733722573 
              col-md-10
              col-lg-10
              col-xxl-10
@@ -29,19 +29,19 @@ exports[`The application-review page matches the last snapshot (with review side
       id="application-body"
     >
       <div
-        className="jsx-2119274657 col-xxl-6 col-xl-7 col-lg-8 col-md-10"
+        className="jsx-3733722573 col-xxl-6 col-xl-7 col-lg-8 col-md-10"
         id="title"
       >
         <h1
-          className="jsx-2119274657"
+          className="jsx-3733722573"
         >
           Application #1
         </h1>
         <p
-          className="jsx-2119274657"
+          className="jsx-3733722573"
         >
           <span
-            className="jsx-2119274657"
+            className="jsx-3733722573"
           >
             BC GHG ID: 
             456
@@ -85,7 +85,7 @@ exports[`The application-review page matches the last snapshot (with review side
         />
       </Row>
       <hr
-        className="jsx-2119274657"
+        className="jsx-3733722573"
       />
       <Relay(ApplicationDetailsComponent)
         applicationRevision={
@@ -262,17 +262,6 @@ exports[`The application-review page matches the last snapshot (with review side
           disabled={false}
           id="to-top"
           onClick={[Function]}
-          style={
-            Object {
-              "borderRadius": "50%",
-              "bottom": "0.6rem",
-              "boxShadow": "0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.4)",
-              "height": 50,
-              "left": "0.6rem",
-              "position": "fixed",
-              "width": 50,
-            }
-          }
           type="button"
           variant="dark"
         >
@@ -321,9 +310,9 @@ exports[`The application-review page matches the last snapshot (with review side
     />
   </Row>
   <JSXStyle
-    id="2119274657"
+    id="3733722573"
   >
-    h1.jsx-2119274657{margin-bottom:0.75rem;}#title.jsx-2119274657{margin-bottom:20px;padding-left:0;}#title.jsx-2119274657 p.jsx-2119274657{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;line-height:2rem;color:#555;}#revised-tag.jsx-2119274657{-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;margin-right:1rem;color:#0053b3;padding:0.25rem 0.5rem;font-size:0.875rem;line-height:1.5;border:1px solid currentColor;border-radius:0.2rem;}
+    h1.jsx-3733722573{margin-bottom:0.75rem;}#title.jsx-3733722573{margin-bottom:20px;padding-left:0;}#title.jsx-3733722573 p.jsx-3733722573{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;line-height:2rem;color:#555;}#revised-tag.jsx-3733722573{-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;margin-right:1rem;color:#0053b3;padding:0.25rem 0.5rem;font-size:0.875rem;line-height:1.5;border:1px solid currentColor;border-radius:0.2rem;}button#to-top{border-radius:50%;position:fixed;bottom:0.6rem;left:0.6rem;width:50px;height:50px;box-shadow:0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.4);}
   </JSXStyle>
 </Relay(DefaultLayout)>
 `;
@@ -348,7 +337,7 @@ exports[`The application-review page matches the last snapshot (with review side
     noGutters={false}
   >
     <div
-      className="jsx-2119274657 
+      className="jsx-3733722573 
              col-md-7
              col-lg-8
              col-xxl-9
@@ -357,19 +346,19 @@ exports[`The application-review page matches the last snapshot (with review side
       id="application-body"
     >
       <div
-        className="jsx-2119274657 col-xxl-6 col-xl-7 col-lg-8 col-md-10"
+        className="jsx-3733722573 col-xxl-6 col-xl-7 col-lg-8 col-md-10"
         id="title"
       >
         <h1
-          className="jsx-2119274657"
+          className="jsx-3733722573"
         >
           Application #1
         </h1>
         <p
-          className="jsx-2119274657"
+          className="jsx-3733722573"
         >
           <span
-            className="jsx-2119274657"
+            className="jsx-3733722573"
           >
             BC GHG ID: 
             456
@@ -413,7 +402,7 @@ exports[`The application-review page matches the last snapshot (with review side
         />
       </Row>
       <hr
-        className="jsx-2119274657"
+        className="jsx-3733722573"
       />
       <Relay(ApplicationDetailsComponent)
         applicationRevision={
@@ -590,17 +579,6 @@ exports[`The application-review page matches the last snapshot (with review side
           disabled={false}
           id="to-top"
           onClick={[Function]}
-          style={
-            Object {
-              "borderRadius": "50%",
-              "bottom": "0.6rem",
-              "boxShadow": "0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.4)",
-              "height": 50,
-              "left": "0.6rem",
-              "position": "fixed",
-              "width": 50,
-            }
-          }
           type="button"
           variant="dark"
         >
@@ -650,9 +628,9 @@ exports[`The application-review page matches the last snapshot (with review side
     />
   </Row>
   <JSXStyle
-    id="2119274657"
+    id="3733722573"
   >
-    h1.jsx-2119274657{margin-bottom:0.75rem;}#title.jsx-2119274657{margin-bottom:20px;padding-left:0;}#title.jsx-2119274657 p.jsx-2119274657{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;line-height:2rem;color:#555;}#revised-tag.jsx-2119274657{-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;margin-right:1rem;color:#0053b3;padding:0.25rem 0.5rem;font-size:0.875rem;line-height:1.5;border:1px solid currentColor;border-radius:0.2rem;}
+    h1.jsx-3733722573{margin-bottom:0.75rem;}#title.jsx-3733722573{margin-bottom:20px;padding-left:0;}#title.jsx-3733722573 p.jsx-3733722573{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;line-height:2rem;color:#555;}#revised-tag.jsx-3733722573{-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;margin-right:1rem;color:#0053b3;padding:0.25rem 0.5rem;font-size:0.875rem;line-height:1.5;border:1px solid currentColor;border-radius:0.2rem;}button#to-top{border-radius:50%;position:fixed;bottom:0.6rem;left:0.6rem;width:50px;height:50px;box-shadow:0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.4);}
   </JSXStyle>
 </Relay(DefaultLayout)>
 `;

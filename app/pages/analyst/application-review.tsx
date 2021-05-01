@@ -238,16 +238,6 @@ class ApplicationReview extends Component<Props, State> {
                   const main = document.body.getElementsByTagName('main')[0];
                   main?.scrollIntoView();
                 }}
-                style={{
-                  borderRadius: '50%',
-                  position: 'fixed',
-                  bottom: '0.6rem',
-                  left: '0.6rem',
-                  width: 50,
-                  height: 50,
-                  boxShadow:
-                    '0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.4)'
-                }}
               >
                 <FontAwesomeIcon size="lg" icon={faArrowUp} />
               </Button>
@@ -297,6 +287,17 @@ class ApplicationReview extends Component<Props, State> {
             line-height: 1.5;
             border: 1px solid currentColor;
             border-radius: 0.2rem;
+          }
+          :global(button#to-top) {
+            border-radius: 50%;
+            position: fixed;
+            bottom: 0.6rem;
+            left: 0.6rem;
+            width: 50px;
+            height: 50px;
+            box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14),
+              0 1px 10px 0 rgba(0, 0, 0, 0.12),
+              0 2px 4px -1px rgba(0, 0, 0, 0.4);
           }
         `}</style>
       </DefaultLayout>

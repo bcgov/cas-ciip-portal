@@ -78,11 +78,6 @@ exports[`Application decision modal presents options to make a decision or reque
           rotation={null}
           size={null}
           spin={false}
-          style={
-            Object {
-              "marginRight": "0.5em",
-            }
-          }
           swapOpacity={false}
           symbol={false}
           title=""

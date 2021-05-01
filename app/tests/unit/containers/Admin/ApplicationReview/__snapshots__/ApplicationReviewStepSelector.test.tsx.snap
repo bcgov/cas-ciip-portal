@@ -5,7 +5,7 @@ exports[`ApplicationReviewStepSelector "make a decision or request changes" butt
   noGutters={false}
 >
   <div
-    className="jsx-4287446081 col-xxl-6 col-xl-7 col-lg-8 col-md-10"
+    className="jsx-4253934477 col-xxl-6 col-xl-7 col-lg-8 col-md-10"
   >
     <ListGroup
       as="ul"
@@ -247,14 +247,9 @@ exports[`ApplicationReviewStepSelector "make a decision or request changes" butt
     </ListGroup>
   </div>
   <JSXStyle
-    id="1973324808"
+    id="4253934477"
   >
-    #change-decision.jsx-4287446081{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:flex-end;-webkit-box-align:flex-end;-ms-flex-align:flex-end;align-items:flex-end;}
-  </JSXStyle>
-  <JSXStyle
-    id="1378094304"
-  >
-    #selector .list-group-item.active{z-index:auto;background:#38598a;}.list-group-item#open-decision-dialog.active{background:#036;}#selector .list-group-item-danger.disabled,.list-group-item-danger:disabled{color:#721c24;background-color:#f5c6cb;}#selector .list-group-item-success.disabled,.list-group-item-success:disabled{color:#155724;background-color:#c3e6cb;}#selector .list-group-item-secondary.disabled,.list-group-item-secondary:disabled{color:#383d41;background-color:#d6d8db;}
+    #change-decision.jsx-4253934477{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:flex-end;-webkit-box-align:flex-end;-ms-flex-align:flex-end;align-items:flex-end;}.list-group-item.active{z-index:auto;background:#38598a;}.list-group-item#open-decision-dialog.active{background:#036;}.list-group-item-danger.disabled,.list-group-item-danger:disabled{color:#721c24;background-color:#f5c6cb;}.list-group-item-success.disabled,.list-group-item-success:disabled{color:#155724;background-color:#c3e6cb;}.list-group-item-secondary.disabled,.list-group-item-secondary:disabled{color:#383d41;background-color:#d6d8db;}
   </JSXStyle>
 </Row>
 `;
@@ -264,7 +259,7 @@ exports[`ApplicationReviewStepSelector "make a decision or request changes" butt
   noGutters={false}
 >
   <div
-    className="jsx-4287446081 col-xxl-6 col-xl-7 col-lg-8 col-md-10"
+    className="jsx-4253934477 col-xxl-6 col-xl-7 col-lg-8 col-md-10"
   >
     <ListGroup
       as="ul"
@@ -463,7 +458,7 @@ exports[`ApplicationReviewStepSelector "make a decision or request changes" butt
         tabIndex={0}
       >
         <em
-          className="jsx-4287446081"
+          className="jsx-4253934477"
         >
           Complete the reviews above to make a decision or request changes
         </em>
@@ -471,14 +466,9 @@ exports[`ApplicationReviewStepSelector "make a decision or request changes" butt
     </ListGroup>
   </div>
   <JSXStyle
-    id="1973324808"
+    id="4253934477"
   >
-    #change-decision.jsx-4287446081{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:flex-end;-webkit-box-align:flex-end;-ms-flex-align:flex-end;align-items:flex-end;}
-  </JSXStyle>
-  <JSXStyle
-    id="1378094304"
-  >
-    #selector .list-group-item.active{z-index:auto;background:#38598a;}.list-group-item#open-decision-dialog.active{background:#036;}#selector .list-group-item-danger.disabled,.list-group-item-danger:disabled{color:#721c24;background-color:#f5c6cb;}#selector .list-group-item-success.disabled,.list-group-item-success:disabled{color:#155724;background-color:#c3e6cb;}#selector .list-group-item-secondary.disabled,.list-group-item-secondary:disabled{color:#383d41;background-color:#d6d8db;}
+    #change-decision.jsx-4253934477{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:flex-end;-webkit-box-align:flex-end;-ms-flex-align:flex-end;align-items:flex-end;}.list-group-item.active{z-index:auto;background:#38598a;}.list-group-item#open-decision-dialog.active{background:#036;}.list-group-item-danger.disabled,.list-group-item-danger:disabled{color:#721c24;background-color:#f5c6cb;}.list-group-item-success.disabled,.list-group-item-success:disabled{color:#155724;background-color:#c3e6cb;}.list-group-item-secondary.disabled,.list-group-item-secondary:disabled{color:#383d41;background-color:#d6d8db;}
   </JSXStyle>
 </Row>
 `;
@@ -488,7 +478,7 @@ exports[`ApplicationReviewStepSelector "make a decision or request changes" butt
   noGutters={false}
 >
   <div
-    className="jsx-4287446081 col-xxl-6 col-xl-7 col-lg-8 col-md-10"
+    className="jsx-4253934477 col-xxl-6 col-xl-7 col-lg-8 col-md-10"
   >
     <ListGroup
       as="ul"
@@ -729,14 +719,9 @@ exports[`ApplicationReviewStepSelector "make a decision or request changes" butt
     </ListGroup>
   </div>
   <JSXStyle
-    id="1973324808"
+    id="4253934477"
   >
-    #change-decision.jsx-4287446081{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:flex-end;-webkit-box-align:flex-end;-ms-flex-align:flex-end;align-items:flex-end;}
-  </JSXStyle>
-  <JSXStyle
-    id="1378094304"
-  >
-    #selector .list-group-item.active{z-index:auto;background:#38598a;}.list-group-item#open-decision-dialog.active{background:#036;}#selector .list-group-item-danger.disabled,.list-group-item-danger:disabled{color:#721c24;background-color:#f5c6cb;}#selector .list-group-item-success.disabled,.list-group-item-success:disabled{color:#155724;background-color:#c3e6cb;}#selector .list-group-item-secondary.disabled,.list-group-item-secondary:disabled{color:#383d41;background-color:#d6d8db;}
+    #change-decision.jsx-4253934477{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:flex-end;-webkit-box-align:flex-end;-ms-flex-align:flex-end;align-items:flex-end;}.list-group-item.active{z-index:auto;background:#38598a;}.list-group-item#open-decision-dialog.active{background:#036;}.list-group-item-danger.disabled,.list-group-item-danger:disabled{color:#721c24;background-color:#f5c6cb;}.list-group-item-success.disabled,.list-group-item-success:disabled{color:#155724;background-color:#c3e6cb;}.list-group-item-secondary.disabled,.list-group-item-secondary:disabled{color:#383d41;background-color:#d6d8db;}
   </JSXStyle>
 </Row>
 `;
@@ -746,7 +731,7 @@ exports[`ApplicationReviewStepSelector has no selected steps when \`selectedStep
   noGutters={false}
 >
   <div
-    className="jsx-4287446081 col-xxl-6 col-xl-7 col-lg-8 col-md-10"
+    className="jsx-4253934477 col-xxl-6 col-xl-7 col-lg-8 col-md-10"
   >
     <ListGroup
       as="ul"
@@ -945,7 +930,7 @@ exports[`ApplicationReviewStepSelector has no selected steps when \`selectedStep
         tabIndex={0}
       >
         <em
-          className="jsx-4287446081"
+          className="jsx-4253934477"
         >
           Complete the reviews above to make a decision or request changes
         </em>
@@ -953,14 +938,9 @@ exports[`ApplicationReviewStepSelector has no selected steps when \`selectedStep
     </ListGroup>
   </div>
   <JSXStyle
-    id="1973324808"
+    id="4253934477"
   >
-    #change-decision.jsx-4287446081{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:flex-end;-webkit-box-align:flex-end;-ms-flex-align:flex-end;align-items:flex-end;}
-  </JSXStyle>
-  <JSXStyle
-    id="1378094304"
-  >
-    #selector .list-group-item.active{z-index:auto;background:#38598a;}.list-group-item#open-decision-dialog.active{background:#036;}#selector .list-group-item-danger.disabled,.list-group-item-danger:disabled{color:#721c24;background-color:#f5c6cb;}#selector .list-group-item-success.disabled,.list-group-item-success:disabled{color:#155724;background-color:#c3e6cb;}#selector .list-group-item-secondary.disabled,.list-group-item-secondary:disabled{color:#383d41;background-color:#d6d8db;}
+    #change-decision.jsx-4253934477{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:flex-end;-webkit-box-align:flex-end;-ms-flex-align:flex-end;align-items:flex-end;}.list-group-item.active{z-index:auto;background:#38598a;}.list-group-item#open-decision-dialog.active{background:#036;}.list-group-item-danger.disabled,.list-group-item-danger:disabled{color:#721c24;background-color:#f5c6cb;}.list-group-item-success.disabled,.list-group-item-success:disabled{color:#155724;background-color:#c3e6cb;}.list-group-item-secondary.disabled,.list-group-item-secondary:disabled{color:#383d41;background-color:#d6d8db;}
   </JSXStyle>
 </Row>
 `;
@@ -970,7 +950,7 @@ exports[`ApplicationReviewStepSelector shows optional "Change decision" button 1
   noGutters={false}
 >
   <div
-    className="jsx-4287446081 col-xxl-6 col-xl-7 col-lg-8 col-md-10"
+    className="jsx-4253934477 col-xxl-6 col-xl-7 col-lg-8 col-md-10"
   >
     <ListGroup
       as="ul"
@@ -1212,7 +1192,7 @@ exports[`ApplicationReviewStepSelector shows optional "Change decision" button 1
     </ListGroup>
   </div>
   <div
-    className="jsx-4287446081 col-md-12 col-lg-4 col-xl-5 col-xxl-6"
+    className="jsx-4253934477 col-md-12 col-lg-4 col-xl-5 col-xxl-6"
     id="change-decision"
   >
     <Button
@@ -1261,14 +1241,9 @@ exports[`ApplicationReviewStepSelector shows optional "Change decision" button 1
     </Button>
   </div>
   <JSXStyle
-    id="1973324808"
+    id="4253934477"
   >
-    #change-decision.jsx-4287446081{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:flex-end;-webkit-box-align:flex-end;-ms-flex-align:flex-end;align-items:flex-end;}
-  </JSXStyle>
-  <JSXStyle
-    id="1378094304"
-  >
-    #selector .list-group-item.active{z-index:auto;background:#38598a;}.list-group-item#open-decision-dialog.active{background:#036;}#selector .list-group-item-danger.disabled,.list-group-item-danger:disabled{color:#721c24;background-color:#f5c6cb;}#selector .list-group-item-success.disabled,.list-group-item-success:disabled{color:#155724;background-color:#c3e6cb;}#selector .list-group-item-secondary.disabled,.list-group-item-secondary:disabled{color:#383d41;background-color:#d6d8db;}
+    #change-decision.jsx-4253934477{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:flex-end;-webkit-box-align:flex-end;-ms-flex-align:flex-end;align-items:flex-end;}.list-group-item.active{z-index:auto;background:#38598a;}.list-group-item#open-decision-dialog.active{background:#036;}.list-group-item-danger.disabled,.list-group-item-danger:disabled{color:#721c24;background-color:#f5c6cb;}.list-group-item-success.disabled,.list-group-item-success:disabled{color:#155724;background-color:#c3e6cb;}.list-group-item-secondary.disabled,.list-group-item-secondary:disabled{color:#383d41;background-color:#d6d8db;}
   </JSXStyle>
 </Row>
 `;
@@ -1278,7 +1253,7 @@ exports[`ApplicationReviewStepSelector shows the application decision if a decis
   noGutters={false}
 >
   <div
-    className="jsx-4287446081 col-xxl-6 col-xl-7 col-lg-8 col-md-10"
+    className="jsx-4253934477 col-xxl-6 col-xl-7 col-lg-8 col-md-10"
   >
     <ListGroup
       as="ul"
@@ -1520,14 +1495,9 @@ exports[`ApplicationReviewStepSelector shows the application decision if a decis
     </ListGroup>
   </div>
   <JSXStyle
-    id="1973324808"
+    id="4253934477"
   >
-    #change-decision.jsx-4287446081{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:flex-end;-webkit-box-align:flex-end;-ms-flex-align:flex-end;align-items:flex-end;}
-  </JSXStyle>
-  <JSXStyle
-    id="1378094304"
-  >
-    #selector .list-group-item.active{z-index:auto;background:#38598a;}.list-group-item#open-decision-dialog.active{background:#036;}#selector .list-group-item-danger.disabled,.list-group-item-danger:disabled{color:#721c24;background-color:#f5c6cb;}#selector .list-group-item-success.disabled,.list-group-item-success:disabled{color:#155724;background-color:#c3e6cb;}#selector .list-group-item-secondary.disabled,.list-group-item-secondary:disabled{color:#383d41;background-color:#d6d8db;}
+    #change-decision.jsx-4253934477{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:flex-end;-webkit-box-align:flex-end;-ms-flex-align:flex-end;align-items:flex-end;}.list-group-item.active{z-index:auto;background:#38598a;}.list-group-item#open-decision-dialog.active{background:#036;}.list-group-item-danger.disabled,.list-group-item-danger:disabled{color:#721c24;background-color:#f5c6cb;}.list-group-item-success.disabled,.list-group-item-success:disabled{color:#155724;background-color:#c3e6cb;}.list-group-item-secondary.disabled,.list-group-item-secondary:disabled{color:#383d41;background-color:#d6d8db;}
   </JSXStyle>
 </Row>
 `;
@@ -1537,7 +1507,7 @@ exports[`ApplicationReviewStepSelector shows the application decision if a decis
   noGutters={false}
 >
   <div
-    className="jsx-4287446081 col-xxl-6 col-xl-7 col-lg-8 col-md-10"
+    className="jsx-4253934477 col-xxl-6 col-xl-7 col-lg-8 col-md-10"
   >
     <ListGroup
       as="ul"
@@ -1779,14 +1749,9 @@ exports[`ApplicationReviewStepSelector shows the application decision if a decis
     </ListGroup>
   </div>
   <JSXStyle
-    id="1973324808"
+    id="4253934477"
   >
-    #change-decision.jsx-4287446081{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:flex-end;-webkit-box-align:flex-end;-ms-flex-align:flex-end;align-items:flex-end;}
-  </JSXStyle>
-  <JSXStyle
-    id="1378094304"
-  >
-    #selector .list-group-item.active{z-index:auto;background:#38598a;}.list-group-item#open-decision-dialog.active{background:#036;}#selector .list-group-item-danger.disabled,.list-group-item-danger:disabled{color:#721c24;background-color:#f5c6cb;}#selector .list-group-item-success.disabled,.list-group-item-success:disabled{color:#155724;background-color:#c3e6cb;}#selector .list-group-item-secondary.disabled,.list-group-item-secondary:disabled{color:#383d41;background-color:#d6d8db;}
+    #change-decision.jsx-4253934477{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:flex-end;-webkit-box-align:flex-end;-ms-flex-align:flex-end;align-items:flex-end;}.list-group-item.active{z-index:auto;background:#38598a;}.list-group-item#open-decision-dialog.active{background:#036;}.list-group-item-danger.disabled,.list-group-item-danger:disabled{color:#721c24;background-color:#f5c6cb;}.list-group-item-success.disabled,.list-group-item-success:disabled{color:#155724;background-color:#c3e6cb;}.list-group-item-secondary.disabled,.list-group-item-secondary:disabled{color:#383d41;background-color:#d6d8db;}
   </JSXStyle>
 </Row>
 `;
@@ -1796,7 +1761,7 @@ exports[`ApplicationReviewStepSelector shows the application decision if a decis
   noGutters={false}
 >
   <div
-    className="jsx-4287446081 col-xxl-6 col-xl-7 col-lg-8 col-md-10"
+    className="jsx-4253934477 col-xxl-6 col-xl-7 col-lg-8 col-md-10"
   >
     <ListGroup
       as="ul"
@@ -2038,14 +2003,9 @@ exports[`ApplicationReviewStepSelector shows the application decision if a decis
     </ListGroup>
   </div>
   <JSXStyle
-    id="1973324808"
+    id="4253934477"
   >
-    #change-decision.jsx-4287446081{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:flex-end;-webkit-box-align:flex-end;-ms-flex-align:flex-end;align-items:flex-end;}
-  </JSXStyle>
-  <JSXStyle
-    id="1378094304"
-  >
-    #selector .list-group-item.active{z-index:auto;background:#38598a;}.list-group-item#open-decision-dialog.active{background:#036;}#selector .list-group-item-danger.disabled,.list-group-item-danger:disabled{color:#721c24;background-color:#f5c6cb;}#selector .list-group-item-success.disabled,.list-group-item-success:disabled{color:#155724;background-color:#c3e6cb;}#selector .list-group-item-secondary.disabled,.list-group-item-secondary:disabled{color:#383d41;background-color:#d6d8db;}
+    #change-decision.jsx-4253934477{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:flex-end;-webkit-box-align:flex-end;-ms-flex-align:flex-end;align-items:flex-end;}.list-group-item.active{z-index:auto;background:#38598a;}.list-group-item#open-decision-dialog.active{background:#036;}.list-group-item-danger.disabled,.list-group-item-danger:disabled{color:#721c24;background-color:#f5c6cb;}.list-group-item-success.disabled,.list-group-item-success:disabled{color:#155724;background-color:#c3e6cb;}.list-group-item-secondary.disabled,.list-group-item-secondary:disabled{color:#383d41;background-color:#d6d8db;}
   </JSXStyle>
 </Row>
 `;
@@ -2055,7 +2015,7 @@ exports[`ApplicationReviewStepSelector shows the selected selected step when \`s
   noGutters={false}
 >
   <div
-    className="jsx-4287446081 col-xxl-6 col-xl-7 col-lg-8 col-md-10"
+    className="jsx-4253934477 col-xxl-6 col-xl-7 col-lg-8 col-md-10"
   >
     <ListGroup
       as="ul"
@@ -2254,7 +2214,7 @@ exports[`ApplicationReviewStepSelector shows the selected selected step when \`s
         tabIndex={0}
       >
         <em
-          className="jsx-4287446081"
+          className="jsx-4253934477"
         >
           Complete the reviews above to make a decision or request changes
         </em>
@@ -2262,14 +2222,9 @@ exports[`ApplicationReviewStepSelector shows the selected selected step when \`s
     </ListGroup>
   </div>
   <JSXStyle
-    id="1973324808"
+    id="4253934477"
   >
-    #change-decision.jsx-4287446081{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:flex-end;-webkit-box-align:flex-end;-ms-flex-align:flex-end;align-items:flex-end;}
-  </JSXStyle>
-  <JSXStyle
-    id="1378094304"
-  >
-    #selector .list-group-item.active{z-index:auto;background:#38598a;}.list-group-item#open-decision-dialog.active{background:#036;}#selector .list-group-item-danger.disabled,.list-group-item-danger:disabled{color:#721c24;background-color:#f5c6cb;}#selector .list-group-item-success.disabled,.list-group-item-success:disabled{color:#155724;background-color:#c3e6cb;}#selector .list-group-item-secondary.disabled,.list-group-item-secondary:disabled{color:#383d41;background-color:#d6d8db;}
+    #change-decision.jsx-4253934477{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:flex-end;-webkit-box-align:flex-end;-ms-flex-align:flex-end;align-items:flex-end;}.list-group-item.active{z-index:auto;background:#38598a;}.list-group-item#open-decision-dialog.active{background:#036;}.list-group-item-danger.disabled,.list-group-item-danger:disabled{color:#721c24;background-color:#f5c6cb;}.list-group-item-success.disabled,.list-group-item-success:disabled{color:#155724;background-color:#c3e6cb;}.list-group-item-secondary.disabled,.list-group-item-secondary:disabled{color:#383d41;background-color:#d6d8db;}
   </JSXStyle>
 </Row>
 `;
@@ -2279,7 +2234,7 @@ exports[`ApplicationReviewStepSelector shows which review steps are completed 1`
   noGutters={false}
 >
   <div
-    className="jsx-4287446081 col-xxl-6 col-xl-7 col-lg-8 col-md-10"
+    className="jsx-4253934477 col-xxl-6 col-xl-7 col-lg-8 col-md-10"
   >
     <ListGroup
       as="ul"
@@ -2478,7 +2433,7 @@ exports[`ApplicationReviewStepSelector shows which review steps are completed 1`
         tabIndex={0}
       >
         <em
-          className="jsx-4287446081"
+          className="jsx-4253934477"
         >
           Complete the reviews above to make a decision or request changes
         </em>
@@ -2486,14 +2441,9 @@ exports[`ApplicationReviewStepSelector shows which review steps are completed 1`
     </ListGroup>
   </div>
   <JSXStyle
-    id="1973324808"
+    id="4253934477"
   >
-    #change-decision.jsx-4287446081{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:flex-end;-webkit-box-align:flex-end;-ms-flex-align:flex-end;align-items:flex-end;}
-  </JSXStyle>
-  <JSXStyle
-    id="1378094304"
-  >
-    #selector .list-group-item.active{z-index:auto;background:#38598a;}.list-group-item#open-decision-dialog.active{background:#036;}#selector .list-group-item-danger.disabled,.list-group-item-danger:disabled{color:#721c24;background-color:#f5c6cb;}#selector .list-group-item-success.disabled,.list-group-item-success:disabled{color:#155724;background-color:#c3e6cb;}#selector .list-group-item-secondary.disabled,.list-group-item-secondary:disabled{color:#383d41;background-color:#d6d8db;}
+    #change-decision.jsx-4253934477{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:flex-end;-webkit-box-align:flex-end;-ms-flex-align:flex-end;align-items:flex-end;}.list-group-item.active{z-index:auto;background:#38598a;}.list-group-item#open-decision-dialog.active{background:#036;}.list-group-item-danger.disabled,.list-group-item-danger:disabled{color:#721c24;background-color:#f5c6cb;}.list-group-item-success.disabled,.list-group-item-success:disabled{color:#155724;background-color:#c3e6cb;}.list-group-item-secondary.disabled,.list-group-item-secondary:disabled{color:#383d41;background-color:#d6d8db;}
   </JSXStyle>
 </Row>
 `;

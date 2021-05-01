@@ -42,7 +42,7 @@ export const DecisionModal: React.FunctionComponent<Props> = ({
             size="lg"
             onClick={handleDecision}
           >
-            <FontAwesomeIcon icon={faEnvelope} style={{marginRight: '0.5em'}} />
+            <FontAwesomeIcon icon={faEnvelope} />
             Request Changes
           </Button>
         </p>
