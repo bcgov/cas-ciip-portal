@@ -10,8 +10,13 @@ export const Money: React.FunctionComponent<Props> = ({amount}) => {
     <NumberFormat
       value={amount}
       displayType="text"
+      isNumericString
       thousandSeparator
       prefix="$"
+      // remove the wrapping span NumberFormat uses by default.
+      renderText={(formattedValue) => {
+        return formattedValue;
+      }}
     />
   );
 };
