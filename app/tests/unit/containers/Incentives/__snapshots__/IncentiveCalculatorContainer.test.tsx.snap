@@ -68,22 +68,17 @@ exports[`IncentiveCalculator should render the page 1`] = `
         <th
           className="jsx-3958786356"
         >
-          Threshold Chart
-        </th>
-        <th
-          className="jsx-3958786356"
-        >
-          Incentive Ratio
-        </th>
-        <th
-          className="jsx-3958786356"
-        >
           Incentive Multiplier
         </th>
         <th
           className="jsx-3958786356"
         >
           Payment Allocation
+        </th>
+        <th
+          className="jsx-3958786356"
+        >
+          Incentive Ratio
         </th>
         <th
           className="jsx-3958786356"
@@ -111,6 +106,52 @@ exports[`IncentiveCalculator should render the page 1`] = `
         }
         key="1"
       />
+      <tr
+        className="jsx-3958786356"
+      >
+        <td
+          className="jsx-3958786356"
+        />
+         
+        <td
+          className="jsx-3958786356"
+        />
+         
+        <td
+          className="jsx-3958786356"
+        />
+         
+        <td
+          className="jsx-3958786356"
+        />
+         
+        <td
+          className="jsx-3958786356"
+        />
+         
+        <td
+          className="jsx-3958786356"
+        />
+        <td
+          className="jsx-3958786356"
+        >
+          1
+        </td>
+        <td
+          className="jsx-3958786356"
+        >
+          <Money
+            amount="NaN"
+          />
+        </td>
+        <td
+          className="jsx-3958786356"
+        >
+          <Money
+            amount="NaN"
+          />
+        </td>
+      </tr>
     </tbody>
   </ForwardRef>
   <JSXStyle
