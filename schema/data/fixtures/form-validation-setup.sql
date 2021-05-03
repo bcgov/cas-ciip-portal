@@ -35,6 +35,6 @@ values
 insert into ggircs_portal.product_naics_code(naics_code_id, product_id)
 values ((select id from ggircs_portal.naics_code where naics_code='777777'), (select id from ggircs_portal.product where product_name ilike 'Aluminum%'));
 
-update ggircs_portal.form_result set form_result = '{"operator": {"naics": "777777"}}' where form_id=1;
+update ggircs_portal.form_result set form_result = '{"operator": {"naics": "777777"}}' where form_id=(select id from ggircs_portal.form_json where slug = 'admin-2020');
 
 commit;

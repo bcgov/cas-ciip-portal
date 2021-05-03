@@ -13,7 +13,7 @@ create or replace function ggircs_portal.application_revision_naics_code(app ggi
         from ggircs_portal.form_result
         join ggircs_portal.form_json
         on form_result.form_id = form_json.id
-        and form_json.slug in ('admin', 'admin-2018')
+        and form_json.slug in ('admin', 'admin-2018', 'admin-2020')
         and form_result.application_id = app.application_id
         and form_result.version_number = app.version_number
       )

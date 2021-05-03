@@ -1,0 +1,206 @@
+{
+  "schema": {
+    "type": "object",
+    "properties": {
+      "comments": {
+        "type": "string"
+      },
+      "facility": {
+        "type": "object",
+        "title": "Facility Information",
+        "required": ["bcghgid", "facilityName", "facilityType"],
+        "properties": {
+          "bcghgid": {
+            "type": "string",
+            "format": "bcghgid",
+            "title": "BCGHG ID Number"
+          },
+          "facilityName": {
+            "type": "string",
+            "title": "Facility Name"
+          },
+          "facilityType": {
+            "enum": ["IF_a", "IF_b", "L_c", "SFO", "LFO", "EIO"],
+            "type": "string",
+            "title": "Facility Type"
+          }
+        }
+      },
+      "operator": {
+        "type": "object",
+        "title": "Operator Information",
+        "required": ["name", "naics", "tradeName", "bcCorporateRegistryNumber"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "Legal name"
+          },
+          "naics": {
+            "type": "string",
+            "title": "NAICS code"
+          },
+          "tradeName": {
+            "type": "string",
+            "title": "Trade name"
+          },
+          "mailingAddress": {
+            "$ref": "#/definitions/address",
+            "title": "Operator Mailing Address"
+          },
+          "bcCorporateRegistryNumber": {
+            "type": "string",
+            "format": "bcCorporateRegistryNumber",
+            "title": "BC Corporate Registry number"
+          }
+        }
+      },
+      "operationalRepresentative": {
+        "type": "object",
+        "title": "Operational Representative",
+        "required": ["email", "phone", "lastName", "position", "firstName"],
+        "properties": {
+          "email": {
+            "type": "string",
+            "title": "Email Address",
+            "format": "email"
+          },
+          "phone": {
+            "type": "string",
+            "title": "Telephone Number"
+          },
+          "lastName": {
+            "type": "string",
+            "title": "Last Name"
+          },
+          "position": {
+            "type": "string",
+            "title": "Position/Title"
+          },
+          "firstName": {
+            "type": "string",
+            "title": "First Name"
+          },
+          "mailingAddress": {
+            "$ref": "#/definitions/address",
+            "title": "Operational Representative Mailing Address"
+          }
+        }
+      }
+    },
+    "definitions": {
+      "address": {
+        "type": "object",
+        "required": ["streetAddress", "postalCode", "province", "city"],
+        "properties": {
+          "city": {
+            "type": "string",
+            "title": "City"
+          },
+          "province": {
+            "enum": [
+              "Alberta",
+              "British Columbia",
+              "Manitoba",
+              "New Brunswick",
+              "Newfoundland and Labrador",
+              "Northwest Territories",
+              "Nova Scotia",
+              "Nunavut",
+              "Ontario",
+              "Prince Edward Island",
+              "Quebec",
+              "Saskatchewan",
+              "Yukon"
+            ],
+            "type": "string",
+            "title": "Province or Territory"
+          },
+          "postalCode": {
+            "type": "string",
+            "title": "Postal Code",
+            "format": "postal-code"
+          },
+          "streetAddress": {
+            "type": "string",
+            "title": "Street address"
+          }
+        }
+      }
+    }
+  },
+  "uiSchema": {
+    "comments": {
+      "ui:field": "AddCommentField",
+      "ui:options": {
+        "label": false,
+        "disableRenderingIfEmpty": true
+      },
+      "ui:col-md": 12
+    },
+    "facility": {
+      "ui:order": ["facilityName", "facilityType", "bcghgid"]
+    },
+    "operator": {
+      "naics": {
+        "ui:col-md": 8,
+        "ui:field": "naics",
+        "ui:widget": "SearchWidget",
+        "ui:placeholder": "Search NAICS..."
+      },
+      "ui:order": [
+        "name",
+        "tradeName",
+        "naics",
+        "bcCorporateRegistryNumber",
+        "mailingAddress"
+      ],
+      "mailingAddress": {
+        "ui:order": ["streetAddress", "city", "postalCode", "province"],
+        "postalCode": {
+          "ui:placeholder": "ex: A1A 1A1"
+        }
+      },
+      "bcCorporateRegistryNumber": {
+        "ui:col-md": 4
+      }
+    },
+    "ui:order": [
+      "comments",
+      "facility",
+      "operator",
+      "operationalRepresentative"
+    ],
+    "operationalRepresentative": {
+      "phone": {
+        "ui:options": {
+          "inputType": "tel"
+        }
+      },
+      "ui:order": [
+        "firstName",
+        "lastName",
+        "position",
+        "email",
+        "phone",
+        "mailingAddress"
+      ],
+      "mailingAddress": {
+        "ui:order": ["streetAddress", "city", "postalCode", "province"],
+        "postalCode": {
+          "ui:placeholder": "ex: A1A 1A1"
+        }
+      }
+    }
+  },
+  "customFormats": {
+    "bcghgid": "^\\d+$",
+    "bcCorporateRegistryNumber": "^[A-Za-z]{1,3}\\d{7}$",
+    "postal-code": "[a-zA-Z][0-9][a-zA-Z]\\s?[0-9][a-zA-Z][0-9]"
+  },
+  "customFormatsErrorMessages": {
+    "bcghgid": "BCGHGID code should be numeric",
+    "bcCorporateRegistryNumber": "BC Corporate Registry number should be 1-3 letters followed by 7 digits",
+    "postal-code": "Format should be A1A 1A1",
+    "email": "Please enter a valid email address, eg: mail@example.com"
+  }
+}

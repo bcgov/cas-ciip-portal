@@ -25,8 +25,15 @@ select mocks.set_mocked_time_in_transaction('2021-04-01 14:49:54.191757-07'::tim
 select ggircs_portal.create_application_mutation_chain((select id from ggircs_portal.facility where facility_name = 'test facility'));
 
 select is(
-  (select form_result from ggircs_portal.form_result where application_id=1 and version_number=1 and form_id=1),
-  (select default_form_result from ggircs_portal.form_json where id=1),
+  (
+    select form_result from ggircs_portal.form_result
+    where application_id=1
+      and version_number=1
+      and form_id=(select id from ggircs_portal.form_json where slug='admin-2020')),
+  (
+    select default_form_result from ggircs_portal.form_json
+    where id=(select id from ggircs_portal.form_json where slug='admin-2020')
+  ),
   'The initial empty form_result is derived from the form_json.default_form_result column'
 );
 

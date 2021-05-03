@@ -13,27 +13,32 @@ create temporary table fuel (json_data jsonb);
 create temporary table production (json_data jsonb);
 \copy production(json_data) from program 'sed ''s/\\/\\\\/g'' < prod/form_json/production.json | tr -d ''\n''';
 
+create temporary table administration_2020 (json_data jsonb);
+\copy administration_2020(json_data) from program 'sed ''s/\\/\\\\/g'' < prod/form_json/administration-2020.json | tr -d ''\n''';
+
+
 with rows as (
 insert into ggircs_portal.form_json
-  (id, name, slug, short_name, description, form_json, prepopulate_from_swrs, prepopulate_from_ciip, form_result_init_function, default_form_result)
-  overriding system value
+  (name, slug, short_name, description, form_json, prepopulate_from_swrs, prepopulate_from_ciip, form_result_init_function, default_form_result)
 values
-  (1,
-  'Administration Data', 'admin', 'Admin data', 'Admin description',
+  ('Administration Data', 'admin', 'Admin data', 'Admin description',
   (select json_data from administration), true, true, 'init_application_administration_form_result', '{}'),
-  (2, 'Emission', 'emission', 'Emission', 'Emission description',
+  ('Emission', 'emission', 'Emission', 'Emission description',
   (select json_data from emission), true, false, 'init_application_emission_form_result', '{}'),
-  (3, 'Fuel','fuel', 'Fuel', 'Fuel description',
+  ('Fuel','fuel', 'Fuel', 'Fuel description',
   (select json_data from fuel), true, false, 'init_application_fuel_form_result', '[]'),
-  (4, 'Production', 'production', 'Production', 'Production description',
-  (select json_data from production), false, false, null, '[]')
-on conflict(id) do update
-set name=excluded.name, form_json=excluded.form_json,
-    prepopulate_from_ciip=excluded.prepopulate_from_ciip,
-    prepopulate_from_swrs=excluded.prepopulate_from_swrs,
-    slug=excluded.slug,
+  ('Production', 'production', 'Production', 'Production description',
+  (select json_data from production), false, false, null, '[]'),
+  ('Administration Data', 'admin-2020', 'Admin data', 'Admin description',
+  (select json_data from administration_2020), true, true, 'init_application_administration_form_result', '{}')
+on conflict(slug) do update
+set name=excluded.name,
     short_name=excluded.short_name,
+    form_json=excluded.form_json,
     description=excluded.description,
+    prepopulate_from_swrs=excluded.prepopulate_from_swrs,
+    prepopulate_from_ciip=excluded.prepopulate_from_ciip,
+    form_result_init_function=excluded.form_result_init_function,
     default_form_result=excluded.default_form_result
 returning 1
 ) select 'Inserted ' || count(*) || ' rows into ggircs_portal.form_json' from rows;

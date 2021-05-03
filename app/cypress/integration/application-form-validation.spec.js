@@ -4,7 +4,7 @@ describe('When viewing an application in draft as a reporter', () => {
   )}`;
 
   const adminFormUrl = `${applicationUrl}?formId=${window.btoa(
-    '["form_jsons",1]'
+    '["form_jsons",5]'
   )}`;
   const emissionFormUrl = `${applicationUrl}?formId=${window.btoa(
     '["form_jsons",2]'
@@ -106,12 +106,14 @@ describe('When viewing an application in draft as a reporter', () => {
     cy.get('#administration-data_operator_naics ~div .text-danger').contains(
       'is a required property'
     );
-    cy.get('.admin > .collapse').contains(
+    cy.get('.admin-2020 > .collapse').contains(
       'BC Corporate Registry number should be 1-3 letters followed by 7 digits'
     );
-    cy.get('.admin > .collapse').contains('Format should be A1A 1A1');
-    cy.get('.admin > .collapse').contains('BCGHGID code should be numeric');
-    cy.get('.admin.summary-card').happoScreenshot({
+    cy.get('.admin-2020 > .collapse').contains('Format should be A1A 1A1');
+    cy.get('.admin-2020 > .collapse').contains(
+      'BCGHGID code should be numeric'
+    );
+    cy.get('.admin-2020.summary-card').happoScreenshot({
       component: 'Admin Summary Card',
       variant: 'with errors'
     });
@@ -152,7 +154,7 @@ describe('When viewing an application in draft as a reporter', () => {
     cy.get('#page-content h1').contains('Emission');
     cy.visit(summaryPageUrl);
     cy.contains('Administration Data');
-    cy.get('.admin.summary-card').happoScreenshot({
+    cy.get('.admin-2020.summary-card').happoScreenshot({
       component: 'Admin Summary Card',
       variant: 'no errors'
     });

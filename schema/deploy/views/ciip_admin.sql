@@ -17,7 +17,7 @@ begin;
       from ggircs_portal.form_result
       join ggircs_portal.form_json
       on form_result.form_id = form_json.id
-      and form_json.slug in ('admin', 'admin-2018')
+      and form_json.slug in ('admin', 'admin-2018', 'admin-2020')
     )
     select
        x.application_id,

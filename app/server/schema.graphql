@@ -23609,6 +23609,18 @@ input DeleteFormJsonByRowIdInput {
   rowId: Int!
 }
 
+"""All input for the `deleteFormJsonBySlug` mutation."""
+input DeleteFormJsonBySlugInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """slug for the use as classname"""
+  slug: String!
+}
+
 """All input for the `deleteFormJson` mutation."""
 input DeleteFormJsonInput {
   """
@@ -29406,6 +29418,14 @@ type Mutation {
     input: DeleteFormJsonByRowIdInput!
   ): DeleteFormJsonPayload
 
+  """Deletes a single `FormJson` using a unique key."""
+  deleteFormJsonBySlug(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteFormJsonBySlugInput!
+  ): DeleteFormJsonPayload
+
   """Deletes a single `FormResult` using its globally unique id."""
   deleteFormResult(
     """
@@ -29822,6 +29842,14 @@ type Mutation {
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
     input: UpdateFormJsonByRowIdInput!
+  ): UpdateFormJsonPayload
+
+  """Updates a single `FormJson` using a unique key and a patch."""
+  updateFormJsonBySlug(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateFormJsonBySlugInput!
   ): UpdateFormJsonPayload
 
   """
@@ -35098,6 +35126,7 @@ type Query implements Node {
     id: ID!
   ): FormJson
   formJsonByRowId(rowId: Int!): FormJson
+  formJsonBySlug(slug: String!): FormJson
 
   """Reads a single `FormResult` using its globally unique `ID`."""
   formResult(
@@ -38409,6 +38438,23 @@ input UpdateFormJsonByRowIdInput {
 
   """Unique ID for the form"""
   rowId: Int!
+}
+
+"""All input for the `updateFormJsonBySlug` mutation."""
+input UpdateFormJsonBySlugInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `FormJson` being updated.
+  """
+  formJsonPatch: FormJsonPatch!
+
+  """slug for the use as classname"""
+  slug: String!
 }
 
 """All input for the `updateFormJson` mutation."""

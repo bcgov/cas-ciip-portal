@@ -5,17 +5,7 @@ reset client_min_messages;
 begin;
 select plan(17);
 
--- Setup
-insert into ggircs_portal.form_json(
-name,
-slug,
-short_name,
-description,
-form_json,
-prepopulate_from_ciip,
-prepopulate_from_swrs
-) values
-('admin', 'admin-2018', 'admin', 'admin', '{}', false, false);
+truncate table ggircs_portal.ciip_application_wizard cascade;
 
 -- Table exists
 select has_table(
@@ -31,15 +21,8 @@ select columns_are(
     'ggircs_portal.ciip_application_wizard has all necessary columns'
 );
 
-insert into ggircs_portal.ciip_application_wizard(form_id, form_position)
-values ((select id from ggircs_portal.form_json order by id desc limit 1), 0);
-
 -- Column is_active defaults to true
-select results_eq(
-  $$
-    select is_active from ggircs_portal.ciip_application_wizard order by form_id desc limit 1
-  $$,
-  ARRAY['true'::boolean],
+select col_has_default('ggircs_portal','ciip_application_wizard','is_active',
   'is_active column defaults to true'
 );
 
@@ -50,21 +33,14 @@ create role test_superuser superuser;
 set jwt.claims.sub to '11111111-1111-1111-1111-111111111111';
 
 insert into ggircs_portal.form_json (id, name,slug,short_name,description,form_json,prepopulate_from_ciip,prepopulate_from_swrs) overriding system value
-    values (999, 'test', 'test', 'test', 'test', '{}', true, true);
+    values (999, 'test', 'test1', 'test', 'test', '{}', true, true);
 insert into ggircs_portal.form_json (id, name,slug,short_name,description,form_json,prepopulate_from_ciip,prepopulate_from_swrs) overriding system value
-    values (1000, 'test', 'test', 'test', 'test', '{}', true, true);
+    values (1000, 'test', 'test2', 'test', 'test', '{}', true, true);
 
 -- CIIP_ADMINISTRATOR
 set role ciip_administrator;
 select concat('current user is: ', (select current_user));
 
-select results_eq(
-  $$
-    select count(*) from ggircs_portal.ciip_application_wizard where form_id < 5;
-  $$,
-  ARRAY[4::bigint],
-    'ciip_administrator can view all data in ciip_application_wizard table'
-);
 
 select lives_ok(
   $$
@@ -73,6 +49,15 @@ select lives_ok(
   $$,
     'ciip_administrator can insert data in ciip_application_wizard table'
 );
+
+select results_eq(
+  $$
+    select count(*) from ggircs_portal.ciip_application_wizard;
+  $$,
+  ARRAY[1::bigint],
+    'ciip_administrator can view all data in ciip_application_wizard table'
+);
+
 
 select results_eq(
   $$
@@ -111,9 +96,9 @@ select concat('current user is: ', (select current_user));
 
 select results_eq(
   $$
-    select count(*) from ggircs_portal.ciip_application_wizard where form_id < 5;
+    select count(*) from ggircs_portal.ciip_application_wizard;
   $$,
-  ARRAY[4::bigint],
+  ARRAY[1::bigint],
     'Industry User can view all data in ciip_application_wizard table'
 );
 
@@ -128,7 +113,7 @@ select throws_like(
 
 select throws_like(
   $$
-    update ggircs_portal.ciip_application_wizard set form_position = 1000 where form_id=1;
+    update ggircs_portal.ciip_application_wizard set form_position = 1000 where form_position=0;
   $$,
   'permission denied%',
     'Industry User cannot update rows in table_ciip_application_wizard'
@@ -136,7 +121,7 @@ select throws_like(
 
 select throws_like(
   $$
-    delete from ggircs_portal.ciip_application_wizard where form_id=1
+    delete from ggircs_portal.ciip_application_wizard where form_position=0;
   $$,
   'permission denied%',
     'Industry User cannot delete rows from table_ciip_application_wizard'
@@ -148,9 +133,9 @@ select concat('current user is: ', (select current_user));
 
 select results_eq(
   $$
-    select count(*) from ggircs_portal.ciip_application_wizard where form_id < 5;
+    select count(*) from ggircs_portal.ciip_application_wizard;
   $$,
-  ARRAY[4::bigint],
+  ARRAY[1::bigint],
     'ciip_analyst can view all data in ciip_application_wizard table'
 );
 

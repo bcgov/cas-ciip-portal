@@ -396,13 +396,13 @@ $function$
     perform test_helper.validate_form_result_data($1, $2, $3);
 
     case $3
-      when 1 then
+      when (select id from ggircs_portal.form_json where slug = 'admin-2020') then
         form_result_data_selected=form_result_data_1;
-      when 2 then
+      when (select id from ggircs_portal.form_json where slug = 'emission') then
         form_result_data_selected=form_result_data_2;
-      when 3 then
+      when (select id from ggircs_portal.form_json where slug = 'fuel') then
         form_result_data_selected=form_result_data_3;
-      when 4 then
+      when (select id from ggircs_portal.form_json where slug = 'production') then
         form_result_data_selected=form_result_data_4;
       else
         raise exception 'form_result id % is not supported in this fixture', $3;
@@ -420,10 +420,10 @@ create or replace function test_helper.initialize_all_form_result_data(applicati
 returns void as
 $function$
   begin
-    perform test_helper.initialize_form_result_data($1, $2, 1, $3);
-    perform test_helper.initialize_form_result_data($1, $2, 2, $3);
-    perform test_helper.initialize_form_result_data($1, $2, 3, $3);
-    perform test_helper.initialize_form_result_data($1, $2, 4, $3);
+    perform test_helper.initialize_form_result_data($1, $2, (select id from ggircs_portal.form_json where slug = 'admin-2020'), $3);
+    perform test_helper.initialize_form_result_data($1, $2, (select id from ggircs_portal.form_json where slug = 'emission'), $3);
+    perform test_helper.initialize_form_result_data($1, $2, (select id from ggircs_portal.form_json where slug = 'fuel'), $3);
+    perform test_helper.initialize_form_result_data($1, $2, (select id from ggircs_portal.form_json where slug = 'production'), $3);
   end;
 $function$ language plpgsql volatile;
 

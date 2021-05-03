@@ -101,15 +101,15 @@ insert into ggircs_portal.application_revision_status(application_id, version_nu
 
 insert into ggircs_portal.form_result(application_id, version_number, form_id, form_result)
   values
-    (1, 0, 1, '{}'),
+    (1, 0, (select id from ggircs_portal.form_json where slug='admin-2020'), '{}'),
     (1, 0, 2, '{}'),
     (1, 0, 3, '[]'),
     (1, 0, 4, '[]'),
-    (3, 0, 1, '{}'),
+    (3, 0, (select id from ggircs_portal.form_json where slug='admin-2020'), '{}'),
     (3, 0, 2, '{}'),
     (3, 0, 3, '[]'),
     (3, 0, 4, '[]'),
-    (4, 0, 1, '{}'),
+    (4, 0, (select id from ggircs_portal.form_json where slug='admin-2020'), '{}'),
     (4, 0, 2, '{}'),
     (4, 0, 3, '[]'),
     (4, 0, 4, '[]');
@@ -157,19 +157,34 @@ select is(
 );
 
 select is(
-  ((select updated_at from ggircs_portal.form_result where application_id=3 and version_number=0 and form_id=1) < now() - interval '12 hours'),
+  ((
+    select updated_at from ggircs_portal.form_result
+    where application_id=3
+      and version_number=0
+      and form_id=(select id from ggircs_portal.form_json where slug='admin-2020')
+  ) < now() - interval '12 hours'),
   true::boolean,
   'Application with id 3 was not updated by the refresh function because report.version === application.swrs_report_version'
 );
 
 select is(
-  ((select updated_at from ggircs_portal.form_result where application_id=4 and version_number=0 and form_id=1) < now() - interval '12 hours'),
+  ((
+    select updated_at from ggircs_portal.form_result
+    where application_id=4
+      and version_number=0
+        and form_id=(select id from ggircs_portal.form_json where slug='admin-2020')
+  ) < now() - interval '12 hours'),
   true::boolean,
   'Application with id 4 was not updated by the refresh function because report.version === application.swrs_report_version'
 );
 
 select is(
-  ((select updated_at from ggircs_portal.form_result where application_id=1 and version_number=0 and form_id=1) > now() - interval '12 hours'),
+  ((
+    select updated_at from ggircs_portal.form_result
+    where application_id=1
+      and version_number=0
+      and form_id=(select id from ggircs_portal.form_json where slug='admin-2020')
+  ) > now() - interval '12 hours'),
   true::boolean,
   'Application with id 1 was updated by the refresh function because because report.version !== application.swrs_report_version'
 );

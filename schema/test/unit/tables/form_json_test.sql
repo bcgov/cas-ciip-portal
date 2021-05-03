@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(16);
+select plan(17);
 
 -- Table exists
 select has_table(
@@ -31,6 +31,11 @@ select columns_are('ggircs_portal'::name, 'form_json'::name, array[
   'default_form_result'::name
 ]);
 
+select col_is_unique(
+  'ggircs_portal', 'form_json','slug',
+  'ggircs_portal.form_json.slug has a unique constraint'
+);
+
 -- Row level security tests --
 
 -- Test setup
@@ -44,7 +49,7 @@ select results_eq(
   $$
     select count(*) from ggircs_portal.form_json
   $$,
-  ARRAY[4::bigint],
+  ARRAY[5::bigint],
   'ciip_administrator can view all data in form_json table'
 );
 
@@ -95,7 +100,7 @@ select results_eq(
   $$
     select count(*) from ggircs_portal.form_json
   $$,
-  ARRAY[5::bigint],
+  ARRAY[6::bigint],
   'ciip_industry_user can view all data in form_json table'
 );
 
@@ -132,7 +137,7 @@ select results_eq(
   $$
     select count(*) from ggircs_portal.form_json
   $$,
-  ARRAY[5::bigint],
+  ARRAY[6::bigint],
   'ciip_analyst can view all data in form_json table'
 );
 

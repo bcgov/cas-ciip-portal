@@ -18,10 +18,10 @@ describe('When reviewing a submitted application as an analyst', () => {
     cy.get('.form-check-input').click();
     cy.get('#dropdown-old').contains('Version 1');
     cy.get('#dropdown-new').contains('current');
-    cy.get('.admin')
+    cy.get('.admin-2020')
       .get('#administration-data_operator_name-diffFrom')
       .contains('Changed_0');
-    cy.get('.admin')
+    cy.get('.admin-2020')
       .get('#administration-data_operator_name-diffTo')
       .contains('Changed_5');
     cy.get('.emission').get('.diffFrom').contains('6');
@@ -34,8 +34,8 @@ describe('When reviewing a submitted application as an analyst', () => {
     cy.get('#dropdown-old').click();
     cy.get('.dropdown-item').click();
     cy.get('#dropdown-old').contains('swrs import');
-    cy.get('.admin').get('.diffFrom > i').contains('[No Data Entered]');
-    cy.get('.admin').get('.diffTo').contains('Changed');
+    cy.get('.admin-2020').get('.diffFrom > i').contains('[No Data Entered]');
+    cy.get('.admin-2020').get('.diffTo').contains('Changed');
     cy.get('.emission').get('.diffFrom > i').contains('[No Data Entered]');
     cy.get('.emission').get('.diffTo').contains('11');
     cy.get('.fuel').get('.diffFrom > i').contains('[No Data Entered]');

@@ -175,7 +175,7 @@ describe('Confirmation emails', () => {
     const applicationId = window.btoa('["applications",1]');
     cy.visit(`/reporter/application/${applicationId}?confirmationPage=true`);
     cy.url().should('include', '/reporter/application');
-    cy.get('.admin');
+    cy.get('.admin-2020');
     cy.contains('Submit Application').click();
     cy.wait(1000);
     cy.request('localhost:8025/api/v1/messages').then((response) => {
