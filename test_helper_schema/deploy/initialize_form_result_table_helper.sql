@@ -41,7 +41,6 @@ $function$
     form_result_data_1 constant jsonb := '{
           "facility": {
             "naics" : "123456",
-            "bcghgid": "123465",
             "facilityName": "test",
             "facilityType": "L_c"
           },

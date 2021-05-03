@@ -8,13 +8,8 @@
       "facility": {
         "type": "object",
         "title": "Facility Information",
-        "required": ["bcghgid", "facilityName", "facilityType"],
+        "required": ["facilityName", "facilityType"],
         "properties": {
-          "bcghgid": {
-            "type": "string",
-            "format": "bcghgid",
-            "title": "BCGHG ID Number"
-          },
           "facilityName": {
             "type": "string",
             "title": "Facility Name"
@@ -138,7 +133,7 @@
       "ui:col-md": 12
     },
     "facility": {
-      "ui:order": ["facilityName", "facilityType", "bcghgid"]
+      "ui:order": ["facilityName", "facilityType"]
     },
     "operator": {
       "naics": {
@@ -193,12 +188,10 @@
     }
   },
   "customFormats": {
-    "bcghgid": "^\\d+$",
     "bcCorporateRegistryNumber": "^[A-Za-z]{1,3}\\d{7}$",
     "postal-code": "[a-zA-Z][0-9][a-zA-Z]\\s?[0-9][a-zA-Z][0-9]"
   },
   "customFormatsErrorMessages": {
-    "bcghgid": "BCGHGID code should be numeric",
     "bcCorporateRegistryNumber": "BC Corporate Registry number should be 1-3 letters followed by 7 digits",
     "postal-code": "Format should be A1A 1A1",
     "email": "Please enter a valid email address, eg: mail@example.com"

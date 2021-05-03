@@ -15,7 +15,7 @@ select mocks.set_mocked_time_in_transaction('2021-07-03 00:00:00.000000-07'::tim
 
 select ggircs_portal.create_application_mutation_chain(1);
 update ggircs_portal.form_result
-  set form_result = '{"facility": {"bcghgid": "985", "facilityName": "Test Facility", "facilityType": "EIO"}, "operator": {"name": "Testy Tester", "naics": "1000", "tradeName": "Trade Test", "mailingAddress": {"city": "Victoria", "province": "BC", "postalCode": "h0h0h0", "streetAddress": "123 outtamy way"}, "bcCorporateRegistryNumber": "abc1231231"}, "operationalRepresentative": {"email": "test@test.com", "phone": "1234567890", "lastName": "Sedin", "position": "Captain", "firstName": "Henrik", "mailingAddress": {"city": "Vancouver", "province": "BC", "postalCode": "h0h0h1", "streetAddress": "555 evergreen terrace"}}}'
+  set form_result = '{"facility": {"facilityName": "Test Facility", "facilityType": "EIO"}, "operator": {"name": "Testy Tester", "naics": "1000", "tradeName": "Trade Test", "mailingAddress": {"city": "Victoria", "province": "BC", "postalCode": "h0h0h0", "streetAddress": "123 outtamy way"}, "bcCorporateRegistryNumber": "abc1231231"}, "operationalRepresentative": {"email": "test@test.com", "phone": "1234567890", "lastName": "Sedin", "position": "Captain", "firstName": "Henrik", "mailingAddress": {"city": "Vancouver", "province": "BC", "postalCode": "h0h0h1", "streetAddress": "555 evergreen terrace"}}}'
   where application_id=1 and version_number=1;
 
 -- 2018 and 2019 data
@@ -48,7 +48,7 @@ select results_eq(
     select facility_name, bcghgid, facility_type from ggircs_portal.ciip_admin where application_id=1 and version_number=1
   $$,
   $$
-    select 'Test Facility'::varchar, '985'::varchar, 'EIO'::varchar
+    values ('Test Facility'::varchar, null::varchar, 'EIO'::varchar) -- no bcghgid starting with 2020 admin data
   $$,
   'ciip_admin view returns the right facility data'
 );

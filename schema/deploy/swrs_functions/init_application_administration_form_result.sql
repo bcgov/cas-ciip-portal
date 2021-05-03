@@ -24,7 +24,6 @@ begin
     'operator', jsonb_build_object(
       'name', org_data.operator_name,
       'tradeName', org_data.operator_trade_name,
-      'duns', org_data.duns,
       'bcCorporateRegistryNumber', '',
       'naics', facility_data.naics_code,
       'mailingAddress', jsonb_build_object(
@@ -35,16 +34,7 @@ begin
       )
     ), 'facility', jsonb_build_object(
       'facilityName', facility_data.facility_name,
-      'facilityType', facility_data.facility_type,
-      'bcghgid', facility_data.bcghgid,
-      'naics', facility_data.naics_code,
-      'mailingAddress', jsonb_build_object(
-        'streetAddress', facility_data.facility_mailing_address,
-        'city', facility_data.facility_city,
-        'province', facility_data.facility_province,
-        'postalCode', facility_data.facility_postal_code
-      ),
-      'isFacilityLocationDifferent', false
+      'facilityType', facility_data.facility_type
     ), 'operationalRepresentative', jsonb_build_object(
       'firstName', contact_data.first_name,
       'lastName', contact_data.last_name,
