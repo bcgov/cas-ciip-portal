@@ -22,9 +22,46 @@ describe('IncentiveCalculator', () => {
     }
   };
 
+  const applicationRevisionMultiProduct: IncentiveCalculatorContainer_applicationRevision = {
+    ' $refType': 'IncentiveCalculatorContainer_applicationRevision',
+    ciipIncentive: {
+      edges: [
+        {
+          node: {
+            ' $fragmentRefs': {
+              IncentiveSegmentContainer_ciipIncentiveByProduct: true
+            },
+            rowId: 1,
+            incentiveProduct: '0',
+            incentiveProductMax: '0'
+          }
+        },
+        {
+          node: {
+            ' $fragmentRefs': {
+              IncentiveSegmentContainer_ciipIncentiveByProduct: true
+            },
+            rowId: 2,
+            incentiveProduct: '13.722',
+            incentiveProductMax: '15.354'
+          }
+        }
+      ]
+    }
+  };
+
   it('should render the page', async () => {
     const r = shallow(
       <IncentiveCalculator applicationRevision={applicationRevision} />
+    );
+    expect(r).toMatchSnapshot();
+  });
+
+  it('includes an aggregate row with multiple products', async () => {
+    const r = shallow(
+      <IncentiveCalculator
+        applicationRevision={applicationRevisionMultiProduct}
+      />
     );
     expect(r).toMatchSnapshot();
   });
