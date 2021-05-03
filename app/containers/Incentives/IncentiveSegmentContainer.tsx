@@ -70,7 +70,6 @@ export default createFragmentContainer(IncentiveSegmentContainer, {
       emissionIntensity
       benchmark
       eligibilityThreshold
-      incrementalCarbonTax
     }
   `
 });
