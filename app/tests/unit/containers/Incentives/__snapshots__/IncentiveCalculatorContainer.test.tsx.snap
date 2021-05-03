@@ -101,57 +101,13 @@ exports[`IncentiveCalculator should render the page 1`] = `
             " $fragmentRefs": Object {
               "IncentiveSegmentContainer_ciipIncentiveByProduct": true,
             },
+            "incentiveProduct": "0",
+            "incentiveProductMax": "0",
             "rowId": 1,
           }
         }
         key="1"
       />
-      <tr
-        className="jsx-3958786356"
-      >
-        <td
-          className="jsx-3958786356"
-        />
-         
-        <td
-          className="jsx-3958786356"
-        />
-         
-        <td
-          className="jsx-3958786356"
-        />
-         
-        <td
-          className="jsx-3958786356"
-        />
-         
-        <td
-          className="jsx-3958786356"
-        />
-         
-        <td
-          className="jsx-3958786356"
-        />
-        <td
-          className="jsx-3958786356"
-        >
-          1
-        </td>
-        <td
-          className="jsx-3958786356"
-        >
-          <Money
-            amount="NaN"
-          />
-        </td>
-        <td
-          className="jsx-3958786356"
-        >
-          <Money
-            amount="NaN"
-          />
-        </td>
-      </tr>
     </tbody>
   </ForwardRef>
   <JSXStyle

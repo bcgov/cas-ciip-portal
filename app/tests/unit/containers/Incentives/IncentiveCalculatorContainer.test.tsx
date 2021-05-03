@@ -13,7 +13,9 @@ describe('IncentiveCalculator', () => {
             ' $fragmentRefs': {
               IncentiveSegmentContainer_ciipIncentiveByProduct: true
             },
-            rowId: 1
+            rowId: 1,
+            incentiveProduct: '0',
+            incentiveProductMax: '0'
           }
         }
       ]
