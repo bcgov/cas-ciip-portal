@@ -22,7 +22,7 @@ $$ language sql stable;
 
 grant execute on function ggircs_portal.no_reported_ciip_product to ciip_administrator, ciip_analyst, ciip_industry_user;
 
-comment on function ggircs_portal.no_reported_ciip_product(ggircs_portal.application_revision) is 'This validation function for a CIIP (CleanBC Industrial Incentive Program) application determines if any emission categories have emissions reported in a category, but no corresponding fuels reported for that category';
+comment on function ggircs_portal.no_reported_ciip_product(ggircs_portal.application_revision) is 'This validation function for a CIIP (CleanBC Industrial Incentive Program) application determines if it contains at least one valid ciip product reported';
 
 insert into ggircs_portal.application_revision_validation_function(validation_function_name, validation_description, validation_failed_message)
 values (
