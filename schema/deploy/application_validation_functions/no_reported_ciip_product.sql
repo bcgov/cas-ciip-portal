@@ -24,11 +24,4 @@ grant execute on function ggircs_portal.no_reported_ciip_product to ciip_adminis
 
 comment on function ggircs_portal.no_reported_ciip_product(ggircs_portal.application_revision) is 'This validation function for a CIIP (CleanBC Industrial Incentive Program) application determines if it contains at least one valid ciip product reported';
 
-insert into ggircs_portal.application_revision_validation_function(validation_function_name, validation_description, validation_failed_message)
-values (
-  'no_reported_ciip_product',
-  'determines if an application has at least one valid ciip product reported',
-  'There is no reported production of a primary (non-energy) product. At least one product must be reported.'
-);
-
 commit;

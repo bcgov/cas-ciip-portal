@@ -29,11 +29,4 @@ grant execute on function ggircs_portal.emission_category_missing_fuel to ciip_a
 
 comment on function ggircs_portal.emission_category_missing_fuel(ggircs_portal.application_revision) is 'This validation function for a CIIP (CleanBC Industrial Incentive Program) application determines if any emission categories have emissions reported in a category, but no corresponding fuels reported for that category';
 
-insert into ggircs_portal.application_revision_validation_function(validation_function_name, validation_description, validation_failed_message)
-values (
-  'emission_category_missing_fuel',
-  'determines if any emission categories have emissions reported in a category, but no corresponding fuels reported for that category',
-  'There are no reported fuels in some emission categories where emissions were reported. Please report fuels corresponding to all emission categories with reported emissions.'
-);
-
 commit;
