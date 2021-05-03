@@ -24,13 +24,13 @@ const IncentiveSegmentContainer: React.FunctionComponent<Props> = ({
 
   return (
     <tr>
-      <td>{productName}</td>
-      <td>{Number(emissionIntensity).toFixed(4)}</td>
-      <td>{Number(benchmark).toFixed(4)}</td>
-      <td>{Number(eligibilityThreshold).toFixed(4)}</td>
-      <td>{Number(incentiveMultiplier).toFixed(4)}</td>
-      <td>{Number(paymentAllocationFactor).toFixed(4)}</td>
-      <td>{Number(incentiveRatio).toFixed(4)}</td>
+      <td className="ciip-name">{productName}</td>
+      <td>{Number.parseFloat(Number(emissionIntensity).toFixed(4))}</td>
+      <td>{Number.parseFloat(Number(benchmark).toFixed(4))}</td>
+      <td>{Number.parseFloat(Number(eligibilityThreshold).toFixed(4))}</td>
+      <td>{Number.parseFloat(Number(incentiveMultiplier).toFixed(4))}</td>
+      <td>{Number.parseFloat(Number(paymentAllocationFactor).toFixed(4))}</td>
+      <td>{Number.parseFloat(Number(incentiveRatio).toFixed(4))}</td>
       <td>
         <Money amount={Number(incentiveProduct).toFixed(2)} />
       </td>
@@ -41,6 +41,10 @@ const IncentiveSegmentContainer: React.FunctionComponent<Props> = ({
         {`
           td {
             vertical-align: middle;
+            text-align: right;
+          }
+          td.ciip-name {
+            text-align: left;
           }
         `}
       </style>

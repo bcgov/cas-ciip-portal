@@ -69,18 +69,16 @@ export const IncentiveCalculator: React.FunctionComponent<Props> = ({
           </tr>
         </thead>
         <tbody>
-          <>
-            {edges.map(({node}) => (
-              <IncentiveSegmentContainer
-                key={node.rowId}
-                ciipIncentiveByProduct={node}
-              />
-            ))}
-          </>
+          {edges.map(({node}) => (
+            <IncentiveSegmentContainer
+              key={node.rowId}
+              ciipIncentiveByProduct={node}
+            />
+          ))}
           {edges.length > 1 && (
             <tr>
               <td /> <td /> <td /> <td /> <td /> <td />
-              <td>{aggIncentiveRatio.toFixed(4)}</td>
+              <td>{Number.parseFloat(aggIncentiveRatio.toFixed(4))}</td>
               <td>
                 <Money amount={aggTotals.incentiveProduct.toFixed(2)} />
               </td>
@@ -95,6 +93,9 @@ export const IncentiveCalculator: React.FunctionComponent<Props> = ({
         h2 {
           font-size: 1.25rem;
           margin-botton: 0.5rem;
+        }
+        td {
+          text-align: right;
         }
       `}</style>
     </>
