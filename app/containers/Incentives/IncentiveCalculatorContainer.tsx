@@ -77,7 +77,7 @@ export const IncentiveCalculator: React.FunctionComponent<Props> = ({
               />
             ))}
           </>
-          {edges.length > 0 && (
+          {edges.length > 1 && (
             <tr>
               <td /> <td /> <td /> <td /> <td /> <td />
               <td>{aggIncentiveRatio}</td>
