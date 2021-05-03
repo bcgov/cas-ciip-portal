@@ -28,9 +28,9 @@ const IncentiveSegmentContainer: React.FunctionComponent<Props> = ({
       <td>{Number.parseFloat(Number(emissionIntensity).toFixed(4))}</td>
       <td>{Number.parseFloat(Number(benchmark).toFixed(4))}</td>
       <td>{Number.parseFloat(Number(eligibilityThreshold).toFixed(4))}</td>
-      <td>{Number.parseFloat(Number(incentiveRatio).toFixed(4))}</td>
       <td>{Number.parseFloat(Number(incentiveMultiplier).toFixed(4))}</td>
       <td>{Number.parseFloat(Number(paymentAllocationFactor).toFixed(4))}</td>
+      <td>{Number.parseFloat(Number(incentiveRatio).toFixed(4))}</td>
       <td>
         <NumberFormat
           value={Number(incentiveProduct).toFixed(2)}
