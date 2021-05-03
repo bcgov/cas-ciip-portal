@@ -78,11 +78,13 @@ export const IncentiveCalculator: React.FunctionComponent<Props> = ({
           {edges.length > 1 && (
             <tr>
               <td /> <td /> <td /> <td /> <td /> <td />
-              <td>{Number.parseFloat(aggIncentiveRatio.toFixed(4))}</td>
-              <td>
+              <td className="text-right">
+                {Number.parseFloat(aggIncentiveRatio.toFixed(4))}
+              </td>
+              <td className="text-right">
                 <Money amount={aggTotals.incentiveProduct.toFixed(2)} />
               </td>
-              <td>
+              <td className="text-right">
                 <Money amount={aggTotals.incentiveProductMax.toFixed(2)} />
               </td>
             </tr>
@@ -93,9 +95,6 @@ export const IncentiveCalculator: React.FunctionComponent<Props> = ({
         h2 {
           font-size: 1.25rem;
           margin-botton: 0.5rem;
-        }
-        td {
-          text-align: right;
         }
       `}</style>
     </>

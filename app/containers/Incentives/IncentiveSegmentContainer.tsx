@@ -24,27 +24,35 @@ const IncentiveSegmentContainer: React.FunctionComponent<Props> = ({
 
   return (
     <tr>
-      <td className="ciip-name">{productName}</td>
-      <td>{Number.parseFloat(Number(emissionIntensity).toFixed(4))}</td>
-      <td>{Number.parseFloat(Number(benchmark).toFixed(4))}</td>
-      <td>{Number.parseFloat(Number(eligibilityThreshold).toFixed(4))}</td>
-      <td>{Number.parseFloat(Number(incentiveMultiplier).toFixed(4))}</td>
-      <td>{Number.parseFloat(Number(paymentAllocationFactor).toFixed(4))}</td>
-      <td>{Number.parseFloat(Number(incentiveRatio).toFixed(4))}</td>
-      <td>
+      <td className="text-left">{productName}</td>
+      <td className="text-right">
+        {Number.parseFloat(Number(emissionIntensity).toFixed(4))}
+      </td>
+      <td className="text-right">
+        {Number.parseFloat(Number(benchmark).toFixed(4))}
+      </td>
+      <td className="text-right">
+        {Number.parseFloat(Number(eligibilityThreshold).toFixed(4))}
+      </td>
+      <td className="text-right">
+        {Number.parseFloat(Number(incentiveMultiplier).toFixed(4))}
+      </td>
+      <td className="text-right">
+        {Number.parseFloat(Number(paymentAllocationFactor).toFixed(4))}
+      </td>
+      <td className="text-right">
+        {Number.parseFloat(Number(incentiveRatio).toFixed(4))}
+      </td>
+      <td className="text-right">
         <Money amount={Number(incentiveProduct).toFixed(2)} />
       </td>
-      <td>
+      <td className="text-right">
         <Money amount={Number(incentiveProductMax).toFixed(2)} />
       </td>
       <style jsx>
         {`
           td {
             vertical-align: middle;
-            text-align: right;
-          }
-          td.ciip-name {
-            text-align: left;
           }
         `}
       </style>
