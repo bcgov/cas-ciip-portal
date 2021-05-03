@@ -27,7 +27,7 @@ export const GenericConfirmationModal: React.FunctionComponent<Props> = ({
 }) => {
   return (
     <Modal
-      onHide={onCancel}  
+      onHide={onCancel}
       show={show}
       size={size}
       centered
