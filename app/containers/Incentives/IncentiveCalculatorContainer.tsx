@@ -1,7 +1,7 @@
 import React from 'react';
 import {graphql, createFragmentContainer} from 'react-relay';
 import {Table, Jumbotron} from 'react-bootstrap';
-import NumberFormat from 'react-number-format';
+import Money from 'components/helpers/Money';
 import IncentiveSegmentFormula from 'components/Incentives/IncentiveSegmentFormula';
 import {IncentiveCalculatorContainer_applicationRevision} from 'IncentiveCalculatorContainer_applicationRevision.graphql';
 import IncentiveSegmentContainer from './IncentiveSegmentContainer';
@@ -82,20 +82,10 @@ export const IncentiveCalculator: React.FunctionComponent<Props> = ({
               <td /> <td /> <td /> <td /> <td /> <td />
               <td>{aggIncentiveRatio}</td>
               <td>
-                <NumberFormat
-                  value={Number(aggTotals.incentiveProduct).toFixed(2)}
-                  displayType="text"
-                  thousandSeparator
-                  prefix="$"
-                />
+                <Money amount={aggTotals.incentiveProduct.toFixed(2)} />
               </td>
               <td>
-                <NumberFormat
-                  value={Number(aggTotals.incentiveProduct).toFixed(2)}
-                  displayType="text"
-                  thousandSeparator
-                  prefix="$"
-                />
+                <Money amount={aggTotals.incentiveProductMax.toFixed(2)} />
               </td>
             </tr>
           )}

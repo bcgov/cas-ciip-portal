@@ -1,6 +1,6 @@
 import React from 'react';
 import {createFragmentContainer, graphql} from 'react-relay';
-import NumberFormat from 'react-number-format';
+import Money from 'components/helpers/Money';
 import {IncentiveSegmentContainer_ciipIncentiveByProduct} from 'IncentiveSegmentContainer_ciipIncentiveByProduct.graphql';
 
 interface Props {
@@ -32,20 +32,10 @@ const IncentiveSegmentContainer: React.FunctionComponent<Props> = ({
       <td>{Number.parseFloat(Number(paymentAllocationFactor).toFixed(4))}</td>
       <td>{Number.parseFloat(Number(incentiveRatio).toFixed(4))}</td>
       <td>
-        <NumberFormat
-          value={Number(incentiveProduct).toFixed(2)}
-          displayType="text"
-          thousandSeparator
-          prefix="$"
-        />
+        <Money amount={Number(incentiveProduct).toFixed(2)} />
       </td>
       <td>
-        <NumberFormat
-          value={Number(incentiveProductMax).toFixed(2)}
-          displayType="text"
-          thousandSeparator
-          prefix="$"
-        />
+        <Money amount={Number(incentiveProductMax).toFixed(2)} />
       </td>
       <style jsx>
         {`
