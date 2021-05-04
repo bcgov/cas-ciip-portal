@@ -206,6 +206,7 @@ deployTestData() {
   _psql -f "./prod/gas.sql"
   _psql -f "./prod/emission_gas.sql"
   _psql -f "./prod/review_step.sql"
+  _psql -f "./prod/application_validation_function.sql"
   return 0;
 }
 
