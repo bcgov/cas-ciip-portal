@@ -9,7 +9,7 @@ exports[`FacilitiesRowItem should match the previous snapshot 1`] = `
     fac
   </td>
   <td>
-    EIO
+    SFO
   </td>
   <td>
     123
@@ -47,7 +47,7 @@ exports[`FacilitiesRowItem should match the previous snapshot 1`] = `
           "applicationStatus": "SUBMITTED",
           "facilityBcghgid": "123",
           "facilityName": "fac",
-          "facilityType": "EIO",
+          "facilityType": "SFO",
           "lastSwrsReportingYear": 2019,
           "operatorName": "org",
         }
@@ -75,7 +75,7 @@ exports[`FacilitiesRowItem should show Draft in the status if the application is
     fac
   </td>
   <td>
-    EIO
+    SFO
   </td>
   <td>
     123
@@ -113,7 +113,7 @@ exports[`FacilitiesRowItem should show Draft in the status if the application is
           "applicationStatus": "DRAFT",
           "facilityBcghgid": "123",
           "facilityName": "fac",
-          "facilityType": "EIO",
+          "facilityType": "SFO",
           "lastSwrsReportingYear": 2019,
           "operatorName": "org",
         }
@@ -141,7 +141,7 @@ exports[`FacilitiesRowItem should show approved in the status if the application
     fac
   </td>
   <td>
-    EIO
+    SFO
   </td>
   <td>
     123
@@ -179,7 +179,7 @@ exports[`FacilitiesRowItem should show approved in the status if the application
           "applicationStatus": "APPROVED",
           "facilityBcghgid": "123",
           "facilityName": "fac",
-          "facilityType": "EIO",
+          "facilityType": "SFO",
           "lastSwrsReportingYear": 2019,
           "operatorName": "org",
         }

@@ -15,7 +15,7 @@
             "title": "Facility Name"
           },
           "facilityType": {
-            "enum": ["IF_a", "IF_b", "L_c", "SFO", "LFO", "EIO"],
+            "enum": ["IF_a", "IF_b", "L_c", "SFO"],
             "type": "string",
             "title": "Facility Type"
           }

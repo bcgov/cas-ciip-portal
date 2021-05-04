@@ -10,7 +10,7 @@ const addFacilitySchema: JSONSchema7 = {
     facilityType: {
       type: 'string',
       title: 'Facility Type',
-      enum: ['IF_a', 'IF_b', 'L_c', 'SFO', 'LFO', 'EIO']
+      enum: ['IF_a', 'IF_b', 'L_c', 'SFO']
     },
     bcghgid: {
       type: 'string',
