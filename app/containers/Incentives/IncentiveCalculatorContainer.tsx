@@ -1,6 +1,7 @@
 import React from 'react';
 import {graphql, createFragmentContainer} from 'react-relay';
 import {Table, Jumbotron} from 'react-bootstrap';
+import Money from 'components/helpers/Money';
 import IncentiveSegmentFormula from 'components/Incentives/IncentiveSegmentFormula';
 import {IncentiveCalculatorContainer_applicationRevision} from 'IncentiveCalculatorContainer_applicationRevision.graphql';
 import IncentiveSegmentContainer from './IncentiveSegmentContainer';
@@ -13,6 +14,30 @@ export const IncentiveCalculator: React.FunctionComponent<Props> = ({
   applicationRevision
 }) => {
   const {edges = []} = applicationRevision.ciipIncentive;
+
+  const aggTotals = edges.reduce(
+    function calcAggs(
+      accumulator,
+      {node: {incentiveProduct, incentiveProductMax}}
+    ) {
+      return {
+        incentiveProduct:
+          accumulator.incentiveProduct + Number(incentiveProduct),
+        incentiveProductMax:
+          accumulator.incentiveProductMax + Number(incentiveProductMax)
+      };
+    },
+    {incentiveProduct: 0, incentiveProductMax: 0}
+  );
+
+  // incentive ratio = calculated incentive / maximum incentive
+  // set the default to 1 to avoid division by zero.
+  let aggIncentiveRatio = 1;
+  if (aggTotals.incentiveProductMax > 0) {
+    aggIncentiveRatio =
+      aggTotals.incentiveProduct / aggTotals.incentiveProductMax;
+  }
+
   return (
     <>
       <Jumbotron>
@@ -36,10 +61,9 @@ export const IncentiveCalculator: React.FunctionComponent<Props> = ({
             <th>Emission Intensity</th>
             <th>Benchmark</th>
             <th>Eligibility Threshold</th>
-            <th>Threshold Chart</th>
-            <th>Incentive Ratio</th>
             <th>Incentive Multiplier</th>
             <th>Payment Allocation</th>
+            <th>Incentive Ratio</th>
             <th>Calculated Incentive (CAD)</th>
             <th>Maximum Incentive (CAD)</th>
           </tr>
@@ -51,6 +75,20 @@ export const IncentiveCalculator: React.FunctionComponent<Props> = ({
               ciipIncentiveByProduct={node}
             />
           ))}
+          {edges.length > 1 && (
+            <tr>
+              <td /> <td /> <td /> <td /> <td /> <td />
+              <td className="text-right">
+                {Number.parseFloat(aggIncentiveRatio.toFixed(4))}
+              </td>
+              <td className="text-right">
+                <Money amount={aggTotals.incentiveProduct.toFixed(2)} />
+              </td>
+              <td className="text-right">
+                <Money amount={aggTotals.incentiveProductMax.toFixed(2)} />
+              </td>
+            </tr>
+          )}
         </tbody>
       </Table>
       <style jsx>{`
@@ -70,6 +108,8 @@ export default createFragmentContainer(IncentiveCalculator, {
         edges {
           node {
             rowId
+            incentiveProduct
+            incentiveProductMax
             ...IncentiveSegmentContainer_ciipIncentiveByProduct
           }
         }

@@ -1,7 +1,7 @@
 import React from 'react';
 import {createFragmentContainer, graphql} from 'react-relay';
+import Money from 'components/helpers/Money';
 import {IncentiveSegmentContainer_ciipIncentiveByProduct} from 'IncentiveSegmentContainer_ciipIncentiveByProduct.graphql';
-import BenchmarkChart from 'components/Incentives/BenchmarkChart';
 
 interface Props {
   ciipIncentiveByProduct: IncentiveSegmentContainer_ciipIncentiveByProduct;
@@ -24,22 +24,31 @@ const IncentiveSegmentContainer: React.FunctionComponent<Props> = ({
 
   return (
     <tr>
-      <td>{productName}</td>
-      <td>{Number.parseFloat(Number(emissionIntensity).toFixed(4))}</td>
-      <td>{Number.parseFloat(Number(benchmark).toFixed(4))}</td>
-      <td>{Number.parseFloat(Number(eligibilityThreshold).toFixed(4))}</td>
-      <td>
-        <BenchmarkChart
-          emissionIntensity={Number(emissionIntensity)}
-          benchmark={Number(benchmark)}
-          eligibilityThreshold={Number(eligibilityThreshold)}
-        />
+      <td className="text-left">{productName}</td>
+      <td className="text-right">
+        {Number.parseFloat(Number(emissionIntensity).toFixed(4))}
       </td>
-      <td>{Number.parseFloat(Number(incentiveRatio).toFixed(4))}</td>
-      <td>{Number.parseFloat(Number(incentiveMultiplier).toFixed(4))}</td>
-      <td>{Number.parseFloat(Number(paymentAllocationFactor).toFixed(4))}</td>
-      <td>{Number(incentiveProduct).toFixed(2)}</td>
-      <td>{Number(incentiveProductMax).toFixed(2)}</td>
+      <td className="text-right">
+        {Number.parseFloat(Number(benchmark).toFixed(4))}
+      </td>
+      <td className="text-right">
+        {Number.parseFloat(Number(eligibilityThreshold).toFixed(4))}
+      </td>
+      <td className="text-right">
+        {Number.parseFloat(Number(incentiveMultiplier).toFixed(4))}
+      </td>
+      <td className="text-right">
+        {Number.parseFloat(Number(paymentAllocationFactor).toFixed(4))}
+      </td>
+      <td className="text-right">
+        {Number.parseFloat(Number(incentiveRatio).toFixed(4))}
+      </td>
+      <td className="text-right">
+        <Money amount={Number(incentiveProduct).toFixed(2)} />
+      </td>
+      <td className="text-right">
+        <Money amount={Number(incentiveProductMax).toFixed(2)} />
+      </td>
       <style jsx>
         {`
           td {
@@ -63,7 +72,6 @@ export default createFragmentContainer(IncentiveSegmentContainer, {
       emissionIntensity
       benchmark
       eligibilityThreshold
-      incrementalCarbonTax
     }
   `
 });

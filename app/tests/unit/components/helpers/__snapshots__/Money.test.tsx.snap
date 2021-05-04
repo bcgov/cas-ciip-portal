@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Money adds currency symbol 1`] = `"$15.52"`;
+
+exports[`Money separates thousands 1`] = `"$5,005,615.52"`;
