@@ -127,6 +127,17 @@ comment on column ggircs_portal.ciip_admin.application_imported_at is 'The date 
 comment on column ggircs_portal.ciip_admin.application_type is 'The type of the application (found in 2018 data only, application_type = facility_type)';
 comment on column ggircs_portal.ciip_admin.application_signature_date is 'The date this application was signed off on';
 comment on column ggircs_portal.ciip_admin.comments is 'Any comments the reporter added to this form while filling it out';
-
+comment on column ggircs_portal.ciip_admin.primary_contact_email is 'The primary contact''s email';
+comment on column ggircs_portal.ciip_admin.primary_contact_phone is 'The primary contact''s phone';
+comment on column ggircs_portal.ciip_admin.primary_contact_last_name is 'The primary contact''s last name';
+comment on column ggircs_portal.ciip_admin.primary_contact_first_name is 'The primary contact''s first name';
+comment on column ggircs_portal.ciip_admin.primary_contact_position is 'The primary contact''s position';
+comment on column ggircs_portal.ciip_admin.primary_contact_organization is 'The primary contact''s organisation';
+comment on column ggircs_portal.ciip_admin.secondary_contact_email is 'The secondary contact''s email';
+comment on column ggircs_portal.ciip_admin.secondary_contact_phone is 'The secondary contact''s phone';
+comment on column ggircs_portal.ciip_admin.secondary_contact_last_name is 'The secondary contact''s last name';
+comment on column ggircs_portal.ciip_admin.secondary_contact_first_name is 'The secondary contact''s first name';
+comment on column ggircs_portal.ciip_admin.secondary_contact_position is 'The secondary contact''s position';
+comment on column ggircs_portal.ciip_admin.secondary_contact_organization is 'The secondary contact''s organisation';
 
 commit;
