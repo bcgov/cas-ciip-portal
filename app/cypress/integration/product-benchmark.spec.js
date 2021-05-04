@@ -59,26 +59,21 @@ describe('The products and benchmark page', () => {
     });
 
     cy.get('#root_benchmark').clear().type('12');
-    cy.get('.rjsf > .btn').contains('Save');
-    cy.get('.rjsf > .btn').click();
+    cy.get('.rjsf > .btn').contains('Save').click();
     cy.get('tbody > :nth-child(1) > :nth-child(4)').contains('12');
-
-    cy.get('.close > [aria-hidden="true"]').click();
 
     // edit a published product
     openBenchmarkModal(2);
     cy.get('#root_benchmark').should('have.prop', 'disabled', false);
     cy.get('#root_benchmark').clear().type('10');
-    cy.get('.rjsf > .btn').contains('Save');
-    cy.get('.rjsf > .btn').click();
+    cy.get('.rjsf > .btn').contains('Save').click();
     cy.get('tbody > :nth-child(2) > :nth-child(4)').contains('10');
 
     // edit a published (read-only) product
     openBenchmarkModal(4);
     cy.get('#root_benchmark').should('have.prop', 'disabled', false);
     cy.get('#root_benchmark').clear().type('10');
-    cy.get('.rjsf > .btn').contains('Save');
-    cy.get('.rjsf > .btn').click();
+    cy.get('.rjsf > .btn').contains('Save').click();
     cy.get('tbody > :nth-child(4) > :nth-child(4)').contains('10');
 
     // Does not allow editing a benchmark for an archived product
