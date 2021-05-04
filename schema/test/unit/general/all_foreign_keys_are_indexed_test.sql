@@ -8,7 +8,7 @@ select plan(1);
 
 select is_empty(
   $$
-    WITH indexed_tables AS (
+    with indexed_tables as (
       select
           ns.nspname,
           t.relname as table_name,
@@ -16,11 +16,11 @@ select is_empty(
           array_to_string(array_agg(a.attname), ', ') as column_names,
           ix.indrelid,
           string_to_array(ix.indkey::text, ' ')::smallint[] as indkey
-      FROM pg_class i
-      JOIN pg_index ix ON i.OID = ix.indrelid
-      JOIN pg_class t ON ix.indrelid = t.oid
-      JOIN pg_namespace ns ON ns.oid = t.relnamespace
-      JOIN pg_attribute a ON a.attrelid = t.oid
+      from pg_class i
+      join pg_index ix on i.OID = ix.indrelid
+      join pg_class t on ix.indrelid = t.oid
+      join pg_namespace ns on ns.oid = t.relnamespace
+      join pg_attribute a on a.attrelid = t.oid
       where a.attnum = ANY(ix.indkey)
       and t.relkind = 'r'
       and nspname not in ('pg_catalog')
@@ -37,23 +37,22 @@ select is_empty(
           ix.indrelid,
           ix.indkey
     )
-    SELECT
+    select
       conrelid::regclass
       ,conname
       ,reltuples::bigint
-    FROM pg_constraint pgc
-    JOIN pg_class ON (conrelid = pg_class.oid)
+    from pg_constraint pgc
+    join pg_class on (conrelid = pg_class.oid)
     join pg_namespace on pg_class.relnamespace = pg_namespace.oid
-    and pg_namespace.nspname not in ('swrs', 'swrs_transform', 'swrs_extract')
-    WHERE contype = 'f'
-    AND NOT EXISTS(
-      SELECT 1
-      FROM indexed_tables
-      WHERE indrelid = conrelid
-      AND conkey = indkey
-      OR (array_length(indkey, 1) > 1 AND indkey @> conkey)
+    and pg_namespace.nspname in ('ggircs_portal', 'ggircs_portal_private')
+    where contype = 'f'
+    and not exists(
+      select 1
+      from indexed_tables
+      where indrelid = conrelid
+      and conkey = indkey
     )
-    ORDER BY reltuples DESC
+    order by reltuples desc;
   $$,
   'All foreign keys in the ggircs_portal & ggircs_portal_private schemas are indexed'
 );
