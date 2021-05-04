@@ -1,7 +1,7 @@
 -- Revert ggircs-portal:database_functions/add_missing_indices from pg
 
-BEGIN;
+begin;
 
--- XXX Add DDLs here.
+-- No revert necessary, the deploy file that adds indices is idempotent.
 
-COMMIT;
+commit;

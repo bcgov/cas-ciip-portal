@@ -1,7 +1,7 @@
 -- Verify ggircs-portal:database_functions/add_missing_indices on pg
 
-BEGIN;
+begin;
 
--- XXX Add verifications here.
+-- No verify necessary, a pgTap test ensures all foreign keys have an accompanying index.
 
-ROLLBACK;
+rollback;
