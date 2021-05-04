@@ -1,0 +1,919 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Application decision modal presents options to make a decision or request changes if a decision has not been made 1`] = `
+<Modal
+  animation={true}
+  aria-labelledby="heading"
+  autoFocus={true}
+  backdrop={true}
+  centered={true}
+  dialogAs={
+    Object {
+      "$$typeof": Symbol(react.forward_ref),
+      "displayName": "ModalDialog",
+      "render": [Function],
+    }
+  }
+  enforceFocus={true}
+  keyboard={true}
+  onHide={[Function]}
+  restoreFocus={true}
+  show={true}
+  size="lg"
+>
+  <ModalHeader
+    closeButton={true}
+    closeLabel="Close"
+  >
+    <h2
+      className="jsx-3404472897 jsx-3827527848"
+      id="heading"
+    >
+      Make a Decision or Request Changes
+    </h2>
+  </ModalHeader>
+  <ModalBody>
+    <p>
+      Once a decision is made or changes are requested, general comments will become visible to the applicant, who will be
+       
+      <strong>
+        immediately notified of the decision by email
+      </strong>
+      .
+    </p>
+    <p
+      className="d-flex justify-content-center"
+    >
+      <Button
+        active={false}
+        disabled={false}
+        onClick={[Function]}
+        size="lg"
+        value="REQUESTED_CHANGES"
+        variant="outline-secondary"
+      >
+        <FontAwesomeIcon
+          border={false}
+          className=""
+          fixedWidth={false}
+          flip={null}
+          icon={
+            Object {
+              "icon": Array [
+                512,
+                512,
+                Array [],
+                "f0e0",
+                "M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z",
+              ],
+              "iconName": "envelope",
+              "prefix": "fas",
+            }
+          }
+          inverse={false}
+          listItem={false}
+          mask={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          size={null}
+          spin={false}
+          swapOpacity={false}
+          symbol={false}
+          title=""
+          transform={null}
+        />
+        Request Changes
+      </Button>
+    </p>
+  </ModalBody>
+  <ModalFooter
+    className="d-flex justify-content-around"
+  >
+    <Button
+      active={false}
+      disabled={false}
+      onClick={[Function]}
+      size="lg"
+      value="APPROVED"
+      variant="success"
+    >
+      <FontAwesomeIcon
+        border={false}
+        className=""
+        fixedWidth={false}
+        flip={null}
+        icon={
+          Object {
+            "icon": Array [
+              512,
+              512,
+              Array [],
+              "f00c",
+              "M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z",
+            ],
+            "iconName": "check",
+            "prefix": "fas",
+          }
+        }
+        inverse={false}
+        listItem={false}
+        mask={null}
+        pull={null}
+        pulse={false}
+        rotation={null}
+        size={null}
+        spin={false}
+        swapOpacity={false}
+        symbol={false}
+        title=""
+        transform={null}
+      />
+      Approve
+    </Button>
+    <strong>
+      OR
+    </strong>
+    <Button
+      active={false}
+      disabled={false}
+      onClick={[Function]}
+      size="lg"
+      value="REJECTED"
+      variant="danger"
+    >
+      <FontAwesomeIcon
+        border={false}
+        className=""
+        fixedWidth={false}
+        flip={null}
+        icon={
+          Object {
+            "icon": Array [
+              352,
+              512,
+              Array [],
+              "f00d",
+              "M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z",
+            ],
+            "iconName": "times",
+            "prefix": "fas",
+          }
+        }
+        inverse={false}
+        listItem={false}
+        mask={null}
+        pull={null}
+        pulse={false}
+        rotation={null}
+        size={null}
+        spin={false}
+        swapOpacity={false}
+        symbol={false}
+        title=""
+        transform={null}
+      />
+      Reject
+    </Button>
+  </ModalFooter>
+  <JSXStyle
+    id="3827527848"
+  >
+    .
+    m
+    o
+    d
+    a
+    l
+    -
+    h
+    e
+    a
+    d
+    e
+    r
+     
+    h
+    2
+    {
+    m
+    a
+    r
+    g
+    i
+    n
+    -
+    b
+    o
+    t
+    t
+    o
+    m
+    :
+    0
+    ;
+    }
+    .
+    m
+    o
+    d
+    a
+    l
+    -
+    h
+    e
+    a
+    d
+    e
+    r
+    {
+    b
+    a
+    c
+    k
+    g
+    r
+    o
+    u
+    n
+    d
+    :
+    #
+    0
+    3
+    6
+    ;
+    c
+    o
+    l
+    o
+    r
+    :
+    #
+    f
+    f
+    f
+    ;
+    }
+    .
+    m
+    o
+    d
+    a
+    l
+    -
+    h
+    e
+    a
+    d
+    e
+    r
+     
+    b
+    u
+    t
+    t
+    o
+    n
+    .
+    c
+    l
+    o
+    s
+    e
+    {
+    c
+    o
+    l
+    o
+    r
+    :
+    #
+    f
+    f
+    f
+    ;
+    }
+    .
+    m
+    o
+    d
+    a
+    l
+    -
+    b
+    o
+    d
+    y
+    {
+    p
+    a
+    d
+    d
+    i
+    n
+    g
+    :
+    2
+    r
+    e
+    m
+    ;
+    }
+    .
+    m
+    o
+    d
+    a
+    l
+    -
+    b
+    o
+    d
+    y
+     
+    &gt;
+     
+    :
+    l
+    a
+    s
+    t
+    -
+    c
+    h
+    i
+    l
+    d
+    {
+    m
+    a
+    r
+    g
+    i
+    n
+    -
+    b
+    o
+    t
+    t
+    o
+    m
+    :
+    0
+    ;
+    }
+  </JSXStyle>
+  <JSXStyle
+    id="3404472897"
+  >
+    .modal-body{padding:2rem;}.btn svg.svg-inline--fa{margin-right:0.5em;}
+  </JSXStyle>
+</Modal>
+`;
+
+exports[`Application decision modal presents the option to revert the application decision if a decision has been made 1`] = `
+<Modal
+  animation={true}
+  aria-labelledby="heading"
+  autoFocus={true}
+  backdrop={true}
+  centered={true}
+  dialogAs={
+    Object {
+      "$$typeof": Symbol(react.forward_ref),
+      "displayName": "ModalDialog",
+      "render": [Function],
+    }
+  }
+  enforceFocus={true}
+  keyboard={true}
+  onHide={[Function]}
+  restoreFocus={true}
+  show={true}
+  size="lg"
+>
+  <ModalHeader
+    closeButton={true}
+    closeLabel="Close"
+  >
+    <h2
+      className="jsx-3404472897 jsx-3827527848"
+      id="heading"
+    >
+      Revert Decision
+    </h2>
+  </ModalHeader>
+  <ModalBody>
+    <p>
+      The applicant was notified by email of the following decision:
+       
+      <strong>
+        Rejected
+      </strong>
+    </p>
+    <p>
+      Would you like to revert this decision?
+    </p>
+    <p>
+      Doing so will change this application's status back to
+       
+      <strong>
+        Submitted
+      </strong>
+       and you will have the opportunity to make further changes to the review before making a new decision or requesting changes.
+    </p>
+  </ModalBody>
+  <ModalFooter>
+    <Button
+      active={false}
+      disabled={false}
+      onClick={[Function]}
+      value="SUBMITTED"
+      variant="primary"
+    >
+      Revert Decision
+    </Button>
+  </ModalFooter>
+  <JSXStyle
+    id="3827527848"
+  >
+    .
+    m
+    o
+    d
+    a
+    l
+    -
+    h
+    e
+    a
+    d
+    e
+    r
+     
+    h
+    2
+    {
+    m
+    a
+    r
+    g
+    i
+    n
+    -
+    b
+    o
+    t
+    t
+    o
+    m
+    :
+    0
+    ;
+    }
+    .
+    m
+    o
+    d
+    a
+    l
+    -
+    h
+    e
+    a
+    d
+    e
+    r
+    {
+    b
+    a
+    c
+    k
+    g
+    r
+    o
+    u
+    n
+    d
+    :
+    #
+    0
+    3
+    6
+    ;
+    c
+    o
+    l
+    o
+    r
+    :
+    #
+    f
+    f
+    f
+    ;
+    }
+    .
+    m
+    o
+    d
+    a
+    l
+    -
+    h
+    e
+    a
+    d
+    e
+    r
+     
+    b
+    u
+    t
+    t
+    o
+    n
+    .
+    c
+    l
+    o
+    s
+    e
+    {
+    c
+    o
+    l
+    o
+    r
+    :
+    #
+    f
+    f
+    f
+    ;
+    }
+    .
+    m
+    o
+    d
+    a
+    l
+    -
+    b
+    o
+    d
+    y
+    {
+    p
+    a
+    d
+    d
+    i
+    n
+    g
+    :
+    2
+    r
+    e
+    m
+    ;
+    }
+    .
+    m
+    o
+    d
+    a
+    l
+    -
+    b
+    o
+    d
+    y
+     
+    &gt;
+     
+    :
+    l
+    a
+    s
+    t
+    -
+    c
+    h
+    i
+    l
+    d
+    {
+    m
+    a
+    r
+    g
+    i
+    n
+    -
+    b
+    o
+    t
+    t
+    o
+    m
+    :
+    0
+    ;
+    }
+  </JSXStyle>
+  <JSXStyle
+    id="3404472897"
+  >
+    .modal-body{padding:2rem;}.btn svg.svg-inline--fa{margin-right:0.5em;}
+  </JSXStyle>
+</Modal>
+`;
+
+exports[`Application decision modal shows a special note about limitations on reverting the decision when the current status is REQUESTED_CHANGES 1`] = `
+<Modal
+  animation={true}
+  aria-labelledby="heading"
+  autoFocus={true}
+  backdrop={true}
+  centered={true}
+  dialogAs={
+    Object {
+      "$$typeof": Symbol(react.forward_ref),
+      "displayName": "ModalDialog",
+      "render": [Function],
+    }
+  }
+  enforceFocus={true}
+  keyboard={true}
+  onHide={[Function]}
+  restoreFocus={true}
+  show={true}
+  size="lg"
+>
+  <ModalHeader
+    closeButton={true}
+    closeLabel="Close"
+  >
+    <h2
+      className="jsx-3404472897 jsx-3827527848"
+      id="heading"
+    >
+      Revert Decision
+    </h2>
+  </ModalHeader>
+  <ModalBody>
+    <p>
+      The applicant was notified by email of the following decision:
+       
+      <strong>
+        Changes requested
+      </strong>
+    </p>
+    <p>
+      Would you like to revert this decision?
+    </p>
+    <p>
+      Doing so will change this application's status back to
+       
+      <strong>
+        Submitted
+      </strong>
+       and you will have the opportunity to make further changes to the review before making a new decision or requesting changes.
+    </p>
+    <Alert
+      closeLabel="Close alert"
+      show={true}
+      transition={
+        Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "defaultProps": Object {
+            "appear": false,
+            "in": false,
+            "mountOnEnter": false,
+            "timeout": 300,
+            "unmountOnExit": false,
+          },
+          "displayName": "Fade",
+          "render": [Function],
+        }
+      }
+      variant="secondary"
+    >
+      <strong>
+        Note:
+      </strong>
+       If the applicant begins drafting a new revision of the application, it will no longer be possible to revert a decision of 
+      <strong>
+        Changes requested
+      </strong>
+      .
+    </Alert>
+  </ModalBody>
+  <ModalFooter>
+    <Button
+      active={false}
+      disabled={false}
+      onClick={[Function]}
+      value="SUBMITTED"
+      variant="primary"
+    >
+      Revert Decision
+    </Button>
+  </ModalFooter>
+  <JSXStyle
+    id="3827527848"
+  >
+    .
+    m
+    o
+    d
+    a
+    l
+    -
+    h
+    e
+    a
+    d
+    e
+    r
+     
+    h
+    2
+    {
+    m
+    a
+    r
+    g
+    i
+    n
+    -
+    b
+    o
+    t
+    t
+    o
+    m
+    :
+    0
+    ;
+    }
+    .
+    m
+    o
+    d
+    a
+    l
+    -
+    h
+    e
+    a
+    d
+    e
+    r
+    {
+    b
+    a
+    c
+    k
+    g
+    r
+    o
+    u
+    n
+    d
+    :
+    #
+    0
+    3
+    6
+    ;
+    c
+    o
+    l
+    o
+    r
+    :
+    #
+    f
+    f
+    f
+    ;
+    }
+    .
+    m
+    o
+    d
+    a
+    l
+    -
+    h
+    e
+    a
+    d
+    e
+    r
+     
+    b
+    u
+    t
+    t
+    o
+    n
+    .
+    c
+    l
+    o
+    s
+    e
+    {
+    c
+    o
+    l
+    o
+    r
+    :
+    #
+    f
+    f
+    f
+    ;
+    }
+    .
+    m
+    o
+    d
+    a
+    l
+    -
+    b
+    o
+    d
+    y
+    {
+    p
+    a
+    d
+    d
+    i
+    n
+    g
+    :
+    2
+    r
+    e
+    m
+    ;
+    }
+    .
+    m
+    o
+    d
+    a
+    l
+    -
+    b
+    o
+    d
+    y
+     
+    &gt;
+     
+    :
+    l
+    a
+    s
+    t
+    -
+    c
+    h
+    i
+    l
+    d
+    {
+    m
+    a
+    r
+    g
+    i
+    n
+    -
+    b
+    o
+    t
+    t
+    o
+    m
+    :
+    0
+    ;
+    }
+  </JSXStyle>
+  <JSXStyle
+    id="3404472897"
+  >
+    .modal-body{padding:2rem;}.btn svg.svg-inline--fa{margin-right:0.5em;}
+  </JSXStyle>
+</Modal>
+`;

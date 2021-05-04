@@ -34,12 +34,21 @@ describe('When logged in as an analyst', () => {
     cy.checkA11y();
   });
 
-  it.skip('The application review page has no detectable ally violations on load', () => {
+  it('The application review page has no detectable ally violations on load', () => {
     cy.visit('/analyst/applications');
     cy.contains('View Application').click();
     cy.url().should('include', '/analyst/application-review');
     cy.injectAxe();
     cy.get('#page-content');
+    cy.get('body').happoScreenshot({
+      component: 'Application Review',
+      variant: 'no review selected'
+    });
+    cy.get('.review-step-option:first-of-type').click();
+    cy.get('body').happoScreenshot({
+      component: 'Application Review',
+      variant: 'showing review in sidebar'
+    });
     cy.checkA11y();
   });
 

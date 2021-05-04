@@ -3,6 +3,7 @@ import {GraphQLTaggedNode, MutationConfig} from 'relay-runtime';
 import {NextRouter} from 'next/router';
 import {ComponentClass} from 'react';
 import {CacheConfig} from 'react-relay-network-modern/node8';
+import RelayModernEnvironment from 'relay-runtime/lib/store/RelayModernEnvironment';
 
 interface CiipPageInitialProps {
   pageProps: {
@@ -14,6 +15,7 @@ interface CiipPageInitialProps {
 interface CiipPageComponentProps {
   query?: any;
   router?: NextRouter;
+  relayEnvironment?: RelayModernEnvironment;
   loading?: boolean;
 }
 

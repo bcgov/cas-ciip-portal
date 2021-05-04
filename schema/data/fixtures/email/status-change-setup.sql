@@ -13,14 +13,22 @@ select test_helper.modify_triggers('disable','{
 }');
 
 -- Create application
-select test_helper.create_applications(1, True, True);
+select test_helper.create_applications(3, True, True);
 
 -- Create approved user-org connection
 insert into ggircs_portal.ciip_user_organisation(user_id, organisation_id, status) values (6, 1, 'approved');
 
 -- Update created by values & submit application
-update ggircs_portal.application_revision_status set created_by = 6 where application_id=1;
 update ggircs_portal.application_revision set created_by = 6 where application_id=1;
-update ggircs_portal.application_revision_status set application_revision_status = 'submitted' where application_id=1;
+insert into ggircs_portal.application_revision_status(application_id, version_number, application_revision_status) values(1, 1, 'submitted');
+update ggircs_portal.application_review_step set is_complete=true where application_id=1;
+
+update ggircs_portal.application_revision set created_by = 6 where application_id=2;
+insert into ggircs_portal.application_revision_status(application_id, version_number, application_revision_status) values(2, 1, 'submitted');
+update ggircs_portal.application_review_step set is_complete=true where application_id=2;
+
+update ggircs_portal.application_revision set created_by = 6 where application_id=3;
+insert into ggircs_portal.application_revision_status(application_id, version_number, application_revision_status) values(3, 1, 'submitted');
+update ggircs_portal.application_review_step set is_complete=true where application_id=3;
 
 commit;

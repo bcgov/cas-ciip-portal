@@ -3,7 +3,8 @@ import {graphql} from 'react-relay';
 import {applicationReviewQueryResponse} from 'applicationReviewQuery.graphql';
 import {Row, Button, OverlayTrigger, Tooltip} from 'react-bootstrap';
 import IncentiveCalculatorContainer from 'containers/Incentives/IncentiveCalculatorContainer';
-import ApplicationRevisionStatusContainer from 'containers/Applications/ApplicationRevisionStatusContainer';
+import {CiipApplicationRevisionStatus} from 'analystCreateApplicationRevisionStatusMutation.graphql';
+import analystCreateApplicationRevisionStatusMutation from 'mutations/application/analystCreateApplicationRevisionStatusMutation';
 import DefaultLayout from 'layouts/default-layout';
 import ApplicationDetails from 'containers/Applications/ApplicationDetailsContainer';
 import ApplicationOverrideNotification from 'components/Application/ApplicationOverrideNotificationCard';
@@ -12,9 +13,10 @@ import getConfig from 'next/config';
 import {INCENTIVE_ANALYST, ADMIN_GROUP} from 'data/group-constants';
 import ApplicationReviewStepSelector from 'containers/Admin/ApplicationReview/ApplicationReviewStepSelector';
 import ReviewSidebar from 'containers/Admin/ApplicationReview/ReviewSidebar';
+import DecisionModal from 'components/Admin/ApplicationReview/DecisionModal';
 import HelpButton from 'components/helpers/HelpButton';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faArrowUp} from '@fortawesome/free-solid-svg-icons';
+import {faArrowUp, faInfoCircle} from '@fortawesome/free-solid-svg-icons';
 
 const runtimeConfig = getConfig()?.publicRuntimeConfig ?? {};
 const ALLOWED_GROUPS = [INCENTIVE_ANALYST, ...ADMIN_GROUP];
@@ -32,11 +34,7 @@ class ApplicationReview extends Component<Props, State> {
   static allowedGroups = ALLOWED_GROUPS;
   static isAccessProtected = true;
   static query = graphql`
-    query applicationReviewQuery(
-      $applicationRevisionId: ID!
-      $applicationId: ID!
-      $version: String!
-    ) {
+    query applicationReviewQuery($applicationId: ID!, $version: String!) {
       query {
         session {
           userGroups
@@ -44,11 +42,8 @@ class ApplicationReview extends Component<Props, State> {
         }
         application(id: $applicationId) {
           rowId
-          reviewRevisionStatus: applicationRevisionStatus(
-            versionNumberInput: $version
-          ) {
-            applicationRevisionStatus
-            ...ApplicationRevisionStatusContainer_applicationRevisionStatus
+          facilityByFacilityId {
+            bcghgid
           }
           applicationReviewStepsByApplicationId {
             edges {
@@ -59,12 +54,20 @@ class ApplicationReview extends Component<Props, State> {
             }
             ...ApplicationReviewStepSelector_applicationReviewSteps
           }
-        }
-        applicationRevision(id: $applicationRevisionId) {
-          ...ApplicationDetailsContainer_applicationRevision
-          overrideJustification
-          isCurrentVersion
-          ...IncentiveCalculatorContainer_applicationRevision
+          applicationRevision: applicationRevisionByStringVersionNumber(
+            versionNumberInput: $version
+          ) {
+            id
+            versionNumber
+            overrideJustification
+            isCurrentVersion
+            applicationRevisionStatus {
+              id
+              applicationRevisionStatus
+            }
+            ...ApplicationDetailsContainer_applicationRevision
+            ...IncentiveCalculatorContainer_applicationRevision
+          }
         }
         ...ApplicationDetailsContainer_query
         ...ApplicationDetailsContainer_diffQuery
@@ -72,13 +75,29 @@ class ApplicationReview extends Component<Props, State> {
       }
     }
   `;
-  state = {isSidebarOpened: false, selectedReviewStepId: null};
+  state = {
+    isSidebarOpened: false,
+    selectedReviewStepId: null,
+    showDecisionModal: false
+  };
 
   constructor(props) {
     super(props);
+    this.openDecisionModal = this.openDecisionModal.bind(this);
     this.closeSidebar = this.closeSidebar.bind(this);
+    this.closeDecisionModal = this.closeDecisionModal.bind(this);
     this.selectReviewStep = this.selectReviewStep.bind(this);
     this.findStepById = this.findStepById.bind(this);
+  }
+  openDecisionModal() {
+    this.setState((state) => {
+      return {...state, showDecisionModal: true};
+    });
+  }
+  closeDecisionModal() {
+    this.setState((state) => {
+      return {...state, showDecisionModal: false};
+    });
   }
   closeSidebar() {
     this.setState((state) => {
@@ -105,26 +124,39 @@ class ApplicationReview extends Component<Props, State> {
       };
     });
   }
+  async saveDecision(decision: CiipApplicationRevisionStatus) {
+    const applicationId = this.props.query.application.rowId;
+    const {versionNumber} = this.props.query.application.applicationRevision;
+    const variables = {
+      input: {
+        applicationRevisionStatus: {
+          applicationId,
+          applicationRevisionStatus: decision,
+          versionNumber
+        }
+      }
+    };
+    await analystCreateApplicationRevisionStatusMutation(
+      this.props.relayEnvironment,
+      variables
+    );
+  }
   render() {
     const {query} = this.props;
     const {
       overrideJustification,
-      isCurrentVersion
-    } = query?.applicationRevision;
-    const {applicationRevisionStatus} = query?.application.reviewRevisionStatus;
+      isCurrentVersion,
+      versionNumber
+    } = query?.application.applicationRevision;
+    const {bcghgid} = query.application.facilityByFacilityId;
+    const {
+      applicationRevisionStatus
+    } = query?.application.applicationRevision.applicationRevisionStatus;
     const {session} = query || {};
     const isUserAdmin = query?.session.userGroups.some((groupConst) =>
       ADMIN_GROUP.includes(groupConst)
     );
-    const currentReviewIsFinalized =
-      this.props.query?.application.reviewRevisionStatus
-        .applicationRevisionStatus !== 'SUBMITTED';
-
-    const handleChangeDecision = () => {
-      console.log(
-        'implement me in 2294 - should open the decision dialog with admin-only option to revert (to SUBMITTED status)'
-      );
-    };
+    const currentReviewIsFinalized = applicationRevisionStatus !== 'SUBMITTED';
 
     return (
       <DefaultLayout
@@ -143,29 +175,33 @@ class ApplicationReview extends Component<Props, State> {
              offset-md-${this.state.isSidebarOpened ? 0 : 1}
              offset-lg-${this.state.isSidebarOpened ? 0 : 1}`}
           >
-            <h1>
-              {`Application #${query.application.rowId}`}
-              <ApplicationRevisionStatusContainer
-                applicationRevisionStatus={
-                  query.application.reviewRevisionStatus
-                }
-                applicationRowId={query.application.rowId}
-              />
-            </h1>
+            <div id="title" className="col-xxl-6 col-xl-7 col-lg-8 col-md-10">
+              <h1>{`Application #${query.application.rowId}`}</h1>
+              <p>
+                {versionNumber > 1 && (
+                  <span id="revised-tag">
+                    <FontAwesomeIcon
+                      icon={faInfoCircle}
+                      style={{marginRight: '0.5em'}}
+                    />
+                    Revised: version {versionNumber}
+                  </span>
+                )}
+                <span>BC GHG ID: {bcghgid}</span>
+              </p>
+            </div>
             <ApplicationReviewStepSelector
               applicationReviewSteps={
                 query.application.applicationReviewStepsByApplicationId
               }
               decisionOrChangeRequestStatus={applicationRevisionStatus}
-              onDecisionOrChangeRequestAction={() =>
-                console.log('implement me in 2294')
-              }
+              onDecisionOrChangeRequestAction={this.openDecisionModal}
               selectedStep={this.state.selectedReviewStepId}
               onSelectStep={this.selectReviewStep}
               newerDraftExists={!isCurrentVersion}
               changeDecision={
                 isUserAdmin && currentReviewIsFinalized
-                  ? handleChangeDecision
+                  ? this.openDecisionModal
                   : undefined
               }
             />
@@ -179,11 +215,11 @@ class ApplicationReview extends Component<Props, State> {
               review
               query={query}
               diffQuery={query}
-              applicationRevision={query.applicationRevision}
+              applicationRevision={query.application.applicationRevision}
               liveValidate={false}
             />
             <IncentiveCalculatorContainer
-              applicationRevision={query.applicationRevision}
+              applicationRevision={query.application.applicationRevision}
             />
             <OverlayTrigger
               placement="top"
@@ -202,16 +238,6 @@ class ApplicationReview extends Component<Props, State> {
                   const main = document.body.getElementsByTagName('main')[0];
                   main?.scrollIntoView();
                 }}
-                style={{
-                  borderRadius: '50%',
-                  position: 'fixed',
-                  bottom: '0.6rem',
-                  left: '0.6rem',
-                  width: 50,
-                  height: 50,
-                  boxShadow:
-                    '0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.4)'
-                }}
               >
                 <FontAwesomeIcon size="lg" icon={faArrowUp} />
               </Button>
@@ -228,14 +254,50 @@ class ApplicationReview extends Component<Props, State> {
             />
           )}
           {!this.state.isSidebarOpened && <HelpButton isInternalUser />}
+          <DecisionModal
+            currentStatus={applicationRevisionStatus}
+            show={this.state.showDecisionModal}
+            onDecision={(decision) => {
+              this.saveDecision(decision as CiipApplicationRevisionStatus);
+              this.closeDecisionModal();
+            }}
+            onHide={this.closeDecisionModal}
+          />
         </Row>
-        <style jsx global>{`
+        <style jsx>{`
           h1 {
-            margin-bottom: 20px;
+            margin-bottom: 0.75rem;
           }
-          .list-group-item.active {
-            z-index: auto;
-            background: #38598a;
+          #title {
+            margin-bottom: 20px;
+            padding-left: 0;
+          }
+          #title p {
+            display: flex;
+            align-items: center;
+            line-height: 2rem;
+            color: #555;
+          }
+          #revised-tag {
+            flex-shrink: 0;
+            margin-right: 1rem;
+            color: #0053b3;
+            padding: 0.25rem 0.5rem;
+            font-size: 0.875rem;
+            line-height: 1.5;
+            border: 1px solid currentColor;
+            border-radius: 0.2rem;
+          }
+          :global(button#to-top) {
+            border-radius: 50%;
+            position: fixed;
+            bottom: 0.6rem;
+            left: 0.6rem;
+            width: 50px;
+            height: 50px;
+            box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14),
+              0 1px 10px 0 rgba(0, 0, 0, 0.12),
+              0 2px 4px -1px rgba(0, 0, 0, 0.4);
           }
         `}</style>
       </DefaultLayout>

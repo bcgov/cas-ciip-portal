@@ -24,6 +24,9 @@ const getTestQuery = ({
         ApplicationDetailsContainer_application: true
       },
       rowId: 1,
+      facilityByFacilityId: {
+        bcghgid: '456'
+      },
       reviewRevisionStatus: {
         applicationRevisionStatus: applicationRevisionStatus as CiipApplicationRevisionStatus,
         ' $fragmentRefs': {
@@ -44,14 +47,20 @@ const getTestQuery = ({
         ' $fragmentRefs': {
           ApplicationReviewStepSelector_applicationReviewSteps: true
         }
-      }
-    },
-    applicationRevision: {
-      isCurrentVersion,
-      overrideJustification: null,
-      ' $fragmentRefs': {
-        IncentiveCalculatorContainer_applicationRevision: true,
-        ApplicationDetailsContainer_applicationRevision: true
+      },
+      applicationRevision: {
+        id: 'xyz',
+        isCurrentVersion,
+        versionNumber: 1,
+        overrideJustification: null,
+        applicationRevisionStatus: {
+          id: 'jkl',
+          applicationRevisionStatus: applicationRevisionStatus as CiipApplicationRevisionStatus
+        },
+        ' $fragmentRefs': {
+          IncentiveCalculatorContainer_applicationRevision: true,
+          ApplicationDetailsContainer_applicationRevision: true
+        }
       }
     },
     ' $fragmentRefs': {
@@ -140,6 +149,82 @@ describe('The application-review page', () => {
     ).not.toEqual('SUBMITTED');
   });
 
+  it('manages the toggle state of the decision modal', () => {
+    const query = getTestQuery({});
+    const wrapper = shallow(
+      <ApplicationReview
+        router={null}
+        query={query as applicationReviewQueryResponse['query']}
+      />
+    );
+    expect(wrapper.find('DecisionModal').exists()).toBeTrue();
+    expect(wrapper.find('DecisionModal').prop('show')).toBeFalse();
+
+    wrapper.setState((state) => {
+      return {
+        ...state,
+        showDecisionModal: true
+      };
+    });
+    expect(wrapper.find('DecisionModal').prop('show')).toBeTrue();
+
+    // Canceling out (clicking away or "x" button) the decision modal hides it
+    const decisionModalOnHide: () => void = wrapper
+      .find('DecisionModal')
+      .prop('onHide');
+    decisionModalOnHide();
+    expect(wrapper.state('showDecisionModal')).toBeFalse();
+    expect(wrapper.find('DecisionModal').prop('show')).toBeFalse();
+
+    // Step selector toggles decision modal open
+    const stepSelectorToggleOpen: () => void = wrapper
+      .find('Relay(ApplicationReviewStepSelector)')
+      .prop('onDecisionOrChangeRequestAction');
+    stepSelectorToggleOpen();
+    expect(wrapper.state('showDecisionModal')).toBeTrue();
+    expect(wrapper.find('DecisionModal').prop('show')).toBeTrue();
+
+    // Decision modal is closed after making a decision
+    const decisionModalOnDecisionAction: (
+      decision: string
+    ) => void = wrapper.find('DecisionModal').prop('onDecision');
+    decisionModalOnDecisionAction('APPROVED');
+    expect(wrapper.state('showDecisionModal')).toBeFalse();
+    expect(wrapper.find('DecisionModal').prop('show')).toBeFalse();
+  });
+
+  it('saves the application decision', () => {
+    const decision = 'REQUESTED_CHANGES';
+    const spy = jest.spyOn(
+      require('mutations/application/analystCreateApplicationRevisionStatusMutation'),
+      'default'
+    );
+    const query = getTestQuery({});
+    const wrapper = shallow(
+      <ApplicationReview
+        router={null}
+        query={query as applicationReviewQueryResponse['query']}
+      />
+    );
+    expect(spy).not.toHaveBeenCalled();
+    const onDecision: (
+      decision: CiipApplicationRevisionStatus
+    ) => void = wrapper.find('DecisionModal').prop('onDecision');
+    onDecision(decision);
+    expect(spy).toHaveBeenCalledTimes(1);
+
+    // Relay environment (first parameter) is undefined in unit tests:
+    expect(spy).toHaveBeenCalledWith(undefined, {
+      input: {
+        applicationRevisionStatus: {
+          applicationId: query.application.rowId,
+          applicationRevisionStatus: decision,
+          versionNumber: query.application.applicationRevision.versionNumber
+        }
+      }
+    });
+  });
+
   it('should enable the ability to change an application decision if user is an admin', () => {
     const query = getTestQuery({
       applicationRevisionStatus: 'REJECTED',
@@ -212,16 +297,19 @@ describe('The application-review page', () => {
         .find('Relay(IncentiveCalculator)')
         .first()
         .prop('applicationRevision')
-    ).toBe(query.applicationRevision);
+    ).toBe(query.application.applicationRevision);
   });
 
   it('renders the ApplicationOverrideNotification component if an override has been set', () => {
     const data = getTestQuery({});
     const overrideQuery = {
       ...data,
-      applicationRevision: {
-        ...data.applicationRevision,
-        overrideJustification: 'oops'
+      application: {
+        ...data.application,
+        applicationRevision: {
+          ...data.application.applicationRevision,
+          overrideJustification: 'oops'
+        }
       }
     };
     const wrapper = shallow(

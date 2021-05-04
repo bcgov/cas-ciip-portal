@@ -11,10 +11,12 @@ import ToasterHelper from 'components/helpers/Toaster';
 import 'react-toastify/dist/ReactToastify.min.css';
 import PageRedirectHandler from 'components/PageRedirectHandler';
 import safeJsonParse from 'lib/safeJsonParse';
+import RelayModernEnvironment from 'relay-runtime/lib/store/RelayModernEnvironment';
 
 interface AppProps {
   pageProps: {
     router: NextRouter;
+    relayEnvironment: RelayModernEnvironment;
     variables: Record<string, any>;
   };
   Component: CiipPageComponent;
@@ -81,7 +83,13 @@ export default class App extends NextApp<AppProps> {
                 this.prevComponentProps = props;
                 this.prevComponentClass = Component;
 
-                return <Component {...props} router={this.props.router} />;
+                return (
+                  <Component
+                    {...props}
+                    router={this.props.router}
+                    relayEnvironment={environment}
+                  />
+                );
               }
               if (Component === this.prevComponentClass)
                 return (
@@ -89,6 +97,7 @@ export default class App extends NextApp<AppProps> {
                     {...this.prevComponentProps}
                     loading
                     router={this.props.router}
+                    relayEnvironment={environment}
                   />
                 );
               return (
