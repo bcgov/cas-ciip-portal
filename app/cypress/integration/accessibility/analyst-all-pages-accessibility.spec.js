@@ -40,6 +40,15 @@ describe('When logged in as an analyst', () => {
     cy.url().should('include', '/analyst/application-review');
     cy.injectAxe();
     cy.get('#page-content');
+    cy.get('body').happoScreenshot({
+      component: 'Application Review',
+      variant: 'no review selected'
+    });
+    cy.get('.review-step-option:first-of-type').click();
+    cy.get('body').happoScreenshot({
+      component: 'Application Review',
+      variant: 'showing review in sidebar'
+    });
     cy.checkA11y();
   });
 

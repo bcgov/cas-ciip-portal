@@ -1,7 +1,5 @@
 /* eslint-disable jest/valid-expect */
 
-import {getUserFriendlyStatusLabel} from '../../lib/text-transforms';
-
 /*
    IF RUNNING THIS LOCALLY: you'll need your own mailhog instance
   `sudo docker run -d -p 1025:1025 -p 8025:8025 mailhog/mailhog`
@@ -210,9 +208,11 @@ describe('Confirmation emails', () => {
   });
 });
 
-function makeApplicationDecision(decision) {
-  const applicationId = window.btoa('["applications", 1]');
-  const applicationRevisionId = window.btoa('["application_revisions", 1, 1]');
+function makeApplicationDecision(decision, appId) {
+  const applicationId = window.btoa(`["applications", ${appId}]`);
+  const applicationRevisionId = window.btoa(
+    `["application_revisions", ${appId}, 1]`
+  );
   cy.visit(
     `/analyst/application-review?applicationId=${encodeURIComponent(
       applicationId
@@ -221,10 +221,8 @@ function makeApplicationDecision(decision) {
     )}&version=1`
   );
   cy.get('#page-content');
-  cy.get('#dropdown').click();
-  cy.get('#page-content');
-  cy.contains(getUserFriendlyStatusLabel(decision)).click();
-  cy.get('.btn-success').click();
+  cy.get('#open-decision-dialog').click();
+  cy.get(`button[value="${decision}"`).click();
   cy.get('#page-content');
 }
 
@@ -244,7 +242,7 @@ describe('Application status change emails', () => {
     cy.visit('/analyst');
     cy.get('#page-content');
 
-    makeApplicationDecision('APPROVED');
+    makeApplicationDecision('APPROVED', 1);
     cy.wait(500);
 
     cy.request('localhost:8025/api/v1/messages').then((response) => {
@@ -265,7 +263,7 @@ describe('Application status change emails', () => {
     cy.visit('/analyst');
     cy.get('#page-content');
 
-    makeApplicationDecision('REJECTED');
+    makeApplicationDecision('REJECTED', 2);
     cy.wait(500);
 
     cy.request('localhost:8025/api/v1/messages').then((response) => {
@@ -286,7 +284,7 @@ describe('Application status change emails', () => {
     cy.visit('/analyst');
     cy.get('#page-content');
 
-    makeApplicationDecision('REQUESTED_CHANGES');
+    makeApplicationDecision('REQUESTED_CHANGES', 3);
     cy.wait(500);
 
     cy.request('localhost:8025/api/v1/messages').then((response) => {
