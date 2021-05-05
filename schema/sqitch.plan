@@ -341,3 +341,4 @@ types/application_revision_fuel_carbon_tax 2021-05-05T18:07:47Z Matthieu Foucaul
 computed_columns/application_revision_carbon_tax 2021-05-04T19:13:25Z Matthieu Foucault <matthieu@button.is> # add a computed column to get an application revision's carbon tax
 computed_columns/application_revision_ciip_incentive [computed_columns/application_revision_ciip_incentive@v2.3.1] 2021-05-05T20:19:59Z Matthieu Foucault <matthieu@button.is> # use application_revision_carbon_tax function for ciip incentive
 views/ciip_carbon_tax_calculation [views/ciip_carbon_tax_calculation@v2.3.1] 2021-05-07T16:42:26Z Matthieu Foucault <matthieu@button.is> # ciip_carbon_tax_calculation view uses application_revision_carbon_tax
+computed_columns/fuel_is_carbon_taxed [tables/fuel_001] 2021-05-05T21:43:53Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # Computed column to check if a fuel is carbon taxed
