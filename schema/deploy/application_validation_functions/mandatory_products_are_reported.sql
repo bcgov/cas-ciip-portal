@@ -13,12 +13,12 @@ create or replace function ggircs_portal.mandatory_products_are_reported(app_rev
         and naics_code_id = (select id from ggircs_portal.application_revision_naics_code(app_rev))
     ),
     unreported_mandatory_product_ids as(
-      select mandatory.product_id, reported.product_id from mandatory_product_ids mandatory
-      left join ggircs_portal.application_revision_production_form_data(app_rev) reported
+      select mandatory.product_id from mandatory_product_ids as mandatory
+      left join ggircs_portal.application_revision_production_form_data(app_rev) as reported
       on mandatory.product_id = reported.product_id
-      where reported.product_id = null
+      where reported.product_id is null
     )
-    select (select count(*) from unreported_mandatory_product_ids) > 0;
+    select count(*) = 0 from unreported_mandatory_product_ids;
 
   $function$
 language 'sql' stable;
