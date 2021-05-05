@@ -34,7 +34,12 @@ export const SubmitApplicationComponent: React.FunctionComponent<Props> = ({
     );
     console.log(response);
     // TODO: check response
-    router.push('/reporter/complete-submit');
+    router.push({
+      pathname: '/reporter/complete-submit',
+      query: {
+        applicationId: applicationRevision.applicationByApplicationId.id
+      }
+    });
   };
 
   return (
@@ -53,6 +58,9 @@ export default createFragmentContainer(SubmitApplicationComponent, {
     fragment SubmitApplication_applicationRevision on ApplicationRevision {
       applicationId
       versionNumber
+      applicationByApplicationId {
+        id
+      }
     }
   `
 });
