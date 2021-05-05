@@ -62,8 +62,9 @@ export const ProgressStepIndicator: React.FunctionComponent<Props> = ({
   const totalCompleted = steps.reduce(function sumCompleted(acc, curr) {
     return curr.completed ? acc + 1 : acc;
   }, 0);
-  const progress =
-    (Math.max(totalCompleted - 1, 0) / Math.max(steps.length - 1, 1)) * 100;
+  const progress = Math.round(
+    (Math.max(totalCompleted - 1, 0) / Math.max(steps.length - 1, 1)) * 100
+  );
   return (
     <div className="progressStepIndicator">
       {title && (
