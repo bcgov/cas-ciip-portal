@@ -23,12 +23,20 @@ const FormObjectFieldTemplate: React.FunctionComponent<ObjectFieldTemplateProps>
       )}
       {description && (
         <Col xs={12}>
-          <span className="font-italic">{description}</span>
+          <div className="font-italic description">{description}</div>
         </Col>
       )}
       {properties.map((prop) => (
         <React.Fragment key={prop.content.key}>{prop.content}</React.Fragment>
       ))}
+      <style jsx>
+        {`
+          .description {
+            margin-top: -8px;
+            margin-bottom: 8px;
+          }
+        `}
+      </style>
     </>
   );
 };

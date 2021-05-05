@@ -11,6 +11,8 @@ begin;
         (form_result.form_result ->> 'facility')::json as facility_data,
         (form_result.form_result ->> 'operator')::json as operator_data,
         (form_result.form_result ->> 'operationalRepresentative')::json as operational_representative_data,
+        (form_result.form_result ->> 'primaryContact')::json as primary_contact_data,
+        (form_result.form_result ->> 'secondaryContact')::json as secondary_contact_data,
         (form_result.form_result ->> 'certifyingOfficial')::json as certifying_official_data,
         (form_result.form_result ->> 'applicationMetadata')::json as application_metadata,
         (form_result.form_result ->> 'comments')::varchar(10000) as comments
@@ -43,6 +45,21 @@ begin;
        (x.operational_representative_data ->> 'lastName')::varchar(1000) as operational_representative_last_name,
        (x.operational_representative_data ->> 'firstName')::varchar(1000) as operational_representative_first_name,
        (x.operational_representative_data ->> 'position')::varchar(1000) as operational_representative_position,
+
+       (x.primary_contact_data ->> 'email')::varchar(1000) as primary_contact_email,
+       (x.primary_contact_data ->> 'phone')::varchar(1000) as primary_contact_phone,
+       (x.primary_contact_data ->> 'lastName')::varchar(1000) as primary_contact_last_name,
+       (x.primary_contact_data ->> 'firstName')::varchar(1000) as primary_contact_first_name,
+       (x.primary_contact_data ->> 'position')::varchar(1000) as primary_contact_position,
+       (x.primary_contact_data ->> 'organization')::varchar(1000) as primary_contact_organization,
+
+       (x.secondary_contact_data ->> 'email')::varchar(1000) as secondary_contact_email,
+       (x.secondary_contact_data ->> 'phone')::varchar(1000) as secondary_contact_phone,
+       (x.secondary_contact_data ->> 'lastName')::varchar(1000) as secondary_contact_last_name,
+       (x.secondary_contact_data ->> 'firstName')::varchar(1000) as secondary_contact_first_name,
+       (x.secondary_contact_data ->> 'position')::varchar(1000) as secondary_contact_position,
+       (x.secondary_contact_data ->> 'organization')::varchar(1000) as secondary_contact_organization,
+
        ((x.operational_representative_data ->> 'mailingAddress')::json ->> 'city')::varchar(1000) as operational_representative_city,
        ((x.operational_representative_data ->> 'mailingAddress')::json ->> 'province')::varchar(1000) as operational_representative_province,
        ((x.operational_representative_data ->> 'mailingAddress')::json ->> 'postalCode')::varchar(1000) as operational_representative_postal_code,
@@ -110,6 +127,17 @@ comment on column ggircs_portal.ciip_admin.application_imported_at is 'The date 
 comment on column ggircs_portal.ciip_admin.application_type is 'The type of the application (found in 2018 data only, application_type = facility_type)';
 comment on column ggircs_portal.ciip_admin.application_signature_date is 'The date this application was signed off on';
 comment on column ggircs_portal.ciip_admin.comments is 'Any comments the reporter added to this form while filling it out';
-
+comment on column ggircs_portal.ciip_admin.primary_contact_email is 'The primary contact''s email';
+comment on column ggircs_portal.ciip_admin.primary_contact_phone is 'The primary contact''s phone';
+comment on column ggircs_portal.ciip_admin.primary_contact_last_name is 'The primary contact''s last name';
+comment on column ggircs_portal.ciip_admin.primary_contact_first_name is 'The primary contact''s first name';
+comment on column ggircs_portal.ciip_admin.primary_contact_position is 'The primary contact''s position';
+comment on column ggircs_portal.ciip_admin.primary_contact_organization is 'The primary contact''s organisation';
+comment on column ggircs_portal.ciip_admin.secondary_contact_email is 'The secondary contact''s email';
+comment on column ggircs_portal.ciip_admin.secondary_contact_phone is 'The secondary contact''s phone';
+comment on column ggircs_portal.ciip_admin.secondary_contact_last_name is 'The secondary contact''s last name';
+comment on column ggircs_portal.ciip_admin.secondary_contact_first_name is 'The secondary contact''s first name';
+comment on column ggircs_portal.ciip_admin.secondary_contact_position is 'The secondary contact''s position';
+comment on column ggircs_portal.ciip_admin.secondary_contact_organization is 'The secondary contact''s organisation';
 
 commit;

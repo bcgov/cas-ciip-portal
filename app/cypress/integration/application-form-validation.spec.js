@@ -75,6 +75,14 @@ describe('When viewing an application in draft as a reporter', () => {
       'Alberta'
     );
 
+    // Primary application contact
+    cy.get('#root_primaryContact_firstName').clear().type('John');
+    cy.get('#root_primaryContact_lastName').clear().type('Smith');
+    cy.get('#root_primaryContact_email').clear().type('john@acme.com');
+    cy.get('#root_primaryContact_phone').clear().type('9009009001');
+    cy.get('#root_primaryContact_position').clear().type('CEO');
+    cy.get('#root_primaryContact_organization').clear().type('Acme Co');
+
     // Facility details
     cy.get('#root_facility_facilityName').clear().type('Acme1');
     cy.get('#root_facility_facilityType').select('SFO');

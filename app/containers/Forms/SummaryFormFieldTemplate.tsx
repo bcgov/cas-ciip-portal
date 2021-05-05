@@ -4,7 +4,6 @@ import {FieldTemplateProps} from '@rjsf/core';
 
 const FormFieldTemplate: React.FunctionComponent<FieldTemplateProps> = ({
   label,
-  description,
   errors,
   children,
   schema,
@@ -24,7 +23,6 @@ const FormFieldTemplate: React.FunctionComponent<FieldTemplateProps> = ({
   if (schema.type === 'array')
     return (
       <Col xs={12} className={`${classNames} summary-array-col`}>
-        {description}
         {children}
         {errors}
       </Col>
@@ -33,7 +31,6 @@ const FormFieldTemplate: React.FunctionComponent<FieldTemplateProps> = ({
     return (
       <Col xs={12} className={`${classNames} summary-formrow`}>
         <Form.Row>
-          {description}
           {children}
           {errors}
         </Form.Row>
@@ -46,24 +43,24 @@ const FormFieldTemplate: React.FunctionComponent<FieldTemplateProps> = ({
         <strong>{label}</strong>
       </div>
       <div className="summary-item">
-        {description}
         {children}
         {errors}
       </div>
-      <style jsx global>{`
-        .summary-formgroup.form-group.field {
+      <style jsx>{`
+        :global(.summary-formgroup.form-group.field) {
           width: 100%;
           margin: 0;
         }
-        .summary-formrow h3 {
+        :global(.summary-formrow h3) {
           margin-top: 35px;
           font-size: 20px;
           color: #036;
+          margin-bottom: 8px;
         }
-        .summary-formgroup {
+        :global(.summary-formgroup) {
           display: inline-flex;
         }
-        .summary-label {
+        :global(.summary-label) {
           flex-basis: 30%;
           display: inline-block;
           border: 1px solid;
@@ -71,10 +68,10 @@ const FormFieldTemplate: React.FunctionComponent<FieldTemplateProps> = ({
           padding: 5px 10px;
           border-color: #aaa;
         }
-        .hidden-title .summary-label {
+        :global(.hidden-title .summary-label) {
           display: none;
         }
-        .summary-item {
+        :global(.summary-item) {
           flex-basis: 70%;
           // Allows the item to grow to 100% when summary-label is hidden
           flex-grow: 1;
@@ -85,56 +82,56 @@ const FormFieldTemplate: React.FunctionComponent<FieldTemplateProps> = ({
           margin-bottom: -1px;
           margin-left: -1px;
         }
-        .summary-item > * {
+        :global(.summary-item > *) {
           padding: 5px 10px;
         }
 
-        .summary-item > svg {
+        :global(.summary-item > svg) {
           // padding on an svg element (e.g. icons) may make its height/width 0 and render the svg invisible (or giant on chrome)
           padding: 0;
           margin-top: 10px;
         }
 
-        .summary-item ul.error-detail {
+        :global(.summary-item ul.error-detail) {
           padding: 0;
           margin: 0;
           list-style: none;
         }
 
-        .summary-item > source-field-heading {
+        :global(.summary-item > source-field-heading) {
           padding: 0;
         }
-        .emission .form-row .summary-formgroup:nth-of-type(2n) {
+        :global(.emission .form-row .summary-formgroup:nth-of-type(2n)) {
           margin-top: 50px;
           margin-bottom: 20px;
         }
 
-        .form-row .summary-formgroup:nth-of-type(2n) {
+        :global(.form-row .summary-formgroup:nth-of-type(2n)) {
           background-color: #f1f1f1;
         }
-        .emission .summary-label {
+        :global(.emission .summary-label) {
           border: none;
         }
-        .emission .summary-item {
+        :global(.emission .summary-item) {
           border: none;
           display: inline-flex;
           justify-content: space-around;
           align-items: flex-start;
         }
 
-        .summary-card .card-body {
+        :global(.summary-card .card-body) {
           padding-top: 0;
           padding-bottom: 50px;
         }
-        .emission .summary-formrow .emission-summary-row {
+        :global(.emission .summary-formrow .emission-summary-row) {
           border-bottom: 1px solid #ccc;
           margin-top: -1px;
           padding: 10px;
         }
-        .emission .summary-formgroup.form-group.field {
+        :global(.emission .summary-formgroup.form-group.field) {
           margin: 0 5px;
         }
-        .emission .summary-formgroup.form-group.field h5 {
+        :global(.emission .summary-formgroup.form-group.field h5) {
           color: #036;
         }
       `}</style>

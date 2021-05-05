@@ -67,6 +67,22 @@ $function$
               "streetAddress": "123 street st",
               "postalCode": "H0H 0H0"
             }
+          },
+          "primaryContact": {
+            "email": "bob@loblaw.com",
+            "phone": "1234567890",
+            "firstName": "Bob",
+            "lastName": "Loblaw",
+            "position": "Attorney",
+            "organization": "Bob Loblaw''s Law Blog"
+          },
+          "secondaryContact": {
+            "email": "jjjj@dailybugle.com",
+            "phone": "1234567890",
+            "firstName": "John Jonah Jr.",
+            "lastName": "Jameson",
+            "position": "Editor in chief",
+            "organization": "Daily Bugle"
           }
         }';
 
