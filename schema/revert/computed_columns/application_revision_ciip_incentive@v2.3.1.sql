@@ -32,14 +32,16 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
   begin
 
     -- Get emissions for facility
-    select ggircs_portal.application_revision_total_ciip_emissions(application_revision) into em_facility;
+    select sum(annual_co2e) into em_facility from ggircs_portal.ciip_emission
+    where version_number = application_revision.version_number and application_id = application_revision.application_id and gas_type != 'CO2';
 
     -- Get reporting year for application
     select reporting_year into app_reporting_year from ggircs_portal.application
     where id = application_revision.application_id;
 
     -- Get carbon tax data for the application
-    select sum(carbon_tax_eligible_for_ciip) into incremental_carbon_tax_facility from ggircs_portal.application_revision_carbon_tax(application_revision);
+    select sum(carbon_tax_eligible_for_ciip_flat) into incremental_carbon_tax_facility from ggircs_portal.ciip_carbon_tax_calculation
+    where version_number = application_revision.version_number and application_id = application_revision.application_id;
 
     reported_products = array(
       select row(ciip_production.*)
