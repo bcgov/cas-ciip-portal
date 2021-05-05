@@ -1,8 +1,11 @@
 import React from 'react';
 import {Col, Row} from 'react-bootstrap';
 import {Variant} from 'react-bootstrap/esm/types';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faCheck} from '@fortawesome/free-solid-svg-icons';
 
 interface NumberCircleProps {
+  completed: boolean;
   number: number;
   style: Variant;
 }
@@ -12,17 +15,32 @@ interface Props {
     number: number;
     description: string;
     badgeStyle: Variant;
+    completed?: boolean;
   }>;
   title?: string;
 }
 
 const NumberedCircle: React.FunctionComponent<NumberCircleProps> = ({
+  completed = false,
   number,
   style
 }) => {
   return (
     <>
-      <div className={`numberedCircle badge-${style}`}>{number}</div>
+      <div className={`numberedCircle badge-${style}`}>
+        {completed ? (
+          <FontAwesomeIcon
+            icon={faCheck}
+            style={{
+              fontSize: '30px',
+              verticalAlign: 'middle',
+              height: '0.8em'
+            }}
+          />
+        ) : (
+          number
+        )}
+      </div>
       <style jsx>{`
         .numberedCircle {
           margin-top: -1.75rem;
@@ -41,6 +59,11 @@ export const ProgressStepIndicator: React.FunctionComponent<Props> = ({
   steps,
   title
 }) => {
+  const totalCompleted = steps.reduce(function sumCompleted(acc, curr) {
+    return curr.completed ? acc + 1 : acc;
+  }, 0);
+  const progress =
+    (Math.max(totalCompleted - 1, 0) / Math.max(steps.length - 1, 1)) * 100;
   return (
     <div className="progressStepIndicator">
       {title && (
@@ -56,11 +79,11 @@ export const ProgressStepIndicator: React.FunctionComponent<Props> = ({
         <div
           role="progressbar"
           className="progress-bar"
-          aria-valuenow={0}
+          aria-valuenow={progress}
           aria-valuemin={0}
           aria-valuemax={100}
           aria-label="progress bar indicating the steps represented by this component"
-          style={{width: '0%'}}
+          style={{width: `${progress}%`}}
         />
       </div>
       <div className="d-flex flex-row justify-content-between mb-3">
@@ -69,6 +92,7 @@ export const ProgressStepIndicator: React.FunctionComponent<Props> = ({
             key={`circle-${step.number}`}
             number={step.number}
             style={step.badgeStyle}
+            completed={step.completed}
           />
         ))}
       </div>

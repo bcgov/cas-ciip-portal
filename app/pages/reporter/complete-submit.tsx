@@ -61,12 +61,14 @@ class CompleteSubmit extends Component<Props> {
                 {
                   description: 'Complete Facility CIIP Application',
                   badgeStyle: StatusBadgeColor.NONE,
-                  number: 1
+                  number: 1,
+                  completed: true
                 },
                 {
                   description: 'Submit Completed Application',
                   badgeStyle: StatusBadgeColor.INITIAL,
-                  number: 2
+                  number: 2,
+                  completed: true
                 },
                 {
                   description: 'Application Reviewed by Administrators',
