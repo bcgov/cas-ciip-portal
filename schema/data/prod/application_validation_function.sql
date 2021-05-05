@@ -17,6 +17,11 @@ values
   'no_reported_ciip_product',
   'Application has at least one ciip product reported',
   'There is no reported production of a primary (non-energy) product. At least one product must be reported.'
+),
+(
+  'mandatory_products_are_reported',
+  'All mandatory products for this application''s NAICS code are reported',
+  'Some mandatory products for this application''s NAICS code have not been reported. Please navigate to the "Production" form and report any missing products.'
 )
 on conflict(validation_function_name)
 do update
