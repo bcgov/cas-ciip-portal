@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
 import Link from 'next/link';
-import {Button} from 'react-bootstrap';
+import {Button, Row, Col} from 'react-bootstrap';
 import {graphql} from 'react-relay';
 import {CiipPageComponentProps} from 'next-env';
 import {completeSubmitQueryResponse} from 'completeSubmitQuery.graphql';
 import DefaultLayout from 'layouts/default-layout';
 import {USER} from 'data/group-constants';
+import ProgressStepIndicator from 'components/ProgressStepIndicator';
+import StatusBadgeColor from 'components/helpers/StatusBadgeColor';
 
 const ALLOWED_GROUPS = [USER];
 
@@ -27,23 +29,53 @@ class CompleteSubmit extends Component<Props> {
 
   render() {
     const {
-      query: {session}
+      query: {session},
+      router
     } = this.props;
+
+    const {application} = router.query;
+
     return (
-      <DefaultLayout
-        session={session}
-        title={
-          <>
-            Thank you for your submission. Your application has been sent and is
-            being reviewed.
-            <br /> We will notify you as soon as there is an update.
-          </>
-        }
-      >
+      <DefaultLayout session={session}>
+        <Row className="justify-content-md-center mb-5">
+          <Col>
+            <ProgressStepIndicator
+              title="Your Facility's Application Status"
+              steps={[
+                {
+                  description: 'Complete Facility CIIP Application',
+                  badgeStyle: StatusBadgeColor.NONE,
+                  number: 1
+                },
+                {
+                  description: 'Submit Completed Application',
+                  badgeStyle: StatusBadgeColor.INITIAL,
+                  number: 2
+                },
+                {
+                  description: 'Application Reviewed by Administrators',
+                  badgeStyle: StatusBadgeColor.PENDING,
+                  number: 3
+                },
+                {
+                  description: 'Application Approved or Rejected',
+                  badgeStyle: StatusBadgeColor.APPROVED,
+                  number: 4
+                }
+              ]}
+            />
+          </Col>
+        </Row>
+        <h3 className="mt-3">Thank you for submitting your application.</h3>
+        <p className="lead">
+          Your application for the _ facility operated by _ has been received
+          and is being reviewed. We will notify you by email regarding any
+          updates.
+        </p>
         <Link
           passHref
           href={{
-            pathname: '/reporter'
+            pathname: `/reporter/application/${application}`
           }}
         >
           <Button
@@ -52,7 +84,7 @@ class CompleteSubmit extends Component<Props> {
             variant="primary"
             size="sm"
           >
-            Back to My Dashboard
+            View Submitted Application
           </Button>
         </Link>
       </DefaultLayout>
