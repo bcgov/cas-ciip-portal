@@ -35,9 +35,13 @@ describe('The Progress Step Indicator', () => {
     expect(componentUnderTest).toMatchSnapshot();
     expect(componentUnderTest.find('.numberedCircle')).toHaveLength(3);
     expect(componentUnderTest.find('div.stepDescription')).toHaveLength(3);
+
     const progressBar = componentUnderTest.find('.progress-bar');
-    expect(progressBar.getDOMNode().getAttribute('aria-valuenow')).toEqual('0');
-    expect(progressBar.getDOMNode().getAttribute('aria-valuetext')).toEqual(
+    const progressBarDOM = progressBar.getDOMNode();
+    expect(progressBarDOM.getAttribute('aria-valuemin')).toEqual('0');
+    expect(progressBarDOM.getAttribute('aria-valuemax')).toEqual('2');
+    expect(progressBarDOM.getAttribute('aria-valuenow')).toEqual('0');
+    expect(progressBarDOM.getAttribute('aria-valuetext')).toEqual(
       'test step 1'
     );
     expect(progressBar.prop('style')).toHaveProperty('width', '0%');
@@ -116,8 +120,11 @@ describe('The Progress Step Indicator', () => {
     expect(componentUnderTest.find('.fa-check')).toHaveLength(2);
 
     const progressBar = componentUnderTest.find('.progress-bar');
-    expect(progressBar.getDOMNode().getAttribute('aria-valuenow')).toEqual('1');
-    expect(progressBar.getDOMNode().getAttribute('aria-valuetext')).toEqual(
+    const progressBarDOM = progressBar.getDOMNode();
+    expect(progressBarDOM.getAttribute('aria-valuemin')).toEqual('0');
+    expect(progressBarDOM.getAttribute('aria-valuemax')).toEqual('3');
+    expect(progressBarDOM.getAttribute('aria-valuenow')).toEqual('1');
+    expect(progressBarDOM.getAttribute('aria-valuetext')).toEqual(
       'test step 2'
     );
     expect(progressBar.prop('style')).toHaveProperty('width', '33%');
@@ -161,8 +168,11 @@ describe('The Progress Step Indicator', () => {
     expect(componentUnderTest.find('.fa-check')).toHaveLength(4);
 
     const progressBar = componentUnderTest.find('.progress-bar');
-    expect(progressBar.getDOMNode().getAttribute('aria-valuenow')).toEqual('3');
-    expect(progressBar.getDOMNode().getAttribute('aria-valuetext')).toEqual(
+    const progressBarDOM = progressBar.getDOMNode();
+    expect(progressBarDOM.getAttribute('aria-valuemin')).toEqual('0');
+    expect(progressBarDOM.getAttribute('aria-valuemax')).toEqual('3');
+    expect(progressBarDOM.getAttribute('aria-valuenow')).toEqual('3');
+    expect(progressBarDOM.getAttribute('aria-valuetext')).toEqual(
       'test step 4'
     );
     expect(progressBar.prop('style')).toHaveProperty('width', '100%');
