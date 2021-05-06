@@ -70,7 +70,7 @@ export const ProgressStepIndicator: React.FunctionComponent<Props> = ({
         <>
           <Row className="mb-4">
             <Col>
-              <h2>{title}</h2>
+              <h2 id="progressTitle">{title}</h2>
             </Col>
           </Row>
         </>
@@ -83,7 +83,7 @@ export const ProgressStepIndicator: React.FunctionComponent<Props> = ({
           aria-valuemin={0}
           aria-valuemax={steps.length ? steps.length - 1 : 0}
           aria-valuetext={steps.length ? steps[currStep].description : ''}
-          aria-label="progress bar indicating the steps represented by this component"
+          aria-labelledby="progressTitle"
           style={{width: `${progress}%`}}
         />
       </div>
