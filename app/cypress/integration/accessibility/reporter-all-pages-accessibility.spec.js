@@ -72,7 +72,7 @@ describe('When logged in as a reporter', () => {
 
   it('The application production tab has no detectable ally violations on load', () => {
     cy.sqlFixture('fixtures/set-legal-disclaimer-true');
-    const applicationId = window.btoa('["applications", 2]');
+    const applicationId = window.btoa('["applications",2]');
     const formId = window.btoa('["form_jsons",4]');
     cy.visit(`/reporter/application/${applicationId}?formId=${formId}`);
     cy.get('#page-content');
@@ -94,7 +94,7 @@ describe('When logged in as a reporter', () => {
   });
 
   it('The /reporter/application/[applicationId]/version/[versionNumber]/view page has no detectable ally violations on load', () => {
-    const applicationId = window.btoa('["applications", 2]');
+    const applicationId = window.btoa('["applications",2]');
     cy.visit(`/reporter/application/${applicationId}/version/1/view`);
     cy.get('#page-content');
     cy.injectAxe();
@@ -103,7 +103,9 @@ describe('When logged in as a reporter', () => {
   });
 
   it('The /reporter/complete-submit page has no detectable ally violations on load', () => {
-    cy.visit('/reporter/complete-submit');
+    // Use a submitted application.
+    const applicationId = window.btoa('["applications",3]');
+    cy.visit(`/reporter/complete-submit?applicationId=${applicationId}`);
     cy.get('#page-content');
     cy.injectAxe();
     cy.get('#page-content');
