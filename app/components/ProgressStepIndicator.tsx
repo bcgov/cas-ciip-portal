@@ -62,9 +62,8 @@ export const ProgressStepIndicator: React.FunctionComponent<Props> = ({
   const totalCompleted = steps.reduce(function sumCompleted(acc, curr) {
     return curr.completed ? acc + 1 : acc;
   }, 0);
-  const progress = Math.round(
-    (Math.max(totalCompleted - 1, 0) / Math.max(steps.length - 1, 1)) * 100
-  );
+  const currStep = Math.max(totalCompleted - 1, 0);
+  const progress = Math.round((currStep / Math.max(steps.length - 1, 1)) * 100);
   return (
     <div className="progressStepIndicator">
       {title && (
@@ -80,9 +79,10 @@ export const ProgressStepIndicator: React.FunctionComponent<Props> = ({
         <div
           role="progressbar"
           className="progress-bar"
-          aria-valuenow={progress}
+          aria-valuenow={currStep}
           aria-valuemin={0}
-          aria-valuemax={100}
+          aria-valuemax={steps.length ? steps.length - 1 : 0}
+          aria-valuetext={steps.length ? steps[currStep].description : ''}
           aria-label="progress bar indicating the steps represented by this component"
           style={{width: `${progress}%`}}
         />
