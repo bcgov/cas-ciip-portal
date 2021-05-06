@@ -84,7 +84,7 @@ class CompleteSubmit extends Component<Props> {
             />
           </Col>
         </Row>
-        <h3 className="pt-5">Thank you for submitting your application.</h3>
+        <h1 className="pt-5">Thank you for submitting your application.</h1>
         <p className="lead pb-5 pt-3">
           Your application for the{' '}
           <span className="font-weight-bold">{facilityName}</span> facility
