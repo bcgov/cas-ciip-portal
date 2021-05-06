@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(9);
+select plan(10);
 
 select has_function(
   'ggircs_portal', 'carbon_taxed_fuels_match_rev_zero', array['ggircs_portal.application_revision'],
@@ -285,6 +285,39 @@ select is(
   'Returns true if there are non-carbon-taxed fuels in CIIP that are not in SWRS'
 );
 
+-- Should return true if the fuel quantities are split on multiple rows
+update ggircs_portal.form_result set form_result =
+('[
+  {
+    "fuelRowId": '|| (select id from ggircs_portal.fuel where name = 'carbonTaxed1') || ',
+    "quantity": 105
+  }
+]')::jsonb where application_id = 1 and version_number = 0 and form_id = (select id from ggircs_portal.form_json where slug='fuel');
+
+update ggircs_portal.form_result set form_result =
+('[
+  {
+    "fuelRowId": '|| (select id from ggircs_portal.fuel where name = 'carbonTaxed1') || ',
+    "quantity": 5
+  },
+  {
+    "fuelRowId": '|| (select id from ggircs_portal.fuel where name = 'carbonTaxed1') || ',
+    "quantity": 100
+  }
+]')::jsonb where application_id = 1 and version_number = 1 and form_id = (select id from ggircs_portal.form_json where slug='fuel');
+
+select is(
+  (
+    with app_revision as (
+      select row(application_revision.*)::ggircs_portal.application_revision
+      from ggircs_portal.application_revision
+      where application_id=1 and version_number=1
+    )
+    select ggircs_portal.carbon_taxed_fuels_match_rev_zero((select * from app_revision))
+  ),
+  true,
+  'Returns true if the fuel quantities are split on multiple rows'
+);
 
 
 select finish();
