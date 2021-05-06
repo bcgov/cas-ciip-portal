@@ -25,7 +25,6 @@ create or replace function ggircs_portal.carbon_taxed_fuels_match_rev_zero(app_r
       join ggircs_portal.fuel on ciip_fuel_data.fuel_id = fuel.id
       where ggircs_portal.fuel_is_carbon_taxed(row(fuel.*)::ggircs_portal.fuel)
       group by fuel.id
-      order by fuel.id asc
     ),
     swrs_fuel_totals as (
       select
@@ -34,7 +33,6 @@ create or replace function ggircs_portal.carbon_taxed_fuels_match_rev_zero(app_r
       join ggircs_portal.fuel on swrs_fuel_data.fuel_id = fuel.id
       where ggircs_portal.fuel_is_carbon_taxed(row(fuel.*)::ggircs_portal.fuel)
       group by fuel.id
-      order by fuel.id asc
     ),
     -- full outer join the 2 ciip and swrs carbon-taxed fuel lists
     -- null values on either side mean the lists don't match up
