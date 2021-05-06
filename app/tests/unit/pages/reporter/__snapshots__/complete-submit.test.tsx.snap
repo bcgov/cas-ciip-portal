@@ -15,33 +15,8 @@ exports[`Reporter application submission page should render properly 1`] = `
     noGutters={false}
   >
     <Col>
-      <ProgressStepIndicator
-        steps={
-          Array [
-            Object {
-              "badgeStyle": "light",
-              "completed": true,
-              "description": "Complete Facility CIIP Application",
-              "number": 1,
-            },
-            Object {
-              "badgeStyle": "warning",
-              "completed": true,
-              "description": "Submit Completed Application",
-              "number": 2,
-            },
-            Object {
-              "badgeStyle": "info",
-              "description": "Application Reviewed by Administrators",
-              "number": 3,
-            },
-            Object {
-              "badgeStyle": "success",
-              "description": "Application Approved or Rejected",
-              "number": 4,
-            },
-          ]
-        }
+      <ApplicationProgressBar
+        completed={3}
         title="Your Facility's Application Status"
       />
     </Col>

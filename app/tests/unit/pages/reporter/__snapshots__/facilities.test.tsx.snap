@@ -18,31 +18,7 @@ exports[`The reporter facilities list page matches the snapshot 1`] = `
     noGutters={false}
   >
     <Col>
-      <ProgressStepIndicator
-        steps={
-          Array [
-            Object {
-              "badgeStyle": "light",
-              "description": "CIIP Application not started",
-              "number": 1,
-            },
-            Object {
-              "badgeStyle": "warning",
-              "description": "Application in progress",
-              "number": 2,
-            },
-            Object {
-              "badgeStyle": "info",
-              "description": "Application submitted and in review",
-              "number": 3,
-            },
-            Object {
-              "badgeStyle": "success",
-              "description": "Application approved or rejected",
-              "number": 4,
-            },
-          ]
-        }
+      <ApplicationProgressBar
         title="Steps to Apply for an Operator's Facility"
       />
     </Col>

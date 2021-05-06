@@ -6,8 +6,7 @@ import {CiipPageComponentProps} from 'next-env';
 import {completeSubmitQueryResponse} from 'completeSubmitQuery.graphql';
 import DefaultLayout from 'layouts/default-layout';
 import {USER} from 'data/group-constants';
-import ProgressStepIndicator from 'components/ProgressStepIndicator';
-import StatusBadgeColor from 'components/helpers/StatusBadgeColor';
+import ApplicationProgressBar from 'components/Application/ApplicationProgressBar';
 import {getViewApplicationPageRoute} from 'routes';
 
 const ALLOWED_GROUPS = [USER];
@@ -56,32 +55,9 @@ class CompleteSubmit extends Component<Props> {
       <DefaultLayout session={session}>
         <Row className="justify-content-md-center mb-5">
           <Col>
-            <ProgressStepIndicator
+            <ApplicationProgressBar
               title="Your Facility's Application Status"
-              steps={[
-                {
-                  description: 'Complete Facility CIIP Application',
-                  badgeStyle: StatusBadgeColor.NONE,
-                  number: 1,
-                  completed: true
-                },
-                {
-                  description: 'Submit Completed Application',
-                  badgeStyle: StatusBadgeColor.INITIAL,
-                  number: 2,
-                  completed: true
-                },
-                {
-                  description: 'Application Reviewed by Administrators',
-                  badgeStyle: StatusBadgeColor.PENDING,
-                  number: 3
-                },
-                {
-                  description: 'Application Approved or Rejected',
-                  badgeStyle: StatusBadgeColor.APPROVED,
-                  number: 4
-                }
-              ]}
+              completed={3}
             />
           </Col>
         </Row>
