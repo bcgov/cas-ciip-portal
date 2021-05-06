@@ -143,7 +143,6 @@
   "resolutions": {
     "**/node-fetch": "^2.6.1",
     "next/resolve-url-loader/adjust-sourcemap-loader/object-path": "0.11.5",
-    "**/axios": "^0.21.1",
     "**/y18n": "4.0.1",
     "**/hosted-git-info": "4.0.1"
   },
