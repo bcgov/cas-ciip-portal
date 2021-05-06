@@ -46,3 +46,10 @@ export const getReviewApplicationPageRoute = (applicationId: string) => ({
     applicationId
   }
 });
+
+export const getCompleteApplicationPageRoute = (applicationId: string) => ({
+  pathname: '/reporter/complete-submit',
+  query: {
+    applicationId
+  }
+});
