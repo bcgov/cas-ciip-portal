@@ -141,7 +141,6 @@
     "webpack": "^4.43.0"
   },
   "resolutions": {
-    "serialize-javascript": "^3.1.0",
     "**/node-fetch": "^2.6.1",
     "next/resolve-url-loader/adjust-sourcemap-loader/object-path": "0.11.5",
     "**/axios": "^0.21.1",
