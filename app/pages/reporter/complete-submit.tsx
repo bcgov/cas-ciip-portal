@@ -8,6 +8,7 @@ import DefaultLayout from 'layouts/default-layout';
 import {USER} from 'data/group-constants';
 import ProgressStepIndicator from 'components/ProgressStepIndicator';
 import StatusBadgeColor from 'components/helpers/StatusBadgeColor';
+import {getViewApplicationPageRoute} from 'routes';
 
 const ALLOWED_GROUPS = [USER];
 
@@ -94,9 +95,10 @@ class CompleteSubmit extends Component<Props> {
         </p>
         <Link
           passHref
-          href={{
-            pathname: `/reporter/application/${applicationId}/version/${versionNumber}/view`
-          }}
+          href={getViewApplicationPageRoute(
+            Array.isArray(applicationId) ? applicationId[0] : applicationId,
+            versionNumber
+          )}
         >
           <Button
             style={{padding: '15px', width: '20%'}}
