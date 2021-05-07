@@ -23,11 +23,13 @@ begin;
         ct_details_start.cta_rate_units as cta_rate_units_start,
         ct_details_start.fuel_mapping_id as fuel_mapping_id_start,
         ct_details_start.unit_conversion_factor as unit_conversion_factor_start,
+        ct_details_start.carbon_taxed as carbon_taxed_start,
         ct_details_end.carbon_tax_rate as carbon_tax_rate_end,
         ct_details_end.fuel_charge as fuel_charge_end,
         ct_details_end.cta_rate_units as cta_rate_units_end,
         ct_details_end.fuel_mapping_id as fuel_mapping_id_end,
         ct_details_end.unit_conversion_factor as unit_conversion_factor_end,
+        ct_details_end.carbon_taxed as carbon_taxed_end,
         date_part('day', ct_details_start.rate_end_date - reporting_year.reporting_period_start) as start_rate_days,
         date_part('day', reporting_year.reporting_period_end - ct_details_end.rate_start_date) as end_rate_days
       from ggircs_portal.ciip_fuel as cf
