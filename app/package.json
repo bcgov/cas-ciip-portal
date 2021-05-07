@@ -52,6 +52,7 @@
     "graphile-worker": "^0.8.1",
     "graphql": "^15.5.0",
     "graphql-voyager": "^1.0.0-rc.30",
+    "html-template-tag": "^4.0.0",
     "isomorphic-fetch": "^3.0.0",
     "js-file-download": "^0.4.12",
     "json-schema": "^0.2.5",

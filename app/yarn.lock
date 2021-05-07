@@ -8230,10 +8230,22 @@ html-encoding-sniffer@^2.0.1:
   dependencies:
     whatwg-encoding "^1.0.5"
 
+html-es6cape@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/html-es6cape/-/html-es6cape-2.0.0.tgz#9add10bf64e3153da9a8288f1c060a5a70c1adf0"
+  integrity sha512-oRqzRVGgXHcLslCCDeE76Eyq+unlmqc1jqnKfI1rps6vCQ9FsyxfHRtYT3MnJoigoRqcFMmZdDpuQpsPDnmVPA==
+
 html-escaper@^2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/html-escaper/-/html-escaper-2.0.1.tgz#beed86b5d2b921e92533aa11bce6d8e3b583dee7"
   integrity sha512-hNX23TjWwD3q56HpWjUHOKj1+4KKlnjv9PcmBUYKVpga+2cnb9nDx/B1o0yO4n+RZXZdiNxzx6B24C9aNMTkkQ==
+
+html-template-tag@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/html-template-tag/-/html-template-tag-4.0.0.tgz#4c979e2ed558a3571252183fa2db57a85a598607"
+  integrity sha512-jFZ+hAAuT/TdlhXkWMZbnyqLiSmoQaV7Nzm+XLatBkYZI3IRKONHUfep51B1WLZrVyuDEJqLEn7vozSB4MJxJQ==
+  dependencies:
+    html-es6cape "^2.0.0"
 
 htmlparser2@4.1.0:
   version "4.1.0"
