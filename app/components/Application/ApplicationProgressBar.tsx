@@ -4,6 +4,7 @@ import StatusBadgeColor from 'components/helpers/StatusBadgeColor';
 
 interface Props {
   title: string;
+  ariaLabel?: string; // used if the indicator does not have a title.
   completed?: number;
 }
 
@@ -31,8 +32,8 @@ const ciipAppSteps = [
 ];
 
 export const ApplicationProgressBar: React.FunctionComponent<Props> = ({
-  title,
-  completed = 0
+  completed = 0,
+  ...props
 }) => {
   let steps = ciipAppSteps;
   if (completed > 0) {
@@ -43,7 +44,7 @@ export const ApplicationProgressBar: React.FunctionComponent<Props> = ({
       return step;
     });
   }
-  return <ProgressStepIndicator title={title} steps={steps} />;
+  return <ProgressStepIndicator steps={steps} {...props} />;
 };
 
 export default ApplicationProgressBar;

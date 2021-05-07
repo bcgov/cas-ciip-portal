@@ -101,6 +101,7 @@ export default class Reporter extends Component<Props> {
                       number: 3
                     }
                   ]}
+                  ariaLabel="Steps to request operator access"
                 />
               </Col>
             </Row>

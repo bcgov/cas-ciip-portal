@@ -18,6 +18,7 @@ interface Props {
     completed?: boolean;
   }>;
   title?: string;
+  ariaLabel?: string;
 }
 
 const NumberedCircle: React.FunctionComponent<NumberCircleProps> = ({
@@ -57,7 +58,8 @@ const NumberedCircle: React.FunctionComponent<NumberCircleProps> = ({
 
 export const ProgressStepIndicator: React.FunctionComponent<Props> = ({
   steps,
-  title
+  title = null,
+  ariaLabel = null
 }) => {
   const totalCompleted = steps.reduce(function sumCompleted(acc, curr) {
     return curr.completed ? acc + 1 : acc;
@@ -83,7 +85,8 @@ export const ProgressStepIndicator: React.FunctionComponent<Props> = ({
           aria-valuemin={0}
           aria-valuemax={steps.length ? steps.length - 1 : 0}
           aria-valuetext={steps.length ? steps[currStep].description : ''}
-          aria-labelledby="progressTitle"
+          aria-labelledby={title && 'progressTitle'}
+          aria-label={ariaLabel}
           style={{width: `${progress}%`}}
         />
       </div>
