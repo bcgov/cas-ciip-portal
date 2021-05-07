@@ -14,6 +14,7 @@ import FormArrayFieldTemplate from './FormArrayFieldTemplate';
 import FuelFields from './FuelField';
 import EmissionGasFields from './EmissionGasFields';
 import EmissionSourceFields from './EmissionSourceFields';
+import ProductsArrayField from './ProductsArrayField';
 import ProductField from './ProductField';
 import EmissionField from './EmissionField';
 import ProductRowIdField from './ProductRowIdField';
@@ -41,6 +42,7 @@ const CUSTOM_FIELDS = {
   fuel: (props) => <FuelFields query={props.formContext.query} {...props} />,
   emissionSource: EmissionSourceFields,
   emissionGas: EmissionGasFields,
+  ProductsArrayField,
   product: (props) => (
     <ProductField
       naicsCode={

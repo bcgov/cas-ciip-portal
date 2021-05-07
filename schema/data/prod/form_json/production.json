@@ -87,6 +87,7 @@
   "uiSchema": {
     "ui:add-text": "Add a Product",
     "ui:remove-text": "Remove Product",
+    "ui:field": "ProductsArrayField",
     "items": {
       "comments": {
         "ui:field": "AddCommentField",
