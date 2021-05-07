@@ -32,8 +32,7 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
   begin
 
     -- Get emissions for facility
-    select sum(annual_co2e) into em_facility from ggircs_portal.ciip_emission
-    where version_number = application_revision.version_number and application_id = application_revision.application_id and gas_type != 'CO2';
+    select ggircs_portal.application_revision_total_ciip_emissions(application_revision) into em_facility;
 
     -- Get reporting year for application
     select reporting_year into app_reporting_year from ggircs_portal.application

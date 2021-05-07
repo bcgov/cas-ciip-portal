@@ -39,8 +39,7 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
     where id = application_revision.application_id;
 
     -- Get carbon tax data for the application
-    select sum(carbon_tax_eligible_for_ciip_flat) into incremental_carbon_tax_facility from ggircs_portal.ciip_carbon_tax_calculation
-    where version_number = application_revision.version_number and application_id = application_revision.application_id;
+    select sum(carbon_tax_eligible_for_ciip) into incremental_carbon_tax_facility from ggircs_portal.application_revision_carbon_tax(application_revision);
 
     reported_products = array(
       select row(ciip_production.*)

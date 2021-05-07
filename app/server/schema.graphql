@@ -2460,6 +2460,34 @@ type ApplicationRevision implements Node {
     orderBy: [ApplicationRevisionStatusesOrderBy!] = [PRIMARY_KEY_ASC]
   ): ApplicationRevisionStatusesConnection!
 
+  """
+  Returns a set of application_revision_fuel_carbon_tax containing the estimated carbon tax paid and the amount eligible to CIIP for each fuel
+  """
+  carbonTax(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: ApplicationRevisionFuelCarbonTaxFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+  ): ApplicationRevisionFuelCarbonTaxesConnection!
+
   """Reads and enables pagination through a set of `CertificationUrl`."""
   certificationUrlsByApplicationIdAndVersionNumber(
     """Read all values in the set after (below) this cursor."""
@@ -2855,6 +2883,87 @@ input ApplicationRevisionFilter {
 
   """Filter by the object’s `versionNumber` field."""
   versionNumber: IntFilter
+}
+
+type ApplicationRevisionFuelCarbonTax {
+  applicationId: Int
+  carbonTax: BigFloat
+  carbonTaxEligibleForCiip: BigFloat
+  emissionCategoryId: Int
+  fuelAmount: BigFloat
+  fuelId: Int
+  preIncreaseFuelCharge: BigFloat
+  reportingYearFuelCharge: BigFloat
+  versionNumber: Int
+}
+
+"""
+A filter to be used against `ApplicationRevisionFuelCarbonTax` object types. All fields are combined with a logical ‘and.’
+"""
+input ApplicationRevisionFuelCarbonTaxFilter {
+  """Checks for all expressions in this list."""
+  and: [ApplicationRevisionFuelCarbonTaxFilter!]
+
+  """Filter by the object’s `applicationId` field."""
+  applicationId: IntFilter
+
+  """Filter by the object’s `carbonTax` field."""
+  carbonTax: BigFloatFilter
+
+  """Filter by the object’s `carbonTaxEligibleForCiip` field."""
+  carbonTaxEligibleForCiip: BigFloatFilter
+
+  """Filter by the object’s `emissionCategoryId` field."""
+  emissionCategoryId: IntFilter
+
+  """Filter by the object’s `fuelAmount` field."""
+  fuelAmount: BigFloatFilter
+
+  """Filter by the object’s `fuelId` field."""
+  fuelId: IntFilter
+
+  """Negates the expression."""
+  not: ApplicationRevisionFuelCarbonTaxFilter
+
+  """Checks for any expressions in this list."""
+  or: [ApplicationRevisionFuelCarbonTaxFilter!]
+
+  """Filter by the object’s `preIncreaseFuelCharge` field."""
+  preIncreaseFuelCharge: BigFloatFilter
+
+  """Filter by the object’s `reportingYearFuelCharge` field."""
+  reportingYearFuelCharge: BigFloatFilter
+
+  """Filter by the object’s `versionNumber` field."""
+  versionNumber: IntFilter
+}
+
+"""A connection to a list of `ApplicationRevisionFuelCarbonTax` values."""
+type ApplicationRevisionFuelCarbonTaxesConnection {
+  """
+  A list of edges which contains the `ApplicationRevisionFuelCarbonTax` and cursor to aid in pagination.
+  """
+  edges: [ApplicationRevisionFuelCarbonTaxesEdge!]!
+
+  """A list of `ApplicationRevisionFuelCarbonTax` objects."""
+  nodes: [ApplicationRevisionFuelCarbonTax]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """
+  The count of *all* `ApplicationRevisionFuelCarbonTax` you could get from the connection.
+  """
+  totalCount: Int!
+}
+
+"""A `ApplicationRevisionFuelCarbonTax` edge in the connection."""
+type ApplicationRevisionFuelCarbonTaxesEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `ApplicationRevisionFuelCarbonTax` at the end of the edge."""
+  node: ApplicationRevisionFuelCarbonTax
 }
 
 """An input for mutations affecting `ApplicationRevision`"""
@@ -4612,38 +4721,42 @@ type CiipCarbonTaxCalculation {
   applicationId: Int
 
   """
-  The amount of carbon tax payed eligible for an incentive (assuming a flat carbon tax rate for the reporting year)
-  """
-  carbonTaxEligibleForCiipFlat: BigFloat
-
-  """The amount of carbon tax payed eligible for an incentive"""
-  carbonTaxEligibleForCiipProRated: BigFloat
-
-  """
   The carbon tax applicable to this fuel (assuming a flat carbon tax rate for the reporting year)
   """
-  carbonTaxFlat: BigFloat
+  carbonTax: BigFloat
 
-  """The carbon tax applicable to this fuel"""
-  carbonTaxProRated: BigFloat
+  """
+  The amount of carbon tax payed eligible for an incentive (assuming a flat carbon tax rate for the reporting year)
+  """
+  carbonTaxEligibleForCiip: BigFloat
 
-  """The carbon tax rate applicable at the end of the reporting period"""
-  carbonTaxRateEnd: BigFloat
+  """The display name of the emission category for this fuel amount"""
+  emissionCategory: String
 
-  """The carbon tax rate applicable at the start of the reporting period"""
-  carbonTaxRateStart: BigFloat
+  """The amount of fuel consumed in the reporting period"""
+  fuelAmount: BigFloat
+
+  """The id of the fuel in the ggircs_portal.fuel table"""
+  fuelId: Int
 
   """The name of the fuel this carbon tax applied to"""
   fuelType: String
 
-  """The quantity of fuel consumed in the reporting period"""
-  quantity: BigFloat
+  """The unit of measurement used for that fuel"""
+  fuelUnits: String
+
+  """
+  The carbon tax rate applicable for this fuel on March 31st, 2018. This is the fuel rate used to calculate the tax amount eligible for an incentive.
+  """
+  preIncreaseFuelCharge: BigFloat
 
   """The application's reporting year"""
   reportingYear: Int
 
-  """The fuel quantity units"""
-  units: String
+  """
+  The carbon tax rate applicable for this fuel at the end of the reporting period of this record's application
+  """
+  reportingYearFuelCharge: BigFloat
 
   """The application revision number"""
   versionNumber: Int
@@ -4657,39 +4770,37 @@ input CiipCarbonTaxCalculationCondition {
   """Checks for equality with the object’s `applicationId` field."""
   applicationId: Int
 
-  """
-  Checks for equality with the object’s `carbonTaxEligibleForCiipFlat` field.
-  """
-  carbonTaxEligibleForCiipFlat: BigFloat
+  """Checks for equality with the object’s `carbonTax` field."""
+  carbonTax: BigFloat
 
   """
-  Checks for equality with the object’s `carbonTaxEligibleForCiipProRated` field.
+  Checks for equality with the object’s `carbonTaxEligibleForCiip` field.
   """
-  carbonTaxEligibleForCiipProRated: BigFloat
+  carbonTaxEligibleForCiip: BigFloat
 
-  """Checks for equality with the object’s `carbonTaxFlat` field."""
-  carbonTaxFlat: BigFloat
+  """Checks for equality with the object’s `emissionCategory` field."""
+  emissionCategory: String
 
-  """Checks for equality with the object’s `carbonTaxProRated` field."""
-  carbonTaxProRated: BigFloat
+  """Checks for equality with the object’s `fuelAmount` field."""
+  fuelAmount: BigFloat
 
-  """Checks for equality with the object’s `carbonTaxRateEnd` field."""
-  carbonTaxRateEnd: BigFloat
-
-  """Checks for equality with the object’s `carbonTaxRateStart` field."""
-  carbonTaxRateStart: BigFloat
+  """Checks for equality with the object’s `fuelId` field."""
+  fuelId: Int
 
   """Checks for equality with the object’s `fuelType` field."""
   fuelType: String
 
-  """Checks for equality with the object’s `quantity` field."""
-  quantity: BigFloat
+  """Checks for equality with the object’s `fuelUnits` field."""
+  fuelUnits: String
+
+  """Checks for equality with the object’s `preIncreaseFuelCharge` field."""
+  preIncreaseFuelCharge: BigFloat
 
   """Checks for equality with the object’s `reportingYear` field."""
   reportingYear: Int
 
-  """Checks for equality with the object’s `units` field."""
-  units: String
+  """Checks for equality with the object’s `reportingYearFuelCharge` field."""
+  reportingYearFuelCharge: BigFloat
 
   """Checks for equality with the object’s `versionNumber` field."""
   versionNumber: Int
@@ -4705,26 +4816,26 @@ input CiipCarbonTaxCalculationFilter {
   """Filter by the object’s `applicationId` field."""
   applicationId: IntFilter
 
-  """Filter by the object’s `carbonTaxEligibleForCiipFlat` field."""
-  carbonTaxEligibleForCiipFlat: BigFloatFilter
+  """Filter by the object’s `carbonTax` field."""
+  carbonTax: BigFloatFilter
 
-  """Filter by the object’s `carbonTaxEligibleForCiipProRated` field."""
-  carbonTaxEligibleForCiipProRated: BigFloatFilter
+  """Filter by the object’s `carbonTaxEligibleForCiip` field."""
+  carbonTaxEligibleForCiip: BigFloatFilter
 
-  """Filter by the object’s `carbonTaxFlat` field."""
-  carbonTaxFlat: BigFloatFilter
+  """Filter by the object’s `emissionCategory` field."""
+  emissionCategory: StringFilter
 
-  """Filter by the object’s `carbonTaxProRated` field."""
-  carbonTaxProRated: BigFloatFilter
+  """Filter by the object’s `fuelAmount` field."""
+  fuelAmount: BigFloatFilter
 
-  """Filter by the object’s `carbonTaxRateEnd` field."""
-  carbonTaxRateEnd: BigFloatFilter
-
-  """Filter by the object’s `carbonTaxRateStart` field."""
-  carbonTaxRateStart: BigFloatFilter
+  """Filter by the object’s `fuelId` field."""
+  fuelId: IntFilter
 
   """Filter by the object’s `fuelType` field."""
   fuelType: StringFilter
+
+  """Filter by the object’s `fuelUnits` field."""
+  fuelUnits: StringFilter
 
   """Negates the expression."""
   not: CiipCarbonTaxCalculationFilter
@@ -4732,14 +4843,14 @@ input CiipCarbonTaxCalculationFilter {
   """Checks for any expressions in this list."""
   or: [CiipCarbonTaxCalculationFilter!]
 
-  """Filter by the object’s `quantity` field."""
-  quantity: BigFloatFilter
+  """Filter by the object’s `preIncreaseFuelCharge` field."""
+  preIncreaseFuelCharge: BigFloatFilter
 
   """Filter by the object’s `reportingYear` field."""
   reportingYear: IntFilter
 
-  """Filter by the object’s `units` field."""
-  units: StringFilter
+  """Filter by the object’s `reportingYearFuelCharge` field."""
+  reportingYearFuelCharge: BigFloatFilter
 
   """Filter by the object’s `versionNumber` field."""
   versionNumber: IntFilter
@@ -4777,27 +4888,27 @@ type CiipCarbonTaxCalculationsEdge {
 enum CiipCarbonTaxCalculationsOrderBy {
   APPLICATION_ID_ASC
   APPLICATION_ID_DESC
-  CARBON_TAX_ELIGIBLE_FOR_CIIP_FLAT_ASC
-  CARBON_TAX_ELIGIBLE_FOR_CIIP_FLAT_DESC
-  CARBON_TAX_ELIGIBLE_FOR_CIIP_PRO_RATED_ASC
-  CARBON_TAX_ELIGIBLE_FOR_CIIP_PRO_RATED_DESC
-  CARBON_TAX_FLAT_ASC
-  CARBON_TAX_FLAT_DESC
-  CARBON_TAX_PRO_RATED_ASC
-  CARBON_TAX_PRO_RATED_DESC
-  CARBON_TAX_RATE_END_ASC
-  CARBON_TAX_RATE_END_DESC
-  CARBON_TAX_RATE_START_ASC
-  CARBON_TAX_RATE_START_DESC
+  CARBON_TAX_ASC
+  CARBON_TAX_DESC
+  CARBON_TAX_ELIGIBLE_FOR_CIIP_ASC
+  CARBON_TAX_ELIGIBLE_FOR_CIIP_DESC
+  EMISSION_CATEGORY_ASC
+  EMISSION_CATEGORY_DESC
+  FUEL_AMOUNT_ASC
+  FUEL_AMOUNT_DESC
+  FUEL_ID_ASC
+  FUEL_ID_DESC
   FUEL_TYPE_ASC
   FUEL_TYPE_DESC
+  FUEL_UNITS_ASC
+  FUEL_UNITS_DESC
   NATURAL
-  QUANTITY_ASC
-  QUANTITY_DESC
+  PRE_INCREASE_FUEL_CHARGE_ASC
+  PRE_INCREASE_FUEL_CHARGE_DESC
   REPORTING_YEAR_ASC
   REPORTING_YEAR_DESC
-  UNITS_ASC
-  UNITS_DESC
+  REPORTING_YEAR_FUEL_CHARGE_ASC
+  REPORTING_YEAR_FUEL_CHARGE_DESC
   VERSION_NUMBER_ASC
   VERSION_NUMBER_DESC
 }
