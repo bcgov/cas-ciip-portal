@@ -4,7 +4,7 @@
 -- requires: table_application
 
 begin;
-
+  drop view ggircs_portal.ciip_carbon_tax_calculation;
   create or replace view ggircs_portal.ciip_carbon_tax_calculation as (
     with ct_details as (select  * from ggircs_portal.get_carbon_tax_data()),
     carbon_tax_variables as (
