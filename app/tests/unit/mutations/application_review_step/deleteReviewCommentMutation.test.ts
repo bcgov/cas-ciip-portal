@@ -40,7 +40,7 @@ describe('deleteReviewCommentMutation', () => {
     }
 
     expect(error.message).toEqual(
-      'Variable "$input" got invalid value { id: "abc" }; Field reviewCommentPatch of required type ReviewCommentPatch! was not provided.'
+      'Variable "$input" got invalid value { id: "abc" }; Field "reviewCommentPatch" of required type "ReviewCommentPatch!" was not provided.'
     );
   });
   it('Should return id(string) if valid', () => {

@@ -40,7 +40,7 @@ describe('updateApplicationReviewStepMutation', () => {
     }
 
     expect(error.message).toEqual(
-      'Variable "$input" got invalid value { id: "abc" }; Field applicationReviewStepPatch of required type ApplicationReviewStepPatch! was not provided.'
+      'Variable "$input" got invalid value { id: "abc" }; Field "applicationReviewStepPatch" of required type "ApplicationReviewStepPatch!" was not provided.'
     );
   });
   it('Should return isComplete(boolean) if valid', () => {

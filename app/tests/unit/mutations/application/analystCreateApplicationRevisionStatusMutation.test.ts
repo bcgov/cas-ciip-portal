@@ -40,7 +40,7 @@ describe('analystCreateApplicationRevisionStatusMutation', () => {
     }
 
     expect(error.message).toEqual(
-      'Variable "$input" got invalid value { id: 1 }; Field applicationRevisionStatus of required type ApplicationRevisionStatusInput! was not provided.'
+      'Variable "$input" got invalid value { id: 1 }; Field "applicationRevisionStatus" of required type "ApplicationRevisionStatusInput!" was not provided.'
     );
   });
   it('Should return id(string) if valid', () => {
