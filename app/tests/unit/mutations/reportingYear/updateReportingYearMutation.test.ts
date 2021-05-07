@@ -52,7 +52,7 @@ describe('updateReportingYearMutation', () => {
     }
 
     expect(error.message).toEqual(
-      'Variable "$input" got invalid value { id: "abc" }; Field reportingYearPatch of required type ReportingYearPatch! was not provided.'
+      'Variable "$input" got invalid value { id: "abc" }; Field "reportingYearPatch" of required type "ReportingYearPatch!" was not provided.'
     );
   });
 

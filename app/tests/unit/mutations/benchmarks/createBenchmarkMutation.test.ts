@@ -57,7 +57,7 @@ describe('createBenchmarkMutation', () => {
     }
 
     expect(error.message).toEqual(
-      'Variable "$input" got invalid value { productId: 1, benchmark: 2, eligibilityThreshold: 3, startReportingYear: 2019, endReportingYear: 2020, boop: 123 } at "input.benchmark"; Field "boop" is not defined by type BenchmarkInput.'
+      'Variable "$input" got invalid value { productId: 1, benchmark: 2, eligibilityThreshold: 3, startReportingYear: 2019, endReportingYear: 2020, boop: 123 } at "input.benchmark"; Field "boop" is not defined by type "BenchmarkInput".'
     );
   });
   it('Should return id(string) if valid', () => {

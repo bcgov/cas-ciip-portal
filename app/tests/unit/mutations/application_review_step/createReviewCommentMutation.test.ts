@@ -43,7 +43,7 @@ describe('updateApplicationReviewStepMutation', () => {
     }
 
     expect(error.message).toEqual(
-      'Variable "$input" got invalid value { commentType: "GENERAL", description: "here is a comment" } at "input.reviewComment"; Field applicationReviewStepId of required type Int! was not provided.'
+      'Variable "$input" got invalid value { commentType: "GENERAL", description: "here is a comment" } at "input.reviewComment"; Field "applicationReviewStepId" of required type "Int!" was not provided.'
     );
   });
   it('Should return id(string) if valid', () => {

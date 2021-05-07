@@ -50,7 +50,7 @@ describe('editBenchmark', () => {
     }
 
     expect(error.message).toEqual(
-      'Variable "$input" got invalid value { id: "abc" }; Field benchmarkPatch of required type BenchmarkPatch! was not provided.'
+      'Variable "$input" got invalid value { id: "abc" }; Field "benchmarkPatch" of required type "BenchmarkPatch!" was not provided.'
     );
   });
   it('Should return id(string) if valid', () => {
