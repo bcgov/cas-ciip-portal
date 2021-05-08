@@ -7,7 +7,6 @@ import {CiipApplicationRevisionStatus} from 'analystCreateApplicationRevisionSta
 import analystCreateApplicationRevisionStatusMutation from 'mutations/application/analystCreateApplicationRevisionStatusMutation';
 import DefaultLayout from 'layouts/default-layout';
 import ApplicationDetails from 'containers/Applications/ApplicationDetailsContainer';
-import ApplicationOverrideNotification from 'components/Application/ApplicationOverrideNotificationCard';
 import {CiipPageComponentProps} from 'next-env';
 import getConfig from 'next/config';
 import {INCENTIVE_ANALYST, ADMIN_GROUP} from 'data/group-constants';
@@ -17,6 +16,7 @@ import DecisionModal from 'components/Admin/ApplicationReview/DecisionModal';
 import HelpButton from 'components/helpers/HelpButton';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faArrowUp, faInfoCircle} from '@fortawesome/free-solid-svg-icons';
+import ApplicationReviewValidationContainer from 'containers/Applications/ApplicationReviewValidationContainer';
 
 const runtimeConfig = getConfig()?.publicRuntimeConfig ?? {};
 const ALLOWED_GROUPS = [INCENTIVE_ANALYST, ...ADMIN_GROUP];
@@ -59,7 +59,6 @@ class ApplicationReview extends Component<Props, State> {
           ) {
             id
             versionNumber
-            overrideJustification
             isCurrentVersion
             applicationRevisionStatus {
               id
@@ -67,6 +66,7 @@ class ApplicationReview extends Component<Props, State> {
             }
             ...ApplicationDetailsContainer_applicationRevision
             ...IncentiveCalculatorContainer_applicationRevision
+            ...ApplicationReviewValidationContainer_applicationRevision
           }
         }
         ...ApplicationDetailsContainer_query
@@ -144,7 +144,6 @@ class ApplicationReview extends Component<Props, State> {
   render() {
     const {query} = this.props;
     const {
-      overrideJustification,
       isCurrentVersion,
       versionNumber
     } = query?.application.applicationRevision;
@@ -205,11 +204,9 @@ class ApplicationReview extends Component<Props, State> {
                   : undefined
               }
             />
-            <Row style={{marginTop: 30}}>
-              <ApplicationOverrideNotification
-                overrideJustification={overrideJustification}
-              />
-            </Row>
+            <ApplicationReviewValidationContainer
+              applicationRevision={query.application.applicationRevision}
+            />
             <hr />
             <ApplicationDetails
               review
