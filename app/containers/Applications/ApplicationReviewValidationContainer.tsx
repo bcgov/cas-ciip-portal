@@ -34,6 +34,19 @@ export const ApplicationReviewValidation: React.FunctionComponent<Props> = ({
   const validationVariant =
     failedValidationItems.length > 0 ? 'warning' : 'info';
 
+  const listValidationsWithIcon = (validations, icon) => {
+    return (
+      <ul>
+        {validations.map(({node}) => (
+          <li key={node.validationDescription}>
+            <FontAwesomeIcon icon={icon} fixedWidth className="mr-1" />
+            {node.validationDescription}
+          </li>
+        ))}
+      </ul>
+    );
+  };
+
   return (
     <Row className="mt-3">
       <Col>
@@ -51,39 +64,21 @@ export const ApplicationReviewValidation: React.FunctionComponent<Props> = ({
             <div hidden={collapsed}>
               <Row className="mt-2">
                 <Col>
-                  <ul>
-                    {failedValidationItems.map(({node}) => (
-                      <li key={node.validationDescription}>
-                        <FontAwesomeIcon
-                          icon={faTimes}
-                          fixedWidth
-                          className="mr-1"
-                        />
-                        {node.validationDescription}
-                      </li>
-                    ))}
-                  </ul>
+                  {listValidationsWithIcon(failedValidationItems, faTimes)}
                 </Col>
               </Row>
-              <Row className="mt-2">
-                <Col>The following checks were passed:</Col>
-              </Row>
-              <Row className="mt-2">
-                <Col>
-                  <ul>
-                    {passedValidationItems.map(({node}) => (
-                      <li key={node.validationDescription}>
-                        <FontAwesomeIcon
-                          icon={faCheck}
-                          fixedWidth
-                          className="mr-1"
-                        />
-                        {node.validationDescription}
-                      </li>
-                    ))}
-                  </ul>
-                </Col>
-              </Row>
+              {passedValidationItems.length > 0 && (
+                <>
+                  <Row className="mt-2">
+                    <Col>The following checks were passed:</Col>
+                  </Row>
+                  <Row className="mt-2">
+                    <Col>
+                      {listValidationsWithIcon(passedValidationItems, faCheck)}
+                    </Col>
+                  </Row>
+                </>
+              )}
             </div>
           </ListGroup.Item>
           {applicationRevision.overrideJustification && (
@@ -119,7 +114,7 @@ export const ApplicationReviewValidation: React.FunctionComponent<Props> = ({
         </ListGroup>
       </Col>
       <style jsx>{`
-        li {
+        :global(li) {
           list-style-type: none;
         }
       `}</style>
