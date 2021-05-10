@@ -14,9 +14,11 @@ if (Cypress.env('NO_MAIL')) {
   });
 }
 
-// Note: this only replaces carriage returns, newlines and equals, but should be okay normalize differences in text content encoding of email body on CI vs. localhost.
+// Note: this only replaces carriage returns, newlines, equals and indentation but should be okay normalize differences in text content encoding of email body on CI vs. localhost.
 function decoded(emailEncoded) {
-  return String.raw`${emailEncoded}`.replace(/([=\n\r])/gm, '');
+  return String.raw`${emailEncoded}`
+    .replace(/([=\n\r])/gm, '')
+    .replace(/\s+/gm, ' ');
 }
 
 describe('When a user is created', () => {
