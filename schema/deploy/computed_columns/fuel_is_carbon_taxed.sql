@@ -15,4 +15,9 @@ create or replace function ggircs_portal.fuel_is_carbon_taxed(f ggircs_portal.fu
       where f.swrs_fuel_mapping_id = fm.id
     );
   $$ language sql stable;
+
+grant execute on function ggircs_portal.fuel_is_carbon_taxed to ciip_administrator, ciip_analyst, ciip_industry_user;
+
+comment on function ggircs_portal.fuel_is_carbon_taxed(ggircs_portal.fuel) is 'Computed column returns true if the fuel is carbon taxed, false otherwise.';
+
 commit;
