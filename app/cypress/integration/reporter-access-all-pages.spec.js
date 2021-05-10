@@ -19,7 +19,11 @@ describe('When logged in as a reporter', () => {
     cy.get('body').happoScreenshot({
       component: 'Reporter facility list'
     });
-    cy.get('tbody > tr:nth-child(2) .btn')
+
+    // Make sure it's the application we expect.
+    cy.get('tbody > tr td:nth-child(7)')
+      .contains('2')
+      .next()
       .contains('Resume CIIP application')
       .click();
 
