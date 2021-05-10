@@ -90,6 +90,7 @@ Array [
                           active={false}
                           disabled={false}
                           onClick={[Function]}
+                          onMouseEnter={[Function]}
                         >
                           <ForwardRef
                             as="button"
@@ -97,12 +98,14 @@ Array [
                             disabled={false}
                             eventKey={null}
                             onClick={[Function]}
+                            onMouseEnter={[Function]}
                           >
                             <button
                               className="list-group-item list-group-item-action"
                               data-rb-event-key={null}
                               disabled={false}
                               onClick={[Function]}
+                              onMouseEnter={[Function]}
                             >
                               test code
                               <br
@@ -246,6 +249,7 @@ Array [
                           active={true}
                           disabled={false}
                           onClick={[Function]}
+                          onMouseEnter={[Function]}
                         >
                           <ForwardRef
                             as="button"
@@ -253,12 +257,14 @@ Array [
                             disabled={false}
                             eventKey={null}
                             onClick={[Function]}
+                            onMouseEnter={[Function]}
                           >
                             <button
                               className="list-group-item active list-group-item-action"
                               data-rb-event-key={null}
                               disabled={false}
                               onClick={[Function]}
+                              onMouseEnter={[Function]}
                             >
                               test code
                               <br
