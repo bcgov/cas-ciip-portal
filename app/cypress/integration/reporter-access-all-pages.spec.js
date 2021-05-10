@@ -59,7 +59,11 @@ describe('When logged in as a reporter', () => {
     cy.contains('View Facilities').click();
     cy.url().should('include', '/reporter/facilities');
     cy.get('tr');
-    cy.contains('View Submitted').click();
+    cy.get('tbody > tr td:nth-child(7)')
+      .contains('2')
+      .next()
+      .contains('View Submitted')
+      .click();
     cy.url().should(
       'include',
       `/reporter/application/${applicationId}/version/1/view`
