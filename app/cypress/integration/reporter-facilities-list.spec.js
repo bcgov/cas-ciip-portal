@@ -15,9 +15,17 @@ describe('When the reporter is viewing a list of facilities & applications', () 
       'have.value',
       2019
     );
+
     cy.get('tbody > tr:nth-child(1) a.btn').should('have.attr', 'href');
-    cy.get('tbody > tr:nth-child(1) .btn').should('contain', 'Resume');
-    cy.get('tbody > tr').should('have.length', 2);
+    cy.get('tbody > tr td:nth-child(7)')
+      .contains('1')
+      .next()
+      .should('contain', 'Resume');
+    cy.get('tbody > tr td:nth-child(7)')
+      .contains('3')
+      .next()
+      .should('contain', 'Submitted');
+    cy.get('tbody > tr').should('have.length', 3);
 
     // Filter by application Id
     cy.get('input[aria-label="Filter by Application #"]').type(1);
@@ -31,6 +39,6 @@ describe('When the reporter is viewing a list of facilities & applications', () 
     // Clear the application Id filter
     cy.get('thead button').contains('Clear').click();
     cy.get('tbody > tr:nth-child(1)').should('contain', 'not started');
-    cy.get('tbody > tr').should('have.length', 2);
+    cy.get('tbody > tr').should('have.length', 3);
   });
 });
