@@ -35,16 +35,10 @@ export const ApplicationProgressBar: React.FunctionComponent<Props> = ({
   completed = 0,
   ...props
 }) => {
-  let steps = ciipAppSteps;
-  if (completed > 0) {
-    steps = steps.map((step, i) => {
-      if (completed - 1 >= i) {
-        return {...step, completed: true};
-      }
-      return step;
-    });
-  }
-  return <ProgressStepIndicator steps={steps} {...props} />;
+  const completedSteps = ciipAppSteps.map((step, i) => {
+    return completed > i ? {...step, completed: true} : step;
+  });
+  return <ProgressStepIndicator steps={completedSteps} {...props} />;
 };
 
 export default ApplicationProgressBar;
