@@ -2,48 +2,48 @@
 
 exports[`matches the last accepted Snapshot 1`] = `
 <header
-  className="jsx-1444636411 jsx-1094355366 "
+  className="jsx-3552254249 jsx-1444636411 "
 >
   <div
-    className="jsx-1444636411 jsx-1094355366 nav-header"
+    className="jsx-3552254249 jsx-1444636411 nav-header"
   >
     <nav
       aria-label="Main"
-      className="jsx-1444636411 jsx-1094355366"
+      className="jsx-3552254249 jsx-1444636411"
     >
       <div
-        className="jsx-1444636411 jsx-1094355366 header-left"
+        className="jsx-3552254249 jsx-1444636411 header-left"
       >
         <Link
           href="/"
         >
           <a
-            className="jsx-1444636411 jsx-1094355366"
+            className="jsx-3552254249 jsx-1444636411"
           >
             <picture
-              className="jsx-1444636411 jsx-1094355366"
+              className="jsx-3552254249 jsx-1444636411"
             >
               <source
-                className="jsx-1444636411 jsx-1094355366"
+                className="jsx-3552254249 jsx-1444636411"
                 media="(max-width: 767.98px)"
                 srcSet="/static/bcid-reverse.svg"
               />
               <img
                 alt="logo for Province of British Columbia CleanBC"
-                className="jsx-1444636411 jsx-1094355366"
+                className="jsx-3552254249 jsx-1444636411"
                 src="/static/BCID_CleanBC_rev_tagline_colour.svg"
               />
             </picture>
           </a>
         </Link>
         <h2
-          className="jsx-1444636411 jsx-1094355366"
+          className="jsx-3552254249 jsx-1444636411"
         >
           CleanBC Industrial Incentive Program
         </h2>
         <button
           aria-label="Menu toggle"
-          className="jsx-1444636411 jsx-1094355366 "
+          className="jsx-3552254249 jsx-1444636411 "
           id="menu-toggle"
           onClick={[Function]}
           type="button"
@@ -91,7 +91,7 @@ exports[`matches the last accepted Snapshot 1`] = `
         </button>
       </div>
       <ul
-        className="jsx-1444636411 jsx-1094355366 header-right"
+        className="jsx-3552254249 jsx-1444636411 header-right"
         style={
           Object {
             "display": "none",
@@ -99,24 +99,24 @@ exports[`matches the last accepted Snapshot 1`] = `
         }
       >
         <li
-          className="jsx-1444636411 jsx-1094355366"
+          className="jsx-3552254249 jsx-1444636411"
         >
           <Link
             href="/register"
           >
             <a
-              className="jsx-1444636411 jsx-1094355366 nav-button"
+              className="jsx-3552254249 jsx-1444636411 nav-button"
             >
               Register
             </a>
           </Link>
         </li>
         <li
-          className="jsx-1444636411 jsx-1094355366"
+          className="jsx-3552254249 jsx-1444636411"
         >
           <LoginForm>
             <button
-              className="jsx-1444636411 jsx-1094355366 nav-button"
+              className="jsx-3552254249 jsx-1444636411 nav-button"
               type="submit"
             >
               Login
@@ -752,14 +752,9 @@ exports[`matches the last accepted Snapshot 1`] = `
     }
   </JSXStyle>
   <JSXStyle
-    dynamic={
-      Array [
-        "(min-width: 992px)",
-      ]
-    }
-    id="2352758570"
+    id="3552254249"
   >
-    header.fixed.__jsx-style-dynamic-selector{position:fixed;z-index:1;width:100%;}.nav-header.__jsx-style-dynamic-selector{background-color:#036;border-bottom:2px solid #fcba19;padding:10px;color:#fff;}h2.__jsx-style-dynamic-selector{font-weight:normal;font-size:calc(1rem + 1vw);margin:0 0.5em;text-align:center;}.header-left.__jsx-style-dynamic-selector{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;width:100%;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;}.header-left.__jsx-style-dynamic-selector img.__jsx-style-dynamic-selector{height:46px;}.header-right.__jsx-style-dynamic-selector{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:100%;text-align:right;margin:0;padding:0.8em 1em 0 0;}nav.__jsx-style-dynamic-selector{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}li.__jsx-style-dynamic-selector{list-style-type:none;}#menu-toggle.__jsx-style-dynamic-selector{-webkit-box-flex:0;-webkit-flex-grow:0;-ms-flex-positive:0;flex-grow:0;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;-webkit-flex-basis:40px;-ms-flex-preferred-size:40px;flex-basis:40px;height:40px;padding:0;}#menu-toggle.logged-in.__jsx-style-dynamic-selector{background:#f8f9fa;border-radius:50%;}@media screen and (min-width: 992px){nav.__jsx-style-dynamic-selector{-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;padding:0 15px;}.header-left.__jsx-style-dynamic-selector{width:auto;}header.__jsx-style-dynamic-selector h2.__jsx-style-dynamic-selector{margin:0 0 0 18px;}button#menu-toggle.__jsx-style-dynamic-selector{display:none;}.header-right.__jsx-style-dynamic-selector{-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;width:auto;text-align:right;margin:0;padding:0;}.nav-button.__jsx-style-dynamic-selector{border-color:#f8f9fa;}li.__jsx-style-dynamic-selector{padding-left:12px;}}@media screen and (min-width:1200px){nav.__jsx-style-dynamic-selector{max-width:1140px;margin-left:auto;margin-right:auto;}}
+    header.fixed.jsx-3552254249{position:fixed;z-index:1;width:100%;}.nav-header.jsx-3552254249{background-color:#036;border-bottom:2px solid #fcba19;padding:10px;color:#fff;}h2.jsx-3552254249{font-weight:normal;font-size:calc(1rem + 1vw);margin:0 0.5em;text-align:center;}.header-left.jsx-3552254249{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;width:100%;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;}.header-left.jsx-3552254249 img.jsx-3552254249{height:46px;}.header-right.jsx-3552254249{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:100%;text-align:right;margin:0;padding:0.8em 1em 0 0;}nav.jsx-3552254249{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}li.jsx-3552254249{list-style-type:none;}#menu-toggle.jsx-3552254249{-webkit-box-flex:0;-webkit-flex-grow:0;-ms-flex-positive:0;flex-grow:0;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;-webkit-flex-basis:40px;-ms-flex-preferred-size:40px;flex-basis:40px;height:40px;padding:0;}#menu-toggle.logged-in.jsx-3552254249{background:#f8f9fa;border-radius:50%;}@media screen and (min-width: 992px){nav.jsx-3552254249{-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;padding:0 15px;}.header-left.jsx-3552254249{width:auto;}header.jsx-3552254249 h2.jsx-3552254249{margin:0 0 0 18px;}button#menu-toggle.jsx-3552254249{display:none;}.header-right.jsx-3552254249{-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;width:auto;text-align:right;margin:0;padding:0;}.nav-button.jsx-3552254249{border-color:#f8f9fa;}li.jsx-3552254249{padding-left:12px;}}@media screen and (min-width:1200px){nav.jsx-3552254249{max-width:1140px;margin-left:auto;margin-right:auto;}}
   </JSXStyle>
 </header>
 `;
