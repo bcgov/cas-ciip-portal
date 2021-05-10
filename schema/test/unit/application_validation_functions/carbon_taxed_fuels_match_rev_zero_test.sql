@@ -80,28 +80,18 @@ select is(
 
 -- Should return true if the fuels match up
 update ggircs_portal.form_result set form_result =
-('[
-  {
-    "fuelRowId": '|| (select id from ggircs_portal.fuel where name = 'carbonTaxed1') || ',
-    "quantity": 10
-  },
-  {
-    "fuelRowId": '|| (select id from ggircs_portal.fuel where name = 'carbonTaxed2') || ',
-    "quantity": 100
-  }
-]')::jsonb where application_id = 1 and version_number = 0 and form_id = (select id from ggircs_portal.form_json where slug='fuel');
+jsonb_build_array(
+  jsonb_build_object('fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed1'), 'quantity', 10),
+  jsonb_build_object('fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed2'), 'quantity', 100)
+)
+where application_id = 1 and version_number = 0 and form_id = (select id from ggircs_portal.form_json where slug='fuel');
 
 update ggircs_portal.form_result set form_result =
-('[
-  {
-    "fuelRowId": '|| (select id from ggircs_portal.fuel where name = 'carbonTaxed2') || ',
-    "quantity": 100
-  },
-  {
-    "fuelRowId": '|| (select id from ggircs_portal.fuel where name = 'carbonTaxed1') || ',
-    "quantity": 10
-  }
-]')::jsonb where application_id = 1 and version_number = 1 and form_id = (select id from ggircs_portal.form_json where slug='fuel');
+jsonb_build_array(
+  jsonb_build_object('fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed2'), 'quantity', 100),
+  jsonb_build_object('fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed1'), 'quantity', 10)
+)
+where application_id = 1 and version_number = 1 and form_id = (select id from ggircs_portal.form_json where slug='fuel');
 
 select is(
   (
@@ -118,28 +108,18 @@ select is(
 
 -- Should return true if the fuels are different but within 0.1%
 update ggircs_portal.form_result set form_result =
-('[
-  {
-    "fuelRowId": '|| (select id from ggircs_portal.fuel where name = 'carbonTaxed1') || ',
-    "quantity": 9.999
-  },
-  {
-    "fuelRowId": '|| (select id from ggircs_portal.fuel where name = 'carbonTaxed2') || ',
-    "quantity": 100.01
-  }
-]')::jsonb where application_id = 1 and version_number = 0 and form_id = (select id from ggircs_portal.form_json where slug='fuel');
+jsonb_build_array(
+  jsonb_build_object('fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed1'), 'quantity', 9.999),
+  jsonb_build_object('fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed2'), 'quantity', 100.01)
+)
+where application_id = 1 and version_number = 0 and form_id = (select id from ggircs_portal.form_json where slug='fuel');
 
 update ggircs_portal.form_result set form_result =
-('[
-  {
-    "fuelRowId": '|| (select id from ggircs_portal.fuel where name = 'carbonTaxed2') || ',
-    "quantity": 100
-  },
-  {
-    "fuelRowId": '|| (select id from ggircs_portal.fuel where name = 'carbonTaxed1') || ',
-    "quantity": 10
-  }
-]')::jsonb where application_id = 1 and version_number = 1 and form_id = (select id from ggircs_portal.form_json where slug='fuel');
+jsonb_build_array(
+  jsonb_build_object('fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed2'), 'quantity', 100),
+  jsonb_build_object('fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed1'), 'quantity', 10)
+)
+where application_id = 1 and version_number = 1 and form_id = (select id from ggircs_portal.form_json where slug='fuel');
 
 select is(
   (
@@ -157,18 +137,13 @@ select is(
 
 -- Should return false if there are fuels in SWRS and not in CIIP
 update ggircs_portal.form_result set form_result =
-('[
-  {
-    "fuelRowId": '|| (select id from ggircs_portal.fuel where name = 'carbonTaxed1') || ',
-    "quantity": 10
-  },
-  {
-    "fuelRowId": '|| (select id from ggircs_portal.fuel where name = 'carbonTaxed2') || ',
-    "quantity": 100
-  }
-]')::jsonb where application_id = 1 and version_number = 0 and form_id = (select id from ggircs_portal.form_json where slug='fuel');
+jsonb_build_array(
+  jsonb_build_object('fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed1'), 'quantity', 110),
+  jsonb_build_object('fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed2'), 'quantity', 1000)
+)
+where application_id = 1 and version_number = 0 and form_id = (select id from ggircs_portal.form_json where slug='fuel');
 
-update ggircs_portal.form_result set form_result = ('[]')::jsonb
+update ggircs_portal.form_result set form_result = '[]'
 where application_id = 1 and version_number = 1 and form_id = (select id from ggircs_portal.form_json where slug='fuel');
 
 select is(
@@ -186,18 +161,13 @@ select is(
 
 -- Should return false if there are fuels in CIIP and not in SWRS
 update ggircs_portal.form_result set form_result =
-('[
-  {
-    "fuelRowId": '|| (select id from ggircs_portal.fuel where name = 'carbonTaxed1') || ',
-    "quantity": 10
-  },
-  {
-    "fuelRowId": '|| (select id from ggircs_portal.fuel where name = 'carbonTaxed2') || ',
-    "quantity": 100
-  }
-]')::jsonb where application_id = 1 and version_number = 1 and form_id = (select id from ggircs_portal.form_json where slug='fuel');
+jsonb_build_array(
+  jsonb_build_object('fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed1'), 'quantity', 10),
+  jsonb_build_object('fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed2'), 'quantity', 100)
+)
+where application_id = 1 and version_number = 1 and form_id = (select id from ggircs_portal.form_json where slug='fuel');
 
-update ggircs_portal.form_result set form_result = ('[]')::jsonb
+update ggircs_portal.form_result set form_result = '[]'
 where application_id = 1 and version_number = 0 and form_id = (select id from ggircs_portal.form_json where slug='fuel');
 
 select is(
@@ -215,28 +185,18 @@ select is(
 
 -- Should return false if the fuels don't match up within 0.1%
 update ggircs_portal.form_result set form_result =
-('[
-  {
-    "fuelRowId": '|| (select id from ggircs_portal.fuel where name = 'carbonTaxed1') || ',
-    "quantity": 10
-  },
-  {
-    "fuelRowId": '|| (select id from ggircs_portal.fuel where name = 'carbonTaxed2') || ',
-    "quantity": 100.11
-  }
-]')::jsonb where application_id = 1 and version_number = 0 and form_id = (select id from ggircs_portal.form_json where slug='fuel');
+jsonb_build_array(
+  jsonb_build_object('fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed1'), 'quantity', 10),
+  jsonb_build_object('fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed2'), 'quantity', 100.11)
+)
+where application_id = 1 and version_number = 0 and form_id = (select id from ggircs_portal.form_json where slug='fuel');
 
 update ggircs_portal.form_result set form_result =
-('[
-  {
-    "fuelRowId": '|| (select id from ggircs_portal.fuel where name = 'carbonTaxed2') || ',
-    "quantity": 100
-  },
-  {
-    "fuelRowId": '|| (select id from ggircs_portal.fuel where name = 'carbonTaxed1') || ',
-    "quantity": 10
-  }
-]')::jsonb where application_id = 1 and version_number = 1 and form_id = (select id from ggircs_portal.form_json where slug='fuel');
+jsonb_build_array(
+  jsonb_build_object('fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed2'), 'quantity', 100),
+  jsonb_build_object('fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed1'), 'quantity', 10)
+)
+where application_id = 1 and version_number = 1 and form_id = (select id from ggircs_portal.form_json where slug='fuel');
 
 select is(
   (
@@ -253,24 +213,17 @@ select is(
 
 -- Should return true if there are non-carbon-taxed fuels in CIIP that are not in SWRS
 update ggircs_portal.form_result set form_result =
-('[
-  {
-    "fuelRowId": '|| (select id from ggircs_portal.fuel where name = 'carbonTaxed1') || ',
-    "quantity": 5
-  }
-]')::jsonb where application_id = 1 and version_number = 0 and form_id = (select id from ggircs_portal.form_json where slug='fuel');
+jsonb_build_array(
+  jsonb_build_object('fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed1'), 'quantity', 5)
+)
+where application_id = 1 and version_number = 0 and form_id = (select id from ggircs_portal.form_json where slug='fuel');
 
 update ggircs_portal.form_result set form_result =
-('[
-  {
-    "fuelRowId": '|| (select id from ggircs_portal.fuel where name = 'nCarbonTaxed') || ',
-    "quantity": 100000000
-  },
-  {
-    "fuelRowId": '|| (select id from ggircs_portal.fuel where name = 'carbonTaxed1') || ',
-    "quantity": 5
-  }
-]')::jsonb where application_id = 1 and version_number = 1 and form_id = (select id from ggircs_portal.form_json where slug='fuel');
+jsonb_build_array(
+  jsonb_build_object('fuelRowId', (select id from ggircs_portal.fuel where name = 'nCarbonTaxed'), 'quantity', 10000000),
+  jsonb_build_object('fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed1'), 'quantity', 5)
+)
+where application_id = 1 and version_number = 1 and form_id = (select id from ggircs_portal.form_json where slug='fuel');
 
 select is(
   (
@@ -287,24 +240,17 @@ select is(
 
 -- Should return true if the fuel quantities are split on multiple rows
 update ggircs_portal.form_result set form_result =
-('[
-  {
-    "fuelRowId": '|| (select id from ggircs_portal.fuel where name = 'carbonTaxed1') || ',
-    "quantity": 105
-  }
-]')::jsonb where application_id = 1 and version_number = 0 and form_id = (select id from ggircs_portal.form_json where slug='fuel');
+jsonb_build_array(
+  jsonb_build_object('fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed1'), 'quantity', 105)
+)
+where application_id = 1 and version_number = 0 and form_id = (select id from ggircs_portal.form_json where slug='fuel');
 
 update ggircs_portal.form_result set form_result =
-('[
-  {
-    "fuelRowId": '|| (select id from ggircs_portal.fuel where name = 'carbonTaxed1') || ',
-    "quantity": 5
-  },
-  {
-    "fuelRowId": '|| (select id from ggircs_portal.fuel where name = 'carbonTaxed1') || ',
-    "quantity": 100
-  }
-]')::jsonb where application_id = 1 and version_number = 1 and form_id = (select id from ggircs_portal.form_json where slug='fuel');
+jsonb_build_array(
+  jsonb_build_object('fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed1'), 'quantity', 100),
+  jsonb_build_object('fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed1'), 'quantity', 5)
+)
+where application_id = 1 and version_number = 1 and form_id = (select id from ggircs_portal.form_json where slug='fuel');
 
 select is(
   (
@@ -318,7 +264,6 @@ select is(
   true,
   'Returns true if the fuel quantities are split on multiple rows'
 );
-
 
 select finish();
 rollback;
