@@ -35,6 +35,8 @@ export const ApplicationReviewValidation: React.FunctionComponent<Props> = ({
     failedValidationItems.length > 0 ? 'warning' : 'info';
 
   const listValidationsWithIcon = (validations, icon) => {
+    if (validations.length === 0) return null;
+
     return (
       <ul>
         {validations.map(({node}) => (
@@ -50,7 +52,7 @@ export const ApplicationReviewValidation: React.FunctionComponent<Props> = ({
   return (
     <Row className="mt-3">
       <Col>
-        <ListGroup as="ul">
+        <ListGroup>
           <ListGroup.Item variant={validationVariant}>
             <Row>
               <Col>

@@ -12,15 +12,13 @@ exports[`The ApplicationReviewValidationContainer Displays the override justific
       <div
         className="col"
       >
-        <ListGroup
-          as="ul"
-        >
+        <ListGroup>
           <ForwardRef
-            as="ul"
+            as="div"
             className="list-group"
             onSelect={[Function]}
           >
-            <ul
+            <div
               className="list-group"
               onKeyDown={[Function]}
             >
@@ -178,7 +176,7 @@ exports[`The ApplicationReviewValidationContainer Displays the override justific
                   </div>
                 </ForwardRef>
               </ListGroupItem>
-            </ul>
+            </div>
           </ForwardRef>
         </ListGroup>
       </div>
@@ -199,15 +197,13 @@ exports[`The ApplicationReviewValidationContainer Matches the snapshot with all 
       <div
         className="col"
       >
-        <ListGroup
-          as="ul"
-        >
+        <ListGroup>
           <ForwardRef
-            as="ul"
+            as="div"
             className="list-group"
             onSelect={[Function]}
           >
-            <ul
+            <div
               className="list-group"
               onKeyDown={[Function]}
             >
@@ -312,7 +308,7 @@ exports[`The ApplicationReviewValidationContainer Matches the snapshot with all 
                   </div>
                 </ForwardRef>
               </ListGroupItem>
-            </ul>
+            </div>
           </ForwardRef>
         </ListGroup>
       </div>
@@ -333,15 +329,13 @@ exports[`The ApplicationReviewValidationContainer Matches the snapshot with fail
       <div
         className="col"
       >
-        <ListGroup
-          as="ul"
-        >
+        <ListGroup>
           <ForwardRef
-            as="ul"
+            as="div"
             className="list-group"
             onSelect={[Function]}
           >
-            <ul
+            <div
               className="list-group"
               onKeyDown={[Function]}
             >
@@ -446,7 +440,7 @@ exports[`The ApplicationReviewValidationContainer Matches the snapshot with fail
                   </div>
                 </ForwardRef>
               </ListGroupItem>
-            </ul>
+            </div>
           </ForwardRef>
         </ListGroup>
       </div>
