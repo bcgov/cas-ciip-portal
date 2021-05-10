@@ -1,0 +1,456 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The ApplicationReviewValidationContainer Displays the override justification when present 1`] = `
+<Row
+  className="mt-3"
+  noGutters={false}
+>
+  <div
+    className="mt-3 row"
+  >
+    <Col>
+      <div
+        className="col"
+      >
+        <ListGroup
+          as="ul"
+        >
+          <ForwardRef
+            as="ul"
+            className="list-group"
+            onSelect={[Function]}
+          >
+            <ul
+              className="list-group"
+              onKeyDown={[Function]}
+            >
+              <ListGroupItem
+                active={false}
+                disabled={false}
+                variant="warning"
+              >
+                <ForwardRef
+                  as="div"
+                  className="list-group-item list-group-item-warning"
+                  disabled={false}
+                  eventKey={null}
+                  onClick={[Function]}
+                >
+                  <div
+                    className="list-group-item list-group-item-warning"
+                    data-rb-event-key={null}
+                    disabled={false}
+                    onClick={[Function]}
+                  >
+                    <Row
+                      noGutters={false}
+                    >
+                      <div
+                        className="row"
+                      >
+                        <Col>
+                          <div
+                            className="col"
+                          >
+                            <svg
+                              aria-hidden="true"
+                              className="svg-inline--fa fa-exclamation-triangle fa-w-18 fa-fw "
+                              data-icon="exclamation-triangle"
+                              data-prefix="fas"
+                              focusable="false"
+                              role="img"
+                              style={Object {}}
+                              viewBox="0 0 576 512"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M569.517 440.013C587.975 472.007 564.806 512 527.94 512H48.054c-36.937 0-59.999-40.055-41.577-71.987L246.423 23.985c18.467-32.009 64.72-31.951 83.154 0l239.94 416.028zM288 354c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
+                                fill="currentColor"
+                                style={Object {}}
+                              />
+                            </svg>
+                             
+                            This application failed 1 of 2 validation checks.
+                          </div>
+                        </Col>
+                      </div>
+                    </Row>
+                  </div>
+                </ForwardRef>
+              </ListGroupItem>
+              <ListGroupItem
+                active={false}
+                disabled={false}
+                variant="danger"
+              >
+                <ForwardRef
+                  as="div"
+                  className="list-group-item list-group-item-danger"
+                  disabled={false}
+                  eventKey={null}
+                  onClick={[Function]}
+                >
+                  <div
+                    className="list-group-item list-group-item-danger"
+                    data-rb-event-key={null}
+                    disabled={false}
+                    onClick={[Function]}
+                  >
+                    <Row
+                      noGutters={false}
+                    >
+                      <div
+                        className="row"
+                      >
+                        <Col>
+                          <div
+                            className="col"
+                          >
+                            <svg
+                              aria-hidden="true"
+                              className="svg-inline--fa fa-exclamation fa-w-6 fa-fw "
+                              data-icon="exclamation"
+                              data-prefix="fas"
+                              focusable="false"
+                              role="img"
+                              style={Object {}}
+                              viewBox="0 0 192 512"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M176 432c0 44.112-35.888 80-80 80s-80-35.888-80-80 35.888-80 80-80 80 35.888 80 80zM25.26 25.199l13.6 272C39.499 309.972 50.041 320 62.83 320h66.34c12.789 0 23.331-10.028 23.97-22.801l13.6-272C167.425 11.49 156.496 0 142.77 0H49.23C35.504 0 24.575 11.49 25.26 25.199z"
+                                fill="currentColor"
+                                style={Object {}}
+                              />
+                            </svg>
+                              The applicant chose to override some validation failures.
+                          </div>
+                        </Col>
+                      </div>
+                    </Row>
+                  </div>
+                </ForwardRef>
+              </ListGroupItem>
+              <ListGroupItem
+                active={false}
+                className="text-right pt-1 pb-1 pr-3"
+                disabled={false}
+              >
+                <ForwardRef
+                  as="div"
+                  className="text-right pt-1 pb-1 pr-3 list-group-item"
+                  disabled={false}
+                  eventKey={null}
+                  onClick={[Function]}
+                >
+                  <div
+                    className="text-right pt-1 pb-1 pr-3 list-group-item"
+                    data-rb-event-key={null}
+                    disabled={false}
+                    onClick={[Function]}
+                  >
+                    <a
+                      className="jsx-865056808"
+                      href="#"
+                      id="toggle-expanded-validation"
+                      onClick={[Function]}
+                    >
+                      See all validation details
+                        
+                      <svg
+                        aria-hidden="true"
+                        className="svg-inline--fa fa-caret-down fa-w-10 "
+                        data-icon="caret-down"
+                        data-prefix="fas"
+                        focusable="false"
+                        role="img"
+                        style={Object {}}
+                        viewBox="0 0 320 512"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
+                          fill="currentColor"
+                          style={Object {}}
+                        />
+                      </svg>
+                    </a>
+                  </div>
+                </ForwardRef>
+              </ListGroupItem>
+            </ul>
+          </ForwardRef>
+        </ListGroup>
+      </div>
+    </Col>
+  </div>
+</Row>
+`;
+
+exports[`The ApplicationReviewValidationContainer Matches the snapshot with all passing validations 1`] = `
+<Row
+  className="mt-3"
+  noGutters={false}
+>
+  <div
+    className="mt-3 row"
+  >
+    <Col>
+      <div
+        className="col"
+      >
+        <ListGroup
+          as="ul"
+        >
+          <ForwardRef
+            as="ul"
+            className="list-group"
+            onSelect={[Function]}
+          >
+            <ul
+              className="list-group"
+              onKeyDown={[Function]}
+            >
+              <ListGroupItem
+                active={false}
+                disabled={false}
+                variant="info"
+              >
+                <ForwardRef
+                  as="div"
+                  className="list-group-item list-group-item-info"
+                  disabled={false}
+                  eventKey={null}
+                  onClick={[Function]}
+                >
+                  <div
+                    className="list-group-item list-group-item-info"
+                    data-rb-event-key={null}
+                    disabled={false}
+                    onClick={[Function]}
+                  >
+                    <Row
+                      noGutters={false}
+                    >
+                      <div
+                        className="row"
+                      >
+                        <Col>
+                          <div
+                            className="col"
+                          >
+                            <svg
+                              aria-hidden="true"
+                              className="svg-inline--fa fa-exclamation-triangle fa-w-18 fa-fw "
+                              data-icon="exclamation-triangle"
+                              data-prefix="fas"
+                              focusable="false"
+                              role="img"
+                              style={Object {}}
+                              viewBox="0 0 576 512"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M569.517 440.013C587.975 472.007 564.806 512 527.94 512H48.054c-36.937 0-59.999-40.055-41.577-71.987L246.423 23.985c18.467-32.009 64.72-31.951 83.154 0l239.94 416.028zM288 354c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
+                                fill="currentColor"
+                                style={Object {}}
+                              />
+                            </svg>
+                             
+                            This application failed 0 of 2 validation checks.
+                          </div>
+                        </Col>
+                      </div>
+                    </Row>
+                  </div>
+                </ForwardRef>
+              </ListGroupItem>
+              <ListGroupItem
+                active={false}
+                className="text-right pt-1 pb-1 pr-3"
+                disabled={false}
+              >
+                <ForwardRef
+                  as="div"
+                  className="text-right pt-1 pb-1 pr-3 list-group-item"
+                  disabled={false}
+                  eventKey={null}
+                  onClick={[Function]}
+                >
+                  <div
+                    className="text-right pt-1 pb-1 pr-3 list-group-item"
+                    data-rb-event-key={null}
+                    disabled={false}
+                    onClick={[Function]}
+                  >
+                    <a
+                      className="jsx-865056808"
+                      href="#"
+                      id="toggle-expanded-validation"
+                      onClick={[Function]}
+                    >
+                      See all validation details
+                        
+                      <svg
+                        aria-hidden="true"
+                        className="svg-inline--fa fa-caret-down fa-w-10 "
+                        data-icon="caret-down"
+                        data-prefix="fas"
+                        focusable="false"
+                        role="img"
+                        style={Object {}}
+                        viewBox="0 0 320 512"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
+                          fill="currentColor"
+                          style={Object {}}
+                        />
+                      </svg>
+                    </a>
+                  </div>
+                </ForwardRef>
+              </ListGroupItem>
+            </ul>
+          </ForwardRef>
+        </ListGroup>
+      </div>
+    </Col>
+  </div>
+</Row>
+`;
+
+exports[`The ApplicationReviewValidationContainer Matches the snapshot with failed validations 1`] = `
+<Row
+  className="mt-3"
+  noGutters={false}
+>
+  <div
+    className="mt-3 row"
+  >
+    <Col>
+      <div
+        className="col"
+      >
+        <ListGroup
+          as="ul"
+        >
+          <ForwardRef
+            as="ul"
+            className="list-group"
+            onSelect={[Function]}
+          >
+            <ul
+              className="list-group"
+              onKeyDown={[Function]}
+            >
+              <ListGroupItem
+                active={false}
+                disabled={false}
+                variant="warning"
+              >
+                <ForwardRef
+                  as="div"
+                  className="list-group-item list-group-item-warning"
+                  disabled={false}
+                  eventKey={null}
+                  onClick={[Function]}
+                >
+                  <div
+                    className="list-group-item list-group-item-warning"
+                    data-rb-event-key={null}
+                    disabled={false}
+                    onClick={[Function]}
+                  >
+                    <Row
+                      noGutters={false}
+                    >
+                      <div
+                        className="row"
+                      >
+                        <Col>
+                          <div
+                            className="col"
+                          >
+                            <svg
+                              aria-hidden="true"
+                              className="svg-inline--fa fa-exclamation-triangle fa-w-18 fa-fw "
+                              data-icon="exclamation-triangle"
+                              data-prefix="fas"
+                              focusable="false"
+                              role="img"
+                              style={Object {}}
+                              viewBox="0 0 576 512"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M569.517 440.013C587.975 472.007 564.806 512 527.94 512H48.054c-36.937 0-59.999-40.055-41.577-71.987L246.423 23.985c18.467-32.009 64.72-31.951 83.154 0l239.94 416.028zM288 354c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
+                                fill="currentColor"
+                                style={Object {}}
+                              />
+                            </svg>
+                             
+                            This application failed 2 of 3 validation checks.
+                          </div>
+                        </Col>
+                      </div>
+                    </Row>
+                  </div>
+                </ForwardRef>
+              </ListGroupItem>
+              <ListGroupItem
+                active={false}
+                className="text-right pt-1 pb-1 pr-3"
+                disabled={false}
+              >
+                <ForwardRef
+                  as="div"
+                  className="text-right pt-1 pb-1 pr-3 list-group-item"
+                  disabled={false}
+                  eventKey={null}
+                  onClick={[Function]}
+                >
+                  <div
+                    className="text-right pt-1 pb-1 pr-3 list-group-item"
+                    data-rb-event-key={null}
+                    disabled={false}
+                    onClick={[Function]}
+                  >
+                    <a
+                      className="jsx-865056808"
+                      href="#"
+                      id="toggle-expanded-validation"
+                      onClick={[Function]}
+                    >
+                      See all validation details
+                        
+                      <svg
+                        aria-hidden="true"
+                        className="svg-inline--fa fa-caret-down fa-w-10 "
+                        data-icon="caret-down"
+                        data-prefix="fas"
+                        focusable="false"
+                        role="img"
+                        style={Object {}}
+                        viewBox="0 0 320 512"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
+                          fill="currentColor"
+                          style={Object {}}
+                        />
+                      </svg>
+                    </a>
+                  </div>
+                </ForwardRef>
+              </ListGroupItem>
+            </ul>
+          </ForwardRef>
+        </ListGroup>
+      </div>
+    </Col>
+  </div>
+</Row>
+`;

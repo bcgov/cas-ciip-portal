@@ -19,7 +19,7 @@ interface Props {
 export const ApplicationReviewValidation: React.FunctionComponent<Props> = ({
   applicationRevision
 }) => {
-  const [collapsed, setCollapsed] = useState(true);
+  const [expanded, setExpanded] = useState(false);
 
   const failedValidationItems = applicationRevision.validation.edges.filter(
     ({node}) => !node.isOk
@@ -61,25 +61,30 @@ export const ApplicationReviewValidation: React.FunctionComponent<Props> = ({
                   : `This application failed ${failedValidationCount} of ${totalValidationCount} validation checks.`}
               </Col>
             </Row>
-            <div hidden={collapsed}>
-              <Row className="mt-2">
-                <Col>
-                  {listValidationsWithIcon(failedValidationItems, faTimes)}
-                </Col>
-              </Row>
-              {passedValidationItems.length > 0 && (
-                <>
-                  <Row className="mt-2">
-                    <Col>The following checks were passed:</Col>
-                  </Row>
-                  <Row className="mt-2">
-                    <Col>
-                      {listValidationsWithIcon(passedValidationItems, faCheck)}
-                    </Col>
-                  </Row>
-                </>
-              )}
-            </div>
+            {expanded && (
+              <>
+                <Row className="mt-2">
+                  <Col>
+                    {listValidationsWithIcon(failedValidationItems, faTimes)}
+                  </Col>
+                </Row>
+                {passedValidationItems.length > 0 && (
+                  <>
+                    <Row className="mt-2">
+                      <Col>The following checks were passed:</Col>
+                    </Row>
+                    <Row className="mt-2">
+                      <Col>
+                        {listValidationsWithIcon(
+                          passedValidationItems,
+                          faCheck
+                        )}
+                      </Col>
+                    </Row>
+                  </>
+                )}
+              </>
+            )}
           </ListGroup.Item>
           {applicationRevision.overrideJustification && (
             <ListGroup.Item variant="danger">
@@ -90,25 +95,33 @@ export const ApplicationReviewValidation: React.FunctionComponent<Props> = ({
                   failures.
                 </Col>
               </Row>
-              <Row className="ml-3 mt-2" hidden={collapsed}>
-                <Col>
-                  <b>Applicant justification:</b>
-                </Col>
-              </Row>
-              <Row className="ml-3" hidden={collapsed}>
-                <Col className="ml-4">
-                  {applicationRevision.overrideJustification}
-                </Col>
-              </Row>
+              {expanded && (
+                <>
+                  <Row className="ml-3 mt-2">
+                    <Col>
+                      <b>Applicant justification:</b>
+                    </Col>
+                  </Row>
+                  <Row className="ml-3">
+                    <Col className="ml-4">
+                      {applicationRevision.overrideJustification}
+                    </Col>
+                  </Row>
+                </>
+              )}
             </ListGroup.Item>
           )}
           <ListGroup.Item className="text-right pt-1 pb-1 pr-3">
-            <a href="#" onClick={() => setCollapsed(!collapsed)}>
-              {collapsed
-                ? 'See all validation details'
-                : 'Hide validation details'}
+            <a
+              href="#"
+              id="toggle-expanded-validation"
+              onClick={() => setExpanded(!expanded)}
+            >
+              {expanded
+                ? 'Hide validation details'
+                : 'See all validation details'}
               &nbsp;&nbsp;
-              <FontAwesomeIcon icon={collapsed ? faCaretDown : faCaretUp} />
+              <FontAwesomeIcon icon={expanded ? faCaretUp : faCaretDown} />
             </a>
           </ListGroup.Item>
         </ListGroup>
