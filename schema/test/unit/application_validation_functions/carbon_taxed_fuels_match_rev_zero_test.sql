@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(10);
+select plan(11);
 
 select has_function(
   'ggircs_portal', 'carbon_taxed_fuels_match_rev_zero', array['ggircs_portal.application_revision'],
@@ -81,15 +81,19 @@ select is(
 -- Should return true if the fuels match up
 update ggircs_portal.form_result set form_result =
 jsonb_build_array(
-  jsonb_build_object('fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed1'), 'quantity', 10),
-  jsonb_build_object('fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed2'), 'quantity', 100)
+  jsonb_build_object(
+    'fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed1'),
+    'quantity', 10,
+    'emissionCategoryRowId', 1 -- General stationary combustion
+  ),
+  jsonb_build_object('fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed2'), 'quantity', 100, 'emissionCategoryRowId', 1)
 )
 where application_id = 1 and version_number = 0 and form_id = (select id from ggircs_portal.form_json where slug='fuel');
 
 update ggircs_portal.form_result set form_result =
 jsonb_build_array(
-  jsonb_build_object('fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed2'), 'quantity', 100),
-  jsonb_build_object('fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed1'), 'quantity', 10)
+  jsonb_build_object('fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed2'), 'quantity', 100, 'emissionCategoryRowId', 1),
+  jsonb_build_object('fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed1'), 'quantity', 10, 'emissionCategoryRowId', 1)
 )
 where application_id = 1 and version_number = 1 and form_id = (select id from ggircs_portal.form_json where slug='fuel');
 
@@ -109,15 +113,15 @@ select is(
 -- Should return true if the fuels are different but within 0.1%
 update ggircs_portal.form_result set form_result =
 jsonb_build_array(
-  jsonb_build_object('fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed1'), 'quantity', 9.999),
-  jsonb_build_object('fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed2'), 'quantity', 100.01)
+  jsonb_build_object('fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed1'), 'quantity', 9.999, 'emissionCategoryRowId', 1),
+  jsonb_build_object('fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed2'), 'quantity', 100.01, 'emissionCategoryRowId', 1)
 )
 where application_id = 1 and version_number = 0 and form_id = (select id from ggircs_portal.form_json where slug='fuel');
 
 update ggircs_portal.form_result set form_result =
 jsonb_build_array(
-  jsonb_build_object('fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed2'), 'quantity', 100),
-  jsonb_build_object('fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed1'), 'quantity', 10)
+  jsonb_build_object('fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed2'), 'quantity', 100, 'emissionCategoryRowId', 1),
+  jsonb_build_object('fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed1'), 'quantity', 10, 'emissionCategoryRowId', 1)
 )
 where application_id = 1 and version_number = 1 and form_id = (select id from ggircs_portal.form_json where slug='fuel');
 
@@ -138,8 +142,8 @@ select is(
 -- Should return false if there are fuels in SWRS and not in CIIP
 update ggircs_portal.form_result set form_result =
 jsonb_build_array(
-  jsonb_build_object('fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed1'), 'quantity', 110),
-  jsonb_build_object('fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed2'), 'quantity', 1000)
+  jsonb_build_object('fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed1'), 'quantity', 110, 'emissionCategoryRowId', 1),
+  jsonb_build_object('fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed2'), 'quantity', 1000, 'emissionCategoryRowId', 1)
 )
 where application_id = 1 and version_number = 0 and form_id = (select id from ggircs_portal.form_json where slug='fuel');
 
@@ -162,8 +166,8 @@ select is(
 -- Should return false if there are fuels in CIIP and not in SWRS
 update ggircs_portal.form_result set form_result =
 jsonb_build_array(
-  jsonb_build_object('fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed1'), 'quantity', 10),
-  jsonb_build_object('fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed2'), 'quantity', 100)
+  jsonb_build_object('fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed1'), 'quantity', 10, 'emissionCategoryRowId', 1),
+  jsonb_build_object('fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed2'), 'quantity', 100, 'emissionCategoryRowId', 1)
 )
 where application_id = 1 and version_number = 1 and form_id = (select id from ggircs_portal.form_json where slug='fuel');
 
@@ -186,15 +190,15 @@ select is(
 -- Should return false if the fuels don't match up within 0.1%
 update ggircs_portal.form_result set form_result =
 jsonb_build_array(
-  jsonb_build_object('fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed1'), 'quantity', 10),
-  jsonb_build_object('fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed2'), 'quantity', 100.11)
+  jsonb_build_object('fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed1'), 'quantity', 10, 'emissionCategoryRowId', 1),
+  jsonb_build_object('fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed2'), 'quantity', 100.11, 'emissionCategoryRowId', 1)
 )
 where application_id = 1 and version_number = 0 and form_id = (select id from ggircs_portal.form_json where slug='fuel');
 
 update ggircs_portal.form_result set form_result =
 jsonb_build_array(
-  jsonb_build_object('fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed2'), 'quantity', 100),
-  jsonb_build_object('fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed1'), 'quantity', 10)
+  jsonb_build_object('fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed2'), 'quantity', 100, 'emissionCategoryRowId', 1),
+  jsonb_build_object('fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed1'), 'quantity', 10, 'emissionCategoryRowId', 1)
 )
 where application_id = 1 and version_number = 1 and form_id = (select id from ggircs_portal.form_json where slug='fuel');
 
@@ -214,14 +218,14 @@ select is(
 -- Should return true if there are non-carbon-taxed fuels in CIIP that are not in SWRS
 update ggircs_portal.form_result set form_result =
 jsonb_build_array(
-  jsonb_build_object('fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed1'), 'quantity', 5)
+  jsonb_build_object('fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed1'), 'quantity', 5, 'emissionCategoryRowId', 1)
 )
 where application_id = 1 and version_number = 0 and form_id = (select id from ggircs_portal.form_json where slug='fuel');
 
 update ggircs_portal.form_result set form_result =
 jsonb_build_array(
-  jsonb_build_object('fuelRowId', (select id from ggircs_portal.fuel where name = 'nCarbonTaxed'), 'quantity', 10000000),
-  jsonb_build_object('fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed1'), 'quantity', 5)
+  jsonb_build_object('fuelRowId', (select id from ggircs_portal.fuel where name = 'nCarbonTaxed'), 'quantity', 10000000, 'emissionCategoryRowId', 1),
+  jsonb_build_object('fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed1'), 'quantity', 5, 'emissionCategoryRowId', 1)
 )
 where application_id = 1 and version_number = 1 and form_id = (select id from ggircs_portal.form_json where slug='fuel');
 
@@ -241,14 +245,14 @@ select is(
 -- Should return true if the fuel quantities are split on multiple rows
 update ggircs_portal.form_result set form_result =
 jsonb_build_array(
-  jsonb_build_object('fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed1'), 'quantity', 105)
+  jsonb_build_object('fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed1'), 'quantity', 105, 'emissionCategoryRowId', 1)
 )
 where application_id = 1 and version_number = 0 and form_id = (select id from ggircs_portal.form_json where slug='fuel');
 
 update ggircs_portal.form_result set form_result =
 jsonb_build_array(
-  jsonb_build_object('fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed1'), 'quantity', 100),
-  jsonb_build_object('fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed1'), 'quantity', 5)
+  jsonb_build_object('fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed1'), 'quantity', 100, 'emissionCategoryRowId', 1),
+  jsonb_build_object('fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed1'), 'quantity', 5, 'emissionCategoryRowId', 1)
 )
 where application_id = 1 and version_number = 1 and form_id = (select id from ggircs_portal.form_json where slug='fuel');
 
@@ -263,6 +267,50 @@ select is(
   ),
   true,
   'Returns true if the fuel quantities are split on multiple rows'
+);
+
+-- Venting and Flaring CIIP emissions are not counted in the total
+update ggircs_portal.form_result set form_result =
+jsonb_build_array(
+  jsonb_build_object(
+    'fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed1'),
+    'quantity', 123,
+    'emissionCategoryRowId', 1
+  )
+)
+where application_id = 1 and version_number = 0 and form_id = (select id from ggircs_portal.form_json where slug='fuel');
+
+update ggircs_portal.form_result set form_result =
+jsonb_build_array(
+  jsonb_build_object(
+    'fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed1'),
+    'quantity', 123,
+    'emissionCategoryRowId', 1
+  ),
+  jsonb_build_object(
+    'fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed1'),
+    'quantity', 100000,
+    'emissionCategoryRowId', (select id from ggircs_portal.emission_category where swrs_emission_category='BC_ScheduleB_FlaringEmissions')
+  ),
+  jsonb_build_object(
+    'fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed2'),
+    'quantity', 12345678,
+    'emissionCategoryRowId', (select id from ggircs_portal.emission_category where swrs_emission_category='BC_ScheduleB_VentingEmissions')
+  )
+)
+where application_id = 1 and version_number = 1 and form_id = (select id from ggircs_portal.form_json where slug='fuel');
+
+select is(
+  (
+    with app_revision as (
+      select row(application_revision.*)::ggircs_portal.application_revision
+      from ggircs_portal.application_revision
+      where application_id=1 and version_number=1
+    )
+    select ggircs_portal.carbon_taxed_fuels_match_rev_zero((select * from app_revision))
+  ),
+  true,
+  'Doesn''t count carbon-taxed venting and flaring ciip emissions'
 );
 
 select finish();

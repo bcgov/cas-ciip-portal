@@ -23,7 +23,10 @@ create or replace function ggircs_portal.carbon_taxed_fuels_match_rev_zero(app_r
         fuel.id as fuel_id, sum(ciip_fuel_data.quantity) as quantity
       from ggircs_portal.application_revision_fuel_form_data(app_rev) as ciip_fuel_data
       join ggircs_portal.fuel on ciip_fuel_data.fuel_id = fuel.id
+      join ggircs_portal.emission_category ec on ec.id = ciip_fuel_data.emission_category_id
       where ggircs_portal.fuel_is_carbon_taxed(row(fuel.*)::ggircs_portal.fuel)
+      -- Flaring and Venting emissions are not reported in SWRS at this time, and shouldn't be counted in the total
+      and ec.swrs_emission_category not in ('BC_ScheduleB_FlaringEmissions', 'BC_ScheduleB_VentingEmissions')
       group by fuel.id
     ),
     swrs_fuel_totals as (
