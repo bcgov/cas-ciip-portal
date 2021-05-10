@@ -58,7 +58,6 @@ describe('When logged in as a reporter', () => {
     cy.get('tr');
     cy.contains('View Facilities').click();
     cy.url().should('include', '/reporter/facilities');
-    cy.get('tr');
     cy.get('tbody > tr td:nth-child(7)')
       .contains('2')
       .next()
