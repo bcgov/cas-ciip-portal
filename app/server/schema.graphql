@@ -27356,6 +27356,10 @@ type Fuel implements Node {
   A globally unique identifier. Can be used in various places throughout the system to identify this single value.
   """
   id: ID!
+
+  """
+  Computed column returns true if the fuel is carbon taxed, false otherwise.
+  """
   isCarbonTaxed: Boolean
 
   """The name of the fuel"""
