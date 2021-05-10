@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {graphql} from 'react-relay';
-import {applicationReviewQueryResponse} from 'applicationReviewQuery.graphql';
+import {ApplicationIdReviewQueryResponse} from 'ApplicationIdReviewQuery.graphql';
 import {Row, Button, OverlayTrigger, Tooltip} from 'react-bootstrap';
 import IncentiveCalculatorContainer from 'containers/Incentives/IncentiveCalculatorContainer';
 import {CiipApplicationRevisionStatus} from 'analystCreateApplicationRevisionStatusMutation.graphql';
@@ -22,7 +22,7 @@ const runtimeConfig = getConfig()?.publicRuntimeConfig ?? {};
 const ALLOWED_GROUPS = [INCENTIVE_ANALYST, ...ADMIN_GROUP];
 
 interface Props extends CiipPageComponentProps {
-  query: applicationReviewQueryResponse['query'];
+  query: ApplicationIdReviewQueryResponse['query'];
 }
 
 interface State {
@@ -34,7 +34,7 @@ class ApplicationReview extends Component<Props, State> {
   static allowedGroups = ALLOWED_GROUPS;
   static isAccessProtected = true;
   static query = graphql`
-    query applicationReviewQuery($applicationId: ID!, $version: String!) {
+    query ApplicationIdReviewQuery($applicationId: ID!) {
       query {
         session {
           userGroups
@@ -54,9 +54,7 @@ class ApplicationReview extends Component<Props, State> {
             }
             ...ApplicationReviewStepSelector_applicationReviewSteps
           }
-          applicationRevision: applicationRevisionByStringVersionNumber(
-            versionNumberInput: $version
-          ) {
+          applicationRevision: latestSubmittedRevision {
             id
             versionNumber
             isCurrentVersion
@@ -71,7 +69,7 @@ class ApplicationReview extends Component<Props, State> {
         }
         ...ApplicationDetailsContainer_query
         ...ApplicationDetailsContainer_diffQuery
-          @arguments(applicationId: $applicationId, newVersion: $version)
+          @arguments(applicationId: $applicationId)
       }
     }
   `;
@@ -142,17 +140,23 @@ class ApplicationReview extends Component<Props, State> {
     );
   }
   render() {
-    const {query} = this.props;
+    const {query, router} = this.props;
+    const {application} = query;
+    if (!application) {
+      router.push('/404');
+      return null;
+    }
+
     const {
       isCurrentVersion,
       versionNumber
-    } = query?.application.applicationRevision;
-    const {bcghgid} = query.application.facilityByFacilityId;
+    } = application.applicationRevision;
+    const {bcghgid} = application.facilityByFacilityId;
     const {
       applicationRevisionStatus
-    } = query?.application.applicationRevision.applicationRevisionStatus;
+    } = application.applicationRevision.applicationRevisionStatus;
     const {session} = query || {};
-    const isUserAdmin = query?.session.userGroups.some((groupConst) =>
+    const isUserAdmin = session.userGroups.some((groupConst) =>
       ADMIN_GROUP.includes(groupConst)
     );
     const currentReviewIsFinalized = applicationRevisionStatus !== 'SUBMITTED';

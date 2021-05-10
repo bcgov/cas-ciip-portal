@@ -8,6 +8,7 @@ import {
   ApplicationRowItemContainer_application,
   CiipApplicationRevisionStatus
 } from 'ApplicationRowItemContainer_application.graphql';
+import {getReviewApplicationPageRoute} from 'routes';
 
 interface Props {
   application: ApplicationRowItemContainer_application;
@@ -48,17 +49,7 @@ export const ApplicationRowItem: React.FunctionComponent<Props> = (props) => {
         </Badge>
       </td>
       <td>
-        <Link
-          passHref
-          href={{
-            pathname: '/analyst/application-review',
-            query: {
-              applicationId: application.id,
-              applicationRevisionId: application.latestSubmittedRevision?.id,
-              version: application.latestSubmittedRevision?.versionNumber
-            }
-          }}
-        >
+        <Link passHref href={getReviewApplicationPageRoute(application.id)}>
           <Button variant="primary">View Application</Button>
         </Link>
       </td>
@@ -76,10 +67,6 @@ export default createFragmentContainer(ApplicationRowItem, {
       status
       reportingYear
       submissionDate
-      latestSubmittedRevision {
-        id
-        versionNumber
-      }
     }
   `
 });
