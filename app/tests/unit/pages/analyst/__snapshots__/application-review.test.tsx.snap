@@ -72,18 +72,24 @@ exports[`The application-review page matches the last snapshot (with review side
         onSelectStep={[Function]}
         selectedStep={null}
       />
-      <Row
-        noGutters={false}
-        style={
+      <Relay(ApplicationReviewValidation)
+        applicationRevision={
           Object {
-            "marginTop": 30,
+            " $fragmentRefs": Object {
+              "ApplicationDetailsContainer_applicationRevision": true,
+              "IncentiveCalculatorContainer_applicationRevision": true,
+            },
+            "applicationRevisionStatus": Object {
+              "applicationRevisionStatus": "SUBMITTED",
+              "id": "jkl",
+            },
+            "id": "xyz",
+            "isCurrentVersion": true,
+            "overrideJustification": null,
+            "versionNumber": 1,
           }
         }
-      >
-        <ApplicationOverrideNotification
-          overrideJustification={null}
-        />
-      </Row>
+      />
       <hr
         className="jsx-3733722573"
       />
@@ -389,18 +395,24 @@ exports[`The application-review page matches the last snapshot (with review side
         onSelectStep={[Function]}
         selectedStep={null}
       />
-      <Row
-        noGutters={false}
-        style={
+      <Relay(ApplicationReviewValidation)
+        applicationRevision={
           Object {
-            "marginTop": 30,
+            " $fragmentRefs": Object {
+              "ApplicationDetailsContainer_applicationRevision": true,
+              "IncentiveCalculatorContainer_applicationRevision": true,
+            },
+            "applicationRevisionStatus": Object {
+              "applicationRevisionStatus": "SUBMITTED",
+              "id": "jkl",
+            },
+            "id": "xyz",
+            "isCurrentVersion": true,
+            "overrideJustification": null,
+            "versionNumber": 1,
           }
         }
-      >
-        <ApplicationOverrideNotification
-          overrideJustification={null}
-        />
-      </Row>
+      />
       <hr
         className="jsx-3733722573"
       />

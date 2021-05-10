@@ -299,27 +299,4 @@ describe('The application-review page', () => {
         .prop('applicationRevision')
     ).toBe(query.application.applicationRevision);
   });
-
-  it('renders the ApplicationOverrideNotification component if an override has been set', () => {
-    const data = getTestQuery({});
-    const overrideQuery = {
-      ...data,
-      application: {
-        ...data.application,
-        applicationRevision: {
-          ...data.application.applicationRevision,
-          overrideJustification: 'oops'
-        }
-      }
-    };
-    const wrapper = shallow(
-      <ApplicationReview
-        router={null}
-        query={overrideQuery as applicationReviewQueryResponse['query']}
-      />
-    );
-    expect(
-      wrapper.find('ApplicationOverrideNotification').props()
-    ).toStrictEqual({overrideJustification: 'oops'});
-  });
 });
