@@ -216,9 +216,9 @@ deployTestData() {
 }
 
 deployDevData() {
-  ./swrs_dev/deploy_dev_data.sh
+  ./swrs_dev/deploy-swrs-data.sh --dev
+  _psql -c "truncate ggircs_portal.organisation restart identity cascade"
   deployProdData
-  _psql -c "select ggircs_portal.import_swrs_organisation_facility()"
   _psql -f "./dev/reporting_year.sql"
   _psql -f "./dev/product.sql"
   _psql -f "./dev/benchmark.sql"
