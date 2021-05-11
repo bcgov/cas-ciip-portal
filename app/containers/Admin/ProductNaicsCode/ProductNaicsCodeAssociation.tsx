@@ -61,9 +61,9 @@ export const ProductNaicsCodeAssociationContainer: React.FunctionComponent<Props
             <>
               <Row>
                 <Col md="12">
-                  <h3>
+                  <h2>
                     {currentNaics.code} - {currentNaics.description}
-                  </h3>
+                  </h2>
                 </Col>
               </Row>
               <Row>

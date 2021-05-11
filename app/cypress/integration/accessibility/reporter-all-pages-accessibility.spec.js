@@ -43,7 +43,7 @@ describe('When logged in as a reporter', () => {
     cy.contains('Administration');
     cy.injectAxe();
     cy.get('#page-content');
-    cy.checkA11y({exclude: [['.rbt-input-hint']]});
+    cy.checkA11y();
   });
 
   it('The application emissions tab has no detectable ally violations on load', () => {
@@ -67,7 +67,7 @@ describe('When logged in as a reporter', () => {
     cy.contains('Fuel');
     cy.injectAxe();
     cy.get('#page-content');
-    cy.checkA11y({exclude: [['.rbt-input-hint']]});
+    cy.checkA11y();
   });
 
   it('The application production tab has no detectable ally violations on load', () => {
@@ -79,7 +79,7 @@ describe('When logged in as a reporter', () => {
     cy.contains('Production');
     cy.injectAxe();
     cy.get('#page-content');
-    cy.checkA11y({exclude: [['.rbt-input-hint']]});
+    cy.checkA11y();
   });
 
   it('The application summary page has no detectable ally violations on load', () => {
