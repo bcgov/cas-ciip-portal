@@ -11,7 +11,7 @@ import {
   faEnvelope
 } from '@fortawesome/free-solid-svg-icons';
 import {graphql, createFragmentContainer} from 'react-relay';
-import {CiipApplicationRevisionStatus} from 'applicationReviewQuery.graphql';
+import {CiipApplicationRevisionStatus} from 'ApplicationIdReviewQuery.graphql';
 import {ApplicationReviewStepSelector_applicationReviewSteps} from '__generated__/ApplicationReviewStepSelector_applicationReviewSteps.graphql';
 import {capitalize} from 'lib/text-transforms';
 

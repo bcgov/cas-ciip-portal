@@ -2,7 +2,7 @@ import React from 'react';
 import {shallow} from 'enzyme';
 import {ApplicationReviewStepSelector} from 'containers/Admin/ApplicationReview/ApplicationReviewStepSelector';
 import {ApplicationReviewStepSelector_applicationReviewSteps} from '__generated__/ApplicationReviewStepSelector_applicationReviewSteps.graphql';
-import {CiipApplicationRevisionStatus} from 'applicationReviewQuery.graphql';
+import {CiipApplicationRevisionStatus} from 'ApplicationIdReviewQuery.graphql';
 
 const getApplicationReviewSteps = (allStepsCompleted, completedSteps) => {
   return {
