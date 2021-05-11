@@ -105,6 +105,23 @@ deploySwrs() {
   sqitch_revert
   _sqitch deploy
   popd
+    _psql <<EOF
+  insert into
+    swrs_extract.eccc_xml_file (id, xml_file)
+    overriding system value
+  values
+    (1,'$(sed -e "s/'/''/g" < ../.cas-ggircs/test/data/Report_8614X.xml)'),
+    (2,'$(sed -e "s/'/''/g" < ../.cas-ggircs/test/data/Report_9822X.xml)'),
+    (3,'$(sed -e "s/'/''/g" < ../.cas-ggircs/test/data/Report_10255X.xml)'),
+    (4,'$(sed -e "s/'/''/g" < ../.cas-ggircs/test/data/Report_10271X.xml)'),
+    (5,'$(sed -e "s/'/''/g" < ../.cas-ggircs/test/data/Report_10692X.xml)'),
+    (6,'$(sed -e "s/'/''/g" < ../.cas-ggircs/test/data/Report_10759X.xml)'),
+    (7,'$(sed -e "s/'/''/g" < ../.cas-ggircs/test/data/Report_11033X.xml)'),
+    (8,'$(sed -e "s/'/''/g" < ../.cas-ggircs/test/data/Report_11233X.xml)'),
+    (9,'$(sed -e "s/'/''/g" < ../.cas-ggircs/test/data/Report_11266X.xml)'),
+    (10,'$(sed -e "s/'/''/g" < ../.cas-ggircs/test/data/Report_11324X.xml)')
+  on conflict(id) do update set xml_file=excluded.xml_file;
+EOF
 
   _psql -c "select swrs_transform.load()"
 }
@@ -209,7 +226,6 @@ deployTestData() {
 }
 
 deployDevData() {
-
   deployProdData
   _psql -f "./dev/reporting_year.sql"
   _psql -f "./dev/product.sql"
@@ -231,23 +247,6 @@ deploySwrsLoadTestingData() {
 }
 
 deployPgTapData() {
-  _psql <<EOF
-  insert into
-    swrs_extract.eccc_xml_file (id, xml_file)
-    overriding system value
-  values
-    (1,'$(sed -e "s/'/''/g" < ../.cas-ggircs/test/data/Report_8614X.xml)'),
-    (2,'$(sed -e "s/'/''/g" < ../.cas-ggircs/test/data/Report_9822X.xml)'),
-    (3,'$(sed -e "s/'/''/g" < ../.cas-ggircs/test/data/Report_10255X.xml)'),
-    (4,'$(sed -e "s/'/''/g" < ../.cas-ggircs/test/data/Report_10271X.xml)'),
-    (5,'$(sed -e "s/'/''/g" < ../.cas-ggircs/test/data/Report_10692X.xml)'),
-    (6,'$(sed -e "s/'/''/g" < ../.cas-ggircs/test/data/Report_10759X.xml)'),
-    (7,'$(sed -e "s/'/''/g" < ../.cas-ggircs/test/data/Report_11033X.xml)'),
-    (8,'$(sed -e "s/'/''/g" < ../.cas-ggircs/test/data/Report_11233X.xml)'),
-    (9,'$(sed -e "s/'/''/g" < ../.cas-ggircs/test/data/Report_11266X.xml)'),
-    (10,'$(sed -e "s/'/''/g" < ../.cas-ggircs/test/data/Report_11324X.xml)')
-  on conflict(id) do update set xml_file=excluded.xml_file;
-EOF
   deployProdData
   _psql -f "./dev/facility.sql"
   _psql -f "./dev/reporting_year.sql"
