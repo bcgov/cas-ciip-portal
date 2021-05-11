@@ -4,7 +4,7 @@
   "description": "The online portal for Industry to apply and track their CIIP applications",
   "scripts": {
     "pretest": "npm run build:relay",
-    "test": "jest",
+    "test": "NODE_OPTIONS=\"--unhandled-rejections=strict\" jest",
     "pretest:e2e-snapshots": "node cypress/support/listAuthenticatedPages.js",
     "test:e2e-snapshots": "yarn happo-cypress -- -- cypress run",
     "pretest:e2e": "node cypress/support/listAuthenticatedPages.js",
