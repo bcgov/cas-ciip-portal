@@ -25,6 +25,8 @@ Options
     Deploy production data only
   -dev, --dev-data
     Deploy development data. Includes prod data
+  -t, --pg-tap
+    Deploy test data for pgTap database test suite
   -s, --deploy-swrs-schema
     Redeploys the swrs schema and inserts the swrs test reports. This requires the .cas-ggircs submodule to be initialized
   -p, --deploy-portal-schema
@@ -177,6 +179,9 @@ while [[ "$1" =~ ^- && ! "$1" == "--" ]]; do case $1 in
   -r | --refresh-swrs-versions )
     actions+=('refreshSwrsVersions')
     ;;
+  -t | --pg-tap )
+    actions+=('deployMocks' 'deployPgTapData')
+    ;;
   -h | --help )
     usage
     exit 0
@@ -211,6 +216,19 @@ deployTestData() {
 }
 
 deployDevData() {
+  ./swrs_dev/deploy_dev_data.sh
+  deployProdData
+  _psql -c "select ggircs_portal.import_swrs_organisation_facility()"
+  _psql -f "./dev/reporting_year.sql"
+  _psql -f "./dev/product.sql"
+  _psql -f "./dev/benchmark.sql"
+  _psql -f "./dev/user.sql"
+  _psql -f "./dev/linked_product.sql"
+  _psql -f "./dev/product_naics_code.sql"
+  return 0;
+}
+
+deployPgTapData() {
   deployProdData
   _psql -f "./dev/facility.sql"
   _psql -f "./dev/reporting_year.sql"
@@ -259,6 +277,12 @@ if [[ " ${actions[*]} " =~ " deployDev " ]]; then
   echo 'Deploying development data'
   deployDevData
 fi
+
+if [[ " ${actions[*]} " =~ " deployPgTapData " ]]; then
+  echo 'Deploying pgTap test data'
+  deployPgTapData
+fi
+
 if [[ " ${actions[*]} " =~ " refreshSwrsVersions " ]]; then
   refreshSwrsVersions
 fi

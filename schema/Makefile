@@ -37,7 +37,7 @@ deploy_prod_data:
 .PHONY: deploy_dev_data
 deploy_dev_data:
 	# Deploy dev data in $(TEST_DB)
-	@@SQITCH_TARGET="db:pg:" PGHOST=localhost PGDATABASE=$(TEST_DB) ./data/deploy-data.sh -d -dev
+	@@SQITCH_TARGET="db:pg:" PGHOST=localhost PGDATABASE=$(TEST_DB) ./data/deploy-data.sh -d -t
 
 .PHONY: deploy_test_helpers
 deploy_test_helpers:
