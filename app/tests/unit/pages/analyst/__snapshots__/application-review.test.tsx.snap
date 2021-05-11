@@ -77,6 +77,7 @@ exports[`The application-review page matches the last snapshot (with review side
           Object {
             " $fragmentRefs": Object {
               "ApplicationDetailsContainer_applicationRevision": true,
+              "ApplicationReviewValidationContainer_applicationRevision": true,
               "IncentiveCalculatorContainer_applicationRevision": true,
             },
             "applicationRevisionStatus": Object {
@@ -98,6 +99,7 @@ exports[`The application-review page matches the last snapshot (with review side
           Object {
             " $fragmentRefs": Object {
               "ApplicationDetailsContainer_applicationRevision": true,
+              "ApplicationReviewValidationContainer_applicationRevision": true,
               "IncentiveCalculatorContainer_applicationRevision": true,
             },
             "applicationRevisionStatus": Object {
@@ -138,6 +140,7 @@ exports[`The application-review page matches the last snapshot (with review side
               "applicationRevision": Object {
                 " $fragmentRefs": Object {
                   "ApplicationDetailsContainer_applicationRevision": true,
+                  "ApplicationReviewValidationContainer_applicationRevision": true,
                   "IncentiveCalculatorContainer_applicationRevision": true,
                 },
                 "applicationRevisionStatus": Object {
@@ -199,6 +202,7 @@ exports[`The application-review page matches the last snapshot (with review side
               "applicationRevision": Object {
                 " $fragmentRefs": Object {
                   "ApplicationDetailsContainer_applicationRevision": true,
+                  "ApplicationReviewValidationContainer_applicationRevision": true,
                   "IncentiveCalculatorContainer_applicationRevision": true,
                 },
                 "applicationRevisionStatus": Object {
@@ -238,6 +242,7 @@ exports[`The application-review page matches the last snapshot (with review side
           Object {
             " $fragmentRefs": Object {
               "ApplicationDetailsContainer_applicationRevision": true,
+              "ApplicationReviewValidationContainer_applicationRevision": true,
               "IncentiveCalculatorContainer_applicationRevision": true,
             },
             "applicationRevisionStatus": Object {
@@ -400,6 +405,7 @@ exports[`The application-review page matches the last snapshot (with review side
           Object {
             " $fragmentRefs": Object {
               "ApplicationDetailsContainer_applicationRevision": true,
+              "ApplicationReviewValidationContainer_applicationRevision": true,
               "IncentiveCalculatorContainer_applicationRevision": true,
             },
             "applicationRevisionStatus": Object {
@@ -421,6 +427,7 @@ exports[`The application-review page matches the last snapshot (with review side
           Object {
             " $fragmentRefs": Object {
               "ApplicationDetailsContainer_applicationRevision": true,
+              "ApplicationReviewValidationContainer_applicationRevision": true,
               "IncentiveCalculatorContainer_applicationRevision": true,
             },
             "applicationRevisionStatus": Object {
@@ -461,6 +468,7 @@ exports[`The application-review page matches the last snapshot (with review side
               "applicationRevision": Object {
                 " $fragmentRefs": Object {
                   "ApplicationDetailsContainer_applicationRevision": true,
+                  "ApplicationReviewValidationContainer_applicationRevision": true,
                   "IncentiveCalculatorContainer_applicationRevision": true,
                 },
                 "applicationRevisionStatus": Object {
@@ -522,6 +530,7 @@ exports[`The application-review page matches the last snapshot (with review side
               "applicationRevision": Object {
                 " $fragmentRefs": Object {
                   "ApplicationDetailsContainer_applicationRevision": true,
+                  "ApplicationReviewValidationContainer_applicationRevision": true,
                   "IncentiveCalculatorContainer_applicationRevision": true,
                 },
                 "applicationRevisionStatus": Object {
@@ -561,6 +570,7 @@ exports[`The application-review page matches the last snapshot (with review side
           Object {
             " $fragmentRefs": Object {
               "ApplicationDetailsContainer_applicationRevision": true,
+              "ApplicationReviewValidationContainer_applicationRevision": true,
               "IncentiveCalculatorContainer_applicationRevision": true,
             },
             "applicationRevisionStatus": Object {

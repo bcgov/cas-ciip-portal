@@ -59,7 +59,8 @@ const getTestQuery = ({
         },
         ' $fragmentRefs': {
           IncentiveCalculatorContainer_applicationRevision: true,
-          ApplicationDetailsContainer_applicationRevision: true
+          ApplicationDetailsContainer_applicationRevision: true,
+          ApplicationReviewValidationContainer_applicationRevision: true
         }
       }
     },
