@@ -4,11 +4,12 @@ import {
   faCheck,
   faExclamation,
   faExclamationTriangle,
+  faInfoCircle,
   faTimes
 } from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import React, {useState} from 'react';
-import {Col, ListGroup, Row} from 'react-bootstrap';
+import {Button, Col, ListGroup, Row} from 'react-bootstrap';
 import {createFragmentContainer, graphql} from 'react-relay';
 import {ApplicationReviewValidationContainer_applicationRevision} from '__generated__/ApplicationReviewValidationContainer_applicationRevision.graphql';
 
@@ -30,9 +31,12 @@ export const ApplicationReviewValidation: React.FunctionComponent<Props> = ({
 
   const failedValidationCount = failedValidationItems.length;
   const totalValidationCount = applicationRevision.validation.edges.length;
+  const hasFailedValidations = failedValidationCount > 0;
 
-  const validationVariant =
-    failedValidationItems.length > 0 ? 'warning' : 'info';
+  const validationVariant = hasFailedValidations ? 'warning' : 'info';
+  const validationIcon = hasFailedValidations
+    ? faExclamationTriangle
+    : faInfoCircle;
 
   const listValidationsWithIcon = (validations, icon) => {
     if (validations.length === 0) return null;
@@ -56,11 +60,11 @@ export const ApplicationReviewValidation: React.FunctionComponent<Props> = ({
           <ListGroup.Item variant={validationVariant}>
             <Row>
               <Col>
-                <FontAwesomeIcon icon={faExclamationTriangle} fixedWidth />
+                <FontAwesomeIcon icon={validationIcon} fixedWidth />
                 &nbsp;
-                {failedValidationCount === totalValidationCount
-                  ? `This application passed ${totalValidationCount} of ${totalValidationCount} validation checks.`
-                  : `This application failed ${failedValidationCount} of ${totalValidationCount} validation checks.`}
+                {hasFailedValidations
+                  ? `This application failed ${failedValidationCount} of ${totalValidationCount} validation checks.`
+                  : `This application passed ${totalValidationCount} of ${totalValidationCount} validation checks.`}
               </Col>
             </Row>
             {expanded && (
@@ -72,7 +76,7 @@ export const ApplicationReviewValidation: React.FunctionComponent<Props> = ({
                 </Row>
                 {passedValidationItems.length > 0 && (
                   <>
-                    <Row className="mt-2">
+                    <Row>
                       <Col>The following checks were passed:</Col>
                     </Row>
                     <Row className="mt-2">
@@ -113,18 +117,20 @@ export const ApplicationReviewValidation: React.FunctionComponent<Props> = ({
               )}
             </ListGroup.Item>
           )}
-          <ListGroup.Item className="text-right pt-1 pb-1 pr-3">
-            <a
-              href="#"
-              id="toggle-expanded-validation"
+          <ListGroup.Item className="text-right p-0">
+            <Button
+              variant="link"
+              className="pt-1 pb-1 pr-2"
               onClick={() => setExpanded(!expanded)}
             >
               {expanded
                 ? 'Hide validation details'
                 : 'See all validation details'}
-              &nbsp;&nbsp;
-              <FontAwesomeIcon icon={expanded ? faCaretUp : faCaretDown} />
-            </a>
+              <FontAwesomeIcon
+                icon={expanded ? faCaretUp : faCaretDown}
+                className="ml-2"
+              />
+            </Button>
           </ListGroup.Item>
         </ListGroup>
       </Col>
