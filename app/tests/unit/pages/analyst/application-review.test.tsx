@@ -72,6 +72,10 @@ const getTestQuery = ({
 };
 
 describe('The application-review page', () => {
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   it('matches the last snapshot (with review sidebar closed)', () => {
     const query = getTestQuery({});
     const wrapper = shallow(
@@ -151,6 +155,14 @@ describe('The application-review page', () => {
   });
 
   it('manages the toggle state of the decision modal', () => {
+    // Mocking the mutation to avoid triggering actual requests that fail
+    jest
+      .spyOn(
+        require('mutations/application/analystCreateApplicationRevisionStatusMutation'),
+        'default'
+      )
+      .mockImplementation(() => {});
+
     const query = getTestQuery({});
     const wrapper = shallow(
       <ApplicationReview
@@ -196,10 +208,12 @@ describe('The application-review page', () => {
 
   it('saves the application decision', () => {
     const decision = 'REQUESTED_CHANGES';
-    const spy = jest.spyOn(
-      require('mutations/application/analystCreateApplicationRevisionStatusMutation'),
-      'default'
-    );
+    const spy = jest
+      .spyOn(
+        require('mutations/application/analystCreateApplicationRevisionStatusMutation'),
+        'default'
+      )
+      .mockImplementation(() => {});
     const query = getTestQuery({});
     const wrapper = shallow(
       <ApplicationReview
