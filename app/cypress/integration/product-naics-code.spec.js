@@ -32,7 +32,7 @@ describe('the product naics code association page', () => {
       'admin/naics-products?naicsCodeId=WyJuYWljc19jb2RlcyIsM10%3D'
     );
 
-    cy.get('h2', {timeout: 20000}).contains('Bituminous Coal Mining');
+    cy.get('#page-content h2').contains('Bituminous Coal Mining');
     cy.get('#no-search-results');
     cy.get('body').happoScreenshot({
       component: 'Allowable products per NAICS code',
