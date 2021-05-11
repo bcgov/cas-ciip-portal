@@ -25,6 +25,10 @@ Options
     Deploy production data only
   -dev, --dev-data
     Deploy development data. Includes prod data
+  --swrs-dev
+    Deploy the swrs dev data
+  --swrs-load-testing
+    Deploy the swrs load-testing data
   -t, --pg-tap
     Deploy test data for pgTap database test suite
   -s, --deploy-swrs-schema
@@ -101,23 +105,6 @@ deploySwrs() {
   sqitch_revert
   _sqitch deploy
   popd
-  _psql <<EOF
-  insert into
-    swrs_extract.eccc_xml_file (id, xml_file)
-    overriding system value
-  values
-    (1,'$(sed -e "s/'/''/g" < ../.cas-ggircs/test/data/Report_8614X.xml)'),
-    (2,'$(sed -e "s/'/''/g" < ../.cas-ggircs/test/data/Report_9822X.xml)'),
-    (3,'$(sed -e "s/'/''/g" < ../.cas-ggircs/test/data/Report_10255X.xml)'),
-    (4,'$(sed -e "s/'/''/g" < ../.cas-ggircs/test/data/Report_10271X.xml)'),
-    (5,'$(sed -e "s/'/''/g" < ../.cas-ggircs/test/data/Report_10692X.xml)'),
-    (6,'$(sed -e "s/'/''/g" < ../.cas-ggircs/test/data/Report_10759X.xml)'),
-    (7,'$(sed -e "s/'/''/g" < ../.cas-ggircs/test/data/Report_11033X.xml)'),
-    (8,'$(sed -e "s/'/''/g" < ../.cas-ggircs/test/data/Report_11233X.xml)'),
-    (9,'$(sed -e "s/'/''/g" < ../.cas-ggircs/test/data/Report_11266X.xml)'),
-    (10,'$(sed -e "s/'/''/g" < ../.cas-ggircs/test/data/Report_11324X.xml)')
-  on conflict(id) do update set xml_file=excluded.xml_file;
-EOF
 
   _psql -c "select swrs_transform.load()"
 }
@@ -179,6 +166,12 @@ while [[ "$1" =~ ^- && ! "$1" == "--" ]]; do case $1 in
   -r | --refresh-swrs-versions )
     actions+=('refreshSwrsVersions')
     ;;
+  --swrs-dev )
+    actions+=('deploySwrsDevData')
+    ;;
+  --swrs-load-testing )
+    actions+=('deploySwrsLoadTestingData')
+    ;;
   -t | --pg-tap )
     actions+=('deployMocks' 'deployPgTapData')
     ;;
@@ -216,8 +209,7 @@ deployTestData() {
 }
 
 deployDevData() {
-  ./swrs_dev/deploy-swrs-data.sh --dev
-  _psql -c "truncate ggircs_portal.organisation restart identity cascade"
+
   deployProdData
   _psql -f "./dev/reporting_year.sql"
   _psql -f "./dev/product.sql"
@@ -228,7 +220,34 @@ deployDevData() {
   return 0;
 }
 
+deploySwrsDevData() {
+  ./swrs_dev/deploy-swrs-data.sh --dev
+  return 0;
+}
+
+deploySwrsLoadTestingData() {
+  ./swrs_dev/deploy-swrs-data.sh --load-test
+  return 0;
+}
+
 deployPgTapData() {
+  _psql <<EOF
+  insert into
+    swrs_extract.eccc_xml_file (id, xml_file)
+    overriding system value
+  values
+    (1,'$(sed -e "s/'/''/g" < ../.cas-ggircs/test/data/Report_8614X.xml)'),
+    (2,'$(sed -e "s/'/''/g" < ../.cas-ggircs/test/data/Report_9822X.xml)'),
+    (3,'$(sed -e "s/'/''/g" < ../.cas-ggircs/test/data/Report_10255X.xml)'),
+    (4,'$(sed -e "s/'/''/g" < ../.cas-ggircs/test/data/Report_10271X.xml)'),
+    (5,'$(sed -e "s/'/''/g" < ../.cas-ggircs/test/data/Report_10692X.xml)'),
+    (6,'$(sed -e "s/'/''/g" < ../.cas-ggircs/test/data/Report_10759X.xml)'),
+    (7,'$(sed -e "s/'/''/g" < ../.cas-ggircs/test/data/Report_11033X.xml)'),
+    (8,'$(sed -e "s/'/''/g" < ../.cas-ggircs/test/data/Report_11233X.xml)'),
+    (9,'$(sed -e "s/'/''/g" < ../.cas-ggircs/test/data/Report_11266X.xml)'),
+    (10,'$(sed -e "s/'/''/g" < ../.cas-ggircs/test/data/Report_11324X.xml)')
+  on conflict(id) do update set xml_file=excluded.xml_file;
+EOF
   deployProdData
   _psql -f "./dev/facility.sql"
   _psql -f "./dev/reporting_year.sql"
@@ -273,6 +292,17 @@ if [[ " ${actions[*]} " =~ " deployTest " ]]; then
   echo 'Deploying test production data'
   deployTestData
 fi
+
+if [[ " ${actions[*]} " =~ " deploySwrsDevData " ]]; then
+  echo 'Deploying swrs development data'
+  deploySwrsDevData
+fi
+
+if [[ " ${actions[*]} " =~ " deploySwrsLoadTestingData " ]]; then
+  echo 'Deploying swrs load-testing data'
+  deploySwrsLoadTestingData
+fi
+
 if [[ " ${actions[*]} " =~ " deployDev " ]]; then
   echo 'Deploying development data'
   deployDevData
