@@ -10,7 +10,8 @@ function excludeA11y(axeRun) {
     const runCtx = {exclude: EXCLUDED_SELECTORS};
 
     if (ctx === undefined || ctx === null) {
-      return axeRun(runCtx);
+      axeRun(runCtx);
+      return;
     }
 
     if (typeof ctx === 'string') {
@@ -23,7 +24,7 @@ function excludeA11y(axeRun) {
       }
       runCtx.exclude = [...ctx.exclude, ...runCtx.exclude];
     }
-    return axeRun(runCtx, ...args);
+    axeRun(runCtx, ...args);
   };
 }
 
