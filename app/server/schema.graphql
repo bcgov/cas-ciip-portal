@@ -27357,6 +27357,11 @@ type Fuel implements Node {
   """
   id: ID!
 
+  """
+  Computed column returns true if the fuel is carbon taxed, false otherwise.
+  """
+  isCarbonTaxed: Boolean
+
   """The name of the fuel"""
   name: String!
 
@@ -27540,6 +27545,9 @@ input FuelFilter {
 
   """Filter by the object’s `description` field."""
   description: StringFilter
+
+  """Filter by the object’s `isCarbonTaxed` field."""
+  isCarbonTaxed: BooleanFilter
 
   """Filter by the object’s `name` field."""
   name: StringFilter

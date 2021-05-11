@@ -22,6 +22,11 @@ values
   'mandatory_products_are_reported',
   'All mandatory products for this application''s NAICS code are reported',
   'Some mandatory products for this application''s NAICS code have not been reported. Please navigate to the "Production" form and report any missing products.'
+),
+(
+  'carbon_taxed_fuels_match_rev_zero',
+  'Reported carbon-taxed fuel quantities in this application are within 0.1% of the quantities reported in SWRS',
+  'The fuel amounts reported here do not match the fuel amounts that were reported in SWRS. If the fuels as reported here for CIIP are correct, please ensure you also update the reported fuels in SWRS.'
 )
 on conflict(validation_function_name)
 do update
