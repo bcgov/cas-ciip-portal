@@ -62,14 +62,14 @@ do $report$
         insert into swrs.fuel (id, report_id, unit_id, fuel_mapping_id, fuel_type, fuel_description, fuel_units, annual_fuel_amount)
         values (i+loop_offset, i+loop_offset, i+loop_offset, 6, 'Aviation Gasoline (kilolitres)', 'Aviation Gasoline (kilolitres)', 'kl', 1234);
 
-        insert into swrs.emission (id, activity_id, facility_id, fuel_id, naics_id, organisation_id, report_id, unit_id, quantity, calculated_quantity, emission_category)
-        values (i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, 1000, 1000, 'BC_ScheduleB_GeneralStationaryCombustionEmissions');
+        insert into swrs.emission (id, activity_id, facility_id, fuel_id, naics_id, organisation_id, report_id, unit_id, quantity, calculated_quantity, emission_category, gas_type)
+        values (i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, 1000, 1000, 'BC_ScheduleB_GeneralStationaryCombustionEmissions', 'CO2nonbio');
 
         insert into swrs.address (id, report_id, facility_id, organisation_id, swrs_facility_id, swrs_organisation_id, path_context, type, mailing_address_street_number, mailing_address_street_name, mailing_address_street_type, mailing_address_municipality, mailing_address_prov_terr_state, mailing_address_postal_code_zip_code, mailing_address_country)
         values
-          ((select nextval('address_sequence')), i+loop_offset, i+loop_offset, i+loop_offset, i, 1, 'RegistrationData', 'Facility', '1234', 'Rainbow', 'road', 'Victoria',  'BC', 'H0H0H0', 'Canada'),
-          ((select nextval('address_sequence')), i+loop_offset, i+loop_offset, i+loop_offset, i, 1, 'RegistrationData', 'Organisation', '1234', 'Rainbow', 'road', 'Victoria',  'BC', 'H0H0H0', 'Canada'),
-          ((select nextval('address_sequence')), i+loop_offset, i+loop_offset, i+loop_offset, i, 1, 'RegistrationData', 'Contact', '1234', 'Rainbow', 'road', 'Victoria',  'BC', 'H0H0H0', 'Canada');
+          ((select nextval('address_sequence')), i+loop_offset, i+loop_offset, i+loop_offset, i, 1, 'RegistrationData', 'Facility', '1234', 'Rainbow', 'road', 'Victoria',  'British Columbia', 'H0H0H0', 'Canada'),
+          ((select nextval('address_sequence')), i+loop_offset, i+loop_offset, i+loop_offset, i, 1, 'RegistrationData', 'Organisation', '1234', 'Rainbow', 'road', 'Victoria',  'British Columbia', 'H0H0H0', 'Canada'),
+          ((select nextval('address_sequence')), i+loop_offset, i+loop_offset, i+loop_offset, i, 1, 'RegistrationData', 'Contact', '1234', 'Rainbow', 'road', 'Victoria',  'British Columbia', 'H0H0H0', 'Canada');
 
         insert into swrs.contact (id, report_id, address_id, facility_id, organisation_id, path_context, contact_type, given_name, family_name, telephone_number, email_address, position)
         values (i+loop_offset, i+loop_offset, (select id from swrs.address where report_id = i+loop_offset and type='Contact'), i+loop_offset, i+loop_offset, 'RegistrationData', 'Operator Representative', 'Mario', 'Super', '8889876543', 'supermario@bowser.ca', 'CEO');
@@ -98,14 +98,14 @@ do $report$
         insert into swrs.fuel (id, report_id, unit_id, fuel_mapping_id, fuel_type, fuel_description, fuel_units, annual_fuel_amount)
         values (i+loop_offset, i+loop_offset, i+loop_offset, 6, 'Aviation Gasoline (kilolitres)', 'Aviation Gasoline (kilolitres)', 'kl', 1234);
 
-        insert into swrs.emission (id, activity_id, facility_id, fuel_id, naics_id, organisation_id, report_id, unit_id, quantity, calculated_quantity, emission_category)
-        values (i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, 1000, 1000, 'BC_ScheduleB_GeneralStationaryCombustionEmissions');
+        insert into swrs.emission (id, activity_id, facility_id, fuel_id, naics_id, organisation_id, report_id, unit_id, quantity, calculated_quantity, emission_category, gas_type)
+        values (i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, 1000, 1000, 'BC_ScheduleB_GeneralStationaryCombustionEmissions', 'CO2nonbio');
 
         insert into swrs.address (id, report_id, facility_id, organisation_id, swrs_facility_id, swrs_organisation_id, path_context, type, mailing_address_street_number, mailing_address_street_name, mailing_address_street_type, mailing_address_municipality, mailing_address_prov_terr_state, mailing_address_postal_code_zip_code, mailing_address_country)
         values
-          ((select nextval('address_sequence')), i+loop_offset, i+loop_offset, i+loop_offset, i, 2, 'RegistrationData', 'Facility', '1234', 'Rainbow', 'road', 'Victoria',  'BC', 'H0H0H0', 'Canada'),
-          ((select nextval('address_sequence')), i+loop_offset, i+loop_offset, i+loop_offset, i, 2, 'RegistrationData', 'Organisation', '1234', 'Rainbow', 'road', 'Victoria',  'BC', 'H0H0H0', 'Canada'),
-          ((select nextval('address_sequence')), i+loop_offset, i+loop_offset, i+loop_offset, i, 2, 'RegistrationData', 'Contact', '1234', 'Rainbow', 'road', 'Victoria',  'BC', 'H0H0H0', 'Canada');
+          ((select nextval('address_sequence')), i+loop_offset, i+loop_offset, i+loop_offset, i, 2, 'RegistrationData', 'Facility', '1234', 'Rainbow', 'road', 'Victoria',  'British Columbia', 'H0H0H0', 'Canada'),
+          ((select nextval('address_sequence')), i+loop_offset, i+loop_offset, i+loop_offset, i, 2, 'RegistrationData', 'Organisation', '1234', 'Rainbow', 'road', 'Victoria',  'British Columbia', 'H0H0H0', 'Canada'),
+          ((select nextval('address_sequence')), i+loop_offset, i+loop_offset, i+loop_offset, i, 2, 'RegistrationData', 'Contact', '1234', 'Rainbow', 'road', 'Victoria',  'British Columbia', 'H0H0H0', 'Canada');
 
         insert into swrs.contact (id, report_id, address_id, facility_id, organisation_id, path_context, contact_type, given_name, family_name, telephone_number, email_address, position)
         values (i+loop_offset, i+loop_offset, (select id from swrs.address where report_id = i+loop_offset and type='Contact'), i+loop_offset, i+loop_offset, 'RegistrationData', 'Operator Representative', 'Mario', 'Super', '8889876543', 'supermario@bowser.ca', 'CEO');
@@ -133,14 +133,14 @@ do $report$
         insert into swrs.fuel (id, report_id, unit_id, fuel_mapping_id, fuel_type, fuel_description, fuel_units, annual_fuel_amount)
         values (i+loop_offset, i+loop_offset, i+loop_offset, 6, 'Aviation Gasoline (kilolitres)', 'Aviation Gasoline (kilolitres)', 'kl', 1234);
 
-        insert into swrs.emission (id, activity_id, facility_id, fuel_id, naics_id, organisation_id, report_id, unit_id, quantity, calculated_quantity, emission_category)
-        values (i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, 1000, 1000, 'BC_ScheduleB_GeneralStationaryCombustionEmissions');
+        insert into swrs.emission (id, activity_id, facility_id, fuel_id, naics_id, organisation_id, report_id, unit_id, quantity, calculated_quantity, emission_category, gas_type)
+        values (i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, 1000, 1000, 'BC_ScheduleB_GeneralStationaryCombustionEmissions', 'CO2nonbio');
 
         insert into swrs.address (id, report_id, facility_id, organisation_id, swrs_facility_id, swrs_organisation_id, path_context, type, mailing_address_street_number, mailing_address_street_name, mailing_address_street_type, mailing_address_municipality, mailing_address_prov_terr_state, mailing_address_postal_code_zip_code, mailing_address_country)
         values
-          ((select nextval('address_sequence')), i+loop_offset, i+loop_offset, i+loop_offset, i, 2, 'RegistrationData', 'Facility', '1234', 'Rainbow', 'road', 'Victoria',  'BC', 'H0H0H0', 'Canada'),
-          ((select nextval('address_sequence')), i+loop_offset, i+loop_offset, i+loop_offset, i, 2, 'RegistrationData', 'Organisation', '1234', 'Rainbow', 'road', 'Victoria',  'BC', 'H0H0H0', 'Canada'),
-          ((select nextval('address_sequence')), i+loop_offset, i+loop_offset, i+loop_offset, i, 2, 'RegistrationData', 'Contact', '1234', 'Rainbow', 'road', 'Victoria',  'BC', 'H0H0H0', 'Canada');
+          ((select nextval('address_sequence')), i+loop_offset, i+loop_offset, i+loop_offset, i, 2, 'RegistrationData', 'Facility', '1234', 'Rainbow', 'road', 'Victoria',  'British Columbia', 'H0H0H0', 'Canada'),
+          ((select nextval('address_sequence')), i+loop_offset, i+loop_offset, i+loop_offset, i, 2, 'RegistrationData', 'Organisation', '1234', 'Rainbow', 'road', 'Victoria',  'British Columbia', 'H0H0H0', 'Canada'),
+          ((select nextval('address_sequence')), i+loop_offset, i+loop_offset, i+loop_offset, i, 2, 'RegistrationData', 'Contact', '1234', 'Rainbow', 'road', 'Victoria',  'British Columbia', 'H0H0H0', 'Canada');
 
         insert into swrs.contact (id, report_id, address_id, facility_id, organisation_id, path_context, contact_type, given_name, family_name, telephone_number, email_address, position)
         values (i+loop_offset, i+loop_offset, (select id from swrs.address where report_id = i+loop_offset and type='Contact'), i+loop_offset, i+loop_offset, 'RegistrationData', 'Operator Representative', 'Mario', 'Super', '8889876543', 'supermario@bowser.ca', 'CEO');
@@ -168,14 +168,14 @@ do $report$
         insert into swrs.fuel (id, report_id, unit_id, fuel_mapping_id, fuel_type, fuel_description, fuel_units, annual_fuel_amount)
         values (i+loop_offset, i+loop_offset, i+loop_offset, 6, 'Aviation Gasoline (kilolitres)', 'Aviation Gasoline (kilolitres)', 'kl', 1234);
 
-        insert into swrs.emission (id, activity_id, facility_id, fuel_id, naics_id, organisation_id, report_id, unit_id, quantity, calculated_quantity, emission_category)
-        values (i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, 1000, 1000, 'BC_ScheduleB_GeneralStationaryCombustionEmissions');
+        insert into swrs.emission (id, activity_id, facility_id, fuel_id, naics_id, organisation_id, report_id, unit_id, quantity, calculated_quantity, emission_category, gas_type)
+        values (i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, 1000, 1000, 'BC_ScheduleB_GeneralStationaryCombustionEmissions', 'CO2nonbio');
 
         insert into swrs.address (id, report_id, facility_id, organisation_id, swrs_facility_id, swrs_organisation_id, path_context, type, mailing_address_street_number, mailing_address_street_name, mailing_address_street_type, mailing_address_municipality, mailing_address_prov_terr_state, mailing_address_postal_code_zip_code, mailing_address_country)
         values
-          ((select nextval('address_sequence')), i+loop_offset, i+loop_offset, i+loop_offset, i, 2, 'RegistrationData', 'Facility', '1234', 'Rainbow', 'road', 'Victoria',  'BC', 'H0H0H0', 'Canada'),
-          ((select nextval('address_sequence')), i+loop_offset, i+loop_offset, i+loop_offset, i, 2, 'RegistrationData', 'Organisation', '1234', 'Rainbow', 'road', 'Victoria',  'BC', 'H0H0H0', 'Canada'),
-          ((select nextval('address_sequence')), i+loop_offset, i+loop_offset, i+loop_offset, i, 2, 'RegistrationData', 'Contact', '1234', 'Rainbow', 'road', 'Victoria',  'BC', 'H0H0H0', 'Canada');
+          ((select nextval('address_sequence')), i+loop_offset, i+loop_offset, i+loop_offset, i, 2, 'RegistrationData', 'Facility', '1234', 'Rainbow', 'road', 'Victoria',  'British Columbia', 'H0H0H0', 'Canada'),
+          ((select nextval('address_sequence')), i+loop_offset, i+loop_offset, i+loop_offset, i, 2, 'RegistrationData', 'Organisation', '1234', 'Rainbow', 'road', 'Victoria',  'British Columbia', 'H0H0H0', 'Canada'),
+          ((select nextval('address_sequence')), i+loop_offset, i+loop_offset, i+loop_offset, i, 2, 'RegistrationData', 'Contact', '1234', 'Rainbow', 'road', 'Victoria',  'British Columbia', 'H0H0H0', 'Canada');
 
         insert into swrs.contact (id, report_id, address_id, facility_id, organisation_id, path_context, contact_type, given_name, family_name, telephone_number, email_address, position)
         values (i+loop_offset, i+loop_offset, (select id from swrs.address where report_id = i+loop_offset and type='Contact'), i+loop_offset, i+loop_offset, 'RegistrationData', 'Operator Representative', 'Mario', 'Super', '8889876543', 'supermario@bowser.ca', 'CEO');
@@ -204,14 +204,14 @@ do $report$
         insert into swrs.fuel (id, report_id, unit_id, fuel_mapping_id, fuel_type, fuel_description, fuel_units, annual_fuel_amount)
         values (i+loop_offset, i+loop_offset, i+loop_offset, 6, 'Aviation Gasoline (kilolitres)', 'Aviation Gasoline (kilolitres)', 'kl', 1234);
 
-        insert into swrs.emission (id, activity_id, facility_id, fuel_id, naics_id, organisation_id, report_id, unit_id, quantity, calculated_quantity, emission_category)
-        values (i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, 1000, 1000, 'BC_ScheduleB_GeneralStationaryCombustionEmissions');
+        insert into swrs.emission (id, activity_id, facility_id, fuel_id, naics_id, organisation_id, report_id, unit_id, quantity, calculated_quantity, emission_category, gas_type)
+        values (i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, 1000, 1000, 'BC_ScheduleB_GeneralStationaryCombustionEmissions', 'CO2nonbio');
 
         insert into swrs.address (id, report_id, facility_id, organisation_id, swrs_facility_id, swrs_organisation_id, path_context, type, mailing_address_street_number, mailing_address_street_name, mailing_address_street_type, mailing_address_municipality, mailing_address_prov_terr_state, mailing_address_postal_code_zip_code, mailing_address_country)
         values
-          ((select nextval('address_sequence')), i+loop_offset, i+loop_offset, i+loop_offset, i, 3, 'RegistrationData', 'Facility', '1234', 'Rainbow', 'road', 'Victoria',  'BC', 'H0H0H0', 'Canada'),
-          ((select nextval('address_sequence')), i+loop_offset, i+loop_offset, i+loop_offset, i, 3, 'RegistrationData', 'Organisation', '1234', 'Rainbow', 'road', 'Victoria',  'BC', 'H0H0H0', 'Canada'),
-          ((select nextval('address_sequence')), i+loop_offset, i+loop_offset, i+loop_offset, i, 3, 'RegistrationData', 'Contact', '1234', 'Rainbow', 'road', 'Victoria',  'BC', 'H0H0H0', 'Canada');
+          ((select nextval('address_sequence')), i+loop_offset, i+loop_offset, i+loop_offset, i, 3, 'RegistrationData', 'Facility', '1234', 'Rainbow', 'road', 'Victoria',  'British Columbia', 'H0H0H0', 'Canada'),
+          ((select nextval('address_sequence')), i+loop_offset, i+loop_offset, i+loop_offset, i, 3, 'RegistrationData', 'Organisation', '1234', 'Rainbow', 'road', 'Victoria',  'British Columbia', 'H0H0H0', 'Canada'),
+          ((select nextval('address_sequence')), i+loop_offset, i+loop_offset, i+loop_offset, i, 3, 'RegistrationData', 'Contact', '1234', 'Rainbow', 'road', 'Victoria',  'British Columbia', 'H0H0H0', 'Canada');
 
         insert into swrs.contact (id, report_id, address_id, facility_id, organisation_id, path_context, contact_type, given_name, family_name, telephone_number, email_address, position)
         values (i+loop_offset, i+loop_offset, (select id from swrs.address where report_id = i+loop_offset and type='Contact'), i+loop_offset, i+loop_offset, 'RegistrationData', 'Operator Representative', 'Mario', 'Super', '8889876543', 'supermario@bowser.ca', 'CEO');
@@ -240,14 +240,14 @@ do $report$
         insert into swrs.fuel (id, report_id, unit_id, fuel_mapping_id, fuel_type, fuel_description, fuel_units, annual_fuel_amount)
         values (i+loop_offset, i+loop_offset, i+loop_offset, 6, 'Aviation Gasoline (kilolitres)', 'Aviation Gasoline (kilolitres)', 'kl', 1234);
 
-        insert into swrs.emission (id, activity_id, facility_id, fuel_id, naics_id, organisation_id, report_id, unit_id, quantity, calculated_quantity, emission_category)
-        values (i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, 1000, 1000, 'BC_ScheduleB_GeneralStationaryCombustionEmissions');
+        insert into swrs.emission (id, activity_id, facility_id, fuel_id, naics_id, organisation_id, report_id, unit_id, quantity, calculated_quantity, emission_category, gas_type)
+        values (i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, 1000, 1000, 'BC_ScheduleB_GeneralStationaryCombustionEmissions', 'CO2nonbio');
 
         insert into swrs.address (id, report_id, facility_id, organisation_id, swrs_facility_id, swrs_organisation_id, path_context, type, mailing_address_street_number, mailing_address_street_name, mailing_address_street_type, mailing_address_municipality, mailing_address_prov_terr_state, mailing_address_postal_code_zip_code, mailing_address_country)
         values
-          ((select nextval('address_sequence')), i+loop_offset, i+loop_offset, i+loop_offset, i, 4, 'RegistrationData', 'Facility', '1234', 'Rainbow', 'road', 'Victoria',  'BC', 'H0H0H0', 'Canada'),
-          ((select nextval('address_sequence')), i+loop_offset, i+loop_offset, i+loop_offset, i, 4, 'RegistrationData', 'Organisation', '1234', 'Rainbow', 'road', 'Victoria',  'BC', 'H0H0H0', 'Canada'),
-          ((select nextval('address_sequence')), i+loop_offset, i+loop_offset, i+loop_offset, i, 4, 'RegistrationData', 'Contact', '1234', 'Rainbow', 'road', 'Victoria',  'BC', 'H0H0H0', 'Canada');
+          ((select nextval('address_sequence')), i+loop_offset, i+loop_offset, i+loop_offset, i, 4, 'RegistrationData', 'Facility', '1234', 'Rainbow', 'road', 'Victoria',  'British Columbia', 'H0H0H0', 'Canada'),
+          ((select nextval('address_sequence')), i+loop_offset, i+loop_offset, i+loop_offset, i, 4, 'RegistrationData', 'Organisation', '1234', 'Rainbow', 'road', 'Victoria',  'British Columbia', 'H0H0H0', 'Canada'),
+          ((select nextval('address_sequence')), i+loop_offset, i+loop_offset, i+loop_offset, i, 4, 'RegistrationData', 'Contact', '1234', 'Rainbow', 'road', 'Victoria',  'British Columbia', 'H0H0H0', 'Canada');
 
         insert into swrs.contact (id, report_id, address_id, facility_id, organisation_id, path_context, contact_type, given_name, family_name, telephone_number, email_address, position)
         values (i+loop_offset, i+loop_offset, (select id from swrs.address where report_id = i+loop_offset and type='Contact'), i+loop_offset, i+loop_offset, 'RegistrationData', 'Operator Representative', 'Mario', 'Super', '8889876543', 'supermario@bowser.ca', 'CEO');
@@ -276,14 +276,14 @@ do $report$
         insert into swrs.fuel (id, report_id, unit_id, fuel_mapping_id, fuel_type, fuel_description, fuel_units, annual_fuel_amount)
         values (i+loop_offset, i+loop_offset, i+loop_offset, 6, 'Aviation Gasoline (kilolitres)', 'Aviation Gasoline (kilolitres)', 'kl', 1234);
 
-        insert into swrs.emission (id, activity_id, facility_id, fuel_id, naics_id, organisation_id, report_id, unit_id, quantity, calculated_quantity, emission_category)
-        values (i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, 1000, 1000, 'BC_ScheduleB_GeneralStationaryCombustionEmissions');
+        insert into swrs.emission (id, activity_id, facility_id, fuel_id, naics_id, organisation_id, report_id, unit_id, quantity, calculated_quantity, emission_category, gas_type)
+        values (i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, 1000, 1000, 'BC_ScheduleB_GeneralStationaryCombustionEmissions', 'CO2nonbio');
 
         insert into swrs.address (id, report_id, facility_id, organisation_id, swrs_facility_id, swrs_organisation_id, path_context, type, mailing_address_street_number, mailing_address_street_name, mailing_address_street_type, mailing_address_municipality, mailing_address_prov_terr_state, mailing_address_postal_code_zip_code, mailing_address_country)
         values
-          ((select nextval('address_sequence')), i+loop_offset, i+loop_offset, i+loop_offset, i, 5, 'RegistrationData', 'Facility', '1234', 'Rainbow', 'road', 'Victoria',  'BC', 'H0H0H0', 'Canada'),
-          ((select nextval('address_sequence')), i+loop_offset, i+loop_offset, i+loop_offset, i, 5, 'RegistrationData', 'Organisation', '1234', 'Rainbow', 'road', 'Victoria',  'BC', 'H0H0H0', 'Canada'),
-          ((select nextval('address_sequence')), i+loop_offset, i+loop_offset, i+loop_offset, i, 5, 'RegistrationData', 'Contact', '1234', 'Rainbow', 'road', 'Victoria',  'BC', 'H0H0H0', 'Canada');
+          ((select nextval('address_sequence')), i+loop_offset, i+loop_offset, i+loop_offset, i, 5, 'RegistrationData', 'Facility', '1234', 'Rainbow', 'road', 'Victoria',  'British Columbia', 'H0H0H0', 'Canada'),
+          ((select nextval('address_sequence')), i+loop_offset, i+loop_offset, i+loop_offset, i, 5, 'RegistrationData', 'Organisation', '1234', 'Rainbow', 'road', 'Victoria',  'British Columbia', 'H0H0H0', 'Canada'),
+          ((select nextval('address_sequence')), i+loop_offset, i+loop_offset, i+loop_offset, i, 5, 'RegistrationData', 'Contact', '1234', 'Rainbow', 'road', 'Victoria',  'British Columbia', 'H0H0H0', 'Canada');
 
         insert into swrs.contact (id, report_id, address_id, facility_id, organisation_id, path_context, contact_type, given_name, family_name, telephone_number, email_address, position)
         values (i+loop_offset, i+loop_offset, (select id from swrs.address where report_id = i+loop_offset and type='Contact'), i+loop_offset, i+loop_offset, 'RegistrationData', 'Operator Representative', 'Mario', 'Super', '8889876543', 'supermario@bowser.ca', 'CEO');
@@ -312,14 +312,14 @@ do $report$
         insert into swrs.fuel (id, report_id, unit_id, fuel_mapping_id, fuel_type, fuel_description, fuel_units, annual_fuel_amount)
         values (i+loop_offset, i+loop_offset, i+loop_offset, 6, 'Aviation Gasoline (kilolitres)', 'Aviation Gasoline (kilolitres)', 'kl', 1234);
 
-        insert into swrs.emission (id, activity_id, facility_id, fuel_id, naics_id, organisation_id, report_id, unit_id, quantity, calculated_quantity, emission_category)
-        values (i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, 1000, 1000, 'BC_ScheduleB_GeneralStationaryCombustionEmissions');
+        insert into swrs.emission (id, activity_id, facility_id, fuel_id, naics_id, organisation_id, report_id, unit_id, quantity, calculated_quantity, emission_category, gas_type)
+        values (i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, i+loop_offset, 1000, 1000, 'BC_ScheduleB_GeneralStationaryCombustionEmissions', 'CO2nonbio');
 
         insert into swrs.address (id, report_id, facility_id, organisation_id, swrs_facility_id, swrs_organisation_id, path_context, type, mailing_address_street_number, mailing_address_street_name, mailing_address_street_type, mailing_address_municipality, mailing_address_prov_terr_state, mailing_address_postal_code_zip_code, mailing_address_country)
         values
-          ((select nextval('address_sequence')), i+loop_offset, i+loop_offset, i+loop_offset, i, 6, 'RegistrationData', 'Facility', '1234', 'Rainbow', 'road', 'Victoria',  'BC', 'H0H0H0', 'Canada'),
-          ((select nextval('address_sequence')), i+loop_offset, i+loop_offset, i+loop_offset, i, 6, 'RegistrationData', 'Organisation', '1234', 'Rainbow', 'road', 'Victoria',  'BC', 'H0H0H0', 'Canada'),
-          ((select nextval('address_sequence')), i+loop_offset, i+loop_offset, i+loop_offset, i, 6, 'RegistrationData', 'Contact', '1234', 'Rainbow', 'road', 'Victoria',  'BC', 'H0H0H0', 'Canada');
+          ((select nextval('address_sequence')), i+loop_offset, i+loop_offset, i+loop_offset, i, 6, 'RegistrationData', 'Facility', '1234', 'Rainbow', 'road', 'Victoria',  'British Columbia', 'H0H0H0', 'Canada'),
+          ((select nextval('address_sequence')), i+loop_offset, i+loop_offset, i+loop_offset, i, 6, 'RegistrationData', 'Organisation', '1234', 'Rainbow', 'road', 'Victoria',  'British Columbia', 'H0H0H0', 'Canada'),
+          ((select nextval('address_sequence')), i+loop_offset, i+loop_offset, i+loop_offset, i, 6, 'RegistrationData', 'Contact', '1234', 'Rainbow', 'road', 'Victoria',  'British Columbia', 'H0H0H0', 'Canada');
 
         insert into swrs.contact (id, report_id, address_id, facility_id, organisation_id, path_context, contact_type, given_name, family_name, telephone_number, email_address, position)
         values (i+loop_offset, i+loop_offset, (select id from swrs.address where report_id = i+loop_offset and type='Contact'), i+loop_offset, i+loop_offset, 'RegistrationData', 'Operator Representative', 'Mario', 'Super', '8889876543', 'supermario@bowser.ca', 'CEO');
