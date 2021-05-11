@@ -1,12 +1,4 @@
 import path from 'path';
-// TODO: delete once all routes are updated to not have required query params
-const REQUIRED_QUERY_PARAMS = {
-  'application-review': `?applicationId=${encodeURIComponent(
-    window.btoa('["applications", 3]')
-  )}&applicationRevisionId=${encodeURIComponent(
-    window.btoa('["application_revisions", 3, 1]')
-  )}&version=1`
-};
 
 const QUERY_PARAMS = {
   '/reporter/application/[applicationId]/version/[versionNumber]/view': {
@@ -19,6 +11,9 @@ const QUERY_PARAMS = {
   '/reporter/application/[applicationId]/version/[versionNumber]/disclaimer': {
     applicationId: encodeURIComponent(window.btoa('["applications",1]')),
     versionNumber: '1'
+  },
+  '/analyst/application/[applicationId]': {
+    applicationId: encodeURIComponent(window.btoa('["applications",3]'))
   }
 };
 
@@ -34,16 +29,11 @@ function testRedirectsForScopedPages(scope, pages) {
     if (DEBUG && DEBUG !== page) return;
 
     it(`should land the ${scope} on the ${page} page after redirecting through login`, () => {
-      let url =
-        path.join('/', scope, page) +
-        `${page in REQUIRED_QUERY_PARAMS ? REQUIRED_QUERY_PARAMS[page] : ''}`;
+      let url = path.join('/', scope, page);
 
       if (url in QUERY_PARAMS) {
-        console.log('replacing params');
         for (const [param, value] of Object.entries(QUERY_PARAMS[url])) {
-          console.log('replacing', param, value, url);
           url = url.replace(`[${param}]`, value);
-          console.log(url);
         }
       }
 

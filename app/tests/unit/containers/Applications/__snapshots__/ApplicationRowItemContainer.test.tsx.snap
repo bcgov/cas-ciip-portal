@@ -35,11 +35,9 @@ exports[`ApplicationRowItem should render the application 1`] = `
     <Link
       href={
         Object {
-          "pathname": "/analyst/application-review",
+          "pathname": "/analyst/application/[applicationId]/",
           "query": Object {
             "applicationId": undefined,
-            "applicationRevisionId": undefined,
-            "version": undefined,
           },
         }
       }

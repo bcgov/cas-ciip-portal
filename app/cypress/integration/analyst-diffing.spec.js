@@ -4,9 +4,7 @@ describe('When reviewing a submitted application as an analyst', () => {
     cy.deployProdData();
     cy.sqlFixture('fixtures/analyst-diffing-setup');
     cy.mockLogin('analyst');
-    cy.visit(
-      '/analyst/application-review?applicationId=WyJhcHBsaWNhdGlvbnMiLDFd&applicationRevisionId=WyJhcHBsaWNhdGlvbl9yZXZpc2lvbnMiLDEsMl0%3D&version=2'
-    );
+    cy.visit('/analyst/application/WyJhcHBsaWNhdGlvbnMiLDFd');
   });
 
   it('The summary page properly displays the diffs when showDiff is selected', () => {

@@ -37,7 +37,7 @@ describe('When logged in as an analyst', () => {
   it('The application review page has no detectable ally violations on load', () => {
     cy.visit('/analyst/applications');
     cy.contains('View Application').click();
-    cy.url().should('include', '/analyst/application-review');
+    cy.url().should('include', '/analyst/application/');
     cy.injectAxe();
     cy.get('#page-content');
     cy.get('body').happoScreenshot({

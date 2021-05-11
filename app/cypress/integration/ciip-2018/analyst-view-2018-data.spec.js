@@ -6,9 +6,7 @@ describe('When reviewing an application from the 2018 reporting year', () => {
   });
 
   it('The review-application page renders the 2018 ciip data', () => {
-    cy.visit(
-      '/analyst/application-review?applicationId=WyJhcHBsaWNhdGlvbnMiLDFd&applicationRevisionId=WyJhcHBsaWNhdGlvbl9yZXZpc2lvbnMiLDEsMV0%3D&version=1'
-    );
+    cy.visit('/analyst/application/WyJhcHBsaWNhdGlvbnMiLDFd');
     cy.contains('Facility Description');
     cy.contains('orgBookLegalName');
     cy.contains('Application Type');
