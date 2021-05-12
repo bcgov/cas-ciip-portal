@@ -29,12 +29,10 @@ export const SubmitApplicationComponent: React.FunctionComponent<Props> = ({
         }
       }
     };
-    const response = await createApplicationRevisionStatusMutation(
-      environment,
-      variables
-    );
-    console.log(response);
+
     // TODO: check response
+    await createApplicationRevisionStatusMutation(environment, variables);
+
     router.push(
       getCompleteApplicationPageRoute(
         applicationRevision.applicationByApplicationId.id
