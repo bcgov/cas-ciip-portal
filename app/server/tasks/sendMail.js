@@ -133,8 +133,7 @@ module.exports = async ({
       htmlContent = createNotifyAdminApplicationSubmittedMail({
         applicationId,
         facilityName,
-        operatorName,
-        versionNumber
+        operatorName
       });
       email = receiverEmail;
       break;

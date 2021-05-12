@@ -212,16 +212,7 @@ describe('Confirmation emails', () => {
 
 function makeApplicationDecision(decision, appId) {
   const applicationId = window.btoa(`["applications", ${appId}]`);
-  const applicationRevisionId = window.btoa(
-    `["application_revisions", ${appId}, 1]`
-  );
-  cy.visit(
-    `/analyst/application-review?applicationId=${encodeURIComponent(
-      applicationId
-    )}&applicationRevisionId=${encodeURIComponent(
-      applicationRevisionId
-    )}&version=1`
-  );
+  cy.visit(`/analyst/application/${encodeURIComponent(applicationId)}`);
   cy.get('#page-content');
   cy.get('#open-decision-dialog').click();
   cy.get(`button[value="${decision}"`).click();

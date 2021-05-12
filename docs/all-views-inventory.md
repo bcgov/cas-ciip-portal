@@ -19,7 +19,7 @@ Link to each heading for details. Asterisk\* denotes pages that [require certain
 - [Add Facility page `/analyst/add-facility`](#add-facility)
 - [Organisation Access Requests page `/analyst/organisation-requests`](#org-access)
 - [Applications Admin page `/analyst/applications`](#applications-admin)
-- [Application Review page `/analyst/application-review`\*](#application-review)
+- [Application Review page `/analyst/application/[applicationId]`\*](#application-review)
 
 ### [Admin](#admin-role)
 
@@ -199,7 +199,7 @@ View all submitted applications. The list of applications is searchable and sort
 
 <a id="application-review"></a>
 
-### Application Review page `/analyst/application-review`\*
+### Application Review page `/analyst/application/[applicationId]`\*
 
 Review a submitted application, section by section.
 
@@ -211,12 +211,6 @@ Review a submitted application, section by section.
 - Make a decision to approve or reject an application, or request that the reporter make changes
   - these decisions trigger an email to the reporter
 - Download the application as PDF
-
-\* Required query parameters:
-
-- `applicationId`
-- `applicationRevisionId`
-- `version`
 
 #### Shared components:
 
@@ -383,16 +377,6 @@ Boilerplate website copyright statement obtained from DevHub.
 Provides basic contact information (CAS email address) for website and application support.
 
 ---
-
-<a id="query-parameters"></a>
-
-## Note on required query parameters:
-
-Asterisk\* denotes routes with required query parameters. Without certain parameters appended to the URL (providing some necessary data for the view) as key-value pairs, an error page will be shown. The expected parameters differ between pages, and multiple query parameters are separated by an `&` character. An example is the application page, which requires the following string to be appended to the end of the URL `/reporter/application`:
-
-`?applicationId=someID&version=1&formResultId=anotherID`
-
-In the next iteration of CIIP we aim for better compliance with REST conventions by replacing required query parameters with dynamic routes that employ route parameters instead, thus triggering a 404 when missing (as opposed to the current 500 error page).
 
 <a id="global-components"></a>
 

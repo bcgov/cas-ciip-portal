@@ -39,3 +39,10 @@ export const getViewApplicationPageRoute = (
     versionNumber
   }
 });
+
+export const getReviewApplicationPageRoute = (applicationId: string) => ({
+  pathname: '/analyst/application/[applicationId]/',
+  query: {
+    applicationId
+  }
+});

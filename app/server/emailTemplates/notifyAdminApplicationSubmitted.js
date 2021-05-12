@@ -4,17 +4,12 @@ const createUrl = require('../helpers/createUrl');
 const createNotifyAdminApplicationSubmittedMail = ({
   applicationId,
   facilityName,
-  operatorName,
-  versionNumber
+  operatorName
 }) => {
   const appId = Buffer.from(`["applications",${applicationId}]`).toString(
     'base64'
   );
   const encodedAppId = encodeURIComponent(appId);
-  const appRevId = Buffer.from(
-    `["application_revisions", ${applicationId}, ${versionNumber}]`
-  ).toString('base64');
-  const encodedAppRevId = encodeURIComponent(appRevId);
   return html`
     <table
       align="center"
@@ -40,10 +35,7 @@ const createNotifyAdminApplicationSubmittedMail = ({
           </p>
           <p>
             An analyst can now
-            <a
-              href="${createUrl(
-                `analyst/application-review?applicationId=${encodedAppId}&applicationRevisionId=${encodedAppRevId}&version=${versionNumber}`
-              )}"
+            <a href="${createUrl(`analyst/application/${encodedAppId}`)}"
               >review their application</a
             >.
           </p>

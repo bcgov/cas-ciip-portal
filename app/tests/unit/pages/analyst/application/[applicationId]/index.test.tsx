@@ -1,11 +1,16 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import ApplicationReview from 'pages/analyst/application-review';
+import ApplicationReview from 'pages/analyst/application/[applicationId]';
 import {
-  applicationReviewQueryResponse,
+  ApplicationIdReviewQueryResponse,
   CiipApplicationRevisionStatus
-} from 'applicationReviewQuery.graphql';
+} from 'ApplicationIdReviewQuery.graphql';
 import {INCENTIVE_ANALYST, INCENTIVE_ADMINISTRATOR} from 'data/group-constants';
+
+import analystCreateApplicationRevisionStatusMutation from 'mutations/application/analystCreateApplicationRevisionStatusMutation';
+jest.mock(
+  'mutations/application/analystCreateApplicationRevisionStatusMutation'
+);
 
 const getTestQuery = ({
   applicationRevisionStatus = 'SUBMITTED',
@@ -68,33 +73,23 @@ const getTestQuery = ({
       ApplicationDetailsContainer_query: true,
       ApplicationDetailsContainer_diffQuery: true
     }
-  };
+  } as ApplicationIdReviewQueryResponse['query'];
 };
 
 describe('The application-review page', () => {
-  afterEach(() => {
-    jest.clearAllMocks();
+  beforeEach(() => {
+    analystCreateApplicationRevisionStatusMutation.mockReset();
   });
 
   it('matches the last snapshot (with review sidebar closed)', () => {
     const query = getTestQuery({});
-    const wrapper = shallow(
-      <ApplicationReview
-        router={null}
-        query={query as applicationReviewQueryResponse['query']}
-      />
-    );
+    const wrapper = shallow(<ApplicationReview router={null} query={query} />);
     expect(wrapper).toMatchSnapshot();
   });
 
   it('matches the last snapshot (with review sidebar opened)', () => {
     const query = getTestQuery({});
-    const wrapper = shallow(
-      <ApplicationReview
-        router={null}
-        query={query as applicationReviewQueryResponse['query']}
-      />
-    );
+    const wrapper = shallow(<ApplicationReview router={null} query={query} />);
     expect(wrapper.exists('Relay(ReviewSidebar)')).toBeFalse();
     // Open the sidebar:
     wrapper.setState((state) => {
@@ -110,12 +105,7 @@ describe('The application-review page', () => {
 
   it('should render the review step selector and sidebar with non-finalized state if no application decision has been made', () => {
     const query = getTestQuery({applicationRevisionStatus: 'SUBMITTED'});
-    const wrapper = shallow(
-      <ApplicationReview
-        router={null}
-        query={query as applicationReviewQueryResponse['query']}
-      />
-    );
+    const wrapper = shallow(<ApplicationReview router={null} query={query} />);
     wrapper.setState((state) => {
       return {
         ...state,
@@ -134,12 +124,7 @@ describe('The application-review page', () => {
 
   it('should render the review step selector and sidebar showing finalized review if an application decision has been made', () => {
     const query = getTestQuery({applicationRevisionStatus: 'APPROVED'});
-    const wrapper = shallow(
-      <ApplicationReview
-        router={null}
-        query={query as applicationReviewQueryResponse['query']}
-      />
-    );
+    const wrapper = shallow(<ApplicationReview router={null} query={query} />);
     wrapper.setState((state) => {
       return {
         ...state,
@@ -155,21 +140,8 @@ describe('The application-review page', () => {
   });
 
   it('manages the toggle state of the decision modal', () => {
-    // Mocking the mutation to avoid triggering actual requests that fail
-    jest
-      .spyOn(
-        require('mutations/application/analystCreateApplicationRevisionStatusMutation'),
-        'default'
-      )
-      .mockImplementation(() => {});
-
     const query = getTestQuery({});
-    const wrapper = shallow(
-      <ApplicationReview
-        router={null}
-        query={query as applicationReviewQueryResponse['query']}
-      />
-    );
+    const wrapper = shallow(<ApplicationReview router={null} query={query} />);
     expect(wrapper.find('DecisionModal').exists()).toBeTrue();
     expect(wrapper.find('DecisionModal').prop('show')).toBeFalse();
 
@@ -208,36 +180,33 @@ describe('The application-review page', () => {
 
   it('saves the application decision', () => {
     const decision = 'REQUESTED_CHANGES';
-    const spy = jest
-      .spyOn(
-        require('mutations/application/analystCreateApplicationRevisionStatusMutation'),
-        'default'
-      )
-      .mockImplementation(() => {});
+
     const query = getTestQuery({});
-    const wrapper = shallow(
-      <ApplicationReview
-        router={null}
-        query={query as applicationReviewQueryResponse['query']}
-      />
-    );
-    expect(spy).not.toHaveBeenCalled();
+    const wrapper = shallow(<ApplicationReview router={null} query={query} />);
+    expect(
+      analystCreateApplicationRevisionStatusMutation
+    ).not.toHaveBeenCalled();
     const onDecision: (
       decision: CiipApplicationRevisionStatus
     ) => void = wrapper.find('DecisionModal').prop('onDecision');
     onDecision(decision);
-    expect(spy).toHaveBeenCalledTimes(1);
+    expect(
+      analystCreateApplicationRevisionStatusMutation
+    ).toHaveBeenCalledTimes(1);
 
     // Relay environment (first parameter) is undefined in unit tests:
-    expect(spy).toHaveBeenCalledWith(undefined, {
-      input: {
-        applicationRevisionStatus: {
-          applicationId: query.application.rowId,
-          applicationRevisionStatus: decision,
-          versionNumber: query.application.applicationRevision.versionNumber
+    expect(analystCreateApplicationRevisionStatusMutation).toHaveBeenCalledWith(
+      undefined,
+      {
+        input: {
+          applicationRevisionStatus: {
+            applicationId: query.application.rowId,
+            applicationRevisionStatus: decision,
+            versionNumber: query.application.applicationRevision.versionNumber
+          }
         }
       }
-    });
+    );
   });
 
   it('should enable the ability to change an application decision if user is an admin', () => {
@@ -245,12 +214,7 @@ describe('The application-review page', () => {
       applicationRevisionStatus: 'REJECTED',
       userGroup: INCENTIVE_ADMINISTRATOR
     });
-    const wrapper = shallow(
-      <ApplicationReview
-        router={null}
-        query={query as applicationReviewQueryResponse['query']}
-      />
-    );
+    const wrapper = shallow(<ApplicationReview router={null} query={query} />);
     const changeDecisionHandler = wrapper
       .find('Relay(ApplicationReviewStepSelector)')
       .prop('changeDecision');
@@ -263,12 +227,7 @@ describe('The application-review page', () => {
       isCurrentVersion: false,
       userGroup: INCENTIVE_ADMINISTRATOR
     });
-    const wrapper = shallow(
-      <ApplicationReview
-        router={null}
-        query={query as applicationReviewQueryResponse['query']}
-      />
-    );
+    const wrapper = shallow(<ApplicationReview router={null} query={query} />);
     const changeDecisionHandler = wrapper
       .find('Relay(ApplicationReviewStepSelector)')
       .prop('changeDecision');
@@ -282,12 +241,7 @@ describe('The application-review page', () => {
 
   it('renders the HelpButton only when the review sidebar is closed', () => {
     const query = getTestQuery({});
-    const wrapper = shallow(
-      <ApplicationReview
-        router={null}
-        query={query as applicationReviewQueryResponse['query']}
-      />
-    );
+    const wrapper = shallow(<ApplicationReview router={null} query={query} />);
     expect(wrapper.exists('HelpButton')).toBeTrue();
     // Open the sidebar:
     wrapper.setState((state) => {
@@ -301,12 +255,7 @@ describe('The application-review page', () => {
 
   it('passes the applicationRevision prop to the IncentiveCalculator', () => {
     const query = getTestQuery({});
-    const wrapper = shallow(
-      <ApplicationReview
-        router={null}
-        query={query as applicationReviewQueryResponse['query']}
-      />
-    );
+    const wrapper = shallow(<ApplicationReview router={null} query={query} />);
     expect(
       wrapper
         .find('Relay(IncentiveCalculator)')

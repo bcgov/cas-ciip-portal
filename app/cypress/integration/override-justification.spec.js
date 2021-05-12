@@ -52,9 +52,9 @@
 //     const applicationRevisionId = window.btoa(
 //       '["application_revisions", 1, 1]'
 //     );
-//     const applicationId = window.btoa('["applications", 1]');
+//     const applicationId = window.btoa('["applications",1]');
 //     cy.visit(
-//       `/analyst/application-review?applicationId=${applicationId}&applicationRevisionId=${applicationRevisionId}&version=1`
+//       `/analyst/application/${applicationId}`
 //     );
 //     cy.url().should('include', '/analyst');
 //     cy.get('.bg-danger').should('contain', 'override is active');
