@@ -263,12 +263,18 @@ A local SMTP server is a precondition for running the email specs (for example, 
 
 #### Run Cypress Specs
 
+Cypress needs the test schema deployed for the specs to run:
+
+```
+cd test_helper_schema && SQITCH_TARGET="ciip_portal_dev" sqitch deploy
+```
+
 First, ensure the web app is running (`cd app && yarn dev`) _without_ bypassing authentication using `AS_REPORTER` or similar auth flags. Running the app with the following flags will prevent certain asynchronously rendered components from causing spurious failures:
 
 ```
 cd app
 
-NO_MATHJAX=true yarn dev
+NO_MATHJAX=true yarn dev AS_CYPRESS
 ```
 
 For test error debugging and to observe tests' behavior in the browser as they run:
