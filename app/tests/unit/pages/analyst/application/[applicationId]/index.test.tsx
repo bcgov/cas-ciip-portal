@@ -7,6 +7,11 @@ import {
 } from 'ApplicationIdReviewQuery.graphql';
 import {INCENTIVE_ANALYST, INCENTIVE_ADMINISTRATOR} from 'data/group-constants';
 
+import analystCreateApplicationRevisionStatusMutation from 'mutations/application/analystCreateApplicationRevisionStatusMutation';
+jest.mock(
+  'mutations/application/analystCreateApplicationRevisionStatusMutation'
+);
+
 const getTestQuery = ({
   applicationRevisionStatus = 'SUBMITTED',
   userGroup = INCENTIVE_ANALYST,
@@ -59,7 +64,8 @@ const getTestQuery = ({
         },
         ' $fragmentRefs': {
           IncentiveCalculatorContainer_applicationRevision: true,
-          ApplicationDetailsContainer_applicationRevision: true
+          ApplicationDetailsContainer_applicationRevision: true,
+          ApplicationReviewValidationContainer_applicationRevision: true
         }
       }
     },
@@ -71,6 +77,10 @@ const getTestQuery = ({
 };
 
 describe('The application-review page', () => {
+  beforeEach(() => {
+    analystCreateApplicationRevisionStatusMutation.mockReset();
+  });
+
   it('matches the last snapshot (with review sidebar closed)', () => {
     const query = getTestQuery({});
     const wrapper = shallow(<ApplicationReview router={null} query={query} />);
@@ -170,29 +180,33 @@ describe('The application-review page', () => {
 
   it('saves the application decision', () => {
     const decision = 'REQUESTED_CHANGES';
-    const spy = jest.spyOn(
-      require('mutations/application/analystCreateApplicationRevisionStatusMutation'),
-      'default'
-    );
+
     const query = getTestQuery({});
     const wrapper = shallow(<ApplicationReview router={null} query={query} />);
-    expect(spy).not.toHaveBeenCalled();
+    expect(
+      analystCreateApplicationRevisionStatusMutation
+    ).not.toHaveBeenCalled();
     const onDecision: (
       decision: CiipApplicationRevisionStatus
     ) => void = wrapper.find('DecisionModal').prop('onDecision');
     onDecision(decision);
-    expect(spy).toHaveBeenCalledTimes(1);
+    expect(
+      analystCreateApplicationRevisionStatusMutation
+    ).toHaveBeenCalledTimes(1);
 
     // Relay environment (first parameter) is undefined in unit tests:
-    expect(spy).toHaveBeenCalledWith(undefined, {
-      input: {
-        applicationRevisionStatus: {
-          applicationId: query.application.rowId,
-          applicationRevisionStatus: decision,
-          versionNumber: query.application.applicationRevision.versionNumber
+    expect(analystCreateApplicationRevisionStatusMutation).toHaveBeenCalledWith(
+      undefined,
+      {
+        input: {
+          applicationRevisionStatus: {
+            applicationId: query.application.rowId,
+            applicationRevisionStatus: decision,
+            versionNumber: query.application.applicationRevision.versionNumber
+          }
         }
       }
-    });
+    );
   });
 
   it('should enable the ability to change an application decision if user is an admin', () => {
@@ -248,25 +262,5 @@ describe('The application-review page', () => {
         .first()
         .prop('applicationRevision')
     ).toBe(query.application.applicationRevision);
-  });
-
-  it('renders the ApplicationOverrideNotification component if an override has been set', () => {
-    const data = getTestQuery({});
-    const overrideQuery = {
-      ...data,
-      application: {
-        ...data.application,
-        applicationRevision: {
-          ...data.application.applicationRevision,
-          overrideJustification: 'oops'
-        }
-      }
-    };
-    const wrapper = shallow(
-      <ApplicationReview router={null} query={overrideQuery} />
-    );
-    expect(
-      wrapper.find('ApplicationOverrideNotification').props()
-    ).toStrictEqual({overrideJustification: 'oops'});
   });
 });
