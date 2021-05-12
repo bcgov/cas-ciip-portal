@@ -2,6 +2,43 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.4.0](https://github.com/bcgov/cas-ciip-portal/compare/v2.3.1...v2.4.0) (2021-05-12)
+
+
+### Features
+
+* add emission_category_missing_fuel validation function ([2790155](https://github.com/bcgov/cas-ciip-portal/commit/2790155281e7b8ff4b2f751ff8476568b79efcca))
+* add no_reported_ciip_product validation function ([7787655](https://github.com/bcgov/cas-ciip-portal/commit/77876557b2227cedb644084d072d8f9f5cde26d0))
+* add primary and secondary contacts to admin form ([23ea331](https://github.com/bcgov/cas-ciip-portal/commit/23ea331507fe26f7c27889acf2b6e588200419f6))
+* aggregate values for Facility Total row ([c4b855a](https://github.com/bcgov/cas-ciip-portal/commit/c4b855a649cae3c90509bd82f77f088851387e71))
+* basic modal to make a decision, request changes + shared modal CSS ([f31364d](https://github.com/bcgov/cas-ciip-portal/commit/f31364dd086850d579894bd4086327e7edb830d9))
+* Calculated & Maximum incentive columns use CAD currency format ([1bd5e24](https://github.com/bcgov/cas-ciip-portal/commit/1bd5e24e2dfc528cab0b8b15d3e1a71084b86bc1))
+* ciip-swrs comparing function ignores venting and flaring ([1b83829](https://github.com/bcgov/cas-ciip-portal/commit/1b83829ca4be49f893d9aceb1d5f8483f852e22d))
+* complete page links to application summary if query param ([07e8ff7](https://github.com/bcgov/cas-ciip-portal/commit/07e8ff7149441f9237005e8b336986675d372113))
+* computed column returning true if a fuel is carbon taxed ([6a2b187](https://github.com/bcgov/cas-ciip-portal/commit/6a2b1874f6e4c564cd7512261298c26887669882))
+* create admin-2020 form schema ([12854a0](https://github.com/bcgov/cas-ciip-portal/commit/12854a05cb260208626806bf99e7c83d2922a127))
+* create an index for all fkeys currently missing an index ([562f27b](https://github.com/bcgov/cas-ciip-portal/commit/562f27b18d8ef4e69e3a919f1ce02b3a0316b4d2))
+* creating validation frontend component ([af4405f](https://github.com/bcgov/cas-ciip-portal/commit/af4405fe835be5b670c4b2243c30e19dc8b65e27))
+* decision button appears activated once review steps are complete ([981435b](https://github.com/bcgov/cas-ciip-portal/commit/981435b384fbfcb50ea38ff386bfffccaff1dec1))
+* decision modal supports reverting the decision ([6ace21b](https://github.com/bcgov/cas-ciip-portal/commit/6ace21b2bed75a6f392d12c6be7f0946f18e9fad))
+* Incentive ratio on right of Payment Allocation ([1da2508](https://github.com/bcgov/cas-ciip-portal/commit/1da25085ad82e579647bc5a4dfbeff523ee943cd))
+* remove bc ghg id from admin-2020 form ([38bb187](https://github.com/bcgov/cas-ciip-portal/commit/38bb1877b3a3773a713181a5c72462aab3a35bfa))
+* remove LFO and EIO from available facility types ([994e965](https://github.com/bcgov/cas-ciip-portal/commit/994e96516e67df61605188505dd07714e0ce6a60))
+* show BCGHG ID, and version number when revised at top ([2f8498d](https://github.com/bcgov/cas-ciip-portal/commit/2f8498d645a46ac08000b5f205192d25e8ab2d1f))
+* Threshold chart column is removed ([f3845c1](https://github.com/bcgov/cas-ciip-portal/commit/f3845c134b80753ee4fdf36038cd3f4c86d931c8))
+* update ciip_carbon_tax_calculation view to use new ct calculation ([46dd65b](https://github.com/bcgov/cas-ciip-portal/commit/46dd65b8da3d139101b9a1a74cd34e2b33a944d9))
+* use difference with march 2018 fuel charge to get CIIP CT ([07d13a2](https://github.com/bcgov/cas-ciip-portal/commit/07d13a2a4d5bd5591051959f34ef3269e7c53859))
+* use query params for application review page ([709f6dd](https://github.com/bcgov/cas-ciip-portal/commit/709f6dd6ce5872d8f40113bffd4cef8052895ac8))
+* validation function for mandatory products ([97e92b1](https://github.com/bcgov/cas-ciip-portal/commit/97e92b185d434c43e98c0f85b9e43ce871135eb3))
+* validation function testing if reported fuels match swrs ([e92b932](https://github.com/bcgov/cas-ciip-portal/commit/e92b93208247bcde111f68193db4762defd820ad))
+* validaton on swrs emissions sqitch files ([95ee82b](https://github.com/bcgov/cas-ciip-portal/commit/95ee82b5cdbd2148e728770a065a3d5f17ea7b2c))
+
+
+### Bug Fixes
+
+* escape unsafe html in email templates ([52fabc6](https://github.com/bcgov/cas-ciip-portal/commit/52fabc62df675a851b6dcbfc7d796fd37566ab43))
+* remove validation function when reverting ([5f4bb0d](https://github.com/bcgov/cas-ciip-portal/commit/5f4bb0d3a31a7976c1cf6236232c0d9e7a62bb8d))
+
 ### [2.3.1](https://github.com/bcgov/cas-ciip-portal/compare/v2.3.0...v2.3.1) (2021-04-29)
 
 
