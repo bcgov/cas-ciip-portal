@@ -147,10 +147,7 @@ class ApplicationReview extends Component<Props, State> {
       return null;
     }
 
-    const {
-      isCurrentVersion,
-      versionNumber
-    } = application.applicationRevision;
+    const {isCurrentVersion, versionNumber} = application.applicationRevision;
     const {bcghgid} = application.facilityByFacilityId;
     const {
       applicationRevisionStatus
