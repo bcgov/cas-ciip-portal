@@ -7,8 +7,7 @@ import FacilitiesListContainer from 'containers/Facilities/FacilitiesListContain
 import {USER} from 'data/group-constants';
 import {DEFAULT_PAGE_SIZE} from 'components/FilterableTable/FilterableTablePagination';
 import {Col, Row} from 'react-bootstrap';
-import ProgressStepIndicator from 'components/ProgressStepIndicator';
-import StatusBadgeColor from 'components/helpers/StatusBadgeColor';
+import ApplicationProgressBar from 'components/Application/ApplicationProgressBar';
 
 const ALLOWED_GROUPS = [USER];
 
@@ -75,31 +74,7 @@ class FacilitiesList extends Component<Props> {
       >
         <Row className="justify-content-md-center mb-5">
           <Col>
-            <ProgressStepIndicator
-              title="Steps to Apply for an Operator's Facility"
-              steps={[
-                {
-                  description: 'CIIP Application not started',
-                  badgeStyle: StatusBadgeColor.NONE,
-                  number: 1
-                },
-                {
-                  description: 'Application in progress',
-                  badgeStyle: StatusBadgeColor.INITIAL,
-                  number: 2
-                },
-                {
-                  description: 'Application submitted and in review',
-                  badgeStyle: StatusBadgeColor.PENDING,
-                  number: 3
-                },
-                {
-                  description: 'Application approved or rejected',
-                  badgeStyle: StatusBadgeColor.APPROVED,
-                  number: 4
-                }
-              ]}
-            />
+            <ApplicationProgressBar title="Steps to Apply for an Operator's Facility" />
           </Col>
         </Row>
         <FacilitiesListContainer query={query} />

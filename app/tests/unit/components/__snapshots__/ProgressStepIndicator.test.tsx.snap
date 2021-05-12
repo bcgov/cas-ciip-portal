@@ -1,5 +1,180 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`The Progress Step Indicator Matches snapshot with 2/4 steps completed and a title 1`] = `
+<div
+  className="jsx-1128701548 progressStepIndicator"
+>
+  <Row
+    className="mb-4"
+    noGutters={false}
+  >
+    <div
+      className="mb-4 row"
+    >
+      <Col>
+        <div
+          className="col"
+        >
+          <h2
+            className="jsx-1128701548"
+            id="progressTitle"
+          >
+            This is a TEST TITLE
+          </h2>
+        </div>
+      </Col>
+    </div>
+  </Row>
+  <div
+    className="jsx-1128701548 progress ml-1 mr-1"
+  >
+    <div
+      aria-label={null}
+      aria-labelledby="progressTitle"
+      aria-valuemax={3}
+      aria-valuemin={0}
+      aria-valuenow={1}
+      aria-valuetext="test step 2"
+      className="jsx-1128701548 progress-bar"
+      role="progressbar"
+      style={
+        Object {
+          "width": "33%",
+        }
+      }
+    />
+  </div>
+  <div
+    className="jsx-1128701548 d-flex flex-row justify-content-between mb-3"
+  >
+    Array [
+      <div
+        className="jsx-1375059393 numberedCircle badge-success"
+      >
+        <svg
+          aria-hidden="true"
+          className="svg-inline--fa fa-check fa-w-16 "
+          data-icon="check"
+          data-prefix="fas"
+          focusable="false"
+          role="img"
+          style={
+            Object {
+              "fontSize": "30px",
+              "height": "0.8em",
+              "verticalAlign": "middle",
+            }
+          }
+          viewBox="0 0 512 512"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"
+            fill="currentColor"
+            style={Object {}}
+          />
+        </svg>
+      </div>,
+      "",
+    ]
+    Array [
+      <div
+        className="jsx-1375059393 numberedCircle badge-success"
+      >
+        <svg
+          aria-hidden="true"
+          className="svg-inline--fa fa-check fa-w-16 "
+          data-icon="check"
+          data-prefix="fas"
+          focusable="false"
+          role="img"
+          style={
+            Object {
+              "fontSize": "30px",
+              "height": "0.8em",
+              "verticalAlign": "middle",
+            }
+          }
+          viewBox="0 0 512 512"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"
+            fill="currentColor"
+            style={Object {}}
+          />
+        </svg>
+      </div>,
+      "",
+    ]
+    Array [
+      <div
+        className="jsx-1375059393 numberedCircle badge-danger"
+      >
+        110
+      </div>,
+      "",
+    ]
+    Array [
+      <div
+        className="jsx-1375059393 numberedCircle badge-danger"
+      >
+        111
+      </div>,
+      "",
+    ]
+  </div>
+  <Row
+    noGutters={false}
+  >
+    <div
+      className="row"
+    >
+      <Col
+        className="stepDescription"
+        key="description-99"
+      >
+        <div
+          className="stepDescription col"
+        >
+          test step 1
+        </div>
+      </Col>
+      <Col
+        className="stepDescription"
+        key="description-100"
+      >
+        <div
+          className="stepDescription col"
+        >
+          test step 2
+        </div>
+      </Col>
+      <Col
+        className="stepDescription"
+        key="description-110"
+      >
+        <div
+          className="stepDescription col"
+        >
+          test step 3
+        </div>
+      </Col>
+      <Col
+        className="stepDescription"
+        key="description-111"
+      >
+        <div
+          className="stepDescription col"
+        >
+          test step 3
+        </div>
+      </Col>
+    </div>
+  </Row>
+</div>
+`;
+
 exports[`The Progress Step Indicator Matches snapshot with 3 steps and a title 1`] = `
 <div
   className="jsx-1128701548 progressStepIndicator"
@@ -17,6 +192,7 @@ exports[`The Progress Step Indicator Matches snapshot with 3 steps and a title 1
         >
           <h2
             className="jsx-1128701548"
+            id="progressTitle"
           >
             This is a TEST TITLE
           </h2>
@@ -28,10 +204,12 @@ exports[`The Progress Step Indicator Matches snapshot with 3 steps and a title 1
     className="jsx-1128701548 progress ml-1 mr-1"
   >
     <div
-      aria-label="progress bar indicating the steps represented by this component"
-      aria-valuemax={100}
+      aria-label={null}
+      aria-labelledby="progressTitle"
+      aria-valuemax={2}
       aria-valuemin={0}
       aria-valuenow={0}
+      aria-valuetext="test step 1"
       className="jsx-1128701548 progress-bar"
       role="progressbar"
       style={
@@ -110,6 +288,225 @@ exports[`The Progress Step Indicator Matches snapshot with 3 steps and a title 1
 </div>
 `;
 
+exports[`The Progress Step Indicator Matches snapshot with 4/4 steps completed and a title 1`] = `
+<div
+  className="jsx-1128701548 progressStepIndicator"
+>
+  <Row
+    className="mb-4"
+    noGutters={false}
+  >
+    <div
+      className="mb-4 row"
+    >
+      <Col>
+        <div
+          className="col"
+        >
+          <h2
+            className="jsx-1128701548"
+            id="progressTitle"
+          >
+            This is a TEST TITLE
+          </h2>
+        </div>
+      </Col>
+    </div>
+  </Row>
+  <div
+    className="jsx-1128701548 progress ml-1 mr-1"
+  >
+    <div
+      aria-label={null}
+      aria-labelledby="progressTitle"
+      aria-valuemax={3}
+      aria-valuemin={0}
+      aria-valuenow={3}
+      aria-valuetext="test step 4"
+      className="jsx-1128701548 progress-bar"
+      role="progressbar"
+      style={
+        Object {
+          "width": "100%",
+        }
+      }
+    />
+  </div>
+  <div
+    className="jsx-1128701548 d-flex flex-row justify-content-between mb-3"
+  >
+    Array [
+      <div
+        className="jsx-1375059393 numberedCircle badge-success"
+      >
+        <svg
+          aria-hidden="true"
+          className="svg-inline--fa fa-check fa-w-16 "
+          data-icon="check"
+          data-prefix="fas"
+          focusable="false"
+          role="img"
+          style={
+            Object {
+              "fontSize": "30px",
+              "height": "0.8em",
+              "verticalAlign": "middle",
+            }
+          }
+          viewBox="0 0 512 512"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"
+            fill="currentColor"
+            style={Object {}}
+          />
+        </svg>
+      </div>,
+      "",
+    ]
+    Array [
+      <div
+        className="jsx-1375059393 numberedCircle badge-success"
+      >
+        <svg
+          aria-hidden="true"
+          className="svg-inline--fa fa-check fa-w-16 "
+          data-icon="check"
+          data-prefix="fas"
+          focusable="false"
+          role="img"
+          style={
+            Object {
+              "fontSize": "30px",
+              "height": "0.8em",
+              "verticalAlign": "middle",
+            }
+          }
+          viewBox="0 0 512 512"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"
+            fill="currentColor"
+            style={Object {}}
+          />
+        </svg>
+      </div>,
+      "",
+    ]
+    Array [
+      <div
+        className="jsx-1375059393 numberedCircle badge-danger"
+      >
+        <svg
+          aria-hidden="true"
+          className="svg-inline--fa fa-check fa-w-16 "
+          data-icon="check"
+          data-prefix="fas"
+          focusable="false"
+          role="img"
+          style={
+            Object {
+              "fontSize": "30px",
+              "height": "0.8em",
+              "verticalAlign": "middle",
+            }
+          }
+          viewBox="0 0 512 512"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"
+            fill="currentColor"
+            style={Object {}}
+          />
+        </svg>
+      </div>,
+      "",
+    ]
+    Array [
+      <div
+        className="jsx-1375059393 numberedCircle badge-danger"
+      >
+        <svg
+          aria-hidden="true"
+          className="svg-inline--fa fa-check fa-w-16 "
+          data-icon="check"
+          data-prefix="fas"
+          focusable="false"
+          role="img"
+          style={
+            Object {
+              "fontSize": "30px",
+              "height": "0.8em",
+              "verticalAlign": "middle",
+            }
+          }
+          viewBox="0 0 512 512"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"
+            fill="currentColor"
+            style={Object {}}
+          />
+        </svg>
+      </div>,
+      "",
+    ]
+  </div>
+  <Row
+    noGutters={false}
+  >
+    <div
+      className="row"
+    >
+      <Col
+        className="stepDescription"
+        key="description-99"
+      >
+        <div
+          className="stepDescription col"
+        >
+          test step 1
+        </div>
+      </Col>
+      <Col
+        className="stepDescription"
+        key="description-100"
+      >
+        <div
+          className="stepDescription col"
+        >
+          test step 2
+        </div>
+      </Col>
+      <Col
+        className="stepDescription"
+        key="description-110"
+      >
+        <div
+          className="stepDescription col"
+        >
+          test step 3
+        </div>
+      </Col>
+      <Col
+        className="stepDescription"
+        key="description-111"
+      >
+        <div
+          className="stepDescription col"
+        >
+          test step 4
+        </div>
+      </Col>
+    </div>
+  </Row>
+</div>
+`;
+
 exports[`The Progress Step Indicator Renders with no steps 1`] = `
 <div
   className="jsx-1128701548 progressStepIndicator"
@@ -118,10 +515,12 @@ exports[`The Progress Step Indicator Renders with no steps 1`] = `
     className="jsx-1128701548 progress ml-1 mr-1"
   >
     <div
-      aria-label="progress bar indicating the steps represented by this component"
-      aria-valuemax={100}
+      aria-label={null}
+      aria-labelledby={null}
+      aria-valuemax={0}
       aria-valuemin={0}
       aria-valuenow={0}
+      aria-valuetext=""
       className="jsx-1128701548 progress-bar"
       role="progressbar"
       style={

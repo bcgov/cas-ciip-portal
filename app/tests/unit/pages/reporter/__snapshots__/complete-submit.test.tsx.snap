@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Reporter application submission page should render properly 1`] = `
+<Relay(DefaultLayout)
+  session={
+    Object {
+      " $fragmentRefs": Object {
+        "defaultLayout_session": true,
+      },
+    }
+  }
+>
+  <Row
+    className="justify-content-md-center mb-5"
+    noGutters={false}
+  >
+    <Col>
+      <ApplicationProgressBar
+        completed={3}
+        title="Your Facility's Application Status"
+      />
+    </Col>
+  </Row>
+  <h1
+    className="pt-5"
+  >
+    Thank you for submitting your application.
+  </h1>
+  <p
+    className="lead pb-5 pt-3"
+  >
+    Your application for the
+     
+    <span
+      className="font-weight-bold"
+    >
+      Super Clean
+    </span>
+     facility operated by 
+    <span
+      className="font-weight-bold"
+    >
+      CleanBC Org
+    </span>
+     
+    has been received and is being reviewed. We will notify you by email regarding any updates.
+  </p>
+  <Link
+    href={
+      Object {
+        "pathname": "/reporter/application/[applicationId]/version/[versionNumber]/view",
+        "query": Object {
+          "applicationId": "testing",
+          "versionNumber": 2,
+        },
+      }
+    }
+    passHref={true}
+  >
+    <Button
+      active={false}
+      className="full-width"
+      disabled={false}
+      size="sm"
+      style={
+        Object {
+          "padding": "15px",
+          "width": "20%",
+        }
+      }
+      variant="primary"
+    >
+      View Submitted Application
+    </Button>
+  </Link>
+</Relay(DefaultLayout)>
+`;

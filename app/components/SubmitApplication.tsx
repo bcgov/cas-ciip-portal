@@ -5,6 +5,7 @@ import {Button} from 'react-bootstrap';
 import {CiipApplicationRevisionStatus} from 'createApplicationRevisionStatusMutation.graphql';
 import createApplicationRevisionStatusMutation from 'mutations/application/createApplicationRevisionStatusMutation';
 import {SubmitApplication_applicationRevision} from 'SubmitApplication_applicationRevision.graphql';
+import {getCompleteApplicationPageRoute} from 'routes';
 
 interface Props {
   applicationRevision: SubmitApplication_applicationRevision;
@@ -28,13 +29,15 @@ export const SubmitApplicationComponent: React.FunctionComponent<Props> = ({
         }
       }
     };
-    const response = await createApplicationRevisionStatusMutation(
-      environment,
-      variables
-    );
-    console.log(response);
+
     // TODO: check response
-    router.push('/reporter/complete-submit');
+    await createApplicationRevisionStatusMutation(environment, variables);
+
+    router.push(
+      getCompleteApplicationPageRoute(
+        applicationRevision.applicationByApplicationId.id
+      )
+    );
   };
 
   return (
@@ -53,6 +56,9 @@ export default createFragmentContainer(SubmitApplicationComponent, {
     fragment SubmitApplication_applicationRevision on ApplicationRevision {
       applicationId
       versionNumber
+      applicationByApplicationId {
+        id
+      }
     }
   `
 });

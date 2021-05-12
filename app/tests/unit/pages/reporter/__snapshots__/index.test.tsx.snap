@@ -30,6 +30,7 @@ exports[`Reporter Dashboard Should render properly 1`] = `
       >
         <Col>
           <ProgressStepIndicator
+            ariaLabel="Steps to request operator access"
             steps={
               Array [
                 Object {

@@ -22,7 +22,10 @@ do \$$
 select test_helper.create_test_users();
 
 -- Create applications (and necessary facilities/organisations)
-select test_helper.create_applications(2, True, True);
+select test_helper.create_applications(3, True, True);
+
+-- Set one application as submitted
+insert into ggircs_portal.application_revision_status(application_id, version_number, application_revision_status) values(3, 1, 'submitted');
 
 -- Create approved user-organisation connection
 insert into ggircs_portal.ciip_user_organisation(user_id, organisation_id, status) values (6, 1, 'approved');

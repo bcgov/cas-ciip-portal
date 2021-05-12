@@ -17,13 +17,22 @@ describe('the product naics code association page', () => {
       variant: 'no NAICS code selected'
     });
 
+    cy.intercept('POST', '/graphql', (req) => {
+      if (req.body.id === 'naicsProductsAssociationsQuery') {
+        req.alias = 'naicsProductsAssociationsQuery';
+      }
+    });
+
     // Testing adding an allowable product
-    cy.get('.list-group').find('.list-group-item:nth-child(3)').click();
-    cy.get('h3').contains('Bituminous Coal Mining');
+    cy.get('.list-group').contains('212114').click();
+    cy.wait('@naicsProductsAssociationsQuery');
+
     cy.url().should(
       'include',
       'admin/naics-products?naicsCodeId=WyJuYWljc19jb2RlcyIsM10%3D'
     );
+
+    cy.get('#page-content h2').contains('Bituminous Coal Mining');
     cy.get('#no-search-results');
     cy.get('body').happoScreenshot({
       component: 'Allowable products per NAICS code',
