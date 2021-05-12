@@ -11,7 +11,7 @@ port=${PGPORT:-5432}
 # -----------------------------------------------------------------------------
 usage() {
     cat << EOF
-$0 [-d] [-p] [-s] [-h]
+$0 [-d] [-p] [-s] [-t] [-prod] [--swrs-dev] [--swrs-load-testing] [--app-count <n>] [-h]
 
 Upserts test data in the $database database, and deploys the schemas using sqitch if needed.
 If run without the corresponding options, this script will deploy the swrs and portal schemas
@@ -35,14 +35,18 @@ Options
     Redeploys the swrs schema and inserts the swrs test reports. This requires the .cas-ggircs submodule to be initialized
   -p, --deploy-portal-schema
     Redeploys the portal schema
+  --app-count <n>
+    Creates n applications for each operator in the dev data that reference an application status
+    Affected operator types: (Draft operator, Submitted operator, Changes requested operator)
+    n must be an integer from 1-100
   -h, --help
     Prints this message
 
 EOF
 }
 
-if [ "$#" -gt 3 ]; then
-    echo "Passed $# parameters. Expected 0 to 3."
+if [ "$#" -gt 4 ]; then
+    echo "Passed $# parameters. Expected 0 to 4."
     usage
     exit 1
 fi
@@ -152,6 +156,8 @@ refreshSwrsVersions() {
   return 0
 }
 
+apps_to_create=0
+
 
 while [[ "$1" =~ ^- && ! "$1" == "--" ]]; do case $1 in
   -d | --drop-db )
@@ -191,6 +197,9 @@ while [[ "$1" =~ ^- && ! "$1" == "--" ]]; do case $1 in
     ;;
   -t | --pg-tap )
     actions+=('deployMocks' 'deployPgTapData')
+    ;;
+  --app-count )
+    apps_to_create=$2
     ;;
   -h | --help )
     usage
@@ -239,7 +248,6 @@ deployDevData() {
 
 deploySwrsDevData() {
   ./swrs_dev/deploy-swrs-data.sh --dev
-
   return 0;
 }
 
@@ -312,6 +320,15 @@ fi
 if [[ " ${actions[*]} " =~ " deployPgTapData " ]]; then
   echo 'Deploying pgTap test data'
   deployPgTapData
+fi
+
+if [[ $apps_to_create -gt 0 && $apps_to_create -lt 101 ]]; then
+  _psql -f "./dev/create_dev_applications.sql" -v num_apps="$apps_to_create"
+fi
+
+if [[ $apps_to_create -gt 100 ]]; then
+  echo "WARNING: ** --app-count was passed a value that is greater then the number of facilities (100) in each reporting year. Creating the maximum (100) instead of the passed value: $apps_to_create. **"
+  _psql -f "./dev/create_dev_applications.sql" -v num_apps=100
 fi
 
 if [[ " ${actions[*]} " =~ " refreshSwrsVersions " ]]; then
