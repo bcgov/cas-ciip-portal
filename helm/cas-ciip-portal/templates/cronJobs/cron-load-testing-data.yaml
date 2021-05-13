@@ -1,7 +1,8 @@
+{{- if hasSuffix "-dev" .Release.Namespace }}
 apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
-  name: {{ template "cas-ciip-portal.fullname" . }}-schema-deploy-data
+  name: {{ template "cas-ciip-portal.fullname" . }}-load-testing-data
   labels:
 {{ include "cas-ciip-portal.labels" . | indent 4 }}
   annotations:
@@ -14,7 +15,6 @@ spec:
   jobTemplate:
     spec:
       backoffLimit: 0
-      activeDeadlineSeconds: 1800
       template:
         metadata:
           labels:
@@ -54,7 +54,7 @@ spec:
                     fieldRef:
                       apiVersion: v1
                       fieldPath: metadata.namespace
-              name: {{ template "cas-ciip-portal.fullname" . }}-schema-deploy-data
+              name: {{ template "cas-ciip-portal.fullname" . }}-load-testing-data
               image: {{ .Values.image.schema.repository }}:{{ .Values.image.schema.tag }}
               resources:
                 limits:
@@ -69,8 +69,6 @@ spec:
                 - -c
                 - |
                   set -euo pipefail;
-                  if [[ "$(NAMESPACE)" == *-dev  ]]; then
-                  schema/data/deploy-data.sh --oc-project=$(NAMESPACE) --app-count 10;
-                  else
-                  schema/data/deploy-data.sh -r --oc-project=$(NAMESPACE);
-                  fi
+                  schema/data/deploy-data.sh --load-testing --oc-project=$(NAMESPACE);
+
+{{- end }}
