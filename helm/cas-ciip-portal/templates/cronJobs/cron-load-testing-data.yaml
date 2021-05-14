@@ -69,6 +69,6 @@ spec:
                 - -c
                 - |
                   set -euo pipefail;
-                  schema/data/deploy-data.sh --load-testing --oc-project=$(NAMESPACE);
+                  schema/data/deploy-data.sh --oc-project=$(NAMESPACE);
 
 {{- end }}
