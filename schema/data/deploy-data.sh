@@ -45,8 +45,8 @@ Options
 EOF
 }
 
-if [ "$#" -gt 4 ]; then
-    echo "Passed $# parameters. Expected 0 to 4."
+if [ "$#" -gt 5 ]; then
+    echo "Passed $# parameters. Expected 0 to 5."
     usage
     exit 1
 fi
