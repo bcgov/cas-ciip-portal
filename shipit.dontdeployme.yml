@@ -1,3 +1,17 @@
+dependencies:
+  override: []
+deploy:
+  override:
+    - echo 'Not to be deployed'
 review:
+  checklist: []
   monitoring:
     - iframe: https://app.sysdigcloud.com/#/dashboards/222088?last=3600
+      width: 400
+      height: 300
+ci:
+  hide:
+    - "ci/circleci: release/release_approval"
+links:
+  PVC_usage: https://app.sysdigcloud.com/#/dashboards/224524?last=3600
+  Health_overview: https://app.sysdigcloud.com/#/dashboards/225040?last=3600
