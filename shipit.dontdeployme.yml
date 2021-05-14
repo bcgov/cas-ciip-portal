@@ -7,8 +7,8 @@ review:
   checklist: []
   monitoring:
     - iframe: https://app.sysdigcloud.com/#/dashboards/222088?last=3600
-      width: 400
-      height: 300
+      width: 1200
+      height: 800
 ci:
   hide:
     - "ci/circleci: release/release_approval"
