@@ -19,31 +19,30 @@ export const KeyDatesComponent: React.FunctionComponent<Props> = ({query}) => {
     openedReportingYear?.applicationOpenTime ??
       nextReportingYear?.applicationOpenTime
   );
-  // Const endDate = defaultMoment(
-  //   openedReportingYear?.applicationCloseTime ??
-  //     nextReportingYear?.applicationCloseTime
-  // );
-  // const swrsDeadline = defaultMoment(
-  //   openedReportingYear?.swrsDeadline ?? nextReportingYear?.swrsDeadline
-  // );
+  const endDate = defaultMoment(
+    openedReportingYear?.applicationCloseTime ??
+      nextReportingYear?.applicationCloseTime
+  );
+  const swrsDeadline = defaultMoment(
+    openedReportingYear?.swrsDeadline ?? nextReportingYear?.swrsDeadline
+  );
 
   const keyDates = [
-    // {
-    //   date: swrsDeadline,
-    //   description: 'Industrial GHG reporting deadline',
-    //   key: '848tfh282740jd'
-    // },
+    {
+      date: swrsDeadline,
+      description: 'Industrial GHG reporting deadline',
+      key: '848tfh282740jd'
+    },
     {
       date: startDate,
       description: 'CIIP application forms open',
       key: 'j87kj39uhf8930'
+    },
+    {
+      date: endDate,
+      description: 'CIIP application form due',
+      key: 'kd9393hd8sy273'
     }
-    // ,
-    // {
-    //   date: endDate,
-    //   description: 'CIIP application form due',
-    //   key: 'kd9393hd8sy273'
-    // }
   ];
 
   const keyDatesRows = keyDates
