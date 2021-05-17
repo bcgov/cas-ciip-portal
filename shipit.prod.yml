@@ -2,9 +2,12 @@ dependencies:
   override: []
 deploy:
   override:
-    - echo 'Not to be deployed'
+    - git submodule update --init
+    - make install:
+        timeout: 2460
 review:
-  checklist: []
+  checklist:
+    - Is today not Friday?
   monitoring:
     - iframe: https://app.sysdigcloud.com/#/dashboards/222088?last=3600
       width: 1200
