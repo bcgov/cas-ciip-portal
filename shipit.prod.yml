@@ -6,9 +6,14 @@ deploy:
     - make install:
         timeout: 2460
 review:
-  checklist: []
+  checklist:
+    - Is today not Friday?
+  monitoring:
+    - iframe: https://app.sysdigcloud.com/#/dashboards/222088?last=3600
+      width: 1200
+      height: 800
 ci:
-  hide:
+  require:
     - "ci/circleci: release/release_approval"
 links:
   PVC_usage: https://app.sysdigcloud.com/#/dashboards/224524?last=3600
