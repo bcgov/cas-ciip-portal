@@ -13,7 +13,7 @@ review:
       width: 1200
       height: 800
 ci:
-  hide:
+  require:
     - "ci/circleci: release/release_approval"
 links:
   PVC_usage: https://app.sysdigcloud.com/#/dashboards/224524?last=3600
