@@ -13,6 +13,7 @@ interface FormData {
   productEmissions?: number;
   requiresEmissionAllocation?: boolean;
   requiresProductAmount?: boolean;
+  isMandatory?: boolean;
 }
 
 interface Props extends FieldProps<FormData> {
@@ -28,16 +29,6 @@ export const ProductFieldComponent: React.FunctionComponent<Props> = (
   props
 ) => {
   const {formData, query, naicsCode, onChange} = props;
-
-  const matchedAllowableProduct = naicsCode.allowableProducts.edges.find(
-    (p) => p.node.productId === formData.productRowId
-  );
-  if (matchedAllowableProduct) {
-    // Avoids type error because the dynamically added temp property does not exist on formData:
-    // eslint-disable-next-line @typescript-eslint/dot-notation
-    formData['_tempHideRemoveButton'] =
-      matchedAllowableProduct?.node.isMandatory;
-  }
 
   const productIsPublished =
     query.allProducts.edges.some(
@@ -111,6 +102,7 @@ export const ProductFieldComponent: React.FunctionComponent<Props> = (
 
   return (
     <>
+      {formData.isMandatory && 'Mandatory Product'}
       {!productIsPublished && archivedAlert}
       {!productInNaicsCode && notInNaicsAlert}
       {!hasSelectableProducts && noProductsToSelect}

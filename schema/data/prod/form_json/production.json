@@ -23,6 +23,9 @@
           },
           "isEnergyProduct": {
             "type": "boolean"
+          },
+          "isMandatory": {
+            "type": "boolean"
           }
         },
 
@@ -89,6 +92,9 @@
     "ui:remove-text": "Remove Product",
     "ui:field": "ProductsArrayField",
     "items": {
+      "ui:hasRemove": {
+        "isFalse": "isMandatory"
+      },
       "comments": {
         "ui:field": "AddCommentField",
         "ui:options": {
@@ -124,7 +130,8 @@
       },
       "requiresEmissionAllocation": { "ui:widget": "hidden" },
       "requiresProductAmount": { "ui:widget": "hidden" },
-      "isEnergyProduct": { "ui:widget": "hidden" }
+      "isEnergyProduct": { "ui:widget": "hidden" },
+      "isMandatory": { "ui:widget": "hidden" }
     }
   }
 }

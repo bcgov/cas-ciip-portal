@@ -65,7 +65,7 @@ const ApplicationWizardStep: React.FunctionComponent<Props> = ({
       input: {
         id: formResult.id,
         formResultPatch: {
-          formResult: cleanedResult
+          formResult: result
         }
       },
       messages: {

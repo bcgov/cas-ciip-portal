@@ -14,30 +14,32 @@ const ProductsArrayField: React.FunctionComponent<Props> = (props) => {
   const {ArrayField} = registry.fields;
 
   useEffect(() => {
+    console.log('effect!');
     const initializeFormResult = async (variables) => {
       await updateFormResultMutation(props.relay.environment, variables);
     };
-    const productionFormResult = formContext.ciipFormResult.formResult;
-    const allMandatoryProductsInitialized = naicsProducts.mandatoryProducts.edges.every(
-      (edge) => {
-        return productionFormResult.some(
-          (res) => res.rowId === edge.node.productByProductId.rowId
-        );
-      }
-    );
-    if (allMandatoryProductsInitialized) return;
-
-    const productsToInitialize = naicsProducts.mandatoryProducts.edges.filter(
-      (edge) =>
-        !productionFormResult.some(
-          (res) => res.productRowId === edge.node.productByProductId.rowId
+    const productionFormResult = formContext.ciipFormResult.formResult.map(
+      (product) => ({
+        ...product,
+        isMandatory: naicsProducts?.mandatoryProducts?.edges.some(
+          ({node}) => node.productByProductId.rowId === product.productRowId
         )
+      })
     );
+
+    const productsToInitialize =
+      naicsProducts?.mandatoryProducts?.edges.filter(
+        (edge) =>
+          !productionFormResult.some(
+            (res) => res.productRowId === edge.node.productByProductId.rowId
+          )
+      ) || [];
     const initializedFormResult = productionFormResult.concat(
       ...productsToInitialize.map((edge) => {
         return {
           ...edge.node.productByProductId,
-          productRowId: edge.node.productByProductId.rowId
+          productRowId: edge.node.productByProductId.rowId,
+          isMandatory: true
         };
       })
     );
@@ -49,7 +51,7 @@ const ProductsArrayField: React.FunctionComponent<Props> = (props) => {
         }
       }
     };
-    if (productsToInitialize.length > 0) initializeFormResult(variables);
+    initializeFormResult(variables);
   }, [naicsProducts]);
 
   return <ArrayField {...props} />;

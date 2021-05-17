@@ -14,9 +14,20 @@ const FormArrayFieldTemplate: React.FunctionComponent<ArrayFieldTemplateProps> =
   console.log('template formData', formData);
   return (
     <div className={className}>
-      {items.map((element, i) => {
-        const shouldRenderRemoveButton =
-          element.hasRemove && !formData[i]._tempHideRemoveButton;
+      {items.map((element) => {
+        const elementProps = element.children.props;
+        let shouldRenderRemoveButton = element.hasRemove;
+
+        if (
+          'ui:hasRemove' in elementProps.uiSchema &&
+          'isFalse' in elementProps.uiSchema['ui:hasRemove']
+        )
+          shouldRenderRemoveButton =
+            shouldRenderRemoveButton &&
+            !elementProps.formData[
+              elementProps.uiSchema['ui:hasRemove'].isFalse
+            ];
+
         return (
           <div key={element.index}>
             <Form.Row>
