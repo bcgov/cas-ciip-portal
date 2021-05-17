@@ -242,17 +242,17 @@ deployDevData() {
   _psql -f "./dev/user.sql"
   _psql -f "./dev/linked_product.sql"
   _psql -f "./dev/product_naics_code.sql"
-  _psql -f "./swrs_dev/override_last_swrs_reporting_year.sql"
+  _psql -f "./dev/override_last_swrs_reporting_year.sql"
   return 0;
 }
 
 deploySwrsDevData() {
-  ./swrs_dev/deploy-swrs-data.sh --dev
+  PGDATABASE="$database" ../.cas-ggircs/test/data/dev/deploy_data.sh --dev
   return 0;
 }
 
 deploySwrsLoadTestingData() {
-  ./swrs_dev/deploy-swrs-data.sh --load-test
+  PGDATABASE="$database" ../.cas-ggircs/test/data/dev/deploy_data.sh --load-test
   return 0;
 }
 
