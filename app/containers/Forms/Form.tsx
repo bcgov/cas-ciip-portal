@@ -44,7 +44,7 @@ const CUSTOM_FIELDS = {
   emissionGas: EmissionGasFields,
   ProductsArrayField: (props) => (
     <ProductsArrayField
-      mandatoryProducts={
+      naicsProducts={
         props.formContext.ciipFormResult.applicationByApplicationId
           .latestDraftRevision.naicsCode
       }
@@ -259,7 +259,7 @@ export default createFragmentContainer(FormComponent, {
           naicsCode {
             ...ProductRowIdField_naicsCode
             ...ProductField_naicsCode
-            ...ProductsArrayField_mandatoryProducts
+            ...ProductsArrayField_naicsProducts
           }
         }
       }

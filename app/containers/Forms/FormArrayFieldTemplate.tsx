@@ -8,25 +8,29 @@ const FormArrayFieldTemplate: React.FunctionComponent<ArrayFieldTemplateProps> =
   onAddClick,
   uiSchema,
   idSchema,
-  className
+  className,
+  formData
 }) => {
+  console.log('template formData', formData);
   return (
     <div className={className}>
-      {items.map((element) => {
+      {items.map((element, i) => {
+        const shouldRenderRemoveButton =
+          element.hasRemove && !formData[i]._tempHideRemoveButton;
         return (
           <div key={element.index}>
             <Form.Row>
               {uiSchema.linkProduct ? (
-                <Col xs={12} md={element.hasRemove ? 6 : 9}>
+                <Col xs={12} md={shouldRenderRemoveButton ? 6 : 9}>
                   {element.children}
                 </Col>
               ) : (
-                <Col xs={12} md={element.hasRemove ? 11 : 12}>
+                <Col xs={12} md={shouldRenderRemoveButton ? 11 : 12}>
                   {element.children}
                 </Col>
               )}
 
-              {element.hasRemove && uiSchema.linkProduct && (
+              {shouldRenderRemoveButton && uiSchema.linkProduct && (
                 <Col
                   xs={12}
                   md={{span: 1, offset: 1}}
@@ -41,7 +45,7 @@ const FormArrayFieldTemplate: React.FunctionComponent<ArrayFieldTemplateProps> =
                   </Button>
                 </Col>
               )}
-              {element.hasRemove && !uiSchema.linkProduct && (
+              {shouldRenderRemoveButton && !uiSchema.linkProduct && (
                 <Col xs={12} md={1}>
                   <div className="remove-button-container">
                     <Button

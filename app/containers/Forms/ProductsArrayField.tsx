@@ -1,16 +1,16 @@
 import React, {useEffect} from 'react';
 import {FieldProps} from '@rjsf/core';
 import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
-import {ProductsArrayField_mandatoryProducts} from 'ProductsArrayField_mandatoryProducts.graphql';
+import {ProductsArrayField_naicsProducts} from 'ProductsArrayField_naicsProducts.graphql';
 import updateFormResultMutation from 'mutations/form/updateFormResultMutation';
 
 interface Props extends FieldProps {
-  mandatoryProducts: ProductsArrayField_mandatoryProducts;
+  naicsProducts: ProductsArrayField_naicsProducts;
   relay: RelayProp;
 }
 
 const ProductsArrayField: React.FunctionComponent<Props> = (props) => {
-  const {mandatoryProducts, formContext, registry} = props;
+  const {naicsProducts, formContext, registry} = props;
   const {ArrayField} = registry.fields;
 
   useEffect(() => {
@@ -18,7 +18,7 @@ const ProductsArrayField: React.FunctionComponent<Props> = (props) => {
       await updateFormResultMutation(props.relay.environment, variables);
     };
     const productionFormResult = formContext.ciipFormResult.formResult;
-    const allMandatoryProductsInitialized = mandatoryProducts.productNaicsCodesByNaicsCodeId.edges.every(
+    const allMandatoryProductsInitialized = naicsProducts.mandatoryProducts.edges.every(
       (edge) => {
         return productionFormResult.some(
           (res) => res.rowId === edge.node.productByProductId.rowId
@@ -27,7 +27,7 @@ const ProductsArrayField: React.FunctionComponent<Props> = (props) => {
     );
     if (allMandatoryProductsInitialized) return;
 
-    const productsToInitialize = mandatoryProducts.productNaicsCodesByNaicsCodeId.edges.filter(
+    const productsToInitialize = naicsProducts.mandatoryProducts.edges.filter(
       (edge) =>
         !productionFormResult.some(
           (res) => res.productRowId === edge.node.productByProductId.rowId
@@ -50,16 +50,18 @@ const ProductsArrayField: React.FunctionComponent<Props> = (props) => {
       }
     };
     if (productsToInitialize.length > 0) initializeFormResult(variables);
-  }, [mandatoryProducts]);
+  }, [naicsProducts]);
 
   return <ArrayField {...props} />;
 };
 
 export default createFragmentContainer(ProductsArrayField, {
   // NOTE: It would be more ideal to have a reusable "product" fragment shared between here (productByProductId) and in ProductField_query to sync the queried properties needed by the ProductField
-  mandatoryProducts: graphql`
-    fragment ProductsArrayField_mandatoryProducts on NaicsCode {
-      productNaicsCodesByNaicsCodeId(condition: {isMandatory: true}) {
+  naicsProducts: graphql`
+    fragment ProductsArrayField_naicsProducts on NaicsCode {
+      mandatoryProducts: productNaicsCodesByNaicsCodeId(
+        condition: {isMandatory: true}
+      ) {
         edges {
           node {
             id

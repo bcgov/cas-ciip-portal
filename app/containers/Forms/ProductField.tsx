@@ -29,6 +29,16 @@ export const ProductFieldComponent: React.FunctionComponent<Props> = (
 ) => {
   const {formData, query, naicsCode, onChange} = props;
 
+  const matchedAllowableProduct = naicsCode.allowableProducts.edges.find(
+    (p) => p.node.productId === formData.productRowId
+  );
+  if (matchedAllowableProduct) {
+    // Avoids type error because the dynamically added temp property does not exist on formData:
+    // eslint-disable-next-line @typescript-eslint/dot-notation
+    formData['_tempHideRemoveButton'] =
+      matchedAllowableProduct?.node.isMandatory;
+  }
+
   const productIsPublished =
     query.allProducts.edges.some(
       ({node}) =>
@@ -37,12 +47,11 @@ export const ProductFieldComponent: React.FunctionComponent<Props> = (
     ) || !formData.productRowId;
 
   const productInNaicsCode =
-    naicsCode?.allProductsByNaicsCode.edges.some(
-      (edge) => edge.node.rowId === formData.productRowId
+    naicsCode?.allowableProducts.edges.some(
+      (edge) => edge.node.productId === formData.productRowId
     ) || !formData.productRowId;
 
-  const hasSelectableProducts =
-    naicsCode?.allProductsByNaicsCode?.edges.length > 0;
+  const hasSelectableProducts = naicsCode?.allowableProducts?.edges.length > 0;
 
   const handleProductChange = (productRowId: number) => {
     const product = query.allProducts.edges.find(
@@ -136,13 +145,11 @@ export default createFragmentContainer(ProductFieldComponent, {
   `,
   naicsCode: graphql`
     fragment ProductField_naicsCode on NaicsCode {
-      allProductsByNaicsCode: productsByProductNaicsCodeNaicsCodeIdAndProductId(
-        orderBy: PRODUCT_NAME_ASC
-      ) {
+      allowableProducts: productNaicsCodesByNaicsCodeId {
         edges {
           node {
-            rowId
-            productState
+            productId
+            isMandatory
           }
         }
       }

@@ -34,15 +34,38 @@ const ApplicationWizardStep: React.FunctionComponent<Props> = ({
   if ((!formResult && !confirmationPage) || !applicationRevision) return null;
 
   const [isSaved, setSaved] = useState(true);
+  const cleanTempFormData = (formData) => {
+    // Remove a temp prop that really shouldn't be in formData (and which we don't want to save)
+    // if this is the ProductsArrayField:
+    if (!Array.isArray(formData)) return formData;
+    if (!formData.some((field) => '_tempHideRemoveButton' in field)) {
+      return formData;
+    }
+    const cleanedResult = formData.map((productField) => {
+      // Selectively copy only the fields to be saved
+      const cleanedResultField = {};
+      Object.keys(productField).forEach((key) => {
+        if (key !== '_tempHideRemoveButton')
+          cleanedResultField[key] = productField[key];
+      });
+      return cleanedResultField;
+    });
+    return cleanedResult;
+  };
   // Function: store the form result
   const storeResult = async (result) => {
     setSaved(false);
+    const cleanedResult = cleanTempFormData(result);
+    console.log(
+      'this is what will be saved (_tempHideRemoveButton should not be present): ',
+      cleanedResult
+    );
     const {environment} = relay;
     const variables = {
       input: {
         id: formResult.id,
         formResultPatch: {
-          formResult: result
+          formResult: cleanedResult
         }
       },
       messages: {
