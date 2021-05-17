@@ -8,10 +8,8 @@ const FormArrayFieldTemplate: React.FunctionComponent<ArrayFieldTemplateProps> =
   onAddClick,
   uiSchema,
   idSchema,
-  className,
-  formData
+  className
 }) => {
-  console.log('template formData', formData);
   return (
     <div className={className}>
       {items.map((element) => {
@@ -21,12 +19,13 @@ const FormArrayFieldTemplate: React.FunctionComponent<ArrayFieldTemplateProps> =
         if (
           'ui:hasRemove' in elementProps.uiSchema &&
           'isFalse' in elementProps.uiSchema['ui:hasRemove']
-        )
+        ) {
           shouldRenderRemoveButton =
             shouldRenderRemoveButton &&
             !elementProps.formData[
               elementProps.uiSchema['ui:hasRemove'].isFalse
             ];
+        }
 
         return (
           <div key={element.index}>

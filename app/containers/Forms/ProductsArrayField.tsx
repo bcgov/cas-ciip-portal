@@ -14,7 +14,6 @@ const ProductsArrayField: React.FunctionComponent<Props> = (props) => {
   const {ArrayField} = registry.fields;
 
   useEffect(() => {
-    console.log('effect!');
     const initializeFormResult = async (variables) => {
       await updateFormResultMutation(props.relay.environment, variables);
     };
