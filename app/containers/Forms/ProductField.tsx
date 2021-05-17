@@ -1,10 +1,12 @@
 import React from 'react';
-import {Alert} from 'react-bootstrap';
+import {Alert, OverlayTrigger, Tooltip} from 'react-bootstrap';
 import {FieldProps} from '@rjsf/core';
 import ObjectField from '@rjsf/core/dist/cjs/components/fields/ObjectField';
 import {createFragmentContainer, graphql} from 'react-relay';
 import {ProductField_query} from 'ProductField_query.graphql';
 import {ProductField_naicsCode} from 'ProductField_naicsCode.graphql';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faInfoCircle} from '@fortawesome/free-solid-svg-icons';
 
 interface FormData {
   productRowId?: number;
@@ -98,15 +100,36 @@ export const ProductFieldComponent: React.FunctionComponent<Props> = (
     </Alert>
   );
 
+  const mandatoryProductLabel = (
+    <strong>
+      Mandatory Product
+      <OverlayTrigger
+        overlay={
+          <Tooltip id="required-product-tooltip" placement="top">
+            Based on the NAICS code entered in the Administrative Data section,
+            reporting this product is required.
+          </Tooltip>
+        }
+      >
+        <FontAwesomeIcon icon={faInfoCircle} />
+      </OverlayTrigger>
+    </strong>
+  );
+
   const disableField = !productIsPublished || !productInNaicsCode;
 
   return (
     <>
-      {formData.isMandatory && 'Mandatory Product'}
       {!productIsPublished && archivedAlert}
       {!productInNaicsCode && notInNaicsAlert}
       {!hasSelectableProducts && noProductsToSelect}
+      {formData.isMandatory && mandatoryProductLabel}
       <ObjectField {...props} disabled={disableField} onChange={handleChange} />
+      <style jsx>{`
+        :global(.svg-inline--fa.fa-info-circle) {
+          margin-left: 0.5em;
+        }
+      `}</style>
     </>
   );
 };
