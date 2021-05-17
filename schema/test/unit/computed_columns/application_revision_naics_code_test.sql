@@ -18,7 +18,6 @@ do $$
   begin
     disable_triggers := '
       {
-        "application": ["_send_draft_application_email"],
         "application_revision_status": ["_status_change_email"],
         "ciip_user": ["_welcome_email"]
       }

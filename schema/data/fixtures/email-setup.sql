@@ -12,8 +12,7 @@ begin;
 select test_helper.mock_open_window();
 select test_helper.modify_triggers('enable');
 select test_helper.modify_triggers('disable', '{
-  "ciip_user_organisation":["_set_user_id","_send_request_for_access_email", "_send_access_approved_email"],
-  "application":["_send_draft_application_email"]
+  "ciip_user_organisation":["_set_user_id","_send_request_for_access_email", "_send_access_approved_email"]
 }');
 
 -- Create test users

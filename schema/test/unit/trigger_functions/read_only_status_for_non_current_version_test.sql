@@ -17,8 +17,6 @@ alter table ggircs_portal.application_revision_status disable trigger _status_ch
 select mocks.set_mocked_time_in_transaction('2021-04-01 14:49:54.191757-07'::timestamptz);
 
 
-alter table ggircs_portal.application
-  disable trigger _send_draft_application_email;
 truncate ggircs_portal.application restart identity cascade;
 
 select ggircs_portal.create_application_mutation_chain(1);

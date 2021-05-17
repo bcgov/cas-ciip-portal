@@ -9,7 +9,6 @@ begin;
     )
   );
 
-  alter table ggircs_portal.application disable trigger _send_draft_application_email;
   alter table ggircs_portal.application_revision_status disable trigger _status_change_email;
 
   -- Set a jwt token so that the created_by columns are not null on creation of application;
@@ -44,7 +43,6 @@ begin;
 
 
   alter table ggircs_portal.application_revision_status enable trigger _status_change_email;
-  alter table ggircs_portal.application enable trigger _send_draft_application_email;
   alter table ggircs_portal.application_revision_status enable trigger _create_or_refresh_review_step;
 
 commit;

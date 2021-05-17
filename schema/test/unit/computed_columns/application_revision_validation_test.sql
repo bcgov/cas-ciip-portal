@@ -31,7 +31,6 @@ language 'plpgsql' stable;
 
 select test_helper.clean_ggircs_portal_schema();
 alter table ggircs_portal.ciip_user disable trigger _welcome_email;
-alter table ggircs_portal.application disable trigger _send_draft_application_email;
 select test_helper.create_test_users();
 select test_helper.mock_open_window();
 select test_helper.create_applications(1, True, True);
