@@ -29,7 +29,6 @@ begin
       'sendMail',
       json_build_object(
         'type', 'draft_application_started',
-        'applicationId', new.id,
         'firstName', user_details.first_name,
         'lastName', user_details.last_name,
         'email', user_details.email_address,

@@ -344,3 +344,5 @@ views/ciip_carbon_tax_calculation [views/ciip_carbon_tax_calculation@v2.3.1] 202
 computed_columns/fuel_is_carbon_taxed [tables/fuel_001] 2021-05-05T21:43:53Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # Computed column to check if a fuel is carbon taxed
 application_validation_functions/carbon_taxed_fuels_match_rev_zero [tables/application_revision_validation_function computed_columns/fuel_is_carbon_taxed] 2021-05-05T23:59:47Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # Validation function that makes sure the total of the carbon taxed fuels match the revision zero of an application
 @v2.4.0 2021-05-12T22:18:37Z Dylan Leard <dylan@button.is> # release v2.4.0
+tables/application_005 [tables/application_004] 2021-05-17T16:37:16Z Dylan Leard <dylan@button.is> # Migration: remove draft application email trigger from application table
+trigger_functions/draft_application_started [trigger_functions/draft_application_started@v2.4.0] 2021-05-17T16:53:01Z Dylan Leard <dylan@button.is> # Migration: drop deprecated trigger function
