@@ -1,4 +1,4 @@
-import debounceMutationMiddleware from 'lib/relay-environment/debounce-mutations';
+import debounceMutationMiddleware from 'lib/relay/debounce-mutations';
 import {RelayNetworkLayerRequest} from 'react-relay-network-modern/node8';
 jest.mock('react-relay-network-modern/node8');
 

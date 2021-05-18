@@ -3,8 +3,7 @@ import {QueryRenderer} from 'react-relay';
 import NextApp from 'next/app';
 import {NextRouter} from 'next/router';
 import {CiipPageComponent} from 'next-env';
-import {getRequest} from 'relay-runtime';
-import {createEnvironment} from 'lib/relay-environment';
+import createEnvironment from 'lib/relay/environment';
 import ErrorBoundary from 'lib/error-boundary';
 import LoadingSpinner from 'components/LoadingSpinner';
 import ToasterHelper from 'components/helpers/Toaster';
@@ -12,6 +11,7 @@ import 'react-toastify/dist/ReactToastify.min.css';
 import PageRedirectHandler from 'components/PageRedirectHandler';
 import safeJsonParse from 'lib/safeJsonParse';
 import RelayModernEnvironment from 'relay-runtime/lib/store/RelayModernEnvironment';
+import {RecordMap} from 'relay-runtime/lib/store/RelayStoreTypes';
 
 interface AppProps {
   pageProps: {
@@ -20,9 +20,14 @@ interface AppProps {
     variables: Record<string, any>;
   };
   Component: CiipPageComponent;
+  records?: RecordMap;
 }
 
-export default class App extends NextApp<AppProps> {
+interface State {
+  records?: RecordMap;
+}
+
+export default class App extends NextApp<AppProps, {}, State> {
   static getInitialProps = async ({Component, ctx}) => {
     const initialProps = Component.getInitialProps
       ? await Component.getInitialProps(ctx)
@@ -36,6 +41,18 @@ export default class App extends NextApp<AppProps> {
     };
   };
 
+  static getDerivedStateFromProps(props) {
+    if (props.records) return {records: props.records};
+    if (typeof document !== 'undefined') {
+      const recordsData = document.getElementById('relay-data')?.innerHTML;
+      if (recordsData)
+        return {
+          records: JSON.parse(Buffer.from(recordsData, 'base64').toString())
+        };
+    }
+    return {};
+  }
+
   prevComponentProps = null;
   prevComponentClass = null;
 
@@ -45,14 +62,9 @@ export default class App extends NextApp<AppProps> {
       router,
       pageProps: {variables = {}}
     } = this.props;
-    const environment = createEnvironment(
-      JSON.stringify({
-        queryID: Component.query
-          ? getRequest(Component.query).params.name
-          : undefined,
-        variables: {...variables, ...router.query}
-      })
-    );
+    const {records} = this.state;
+    const environment = createEnvironment(records);
+    console.log('component', Component.query);
 
     // This is part of our query infrastructure.
     //

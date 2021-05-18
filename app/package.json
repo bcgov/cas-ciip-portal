@@ -78,6 +78,7 @@
     "react-relay-network-modern": "^6.0.0",
     "react-relay-network-modern-ssr": "^1.4.0",
     "react-toastify": "^7.0.3",
+    "regenerator-runtime": "^0.13.7",
     "relay-runtime": "^11.0.1",
     "remove": "^0.1.5",
     "styled-jsx": "^3.4.2"

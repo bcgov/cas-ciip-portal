@@ -5,6 +5,7 @@ import {
   batchMiddleware,
   cacheMiddleware
 } from 'react-relay-network-modern/node8';
+import RelayClientSSR from 'react-relay-network-modern-ssr/node8/client';
 import debounceMutationMiddleware from './debounce-mutations';
 
 const source = new RecordSource();
@@ -15,10 +16,13 @@ const oneMinute = 60 * 1000;
 let storeEnvironment = null;
 
 export default {
-  createEnvironment: () => {
+  createEnvironment: (relayBootstrapData) => {
+    const relayClientSSR = new RelayClientSSR(relayBootstrapData);
+
     storeEnvironment = new Environment({
       // @ts-ignore
       network: new RelayNetworkLayer([
+        relayClientSSR.getMiddleware({lookup: true}),
         cacheMiddleware({
           size: 100, // Max 100 requests
           // Number in milliseconds, how long records stay valid in cache (default: 900000, 15 minutes).
