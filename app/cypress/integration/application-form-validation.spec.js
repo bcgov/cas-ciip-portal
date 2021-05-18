@@ -52,7 +52,7 @@ describe('When viewing an application in draft as a reporter', () => {
     cy.get('#root_operator_mailingAddress_postalCode').clear().type('H2O 0H0');
     cy.get('#root_operator_mailingAddress_province').select('Alberta');
 
-    // Operational rep details
+    // Operation rep details
     cy.get('#root_operationalRepresentative_firstName').clear().type('John');
     cy.get('#root_operationalRepresentative_lastName').clear().type('Smith');
     cy.get('#root_operationalRepresentative_position').clear().type('CEO');
@@ -61,7 +61,7 @@ describe('When viewing an application in draft as a reporter', () => {
       .type('john@acme.com');
     cy.get('#root_operationalRepresentative_phone').clear().type('9009009001');
 
-    // Operational rep mailing address
+    // Operation rep mailing address
     cy.get('#root_operationalRepresentative_mailingAddress_streetAddress')
       .clear()
       .type('100 North Pole');
