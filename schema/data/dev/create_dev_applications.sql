@@ -2,7 +2,6 @@ begin;
 
   truncate ggircs_portal.application restart identity cascade;
 
-  alter table ggircs_portal.application disable trigger _send_draft_application_email;
   alter table ggircs_portal.application_revision_status disable trigger _status_change_email;
 
   -- Set a jwt token so that the created_by columns are not null on creation of application;
@@ -95,5 +94,7 @@ $$ language plpgsql volatile;
 select add_dev_apps(:num_apps);
 
 drop function add_dev_apps;
+
+alter table ggircs_portal.application_revision_status enable trigger _status_change_email;
 
 commit;
