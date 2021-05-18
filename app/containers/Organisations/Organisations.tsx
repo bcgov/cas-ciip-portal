@@ -71,11 +71,11 @@ export const OrganisationsComponent: React.FunctionComponent<Props> = (
         <Card.Body>
           Operator, Operation Representative, and Reporting Operation are
           defined in the{' '}
-          <a href="http://www.bclaws.ca/civix/document/id/complete/statreg/14029_01">
+          <a href="https://www.bclaws.ca/civix/document/id/complete/statreg/14029_01">
             Greenhouse Gas Industrial Reporting and Control Act
           </a>{' '}
           and{' '}
-          <a href="http://www.bclaws.ca/civix/document/id/lc/statreg/249_2015">
+          <a href="https://www.bclaws.ca/civix/document/id/lc/statreg/249_2015">
             Greenhouse Gas Emission Reporting Regulation
           </a>
           .
@@ -154,11 +154,11 @@ export const OrganisationsComponent: React.FunctionComponent<Props> = (
                     submitted by the Operator of the Reporting Operation or, if
                     there is more than one Operator, the Designated Operator as
                     defined by the{' '}
-                    <Alert.Link href="http://www.bclaws.ca/civix/document/id/complete/statreg/14029_01">
+                    <Alert.Link href="https://www.bclaws.ca/civix/document/id/complete/statreg/14029_01">
                       Greenhouse Gas Industrial Reporting and Control Act
                     </Alert.Link>{' '}
                     and{' '}
-                    <Alert.Link href="http://www.bclaws.ca/civix/document/id/lc/statreg/249_2015">
+                    <Alert.Link href="https://www.bclaws.ca/civix/document/id/lc/statreg/249_2015">
                       Greenhouse Gas Emission Reporting Regulation
                     </Alert.Link>
                     . Other representatives of the Reporting Operation may

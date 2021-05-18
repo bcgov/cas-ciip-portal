@@ -36,7 +36,7 @@ class Privacy extends Component<Props> {
             personal information in accordance with the{' '}
             <em>
               <a
-                href="http://www.bclaws.ca/Recon/document/ID/freeside/96165_00"
+                href="https://www.bclaws.ca/Recon/document/ID/freeside/96165_00"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -193,7 +193,7 @@ class Privacy extends Component<Props> {
             audit log is retained for 2 years. Information collected or created
             by the Government of B.C. is maintained in accordance with{' '}
             <a
-              href="http://www.gov.bc.ca/citz/iao/records_mgmt/"
+              href="https://www.gov.bc.ca/citz/iao/records_mgmt/"
               target="_blank"
               rel="noopener noreferrer"
             >

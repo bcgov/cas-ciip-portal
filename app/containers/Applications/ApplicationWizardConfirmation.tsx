@@ -126,7 +126,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
                 contained in this application, or information contained in
                 emissions reports submitted under the{' '}
                 <a
-                  href="http://www.bclaws.ca/civix/document/id/complete/statreg/14029_01"
+                  href="https://www.bclaws.ca/civix/document/id/complete/statreg/14029_01"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -136,7 +136,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
                 contractors and agencies for the purpose of administering the
                 CleanBC Program for Industry or the{' '}
                 <a
-                  href="http://www.bclaws.ca/civix/document/id/complete/statreg/14029_01"
+                  href="https://www.bclaws.ca/civix/document/id/complete/statreg/14029_01"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
