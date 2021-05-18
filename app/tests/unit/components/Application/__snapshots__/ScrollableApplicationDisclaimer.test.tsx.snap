@@ -1,0 +1,74 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Scrollable application disclaimer should match the last snapshot 1`] = `
+<Fragment>
+  <CardBody>
+    <CardTitle
+      className="blue"
+    >
+      CIIP Application Disclaimer
+      <small
+        className="jsx-1928048576"
+      >
+        <a
+          className="jsx-1928048576"
+          href="/resources/application-disclaimer"
+          target="_blank"
+        >
+          (
+          <FontAwesomeIcon
+            border={false}
+            className=""
+            fixedWidth={false}
+            flip={null}
+            icon={
+              Object {
+                "icon": Array [
+                  512,
+                  512,
+                  Array [],
+                  "f35d",
+                  "M432,320H400a16,16,0,0,0-16,16V448H64V128H208a16,16,0,0,0,16-16V80a16,16,0,0,0-16-16H48A48,48,0,0,0,0,112V464a48,48,0,0,0,48,48H400a48,48,0,0,0,48-48V336A16,16,0,0,0,432,320ZM488,0h-128c-21.37,0-32.05,25.91-17,41l35.73,35.73L135,320.37a24,24,0,0,0,0,34L157.67,377a24,24,0,0,0,34,0L435.28,133.32,471,169c15,15,41,4.5,41-17V24A24,24,0,0,0,488,0Z",
+                ],
+                "iconName": "external-link-alt",
+                "prefix": "fas",
+              }
+            }
+            inverse={false}
+            listItem={false}
+            mask={null}
+            pull={null}
+            pulse={false}
+            rotation={null}
+            size={null}
+            spin={false}
+            swapOpacity={false}
+            symbol={false}
+            title=""
+            transform={null}
+          />
+          expand)
+        </a>
+      </small>
+    </CardTitle>
+    <Card
+      body={false}
+    >
+      <div
+        className="jsx-1928048576 show-scrollbar"
+        id="disclaimer-text"
+        tabIndex={0}
+      >
+        <CardBody>
+          <LegalDisclaimerText />
+        </CardBody>
+      </div>
+    </Card>
+  </CardBody>
+  <JSXStyle
+    id="1928048576"
+  >
+    #disclaimer-text.jsx-1928048576{max-height:19.2em;background:#eee;overflow-y:scroll;}.show-scrollbar.jsx-1928048576::-webkit-scrollbar{-webkit-appearance:none;width:8px;}.show-scrollbar.jsx-1928048576::-webkit-scrollbar-thumb{border-radius:4px;background-color:rgba(0,0,0,0.5);box-shadow:0 0 1px rgba(255,255,255,0.5);}small.jsx-1928048576{margin-left:0.5em;}
+  </JSXStyle>
+</Fragment>
+`;

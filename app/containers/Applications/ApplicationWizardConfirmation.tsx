@@ -8,6 +8,7 @@ import {ApplicationWizardConfirmation_applicationRevision} from 'ApplicationWiza
 import ApplicationDetailsContainer from './ApplicationDetailsContainer';
 import ApplicationOverrideJustification from 'components/Application/ApplicationOverrideJustification';
 import {FormJson} from 'next-env';
+import ScrollableApplicationDisclaimer from 'components/Application/ScrollableApplicationDisclaimer';
 
 /*
  * The ApplicationWizardConfirmation renders a summary of the data submitted in the application,
@@ -112,13 +113,38 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
               <h2>Before you submit</h2>
             </Card.Header>
             <Card.Body>
-              By submitting the application the applicant agrees that the
-              information contained on this application, or information
-              contained in emission reports under the Greenhouse Gas Industrial
-              Reporting and Control Act, may be disclosed to British Columbia
-              government employees, contractors and agencies for the purpose of
-              administering the CleanBC Program for Industry or the Greenhouse
-              Gas Industrial Reporting and Control Act.
+              <p>
+                Thank you for reviewing your application to the CleanBC
+                Industrial Incentive Program.
+              </p>
+              <p>
+                Your application is almost complete. Prior to submitting your
+                application, please review and accept the following terms below.
+              </p>
+              <p>
+                By submitting the application you agree that the information
+                contained in this application, or information contained in
+                emissions reports submitted under the{' '}
+                <a
+                  href="http://www.bclaws.ca/civix/document/id/complete/statreg/14029_01"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <em>Greenhouse Gas Industrial Reporting and Control Act</em>
+                </a>
+                , may be disclosed to British Columbia government employees,
+                contractors and agencies for the purpose of administering the
+                CleanBC Program for Industry or the{' '}
+                <a
+                  href="http://www.bclaws.ca/civix/document/id/complete/statreg/14029_01"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <em>Greenhouse Gas Industrial Reporting and Control Act</em>
+                </a>
+                .
+              </p>
+              <ScrollableApplicationDisclaimer />
             </Card.Body>
           </Card>
           <br />
