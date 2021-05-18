@@ -69,6 +69,7 @@ export default class App extends NextApp<AppProps> {
         >
           <QueryRenderer
             environment={environment}
+            fetchPolicy="store-and-network"
             query={Component.query}
             variables={{
               ...variables,
