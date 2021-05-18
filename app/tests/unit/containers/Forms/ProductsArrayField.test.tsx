@@ -53,7 +53,6 @@ const getTestElement = ({noNaicsCode = false, relay = null}) => {
 describe('ProductsArrayField', () => {
   it('no NAICS code specified', () => {
     const wrapper = shallow(getTestElement({noNaicsCode: true}));
-    expect(wrapper.find('Relay(ProductField)').exists()).toBeFalse();
     expect(wrapper).toMatchSnapshot();
   });
   it('NAICS code specified, with allowable products', () => {
