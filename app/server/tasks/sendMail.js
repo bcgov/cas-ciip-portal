@@ -8,7 +8,6 @@ const createOrganisationAccessRequestMail = require('../emailTemplates/requestFo
 const createOrganisationAccessApprovedMail = require('../emailTemplates/organisationAccessApproved.js');
 const createNotifyAdminApplicationSubmittedMail = require('../emailTemplates/notifyAdminApplicationSubmitted.js');
 const createNotifyAdminAccessRequestMail = require('../emailTemplates/notifyAdminOrganisationAccess');
-const createDraftApplicationStartedMail = require('../emailTemplates/draftApplicationStarted');
 dotenv.config();
 
 const adminEmail = process.env.ADMIN_EMAIL;
@@ -145,18 +144,6 @@ module.exports = async ({
         operatorName
       });
       email = receiverEmail;
-      break;
-    case 'draft_application_started':
-      subject = 'CIIP Draft Application Started';
-      htmlContent = createDraftApplicationStartedMail({
-        applicationId,
-        firstName,
-        lastName,
-        email,
-        operatorName,
-        facilityName,
-        contactEmail: adminEmail
-      });
       break;
     default:
       htmlContent = null;

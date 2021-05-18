@@ -128,38 +128,6 @@ describe('Organisation access request emails', () => {
   });
 });
 
-describe('Draft application started email', () => {
-  beforeEach(() => {
-    cy.cleanSchema();
-    cy.deployProdData();
-    cy.sqlFixture('fixtures/email/draft-application-setup');
-    cy.mockLogin('reporter');
-    cy.request('DELETE', 'localhost:8025/api/v1/messages');
-    cy.wait(500);
-  });
-
-  it('emails the reporter when they start a new application', () => {
-    cy.visit('/reporter/facilities?filterArgs={"organisationRowId"%3A200}');
-    cy.get('#page-content');
-
-    // Assumption: The first facility with an 'Apply' button is the one created in test setup
-    cy.contains('Apply for CIIP').click();
-    cy.contains('Begin').click();
-    cy.wait(500);
-    cy.request('localhost:8025/api/v1/messages').then((response) => {
-      const message = response.body[0];
-      expect(message.To[0].Mailbox).to.contain('reporter');
-      expect(message.Content.Headers.Subject[0]).to.contain('CIIP');
-      expect(decoded(message.Content.Body)).to.satisfy(
-        (msg) =>
-          msg.includes('Thank you for starting an application') &&
-          msg.includes('MacDonalds Agriculture, Ltd.') &&
-          msg.includes('Farm')
-      );
-    });
-  });
-});
-
 describe('Confirmation emails', () => {
   before(() => {
     cy.wait(500);

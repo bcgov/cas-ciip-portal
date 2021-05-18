@@ -7,8 +7,6 @@ begin;
 select plan(63);
 
 truncate ggircs_portal.application restart identity cascade;
-alter table ggircs_portal.application
-  disable trigger _send_draft_application_email;
 
 -- Set time where application is open, reporting year 2020
 select mocks.set_mocked_time_in_transaction('2021-07-03 00:00:00.000000-07'::timestamptz);

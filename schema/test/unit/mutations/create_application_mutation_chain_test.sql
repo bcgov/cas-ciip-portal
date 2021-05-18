@@ -11,8 +11,6 @@ select has_function(
 );
 
 alter table ggircs_portal.application_revision_status disable trigger _status_change_email;
-alter table ggircs_portal.application
-  disable trigger _send_draft_application_email;
 
 truncate table ggircs_portal.organisation restart identity cascade;
 insert into ggircs_portal.organisation(operator_name) values ('test org');

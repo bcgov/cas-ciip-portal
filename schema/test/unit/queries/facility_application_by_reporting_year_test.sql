@@ -7,8 +7,6 @@ select plan(4);
 
 truncate table ggircs_portal.application restart identity cascade;
 alter table ggircs_portal.application_revision_status disable trigger _status_change_email;
-alter table ggircs_portal.application
-  disable trigger _send_draft_application_email;
 
 -- create one applicationin 2018, two in 2019, and three in 2020
 select test_helper.mock_open_window(2018);
