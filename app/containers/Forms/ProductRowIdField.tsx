@@ -60,7 +60,7 @@ export const ProductRowIdFieldComponent: React.FunctionComponent<Props> = (
       archivedProductNames: props.query.archived.edges.map(
         ({node}) => node.productName
       ),
-      productIdsByNaicsCode: props.naicsCode?.productsByNaicsCode.edges.map(
+      productIdsByNaicsCode: props.naicsCode?.productsByNaicsCode?.edges.map(
         ({node}) => node.rowId
       )
     }),
