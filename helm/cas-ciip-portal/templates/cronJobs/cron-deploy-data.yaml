@@ -69,7 +69,7 @@ spec:
                 - -c
                 - |
                   set -euo pipefail;
-                  if [[ "$(NAMESPACE)" == *-dev  ]]; then
+                  if [[ "$NAMESPACE" == *-dev  ]]; then
                   schema/data/deploy-data.sh --oc-project=$(NAMESPACE) --app-count 10;
                   else
                   schema/data/deploy-data.sh -r --oc-project=$(NAMESPACE);
