@@ -11,7 +11,7 @@ port=${PGPORT:-5432}
 # -----------------------------------------------------------------------------
 usage() {
     cat << EOF
-$0 [-d] [-p] [-s] [-h]
+$0 [-d] [-p] [-s] [-t] [-prod] [--swrs-dev] [--swrs-load-testing] [--app-count <n>] [-h]
 
 Upserts test data in the $database database, and deploys the schemas using sqitch if needed.
 If run without the corresponding options, this script will deploy the swrs and portal schemas
@@ -25,18 +25,28 @@ Options
     Deploy production data only
   -dev, --dev-data
     Deploy development data. Includes prod data
+  --swrs-dev
+    Deploy the swrs dev data
+  --swrs-load-testing
+    Deploy the swrs load-testing data
+  -t, --pg-tap
+    Deploy test data for pgTap database test suite
   -s, --deploy-swrs-schema
     Redeploys the swrs schema and inserts the swrs test reports. This requires the .cas-ggircs submodule to be initialized
   -p, --deploy-portal-schema
     Redeploys the portal schema
+  --app-count <n>
+    Creates n applications for each operator in the dev data that reference an application status
+    Affected operator types: (Draft operator, Submitted operator, Changes requested operator)
+    n must be an integer from 1-100
   -h, --help
     Prints this message
 
 EOF
 }
 
-if [ "$#" -gt 3 ]; then
-    echo "Passed $# parameters. Expected 0 to 3."
+if [ "$#" -gt 5 ]; then
+    echo "Passed $# parameters. Expected 0 to 5."
     usage
     exit 1
 fi
@@ -99,7 +109,7 @@ deploySwrs() {
   sqitch_revert
   _sqitch deploy
   popd
-  _psql <<EOF
+    _psql <<EOF
   insert into
     swrs_extract.eccc_xml_file (id, xml_file)
     overriding system value
@@ -146,6 +156,8 @@ refreshSwrsVersions() {
   return 0
 }
 
+apps_to_create=0
+
 
 while [[ "$1" =~ ^- && ! "$1" == "--" ]]; do case $1 in
   -d | --drop-db )
@@ -176,6 +188,18 @@ while [[ "$1" =~ ^- && ! "$1" == "--" ]]; do case $1 in
     ;;
   -r | --refresh-swrs-versions )
     actions+=('refreshSwrsVersions')
+    ;;
+  --swrs-dev )
+    actions+=('deploySwrsDevData')
+    ;;
+  --swrs-load-testing )
+    actions+=('deploySwrsLoadTestingData')
+    ;;
+  -t | --pg-tap )
+    actions+=('deployMocks' 'deployPgTapData')
+    ;;
+  --app-count )
+    apps_to_create=$2
     ;;
   -h | --help )
     usage
@@ -211,6 +235,28 @@ deployTestData() {
 }
 
 deployDevData() {
+  deployProdData
+  _psql -f "./dev/reporting_year.sql"
+  _psql -f "./dev/product.sql"
+  _psql -f "./dev/benchmark.sql"
+  _psql -f "./dev/user.sql"
+  _psql -f "./dev/linked_product.sql"
+  _psql -f "./dev/product_naics_code.sql"
+  _psql -f "./dev/override_last_swrs_reporting_year.sql"
+  return 0;
+}
+
+deploySwrsDevData() {
+  PGDATABASE="$database" ../.cas-ggircs/test/data/dev/deploy_data.sh --dev
+  return 0;
+}
+
+deploySwrsLoadTestingData() {
+  PGDATABASE="$database" ../.cas-ggircs/test/data/dev/deploy_data.sh --load-test
+  return 0;
+}
+
+deployPgTapData() {
   deployProdData
   _psql -f "./dev/facility.sql"
   _psql -f "./dev/reporting_year.sql"
@@ -255,10 +301,36 @@ if [[ " ${actions[*]} " =~ " deployTest " ]]; then
   echo 'Deploying test production data'
   deployTestData
 fi
+
+if [[ " ${actions[*]} " =~ " deploySwrsDevData " ]]; then
+  echo 'Deploying swrs development data'
+  deploySwrsDevData
+fi
+
+if [[ " ${actions[*]} " =~ " deploySwrsLoadTestingData " ]]; then
+  echo 'Deploying swrs load-testing data'
+  deploySwrsLoadTestingData
+fi
+
 if [[ " ${actions[*]} " =~ " deployDev " ]]; then
   echo 'Deploying development data'
   deployDevData
 fi
+
+if [[ " ${actions[*]} " =~ " deployPgTapData " ]]; then
+  echo 'Deploying pgTap test data'
+  deployPgTapData
+fi
+
+if [[ $apps_to_create -gt 0 && $apps_to_create -lt 101 ]]; then
+  _psql -f "./dev/create_dev_applications.sql" -v num_apps="$apps_to_create"
+fi
+
+if [[ $apps_to_create -gt 100 ]]; then
+  echo "WARNING: ** --app-count was passed a value that is greater then the number of facilities (100) in each reporting year. Creating the maximum (100) instead of the passed value: $apps_to_create. **"
+  _psql -f "./dev/create_dev_applications.sql" -v num_apps=100
+fi
+
 if [[ " ${actions[*]} " =~ " refreshSwrsVersions " ]]; then
   refreshSwrsVersions
 fi
