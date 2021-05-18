@@ -9,7 +9,7 @@ interface Props extends FieldProps {
   relay: RelayProp;
 }
 
-const ProductsArrayField: React.FunctionComponent<Props> = (props) => {
+export const ProductsArrayField: React.FunctionComponent<Props> = (props) => {
   const {naicsProducts, formContext, registry} = props;
   const {ArrayField} = registry.fields;
 
