@@ -39,6 +39,7 @@ export const ProductsArrayFieldComponent: React.FunctionComponent<Props> = (
       ...productsToInitialize.map((edge) => {
         return {
           ...edge.node.productByProductId,
+          productUnits: edge.node.productByProductId.units,
           productRowId: edge.node.productByProductId.rowId,
           isMandatory: true
         };
