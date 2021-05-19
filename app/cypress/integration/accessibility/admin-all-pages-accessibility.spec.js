@@ -15,7 +15,7 @@ describe('When logged in as an admin', () => {
     cy.checkA11y();
   });
 
-  it.skip('The user list page has no detectable ally violations on load', () => {
+  it('The user list page has no detectable ally violations on load', () => {
     cy.mockLogin('admin');
     cy.visit('/admin/users');
     cy.url().should('include', '/admin/users');
@@ -62,7 +62,7 @@ describe('When logged in as an admin', () => {
     cy.checkA11y();
   });
 
-  it.skip('The products & benchmarks linking modal has no detectable ally violations on open', () => {
+  it('The products & benchmarks linking modal has no detectable ally violations on open', () => {
     cy.mockLogin('admin');
     cy.visit('/admin/products-benchmarks');
     cy.url().should('include', '/admin/products-benchmarks');
@@ -77,7 +77,7 @@ describe('When logged in as an admin', () => {
     cy.checkA11y();
   });
 
-  it.skip('The products & benchmarks product modal has no detectable ally violations on open', () => {
+  it('The products & benchmarks product modal has no detectable ally violations on open', () => {
     cy.mockLogin('admin');
     cy.visit('/admin/products-benchmarks');
     cy.url().should('include', '/admin/products-benchmarks');
@@ -92,7 +92,7 @@ describe('When logged in as an admin', () => {
     cy.checkA11y();
   });
 
-  it.skip('The products & benchmarks benchmark modal has no detectable ally violations on open', () => {
+  it('The products & benchmarks benchmark modal has no detectable ally violations on open', () => {
     cy.mockLogin('admin');
     cy.visit('/admin/products-benchmarks');
     cy.url().should('include', '/admin/products-benchmarks');
@@ -107,7 +107,7 @@ describe('When logged in as an admin', () => {
     cy.checkA11y();
   });
 
-  it.skip('The reporting-years page has no detectable ally violations on load', () => {
+  it('The reporting-years page has no detectable ally violations on load', () => {
     cy.mockLogin('admin');
     cy.visit('/admin/reporting-years');
     cy.url().should('include', '/admin/reporting-years');
@@ -116,7 +116,7 @@ describe('When logged in as an admin', () => {
     cy.checkA11y();
   });
 
-  it.skip('The reporting-years new reporting year modal has no detectable ally violations on open', () => {
+  it('The reporting-years new reporting year modal has no detectable ally violations on open', () => {
     cy.mockLogin('admin');
     cy.visit('/admin/reporting-years');
     cy.url().should('include', '/admin/reporting-years');
@@ -126,7 +126,7 @@ describe('When logged in as an admin', () => {
     cy.checkA11y();
   });
 
-  it.skip('The reporting-years edit reporting year modal has no detectable ally violations on open', () => {
+  it('The reporting-years edit reporting year modal has no detectable ally violations on open', () => {
     cy.mockLogin('admin');
     cy.visit('/admin/reporting-years');
     cy.url().should('include', '/admin/reporting-years');

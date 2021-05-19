@@ -87,10 +87,13 @@ export const LinkedProductsContainer: React.FunctionComponent<Props> = ({
       centered
       size="xl"
       show
+      aria-labelledby="linked-products-header"
       onHide={() => setLinkProductModalShow(false)}
     >
       <Modal.Header closeButton style={{color: 'white', background: '#003366'}}>
-        <Modal.Title>Product Associations</Modal.Title>
+        <Modal.Title id="linked-products-header">
+          Product Associations
+        </Modal.Title>
       </Modal.Header>
       <Modal.Body style={{background: '#f5f5f5'}}>
         <Container>
