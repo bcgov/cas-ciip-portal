@@ -73,7 +73,7 @@ describe('When an application does not have errors', () => {
 
   it('The override justification box should not appear', () => {
     cy.mockLogin('reporter');
-    const applicationId = window.btoa('["applications", 2]');
+    const applicationId = window.btoa('["applications",2]');
     cy.visit(`/reporter/application/${applicationId}?confirmationPage=true`);
     cy.url().should('include', '/reporter/application');
     cy.get('.btn').contains('Submit Application');

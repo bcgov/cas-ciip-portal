@@ -151,9 +151,9 @@ describe('When viewing an application in draft as a reporter', () => {
 
     cy.get('div.card-header').contains('Form input saved');
     cy.contains('Continue').click();
-    cy.get('#page-content h1').contains('Emission');
+    cy.get('#page-content h1').contains('SWRS Onsite Emissions');
     cy.visit(summaryPageUrl);
-    cy.contains('Administration Data');
+    cy.contains('Administrative Data');
     cy.get('.admin-2020.summary-card').happoScreenshot({
       component: 'Admin Summary Card',
       variant: 'no errors'
