@@ -69,8 +69,8 @@ export const OrganisationsComponent: React.FunctionComponent<Props> = (
     <>
       <Card bg="light">
         <Card.Body>
-          Operator, Operator Representative, and Reporting Operation are defined
-          in the{' '}
+          Operator, Operation Representative, and Reporting Operation are
+          defined in the{' '}
           <a href="http://www.bclaws.ca/civix/document/id/complete/statreg/14029_01">
             Greenhouse Gas Industrial Reporting and Control Act
           </a>{' '}

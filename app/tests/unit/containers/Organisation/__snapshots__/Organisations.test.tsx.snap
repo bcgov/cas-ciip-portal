@@ -7,7 +7,7 @@ exports[`Organisations should render no organisations if the user has not reques
     body={false}
   >
     <CardBody>
-      Operator, Operator Representative, and Reporting Operation are defined in the
+      Operator, Operation Representative, and Reporting Operation are defined in the
        
       <a
         href="http://www.bclaws.ca/civix/document/id/complete/statreg/14029_01"
@@ -170,7 +170,7 @@ exports[`Organisations should render the user's requested organisations 1`] = `
     body={false}
   >
     <CardBody>
-      Operator, Operator Representative, and Reporting Operation are defined in the
+      Operator, Operation Representative, and Reporting Operation are defined in the
        
       <a
         href="http://www.bclaws.ca/civix/document/id/complete/statreg/14029_01"

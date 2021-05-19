@@ -56,7 +56,7 @@
       },
       "operationalRepresentative": {
         "type": "object",
-        "title": "Operational Representative",
+        "title": "Operation Representative",
         "required": ["email", "phone", "lastName", "position", "firstName"],
         "properties": {
           "email": {
@@ -82,7 +82,7 @@
           },
           "mailingAddress": {
             "$ref": "#/definitions/address",
-            "title": "Operational Representative Mailing Address"
+            "title": "Operation Representative Mailing Address"
           }
         }
       }

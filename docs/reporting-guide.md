@@ -43,7 +43,7 @@ For additional guidance materials on quantifying facility emissions and producti
 
 ## Roles and permissions
 
-### The Operational Representative:
+### The Operation Representative:
 
 - **Has permissions to:** Fill in an application.
 - **Is defined as:**
