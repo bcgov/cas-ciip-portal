@@ -16,6 +16,11 @@ const createConfirmationMail = ({
     'base64'
   );
   const encodedAppId = encodeURIComponent(appId);
+  const operationFacilitiesUrl = createUrl(
+    `reporter/facilities?filterArgs=${encodeURIComponent(
+      JSON.stringify({organisationRowId: organisationId})
+    )}`
+  );
   return html`
     <table
       align="center"
@@ -34,14 +39,15 @@ const createConfirmationMail = ({
       </tr>
       <tr style="border-top: 0px">
         <td style="padding: 20px 10px 30px 10px;">
-          <h3>Hello, ${firstName} ${lastName}.</h3>
-          <h4>
+          <h3>Hello ${firstName} ${lastName},</h3>
+          <p>
             Thank you for your submission to the CleanBC Industrial Incentive
             Program.
-          </h4>
+          </p>
           <p>
-            Your application on behalf of <strong>${operatorName}</strong> for
-            facility <strong>${facilityName}</strong> has been received.
+            Your application (#${applicationId}) for facility
+            <strong>${facilityName}</strong> on behalf of
+            <strong>${operatorName}</strong> has been received.
           </p>
           <p>
             You will receive notification via email when a decision on your
@@ -51,24 +57,22 @@ const createConfirmationMail = ({
             You can
             <a
               href="${createUrl(
-                `/reporter/application/${encodedAppId}/version/${versionNumber}/view`
+                `reporter/application/${encodedAppId}/version/${versionNumber}/view`
               )}"
-              >view your submitted application here</a
             >
+              view your submitted application here
+            </a>
             and monitor the status of your application(s)
-            <a
-              href="${createUrl(
-                `reporter/facilities?organisationRowId=${organisationId}`
-              )}"
-              >on the Operation Facilities dashboard</a
+            <a href="${operationFacilitiesUrl}">
+              on the Operation Facilities dashboard </a
             >.
           </p>
           <p>
             If you have any questions during the application process, please
             contact
-            <a href="mailto:${contactEmail}?subject=CIIP Portal Inquiry"
-              >${contactEmail}</a
-            >
+            <a href="mailto:${contactEmail}?subject=CIIP Inquiry">
+              ${contactEmail}
+            </a>
           </p>
         </td>
       </tr>

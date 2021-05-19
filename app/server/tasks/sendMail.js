@@ -54,7 +54,7 @@ module.exports = async ({
       break;
     // Confirmation of CIIP Application submission
     case 'status_change_submitted':
-      subject = 'CIIP Application Submission Confirmation';
+      subject = `CIIP Application Submission Confirmation - ${facilityName} (#${applicationId})`;
       htmlContent = createConfirmationMail({
         applicationId,
         email,
@@ -68,8 +68,9 @@ module.exports = async ({
       });
       break;
     case 'status_change_approved':
-      subject = 'Your CIIP Application has been approved';
+      subject = `Your CIIP Application has been approved - ${facilityName} (#${applicationId})`;
       htmlContent = createApplicationDecisionMail({
+        applicationId,
         email,
         firstName,
         lastName,
@@ -81,19 +82,21 @@ module.exports = async ({
       });
       break;
     case 'status_change_rejected':
-      subject = 'Your CIIP application has been rejected';
+      subject = `Your CIIP application has been rejected - ${facilityName} (#${applicationId})`;
       htmlContent = createApplicationDecisionMail({
+        applicationId,
         email,
         firstName,
         lastName,
         facilityName,
         operatorName,
+        organisationId,
         status,
         contactEmail: adminEmail
       });
       break;
     case 'status_change_requested_changes':
-      subject = 'Your CIIP application: Changes requested';
+      subject = `CIIP Application: Changes requested for ${facilityName} (#${applicationId})`;
       htmlContent = createAmendmentMail({
         applicationId,
         email,
@@ -106,7 +109,7 @@ module.exports = async ({
       });
       break;
     case 'request_for_organisation_access':
-      subject = 'CIIP Application: Organisation Access Requested';
+      subject = 'CIIP Application: Operation Access Requested';
       htmlContent = createOrganisationAccessRequestMail({
         email,
         firstName,
@@ -117,7 +120,7 @@ module.exports = async ({
       });
       break;
     case 'organisation_access_approved':
-      subject = 'CIIP Application: Organisation Access Approved';
+      subject = 'CIIP Application: Operation Access Approved';
       htmlContent = createOrganisationAccessApprovedMail({
         email,
         firstName,
@@ -137,7 +140,7 @@ module.exports = async ({
       email = receiverEmail;
       break;
     case 'notify_admin_organisation_access':
-      subject = 'CIIP Organisation Access Request';
+      subject = 'CIIP Operation Access Request';
       htmlContent = createNotifyAdminAccessRequestMail({
         firstName,
         lastName,

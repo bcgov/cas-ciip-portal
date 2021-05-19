@@ -20,16 +20,17 @@ const createWelcomeMail = ({firstName, lastName, email, contactEmail}) => {
       </tr>
       <tr style="border-top: 0px">
         <td style="padding: 20px 10px 30px 10px;">
-          <h3>Hello, ${firstName} ${lastName}.</h3>
+          <h3>Hello ${firstName} ${lastName},</h3>
           <h4>
-            Thank you for registering for the CleanBC Industrial Incentive
+            Thank you for registering with the CleanBC Industrial Incentive
             Program.
           </h4>
           <p>Further steps are necessary to complete a CIIP application:</p>
           <ul>
             <li>
-              Please log in to the CIIP Portal to
-              <a href=${createUrl('reporter')}>request access to an operator</a
+              Please log in to the CIIP web application to
+              <a href=${createUrl('reporter')}
+                >request access to apply on behalf of an operator</a
               >.
               <ul>
                 <li>
@@ -40,15 +41,15 @@ const createWelcomeMail = ({firstName, lastName, email, contactEmail}) => {
             </li>
             <li>
               You will be able to fill out an application once you have been
-              approved as an authorised representative.
+              authorized.
             </li>
           </ul>
           <p>
             If you have any questions during the application process, please
             contact
-            <a href="mailto:${contactEmail}?subject=CIIP Portal Inquiry"
-              >${contactEmail}</a
-            >
+            <a href="mailto:${contactEmail}?subject=CIIP Inquiry">
+              ${contactEmail}
+            </a>
           </p>
         </td>
       </tr>

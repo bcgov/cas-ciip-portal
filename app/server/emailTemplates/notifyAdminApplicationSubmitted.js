@@ -29,9 +29,9 @@ const createNotifyAdminApplicationSubmittedMail = ({
       <tr style="border-top: 0px">
         <td style="padding: 20px 10px 30px 10px;">
           <p>
-            The <strong>${facilityName}</strong> facility of
-            <strong>${operatorName}</strong> has submitted or updated their
-            application.
+            A CIIP application (#${applicationId}) for the
+            <strong>${facilityName}</strong> facility of
+            <strong>${operatorName}</strong> has been submitted or updated.
           </p>
           <p>
             An analyst can now

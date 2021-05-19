@@ -26,9 +26,9 @@ const createOrganisationAccessRequestMail = ({
       </tr>
       <tr style="border-top: 0px">
         <td style="padding: 20px 10px 30px 10px;">
-          <h3>Hello, ${firstName} ${lastName}.</h3>
+          <h3>Hello ${firstName} ${lastName},</h3>
           <h4>
-            Thank you for registering for the CleanBC Industrial Incentive
+            Thank you for registering with the CleanBC Industrial Incentive
             Program.
           </h4>
           <p>
@@ -38,18 +38,18 @@ const createOrganisationAccessRequestMail = ({
             >.
           </p>
           <p>
-            Your request is being processed. Please be advised that if you are
-            not listed as the Operation Representative for GHG reporting,
-            confirmation that you are authorized to complete this application
-            will be sought from that representative.
+            You will be notified once your request for access has been approved.
           </p>
           <p>
-            You will be notified once your request for access has been approved.
+            Please be advised that if you are not listed as the Operation
+            Representative for GHG reporting, confirmation that you are
+            authorized to complete this application will be sought from the
+            Operation Representative.
           </p>
           <p>
             If you have any questions during the application process, please
             contact
-            <a href="mailto:${contactEmail}?subject=CIIP Portal Inquiry"
+            <a href="mailto:${contactEmail}?subject=CIIP Inquiry"
               >${contactEmail}</a
             >
           </p>
