@@ -96,35 +96,37 @@ export const ApplyButton: React.FunctionComponent<Props> = ({
         </Modal.Header>
         <Modal.Body>
           <p>
-            We can&apos;t find a copy of your company&apos;s latest emissions
-            report in our records.
+            We can&apos;t find an emissions report for{' '}
+            {query.openedReportingYear.reportingYear} for this facility in our
+            records.
           </p>
           <p>
-            Please note that it may take approximately{' '}
-            <strong>10 business days</strong> to import any emissions report
-            data submitted through the Single Window Reporting System into your
-            CleanBC Industrial Incentive Program (CIIP) application.
+            It may take approximately <strong>10 business days</strong> from the
+            time you submitted the emissions report to the Single Window
+            Reporting System (SWRS) for the data to be imported into the CIIP
+            application system.
           </p>
           <p>
-            You can either cancel your application now and return at least 10
-            business days after you have submitted your emissions report, or
-            proceed without an emission report.{' '}
-            <strong>
-              Please note that If you choose to proceed without importing data
-              from your emissions report, then you will have to input some of
-              the same data captured in the Single Window System.
-            </strong>
+            You may cancel your application now and try again later. If you
+            choose to proceed without the imported SWRS data, you will need to
+            manually enter the applicable data as it was reported in SWRS. You
+            may also see warnings regarding the entered information not matching
+            the SWRS report.
           </p>
           <p>
-            Submission of a CIIP application does not guarantee compliance under
-            the <em>Greenhouse Gas Industrial Reporting and Control Act</em> or
-            its regulations.
+            Note, submission of a CIIP application does not constitute meeting
+            reporting obligations as required under the{' '}
+            <a href="https://www.bclaws.gov.bc.ca/civix/document/id/complete/statreg/14029_01">
+              <em>Greenhouse Gas Industrial Reporting and Control Act</em>
+            </a>{' '}
+            or its regulations.
           </p>
           <p>
             For any questions, please <a href={adminMailToUrl}>contact</a> the
             Climate Action Secretariat at {adminEmail}
           </p>
         </Modal.Body>
+
         <Modal.Footer>
           <Button
             variant="danger"
