@@ -187,7 +187,7 @@ exports[`The ProductionFields Component with archived product not matched to a n
     <strong>
       Warning:
     </strong>
-     This Product or Service is not associated with the NAICS code reported in this application. Please review the guidance documents for a list of the valid products for this sector or verify the NAICS code reported in the Administration data is correct.
+     This Product or Service is not associated with the NAICS code reported in this application. Please review the guidance documents for a list of the valid products for this sector or verify the NAICS code reported in the administrative data is correct.
   </Alert>
   <ObjectField
     autofocus={false}
@@ -326,7 +326,7 @@ exports[`The ProductionFields Component with no naics code should match the snap
     <strong>
       Warning:
     </strong>
-     No products were found matching the reported NAICS code. Please verify the NAICS code reported in the Administration data.
+     No products were found matching the reported NAICS code. Please verify the NAICS code reported in the administrative data.
   </Alert>
   <ObjectField
     autofocus={false}
@@ -539,7 +539,7 @@ exports[`The ProductionFields Component with published product not matched to a 
     <strong>
       Warning:
     </strong>
-     This Product or Service is not associated with the NAICS code reported in this application. Please review the guidance documents for a list of the valid products for this sector or verify the NAICS code reported in the Administration data is correct.
+     This Product or Service is not associated with the NAICS code reported in this application. Please review the guidance documents for a list of the valid products for this sector or verify the NAICS code reported in the administrative data is correct.
   </Alert>
   <ObjectField
     autofocus={false}
