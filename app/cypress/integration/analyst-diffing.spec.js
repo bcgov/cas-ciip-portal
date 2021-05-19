@@ -17,10 +17,10 @@ describe('When reviewing a submitted application as an analyst', () => {
     cy.get('#dropdown-old').contains('Version 1');
     cy.get('#dropdown-new').contains('current');
     cy.get('.admin-2020')
-      .get('#administration-data_operator_name-diffFrom')
+      .get('#administrative-data_operator_name-diffFrom')
       .contains('Changed_0');
     cy.get('.admin-2020')
-      .get('#administration-data_operator_name-diffTo')
+      .get('#administrative-data_operator_name-diffTo')
       .contains('Changed_5');
     cy.get('.emission').get('.diffFrom').contains('6');
     cy.get('.emission').get('.diffTo').contains('11');

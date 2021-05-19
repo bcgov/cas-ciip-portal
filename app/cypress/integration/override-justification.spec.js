@@ -80,7 +80,7 @@ describe('When an application does not have errors', () => {
     cy.get('.override-accordion > .btn').should('not.exist');
   });
 
-  it('the justification should be automatically deleted if no more errors exist', () => {
+  it('The justification should be automatically deleted if no more errors exist', () => {
     cy.mockLogin('reporter');
     const applicationId = window.btoa('["applications",2]');
     cy.visit(`/reporter/application/${applicationId}?confirmationPage=true`);
@@ -104,7 +104,7 @@ describe('When an application does not have errors', () => {
     cy.get('.card-header').contains('Form input saved');
 
     cy.get('.nav-guide > :nth-child(5)').click();
-    cy.get('#administration-data_operator_name').should('contain', 'whoops');
+    cy.get('#administrative-data_operator_name').should('contain', 'whoops');
     cy.get('.override-accordion > .btn').should('not.exist');
     cy.get(':nth-child(1) > .nav-link').click();
     cy.get('#root_operator_name').clear();

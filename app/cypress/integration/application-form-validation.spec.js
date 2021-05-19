@@ -104,10 +104,10 @@ describe('When viewing an application in draft as a reporter', () => {
 
     cy.visit(summaryPageUrl);
 
-    cy.get('#administration-data_comments').contains(comment);
+    cy.get('#administrative-data_comments').contains(comment);
 
     // Format error messages for should be explicit
-    cy.get('#administration-data_operator_naics ~div .text-danger').contains(
+    cy.get('#administrative-data_operator_naics ~div .text-danger').contains(
       'is a required property'
     );
     cy.get('.admin-2020 > .collapse').contains(
