@@ -1,15 +1,10 @@
 import React, {useCallback} from 'react';
 import {WidgetProps} from '@rjsf/core';
+import Widgets from '@rjsf/core/dist/cjs/components/widgets';
 import SearchDropdown from 'components/SearchDropdown';
 
-const SearchDropdownWidget: React.FunctionComponent<WidgetProps> = ({
-  onChange,
-  schema,
-  id,
-  placeholder,
-  value,
-  onBlur
-}) => {
+const SearchDropdownWidget: React.FunctionComponent<WidgetProps> = (props) => {
+  const {onChange, schema, id, placeholder, value, onBlur, readonly} = props;
   const getOptions = useCallback(
     () =>
       schema.enum.map((e: string, index) => ({
@@ -36,6 +31,8 @@ const SearchDropdownWidget: React.FunctionComponent<WidgetProps> = ({
   const handleBlur = () => {
     onBlur(id, value);
   };
+
+  if (readonly) return <Widgets.SelectWidget {...props} />;
 
   return (
     <SearchDropdown

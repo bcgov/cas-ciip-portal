@@ -30,6 +30,35 @@
         },
 
         "dependencies": {
+          "isMandatory": {
+            "oneOf": [
+              {
+                "properties": {
+                  "productRowId": {
+                    "title": "Product or Service",
+                    "type": "integer"
+                  },
+                  "isMandatory": {
+                    "const": false
+                  }
+                },
+                "required": ["productRowId"]
+              },
+              {
+                "properties": {
+                  "productRowId": {
+                    "title": "Product or Service",
+                    "type": "integer",
+                    "readOnly": true
+                  },
+                  "isMandatory": {
+                    "const": true
+                  }
+                },
+                "required": ["productRowId"]
+              }
+            ]
+          },
           "requiresEmissionAllocation": {
             "oneOf": [
               {
@@ -80,9 +109,9 @@
           }
         },
         "required": [
-          "productRowId",
           "requiresEmissionAllocation",
-          "requiresProductAmount"
+          "requiresProductAmount",
+          "productRowId"
         ]
       }
     }
