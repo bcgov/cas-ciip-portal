@@ -104,10 +104,10 @@ describe('When viewing an application in draft as a reporter', () => {
 
     cy.visit(summaryPageUrl);
 
-    cy.get('#administration-data_comments').contains(comment);
+    cy.get('#administrative-data_comments').contains(comment);
 
     // Format error messages for should be explicit
-    cy.get('#administration-data_operator_naics ~div .text-danger').contains(
+    cy.get('#administrative-data_operator_naics ~div .text-danger').contains(
       'is a required property'
     );
     cy.get('.admin-2020 > .collapse').contains(
@@ -151,9 +151,9 @@ describe('When viewing an application in draft as a reporter', () => {
 
     cy.get('div.card-header').contains('Form input saved');
     cy.contains('Continue').click();
-    cy.get('#page-content h1').contains('Emission');
+    cy.get('#page-content h1').contains('SWRS Onsite Emissions');
     cy.visit(summaryPageUrl);
-    cy.contains('Administration Data');
+    cy.contains('Administrative Data');
     cy.get('.admin-2020.summary-card').happoScreenshot({
       component: 'Admin Summary Card',
       variant: 'no errors'

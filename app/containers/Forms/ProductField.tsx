@@ -86,15 +86,15 @@ export const ProductFieldComponent: React.FunctionComponent<Props> = (
       <strong>Warning:</strong> This Product or Service is not associated with
       the NAICS code reported in this application. Please review the guidance
       documents for a list of the valid products for this sector or verify the
-      NAICS code reported in the Administration data is correct.
+      NAICS code reported in the Administrative Data is correct.
     </Alert>
   );
 
   const noProductsToSelect = (
     <Alert variant="danger">
       <strong>Warning:</strong> No products were found matching the reported
-      NAICS code. Please verify the NAICS code reported in the Administration
-      data.
+      NAICS code. Please verify the NAICS code reported in the Administrative
+      Data.
     </Alert>
   );
 

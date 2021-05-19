@@ -40,7 +40,7 @@ describe('When logged in as a reporter', () => {
     const formId = window.btoa('["form_jsons",5]');
     cy.visit(`/reporter/application/${applicationId}?formId=${formId}`);
     cy.get('#page-content');
-    cy.contains('Administration');
+    cy.contains('Administrative Data');
     cy.injectAxe();
     cy.get('#page-content');
     cy.checkA11y();
@@ -52,7 +52,7 @@ describe('When logged in as a reporter', () => {
     const formId = window.btoa('["form_jsons",2]');
     cy.visit(`/reporter/application/${applicationId}?formId=${formId}`);
     cy.get('#page-content');
-    cy.contains('Emission');
+    cy.contains('SWRS Onsite Emissions');
     cy.injectAxe();
     cy.get('#page-content');
     cy.checkA11y();
@@ -64,7 +64,7 @@ describe('When logged in as a reporter', () => {
     const formId = window.btoa('["form_jsons",3]');
     cy.visit(`/reporter/application/${applicationId}?formId=${formId}`);
     cy.get('#page-content');
-    cy.contains('Fuel');
+    cy.contains('Fuels');
     cy.injectAxe();
     cy.get('#page-content');
     cy.checkA11y();
@@ -76,7 +76,7 @@ describe('When logged in as a reporter', () => {
     const formId = window.btoa('["form_jsons",4]');
     cy.visit(`/reporter/application/${applicationId}?formId=${formId}`);
     cy.get('#page-content');
-    cy.contains('Production');
+    cy.contains('Production and Emissions Allocation');
     cy.injectAxe();
     cy.get('#page-content');
     cy.checkA11y();

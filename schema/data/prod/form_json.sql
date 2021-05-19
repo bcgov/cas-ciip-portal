@@ -21,15 +21,15 @@ with rows as (
 insert into ggircs_portal.form_json
   (name, slug, short_name, description, form_json, prepopulate_from_swrs, prepopulate_from_ciip, form_result_init_function, default_form_result)
 values
-  ('Administration Data', 'admin', 'Admin data', 'Admin description',
+  ('Administrative Data', 'admin', 'Admin data', 'Admin description',
   (select json_data from administration), true, true, 'init_application_administration_form_result', '{}'),
-  ('Emission', 'emission', 'Emission', 'Emission description',
+  ('SWRS Onsite Emissions', 'emission', 'Emission', 'Emission description',
   (select json_data from emission), true, false, 'init_application_emission_form_result', '{}'),
-  ('Fuel','fuel', 'Fuel', 'Fuel description',
+  ('Fuels','fuel', 'Fuel', 'Fuel description',
   (select json_data from fuel), true, false, 'init_application_fuel_form_result', '[]'),
-  ('Production', 'production', 'Production', 'Production description',
+  ('Production and Emissions Allocation', 'production', 'Production', 'Production description',
   (select json_data from production), false, false, null, '[]'),
-  ('Administration Data', 'admin-2020', 'Admin data', 'Admin description',
+  ('Administrative Data', 'admin-2020', 'Admin data', 'Admin description',
   (select json_data from administration_2020), true, true, 'init_application_administration_form_result', '{}')
 on conflict(slug) do update
 set name=excluded.name,
