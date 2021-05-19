@@ -9,7 +9,9 @@ interface Props extends FieldProps {
   relay: RelayProp;
 }
 
-export const ProductsArrayField: React.FunctionComponent<Props> = (props) => {
+export const ProductsArrayFieldComponent: React.FunctionComponent<Props> = (
+  props
+) => {
   const {naicsProducts, formContext, registry} = props;
   const {ArrayField} = registry.fields;
 
@@ -56,7 +58,7 @@ export const ProductsArrayField: React.FunctionComponent<Props> = (props) => {
   return <ArrayField {...props} />;
 };
 
-export default createFragmentContainer(ProductsArrayField, {
+export default createFragmentContainer(ProductsArrayFieldComponent, {
   // NOTE: It would be more ideal to have a reusable "product" fragment shared between here (productByProductId) and in ProductField_query to sync the queried properties needed by the ProductField
   naicsProducts: graphql`
     fragment ProductsArrayField_naicsProducts on NaicsCode {

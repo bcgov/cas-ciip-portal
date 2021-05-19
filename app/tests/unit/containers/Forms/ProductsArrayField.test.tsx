@@ -1,6 +1,6 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import {ProductsArrayField} from 'containers/Forms/ProductsArrayField';
+import {ProductsArrayFieldComponent as ProductsArrayField} from 'containers/Forms/ProductsArrayField';
 import {
   ProductsArrayField_naicsProducts,
   CiipProductState
