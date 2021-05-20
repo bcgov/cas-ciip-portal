@@ -79,11 +79,6 @@ describe('Organisation access request emails', () => {
           msg.includes('You have requested access') &&
           msg.includes('MacDonalds Agriculture, Ltd.')
       );
-      expect(reporterMail.Content.Body).to.satisfy((body) => {
-        const parser = new DOMParser();
-        const parsed = parser.parseFromString(body, 'text/html');
-        return parsed.querySelector('a[href*="/reporter"]');
-      });
     });
   });
   it('notifies the admin when organisation access is requested', () => {
@@ -143,7 +138,7 @@ describe('Confirmation emails', () => {
     const applicationId = window.btoa('["applications",1]');
     cy.visit(`/reporter/application/${applicationId}?confirmationPage=true`);
     cy.url().should('include', '/reporter/application');
-    cy.get('.admin-2020');
+    cy.get('#next-step ~ button');
     cy.contains('Submit Application').click();
     cy.wait(1000);
     cy.request('localhost:8025/api/v1/messages').then((response) => {
