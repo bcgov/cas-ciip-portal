@@ -10,17 +10,21 @@ exports[`Organisations should render no organisations if the user has not reques
       Operator, Operation Representative, and Reporting Operation are defined in the
        
       <a
-        href="https://www.bclaws.ca/civix/document/id/complete/statreg/14029_01"
-      >
-        Greenhouse Gas Industrial Reporting and Control Act
-      </a>
-       
-      and
-       
-      <a
-        href="https://www.bclaws.ca/civix/document/id/lc/statreg/249_2015"
+        href="http://www.bclaws.ca/civix/document/id/lc/statreg/249_2015"
+        rel="noreferrer noopener"
+        target="_blank"
       >
         Greenhouse Gas Emission Reporting Regulation
+      </a>
+       
+      of the
+       
+      <a
+        href="http://www.bclaws.ca/civix/document/id/complete/statreg/14029_01"
+        rel="noreferrer noopener"
+        target="_blank"
+      >
+        Greenhouse Gas Industrial Reporting and Control Act
       </a>
       .
     </CardBody>
@@ -70,42 +74,47 @@ exports[`Organisations should render no organisations if the user has not reques
               The CleanBC Industrial Incentive Program application must be submitted by the Operator of the Reporting Operation or, if there is more than one Operator, the Designated Operator as defined by the
                
               <AlertLink
-                href="https://www.bclaws.ca/civix/document/id/complete/statreg/14029_01"
-              >
-                Greenhouse Gas Industrial Reporting and Control Act
-              </AlertLink>
-               
-              and
-               
-              <AlertLink
                 href="https://www.bclaws.ca/civix/document/id/lc/statreg/249_2015"
+                rel="noreferrer noopener"
+                target="_blank"
               >
                 Greenhouse Gas Emission Reporting Regulation
+              </AlertLink>
+               
+              of the
+               
+              <AlertLink
+                href="https://www.bclaws.ca/civix/document/id/complete/statreg/14029_01"
+                rel="noreferrer noopener"
+                target="_blank"
+              >
+                Greenhouse Gas Industrial Reporting and Control Act
               </AlertLink>
               . Other representatives of the Reporting Operation may complete the application if authorization from the Operator is provided.
             </p>
             <p
               className="jsx-3491480756"
             >
-              Further information on the role of the Operator and Certifying Official
+              Further information about CIIP can be found on the
                
               <AlertLink
                 href="https://www2.gov.bc.ca/gov/content?id=6F748A4DD83447C59B8B9361882FF9A3"
+                rel="noreferrer noopener"
+                target="_blank"
               >
-                can be found here
+                CIIP website
               </AlertLink>
               .
             </p>
             <p
               className="jsx-3491480756"
             >
-              Please email
+              If you have any questions, please email
                
               <AlertLink
                 href="#"
               />
-               
-              if you have any questions.
+              .
             </p>
           </Alert>
           <small
@@ -173,17 +182,21 @@ exports[`Organisations should render the user's requested organisations 1`] = `
       Operator, Operation Representative, and Reporting Operation are defined in the
        
       <a
-        href="https://www.bclaws.ca/civix/document/id/complete/statreg/14029_01"
-      >
-        Greenhouse Gas Industrial Reporting and Control Act
-      </a>
-       
-      and
-       
-      <a
-        href="https://www.bclaws.ca/civix/document/id/lc/statreg/249_2015"
+        href="http://www.bclaws.ca/civix/document/id/lc/statreg/249_2015"
+        rel="noreferrer noopener"
+        target="_blank"
       >
         Greenhouse Gas Emission Reporting Regulation
+      </a>
+       
+      of the
+       
+      <a
+        href="http://www.bclaws.ca/civix/document/id/complete/statreg/14029_01"
+        rel="noreferrer noopener"
+        target="_blank"
+      >
+        Greenhouse Gas Industrial Reporting and Control Act
       </a>
       .
     </CardBody>
@@ -290,42 +303,47 @@ exports[`Organisations should render the user's requested organisations 1`] = `
               The CleanBC Industrial Incentive Program application must be submitted by the Operator of the Reporting Operation or, if there is more than one Operator, the Designated Operator as defined by the
                
               <AlertLink
-                href="https://www.bclaws.ca/civix/document/id/complete/statreg/14029_01"
-              >
-                Greenhouse Gas Industrial Reporting and Control Act
-              </AlertLink>
-               
-              and
-               
-              <AlertLink
                 href="https://www.bclaws.ca/civix/document/id/lc/statreg/249_2015"
+                rel="noreferrer noopener"
+                target="_blank"
               >
                 Greenhouse Gas Emission Reporting Regulation
+              </AlertLink>
+               
+              of the
+               
+              <AlertLink
+                href="https://www.bclaws.ca/civix/document/id/complete/statreg/14029_01"
+                rel="noreferrer noopener"
+                target="_blank"
+              >
+                Greenhouse Gas Industrial Reporting and Control Act
               </AlertLink>
               . Other representatives of the Reporting Operation may complete the application if authorization from the Operator is provided.
             </p>
             <p
               className="jsx-3491480756"
             >
-              Further information on the role of the Operator and Certifying Official
+              Further information about CIIP can be found on the
                
               <AlertLink
                 href="https://www2.gov.bc.ca/gov/content?id=6F748A4DD83447C59B8B9361882FF9A3"
+                rel="noreferrer noopener"
+                target="_blank"
               >
-                can be found here
+                CIIP website
               </AlertLink>
               .
             </p>
             <p
               className="jsx-3491480756"
             >
-              Please email
+              If you have any questions, please email
                
               <AlertLink
                 href="#"
               />
-               
-              if you have any questions.
+              .
             </p>
           </Alert>
           <small
