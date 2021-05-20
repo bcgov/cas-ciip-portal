@@ -9,6 +9,11 @@ const createOrganisationAccessApprovedMail = ({
   organisationId,
   contactEmail
 }) => {
+  const operationFacilitiesUrl = createUrl(
+    `reporter/facilities?filterArgs=${encodeURIComponent(
+      JSON.stringify({organisationRowId: organisationId})
+    )}`
+  );
   return html`
     <table
       align="center"
@@ -27,42 +32,23 @@ const createOrganisationAccessApprovedMail = ({
       </tr>
       <tr style="border-top: 0px">
         <td style="padding: 20px 10px 30px 10px;">
-          <h3>Hello, ${firstName} ${lastName}.</h3>
+          <h3>Hello ${firstName} ${lastName},</h3>
           <p>
             CleanBC Industrial Incentive Program administrators have approved
-            you as an authorized representative for an Operation you requested
-            access to. You can now submit a CIIP application on their behalf:
+            you to submit a CIIP application on behalf of
+            <strong>${operatorName}</strong>.
           </p>
-          <p><strong>${operatorName}</strong></p>
-          <p>Further steps are necessary to complete a CIIP application:</p>
-          <ul>
-            <li>
-              Please log in to the CIIP Portal and
-              <a
-                href=${createUrl(
-                  `reporter/facilities?organisationRowId=${organisationId}`
-                )}
-                >view Operation Facilities</a
-              >
-              to access the CIIP application.
-            </li>
-            <li>
-              To complete an application, it must be filled out, certified, and
-              submitted.
-              <ul>
-                <li>
-                  You will be notified via email when each step is complete and
-                  what the next steps are.
-                </li>
-              </ul>
-            </li>
-          </ul>
+          <p>
+            <a href=${operationFacilitiesUrl}>
+              View Operation Facilities and complete a CIIP application</a
+            >.
+          </p>
           <p>
             If you have any questions during the application process, please
             contact
-            <a href="mailto:${contactEmail}?subject=CIIP Portal Inquiry"
-              >${contactEmail}</a
-            >
+            <a href="mailto:${contactEmail}?subject=CIIP Inquiry">
+              ${contactEmail}
+            </a>
           </p>
         </td>
       </tr>

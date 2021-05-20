@@ -29,11 +29,11 @@ const createNotifyAdminAccessRequestMail = ({
             the application for <strong>${operatorName}</strong>.
           </p>
           <p>
-            An administrator can now
-            <a href="${createUrl('analyst/organisation-requests')}"
-              >review and approve them</a
+            An analyst can now
+            <a href="${createUrl('analyst/organisation-requests')}">
+              review and approve their access</a
             >
-            as an authorized representative for that Operator.
+            to that Operator.
           </p>
         </td>
       </tr>

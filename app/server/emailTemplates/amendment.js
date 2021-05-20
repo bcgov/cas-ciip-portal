@@ -33,50 +33,29 @@ const createAmendmentMail = ({
       </tr>
       <tr style="border-top: 0px">
         <td style="padding: 20px 10px 30px 10px;">
-          <h3>Hello, ${firstName} ${lastName}.</h3>
+          <h3>Hello ${firstName} ${lastName},</h3>
           <p>
-            Changes are requested to your CIIP application for facility
-            <strong>${facilityName}</strong> on behalf of
+            Changes are requested to your CIIP application (#${applicationId})
+            for facility <strong>${facilityName}</strong> on behalf of
             <strong>${operatorName}</strong>.
           </p>
-          <p>Further steps are necessary to submit your CIIP application:</p>
-          <ul>
-            <li>
-              <strong
-                >Please log in to the CIIP Portal and address the requested
-                changes.</strong
-              >
-              Your timely attention to this request will reduce the amount of
-              time required to process your incentive payment.
-            </li>
-            <li>
-              After logging in,
+          <p>
+            <strong>
+              Please
               <a
                 href=${createUrl(
                   `reporter/application/${encodedAppId}/version/${versionNumber}/view`
                 )}
-                >view the submitted application</a
+                >revise and resubmit your application</a
               >
-              for the facility named above.
-            </li>
-            <li>
-              Review the feedback, including requested changes, which are found
-              in the communication pane on the right side of the window.
-            </li>
-            <li>
-              To update the application, click the green "Revise Application"
-              button at the bottom of the page.
-            </li>
-            <li>
-              You will be directed back to your application, which will require
-              certification, and submission again.
-            </li>
-          </ul>
+              with the requested changes.
+            </strong>
+          </p>
           <p>
             If you have any questions during the application process, please
             contact
-            <a href="mailto:${contactEmail}?subject=CIIP Portal Inquiry"
-              >${contactEmail}</a
+            <a href="mailto:${contactEmail}?subject=CIIP Inquiry">
+              ${contactEmail}</a
             >
           </p>
         </td>

@@ -79,11 +79,6 @@ describe('Organisation access request emails', () => {
           msg.includes('You have requested access') &&
           msg.includes('MacDonalds Agriculture, Ltd.')
       );
-      expect(reporterMail.Content.Body).to.satisfy((body) => {
-        const parser = new DOMParser();
-        const parsed = parser.parseFromString(body, 'text/html');
-        return parsed.querySelector('a[href*="/reporter"]');
-      });
     });
   });
   it('notifies the admin when organisation access is requested', () => {
@@ -122,7 +117,7 @@ describe('Organisation access request emails', () => {
       expect(message.To[0].Mailbox).to.contain('reporter');
       expect(message.Content.Headers.Subject[0]).to.contain('CIIP');
       expect(decoded(message.Content.Body)).to.contain(
-        'approved you as an authorized representative'
+        'administrators have approved you to submit a CIIP application on behalf of'
       );
     });
   });
@@ -143,7 +138,7 @@ describe('Confirmation emails', () => {
     const applicationId = window.btoa('["applications",1]');
     cy.visit(`/reporter/application/${applicationId}?confirmationPage=true`);
     cy.url().should('include', '/reporter/application');
-    cy.get('.admin-2020');
+    cy.get('#next-step ~ button');
     cy.contains('Submit Application').click();
     cy.wait(1000);
     cy.request('localhost:8025/api/v1/messages').then((response) => {
@@ -171,7 +166,7 @@ describe('Confirmation emails', () => {
       );
       expect(adminMail.Content.Headers.Subject[0]).to.contain('CIIP');
       expect(decoded(adminMail.Content.Body)).to.contain(
-        'has submitted or updated their application'
+        'has been submitted or updated'
       );
       cy.request('DELETE', 'localhost:8025/api/v1/messages');
     });
