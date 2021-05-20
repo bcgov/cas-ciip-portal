@@ -86,13 +86,17 @@ class NewApplicationDisclaimer extends Component<Props> {
     const importMessage =
       hasSwrsReport === 'true' ? (
         <Alert variant="info">
-          We found an emissions report for this facility, and imported the
-          relevant information:
-          <br />
-          The administrative, fuel, and emission forms will be prepopulated to
-          match the data entered in your emission report. Please review it and
-          complete the forms with the additional information required for your
-          CIIP application.
+          <p>
+            We found an emissions report submitted under the{' '}
+            <em>Greenhouse Gas Industrial Reporting and Control Act</em> for an
+            operation that includes this facility.
+          </p>
+          <p>
+            The Administrative Data, SWRS Onsite Emissions, and Fuels forms of
+            this application will be prepopulated from the relevant sections of
+            that emissions report. Please review it and complete the forms with
+            the additional information required for your CIIP application.
+          </p>
         </Alert>
       ) : null;
 
@@ -104,28 +108,12 @@ class NewApplicationDisclaimer extends Component<Props> {
           </Card.Header>
           <Card.Body>
             <Card.Text style={{padding: '10px 0 10px 0'}}>
-              Please note that, once submitted, the Certifying Official and
-              Operator certify that the Certifying Official has reviewed the
-              information being submitted, and has exercised due diligence to
-              ensure that the information is true and complete, and that, to the
-              best of the Certifying Official&apos;s knowledge, the information
-              submitted herein is accurate and based on reasonable estimates
-              using available data.
+              Please note that, prior to submission, you will be asked to
+              confirm that you have exercised due diligence to ensure that the
+              information is true and complete, and that, to the best of your
+              knowledge, the information submitted herein is accurate and based
+              on reasonable estimates using available data.
             </Card.Text>
-            <Card.Text style={{padding: '10px 0 10px 0'}}>
-              The Operator agrees to repay any incentive amounts erroneously
-              paid or which, upon audit or review by the Province of British
-              Columbia, are determined by the Province to be either inconsistent
-              with{' '}
-              <Card.Link href="https://www2.gov.bc.ca/gov/content?id=6F748A4DD83447C59B8B9361882FF9A3">
-                CIIP Rules
-              </Card.Link>{' '}
-              or not supported by evidence related to fuel usage and tax paid,
-              and acknowledges that any repayment amount may be deducted from a
-              following year&apos;s incentive payment, or other payments due to
-              the Operator from the Province.
-            </Card.Text>
-
             {importMessage}
             <ApplicationConsent applicationRevision={applicationRevision} />
           </Card.Body>
