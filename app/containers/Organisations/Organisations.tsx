@@ -71,12 +71,20 @@ export const OrganisationsComponent: React.FunctionComponent<Props> = (
         <Card.Body>
           Operator, Operation Representative, and Reporting Operation are
           defined in the{' '}
-          <a href="https://www.bclaws.ca/civix/document/id/complete/statreg/14029_01">
-            Greenhouse Gas Industrial Reporting and Control Act
-          </a>{' '}
-          and{' '}
-          <a href="https://www.bclaws.ca/civix/document/id/lc/statreg/249_2015">
+          <a
+            href="https://www.bclaws.ca/civix/document/id/lc/statreg/249_2015"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
             Greenhouse Gas Emission Reporting Regulation
+          </a>{' '}
+          of the{' '}
+          <a
+            href="https://www.bclaws.ca/civix/document/id/complete/statreg/14029_01"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            Greenhouse Gas Industrial Reporting and Control Act
           </a>
           .
         </Card.Body>
@@ -154,29 +162,39 @@ export const OrganisationsComponent: React.FunctionComponent<Props> = (
                     submitted by the Operator of the Reporting Operation or, if
                     there is more than one Operator, the Designated Operator as
                     defined by the{' '}
-                    <Alert.Link href="https://www.bclaws.ca/civix/document/id/complete/statreg/14029_01">
-                      Greenhouse Gas Industrial Reporting and Control Act
-                    </Alert.Link>{' '}
-                    and{' '}
-                    <Alert.Link href="https://www.bclaws.ca/civix/document/id/lc/statreg/249_2015">
+                    <Alert.Link
+                      href="https://www.bclaws.ca/civix/document/id/lc/statreg/249_2015"
+                      target="_blank"
+                      rel="noreferrer noopener"
+                    >
                       Greenhouse Gas Emission Reporting Regulation
+                    </Alert.Link>{' '}
+                    of the{' '}
+                    <Alert.Link
+                      href="https://www.bclaws.ca/civix/document/id/complete/statreg/14029_01"
+                      target="_blank"
+                      rel="noreferrer noopener"
+                    >
+                      Greenhouse Gas Industrial Reporting and Control Act
                     </Alert.Link>
                     . Other representatives of the Reporting Operation may
                     complete the application if authorization from the Operator
                     is provided.
                   </p>
                   <p>
-                    Further information on the role of the Operator and
-                    Certifying Official{' '}
-                    <Alert.Link href="https://www2.gov.bc.ca/gov/content?id=6F748A4DD83447C59B8B9361882FF9A3">
-                      can be found here
+                    Further information about CIIP can be found on the{' '}
+                    <Alert.Link
+                      href="https://www2.gov.bc.ca/gov/content?id=6F748A4DD83447C59B8B9361882FF9A3"
+                      target="_blank"
+                      rel="noreferrer noopener"
+                    >
+                      CIIP website
                     </Alert.Link>
                     .
                   </p>
                   <p>
-                    Please email{' '}
-                    <Alert.Link href={adminMailToUrl}>{adminEmail}</Alert.Link>{' '}
-                    if you have any questions.
+                    If you have any questions, please email{' '}
+                    <Alert.Link href={adminMailToUrl}>{adminEmail}</Alert.Link>.
                   </p>
                 </Alert>
                 <small style={{display: 'block', marginBottom: '20px'}}>

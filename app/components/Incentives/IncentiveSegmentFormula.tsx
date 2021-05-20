@@ -10,7 +10,7 @@ const IncentiveSegmentFormula = () => {
       Emission Intensity - Benchmark
       \over
       Eligibility Threshold - Benchmark
-    }\right) \times Carbon Tax Payed Eligible for Incentive`;
+    }\right) \times Carbon Tax Paid Eligible for Incentive`;
   return (
     <Row>
       <Col md={12}>
