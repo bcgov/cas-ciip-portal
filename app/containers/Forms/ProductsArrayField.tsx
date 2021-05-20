@@ -37,10 +37,19 @@ export const ProductsArrayFieldComponent: React.FunctionComponent<Props> = (
       ) || [];
     const initializedFormResult = productionFormResult.concat(
       ...productsToInitialize.map((edge) => {
+        const {
+          rowId: productRowId,
+          units: productUnits,
+          requiresEmissionAllocation,
+          requiresProductAmount,
+          isEnergyProduct
+        } = edge.node.productByProductId;
         return {
-          ...edge.node.productByProductId,
-          productUnits: edge.node.productByProductId.units,
-          productRowId: edge.node.productByProductId.rowId,
+          requiresEmissionAllocation,
+          requiresProductAmount,
+          isEnergyProduct,
+          productUnits,
+          productRowId,
           isMandatory: true
         };
       })
@@ -72,17 +81,9 @@ export default createFragmentContainer(ProductsArrayFieldComponent, {
             productByProductId {
               rowId
               units
-              productState
               requiresEmissionAllocation
               requiresProductAmount
               isEnergyProduct
-              addPurchasedElectricityEmissions
-              addPurchasedHeatEmissions
-              subtractExportedElectricityEmissions
-              subtractExportedHeatEmissions
-              subtractGeneratedElectricityEmissions
-              subtractGeneratedHeatEmissions
-              addEmissionsFromEios
             }
           }
         }
