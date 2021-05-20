@@ -145,29 +145,33 @@ exports[`The apply button should render a warning modal if no swrs report exists
     </ModalHeader>
     <ModalBody>
       <p>
-        We can't find a copy of your company's latest emissions report in our records.
+        We can't find an emissions report for
+         
+        2018
+         for this facility in our records.
       </p>
       <p>
-        Please note that it may take approximately
-         
+        It may take approximately 
         <strong>
           10 business days
         </strong>
-         to import any emissions report data submitted through the Single Window Reporting System into your CleanBC Industrial Incentive Program (CIIP) application.
+         from the time you submitted the emissions report to the Single Window Reporting System (SWRS) for the data to be imported into the CIIP application system.
       </p>
       <p>
-        You can either cancel your application now and return at least 10 business days after you have submitted your emissions report, or proceed without an emission report.
+        You may cancel your application now and try again later. If you choose to proceed without the imported SWRS data, you will need to manually enter the applicable data as it was reported in SWRS. You may also see warnings regarding the entered information not matching the SWRS report.
+      </p>
+      <p>
+        Note, submission of a CIIP application does not constitute meeting reporting obligations as required under the
          
-        <strong>
-          Please note that If you choose to proceed without importing data from your emissions report, then you will have to input some of the same data captured in the Single Window System.
-        </strong>
-      </p>
-      <p>
-        Submission of a CIIP application does not guarantee compliance under the 
-        <em>
-          Greenhouse Gas Industrial Reporting and Control Act
-        </em>
-         or its regulations.
+        <a
+          href="https://www.bclaws.gov.bc.ca/civix/document/id/complete/statreg/14029_01"
+        >
+          <em>
+            Greenhouse Gas Industrial Reporting and Control Act
+          </em>
+        </a>
+         
+        or its regulations.
       </p>
       <p>
         For any questions, please 
@@ -238,29 +242,33 @@ exports[`The apply button should render an Apply For CIIP button if no applicati
     </ModalHeader>
     <ModalBody>
       <p>
-        We can't find a copy of your company's latest emissions report in our records.
+        We can't find an emissions report for
+         
+        2018
+         for this facility in our records.
       </p>
       <p>
-        Please note that it may take approximately
-         
+        It may take approximately 
         <strong>
           10 business days
         </strong>
-         to import any emissions report data submitted through the Single Window Reporting System into your CleanBC Industrial Incentive Program (CIIP) application.
+         from the time you submitted the emissions report to the Single Window Reporting System (SWRS) for the data to be imported into the CIIP application system.
       </p>
       <p>
-        You can either cancel your application now and return at least 10 business days after you have submitted your emissions report, or proceed without an emission report.
+        You may cancel your application now and try again later. If you choose to proceed without the imported SWRS data, you will need to manually enter the applicable data as it was reported in SWRS. You may also see warnings regarding the entered information not matching the SWRS report.
+      </p>
+      <p>
+        Note, submission of a CIIP application does not constitute meeting reporting obligations as required under the
          
-        <strong>
-          Please note that If you choose to proceed without importing data from your emissions report, then you will have to input some of the same data captured in the Single Window System.
-        </strong>
-      </p>
-      <p>
-        Submission of a CIIP application does not guarantee compliance under the 
-        <em>
-          Greenhouse Gas Industrial Reporting and Control Act
-        </em>
-         or its regulations.
+        <a
+          href="https://www.bclaws.gov.bc.ca/civix/document/id/complete/statreg/14029_01"
+        >
+          <em>
+            Greenhouse Gas Industrial Reporting and Control Act
+          </em>
+        </a>
+         
+        or its regulations.
       </p>
       <p>
         For any questions, please 
