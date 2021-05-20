@@ -22,8 +22,12 @@ module.exports = (role) => {
       }
     };
     const res = http.post(url, payload, params);
-    check(res, {
-      'no graphql error returned': (res) => !JSON.parse(res.body).errors
+    const parsedBody = JSON.parse(res.body);
+
+    check(parsedBody, {
+      'no graphql error returned': (parsedBody) => !parsedBody.errors,
+      'there is data in the response': (parsedBody) =>
+        parsedBody.data !== undefined
     });
   }
 };

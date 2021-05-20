@@ -8,15 +8,19 @@ const schemaCode = fs.readFileSync(
   'utf8'
 );
 
-const args = {};
+const queriesWithParams = {
+  pagesQuery: {},
+  loginRedirectQuery: {}
+};
 
-const easyGraphQLLoadTester = new LoadTesting(schemaCode, args);
+const easyGraphQLLoadTester = new LoadTesting(schemaCode, queriesWithParams);
 
 easyGraphQLLoadTester.k6('k6-guest.js', {
   customQueries: queries,
   onlyCustomQueries: true,
-  selectedQueries: ['pagesQuery'],
+  selectedQueries: Object.keys(queriesWithParams),
   vus: 1,
   iterations: 1,
-  queryFile: true
+  queryFile: true,
+  out: ['json=guest_result.json']
 });

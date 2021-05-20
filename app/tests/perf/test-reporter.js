@@ -39,7 +39,8 @@ const queriesWithParams = {
     lastSwrsReportingYear: null,
     facilityBcghgid: null
   },
-  reporterQuery: {}
+  reporterQuery: {},
+  registrationQuery: {}
 };
 
 const easyGraphQLLoadTester = new LoadTesting(schemaCode, queriesWithParams);
@@ -48,8 +49,8 @@ easyGraphQLLoadTester.k6('k6-reporter.js', {
   customQueries: queries,
   onlyCustomQueries: true,
   selectedQueries: Object.keys(queriesWithParams),
-  vus: 10,
-  duration: '15s',
+  vus: 1,
+  iterations: 1,
   queryFile: true,
   out: ['json=reporter_result.json']
 });
