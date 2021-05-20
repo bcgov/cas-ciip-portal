@@ -288,7 +288,7 @@
         "email",
         "phone"
       ],
-      "ui:description": "Optional - Someone authorized to access this application"
+      "ui:description": "Optional (Note: only enter a contact if they are already authorized to access this application)"
     }
   },
   "customFormats": {
