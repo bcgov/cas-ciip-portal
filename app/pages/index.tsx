@@ -39,10 +39,13 @@ export default class Index extends Component<Props> {
               What is the CleanBC Industrial Incentive Program?
             </h1>
             <p>
-              The CleanBC Industrial Incentive Program (CIIP) is part of the
-              CleanBC Program for Industry, which applies to large industrial
-              operations that report their emissions under the Greenhouse Gas
-              Industrial Reporting and Control Act (GGIRCA).
+              The{' '}
+              <a href="https://www2.gov.bc.ca/gov/content?id=6F748A4DD83447C59B8B9361882FF9A3">
+                CleanBC Industrial Incentive Program (CIIP)
+              </a>{' '}
+              is part of the CleanBC Program for Industry, which applies to
+              large industrial operations that report their emissions under the
+              Greenhouse Gas Industrial Reporting and Control Act (GGIRCA).
             </p>
             <p>
               The CIIP helps encourage cleaner industrial operations across the
@@ -138,14 +141,9 @@ export default class Index extends Component<Props> {
             </Card>
             <p>
               Further information on the CleanBC Industrial Incentive Program is
-              available in this
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://www2.gov.bc.ca/assets/gov/environment/climate-change/ind/cleanbc-program-for-industry/ciip_factsheet.pdf?bcgovtm=20200506_GCPE_AM_COVID_11_NOTIFICATION_BCGOVNEWS_BCGOV_EN_BC__NOTIFICATION&forcedownload=true"
-              >
-                {' '}
-                fact sheet
+              available on the{' '}
+              <a href="https://www2.gov.bc.ca/gov/content?id=6F748A4DD83447C59B8B9361882FF9A3">
+                program website
               </a>
               .
             </p>
