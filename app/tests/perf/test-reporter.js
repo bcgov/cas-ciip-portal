@@ -1,43 +1,53 @@
 const fs = require('fs');
 const path = require('path');
+const btoa = require('btoa');
 const LoadTesting = require('easygraphql-load-tester');
-const queries = Object.values(require('./queries.json'));
+const queries = Object.values(require('../perf/queries.json'));
 
 const schemaCode = fs.readFileSync(
   path.join(__dirname, '../../server', 'schema.graphql'),
   'utf8'
 );
 
-const args = {
-  productsBenchmarksQuery: {
-    product_name: null,
-    current_benchmark: null,
-    current_eligibility_threshold: null,
-    requires_emission_allocation: null,
-    is_ciip_product: null,
-    product_state: null,
-    order_by: 'PRODUCT_NAME_ASC',
+const queriesWithParams = {
+  disclaimerNewApplicationQuery: {
+    applicationId: btoa('["applications",1]'),
+    versionNumber: '1'
+  },
+  viewApplicationQuery: {
+    applicationId: btoa('["applications",1]'),
+    versionNumber: '1'
+  },
+  ApplicationIdPageQuery: {
+    applicationId: btoa('["applications",1]')
+  },
+  completeSubmitQuery: {
+    applicationId: btoa('["applications",1]')
+  },
+  facilitiesQuery: {
+    operatorName: null,
+    facilityName: null,
+    applicationStatus: null,
+    applicationIdIsNull: null,
+    applicationId: null,
+    organisationRowId: null,
+    offset: 0,
     pageSize: 20,
-    offset: 0
-  }
+    reportingYear: null,
+    lastSwrsReportingYear: null,
+    facilityBcghgid: null
+  },
+  reporterQuery: {}
 };
 
-const easyGraphQLLoadTester = new LoadTesting(schemaCode, args);
+const easyGraphQLLoadTester = new LoadTesting(schemaCode, queriesWithParams);
 
-// easyGraphQLLoadTester.k6('k6.js', {
-//   customQueries: queries,
-//   onlyCustomQueries: true,
-//   selectedQueries: ['pagesQuery'],
-//   vus: 1,
-//   iterations: 1,
-//   queryFile: true
-// });
-
-easyGraphQLLoadTester.k6('k6-admin.js', {
+easyGraphQLLoadTester.k6('k6-reporter.js', {
   customQueries: queries,
   onlyCustomQueries: true,
-  selectedQueries: ['productsBenchmarksQuery'],
+  selectedQueries: Object.keys(queriesWithParams),
   vus: 10,
-  duration: '30s',
-  queryFile: true
+  duration: '15s',
+  queryFile: true,
+  out: ['json=admin_result.json']
 });
