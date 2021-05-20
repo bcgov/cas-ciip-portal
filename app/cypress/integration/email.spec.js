@@ -117,7 +117,7 @@ describe('Organisation access request emails', () => {
       expect(message.To[0].Mailbox).to.contain('reporter');
       expect(message.Content.Headers.Subject[0]).to.contain('CIIP');
       expect(decoded(message.Content.Body)).to.contain(
-        'approved you as an authorized representative'
+        'administrators have approved you to submit a CIIP application on behalf of'
       );
     });
   });
@@ -166,7 +166,7 @@ describe('Confirmation emails', () => {
       );
       expect(adminMail.Content.Headers.Subject[0]).to.contain('CIIP');
       expect(decoded(adminMail.Content.Body)).to.contain(
-        'has submitted or updated their application'
+        'has been submitted or updated'
       );
       cy.request('DELETE', 'localhost:8025/api/v1/messages');
     });
