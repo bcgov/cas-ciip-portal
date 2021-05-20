@@ -703,7 +703,7 @@ begin;
     temp_row record;
   begin
     for temp_row in
-      select row_number() over () as index, form_id from ggircs_portal.ciip_application_wizard
+      select row_number() over () as index, form_id from ggircs_portal.ciip_application_wizard where is_active=true
     loop
       update ggircs_portal.form_result
         set form_result = (select dummy_result from dummy_results where id = temp_row.index)
@@ -713,7 +713,7 @@ begin;
       raise notice 'Form Result(version_number 1): % has been updated', (select name from ggircs_portal.form_json where id = temp_row.form_id);
       -- New set of form_results for diffing
       update ggircs_portal.form_result
-        set form_result = (select dummy_result from dummy_results where id = (temp_row.index + (select count(form_id) from ggircs_portal.ciip_application_wizard)))
+        set form_result = (select dummy_result from dummy_results where id = (temp_row.index + (select count(form_id) from ggircs_portal.ciip_application_wizard where is_active=true)))
         where form_id = temp_row.form_id
         and application_id in (1, 3)
         and version_number = 2;
