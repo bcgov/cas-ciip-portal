@@ -10,7 +10,7 @@ exports[`Organisations should render no organisations if the user has not reques
       Operator, Operation Representative, and Reporting Operation are defined in the
        
       <a
-        href="http://www.bclaws.ca/civix/document/id/lc/statreg/249_2015"
+        href="https://www.bclaws.ca/civix/document/id/lc/statreg/249_2015"
         rel="noreferrer noopener"
         target="_blank"
       >
@@ -20,7 +20,7 @@ exports[`Organisations should render no organisations if the user has not reques
       of the
        
       <a
-        href="http://www.bclaws.ca/civix/document/id/complete/statreg/14029_01"
+        href="https://www.bclaws.ca/civix/document/id/complete/statreg/14029_01"
         rel="noreferrer noopener"
         target="_blank"
       >
@@ -182,7 +182,7 @@ exports[`Organisations should render the user's requested organisations 1`] = `
       Operator, Operation Representative, and Reporting Operation are defined in the
        
       <a
-        href="http://www.bclaws.ca/civix/document/id/lc/statreg/249_2015"
+        href="https://www.bclaws.ca/civix/document/id/lc/statreg/249_2015"
         rel="noreferrer noopener"
         target="_blank"
       >
@@ -192,7 +192,7 @@ exports[`Organisations should render the user's requested organisations 1`] = `
       of the
        
       <a
-        href="http://www.bclaws.ca/civix/document/id/complete/statreg/14029_01"
+        href="https://www.bclaws.ca/civix/document/id/complete/statreg/14029_01"
         rel="noreferrer noopener"
         target="_blank"
       >

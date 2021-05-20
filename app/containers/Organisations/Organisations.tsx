@@ -72,7 +72,7 @@ export const OrganisationsComponent: React.FunctionComponent<Props> = (
           Operator, Operation Representative, and Reporting Operation are
           defined in the{' '}
           <a
-            href="http://www.bclaws.ca/civix/document/id/lc/statreg/249_2015"
+            href="https://www.bclaws.ca/civix/document/id/lc/statreg/249_2015"
             target="_blank"
             rel="noreferrer noopener"
           >
@@ -80,7 +80,7 @@ export const OrganisationsComponent: React.FunctionComponent<Props> = (
           </a>{' '}
           of the{' '}
           <a
-            href="http://www.bclaws.ca/civix/document/id/complete/statreg/14029_01"
+            href="https://www.bclaws.ca/civix/document/id/complete/statreg/14029_01"
             target="_blank"
             rel="noreferrer noopener"
           >
