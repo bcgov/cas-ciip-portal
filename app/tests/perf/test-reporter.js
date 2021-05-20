@@ -1,28 +1,30 @@
 const fs = require('fs');
 const path = require('path');
-const btoa = require('btoa');
 const LoadTesting = require('easygraphql-load-tester');
-const queries = Object.values(require('../perf/queries.json'));
+const queries = Object.values(require('./queries.json'));
 
 const schemaCode = fs.readFileSync(
   path.join(__dirname, '../../server', 'schema.graphql'),
   'utf8'
 );
 
+const base64Encode = (jsonData) =>
+  Buffer.from(JSON.stringify(jsonData)).toString('base64');
+
 const queriesWithParams = {
   disclaimerNewApplicationQuery: {
-    applicationId: btoa('["applications",1]'),
+    applicationId: base64Encode(['applications', 1]),
     versionNumber: '1'
   },
   viewApplicationQuery: {
-    applicationId: btoa('["applications",1]'),
+    applicationId: base64Encode(['applications', 1]),
     versionNumber: '1'
   },
   ApplicationIdPageQuery: {
-    applicationId: btoa('["applications",1]')
+    applicationId: base64Encode(['applications', 1])
   },
   completeSubmitQuery: {
-    applicationId: btoa('["applications",1]')
+    applicationId: base64Encode(['applications', 1])
   },
   facilitiesQuery: {
     operatorName: null,
@@ -49,5 +51,5 @@ easyGraphQLLoadTester.k6('k6-reporter.js', {
   vus: 10,
   duration: '15s',
   queryFile: true,
-  out: ['json=admin_result.json']
+  out: ['json=reporter_result.json']
 });
