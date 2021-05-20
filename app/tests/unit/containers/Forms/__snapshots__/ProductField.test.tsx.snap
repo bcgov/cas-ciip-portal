@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`The ProductionFields Component with archived product matched to a naics code should match the snapshot when rendering an archived product 1`] = `
+exports[`The ProductField with archived product matched to a naics code should match the snapshot when rendering an archived product 1`] = `
 <Fragment>
   <Alert
     closeLabel="Close alert"
@@ -48,12 +48,12 @@ exports[`The ProductionFields Component with archived product matched to a naics
     naicsCode={
       Object {
         " $refType": "ProductField_naicsCode",
-        "allProductsByNaicsCode": Object {
+        "allowableProducts": Object {
           "edges": Array [
             Object {
               "node": Object {
-                "productState": "ARCHIVED",
-                "rowId": 1,
+                "isMandatory": false,
+                "productId": 1,
               },
             },
           ],
@@ -136,10 +136,15 @@ exports[`The ProductionFields Component with archived product matched to a naics
     schema={Object {}}
     uiSchema={Object {}}
   />
+  <JSXStyle
+    id="849115727"
+  >
+    .svg-inline--fa.fa-info-circle{margin-left:0.5em;}
+  </JSXStyle>
 </Fragment>
 `;
 
-exports[`The ProductionFields Component with archived product not matched to a naics code should match the snapshot when rendering an archived product not matched to a naics code 1`] = `
+exports[`The ProductField with archived product not matched to a naics code should match the snapshot when rendering an archived product not matched to a naics code 1`] = `
 <Fragment>
   <Alert
     closeLabel="Close alert"
@@ -211,12 +216,12 @@ exports[`The ProductionFields Component with archived product not matched to a n
     naicsCode={
       Object {
         " $refType": "ProductField_naicsCode",
-        "allProductsByNaicsCode": Object {
+        "allowableProducts": Object {
           "edges": Array [
             Object {
               "node": Object {
-                "productState": "ARCHIVED",
-                "rowId": 2,
+                "isMandatory": false,
+                "productId": 2,
               },
             },
           ],
@@ -299,10 +304,15 @@ exports[`The ProductionFields Component with archived product not matched to a n
     schema={Object {}}
     uiSchema={Object {}}
   />
+  <JSXStyle
+    id="849115727"
+  >
+    .svg-inline--fa.fa-info-circle{margin-left:0.5em;}
+  </JSXStyle>
 </Fragment>
 `;
 
-exports[`The ProductionFields Component with no naics code should match the snapshot 1`] = `
+exports[`The ProductField with no naics code should match the snapshot 1`] = `
 <Fragment>
   <Alert
     closeLabel="Close alert"
@@ -346,7 +356,25 @@ exports[`The ProductionFields Component with no naics code should match the snap
       Object {
         " $refType": "ProductField_query",
         "allProducts": Object {
-          "edges": Array [],
+          "edges": Array [
+            Object {
+              "node": Object {
+                "addEmissionsFromEios": false,
+                "addPurchasedElectricityEmissions": false,
+                "addPurchasedHeatEmissions": false,
+                "isEnergyProduct": false,
+                "productState": "PUBLISHED",
+                "requiresEmissionAllocation": true,
+                "requiresProductAmount": true,
+                "rowId": 1,
+                "subtractExportedElectricityEmissions": false,
+                "subtractExportedHeatEmissions": false,
+                "subtractGeneratedElectricityEmissions": false,
+                "subtractGeneratedHeatEmissions": false,
+                "units": "bar",
+              },
+            },
+          ],
         },
       }
     }
@@ -397,10 +425,15 @@ exports[`The ProductionFields Component with no naics code should match the snap
     schema={Object {}}
     uiSchema={Object {}}
   />
+  <JSXStyle
+    id="849115727"
+  >
+    .svg-inline--fa.fa-info-circle{margin-left:0.5em;}
+  </JSXStyle>
 </Fragment>
 `;
 
-exports[`The ProductionFields Component with published product matched to a naics code should match the snapshot when rendering a product 1`] = `
+exports[`The ProductField with published product matched to a naics code should match the snapshot when rendering a product 1`] = `
 <Fragment>
   <ObjectField
     autofocus={false}
@@ -424,12 +457,12 @@ exports[`The ProductionFields Component with published product matched to a naic
     naicsCode={
       Object {
         " $refType": "ProductField_naicsCode",
-        "allProductsByNaicsCode": Object {
+        "allowableProducts": Object {
           "edges": Array [
             Object {
               "node": Object {
-                "productState": "PUBLISHED",
-                "rowId": 1,
+                "isMandatory": false,
+                "productId": 1,
               },
             },
           ],
@@ -512,10 +545,15 @@ exports[`The ProductionFields Component with published product matched to a naic
     schema={Object {}}
     uiSchema={Object {}}
   />
+  <JSXStyle
+    id="849115727"
+  >
+    .svg-inline--fa.fa-info-circle{margin-left:0.5em;}
+  </JSXStyle>
 </Fragment>
 `;
 
-exports[`The ProductionFields Component with published product not matched to a naics code should match the snapshot when rendering a product not matched to a naics code 1`] = `
+exports[`The ProductField with published product not matched to a naics code should match the snapshot when rendering a product not matched to a naics code 1`] = `
 <Fragment>
   <Alert
     closeLabel="Close alert"
@@ -563,12 +601,12 @@ exports[`The ProductionFields Component with published product not matched to a 
     naicsCode={
       Object {
         " $refType": "ProductField_naicsCode",
-        "allProductsByNaicsCode": Object {
+        "allowableProducts": Object {
           "edges": Array [
             Object {
               "node": Object {
-                "productState": "PUBLISHED",
-                "rowId": 2,
+                "isMandatory": false,
+                "productId": 2,
               },
             },
           ],
@@ -651,5 +689,10 @@ exports[`The ProductionFields Component with published product not matched to a 
     schema={Object {}}
     uiSchema={Object {}}
   />
+  <JSXStyle
+    id="849115727"
+  >
+    .svg-inline--fa.fa-info-circle{margin-left:0.5em;}
+  </JSXStyle>
 </Fragment>
 `;

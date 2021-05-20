@@ -23,10 +23,42 @@
           },
           "isEnergyProduct": {
             "type": "boolean"
+          },
+          "isMandatory": {
+            "type": "boolean"
           }
         },
 
         "dependencies": {
+          "isMandatory": {
+            "oneOf": [
+              {
+                "properties": {
+                  "productRowId": {
+                    "title": "Product or Service",
+                    "type": "integer"
+                  },
+                  "isMandatory": {
+                    "const": false
+                  }
+                },
+                "required": ["productRowId"]
+              },
+              {
+                "properties": {
+                  "productRowId": {
+                    "title": "Product or Service",
+                    "type": "integer",
+                    "readOnly": true
+                  },
+                  "isMandatory": {
+                    "const": true
+                  }
+                },
+                "required": ["productRowId"]
+              }
+            ]
+          },
           "requiresEmissionAllocation": {
             "oneOf": [
               {
@@ -77,9 +109,9 @@
           }
         },
         "required": [
-          "productRowId",
           "requiresEmissionAllocation",
-          "requiresProductAmount"
+          "requiresProductAmount",
+          "productRowId"
         ]
       }
     }
@@ -87,7 +119,11 @@
   "uiSchema": {
     "ui:add-text": "Add a Product",
     "ui:remove-text": "Remove Product",
+    "ui:field": "ProductsArrayField",
     "items": {
+      "ui:hasRemove": {
+        "isFalse": "isMandatory"
+      },
       "comments": {
         "ui:field": "AddCommentField",
         "ui:options": {
@@ -123,7 +159,8 @@
       },
       "requiresEmissionAllocation": { "ui:widget": "hidden" },
       "requiresProductAmount": { "ui:widget": "hidden" },
-      "isEnergyProduct": { "ui:widget": "hidden" }
+      "isEnergyProduct": { "ui:widget": "hidden" },
+      "isMandatory": { "ui:widget": "hidden" }
     }
   }
 }

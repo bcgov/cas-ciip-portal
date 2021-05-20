@@ -14,6 +14,7 @@ import FormArrayFieldTemplate from './FormArrayFieldTemplate';
 import FuelFields from './FuelField';
 import EmissionGasFields from './EmissionGasFields';
 import EmissionSourceFields from './EmissionSourceFields';
+import ProductsArrayField from './ProductsArrayField';
 import ProductField from './ProductField';
 import EmissionField from './EmissionField';
 import ProductRowIdField from './ProductRowIdField';
@@ -41,6 +42,15 @@ const CUSTOM_FIELDS = {
   fuel: (props) => <FuelFields query={props.formContext.query} {...props} />,
   emissionSource: EmissionSourceFields,
   emissionGas: EmissionGasFields,
+  ProductsArrayField: (props) => (
+    <ProductsArrayField
+      naicsProducts={
+        props.formContext.ciipFormResult.applicationByApplicationId
+          .latestDraftRevision.naicsCode
+      }
+      {...props}
+    />
+  ),
   product: (props) => (
     <ProductField
       naicsCode={
@@ -235,6 +245,7 @@ export default createFragmentContainer(FormComponent, {
   `,
   ciipFormResult: graphql`
     fragment Form_ciipFormResult on FormResult {
+      id
       formResult
       formJsonByFormId {
         name
@@ -248,6 +259,7 @@ export default createFragmentContainer(FormComponent, {
           naicsCode {
             ...ProductRowIdField_naicsCode
             ...ProductField_naicsCode
+            ...ProductsArrayField_naicsProducts
           }
         }
       }

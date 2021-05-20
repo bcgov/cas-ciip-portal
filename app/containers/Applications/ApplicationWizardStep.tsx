@@ -34,6 +34,7 @@ const ApplicationWizardStep: React.FunctionComponent<Props> = ({
   if ((!formResult && !confirmationPage) || !applicationRevision) return null;
 
   const [isSaved, setSaved] = useState(true);
+
   // Function: store the form result
   const storeResult = async (result) => {
     setSaved(false);

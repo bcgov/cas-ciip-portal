@@ -1,10 +1,12 @@
 import React from 'react';
-import {Alert} from 'react-bootstrap';
+import {Alert, OverlayTrigger, Tooltip} from 'react-bootstrap';
 import {FieldProps} from '@rjsf/core';
 import ObjectField from '@rjsf/core/dist/cjs/components/fields/ObjectField';
 import {createFragmentContainer, graphql} from 'react-relay';
 import {ProductField_query} from 'ProductField_query.graphql';
 import {ProductField_naicsCode} from 'ProductField_naicsCode.graphql';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faInfoCircle} from '@fortawesome/free-solid-svg-icons';
 
 interface FormData {
   productRowId?: number;
@@ -13,6 +15,7 @@ interface FormData {
   productEmissions?: number;
   requiresEmissionAllocation?: boolean;
   requiresProductAmount?: boolean;
+  isMandatory?: boolean;
 }
 
 interface Props extends FieldProps<FormData> {
@@ -37,12 +40,11 @@ export const ProductFieldComponent: React.FunctionComponent<Props> = (
     ) || !formData.productRowId;
 
   const productInNaicsCode =
-    naicsCode?.allProductsByNaicsCode.edges.some(
-      (edge) => edge.node.rowId === formData.productRowId
+    naicsCode?.allowableProducts.edges.some(
+      (edge) => edge.node.productId === formData.productRowId
     ) || !formData.productRowId;
 
-  const hasSelectableProducts =
-    naicsCode?.allProductsByNaicsCode?.edges.length > 0;
+  const hasSelectableProducts = naicsCode?.allowableProducts?.edges.length > 0;
 
   const handleProductChange = (productRowId: number) => {
     const product = query.allProducts.edges.find(
@@ -98,6 +100,22 @@ export const ProductFieldComponent: React.FunctionComponent<Props> = (
     </Alert>
   );
 
+  const mandatoryProductLabel = (
+    <strong>
+      Mandatory Product
+      <OverlayTrigger
+        overlay={
+          <Tooltip id="required-product-tooltip" placement="top">
+            Based on the NAICS code entered in the Administrative Data section,
+            reporting this product is required.
+          </Tooltip>
+        }
+      >
+        <FontAwesomeIcon icon={faInfoCircle} />
+      </OverlayTrigger>
+    </strong>
+  );
+
   const disableField = !productIsPublished || !productInNaicsCode;
 
   return (
@@ -105,7 +123,13 @@ export const ProductFieldComponent: React.FunctionComponent<Props> = (
       {!productIsPublished && archivedAlert}
       {!productInNaicsCode && notInNaicsAlert}
       {!hasSelectableProducts && noProductsToSelect}
+      {formData.isMandatory && mandatoryProductLabel}
       <ObjectField {...props} disabled={disableField} onChange={handleChange} />
+      <style jsx>{`
+        :global(.svg-inline--fa.fa-info-circle) {
+          margin-left: 0.5em;
+        }
+      `}</style>
     </>
   );
 };
@@ -136,13 +160,11 @@ export default createFragmentContainer(ProductFieldComponent, {
   `,
   naicsCode: graphql`
     fragment ProductField_naicsCode on NaicsCode {
-      allProductsByNaicsCode: productsByProductNaicsCodeNaicsCodeIdAndProductId(
-        orderBy: PRODUCT_NAME_ASC
-      ) {
+      allowableProducts: productNaicsCodesByNaicsCodeId {
         edges {
           node {
-            rowId
-            productState
+            productId
+            isMandatory
           }
         }
       }

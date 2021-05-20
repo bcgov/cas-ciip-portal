@@ -1,0 +1,161 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProductsArrayField NAICS code specified, with allowable products 1`] = `
+<ArrayField
+  autofocus={false}
+  disabled={false}
+  errorSchema={Object {}}
+  formContext={Object {}}
+  formData={null}
+  idSchema={
+    Object {
+      "$id": "myField",
+    }
+  }
+  naicsProducts={
+    Object {
+      " $refType": "ProductsArrayField_naicsProducts",
+      "mandatoryProducts": Object {
+        "edges": Array [
+          Object {
+            "node": Object {
+              "id": "abc",
+              "productByProductId": Object {
+                "addEmissionsFromEios": false,
+                "addPurchasedElectricityEmissions": false,
+                "addPurchasedHeatEmissions": false,
+                "isEnergyProduct": false,
+                "productState": "PUBLISHED",
+                "requiresEmissionAllocation": true,
+                "requiresProductAmount": true,
+                "rowId": 9,
+                "subtractExportedElectricityEmissions": false,
+                "subtractExportedHeatEmissions": false,
+                "subtractGeneratedElectricityEmissions": false,
+                "subtractGeneratedHeatEmissions": false,
+                "units": "GWH",
+              },
+            },
+          },
+        ],
+      },
+    }
+  }
+  name=""
+  onBlur={[MockFunction]}
+  onChange={[MockFunction]}
+  readonly={false}
+  registry={
+    Object {
+      "definitions": Object {},
+      "fields": Object {
+        "AnyOfField": [Function],
+        "ArrayField": [Function],
+        "BooleanField": [Function],
+        "DescriptionField": [Function],
+        "NullField": [Function],
+        "NumberField": [Function],
+        "ObjectField": [Function],
+        "OneOfField": [Function],
+        "SchemaField": [Function],
+        "StringField": [Function],
+        "TitleField": [Function],
+        "UnsupportedField": [Function],
+      },
+      "formContext": Object {},
+      "rootSchema": Object {},
+      "widgets": Object {
+        "AltDateTimeWidget": [Function],
+        "AltDateWidget": [Function],
+        "BaseInput": [Function],
+        "CheckboxWidget": [Function],
+        "CheckboxesWidget": [Function],
+        "ColorWidget": [Function],
+        "DateTimeWidget": [Function],
+        "DateWidget": [Function],
+        "EmailWidget": [Function],
+        "FileWidget": [Function],
+        "HiddenWidget": [Function],
+        "PasswordWidget": [Function],
+        "RadioWidget": [Function],
+        "RangeWidget": [Function],
+        "SelectWidget": [Function],
+        "TextWidget": [Function],
+        "TextareaWidget": [Function],
+        "URLWidget": [Function],
+        "UpDownWidget": [Function],
+      },
+    }
+  }
+  relay={null}
+  required={false}
+  schema={Object {}}
+  uiSchema={Object {}}
+/>
+`;
+
+exports[`ProductsArrayField no NAICS code specified 1`] = `
+<ArrayField
+  autofocus={false}
+  disabled={false}
+  errorSchema={Object {}}
+  formContext={Object {}}
+  formData={null}
+  idSchema={
+    Object {
+      "$id": "myField",
+    }
+  }
+  naicsProducts={null}
+  name=""
+  onBlur={[MockFunction]}
+  onChange={[MockFunction]}
+  readonly={false}
+  registry={
+    Object {
+      "definitions": Object {},
+      "fields": Object {
+        "AnyOfField": [Function],
+        "ArrayField": [Function],
+        "BooleanField": [Function],
+        "DescriptionField": [Function],
+        "NullField": [Function],
+        "NumberField": [Function],
+        "ObjectField": [Function],
+        "OneOfField": [Function],
+        "SchemaField": [Function],
+        "StringField": [Function],
+        "TitleField": [Function],
+        "UnsupportedField": [Function],
+      },
+      "formContext": Object {},
+      "rootSchema": Object {},
+      "widgets": Object {
+        "AltDateTimeWidget": [Function],
+        "AltDateWidget": [Function],
+        "BaseInput": [Function],
+        "CheckboxWidget": [Function],
+        "CheckboxesWidget": [Function],
+        "ColorWidget": [Function],
+        "DateTimeWidget": [Function],
+        "DateWidget": [Function],
+        "EmailWidget": [Function],
+        "FileWidget": [Function],
+        "HiddenWidget": [Function],
+        "PasswordWidget": [Function],
+        "RadioWidget": [Function],
+        "RangeWidget": [Function],
+        "SelectWidget": [Function],
+        "TextWidget": [Function],
+        "TextareaWidget": [Function],
+        "URLWidget": [Function],
+        "UpDownWidget": [Function],
+      },
+    }
+  }
+  relay={null}
+  required={false}
+  schema={Object {}}
+  uiSchema={Object {}}
+/>
+`;
