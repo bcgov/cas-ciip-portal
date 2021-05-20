@@ -67,7 +67,7 @@ class Copyright extends Component<Props> {
           <p>
             For the reproduction of provincial legislation found on the{' '}
             <a
-              href="http://www.bclaws.ca/"
+              href="https://www.bclaws.ca/"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -75,7 +75,7 @@ class Copyright extends Component<Props> {
             </a>
             , permission is subject to the terms of the{' '}
             <a
-              href="http://www.bclaws.ca/standards/2014/QP-License_1.0.html"
+              href="https://www.bclaws.ca/standards/2014/QP-License_1.0.html"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -108,7 +108,7 @@ class Copyright extends Component<Props> {
           <p>
             For the reproduction of materials found in the{' '}
             <a
-              href="http://catalogue.data.gov.bc.ca/"
+              href="https://catalogue.data.gov.bc.ca/"
               target="_blank"
               rel="noopener noreferrer"
             >

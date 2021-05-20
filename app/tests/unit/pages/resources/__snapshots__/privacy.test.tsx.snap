@@ -24,7 +24,7 @@ exports[`BCGov core privacy page matches the last accepted Snapshot 1`] = `
        
       <em>
         <a
-          href="http://www.bclaws.ca/Recon/document/ID/freeside/96165_00"
+          href="https://www.bclaws.ca/Recon/document/ID/freeside/96165_00"
           rel="noopener noreferrer"
           target="_blank"
         >
@@ -132,7 +132,7 @@ exports[`BCGov core privacy page matches the last accepted Snapshot 1`] = `
       Some cookies will remain on your computer for only as long as your browser remains open, or until you delete them off your computer. Other cookies will remain on your computer so that you may be recognized when you return to the website. These cookies will expire no later than 18 months from when they are first placed on your computer. Information collected as a part of a cookie or a security audit log is retained for 2 years. Information collected or created by the Government of B.C. is maintained in accordance with
        
       <a
-        href="http://www.gov.bc.ca/citz/iao/records_mgmt/"
+        href="https://www.gov.bc.ca/citz/iao/records_mgmt/"
         rel="noopener noreferrer"
         target="_blank"
       >
