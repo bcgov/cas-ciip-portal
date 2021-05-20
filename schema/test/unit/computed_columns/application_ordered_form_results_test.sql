@@ -33,15 +33,6 @@ select test_helper.create_applications(2, True, True);
 -- Set admin form_result with application_id=2 to point to a deprecated form_json
 update ggircs_portal.form_result set form_id=1 where application_id=2 and form_id=5;
 
-select id, application_id, form_id from ggircs_portal.form_result;
-
-select id, slug from ggircs_portal.form_json;
-select * from ggircs_portal.ciip_application_wizard;
-
-with record as (select row(application.*)::ggircs_portal.application from ggircs_portal.application where id=2)
-    select form_id from ggircs_portal.application_ordered_form_results((select * from record), '1') order by form_id;
-
-
 select results_eq (
   $$
     with record as (select row(application.*)::ggircs_portal.application from ggircs_portal.application where id=2)
