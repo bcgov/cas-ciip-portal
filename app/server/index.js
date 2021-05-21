@@ -115,7 +115,9 @@ app.prepare().then(async () => {
   );
 
   server.use(bodyParser.json({limit: '50mb'}));
-  server.use(cors());
+
+  // Only allow CORS for the <Analytics /> component
+  server.use(cors({origin: 'https://www2.gov.bc.ca'}));
 
   // Tell search + crawlers not to index non-production environments:
   server.use(({res, next}) => {
