@@ -42,10 +42,10 @@ export const AddOrganisationComponent: React.FunctionComponent<Props> = (
     <div>
       <Card style={{marginTop: '50px'}}>
         <Card.Body>
-          <Card.Title>Search for an operator: </Card.Title>
+          <Card.Title>Search for an operation: </Card.Title>
           <Dropdown className="search-dropdown">
             <Dropdown.Toggle id="org-dropdown" className="search-toggle">
-              Find Operator
+              Find Operation
             </Dropdown.Toggle>
             <Dropdown.Menu>
               <FormControl

@@ -9,7 +9,7 @@ Array [
       }
     }
   >
-    Operator not in the list?
+    Operation not in the list?
   </p>,
   <Button
     active={false}
@@ -23,7 +23,7 @@ Array [
       onClick={[Function]}
       type="button"
     >
-      Add Operator +
+      Add Operation +
     </button>
   </Button>,
   <Modal

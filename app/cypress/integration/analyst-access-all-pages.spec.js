@@ -21,7 +21,7 @@ describe('When logged in as an analyst', () => {
     cy.visit('/analyst');
     cy.url().should('include', '/analyst');
     cy.get('.card-body');
-    cy.contains('Operators').click();
+    cy.contains('Operations').click();
     cy.url().should('include', '/analyst/add-organisation');
     cy.visit('/analyst');
     cy.url().should('include', '/analyst');

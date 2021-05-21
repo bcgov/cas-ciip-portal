@@ -14,6 +14,6 @@ describe('AddOrganisationFacility Component', () => {
     const render = mount(
       <AddOrganisationFacility onAddOrganisation={jest.fn()} />
     );
-    expect(render.find('Button').text()).toBe('Add Operator +');
+    expect(render.find('Button').text()).toBe('Add Operation +');
   });
 });
