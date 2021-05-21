@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {graphql} from 'react-relay';
-import {Row, Col, Button, Toast} from 'react-bootstrap';
+import {Row, Col, Button} from 'react-bootstrap';
 import {productsBenchmarksQueryResponse} from 'productsBenchmarksQuery.graphql';
 import DefaultLayout from 'layouts/default-layout';
 import ProductCreatorContainer from 'containers/Products/ProductCreatorContainer';
@@ -52,8 +52,7 @@ class ProductsBenchmarks extends Component<Props> {
   state = {
     formData: {formId: '', formJson: ''},
     mode: 'view',
-    expandCreateForm: false,
-    showProductCreatedToast: false
+    expandCreateForm: false
   };
 
   static async getInitialProps() {
@@ -65,10 +64,6 @@ class ProductsBenchmarks extends Component<Props> {
       }
     };
   }
-
-  toggleShowProductCreatedToast = (show: boolean) => {
-    this.setState({showProductCreatedToast: show});
-  };
 
   toggleShowCreateForm = () => {
     const expanded = this.state.expandCreateForm;
@@ -111,28 +106,10 @@ class ProductsBenchmarks extends Component<Props> {
         titleControls={newProductButton}
       >
         <Row>
-          <Col md={{span: 4, offset: 4}}>
-            <Toast
-              autohide
-              show={this.state.showProductCreatedToast}
-              delay={4000}
-              onClose={() => this.toggleShowProductCreatedToast(false)}
-            >
-              <Toast.Body style={{textAlign: 'center', color: 'green'}}>
-                Product created successfully!
-              </Toast.Body>
-            </Toast>
-            <br />
-          </Col>
-        </Row>
-        <Row>
           <Col>
             {this.state.expandCreateForm && (
               <ProductCreatorContainer
                 toggleShowCreateForm={this.toggleShowCreateForm}
-                toggleShowProductCreatedToast={
-                  this.toggleShowProductCreatedToast
-                }
               />
             )}
             <ProductListContainer query={query} />

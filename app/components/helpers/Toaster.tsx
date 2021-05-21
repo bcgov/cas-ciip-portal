@@ -33,7 +33,7 @@ export const Toaster: React.FunctionComponent = () => {
           color: currentColor;
         }
         :global(.Toastify__progress-bar--default) {
-          background: currentColor;
+          background: transparent;
         }
       `}</style>
     </>

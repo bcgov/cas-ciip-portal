@@ -14,13 +14,11 @@ import HeaderWidget from 'components/HeaderWidget';
 interface Props {
   relay: RelayProp;
   toggleShowCreateForm: (...args: any[]) => void;
-  toggleShowProductCreatedToast: (...args: any[]) => void;
 }
 
 export const ProductCreator: React.FunctionComponent<Props> = ({
   relay,
-  toggleShowCreateForm,
-  toggleShowProductCreatedToast
+  toggleShowCreateForm
 }) => {
   const saveProduct = async (e: IChangeEvent) => {
     const variables = {
@@ -45,13 +43,14 @@ export const ProductCreator: React.FunctionComponent<Props> = ({
             e.formData.subtractGeneratedHeatEmissions,
           requiresProductAmount: e.formData.requiresProductAmount
         }
+      },
+      messages: {
+        success: 'Product created successfully.'
       }
     };
     const {environment} = relay;
-    const response = await createProductMutation(environment, variables);
+    await createProductMutation(environment, variables);
     toggleShowCreateForm();
-    if (response.createProduct) toggleShowProductCreatedToast(true);
-    else console.log(response);
   };
 
   return (
