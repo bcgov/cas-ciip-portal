@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const LoadTesting = require('easygraphql-load-tester');
 const queries = Object.values(require('./queries.json'));
+const k6Template = require('./k6-template');
 
 const schemaCode = fs.readFileSync(
   path.join(__dirname, '../../server', 'schema.graphql'),
@@ -52,7 +53,10 @@ const args = {
 
 const easyGraphQLLoadTester = new LoadTesting(schemaCode, args);
 
-easyGraphQLLoadTester.k6('k6-admin.js', {
+const k6ConfigFile = `k6-guest-${process.env.PERF_MODE}.js`;
+k6Template.generate(process.env.PERF_MODE, '', k6ConfigFile);
+
+easyGraphQLLoadTester.k6(k6ConfigFile, {
   customQueries: queries,
   onlyCustomQueries: true,
   selectedQueries: [
@@ -66,8 +70,6 @@ easyGraphQLLoadTester.k6('k6-admin.js', {
     'applicationsQuery',
     'organisationRequestsQuery'
   ],
-  vus: 1,
-  duration: '10s',
   queryFile: true,
-  out: ['json=admin_result.json']
+  out: ['json=results/admin_result.json']
 });
