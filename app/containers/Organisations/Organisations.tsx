@@ -129,16 +129,6 @@ export const OrganisationsComponent: React.FunctionComponent<Props> = (
                 <h4 style={{fontWeight: 300, margin: '15px 0'}}>
                   {props.orgInput}{' '}
                 </h4>
-                {/* Dev-only button to automatically create approved user-organisation requests */}
-                {process.env.NODE_ENV === 'production' ? null : (
-                  <Button
-                    style={{marginRight: '15px'}}
-                    variant="success"
-                    onClick={async () => claimOrg(true)}
-                  >
-                    Activate Access
-                  </Button>
-                )}
                 <Button
                   style={{marginRight: '15px'}}
                   variant="primary"
