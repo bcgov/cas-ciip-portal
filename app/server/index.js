@@ -43,11 +43,8 @@ const AS_REPORTER = process.argv.includes('AS_REPORTER');
 const AS_ANALYST = process.argv.includes('AS_ANALYST');
 const AS_ADMIN = process.argv.includes('AS_ADMIN');
 const AS_PENDING = process.argv.includes('AS_PENDING');
-const NO_MATHJAX = process.argv.includes('NO_MATHJAX');
 const NO_MAIL = process.argv.includes('NO_MAIL');
 const AS_CYPRESS = process.argv.includes('AS_CYPRESS');
-
-if (NO_MATHJAX) process.env.NO_MATHJAX = true;
 
 if (NO_MAIL) process.env.NO_MAIL = true;
 

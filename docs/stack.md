@@ -341,8 +341,8 @@ A `cypress.env.json` file is available on the CAS Scrum team SharePoint (TODO: S
 - Start the database
 - Deploy the development data using `.bin/deploy-data.sh -p -dev`
 - Start the application using your favorite command. On CI, it will run it in production mode, with auth enabled. While developing, however, you can run `yarn dev NO_AUTH` in most cases
-- The feature flag `yarn dev NO_MATHJAX AS_CYPRESS` is available for running Cypress tests
-- These flags block mathjax components that often cause a false failed response from the e2e tests.
+- The feature flag `yarn dev AS_CYPRESS` is available for running Cypress tests
+- This flags enables mocking the current using using the `mocks.auth` cookie, allowing cypress tests to bypass authentication.
 - Run `yarn cypress` to open the Cypress UI
 
 #### Visual testing with Percy
