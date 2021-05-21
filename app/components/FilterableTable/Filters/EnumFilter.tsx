@@ -48,7 +48,9 @@ export default class EnumFilter<T> extends TableFilter {
               key={this.argName + '-' + kvp.display}
               value={kvp.value as any}
             >
-              {getUserFriendlyStatusLabel(kvp.display)}
+              {this.ignoreFriendlyDisplay
+                ? kvp.display
+                : getUserFriendlyStatusLabel(kvp.display)}
             </option>
           ))}
         </Form.Control>

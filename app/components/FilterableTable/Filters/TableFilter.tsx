@@ -6,6 +6,7 @@ export interface ISearchOptionSettings {
   filterable?: boolean;
   sortable?: boolean;
   sortColumnName?: string;
+  ignoreFriendlyDisplay?: boolean;
 }
 
 export default abstract class TableFilter<T = string | number | boolean> {
@@ -19,6 +20,7 @@ export default abstract class TableFilter<T = string | number | boolean> {
     this.isSearchEnabled = settings?.filterable ?? true;
     this.isSortEnabled = settings?.sortable ?? true;
     this.sortColumnName = settings?.sortColumnName ?? argName;
+    this.ignoreFriendlyDisplay = settings?.ignoreFriendlyDisplay ?? false;
   }
 
   /**
@@ -35,6 +37,7 @@ export default abstract class TableFilter<T = string | number | boolean> {
   isSearchEnabled: boolean;
   isSortEnabled: boolean;
   removeSearchHeader: boolean;
+  ignoreFriendlyDisplay: boolean;
 
   /**
    * The array of all relay arguments managed by this filter.
