@@ -1,6 +1,9 @@
+// Module that generates a k6 configuration file
+// And writes it on the disk at the specified location
+
 const fs = require('fs');
 
-module.exports.generate = function (perf_test, role, path = './k6.js') {
+module.exports.render = function (perf_test, role, path = './k6.js') {
   const fileContent = `
 import executeQueries from './executeQueries.js';
 

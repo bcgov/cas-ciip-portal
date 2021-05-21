@@ -1,0 +1,98 @@
+/* eslint-disable no-restricted-globals */
+/* eslint-disable import/no-dynamic-require */
+/* eslint-disable import/no-unresolved */
+
+// This file is meant to be run as standalone by k6
+// PERF_MODE=smoke k6 run k6-mutations.js
+
+import http from 'k6/http';
+import {check} from 'k6';
+
+// This is the k6 way https://k6.io/docs/javascript-api/init-context/open-filepath-mode/
+const queries = Object.values(JSON.parse(open('./queries.json')));
+
+const updateFormResultMutation = queries.find((f) =>
+  f.startsWith('mutation updateFormResultMutation')
+);
+const createApplicationMutation = queries.find((f) =>
+  f.startsWith('mutation createApplicationMutation')
+);
+
+const applicationMutationVariables = (facilityId) => {
+  return {
+    input: {
+      facilityIdInput: facilityId
+    }
+  };
+};
+const updateFormResultVariables = (formResultId, formResult) => {
+  return {
+    input: {
+      id: formResultId,
+      formResultPatch: {
+        formResult
+      }
+    }
+  };
+};
+
+const getQueries = (user_seed, iteration_seed) => {
+  return [
+    {
+      name: 'createApplicationMutation',
+      query: createApplicationMutation,
+      variables: applicationMutationVariables(user_seed)
+    },
+    {
+      name: 'updateFormResultMutation',
+      query: updateFormResultMutation,
+      variables: updateFormResultVariables(
+        user_seed * 8,
+        `["a_random_key":"some random data --- ${iteration_seed}"]`
+      )
+    }
+  ];
+};
+
+export const options = require(`./configuration/${__ENV.PERF_MODE}_testing_options.js`)
+  .default;
+
+export default () => {
+  const queries = getQueries(__VU, __ITER);
+
+  for (const query of queries) {
+    const url = 'http://localhost:3004/graphql';
+    const payload = JSON.stringify({
+      query: query.query,
+      variables: query.variables
+    });
+    const params = {
+      headers: {'Content-Type': 'application/json'},
+      cookies: {
+        'mocks.auth': 'reporter'
+      },
+      tags: {
+        name: query.name
+      }
+    };
+    const res = http.post(url, payload, params);
+    const parsedBody = JSON.parse(res.body);
+
+    check(parsedBody, {
+      'no graphql error returned': (parsedBody) => !parsedBody.errors,
+      'there is data in the response': (parsedBody) =>
+        parsedBody.data !== undefined
+    });
+
+    if (parsedBody.errors) {
+      console.log(
+        '===================================================================='
+      );
+      console.log(' ');
+      console.log(' ');
+      console.log(res.body);
+      console.log(' ');
+      console.log(' ');
+    }
+  }
+};

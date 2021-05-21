@@ -17,7 +17,7 @@ const queriesWithParams = {
 const easyGraphQLLoadTester = new LoadTesting(schemaCode, queriesWithParams);
 
 const k6ConfigFile = `k6-guest-${process.env.PERF_MODE}.js`;
-k6Template.generate(process.env.PERF_MODE, '', k6ConfigFile);
+k6Template.render(process.env.PERF_MODE, '', k6ConfigFile);
 
 easyGraphQLLoadTester.k6(k6ConfigFile, {
   customQueries: queries,
