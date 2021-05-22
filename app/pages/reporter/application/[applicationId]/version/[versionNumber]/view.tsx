@@ -72,6 +72,8 @@ class ViewApplication extends Component<Props> {
     }
   `;
 
+  state = {newerDraftExists: undefined};
+
   render() {
     const {session} = this.props.query;
     const {query, router} = this.props;
@@ -104,8 +106,14 @@ class ViewApplication extends Component<Props> {
     const latestDraftRevision = application.latestDraftRevision?.versionNumber;
 
     const newerSubmissionExists = latestSubmittedRevision > thisVersion;
-    const newerDraftExists = latestDraftRevision > latestSubmittedRevision;
-
+    if (this.state.newerDraftExists === undefined) {
+      this.setState((state) => {
+        return {
+          ...state,
+          newerDraftExists: latestDraftRevision > latestSubmittedRevision
+        };;
+      });
+    }
     const latestSubmissionHref = getViewApplicationPageRoute(
       router.query.applicationId.toString(),
       latestSubmittedRevision
@@ -176,12 +184,12 @@ class ViewApplication extends Component<Props> {
                 >
                   {changesRequested &&
                     !newerSubmissionExists &&
-                    !newerDraftExists && (
+                    !this.state.newerDraftExists && (
                       <ReviseApplicationButton
                         application={query.application}
                       />
                     )}
-                  {newerDraftExists &&
+                  {this.state.newerDraftExists &&
                     !newerSubmissionExists &&
                     resumeLatestDraftButton}
                 </ApplicationDecision>
