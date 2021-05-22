@@ -24,19 +24,14 @@ exports[`The RegistrationLoginButtons component should render a message about th
       >
         Apply for the CleanBC Industrial Incentive Program (CIIP)
       </CardTitle>
-      <CardText
-        style={
-          Object {
-            "padding": "10px 0 10px 0",
-          }
-        }
-      >
-        The due date for CIIP application forms has passed. 
-        <br />
+      <p>
+        The due date for CIIP application forms has passed.
+      </p>
+      <p>
         You may still log in to view your submitted CIIP applications and submit any changes requested by the Climate Action Secretariat.
-      </CardText>
+      </p>
       <a
-        className="jsx-43491111 full-width btn btn-primary btn-lg"
+        className="jsx-513087841 full-width btn btn-primary btn-lg"
         href="/register"
         style={
           Object {
@@ -61,9 +56,9 @@ exports[`The RegistrationLoginButtons component should render a message about th
     </Button>
   </LoginForm>
   <JSXStyle
-    id="43491111"
+    id="513087841"
   >
-    .login-link{padding:20px;width:100%;-webkit-text-decoration:underline;text-decoration:underline;}
+    .login-link{padding:20px;width:100%;-webkit-text-decoration:underline;text-decoration:underline;}.card-body &gt; p:first-of-type{padding:10px 0 0 0;}.card-body &gt; p:last-of-type{padding:0 0 10px 0;}
   </JSXStyle>
 </Col>
 `;
@@ -92,17 +87,19 @@ exports[`The RegistrationLoginButtons component should render the date where the
       >
         Apply for the CleanBC Industrial Incentive Program (CIIP)
       </CardTitle>
-      <CardText
-        style={
-          Object {
-            "padding": "10px 0 10px 0",
-          }
-        }
-      >
+      <p>
+        Operators must submit a CIIP application form by
+         
+        <strong>
+          January 1st, 2020
+        </strong>
+        .
+      </p>
+      <p>
         As part of the application, information about the operation’s energy use, emissions, and production is required.
-      </CardText>
+      </p>
       <a
-        className="jsx-43491111 full-width btn btn-primary btn-lg"
+        className="jsx-513087841 full-width btn btn-primary btn-lg"
         href="/register"
         style={
           Object {
@@ -127,9 +124,9 @@ exports[`The RegistrationLoginButtons component should render the date where the
     </Button>
   </LoginForm>
   <JSXStyle
-    id="43491111"
+    id="513087841"
   >
-    .login-link{padding:20px;width:100%;-webkit-text-decoration:underline;text-decoration:underline;}
+    .login-link{padding:20px;width:100%;-webkit-text-decoration:underline;text-decoration:underline;}.card-body &gt; p:first-of-type{padding:10px 0 0 0;}.card-body &gt; p:last-of-type{padding:0 0 10px 0;}
   </JSXStyle>
 </Col>
 `;

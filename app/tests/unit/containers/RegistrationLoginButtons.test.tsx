@@ -21,9 +21,9 @@ describe('The RegistrationLoginButtons component', () => {
     );
 
     expect(component).toMatchSnapshot();
-    // Expect(component.find('CardText').first().text()).toStartWith(
-    //   'Operators must submit a CIIP application form by January 01, 2020.'
-    // );
+    expect(component.find('Card p').first().text()).toStartWith(
+      'Operators must submit a CIIP application form by January 1st, 2020.'
+    );
   });
 
   it('should render a message about the application window being closed', () => {
@@ -37,7 +37,7 @@ describe('The RegistrationLoginButtons component', () => {
     );
 
     expect(component).toMatchSnapshot();
-    expect(component.find('CardText').first().text()).toStartWith(
+    expect(component.find('Card p').first().text()).toStartWith(
       'The due date for CIIP application forms has passed.'
     );
   });

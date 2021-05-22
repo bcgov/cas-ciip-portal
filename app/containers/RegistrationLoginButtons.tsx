@@ -3,7 +3,7 @@ import {Col, Card, Button} from 'react-bootstrap';
 import LoginButton from '../components/LoginButton';
 import {createFragmentContainer, graphql} from 'react-relay';
 import {RegistrationLoginButtons_query} from 'RegistrationLoginButtons_query.graphql';
-// Import {dateTimeFormat} from 'functions/formatDates';
+import {dateTimeFormat} from 'functions/formatDates';
 
 interface Props {
   query: RegistrationLoginButtons_query;
@@ -13,18 +13,27 @@ export const RegistrationLoginButtonsComponent: React.FunctionComponent<Props> =
   query
 }) => {
   const applicationCloseTime = query?.openedReportingYear?.applicationCloseTime;
-  // Const applicationDeadline =
-  //   applicationCloseTime &&
-  //   dateTimeFormat(applicationCloseTime, 'days_string');
+  const applicationDeadline =
+    applicationCloseTime && dateTimeFormat(applicationCloseTime, 'days_string');
 
   const cardText = applicationCloseTime ? (
-    // `Operators must submit a CIIP application form by ${applicationDeadline}.
-    'As part of the application, information about the operation’s energy use, emissions, and production is required.'
+    <>
+      <p>
+        Operators must submit a CIIP application form by{' '}
+        <strong>{applicationDeadline}</strong>.
+      </p>
+      <p>
+        As part of the application, information about the operation’s energy
+        use, emissions, and production is required.
+      </p>
+    </>
   ) : (
     <>
-      The due date for CIIP application forms has passed. <br />
-      You may still log in to view your submitted CIIP applications and submit
-      any changes requested by the Climate Action Secretariat.
+      <p>The due date for CIIP application forms has passed.</p>
+      <p>
+        You may still log in to view your submitted CIIP applications and submit
+        any changes requested by the Climate Action Secretariat.
+      </p>
     </>
   );
 
@@ -35,7 +44,7 @@ export const RegistrationLoginButtonsComponent: React.FunctionComponent<Props> =
           <Card.Title className="blue">
             Apply for the CleanBC Industrial Incentive Program (CIIP)
           </Card.Title>
-          <Card.Text style={{padding: '10px 0 10px 0'}}>{cardText}</Card.Text>
+          {cardText}
           <a
             href="/register"
             style={{padding: '15px', display: 'block'}}
@@ -55,6 +64,12 @@ export const RegistrationLoginButtonsComponent: React.FunctionComponent<Props> =
           padding: 20px;
           width: 100%;
           text-decoration: underline;
+        }
+        :global(.card-body > p:first-of-type) {
+          padding: 10px 0 0 0;
+        }
+        :global(.card-body > p:last-of-type) {
+          padding: 0 0 10px 0;
         }
       `}</style>
     </Col>

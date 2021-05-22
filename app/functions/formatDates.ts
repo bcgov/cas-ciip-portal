@@ -7,7 +7,7 @@ const FORMAT_TYPE = {
   seconds: 'MMM D, YYYY hh:mm:ss A (z)',
   minutes: 'MMM D, YYYY hh:mm A (z)',
   days_numbered: 'DD-MM-YYYY',
-  days_string: 'MMM Do, YYYY'
+  days_string: 'MMMM Do, YYYY'
 };
 
 // Adds a default timestamp to yyyy-MM-dd dates without overwriting pre-existing timestamps:
