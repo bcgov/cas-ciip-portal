@@ -124,6 +124,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
       centered
       size="xl"
       show={productModalShow}
+      aria-labelledby="product-benchmark-header"
       onHide={() => {
         setProductModalShow(false);
       }}
@@ -147,6 +148,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
       centered
       size="xl"
       show={benchmarkModalShow}
+      aria-labelledby="product-benchmark-header"
       onHide={() => {
         setBenchmarkModalShow(false);
       }}
