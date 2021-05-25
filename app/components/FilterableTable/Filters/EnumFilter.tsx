@@ -16,7 +16,7 @@ export default class EnumFilter<T> extends TableFilter {
   ) {
     super(display, argName, settings);
     this.renderEnumValue =
-      settings.renderEnumValue ?? getUserFriendlyStatusLabel;
+      settings?.renderEnumValue ?? getUserFriendlyStatusLabel;
     this.enumValues = enumValues;
     this.searchOptionValues = enumValues.map((val) => {
       return {display: String(val), value: val};
