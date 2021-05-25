@@ -5,33 +5,25 @@ exports[`IncentiveCalculator includes an aggregate row with multiple products 1`
   <Jumbotron
     fluid={false}
   >
-    <div
-      className="jsx-3958786356"
-      style={
-        Object {
-          "marginBottom": "30px",
-        }
-      }
+    <h2
+      className="jsx-3309016289"
     >
-      <h2
-        className="jsx-3958786356"
-      >
-        Incentive by Product:
-      </h2>
-      <p
-        className="jsx-3958786356"
-      >
-        This formula gives the partial incentive for each product reported in 
-        <br
-          className="jsx-3958786356"
-        />
-        the CIIP application. The total Incentive is the sum of these partial incentives.
-        <br
-          className="jsx-3958786356"
-        />
-      </p>
-    </div>
-    <IncentiveSegmentFormula />
+      Incentive by Product:
+    </h2>
+    <p
+      className="jsx-3309016289"
+    >
+      This formula gives the partial incentive for each product reported in the CIIP application.
+      <br
+        className="jsx-3309016289"
+      />
+      The total Incentive is the sum of these partial incentives.
+    </p>
+    <img
+      alt="CIIP Incentive Formula"
+      className="jsx-3309016289"
+      src="/static/ciip-formula.svg"
+    />
   </Jumbotron>
   <ForwardRef
     bordered={true}
@@ -40,60 +32,60 @@ exports[`IncentiveCalculator includes an aggregate row with multiple products 1`
     striped={true}
   >
     <thead
-      className="jsx-3958786356"
+      className="jsx-3309016289"
     >
       <tr
-        className="jsx-3958786356"
+        className="jsx-3309016289"
       >
         <th
-          className="jsx-3958786356"
+          className="jsx-3309016289"
         >
           Product Name
         </th>
         <th
-          className="jsx-3958786356"
+          className="jsx-3309016289"
         >
           Emission Intensity
         </th>
         <th
-          className="jsx-3958786356"
+          className="jsx-3309016289"
         >
           Benchmark
         </th>
         <th
-          className="jsx-3958786356"
+          className="jsx-3309016289"
         >
           Eligibility Threshold
         </th>
         <th
-          className="jsx-3958786356"
+          className="jsx-3309016289"
         >
           Incentive Multiplier
         </th>
         <th
-          className="jsx-3958786356"
+          className="jsx-3309016289"
         >
           Payment Allocation
         </th>
         <th
-          className="jsx-3958786356"
+          className="jsx-3309016289"
         >
           Incentive Ratio
         </th>
         <th
-          className="jsx-3958786356"
+          className="jsx-3309016289"
         >
           Calculated Incentive (CAD)
         </th>
         <th
-          className="jsx-3958786356"
+          className="jsx-3309016289"
         >
           Maximum Incentive (CAD)
         </th>
       </tr>
     </thead>
     <tbody
-      className="jsx-3958786356"
+      className="jsx-3309016289"
     >
       <Relay(IncentiveSegmentContainer)
         ciipIncentiveByProduct={
@@ -122,45 +114,45 @@ exports[`IncentiveCalculator includes an aggregate row with multiple products 1`
         key="2"
       />
       <tr
-        className="jsx-3958786356"
+        className="jsx-3309016289"
       >
         <td
-          className="jsx-3958786356"
+          className="jsx-3309016289"
         />
          
         <td
-          className="jsx-3958786356"
+          className="jsx-3309016289"
         />
          
         <td
-          className="jsx-3958786356"
+          className="jsx-3309016289"
         />
          
         <td
-          className="jsx-3958786356"
+          className="jsx-3309016289"
         />
          
         <td
-          className="jsx-3958786356"
+          className="jsx-3309016289"
         />
          
         <td
-          className="jsx-3958786356"
+          className="jsx-3309016289"
         />
         <td
-          className="jsx-3958786356 text-right"
+          className="jsx-3309016289 text-right"
         >
           0.8937
         </td>
         <td
-          className="jsx-3958786356 text-right"
+          className="jsx-3309016289 text-right"
         >
           <Money
             amount="13.72"
           />
         </td>
         <td
-          className="jsx-3958786356 text-right"
+          className="jsx-3309016289 text-right"
         >
           <Money
             amount="15.35"
@@ -170,9 +162,9 @@ exports[`IncentiveCalculator includes an aggregate row with multiple products 1`
     </tbody>
   </ForwardRef>
   <JSXStyle
-    id="3958786356"
+    id="3309016289"
   >
-    h2.jsx-3958786356{font-size:1.25rem;margin-botton:0.5rem;}
+    h2.jsx-3309016289{font-size:1.25rem;margin-botton:0.5rem;}img.jsx-3309016289{width:100%;max-width:500px;}
   </JSXStyle>
 </Fragment>
 `;
@@ -182,33 +174,25 @@ exports[`IncentiveCalculator should render the page 1`] = `
   <Jumbotron
     fluid={false}
   >
-    <div
-      className="jsx-3958786356"
-      style={
-        Object {
-          "marginBottom": "30px",
-        }
-      }
+    <h2
+      className="jsx-3309016289"
     >
-      <h2
-        className="jsx-3958786356"
-      >
-        Incentive by Product:
-      </h2>
-      <p
-        className="jsx-3958786356"
-      >
-        This formula gives the partial incentive for each product reported in 
-        <br
-          className="jsx-3958786356"
-        />
-        the CIIP application. The total Incentive is the sum of these partial incentives.
-        <br
-          className="jsx-3958786356"
-        />
-      </p>
-    </div>
-    <IncentiveSegmentFormula />
+      Incentive by Product:
+    </h2>
+    <p
+      className="jsx-3309016289"
+    >
+      This formula gives the partial incentive for each product reported in the CIIP application.
+      <br
+        className="jsx-3309016289"
+      />
+      The total Incentive is the sum of these partial incentives.
+    </p>
+    <img
+      alt="CIIP Incentive Formula"
+      className="jsx-3309016289"
+      src="/static/ciip-formula.svg"
+    />
   </Jumbotron>
   <ForwardRef
     bordered={true}
@@ -217,60 +201,60 @@ exports[`IncentiveCalculator should render the page 1`] = `
     striped={true}
   >
     <thead
-      className="jsx-3958786356"
+      className="jsx-3309016289"
     >
       <tr
-        className="jsx-3958786356"
+        className="jsx-3309016289"
       >
         <th
-          className="jsx-3958786356"
+          className="jsx-3309016289"
         >
           Product Name
         </th>
         <th
-          className="jsx-3958786356"
+          className="jsx-3309016289"
         >
           Emission Intensity
         </th>
         <th
-          className="jsx-3958786356"
+          className="jsx-3309016289"
         >
           Benchmark
         </th>
         <th
-          className="jsx-3958786356"
+          className="jsx-3309016289"
         >
           Eligibility Threshold
         </th>
         <th
-          className="jsx-3958786356"
+          className="jsx-3309016289"
         >
           Incentive Multiplier
         </th>
         <th
-          className="jsx-3958786356"
+          className="jsx-3309016289"
         >
           Payment Allocation
         </th>
         <th
-          className="jsx-3958786356"
+          className="jsx-3309016289"
         >
           Incentive Ratio
         </th>
         <th
-          className="jsx-3958786356"
+          className="jsx-3309016289"
         >
           Calculated Incentive (CAD)
         </th>
         <th
-          className="jsx-3958786356"
+          className="jsx-3309016289"
         >
           Maximum Incentive (CAD)
         </th>
       </tr>
     </thead>
     <tbody
-      className="jsx-3958786356"
+      className="jsx-3309016289"
     >
       <Relay(IncentiveSegmentContainer)
         ciipIncentiveByProduct={
@@ -288,9 +272,9 @@ exports[`IncentiveCalculator should render the page 1`] = `
     </tbody>
   </ForwardRef>
   <JSXStyle
-    id="3958786356"
+    id="3309016289"
   >
-    h2.jsx-3958786356{font-size:1.25rem;margin-botton:0.5rem;}
+    h2.jsx-3309016289{font-size:1.25rem;margin-botton:0.5rem;}img.jsx-3309016289{width:100%;max-width:500px;}
   </JSXStyle>
 </Fragment>
 `;

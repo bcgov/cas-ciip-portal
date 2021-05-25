@@ -2,7 +2,6 @@ import React from 'react';
 import {graphql, createFragmentContainer} from 'react-relay';
 import {Table, Jumbotron} from 'react-bootstrap';
 import Money from 'components/helpers/Money';
-import IncentiveSegmentFormula from 'components/Incentives/IncentiveSegmentFormula';
 import {IncentiveCalculatorContainer_applicationRevision} from 'IncentiveCalculatorContainer_applicationRevision.graphql';
 import IncentiveSegmentContainer from './IncentiveSegmentContainer';
 
@@ -41,17 +40,14 @@ export const IncentiveCalculator: React.FunctionComponent<Props> = ({
   return (
     <>
       <Jumbotron>
-        <div style={{marginBottom: '30px'}}>
-          <h2>Incentive by Product:</h2>
-          <p>
-            This formula gives the partial incentive for each product reported
-            in <br />
-            the CIIP application. The total Incentive is the sum of these
-            partial incentives.
-            <br />
-          </p>
-        </div>
-        <IncentiveSegmentFormula />
+        <h2>Incentive by Product:</h2>
+        <p>
+          This formula gives the partial incentive for each product reported in
+          the CIIP application.
+          <br />
+          The total Incentive is the sum of these partial incentives.
+        </p>
+        <img src="/static/ciip-formula.svg" alt="CIIP Incentive Formula" />
       </Jumbotron>
 
       <Table striped bordered hover responsive="lg">
@@ -95,6 +91,11 @@ export const IncentiveCalculator: React.FunctionComponent<Props> = ({
         h2 {
           font-size: 1.25rem;
           margin-botton: 0.5rem;
+        }
+
+        img {
+          width: 100%;
+          max-width: 500px;
         }
       `}</style>
     </>

@@ -43,11 +43,8 @@ const AS_REPORTER = process.argv.includes('AS_REPORTER');
 const AS_ANALYST = process.argv.includes('AS_ANALYST');
 const AS_ADMIN = process.argv.includes('AS_ADMIN');
 const AS_PENDING = process.argv.includes('AS_PENDING');
-const NO_MATHJAX = process.argv.includes('NO_MATHJAX');
 const NO_MAIL = process.argv.includes('NO_MAIL');
 const AS_CYPRESS = process.argv.includes('AS_CYPRESS');
-
-if (NO_MATHJAX) process.env.NO_MATHJAX = true;
 
 if (NO_MAIL) process.env.NO_MAIL = true;
 
@@ -118,7 +115,9 @@ app.prepare().then(async () => {
   );
 
   server.use(bodyParser.json({limit: '50mb'}));
-  server.use(cors());
+
+  // Only allow CORS for the <Analytics /> component
+  server.use(cors({origin: 'https://www2.gov.bc.ca'}));
 
   // Tell search + crawlers not to index non-production environments:
   server.use(({res, next}) => {

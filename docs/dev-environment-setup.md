@@ -274,7 +274,7 @@ First, ensure the web app is running (`cd app && yarn dev`) _without_ bypassing 
 ```
 cd app
 
-NO_MATHJAX=true yarn dev AS_CYPRESS
+yarn dev AS_CYPRESS
 ```
 
 For test error debugging and to observe tests' behavior in the browser as they run:
