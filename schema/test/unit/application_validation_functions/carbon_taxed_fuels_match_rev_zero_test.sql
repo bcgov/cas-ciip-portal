@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(11);
+select plan(14);
 
 select has_function(
   'ggircs_portal', 'carbon_taxed_fuels_match_rev_zero', array['ggircs_portal.application_revision'],
@@ -310,6 +310,65 @@ select is(
   ),
   true,
   'Doesn''t count carbon-taxed venting and flaring ciip emissions'
+);
+
+-- doesn't throw if ciip and swrs records have a zero value
+-- update on both v0 and v1
+update ggircs_portal.form_result set form_result =
+jsonb_build_array(
+  jsonb_build_object('fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed1'), 'quantity', 0, 'emissionCategoryRowId', 1)
+)
+where application_id = 1 and form_id = (select id from ggircs_portal.form_json where slug='fuel');
+
+select lives_ok(
+  $$
+    with app_revision as (
+        select row(application_revision.*)::ggircs_portal.application_revision
+        from ggircs_portal.application_revision
+        where application_id=1 and version_number=1
+      )
+    select ggircs_portal.carbon_taxed_fuels_match_rev_zero((select * from app_revision))
+  $$,
+  'Doesn''t throw if both ciip and swrs emissions reported zero quantity'
+);
+
+select is(
+  (
+    with app_revision as (
+      select row(application_revision.*)::ggircs_portal.application_revision
+      from ggircs_portal.application_revision
+      where application_id=1 and version_number=1
+    )
+    select ggircs_portal.carbon_taxed_fuels_match_rev_zero((select * from app_revision))
+  ),
+  true,
+  'Returns true if both ciip and swrs emissions reported a zero fuel quantity'
+);
+
+-- returns true if ciip or swrs has a zero row but the other doesn't have data
+update ggircs_portal.form_result set form_result =
+jsonb_build_array(
+  jsonb_build_object('fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed1'), 'quantity', 0, 'emissionCategoryRowId', 1)
+)
+where application_id = 1 and version_number = 0 and form_id = (select id from ggircs_portal.form_json where slug='fuel');
+
+update ggircs_portal.form_result set form_result =
+jsonb_build_array(
+  jsonb_build_object('fuelRowId', (select id from ggircs_portal.fuel where name = 'carbonTaxed2'), 'quantity', 0, 'emissionCategoryRowId', 1)
+)
+where application_id = 1 and version_number = 1 and form_id = (select id from ggircs_portal.form_json where slug='fuel');
+
+select is(
+  (
+    with app_revision as (
+      select row(application_revision.*)::ggircs_portal.application_revision
+      from ggircs_portal.application_revision
+      where application_id=1 and version_number=1
+    )
+    select ggircs_portal.carbon_taxed_fuels_match_rev_zero((select * from app_revision))
+  ),
+  true,
+  'Returns true if ciip or swrs reported a zero fuel quantity but the other doesn''t have data'
 );
 
 select finish();
