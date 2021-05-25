@@ -6,5 +6,7 @@ export default class NoHeaderFilter extends TableFilter {
     super(null, null, {filterable: false, sortable: false});
   }
 
+  hasTableHeader = false;
+
   Component = () => null;
 }

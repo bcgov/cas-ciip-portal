@@ -118,7 +118,8 @@ export const FilterableTable: React.FunctionComponent<Props> = ({
                 headerVariables={{
                   columnName: filter.sortColumnName,
                   displayName: filter.title,
-                  sortable: filter.isSortEnabled
+                  sortable: filter.isSortEnabled,
+                  hasTableHeader: filter.hasTableHeader
                 }}
               />
             ))}

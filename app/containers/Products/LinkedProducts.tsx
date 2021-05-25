@@ -20,10 +20,11 @@ export const LinkedProductsContainer: React.FunctionComponent<Props> = ({
   query,
   relay
 }) => {
-  const [selected, setSelected] = useState<{
-    id: string | number;
-    name: string;
-  }>();
+  const [selected, setSelected] =
+    useState<{
+      id: string | number;
+      name: string;
+    }>();
   const {nonEnergyProducts} = query;
   const currentlyLinkedProductIds = product.linkedProductsByProductId.edges.map(
     ({node}) => node.linkedProductId
@@ -92,14 +93,18 @@ export const LinkedProductsContainer: React.FunctionComponent<Props> = ({
     >
       <Modal.Header closeButton style={{color: 'white', background: '#003366'}}>
         <Modal.Title id="linked-products-header">
-          Product Associations
+          <h2>
+            <span className="h3">Product Associations</span>
+          </h2>
         </Modal.Title>
       </Modal.Header>
       <Modal.Body style={{background: '#f5f5f5'}}>
         <Container>
           <Row>
             <Col md={12}>
-              <h5>Add/Edit Associations</h5>
+              <h3>
+                <span className="h5">Add/Edit Associations</span>
+              </h3>
               <hr />
               <p>
                 When you specify one or more products on the right, applications
@@ -179,6 +184,11 @@ export const LinkedProductsContainer: React.FunctionComponent<Props> = ({
                       </td>
                     </tr>
                   ))}
+                  {product.linkedProductsByProductId.edges.length === 0 && (
+                    <tr>
+                      <td colSpan={2}>No linked products</td>
+                    </tr>
+                  )}
                 </tbody>
               </Table>
             </Col>

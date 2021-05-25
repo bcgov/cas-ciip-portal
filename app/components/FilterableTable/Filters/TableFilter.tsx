@@ -35,6 +35,8 @@ export default abstract class TableFilter<T = string | number | boolean> {
   isSearchEnabled: boolean;
   isSortEnabled: boolean;
 
+  hasTableHeader: boolean = true;
+
   /**
    * The array of all relay arguments managed by this filter.
    * Most filters will manage a single argument, but some may manage more,

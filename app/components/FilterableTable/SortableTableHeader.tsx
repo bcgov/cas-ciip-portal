@@ -12,6 +12,7 @@ interface Props {
     columnName: string;
     displayName: string;
     sortable: boolean;
+    hasTableHeader: boolean;
   };
 }
 
@@ -19,7 +20,7 @@ const SORT_DIRECTION = ['ASC', 'DESC'];
 const SORT_ICONS = [faCaretDown, faCaretUp];
 
 const SortableTableHeader: React.FunctionComponent<Props> = ({
-  headerVariables: {columnName, displayName, sortable}
+  headerVariables: {columnName, displayName, sortable, hasTableHeader}
 }) => {
   const router = useRouter();
   const sortDirectionIndex = SORT_DIRECTION.indexOf(
@@ -49,8 +50,10 @@ const SortableTableHeader: React.FunctionComponent<Props> = ({
     router.replace(url, url, {shallow: true});
   };
 
+  const TableHeaderTag = hasTableHeader ? 'th' : 'td';
+
   return (
-    <th onClick={() => sortable && triggerSort(columnName)}>
+    <TableHeaderTag onClick={() => sortable && triggerSort(columnName)}>
       <span>{displayName}</span>
       {sortable && (
         <span style={{height: '100%', position: 'absolute', right: '0.75em'}}>
@@ -74,7 +77,7 @@ const SortableTableHeader: React.FunctionComponent<Props> = ({
           cursor: pointer;
         }
       `}</style>
-    </th>
+    </TableHeaderTag>
   );
 };
 
