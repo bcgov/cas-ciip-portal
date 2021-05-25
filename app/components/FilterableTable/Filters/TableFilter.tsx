@@ -6,7 +6,7 @@ export interface ISearchOptionSettings {
   filterable?: boolean;
   sortable?: boolean;
   sortColumnName?: string;
-  ignoreFriendlyDisplay?: boolean;
+  renderEnumValue?: (x: string) => string;
 }
 
 export default abstract class TableFilter<T = string | number | boolean> {
@@ -20,7 +20,6 @@ export default abstract class TableFilter<T = string | number | boolean> {
     this.isSearchEnabled = settings?.filterable ?? true;
     this.isSortEnabled = settings?.sortable ?? true;
     this.sortColumnName = settings?.sortColumnName ?? argName;
-    this.ignoreFriendlyDisplay = settings?.ignoreFriendlyDisplay ?? false;
   }
 
   /**

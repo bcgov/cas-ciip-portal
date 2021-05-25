@@ -27,7 +27,7 @@ const filters: TableFilter[] = [
     'Facility Type',
     'facilityType',
     ['SFO', 'IF_a', 'IF_b', 'L_c'],
-    {ignoreFriendlyDisplay: true, sortable: false}
+    {renderEnumValue: (label) => label, sortable: false}
   ),
   new TextFilter('BC GHG id', 'facilityBcghgid', {sortable: false}),
   new NumberFilter(

@@ -6,6 +6,7 @@ import {FilterComponent} from './types';
 
 export default class EnumFilter<T> extends TableFilter {
   enumValues: T[];
+  renderEnumValue?: (x: string) => string;
 
   constructor(
     display,
@@ -14,6 +15,8 @@ export default class EnumFilter<T> extends TableFilter {
     settings?: ISearchOptionSettings
   ) {
     super(display, argName, settings);
+    this.renderEnumValue =
+      settings.renderEnumValue ?? getUserFriendlyStatusLabel;
     this.enumValues = enumValues;
     this.searchOptionValues = enumValues.map((val) => {
       return {display: String(val), value: val};
@@ -48,9 +51,7 @@ export default class EnumFilter<T> extends TableFilter {
               key={this.argName + '-' + kvp.display}
               value={kvp.value as any}
             >
-              {this.ignoreFriendlyDisplay
-                ? kvp.display
-                : getUserFriendlyStatusLabel(kvp.display)}
+              {this.renderEnumValue(kvp.display)}
             </option>
           ))}
         </Form.Control>
