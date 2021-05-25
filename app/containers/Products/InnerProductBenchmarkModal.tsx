@@ -93,7 +93,11 @@ export const ProductBenchmarkInnerModal: React.FunctionComponent<Props> = ({
     <>
       <Modal.Header closeButton style={{color: 'white', background: '#003366'}}>
         <Modal.Title id="product-benchmark-header">
-          {isProduct ? 'Edit Product' : 'Edit Benchmark'}
+          <h2>
+            <span className="h4">
+              {isProduct ? 'Edit Product' : 'Edit Benchmark'}
+            </span>
+          </h2>
         </Modal.Title>
       </Modal.Header>
       <Modal.Body style={{background: '#f5f5f5'}}>

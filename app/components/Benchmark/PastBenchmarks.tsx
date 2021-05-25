@@ -22,11 +22,17 @@ const PastBenchmarksComponent: React.FunctionComponent<Props> = (props) => {
     </tr>
   ));
 
+  const noBenchMarks = (
+    <tr>
+      <td colSpan={8}>No past benchmarks</td>
+    </tr>
+  );
+
   return (
     <>
       <br />
       <span>
-        <h5>Past Benchmarks</h5>
+        <h3>Past Benchmarks</h3>
         <hr />
       </span>
       <Table style={{textAlign: 'center'}}>
@@ -42,13 +48,10 @@ const PastBenchmarksComponent: React.FunctionComponent<Props> = (props) => {
             <th>Max Ratio</th>
           </tr>
         </thead>
-        <tbody>{renderPastBenchmarks}</tbody>
+        <tbody>
+          {renderPastBenchmarks.length ? renderPastBenchmarks : noBenchMarks}
+        </tbody>
       </Table>
-      <style jsx>{`
-        h5 {
-          font-size: 1.5rem;
-        }
-      `}</style>
     </>
   );
 };
