@@ -75,9 +75,9 @@ export default class BaseMutation<T extends BaseMutationType = never> {
             reject(error);
             if (failureMessage) {
               toast(failureMessage, {
-                className: 'mutation-toast Toastify__toast--error',
+                className: 'toastalert-error',
                 autoClose: false,
-                position: 'bottom-right',
+                position: 'top-center',
                 // Don't show duplicate errors if the same mutation fails several times in a row
                 toastId: mutationName
               });
@@ -91,9 +91,9 @@ export default class BaseMutation<T extends BaseMutationType = never> {
             errors ? reject(errors) : resolve(response);
             if (successMessage) {
               toast(successMessage, {
-                className: 'mutation-toast Toastify__toast--success',
+                className: 'toastalert-success',
                 autoClose: 5000,
-                position: 'bottom-right'
+                position: 'top-center'
               });
             }
           }

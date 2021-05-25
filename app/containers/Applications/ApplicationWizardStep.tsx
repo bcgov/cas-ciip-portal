@@ -47,7 +47,7 @@ const ApplicationWizardStep: React.FunctionComponent<Props> = ({
         }
       },
       messages: {
-        failure: 'An error occured while saving your form.'
+        failure: 'An error occurred while saving your form.'
       }
     };
     await updateFormResultMutation(environment, variables);
