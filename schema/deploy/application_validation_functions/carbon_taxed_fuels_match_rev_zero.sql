@@ -48,6 +48,8 @@ create or replace function ggircs_portal.carbon_taxed_fuels_match_rev_zero(app_r
       from ciip_fuel_totals
       full outer join swrs_fuel_totals
       on ciip_fuel_totals.fuel_id = swrs_fuel_totals.fuel_id
+      -- we exclude the rows with zero or zero/null ciip/swrs combinations
+      where coalesce(ciip_fuel_totals.quantity, 0) != 0 or coalesce(swrs_fuel_totals.quantity, 0) != 0
     )
     select
       case
