@@ -184,6 +184,10 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
         .diffTo {
           background-color: rgba(70, 241, 118, 0.3);
         }
+        .has-error .summary-item svg,
+        .has-error .summary-item .error-detail .text-danger {
+          color: #c70012 !important;
+        }
         .summary-form-header > .row {
           justify-content: space-between;
         }
