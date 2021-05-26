@@ -72,6 +72,12 @@ class ViewApplication extends Component<Props> {
     }
   `;
 
+  state = {
+    newerDraftExists:
+      this.props.query.application?.latestDraftRevision?.versionNumber >
+      this.props.query.application?.latestSubmittedRevision?.versionNumber
+  };
+
   render() {
     const {session} = this.props.query;
     const {query, router} = this.props;
@@ -100,12 +106,10 @@ class ViewApplication extends Component<Props> {
 
     const thisVersion = Number(router.query.versionNumber);
     const latestSubmittedRevision =
-      application.latestSubmittedRevision?.versionNumber;
-    const latestDraftRevision = application.latestDraftRevision?.versionNumber;
+      application?.latestSubmittedRevision?.versionNumber;
+    const latestDraftRevision = application?.latestDraftRevision?.versionNumber;
 
     const newerSubmissionExists = latestSubmittedRevision > thisVersion;
-    const newerDraftExists = latestDraftRevision > latestSubmittedRevision;
-
     const latestSubmissionHref = getViewApplicationPageRoute(
       router.query.applicationId.toString(),
       latestSubmittedRevision
@@ -141,15 +145,15 @@ class ViewApplication extends Component<Props> {
 
     const applicationInfo = (
       <div>
-        Application ID: {application.rowId}
+        Application ID: {application?.rowId}
         <br />
-        {thisVersion > 1 && (
+        {latestDraftRevision > 1 && (
           <>
-            Version: {application.latestDraftRevision.versionNumber}
+            Version: {thisVersion}
             <br />
           </>
         )}
-        BC GHG ID: {application.facilityByFacilityId.bcghgid}
+        BC GHG ID: {application?.facilityByFacilityId.bcghgid}
       </div>
     );
 
@@ -176,12 +180,12 @@ class ViewApplication extends Component<Props> {
                 >
                   {changesRequested &&
                     !newerSubmissionExists &&
-                    !newerDraftExists && (
+                    !this.state.newerDraftExists && (
                       <ReviseApplicationButton
                         application={query.application}
                       />
                     )}
-                  {newerDraftExists &&
+                  {this.state.newerDraftExists &&
                     !newerSubmissionExists &&
                     resumeLatestDraftButton}
                 </ApplicationDecision>
@@ -189,8 +193,9 @@ class ViewApplication extends Component<Props> {
             )}
             <ApplicationDetails
               query={query}
+              diffQuery={null}
               applicationRevision={
-                application.applicationRevisionByStringVersionNumber
+                application?.applicationRevisionByStringVersionNumber
               }
               review={false}
               liveValidate={false}

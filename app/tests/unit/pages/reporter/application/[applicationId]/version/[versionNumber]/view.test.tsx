@@ -165,6 +165,7 @@ describe('View submitted application page', () => {
     expect(
       r.find('ApplicationDecision').first().prop('reviewComments')[0]
     ).toBe(comments[0]);
+    expect(r.find('Relay(ReviseApplicationButton)').exists()).toBeTrue();
     expect(r).toMatchSnapshot();
   });
 
@@ -180,6 +181,7 @@ describe('View submitted application page', () => {
       }
     };
     const r = shallow(<ViewApplication query={query} router={router} />);
+    expect(r.find('Relay(ReviseApplicationButton)').exists()).toBeFalse();
     expect(r.exists('Button')).toBe(true);
     expect(r.find('Button').text()).toBe('Resume latest draft');
     expect(r).toMatchSnapshot();
