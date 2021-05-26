@@ -46,17 +46,19 @@ const FilterableTableFilterRow: React.FunctionComponent<Props> = ({
           onChange={handleFilterChange}
         />
       ))}
-      <td className="flex">
-        <Button variant="outline-secondary" onClick={clearForm}>
-          Clear
-        </Button>
-        <Button
-          style={{marginLeft: '5px'}}
-          variant="primary"
-          onClick={() => onSubmit(searchFilters)}
-        >
-          Apply
-        </Button>
+      <td>
+        <div className="flex">
+          <Button variant="outline-secondary" onClick={clearForm}>
+            Clear
+          </Button>
+          <Button
+            style={{marginLeft: '5px'}}
+            variant="primary"
+            onClick={() => onSubmit(searchFilters)}
+          >
+            Apply
+          </Button>
+        </div>
       </td>
       <style jsx>{`
         .flex {
