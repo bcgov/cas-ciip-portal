@@ -7,12 +7,28 @@ import DefaultLayout from 'layouts/default-layout';
 import RegistrationLoginButtons from 'containers/RegistrationLoginButtons';
 import {GUEST} from 'data/group-constants';
 import KeyDates from 'containers/KeyDates';
+import {getUserGroups} from 'server/helpers/userGroupAuthentication';
+import {getUserGroupLandingRoute} from 'lib/user-groups';
 
 const ALLOWED_GROUPS = [GUEST];
 
 interface Props extends CiipPageComponentProps {
   query: pagesQueryResponse['query'];
 }
+
+export async function getServerSideProps(context) {
+  const groups = getUserGroups(context.req);
+  const landingRoute = getUserGroupLandingRoute(groups);
+  if (landingRoute === '/')
+    return {
+      props: {}
+    };
+
+  return {
+    redirect: {destination: landingRoute, permanent: false}
+  };
+}
+
 export default class Index extends Component<Props> {
   static allowedGroups = ALLOWED_GROUPS;
   static query = graphql`
