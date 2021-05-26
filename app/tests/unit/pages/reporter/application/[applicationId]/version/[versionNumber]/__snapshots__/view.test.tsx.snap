@@ -70,6 +70,7 @@ exports[`View submitted application page displays a "Resume latest draft" button
             },
           }
         }
+        diffQuery={null}
         liveValidate={false}
         query={
           Object {
@@ -219,6 +220,7 @@ exports[`View submitted application page displays a "Revise" button when changes
             },
           }
         }
+        diffQuery={null}
         liveValidate={false}
         query={
           Object {
@@ -314,6 +316,7 @@ exports[`View submitted application page does not show an application decision w
             },
           }
         }
+        diffQuery={null}
         liveValidate={false}
         query={
           Object {
@@ -470,6 +473,7 @@ exports[`View submitted application page should render a "View most recent submi
             },
           }
         }
+        diffQuery={null}
         liveValidate={false}
         query={
           Object {
@@ -626,6 +630,7 @@ exports[`View submitted application page should render a "View most recent submi
             },
           }
         }
+        diffQuery={null}
         liveValidate={false}
         query={
           Object {
@@ -730,6 +735,7 @@ exports[`View submitted application page shows approval when reviewed and approv
             },
           }
         }
+        diffQuery={null}
         liveValidate={false}
         query={
           Object {
@@ -834,6 +840,7 @@ exports[`View submitted application page shows rejection when reviewed and rejec
             },
           }
         }
+        diffQuery={null}
         liveValidate={false}
         query={
           Object {
@@ -938,6 +945,7 @@ exports[`View submitted application page shows reviewer comments when reviewed a
             },
           }
         }
+        diffQuery={null}
         liveValidate={false}
         query={
           Object {

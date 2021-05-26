@@ -72,7 +72,18 @@ class ViewApplication extends Component<Props> {
     }
   `;
 
-  state = {newerDraftExists: undefined};
+  constructor(props) {
+    super(props);
+    const latestSubmittedRevision =
+      props.query.application?.latestSubmittedRevision?.versionNumber;
+    const latestDraftRevision =
+      props.query.application?.latestDraftRevision?.versionNumber;
+    // Disabling in order to initialize state based on props:
+    // eslint-disable-next-line react/state-in-constructor
+    this.state = {
+      newerDraftExists: latestDraftRevision > latestSubmittedRevision
+    };
+  }
 
   render() {
     const {session} = this.props.query;
@@ -102,18 +113,9 @@ class ViewApplication extends Component<Props> {
 
     const thisVersion = Number(router.query.versionNumber);
     const latestSubmittedRevision =
-      application.latestSubmittedRevision?.versionNumber;
-    const latestDraftRevision = application.latestDraftRevision?.versionNumber;
+      application?.latestSubmittedRevision?.versionNumber;
 
     const newerSubmissionExists = latestSubmittedRevision > thisVersion;
-    if (this.state.newerDraftExists === undefined) {
-      this.setState((state) => {
-        return {
-          ...state,
-          newerDraftExists: latestDraftRevision > latestSubmittedRevision
-        };;
-      });
-    }
     const latestSubmissionHref = getViewApplicationPageRoute(
       router.query.applicationId.toString(),
       latestSubmittedRevision
@@ -149,15 +151,15 @@ class ViewApplication extends Component<Props> {
 
     const applicationInfo = (
       <div>
-        Application ID: {application.rowId}
+        Application ID: {application?.rowId}
         <br />
         {thisVersion > 1 && (
           <>
-            Version: {application.latestDraftRevision.versionNumber}
+            Version: {application?.latestDraftRevision.versionNumber}
             <br />
           </>
         )}
-        BC GHG ID: {application.facilityByFacilityId.bcghgid}
+        BC GHG ID: {application?.facilityByFacilityId.bcghgid}
       </div>
     );
 
@@ -184,21 +186,26 @@ class ViewApplication extends Component<Props> {
                 >
                   {changesRequested &&
                     !newerSubmissionExists &&
+                    // @ts-ignore
                     !this.state.newerDraftExists && (
                       <ReviseApplicationButton
                         application={query.application}
                       />
                     )}
-                  {this.state.newerDraftExists &&
-                    !newerSubmissionExists &&
-                    resumeLatestDraftButton}
+                  {
+                    // @ts-ignore
+                    this.state.newerDraftExists &&
+                      !newerSubmissionExists &&
+                      resumeLatestDraftButton
+                  }
                 </ApplicationDecision>
               </>
             )}
             <ApplicationDetails
               query={query}
+              diffQuery={null}
               applicationRevision={
-                application.applicationRevisionByStringVersionNumber
+                application?.applicationRevisionByStringVersionNumber
               }
               review={false}
               liveValidate={false}
