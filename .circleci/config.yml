@@ -520,6 +520,12 @@ workflows:
       - e2e-snapshots:
           requires:
             - compile
+      - build_image:
+          name: build_load_testing
+          context: cas-pipeline
+          image_name: cas-ciip-portal-k6
+          image_tag: ${CIRCLE_SHA1}
+          dockerfile: app/tests/perf/Dockerfile
       - smoke:
           requires:
             - compile
