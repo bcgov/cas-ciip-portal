@@ -12,6 +12,7 @@ exports[`The filterable table headers component only renders elements that are s
       <td>
         <FormControl
           aria-label="Filter by test3"
+          disabled={false}
           name="test3"
           onChange={[Function]}
           placeholder="Search"
@@ -20,6 +21,7 @@ exports[`The filterable table headers component only renders elements that are s
           <input
             aria-label="Filter by test3"
             className="form-control"
+            disabled={false}
             name="test3"
             onChange={[Function]}
             placeholder="Search"
@@ -90,6 +92,7 @@ exports[`The filterable table headers component renders as many td elements as s
       <td>
         <FormControl
           aria-label="Filter by test"
+          disabled={false}
           name="test"
           onChange={[Function]}
           placeholder="Search"
@@ -98,6 +101,7 @@ exports[`The filterable table headers component renders as many td elements as s
           <input
             aria-label="Filter by test"
             className="form-control"
+            disabled={false}
             name="test"
             onChange={[Function]}
             placeholder="Search"
@@ -108,6 +112,7 @@ exports[`The filterable table headers component renders as many td elements as s
       <td>
         <FormControl
           aria-label="Filter by test2"
+          disabled={false}
           name="test2"
           onChange={[Function]}
           placeholder="Search"
@@ -116,6 +121,7 @@ exports[`The filterable table headers component renders as many td elements as s
           <input
             aria-label="Filter by test2"
             className="form-control"
+            disabled={false}
             name="test2"
             onChange={[Function]}
             placeholder="Search"

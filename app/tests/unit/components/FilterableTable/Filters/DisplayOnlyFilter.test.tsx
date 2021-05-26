@@ -6,7 +6,15 @@ describe('the display only filter option', () => {
   const filterUnderTest = new DisplayOnlyFilter('display header');
 
   it('renders an empty td component', () => {
-    const rendered = mount(<filterUnderTest.Component />);
+    const rendered = mount(
+      <table>
+        <tbody>
+          <tr>
+            <filterUnderTest.Component />
+          </tr>
+        </tbody>
+      </table>
+    );
     expect(rendered).toMatchSnapshot();
   });
 

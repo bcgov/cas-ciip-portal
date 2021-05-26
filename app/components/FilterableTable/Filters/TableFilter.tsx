@@ -55,7 +55,6 @@ export default abstract class TableFilter<T = string | number | boolean> {
           name={this.argName}
           value={(filterArgs[this.argName] ?? '') as string | number}
           aria-label={`Filter by ${this.title}`}
-          disabled={!this.isSearchEnabled}
           onChange={(evt) =>
             onChange(this.castValue(evt.target.value) as any, this.argName)
           }
