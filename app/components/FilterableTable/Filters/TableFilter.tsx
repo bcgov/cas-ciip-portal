@@ -34,7 +34,6 @@ export default abstract class TableFilter<T = string | number | boolean> {
   sortColumnName: string;
   isSearchEnabled: boolean;
   isSortEnabled: boolean;
-  removeSearchHeader: boolean;
 
   /**
    * The array of all relay arguments managed by this filter.
@@ -56,6 +55,7 @@ export default abstract class TableFilter<T = string | number | boolean> {
           name={this.argName}
           value={(filterArgs[this.argName] ?? '') as string | number}
           aria-label={`Filter by ${this.title}`}
+          disabled={!this.isSearchEnabled}
           onChange={(evt) =>
             onChange(this.castValue(evt.target.value) as any, this.argName)
           }
