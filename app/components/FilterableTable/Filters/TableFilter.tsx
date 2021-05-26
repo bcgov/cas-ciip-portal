@@ -6,7 +6,6 @@ export interface ISearchOptionSettings {
   filterable?: boolean;
   sortable?: boolean;
   sortColumnName?: string;
-  renderEnumValue?: (x: string) => string;
 }
 
 export default abstract class TableFilter<T = string | number | boolean> {
