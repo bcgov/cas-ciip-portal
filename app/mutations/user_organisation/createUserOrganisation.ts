@@ -13,6 +13,7 @@ const mutation = graphql`
     createCiipUserOrganisation(input: $input) {
       ciipUserOrganisationEdge {
         node {
+          organisationId
           ...UserOrganisation_userOrganisation
         }
       }
