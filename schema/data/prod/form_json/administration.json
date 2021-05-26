@@ -143,9 +143,7 @@
     "operator": {
       "naics": {
         "ui:col-md": 8,
-        "ui:field": "naics",
-        "ui:widget": "SearchWidget",
-        "ui:placeholder": "Search NAICS..."
+        "ui:field": "naics_2019"
       },
       "ui:order": [
         "name",
