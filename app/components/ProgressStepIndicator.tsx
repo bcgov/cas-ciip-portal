@@ -46,10 +46,14 @@ const NumberedCircle: React.FunctionComponent<NumberCircleProps> = ({
         .numberedCircle {
           margin-top: -1.75rem;
           width: 2.44rem;
+          height: 2.44rem;
           line-height: 2.44rem;
           border-radius: 50%;
           text-align: center;
           font-weight: bold;
+        }
+        .numberedCircle.badge-light {
+          border: 1px solid #bfbfbf;
         }
       `}</style>
     </>
