@@ -3,9 +3,9 @@
 // color-contrast seems to only happen when using the cypress browser, but is fine when I check using the chrome plugin.
 const modalExcludeRules = {
   rules: {
-    'color-contrast': {enabled: false},
-    'landmark-one-main': {enabled: false},
-    'page-has-heading-one': {enabled: false}
+    // 'color-contrast': {enabled: false},
+    // 'landmark-one-main': {enabled: false},
+    // 'page-has-heading-one': {enabled: false}
   }
 };
 

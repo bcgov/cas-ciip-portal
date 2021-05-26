@@ -20,11 +20,10 @@ export const LinkedProductsContainer: React.FunctionComponent<Props> = ({
   query,
   relay
 }) => {
-  const [selected, setSelected] =
-    useState<{
-      id: string | number;
-      name: string;
-    }>();
+  const [selected, setSelected] = useState<{
+    id: string | number;
+    name: string;
+  }>();
   const {nonEnergyProducts} = query;
   const currentlyLinkedProductIds = product.linkedProductsByProductId.edges.map(
     ({node}) => node.linkedProductId
