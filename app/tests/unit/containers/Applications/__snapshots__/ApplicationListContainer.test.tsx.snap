@@ -79,6 +79,7 @@ exports[`ApplicationList should render the application list 1`] = `
         "isSearchEnabled": true,
         "isSortEnabled": true,
         "removeSearchHeader": undefined,
+        "renderEnumValue": [Function],
         "searchOptionValues": Array [
           Object {
             "display": "APPROVED",

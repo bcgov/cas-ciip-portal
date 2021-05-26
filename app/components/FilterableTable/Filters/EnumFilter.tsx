@@ -4,16 +4,18 @@ import {Form} from 'react-bootstrap';
 import TableFilter, {ISearchOptionSettings} from './TableFilter';
 import {FilterComponent} from './types';
 
+interface EnumSettings extends ISearchOptionSettings {
+  renderEnumValue?: (x: string) => string;
+}
+
 export default class EnumFilter<T> extends TableFilter {
   enumValues: T[];
+  renderEnumValue?: (x: string) => string;
 
-  constructor(
-    display,
-    argName,
-    enumValues: T[],
-    settings?: ISearchOptionSettings
-  ) {
+  constructor(display, argName, enumValues: T[], settings?: EnumSettings) {
     super(display, argName, settings);
+    this.renderEnumValue =
+      settings?.renderEnumValue ?? getUserFriendlyStatusLabel;
     this.enumValues = enumValues;
     this.searchOptionValues = enumValues.map((val) => {
       return {display: String(val), value: val};
@@ -48,7 +50,7 @@ export default class EnumFilter<T> extends TableFilter {
               key={this.argName + '-' + kvp.display}
               value={kvp.value as any}
             >
-              {getUserFriendlyStatusLabel(kvp.display)}
+              {this.renderEnumValue(kvp.display)}
             </option>
           ))}
         </Form.Control>

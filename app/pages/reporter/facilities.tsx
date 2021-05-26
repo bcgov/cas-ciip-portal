@@ -22,6 +22,7 @@ class FacilitiesList extends Component<Props> {
     query facilitiesQuery(
       $operatorName: String
       $facilityName: String
+      $facilityType: String
       $applicationStatus: CiipApplicationRevisionStatus
       $applicationIdIsNull: Boolean
       $applicationId: Int
@@ -37,6 +38,7 @@ class FacilitiesList extends Component<Props> {
           @arguments(
             operatorName: $operatorName
             facilityName: $facilityName
+            facilityType: $facilityType
             applicationStatus: $applicationStatus
             applicationIdIsNull: $applicationIdIsNull
             applicationId: $applicationId

@@ -6,6 +6,7 @@ import FacilitiesRowItemContainer from './FacilitiesRowItemContainer';
 import {
   TableFilter,
   TextFilter,
+  EnumFilter,
   NumberFilter,
   ApplicationStatusFilter,
   NoHeaderFilter,
@@ -22,7 +23,12 @@ interface Props {
 const filters: TableFilter[] = [
   new TextFilter('Operator Name', 'operatorName', {sortable: false}),
   new TextFilter('Facility Name', 'facilityName', {sortable: false}),
-  new TextFilter('Facility Type', 'facilityType', {sortable: false}),
+  new EnumFilter<String>(
+    'Facility Type',
+    'facilityType',
+    ['SFO', 'IF_a', 'IF_b', 'L_c'],
+    {renderEnumValue: (label) => label, sortable: false}
+  ),
   new TextFilter('BC GHG id', 'facilityBcghgid', {sortable: false}),
   new NumberFilter(
     'Reporting period of last SWRS report',
@@ -102,6 +108,7 @@ export default createFragmentContainer(FacilitiesList, {
     @argumentDefinitions(
       operatorName: {type: "String"}
       facilityName: {type: "String"}
+      facilityType: {type: "String"}
       applicationIdIsNull: {type: "Boolean"}
       applicationId: {type: "Int"}
       facilityBcghgid: {type: "String"}
@@ -122,6 +129,7 @@ export default createFragmentContainer(FacilitiesList, {
           organisationId: {equalTo: $organisationRowId}
           operatorName: {includesInsensitive: $operatorName}
           facilityName: {includesInsensitive: $facilityName}
+          facilityType: {equalTo: $facilityType}
           applicationStatus: {equalTo: $applicationStatus}
           applicationId: {isNull: $applicationIdIsNull, equalTo: $applicationId}
           facilityBcghgid: {includes: $facilityBcghgid}

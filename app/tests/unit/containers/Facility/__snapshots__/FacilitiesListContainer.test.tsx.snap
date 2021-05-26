@@ -97,13 +97,38 @@ exports[`FacilitiesListContainer should match the previous snapshot 1`] = `
           "sortColumnName": "facilityName",
           "title": "Facility Name",
         },
-        TextFilter {
+        EnumFilter {
           "Component": [Function],
           "argName": "facilityType",
           "castValue": [Function],
+          "enumValues": Array [
+            "SFO",
+            "IF_a",
+            "IF_b",
+            "L_c",
+          ],
           "isSearchEnabled": true,
           "isSortEnabled": false,
           "removeSearchHeader": undefined,
+          "renderEnumValue": [Function],
+          "searchOptionValues": Array [
+            Object {
+              "display": "SFO",
+              "value": "SFO",
+            },
+            Object {
+              "display": "IF_a",
+              "value": "IF_a",
+            },
+            Object {
+              "display": "IF_b",
+              "value": "IF_b",
+            },
+            Object {
+              "display": "L_c",
+              "value": "L_c",
+            },
+          ],
           "sortColumnName": "facilityType",
           "title": "Facility Type",
         },
@@ -143,6 +168,7 @@ exports[`FacilitiesListContainer should match the previous snapshot 1`] = `
           "isSearchEnabled": true,
           "isSortEnabled": false,
           "removeSearchHeader": undefined,
+          "renderEnumValue": [Function],
           "searchOptionValues": Array [
             Object {
               "display": "NOT_STARTED",

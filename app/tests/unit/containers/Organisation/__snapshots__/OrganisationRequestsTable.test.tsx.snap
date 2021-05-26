@@ -80,6 +80,7 @@ exports[`Organisations should render the user's requested organisations 1`] = `
         "isSearchEnabled": true,
         "isSortEnabled": true,
         "removeSearchHeader": undefined,
+        "renderEnumValue": [Function],
         "searchOptionValues": Array [
           Object {
             "display": "APPROVED",
