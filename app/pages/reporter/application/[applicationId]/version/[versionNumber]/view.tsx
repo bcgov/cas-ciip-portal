@@ -72,18 +72,11 @@ class ViewApplication extends Component<Props> {
     }
   `;
 
-  constructor(props) {
-    super(props);
-    const latestSubmittedRevision =
-      props.query.application?.latestSubmittedRevision?.versionNumber;
-    const latestDraftRevision =
-      props.query.application?.latestDraftRevision?.versionNumber;
-    // Disabling in order to initialize state based on props:
-    // eslint-disable-next-line react/state-in-constructor
-    this.state = {
-      newerDraftExists: latestDraftRevision > latestSubmittedRevision
-    };
-  }
+  state = {
+    newerDraftExists:
+      this.props.query.application?.latestDraftRevision?.versionNumber >
+      this.props.query.application?.latestSubmittedRevision?.versionNumber
+  };
 
   render() {
     const {session} = this.props.query;
@@ -153,15 +146,12 @@ class ViewApplication extends Component<Props> {
       <div>
         Application ID: {application?.rowId}
         <br />
-        {
-          // @ts-ignore
-          this.state.newerDraftExists && (
-            <>
-              Version: {thisVersion}
-              <br />
-            </>
-          )
-        }
+        {this.state.newerDraftExists && (
+          <>
+            Version: {thisVersion}
+            <br />
+          </>
+        )}
         BC GHG ID: {application?.facilityByFacilityId.bcghgid}
       </div>
     );
@@ -189,18 +179,14 @@ class ViewApplication extends Component<Props> {
                 >
                   {changesRequested &&
                     !newerSubmissionExists &&
-                    // @ts-ignore
                     !this.state.newerDraftExists && (
                       <ReviseApplicationButton
                         application={query.application}
                       />
                     )}
-                  {
-                    // @ts-ignore
-                    this.state.newerDraftExists &&
-                      !newerSubmissionExists &&
-                      resumeLatestDraftButton
-                  }
+                  {this.state.newerDraftExists &&
+                    !newerSubmissionExists &&
+                    resumeLatestDraftButton}
                 </ApplicationDecision>
               </>
             )}
