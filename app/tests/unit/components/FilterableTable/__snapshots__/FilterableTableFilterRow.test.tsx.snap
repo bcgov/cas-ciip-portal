@@ -28,36 +28,28 @@ exports[`The filterable table headers component only renders elements that are s
         </FormControl>
       </td>
       <td
-        className="jsx-870174952 flex"
+        className="jsx-870174952"
       >
-        <Button
-          active={false}
-          disabled={false}
-          onClick={[Function]}
-          variant="outline-secondary"
+        <div
+          className="jsx-870174952 flex"
         >
-          <button
-            className="btn btn-outline-secondary"
+          <Button
+            active={false}
             disabled={false}
             onClick={[Function]}
-            type="button"
+            variant="outline-secondary"
           >
-            Clear
-          </button>
-        </Button>
-        <Button
-          active={false}
-          disabled={false}
-          onClick={[Function]}
-          style={
-            Object {
-              "marginLeft": "5px",
-            }
-          }
-          variant="primary"
-        >
-          <button
-            className="btn btn-primary"
+            <button
+              className="btn btn-outline-secondary"
+              disabled={false}
+              onClick={[Function]}
+              type="button"
+            >
+              Clear
+            </button>
+          </Button>
+          <Button
+            active={false}
             disabled={false}
             onClick={[Function]}
             style={
@@ -65,11 +57,23 @@ exports[`The filterable table headers component only renders elements that are s
                 "marginLeft": "5px",
               }
             }
-            type="button"
+            variant="primary"
           >
-            Apply
-          </button>
-        </Button>
+            <button
+              className="btn btn-primary"
+              disabled={false}
+              onClick={[Function]}
+              style={
+                Object {
+                  "marginLeft": "5px",
+                }
+              }
+              type="button"
+            >
+              Apply
+            </button>
+          </Button>
+        </div>
       </td>
     </tr>
   </thead>
@@ -120,36 +124,28 @@ exports[`The filterable table headers component renders as many td elements as s
         </FormControl>
       </td>
       <td
-        className="jsx-870174952 flex"
+        className="jsx-870174952"
       >
-        <Button
-          active={false}
-          disabled={false}
-          onClick={[Function]}
-          variant="outline-secondary"
+        <div
+          className="jsx-870174952 flex"
         >
-          <button
-            className="btn btn-outline-secondary"
+          <Button
+            active={false}
             disabled={false}
             onClick={[Function]}
-            type="button"
+            variant="outline-secondary"
           >
-            Clear
-          </button>
-        </Button>
-        <Button
-          active={false}
-          disabled={false}
-          onClick={[Function]}
-          style={
-            Object {
-              "marginLeft": "5px",
-            }
-          }
-          variant="primary"
-        >
-          <button
-            className="btn btn-primary"
+            <button
+              className="btn btn-outline-secondary"
+              disabled={false}
+              onClick={[Function]}
+              type="button"
+            >
+              Clear
+            </button>
+          </Button>
+          <Button
+            active={false}
             disabled={false}
             onClick={[Function]}
             style={
@@ -157,11 +153,23 @@ exports[`The filterable table headers component renders as many td elements as s
                 "marginLeft": "5px",
               }
             }
-            type="button"
+            variant="primary"
           >
-            Apply
-          </button>
-        </Button>
+            <button
+              className="btn btn-primary"
+              disabled={false}
+              onClick={[Function]}
+              style={
+                Object {
+                  "marginLeft": "5px",
+                }
+              }
+              type="button"
+            >
+              Apply
+            </button>
+          </Button>
+        </div>
       </td>
     </tr>
   </thead>
@@ -176,36 +184,28 @@ exports[`The filterable table headers component renders search and reset buttons
       onKeyDown={[Function]}
     >
       <td
-        className="jsx-870174952 flex"
+        className="jsx-870174952"
       >
-        <Button
-          active={false}
-          disabled={false}
-          onClick={[Function]}
-          variant="outline-secondary"
+        <div
+          className="jsx-870174952 flex"
         >
-          <button
-            className="btn btn-outline-secondary"
+          <Button
+            active={false}
             disabled={false}
             onClick={[Function]}
-            type="button"
+            variant="outline-secondary"
           >
-            Clear
-          </button>
-        </Button>
-        <Button
-          active={false}
-          disabled={false}
-          onClick={[Function]}
-          style={
-            Object {
-              "marginLeft": "5px",
-            }
-          }
-          variant="primary"
-        >
-          <button
-            className="btn btn-primary"
+            <button
+              className="btn btn-outline-secondary"
+              disabled={false}
+              onClick={[Function]}
+              type="button"
+            >
+              Clear
+            </button>
+          </Button>
+          <Button
+            active={false}
             disabled={false}
             onClick={[Function]}
             style={
@@ -213,11 +213,23 @@ exports[`The filterable table headers component renders search and reset buttons
                 "marginLeft": "5px",
               }
             }
-            type="button"
+            variant="primary"
           >
-            Apply
-          </button>
-        </Button>
+            <button
+              className="btn btn-primary"
+              disabled={false}
+              onClick={[Function]}
+              style={
+                Object {
+                  "marginLeft": "5px",
+                }
+              }
+              type="button"
+            >
+              Apply
+            </button>
+          </Button>
+        </div>
       </td>
     </tr>
   </thead>
