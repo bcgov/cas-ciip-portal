@@ -113,3 +113,6 @@ cas-postgres:
   namespace:
   gcs:
     bucketSuffix:
+
+loadTests:
+  enable: false

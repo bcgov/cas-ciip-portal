@@ -1,0 +1,32 @@
+{{- if Values.loadTests.enable }}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ template "cas-ciip-portal.fullname" . }}-load-testing
+  labels:
+{{ include "cas-ciip-portal.labels" . | indent 4 }}
+spec:
+  backoffLimit: 0
+  template:
+    metadata:
+      name: {{ template "cas-ciip-portal.fullname" . }}-load-testing
+      labels:
+{{ include "cas-ciip-portal.labels" . | indent 8 }}
+    spec:
+      activeDeadlineSeconds: 3600
+      restartPolicy: Never
+      containers:
+      - name: {{ template "cas-ciip-portal.fullname" . }}-dag-k6
+        image: {{ .Values.loadTesting.image.repository }}:{{ .Values.loadTesting.image.tag }}
+        resources:
+          limits:
+            cpu: '2'
+            memory: 128Mi
+          requests:
+            cpu: '2'
+            memory: 64Mi
+        imagePullPolicy: {{ .Values.loadTesting.image.pullPolicy }}
+        env:
+          - name: PERF_MODE
+            value: load
+{{- end }}

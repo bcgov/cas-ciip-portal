@@ -26,6 +26,12 @@ spec:
       - name: {{ template "cas-ciip-portal.fullname" . }}
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         image: {{ .Values.image.app.repository }}:{{ .Values.image.app.tag }}
+{{- if .Values.env.enableDbMocks }}
+        args:
+          - yarn
+          - start
+          - AS_CYPRESS
+{{- end }}
         env:
           - name: SESSION_SECRET
             valueFrom:
