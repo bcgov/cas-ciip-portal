@@ -116,6 +116,13 @@ const FilterableTablePagination: React.FunctionComponent<Props> = ({
         .pagination {
           display: flex;
         }
+        :global(.pagination a.page-link) {
+          color: #036;
+        }
+        :global(.pagination .page-item.active .page-link) {
+          background-color: #036;
+          border-color: #036;
+        }
       `}</style>
     </>
   );

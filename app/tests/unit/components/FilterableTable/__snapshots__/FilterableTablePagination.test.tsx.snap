@@ -3,7 +3,7 @@
 exports[`PaginationBar should not render the Pagination component if Math.ceil(totalCount / pageSize) < 2 1`] = `
 <Fragment>
   <div
-    className="jsx-285597962 pagination"
+    className="jsx-1384315916 pagination"
   >
     <Dropdown
       navbar={false}
@@ -14,7 +14,7 @@ exports[`PaginationBar should not render the Pagination component if Math.ceil(t
       >
         Items Per Page: 
         <strong
-          className="jsx-285597962"
+          className="jsx-1384315916"
         >
           20
         </strong>
@@ -70,9 +70,9 @@ exports[`PaginationBar should not render the Pagination component if Math.ceil(t
     </Dropdown>
   </div>
   <JSXStyle
-    id="285597962"
+    id="1384315916"
   >
-    .pagination.jsx-285597962{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;}
+    .pagination.jsx-1384315916{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;}.pagination a.page-link{color:#036;}.pagination .page-item.active .page-link{background-color:#036;border-color:#036;}
   </JSXStyle>
 </Fragment>
 `;
@@ -80,7 +80,7 @@ exports[`PaginationBar should not render the Pagination component if Math.ceil(t
 exports[`PaginationBar should render a maximum of 9 pagination pages if Math.ceil(totalCount / pageSize) > 9 1`] = `
 <Fragment>
   <div
-    className="jsx-285597962 pagination"
+    className="jsx-1384315916 pagination"
   >
     <Dropdown
       navbar={false}
@@ -91,7 +91,7 @@ exports[`PaginationBar should render a maximum of 9 pagination pages if Math.cei
       >
         Items Per Page: 
         <strong
-          className="jsx-285597962"
+          className="jsx-1384315916"
         >
           20
         </strong>
@@ -253,9 +253,9 @@ exports[`PaginationBar should render a maximum of 9 pagination pages if Math.cei
     </ForwardRef>
   </div>
   <JSXStyle
-    id="285597962"
+    id="1384315916"
   >
-    .pagination.jsx-285597962{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;}
+    .pagination.jsx-1384315916{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;}.pagination a.page-link{color:#036;}.pagination .page-item.active .page-link{background-color:#036;border-color:#036;}
   </JSXStyle>
 </Fragment>
 `;
@@ -263,7 +263,7 @@ exports[`PaginationBar should render a maximum of 9 pagination pages if Math.cei
 exports[`PaginationBar should render the Pagination component if Math.ceil(totalCount / pageSize) > 1 1`] = `
 <Fragment>
   <div
-    className="jsx-285597962 pagination"
+    className="jsx-1384315916 pagination"
   >
     <Dropdown
       navbar={false}
@@ -274,7 +274,7 @@ exports[`PaginationBar should render the Pagination component if Math.ceil(total
       >
         Items Per Page: 
         <strong
-          className="jsx-285597962"
+          className="jsx-1384315916"
         >
           20
         </strong>
@@ -372,9 +372,9 @@ exports[`PaginationBar should render the Pagination component if Math.ceil(total
     </ForwardRef>
   </div>
   <JSXStyle
-    id="285597962"
+    id="1384315916"
   >
-    .pagination.jsx-285597962{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;}
+    .pagination.jsx-1384315916{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;}.pagination a.page-link{color:#036;}.pagination .page-item.active .page-link{background-color:#036;border-color:#036;}
   </JSXStyle>
 </Fragment>
 `;
