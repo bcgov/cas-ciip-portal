@@ -107,6 +107,7 @@ class ViewApplication extends Component<Props> {
     const thisVersion = Number(router.query.versionNumber);
     const latestSubmittedRevision =
       application?.latestSubmittedRevision?.versionNumber;
+    const latestDraftRevision = application?.latestDraftRevision?.versionNumber;
 
     const newerSubmissionExists = latestSubmittedRevision > thisVersion;
     const latestSubmissionHref = getViewApplicationPageRoute(
@@ -146,7 +147,7 @@ class ViewApplication extends Component<Props> {
       <div>
         Application ID: {application?.rowId}
         <br />
-        {this.state.newerDraftExists && (
+        {latestDraftRevision > 1 && (
           <>
             Version: {thisVersion}
             <br />
