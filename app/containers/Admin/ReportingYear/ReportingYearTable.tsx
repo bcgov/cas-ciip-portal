@@ -129,7 +129,7 @@ export const ReportingYearTableComponent: React.FunctionComponent<Props> = (
             <th scope="col">Industrial GHG Reporting (SWRS) Deadline</th>
             <th scope="col">Application Open Time</th>
             <th scope="col">Application Close Time</th>
-            <th />
+            <td />
           </tr>
         </thead>
         <tbody>
