@@ -53,7 +53,7 @@ const args = {
 
 const easyGraphQLLoadTester = new LoadTesting(schemaCode, args);
 
-const k6ConfigFile = `k6-guest-${process.env.PERF_MODE}.js`;
+const k6ConfigFile = `k6-admin-${process.env.PERF_MODE}.js`;
 k6Template.render(process.env.PERF_MODE, 'admin', k6ConfigFile);
 
 easyGraphQLLoadTester.k6(k6ConfigFile, {
