@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {graphql, createFragmentContainer} from 'react-relay';
 import {IChangeEvent, ErrorSchema, AjvError} from '@rjsf/core';
 import JsonSchemaForm from 'components/Forms/Form';
@@ -92,6 +92,10 @@ export const FormComponent: React.FunctionComponent<Props> = ({
   onValueChanged
 }) => {
   const [hasErrors, setHasErrors] = useState(false);
+  useEffect(() => {
+    setHasErrors(false);
+  }, [ciipFormResult?.id]);
+
   if (!ciipFormResult) return null;
   const {
     formJsonByFormId: {name, formJson, ciipApplicationWizardByFormId},
