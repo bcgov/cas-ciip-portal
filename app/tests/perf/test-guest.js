@@ -24,5 +24,5 @@ easyGraphQLLoadTester.k6(k6ConfigFile, {
   onlyCustomQueries: true,
   selectedQueries: Object.keys(queriesWithParams),
   queryFile: true,
-  out: ['json=results/guest_result.json']
+  out: ['json=guest_result.json']
 });
