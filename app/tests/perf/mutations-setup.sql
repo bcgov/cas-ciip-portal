@@ -4,6 +4,7 @@
 -- has access to the test organisations
 
 -- This script adds the cypress reporter to all organisations in the system
+-- in an idempotent way
 
 begin;
 
@@ -18,6 +19,8 @@ with user_orgs as (
   left join lateral 
     (select id from ggircs_portal.ciip_user where first_name='Cypress' and last_name='Reporter') cu 
   on true
+  where not exists 
+    (select 1 from ggircs_portal.ciip_user_organisation where organisation_id = o.id and user_id = cu.id)
 )
 insert into ggircs_portal.ciip_user_organisation(user_id, organisation_id, status) 
   select user_id, organisation_id, status::ggircs_portal.ciip_user_organisation_status from user_orgs;
