@@ -455,6 +455,7 @@ jobs:
           command: |
             source ~/.bashrc
             pushd app
+            yarn start AS_CYPRESS & yarn wait-on http://localhost:3004
             status_code=$(curl --write-out %{http_code} --silent --output /dev/null http://localhost:3004/health)
             if [[ "$status_code" -ne 200 ]] ; then
               echo "healthcheck failed: database is not available or is in recovery mode"
