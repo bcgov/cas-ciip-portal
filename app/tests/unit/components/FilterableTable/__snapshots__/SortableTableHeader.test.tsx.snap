@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`The sortable table header displays the sort direction arrows if sortable is true 1`] = `
-<td
+<th
   onClick={[Function]}
 >
   <span>
@@ -60,11 +60,11 @@ exports[`The sortable table header displays the sort direction arrows if sortabl
         }
       
   </style>
-</td>
+</th>
 `;
 
 exports[`The sortable table header doesnt display the sort direction arrows if sortable is false 1`] = `
-<td
+<th
   onClick={[Function]}
 >
   <span>
@@ -81,11 +81,11 @@ exports[`The sortable table header doesnt display the sort direction arrows if s
         }
       
   </style>
-</td>
+</th>
 `;
 
 exports[`The sortable table header gets the sort direction from the router 1`] = `
-<td
+<th
   onClick={[Function]}
 >
   <span>
@@ -144,5 +144,5 @@ exports[`The sortable table header gets the sort direction from the router 1`] =
         }
       
   </style>
-</td>
+</th>
 `;

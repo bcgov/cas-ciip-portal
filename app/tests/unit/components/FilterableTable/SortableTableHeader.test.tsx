@@ -14,6 +14,7 @@ describe('The sortable table header', () => {
     const headerVars = {
       columnName: 'testcolumn',
       displayName: 'testdisplay',
+      hasTableHeader: true,
       sortable: true
     };
     const rendered = shallow(
@@ -28,6 +29,7 @@ describe('The sortable table header', () => {
     const headerVars = {
       columnName: 'testcolumn',
       displayName: 'testdisplay',
+      hasTableHeader: true,
       sortable: false
     };
     const rendered = shallow(
@@ -47,6 +49,7 @@ describe('The sortable table header', () => {
     const headerVars = {
       columnName: 'test_column',
       displayName: 'test_display',
+      hasTableHeader: true,
       sortable: true
     };
 
