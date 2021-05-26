@@ -444,6 +444,13 @@ jobs:
             SQITCH_TARGET="ciip_portal_dev" sqitch deploy
             popd
       - run:
+          name: generate relay query list
+          command: |
+            source ~/.bashrc
+            pushd app
+            yarn build:relay-persist
+            popd
+      - run:
           name: run smoke test with k6
           command: |
             source ~/.bashrc
@@ -457,7 +464,7 @@ jobs:
             fi
             popd
             pushd app/tests/perf
-            export
+            export PERF_MODE=smoke
             psql -d ciip_portal_dev -f mutations-setup.sql
             node test-guest.js && node test-admin.js && node test-reporter.js && k6 run k6-mutations.js
             popd
