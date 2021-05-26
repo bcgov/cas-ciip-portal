@@ -16,6 +16,11 @@ exports[`View submitted application page displays a "Resume latest draft" button
       Application ID: 
       1
       <br />
+      <React.Fragment>
+        Version: 
+        1
+        <br />
+      </React.Fragment>
       BC GHG ID: 
       123456
     </div>
@@ -550,6 +555,11 @@ exports[`View submitted application page should render a "View most recent submi
       Application ID: 
       1
       <br />
+      <React.Fragment>
+        Version: 
+        1
+        <br />
+      </React.Fragment>
       BC GHG ID: 
       123456
     </div>

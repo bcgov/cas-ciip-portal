@@ -153,12 +153,15 @@ class ViewApplication extends Component<Props> {
       <div>
         Application ID: {application?.rowId}
         <br />
-        {thisVersion > 1 && (
-          <>
-            Version: {application?.latestDraftRevision.versionNumber}
-            <br />
-          </>
-        )}
+        {
+          // @ts-ignore
+          this.state.newerDraftExists && (
+            <>
+              Version: {thisVersion}
+              <br />
+            </>
+          )
+        }
         BC GHG ID: {application?.facilityByFacilityId.bcghgid}
       </div>
     );
