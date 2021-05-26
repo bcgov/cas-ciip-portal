@@ -242,6 +242,7 @@ deployDevData() {
   _psql -f "./dev/user.sql"
   _psql -f "./dev/linked_product.sql"
   _psql -f "./dev/product_naics_code.sql"
+  _psql -f "./dev/ciip_user_organisation.sql"
   _psql -f "./dev/override_last_swrs_reporting_year.sql"
   return 0;
 }
@@ -258,18 +259,18 @@ deploySwrsLoadTestingData() {
 
 deployPgTapData() {
   deployProdData
-  _psql -f "./dev/facility.sql"
   _psql -f "./dev/reporting_year.sql"
   _psql -f "./dev/product.sql"
   _psql -f "./dev/benchmark.sql"
   _psql -f "./dev/user.sql"
-  _psql -f "./dev/ciip_user_organisation.sql"
-  _psql -f "./dev/application.sql"
-  _psql -f "./dev/form_result.sql"
-  _psql -f "./dev/application-2018.sql"
-  _psql -f "./dev/application_submission.sql"
   _psql -f "./dev/linked_product.sql"
   _psql -f "./dev/product_naics_code.sql"
+  _psql -f "./pgTapData/facility.sql"
+  _psql -f "./pgTapData/ciip_user_organisation.sql"
+  _psql -f "./pgTapData/application.sql"
+  _psql -f "./pgTapData/form_result.sql"
+  _psql -f "./pgTapData/application-2018.sql"
+  _psql -f "./pgTapData/application_submission.sql"
   return 0;
 }
 
