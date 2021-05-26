@@ -1,11 +1,12 @@
 // excluded rules on modal containing tests:
-// landmark-one-main & page-has-heading-one are because of react-bootstrap modal implementation.
+// landmark-one-main & page-has-heading-one & bypass are because of react-bootstrap modal implementation.
 // color-contrast seems to only happen when using the cypress browser, but is fine when I check using the chrome plugin.
 const modalExcludeRules = {
   rules: {
     'color-contrast': {enabled: false},
     'landmark-one-main': {enabled: false},
-    'page-has-heading-one': {enabled: false}
+    'page-has-heading-one': {enabled: false},
+    bypass: {enabled: false}
   }
 };
 
