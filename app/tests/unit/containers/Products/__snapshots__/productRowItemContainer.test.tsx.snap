@@ -160,6 +160,7 @@ exports[`ProductList should match the previous snapshot 1`] = `
   </tr>
   <Modal
     animation={true}
+    aria-labelledby="product-benchmark-header"
     autoFocus={true}
     backdrop={true}
     centered={true}
@@ -337,6 +338,7 @@ exports[`ProductList should match the previous snapshot 1`] = `
   </Modal>
   <Modal
     animation={true}
+    aria-labelledby="product-benchmark-header"
     autoFocus={true}
     backdrop={true}
     centered={true}

@@ -28,6 +28,7 @@ Array [
   </Button>,
   <Modal
     animation={true}
+    aria-labelledby="add-new-operator"
     autoFocus={true}
     backdrop={true}
     centered={true}

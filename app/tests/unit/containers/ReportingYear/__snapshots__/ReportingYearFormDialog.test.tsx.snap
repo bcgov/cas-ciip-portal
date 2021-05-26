@@ -4,6 +4,7 @@ exports[`ReportingYearFormDialog Should match last accepted snapshot: no inputs 
 <Fragment>
   <Modal
     animation={true}
+    aria-labelledby="edit-reporting-year"
     autoFocus={true}
     backdrop={true}
     centered={true}
@@ -25,7 +26,9 @@ exports[`ReportingYearFormDialog Should match last accepted snapshot: no inputs 
       closeButton={true}
       closeLabel="Close"
     >
-      <ModalTitle>
+      <ModalTitle
+        id="edit-reporting-year"
+      >
         Edit Reporting Year 
         2025
       </ModalTitle>
@@ -638,6 +641,7 @@ exports[`ReportingYearFormDialog Should match last accepted snapshot: some past 
 <Fragment>
   <Modal
     animation={true}
+    aria-labelledby="edit-reporting-year"
     autoFocus={true}
     backdrop={true}
     centered={true}
@@ -659,7 +663,9 @@ exports[`ReportingYearFormDialog Should match last accepted snapshot: some past 
       closeButton={true}
       closeLabel="Close"
     >
-      <ModalTitle>
+      <ModalTitle
+        id="edit-reporting-year"
+      >
         Edit Reporting Year 
         2020
       </ModalTitle>

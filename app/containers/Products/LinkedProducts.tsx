@@ -93,18 +93,14 @@ export const LinkedProductsContainer: React.FunctionComponent<Props> = ({
     >
       <Modal.Header closeButton style={{color: 'white', background: '#003366'}}>
         <Modal.Title id="linked-products-header">
-          <h2>
-            <span className="h3">Product Associations</span>
-          </h2>
+          <h2 className="h3">Product Associations</h2>
         </Modal.Title>
       </Modal.Header>
       <Modal.Body style={{background: '#f5f5f5'}}>
         <Container>
           <Row>
             <Col md={12}>
-              <h3>
-                <span className="h5">Add/Edit Associations</span>
-              </h3>
+              <h3 className="h5">Add/Edit Associations</h3>
               <hr />
               <p>
                 When you specify one or more products on the right, applications

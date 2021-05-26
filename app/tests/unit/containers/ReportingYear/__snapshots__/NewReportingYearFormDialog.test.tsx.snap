@@ -4,6 +4,7 @@ exports[`NewReportingYearFormDialog Should match last accepted snapshot 1`] = `
 <Fragment>
   <Modal
     animation={true}
+    aria-labelledby="new-reporting-year"
     autoFocus={true}
     backdrop={true}
     centered={true}
@@ -25,7 +26,9 @@ exports[`NewReportingYearFormDialog Should match last accepted snapshot 1`] = `
       closeButton={true}
       closeLabel="Close"
     >
-      <ModalTitle>
+      <ModalTitle
+        id="new-reporting-year"
+      >
         New Reporting Year
       </ModalTitle>
     </ModalHeader>
