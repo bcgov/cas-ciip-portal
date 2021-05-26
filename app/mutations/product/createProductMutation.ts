@@ -11,20 +11,7 @@ const mutation = graphql`
     createProduct(input: $input) {
       productEdge {
         node {
-          id
-          productName
-          units
-          requiresEmissionAllocation
-          productState
-          isCiipProduct
-          isEnergyProduct
-          addPurchasedElectricityEmissions
-          subtractExportedElectricityEmissions
-          addPurchasedHeatEmissions
-          subtractExportedHeatEmissions
-          subtractGeneratedElectricityEmissions
-          subtractGeneratedHeatEmissions
-          requiresProductAmount
+          ...ProductRowItemContainer_product
         }
       }
     }
