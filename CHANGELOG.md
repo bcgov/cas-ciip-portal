@@ -2,6 +2,53 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.6.0](https://github.com/bcgov/cas-ciip-portal/compare/v2.4.0...v2.6.0) (2021-05-27)
+
+
+### Features
+
+* add isMandatory to product schema ([c70f5bc](https://github.com/bcgov/cas-ciip-portal/commit/c70f5bc2032a2969cf3b8c4da08883e816eed086))
+* add mandatory product label ([d617399](https://github.com/bcgov/cas-ciip-portal/commit/d61739977bfcf31bc7d8d5a6263812d78a8a38da))
+* change names of ciip application tab titles ([da0e162](https://github.com/bcgov/cas-ciip-portal/commit/da0e162458ff5151fc2b4117b57770992359c053))
+* custom field initializes formResult with mandatory products ([b53f86f](https://github.com/bcgov/cas-ciip-portal/commit/b53f86f320aa6dbd167b230a82d07d30c54c9f8c))
+* custom ProductsArrayField overrides and renders ArrayField ([2561f0e](https://github.com/bcgov/cas-ciip-portal/commit/2561f0e92f124f49d26f161bb688f437528cbed9))
+* link to program website on homepage and remove links to factsheet ([e9a79e8](https://github.com/bcgov/cas-ciip-portal/commit/e9a79e8425b2e084a6a6fe7d3a21a3137b68e007))
+* product selection for mandatory products is read-only ([86ca822](https://github.com/bcgov/cas-ciip-portal/commit/86ca822d635a76b2122f7218eb687fd6ce5b631e))
+* scrollable pre-submission application disclaimer with updated text ([fee4ab6](https://github.com/bcgov/cas-ciip-portal/commit/fee4ab68fffe2bf6ca25ffd2e7530528a22421c8))
+* update interstitial consent text for new applications ([994aae8](https://github.com/bcgov/cas-ciip-portal/commit/994aae894d67e8b9214070a94125f49a82620490))
+* update text on dashboard GGIRCS-2304 ([e296dba](https://github.com/bcgov/cas-ciip-portal/commit/e296dba2dfb108644324fbfec7ed9cde0036a473))
+* updated email templates and subject lines ([ac33582](https://github.com/bcgov/cas-ciip-portal/commit/ac33582713cbc42d951da6b7669d54f6ac7febcd))
+* use temp property on formData for template to hide remove button ([e39cb58](https://github.com/bcgov/cas-ciip-portal/commit/e39cb58a3d8fc486bef1335c60aaff1db600fac4))
+
+
+### Bug Fixes
+
+* allow searching by facility type (via enum) ([ed355bd](https://github.com/bcgov/cas-ciip-portal/commit/ed355bdd19cf7423fa172fda00a1e70aa04bf9c8))
+* createProductMutation uses the product fragment ([684f75d](https://github.com/bcgov/cas-ciip-portal/commit/684f75d4eac482a3e6facb0d8774b8d55df355e8))
+* don't use custom field for naics code in 2019 applicaions ([65f0c3a](https://github.com/bcgov/cas-ciip-portal/commit/65f0c3a39d219e37f376ad4cf372e0e443ef1947))
+* ensure product units are part of the initialized mandatory products ([d24bc58](https://github.com/bcgov/cas-ciip-portal/commit/d24bc589d2c45ee67cbe9cc5afcb3f468631a0e7))
+* excluding fuels reporting a zero quantity from validation ([af1a153](https://github.com/bcgov/cas-ciip-portal/commit/af1a153b1e121dd8a71ac700c7a07bdf95aadb5e))
+* fix broken links on footer copyright page ([5cc0f8d](https://github.com/bcgov/cas-ciip-portal/commit/5cc0f8d47736777a62fc117e00c3ba8b58b06bea))
+* fix typo on application review page incentive formula GGIRCS-2209 ([f5853dc](https://github.com/bcgov/cas-ciip-portal/commit/f5853dcbd402bebdc612fd38ed2ba3ef37445fa7))
+* fixing double-margin around flex table cell ([503e030](https://github.com/bcgov/cas-ciip-portal/commit/503e030ab52aa42760d03eb6e4a1bd5ee01490cf))
+* link to regulation from missing swrs warning should open in new tab ([aa9279b](https://github.com/bcgov/cas-ciip-portal/commit/aa9279b7d6bf38fa953e8a8c0521634fe2e1e053))
+* onComplete retrieves the form data properly ([b5b5e7e](https://github.com/bcgov/cas-ciip-portal/commit/b5b5e7e9c89c6cae6beb1749f5bc8a94d34b29f4))
+* only allow CORS for the Analytics script ([e306b86](https://github.com/bcgov/cas-ciip-portal/commit/e306b869adfbb5ac3b0d5e0c3a57edb26dce43df))
+* perform home page redirection on server to prevent content flashing ([5dedf9d](https://github.com/bcgov/cas-ciip-portal/commit/5dedf9d44dd5bc118525f2c1b49eddec3523d0eb))
+* prevent flash of Resume Latest Draft on Revise click ([b2033ed](https://github.com/bcgov/cas-ciip-portal/commit/b2033eda13e607aed5135bc3d0986219bd159fbb))
+* productsByNaicsCode may be undefined ([e7dd429](https://github.com/bcgov/cas-ciip-portal/commit/e7dd4295607ed449f5c35fe6fb7e354ff24547fa))
+* re-activate deadline above login/register button ([c45fbde](https://github.com/bcgov/cas-ciip-portal/commit/c45fbdedd6f2825620ac15eef4ca18e5f4fdc04b))
+* re-add https links after they went missing in conflict resolution ([08150e5](https://github.com/bcgov/cas-ciip-portal/commit/08150e52b15f7ffe32039442619479844e12c926))
+* remove link to defunct PDF from README ([8c00945](https://github.com/bcgov/cas-ciip-portal/commit/8c009455842ca3e18b0510e4e28a73258a3b0a7d))
+* reset form state when changing form id ([3721ef8](https://github.com/bcgov/cas-ciip-portal/commit/3721ef84ad035c34f92ab79ef252e8eac4658de4))
+* return organisationId on request access to filter the list ([fc9f9e1](https://github.com/bcgov/cas-ciip-portal/commit/fc9f9e1511a7557260e4678c07b01d180639e2d4))
+* show (correct) version number when viewing apps with later drafts ([79a14fa](https://github.com/bcgov/cas-ciip-portal/commit/79a14fad7e5345e21124dbd93aa19c709e185a6c))
+* the display only filter doesn't render a search box ([80cab71](https://github.com/bcgov/cas-ciip-portal/commit/80cab71d664663dea8386727074afe0b0766fa89))
+* typo in error toast message ([e672553](https://github.com/bcgov/cas-ciip-portal/commit/e672553b6f650a7bfb81da411cf32ca6f92b5294))
+* update prod data file for ciip_application_wizard ([40079db](https://github.com/bcgov/cas-ciip-portal/commit/40079dba21ec64302f81cc5d93aa71777656dcc9))
+* use clearer language for secondary contact label GGIRCS-2450 ([e0ee923](https://github.com/bcgov/cas-ciip-portal/commit/e0ee923c5633bc5eae304c075e008d0c0c87335a))
+* use correct condition to fix 2457 ([b407468](https://github.com/bcgov/cas-ciip-portal/commit/b40746825b50e06b6cf252fc64bb89fc8d89234a))
+
 ## [2.5.0](https://github.com/bcgov/cas-ciip-portal/compare/v2.4.0...v2.5.0) (2021-05-21)
 
 
