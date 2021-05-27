@@ -3,6 +3,7 @@
 exports[`Linked Prdocuts should match the last snapshot 1`] = `
 <Modal
   animation={true}
+  aria-labelledby="linked-products-header"
   autoFocus={true}
   backdrop={true}
   centered={true}
@@ -30,8 +31,14 @@ exports[`Linked Prdocuts should match the last snapshot 1`] = `
       }
     }
   >
-    <ModalTitle>
-      Product Associations
+    <ModalTitle
+      id="linked-products-header"
+    >
+      <h2
+        className="jsx-868046180 h3"
+      >
+        Product Associations
+      </h2>
     </ModalTitle>
   </ModalHeader>
   <ModalBody
@@ -50,11 +57,11 @@ exports[`Linked Prdocuts should match the last snapshot 1`] = `
         <Col
           md={12}
         >
-          <h5
-            className="jsx-868046180"
+          <h3
+            className="jsx-868046180 h5"
           >
             Add/Edit Associations
-          </h5>
+          </h3>
           <hr
             className="jsx-868046180"
           />

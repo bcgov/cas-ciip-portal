@@ -78,9 +78,10 @@ const AddFacilityModal: React.FunctionComponent<Props> = (props) => {
         size="lg"
         show={isModalVisible}
         onHide={() => setModalVisible(false)}
+        aria-labelledby="add-new-facility"
       >
-        <Modal.Header>
-          <h5>Add a new Facility</h5>
+        <Modal.Header id="add-new-facility">
+          <h2 className="h5">Add a new Facility</h2>
         </Modal.Header>
         <Modal.Body>
           <JsonSchemaForm

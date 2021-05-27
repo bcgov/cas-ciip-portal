@@ -35,6 +35,7 @@ describe('The filterable table', () => {
     ).toEqual({
       displayName: 'TextTitle',
       columnName: 'text_column',
+      hasTableHeader: true,
       sortable: true
     });
     expect(
@@ -42,6 +43,7 @@ describe('The filterable table', () => {
     ).toEqual({
       displayName: 'DisplayOnlyTitle',
       columnName: undefined,
+      hasTableHeader: true,
       sortable: false
     });
   });

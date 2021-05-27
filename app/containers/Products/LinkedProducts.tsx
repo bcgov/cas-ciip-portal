@@ -87,16 +87,19 @@ export const LinkedProductsContainer: React.FunctionComponent<Props> = ({
       centered
       size="xl"
       show
+      aria-labelledby="linked-products-header"
       onHide={() => setLinkProductModalShow(false)}
     >
       <Modal.Header closeButton style={{color: 'white', background: '#003366'}}>
-        <Modal.Title>Product Associations</Modal.Title>
+        <Modal.Title id="linked-products-header">
+          <h2 className="h3">Product Associations</h2>
+        </Modal.Title>
       </Modal.Header>
       <Modal.Body style={{background: '#f5f5f5'}}>
         <Container>
           <Row>
             <Col md={12}>
-              <h5>Add/Edit Associations</h5>
+              <h3 className="h5">Add/Edit Associations</h3>
               <hr />
               <p>
                 When you specify one or more products on the right, applications
@@ -176,6 +179,11 @@ export const LinkedProductsContainer: React.FunctionComponent<Props> = ({
                       </td>
                     </tr>
                   ))}
+                  {product.linkedProductsByProductId.edges.length === 0 && (
+                    <tr>
+                      <td colSpan={2}>No linked products</td>
+                    </tr>
+                  )}
                 </tbody>
               </Table>
             </Col>

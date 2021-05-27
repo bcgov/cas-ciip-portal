@@ -73,9 +73,17 @@ const ReportingYearFormDialog: React.FunctionComponent<Props> = ({
 
   return (
     <>
-      <Modal centered size="lg" show={show} onHide={clearForm}>
+      <Modal
+        centered
+        size="lg"
+        show={show}
+        onHide={clearForm}
+        aria-labelledby="edit-reporting-year"
+      >
         <Modal.Header closeButton>
-          <Modal.Title>Edit Reporting Year {year}</Modal.Title>
+          <Modal.Title id="edit-reporting-year">
+            Edit Reporting Year {year}
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Container>

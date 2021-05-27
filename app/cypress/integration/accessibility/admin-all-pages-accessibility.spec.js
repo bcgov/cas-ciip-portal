@@ -1,3 +1,15 @@
+// excluded rules on modal containing tests:
+// landmark-one-main & page-has-heading-one & bypass are because of react-bootstrap modal implementation.
+// color-contrast seems to only happen when using the cypress browser, but is fine when I check using the chrome plugin.
+const modalExcludeRules = {
+  rules: {
+    'color-contrast': {enabled: false},
+    'landmark-one-main': {enabled: false},
+    'page-has-heading-one': {enabled: false},
+    bypass: {enabled: false}
+  }
+};
+
 describe('When logged in as an admin', () => {
   before(() => {
     cy.cleanSchema();
@@ -15,7 +27,7 @@ describe('When logged in as an admin', () => {
     cy.checkA11y();
   });
 
-  it.skip('The user list page has no detectable ally violations on load', () => {
+  it('The user list page has no detectable ally violations on load', () => {
     cy.mockLogin('admin');
     cy.visit('/admin/users');
     cy.url().should('include', '/admin/users');
@@ -52,6 +64,7 @@ describe('When logged in as an admin', () => {
     cy.checkA11y();
   });
 
+  // This modal doesn't have issues because it is inset.
   it('The products & benchmarks new product modal has no detectable ally violations on open', () => {
     cy.mockLogin('admin');
     cy.visit('/admin/products-benchmarks');
@@ -62,7 +75,7 @@ describe('When logged in as an admin', () => {
     cy.checkA11y();
   });
 
-  it.skip('The products & benchmarks linking modal has no detectable ally violations on open', () => {
+  it('The products & benchmarks linking modal has no detectable ally violations on open', () => {
     cy.mockLogin('admin');
     cy.visit('/admin/products-benchmarks');
     cy.url().should('include', '/admin/products-benchmarks');
@@ -74,10 +87,10 @@ describe('When logged in as an admin', () => {
       .click();
     cy.injectAxe();
     cy.get('#page-content');
-    cy.checkA11y();
+    cy.checkA11y(null, modalExcludeRules);
   });
 
-  it.skip('The products & benchmarks product modal has no detectable ally violations on open', () => {
+  it('The products & benchmarks product modal has no detectable ally violations on open', () => {
     cy.mockLogin('admin');
     cy.visit('/admin/products-benchmarks');
     cy.url().should('include', '/admin/products-benchmarks');
@@ -89,10 +102,10 @@ describe('When logged in as an admin', () => {
       .click();
     cy.injectAxe();
     cy.get('#page-content');
-    cy.checkA11y();
+    cy.checkA11y(null, modalExcludeRules);
   });
 
-  it.skip('The products & benchmarks benchmark modal has no detectable ally violations on open', () => {
+  it('The products & benchmarks benchmark modal has no detectable ally violations on open', () => {
     cy.mockLogin('admin');
     cy.visit('/admin/products-benchmarks');
     cy.url().should('include', '/admin/products-benchmarks');
@@ -104,10 +117,10 @@ describe('When logged in as an admin', () => {
       .click();
     cy.injectAxe();
     cy.get('#page-content');
-    cy.checkA11y();
+    cy.checkA11y(null, modalExcludeRules);
   });
 
-  it.skip('The reporting-years page has no detectable ally violations on load', () => {
+  it('The reporting-years page has no detectable ally violations on load', () => {
     cy.mockLogin('admin');
     cy.visit('/admin/reporting-years');
     cy.url().should('include', '/admin/reporting-years');
@@ -116,23 +129,23 @@ describe('When logged in as an admin', () => {
     cy.checkA11y();
   });
 
-  it.skip('The reporting-years new reporting year modal has no detectable ally violations on open', () => {
+  it('The reporting-years new reporting year modal has no detectable ally violations on open', () => {
     cy.mockLogin('admin');
     cy.visit('/admin/reporting-years');
     cy.url().should('include', '/admin/reporting-years');
     cy.get('#page-content > div > .btn').click();
     cy.injectAxe();
     cy.get('#page-content');
-    cy.checkA11y();
+    cy.checkA11y(null, modalExcludeRules);
   });
 
-  it.skip('The reporting-years edit reporting year modal has no detectable ally violations on open', () => {
+  it('The reporting-years edit reporting year modal has no detectable ally violations on open', () => {
     cy.mockLogin('admin');
     cy.visit('/admin/reporting-years');
     cy.url().should('include', '/admin/reporting-years');
     cy.get(':nth-child(1) > :nth-child(7) > .btn').click();
     cy.injectAxe();
     cy.get('#page-content');
-    cy.checkA11y();
+    cy.checkA11y(null, modalExcludeRules);
   });
 });

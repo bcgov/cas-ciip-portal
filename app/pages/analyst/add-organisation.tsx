@@ -43,7 +43,7 @@ class AddOrganisationPage extends Component<Props> {
     return (
       <DefaultLayout session={query.session} title="Add Organisation">
         <Card>
-          <Card.Header as="h5">Attention</Card.Header>
+          <Card.Header className="h5">Attention</Card.Header>
           <Card.Body>
             <Card.Text>
               <p>
