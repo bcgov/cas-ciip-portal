@@ -69,7 +69,7 @@ const SortableTableHeader: React.FunctionComponent<Props> = ({
         </span>
       )}
       <style>{`
-        .table thead th {
+        .table thead th, .table thead tr:first-child td {
           background: #003366;
           color: white;
           position: relative;

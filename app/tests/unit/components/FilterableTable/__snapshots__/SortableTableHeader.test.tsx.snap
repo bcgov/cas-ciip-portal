@@ -51,7 +51,7 @@ exports[`The sortable table header displays the sort direction arrows if sortabl
   </span>
   <style>
     
-        .table thead th {
+        .table thead th, .table thead tr:first-child td {
           background: #003366;
           color: white;
           position: relative;
@@ -72,7 +72,7 @@ exports[`The sortable table header doesnt display the sort direction arrows if s
   </span>
   <style>
     
-        .table thead th {
+        .table thead th, .table thead tr:first-child td {
           background: #003366;
           color: white;
           position: relative;
@@ -135,7 +135,7 @@ exports[`The sortable table header gets the sort direction from the router 1`] =
   </span>
   <style>
     
-        .table thead th {
+        .table thead th, .table thead tr:first-child td {
           background: #003366;
           color: white;
           position: relative;
