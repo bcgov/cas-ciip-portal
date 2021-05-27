@@ -18,4 +18,4 @@ tasks:
     action: run load testing script
     steps:
       - make install_load_test:
-        timeout: 3600
+          timeout: 3600
