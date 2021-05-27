@@ -30,6 +30,7 @@ const queriesWithParams = {
   facilitiesQuery: {
     operatorName: null,
     facilityName: null,
+    facilityType: null,
     applicationStatus: null,
     applicationIdIsNull: null,
     applicationId: null,

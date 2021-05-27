@@ -29,5 +29,16 @@ module.exports = (role) => {
       'there is data in the response': (parsedBody) =>
         parsedBody.data !== undefined
     });
+
+    if (parsedBody.errors) {
+      console.log(
+        '===================================================================='
+      );
+      console.log(' ');
+      console.log(' ');
+      console.log(res.body);
+      console.log(' ');
+      console.log(' ');
+    }
   }
 };
