@@ -45,7 +45,6 @@ exports[`ProductList should render the product list 1`] = `
         "castValue": [Function],
         "isSearchEnabled": true,
         "isSortEnabled": true,
-        "removeSearchHeader": undefined,
         "sortColumnName": "product_name",
         "title": "Product",
       },
@@ -55,7 +54,6 @@ exports[`ProductList should render the product list 1`] = `
         "castValue": [Function],
         "isSearchEnabled": false,
         "isSortEnabled": false,
-        "removeSearchHeader": undefined,
         "sortColumnName": undefined,
         "title": "Settings",
       },
@@ -65,7 +63,6 @@ exports[`ProductList should render the product list 1`] = `
         "castValue": [Function],
         "isSearchEnabled": false,
         "isSortEnabled": true,
-        "removeSearchHeader": undefined,
         "sortColumnName": "updated_at",
         "title": "Modified (Y/M/D)",
       },
@@ -75,7 +72,6 @@ exports[`ProductList should render the product list 1`] = `
         "castValue": [Function],
         "isSearchEnabled": true,
         "isSortEnabled": true,
-        "removeSearchHeader": undefined,
         "sortColumnName": "current_benchmark",
         "title": "Benchmark",
       },
@@ -85,7 +81,6 @@ exports[`ProductList should render the product list 1`] = `
         "castValue": [Function],
         "isSearchEnabled": true,
         "isSortEnabled": true,
-        "removeSearchHeader": undefined,
         "sortColumnName": "current_eligibility_threshold",
         "title": "Eligibility Threshold",
       },
@@ -99,7 +94,6 @@ exports[`ProductList should render the product list 1`] = `
         ],
         "isSearchEnabled": true,
         "isSortEnabled": true,
-        "removeSearchHeader": undefined,
         "renderEnumValue": [Function],
         "searchOptionValues": Array [
           Object {
@@ -124,7 +118,6 @@ exports[`ProductList should render the product list 1`] = `
         ],
         "isSearchEnabled": true,
         "isSortEnabled": true,
-        "removeSearchHeader": undefined,
         "renderEnumValue": [Function],
         "searchOptionValues": Array [
           Object {
@@ -150,7 +143,6 @@ exports[`ProductList should render the product list 1`] = `
         ],
         "isSearchEnabled": true,
         "isSortEnabled": true,
-        "removeSearchHeader": undefined,
         "renderEnumValue": [Function],
         "searchOptionValues": Array [
           Object {
@@ -175,7 +167,6 @@ exports[`ProductList should render the product list 1`] = `
         "castValue": [Function],
         "isSearchEnabled": false,
         "isSortEnabled": false,
-        "removeSearchHeader": undefined,
         "sortColumnName": null,
         "title": null,
       },

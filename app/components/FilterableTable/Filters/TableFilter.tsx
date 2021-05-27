@@ -34,7 +34,6 @@ export default abstract class TableFilter<T = string | number | boolean> {
   sortColumnName: string;
   isSearchEnabled: boolean;
   isSortEnabled: boolean;
-  removeSearchHeader: boolean;
 
   /**
    * The array of all relay arguments managed by this filter.
