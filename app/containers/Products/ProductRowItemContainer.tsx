@@ -11,7 +11,9 @@ import createBenchmarkMutation from 'mutations/benchmark/createBenchmarkMutation
 import benchmarkSchemaFunction from './benchmark-schema';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faCog} from '@fortawesome/free-solid-svg-icons';
-import InnerModal from './InnerProductBenchmarkModal';
+import InnerModal, {
+  productBenchmarkModalHeaderId
+} from './InnerProductBenchmarkModal';
 import {dateTimeFormat} from 'functions/formatDates';
 import LinkedProducts from './LinkedProducts';
 
@@ -124,7 +126,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
       centered
       size="xl"
       show={productModalShow}
-      aria-labelledby="product-benchmark-header"
+      aria-labelledby={productBenchmarkModalHeaderId}
       onHide={() => {
         setProductModalShow(false);
       }}
@@ -148,7 +150,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
       centered
       size="xl"
       show={benchmarkModalShow}
-      aria-labelledby="product-benchmark-header"
+      aria-labelledby={productBenchmarkModalHeaderId}
       onHide={() => {
         setBenchmarkModalShow(false);
       }}

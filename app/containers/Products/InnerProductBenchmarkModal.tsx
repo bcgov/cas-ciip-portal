@@ -39,6 +39,8 @@ interface Props {
   isProduct: boolean;
 }
 
+export const productBenchmarkModalHeaderId = 'product-benchmark-header';
+
 // Conditionally renders the inside of the Edit/View Product/Benchmark modal based on the value of isProduct
 export const ProductBenchmarkInnerModal: React.FunctionComponent<Props> = ({
   updateStatus,
@@ -92,7 +94,7 @@ export const ProductBenchmarkInnerModal: React.FunctionComponent<Props> = ({
   return (
     <>
       <Modal.Header closeButton style={{color: 'white', background: '#003366'}}>
-        <Modal.Title id="product-benchmark-header">
+        <Modal.Title id={productBenchmarkModalHeaderId}>
           <h2 className="h4">
             {isProduct ? 'Edit Product' : 'Edit Benchmark'}
           </h2>
