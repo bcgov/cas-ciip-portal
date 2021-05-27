@@ -136,7 +136,7 @@ class Copyright extends Component<Props> {
           <p>
             For more information, please read the{' '}
             <a
-              href="/gov/content/governments/services-for-government/policies-procedures/intellectual-property/frequently-asked-questions"
+              href="https://www2.gov.bc.ca/gov/content/governments/services-for-government/policies-procedures/intellectual-property/frequently-asked-questions"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -144,7 +144,7 @@ class Copyright extends Component<Props> {
             </a>{' '}
             or contact the{' '}
             <a
-              href="/gov/content/governments/services-for-government/policies-procedures/intellectual-property/intellectual-property-program/intellectual-property-disposals"
+              href="https://www2.gov.bc.ca/gov/content/governments/services-for-government/policies-procedures/intellectual-property/intellectual-property-program/intellectual-property-disposals"
               target="_blank"
               rel="noopener noreferrer"
             >

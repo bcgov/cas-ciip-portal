@@ -116,7 +116,11 @@ export const ApplyButton: React.FunctionComponent<Props> = ({
           <p>
             Note, submission of a CIIP application does not constitute meeting
             reporting obligations as required under the{' '}
-            <a href="https://www.bclaws.gov.bc.ca/civix/document/id/complete/statreg/14029_01">
+            <a
+              href="https://www.bclaws.gov.bc.ca/civix/document/id/complete/statreg/14029_01"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
               <em>Greenhouse Gas Industrial Reporting and Control Act</em>
             </a>{' '}
             or its regulations.

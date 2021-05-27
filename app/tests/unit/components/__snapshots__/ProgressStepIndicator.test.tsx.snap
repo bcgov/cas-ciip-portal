@@ -49,7 +49,7 @@ exports[`The Progress Step Indicator Matches snapshot with 2/4 steps completed a
   >
     Array [
       <div
-        className="jsx-1375059393 numberedCircle badge-success"
+        className="jsx-2841694627 numberedCircle badge-success"
       >
         <svg
           aria-hidden="true"
@@ -79,7 +79,7 @@ exports[`The Progress Step Indicator Matches snapshot with 2/4 steps completed a
     ]
     Array [
       <div
-        className="jsx-1375059393 numberedCircle badge-success"
+        className="jsx-2841694627 numberedCircle badge-success"
       >
         <svg
           aria-hidden="true"
@@ -109,7 +109,7 @@ exports[`The Progress Step Indicator Matches snapshot with 2/4 steps completed a
     ]
     Array [
       <div
-        className="jsx-1375059393 numberedCircle badge-danger"
+        className="jsx-2841694627 numberedCircle badge-danger"
       >
         110
       </div>,
@@ -117,7 +117,7 @@ exports[`The Progress Step Indicator Matches snapshot with 2/4 steps completed a
     ]
     Array [
       <div
-        className="jsx-1375059393 numberedCircle badge-danger"
+        className="jsx-2841694627 numberedCircle badge-danger"
       >
         111
       </div>,
@@ -224,7 +224,7 @@ exports[`The Progress Step Indicator Matches snapshot with 3 steps and a title 1
   >
     Array [
       <div
-        className="jsx-1375059393 numberedCircle badge-success"
+        className="jsx-2841694627 numberedCircle badge-success"
       >
         99
       </div>,
@@ -232,7 +232,7 @@ exports[`The Progress Step Indicator Matches snapshot with 3 steps and a title 1
     ]
     Array [
       <div
-        className="jsx-1375059393 numberedCircle badge-success"
+        className="jsx-2841694627 numberedCircle badge-success"
       >
         100
       </div>,
@@ -240,7 +240,7 @@ exports[`The Progress Step Indicator Matches snapshot with 3 steps and a title 1
     ]
     Array [
       <div
-        className="jsx-1375059393 numberedCircle badge-danger"
+        className="jsx-2841694627 numberedCircle badge-danger"
       >
         110
       </div>,
@@ -337,7 +337,7 @@ exports[`The Progress Step Indicator Matches snapshot with 4/4 steps completed a
   >
     Array [
       <div
-        className="jsx-1375059393 numberedCircle badge-success"
+        className="jsx-2841694627 numberedCircle badge-success"
       >
         <svg
           aria-hidden="true"
@@ -367,7 +367,7 @@ exports[`The Progress Step Indicator Matches snapshot with 4/4 steps completed a
     ]
     Array [
       <div
-        className="jsx-1375059393 numberedCircle badge-success"
+        className="jsx-2841694627 numberedCircle badge-success"
       >
         <svg
           aria-hidden="true"
@@ -397,7 +397,7 @@ exports[`The Progress Step Indicator Matches snapshot with 4/4 steps completed a
     ]
     Array [
       <div
-        className="jsx-1375059393 numberedCircle badge-danger"
+        className="jsx-2841694627 numberedCircle badge-danger"
       >
         <svg
           aria-hidden="true"
@@ -427,7 +427,7 @@ exports[`The Progress Step Indicator Matches snapshot with 4/4 steps completed a
     ]
     Array [
       <div
-        className="jsx-1375059393 numberedCircle badge-danger"
+        className="jsx-2841694627 numberedCircle badge-danger"
       >
         <svg
           aria-hidden="true"

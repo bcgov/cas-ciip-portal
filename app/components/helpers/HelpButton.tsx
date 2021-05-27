@@ -121,7 +121,7 @@ const HelpButton: React.FunctionComponent<Props> = ({
           position: fixed;
           right: 70px;
           bottom: 94px;
-          padding: 1.6em;
+          padding: 1.4em;
           background: #fff;
           max-width: 310px;
           min-height: 80px;
@@ -152,7 +152,7 @@ const HelpButton: React.FunctionComponent<Props> = ({
           right: 0;
         }
         span[role='img'] {
-          margin-right: 0.2em;
+          margin-right: 0.5em;
         }
       `}</style>
     </>

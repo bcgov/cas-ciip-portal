@@ -25,6 +25,7 @@ const AddCommentField: React.FunctionComponent<FieldProps<string>> = (
     props.onChange(value);
     setExpanded(false);
     toast.success('Your comment was saved.', {
+      className: 'toastalert-success',
       autoClose: 5000,
       position: 'top-center'
     });

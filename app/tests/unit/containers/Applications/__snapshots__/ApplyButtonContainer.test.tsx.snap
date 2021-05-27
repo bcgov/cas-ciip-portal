@@ -165,6 +165,8 @@ exports[`The apply button should render a warning modal if no swrs report exists
          
         <a
           href="https://www.bclaws.gov.bc.ca/civix/document/id/complete/statreg/14029_01"
+          rel="noreferrer noopener"
+          target="_blank"
         >
           <em>
             Greenhouse Gas Industrial Reporting and Control Act
@@ -262,6 +264,8 @@ exports[`The apply button should render an Apply For CIIP button if no applicati
          
         <a
           href="https://www.bclaws.gov.bc.ca/civix/document/id/complete/statreg/14029_01"
+          rel="noreferrer noopener"
+          target="_blank"
         >
           <em>
             Greenhouse Gas Industrial Reporting and Control Act

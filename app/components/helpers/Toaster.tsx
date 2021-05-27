@@ -28,11 +28,11 @@ export const Toaster: React.FunctionComponent = () => {
           top: 0.5rem;
           right: 0.7rem;
         }
-        :global(.Toastify__close-button--default) {
+        :global(.Toastify__close-button, .Toastify__close-button--default) {
           opacity: 1;
           color: currentColor;
         }
-        :global(.Toastify__progress-bar--default) {
+        :global(.Toastify__progress-bar, .Toastify__progress-bar--default) {
           background: transparent;
         }
       `}</style>

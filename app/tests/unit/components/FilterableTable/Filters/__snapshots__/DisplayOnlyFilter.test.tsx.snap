@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`the display only filter option renders an empty td component 1`] = `
+<table>
+  <tbody>
+    <tr>
+      <td />
+    </tr>
+  </tbody>
+</table>
+`;
