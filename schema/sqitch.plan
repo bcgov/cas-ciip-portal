@@ -349,3 +349,4 @@ trigger_functions/draft_application_started [trigger_functions/draft_application
 @v2.5.0 2021-05-21T17:23:58Z Dylan Leard <dylan@button.is> # release v2.5.0
 application_validation_functions/carbon_taxed_fuels_match_rev_zero [application_validation_functions/carbon_taxed_fuels_match_rev_zero@v2.5.0] 2021-05-25T20:58:25Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # fixing an issue where zero quantity trigger a division by zero
 @v2.6.0 2021-05-27T17:28:19Z Dylan Leard <dylan@button.is> # release v2.6.0
+trigger_functions/create_or_refresh_review_step [trigger_functions/create_or_refresh_review_step@v2.6.0] 2021-05-27T23:02:19Z Dylan Leard <dylan@button.is> # Migration: ignore version 0 when creating review steps for an application
