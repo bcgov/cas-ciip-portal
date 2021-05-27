@@ -70,6 +70,23 @@ install:
 install_test: OC_PROJECT=$(OC_TEST_PROJECT)
 install_test: install
 
+.PHONY: install_load_test
+install_load_test: whoami
+install_load_test: OC_PROJECT=$(CIIP_NAMESPACE_PREFIX)-dev
+install_load_test: GGIRCS_PROJECT=$(GGIRCS_NAMESPACE_PREFIX)-dev
+install_load_test:
+	@set -euo pipefail; \
+	helm dep up ./helm/cas-ciip-portal; \
+	helm upgrade --install --atomic --timeout 2400s --namespace $(OC_PROJECT) \
+	--set image.schema.tag=$(GIT_SHA1) --set image.app.tag=$(GIT_SHA1) \
+	--set loadTesting.image.tag=$(GIT_SHA1) \
+	--set ggircs.namespace=$(GGIRCS_PROJECT) \
+	--set ggircs.prefix=$(GGIRCS_NAMESPACE_PREFIX) \
+	--set ggircs.environment=dev \
+	--values ./helm/cas-ciip-portal/values-dev.yaml \
+	--values ./helm/cas-ciip-portal/values-load-testing.yaml \
+	cas-ciip-portal ./helm/cas-ciip-portal;
+
 # Might need to install the bundle containing DB-Pg on a Mac
 # perl -MCPAN -e 'install Bundle::DBD::Pg'
 .PHONY: install_perl_tools

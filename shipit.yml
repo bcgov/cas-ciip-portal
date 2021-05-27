@@ -13,3 +13,9 @@ ci:
 links:
   PVC_usage: https://app.sysdigcloud.com/#/dashboards/224524?last=3600
   Health_overview: https://app.sysdigcloud.com/#/dashboards/225040?last=3600
+tasks:
+  load_test:
+    action: run load testing script
+    steps:
+      - make install_load_test:
+        timeout: 3600
