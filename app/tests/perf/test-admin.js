@@ -70,6 +70,5 @@ easyGraphQLLoadTester.k6(k6ConfigFile, {
     'applicationsQuery',
     'organisationRequestsQuery'
   ],
-  queryFile: true,
-  out: ['json=admin_result.json']
+  queryFile: true
 });

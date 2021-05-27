@@ -25,6 +25,9 @@ with user_orgs as (
 insert into ggircs_portal.ciip_user_organisation(user_id, organisation_id, status) 
   select user_id, organisation_id, status::ggircs_portal.ciip_user_organisation_status from user_orgs;
 
+-- we make sure there aren't any applications in the system
+truncate table ggircs_portal.application cascade;
+
 
 select test_helper.modify_triggers('enable');
 

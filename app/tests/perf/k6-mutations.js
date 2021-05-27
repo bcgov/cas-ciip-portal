@@ -8,6 +8,9 @@
 import http from 'k6/http';
 import {check} from 'k6';
 
+// eslint-disable-next-line import/extensions
+import {textSummary} from 'https://jslib.k6.io/k6-summary/0.0.1/index.js';
+
 // This is the k6 way https://k6.io/docs/javascript-api/init-context/open-filepath-mode/
 const queries = Object.values(JSON.parse(open('./queries.json')));
 
@@ -56,6 +59,13 @@ const getQueries = (user_seed, iteration_seed) => {
 
 export const options = require(`./configuration/${__ENV.PERF_MODE}_testing_options.js`)
   .default;
+
+export function handleSummary(data) {
+  return {
+    stdout: textSummary(data, {indent: ' ', enableColors: true}) + '\n', // Show the text summary to stdout...
+    [`./mutations_${__ENV.PERF_MODE}_result.json`]: JSON.stringify(data)
+  };
+}
 
 export default () => {
   const queries = getQueries(__VU, __ITER);
