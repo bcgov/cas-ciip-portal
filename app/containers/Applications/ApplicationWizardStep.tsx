@@ -54,9 +54,9 @@ const ApplicationWizardStep: React.FunctionComponent<Props> = ({
     setSaved(true);
   };
 
-  const onComplete = (result) => {
-    const formData = result.data;
-    storeResult(formData);
+  const onComplete = async (result) => {
+    const {formData} = result;
+    await storeResult(formData);
     onStepComplete();
   };
 
