@@ -20,8 +20,7 @@ describe('When logged in as an analyst', () => {
     cy.url().should('include', '/analyst/application/');
     cy.visit('/analyst');
     cy.url().should('include', '/analyst');
-    cy.get('.card-body');
-    cy.contains('Operations').click();
+    cy.get('.card-link').contains('Operations').click();
     cy.url().should('include', '/analyst/add-organisation');
     cy.visit('/analyst');
     cy.url().should('include', '/analyst');
