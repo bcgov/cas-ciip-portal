@@ -39,26 +39,32 @@ const updateFormResultVariables = (formResultId, formResult) => {
   };
 };
 
-const getQueries = (user_seed, iteration_seed) => {
+export const options = require(`./configuration/${__ENV.PERF_MODE}_testing_options.js`)
+  .default;
+
+const longString = '1234567890asdfghjklzxcvbnm1234567890qwertyuioasdfghjzxcvbn'.repeat(
+  200
+);
+
+const getQueries = (vu, iteration) => {
+  const facilityId = (vu - 1) * options.iterations + iteration + 1;
+
   return [
     {
       name: 'createApplicationMutation',
       query: createApplicationMutation,
-      variables: applicationMutationVariables(user_seed)
+      variables: applicationMutationVariables(facilityId)
     },
     {
       name: 'updateFormResultMutation',
       query: updateFormResultMutation,
       variables: updateFormResultVariables(
-        user_seed * 8,
-        `["a_random_key":"some random data --- ${iteration_seed}"]`
+        facilityId,
+        `["a_random_key":"some random data --- ${iteration} --- ${longString}"]`
       )
     }
   ];
 };
-
-export const options = require(`./configuration/${__ENV.PERF_MODE}_testing_options.js`)
-  .default;
 
 export function handleSummary(data) {
   return {
