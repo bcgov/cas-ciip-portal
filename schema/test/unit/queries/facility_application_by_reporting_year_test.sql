@@ -3,10 +3,13 @@ create extension if not exists pgtap;
 
 begin;
 
-select plan(4);
+select plan(5);
 
-truncate table ggircs_portal.application restart identity cascade;
+truncate table ggircs_portal.organisation restart identity cascade;
 alter table ggircs_portal.application_revision_status disable trigger _status_change_email;
+
+insert into ggircs_portal.organisation(operator_name) values ('Op B'), ('Op A');
+insert into ggircs_portal.facility(facility_name, organisation_id) values ('Fac A', 2), ('Fac C', 2), ('Fac D', 1), ('Fac B', 1);
 
 -- create one applicationin 2018, two in 2019, and three in 2020
 select test_helper.mock_open_window(2018);
@@ -36,6 +39,16 @@ select results_eq(
   values (1), (2), (3)
   $$,
   'facility_application_by_reporting_year returns applications for the given reporting year'
+);
+
+select results_eq(
+  $$
+  select operator_name::text, facility_name::text from ggircs_portal.facility_application_by_reporting_year(2020)
+  $$,
+  $$
+  values ('Op A', 'Fac A'), ('Op A', 'Fac C'), ('Op B', 'Fac B'), ('Op B', 'Fac D')
+  $$,
+  'facility_application_by_reporting_year returns facilties ordered by operator name and facility name'
 );
 
 select test_helper.mock_open_window(2019);
