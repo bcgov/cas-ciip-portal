@@ -227,7 +227,7 @@ AS_ADMIN
 AS_PENDING
 ```
 
-[Learn more here](./all-views-inventory.md) about the functionality available to each user type.
+[Learn more here](https://github.com/bcgov/cas-ciip-portal/wiki/Inventory-of-all-application-views) about the functionality available to each user type.
 
 ## 8. Run Tests
 
