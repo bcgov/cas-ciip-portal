@@ -11,14 +11,17 @@ declare
 
 begin
 
-  for temp_row in
-    select id, step_name from ggircs_portal.review_step where is_active = true
-  loop
-    insert into ggircs_portal.application_review_step(application_id, review_step_id)
-      values (new.application_id, temp_row.id)
-      on conflict (application_id, review_step_id)
-      do update set is_complete=false;
-  end loop;
+  if new.version_number > 0 then
+
+    for temp_row in
+      select id, step_name from ggircs_portal.review_step where is_active = true
+    loop
+      insert into ggircs_portal.application_review_step(application_id, review_step_id)
+        values (new.application_id, temp_row.id)
+        on conflict (application_id, review_step_id)
+        do update set is_complete=false;
+    end loop;
+  end if;
 
   return new;
 end;

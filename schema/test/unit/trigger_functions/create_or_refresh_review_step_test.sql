@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(9);
+select plan(10);
 
 select has_function(
   'ggircs_portal_private', 'checksum_form_results',
@@ -33,6 +33,8 @@ insert into ggircs_portal.review_step (step_name, is_active) values ('test_step2
 insert into ggircs_portal.review_step (step_name, is_active) values ('no_step', false);
 insert into ggircs_portal.application_review_step (application_id, review_step_id, is_complete)
   values (2,1,true), (2,2,true);
+
+insert into ggircs_portal.application_revision(application_id, version_number) values (1,0);
 
 
 select results_eq(
@@ -86,6 +88,17 @@ select results_eq(
   $$,
   ARRAY[0::bigint],
   'Trigger did not fire on status changed to draft'
+);
+
+insert into ggircs_portal.application_revision_status (application_id, version_number, application_revision_status)
+  values (1,0,'submitted');
+
+select results_eq(
+  $$
+    select count(*) from ggircs_portal.application_review_step where application_id=1;
+  $$,
+  ARRAY[0::bigint],
+  'Trigger did not fire on version 0 submit'
 );
 
 -- Fire trigger by submitting an application with no existing review_steps
