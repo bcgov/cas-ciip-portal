@@ -23,10 +23,10 @@ spec:
         resources:
           limits:
             cpu: '2'
-            memory: 128Mi
+            memory: 2Gi
           requests:
             cpu: '2'
-            memory: 64Mi
+            memory: 1Gi
         imagePullPolicy: {{ .Values.loadTesting.image.pullPolicy }}
         env:
           - name: PERF_MODE
