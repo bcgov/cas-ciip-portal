@@ -71,7 +71,7 @@ export default () => {
   const queries = getQueries(__VU, __ITER);
 
   for (const query of queries) {
-    const url = 'http://localhost:3004/graphql';
+    const url = __ENV.GRAPHQL_ENDPOINT || 'http://localhost:3004/graphql';
     const payload = JSON.stringify({
       query: query.query,
       variables: query.variables

@@ -1,17 +1,19 @@
-{{- if Values.loadTests.enable }}
+{{- if .Values.loadTesting.enable }}
 apiVersion: batch/v1
 kind: Job
 metadata:
   name: {{ template "cas-ciip-portal.fullname" . }}-load-testing
-  labels:
-{{ include "cas-ciip-portal.labels" . | indent 4 }}
+  labels: {{ include "cas-ciip-portal.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": "post-upgrade,post-install"
+    "helm.sh/hook-delete-policy": "before-hook-creation"
+    "helm.sh/hook-weight": "0"
 spec:
   backoffLimit: 0
   template:
     metadata:
       name: {{ template "cas-ciip-portal.fullname" . }}-load-testing
-      labels:
-{{ include "cas-ciip-portal.labels" . | indent 8 }}
+      labels: {{ include "cas-ciip-portal.labels" . | nindent 8 }}
     spec:
       activeDeadlineSeconds: 3600
       restartPolicy: Never
@@ -29,4 +31,6 @@ spec:
         env:
           - name: PERF_MODE
             value: load
+          - name: GRAPHQL_ENDPOINT
+            value: https://{{ .Values.route.host }}/graphql
 {{- end }}

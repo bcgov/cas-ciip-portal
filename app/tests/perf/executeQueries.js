@@ -5,9 +5,8 @@ import {check} from 'k6';
 // eslint-disable-next-line no-restricted-globals
 const queries = JSON.parse(open('./easygraphql-load-tester-queries.json'));
 
-module.exports = (role) => {
+module.exports = (url, role) => {
   for (const query of queries) {
-    const url = 'http://localhost:3004/graphql';
     const payload = JSON.stringify({
       query: query.query,
       variables: query.variables

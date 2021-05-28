@@ -62,4 +62,4 @@ RUN PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=1 CYPRESS_INSTALL_BINARY=0 \
 USER ${USER_ID}
 WORKDIR ${CIIP_HOME}
 
-CMD ["yarn", "test:load"]
+ENTRYPOINT ["/usr/bin/env", "bash", "-c", "yarn test:load"]

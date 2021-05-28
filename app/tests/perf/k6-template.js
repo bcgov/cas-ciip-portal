@@ -18,7 +18,9 @@ export function handleSummary(data) {
 }
 
 export default () => {
-  executeQueries('${role}');
+  executeQueries('${
+    process.env.GRAPHQL_ENDPOINT || 'http://localhost:3004/graphql'
+  }', '${role}');
 };
   `;
   fs.writeFileSync(path, fileContent);
