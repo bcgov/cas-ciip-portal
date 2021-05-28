@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(9);
+select plan(11);
 
 select has_function(
   'ggircs_portal_private', 'ensure_window_open_submit_application_status',
@@ -17,17 +17,21 @@ alter table ggircs_portal.application_revision_status disable trigger _read_only
 -- 2020 open date minus one second
 select mocks.set_mocked_time_in_transaction('2021-04-01 14:49:54.191757-07'::timestamptz - interval '1 second');
 
-
 select throws_ok(
   $$insert into ggircs_portal.application_revision_status(application_id, version_number, application_revision_status) values (1, 1, 'draft')$$,
   'You cannot start a draft when the application window is closed',
   'The trigger throws an error if starting a draft when the application window is closed'
 );
 
+-- Temporarily disable trigger to create a draft status
+alter table ggircs_portal.application_revision_status disable trigger _ensure_window_open;
+insert into ggircs_portal.application_revision_status(application_id, version_number, application_revision_status) values (1, 1, 'draft');
+alter table ggircs_portal.application_revision_status enable trigger _ensure_window_open;
+
 select throws_ok(
   $$insert into ggircs_portal.application_revision_status(application_id, version_number, application_revision_status) values (1, 1, 'submitted')$$,
   'You cannot submit an application when the application window is closed',
-  'The trigger throws an error if submitting an application when the application window is closed '
+  'The trigger throws an error if submitting an application when the application window is closed and the previous status was draft'
 );
 
 select lives_ok(
@@ -58,6 +62,17 @@ select lives_ok(
 select lives_ok(
   $$insert into ggircs_portal.application_revision_status(application_id, version_number, application_revision_status) values (1, 0, 'submitted')$$,
   'The trigger does not throw for version 0'
+);
+
+select isnt(
+  (select application_revision_status from ggircs_portal.application_revision_status where application_id = 1 order by id desc limit 1),
+  'draft',
+  'The latest application_revision_status is not "draft"'
+);
+
+select lives_ok(
+  $$insert into ggircs_portal.application_revision_status(application_id, version_number, application_revision_status) values (1, 1, 'submitted')$$,
+  'The trigger does not throw unless the latest status is "draft"'
 );
 
 select finish();
