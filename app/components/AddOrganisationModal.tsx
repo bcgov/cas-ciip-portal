@@ -33,12 +33,12 @@ const AddOrganisationModal: React.FunctionComponent<Props> = (props) => {
 
   return (
     <>
-      <p style={{marginTop: '20px'}}>Operator not in the list?</p>
+      <p style={{marginTop: '20px'}}>Operation not in the list?</p>
       <Button
         variant="outline-primary"
         onClick={() => setModalVisible(!isModalVisible)}
       >
-        Add Operator +
+        Add Operation +
       </Button>
       <Modal
         centered
@@ -48,7 +48,7 @@ const AddOrganisationModal: React.FunctionComponent<Props> = (props) => {
         aria-labelledby="add-new-operator"
       >
         <Modal.Header id="add-new-operator">
-          <h2 className="h5">Add a new Operator</h2>
+          <h2 className="h5">Add a new Operation</h2>
         </Modal.Header>
         <Modal.Body>
           <JsonSchemaForm

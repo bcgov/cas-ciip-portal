@@ -17,7 +17,7 @@ const ApplicationManagement: React.FunctionComponent = () => {
         </ListGroup.Item>
         <ListGroup.Item>
           <Link href="/analyst/add-organisation" passHref>
-            <Card.Link href="#">Operators</Card.Link>
+            <Card.Link href="#">Operations</Card.Link>
           </Link>
         </ListGroup.Item>
         <ListGroup.Item>

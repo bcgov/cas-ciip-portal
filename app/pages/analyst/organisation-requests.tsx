@@ -59,7 +59,7 @@ class OrganisationRequests extends Component<Props> {
   render() {
     const {query} = this.props;
     return (
-      <DefaultLayout session={query.session} title="Organisation Requests">
+      <DefaultLayout session={query.session} title="Operation Access Requests">
         <OrganisationRequestsTable query={query} />
       </DefaultLayout>
     );

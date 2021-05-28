@@ -41,14 +41,14 @@ class AddOrganisationPage extends Component<Props> {
   render() {
     const {query} = this.props;
     return (
-      <DefaultLayout session={query.session} title="Add Organisation">
+      <DefaultLayout session={query.session} title="Add Reporting Operation">
         <Card>
           <Card.Header className="h5">Attention</Card.Header>
           <Card.Body>
             <Card.Text>
               <p>
-                Manually adding an organisation via this UI has the potential to
-                create duplicate and SWRS-orphaned organisations in the data.
+                Manually adding an operation via this UI has the potential to
+                create duplicate and SWRS-orphaned operations in the data.
               </p>
               <p>
                 This is an escape hatch and should be used as a last resort in
@@ -56,27 +56,26 @@ class AddOrganisationPage extends Component<Props> {
                 application deadline without it.
               </p>
               <p>
-                Adding an organisation in this way will allow the reporter to
-                apply for CIIP, but will also create an organisation that has no
-                relation to SWRS data.
+                Adding an operation in this way will allow the reporter to apply
+                for CIIP, but will also create an operation that has no relation
+                to SWRS data.
               </p>
               <br />
-              <p>Some steps to take before adding an organisation manually:</p>
+              <p>Some steps to take before adding an operation manually:</p>
               <ol>
                 <li>
-                  Search below for the organisation, in case the reporter was
-                  simply making typos when searching for an existing
-                  organisation.
+                  Search below for the operation, in case the reporter was
+                  simply making typos when searching for an existing operation.
                 </li>
                 <li>
                   If you have reason to believe that a SWRS report containing
-                  information for this organisation is going to be received in
-                  the near future, instruct the reporter to try applying again
-                  in a few days when their SWRS report has been received.
+                  information for this operation is going to be received in the
+                  near future, instruct the reporter to try applying again in a
+                  few days when their SWRS report has been received.
                 </li>
                 <li>
                   Attempt some external investigation to find out why this
-                  organisation is missing.
+                  operation is missing.
                 </li>
               </ol>
             </Card.Text>
