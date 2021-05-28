@@ -8,5 +8,5 @@
   * [Button stack](./stack.md)
   * [Use of JSON schemas](./json-schema.md)
   * [Application release process](./release.md)
-- [Support documentation for reporters](./reporting-guide.md)
-- [Support documentation for internal CAS admins/analysts](./admin-analyst-guide.md)
+- [Support documentation for reporters](https://github.com/bcgov/cas-ciip-portal/wiki/Support-Documentation-for-CIIP-Applicants)
+- [Support documentation for internal CAS admins/analysts](https://github.com/bcgov/cas-ciip-portal/wiki/Support-documentation-for-CIIP-Administrators-and-Analysts)

@@ -91,9 +91,9 @@ The materials published include:
 
 - [Developer and Application Documentation](./docs/README.md)
 
-- [Support Documentation for Reporters](./docs/reporting-guide.md)
+- [Support Documentation for Reporters](https://github.com/bcgov/cas-ciip-portal/wiki/Support-Documentation-for-CIIP-Applicants)
 
-- [Support Documentation for Internal CAS Admins/Analysts](./docs/admin-analyst-guide.md)
+- [Support Documentation for Internal CAS Admins/Analysts](https://github.com/bcgov/cas-ciip-portal/wiki/Support-documentation-for-CIIP-Administrators-and-Analysts)
 
 - [CleanBC Program for Industry](https://www2.gov.bc.ca/gov/content/environment/climate-change/industry/cleanbc-program-for-industry)
 
