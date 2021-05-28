@@ -11,3 +11,16 @@ dag:
 
 env:
   enableDbMocks: true
+
+replicas: 3
+
+cas-postgres:
+  patroni:
+    replicaCount: 4
+    resources:
+      limits:
+        cpu: 3000m
+        memory: 2Gi
+      requests:
+        cpu: 15m
+        memory: 600Mi
