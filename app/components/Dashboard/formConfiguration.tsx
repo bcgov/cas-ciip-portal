@@ -17,7 +17,7 @@ const FormConfiguration: React.FunctionComponent = () => {
         </ListGroup.Item>
         <ListGroup.Item>
           <Link href="/admin/naics-products" passHref>
-            <Card.Link href="#">Allowed Products</Card.Link>
+            <Card.Link href="#">Allowed &amp; Mandatory Products</Card.Link>
           </Link>
         </ListGroup.Item>
       </ListGroup>
