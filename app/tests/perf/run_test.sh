@@ -7,9 +7,6 @@ export PERF_MODE=$1
 node test-guest.js
 node test-admin.js
 node test-reporter.js
-
-export PERF_MODE=spike
-
 k6 run k6-mutations.js
 
 node parse_results.js
