@@ -120,7 +120,7 @@ export default class Index extends Component<Props> {
           <Col md={{span: 7}}>
             <img
               id="photo"
-              className="with-shadow img-fluid"
+              className="img-fluid"
               sizes="
                      (max-width: 575.98px) calc(100vw - 30px)
                      (max-width: 767.98px) 510px,
@@ -138,14 +138,7 @@ export default class Index extends Component<Props> {
           </Col>
           <Col md={{span: 5}}>
             <KeyDates query={query} />
-            <Card
-              className="ciip-card"
-              style={{
-                width: '100%',
-                margin: '40px 0',
-                border: '1px solid grey'
-              }}
-            >
+            <div id="contact-card" className="card">
               <Card.Body>
                 <Card.Title className="blue">Contact Information</Card.Title>
                 <Card.Text style={{padding: '10px 0 10px 0'}}>
@@ -153,7 +146,7 @@ export default class Index extends Component<Props> {
                   any questions.
                 </Card.Text>
               </Card.Body>
-            </Card>
+            </div>
             <p>
               Further information on the CleanBC Industrial Incentive Program is
               available on the{' '}
@@ -170,7 +163,6 @@ export default class Index extends Component<Props> {
               padding-top: 50px;
             }
           }
-
           .value-prop {
             display: flex;
             flex-direction: column;
@@ -189,6 +181,15 @@ export default class Index extends Component<Props> {
           }
           #photo {
             margin: 53px 0;
+            box-shadow: 1px 8px 13px -5px #00336694;
+          }
+          #contact-card {
+            width: 100%;
+            margin: 40px 0;
+            padding: 15px;
+            border: 1px solid grey;
+            border-radius: 0;
+            box-shadow: 1px 8px 13px -5px #00336694;
           }
           h1 {
             font-size: 1.75rem;

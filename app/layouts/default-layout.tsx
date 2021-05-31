@@ -149,21 +149,12 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
           p {
             line-height: 25px;
           }
-          .ciip-card {
-            border: 1px solid #036;
-            padding: 15px;
-            border-radius: 0;
-            box-shadow: 1px 8px 13px -5px #00336694;
-          }
           button.full-width {
             width: 100%;
           }
           .btn-primary {
             background: #036;
             border-color: #036;
-          }
-          .with-shadow {
-            box-shadow: 1px 8px 13px -5px #00336694;
           }
           .accordion .card-body {
             font-size: 15px;
