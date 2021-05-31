@@ -20,8 +20,8 @@ const HelpButton: React.FunctionComponent<Props> = ({
     ? `mailto:${supportEmail}?subject=Internal Support Request`
     : '#';
   const docsUrl = isInternalUser
-    ? 'https://github.com/bcgov/cas-ciip-portal/blob/master/docs/admin-analyst-guide.md'
-    : 'https://github.com/bcgov/cas-ciip-portal/blob/master/docs/reporting-guide.md';
+    ? 'https://github.com/bcgov/cas-ciip-portal/wiki/Support-documentation-for-CIIP-Administrators-and-Analysts'
+    : 'https://github.com/bcgov/cas-ciip-portal/wiki/Support-Documentation-for-CIIP-Applicants';
 
   const [isOpened, setIsOpened] = useState(false);
   const toggleHelpBubble = () => {
