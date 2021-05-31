@@ -528,13 +528,9 @@ workflows:
       - smoke:
           requires:
             - compile
-<<<<<<< HEAD
             - unit
             - test_database
       - sqitch-files-before-tag-are-immutable
-=======
-      # - sqitch-files-before-tag-are-immutable
->>>>>>> 27dc0154 (test: re-enable image building on CI)
       - build_image:
           name: build_schema
           context: cas-pipeline
@@ -547,13 +543,8 @@ workflows:
           image_name: cas-ciip-portal-app
           image_tag: ${CIRCLE_SHA1}
           dockerfile: app/Dockerfile
-<<<<<<< HEAD
       - helm_lint:
           context: cas-pipeline
-=======
-      # - helm_lint:
-      #     context: cas-pipeline
->>>>>>> 27dc0154 (test: re-enable image building on CI)
   release:
     jobs:
       - release_approval:
