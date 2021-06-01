@@ -1,0 +1,4 @@
+# Ignoring this https://www.npmjs.com/advisories/1748 advisory.
+# It only affects the subscriptions-transport-ws package.
+# We are not using subscriptions or websockets, so this CVE can be safely ignored for now (it currently has no fix as of June 1 2021)
+1748
