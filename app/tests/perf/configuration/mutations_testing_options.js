@@ -4,10 +4,8 @@
 export default {
   scenarios: {
     mutations_spike: {
-      // vus: 100,
-      // iterations: 10,
-      vus: 2,
-      iterations: 2,
+      vus: 100,
+      iterations: 10,
       executor: 'per-vu-iterations'
     }
   }
