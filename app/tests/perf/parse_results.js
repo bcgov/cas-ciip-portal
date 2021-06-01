@@ -8,9 +8,14 @@ function parseResult(filePath) {
 }
 
 const exitCode =
-  parseResult(`guest_${process.env.PERF_MODE}_result.json`) +
-  parseResult(`reporter_${process.env.PERF_MODE}_result.json`) +
-  parseResult(`admin_${process.env.PERF_MODE}_result.json`) +
-  parseResult(`mutations_${process.env.PERF_MODE}_result.json`);
+  parseResult(
+    __dirname + `/results/reporter_${process.env.PERF_MODE}_result.json`
+  ) +
+  parseResult(
+    __dirname + `/results/admin_${process.env.PERF_MODE}_result.json`
+  ) +
+  parseResult(
+    __dirname + `/results/mutations_${process.env.PERF_MODE}_result.json`
+  );
 
 process.exit(exitCode);
