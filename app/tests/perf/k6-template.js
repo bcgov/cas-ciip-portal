@@ -13,7 +13,7 @@ export let options = require('./configuration/${perf_test}_testing_options.js').
 export function handleSummary(data) {
   return {
     'stdout': textSummary(data, { indent: ' ', enableColors: true}) + "\\n", // Show the text summary to stdout...
-    './${role}_${perf_test}_result.json': JSON.stringify(data),
+    './results/${role}_${perf_test}_result.json': JSON.stringify(data),
   }
 }
 

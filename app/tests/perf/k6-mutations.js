@@ -70,7 +70,7 @@ const getQueries = (vu, iteration) => {
 export function handleSummary(data) {
   return {
     stdout: textSummary(data, {indent: ' ', enableColors: true}) + '\n', // Show the text summary to stdout...
-    [`./mutations_${__ENV.PERF_MODE}_result.json`]: JSON.stringify(data)
+    [`./results/mutations_${__ENV.PERF_MODE}_result.json`]: JSON.stringify(data)
   };
 }
 

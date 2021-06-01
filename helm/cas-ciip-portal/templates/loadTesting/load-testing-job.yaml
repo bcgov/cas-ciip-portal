@@ -34,7 +34,7 @@ spec:
           - name: GRAPHQL_ENDPOINT
             value: https://{{ .Values.route.host }}/graphql
         volumeMounts:
-          - mountPath: /root/results-pvc/
+          - mountPath: /root/tests/perf/results/
             name: load-testing-results
       volumes:
         - name: load-testing-results
