@@ -1,0 +1,15 @@
+{{- if .Values.loadTesting.enable }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ template "cas-ciip-portal.fullname" . }}-load-testing-results
+  labels:
+{{ include "cas-ciip-portal.labels" . | indent 4 }}
+spec:
+  accessModes:
+  - ReadWriteMany
+  resources:
+    requests:
+      storage: 100Mi
+  storageClassName: netapp-file-standard
+{{- end }}

@@ -33,4 +33,11 @@ spec:
             value: load
           - name: GRAPHQL_ENDPOINT
             value: https://{{ .Values.route.host }}/graphql
+        volumeMounts:
+          - mountPath: /root/results-pvc/
+            name: load-testing-results
+      volumes:
+        - name: load-testing-results
+          persistentVolumeClaim:
+            claimName: {{ template "cas-ciip-portal.fullname" . }}-load-testing-results
 {{- end }}
