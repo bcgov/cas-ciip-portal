@@ -1,8 +1,11 @@
 export default {
   stages: [
-    {duration: '10s', target: 1},
-    {duration: '15s', target: 2},
-    {duration: '10s', target: 3},
-    {duration: '10s', target: 1}
+    {duration: '2m', target: 100},
+    {duration: '2m', target: 100},
+    {duration: '1m', target: 200},
+    {duration: '1m', target: 200},
+    {duration: '1m', target: 100},
+    {duration: '2m', target: 100},
+    {duration: '2m', target: 0}
   ]
 };
