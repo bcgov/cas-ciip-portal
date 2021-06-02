@@ -5,7 +5,7 @@ begin;
 create or replace function ggircs_portal_private.ensure_window_open_submit_application_status()
   returns trigger as $$
     begin
-      if (select reporting_year from ggircs_portal.opened_reporting_year()) is null and new.version_number = 1 then
+      if (select reporting_year from ggircs_portal.opened_reporting_year()) is null and new.version_number <= 1 then
         if (new.application_revision_status = 'submitted') then
           raise exception 'You cannot submit an application when the application window is closed';
         end if;
