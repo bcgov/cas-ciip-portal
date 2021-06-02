@@ -39,12 +39,22 @@ exports[`The ProductionRowIdField Component with published product matched to a 
   naicsCode={
     Object {
       " $refType": "ProductRowIdField_naicsCode",
-      "productsByNaicsCode": Object {
+      "productNaicsCodes": Object {
         "edges": Array [
           Object {
             "node": Object {
-              "productName": "foo",
-              "rowId": 1,
+              "productByProductId": Object {
+                "productName": "foo",
+                "rowId": 1,
+              },
+            },
+          },
+          Object {
+            "node": Object {
+              "productByProductId": Object {
+                "productName": "aaaa",
+                "rowId": 20,
+              },
             },
           },
         ],
@@ -101,9 +111,11 @@ exports[`The ProductionRowIdField Component with published product matched to a 
   schema={
     Object {
       "enum": Array [
+        20,
         1,
       ],
       "enumNames": Array [
+        "aaaa",
         "foo",
       ],
     }

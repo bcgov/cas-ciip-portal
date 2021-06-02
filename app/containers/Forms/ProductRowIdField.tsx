@@ -25,19 +25,20 @@ export const ProductRowIdFieldComponent: React.FunctionComponent<Props> = (
    * Other props are passed as-is to the StringField.
    */
   const fieldProps = useMemo(() => {
-    const productIds = props.naicsCode?.productsByNaicsCode?.edges.map(
-      ({node}) => node.rowId
-    );
-    const productNames = props.naicsCode?.productsByNaicsCode?.edges.map(
-      ({node}) => node.productName
-    );
+    const edges = props.naicsCode?.productNaicsCodes.edges || [];
+    const allowedProducts = edges
+      .map((e) => e.node.productByProductId)
+      .sort((a, b) => a.productName.localeCompare(b.productName));
+
+    const productIds = allowedProducts.map((p) => p.rowId);
+    const productNames = allowedProducts.map((p) => p.productName);
 
     return {
       ...props,
       schema: {
         ...props.schema,
-        enum: productIds || [],
-        enumNames: productNames || []
+        enum: productIds,
+        enumNames: productNames
       },
       query: undefined
     };
@@ -60,8 +61,8 @@ export const ProductRowIdFieldComponent: React.FunctionComponent<Props> = (
       archivedProductNames: props.query.archived.edges.map(
         ({node}) => node.productName
       ),
-      productIdsByNaicsCode: props.naicsCode?.productsByNaicsCode?.edges.map(
-        ({node}) => node.rowId
+      productIdsByNaicsCode: props.naicsCode?.productNaicsCodes.edges.map(
+        (e) => e.node.productByProductId.rowId
       )
     }),
     [props]
@@ -123,14 +124,18 @@ export default createFragmentContainer(ProductRowIdFieldComponent, {
   `,
   naicsCode: graphql`
     fragment ProductRowIdField_naicsCode on NaicsCode {
-      productsByNaicsCode: productsByProductNaicsCodeNaicsCodeIdAndProductId(
-        filter: {productState: {equalTo: PUBLISHED}}
-        orderBy: PRODUCT_NAME_ASC
+      productNaicsCodes: productNaicsCodesByNaicsCodeId(
+        filter: {
+          deletedAt: {isNull: true}
+          productByProductId: {productState: {equalTo: PUBLISHED}}
+        }
       ) {
         edges {
           node {
-            rowId
-            productName
+            productByProductId {
+              rowId
+              productName
+            }
           }
         }
       }
