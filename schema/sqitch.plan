@@ -353,3 +353,4 @@ trigger_functions/create_or_refresh_review_step [trigger_functions/create_or_ref
 tables/application_review_step_001 [tables/application_review_step] 2021-05-27T23:14:00Z Dylan Leard <dylan@button.is> # Migration: remove erroneously created application_review_steps for 2018 applications
 queries/facility_application_by_reporting_year [queries/facility_application_by_reporting_year@v2.6.0] 2021-05-27T18:02:27Z Matthieu Foucault <matthieu@button.is> # fix order by clause
 trigger_functions/ensure_window_open_submit_application_status [trigger_functions/ensure_window_open_submit_application_status@v2.6.0] 2021-05-28T17:01:41Z Dylan Leard <dylan@button.is> # Migration: only fire trigger on change from draft to submitted
+swrs_functions/init_application_fuel_form_result [swrs_functions/init_application_fuel_form_result@v2.6.0] 2021-06-02T17:16:07Z Dylan Leard <dylan@button.is> # Migration: get fuel_units from ciip fuel table & coalesce quantity with 0
