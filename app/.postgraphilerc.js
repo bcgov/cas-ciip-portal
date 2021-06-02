@@ -5,7 +5,8 @@ module.exports = {
       '@graphile-contrib/pg-many-to-many'
     ],
     graphileBuildOptions: {
-      connectionFilterAllowNullInput: true
+      connectionFilterAllowNullInput: true,
+      connectionFilterRelations: true
     }
   }
 };

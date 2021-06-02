@@ -238,7 +238,8 @@ app.prepare().then(async () => {
     postgraphile(pgPool, process.env.DATABASE_SCHEMA || 'ggircs_portal', {
       ...postgraphileOptions(),
       graphileBuildOptions: {
-        connectionFilterAllowNullInput: true
+        connectionFilterAllowNullInput: true,
+        connectionFilterRelations: true
       },
       pgSettings: (req) => {
         const opts = {
