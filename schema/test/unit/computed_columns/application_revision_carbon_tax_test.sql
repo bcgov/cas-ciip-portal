@@ -35,7 +35,6 @@ select has_function(
   'Function application_revision_carbon_tax should exist'
 );
 
-
 select results_eq(
   $$
     select fuel_id, carbon_tax, carbon_tax_eligible_for_ciip, reporting_year_fuel_charge, pre_increase_fuel_charge
