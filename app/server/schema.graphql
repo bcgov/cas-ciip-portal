@@ -1626,14 +1626,57 @@ input ApplicationFilter {
   """Checks for all expressions in this list."""
   and: [ApplicationFilter!]
 
+  """
+  Filter by the object’s `applicationReviewStepsByApplicationId` relation.
+  """
+  applicationReviewStepsByApplicationId: ApplicationToManyApplicationReviewStepFilter
+
+  """Some related `applicationReviewStepsByApplicationId` exist."""
+  applicationReviewStepsByApplicationIdExist: Boolean
+
+  """Filter by the object’s `applicationRevisionsByApplicationId` relation."""
+  applicationRevisionsByApplicationId: ApplicationToManyApplicationRevisionFilter
+
+  """Some related `applicationRevisionsByApplicationId` exist."""
+  applicationRevisionsByApplicationIdExist: Boolean
+
   """Filter by the object’s `bcghgid` field."""
   bcghgid: StringFilter
+
+  """Filter by the object’s `certificationUrlsByApplicationId` relation."""
+  certificationUrlsByApplicationId: ApplicationToManyCertificationUrlFilter
+
+  """Some related `certificationUrlsByApplicationId` exist."""
+  certificationUrlsByApplicationIdExist: Boolean
+
+  """Filter by the object’s `facilityApplicationsByApplicationId` relation."""
+  facilityApplicationsByApplicationId: ApplicationToManyFacilityApplicationFilter
+
+  """Some related `facilityApplicationsByApplicationId` exist."""
+  facilityApplicationsByApplicationIdExist: Boolean
+
+  """Filter by the object’s `facilityByFacilityId` relation."""
+  facilityByFacilityId: FacilityFilter
 
   """Filter by the object’s `facilityId` field."""
   facilityId: IntFilter
 
   """Filter by the object’s `facilityName` field."""
   facilityName: StringFilter
+
+  """
+  Filter by the object’s `facilitySearchResultsByApplicationId` relation.
+  """
+  facilitySearchResultsByApplicationId: ApplicationToManyFacilitySearchResultFilter
+
+  """Some related `facilitySearchResultsByApplicationId` exist."""
+  facilitySearchResultsByApplicationIdExist: Boolean
+
+  """Filter by the object’s `formResultsByApplicationId` relation."""
+  formResultsByApplicationId: ApplicationToManyFormResultFilter
+
+  """Some related `formResultsByApplicationId` exist."""
+  formResultsByApplicationIdExist: Boolean
 
   """Negates the expression."""
   not: ApplicationFilter
@@ -1646,6 +1689,12 @@ input ApplicationFilter {
 
   """Filter by the object’s `reportingYear` field."""
   reportingYear: IntFilter
+
+  """Filter by the object’s `reportingYearByReportingYear` relation."""
+  reportingYearByReportingYear: ReportingYearFilter
+
+  """A related `reportingYearByReportingYear` exists."""
+  reportingYearByReportingYearExists: Boolean
 
   """Filter by the object’s `rowId` field."""
   rowId: IntFilter
@@ -2225,8 +2274,17 @@ input ApplicationReviewStepFilter {
   """Checks for all expressions in this list."""
   and: [ApplicationReviewStepFilter!]
 
+  """Filter by the object’s `applicationByApplicationId` relation."""
+  applicationByApplicationId: ApplicationFilter
+
   """Filter by the object’s `applicationId` field."""
   applicationId: IntFilter
+
+  """Filter by the object’s `ciipUserByUpdatedBy` relation."""
+  ciipUserByUpdatedBy: CiipUserFilter
+
+  """A related `ciipUserByUpdatedBy` exists."""
+  ciipUserByUpdatedByExists: Boolean
 
   """Filter by the object’s `isComplete` field."""
   isComplete: BooleanFilter
@@ -2236,6 +2294,17 @@ input ApplicationReviewStepFilter {
 
   """Checks for any expressions in this list."""
   or: [ApplicationReviewStepFilter!]
+
+  """
+  Filter by the object’s `reviewCommentsByApplicationReviewStepId` relation.
+  """
+  reviewCommentsByApplicationReviewStepId: ApplicationReviewStepToManyReviewCommentFilter
+
+  """Some related `reviewCommentsByApplicationReviewStepId` exist."""
+  reviewCommentsByApplicationReviewStepIdExist: Boolean
+
+  """Filter by the object’s `reviewStepByReviewStepId` relation."""
+  reviewStepByReviewStepId: ReviewStepFilter
 
   """Filter by the object’s `reviewStepId` field."""
   reviewStepId: IntFilter
@@ -2294,6 +2363,26 @@ input ApplicationReviewStepPatch {
   The ID of the user who last updated this application_review_step, references ciip_user.id
   """
   updatedBy: Int
+}
+
+"""
+A filter to be used against many `ReviewComment` object types. All fields are combined with a logical ‘and.’
+"""
+input ApplicationReviewStepToManyReviewCommentFilter {
+  """
+  Every related `ReviewComment` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  every: ReviewCommentFilter
+
+  """
+  No related `ReviewComment` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  none: ReviewCommentFilter
+
+  """
+  Some related `ReviewComment` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  some: ReviewCommentFilter
 }
 
 """
@@ -2839,8 +2928,47 @@ input ApplicationRevisionFilter {
   """Checks for all expressions in this list."""
   and: [ApplicationRevisionFilter!]
 
+  """Filter by the object’s `applicationByApplicationId` relation."""
+  applicationByApplicationId: ApplicationFilter
+
   """Filter by the object’s `applicationId` field."""
   applicationId: IntFilter
+
+  """
+  Filter by the object’s `applicationRevisionStatusesByApplicationIdAndVersionNumber` relation.
+  """
+  applicationRevisionStatusesByApplicationIdAndVersionNumber: ApplicationRevisionToManyApplicationRevisionStatusFilter
+
+  """
+  Some related `applicationRevisionStatusesByApplicationIdAndVersionNumber` exist.
+  """
+  applicationRevisionStatusesByApplicationIdAndVersionNumberExist: Boolean
+
+  """
+  Filter by the object’s `certificationUrlsByApplicationIdAndVersionNumber` relation.
+  """
+  certificationUrlsByApplicationIdAndVersionNumber: ApplicationRevisionToManyCertificationUrlFilter
+
+  """Some related `certificationUrlsByApplicationIdAndVersionNumber` exist."""
+  certificationUrlsByApplicationIdAndVersionNumberExist: Boolean
+
+  """Filter by the object’s `ciipUserByCreatedBy` relation."""
+  ciipUserByCreatedBy: CiipUserFilter
+
+  """A related `ciipUserByCreatedBy` exists."""
+  ciipUserByCreatedByExists: Boolean
+
+  """Filter by the object’s `ciipUserByDeletedBy` relation."""
+  ciipUserByDeletedBy: CiipUserFilter
+
+  """A related `ciipUserByDeletedBy` exists."""
+  ciipUserByDeletedByExists: Boolean
+
+  """Filter by the object’s `ciipUserByUpdatedBy` relation."""
+  ciipUserByUpdatedBy: CiipUserFilter
+
+  """A related `ciipUserByUpdatedBy` exists."""
+  ciipUserByUpdatedByExists: Boolean
 
   """Filter by the object’s `createdAt` field."""
   createdAt: DatetimeFilter
@@ -2853,6 +2981,14 @@ input ApplicationRevisionFilter {
 
   """Filter by the object’s `deletedBy` field."""
   deletedBy: IntFilter
+
+  """
+  Filter by the object’s `formResultsByApplicationIdAndVersionNumber` relation.
+  """
+  formResultsByApplicationIdAndVersionNumber: ApplicationRevisionToManyFormResultFilter
+
+  """Some related `formResultsByApplicationIdAndVersionNumber` exist."""
+  formResultsByApplicationIdAndVersionNumberExist: Boolean
 
   """Filter by the object’s `isCurrentVersion` field."""
   isCurrentVersion: BooleanFilter
@@ -3152,8 +3288,31 @@ input ApplicationRevisionStatusFilter {
   """Filter by the object’s `applicationId` field."""
   applicationId: IntFilter
 
+  """
+  Filter by the object’s `applicationRevisionByApplicationIdAndVersionNumber` relation.
+  """
+  applicationRevisionByApplicationIdAndVersionNumber: ApplicationRevisionFilter
+
   """Filter by the object’s `applicationRevisionStatus` field."""
   applicationRevisionStatus: CiipApplicationRevisionStatusFilter
+
+  """Filter by the object’s `ciipUserByCreatedBy` relation."""
+  ciipUserByCreatedBy: CiipUserFilter
+
+  """A related `ciipUserByCreatedBy` exists."""
+  ciipUserByCreatedByExists: Boolean
+
+  """Filter by the object’s `ciipUserByDeletedBy` relation."""
+  ciipUserByDeletedBy: CiipUserFilter
+
+  """A related `ciipUserByDeletedBy` exists."""
+  ciipUserByDeletedByExists: Boolean
+
+  """Filter by the object’s `ciipUserByUpdatedBy` relation."""
+  ciipUserByUpdatedBy: CiipUserFilter
+
+  """A related `ciipUserByUpdatedBy` exists."""
+  ciipUserByUpdatedByExists: Boolean
 
   """Filter by the object’s `createdAt` field."""
   createdAt: DatetimeFilter
@@ -3301,6 +3460,66 @@ enum ApplicationRevisionStatusesOrderBy {
   UPDATED_BY_DESC
   VERSION_NUMBER_ASC
   VERSION_NUMBER_DESC
+}
+
+"""
+A filter to be used against many `ApplicationRevisionStatus` object types. All fields are combined with a logical ‘and.’
+"""
+input ApplicationRevisionToManyApplicationRevisionStatusFilter {
+  """
+  Every related `ApplicationRevisionStatus` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  every: ApplicationRevisionStatusFilter
+
+  """
+  No related `ApplicationRevisionStatus` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  none: ApplicationRevisionStatusFilter
+
+  """
+  Some related `ApplicationRevisionStatus` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  some: ApplicationRevisionStatusFilter
+}
+
+"""
+A filter to be used against many `CertificationUrl` object types. All fields are combined with a logical ‘and.’
+"""
+input ApplicationRevisionToManyCertificationUrlFilter {
+  """
+  Every related `CertificationUrl` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  every: CertificationUrlFilter
+
+  """
+  No related `CertificationUrl` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  none: CertificationUrlFilter
+
+  """
+  Some related `CertificationUrl` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  some: CertificationUrlFilter
+}
+
+"""
+A filter to be used against many `FormResult` object types. All fields are combined with a logical ‘and.’
+"""
+input ApplicationRevisionToManyFormResultFilter {
+  """
+  Every related `FormResult` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  every: FormResultFilter
+
+  """
+  No related `FormResult` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  none: FormResultFilter
+
+  """
+  Some related `FormResult` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  some: FormResultFilter
 }
 
 """
@@ -3535,6 +3754,126 @@ enum ApplicationRevisionsOrderBy {
   VERSION_NUMBER_DESC
 }
 
+"""
+A filter to be used against many `ApplicationReviewStep` object types. All fields are combined with a logical ‘and.’
+"""
+input ApplicationToManyApplicationReviewStepFilter {
+  """
+  Every related `ApplicationReviewStep` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  every: ApplicationReviewStepFilter
+
+  """
+  No related `ApplicationReviewStep` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  none: ApplicationReviewStepFilter
+
+  """
+  Some related `ApplicationReviewStep` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  some: ApplicationReviewStepFilter
+}
+
+"""
+A filter to be used against many `ApplicationRevision` object types. All fields are combined with a logical ‘and.’
+"""
+input ApplicationToManyApplicationRevisionFilter {
+  """
+  Every related `ApplicationRevision` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  every: ApplicationRevisionFilter
+
+  """
+  No related `ApplicationRevision` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  none: ApplicationRevisionFilter
+
+  """
+  Some related `ApplicationRevision` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  some: ApplicationRevisionFilter
+}
+
+"""
+A filter to be used against many `CertificationUrl` object types. All fields are combined with a logical ‘and.’
+"""
+input ApplicationToManyCertificationUrlFilter {
+  """
+  Every related `CertificationUrl` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  every: CertificationUrlFilter
+
+  """
+  No related `CertificationUrl` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  none: CertificationUrlFilter
+
+  """
+  Some related `CertificationUrl` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  some: CertificationUrlFilter
+}
+
+"""
+A filter to be used against many `FacilityApplication` object types. All fields are combined with a logical ‘and.’
+"""
+input ApplicationToManyFacilityApplicationFilter {
+  """
+  Every related `FacilityApplication` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  every: FacilityApplicationFilter
+
+  """
+  No related `FacilityApplication` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  none: FacilityApplicationFilter
+
+  """
+  Some related `FacilityApplication` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  some: FacilityApplicationFilter
+}
+
+"""
+A filter to be used against many `FacilitySearchResult` object types. All fields are combined with a logical ‘and.’
+"""
+input ApplicationToManyFacilitySearchResultFilter {
+  """
+  Every related `FacilitySearchResult` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  every: FacilitySearchResultFilter
+
+  """
+  No related `FacilitySearchResult` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  none: FacilitySearchResultFilter
+
+  """
+  Some related `FacilitySearchResult` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  some: FacilitySearchResultFilter
+}
+
+"""
+A filter to be used against many `FormResult` object types. All fields are combined with a logical ‘and.’
+"""
+input ApplicationToManyFormResultFilter {
+  """
+  Every related `FormResult` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  every: FormResultFilter
+
+  """
+  No related `FormResult` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  none: FormResultFilter
+
+  """
+  Some related `FormResult` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  some: FormResultFilter
+}
+
 """A connection to a list of `Application` values."""
 type ApplicationsConnection {
   """
@@ -3724,6 +4063,24 @@ input BenchmarkFilter {
   """Filter by the object’s `benchmark` field."""
   benchmark: BigFloatFilter
 
+  """Filter by the object’s `ciipUserByCreatedBy` relation."""
+  ciipUserByCreatedBy: CiipUserFilter
+
+  """A related `ciipUserByCreatedBy` exists."""
+  ciipUserByCreatedByExists: Boolean
+
+  """Filter by the object’s `ciipUserByDeletedBy` relation."""
+  ciipUserByDeletedBy: CiipUserFilter
+
+  """A related `ciipUserByDeletedBy` exists."""
+  ciipUserByDeletedByExists: Boolean
+
+  """Filter by the object’s `ciipUserByUpdatedBy` relation."""
+  ciipUserByUpdatedBy: CiipUserFilter
+
+  """A related `ciipUserByUpdatedBy` exists."""
+  ciipUserByUpdatedByExists: Boolean
+
   """Filter by the object’s `createdAt` field."""
   createdAt: DatetimeFilter
 
@@ -3757,8 +4114,17 @@ input BenchmarkFilter {
   """Checks for any expressions in this list."""
   or: [BenchmarkFilter!]
 
+  """Filter by the object’s `productByProductId` relation."""
+  productByProductId: ProductFilter
+
   """Filter by the object’s `productId` field."""
   productId: IntFilter
+
+  """Filter by the object’s `reportingYearByEndReportingYear` relation."""
+  reportingYearByEndReportingYear: ReportingYearFilter
+
+  """Filter by the object’s `reportingYearByStartReportingYear` relation."""
+  reportingYearByStartReportingYear: ReportingYearFilter
 
   """Filter by the object’s `rowId` field."""
   rowId: IntFilter
@@ -4265,8 +4631,16 @@ input CertificationUrlFilter {
   """Checks for all expressions in this list."""
   and: [CertificationUrlFilter!]
 
+  """Filter by the object’s `applicationByApplicationId` relation."""
+  applicationByApplicationId: ApplicationFilter
+
   """Filter by the object’s `applicationId` field."""
   applicationId: IntFilter
+
+  """
+  Filter by the object’s `applicationRevisionByApplicationIdAndVersionNumber` relation.
+  """
+  applicationRevisionByApplicationIdAndVersionNumber: ApplicationRevisionFilter
 
   """Filter by the object’s `certificationRequestSentAt` field."""
   certificationRequestSentAt: DatetimeFilter
@@ -4282,6 +4656,30 @@ input CertificationUrlFilter {
 
   """Filter by the object’s `certifierUrl` field."""
   certifierUrl: StringFilter
+
+  """Filter by the object’s `ciipUserByCertifiedBy` relation."""
+  ciipUserByCertifiedBy: CiipUserFilter
+
+  """A related `ciipUserByCertifiedBy` exists."""
+  ciipUserByCertifiedByExists: Boolean
+
+  """Filter by the object’s `ciipUserByCreatedBy` relation."""
+  ciipUserByCreatedBy: CiipUserFilter
+
+  """A related `ciipUserByCreatedBy` exists."""
+  ciipUserByCreatedByExists: Boolean
+
+  """Filter by the object’s `ciipUserByDeletedBy` relation."""
+  ciipUserByDeletedBy: CiipUserFilter
+
+  """A related `ciipUserByDeletedBy` exists."""
+  ciipUserByDeletedByExists: Boolean
+
+  """Filter by the object’s `ciipUserByUpdatedBy` relation."""
+  ciipUserByUpdatedBy: CiipUserFilter
+
+  """A related `ciipUserByUpdatedBy` exists."""
+  ciipUserByUpdatedByExists: Boolean
 
   """Filter by the object’s `createdAt` field."""
   createdAt: DatetimeFilter
@@ -4630,6 +5028,9 @@ input CiipApplicationWizardFilter {
 
   """Filter by the object’s `formId` field."""
   formId: IntFilter
+
+  """Filter by the object’s `formJsonByFormId` relation."""
+  formJsonByFormId: FormJsonFilter
 
   """Filter by the object’s `formPosition` field."""
   formPosition: IntFilter
@@ -19420,6 +19821,138 @@ input CiipUserFilter {
   """Checks for all expressions in this list."""
   and: [CiipUserFilter!]
 
+  """Filter by the object’s `applicationReviewStepsByUpdatedBy` relation."""
+  applicationReviewStepsByUpdatedBy: CiipUserToManyApplicationReviewStepFilter
+
+  """Some related `applicationReviewStepsByUpdatedBy` exist."""
+  applicationReviewStepsByUpdatedByExist: Boolean
+
+  """
+  Filter by the object’s `applicationRevisionStatusesByCreatedBy` relation.
+  """
+  applicationRevisionStatusesByCreatedBy: CiipUserToManyApplicationRevisionStatusFilter
+
+  """Some related `applicationRevisionStatusesByCreatedBy` exist."""
+  applicationRevisionStatusesByCreatedByExist: Boolean
+
+  """
+  Filter by the object’s `applicationRevisionStatusesByDeletedBy` relation.
+  """
+  applicationRevisionStatusesByDeletedBy: CiipUserToManyApplicationRevisionStatusFilter
+
+  """Some related `applicationRevisionStatusesByDeletedBy` exist."""
+  applicationRevisionStatusesByDeletedByExist: Boolean
+
+  """
+  Filter by the object’s `applicationRevisionStatusesByUpdatedBy` relation.
+  """
+  applicationRevisionStatusesByUpdatedBy: CiipUserToManyApplicationRevisionStatusFilter
+
+  """Some related `applicationRevisionStatusesByUpdatedBy` exist."""
+  applicationRevisionStatusesByUpdatedByExist: Boolean
+
+  """Filter by the object’s `applicationRevisionsByCreatedBy` relation."""
+  applicationRevisionsByCreatedBy: CiipUserToManyApplicationRevisionFilter
+
+  """Some related `applicationRevisionsByCreatedBy` exist."""
+  applicationRevisionsByCreatedByExist: Boolean
+
+  """Filter by the object’s `applicationRevisionsByDeletedBy` relation."""
+  applicationRevisionsByDeletedBy: CiipUserToManyApplicationRevisionFilter
+
+  """Some related `applicationRevisionsByDeletedBy` exist."""
+  applicationRevisionsByDeletedByExist: Boolean
+
+  """Filter by the object’s `applicationRevisionsByUpdatedBy` relation."""
+  applicationRevisionsByUpdatedBy: CiipUserToManyApplicationRevisionFilter
+
+  """Some related `applicationRevisionsByUpdatedBy` exist."""
+  applicationRevisionsByUpdatedByExist: Boolean
+
+  """Filter by the object’s `benchmarksByCreatedBy` relation."""
+  benchmarksByCreatedBy: CiipUserToManyBenchmarkFilter
+
+  """Some related `benchmarksByCreatedBy` exist."""
+  benchmarksByCreatedByExist: Boolean
+
+  """Filter by the object’s `benchmarksByDeletedBy` relation."""
+  benchmarksByDeletedBy: CiipUserToManyBenchmarkFilter
+
+  """Some related `benchmarksByDeletedBy` exist."""
+  benchmarksByDeletedByExist: Boolean
+
+  """Filter by the object’s `benchmarksByUpdatedBy` relation."""
+  benchmarksByUpdatedBy: CiipUserToManyBenchmarkFilter
+
+  """Some related `benchmarksByUpdatedBy` exist."""
+  benchmarksByUpdatedByExist: Boolean
+
+  """Filter by the object’s `certificationUrlsByCertifiedBy` relation."""
+  certificationUrlsByCertifiedBy: CiipUserToManyCertificationUrlFilter
+
+  """Some related `certificationUrlsByCertifiedBy` exist."""
+  certificationUrlsByCertifiedByExist: Boolean
+
+  """Filter by the object’s `certificationUrlsByCreatedBy` relation."""
+  certificationUrlsByCreatedBy: CiipUserToManyCertificationUrlFilter
+
+  """Some related `certificationUrlsByCreatedBy` exist."""
+  certificationUrlsByCreatedByExist: Boolean
+
+  """Filter by the object’s `certificationUrlsByDeletedBy` relation."""
+  certificationUrlsByDeletedBy: CiipUserToManyCertificationUrlFilter
+
+  """Some related `certificationUrlsByDeletedBy` exist."""
+  certificationUrlsByDeletedByExist: Boolean
+
+  """Filter by the object’s `certificationUrlsByUpdatedBy` relation."""
+  certificationUrlsByUpdatedBy: CiipUserToManyCertificationUrlFilter
+
+  """Some related `certificationUrlsByUpdatedBy` exist."""
+  certificationUrlsByUpdatedByExist: Boolean
+
+  """Filter by the object’s `ciipUserByCreatedBy` relation."""
+  ciipUserByCreatedBy: CiipUserFilter
+
+  """A related `ciipUserByCreatedBy` exists."""
+  ciipUserByCreatedByExists: Boolean
+
+  """Filter by the object’s `ciipUserByDeletedBy` relation."""
+  ciipUserByDeletedBy: CiipUserFilter
+
+  """A related `ciipUserByDeletedBy` exists."""
+  ciipUserByDeletedByExists: Boolean
+
+  """Filter by the object’s `ciipUserByUpdatedBy` relation."""
+  ciipUserByUpdatedBy: CiipUserFilter
+
+  """A related `ciipUserByUpdatedBy` exists."""
+  ciipUserByUpdatedByExists: Boolean
+
+  """Filter by the object’s `ciipUserOrganisationsByUserId` relation."""
+  ciipUserOrganisationsByUserId: CiipUserToManyCiipUserOrganisationFilter
+
+  """Some related `ciipUserOrganisationsByUserId` exist."""
+  ciipUserOrganisationsByUserIdExist: Boolean
+
+  """Filter by the object’s `ciipUsersByCreatedBy` relation."""
+  ciipUsersByCreatedBy: CiipUserToManyCiipUserFilter
+
+  """Some related `ciipUsersByCreatedBy` exist."""
+  ciipUsersByCreatedByExist: Boolean
+
+  """Filter by the object’s `ciipUsersByDeletedBy` relation."""
+  ciipUsersByDeletedBy: CiipUserToManyCiipUserFilter
+
+  """Some related `ciipUsersByDeletedBy` exist."""
+  ciipUsersByDeletedByExist: Boolean
+
+  """Filter by the object’s `ciipUsersByUpdatedBy` relation."""
+  ciipUsersByUpdatedBy: CiipUserToManyCiipUserFilter
+
+  """Some related `ciipUsersByUpdatedBy` exist."""
+  ciipUsersByUpdatedByExist: Boolean
+
   """Filter by the object’s `createdAt` field."""
   createdAt: DatetimeFilter
 
@@ -19435,11 +19968,161 @@ input CiipUserFilter {
   """Filter by the object’s `emailAddress` field."""
   emailAddress: StringFilter
 
+  """Filter by the object’s `emissionCategoriesByCreatedBy` relation."""
+  emissionCategoriesByCreatedBy: CiipUserToManyEmissionCategoryFilter
+
+  """Some related `emissionCategoriesByCreatedBy` exist."""
+  emissionCategoriesByCreatedByExist: Boolean
+
+  """Filter by the object’s `emissionCategoriesByDeletedBy` relation."""
+  emissionCategoriesByDeletedBy: CiipUserToManyEmissionCategoryFilter
+
+  """Some related `emissionCategoriesByDeletedBy` exist."""
+  emissionCategoriesByDeletedByExist: Boolean
+
+  """Filter by the object’s `emissionCategoriesByUpdatedBy` relation."""
+  emissionCategoriesByUpdatedBy: CiipUserToManyEmissionCategoryFilter
+
+  """Some related `emissionCategoriesByUpdatedBy` exist."""
+  emissionCategoriesByUpdatedByExist: Boolean
+
+  """Filter by the object’s `emissionCategoryGasesByCreatedBy` relation."""
+  emissionCategoryGasesByCreatedBy: CiipUserToManyEmissionCategoryGasFilter
+
+  """Some related `emissionCategoryGasesByCreatedBy` exist."""
+  emissionCategoryGasesByCreatedByExist: Boolean
+
+  """Filter by the object’s `emissionCategoryGasesByDeletedBy` relation."""
+  emissionCategoryGasesByDeletedBy: CiipUserToManyEmissionCategoryGasFilter
+
+  """Some related `emissionCategoryGasesByDeletedBy` exist."""
+  emissionCategoryGasesByDeletedByExist: Boolean
+
+  """Filter by the object’s `emissionCategoryGasesByUpdatedBy` relation."""
+  emissionCategoryGasesByUpdatedBy: CiipUserToManyEmissionCategoryGasFilter
+
+  """Some related `emissionCategoryGasesByUpdatedBy` exist."""
+  emissionCategoryGasesByUpdatedByExist: Boolean
+
   """Filter by the object’s `firstName` field."""
   firstName: StringFilter
 
+  """Filter by the object’s `formJsonsByCreatedBy` relation."""
+  formJsonsByCreatedBy: CiipUserToManyFormJsonFilter
+
+  """Some related `formJsonsByCreatedBy` exist."""
+  formJsonsByCreatedByExist: Boolean
+
+  """Filter by the object’s `formJsonsByDeletedBy` relation."""
+  formJsonsByDeletedBy: CiipUserToManyFormJsonFilter
+
+  """Some related `formJsonsByDeletedBy` exist."""
+  formJsonsByDeletedByExist: Boolean
+
+  """Filter by the object’s `formJsonsByUpdatedBy` relation."""
+  formJsonsByUpdatedBy: CiipUserToManyFormJsonFilter
+
+  """Some related `formJsonsByUpdatedBy` exist."""
+  formJsonsByUpdatedByExist: Boolean
+
+  """Filter by the object’s `formResultsByCreatedBy` relation."""
+  formResultsByCreatedBy: CiipUserToManyFormResultFilter
+
+  """Some related `formResultsByCreatedBy` exist."""
+  formResultsByCreatedByExist: Boolean
+
+  """Filter by the object’s `formResultsByDeletedBy` relation."""
+  formResultsByDeletedBy: CiipUserToManyFormResultFilter
+
+  """Some related `formResultsByDeletedBy` exist."""
+  formResultsByDeletedByExist: Boolean
+
+  """Filter by the object’s `formResultsByUpdatedBy` relation."""
+  formResultsByUpdatedBy: CiipUserToManyFormResultFilter
+
+  """Some related `formResultsByUpdatedBy` exist."""
+  formResultsByUpdatedByExist: Boolean
+
+  """Filter by the object’s `fuelsByCreatedBy` relation."""
+  fuelsByCreatedBy: CiipUserToManyFuelFilter
+
+  """Some related `fuelsByCreatedBy` exist."""
+  fuelsByCreatedByExist: Boolean
+
+  """Filter by the object’s `fuelsByDeletedBy` relation."""
+  fuelsByDeletedBy: CiipUserToManyFuelFilter
+
+  """Some related `fuelsByDeletedBy` exist."""
+  fuelsByDeletedByExist: Boolean
+
+  """Filter by the object’s `fuelsByUpdatedBy` relation."""
+  fuelsByUpdatedBy: CiipUserToManyFuelFilter
+
+  """Some related `fuelsByUpdatedBy` exist."""
+  fuelsByUpdatedByExist: Boolean
+
+  """Filter by the object’s `gasesByCreatedBy` relation."""
+  gasesByCreatedBy: CiipUserToManyGasFilter
+
+  """Some related `gasesByCreatedBy` exist."""
+  gasesByCreatedByExist: Boolean
+
+  """Filter by the object’s `gasesByDeletedBy` relation."""
+  gasesByDeletedBy: CiipUserToManyGasFilter
+
+  """Some related `gasesByDeletedBy` exist."""
+  gasesByDeletedByExist: Boolean
+
+  """Filter by the object’s `gasesByUpdatedBy` relation."""
+  gasesByUpdatedBy: CiipUserToManyGasFilter
+
+  """Some related `gasesByUpdatedBy` exist."""
+  gasesByUpdatedByExist: Boolean
+
+  """Filter by the object’s `jwtTokensBySub` relation."""
+  jwtTokensBySub: CiipUserToManyJwtTokenFilter
+
+  """Some related `jwtTokensBySub` exist."""
+  jwtTokensBySubExist: Boolean
+
   """Filter by the object’s `lastName` field."""
   lastName: StringFilter
+
+  """Filter by the object’s `linkedProductsByCreatedBy` relation."""
+  linkedProductsByCreatedBy: CiipUserToManyLinkedProductFilter
+
+  """Some related `linkedProductsByCreatedBy` exist."""
+  linkedProductsByCreatedByExist: Boolean
+
+  """Filter by the object’s `linkedProductsByDeletedBy` relation."""
+  linkedProductsByDeletedBy: CiipUserToManyLinkedProductFilter
+
+  """Some related `linkedProductsByDeletedBy` exist."""
+  linkedProductsByDeletedByExist: Boolean
+
+  """Filter by the object’s `linkedProductsByUpdatedBy` relation."""
+  linkedProductsByUpdatedBy: CiipUserToManyLinkedProductFilter
+
+  """Some related `linkedProductsByUpdatedBy` exist."""
+  linkedProductsByUpdatedByExist: Boolean
+
+  """Filter by the object’s `naicsCodesByCreatedBy` relation."""
+  naicsCodesByCreatedBy: CiipUserToManyNaicsCodeFilter
+
+  """Some related `naicsCodesByCreatedBy` exist."""
+  naicsCodesByCreatedByExist: Boolean
+
+  """Filter by the object’s `naicsCodesByDeletedBy` relation."""
+  naicsCodesByDeletedBy: CiipUserToManyNaicsCodeFilter
+
+  """Some related `naicsCodesByDeletedBy` exist."""
+  naicsCodesByDeletedByExist: Boolean
+
+  """Filter by the object’s `naicsCodesByUpdatedBy` relation."""
+  naicsCodesByUpdatedBy: CiipUserToManyNaicsCodeFilter
+
+  """Some related `naicsCodesByUpdatedBy` exist."""
+  naicsCodesByUpdatedByExist: Boolean
 
   """Negates the expression."""
   not: CiipUserFilter
@@ -19452,6 +20135,60 @@ input CiipUserFilter {
 
   """Filter by the object’s `phoneNumber` field."""
   phoneNumber: StringFilter
+
+  """Filter by the object’s `productNaicsCodesByCreatedBy` relation."""
+  productNaicsCodesByCreatedBy: CiipUserToManyProductNaicsCodeFilter
+
+  """Some related `productNaicsCodesByCreatedBy` exist."""
+  productNaicsCodesByCreatedByExist: Boolean
+
+  """Filter by the object’s `productNaicsCodesByDeletedBy` relation."""
+  productNaicsCodesByDeletedBy: CiipUserToManyProductNaicsCodeFilter
+
+  """Some related `productNaicsCodesByDeletedBy` exist."""
+  productNaicsCodesByDeletedByExist: Boolean
+
+  """Filter by the object’s `productNaicsCodesByUpdatedBy` relation."""
+  productNaicsCodesByUpdatedBy: CiipUserToManyProductNaicsCodeFilter
+
+  """Some related `productNaicsCodesByUpdatedBy` exist."""
+  productNaicsCodesByUpdatedByExist: Boolean
+
+  """Filter by the object’s `productsByCreatedBy` relation."""
+  productsByCreatedBy: CiipUserToManyProductFilter
+
+  """Some related `productsByCreatedBy` exist."""
+  productsByCreatedByExist: Boolean
+
+  """Filter by the object’s `productsByDeletedBy` relation."""
+  productsByDeletedBy: CiipUserToManyProductFilter
+
+  """Some related `productsByDeletedBy` exist."""
+  productsByDeletedByExist: Boolean
+
+  """Filter by the object’s `productsByUpdatedBy` relation."""
+  productsByUpdatedBy: CiipUserToManyProductFilter
+
+  """Some related `productsByUpdatedBy` exist."""
+  productsByUpdatedByExist: Boolean
+
+  """Filter by the object’s `reviewCommentsByCreatedBy` relation."""
+  reviewCommentsByCreatedBy: CiipUserToManyReviewCommentFilter
+
+  """Some related `reviewCommentsByCreatedBy` exist."""
+  reviewCommentsByCreatedByExist: Boolean
+
+  """Filter by the object’s `reviewCommentsByDeletedBy` relation."""
+  reviewCommentsByDeletedBy: CiipUserToManyReviewCommentFilter
+
+  """Some related `reviewCommentsByDeletedBy` exist."""
+  reviewCommentsByDeletedByExist: Boolean
+
+  """Filter by the object’s `reviewCommentsByUpdatedBy` relation."""
+  reviewCommentsByUpdatedBy: CiipUserToManyReviewCommentFilter
+
+  """Some related `reviewCommentsByUpdatedBy` exist."""
+  reviewCommentsByUpdatedByExist: Boolean
 
   """Filter by the object’s `rowId` field."""
   rowId: IntFilter
@@ -20146,6 +20883,9 @@ input CiipUserOrganisationFilter {
   """Checks for all expressions in this list."""
   and: [CiipUserOrganisationFilter!]
 
+  """Filter by the object’s `ciipUserByUserId` relation."""
+  ciipUserByUserId: CiipUserFilter
+
   """Filter by the object’s `emailAddress` field."""
   emailAddress: StringFilter
 
@@ -20163,6 +20903,9 @@ input CiipUserOrganisationFilter {
 
   """Checks for any expressions in this list."""
   or: [CiipUserOrganisationFilter!]
+
+  """Filter by the object’s `organisationByOrganisationId` relation."""
+  organisationByOrganisationId: OrganisationFilter
 
   """Filter by the object’s `organisationId` field."""
   organisationId: IntFilter
@@ -21585,6 +22328,386 @@ type CiipUserReviewStepsByApplicationReviewStepUpdatedByAndReviewStepIdManyToMan
 
   """The `ReviewStep` at the end of the edge."""
   node: ReviewStep
+}
+
+"""
+A filter to be used against many `ApplicationReviewStep` object types. All fields are combined with a logical ‘and.’
+"""
+input CiipUserToManyApplicationReviewStepFilter {
+  """
+  Every related `ApplicationReviewStep` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  every: ApplicationReviewStepFilter
+
+  """
+  No related `ApplicationReviewStep` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  none: ApplicationReviewStepFilter
+
+  """
+  Some related `ApplicationReviewStep` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  some: ApplicationReviewStepFilter
+}
+
+"""
+A filter to be used against many `ApplicationRevision` object types. All fields are combined with a logical ‘and.’
+"""
+input CiipUserToManyApplicationRevisionFilter {
+  """
+  Every related `ApplicationRevision` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  every: ApplicationRevisionFilter
+
+  """
+  No related `ApplicationRevision` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  none: ApplicationRevisionFilter
+
+  """
+  Some related `ApplicationRevision` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  some: ApplicationRevisionFilter
+}
+
+"""
+A filter to be used against many `ApplicationRevisionStatus` object types. All fields are combined with a logical ‘and.’
+"""
+input CiipUserToManyApplicationRevisionStatusFilter {
+  """
+  Every related `ApplicationRevisionStatus` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  every: ApplicationRevisionStatusFilter
+
+  """
+  No related `ApplicationRevisionStatus` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  none: ApplicationRevisionStatusFilter
+
+  """
+  Some related `ApplicationRevisionStatus` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  some: ApplicationRevisionStatusFilter
+}
+
+"""
+A filter to be used against many `Benchmark` object types. All fields are combined with a logical ‘and.’
+"""
+input CiipUserToManyBenchmarkFilter {
+  """
+  Every related `Benchmark` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  every: BenchmarkFilter
+
+  """
+  No related `Benchmark` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  none: BenchmarkFilter
+
+  """
+  Some related `Benchmark` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  some: BenchmarkFilter
+}
+
+"""
+A filter to be used against many `CertificationUrl` object types. All fields are combined with a logical ‘and.’
+"""
+input CiipUserToManyCertificationUrlFilter {
+  """
+  Every related `CertificationUrl` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  every: CertificationUrlFilter
+
+  """
+  No related `CertificationUrl` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  none: CertificationUrlFilter
+
+  """
+  Some related `CertificationUrl` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  some: CertificationUrlFilter
+}
+
+"""
+A filter to be used against many `CiipUser` object types. All fields are combined with a logical ‘and.’
+"""
+input CiipUserToManyCiipUserFilter {
+  """
+  Every related `CiipUser` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  every: CiipUserFilter
+
+  """
+  No related `CiipUser` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  none: CiipUserFilter
+
+  """
+  Some related `CiipUser` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  some: CiipUserFilter
+}
+
+"""
+A filter to be used against many `CiipUserOrganisation` object types. All fields are combined with a logical ‘and.’
+"""
+input CiipUserToManyCiipUserOrganisationFilter {
+  """
+  Every related `CiipUserOrganisation` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  every: CiipUserOrganisationFilter
+
+  """
+  No related `CiipUserOrganisation` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  none: CiipUserOrganisationFilter
+
+  """
+  Some related `CiipUserOrganisation` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  some: CiipUserOrganisationFilter
+}
+
+"""
+A filter to be used against many `EmissionCategory` object types. All fields are combined with a logical ‘and.’
+"""
+input CiipUserToManyEmissionCategoryFilter {
+  """
+  Every related `EmissionCategory` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  every: EmissionCategoryFilter
+
+  """
+  No related `EmissionCategory` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  none: EmissionCategoryFilter
+
+  """
+  Some related `EmissionCategory` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  some: EmissionCategoryFilter
+}
+
+"""
+A filter to be used against many `EmissionCategoryGas` object types. All fields are combined with a logical ‘and.’
+"""
+input CiipUserToManyEmissionCategoryGasFilter {
+  """
+  Every related `EmissionCategoryGas` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  every: EmissionCategoryGasFilter
+
+  """
+  No related `EmissionCategoryGas` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  none: EmissionCategoryGasFilter
+
+  """
+  Some related `EmissionCategoryGas` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  some: EmissionCategoryGasFilter
+}
+
+"""
+A filter to be used against many `FormJson` object types. All fields are combined with a logical ‘and.’
+"""
+input CiipUserToManyFormJsonFilter {
+  """
+  Every related `FormJson` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  every: FormJsonFilter
+
+  """
+  No related `FormJson` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  none: FormJsonFilter
+
+  """
+  Some related `FormJson` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  some: FormJsonFilter
+}
+
+"""
+A filter to be used against many `FormResult` object types. All fields are combined with a logical ‘and.’
+"""
+input CiipUserToManyFormResultFilter {
+  """
+  Every related `FormResult` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  every: FormResultFilter
+
+  """
+  No related `FormResult` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  none: FormResultFilter
+
+  """
+  Some related `FormResult` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  some: FormResultFilter
+}
+
+"""
+A filter to be used against many `Fuel` object types. All fields are combined with a logical ‘and.’
+"""
+input CiipUserToManyFuelFilter {
+  """
+  Every related `Fuel` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  every: FuelFilter
+
+  """
+  No related `Fuel` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  none: FuelFilter
+
+  """
+  Some related `Fuel` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  some: FuelFilter
+}
+
+"""
+A filter to be used against many `Gas` object types. All fields are combined with a logical ‘and.’
+"""
+input CiipUserToManyGasFilter {
+  """
+  Every related `Gas` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  every: GasFilter
+
+  """
+  No related `Gas` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  none: GasFilter
+
+  """
+  Some related `Gas` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  some: GasFilter
+}
+
+"""
+A filter to be used against many `JwtToken` object types. All fields are combined with a logical ‘and.’
+"""
+input CiipUserToManyJwtTokenFilter {
+  """
+  Every related `JwtToken` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  every: JwtTokenFilter
+
+  """
+  No related `JwtToken` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  none: JwtTokenFilter
+
+  """
+  Some related `JwtToken` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  some: JwtTokenFilter
+}
+
+"""
+A filter to be used against many `LinkedProduct` object types. All fields are combined with a logical ‘and.’
+"""
+input CiipUserToManyLinkedProductFilter {
+  """
+  Every related `LinkedProduct` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  every: LinkedProductFilter
+
+  """
+  No related `LinkedProduct` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  none: LinkedProductFilter
+
+  """
+  Some related `LinkedProduct` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  some: LinkedProductFilter
+}
+
+"""
+A filter to be used against many `NaicsCode` object types. All fields are combined with a logical ‘and.’
+"""
+input CiipUserToManyNaicsCodeFilter {
+  """
+  Every related `NaicsCode` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  every: NaicsCodeFilter
+
+  """
+  No related `NaicsCode` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  none: NaicsCodeFilter
+
+  """
+  Some related `NaicsCode` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  some: NaicsCodeFilter
+}
+
+"""
+A filter to be used against many `Product` object types. All fields are combined with a logical ‘and.’
+"""
+input CiipUserToManyProductFilter {
+  """
+  Every related `Product` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  every: ProductFilter
+
+  """
+  No related `Product` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  none: ProductFilter
+
+  """
+  Some related `Product` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  some: ProductFilter
+}
+
+"""
+A filter to be used against many `ProductNaicsCode` object types. All fields are combined with a logical ‘and.’
+"""
+input CiipUserToManyProductNaicsCodeFilter {
+  """
+  Every related `ProductNaicsCode` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  every: ProductNaicsCodeFilter
+
+  """
+  No related `ProductNaicsCode` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  none: ProductNaicsCodeFilter
+
+  """
+  Some related `ProductNaicsCode` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  some: ProductNaicsCodeFilter
+}
+
+"""
+A filter to be used against many `ReviewComment` object types. All fields are combined with a logical ‘and.’
+"""
+input CiipUserToManyReviewCommentFilter {
+  """
+  Every related `ReviewComment` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  every: ReviewCommentFilter
+
+  """
+  No related `ReviewComment` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  none: ReviewCommentFilter
+
+  """
+  Some related `ReviewComment` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  some: ReviewCommentFilter
 }
 
 """A connection to a list of `CiipUser` values."""
@@ -24836,6 +25959,24 @@ input EmissionCategoryFilter {
   """Checks for all expressions in this list."""
   and: [EmissionCategoryFilter!]
 
+  """Filter by the object’s `ciipUserByCreatedBy` relation."""
+  ciipUserByCreatedBy: CiipUserFilter
+
+  """A related `ciipUserByCreatedBy` exists."""
+  ciipUserByCreatedByExists: Boolean
+
+  """Filter by the object’s `ciipUserByDeletedBy` relation."""
+  ciipUserByDeletedBy: CiipUserFilter
+
+  """A related `ciipUserByDeletedBy` exists."""
+  ciipUserByDeletedByExists: Boolean
+
+  """Filter by the object’s `ciipUserByUpdatedBy` relation."""
+  ciipUserByUpdatedBy: CiipUserFilter
+
+  """A related `ciipUserByUpdatedBy` exists."""
+  ciipUserByUpdatedByExists: Boolean
+
   """Filter by the object’s `createdAt` field."""
   createdAt: DatetimeFilter
 
@@ -24850,6 +25991,14 @@ input EmissionCategoryFilter {
 
   """Filter by the object’s `displayName` field."""
   displayName: StringFilter
+
+  """
+  Filter by the object’s `emissionCategoryGasesByEmissionCategoryId` relation.
+  """
+  emissionCategoryGasesByEmissionCategoryId: EmissionCategoryToManyEmissionCategoryGasFilter
+
+  """Some related `emissionCategoryGasesByEmissionCategoryId` exist."""
+  emissionCategoryGasesByEmissionCategoryIdExist: Boolean
 
   """Negates the expression."""
   not: EmissionCategoryFilter
@@ -24976,6 +26125,24 @@ input EmissionCategoryGasFilter {
   """Checks for all expressions in this list."""
   and: [EmissionCategoryGasFilter!]
 
+  """Filter by the object’s `ciipUserByCreatedBy` relation."""
+  ciipUserByCreatedBy: CiipUserFilter
+
+  """A related `ciipUserByCreatedBy` exists."""
+  ciipUserByCreatedByExists: Boolean
+
+  """Filter by the object’s `ciipUserByDeletedBy` relation."""
+  ciipUserByDeletedBy: CiipUserFilter
+
+  """A related `ciipUserByDeletedBy` exists."""
+  ciipUserByDeletedByExists: Boolean
+
+  """Filter by the object’s `ciipUserByUpdatedBy` relation."""
+  ciipUserByUpdatedBy: CiipUserFilter
+
+  """A related `ciipUserByUpdatedBy` exists."""
+  ciipUserByUpdatedByExists: Boolean
+
   """Filter by the object’s `createdAt` field."""
   createdAt: DatetimeFilter
 
@@ -24988,11 +26155,25 @@ input EmissionCategoryGasFilter {
   """Filter by the object’s `deletedBy` field."""
   deletedBy: IntFilter
 
+  """
+  Filter by the object’s `emissionCategoryByEmissionCategoryId` relation.
+  """
+  emissionCategoryByEmissionCategoryId: EmissionCategoryFilter
+
+  """A related `emissionCategoryByEmissionCategoryId` exists."""
+  emissionCategoryByEmissionCategoryIdExists: Boolean
+
   """Filter by the object’s `emissionCategoryDescription` field."""
   emissionCategoryDescription: StringFilter
 
   """Filter by the object’s `emissionCategoryId` field."""
   emissionCategoryId: IntFilter
+
+  """Filter by the object’s `gasByGasId` relation."""
+  gasByGasId: GasFilter
+
+  """A related `gasByGasId` exists."""
+  gasByGasIdExists: Boolean
 
   """Filter by the object’s `gasId` field."""
   gasId: IntFilter
@@ -25246,6 +26427,26 @@ input EmissionCategoryPatch {
 
   """Updator of row"""
   updatedBy: Int
+}
+
+"""
+A filter to be used against many `EmissionCategoryGas` object types. All fields are combined with a logical ‘and.’
+"""
+input EmissionCategoryToManyEmissionCategoryGasFilter {
+  """
+  Every related `EmissionCategoryGas` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  every: EmissionCategoryGasFilter
+
+  """
+  No related `EmissionCategoryGas` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  none: EmissionCategoryGasFilter
+
+  """
+  Some related `EmissionCategoryGas` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  some: EmissionCategoryGasFilter
 }
 
 """A connection to a list of `EmissionDatum` values."""
@@ -25685,6 +26886,12 @@ input FacilityApplicationFilter {
   """Checks for all expressions in this list."""
   and: [FacilityApplicationFilter!]
 
+  """Filter by the object’s `applicationByApplicationId` relation."""
+  applicationByApplicationId: ApplicationFilter
+
+  """A related `applicationByApplicationId` exists."""
+  applicationByApplicationIdExists: Boolean
+
   """Filter by the object’s `applicationId` field."""
   applicationId: IntFilter
 
@@ -25693,6 +26900,12 @@ input FacilityApplicationFilter {
 
   """Filter by the object’s `facilityBcghgid` field."""
   facilityBcghgid: StringFilter
+
+  """Filter by the object’s `facilityByFacilityId` relation."""
+  facilityByFacilityId: FacilityFilter
+
+  """A related `facilityByFacilityId` exists."""
+  facilityByFacilityIdExists: Boolean
 
   """Filter by the object’s `facilityId` field."""
   facilityId: IntFilter
@@ -25714,6 +26927,12 @@ input FacilityApplicationFilter {
 
   """Checks for any expressions in this list."""
   or: [FacilityApplicationFilter!]
+
+  """Filter by the object’s `organisationByOrganisationId` relation."""
+  organisationByOrganisationId: OrganisationFilter
+
+  """A related `organisationByOrganisationId` exists."""
+  organisationByOrganisationIdExists: Boolean
 
   """Filter by the object’s `organisationId` field."""
   organisationId: IntFilter
@@ -25925,11 +27144,29 @@ input FacilityFilter {
   """Checks for all expressions in this list."""
   and: [FacilityFilter!]
 
+  """Filter by the object’s `applicationsByFacilityId` relation."""
+  applicationsByFacilityId: FacilityToManyApplicationFilter
+
+  """Some related `applicationsByFacilityId` exist."""
+  applicationsByFacilityIdExist: Boolean
+
   """Filter by the object’s `bcghgid` field."""
   bcghgid: StringFilter
 
+  """Filter by the object’s `facilityApplicationsByFacilityId` relation."""
+  facilityApplicationsByFacilityId: FacilityToManyFacilityApplicationFilter
+
+  """Some related `facilityApplicationsByFacilityId` exist."""
+  facilityApplicationsByFacilityIdExist: Boolean
+
   """Filter by the object’s `facilityName` field."""
   facilityName: StringFilter
+
+  """Filter by the object’s `facilitySearchResultsByFacilityId` relation."""
+  facilitySearchResultsByFacilityId: FacilityToManyFacilitySearchResultFilter
+
+  """Some related `facilitySearchResultsByFacilityId` exist."""
+  facilitySearchResultsByFacilityIdExist: Boolean
 
   """Filter by the object’s `facilityType` field."""
   facilityType: StringFilter
@@ -25942,6 +27179,9 @@ input FacilityFilter {
 
   """Checks for any expressions in this list."""
   or: [FacilityFilter!]
+
+  """Filter by the object’s `organisationByOrganisationId` relation."""
+  organisationByOrganisationId: OrganisationFilter
 
   """Filter by the object’s `organisationId` field."""
   organisationId: IntFilter
@@ -26167,6 +27407,12 @@ input FacilitySearchResultFilter {
   """Checks for all expressions in this list."""
   and: [FacilitySearchResultFilter!]
 
+  """Filter by the object’s `applicationByApplicationId` relation."""
+  applicationByApplicationId: ApplicationFilter
+
+  """A related `applicationByApplicationId` exists."""
+  applicationByApplicationIdExists: Boolean
+
   """Filter by the object’s `applicationId` field."""
   applicationId: IntFilter
 
@@ -26175,6 +27421,12 @@ input FacilitySearchResultFilter {
 
   """Filter by the object’s `facilityBcghgid` field."""
   facilityBcghgid: StringFilter
+
+  """Filter by the object’s `facilityByFacilityId` relation."""
+  facilityByFacilityId: FacilityFilter
+
+  """A related `facilityByFacilityId` exists."""
+  facilityByFacilityIdExists: Boolean
 
   """Filter by the object’s `facilityId` field."""
   facilityId: IntFilter
@@ -26230,6 +27482,66 @@ type FacilitySearchResultsEdge {
 
   """The `FacilitySearchResult` at the end of the edge."""
   node: FacilitySearchResult
+}
+
+"""
+A filter to be used against many `Application` object types. All fields are combined with a logical ‘and.’
+"""
+input FacilityToManyApplicationFilter {
+  """
+  Every related `Application` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  every: ApplicationFilter
+
+  """
+  No related `Application` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  none: ApplicationFilter
+
+  """
+  Some related `Application` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  some: ApplicationFilter
+}
+
+"""
+A filter to be used against many `FacilityApplication` object types. All fields are combined with a logical ‘and.’
+"""
+input FacilityToManyFacilityApplicationFilter {
+  """
+  Every related `FacilityApplication` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  every: FacilityApplicationFilter
+
+  """
+  No related `FacilityApplication` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  none: FacilityApplicationFilter
+
+  """
+  Some related `FacilityApplication` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  some: FacilityApplicationFilter
+}
+
+"""
+A filter to be used against many `FacilitySearchResult` object types. All fields are combined with a logical ‘and.’
+"""
+input FacilityToManyFacilitySearchResultFilter {
+  """
+  Every related `FacilitySearchResult` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  every: FacilitySearchResultFilter
+
+  """
+  No related `FacilitySearchResult` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  none: FacilitySearchResultFilter
+
+  """
+  Some related `FacilitySearchResult` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  some: FacilitySearchResultFilter
 }
 
 """
@@ -26823,6 +28135,30 @@ input FormJsonFilter {
   """Checks for all expressions in this list."""
   and: [FormJsonFilter!]
 
+  """Filter by the object’s `ciipApplicationWizardByFormId` relation."""
+  ciipApplicationWizardByFormId: CiipApplicationWizardFilter
+
+  """A related `ciipApplicationWizardByFormId` exists."""
+  ciipApplicationWizardByFormIdExists: Boolean
+
+  """Filter by the object’s `ciipUserByCreatedBy` relation."""
+  ciipUserByCreatedBy: CiipUserFilter
+
+  """A related `ciipUserByCreatedBy` exists."""
+  ciipUserByCreatedByExists: Boolean
+
+  """Filter by the object’s `ciipUserByDeletedBy` relation."""
+  ciipUserByDeletedBy: CiipUserFilter
+
+  """A related `ciipUserByDeletedBy` exists."""
+  ciipUserByDeletedByExists: Boolean
+
+  """Filter by the object’s `ciipUserByUpdatedBy` relation."""
+  ciipUserByUpdatedBy: CiipUserFilter
+
+  """A related `ciipUserByUpdatedBy` exists."""
+  ciipUserByUpdatedByExists: Boolean
+
   """Filter by the object’s `createdAt` field."""
   createdAt: DatetimeFilter
 
@@ -26846,6 +28182,12 @@ input FormJsonFilter {
 
   """Filter by the object’s `formResultInitFunction` field."""
   formResultInitFunction: StringFilter
+
+  """Filter by the object’s `formResultsByFormId` relation."""
+  formResultsByFormId: FormJsonToManyFormResultFilter
+
+  """Some related `formResultsByFormId` exist."""
+  formResultsByFormIdExist: Boolean
 
   """Filter by the object’s `name` field."""
   name: StringFilter
@@ -26986,6 +28328,26 @@ input FormJsonPatch {
 
   """The person who updated the form"""
   updatedBy: Int
+}
+
+"""
+A filter to be used against many `FormResult` object types. All fields are combined with a logical ‘and.’
+"""
+input FormJsonToManyFormResultFilter {
+  """
+  Every related `FormResult` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  every: FormResultFilter
+
+  """
+  No related `FormResult` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  none: FormResultFilter
+
+  """
+  Some related `FormResult` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  some: FormResultFilter
 }
 
 """A connection to a list of `FormJson` values."""
@@ -27160,8 +28522,34 @@ input FormResultFilter {
   """Checks for all expressions in this list."""
   and: [FormResultFilter!]
 
+  """Filter by the object’s `applicationByApplicationId` relation."""
+  applicationByApplicationId: ApplicationFilter
+
   """Filter by the object’s `applicationId` field."""
   applicationId: IntFilter
+
+  """
+  Filter by the object’s `applicationRevisionByApplicationIdAndVersionNumber` relation.
+  """
+  applicationRevisionByApplicationIdAndVersionNumber: ApplicationRevisionFilter
+
+  """Filter by the object’s `ciipUserByCreatedBy` relation."""
+  ciipUserByCreatedBy: CiipUserFilter
+
+  """A related `ciipUserByCreatedBy` exists."""
+  ciipUserByCreatedByExists: Boolean
+
+  """Filter by the object’s `ciipUserByDeletedBy` relation."""
+  ciipUserByDeletedBy: CiipUserFilter
+
+  """A related `ciipUserByDeletedBy` exists."""
+  ciipUserByDeletedByExists: Boolean
+
+  """Filter by the object’s `ciipUserByUpdatedBy` relation."""
+  ciipUserByUpdatedBy: CiipUserFilter
+
+  """A related `ciipUserByUpdatedBy` exists."""
+  ciipUserByUpdatedByExists: Boolean
 
   """Filter by the object’s `createdAt` field."""
   createdAt: DatetimeFilter
@@ -27177,6 +28565,9 @@ input FormResultFilter {
 
   """Filter by the object’s `formId` field."""
   formId: IntFilter
+
+  """Filter by the object’s `formJsonByFormId` relation."""
+  formJsonByFormId: FormJsonFilter
 
   """Filter by the object’s `formResult` field."""
   formResult: JSONFilter
@@ -27527,6 +28918,24 @@ A filter to be used against `Fuel` object types. All fields are combined with a 
 input FuelFilter {
   """Checks for all expressions in this list."""
   and: [FuelFilter!]
+
+  """Filter by the object’s `ciipUserByCreatedBy` relation."""
+  ciipUserByCreatedBy: CiipUserFilter
+
+  """A related `ciipUserByCreatedBy` exists."""
+  ciipUserByCreatedByExists: Boolean
+
+  """Filter by the object’s `ciipUserByDeletedBy` relation."""
+  ciipUserByDeletedBy: CiipUserFilter
+
+  """A related `ciipUserByDeletedBy` exists."""
+  ciipUserByDeletedByExists: Boolean
+
+  """Filter by the object’s `ciipUserByUpdatedBy` relation."""
+  ciipUserByUpdatedBy: CiipUserFilter
+
+  """A related `ciipUserByUpdatedBy` exists."""
+  ciipUserByUpdatedByExists: Boolean
 
   """Filter by the object’s `comments` field."""
   comments: StringFilter
@@ -28338,6 +29747,24 @@ input GasFilter {
   """Checks for all expressions in this list."""
   and: [GasFilter!]
 
+  """Filter by the object’s `ciipUserByCreatedBy` relation."""
+  ciipUserByCreatedBy: CiipUserFilter
+
+  """A related `ciipUserByCreatedBy` exists."""
+  ciipUserByCreatedByExists: Boolean
+
+  """Filter by the object’s `ciipUserByDeletedBy` relation."""
+  ciipUserByDeletedBy: CiipUserFilter
+
+  """A related `ciipUserByDeletedBy` exists."""
+  ciipUserByDeletedByExists: Boolean
+
+  """Filter by the object’s `ciipUserByUpdatedBy` relation."""
+  ciipUserByUpdatedBy: CiipUserFilter
+
+  """A related `ciipUserByUpdatedBy` exists."""
+  ciipUserByUpdatedByExists: Boolean
+
   """Filter by the object’s `createdAt` field."""
   createdAt: DatetimeFilter
 
@@ -28349,6 +29776,12 @@ input GasFilter {
 
   """Filter by the object’s `deletedBy` field."""
   deletedBy: IntFilter
+
+  """Filter by the object’s `emissionCategoryGasesByGasId` relation."""
+  emissionCategoryGasesByGasId: GasToManyEmissionCategoryGasFilter
+
+  """Some related `emissionCategoryGasesByGasId` exist."""
+  emissionCategoryGasesByGasIdExist: Boolean
 
   """Filter by the object’s `gasDescription` field."""
   gasDescription: StringFilter
@@ -28446,6 +29879,26 @@ input GasPatch {
 
   """Updator of row"""
   updatedBy: Int
+}
+
+"""
+A filter to be used against many `EmissionCategoryGas` object types. All fields are combined with a logical ‘and.’
+"""
+input GasToManyEmissionCategoryGasFilter {
+  """
+  Every related `EmissionCategoryGas` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  every: EmissionCategoryGasFilter
+
+  """
+  No related `EmissionCategoryGas` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  none: EmissionCategoryGasFilter
+
+  """
+  Some related `EmissionCategoryGas` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  some: EmissionCategoryGasFilter
 }
 
 """A connection to a list of `Gas` values."""
@@ -28799,6 +30252,89 @@ type JwtToken {
 }
 
 """
+A filter to be used against `JwtToken` object types. All fields are combined with a logical ‘and.’
+"""
+input JwtTokenFilter {
+  """Filter by the object’s `acr` field."""
+  acr: StringFilter
+
+  """Checks for all expressions in this list."""
+  and: [JwtTokenFilter!]
+
+  """Filter by the object’s `aud` field."""
+  aud: StringFilter
+
+  """Filter by the object’s `authTime` field."""
+  authTime: IntFilter
+
+  """Filter by the object’s `azp` field."""
+  azp: StringFilter
+
+  """Filter by the object’s `brokerSessionId` field."""
+  brokerSessionId: StringFilter
+
+  """Filter by the object’s `ciipUserBySub` relation."""
+  ciipUserBySub: CiipUserFilter
+
+  """A related `ciipUserBySub` exists."""
+  ciipUserBySubExists: Boolean
+
+  """Filter by the object’s `email` field."""
+  email: StringFilter
+
+  """Filter by the object’s `emailVerified` field."""
+  emailVerified: BooleanFilter
+
+  """Filter by the object’s `exp` field."""
+  exp: IntFilter
+
+  """Filter by the object’s `familyName` field."""
+  familyName: StringFilter
+
+  """Filter by the object’s `givenName` field."""
+  givenName: StringFilter
+
+  """Filter by the object’s `iat` field."""
+  iat: IntFilter
+
+  """Filter by the object’s `iss` field."""
+  iss: StringFilter
+
+  """Filter by the object’s `jti` field."""
+  jti: UUIDFilter
+
+  """Filter by the object’s `name` field."""
+  name: StringFilter
+
+  """Filter by the object’s `nbf` field."""
+  nbf: IntFilter
+
+  """Negates the expression."""
+  not: JwtTokenFilter
+
+  """Checks for any expressions in this list."""
+  or: [JwtTokenFilter!]
+
+  """Filter by the object’s `preferredUsername` field."""
+  preferredUsername: StringFilter
+
+  """Filter by the object’s `priorityGroup` field."""
+  priorityGroup: StringFilter
+
+  """Filter by the object’s `sessionState` field."""
+  sessionState: UUIDFilter
+
+  """Filter by the object’s `sub` field."""
+  sub: UUIDFilter
+
+  """Filter by the object’s `typ` field."""
+  typ: StringFilter
+
+  """Filter by the object’s `userGroups` field."""
+  userGroups: StringListFilter
+}
+
+"""
 Table containing the information for the links between CIIP products. A link from product_id -> linked_product_id requires linked_product_id to be reported if product_id is reported
 """
 type LinkedProduct implements Node {
@@ -28898,6 +30434,24 @@ input LinkedProductFilter {
   """Checks for all expressions in this list."""
   and: [LinkedProductFilter!]
 
+  """Filter by the object’s `ciipUserByCreatedBy` relation."""
+  ciipUserByCreatedBy: CiipUserFilter
+
+  """A related `ciipUserByCreatedBy` exists."""
+  ciipUserByCreatedByExists: Boolean
+
+  """Filter by the object’s `ciipUserByDeletedBy` relation."""
+  ciipUserByDeletedBy: CiipUserFilter
+
+  """A related `ciipUserByDeletedBy` exists."""
+  ciipUserByDeletedByExists: Boolean
+
+  """Filter by the object’s `ciipUserByUpdatedBy` relation."""
+  ciipUserByUpdatedBy: CiipUserFilter
+
+  """A related `ciipUserByUpdatedBy` exists."""
+  ciipUserByUpdatedByExists: Boolean
+
   """Filter by the object’s `createdAt` field."""
   createdAt: DatetimeFilter
 
@@ -28921,6 +30475,12 @@ input LinkedProductFilter {
 
   """Checks for any expressions in this list."""
   or: [LinkedProductFilter!]
+
+  """Filter by the object’s `productByLinkedProductId` relation."""
+  productByLinkedProductId: ProductFilter
+
+  """Filter by the object’s `productByProductId` relation."""
+  productByProductId: ProductFilter
 
   """Filter by the object’s `productId` field."""
   productId: IntFilter
@@ -30639,6 +32199,24 @@ input NaicsCodeFilter {
   """Filter by the object’s `ciipSector` field."""
   ciipSector: StringFilter
 
+  """Filter by the object’s `ciipUserByCreatedBy` relation."""
+  ciipUserByCreatedBy: CiipUserFilter
+
+  """A related `ciipUserByCreatedBy` exists."""
+  ciipUserByCreatedByExists: Boolean
+
+  """Filter by the object’s `ciipUserByDeletedBy` relation."""
+  ciipUserByDeletedBy: CiipUserFilter
+
+  """A related `ciipUserByDeletedBy` exists."""
+  ciipUserByDeletedByExists: Boolean
+
+  """Filter by the object’s `ciipUserByUpdatedBy` relation."""
+  ciipUserByUpdatedBy: CiipUserFilter
+
+  """A related `ciipUserByUpdatedBy` exists."""
+  ciipUserByUpdatedByExists: Boolean
+
   """Filter by the object’s `createdAt` field."""
   createdAt: DatetimeFilter
 
@@ -30662,6 +32240,12 @@ input NaicsCodeFilter {
 
   """Checks for any expressions in this list."""
   or: [NaicsCodeFilter!]
+
+  """Filter by the object’s `productNaicsCodesByNaicsCodeId` relation."""
+  productNaicsCodesByNaicsCodeId: NaicsCodeToManyProductNaicsCodeFilter
+
+  """Some related `productNaicsCodesByNaicsCodeId` exist."""
+  productNaicsCodesByNaicsCodeIdExist: Boolean
 
   """Filter by the object’s `rowId` field."""
   rowId: IntFilter
@@ -30769,6 +32353,26 @@ type NaicsCodeProductsByProductNaicsCodeNaicsCodeIdAndProductIdManyToManyEdge {
     """The method to use when ordering `ProductNaicsCode`."""
     orderBy: [ProductNaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
   ): ProductNaicsCodesConnection!
+}
+
+"""
+A filter to be used against many `ProductNaicsCode` object types. All fields are combined with a logical ‘and.’
+"""
+input NaicsCodeToManyProductNaicsCodeFilter {
+  """
+  Every related `ProductNaicsCode` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  every: ProductNaicsCodeFilter
+
+  """
+  No related `ProductNaicsCode` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  none: ProductNaicsCodeFilter
+
+  """
+  Some related `ProductNaicsCode` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  some: ProductNaicsCodeFilter
 }
 
 """A connection to a list of `NaicsCode` values."""
@@ -31319,11 +32923,33 @@ input OrganisationFilter {
   """Checks for all expressions in this list."""
   and: [OrganisationFilter!]
 
+  """
+  Filter by the object’s `ciipUserOrganisationsByOrganisationId` relation.
+  """
+  ciipUserOrganisationsByOrganisationId: OrganisationToManyCiipUserOrganisationFilter
+
+  """Some related `ciipUserOrganisationsByOrganisationId` exist."""
+  ciipUserOrganisationsByOrganisationIdExist: Boolean
+
   """Filter by the object’s `craBusinessNumber` field."""
   craBusinessNumber: StringFilter
 
   """Filter by the object’s `duns` field."""
   duns: StringFilter
+
+  """Filter by the object’s `facilitiesByOrganisationId` relation."""
+  facilitiesByOrganisationId: OrganisationToManyFacilityFilter
+
+  """Some related `facilitiesByOrganisationId` exist."""
+  facilitiesByOrganisationIdExist: Boolean
+
+  """
+  Filter by the object’s `facilityApplicationsByOrganisationId` relation.
+  """
+  facilityApplicationsByOrganisationId: OrganisationToManyFacilityApplicationFilter
+
+  """Some related `facilityApplicationsByOrganisationId` exist."""
+  facilityApplicationsByOrganisationIdExist: Boolean
 
   """Negates the expression."""
   not: OrganisationFilter
@@ -31452,6 +33078,66 @@ input OrganisationPatch {
 
   """swrs report id from swrs"""
   swrsReportId: Int
+}
+
+"""
+A filter to be used against many `CiipUserOrganisation` object types. All fields are combined with a logical ‘and.’
+"""
+input OrganisationToManyCiipUserOrganisationFilter {
+  """
+  Every related `CiipUserOrganisation` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  every: CiipUserOrganisationFilter
+
+  """
+  No related `CiipUserOrganisation` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  none: CiipUserOrganisationFilter
+
+  """
+  Some related `CiipUserOrganisation` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  some: CiipUserOrganisationFilter
+}
+
+"""
+A filter to be used against many `FacilityApplication` object types. All fields are combined with a logical ‘and.’
+"""
+input OrganisationToManyFacilityApplicationFilter {
+  """
+  Every related `FacilityApplication` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  every: FacilityApplicationFilter
+
+  """
+  No related `FacilityApplication` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  none: FacilityApplicationFilter
+
+  """
+  Some related `FacilityApplication` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  some: FacilityApplicationFilter
+}
+
+"""
+A filter to be used against many `Facility` object types. All fields are combined with a logical ‘and.’
+"""
+input OrganisationToManyFacilityFilter {
+  """
+  Every related `Facility` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  every: FacilityFilter
+
+  """
+  No related `Facility` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  none: FacilityFilter
+
+  """
+  Some related `Facility` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  some: FacilityFilter
 }
 
 """A connection to a list of `Organisation` values."""
@@ -33242,6 +34928,30 @@ input ProductFilter {
   """Checks for all expressions in this list."""
   and: [ProductFilter!]
 
+  """Filter by the object’s `benchmarksByProductId` relation."""
+  benchmarksByProductId: ProductToManyBenchmarkFilter
+
+  """Some related `benchmarksByProductId` exist."""
+  benchmarksByProductIdExist: Boolean
+
+  """Filter by the object’s `ciipUserByCreatedBy` relation."""
+  ciipUserByCreatedBy: CiipUserFilter
+
+  """A related `ciipUserByCreatedBy` exists."""
+  ciipUserByCreatedByExists: Boolean
+
+  """Filter by the object’s `ciipUserByDeletedBy` relation."""
+  ciipUserByDeletedBy: CiipUserFilter
+
+  """A related `ciipUserByDeletedBy` exists."""
+  ciipUserByDeletedByExists: Boolean
+
+  """Filter by the object’s `ciipUserByUpdatedBy` relation."""
+  ciipUserByUpdatedBy: CiipUserFilter
+
+  """A related `ciipUserByUpdatedBy` exists."""
+  ciipUserByUpdatedByExists: Boolean
+
   """Filter by the object’s `createdAt` field."""
   createdAt: DatetimeFilter
 
@@ -33269,11 +34979,29 @@ input ProductFilter {
   """Filter by the object’s `isReadOnly` field."""
   isReadOnly: BooleanFilter
 
+  """Filter by the object’s `linkedProductsByLinkedProductId` relation."""
+  linkedProductsByLinkedProductId: ProductToManyLinkedProductFilter
+
+  """Some related `linkedProductsByLinkedProductId` exist."""
+  linkedProductsByLinkedProductIdExist: Boolean
+
+  """Filter by the object’s `linkedProductsByProductId` relation."""
+  linkedProductsByProductId: ProductToManyLinkedProductFilter
+
+  """Some related `linkedProductsByProductId` exist."""
+  linkedProductsByProductIdExist: Boolean
+
   """Negates the expression."""
   not: ProductFilter
 
   """Checks for any expressions in this list."""
   or: [ProductFilter!]
+
+  """Filter by the object’s `productNaicsCodesByProductId` relation."""
+  productNaicsCodesByProductId: ProductToManyProductNaicsCodeFilter
+
+  """Some related `productNaicsCodesByProductId` exist."""
+  productNaicsCodesByProductIdExist: Boolean
 
   """Filter by the object’s `productName` field."""
   productName: StringFilter
@@ -33504,6 +35232,24 @@ input ProductNaicsCodeFilter {
   """Checks for all expressions in this list."""
   and: [ProductNaicsCodeFilter!]
 
+  """Filter by the object’s `ciipUserByCreatedBy` relation."""
+  ciipUserByCreatedBy: CiipUserFilter
+
+  """A related `ciipUserByCreatedBy` exists."""
+  ciipUserByCreatedByExists: Boolean
+
+  """Filter by the object’s `ciipUserByDeletedBy` relation."""
+  ciipUserByDeletedBy: CiipUserFilter
+
+  """A related `ciipUserByDeletedBy` exists."""
+  ciipUserByDeletedByExists: Boolean
+
+  """Filter by the object’s `ciipUserByUpdatedBy` relation."""
+  ciipUserByUpdatedBy: CiipUserFilter
+
+  """A related `ciipUserByUpdatedBy` exists."""
+  ciipUserByUpdatedByExists: Boolean
+
   """Filter by the object’s `createdAt` field."""
   createdAt: DatetimeFilter
 
@@ -33519,6 +35265,9 @@ input ProductNaicsCodeFilter {
   """Filter by the object’s `isMandatory` field."""
   isMandatory: BooleanFilter
 
+  """Filter by the object’s `naicsCodeByNaicsCodeId` relation."""
+  naicsCodeByNaicsCodeId: NaicsCodeFilter
+
   """Filter by the object’s `naicsCodeId` field."""
   naicsCodeId: IntFilter
 
@@ -33527,6 +35276,9 @@ input ProductNaicsCodeFilter {
 
   """Checks for any expressions in this list."""
   or: [ProductNaicsCodeFilter!]
+
+  """Filter by the object’s `productByProductId` relation."""
+  productByProductId: ProductFilter
 
   """Filter by the object’s `productId` field."""
   productId: IntFilter
@@ -34034,6 +35786,66 @@ type ProductReportingYearsByBenchmarkProductIdAndStartReportingYearManyToManyEdg
 
   """The `ReportingYear` at the end of the edge."""
   node: ReportingYear
+}
+
+"""
+A filter to be used against many `Benchmark` object types. All fields are combined with a logical ‘and.’
+"""
+input ProductToManyBenchmarkFilter {
+  """
+  Every related `Benchmark` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  every: BenchmarkFilter
+
+  """
+  No related `Benchmark` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  none: BenchmarkFilter
+
+  """
+  Some related `Benchmark` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  some: BenchmarkFilter
+}
+
+"""
+A filter to be used against many `LinkedProduct` object types. All fields are combined with a logical ‘and.’
+"""
+input ProductToManyLinkedProductFilter {
+  """
+  Every related `LinkedProduct` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  every: LinkedProductFilter
+
+  """
+  No related `LinkedProduct` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  none: LinkedProductFilter
+
+  """
+  Some related `LinkedProduct` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  some: LinkedProductFilter
+}
+
+"""
+A filter to be used against many `ProductNaicsCode` object types. All fields are combined with a logical ‘and.’
+"""
+input ProductToManyProductNaicsCodeFilter {
+  """
+  Every related `ProductNaicsCode` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  every: ProductNaicsCodeFilter
+
+  """
+  No related `ProductNaicsCode` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  none: ProductNaicsCodeFilter
+
+  """
+  Some related `ProductNaicsCode` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  some: ProductNaicsCodeFilter
 }
 
 """A connection to a list of `ProductionFormDatum` values."""
@@ -36461,6 +38273,24 @@ input ReportingYearFilter {
   """Filter by the object’s `applicationOpenTime` field."""
   applicationOpenTime: DatetimeFilter
 
+  """Filter by the object’s `applicationsByReportingYear` relation."""
+  applicationsByReportingYear: ReportingYearToManyApplicationFilter
+
+  """Some related `applicationsByReportingYear` exist."""
+  applicationsByReportingYearExist: Boolean
+
+  """Filter by the object’s `benchmarksByEndReportingYear` relation."""
+  benchmarksByEndReportingYear: ReportingYearToManyBenchmarkFilter
+
+  """Some related `benchmarksByEndReportingYear` exist."""
+  benchmarksByEndReportingYearExist: Boolean
+
+  """Filter by the object’s `benchmarksByStartReportingYear` relation."""
+  benchmarksByStartReportingYear: ReportingYearToManyBenchmarkFilter
+
+  """Some related `benchmarksByStartReportingYear` exist."""
+  benchmarksByStartReportingYearExist: Boolean
+
   """Negates the expression."""
   not: ReportingYearFilter
 
@@ -36772,6 +38602,46 @@ type ReportingYearReportingYearsByBenchmarkStartReportingYearAndEndReportingYear
   node: ReportingYear
 }
 
+"""
+A filter to be used against many `Application` object types. All fields are combined with a logical ‘and.’
+"""
+input ReportingYearToManyApplicationFilter {
+  """
+  Every related `Application` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  every: ApplicationFilter
+
+  """
+  No related `Application` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  none: ApplicationFilter
+
+  """
+  Some related `Application` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  some: ApplicationFilter
+}
+
+"""
+A filter to be used against many `Benchmark` object types. All fields are combined with a logical ‘and.’
+"""
+input ReportingYearToManyBenchmarkFilter {
+  """
+  Every related `Benchmark` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  every: BenchmarkFilter
+
+  """
+  No related `Benchmark` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  none: BenchmarkFilter
+
+  """
+  Some related `Benchmark` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  some: BenchmarkFilter
+}
+
 """A connection to a list of `ReportingYear` values."""
 type ReportingYearsConnection {
   """
@@ -36920,8 +38790,31 @@ input ReviewCommentFilter {
   """Checks for all expressions in this list."""
   and: [ReviewCommentFilter!]
 
+  """
+  Filter by the object’s `applicationReviewStepByApplicationReviewStepId` relation.
+  """
+  applicationReviewStepByApplicationReviewStepId: ApplicationReviewStepFilter
+
   """Filter by the object’s `applicationReviewStepId` field."""
   applicationReviewStepId: IntFilter
+
+  """Filter by the object’s `ciipUserByCreatedBy` relation."""
+  ciipUserByCreatedBy: CiipUserFilter
+
+  """A related `ciipUserByCreatedBy` exists."""
+  ciipUserByCreatedByExists: Boolean
+
+  """Filter by the object’s `ciipUserByDeletedBy` relation."""
+  ciipUserByDeletedBy: CiipUserFilter
+
+  """A related `ciipUserByDeletedBy` exists."""
+  ciipUserByDeletedByExists: Boolean
+
+  """Filter by the object’s `ciipUserByUpdatedBy` relation."""
+  ciipUserByUpdatedBy: CiipUserFilter
+
+  """A related `ciipUserByUpdatedBy` exists."""
+  ciipUserByUpdatedByExists: Boolean
 
   """Filter by the object’s `commentType` field."""
   commentType: ReviewCommentTypeFilter
@@ -37407,6 +39300,14 @@ input ReviewStepFilter {
   """Checks for all expressions in this list."""
   and: [ReviewStepFilter!]
 
+  """
+  Filter by the object’s `applicationReviewStepsByReviewStepId` relation.
+  """
+  applicationReviewStepsByReviewStepId: ReviewStepToManyApplicationReviewStepFilter
+
+  """Some related `applicationReviewStepsByReviewStepId` exist."""
+  applicationReviewStepsByReviewStepIdExist: Boolean
+
   """Filter by the object’s `isActive` field."""
   isActive: BooleanFilter
 
@@ -37445,6 +39346,26 @@ input ReviewStepPatch {
 
   """Unique step_name to be included in during an application review"""
   stepName: String
+}
+
+"""
+A filter to be used against many `ApplicationReviewStep` object types. All fields are combined with a logical ‘and.’
+"""
+input ReviewStepToManyApplicationReviewStepFilter {
+  """
+  Every related `ApplicationReviewStep` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  every: ApplicationReviewStepFilter
+
+  """
+  No related `ApplicationReviewStep` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  none: ApplicationReviewStepFilter
+
+  """
+  Some related `ApplicationReviewStep` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  some: ApplicationReviewStepFilter
 }
 
 """A connection to a list of `ReviewStep` values."""
@@ -37616,6 +39537,69 @@ input StringFilter {
 
   """Starts with the specified string (case-insensitive)."""
   startsWithInsensitive: String
+}
+
+"""
+A filter to be used against String List fields. All fields are combined with a logical ‘and.’
+"""
+input StringListFilter {
+  """Any array item is equal to the specified value."""
+  anyEqualTo: String
+
+  """Any array item is greater than the specified value."""
+  anyGreaterThan: String
+
+  """Any array item is greater than or equal to the specified value."""
+  anyGreaterThanOrEqualTo: String
+
+  """Any array item is less than the specified value."""
+  anyLessThan: String
+
+  """Any array item is less than or equal to the specified value."""
+  anyLessThanOrEqualTo: String
+
+  """Any array item is not equal to the specified value."""
+  anyNotEqualTo: String
+
+  """Contained by the specified list of values."""
+  containedBy: [String]
+
+  """Contains the specified list of values."""
+  contains: [String]
+
+  """
+  Not equal to the specified value, treating null like an ordinary value.
+  """
+  distinctFrom: [String]
+
+  """Equal to the specified value."""
+  equalTo: [String]
+
+  """Greater than the specified value."""
+  greaterThan: [String]
+
+  """Greater than or equal to the specified value."""
+  greaterThanOrEqualTo: [String]
+
+  """
+  Is null (if `true` is specified) or is not null (if `false` is specified).
+  """
+  isNull: Boolean
+
+  """Less than the specified value."""
+  lessThan: [String]
+
+  """Less than or equal to the specified value."""
+  lessThanOrEqualTo: [String]
+
+  """Equal to the specified value, treating null like an ordinary value."""
+  notDistinctFrom: [String]
+
+  """Not equal to the specified value."""
+  notEqualTo: [String]
+
+  """Overlaps the specified list of values."""
+  overlaps: [String]
 }
 
 """
