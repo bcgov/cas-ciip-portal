@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.7.0](https://github.com/bcgov/cas-ciip-portal/compare/v2.6.0...v2.7.0) (2021-06-03)
+
+
+### Features
+
+* label the link for mandatory products in admin dash ([a5444db](https://github.com/bcgov/cas-ciip-portal/commit/a5444db6cab284c44261fbafe2b862cd47718131))
+
+
+### Bug Fixes
+
+* analyst-facing 'organisation' refs --> 'operation' ([b28f4f1](https://github.com/bcgov/cas-ciip-portal/commit/b28f4f18852a1198ecb98b04344bc6b7d6b8a6e7))
+* coalesce null fuel amounts to 0 & get units from ciip fuel table ([67139e3](https://github.com/bcgov/cas-ciip-portal/commit/67139e3b15157b4ba7e4cfc7af18ecc2174f4e3b))
+* deleted naics code products dont show up on the form ([cdceb85](https://github.com/bcgov/cas-ciip-portal/commit/cdceb8502311aa15b2c4308f5b0888e7b5ba9b4d))
+* do not fire trigger on submission of version 0 ([1ef9305](https://github.com/bcgov/cas-ciip-portal/commit/1ef930538321b95dcfe14def3f36d0511c0d4ed2))
+* facilities applications are ordered by operator and facility name ([8d067e7](https://github.com/bcgov/cas-ciip-portal/commit/8d067e70922f727ea50107e86443551f9436228f))
+* only fire trigger on change from draft to submitted ([3a4f140](https://github.com/bcgov/cas-ciip-portal/commit/3a4f14015e9be120b80615ba408e42ffa00fd6a4))
+* remove erroneously created review steps for legacy applications ([6b1b8c9](https://github.com/bcgov/cas-ciip-portal/commit/6b1b8c9077d30b75cc458261b5d0d438a2c81b69))
+* uncomment admin and analyst a11y tests ([0a0e4e9](https://github.com/bcgov/cas-ciip-portal/commit/0a0e4e9f0f5345cbd6e8f9c003a57df1b10c3063))
+
 ## [2.6.0](https://github.com/bcgov/cas-ciip-portal/compare/v2.4.0...v2.6.0) (2021-05-27)
 
 
