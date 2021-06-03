@@ -4,31 +4,42 @@ reset client_min_messages;
 
 begin;
 
-select plan(2);
+select plan(3);
 
 select has_function(
   'ggircs_portal', 'init_application_fuel_form_result', array['integer', 'integer'],
   'Function init_application_fuel_form_result should exist'
 );
 
-update swrs.fuel
-set fuel_units = E'string\nwith\nnewlines'
-where report_id = (
-  select report_id from ggircs_portal.facility where id = 1
+-- Test setup
+select test_helper.modify_triggers('disable');
+update swrs.fuel set annual_fuel_amount = null, fuel_units='asdf';
+update swrs.report set reporting_period_duration=2020;
+
+-- update form result with results from init function (so we can check the results in the ciip_fuel view)
+update ggircs_portal.form_result
+set form_result = (select * from ggircs_portal.init_application_fuel_form_result(1, 2020))
+where application_id=1
+and version_number=1
+and form_id=3;
+
+select results_eq(
+  $$
+    select fuel_units from ggircs_portal.ciip_fuel where application_id=1 and version_number=1 order by fuel_units desc limit 1
+  $$,
+  $$
+    select units from ggircs_portal.fuel
+    where id in (select fuel_id from ggircs_portal.ciip_fuel where application_id=1 and version_number=1)
+    order by units desc limit 1
+  $$,
+  'Fuel units were pulled from the ciip fuel table'
 );
 
-select lives_ok($$
-select ggircs_portal.init_application_fuel_form_result(
-  1, (
-    select reporting_period_duration
-    from swrs.report
-    where id = (
-      select report_id from ggircs_portal.facility where id = 1
-      )
-    )
+select is(
+  (select quantity from ggircs_portal.ciip_fuel where application_id=1 and version_number=1 limit 1),
+  0::numeric,
+  'Null annual_fuel_amount in swrs.fuel was coalesced to 0'
 );
-$$,
-'init_application_fuel_form_result can load strings with newlines into json objects');
 
 select finish();
 
