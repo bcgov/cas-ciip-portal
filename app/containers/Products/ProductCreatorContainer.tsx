@@ -1,6 +1,6 @@
 import React from 'react';
 import {createFragmentContainer, RelayProp} from 'react-relay';
-import JsonSchemaForm, {IChangeEvent} from '@rjsf/core';
+import RJSF, {IChangeEvent} from '@rjsf/core';
 import {Button, Card} from 'react-bootstrap';
 import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
 import FormArrayFieldTemplate from 'containers/Forms/FormArrayFieldTemplate';
@@ -10,7 +10,9 @@ import {CiipProductState} from 'createProductMutation.graphql';
 import {JSONSchema7} from 'json-schema';
 import productSchema from './product-schema.json';
 import HeaderWidget from 'components/HeaderWidget';
+import withPromiseLoading from 'lib/withPromiseLoading';
 
+const JsonSchemaForm = withPromiseLoading(RJSF, 'onSubmit', 'disabled');
 interface Props {
   relay: RelayProp;
   toggleShowCreateForm: (...args: any[]) => void;
