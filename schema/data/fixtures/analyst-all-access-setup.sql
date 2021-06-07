@@ -16,4 +16,8 @@ insert into ggircs_portal.application_revision_status(application_id, version_nu
 -- Add a naics code
 insert into ggircs_portal.naics_code(naics_code, ciip_sector, naics_description) values ('1234', 'sector', 'code description');
 
+alter table ggircs_portal.product disable trigger _protect_read_only_products;
+update ggircs_portal.product set is_ciip_product = true;
+alter table ggircs_portal.product enable trigger _protect_read_only_products;
+
 commit;
