@@ -10,9 +10,7 @@ const mutation = graphql`
   mutation updateProductMutation($input: UpdateProductInput!) {
     updateProduct(input: $input) {
       product {
-        id
-        productName
-        productState
+        ...ProductRowItemContainer_product
       }
     }
   }
