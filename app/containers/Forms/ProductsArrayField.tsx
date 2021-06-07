@@ -42,7 +42,18 @@ export const ProductsArrayFieldComponent: React.FunctionComponent<Props> = (
           units: productUnits,
           requiresEmissionAllocation,
           requiresProductAmount,
-          isEnergyProduct
+          isEnergyProduct,
+          productName,
+          productState,
+          isCiipProduct,
+          isReadOnly,
+          addPurchasedElectricityEmissions,
+          subtractExportedElectricityEmissions,
+          addPurchasedHeatEmissions,
+          subtractExportedHeatEmissions,
+          subtractGeneratedElectricityEmissions,
+          subtractGeneratedHeatEmissions,
+          addEmissionsFromEios
         } = edge.node.productByProductId;
         return {
           requiresEmissionAllocation,
@@ -50,7 +61,18 @@ export const ProductsArrayFieldComponent: React.FunctionComponent<Props> = (
           isEnergyProduct,
           productUnits,
           productRowId,
-          isMandatory: true
+          isMandatory: true,
+          productName,
+          productState,
+          isCiipProduct,
+          isReadOnly,
+          addPurchasedElectricityEmissions,
+          subtractExportedElectricityEmissions,
+          addPurchasedHeatEmissions,
+          subtractExportedHeatEmissions,
+          subtractGeneratedElectricityEmissions,
+          subtractGeneratedHeatEmissions,
+          addEmissionsFromEios
         };
       })
     );
@@ -83,11 +105,23 @@ export default createFragmentContainer(ProductsArrayFieldComponent, {
           node {
             id
             productByProductId {
+              id
               rowId
+              productName
+              productState
               units
               requiresEmissionAllocation
-              requiresProductAmount
               isEnergyProduct
+              isCiipProduct
+              isReadOnly
+              addPurchasedElectricityEmissions
+              subtractExportedElectricityEmissions
+              addPurchasedHeatEmissions
+              subtractExportedHeatEmissions
+              subtractGeneratedElectricityEmissions
+              subtractGeneratedHeatEmissions
+              addEmissionsFromEios
+              requiresProductAmount
             }
           }
         }
