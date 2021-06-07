@@ -198,9 +198,11 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
               <Dropdown.Item onClick={() => setProductModalShow(true)}>
                 Product details
               </Dropdown.Item>
-              <Dropdown.Item onClick={() => setBenchmarkModalShow(true)}>
-                Benchmark
-              </Dropdown.Item>
+              {product.isCiipProduct && (
+                <Dropdown.Item onClick={() => setBenchmarkModalShow(true)}>
+                  Benchmark
+                </Dropdown.Item>
+              )}
               <Dropdown.Item onClick={() => setLinkProductModalShow(true)}>
                 Linked products
               </Dropdown.Item>
