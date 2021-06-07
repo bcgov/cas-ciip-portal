@@ -171,4 +171,22 @@ describe('ProductList', () => {
       .first();
     expect(input.prop('disabled')).toBe(true);
   });
+
+  it('should not render the benchmark setting dropdown option when the product is not a ciip-benchmarked product', async () => {
+    const testProduct = {...product, isCiipProduct: false};
+    const r = mount(
+      <table>
+        <tbody>
+          <ProductRowItemComponent product={testProduct} query={query} />
+        </tbody>
+      </table>
+    );
+    r.find('DropdownToggle').simulate('click');
+    expect(
+      r.find('DropdownMenu DropdownItem').contains('Product details')
+    ).toBe(true);
+    expect(
+      r.find('DropdownMenu DropdownItem').at(1).contains('Benchmark')
+    ).toBe(false);
+  });
 });
