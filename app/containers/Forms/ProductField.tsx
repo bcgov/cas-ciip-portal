@@ -160,7 +160,12 @@ export default createFragmentContainer(ProductFieldComponent, {
   `,
   naicsCode: graphql`
     fragment ProductField_naicsCode on NaicsCode {
-      allowableProducts: productNaicsCodesByNaicsCodeId {
+      allowableProducts: productNaicsCodesByNaicsCodeId(
+        filter: {
+          deletedAt: {isNull: true}
+          productByProductId: {productState: {equalTo: PUBLISHED}}
+        }
+      ) {
         edges {
           node {
             productId
