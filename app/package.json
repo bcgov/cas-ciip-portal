@@ -88,8 +88,8 @@
     "@types/jest": "^25.2.1",
     "@types/react-relay": "^11.0.1",
     "@types/relay-runtime": "^11.0.0",
-    "@typescript-eslint/eslint-plugin": "^4.14.2",
-    "@typescript-eslint/parser": "^4.15.0",
+    "@typescript-eslint/eslint-plugin": "^4.26.1",
+    "@typescript-eslint/parser": "^4.26.1",
     "axe-core": "^4.1.4",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
@@ -147,6 +147,7 @@
     "**/trim-newlines": "4.0.1"
   },
   "jest": {
+    "testEnvironment": "jsdom",
     "testMatch": [
       "**/__tests__/**/*.[jt]s?(x)",
       "**/?(*.)+(spec|test).[jt]s?(x)"

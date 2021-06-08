@@ -10,128 +10,63 @@ Array [
       onChange={[Function]}
     />
   </div>,
-  <ForwardRef
-    bordered={true}
-    className="search-table"
-    hover={true}
-    striped={true}
+  <table
+    className="search-table table table-striped table-bordered table-hover"
   >
-    <table
-      className="search-table table table-striped table-bordered table-hover"
+    <thead
+      className="jsx-571785697"
     >
-      <thead
+      <tr
         className="jsx-571785697"
+      />
+      <tr
+        className="jsx-870174952"
+        onKeyDown={[Function]}
       >
-        <tr
-          className="jsx-571785697"
-        />
-        <tr
+        <td
           className="jsx-870174952"
-          onKeyDown={[Function]}
-        >
-          <td
-            className="jsx-870174952"
-          >
-            <div
-              className="jsx-870174952 flex"
-            >
-              <Button
-                active={false}
-                disabled={false}
-                onClick={[Function]}
-                variant="outline-secondary"
-              >
-                <button
-                  className="btn btn-outline-secondary"
-                  disabled={false}
-                  onClick={[Function]}
-                  type="button"
-                >
-                  Clear
-                </button>
-              </Button>
-              <Button
-                active={false}
-                disabled={false}
-                onClick={[Function]}
-                style={
-                  Object {
-                    "marginLeft": "5px",
-                  }
-                }
-                variant="primary"
-              >
-                <button
-                  className="btn btn-primary"
-                  disabled={false}
-                  onClick={[Function]}
-                  style={
-                    Object {
-                      "marginLeft": "5px",
-                    }
-                  }
-                  type="button"
-                >
-                  Apply
-                </button>
-              </Button>
-            </div>
-          </td>
-        </tr>
-      </thead>
-      <tbody />
-    </table>
-  </ForwardRef>,
-  <Col
-    md={
-      Object {
-        "offset": 3,
-        "span": 6,
-      }
-    }
-  >
-    <div
-      className="col-md-6 offset-md-3"
-    >
-      <Alert
-        closeLabel="Close alert"
-        id="no-search-results"
-        show={true}
-        transition={
-          Object {
-            "$$typeof": Symbol(react.forward_ref),
-            "defaultProps": Object {
-              "appear": false,
-              "in": false,
-              "mountOnEnter": false,
-              "timeout": 300,
-              "unmountOnExit": false,
-            },
-            "displayName": "Fade",
-            "render": [Function],
-          }
-        }
-        variant="secondary"
-      >
-        <Fade
-          appear={false}
-          id="no-search-results"
-          in={true}
-          mountOnEnter={false}
-          timeout={300}
-          unmountOnExit={true}
         >
           <div
-            className="fade alert alert-secondary show"
-            id="no-search-results"
-            role="alert"
+            className="jsx-870174952 flex"
           >
-            No matching results to show.
+            <button
+              className="btn btn-outline-secondary"
+              disabled={false}
+              onClick={[Function]}
+              type="button"
+            >
+              Clear
+            </button>
+            <button
+              className="btn btn-primary"
+              disabled={false}
+              onClick={[Function]}
+              style={
+                Object {
+                  "marginLeft": "5px",
+                }
+              }
+              type="button"
+            >
+              Apply
+            </button>
           </div>
-        </Fade>
-      </Alert>
+        </td>
+      </tr>
+    </thead>
+    <tbody />
+  </table>,
+  <div
+    className="col-md-6 offset-md-3"
+  >
+    <div
+      className="fade alert alert-secondary show"
+      id="no-search-results"
+      role="alert"
+    >
+      No matching results to show.
     </div>
-  </Col>,
+  </div>,
   "",
 ]
 `;

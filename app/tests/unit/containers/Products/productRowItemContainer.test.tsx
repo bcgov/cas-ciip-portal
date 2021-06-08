@@ -1,4 +1,5 @@
 import React from 'react';
+import {act} from 'react-dom/test-utils';
 import {shallow, mount} from 'enzyme';
 import {ProductRowItemComponent} from 'containers/Products/ProductRowItemContainer';
 
@@ -97,6 +98,7 @@ describe('ProductList', () => {
         </tbody>
       </table>
     );
+    act(() => {});
     r.find('DropdownToggle').simulate('click');
     r.find('DropdownMenu DropdownItem').at(0).simulate('click');
     const productModal = r
@@ -174,19 +176,30 @@ describe('ProductList', () => {
 
   it('should not render the benchmark setting dropdown option when the product is not a ciip-benchmarked product', async () => {
     const testProduct = {...product, isCiipProduct: false};
-    const r = mount(
-      <table>
-        <tbody>
-          <ProductRowItemComponent product={testProduct} query={query} />
-        </tbody>
-      </table>
-    );
-    r.find('DropdownToggle').simulate('click');
+
+    let rendered;
+
+    await act(async () => {
+      rendered = await mount(
+        <table>
+          <tbody>
+            <ProductRowItemComponent product={testProduct} query={query} />
+          </tbody>
+        </table>
+      );
+      await rendered.find('DropdownToggle').simulate('click');
+    });
+
     expect(
-      r.find('DropdownMenu DropdownItem').contains('Product details')
+      await rendered
+        .find('DropdownMenu DropdownItem')
+        .contains('Product details')
     ).toBe(true);
     expect(
-      r.find('DropdownMenu DropdownItem').at(1).contains('Benchmark')
+      await rendered
+        .find('DropdownMenu DropdownItem')
+        .at(1)
+        .contains('Benchmark')
     ).toBe(false);
   });
 });

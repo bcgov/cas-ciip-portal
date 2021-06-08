@@ -1,439 +1,233 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`The allowable products search component populates the search with all the products except the allowable ones 1`] = `
-<Card
-  body={false}
+<div
+  className="card"
 >
   <div
-    className="card"
+    className="bc-card-header card-header"
   >
-    <CardHeader
-      className="bc-card-header"
+    Add an Allowed Product
+  </div>
+  <div
+    className="card-body"
+  >
+    <div
+      className="row"
     >
       <div
-        className="bc-card-header card-header"
+        className="text-right mb-2 col"
       >
-        Add an Allowed Product
+        Is reporting this product required?
       </div>
-    </CardHeader>
-    <CardBody>
+    </div>
+    <div
+      className="row"
+    >
       <div
-        className="card-body"
+        className="col"
       >
-        <Row
-          noGutters={false}
-        >
+        Array [
           <div
-            className="row"
+            className="rbt"
+            style={
+              Object {
+                "outline": "none",
+                "position": "relative",
+              }
+            }
+            tabIndex={-1}
           >
-            <Col
-              className="text-right mb-2"
+            <div
+              style={
+                Object {
+                  "display": "flex",
+                  "flex": 1,
+                  "height": "100%",
+                  "position": "relative",
+                }
+              }
             >
-              <div
-                className="text-right mb-2 col"
-              >
-                Is reporting this product required?
-              </div>
-            </Col>
-          </div>
-        </Row>
-        <Row
-          noGutters={false}
-        >
-          <div
-            className="row"
-          >
-            <Col>
-              <div
-                className="col"
-              >
-                Array [
-                  <ForwardRef
-                    filterBy={[Function]}
-                    id="product-naics-search"
-                    inputProps={
-                      Object {
-                        "className": "typeahead-input",
-                        "id": "product-naics-search-typeahead",
-                      }
-                    }
-                    labelKey="name"
-                    onChange={[Function]}
-                    options={
-                      Array [
-                        Object {
-                          "id": 2,
-                          "name": "product_2",
-                        },
-                      ]
-                    }
-                    placeholder="Search Products ..."
-                    selected={Array []}
-                  >
-                    <div
-                      className="rbt"
-                      style={
-                        Object {
-                          "outline": "none",
-                          "position": "relative",
-                        }
-                      }
-                      tabIndex={-1}
-                    >
-                      <ForwardRef
-                        aria-autocomplete="both"
-                        aria-expanded={false}
-                        aria-haspopup="listbox"
-                        autoComplete="off"
-                        className="form-control rbt-input typeahead-input"
-                        id="product-naics-search-typeahead"
-                        onBlur={[Function]}
-                        onChange={[Function]}
-                        onClick={[Function]}
-                        onFocus={[Function]}
-                        onKeyDown={[Function]}
-                        placeholder="Search Products ..."
-                        role="combobox"
-                        type="text"
-                        value=""
-                      >
-                        <div
-                          style={
-                            Object {
-                              "display": "flex",
-                              "flex": 1,
-                              "height": "100%",
-                              "position": "relative",
-                            }
-                          }
-                        >
-                          <ForwardRef
-                            aria-autocomplete="both"
-                            aria-expanded={false}
-                            aria-haspopup="listbox"
-                            autoComplete="off"
-                            className="form-control rbt-input typeahead-input"
-                            id="product-naics-search-typeahead"
-                            onBlur={[Function]}
-                            onChange={[Function]}
-                            onClick={[Function]}
-                            onFocus={[Function]}
-                            onKeyDown={[Function]}
-                            placeholder="Search Products ..."
-                            role="combobox"
-                            type="text"
-                            value=""
-                          >
-                            <input
-                              aria-autocomplete="both"
-                              aria-expanded={false}
-                              aria-haspopup="listbox"
-                              autoComplete="off"
-                              className="rbt-input-main form-control rbt-input typeahead-input"
-                              id="product-naics-search-typeahead"
-                              onBlur={[Function]}
-                              onChange={[Function]}
-                              onClick={[Function]}
-                              onFocus={[Function]}
-                              onKeyDown={[Function]}
-                              placeholder="Search Products ..."
-                              role="combobox"
-                              type="text"
-                              value=""
-                            />
-                          </ForwardRef>
-                          <input
-                            aria-hidden={true}
-                            className="rbt-input-hint"
-                            readOnly={true}
-                            style={
-                              Object {
-                                "backgroundColor": "transparent",
-                                "borderColor": "transparent",
-                                "boxShadow": "none",
-                                "color": "rgba(0, 0, 0, 0.35)",
-                                "left": 0,
-                                "pointerEvents": "none",
-                                "position": "absolute",
-                                "top": 0,
-                                "width": "100%",
-                              }
-                            }
-                            tabIndex={-1}
-                            value=""
-                          />
-                        </div>
-                      </ForwardRef>
-                    </div>
-                  </ForwardRef>,
-                  "",
-                ]
-              </div>
-            </Col>
-            <Col
-              md="auto"
-            >
-              <div
-                className="col-md-auto"
-              >
-                <Button
-                  active={false}
-                  disabled={true}
-                  onClick={[Function]}
-                  variant="primary"
-                >
-                  <button
-                    className="btn btn-primary"
-                    disabled={true}
-                    onClick={[Function]}
-                    type="button"
-                  >
-                    Add as Mandatory
-                  </button>
-                </Button>
-                 
-                <Button
-                  active={false}
-                  disabled={true}
-                  onClick={[Function]}
-                  variant="secondary"
-                >
-                  <button
-                    className="btn btn-secondary"
-                    disabled={true}
-                    onClick={[Function]}
-                    type="button"
-                  >
-                    Add as Optional
-                  </button>
-                </Button>
-              </div>
-            </Col>
-          </div>
-        </Row>
+              <input
+                aria-autocomplete="both"
+                aria-expanded={false}
+                aria-haspopup="listbox"
+                autoComplete="off"
+                className="rbt-input-main form-control rbt-input typeahead-input"
+                id="product-naics-search-typeahead"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+                onKeyDown={[Function]}
+                placeholder="Search Products ..."
+                role="combobox"
+                type="text"
+                value=""
+              />
+              <input
+                aria-hidden={true}
+                className="rbt-input-hint"
+                readOnly={true}
+                style={
+                  Object {
+                    "backgroundColor": "transparent",
+                    "borderColor": "transparent",
+                    "boxShadow": "none",
+                    "color": "rgba(0, 0, 0, 0.35)",
+                    "left": 0,
+                    "pointerEvents": "none",
+                    "position": "absolute",
+                    "top": 0,
+                    "width": "100%",
+                  }
+                }
+                tabIndex={-1}
+                value=""
+              />
+            </div>
+          </div>,
+          "",
+        ]
       </div>
-    </CardBody>
+      <div
+        className="col-md-auto"
+      >
+        <button
+          className="btn btn-primary"
+          disabled={true}
+          onClick={[Function]}
+          type="button"
+        >
+          Add as Mandatory
+        </button>
+         
+        <button
+          className="btn btn-secondary"
+          disabled={true}
+          onClick={[Function]}
+          type="button"
+        >
+          Add as Optional
+        </button>
+      </div>
+    </div>
   </div>
-</Card>
+</div>
 `;
 
 exports[`The allowable products search component populates the search with all the products when there are no allowable products 1`] = `
-<Card
-  body={false}
+<div
+  className="card"
 >
   <div
-    className="card"
+    className="bc-card-header card-header"
   >
-    <CardHeader
-      className="bc-card-header"
+    Add an Allowed Product
+  </div>
+  <div
+    className="card-body"
+  >
+    <div
+      className="row"
     >
       <div
-        className="bc-card-header card-header"
+        className="text-right mb-2 col"
       >
-        Add an Allowed Product
+        Is reporting this product required?
       </div>
-    </CardHeader>
-    <CardBody>
+    </div>
+    <div
+      className="row"
+    >
       <div
-        className="card-body"
+        className="col"
       >
-        <Row
-          noGutters={false}
-        >
+        Array [
           <div
-            className="row"
+            className="rbt"
+            style={
+              Object {
+                "outline": "none",
+                "position": "relative",
+              }
+            }
+            tabIndex={-1}
           >
-            <Col
-              className="text-right mb-2"
+            <div
+              style={
+                Object {
+                  "display": "flex",
+                  "flex": 1,
+                  "height": "100%",
+                  "position": "relative",
+                }
+              }
             >
-              <div
-                className="text-right mb-2 col"
-              >
-                Is reporting this product required?
-              </div>
-            </Col>
-          </div>
-        </Row>
-        <Row
-          noGutters={false}
-        >
-          <div
-            className="row"
-          >
-            <Col>
-              <div
-                className="col"
-              >
-                Array [
-                  <ForwardRef
-                    filterBy={[Function]}
-                    id="product-naics-search"
-                    inputProps={
-                      Object {
-                        "className": "typeahead-input",
-                        "id": "product-naics-search-typeahead",
-                      }
-                    }
-                    labelKey="name"
-                    onChange={[Function]}
-                    options={
-                      Array [
-                        Object {
-                          "id": 123,
-                          "name": "product_1",
-                        },
-                        Object {
-                          "id": 456,
-                          "name": "product_2",
-                        },
-                      ]
-                    }
-                    placeholder="Search Products ..."
-                    selected={Array []}
-                  >
-                    <div
-                      className="rbt"
-                      style={
-                        Object {
-                          "outline": "none",
-                          "position": "relative",
-                        }
-                      }
-                      tabIndex={-1}
-                    >
-                      <ForwardRef
-                        aria-autocomplete="both"
-                        aria-expanded={false}
-                        aria-haspopup="listbox"
-                        autoComplete="off"
-                        className="form-control rbt-input typeahead-input"
-                        id="product-naics-search-typeahead"
-                        onBlur={[Function]}
-                        onChange={[Function]}
-                        onClick={[Function]}
-                        onFocus={[Function]}
-                        onKeyDown={[Function]}
-                        placeholder="Search Products ..."
-                        role="combobox"
-                        type="text"
-                        value=""
-                      >
-                        <div
-                          style={
-                            Object {
-                              "display": "flex",
-                              "flex": 1,
-                              "height": "100%",
-                              "position": "relative",
-                            }
-                          }
-                        >
-                          <ForwardRef
-                            aria-autocomplete="both"
-                            aria-expanded={false}
-                            aria-haspopup="listbox"
-                            autoComplete="off"
-                            className="form-control rbt-input typeahead-input"
-                            id="product-naics-search-typeahead"
-                            onBlur={[Function]}
-                            onChange={[Function]}
-                            onClick={[Function]}
-                            onFocus={[Function]}
-                            onKeyDown={[Function]}
-                            placeholder="Search Products ..."
-                            role="combobox"
-                            type="text"
-                            value=""
-                          >
-                            <input
-                              aria-autocomplete="both"
-                              aria-expanded={false}
-                              aria-haspopup="listbox"
-                              autoComplete="off"
-                              className="rbt-input-main form-control rbt-input typeahead-input"
-                              id="product-naics-search-typeahead"
-                              onBlur={[Function]}
-                              onChange={[Function]}
-                              onClick={[Function]}
-                              onFocus={[Function]}
-                              onKeyDown={[Function]}
-                              placeholder="Search Products ..."
-                              role="combobox"
-                              type="text"
-                              value=""
-                            />
-                          </ForwardRef>
-                          <input
-                            aria-hidden={true}
-                            className="rbt-input-hint"
-                            readOnly={true}
-                            style={
-                              Object {
-                                "backgroundColor": "transparent",
-                                "borderColor": "transparent",
-                                "boxShadow": "none",
-                                "color": "rgba(0, 0, 0, 0.35)",
-                                "left": 0,
-                                "pointerEvents": "none",
-                                "position": "absolute",
-                                "top": 0,
-                                "width": "100%",
-                              }
-                            }
-                            tabIndex={-1}
-                            value=""
-                          />
-                        </div>
-                      </ForwardRef>
-                    </div>
-                  </ForwardRef>,
-                  "",
-                ]
-              </div>
-            </Col>
-            <Col
-              md="auto"
-            >
-              <div
-                className="col-md-auto"
-              >
-                <Button
-                  active={false}
-                  disabled={true}
-                  onClick={[Function]}
-                  variant="primary"
-                >
-                  <button
-                    className="btn btn-primary"
-                    disabled={true}
-                    onClick={[Function]}
-                    type="button"
-                  >
-                    Add as Mandatory
-                  </button>
-                </Button>
-                 
-                <Button
-                  active={false}
-                  disabled={true}
-                  onClick={[Function]}
-                  variant="secondary"
-                >
-                  <button
-                    className="btn btn-secondary"
-                    disabled={true}
-                    onClick={[Function]}
-                    type="button"
-                  >
-                    Add as Optional
-                  </button>
-                </Button>
-              </div>
-            </Col>
-          </div>
-        </Row>
+              <input
+                aria-autocomplete="both"
+                aria-expanded={false}
+                aria-haspopup="listbox"
+                autoComplete="off"
+                className="rbt-input-main form-control rbt-input typeahead-input"
+                id="product-naics-search-typeahead"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+                onKeyDown={[Function]}
+                placeholder="Search Products ..."
+                role="combobox"
+                type="text"
+                value=""
+              />
+              <input
+                aria-hidden={true}
+                className="rbt-input-hint"
+                readOnly={true}
+                style={
+                  Object {
+                    "backgroundColor": "transparent",
+                    "borderColor": "transparent",
+                    "boxShadow": "none",
+                    "color": "rgba(0, 0, 0, 0.35)",
+                    "left": 0,
+                    "pointerEvents": "none",
+                    "position": "absolute",
+                    "top": 0,
+                    "width": "100%",
+                  }
+                }
+                tabIndex={-1}
+                value=""
+              />
+            </div>
+          </div>,
+          "",
+        ]
       </div>
-    </CardBody>
+      <div
+        className="col-md-auto"
+      >
+        <button
+          className="btn btn-primary"
+          disabled={true}
+          onClick={[Function]}
+          type="button"
+        >
+          Add as Mandatory
+        </button>
+         
+        <button
+          className="btn btn-secondary"
+          disabled={true}
+          onClick={[Function]}
+          type="button"
+        >
+          Add as Optional
+        </button>
+      </div>
+    </div>
   </div>
-</Card>
+</div>
 `;

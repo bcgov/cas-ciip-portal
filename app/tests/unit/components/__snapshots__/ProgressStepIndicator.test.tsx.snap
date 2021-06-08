@@ -4,27 +4,20 @@ exports[`The Progress Step Indicator Matches snapshot with 2/4 steps completed a
 <div
   className="jsx-1128701548 progressStepIndicator"
 >
-  <Row
-    className="mb-4"
-    noGutters={false}
+  <div
+    className="mb-4 row"
   >
     <div
-      className="mb-4 row"
+      className="col"
     >
-      <Col>
-        <div
-          className="col"
-        >
-          <h2
-            className="jsx-1128701548"
-            id="progressTitle"
-          >
-            This is a TEST TITLE
-          </h2>
-        </div>
-      </Col>
+      <h2
+        className="jsx-1128701548"
+        id="progressTitle"
+      >
+        This is a TEST TITLE
+      </h2>
     </div>
-  </Row>
+  </div>
   <div
     className="jsx-1128701548 progress ml-1 mr-1"
   >
@@ -124,54 +117,30 @@ exports[`The Progress Step Indicator Matches snapshot with 2/4 steps completed a
       "",
     ]
   </div>
-  <Row
-    noGutters={false}
+  <div
+    className="row"
   >
     <div
-      className="row"
+      className="stepDescription col"
     >
-      <Col
-        className="stepDescription"
-        key="description-99"
-      >
-        <div
-          className="stepDescription col"
-        >
-          test step 1
-        </div>
-      </Col>
-      <Col
-        className="stepDescription"
-        key="description-100"
-      >
-        <div
-          className="stepDescription col"
-        >
-          test step 2
-        </div>
-      </Col>
-      <Col
-        className="stepDescription"
-        key="description-110"
-      >
-        <div
-          className="stepDescription col"
-        >
-          test step 3
-        </div>
-      </Col>
-      <Col
-        className="stepDescription"
-        key="description-111"
-      >
-        <div
-          className="stepDescription col"
-        >
-          test step 3
-        </div>
-      </Col>
+      test step 1
     </div>
-  </Row>
+    <div
+      className="stepDescription col"
+    >
+      test step 2
+    </div>
+    <div
+      className="stepDescription col"
+    >
+      test step 3
+    </div>
+    <div
+      className="stepDescription col"
+    >
+      test step 3
+    </div>
+  </div>
 </div>
 `;
 
@@ -179,27 +148,20 @@ exports[`The Progress Step Indicator Matches snapshot with 3 steps and a title 1
 <div
   className="jsx-1128701548 progressStepIndicator"
 >
-  <Row
-    className="mb-4"
-    noGutters={false}
+  <div
+    className="mb-4 row"
   >
     <div
-      className="mb-4 row"
+      className="col"
     >
-      <Col>
-        <div
-          className="col"
-        >
-          <h2
-            className="jsx-1128701548"
-            id="progressTitle"
-          >
-            This is a TEST TITLE
-          </h2>
-        </div>
-      </Col>
+      <h2
+        className="jsx-1128701548"
+        id="progressTitle"
+      >
+        This is a TEST TITLE
+      </h2>
     </div>
-  </Row>
+  </div>
   <div
     className="jsx-1128701548 progress ml-1 mr-1"
   >
@@ -247,44 +209,25 @@ exports[`The Progress Step Indicator Matches snapshot with 3 steps and a title 1
       "",
     ]
   </div>
-  <Row
-    noGutters={false}
+  <div
+    className="row"
   >
     <div
-      className="row"
+      className="stepDescription col"
     >
-      <Col
-        className="stepDescription"
-        key="description-99"
-      >
-        <div
-          className="stepDescription col"
-        >
-          test step 1
-        </div>
-      </Col>
-      <Col
-        className="stepDescription"
-        key="description-100"
-      >
-        <div
-          className="stepDescription col"
-        >
-          test step 2
-        </div>
-      </Col>
-      <Col
-        className="stepDescription"
-        key="description-110"
-      >
-        <div
-          className="stepDescription col"
-        >
-          test step 3
-        </div>
-      </Col>
+      test step 1
     </div>
-  </Row>
+    <div
+      className="stepDescription col"
+    >
+      test step 2
+    </div>
+    <div
+      className="stepDescription col"
+    >
+      test step 3
+    </div>
+  </div>
 </div>
 `;
 
@@ -292,27 +235,20 @@ exports[`The Progress Step Indicator Matches snapshot with 4/4 steps completed a
 <div
   className="jsx-1128701548 progressStepIndicator"
 >
-  <Row
-    className="mb-4"
-    noGutters={false}
+  <div
+    className="mb-4 row"
   >
     <div
-      className="mb-4 row"
+      className="col"
     >
-      <Col>
-        <div
-          className="col"
-        >
-          <h2
-            className="jsx-1128701548"
-            id="progressTitle"
-          >
-            This is a TEST TITLE
-          </h2>
-        </div>
-      </Col>
+      <h2
+        className="jsx-1128701548"
+        id="progressTitle"
+      >
+        This is a TEST TITLE
+      </h2>
     </div>
-  </Row>
+  </div>
   <div
     className="jsx-1128701548 progress ml-1 mr-1"
   >
@@ -456,54 +392,30 @@ exports[`The Progress Step Indicator Matches snapshot with 4/4 steps completed a
       "",
     ]
   </div>
-  <Row
-    noGutters={false}
+  <div
+    className="row"
   >
     <div
-      className="row"
+      className="stepDescription col"
     >
-      <Col
-        className="stepDescription"
-        key="description-99"
-      >
-        <div
-          className="stepDescription col"
-        >
-          test step 1
-        </div>
-      </Col>
-      <Col
-        className="stepDescription"
-        key="description-100"
-      >
-        <div
-          className="stepDescription col"
-        >
-          test step 2
-        </div>
-      </Col>
-      <Col
-        className="stepDescription"
-        key="description-110"
-      >
-        <div
-          className="stepDescription col"
-        >
-          test step 3
-        </div>
-      </Col>
-      <Col
-        className="stepDescription"
-        key="description-111"
-      >
-        <div
-          className="stepDescription col"
-        >
-          test step 4
-        </div>
-      </Col>
+      test step 1
     </div>
-  </Row>
+    <div
+      className="stepDescription col"
+    >
+      test step 2
+    </div>
+    <div
+      className="stepDescription col"
+    >
+      test step 3
+    </div>
+    <div
+      className="stepDescription col"
+    >
+      test step 4
+    </div>
+  </div>
 </div>
 `;
 
@@ -533,12 +445,8 @@ exports[`The Progress Step Indicator Renders with no steps 1`] = `
   <div
     className="jsx-1128701548 d-flex flex-row justify-content-between mb-3"
   />
-  <Row
-    noGutters={false}
-  >
-    <div
-      className="row"
-    />
-  </Row>
+  <div
+    className="row"
+  />
 </div>
 `;

@@ -11,70 +11,14 @@ Array [
   >
     Operation not in the list?
   </p>,
-  <Button
-    active={false}
+  <button
+    className="btn btn-outline-primary"
     disabled={false}
     onClick={[Function]}
-    variant="outline-primary"
+    type="button"
   >
-    <button
-      className="btn btn-outline-primary"
-      disabled={false}
-      onClick={[Function]}
-      type="button"
-    >
-      Add Operation +
-    </button>
-  </Button>,
-  <Modal
-    animation={true}
-    aria-labelledby="add-new-operator"
-    autoFocus={true}
-    backdrop={true}
-    centered={true}
-    dialogAs={
-      Object {
-        "$$typeof": Symbol(react.forward_ref),
-        "displayName": "ModalDialog",
-        "render": [Function],
-      }
-    }
-    enforceFocus={true}
-    keyboard={true}
-    onHide={[Function]}
-    restoreFocus={true}
-    show={false}
-    size="lg"
-  >
-    <Modal
-      autoFocus={true}
-      backdrop={true}
-      backdropTransition={[Function]}
-      containerClassName="modal-open"
-      enforceFocus={true}
-      keyboard={true}
-      manager={
-        BootstrapModalManager {
-          "containers": Array [],
-          "data": Array [],
-          "handleContainerOverflow": true,
-          "hideSiblingNodes": true,
-          "modals": Array [],
-          "scrollbarSize": 0,
-        }
-      }
-      onEnter={[Function]}
-      onEntering={[Function]}
-      onEscapeKeyDown={[Function]}
-      onExit={[Function]}
-      onExited={[Function]}
-      onHide={[Function]}
-      renderBackdrop={[Function]}
-      renderDialog={[Function]}
-      restoreFocus={true}
-      show={false}
-      transition={[Function]}
-    />
-  </Modal>,
+    Add Operation +
+  </button>,
+  "",
 ]
 `;
