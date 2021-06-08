@@ -30,7 +30,7 @@ The purpose of this exercise is to enable a developer new to the project to get 
   - the script also attempts to install Postgres `--with-libxml` via asdf to include a database plugin for XML. Your system will need `libxml2` installed for this.
   - lastly, it installs `pip` dependencies that relate to `pre-commit`, which helps us run linters to keep things tidy.
   - troubleshooting: `make install_asdf_tools --dry-run` can be helpful to see what is being run.
- 
+
 - You may need to troubleshoot individual steps in `make install_asdf_tools` on your system; in that case, find this target in the [root `Makefile`](../Makefile) and run the steps individually.
 - `asdf reshim` should be run after asdf installations to update symlinks for the installed packages. Open a new terminal to use the shims.
 - Set the version of Postgres installed by asdf [as the global version](https://asdf-vm.com/#/core-manage-versions?id=set-current-version), necessary to prevent later problems installing Sqitch, our database migration tool.
