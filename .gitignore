@@ -6,3 +6,5 @@ log/
 app/cypress/screenshots
 app/cypress/support/authenticatedPages.json
 helm/**/charts
+app/.env.local
+app/sentry.properties

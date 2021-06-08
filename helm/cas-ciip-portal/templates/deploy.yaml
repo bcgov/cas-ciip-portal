@@ -67,6 +67,10 @@ spec:
             value: {{ .Values.sitewide_notice.content | quote }}
           - name: HOST
             value: http{{ if not .Values.route.insecure }}s{{ end }}://{{ .Values.route.host }}
+          - name: SENTRY_ENVIRONMENT
+            value: {{ include "cas-ciip-portal.namespaceSuffix" . }}
+          - name: SENTRY_RELEASE
+            value: {{ .Values.image.app.tag }}
           - name: NAMESPACE
             valueFrom:
               fieldRef:
