@@ -14,6 +14,7 @@ import RelayModernEnvironment from 'relay-runtime/lib/store/RelayModernEnvironme
 import LoadingSpinner from 'components/LoadingSpinner';
 import Organisation from './Organisation';
 import UserOrganisation from './UserOrganisation';
+import LoadingOnClickButton from 'components/helpers/LoadingOnClickButton';
 
 interface Props {
   query: Organisations_query;
@@ -51,9 +52,9 @@ export const OrganisationsComponent: React.FunctionComponent<Props> = (
   };
 
   const claimOrg = async (active) => {
+    await props.handleOrgConfirm(active, props.relay.environment);
     props.handleContextChange();
     props.handleInputChange('');
-    await props.handleOrgConfirm(active, props.relay.environment);
     props.handleOrgChange(null);
   };
 
@@ -129,13 +130,14 @@ export const OrganisationsComponent: React.FunctionComponent<Props> = (
                 <h4 style={{fontWeight: 300, margin: '15px 0'}}>
                   {props.orgInput}{' '}
                 </h4>
-                <Button
+                <LoadingOnClickButton
                   style={{marginRight: '15px'}}
                   variant="primary"
                   onClick={async () => claimOrg(false)}
+                  loadingText="Requesting..."
                 >
                   Request Access
-                </Button>
+                </LoadingOnClickButton>
                 <Button variant="danger" onClick={cancelClaim}>
                   Cancel
                 </Button>
