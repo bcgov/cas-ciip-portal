@@ -10,22 +10,14 @@ exports[`The filterable table headers component only renders elements that are s
       <td />
       <td />
       <td>
-        <FormControl
+        <input
           aria-label="Filter by test3"
+          className="form-control"
           name="test3"
           onChange={[Function]}
           placeholder="Search"
           value=""
-        >
-          <input
-            aria-label="Filter by test3"
-            className="form-control"
-            name="test3"
-            onChange={[Function]}
-            placeholder="Search"
-            value=""
-          />
-        </FormControl>
+        />
       </td>
       <td
         className="jsx-870174952"
@@ -33,23 +25,16 @@ exports[`The filterable table headers component only renders elements that are s
         <div
           className="jsx-870174952 flex"
         >
-          <Button
-            active={false}
+          <button
+            className="btn btn-outline-secondary"
             disabled={false}
             onClick={[Function]}
-            variant="outline-secondary"
+            type="button"
           >
-            <button
-              className="btn btn-outline-secondary"
-              disabled={false}
-              onClick={[Function]}
-              type="button"
-            >
-              Clear
-            </button>
-          </Button>
-          <Button
-            active={false}
+            Clear
+          </button>
+          <button
+            className="btn btn-primary"
             disabled={false}
             onClick={[Function]}
             style={
@@ -57,22 +42,10 @@ exports[`The filterable table headers component only renders elements that are s
                 "marginLeft": "5px",
               }
             }
-            variant="primary"
+            type="button"
           >
-            <button
-              className="btn btn-primary"
-              disabled={false}
-              onClick={[Function]}
-              style={
-                Object {
-                  "marginLeft": "5px",
-                }
-              }
-              type="button"
-            >
-              Apply
-            </button>
-          </Button>
+            Apply
+          </button>
         </div>
       </td>
     </tr>
@@ -88,40 +61,24 @@ exports[`The filterable table headers component renders as many td elements as s
       onKeyDown={[Function]}
     >
       <td>
-        <FormControl
+        <input
           aria-label="Filter by test"
+          className="form-control"
           name="test"
           onChange={[Function]}
           placeholder="Search"
           value="a"
-        >
-          <input
-            aria-label="Filter by test"
-            className="form-control"
-            name="test"
-            onChange={[Function]}
-            placeholder="Search"
-            value="a"
-          />
-        </FormControl>
+        />
       </td>
       <td>
-        <FormControl
+        <input
           aria-label="Filter by test2"
+          className="form-control"
           name="test2"
           onChange={[Function]}
           placeholder="Search"
           value="b"
-        >
-          <input
-            aria-label="Filter by test2"
-            className="form-control"
-            name="test2"
-            onChange={[Function]}
-            placeholder="Search"
-            value="b"
-          />
-        </FormControl>
+        />
       </td>
       <td
         className="jsx-870174952"
@@ -129,23 +86,16 @@ exports[`The filterable table headers component renders as many td elements as s
         <div
           className="jsx-870174952 flex"
         >
-          <Button
-            active={false}
+          <button
+            className="btn btn-outline-secondary"
             disabled={false}
             onClick={[Function]}
-            variant="outline-secondary"
+            type="button"
           >
-            <button
-              className="btn btn-outline-secondary"
-              disabled={false}
-              onClick={[Function]}
-              type="button"
-            >
-              Clear
-            </button>
-          </Button>
-          <Button
-            active={false}
+            Clear
+          </button>
+          <button
+            className="btn btn-primary"
             disabled={false}
             onClick={[Function]}
             style={
@@ -153,22 +103,10 @@ exports[`The filterable table headers component renders as many td elements as s
                 "marginLeft": "5px",
               }
             }
-            variant="primary"
+            type="button"
           >
-            <button
-              className="btn btn-primary"
-              disabled={false}
-              onClick={[Function]}
-              style={
-                Object {
-                  "marginLeft": "5px",
-                }
-              }
-              type="button"
-            >
-              Apply
-            </button>
-          </Button>
+            Apply
+          </button>
         </div>
       </td>
     </tr>
@@ -189,23 +127,16 @@ exports[`The filterable table headers component renders search and reset buttons
         <div
           className="jsx-870174952 flex"
         >
-          <Button
-            active={false}
+          <button
+            className="btn btn-outline-secondary"
             disabled={false}
             onClick={[Function]}
-            variant="outline-secondary"
+            type="button"
           >
-            <button
-              className="btn btn-outline-secondary"
-              disabled={false}
-              onClick={[Function]}
-              type="button"
-            >
-              Clear
-            </button>
-          </Button>
-          <Button
-            active={false}
+            Clear
+          </button>
+          <button
+            className="btn btn-primary"
             disabled={false}
             onClick={[Function]}
             style={
@@ -213,22 +144,10 @@ exports[`The filterable table headers component renders search and reset buttons
                 "marginLeft": "5px",
               }
             }
-            variant="primary"
+            type="button"
           >
-            <button
-              className="btn btn-primary"
-              disabled={false}
-              onClick={[Function]}
-              style={
-                Object {
-                  "marginLeft": "5px",
-                }
-              }
-              type="button"
-            >
-              Apply
-            </button>
-          </Button>
+            Apply
+          </button>
         </div>
       </td>
     </tr>

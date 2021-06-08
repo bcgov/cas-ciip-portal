@@ -6,89 +6,45 @@ Array [
     className="jsx-3751310415 scrollable"
     tabIndex={0}
   >
-    <ListGroup
-      variant="flush"
+    <div
+      className="list-group list-group-flush"
+      onKeyDown={[Function]}
     >
-      <ForwardRef
-        as="div"
-        className="list-group list-group-flush"
-        onSelect={[Function]}
+      <button
+        className="list-group-item list-group-item-action"
+        data-rb-event-key={null}
+        disabled={false}
+        onClick={[Function]}
+        onMouseEnter={[Function]}
       >
-        <div
-          className="list-group list-group-flush"
-          onKeyDown={[Function]}
+        description_1
+        <br
+          className="jsx-3751310415"
+        />
+        <b
+          className="jsx-3751310415"
         >
-          <ListGroupItem
-            action={true}
-            active={false}
-            disabled={false}
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-          >
-            <ForwardRef
-              as="button"
-              className="list-group-item list-group-item-action"
-              disabled={false}
-              eventKey={null}
-              onClick={[Function]}
-              onMouseEnter={[Function]}
-            >
-              <button
-                className="list-group-item list-group-item-action"
-                data-rb-event-key={null}
-                disabled={false}
-                onClick={[Function]}
-                onMouseEnter={[Function]}
-              >
-                description_1
-                <br
-                  className="jsx-3751310415"
-                />
-                <b
-                  className="jsx-3751310415"
-                >
-                  123ABC
-                </b>
-              </button>
-            </ForwardRef>
-          </ListGroupItem>
-          <ListGroupItem
-            action={true}
-            active={false}
-            disabled={false}
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-          >
-            <ForwardRef
-              as="button"
-              className="list-group-item list-group-item-action"
-              disabled={false}
-              eventKey={null}
-              onClick={[Function]}
-              onMouseEnter={[Function]}
-            >
-              <button
-                className="list-group-item list-group-item-action"
-                data-rb-event-key={null}
-                disabled={false}
-                onClick={[Function]}
-                onMouseEnter={[Function]}
-              >
-                some other description
-                <br
-                  className="jsx-3751310415"
-                />
-                <b
-                  className="jsx-3751310415"
-                >
-                  999999
-                </b>
-              </button>
-            </ForwardRef>
-          </ListGroupItem>
-        </div>
-      </ForwardRef>
-    </ListGroup>
+          123ABC
+        </b>
+      </button>
+      <button
+        className="list-group-item list-group-item-action"
+        data-rb-event-key={null}
+        disabled={false}
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+      >
+        some other description
+        <br
+          className="jsx-3751310415"
+        />
+        <b
+          className="jsx-3751310415"
+        >
+          999999
+        </b>
+      </button>
+    </div>
   </div>,
   "",
   "",

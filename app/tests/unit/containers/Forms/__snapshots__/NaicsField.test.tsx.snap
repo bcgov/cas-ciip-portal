@@ -57,44 +57,15 @@ Array [
       222222 - Typescript
     </option>
   </select>,
-  <Alert
-    className="mt-3 mb-0"
-    closeLabel="Close alert"
-    show={true}
-    transition={
-      Object {
-        "$$typeof": Symbol(react.forward_ref),
-        "defaultProps": Object {
-          "appear": false,
-          "in": false,
-          "mountOnEnter": false,
-          "timeout": 300,
-          "unmountOnExit": false,
-        },
-        "displayName": "Fade",
-        "render": [Function],
-      }
-    }
-    variant="danger"
+  <div
+    className="fade mt-3 mb-0 alert alert-danger show"
+    role="alert"
   >
-    <Fade
-      appear={false}
-      in={true}
-      mountOnEnter={false}
-      timeout={300}
-      unmountOnExit={true}
-    >
-      <div
-        className="fade mt-3 mb-0 alert alert-danger show"
-        role="alert"
-      >
-        <strong>
-          Warning:
-        </strong>
-         The naics code submitted to SWRS is not in the list of valid codes for this program. Please refer to the guidance documents and select an appropriate NAICS code.
-      </div>
-    </Fade>
-  </Alert>,
+    <strong>
+      Warning:
+    </strong>
+     The naics code submitted to SWRS is not in the list of valid codes for this program. Please refer to the guidance documents and select an appropriate NAICS code.
+  </div>,
 ]
 `;
 
