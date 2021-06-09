@@ -237,6 +237,9 @@ jobs:
           at: ~/
       - run:
           name: Compile for production
+          environment:
+            # required at compile-time for prerendering of 500 page
+            SUPPORT_EMAIL: ggircs@gov.bc.ca
           command: |
             source ~/.asdf/asdf.sh
             yarn build:relay # ensure relay modules are compiled from committed schema

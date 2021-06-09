@@ -46,7 +46,6 @@ export default class Index extends Component<Props> {
   render() {
     const {query} = this.props;
     const {session} = query || {};
-
     return (
       <DefaultLayout showSubheader={false} session={session}>
         <div className="row">
