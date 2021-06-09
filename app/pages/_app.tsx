@@ -5,13 +5,14 @@ import {NextRouter} from 'next/router';
 import {CiipPageComponent} from 'next-env';
 import {getRequest} from 'relay-runtime';
 import {createEnvironment} from 'lib/relay-environment';
-import ErrorBoundary from 'lib/error-boundary';
+import ErrorFallback from 'components/ErrorFallback';
 import LoadingSpinner from 'components/LoadingSpinner';
 import ToasterHelper from 'components/helpers/Toaster';
 import 'react-toastify/dist/ReactToastify.min.css';
 import PageRedirectHandler from 'components/PageRedirectHandler';
 import safeJsonParse from 'lib/safeJsonParse';
 import RelayModernEnvironment from 'relay-runtime/lib/store/RelayModernEnvironment';
+import * as Sentry from '@sentry/react';
 
 interface AppProps {
   pageProps: {
@@ -62,7 +63,7 @@ export default class App extends NextApp<AppProps> {
     const pageArgs = safeJsonParse(router.query.pageArgs as string);
 
     return (
-      <ErrorBoundary>
+      <Sentry.ErrorBoundary fallback={ErrorFallback}>
         <PageRedirectHandler
           environment={environment}
           pageComponent={Component}
@@ -114,7 +115,7 @@ export default class App extends NextApp<AppProps> {
           />
         </PageRedirectHandler>
         <ToasterHelper />
-      </ErrorBoundary>
+      </Sentry.ErrorBoundary>
     );
   }
 }
