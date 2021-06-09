@@ -9,5 +9,6 @@ const SENTRY_DSN = process.env.SENTRY_ENVIRONMENT
   : null;
 
 Sentry.init({
-  dsn: SENTRY_DSN
+  dsn: SENTRY_DSN,
+  environment: process.env.SENTRY_ENVIRONMENT
 });
