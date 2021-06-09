@@ -1,10 +1,14 @@
 import React, {useEffect, useState} from 'react';
 
-const withPromiseLoading = function higherOrderComponent<TProps>(
-  Component: React.ComponentClass<TProps> | React.FunctionComponent<TProps>,
-  asyncEventHandler: string,
-  isInFlightProp: string
-) {
+const withPromiseLoading = function higherOrderComponent<
+  TProps,
+  HandlerKey extends keyof TProps,
+  InFlightKey extends keyof TProps
+>(
+  Wrapped: React.ComponentClass<TProps> | React.FunctionComponent<TProps>,
+  asyncEventHandler: HandlerKey,
+  isInFlightProp: InFlightKey
+): (props: TProps) => JSX.Element {
   return (props: TProps) => {
     const [isLoading, setIsLoading] = useState(false);
 
@@ -22,7 +26,9 @@ const withPromiseLoading = function higherOrderComponent<TProps>(
       if (!isSubscribed) return;
       setIsLoading(true);
 
-      await props[asyncEventHandler](...args);
+      // We can only verify that the key exists on TProps,
+      // not the type of the property for that key
+      await (props[asyncEventHandler] as any)(...args);
 
       if (!isSubscribed) return;
       setIsLoading(false);
@@ -34,7 +40,7 @@ const withPromiseLoading = function higherOrderComponent<TProps>(
       [asyncEventHandler]: handleAsyncEvent
     };
 
-    return <Component {...childProps} />;
+    return <Wrapped {...childProps} />;
   };
 };
 
