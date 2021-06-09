@@ -144,58 +144,60 @@ export const FormComponent: React.FunctionComponent<Props> = ({
             </Col>
           </Row>
         </div>
-        <div style={{padding: '0 2em 2em 2em'}}>
-          {hasErrors && (
-            <div className="errors">Please correct the errors below.</div>
-          )}
-          <MissingProductsComponent formResult={formResult} query={query} />
-          <JsonSchemaForm
-            noHtml5Validate
-            validate={customValidation}
-            showErrorList={false}
-            ArrayFieldTemplate={FormArrayFieldTemplate}
-            FieldTemplate={FormFieldTemplate}
-            formContext={{query, ciipFormResult}}
-            formData={formResult}
-            fields={CUSTOM_FIELDS}
-            widgets={{SearchWidget: SearchDropdownWidget}}
-            customFormats={customFormats}
-            schema={schema}
-            uiSchema={uiSchema}
-            ObjectFieldTemplate={FormObjectFieldTemplate}
-            transformErrors={transformErrors}
-            onError={onError}
-            onSubmit={onComplete}
-            onChange={onValueChanged}
-          >
-            {showAllocationReminder && (
-              <Alert variant="info">
-                <Alert.Heading>Before you proceed:</Alert.Heading>
-                Please refer to the guidance documents to calculate the emission
-                allocations for each product or service, and ensure that you
-                report all the necessary product or services
-              </Alert>
+        <Row style={{padding: '0 2em 2em 2em'}}>
+          <Col md={12}>
+            {hasErrors && (
+              <div className="errors">Please correct the errors below.</div>
             )}
-            <Button size="lg" variant="primary" type="submit">
-              Save &amp; Continue
-            </Button>
-            <Link
-              passHref
-              href={{
-                pathname: '/reporter'
-              }}
+            <MissingProductsComponent formResult={formResult} query={query} />
+            <JsonSchemaForm
+              noHtml5Validate
+              validate={customValidation}
+              showErrorList={false}
+              ArrayFieldTemplate={FormArrayFieldTemplate}
+              FieldTemplate={FormFieldTemplate}
+              formContext={{query, ciipFormResult}}
+              formData={formResult}
+              fields={CUSTOM_FIELDS}
+              widgets={{SearchWidget: SearchDropdownWidget}}
+              customFormats={customFormats}
+              schema={schema}
+              uiSchema={uiSchema}
+              ObjectFieldTemplate={FormObjectFieldTemplate}
+              transformErrors={transformErrors}
+              onError={onError}
+              onSubmit={onComplete}
+              onChange={onValueChanged}
             >
-              <Button
-                variant="outline-secondary"
-                className="exit-button"
-                style={{background: 'white'}}
-                size="lg"
-              >
-                Save &amp; Exit
+              {showAllocationReminder && (
+                <Alert variant="info">
+                  <Alert.Heading>Before you proceed:</Alert.Heading>
+                  Please refer to the guidance documents to calculate the
+                  emission allocations for each product or service, and ensure
+                  that you report all the necessary product or services
+                </Alert>
+              )}
+              <Button size="lg" variant="primary" type="submit">
+                Save &amp; Continue
               </Button>
-            </Link>
-          </JsonSchemaForm>
-        </div>
+              <Link
+                passHref
+                href={{
+                  pathname: '/reporter'
+                }}
+              >
+                <Button
+                  variant="outline-secondary"
+                  className="exit-button"
+                  style={{background: 'white'}}
+                  size="lg"
+                >
+                  Save &amp; Exit
+                </Button>
+              </Link>
+            </JsonSchemaForm>
+          </Col>
+        </Row>
       </div>
       <style jsx global>
         {globalFormStyles}

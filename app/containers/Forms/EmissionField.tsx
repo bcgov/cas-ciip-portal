@@ -18,8 +18,8 @@ export const EmissionFieldComponent: React.FunctionComponent<FieldProps> = (
   };
 
   return (
-    <div className={hideZeroEmissions}>
-      <Col md={12} className="emission-toggle">
+    <Col md={12} className={hideZeroEmissions}>
+      <Col className="emission-toggle">
         <Button variant="outline-dark" size="sm" onClick={toggleZeroEmissions}>
           {hideZeroEmissions === ''
             ? 'Show gases with no reported emissions'
@@ -63,7 +63,7 @@ export const EmissionFieldComponent: React.FunctionComponent<FieldProps> = (
           }
         `}
       </style>
-    </div>
+    </Col>
   );
 };
 
