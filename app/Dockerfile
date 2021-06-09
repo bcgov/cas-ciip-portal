@@ -47,6 +47,9 @@ RUN chmod +x /usr/local/bin/dumb-init
 ENTRYPOINT ["dumb-init", "--", "./docker-entrypoint.sh"]
 
 ENV NODE_ENV=production
+# Needed for pre-rendering of 500 page
+ENV SUPPORT_EMAIL=ggircs@gov.bc.ca
+
 RUN PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=1 CYPRESS_INSTALL_BINARY=0 \
     yarn install --frozen-lockfile --production=false && \
     yarn build:relay && \
