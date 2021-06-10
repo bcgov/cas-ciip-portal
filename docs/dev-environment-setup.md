@@ -21,15 +21,21 @@ The purpose of this exercise is to enable a developer new to the project to get 
 
 - [Install asdf](https://asdf-vm.com/#/core-manage-asdf) using your system's package manager & follow instructions to add it to your shell.
 - From the project root, run `make install_asdf_tools`, which installs the [additional asdf plugins](https://asdf-vm.com/#/plugins-all) needed to manage the various tools in [`.tool-versions`](../.tool-versions).
+  - Later versions of gpg might [run into this issue](https://github.com/asdf-vm/asdf-nodejs/issues/192)
+  ```
+  gpg: keyserver receive failed: Network is unreachable
+  gpg: keyserver receive failed: No keyserver available
+  ```
   - this script also [imports the Node.js release team's OpenPGP keys](https://xscode.com/asdf-vm/asdf-nodejs) for checksum verification.
   - the script also attempts to install Postgres `--with-libxml` via asdf to include a database plugin for XML. Your system will need `libxml2` installed for this.
   - lastly, it installs `pip` dependencies that relate to `pre-commit`, which helps us run linters to keep things tidy.
-  - you can verify pre-commit works by running: `pre-commit run --all-files` from the project root.
   - troubleshooting: `make install_asdf_tools --dry-run` can be helpful to see what is being run.
+
 - You may need to troubleshoot individual steps in `make install_asdf_tools` on your system; in that case, find this target in the [root `Makefile`](../Makefile) and run the steps individually.
-- `asdf reshim` should be run after asdf installations to update symlinks for the installed packages.
+- `asdf reshim` should be run after asdf installations to update symlinks for the installed packages. Open a new terminal to use the shims.
 - Set the version of Postgres installed by asdf [as the global version](https://asdf-vm.com/#/core-manage-versions?id=set-current-version), necessary to prevent later problems installing Sqitch, our database migration tool.
 - `psql --version` should verify the installed version of Postgres.
+- you can verify pre-commit works by running: `pre-commit run --all-files` from the project root.
 - [Yarn](https://yarnpkg.com/) is used as the Javascript package manager, and was installed in this step by asdf from the [`.tool-versions`](../.tool-versions). All `yarn` commands must be run from the same directory as the `package.json` (within `app/`).
 
 **If you're on Linux**, you can now skip to [Step 4](#4-set-up-a-working-perl-5-environment).
@@ -130,6 +136,36 @@ Although Perl is not specifically used in this project, our database migration t
     - the database unit test runner, [pgTAP](https://pgtap.org/)
   - By default, cpanm runs each package's tests after installation, which can be quite time-consuming. For this reason, the `make install_perl_tools` script uses `cpanm --notest` to skip tests while installing.
   - If successful, the `post_install_check` target that is run as part of `make install_perl_tools` should output the installed version of Sqitch.
+
+  ### More manual MacOS Perl option with Perlbrew
+
+  [Perlbrew](https://perlbrew.pl/)
+
+
+  ```
+  perlbrew init
+
+  # Find the perl you want
+  perlbrew available
+
+  perlbrew install 5.35.0
+  perlbrew switch 5.35.0
+
+
+  make sure you're using the perlbrew version you expect
+
+  ex: `which perl`
+  /Users/naomiaro/perl5/perlbrew/perls/perl-5.35.0/bin/perl
+
+
+  # Install CPAN modules
+  perlbrew install-cpanm
+
+  # From the project root
+  cd schema
+  cpanm --installdeps .
+  ```
+
 
 - **Troubleshooting**:
 
