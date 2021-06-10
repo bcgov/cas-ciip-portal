@@ -27,7 +27,8 @@ module.exports = withSentryConfig(
       ENABLE_ANALYTICS: process.env.ENABLE_ANALYTICS,
       SITEWIDE_NOTICE: process.env.SITEWIDE_NOTICE,
       ENABLE_DB_MOCKS: process.env.ENABLE_DB_MOCKS,
-      SENTRY_ENVIRONMENT: process.env.SENTRY_ENVIRONMENT
+      SENTRY_ENVIRONMENT: process.env.SENTRY_ENVIRONMENT,
+      SENTRY_RELEASE: process.env.SENTRY_RELEASE
     }
   },
   {
