@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.8.0](https://github.com/bcgov/cas-ciip-portal/compare/v2.7.0...v2.8.0) (2021-06-10)
+
+
+### Features
+
+* add @sentry/nextjs support ([db3cef2](https://github.com/bcgov/cas-ciip-portal/commit/db3cef2edda19fe88577f8b115498ef228bf4322))
+* send server-side errors to sentry ([ea3858e](https://github.com/bcgov/cas-ciip-portal/commit/ea3858e186baa85ec08c92bc7197fcd608f7dc06))
+
+
+### Bug Fixes
+
+* add missing product fields to mandatory update mutation ([521662b](https://github.com/bcgov/cas-ciip-portal/commit/521662bf09d3370b4848790984dc09a65b6410d0))
+* form width matches page regardless of content ([7a8b8cd](https://github.com/bcgov/cas-ciip-portal/commit/7a8b8cdf6ed9d2e6e17d8a205b50fdecbcc370ba))
+* hide benchmark setting option if isCiipProduct=false ([4dee245](https://github.com/bcgov/cas-ciip-portal/commit/4dee245da2c2918ca40c0cb54ed9959730912d74))
+* mandatory products only populate on non-deleted associations ([1c7823e](https://github.com/bcgov/cas-ciip-portal/commit/1c7823e0ad549d16e26cb87bf756925771819796))
+* provide SUPPORT_EMAIL at compile time for 500 page prerendering ([ad0a00d](https://github.com/bcgov/cas-ciip-portal/commit/ad0a00d758f90beb10755d5b2b2b35520c6d91e4))
+
 ## [2.7.0](https://github.com/bcgov/cas-ciip-portal/compare/v2.6.0...v2.7.0) (2021-06-03)
 
 
