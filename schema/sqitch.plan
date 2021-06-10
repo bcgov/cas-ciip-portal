@@ -355,3 +355,4 @@ queries/facility_application_by_reporting_year [queries/facility_application_by_
 trigger_functions/ensure_window_open_submit_application_status [trigger_functions/ensure_window_open_submit_application_status@v2.6.0] 2021-05-28T17:01:41Z Dylan Leard <dylan@button.is> # Migration: only fire trigger on change from draft to submitted
 swrs_functions/init_application_fuel_form_result [swrs_functions/init_application_fuel_form_result@v2.6.0] 2021-06-02T17:16:07Z Dylan Leard <dylan@button.is> # Migration: get fuel_units from ciip fuel table & coalesce quantity with 0
 @v2.7.0 2021-06-03T19:08:36Z Dylan Leard <dylan@button.is> # release v2.7.0
+@v2.8.0 2021-06-10T16:30:56Z Dylan Leard <dylan@button.is> # release v2.8.0
