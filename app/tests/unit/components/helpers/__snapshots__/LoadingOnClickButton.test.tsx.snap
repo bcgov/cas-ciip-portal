@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`the loading on click button renders its children in its normal state 1`] = `
+<button
+  className="btn btn-primary"
+  disabled={false}
+  onClick={[Function]}
+  type="button"
+>
+  test text
+</button>
+`;
+
+exports[`the loading on click button renders the loading text when onclick has been clicked 1`] = `
+<button
+  className="btn btn-primary"
+  disabled={true}
+  onClick={[Function]}
+  type="button"
+>
+  loading
+</button>
+`;

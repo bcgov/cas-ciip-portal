@@ -1,48 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`OverrideJustification Should allow the user to edit a justification if one is currently active 1`] = `
-<Fragment>
-  <Alert
-    closeLabel="Close alert"
-    show={true}
-    transition={
-      Object {
-        "$$typeof": Symbol(react.forward_ref),
-        "defaultProps": Object {
-          "appear": false,
-          "in": false,
-          "mountOnEnter": false,
-          "timeout": 300,
-          "unmountOnExit": false,
-        },
-        "displayName": "Fade",
-        "render": [Function],
-      }
-    }
-    variant="danger"
+Array [
+  <div
+    className="fade alert alert-danger show"
+    role="alert"
   >
     <strong>
       Error Validation Override Active
     </strong>
-  </Alert>
-  <Alert
-    closeLabel="Close alert"
-    show={true}
-    transition={
-      Object {
-        "$$typeof": Symbol(react.forward_ref),
-        "defaultProps": Object {
-          "appear": false,
-          "in": false,
-          "mountOnEnter": false,
-          "timeout": 300,
-          "unmountOnExit": false,
-        },
-        "displayName": "Fade",
-        "render": [Function],
-      }
-    }
-    variant="secondary"
+  </div>,
+  <div
+    className="fade alert alert-secondary show"
+    role="alert"
   >
     <p>
       <strong>
@@ -57,8 +27,8 @@ exports[`OverrideJustification Should allow the user to edit a justification if 
     <p>
       bad stuff
     </p>
-    <Button
-      active={false}
+    <button
+      className="btn btn-secondary"
       disabled={false}
       onClick={[Function]}
       style={
@@ -66,44 +36,31 @@ exports[`OverrideJustification Should allow the user to edit a justification if 
           "marginRight": "5px",
         }
       }
-      variant="secondary"
+      type="button"
     >
       Edit Justification
-    </Button>
-    <Button
-      active={false}
+    </button>
+    <button
+      className="btn btn-danger"
       disabled={false}
       onClick={[Function]}
-      variant="danger"
+      type="button"
     >
       Delete Override
-    </Button>
-  </Alert>
-</Fragment>
+    </button>
+  </div>,
+]
 `;
 
 exports[`OverrideJustification Should allow the user to save a justification if one is not currently active 1`] = `
-<Fragment>
-  <Alert
-    closeLabel="Close alert"
-    show={true}
-    transition={
-      Object {
-        "$$typeof": Symbol(react.forward_ref),
-        "defaultProps": Object {
-          "appear": false,
-          "in": false,
-          "mountOnEnter": false,
-          "timeout": 300,
-          "unmountOnExit": false,
-        },
-        "displayName": "Fade",
-        "render": [Function],
-      }
-    }
-    variant="danger"
+Array [
+  <div
+    className="fade alert alert-danger show"
+    role="alert"
   >
-    <Accordion>
+    <div
+      className="accordion"
+    >
       <p
         className="jsx-905902600"
       >
@@ -117,112 +74,76 @@ exports[`OverrideJustification Should allow the user to save a justification if 
         className="jsx-905902600 override-accordion"
       >
         Please correct the errors shown below before submitting. Alternatively, you may provide justification to override this and submit without corrections. Your justification will be reviewed by CAS and may cause a delay in processing your application.
-        <ForwardRef
-          as={
-            Object {
-              "$$typeof": Symbol(react.forward_ref),
-              "defaultProps": Object {
-                "active": false,
-                "disabled": false,
-                "variant": "primary",
-              },
-              "displayName": "Button",
-              "render": [Function],
-            }
-          }
-          eventKey="0"
+        <button
+          className="btn btn-secondary"
+          disabled={false}
           onClick={[Function]}
-          variant="secondary"
+          type="button"
         >
           Override and Justify
-          <FontAwesomeIcon
-            border={false}
-            className=""
-            fixedWidth={false}
-            flip={null}
-            icon={
-              Object {
-                "icon": Array [
-                  320,
-                  512,
-                  Array [],
-                  "f0d7",
-                  "M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z",
-                ],
-                "iconName": "caret-down",
-                "prefix": "fas",
-              }
-            }
-            inverse={false}
-            listItem={false}
-            mask={null}
-            pull={null}
-            pulse={false}
-            rotation={null}
-            size={null}
-            spin={false}
+          <svg
+            aria-hidden="true"
+            className="svg-inline--fa fa-caret-down fa-w-10 "
+            data-icon="caret-down"
+            data-prefix="fas"
+            focusable="false"
+            role="img"
             style={
               Object {
                 "marginLeft": "0.75em",
               }
             }
-            swapOpacity={false}
-            symbol={false}
-            title=""
-            transform={null}
-          />
-        </ForwardRef>
+            viewBox="0 0 320 512"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
+              fill="currentColor"
+              style={Object {}}
+            />
+          </svg>
+        </button>
       </div>
-      <AccordionCollapse
-        eventKey="0"
-        in={false}
+      <div
+        aria-expanded={null}
+        className="collapse"
       >
-        <Form
-          inline={false}
+        <form
+          className=""
         >
           <h4
             className="jsx-905902600"
           >
             Override Form Validation
           </h4>
-          <FormGroup
-            controlId="overrideJustification"
+          <div
+            className="form-group"
           >
-            <FormLabel
-              column={false}
-              srOnly={false}
+            <label
+              className="form-label"
+              htmlFor="overrideJustification"
             >
               Justification for incomplete form:
-            </FormLabel>
-            <FormControl
-              as="textarea"
+            </label>
+            <textarea
+              className="form-control"
+              id="overrideJustification"
               onChange={[Function]}
               rows={4}
               value=""
             />
-          </FormGroup>
-          <Button
-            active={false}
+          </div>
+          <button
+            className="btn btn-success"
             disabled={false}
             onClick={[Function]}
-            variant="success"
+            type="button"
           >
             Save
-          </Button>
-          <ForwardRef
-            as={
-              Object {
-                "$$typeof": Symbol(react.forward_ref),
-                "defaultProps": Object {
-                  "active": false,
-                  "disabled": false,
-                  "variant": "primary",
-                },
-                "displayName": "Button",
-                "render": [Function],
-              }
-            }
-            eventKey="0"
+          </button>
+          <button
+            className="btn btn-light"
+            disabled={false}
             onClick={[Function]}
             style={
               Object {
@@ -230,21 +151,17 @@ exports[`OverrideJustification Should allow the user to save a justification if 
                 "marginLeft": "1em",
               }
             }
-            variant="light"
+            type="button"
           >
             Cancel
-          </ForwardRef>
-        </Form>
+          </button>
+        </form>
         <p
           className="jsx-905902600 justification-text"
         />
-      </AccordionCollapse>
-    </Accordion>
-  </Alert>
-  <JSXStyle
-    id="905902600"
-  >
-    .override-accordion.jsx-905902600{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-box-pack:end;-webkit-justify-content:flex-end;-ms-flex-pack:end;justify-content:flex-end;}.justification-text.jsx-905902600{color:red;}
-  </JSXStyle>
-</Fragment>
+      </div>
+    </div>
+  </div>,
+  "",
+]
 `;
