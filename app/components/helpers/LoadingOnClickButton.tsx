@@ -12,12 +12,15 @@ interface Props extends ButtonProps {
   loadingText?: string;
 }
 
-const LoadinOnClickButton: React.FunctionComponent<Props> = (props) => {
+const LoadinOnClickButton: React.FunctionComponent<Props> = ({
+  loadingText,
+  ...buttonProps
+}) => {
   return (
-    <Button {...props}>
-      {props.loadingText !== undefined && props[IN_FLIGHT_PROPERTY]
-        ? props.loadingText
-        : props.children}
+    <Button {...buttonProps}>
+      {loadingText !== undefined && buttonProps[IN_FLIGHT_PROPERTY]
+        ? loadingText
+        : buttonProps.children}
     </Button>
   );
 };
