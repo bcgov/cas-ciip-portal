@@ -12,7 +12,7 @@ interface Props extends ButtonProps {
   loadingText?: string;
 }
 
-const LoadinOnClickButton: React.FunctionComponent<Props> = ({
+const LoadingOnClickButton: React.FunctionComponent<Props> = ({
   loadingText,
   ...buttonProps
 }) => {
@@ -26,7 +26,7 @@ const LoadinOnClickButton: React.FunctionComponent<Props> = ({
 };
 
 export default withPromiseLoading(
-  LoadinOnClickButton,
+  LoadingOnClickButton,
   ASYNC_HANDLER,
   IN_FLIGHT_PROPERTY
 );
