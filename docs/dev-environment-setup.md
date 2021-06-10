@@ -137,6 +137,36 @@ Although Perl is not specifically used in this project, our database migration t
   - By default, cpanm runs each package's tests after installation, which can be quite time-consuming. For this reason, the `make install_perl_tools` script uses `cpanm --notest` to skip tests while installing.
   - If successful, the `post_install_check` target that is run as part of `make install_perl_tools` should output the installed version of Sqitch.
 
+  ### More manual MacOS Perl option with Perlbrew
+
+  [Perlbrew](https://perlbrew.pl/)
+
+
+  ```
+  perlbrew init
+
+  # Find the perl you want
+  perlbrew available
+
+  perlbrew install 5.35.0
+  perlbrew switch 5.35.0
+
+
+  make sure you're using the perlbrew version you expect
+
+  ex: `which perl`
+  /Users/naomiaro/perl5/perlbrew/perls/perl-5.35.0/bin/perl
+
+
+  # Install CPAN modules
+  perlbrew install-cpanm
+
+  # From the project root
+  cd schema
+  cpanm --installdeps .
+  ```
+
+
 - **Troubleshooting**:
 
   - Ensure the version of Postgres installed by asdf in Step 2 was set [as the global version](https://asdf-vm.com/#/core-manage-versions?id=set-current-version) using `asdf global` _before_ installing Sqitch; otherwise, Sqitch may install a separate instance of Postgres.
