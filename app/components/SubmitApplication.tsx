@@ -1,11 +1,11 @@
 import React from 'react';
 import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
 import {useRouter} from 'next/router';
-import {Button} from 'react-bootstrap';
 import {CiipApplicationRevisionStatus} from 'createApplicationRevisionStatusMutation.graphql';
 import createApplicationRevisionStatusMutation from 'mutations/application/createApplicationRevisionStatusMutation';
 import {SubmitApplication_applicationRevision} from 'SubmitApplication_applicationRevision.graphql';
 import {getCompleteApplicationPageRoute} from 'routes';
+import LoadingOnClickButton from './helpers/LoadingOnClickButton';
 
 interface Props {
   applicationRevision: SubmitApplication_applicationRevision;
@@ -33,7 +33,7 @@ export const SubmitApplicationComponent: React.FunctionComponent<Props> = ({
     // TODO: check response
     await createApplicationRevisionStatusMutation(environment, variables);
 
-    router.push(
+    await router.push(
       getCompleteApplicationPageRoute(
         applicationRevision.applicationByApplicationId.id
       )
@@ -41,13 +41,14 @@ export const SubmitApplicationComponent: React.FunctionComponent<Props> = ({
   };
 
   return (
-    <Button
+    <LoadingOnClickButton
       className="float-right"
       style={{marginTop: '10px'}}
       onClick={submitApplication}
+      loadingText="Submitting Application..."
     >
       Submit Application
-    </Button>
+    </LoadingOnClickButton>
   );
 };
 

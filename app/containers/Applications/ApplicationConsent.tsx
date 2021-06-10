@@ -1,10 +1,10 @@
 import React from 'react';
 import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
 import {useRouter} from 'next/router';
-import {Button} from 'react-bootstrap';
 import updateApplicationRevisionMutation from 'mutations/application/updateApplicationRevisionMutation';
 import {ApplicationConsent_applicationRevision} from 'ApplicationConsent_applicationRevision.graphql';
 import {getApplicationPageRoute} from 'routes';
+import LoadingOnClickButton from 'components/helpers/LoadingOnClickButton';
 
 interface Props {
   applicationRevision: ApplicationConsent_applicationRevision;
@@ -31,15 +31,19 @@ export const ApplicationConsent: React.FunctionComponent<Props> = ({
 
     await updateApplicationRevisionMutation(environment, variables);
 
-    router.push(
+    await router.push(
       getApplicationPageRoute(applicationRevision.applicationByApplicationId.id)
     );
   };
 
   return (
-    <Button variant="primary" size="lg" onClick={handleContinueClick}>
+    <LoadingOnClickButton
+      variant="primary"
+      size="lg"
+      onClick={handleContinueClick}
+    >
       Consent and continue
-    </Button>
+    </LoadingOnClickButton>
   );
 };
 
