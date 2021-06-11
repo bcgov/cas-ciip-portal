@@ -36,11 +36,7 @@ export const OrganisationRequestsTableRowComponent: React.FunctionComponent<Prop
       }
     };
 
-    const response = await updateUserOrganisationMutation(
-      props.relay.environment,
-      variables
-    );
-    console.log(response);
+    await updateUserOrganisationMutation(props.relay.environment, variables);
   };
 
   return (
