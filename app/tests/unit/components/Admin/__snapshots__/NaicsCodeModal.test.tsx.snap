@@ -37,80 +37,84 @@ exports[`CreateNaicsCodeModal should match the snapshot with the NaicsCodeTable 
         <Form
           inline={false}
           noValidate={true}
-          onSubmit={[MockFunction]}
+          onSubmit={[Function]}
           validated={true}
         >
-          <Row
-            noGutters={false}
+          <fieldset
+            className="jsx-2506197536"
           >
-            <Col
-              md={4}
+            <Row
+              noGutters={false}
             >
-              <FormGroup
-                controlId="naicsCode"
+              <Col
+                md={4}
               >
-                <FormLabel
-                  column={false}
-                  srOnly={false}
+                <FormGroup
+                  controlId="naicsCode"
                 >
-                  NAICS Code
-                </FormLabel>
-                <FormControl
-                  required={true}
-                  type="text"
-                />
-                <Feedback
-                  type="invalid"
-                >
-                  NAICS Code is required
-                </Feedback>
-              </FormGroup>
-            </Col>
-            <Col
-              md={8}
-            >
-              <FormGroup
-                controlId="ciipSector"
+                  <FormLabel
+                    column={false}
+                    srOnly={false}
+                  >
+                    NAICS Code
+                  </FormLabel>
+                  <FormControl
+                    required={true}
+                    type="text"
+                  />
+                  <Feedback
+                    type="invalid"
+                  >
+                    NAICS Code is required
+                  </Feedback>
+                </FormGroup>
+              </Col>
+              <Col
+                md={8}
               >
-                <FormLabel
-                  column={false}
-                  srOnly={false}
+                <FormGroup
+                  controlId="ciipSector"
                 >
-                  CIIP Sector
-                </FormLabel>
-                <FormControl
-                  type="text"
-                />
-              </FormGroup>
-            </Col>
-          </Row>
-          <FormGroup
-            controlId="naicsDescription"
-          >
-            <FormLabel
-              column={false}
-              srOnly={false}
+                  <FormLabel
+                    column={false}
+                    srOnly={false}
+                  >
+                    CIIP Sector
+                  </FormLabel>
+                  <FormControl
+                    type="text"
+                  />
+                </FormGroup>
+              </Col>
+            </Row>
+            <FormGroup
+              controlId="naicsDescription"
             >
-              NAICS Description
-            </FormLabel>
-            <FormControl
-              required={true}
-              type="text"
-            />
-            <Feedback
-              type="invalid"
+              <FormLabel
+                column={false}
+                srOnly={false}
+              >
+                NAICS Description
+              </FormLabel>
+              <FormControl
+                required={true}
+                type="text"
+              />
+              <Feedback
+                type="invalid"
+              >
+                NAICS Description is required
+              </Feedback>
+            </FormGroup>
+            <Button
+              active={false}
+              disabled={false}
+              type="submit"
+              variant="primary"
             >
-              NAICS Description is required
-            </Feedback>
-          </FormGroup>
-          <Button
-            active={false}
-            disabled={false}
-            type="submit"
-            variant="primary"
-          >
-            Submit
-          </Button>
+              Submit
+            </Button>
+          </fieldset>
         </Form>
       </Container>
     </ModalBody>

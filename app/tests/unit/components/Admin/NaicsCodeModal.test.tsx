@@ -24,7 +24,11 @@ describe('CreateNaicsCodeModal', () => {
         onClose={jest.fn()}
       />
     );
-    renderer.find('Form').prop('onSubmit')({});
+    await renderer.find('Form').prop('onSubmit')({
+      stopPropagation: () => {},
+      preventDefault: () => {},
+      persist: () => {}
+    } as any);
     expect(handleSubmit).toBeCalledTimes(1);
   });
 });
