@@ -19,7 +19,6 @@ export const CreateNaicsCodeModal: React.FunctionComponent<Props> = ({
   disabled
 }) => {
   const submitForm: (e: React.SyntheticEvent<any>) => void = async (e) => {
-    console.log(e);
     e.stopPropagation();
     e.preventDefault();
     e.persist();

@@ -24,7 +24,7 @@ exports[`NaicsCodeTable should match the snapshot with the NaicsCodeTable contai
       New NAICS Code
     </Button>
   </div>
-  <WithPromiseLoadingWrapper
+  <WithPromiseLoading(CreateNaicsCodeModal)
     onClose={[Function]}
     onSubmit={[Function]}
     show={false}

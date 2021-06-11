@@ -87,14 +87,13 @@ exports[`CreateNaicsCodeModal should match the snapshot with the DeleteConfirmat
           }
         }
       >
-        <Button
-          active={false}
-          disabled={false}
+        <WithPromiseLoading(Button)
+          loadingText="Deleting..."
           onClick={[MockFunction]}
           variant="danger"
         >
           Confirm Delete
-        </Button>
+        </WithPromiseLoading(Button)>
       </Col>
       <Col
         md={

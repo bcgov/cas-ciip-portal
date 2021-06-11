@@ -36,16 +36,12 @@ exports[`NewReportingYearFormDialog Should match last accepted snapshot 1`] = `
       <Container
         fluid={false}
       >
-        <Form
-          ErrorList={[Function]}
+        <WithPromiseLoading(JsonSchemaForm)
           FieldTemplate={[Function]}
           ObjectFieldTemplate={[Function]}
-          disabled={false}
           formData={Object {}}
           liveOmit={true}
-          liveValidate={false}
           noHtml5Validate={true}
-          noValidate={false}
           omitExtraData={true}
           onSubmit={[Function]}
           schema={
@@ -122,7 +118,7 @@ exports[`NewReportingYearFormDialog Should match last accepted snapshot 1`] = `
           >
             Save Reporting Year
           </Button>
-        </Form>
+        </WithPromiseLoading(JsonSchemaForm)>
       </Container>
     </ModalBody>
   </Modal>

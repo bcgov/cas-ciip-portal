@@ -37,11 +37,9 @@ exports[`ReportingYearFormDialog Should match last accepted snapshot: no inputs 
       <Container
         fluid={false}
       >
-        <Form
-          ErrorList={[Function]}
+        <WithPromiseLoading(JsonSchemaForm)
           FieldTemplate={[Function]}
           ObjectFieldTemplate={[Function]}
-          disabled={false}
           formData={
             Object {
               "applicationCloseTime": "2026-03-01T00:00:00-08:00",
@@ -53,9 +51,7 @@ exports[`ReportingYearFormDialog Should match last accepted snapshot: no inputs 
             }
           }
           liveOmit={true}
-          liveValidate={false}
           noHtml5Validate={true}
-          noValidate={false}
           omitExtraData={true}
           onSubmit={[Function]}
           schema={
@@ -113,7 +109,7 @@ exports[`ReportingYearFormDialog Should match last accepted snapshot: no inputs 
           >
             Save Reporting Year
           </Button>
-        </Form>
+        </WithPromiseLoading(JsonSchemaForm)>
       </Container>
     </ModalBody>
   </Modal>
@@ -674,11 +670,9 @@ exports[`ReportingYearFormDialog Should match last accepted snapshot: some past 
       <Container
         fluid={false}
       >
-        <Form
-          ErrorList={[Function]}
+        <WithPromiseLoading(JsonSchemaForm)
           FieldTemplate={[Function]}
           ObjectFieldTemplate={[Function]}
-          disabled={false}
           formData={
             Object {
               "applicationCloseTime": "2030-12-30T13:49:54.191757-08:00",
@@ -690,9 +684,7 @@ exports[`ReportingYearFormDialog Should match last accepted snapshot: some past 
             }
           }
           liveOmit={true}
-          liveValidate={false}
           noHtml5Validate={true}
-          noValidate={false}
           omitExtraData={true}
           onSubmit={[Function]}
           schema={
@@ -750,7 +742,7 @@ exports[`ReportingYearFormDialog Should match last accepted snapshot: some past 
           >
             Save Reporting Year
           </Button>
-        </Form>
+        </WithPromiseLoading(JsonSchemaForm)>
       </Container>
     </ModalBody>
   </Modal>
