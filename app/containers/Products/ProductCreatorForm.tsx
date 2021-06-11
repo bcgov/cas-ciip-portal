@@ -4,9 +4,10 @@ import FormArrayFieldTemplate from 'containers/Forms/FormArrayFieldTemplate';
 import FormFieldTemplate from 'containers/Forms/FormFieldTemplate';
 import {JSONSchema7} from 'json-schema';
 import productSchema from './product-schema.json';
-import JsonSchemaForm, {IChangeEvent} from '@rjsf/core';
+import {IChangeEvent} from '@rjsf/core';
 import {Button} from 'react-bootstrap';
 import HeaderWidget from 'components/HeaderWidget';
+import LoadingOnSubmitForm from 'components/helpers/LoadingOnSubmitForm';
 
 interface Props {
   saveProduct: (e: IChangeEvent) => Promise<void>;
@@ -20,7 +21,7 @@ const ProductCreatorForm: React.FunctionComponent<Props> = ({
   toggleShowCreateForm
 }) => {
   return (
-    <JsonSchemaForm
+    <LoadingOnSubmitForm
       omitExtraData
       liveOmit
       widgets={{header: HeaderWidget}}
@@ -43,7 +44,7 @@ const ProductCreatorForm: React.FunctionComponent<Props> = ({
       >
         Close
       </Button>
-    </JsonSchemaForm>
+    </LoadingOnSubmitForm>
   );
 };
 
