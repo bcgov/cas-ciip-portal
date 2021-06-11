@@ -10,7 +10,7 @@ const withPromiseLoading = function higherOrderComponent<
   asyncEventHandler: HandlerKey,
   isInFlightProp: InFlightKey
 ): (props: TProps) => JSX.Element {
-  return (props: TProps) => {
+  return function WithPromiseLoadingWrapper(props: TProps) {
     const [isLoading, setIsLoading] = useState(false);
 
     let isSubscribed = true;
