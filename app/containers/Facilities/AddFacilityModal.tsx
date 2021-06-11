@@ -2,13 +2,14 @@ import React, {useState} from 'react';
 import {graphql, createFragmentContainer} from 'react-relay';
 import {AddFacilityModal_query} from 'AddFacilityModal_query.graphql';
 import {Button, Modal, Card} from 'react-bootstrap';
-import JsonSchemaForm, {IChangeEvent} from '@rjsf/core';
+import {IChangeEvent} from '@rjsf/core';
 import FormFieldTemplate from 'containers/Forms/FormFieldTemplate';
 import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
 import addFacilitySchema from 'components/facility/addFacilitySchema';
 import OrganisationRowIdField from './OrganisationRowIdField';
 import SearchDropdownWidget from 'components/Forms/SearchDropdownWidget';
 import NumberField from 'containers/Forms/NumberField';
+import JsonSchemaForm from 'components/helpers/LoadingOnSubmitForm';
 
 interface Props {
   query: AddFacilityModal_query;
@@ -50,9 +51,8 @@ const AddFacilityModal: React.FunctionComponent<Props> = (props) => {
         }
       }
     };
+    await onAddFacility(variables);
     setModalVisible(!isModalVisible);
-    console.log(variables);
-    onAddFacility(variables);
   };
 
   return (

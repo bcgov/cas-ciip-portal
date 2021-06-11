@@ -28,8 +28,8 @@ const AddOrganisationModal: React.FunctionComponent<Props> = (props) => {
         }
       }
     };
+    await onAddOrganisation(variables);
     setModalVisible(!isModalVisible);
-    onAddOrganisation(variables);
   };
 
   return (
