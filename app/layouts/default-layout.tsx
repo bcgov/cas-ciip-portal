@@ -45,7 +45,7 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
   });
 
   return (
-    <div className={`page-wrap ${fixedHeader ? 'has-fixed-header' : ''}`}>
+    <div id="page-wrap" className={`${fixedHeader ? 'has-fixed-header' : ''}`}>
       <Header
         fixed={fixedHeader}
         isLoggedIn={Boolean(session)}
@@ -61,12 +61,12 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
       </Header>
       <main>
         {title || titleControls ? (
-          <div className="page-title">
+          <div id="page-title">
             <Container className={width}>
               <Row>
                 {title && (
                   <Col>
-                    <div className="title-container">
+                    <div id="title-container">
                       <h1>{title}</h1>
                       {help && (
                         <Help
@@ -83,9 +83,9 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
           </div>
         ) : null}
 
-        <Container id="page-content" className={`content ${width}`}>
+        <div id="page-content" className={`container ${width}`}>
           {children}
-        </Container>
+        </div>
         {Boolean(session) && !disableHelpButton && (
           <HelpButton isInternalUser={isInternalUser} />
         )}
@@ -95,7 +95,7 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
       </Footer>
       <style jsx>
         {`
-          .page-wrap {
+          #page-wrap {
             display: flex;
             flex-direction: column;
             min-height: 100vh;
@@ -103,11 +103,28 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
           main {
             flex-grow: 1;
           }
-          .page-wrap.has-fixed-header main {
+          #page-wrap.has-fixed-header main {
             padding-top: 68px;
           }
-
-          .title-container {
+          #page-content {
+            padding-top: 50px;
+            flex: 1 0 auto;
+          }
+          @media screen and (min-width: 992px) {
+            #page-content {
+              padding-top: 60px;
+            }
+          }
+          #page-title {
+            background: #f5f5f5;
+            border-bottom: 1px solid #ccc;
+            padding: 30px 0 30px;
+          }
+          #page-title h1 {
+            font-size: 25px;
+            font-weight: 400;
+          }
+          #title-container {
             height: 100%;
             display: flex;
             flex-direction: column;
@@ -123,21 +140,8 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
           .btn-link {
             color: #0053b3;
           }
-          .content {
-            padding-top: 50px;
-            flex: 1 0 auto;
-          }
           .footer {
             flex-shrink: 0;
-          }
-          .page-title {
-            background: #f5f5f5;
-            border-bottom: 1px solid #ccc;
-            padding: 30px 0 30px;
-          }
-          .page-title h1 {
-            font-size: 25px;
-            font-weight: 400;
           }
           h3 {
             margin-bottom: 20px;
@@ -161,12 +165,6 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
           }
           .container.wide {
             max-width: 1600px;
-          }
-
-          @media screen and (min-width: 992px) {
-            #page-content {
-              padding-top: 60px;
-            }
           }
 
           /* BS overrides for purposes of accessibility: */

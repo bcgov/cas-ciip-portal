@@ -7,7 +7,7 @@ describe('the product naics code association page', () => {
 
   it('allows a user to add and delete a product for a naics code', () => {
     cy.visit('/admin/naics-products');
-    cy.get('.page-title').contains('Allowable Products by Industry (NAICS)');
+    cy.get('#page-title').contains('Allowable Products by Industry (NAICS)');
 
     // Testing initial state
     cy.get('.list-group').find('.list-group-item').should('have.length', 5);
