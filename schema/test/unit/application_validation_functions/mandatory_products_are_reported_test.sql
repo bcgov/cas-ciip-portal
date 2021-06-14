@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(5);
+select plan(6);
 
 select has_function(
   'ggircs_portal', 'mandatory_products_are_reported', array['ggircs_portal.application_revision'],
@@ -123,6 +123,20 @@ select is(
   ),
   false,
   'Function returns false if not all mandatory products have been reported'
+);
+
+update ggircs_portal.product_naics_code set deleted_at=now() where product_id=2;
+select is(
+  (
+    with record as (
+      select row(application_revision.*)::ggircs_portal.application_revision
+      from ggircs_portal.application_revision
+      where application_id=1 and version_number=1
+    )
+    select ggircs_portal.mandatory_products_are_reported((select * from record))
+  ),
+  true,
+  'Function returns true if the product_naics_code row is deleted (deleted_at is not null)'
 );
 
 select finish();
