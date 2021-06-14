@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.8.1](https://github.com/bcgov/cas-ciip-portal/compare/v2.8.0...v2.8.1) (2021-06-14)
+
+
+### Bug Fixes
+
+* mandatory products function ignores deleted product-naics relations ([af411eb](https://github.com/bcgov/cas-ciip-portal/commit/af411eb7dd91bbdd7c07560c08bcde7ff8f4d117))
+* only fire mandatory products validation on published products ([f6c4f5a](https://github.com/bcgov/cas-ciip-portal/commit/f6c4f5ae58e7e8abaf64fc69bd1de1f5c7fd7030))
+
 ## [2.8.0](https://github.com/bcgov/cas-ciip-portal/compare/v2.7.0...v2.8.0) (2021-06-10)
 
 
