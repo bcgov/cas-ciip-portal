@@ -8,7 +8,10 @@ create or replace function ggircs_portal.mandatory_products_are_reported(app_rev
   $function$
 
     with mandatory_product_ids as (
-      select product_id from ggircs_portal.product_naics_code
+      select product_id from ggircs_portal.product_naics_code pnc
+      join ggircs_portal.product p
+        on p.id = pnc.product_id
+        and p.product_state='published'
       where is_mandatory = true
       and naics_code_id = (select id from ggircs_portal.application_revision_naics_code(app_rev))
     ),
