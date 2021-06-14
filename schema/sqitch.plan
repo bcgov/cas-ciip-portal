@@ -357,3 +357,4 @@ swrs_functions/init_application_fuel_form_result [swrs_functions/init_applicatio
 @v2.7.0 2021-06-03T19:08:36Z Dylan Leard <dylan@button.is> # release v2.7.0
 @v2.8.0 2021-06-10T16:30:56Z Dylan Leard <dylan@button.is> # release v2.8.0
 application_validation_functions/mandatory_products_are_reported [application_validation_functions/mandatory_products_are_reported@v2.7.0] 2021-06-14T15:58:32Z Dylan Leard <dylan@button.is> # Migration: filter out archived products from this validation
+@v2.8.1 2021-06-14T22:27:35Z Dylan Leard <dylan@button.is> # release v2.8.1
