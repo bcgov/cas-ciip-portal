@@ -14,6 +14,7 @@ create or replace function ggircs_portal.mandatory_products_are_reported(app_rev
         and p.product_state='published'
       where is_mandatory = true
       and naics_code_id = (select id from ggircs_portal.application_revision_naics_code(app_rev))
+      and pnc.deleted_at is null
     ),
     unreported_mandatory_product_ids as (
       select mandatory.product_id from mandatory_product_ids as mandatory
