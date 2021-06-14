@@ -3,7 +3,7 @@
 # This script checks whether those changes were modified in the current dir since the base branch and returns an error if that is the case
 # usage: sqitch-immutable-files.sh schema_dir base_branch
 
-set -euo pipefail
+set -xeuo pipefail
 # gets the list of modified files via git diff, and removes the schema/deploy prefix, and the .sql suffix to match the sqitch plan change name
 modified_changes=$(git diff --name-only "${2}" -- "${1}"/deploy | sed -e "s/.*\/\(deploy\)\///g; s/@.*//g; s/\.sql$//g")
 
