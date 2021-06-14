@@ -46,18 +46,22 @@ select test_helper.create_applications(1, True, True);
 
 insert into ggircs_portal.naics_code (naics_code, naics_description) values ('1234','naics with mandatory products');
 insert into ggircs_portal.naics_code (naics_code, naics_description) values ('4321','naics without mandatory products');
+insert into ggircs_portal.naics_code (naics_code, naics_description) values ('4444','naics with archived mandatory product');
 
 insert into ggircs_portal.product(product_name, product_state) values
   ('Mandatory Product','published'),
   ('Another Mandatory Product','published'),
   ('Optional Product','published'),
-  ('Optional Product 2','published');
+  ('Optional Product 2','published'),
+  ('Mandatory Archived Product','archived');
 
 insert into ggircs_portal.product_naics_code (product_id, naics_code_id, is_mandatory) values
   ((select id from ggircs_portal.product where product_name='Mandatory Product'), 1, true),
   ((select id from ggircs_portal.product where product_name='Another Mandatory Product'), 1, true),
   ((select id from ggircs_portal.product where product_name='Optional Product'), 1, false),
-  ((select id from ggircs_portal.product where product_name='Optional Product 2'), 2, false);
+  ((select id from ggircs_portal.product where product_name='Optional Product 2'), 2, false),
+  ((select id from ggircs_portal.product where product_name='Mandatory Product'), 3, true),
+  ((select id from ggircs_portal.product where product_name='Mandatory Archived Product'), 1, true);
 
 -- Should return true if all mandatory products have been reported
 update ggircs_portal.form_result set form_result = '{"operator": {"naics": "1234"}}'
@@ -78,7 +82,7 @@ select is(
     select ggircs_portal.mandatory_products_are_reported((select * from record))
   ),
   true,
-  'Function returns true if all mandatory products have been reported'
+  'Function returns true if all published mandatory products have been reported'
 );
 
 -- Should return true if there are no mandatory products for the NAICS
