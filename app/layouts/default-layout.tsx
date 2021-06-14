@@ -140,9 +140,6 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
           .btn-link {
             color: #0053b3;
           }
-          .footer {
-            flex-shrink: 0;
-          }
           h3 {
             margin-bottom: 20px;
             font-weight: 500;

@@ -2,16 +2,16 @@
 
 exports[`matches the last accepted Snapshot 1`] = `
 <footer
-  class="jsx-2840773029 footer"
+  class="jsx-990794261 footer"
 >
   <div
-    class="jsx-2840773029 container"
+    class="jsx-990794261 container"
   >
     <ul
-      class="jsx-2840773029"
+      class="jsx-990794261"
     >
       <li
-        class="jsx-2840773029"
+        class="jsx-990794261"
       >
         <a
           href="/"
@@ -20,7 +20,7 @@ exports[`matches the last accepted Snapshot 1`] = `
         </a>
       </li>
       <li
-        class="jsx-2840773029"
+        class="jsx-990794261"
       >
         <a
           href="/resources/disclaimer"
@@ -29,7 +29,7 @@ exports[`matches the last accepted Snapshot 1`] = `
         </a>
       </li>
       <li
-        class="jsx-2840773029"
+        class="jsx-990794261"
       >
         <a
           href="/resources/privacy"
@@ -38,10 +38,10 @@ exports[`matches the last accepted Snapshot 1`] = `
         </a>
       </li>
       <li
-        class="jsx-2840773029"
+        class="jsx-990794261"
       >
         <a
-          class="jsx-2840773029"
+          class="jsx-990794261"
           href="https://www2.gov.bc.ca/gov/content/home/accessible-government"
           rel="noopener noreferrer"
           target="_blank"
@@ -50,7 +50,7 @@ exports[`matches the last accepted Snapshot 1`] = `
         </a>
       </li>
       <li
-        class="jsx-2840773029"
+        class="jsx-990794261"
       >
         <a
           href="/resources/copyright"
@@ -59,7 +59,7 @@ exports[`matches the last accepted Snapshot 1`] = `
         </a>
       </li>
       <li
-        class="jsx-2840773029"
+        class="jsx-990794261"
       >
         <a
           href="/resources/contact"

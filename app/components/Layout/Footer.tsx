@@ -41,6 +41,7 @@ const Footer = ({children}) => {
             color: #fff;
             font-family: ‘Noto Sans’, Verdana, Arial, sans-serif;
             margin-top: 100px;
+            flex-shrink: 0;
           }
 
           footer .container {
