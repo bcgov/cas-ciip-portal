@@ -46,6 +46,8 @@ const debounceMutationMiddleware = (timeout = 250): Middleware => {
 
         const debouncedFn = () => {
           window.clearTimeout(debouncedMutation.timeoutId);
+          // Unset debouncedMutation to ensure it does not get called again with the next network request
+          debouncedMutation = null;
           resolve(next(req));
         };
 
