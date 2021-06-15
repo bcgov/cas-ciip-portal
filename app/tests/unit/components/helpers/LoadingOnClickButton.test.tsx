@@ -11,6 +11,8 @@ describe('the loading on click button', () => {
     );
 
     expect(rendered).toMatchSnapshot();
+    expect(rendered.find('button').prop('disabled')).toBeFalse();
+    expect(rendered.find('button').text()).toBe('test text');
   });
 
   it('renders the loading text when onclick has been clicked', () => {
@@ -32,5 +34,7 @@ describe('the loading on click button', () => {
     rendered.find('button').simulate('click');
 
     expect(rendered).toMatchSnapshot();
+    expect(rendered.find('button').prop('disabled')).toBeTrue();
+    expect(rendered.find('button').text()).toBe('loading');
   });
 });
