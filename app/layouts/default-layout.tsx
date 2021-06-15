@@ -147,9 +147,6 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
           button.full-width {
             width: 100%;
           }
-          .accordion .card-body {
-            font-size: 15px;
-          }
           .container.wide {
             max-width: 1600px;
           }
