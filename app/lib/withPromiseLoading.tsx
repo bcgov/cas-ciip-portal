@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import * as Sentry from '@sentry/nextjs';
 
 const withPromiseLoading = function higherOrderComponent<
   TProps,
@@ -26,9 +27,13 @@ const withPromiseLoading = function higherOrderComponent<
       if (!isSubscribed) return;
       setIsLoading(true);
 
-      // We can only verify that the key exists on TProps,
-      // not the type of the property for that key
-      await (props[asyncEventHandler] as any)(...args);
+      try {
+        // We can only verify that the key exists on TProps,
+        // not the type of the property for that key
+        await (props[asyncEventHandler] as any)(...args);
+      } catch (err) {
+        Sentry.captureException(err);
+      }
 
       if (!isSubscribed) return;
       setIsLoading(false);
