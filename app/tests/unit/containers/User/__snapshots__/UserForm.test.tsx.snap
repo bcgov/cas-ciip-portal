@@ -79,7 +79,7 @@ exports[`Form Edit User should render the snapshot 1`] = `
           label="Email Address"
           placeholder=""
           required=""
-          type="text"
+          type="email"
           value="Test@test.com"
         />
         <span
@@ -102,7 +102,7 @@ exports[`Form Edit User should render the snapshot 1`] = `
           placeholder=""
           required=""
           type="text"
-          value=""
+          value="1234567890"
         />
         <span
           class="font-italic"
@@ -124,7 +124,7 @@ exports[`Form Edit User should render the snapshot 1`] = `
           placeholder=""
           required=""
           type="text"
-          value=""
+          value="test"
         />
         <span
           class="font-italic"
