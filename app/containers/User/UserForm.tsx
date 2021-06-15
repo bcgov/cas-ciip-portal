@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
-import JsonSchemaForm, {IChangeEvent} from '@rjsf/core';
+import JsonSchemaForm, {IChangeEvent, AjvError} from '@rjsf/core';
 import {JSONSchema7} from 'json-schema';
 import {UserForm_user} from 'UserForm_user.graphql';
 import createUserMutation from 'mutations/user/createUserMutation';
@@ -8,6 +8,7 @@ import updateUserMutation from 'mutations/user/updateUserMutation';
 import FormArrayFieldTemplate from 'containers/Forms/FormArrayFieldTemplate';
 import FormFieldTemplate from 'containers/Forms/FormFieldTemplate';
 import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
+import {customTransformErrors} from 'functions/customTransformErrors';
 
 interface Props {
   user?: UserForm_user;
@@ -18,6 +19,21 @@ interface Props {
   defaultEmail?: string;
   onSubmit: () => any;
 }
+
+const customFormats = {
+  phoneNumber:
+    '^(\\+?\\d{1,2}[\\s,-]?)?\\(?\\d{3}\\)?[\\s.-]?\\d{3}[\\s.-]?\\d{4}$'
+};
+
+const customFormatsErrorMessages = {
+  phoneNumber:
+    'Please enter a valid phone number. eg: 1-234-567-8943, 123 456 7890, +12 345 678 9012',
+  email: 'Please enter a valid email address. eg: mail@example.com'
+};
+
+const transformErrors = (errors: AjvError[]) => {
+  return customTransformErrors(errors, customFormatsErrorMessages);
+};
 
 const UserForm: React.FunctionComponent<Props> = ({
   user,
@@ -82,11 +98,13 @@ const UserForm: React.FunctionComponent<Props> = ({
       emailAddress: {
         type: 'string',
         title: 'Email Address',
-        default: defaultEmail
+        default: defaultEmail,
+        format: 'email'
       },
       phoneNumber: {
         type: 'string',
-        title: 'Phone Number'
+        title: 'Phone Number',
+        format: 'phoneNumber'
       },
       occupation: {
         type: 'string',
@@ -106,7 +124,10 @@ const UserForm: React.FunctionComponent<Props> = ({
     <JsonSchemaForm
       omitExtraData
       liveOmit
+      liveValidate
       schema={userSchema}
+      customFormats={customFormats}
+      transformErrors={transformErrors}
       formData={user}
       showErrorList={false}
       ArrayFieldTemplate={FormArrayFieldTemplate}
