@@ -201,6 +201,9 @@ export default class Index extends Component<Props> {
           .value-prop h3 {
             font-size: 1.24rem;
           }
+          :global(h3) {
+            margin-bottom: 20px;
+          }
           h5 {
             margin-bottom: 0.5rem;
           }

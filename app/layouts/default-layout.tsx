@@ -143,11 +143,6 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
       </style>
       <style jsx global>
         {`
-          h3 {
-            margin-bottom: 20px;
-            font-weight: 500;
-          }
-
           /* BS overrides for purposes of accessibility: */
 
           a {
