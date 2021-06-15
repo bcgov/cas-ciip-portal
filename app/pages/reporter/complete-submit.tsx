@@ -78,7 +78,6 @@ class CompleteSubmit extends Component<Props> {
         >
           <Button
             style={{padding: '15px', width: '20%'}}
-            className="full-width"
             variant="primary"
             size="sm"
           >

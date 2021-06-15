@@ -48,7 +48,7 @@ export const RegistrationLoginButtonsComponent: React.FunctionComponent<Props> =
           <a
             href="/register"
             style={{padding: '15px', display: 'block'}}
-            className="full-width btn btn-primary btn-lg"
+            className="btn btn-primary btn-lg"
           >
             Register and Apply
           </a>

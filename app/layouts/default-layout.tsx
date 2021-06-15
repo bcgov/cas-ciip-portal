@@ -144,9 +144,6 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
           p {
             line-height: 25px;
           }
-          button.full-width {
-            width: 100%;
-          }
           .container.wide {
             max-width: 1600px;
           }

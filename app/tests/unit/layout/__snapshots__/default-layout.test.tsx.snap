@@ -2,7 +2,7 @@
 
 exports[`The DefaultLayout component when logged in matches the last accepted Snapshot 1`] = `
 <div
-  className="jsx-2011815102 "
+  className="jsx-2686200900 "
   id="page-wrap"
 >
   <HeaderLayout
@@ -22,10 +22,10 @@ exports[`The DefaultLayout component when logged in matches the last accepted Sn
     }
   />
   <main
-    className="jsx-2011815102"
+    className="jsx-2686200900"
   >
     <div
-      className="jsx-2011815102 container narrow"
+      className="jsx-2686200900 container narrow"
       id="page-content"
     />
     <HelpButton
@@ -36,19 +36,19 @@ exports[`The DefaultLayout component when logged in matches the last accepted Sn
   <JSXStyle
     id="946253330"
   >
-    #page-wrap.jsx-2011815102{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;min-height:100vh;}main.jsx-2011815102{-webkit-box-flex:1;-webkit-flex-grow:1;-ms-flex-positive:1;flex-grow:1;}#page-wrap.has-fixed-header.jsx-2011815102 main.jsx-2011815102{padding-top:68px;}#page-content.jsx-2011815102{padding-top:50px;-webkit-flex:1 0 auto;-ms-flex:1 0 auto;flex:1 0 auto;}@media screen and (min-width:992px){#page-content.jsx-2011815102{padding-top:60px;}}#page-title.jsx-2011815102{background:#f5f5f5;border-bottom:1px solid #ccc;padding:30px 0 30px;}#page-title.jsx-2011815102 h1.jsx-2011815102{font-size:25px;font-weight:400;}#title-container.jsx-2011815102{height:100%;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;}
+    #page-wrap.jsx-2686200900{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;min-height:100vh;}main.jsx-2686200900{-webkit-box-flex:1;-webkit-flex-grow:1;-ms-flex-positive:1;flex-grow:1;}#page-wrap.has-fixed-header.jsx-2686200900 main.jsx-2686200900{padding-top:68px;}#page-content.jsx-2686200900{padding-top:50px;-webkit-flex:1 0 auto;-ms-flex:1 0 auto;flex:1 0 auto;}@media screen and (min-width:992px){#page-content.jsx-2686200900{padding-top:60px;}}#page-title.jsx-2686200900{background:#f5f5f5;border-bottom:1px solid #ccc;padding:30px 0 30px;}#page-title.jsx-2686200900 h1.jsx-2686200900{font-size:25px;font-weight:400;}#title-container.jsx-2686200900{height:100%;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;}
   </JSXStyle>
   <JSXStyle
-    id="3112418213"
+    id="3376936927"
   >
-    .blue{color:#036;}h3{margin-bottom:20px;font-weight:500;}p{line-height:25px;}button.full-width{width:100%;}.container.wide{max-width:1600px;}a{color:#0053b3;}.btn-link{color:#0053b3;}.btn-primary{background:#036;border-color:#036;}.btn-outline-primary{color:#0053b3;border-color:#0053b3;}.badge-success,.btn-success{background-color:#24883e;}.badge-info,.btn-info{background-color:#197ea3;}
+    .blue{color:#036;}h3{margin-bottom:20px;font-weight:500;}p{line-height:25px;}.container.wide{max-width:1600px;}a{color:#0053b3;}.btn-link{color:#0053b3;}.btn-primary{background:#036;border-color:#036;}.btn-outline-primary{color:#0053b3;border-color:#0053b3;}.badge-success,.btn-success{background-color:#24883e;}.badge-info,.btn-info{background-color:#197ea3;}
   </JSXStyle>
 </div>
 `;
 
 exports[`The DefaultLayout component when logged out matches the last accepted Snapshot 1`] = `
 <div
-  className="jsx-2011815102 "
+  className="jsx-2686200900 "
   id="page-wrap"
 >
   <HeaderLayout
@@ -62,10 +62,10 @@ exports[`The DefaultLayout component when logged out matches the last accepted S
     }
   />
   <main
-    className="jsx-2011815102"
+    className="jsx-2686200900"
   >
     <div
-      className="jsx-2011815102 container narrow"
+      className="jsx-2686200900 container narrow"
       id="page-content"
     />
   </main>
@@ -73,12 +73,12 @@ exports[`The DefaultLayout component when logged out matches the last accepted S
   <JSXStyle
     id="946253330"
   >
-    #page-wrap.jsx-2011815102{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;min-height:100vh;}main.jsx-2011815102{-webkit-box-flex:1;-webkit-flex-grow:1;-ms-flex-positive:1;flex-grow:1;}#page-wrap.has-fixed-header.jsx-2011815102 main.jsx-2011815102{padding-top:68px;}#page-content.jsx-2011815102{padding-top:50px;-webkit-flex:1 0 auto;-ms-flex:1 0 auto;flex:1 0 auto;}@media screen and (min-width:992px){#page-content.jsx-2011815102{padding-top:60px;}}#page-title.jsx-2011815102{background:#f5f5f5;border-bottom:1px solid #ccc;padding:30px 0 30px;}#page-title.jsx-2011815102 h1.jsx-2011815102{font-size:25px;font-weight:400;}#title-container.jsx-2011815102{height:100%;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;}
+    #page-wrap.jsx-2686200900{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;min-height:100vh;}main.jsx-2686200900{-webkit-box-flex:1;-webkit-flex-grow:1;-ms-flex-positive:1;flex-grow:1;}#page-wrap.has-fixed-header.jsx-2686200900 main.jsx-2686200900{padding-top:68px;}#page-content.jsx-2686200900{padding-top:50px;-webkit-flex:1 0 auto;-ms-flex:1 0 auto;flex:1 0 auto;}@media screen and (min-width:992px){#page-content.jsx-2686200900{padding-top:60px;}}#page-title.jsx-2686200900{background:#f5f5f5;border-bottom:1px solid #ccc;padding:30px 0 30px;}#page-title.jsx-2686200900 h1.jsx-2686200900{font-size:25px;font-weight:400;}#title-container.jsx-2686200900{height:100%;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;}
   </JSXStyle>
   <JSXStyle
-    id="3112418213"
+    id="3376936927"
   >
-    .blue{color:#036;}h3{margin-bottom:20px;font-weight:500;}p{line-height:25px;}button.full-width{width:100%;}.container.wide{max-width:1600px;}a{color:#0053b3;}.btn-link{color:#0053b3;}.btn-primary{background:#036;border-color:#036;}.btn-outline-primary{color:#0053b3;border-color:#0053b3;}.badge-success,.btn-success{background-color:#24883e;}.badge-info,.btn-info{background-color:#197ea3;}
+    .blue{color:#036;}h3{margin-bottom:20px;font-weight:500;}p{line-height:25px;}.container.wide{max-width:1600px;}a{color:#0053b3;}.btn-link{color:#0053b3;}.btn-primary{background:#036;border-color:#036;}.btn-outline-primary{color:#0053b3;border-color:#0053b3;}.badge-success,.btn-success{background-color:#24883e;}.badge-info,.btn-info{background-color:#197ea3;}
   </JSXStyle>
 </div>
 `;
