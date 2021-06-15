@@ -134,28 +134,18 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
       </style>
       <style jsx global>
         {`
-          a {
-            color: #0053b3;
-          }
-          .btn-link {
-            color: #0053b3;
+          .blue {
+            color: #036;
           }
           h3 {
             margin-bottom: 20px;
             font-weight: 500;
-          }
-          .blue {
-            color: #036;
           }
           p {
             line-height: 25px;
           }
           button.full-width {
             width: 100%;
-          }
-          .btn-primary {
-            background: #036;
-            border-color: #036;
           }
           .accordion .card-body {
             font-size: 15px;
@@ -166,6 +156,16 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
 
           /* BS overrides for purposes of accessibility: */
 
+          a {
+            color: #0053b3;
+          }
+          .btn-link {
+            color: #0053b3;
+          }
+          .btn-primary {
+            background: #036;
+            border-color: #036;
+          }
           .btn-outline-primary {
             color: #0053b3;
             border-color: #0053b3;
