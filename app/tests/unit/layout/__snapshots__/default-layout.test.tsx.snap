@@ -2,7 +2,7 @@
 
 exports[`The DefaultLayout component when logged in matches the last accepted Snapshot 1`] = `
 <div
-  className="jsx-697252835 "
+  className="jsx-2647806953 "
   id="page-wrap"
 >
   <HeaderLayout
@@ -22,10 +22,10 @@ exports[`The DefaultLayout component when logged in matches the last accepted Sn
     }
   />
   <main
-    className="jsx-697252835"
+    className="jsx-2647806953"
   >
     <div
-      className="jsx-697252835 container narrow"
+      className="jsx-2647806953 container narrow"
       id="page-content"
     />
     <HelpButton
@@ -36,19 +36,267 @@ exports[`The DefaultLayout component when logged in matches the last accepted Sn
   <JSXStyle
     id="2647806953"
   >
-    #page-wrap.jsx-697252835{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;min-height:100vh;}main.jsx-697252835{-webkit-box-flex:1;-webkit-flex-grow:1;-ms-flex-positive:1;flex-grow:1;}#page-wrap.has-fixed-header.jsx-697252835 main.jsx-697252835{padding-top:68px;}#page-content.jsx-697252835{padding-top:50px;-webkit-flex:1 0 auto;-ms-flex:1 0 auto;flex:1 0 auto;}@media screen and (min-width:992px){#page-content.jsx-697252835{padding-top:60px;}}#page-title.jsx-697252835{background:#f5f5f5;border-bottom:1px solid #ccc;padding:30px 0 30px;}#page-title.jsx-697252835 h1.jsx-697252835{font-size:25px;font-weight:400;}#title-container.jsx-697252835{height:100%;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;}.container.wide{max-width:1600px;}.blue{color:#036;}p{line-height:25px;}
+    #page-wrap.jsx-2647806953{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;min-height:100vh;}main.jsx-2647806953{-webkit-box-flex:1;-webkit-flex-grow:1;-ms-flex-positive:1;flex-grow:1;}#page-wrap.has-fixed-header.jsx-2647806953 main.jsx-2647806953{padding-top:68px;}#page-content.jsx-2647806953{padding-top:50px;-webkit-flex:1 0 auto;-ms-flex:1 0 auto;flex:1 0 auto;}@media screen and (min-width:992px){#page-content.jsx-2647806953{padding-top:60px;}}#page-title.jsx-2647806953{background:#f5f5f5;border-bottom:1px solid #ccc;padding:30px 0 30px;}#page-title.jsx-2647806953 h1.jsx-2647806953{font-size:25px;font-weight:400;}#title-container.jsx-2647806953{height:100%;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;}.container.wide{max-width:1600px;}.blue{color:#036;}p{line-height:25px;}
   </JSXStyle>
   <JSXStyle
-    id="561694659"
+    id="286756147"
   >
-    a{color:#0053b3;}.btn-link{color:#0053b3;}.btn-primary{background:#036;border-color:#036;}.btn-outline-primary{color:#0053b3;border-color:#0053b3;}.badge-success,.btn-success{background-color:#24883e;}.badge-info,.btn-info{background-color:#197ea3;}
+    a
+    {
+    c
+    o
+    l
+    o
+    r
+    :
+    #
+    0
+    0
+    5
+    3
+    b
+    3
+    ;
+    }
+    .
+    b
+    t
+    n
+    -
+    l
+    i
+    n
+    k
+    {
+    c
+    o
+    l
+    o
+    r
+    :
+    #
+    0
+    0
+    5
+    3
+    b
+    3
+    ;
+    }
+    .
+    b
+    t
+    n
+    -
+    p
+    r
+    i
+    m
+    a
+    r
+    y
+    {
+    b
+    a
+    c
+    k
+    g
+    r
+    o
+    u
+    n
+    d
+    :
+    #
+    0
+    3
+    6
+    ;
+    b
+    o
+    r
+    d
+    e
+    r
+    -
+    c
+    o
+    l
+    o
+    r
+    :
+    #
+    0
+    3
+    6
+    ;
+    }
+    .
+    b
+    t
+    n
+    -
+    o
+    u
+    t
+    l
+    i
+    n
+    e
+    -
+    p
+    r
+    i
+    m
+    a
+    r
+    y
+    {
+    c
+    o
+    l
+    o
+    r
+    :
+    #
+    0
+    0
+    5
+    3
+    b
+    3
+    ;
+    b
+    o
+    r
+    d
+    e
+    r
+    -
+    c
+    o
+    l
+    o
+    r
+    :
+    #
+    0
+    0
+    5
+    3
+    b
+    3
+    ;
+    }
+    .
+    b
+    a
+    d
+    g
+    e
+    -
+    s
+    u
+    c
+    c
+    e
+    s
+    s
+    ,
+    .
+    b
+    t
+    n
+    -
+    s
+    u
+    c
+    c
+    e
+    s
+    s
+    {
+    b
+    a
+    c
+    k
+    g
+    r
+    o
+    u
+    n
+    d
+    -
+    c
+    o
+    l
+    o
+    r
+    :
+    #
+    2
+    4
+    8
+    8
+    3
+    e
+    ;
+    }
+    .
+    b
+    a
+    d
+    g
+    e
+    -
+    i
+    n
+    f
+    o
+    ,
+    .
+    b
+    t
+    n
+    -
+    i
+    n
+    f
+    o
+    {
+    b
+    a
+    c
+    k
+    g
+    r
+    o
+    u
+    n
+    d
+    -
+    c
+    o
+    l
+    o
+    r
+    :
+    #
+    1
+    9
+    7
+    e
+    a
+    3
+    ;
+    }
   </JSXStyle>
 </div>
 `;
 
 exports[`The DefaultLayout component when logged out matches the last accepted Snapshot 1`] = `
 <div
-  className="jsx-697252835 "
+  className="jsx-2647806953 "
   id="page-wrap"
 >
   <HeaderLayout
@@ -62,10 +310,10 @@ exports[`The DefaultLayout component when logged out matches the last accepted S
     }
   />
   <main
-    className="jsx-697252835"
+    className="jsx-2647806953"
   >
     <div
-      className="jsx-697252835 container narrow"
+      className="jsx-2647806953 container narrow"
       id="page-content"
     />
   </main>
@@ -73,12 +321,260 @@ exports[`The DefaultLayout component when logged out matches the last accepted S
   <JSXStyle
     id="2647806953"
   >
-    #page-wrap.jsx-697252835{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;min-height:100vh;}main.jsx-697252835{-webkit-box-flex:1;-webkit-flex-grow:1;-ms-flex-positive:1;flex-grow:1;}#page-wrap.has-fixed-header.jsx-697252835 main.jsx-697252835{padding-top:68px;}#page-content.jsx-697252835{padding-top:50px;-webkit-flex:1 0 auto;-ms-flex:1 0 auto;flex:1 0 auto;}@media screen and (min-width:992px){#page-content.jsx-697252835{padding-top:60px;}}#page-title.jsx-697252835{background:#f5f5f5;border-bottom:1px solid #ccc;padding:30px 0 30px;}#page-title.jsx-697252835 h1.jsx-697252835{font-size:25px;font-weight:400;}#title-container.jsx-697252835{height:100%;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;}.container.wide{max-width:1600px;}.blue{color:#036;}p{line-height:25px;}
+    #page-wrap.jsx-2647806953{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;min-height:100vh;}main.jsx-2647806953{-webkit-box-flex:1;-webkit-flex-grow:1;-ms-flex-positive:1;flex-grow:1;}#page-wrap.has-fixed-header.jsx-2647806953 main.jsx-2647806953{padding-top:68px;}#page-content.jsx-2647806953{padding-top:50px;-webkit-flex:1 0 auto;-ms-flex:1 0 auto;flex:1 0 auto;}@media screen and (min-width:992px){#page-content.jsx-2647806953{padding-top:60px;}}#page-title.jsx-2647806953{background:#f5f5f5;border-bottom:1px solid #ccc;padding:30px 0 30px;}#page-title.jsx-2647806953 h1.jsx-2647806953{font-size:25px;font-weight:400;}#title-container.jsx-2647806953{height:100%;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;}.container.wide{max-width:1600px;}.blue{color:#036;}p{line-height:25px;}
   </JSXStyle>
   <JSXStyle
-    id="561694659"
+    id="286756147"
   >
-    a{color:#0053b3;}.btn-link{color:#0053b3;}.btn-primary{background:#036;border-color:#036;}.btn-outline-primary{color:#0053b3;border-color:#0053b3;}.badge-success,.btn-success{background-color:#24883e;}.badge-info,.btn-info{background-color:#197ea3;}
+    a
+    {
+    c
+    o
+    l
+    o
+    r
+    :
+    #
+    0
+    0
+    5
+    3
+    b
+    3
+    ;
+    }
+    .
+    b
+    t
+    n
+    -
+    l
+    i
+    n
+    k
+    {
+    c
+    o
+    l
+    o
+    r
+    :
+    #
+    0
+    0
+    5
+    3
+    b
+    3
+    ;
+    }
+    .
+    b
+    t
+    n
+    -
+    p
+    r
+    i
+    m
+    a
+    r
+    y
+    {
+    b
+    a
+    c
+    k
+    g
+    r
+    o
+    u
+    n
+    d
+    :
+    #
+    0
+    3
+    6
+    ;
+    b
+    o
+    r
+    d
+    e
+    r
+    -
+    c
+    o
+    l
+    o
+    r
+    :
+    #
+    0
+    3
+    6
+    ;
+    }
+    .
+    b
+    t
+    n
+    -
+    o
+    u
+    t
+    l
+    i
+    n
+    e
+    -
+    p
+    r
+    i
+    m
+    a
+    r
+    y
+    {
+    c
+    o
+    l
+    o
+    r
+    :
+    #
+    0
+    0
+    5
+    3
+    b
+    3
+    ;
+    b
+    o
+    r
+    d
+    e
+    r
+    -
+    c
+    o
+    l
+    o
+    r
+    :
+    #
+    0
+    0
+    5
+    3
+    b
+    3
+    ;
+    }
+    .
+    b
+    a
+    d
+    g
+    e
+    -
+    s
+    u
+    c
+    c
+    e
+    s
+    s
+    ,
+    .
+    b
+    t
+    n
+    -
+    s
+    u
+    c
+    c
+    e
+    s
+    s
+    {
+    b
+    a
+    c
+    k
+    g
+    r
+    o
+    u
+    n
+    d
+    -
+    c
+    o
+    l
+    o
+    r
+    :
+    #
+    2
+    4
+    8
+    8
+    3
+    e
+    ;
+    }
+    .
+    b
+    a
+    d
+    g
+    e
+    -
+    i
+    n
+    f
+    o
+    ,
+    .
+    b
+    t
+    n
+    -
+    i
+    n
+    f
+    o
+    {
+    b
+    a
+    c
+    k
+    g
+    r
+    o
+    u
+    n
+    d
+    -
+    c
+    o
+    l
+    o
+    r
+    :
+    #
+    1
+    9
+    7
+    e
+    a
+    3
+    ;
+    }
   </JSXStyle>
 </div>
 `;

@@ -1,5 +1,6 @@
 import React from 'react';
 import {Container, Row, Col} from 'react-bootstrap';
+import globalBootstrapOverrides from 'layouts/GlobalBootstrapOverrideStyles';
 import {graphql, createFragmentContainer} from 'react-relay';
 import {defaultLayout_session} from '__generated__/defaultLayout_session.graphql';
 import getConfig from 'next/config';
@@ -142,32 +143,7 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
         `}
       </style>
       <style jsx global>
-        {`
-          /* BS overrides for purposes of accessibility: */
-
-          a {
-            color: #0053b3;
-          }
-          .btn-link {
-            color: #0053b3;
-          }
-          .btn-primary {
-            background: #036;
-            border-color: #036;
-          }
-          .btn-outline-primary {
-            color: #0053b3;
-            border-color: #0053b3;
-          }
-          .badge-success,
-          .btn-success {
-            background-color: #24883e;
-          }
-          .badge-info,
-          .btn-info {
-            background-color: #197ea3;
-          }
-        `}
+        {globalBootstrapOverrides}
       </style>
     </div>
   );
