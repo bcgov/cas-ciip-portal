@@ -130,22 +130,22 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
             flex-direction: column;
             justify-content: center;
           }
+          :global(.container.wide) {
+            max-width: 1600px;
+          }
+          :global(.blue) {
+            color: #036;
+          }
+          :global(p) {
+            line-height: 25px;
+          }
         `}
       </style>
       <style jsx global>
         {`
-          .blue {
-            color: #036;
-          }
           h3 {
             margin-bottom: 20px;
             font-weight: 500;
-          }
-          p {
-            line-height: 25px;
-          }
-          .container.wide {
-            max-width: 1600px;
           }
 
           /* BS overrides for purposes of accessibility: */
