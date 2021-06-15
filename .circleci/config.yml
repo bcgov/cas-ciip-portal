@@ -461,6 +461,8 @@ workflows:
       - e2e-snapshots:
           requires:
             - compile
+            - unit
+            - test_database
       - sqitch-files-before-tag-are-immutable
       - build_image:
           name: build_schema
