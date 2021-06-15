@@ -69,6 +69,12 @@ update ggircs_portal.form_result
 insert into ggircs_portal.form_json(name, slug, short_name, description, form_json, prepopulate_from_ciip, prepopulate_from_swrs)
 values ('2018admin', 'admin-2018', 'admin', 'admin', '{}', false, false);
 
+select * from ggircs_portal.application;
+select bcghgid from ggircs_portal.facility;
+
+select '-------';
+select facility_name, bcghgid from ggircs_portal.ciip_admin where application_id=1 and version_number=1;
+
 insert into ggircs_portal.application(facility_id, reporting_year) values (2, 2018), (2, 2019);
 insert into ggircs_portal.application_revision(application_id, version_number) values
   ((select id from ggircs_portal.application where facility_id = 2 and reporting_year = 2018),1),
@@ -151,13 +157,12 @@ select has_column('ggircs_portal', 'ciip_admin', 'certifying_official_phone','ci
 
 select has_column('ggircs_portal', 'ciip_admin', 'comments','ciip_admin view has column comments');
 
-
 select results_eq(
   $$
     select facility_name, bcghgid, facility_type from ggircs_portal.ciip_admin where application_id=1 and version_number=1
   $$,
   $$
-    values ('Test Facility'::varchar, null::varchar, 'SFO'::varchar) -- no bcghgid starting with 2020 admin data
+    values ('Test Facility'::varchar, (select bcghgid from ggircs_portal.facility where id=1), 'SFO'::varchar) -- bcghgid comes from facility table starting with 2020 admin data
   $$,
   'ciip_admin view returns the right facility data'
 );
