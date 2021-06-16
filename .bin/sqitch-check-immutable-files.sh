@@ -8,10 +8,12 @@ set -xeuo pipefail
 modified_changes=$(git diff --name-only "${2}" -- "${1}"/deploy | sed -e "s/.*\/\(deploy\)\///g; s/@.*//g; s/\.sql$//g")
 
 # finds the last tag in the sqitch plan in the base branch
-last_tag_on_base_branch=$(git show "${2}":"${1}"/sqitch.plan | tac | sed '/^@/q' | cut -d' ' -f1 )
+git show "${2}":"${1}"/sqitch.plan | tac > sqitch.plan.base.tac
+last_tag_on_base_branch=$(sed '/^@/q' sqitch.plan.base.tac | cut -d' ' -f1 )
 
 # reads the sqitch.plan from the end and stops at the last tag that was on the base branch
-changes_after_last_tag=$(tac "${1}"/sqitch.plan | sed "/^$last_tag_on_base_branch/Q" | cut -d' ' -f1)
+tac "${1}"/sqitch.plan > sqitch.plan.tac
+changes_after_last_tag=$(sed "/^$last_tag_on_base_branch/Q" sqitch.plan.tac | cut -d' ' -f1)
 
 # comm compares two ordered files and returns three columns "-23" suppresses colums 2 and 3,
 # so it only returns the first column (the lines unique to file 1)
