@@ -7,32 +7,26 @@ const getAllGroups = () => {
 const compactGroups = (groups) => {
   const allDefinedGroups = getAllGroups();
 
-  // Remove undefined groups
-  const validGroups = [];
-  groups.forEach((group) =>
-    allDefinedGroups.includes(group) ? validGroups.push(group) : null
-  );
-
-  return validGroups;
+  return groups.filter((group) => allDefinedGroups.includes(group));
 };
 
 const getPriorityGroupData = (validGroups) => {
   // Find the highest priority group
-  let name = validGroups[0];
-  let priorityGroupData = GROUP_META[name];
+  let priorityGroup = {
+    name: 'Guest',
+    ...GROUP_META.Guest
+  };
 
-  for (let x = 1; x < validGroups.length; x++) {
-    name = validGroups[x];
+  for (let x = 0, len = validGroups.length; x < len; x++) {
+    const name = validGroups[x];
     const curr = GROUP_META[name];
 
-    if (curr.priority < priorityGroupData.priority) {
-      priorityGroupData = curr;
+    if (curr.priority < priorityGroup.priority) {
+      priorityGroup = {...curr, name};
     }
   }
 
-  // Mutate priority group data to have the name along with priority and path
-  priorityGroupData.name = name;
-  return priorityGroupData;
+  return priorityGroup;
 };
 
 const getPriorityGroup = (groupNames) => {
