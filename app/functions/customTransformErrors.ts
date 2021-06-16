@@ -1,11 +1,9 @@
 import {AjvError} from '@rjsf/core';
-import {FormJson} from 'next-env';
 
 export const customTransformErrors = (
   errors: AjvError[],
-  formJson: FormJson
+  customFormatsErrorMessages: {[key: string]: string}
 ) => {
-  const {customFormatsErrorMessages = {}} = formJson;
   // Ignore oneOf errors https://github.com/rjsf-team/react-jsonschema-form/issues/1263
   return errors
     .filter((error) => error.name !== 'oneOf')

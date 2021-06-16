@@ -48,14 +48,19 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
 }) => {
   const {formJsonByFormId} = formResult;
   const {formJson} = formJsonByFormId;
-  const {schema, uiSchema, customFormats} = formJson as FormJson;
+  const {
+    schema,
+    uiSchema,
+    customFormats,
+    customFormatsErrorMessages
+  } = formJson as FormJson;
 
   const formIdPrefix = `${formJsonByFormId.name
     .toLowerCase()
     .replace(' ', '-')}`;
 
   const transformErrors = (errors: AjvError[]) => {
-    return customTransformErrors(errors, formJson);
+    return customTransformErrors(errors, customFormatsErrorMessages);
   };
 
   // Expands or collapses the form_result card

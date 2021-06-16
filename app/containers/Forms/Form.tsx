@@ -101,10 +101,15 @@ export const FormComponent: React.FunctionComponent<Props> = ({
     formJsonByFormId: {name, formJson, ciipApplicationWizardByFormId},
     formResult
   } = ciipFormResult;
-  const {schema, uiSchema, customFormats} = formJson as FormJson;
+  const {
+    schema,
+    uiSchema,
+    customFormats,
+    customFormatsErrorMessages
+  } = formJson as FormJson;
 
   const transformErrors = (errors: AjvError[]) => {
-    return customTransformErrors(errors, formJson);
+    return customTransformErrors(errors, customFormatsErrorMessages);
   };
 
   const onError = () => {
