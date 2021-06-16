@@ -1,16 +1,17 @@
 import React from 'react';
 import {createFragmentContainer, RelayProp} from 'react-relay';
-import JsonSchemaForm, {IChangeEvent} from '@rjsf/core';
-import {Button, Card} from 'react-bootstrap';
-import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
-import FormArrayFieldTemplate from 'containers/Forms/FormArrayFieldTemplate';
-import FormFieldTemplate from 'containers/Forms/FormFieldTemplate';
+import {IChangeEvent} from '@rjsf/core';
+import {Card} from 'react-bootstrap';
 import createProductMutation from 'mutations/product/createProductMutation';
 import {CiipProductState} from 'createProductMutation.graphql';
-import {JSONSchema7} from 'json-schema';
-import productSchema from './product-schema.json';
-import HeaderWidget from 'components/HeaderWidget';
+import withPromiseLoading from 'lib/withPromiseLoading';
+import ProductCreatorForm from './ProductCreatorForm';
 
+const LoadingProductCreatorForm = withPromiseLoading(
+  ProductCreatorForm,
+  'saveProduct',
+  'disabled'
+);
 interface Props {
   relay: RelayProp;
   toggleShowCreateForm: (...args: any[]) => void;
@@ -74,27 +75,11 @@ export const ProductCreator: React.FunctionComponent<Props> = ({
             Create a Product
           </Card.Header>
           <Card.Body style={{padding: '2em'}}>
-            <JsonSchemaForm
-              omitExtraData
-              liveOmit
-              widgets={{header: HeaderWidget}}
-              schema={productSchema.schema as JSONSchema7}
-              uiSchema={productSchema.uiSchema}
-              showErrorList={false}
-              ArrayFieldTemplate={FormArrayFieldTemplate}
-              FieldTemplate={FormFieldTemplate}
-              ObjectFieldTemplate={FormObjectFieldTemplate}
-              onSubmit={saveProduct}
-            >
-              <Button type="submit">Add Product</Button>
-              <Button
-                variant="secondary"
-                style={{marginLeft: '0.5em'}}
-                onClick={toggleShowCreateForm}
-              >
-                Close
-              </Button>
-            </JsonSchemaForm>
+            <LoadingProductCreatorForm
+              saveProduct={saveProduct}
+              disabled={false}
+              toggleShowCreateForm={toggleShowCreateForm}
+            />
           </Card.Body>
         </Card>
       </div>

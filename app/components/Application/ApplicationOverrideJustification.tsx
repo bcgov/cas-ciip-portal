@@ -4,6 +4,7 @@ import {Accordion, Alert, Button, Form} from 'react-bootstrap';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faCaretDown} from '@fortawesome/free-solid-svg-icons';
 import updateApplicationRevisionMutation from 'mutations/application/updateApplicationRevisionMutation';
+import LoadingOnClickButton from 'components/helpers/LoadingOnClickButton';
 
 interface Props {
   overrideActive: boolean;
@@ -51,7 +52,6 @@ export const ApplicationOverrideJustificationComponent: React.FunctionComponent<
         }
       }
     };
-
     await updateApplicationRevisionMutation(environment, variables);
     setOverrideJustification(null);
     setOverrideActive(false);
@@ -109,9 +109,13 @@ export const ApplicationOverrideJustificationComponent: React.FunctionComponent<
         >
           Edit Justification
         </Button>
-        <Button variant="danger" onClick={handleOverrideDelete}>
+        <LoadingOnClickButton
+          variant="danger"
+          onClick={handleOverrideDelete}
+          loadingText="Deleting Override..."
+        >
           Delete Override
-        </Button>
+        </LoadingOnClickButton>
       </Alert>
     </>
   );
@@ -154,9 +158,13 @@ export const ApplicationOverrideJustificationComponent: React.FunctionComponent<
                     onChange={handleOverrideChange}
                   />
                 </Form.Group>
-                <Button variant="success" onClick={handleOverrideSave}>
+                <LoadingOnClickButton
+                  variant="success"
+                  onClick={handleOverrideSave}
+                  loadingText="Saving..."
+                >
                   Save
-                </Button>
+                </LoadingOnClickButton>
                 <Accordion.Toggle
                   as={Button}
                   eventKey="0"
