@@ -359,3 +359,5 @@ swrs_functions/init_application_fuel_form_result [swrs_functions/init_applicatio
 application_validation_functions/mandatory_products_are_reported [application_validation_functions/mandatory_products_are_reported@v2.7.0] 2021-06-14T15:58:32Z Dylan Leard <dylan@button.is> # Migration: filter out archived products from this validation
 @v2.8.1 2021-06-14T22:27:35Z Dylan Leard <dylan@button.is> # release v2.8.1
 views/ciip_admin [views/ciip_admin@v2.8.1] 2021-06-15T22:51:59Z Dylan Leard <dylan@button.is> # Migration: get bchghid from the facility table
+
+views/ciip_incentive_per_facility 2021-06-16T17:12:43Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # A view that shows the average and maximum incentive for a facility's latest application revision
