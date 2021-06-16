@@ -114,5 +114,5 @@ cas-postgres:
   gcs:
     bucketSuffix:
 
-loadTests:
+loadTesting:
   enable: false
