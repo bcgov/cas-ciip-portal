@@ -151,13 +151,12 @@ select has_column('ggircs_portal', 'ciip_admin', 'certifying_official_phone','ci
 
 select has_column('ggircs_portal', 'ciip_admin', 'comments','ciip_admin view has column comments');
 
-
 select results_eq(
   $$
     select facility_name, bcghgid, facility_type from ggircs_portal.ciip_admin where application_id=1 and version_number=1
   $$,
   $$
-    values ('Test Facility'::varchar, null::varchar, 'SFO'::varchar) -- no bcghgid starting with 2020 admin data
+    values ('Test Facility'::varchar, (select bcghgid from ggircs_portal.facility where id=1), 'SFO'::varchar) -- bcghgid comes from facility table starting with 2020 admin data
   $$,
   'ciip_admin view returns the right facility data'
 );
