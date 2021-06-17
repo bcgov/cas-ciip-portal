@@ -49,7 +49,7 @@ begin;
 
 grant select on table ggircs_portal.ciip_incentive_per_facility to ciip_administrator, ciip_analyst;
 
-comment on view ggircs_portal.ciip_incentive_per_facility is 'The view for calculating carbon tax based on ciip data';
+comment on view ggircs_portal.ciip_incentive_per_facility is E'@omit\n The view for calculating carbon tax based on ciip data';
 comment on column ggircs_portal.ciip_incentive_per_facility.application_id is 'The application id';
 comment on column ggircs_portal.ciip_incentive_per_facility.version_number is 'The version number';
 comment on column ggircs_portal.ciip_incentive_per_facility.reporting_year is 'The reporting year for that application';
