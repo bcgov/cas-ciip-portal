@@ -154,7 +154,7 @@ select results_eq(
   $$
     values (0.0, 0.0, 0.0)
   $$,
-  'ciip_incentive_per_facility only contains the last available submitted version'
+  'ciip_incentive_per_facility returns 0 if the incentive is 0'
 );
 
 -- returns all fields and properly aggregated values
@@ -187,7 +187,7 @@ select results_eq(
       0.9428
     )
   $$,
-  'ciip_incentive_per_facility only contains the last available submitted version'
+  'ciip_incentive_per_facility returns all fields and accurate values'
 );
 
 select finish();
