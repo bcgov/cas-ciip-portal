@@ -28,7 +28,9 @@ Options
   --swrs-dev
     Deploy the swrs dev data
   --swrs-load-testing
-    Deploy the swrs load-testing data
+    Deploy the swrs load-testing data. This requires the .cas-ggircs submodule to be initialized
+  --ciip-load-testing
+    Deploys ciip load-testing data
   -t, --pg-tap
     Deploy test data for pgTap database test suite
   -s, --deploy-swrs-schema
@@ -195,6 +197,9 @@ while [[ "$1" =~ ^- && ! "$1" == "--" ]]; do case $1 in
   --swrs-load-testing )
     actions+=('deploySwrsLoadTestingData')
     ;;
+  --ciip-load-testing )
+    actions+=('deployCiipLoadTestingData')
+    ;;
   -t | --pg-tap )
     actions+=('deployMocks' 'deployPgTapData')
     ;;
@@ -243,6 +248,19 @@ deployDevData() {
   _psql -f "./dev/linked_product.sql"
   _psql -f "./dev/product_naics_code.sql"
   _psql -f "./dev/ciip_user_organisation.sql"
+  _psql -f "./dev/override_last_swrs_reporting_year.sql"
+  return 0;
+}
+
+deployCiipLoadTestingData() {
+  deployProdData
+  _psql -f "./dev/reporting_year.sql"
+  _psql -f "./dev/product.sql"
+  _psql -f "./dev/benchmark.sql"
+  _psql -f "./dev/user.sql"
+  _psql -f "./dev/ciip_user_organisation_load_testing.sql"
+  _psql -f "./dev/linked_product.sql"
+  _psql -f "./dev/product_naics_code.sql"
   _psql -f "./dev/override_last_swrs_reporting_year.sql"
   return 0;
 }
@@ -311,6 +329,11 @@ fi
 if [[ " ${actions[*]} " =~ " deploySwrsLoadTestingData " ]]; then
   echo 'Deploying swrs load-testing data'
   deploySwrsLoadTestingData
+fi
+
+if [[ " ${actions[*]} " =~ " deployCiipLoadTestingData " ]]; then
+  echo 'Deploying ciip load-testing data'
+  deployCiipLoadTestingData
 fi
 
 if [[ " ${actions[*]} " =~ " deployDev " ]]; then

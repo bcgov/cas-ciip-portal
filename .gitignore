@@ -8,3 +8,4 @@ app/cypress/support/authenticatedPages.json
 helm/**/charts
 app/.env.local
 app/sentry.properties
+app/tests/perf/**/*.json

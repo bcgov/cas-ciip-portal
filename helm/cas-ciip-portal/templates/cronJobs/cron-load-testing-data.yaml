@@ -17,8 +17,7 @@ spec:
       backoffLimit: 0
       template:
         metadata:
-          labels:
-{{ include "cas-ciip-portal.labels" . | indent 14 }}
+          labels: {{ include "cas-ciip-portal.labels" . | nindent 14 }}
         spec:
           activeDeadlineSeconds: 1800
           restartPolicy: Never
@@ -49,11 +48,6 @@ spec:
                   value: OpenShift Deployer
                 - name: SQITCH_EMAIL
                   value: deployer@pathfinder.gov.bc.ca
-                - name: NAMESPACE
-                  valueFrom:
-                    fieldRef:
-                      apiVersion: v1
-                      fieldPath: metadata.namespace
               name: {{ template "cas-ciip-portal.fullname" . }}-load-testing-data
               image: {{ .Values.image.schema.repository }}:{{ .Values.image.schema.tag }}
               resources:
@@ -69,6 +63,5 @@ spec:
                 - -c
                 - |
                   set -euo pipefail;
-                  schema/data/deploy-data.sh --oc-project=$(NAMESPACE);
-
+                  schema/data/deploy-data.sh --ciip-load-testing
 {{- end }}

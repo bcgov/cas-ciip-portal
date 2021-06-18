@@ -1,0 +1,26 @@
+loadTesting:
+  enable: true
+  image:
+    repository: gcr.io/ggl-cas-storage/cas-ciip-portal-k6
+    tag: latest
+    pullPolicy: Always
+
+dag:
+  enable: true
+  name: ggircs_ciip_load_testing_data
+
+env:
+  enableDbMocks: true
+
+replicas: 3
+
+cas-postgres:
+  patroni:
+    replicaCount: 4
+    resources:
+      limits:
+        cpu: 3000m
+        memory: 2Gi
+      requests:
+        cpu: 15m
+        memory: 600Mi

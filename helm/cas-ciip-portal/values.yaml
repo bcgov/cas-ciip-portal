@@ -20,7 +20,7 @@ resources:
     memory: 1Gi
   requests:
     cpu: 10m
-    memory: 124Mi
+    memory: 200Mi
 
 networkPolicies:
   enable: true
@@ -113,3 +113,6 @@ cas-postgres:
   namespace:
   gcs:
     bucketSuffix:
+
+loadTesting:
+  enable: false

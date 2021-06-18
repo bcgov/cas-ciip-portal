@@ -10,6 +10,8 @@
     "pretest:e2e": "node cypress/support/listAuthenticatedPages.js",
     "test:e2e": "cypress run",
     "test:e2e-with-mocks": "cypress run --config integrationFolder=cypress/integration_mocks",
+    "test:smoke": "yarn build:relay-persist && cd ./tests/perf; ./run_test.sh smoke;",
+    "test:load": "yarn build:relay-persist && cd ./tests/perf; ./run_test.sh load;",
     "precypress": "node cypress/support/listAuthenticatedPages.js",
     "cypress": "cypress open",
     "cucumber:pretty": "cucumber-js --format node_modules/cucumber-pretty --format-options '{\"descriptionEnabled\":true}'",
@@ -18,6 +20,7 @@
     "build": "npm run build:schema && npm run build:relay && npm run build:next",
     "build:schema": "postgraphile -X -c postgres://localhost/ciip_portal_dev -s ggircs_portal --export-schema-graphql server/schema.graphql --export-schema-json server/schema.json --classic-ids --sort-export && echo >> server/schema.json",
     "build:relay": "relay-compiler --verbose",
+    "build:relay-persist": "relay-compiler --persist-output tests/perf/queries.json",
     "build:next": "next build",
     "start": "NODE_ENV=production node --unhandled-rejections=strict server",
     "format": "prettier --write .",
@@ -102,6 +105,7 @@
     "cucumber-pretty": "^6.0.0",
     "cypress": "^6.9.1",
     "cypress-axe": "^0.12.2",
+    "easygraphql-load-tester": "^2.0.5",
     "easygraphql-tester": "^6.0.1",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.6",
@@ -146,7 +150,8 @@
     "**/node-fetch": "^2.6.1",
     "next/resolve-url-loader/adjust-sourcemap-loader/object-path": "0.11.5",
     "**/hosted-git-info": "4.0.1",
-    "**/trim-newlines": "4.0.1"
+    "**/trim-newlines": "4.0.1",
+    "easygraphql-parser": "^0.0.15"
   },
   "jest": {
     "testEnvironment": "jsdom",
