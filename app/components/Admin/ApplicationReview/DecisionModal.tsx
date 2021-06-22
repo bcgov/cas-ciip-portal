@@ -33,7 +33,6 @@ export const DecisionModal: React.FunctionComponent<Props> = ({
         </p>
         <p className="d-flex justify-content-center">
           <Button
-            value="REQUESTED_CHANGES"
             variant="outline-secondary"
             size="lg"
             onClick={() => onDecision('REQUESTED_CHANGES')}
@@ -45,7 +44,6 @@ export const DecisionModal: React.FunctionComponent<Props> = ({
       </Modal.Body>
       <Modal.Footer className="d-flex justify-content-around">
         <Button
-          value="APPROVED"
           variant="success"
           size="lg"
           onClick={() => onDecision('APPROVED')}
@@ -55,7 +53,6 @@ export const DecisionModal: React.FunctionComponent<Props> = ({
         </Button>
         <strong>OR</strong>
         <Button
-          value="REJECTED"
           variant="danger"
           size="lg"
           onClick={() => onDecision('REJECTED')}
@@ -89,9 +86,7 @@ export const DecisionModal: React.FunctionComponent<Props> = ({
         )}
       </Modal.Body>
       <Modal.Footer>
-        <Button value="SUBMITTED" onClick={() => onDecision('SUBMITTED')}>
-          Revert Decision
-        </Button>
+        <Button onClick={() => onDecision('SUBMITTED')}>Revert Decision</Button>
       </Modal.Footer>
     </>
   );
