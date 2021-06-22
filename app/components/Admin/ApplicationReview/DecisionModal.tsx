@@ -23,10 +23,6 @@ export const DecisionModal: React.FunctionComponent<Props> = ({
     ? `Revert Decision`
     : 'Make a Decision or Request Changes';
 
-  const handleDecision = (e) => {
-    onDecision(e.target.value);
-  };
-
   const makeDecisionContent = (
     <>
       <Modal.Body>
@@ -40,7 +36,7 @@ export const DecisionModal: React.FunctionComponent<Props> = ({
             value="REQUESTED_CHANGES"
             variant="outline-secondary"
             size="lg"
-            onClick={handleDecision}
+            onClick={() => onDecision('REQUESTED_CHANGES')}
           >
             <FontAwesomeIcon icon={faEnvelope} />
             Request Changes
@@ -52,7 +48,7 @@ export const DecisionModal: React.FunctionComponent<Props> = ({
           value="APPROVED"
           variant="success"
           size="lg"
-          onClick={handleDecision}
+          onClick={() => onDecision('APPROVED')}
         >
           <FontAwesomeIcon icon={faCheck} />
           Approve
@@ -62,7 +58,7 @@ export const DecisionModal: React.FunctionComponent<Props> = ({
           value="REJECTED"
           variant="danger"
           size="lg"
-          onClick={handleDecision}
+          onClick={() => onDecision('REJECTED')}
         >
           <FontAwesomeIcon icon={faTimes} />
           Reject
@@ -93,7 +89,7 @@ export const DecisionModal: React.FunctionComponent<Props> = ({
         )}
       </Modal.Body>
       <Modal.Footer>
-        <Button value="SUBMITTED" onClick={handleDecision}>
+        <Button value="SUBMITTED" onClick={() => onDecision('SUBMITTED')}>
           Revert Decision
         </Button>
       </Modal.Footer>
