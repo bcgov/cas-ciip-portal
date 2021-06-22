@@ -96,7 +96,7 @@ were instructed to report an amount of natural gas under this fuel.
 
 Flared Natural Gas as a fuel was deprecated for the 2020 application cycle. '),
   (87,'Flared Natural Gas N20','m3', 'archived', 147, ''),
-  (88,'Vented Natural Gas','m3', 'archived', 148, 'Vented Natural Gas as a fuel was deprecated for the 2020 application cycle.')
+  (88,'Vented Natural Gas','m3', 'archived', 95, 'Vented Natural Gas as a fuel was deprecated for the 2020 application cycle.')
 on conflict(id) do update set
 units=excluded.units,
 state=excluded.state,
