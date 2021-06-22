@@ -70,10 +70,12 @@ describe('Application decision modal', () => {
 
     const approveButton = wrapper
       .find('Button')
-      .findWhere((btn) => btn.prop('value') === decision);
+      .findWhere((btn) => btn.text().includes('Approve'))
+      .at(0);
 
     expect(approveButton.exists()).toBeTrue();
-    approveButton.simulate('click', {target: {value: decision}});
+
+    approveButton.simulate('click');
     expect(spy).toHaveBeenCalledTimes(1);
     expect(spy).toHaveBeenCalledWith(decision);
   });
@@ -87,10 +89,11 @@ describe('Application decision modal', () => {
 
     const rejectButton = wrapper
       .find('Button')
-      .findWhere((btn) => btn.prop('value') === decision);
+      .findWhere((btn) => btn.text().includes('Reject'))
+      .at(0);
 
     expect(rejectButton.exists()).toBeTrue();
-    rejectButton.simulate('click', {target: {value: decision}});
+    rejectButton.simulate('click');
     expect(spy).toHaveBeenCalledTimes(1);
     expect(spy).toHaveBeenCalledWith(decision);
   });
@@ -104,10 +107,11 @@ describe('Application decision modal', () => {
 
     const requestChangesButton = wrapper
       .find('Button')
-      .findWhere((btn) => btn.prop('value') === decision);
+      .findWhere((btn) => btn.text().includes('Request Changes'))
+      .at(0);
 
     expect(requestChangesButton.exists()).toBeTrue();
-    requestChangesButton.simulate('click', {target: {value: decision}});
+    requestChangesButton.simulate('click');
     expect(spy).toHaveBeenCalledTimes(1);
     expect(spy).toHaveBeenCalledWith(decision);
   });
@@ -121,10 +125,11 @@ describe('Application decision modal', () => {
 
     const revertDecisionButton = wrapper
       .find('Button')
-      .findWhere((btn) => btn.prop('value') === decision);
+      .findWhere((btn) => btn.text() === 'Revert Decision')
+      .at(0);
 
     expect(revertDecisionButton.exists()).toBeTrue();
-    revertDecisionButton.simulate('click', {target: {value: decision}});
+    revertDecisionButton.simulate('click');
     expect(spy).toHaveBeenCalledTimes(1);
     expect(spy).toHaveBeenCalledWith(decision);
   });
