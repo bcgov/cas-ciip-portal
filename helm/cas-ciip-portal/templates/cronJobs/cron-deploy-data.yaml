@@ -11,6 +11,7 @@ metadata:
 spec:
   suspend: true # This cron job is intended to be triggered manually
   schedule: "* * * * *"
+  successfulJobsHistoryLimit: 1
   jobTemplate:
     spec:
       backoffLimit: 0
