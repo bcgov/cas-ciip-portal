@@ -178,7 +178,7 @@ function makeApplicationDecision(decision, appId) {
   cy.visit(`/analyst/application/${encodeURIComponent(applicationId)}`);
   cy.get('#page-content');
   cy.get('#open-decision-dialog').click();
-  cy.get(`button[value="${decision}"`).click();
+  cy.get('button').contains(decision).click();
   cy.get('#page-content');
 }
 
@@ -198,7 +198,7 @@ describe('Application status change emails', () => {
     cy.visit('/analyst');
     cy.get('#page-content');
 
-    makeApplicationDecision('APPROVED', 1);
+    makeApplicationDecision('Approve', 1);
     cy.wait(500);
 
     cy.request('localhost:8025/api/v1/messages').then((response) => {
@@ -219,7 +219,7 @@ describe('Application status change emails', () => {
     cy.visit('/analyst');
     cy.get('#page-content');
 
-    makeApplicationDecision('REJECTED', 2);
+    makeApplicationDecision('Reject', 2);
     cy.wait(500);
 
     cy.request('localhost:8025/api/v1/messages').then((response) => {
@@ -240,7 +240,7 @@ describe('Application status change emails', () => {
     cy.visit('/analyst');
     cy.get('#page-content');
 
-    makeApplicationDecision('REQUESTED_CHANGES', 3);
+    makeApplicationDecision('Request Changes', 3);
     cy.wait(500);
 
     cy.request('localhost:8025/api/v1/messages').then((response) => {

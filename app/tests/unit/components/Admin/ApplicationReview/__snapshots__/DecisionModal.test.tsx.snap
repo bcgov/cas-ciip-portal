@@ -49,7 +49,6 @@ exports[`Application decision modal presents options to make a decision or reque
         disabled={false}
         onClick={[Function]}
         size="lg"
-        value="REQUESTED_CHANGES"
         variant="outline-secondary"
       >
         <FontAwesomeIcon
@@ -95,7 +94,6 @@ exports[`Application decision modal presents options to make a decision or reque
       disabled={false}
       onClick={[Function]}
       size="lg"
-      value="APPROVED"
       variant="success"
     >
       <FontAwesomeIcon
@@ -139,7 +137,6 @@ exports[`Application decision modal presents options to make a decision or reque
       disabled={false}
       onClick={[Function]}
       size="lg"
-      value="REJECTED"
       variant="danger"
     >
       <FontAwesomeIcon
@@ -429,7 +426,6 @@ exports[`Application decision modal presents the option to revert the applicatio
       active={false}
       disabled={false}
       onClick={[Function]}
-      value="SUBMITTED"
       variant="primary"
     >
       Revert Decision
@@ -716,7 +712,6 @@ exports[`Application decision modal shows a special note about limitations on re
       active={false}
       disabled={false}
       onClick={[Function]}
-      value="SUBMITTED"
       variant="primary"
     >
       Revert Decision
