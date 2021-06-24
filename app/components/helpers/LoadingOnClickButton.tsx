@@ -1,6 +1,6 @@
 import React from 'react';
 import withPromiseLoading from 'lib/withPromiseLoading';
-import {Button, ButtonProps} from 'react-bootstrap';
+import {Button as BootstrapButton, ButtonProps} from 'react-bootstrap';
 
 const IN_FLIGHT_PROPERTY = 'disabled';
 const ASYNC_HANDLER = 'onClick';
@@ -12,21 +12,17 @@ interface Props extends ButtonProps {
 // Wraps a bootstrap Button with the `withPromiseLoading` higher order component.
 // This will make the button enter a disabled state until the
 // onClick handler completes.
-const LoadingOnClickButton: React.FunctionComponent<Props> = ({
+const Button: React.FunctionComponent<Props> = ({
   loadingText,
   ...buttonProps
 }) => {
   return (
-    <Button {...buttonProps}>
+    <BootstrapButton {...buttonProps}>
       {loadingText !== undefined && buttonProps[IN_FLIGHT_PROPERTY]
         ? loadingText
         : buttonProps.children}
-    </Button>
+    </BootstrapButton>
   );
 };
 
-export default withPromiseLoading(
-  LoadingOnClickButton,
-  ASYNC_HANDLER,
-  IN_FLIGHT_PROPERTY
-);
+export default withPromiseLoading(Button, ASYNC_HANDLER, IN_FLIGHT_PROPERTY);

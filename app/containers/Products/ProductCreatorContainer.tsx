@@ -4,14 +4,8 @@ import {IChangeEvent} from '@rjsf/core';
 import {Card} from 'react-bootstrap';
 import createProductMutation from 'mutations/product/createProductMutation';
 import {CiipProductState} from 'createProductMutation.graphql';
-import withPromiseLoading from 'lib/withPromiseLoading';
 import ProductCreatorForm from './ProductCreatorForm';
 
-const LoadingProductCreatorForm = withPromiseLoading(
-  ProductCreatorForm,
-  'saveProduct',
-  'disabled'
-);
 interface Props {
   relay: RelayProp;
   toggleShowCreateForm: (...args: any[]) => void;
@@ -75,7 +69,7 @@ export const ProductCreator: React.FunctionComponent<Props> = ({
             Create a Product
           </Card.Header>
           <Card.Body style={{padding: '2em'}}>
-            <LoadingProductCreatorForm
+            <ProductCreatorForm
               saveProduct={saveProduct}
               disabled={false}
               toggleShowCreateForm={toggleShowCreateForm}

@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
 import {Button, Modal} from 'react-bootstrap';
-import JsonSchemaForm, {IChangeEvent} from '@rjsf/core';
+import {IChangeEvent} from '@rjsf/core';
 import FormFieldTemplate from 'containers/Forms/FormFieldTemplate';
 import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
 import addOperatorSchema from 'components/organisation/addOrganisationSchema';
+import JsonSchemaForm from './helpers/LoadingOnSubmitForm';
 
 interface Props {
   onAddOrganisation?: (...args: any[]) => void;
@@ -27,8 +28,8 @@ const AddOrganisationModal: React.FunctionComponent<Props> = (props) => {
         }
       }
     };
+    await onAddOrganisation(variables);
     setModalVisible(!isModalVisible);
-    onAddOrganisation(variables);
   };
 
   return (

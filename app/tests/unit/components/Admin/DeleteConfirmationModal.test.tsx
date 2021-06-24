@@ -32,7 +32,9 @@ describe('CreateNaicsCodeModal', () => {
         onClose={jest.fn()}
       />
     );
-    renderer.find('Button').at(0).prop('onClick')({} as any);
+    renderer.find('WithPromiseLoading(Button)').at(0).prop('onClick')(
+      {} as any
+    );
     expect(handleDelete).toBeCalledTimes(1);
   });
 });

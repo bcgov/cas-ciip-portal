@@ -1,7 +1,7 @@
 import React from 'react';
 import {Modal, Container, Button} from 'react-bootstrap';
 import globalFormStyles from '../../Forms/FormSharedStyles';
-import JsonSchemaForm, {FormValidation} from '@rjsf/core';
+import {FormValidation} from '@rjsf/core';
 import {JSONSchema7} from 'json-schema';
 import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
 import FormFieldTemplate from 'containers/Forms/FormFieldTemplate';
@@ -13,6 +13,7 @@ import {
   nowMoment,
   ensureFullTimestamp
 } from 'functions/formatDates';
+import LoadingOnSubmitForm from 'components/helpers/LoadingOnSubmitForm';
 
 function transformUiSchema(json, formFields) {
   if (!formFields) return;
@@ -87,7 +88,7 @@ const ReportingYearFormDialog: React.FunctionComponent<Props> = ({
         </Modal.Header>
         <Modal.Body>
           <Container>
-            <JsonSchemaForm
+            <LoadingOnSubmitForm
               omitExtraData
               liveOmit
               noHtml5Validate
@@ -113,7 +114,7 @@ const ReportingYearFormDialog: React.FunctionComponent<Props> = ({
               <Button type="submit" variant="primary">
                 Save Reporting Year
               </Button>
-            </JsonSchemaForm>
+            </LoadingOnSubmitForm>
           </Container>
         </Modal.Body>
       </Modal>

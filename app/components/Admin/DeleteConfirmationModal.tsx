@@ -1,3 +1,4 @@
+import LoadingOnClickButton from 'components/helpers/LoadingOnClickButton';
 import React from 'react';
 import {Button, Modal, Alert, Col, Row} from 'react-bootstrap';
 
@@ -38,9 +39,13 @@ export const DeleteConfirmationModal: React.FunctionComponent<Props> = ({
         <p>{deleteObject.deleteItemDescription}</p>
         <Row>
           <Col md={{span: 4, offset: 4}}>
-            <Button onClick={handleDelete} variant="danger">
+            <LoadingOnClickButton
+              onClick={handleDelete}
+              variant="danger"
+              loadingText="Deleting..."
+            >
               Confirm Delete
-            </Button>
+            </LoadingOnClickButton>
           </Col>
           <Col md={{span: 3, offset: 1}}>
             <Button onClick={onClose} variant="secondary">

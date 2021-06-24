@@ -1,12 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`The ReviseApplicationButton should render a "Revise" button when the version being viewed === the latest draft version (there is not yet a newer draft) 1`] = `
-<Button
-  active={false}
-  disabled={false}
+<WithPromiseLoading(Button)
+  loadingText="Starting revision..."
   onClick={[Function]}
   variant="primary"
 >
   Revise Application
-</Button>
+</WithPromiseLoading(Button)>
 `;

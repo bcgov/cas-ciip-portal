@@ -74,7 +74,9 @@ describe('NaicsCodeTable', () => {
         }}
       />
     );
-    expect(renderer.exists('CreateNaicsCodeModal')).toBe(true);
+    expect(renderer.exists('WithPromiseLoading(CreateNaicsCodeModal)')).toBe(
+      true
+    );
   });
 
   it('should open CreateNaicsCode modal component on New NAICS Code Button click', async () => {
@@ -102,7 +104,9 @@ describe('NaicsCodeTable', () => {
 
     renderer.find('Button').first().simulate('click');
 
-    expect(renderer.find('CreateNaicsCodeModal').prop('show')).toBe(true);
+    expect(
+      renderer.find('WithPromiseLoading(CreateNaicsCodeModal)').prop('show')
+    ).toBe(true);
   });
 
   it('should call the create mutation on Form submit', async () => {
@@ -134,13 +138,15 @@ describe('NaicsCodeTable', () => {
       />
     );
 
-    renderer.find('CreateNaicsCodeModal').prop('onSubmit')({
-      stopPropagation: jest.fn(),
-      preventDefault: jest.fn(),
-      persist: jest.fn(),
-      currentTarget: {checkValidity: jest.fn(() => true)},
-      target: [{value: 'a'}, {value: 'b'}, {value: 'c'}]
-    } as any);
+    const callParams = {
+      1: {value: 'a'},
+      2: {value: 'b'},
+      3: {value: 'c'},
+      checkValidity: jest.fn(() => true)
+    } as any;
+    await renderer
+      .find('WithPromiseLoading(CreateNaicsCodeModal)')
+      .prop('onSubmit')(callParams);
 
     expect(spy).toBeCalledTimes(1);
     expect(spy).toBeCalledWith(null, {

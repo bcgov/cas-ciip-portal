@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import {useRouter} from 'next/router';
-import {Button} from 'react-bootstrap';
 import createApplicationRevisionMutation from 'mutations/application/createApplicationRevisionMutation';
 import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
 import {ReviseApplicationButtonContainer_application} from 'ReviseApplicationButtonContainer_application.graphql';
 import {getApplicationPageRoute} from 'routes';
+import LoadingOnClickButton from 'components/helpers/LoadingOnClickButton';
 
 interface Props {
   application: ReviseApplicationButtonContainer_application;
@@ -31,13 +31,17 @@ export const ReviseApplicationButton: React.FunctionComponent<Props> = ({
 
     await createApplicationRevisionMutation(relay.environment, variables);
 
-    router.push(getApplicationPageRoute(application.id));
+    await router.push(getApplicationPageRoute(application.id));
   };
 
   return (
-    <Button variant="primary" onClick={handleClick}>
+    <LoadingOnClickButton
+      variant="primary"
+      onClick={handleClick}
+      loadingText="Starting revision..."
+    >
       Revise Application
-    </Button>
+    </LoadingOnClickButton>
   );
 };
 

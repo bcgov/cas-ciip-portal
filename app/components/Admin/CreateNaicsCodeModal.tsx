@@ -3,10 +3,11 @@ import {Button, Form, Modal, Container, Col, Row, Alert} from 'react-bootstrap';
 
 interface Props {
   validated: boolean;
-  onSubmit: (e: React.SyntheticEvent<any>) => Promise<void>;
+  onSubmit: (form: any) => Promise<void>;
   show: boolean;
   onClose: () => void;
   showActiveCodeError: boolean;
+  disabled?: boolean;
 }
 
 export const CreateNaicsCodeModal: React.FunctionComponent<Props> = ({
@@ -14,8 +15,18 @@ export const CreateNaicsCodeModal: React.FunctionComponent<Props> = ({
   onSubmit,
   show,
   onClose,
-  showActiveCodeError
+  showActiveCodeError,
+  disabled
 }) => {
+  const submitForm: (e: React.SyntheticEvent<any>) => void = async (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    e.persist();
+
+    await onSubmit(e.target);
+    onClose();
+  };
+
   return (
     <>
       <Modal
@@ -30,40 +41,42 @@ export const CreateNaicsCodeModal: React.FunctionComponent<Props> = ({
         </Modal.Header>
         <Modal.Body>
           <Container>
-            <Form noValidate validated={validated} onSubmit={onSubmit}>
-              <Row>
-                <Col md={4}>
-                  <Form.Group controlId="naicsCode">
-                    <Form.Label>NAICS Code</Form.Label>
-                    <Form.Control required type="text" />
-                    <Form.Control.Feedback type="invalid">
-                      NAICS Code is required
-                    </Form.Control.Feedback>
-                  </Form.Group>
-                </Col>
-                <Col md={8}>
-                  <Form.Group controlId="ciipSector">
-                    <Form.Label>CIIP Sector</Form.Label>
-                    <Form.Control type="text" />
-                  </Form.Group>
-                </Col>
-              </Row>
-              <Form.Group controlId="naicsDescription">
-                <Form.Label>NAICS Description</Form.Label>
-                <Form.Control required type="text" />
-                <Form.Control.Feedback type="invalid">
-                  NAICS Description is required
-                </Form.Control.Feedback>
-              </Form.Group>
-              {showActiveCodeError && (
-                <Alert variant="danger">
-                  This NAICS code already exists. Please delete the currently
-                  active code before entering new information
-                </Alert>
-              )}
-              <Button variant="primary" type="submit">
-                Submit
-              </Button>
+            <Form noValidate validated={validated} onSubmit={submitForm}>
+              <fieldset disabled={disabled}>
+                <Row>
+                  <Col md={4}>
+                    <Form.Group controlId="naicsCode">
+                      <Form.Label>NAICS Code</Form.Label>
+                      <Form.Control required type="text" />
+                      <Form.Control.Feedback type="invalid">
+                        NAICS Code is required
+                      </Form.Control.Feedback>
+                    </Form.Group>
+                  </Col>
+                  <Col md={8}>
+                    <Form.Group controlId="ciipSector">
+                      <Form.Label>CIIP Sector</Form.Label>
+                      <Form.Control type="text" />
+                    </Form.Group>
+                  </Col>
+                </Row>
+                <Form.Group controlId="naicsDescription">
+                  <Form.Label>NAICS Description</Form.Label>
+                  <Form.Control required type="text" />
+                  <Form.Control.Feedback type="invalid">
+                    NAICS Description is required
+                  </Form.Control.Feedback>
+                </Form.Group>
+                {showActiveCodeError && (
+                  <Alert variant="danger">
+                    This NAICS code already exists. Please delete the currently
+                    active code before entering new information
+                  </Alert>
+                )}
+                <Button variant="primary" type="submit">
+                  Submit
+                </Button>
+              </fieldset>
             </Form>
           </Container>
         </Modal.Body>

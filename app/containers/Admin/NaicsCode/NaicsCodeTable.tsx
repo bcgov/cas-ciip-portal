@@ -5,7 +5,13 @@ import {NaicsCodeTable_query} from '__generated__/NaicsCodeTable_query.graphql';
 import NaicsCodeTableRow from './NaicsCodeTableRow';
 import CreateNaicsCodeModal from 'components/Admin/CreateNaicsCodeModal';
 import createNaicsCodeMutation from 'mutations/naics_code/createNaicsCodeMutation';
+import withPromiseLoading from 'lib/withPromiseLoading';
 
+const LoadingCreateNaicsCodeModal = withPromiseLoading(
+  CreateNaicsCodeModal,
+  'onSubmit',
+  'disabled'
+);
 interface Props {
   relay: RelayProp;
   query: NaicsCodeTable_query;
@@ -31,29 +37,21 @@ export const NaicsCodeTableContainer: React.FunctionComponent<Props> = (
     );
   };
 
-  const handleCreateNaicsCode = async (e: React.SyntheticEvent<any>) => {
-    const form = e.currentTarget;
-    e.stopPropagation();
-    e.preventDefault();
-    e.persist();
+  const handleCreateNaicsCode = async (form: any) => {
     setValidated(true);
 
-    if (naicsCodeIsActive(e.target[0].value)) setShowActiveCodeError(true);
+    if (naicsCodeIsActive(form[1].value)) setShowActiveCodeError(true);
     else if (form.checkValidity() === true) {
       const {environment} = props.relay;
       const variables = {
         input: {
-          naicsCodeInput: e.target[0].value,
-          ciipSectorInput: e.target[1].value ? e.target[1].value : null,
-          naicsDescriptionInput: e.target[2].value
+          naicsCodeInput: form[1].value,
+          ciipSectorInput: form[2].value ? form[2].value : null,
+          naicsDescriptionInput: form[3].value
         }
       };
-      try {
-        await createNaicsCodeMutation(environment, variables);
-      } catch (e) {
-        console.error(e);
-      }
-      handleClose();
+
+      await createNaicsCodeMutation(environment, variables);
     }
   };
 
@@ -67,7 +65,7 @@ export const NaicsCodeTableContainer: React.FunctionComponent<Props> = (
           New NAICS Code
         </Button>
       </div>
-      <CreateNaicsCodeModal
+      <LoadingCreateNaicsCodeModal
         validated={validated}
         onSubmit={handleCreateNaicsCode}
         show={showCreateModal}

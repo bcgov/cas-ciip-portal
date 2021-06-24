@@ -24,7 +24,12 @@ describe('The ReviseApplicationButton', () => {
     );
 
     expect(r).toMatchSnapshot();
-    expect(r.exists('Button')).toBe(true);
-    expect(r.find('Button').text()).toBe('Revise Application');
+    expect(r.exists('WithPromiseLoading(Button)')).toBe(true);
+    expect(r.find('WithPromiseLoading(Button)').prop('loadingText')).toBe(
+      'Starting revision...'
+    );
+    expect(r.find('WithPromiseLoading(Button)').prop('children')).toBe(
+      'Revise Application'
+    );
   });
 });
