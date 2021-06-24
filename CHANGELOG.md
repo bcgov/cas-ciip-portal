@@ -2,6 +2,36 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.9.0](https://github.com/bcgov/cas-ciip-portal/compare/v2.8.0...v2.9.0) (2021-06-24)
+
+
+### Features
+
+* button wrapper with loading text ([1d23df7](https://github.com/bcgov/cas-ciip-portal/commit/1d23df7957775527ad1126e3dc4d255cda709cee))
+* checking that there is data in the body ([5a4ceb3](https://github.com/bcgov/cas-ciip-portal/commit/5a4ceb3e8426760cdec23f4b388c0e030180df15))
+* circleci job for smoke test ([5354d73](https://github.com/bcgov/cas-ciip-portal/commit/5354d736ec1a21d460bd92c1c321579995064e09))
+* HOC that sets a loading state ([3c3c112](https://github.com/bcgov/cas-ciip-portal/commit/3c3c1123a51d4ac6d1b412efdca5fdb02cece043))
+* k6 script to test mutations ([5bc3e08](https://github.com/bcgov/cas-ciip-portal/commit/5bc3e08c8b2916b9ae20b18b71a306cb673fccb7))
+* mutations test setup script ([82f7815](https://github.com/bcgov/cas-ciip-portal/commit/82f7815673131736947c827d1d96e3fa0fcecbac))
+* per vu iteration for spike testing ([3afceaf](https://github.com/bcgov/cas-ciip-portal/commit/3afceaf1e4d1c7d2be7a6eff9b50643d7e8d6b16))
+* reporter smoke test ([142d35a](https://github.com/bcgov/cas-ciip-portal/commit/142d35a31af338bd58966c3252b26e361a7fe451))
+* templating the k6 file to generate it with options ([0ec2e60](https://github.com/bcgov/cas-ciip-portal/commit/0ec2e60a01a5fbe095c86143763203e225bb8316))
+* view to calculate incentives for all submitted applications ([6836d73](https://github.com/bcgov/cas-ciip-portal/commit/6836d73cdec071a9a836aad3a9aa2bcf197a388d))
+
+
+### Bug Fixes
+
+* add validation to user registration form ([a75b95a](https://github.com/bcgov/cas-ciip-portal/commit/a75b95aa109a999dfd3b1be01727d22be6af661d))
+* archived Vented Natural Gas fuel should be mapped to Natural Gas ([66a315f](https://github.com/bcgov/cas-ciip-portal/commit/66a315f033d0d1f3b96acfbc9c3daf14d07cecbc))
+* clicking on the icon sends the right status ([b366634](https://github.com/bcgov/cas-ciip-portal/commit/b366634aad242898eb4f4fa241acce0e9db8e2c1))
+* incorrect usergroup selected with multi role ([bb498d2](https://github.com/bcgov/cas-ciip-portal/commit/bb498d2eb9e5fc623a55bea22adaf4e76f0030d2))
+* mandatory products function ignores deleted product-naics relations ([af411eb](https://github.com/bcgov/cas-ciip-portal/commit/af411eb7dd91bbdd7c07560c08bcde7ff8f4d117))
+* only fire mandatory products validation on published products ([f6c4f5a](https://github.com/bcgov/cas-ciip-portal/commit/f6c4f5ae58e7e8abaf64fc69bd1de1f5c7fd7030))
+* retrieve bcghgid from facility table ([0fe532c](https://github.com/bcgov/cas-ciip-portal/commit/0fe532c744f54aadb62cb14a3d57dff85ac3bb64))
+* shipit.yml indentation ([76685d0](https://github.com/bcgov/cas-ciip-portal/commit/76685d03da9e26f99f514035b5af5c037c4c49a7))
+* unset debouncedMutation singleton when it is called ([5ab323b](https://github.com/bcgov/cas-ciip-portal/commit/5ab323bc14078031582f14da861a9d0f4165e158))
+* use `sort -u` instead of `sort | uniq` ([930d359](https://github.com/bcgov/cas-ciip-portal/commit/930d359191e7e58875c69e8f6427c00653e62b90))
+
 ### [2.8.1](https://github.com/bcgov/cas-ciip-portal/compare/v2.8.0...v2.8.1) (2021-06-14)
 
 
