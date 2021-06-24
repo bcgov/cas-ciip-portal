@@ -360,3 +360,4 @@ application_validation_functions/mandatory_products_are_reported [application_va
 @v2.8.1 2021-06-14T22:27:35Z Dylan Leard <dylan@button.is> # release v2.8.1
 views/ciip_admin [views/ciip_admin@v2.8.1] 2021-06-15T22:51:59Z Dylan Leard <dylan@button.is> # Migration: get bchghid from the facility table
 views/ciip_incentive_per_facility 2021-06-16T17:12:43Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # A view that shows the average and maximum incentive for a facility's latest application revision
+@v2.9.0 2021-06-24T16:12:00Z Matthieu Foucault <matthieu@button.is> # release v2.9.0
