@@ -12,17 +12,24 @@ export default css.global`
   .btn-link {
     color: #0053b3;
   }
+  .badge-primary,
   .btn-primary {
-    background: #036;
+    background-color: #036;
+  }
+  .btn-primary {
     border-color: #036;
+  }
+  .btn-primary:hover {
+    background-color: #002040;
+    border-color: #002040;
   }
   .btn-outline-primary {
     color: #036;
     border-color: #036;
   }
   .btn-outline-primary:hover {
-    background-color: #036;
-    border-color: #036;
+    background-color: #002040;
+    border-color: #002040;
   }
 
   /* greens */
@@ -30,6 +37,9 @@ export default css.global`
   .badge-success,
   .btn-success {
     background-color: #24883e;
+  }
+  .btn-success {
+    border-color: #24883e;
   }
   .btn-outline-success {
     color: #24883e;
@@ -41,6 +51,9 @@ export default css.global`
   .badge-info,
   .btn-info {
     background-color: #197ea3;
+  }
+  .btn-info {
+    border-color: #197ea3;
   }
   .btn-info.focus,
   .btn-info:focus,
