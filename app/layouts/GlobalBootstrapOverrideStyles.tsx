@@ -25,6 +25,11 @@ export default (
         background-color: #002040;
         border-color: #002040;
       }
+      .btn-primary:not(:disabled):not(.disabled).active,
+      .btn-primary:not(:disabled):not(.disabled):active {
+        background-color: #0066cc;
+        border-color: #0066cc;
+      }
       .btn-outline-primary {
         color: #036;
         border-color: #036;
@@ -32,6 +37,15 @@ export default (
       .btn-outline-primary:hover {
         background-color: #002040;
         border-color: #002040;
+      }
+      .btn-outline-primary:active {
+        background-color: #002040;
+        border-color: #002040;
+      }
+      .btn-outline-primary:not(:disabled):not(.disabled).active,
+      .btn-outline-primary:not(:disabled):not(.disabled):active {
+        background-color: #0066cc;
+        border-color: #0066cc;
       }
 
       /* greens */
@@ -41,10 +55,6 @@ export default (
         background-color: #24883e;
       }
       .btn-success {
-        border-color: #24883e;
-      }
-      .btn-outline-success {
-        color: #24883e;
         border-color: #24883e;
       }
 
@@ -61,16 +71,12 @@ export default (
       .btn-info:focus,
       .btn-info:hover {
         background-color: #177192;
-      }
-      .btn-outline-info {
-        color: #197ea3;
-        border-color: #197ea3;
-      }
-      .btn-outline-info.focus,
-      .btn-outline-info:focus,
-      .btn-outline-info:hover {
-        background-color: #177192;
         border-color: #177192;
+      }
+      .btn-info:not(:disabled):not(.disabled).active,
+      .btn-info:not(:disabled):not(.disabled):active {
+        background-color: #135c76;
+        border-color: #135c76;
       }
     `}
   </style>
