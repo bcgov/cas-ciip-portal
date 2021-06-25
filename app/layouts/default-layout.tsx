@@ -142,9 +142,7 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
           }
         `}
       </style>
-      <style jsx global>
-        {globalBootstrapOverrides}
-      </style>
+      {globalBootstrapOverrides}
     </div>
   );
 };
