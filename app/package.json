@@ -27,7 +27,7 @@
     "lint": "eslint --ext .js,.jsx,.ts,.tsx ."
   },
   "engines": {
-    "node": "12.20.1",
+    "node": "12.22.2",
     "yarn": "1.22.0"
   },
   "author": "",
