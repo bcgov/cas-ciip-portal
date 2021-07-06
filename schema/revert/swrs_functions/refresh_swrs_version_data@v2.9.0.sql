@@ -21,12 +21,7 @@ begin
 
   for application_temp_row in select * from ggircs_portal.application
     loop
-      swrs_version := (
-        select r.version from swrs.report r where r.swrs_facility_id = (
-          select swrs_facility_id from ggircs_portal.facility f
-          where application_temp_row.facility_id = f.id
-        ) and r.reporting_period_duration = application_temp_row.reporting_year
-      );
+      swrs_version := (select r.version from swrs.report r where r.swrs_report_id = application_temp_row.swrs_report_id);
 
       -- Create application_revision, status and form_results with version number = 0 if a report exists and the 0 version does not
       if (swrs_version is not null
@@ -34,7 +29,6 @@ begin
           (select application_id from ggircs_portal.application_revision
           where application_id = application_temp_row.id and version_number = 0) is null
       ) then
-          update ggircs_portal.application set swrs_report_version = swrs_version where id=application_temp_row.id;
           insert into ggircs_portal.application_revision(application_id, version_number)
             values (application_temp_row.id, 0);
           insert into ggircs_portal.application_revision_status(application_id, version_number, application_revision_status)
@@ -61,7 +55,6 @@ begin
       -- Do nothing if a swrs report does not exist
       elsif (swrs_version is not null and swrs_version != application_temp_row.swrs_report_version) then
 
-        update ggircs_portal.application set swrs_report_version = swrs_version where id=application_temp_row.id;
         for form_json_temp_row in select form_id from ggircs_portal.ciip_application_wizard where is_active=true
           loop
 
