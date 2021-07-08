@@ -362,3 +362,4 @@ views/ciip_admin [views/ciip_admin@v2.8.1] 2021-06-15T22:51:59Z Dylan Leard <dyl
 views/ciip_incentive_per_facility 2021-06-16T17:12:43Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # A view that shows the average and maximum incentive for a facility's latest application revision
 @v2.9.0 2021-06-24T16:12:00Z Matthieu Foucault <matthieu@button.is> # release v2.9.0
 swrs_functions/refresh_swrs_version_data [swrs_functions/refresh_swrs_version_data@v2.9.0] 2021-07-05T16:49:44Z Dylan Leard <dylan@button.is> # Migration: key on combination of swrs_facility_id and reporting_year
+@v2.10.0 2021-07-07T23:51:18Z Dylan Leard <dylan@button.is> # release v2.10.0
