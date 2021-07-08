@@ -49,4 +49,6 @@ begin
 end
 $func$ language 'plpgsql';
 
+comment on function ggircs_portal_private.add_enum_comparison_operators(text) is 'A function adding enum to text comparison operators for metabase usage.';
+
 commit;
