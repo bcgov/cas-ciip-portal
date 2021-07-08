@@ -1,11 +1,12 @@
 # Add any on the fly documentation in this file.
 
 ### Schema usage
+
 - The ggircs_portal schema is the `public` schema. It contains all database entities that should be exposed to the api. ie search functions, tables, views etc
 - The ggircs_portal_private schema is the `private` schema. It contains functions that are necessary for the operation and security of the portal, but should not be exposed via the public api.
 
-
 ### Graphile-worker
+
 - The workers run independent of the main app (see `dev` or `start` in package.json)
 - Graphile-worker requires a 'tasks' folder that contain javascript task files describing the actions that task should carry out
 - Calling graphile worker is done with an SQL statement like:
@@ -13,6 +14,7 @@
 - Full graphile-worker docs: https://github.com/graphile/worker
 
 ### Cypress-Axe
+
 - Cypress-Axe is used to check accessibility issues during our end-to-end tests.
 - A cy.visit() call must come before injecting cy.injectAxe()
 - The function to make an accessibility check is cy.checkA11y()
@@ -21,10 +23,12 @@
 - Extra config details: https://www.deque.com/axe/axe-for-web/documentation/api-documentation/#api-name-axeconfigure
 
 ### Cypress: Ignore email test
+
 - If you want to ignore the email test locally add an env flag to the command `yarn cypress --env NO_MAIL=true`
 - `yarn test:e2e --env NO_MAIL=true` also works
 
 ### Cypress: Fixtures
+
 - The data mutations done in cypress tests are passed from test to test
 - To help ensure each test passes or fails independent of other tests we run `truncate ggircs_portal.application restart identity cascade` in the setup fixture for each test. Then create 2 applications with the create_application_mutation_chain function.
 - Any specific updates to other child tables of application (ie form_result) necessary for the individual can be done once the new applications have been created.
@@ -37,6 +41,7 @@ We use Keycloak to manage authentication of users (using username/password or ID
 Our application is deployed in the `dev`, `test`, and `prod` environments. Because we restore the `prod` data into the `test` environment, both deployments must share the same keycloak instance (so that the users uids are identical). Our `dev` deployment uses a separate keycloak instance to avoid polluting the production keycloak realm with fake users (although that will inevitably happen when performing QA in `test`). The mapping between the Openshift namespaces and the keycloak namespaces is defined in `app/data/kc-namespace-map.json`
 
 ### Mailhog
+
 - MailHog can be run via docker with:
 - `sudo docker run -d -p 1025:1025 -p 8025:8025 mailhog/mailhog`
 - This starts a server on localhost:8025 & uses smtp port 1025
@@ -44,13 +49,17 @@ Our application is deployed in the `dev`, `test`, and `prod` environments. Becau
 - There are several ways to install MailHog locally detailed here: https://github.com/mailhog/MailHog
 - These are the steps I took to install it locally (Ubuntu 16.04):
 - These steps require go-lang. If you already have go set up. Skip ahead to `Install MailHog`
+
 #### Install Go:
+
 - `sudo apt install golang-go`
 - Navigate to home directory
 - `mkdir gocode`
 - `echo "export GOPATH=$HOME/gocode" >> ~/.profile`
 - `source ~/.profile`
+
 #### Install MailHog:
+
 - `go get github.com/mailhog/MailHog`
 - `sudo cp /home/{user}/gocode/bin/MailHog /usr/local/bin/mailhog` --> replace `{user}` with your user
 - You should now be able to run mailhog from your command line with the command: `mailhog`
@@ -59,3 +68,7 @@ Our application is deployed in the `dev`, `test`, and `prod` environments. Becau
   - SMTP server starts on port 1025
   - HTTP server starts on port 8025
   - Uses in-memory message storage
+
+### Metabase
+
+Metabase needs the function `ggircs_portal_private.add_enum_comparison_operators` to be run for postgresql enum types to work properly in filters. There is still the downside that a search box does not contain a dropdown with the set of enum values, enum values must therefore be known in advance. Open issue: https://github.com/metabase/metabase/issues/7092
