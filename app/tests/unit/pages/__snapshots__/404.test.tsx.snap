@@ -43,7 +43,7 @@ exports[`404 page matches the last accepted Snapshot 1`] = `
             href="/"
           >
             <a
-              className="jsx-3660830980 full-width btn btn-primary"
+              className="jsx-3660830980 btn btn-primary"
             >
               Return Home
             </a>

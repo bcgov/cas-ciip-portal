@@ -1,5 +1,6 @@
 import React from 'react';
 import {Container, Row, Col} from 'react-bootstrap';
+import globalBootstrapOverrides from 'layouts/GlobalBootstrapOverrideStyles';
 import {graphql, createFragmentContainer} from 'react-relay';
 import {defaultLayout_session} from '__generated__/defaultLayout_session.graphql';
 import getConfig from 'next/config';
@@ -45,7 +46,7 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
   });
 
   return (
-    <div className={`page-wrap ${fixedHeader ? 'has-fixed-header' : ''}`}>
+    <div id="page-wrap" className={`${fixedHeader ? 'has-fixed-header' : ''}`}>
       <Header
         fixed={fixedHeader}
         isLoggedIn={Boolean(session)}
@@ -61,12 +62,12 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
       </Header>
       <main>
         {title || titleControls ? (
-          <div className="page-title">
+          <div id="page-title">
             <Container className={width}>
               <Row>
                 {title && (
                   <Col>
-                    <div className="title-container">
+                    <div id="title-container">
                       <h1>{title}</h1>
                       {help && (
                         <Help
@@ -83,9 +84,9 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
           </div>
         ) : null}
 
-        <Container id="page-content" className={`content ${width}`}>
+        <div id="page-content" className={`container ${width}`}>
           {children}
-        </Container>
+        </div>
         {Boolean(session) && !disableHelpButton && (
           <HelpButton isInternalUser={isInternalUser} />
         )}
@@ -95,7 +96,7 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
       </Footer>
       <style jsx>
         {`
-          .page-wrap {
+          #page-wrap {
             display: flex;
             flex-direction: column;
             min-height: 100vh;
@@ -103,97 +104,45 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
           main {
             flex-grow: 1;
           }
-          .page-wrap.has-fixed-header main {
+          #page-wrap.has-fixed-header main {
             padding-top: 68px;
           }
-
-          .title-container {
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-          }
-        `}
-      </style>
-      <style jsx global>
-        {`
-          a {
-            color: #0053b3;
-          }
-          .btn-link {
-            color: #0053b3;
-          }
-          .content {
+          #page-content {
             padding-top: 50px;
             flex: 1 0 auto;
           }
-          .footer {
-            flex-shrink: 0;
-          }
-          .page-title {
-            background: #f5f5f5;
-            border-bottom: 1px solid #ccc;
-            padding: 30px 0 30px;
-          }
-          .page-title h1 {
-            font-size: 25px;
-            font-weight: 400;
-          }
-          h3 {
-            margin-bottom: 20px;
-            font-weight: 500;
-          }
-          .blue {
-            color: #036;
-          }
-          p {
-            line-height: 25px;
-          }
-          .ciip-card {
-            border: 1px solid #036;
-            padding: 15px;
-            border-radius: 0;
-            box-shadow: 1px 8px 13px -5px #00336694;
-          }
-          button.full-width {
-            width: 100%;
-          }
-          .btn-primary {
-            background: #036;
-            border-color: #036;
-          }
-          .with-shadow {
-            box-shadow: 1px 8px 13px -5px #00336694;
-          }
-          .accordion .card-body {
-            font-size: 15px;
-          }
-          .container.wide {
-            max-width: 1600px;
-          }
-
           @media screen and (min-width: 992px) {
             #page-content {
               padding-top: 60px;
             }
           }
-
-          /* BS overrides for purposes of accessibility: */
-
-          .btn-outline-primary {
-            color: #0053b3;
-            border-color: #0053b3;
+          #page-title {
+            background: #f5f5f5;
+            border-bottom: 1px solid #ccc;
+            padding: 30px 0 30px;
           }
-          .badge-success,
-          .btn-success {
-            background-color: #24883e;
+          #page-title h1 {
+            font-size: 25px;
+            font-weight: 400;
           }
-          .badge-info,
-          .btn-info {
-            background-color: #197ea3;
+          #title-container {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+          }
+          :global(.container.wide) {
+            max-width: 1600px;
+          }
+          :global(.blue) {
+            color: #036;
+          }
+          :global(p) {
+            line-height: 25px;
           }
         `}
       </style>
+      {globalBootstrapOverrides}
     </div>
   );
 };

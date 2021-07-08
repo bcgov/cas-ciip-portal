@@ -6,23 +6,23 @@ exports[`landing matches the last accepted Snapshot 1`] = `
   showSubheader={false}
 >
   <div
-    className="jsx-2980671744 row"
+    className="jsx-198885256 row"
   >
     <Col
       md={6}
     >
       <h1
-        className="jsx-2980671744 blue"
+        className="jsx-198885256 blue"
       >
         What is the CleanBC Industrial Incentive Program?
       </h1>
       <p
-        className="jsx-2980671744"
+        className="jsx-198885256"
       >
         The
          
         <a
-          className="jsx-2980671744"
+          className="jsx-198885256"
           href="https://www2.gov.bc.ca/gov/content?id=6F748A4DD83447C59B8B9361882FF9A3"
         >
           CleanBC Industrial Incentive Program (CIIP)
@@ -31,12 +31,12 @@ exports[`landing matches the last accepted Snapshot 1`] = `
         is part of the CleanBC Program for Industry, which applies to large industrial operations that report their emissions under the Greenhouse Gas Industrial Reporting and Control Act (GGIRCA).
       </p>
       <p
-        className="jsx-2980671744"
+        className="jsx-198885256"
       >
         The CIIP helps encourage cleaner industrial operations across the province by reducing carbon tax costs for facilities that can demonstrate they operate near world-leading emissions benchmarks.
       </p>
       <p
-        className="jsx-2980671744"
+        className="jsx-198885256"
       >
         As the price of carbon rises, the CleanBC Program for Industry will support competitiveness and facilitate emission reductions using revenues from the carbon tax that industry pays above $30 per tonne carbon dioxide equivalent (tCO2e).
       </p>
@@ -72,7 +72,7 @@ exports[`landing matches the last accepted Snapshot 1`] = `
       md={12}
     >
       <h2
-        className="jsx-2980671744 blue"
+        className="jsx-198885256 blue"
       >
         How to Apply
       </h2>
@@ -81,20 +81,20 @@ exports[`landing matches the last accepted Snapshot 1`] = `
       md={4}
     >
       <div
-        className="jsx-2980671744 value-prop"
+        className="jsx-198885256 value-prop"
       >
         <img
           alt=""
-          className="jsx-2980671744"
+          className="jsx-198885256"
           src="/static/icons/icon-register.svg"
         />
         <h3
-          className="jsx-2980671744 blue"
+          className="jsx-198885256 blue"
         >
           1. Register as an Industrial Reporter
         </h3>
         <p
-          className="jsx-2980671744"
+          className="jsx-198885256"
         >
           Before you can apply for the CIIP on behalf of an eligible operation, you must register with the Ministry of Environment and Climate Change Strategy.
         </p>
@@ -104,20 +104,20 @@ exports[`landing matches the last accepted Snapshot 1`] = `
       md={4}
     >
       <div
-        className="jsx-2980671744 value-prop"
+        className="jsx-198885256 value-prop"
       >
         <img
           alt=""
-          className="jsx-2980671744"
+          className="jsx-198885256"
           src="/static/icons/icon-request.svg"
         />
         <h3
-          className="jsx-2980671744 blue"
+          className="jsx-198885256 blue"
         >
           2. Request to apply for an Operation
         </h3>
         <p
-          className="jsx-2980671744"
+          className="jsx-198885256"
         >
           Once you’ve registered you can request to apply on behalf one or multiple eligible Operations.
         </p>
@@ -127,20 +127,20 @@ exports[`landing matches the last accepted Snapshot 1`] = `
       md={4}
     >
       <div
-        className="jsx-2980671744 value-prop"
+        className="jsx-198885256 value-prop"
       >
         <img
           alt=""
-          className="jsx-2980671744"
+          className="jsx-198885256"
           src="/static/icons/icon-apply.svg"
         />
         <h3
-          className="jsx-2980671744 blue"
+          className="jsx-198885256 blue"
         >
           3. Apply on behalf of the Operation
         </h3>
         <p
-          className="jsx-2980671744"
+          className="jsx-198885256"
         >
           The CIIP team will verify and approve your request and then you can apply for the CleanBC Industrial Incentive Program.
         </p>
@@ -148,7 +148,7 @@ exports[`landing matches the last accepted Snapshot 1`] = `
     </Col>
   </Row>
   <div
-    className="jsx-2980671744 row"
+    className="jsx-198885256 row"
     id="photo-row"
   >
     <Col
@@ -160,7 +160,7 @@ exports[`landing matches the last accepted Snapshot 1`] = `
     >
       <img
         alt="Engineer wearing safety clothing and working at a control panel"
-        className="jsx-2980671744 with-shadow img-fluid"
+        className="jsx-198885256 img-fluid"
         id="photo"
         sizes=" (max-width: 575.98px) calc(100vw - 30px) (max-width: 767.98px) 510px, (min-width: 768px) 635px "
         src="/static/landing-photo-1020.jpg"
@@ -191,16 +191,9 @@ exports[`landing matches the last accepted Snapshot 1`] = `
           }
         }
       />
-      <Card
-        body={false}
-        className="ciip-card"
-        style={
-          Object {
-            "border": "1px solid grey",
-            "margin": "40px 0",
-            "width": "100%",
-          }
-        }
+      <div
+        className="jsx-198885256 card"
+        id="contact-card"
       >
         <CardBody>
           <CardTitle
@@ -217,21 +210,21 @@ exports[`landing matches the last accepted Snapshot 1`] = `
           >
             Please email us at 
             <strong
-              className="jsx-2980671744"
+              className="jsx-198885256"
             >
               GHGRegulator@gov.bc.ca
             </strong>
              for any questions.
           </CardText>
         </CardBody>
-      </Card>
+      </div>
       <p
-        className="jsx-2980671744"
+        className="jsx-198885256"
       >
         Further information on the CleanBC Industrial Incentive Program is available on the
          
         <a
-          className="jsx-2980671744"
+          className="jsx-198885256"
           href="https://www2.gov.bc.ca/gov/content?id=6F748A4DD83447C59B8B9361882FF9A3"
         >
           program website
@@ -241,9 +234,9 @@ exports[`landing matches the last accepted Snapshot 1`] = `
     </Col>
   </div>
   <JSXStyle
-    id="2980671744"
+    id="198885256"
   >
-    @media screen and (min-width:992px){.row.jsx-2980671744:first-child{padding-top:50px;}}.value-prop.jsx-2980671744{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;padding-right:30px;}.value-prop.jsx-2980671744 img.jsx-2980671744{max-width:100px;padding:30px 0;}.value-prop.jsx-2980671744 h4.jsx-2980671744{margin-bottom:20px;}li.jsx-2980671744{list-style:none;}#photo.jsx-2980671744{margin:53px 0;}h1.jsx-2980671744{font-size:1.75rem;margin-bottom:20px;}h2.jsx-2980671744{font-size:1.5rem;}.value-prop.jsx-2980671744 h3.jsx-2980671744{font-size:1.24rem;}h5.jsx-2980671744{margin-bottom:0.5rem;}@media (min-width:767.98px){#photo-row.jsx-2980671744{margin-top:100px;}}
+    @media screen and (min-width:992px){.row.jsx-198885256:first-child{padding-top:50px;}}.value-prop.jsx-198885256{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;padding-right:30px;}.value-prop.jsx-198885256 img.jsx-198885256{max-width:100px;padding:30px 0;}.value-prop.jsx-198885256 h4.jsx-198885256{margin-bottom:20px;}li.jsx-198885256{list-style:none;}#photo.jsx-198885256{margin:53px 0;box-shadow:1px 8px 13px -5px #00336694;}#contact-card.jsx-198885256{width:100%;margin:40px 0;padding:15px;border:1px solid grey;border-radius:0;box-shadow:1px 8px 13px -5px #00336694;}h1.jsx-198885256{font-size:1.75rem;margin-bottom:20px;}h2.jsx-198885256{font-size:1.5rem;}.value-prop.jsx-198885256 h3.jsx-198885256{font-size:1.24rem;}h3{margin-bottom:20px;}h5.jsx-198885256{margin-bottom:0.5rem;}@media (min-width:767.98px){#photo-row.jsx-198885256{margin-top:100px;}}
   </JSXStyle>
 </Relay(DefaultLayout)>
 `;

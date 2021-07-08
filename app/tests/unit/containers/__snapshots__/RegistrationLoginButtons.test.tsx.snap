@@ -31,7 +31,7 @@ exports[`The RegistrationLoginButtons component should render a message about th
         You may still log in to view your submitted CIIP applications and submit any changes requested by the Climate Action Secretariat.
       </p>
       <a
-        className="jsx-513087841 full-width btn btn-primary btn-lg"
+        className="jsx-513087841 btn btn-primary btn-lg"
         href="/register"
         style={
           Object {
@@ -99,7 +99,7 @@ exports[`The RegistrationLoginButtons component should render the date where the
         As part of the application, information about the operation’s energy use, emissions, and production is required.
       </p>
       <a
-        className="jsx-513087841 full-width btn btn-primary btn-lg"
+        className="jsx-513087841 btn btn-primary btn-lg"
         href="/register"
         style={
           Object {

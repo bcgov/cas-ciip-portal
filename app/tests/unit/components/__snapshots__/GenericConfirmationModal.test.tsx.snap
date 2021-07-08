@@ -25,7 +25,7 @@ exports[`Generic Confirmation Modal should render a Bootstrap modal (with custom
     closeLabel="Close"
   >
     <h2
-      className="jsx-4105755554"
+      className="jsx-4147480844"
       id="modal-title"
     >
       Are you sure you want to continue?
@@ -64,12 +64,12 @@ exports[`Generic Confirmation Modal should render a Bootstrap modal (with custom
   <JSXStyle
     id="3835795811"
   >
-    h2.jsx-4105755554{margin-bottom:0;}
+    h2.jsx-4147480844{margin-bottom:0;}
   </JSXStyle>
   <JSXStyle
-    id="2690782760"
+    id="1967655430"
   >
-    .modal-header{background:#036;color:#fff;}.btn-primary#confirm{background:#036;}.btn-primary#confirm:hover,.btn-primary#cancel:hover{background:#002040;border-color:#002040;}.btn-outline-primary#confirm,.btn-outline-primary#cancel{color:#036;border-color:#036;}.btn-outline-primary#confirm:hover,.btn-outline-primary#cancel:hover{color:#fff;background:#002040;}
+    .modal-header{background:#036;color:#fff;}
   </JSXStyle>
 </Modal>
 `;
@@ -99,7 +99,7 @@ exports[`Generic Confirmation Modal should render a default Bootstrap modal with
     closeLabel="Close"
   >
     <h2
-      className="jsx-4105755554"
+      className="jsx-4147480844"
       id="modal-title"
     >
       Are you sure you want to continue?
@@ -129,12 +129,12 @@ exports[`Generic Confirmation Modal should render a default Bootstrap modal with
   <JSXStyle
     id="3835795811"
   >
-    h2.jsx-4105755554{margin-bottom:0;}
+    h2.jsx-4147480844{margin-bottom:0;}
   </JSXStyle>
   <JSXStyle
-    id="2690782760"
+    id="1967655430"
   >
-    .modal-header{background:#036;color:#fff;}.btn-primary#confirm{background:#036;}.btn-primary#confirm:hover,.btn-primary#cancel:hover{background:#002040;border-color:#002040;}.btn-outline-primary#confirm,.btn-outline-primary#cancel{color:#036;border-color:#036;}.btn-outline-primary#confirm:hover,.btn-outline-primary#cancel:hover{color:#fff;background:#002040;}
+    .modal-header{background:#036;color:#fff;}
   </JSXStyle>
 </Modal>
 `;

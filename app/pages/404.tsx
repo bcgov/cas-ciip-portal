@@ -13,7 +13,7 @@ export default () => {
             <p>Sorry, we couldn&apos;t find the page you were looking for.</p>
             <p>
               <Link href="/">
-                <a className="full-width btn btn-primary">Return Home</a>
+                <a className="btn btn-primary">Return Home</a>
               </Link>
             </p>
           </Col>

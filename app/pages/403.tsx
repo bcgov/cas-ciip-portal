@@ -28,7 +28,7 @@ export default () => {
             </p>
             <p>
               <Link href="/">
-                <a className="full-width btn btn-primary">Return Home</a>
+                <a className="btn btn-primary">Return Home</a>
               </Link>
             </p>
           </Col>

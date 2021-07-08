@@ -2,7 +2,8 @@
 
 exports[`The DefaultLayout component when logged in matches the last accepted Snapshot 1`] = `
 <div
-  className="jsx-4260734604 page-wrap "
+  className="jsx-2647806953 "
+  id="page-wrap"
 >
   <HeaderLayout
     fixed={false}
@@ -21,11 +22,10 @@ exports[`The DefaultLayout component when logged in matches the last accepted Sn
     }
   />
   <main
-    className="jsx-4260734604"
+    className="jsx-2647806953"
   >
-    <Container
-      className="content narrow"
-      fluid={false}
+    <div
+      className="jsx-2647806953 container narrow"
       id="page-content"
     />
     <HelpButton
@@ -34,21 +34,22 @@ exports[`The DefaultLayout component when logged in matches the last accepted Sn
   </main>
   <Footer />
   <JSXStyle
-    id="1741845444"
+    id="2647806953"
   >
-    .page-wrap.jsx-4260734604{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;min-height:100vh;}main.jsx-4260734604{-webkit-box-flex:1;-webkit-flex-grow:1;-ms-flex-positive:1;flex-grow:1;}.page-wrap.has-fixed-header.jsx-4260734604 main.jsx-4260734604{padding-top:68px;}.title-container.jsx-4260734604{height:100%;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;}
+    #page-wrap.jsx-2647806953{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;min-height:100vh;}main.jsx-2647806953{-webkit-box-flex:1;-webkit-flex-grow:1;-ms-flex-positive:1;flex-grow:1;}#page-wrap.has-fixed-header.jsx-2647806953 main.jsx-2647806953{padding-top:68px;}#page-content.jsx-2647806953{padding-top:50px;-webkit-flex:1 0 auto;-ms-flex:1 0 auto;flex:1 0 auto;}@media screen and (min-width:992px){#page-content.jsx-2647806953{padding-top:60px;}}#page-title.jsx-2647806953{background:#f5f5f5;border-bottom:1px solid #ccc;padding:30px 0 30px;}#page-title.jsx-2647806953 h1.jsx-2647806953{font-size:25px;font-weight:400;}#title-container.jsx-2647806953{height:100%;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;}.container.wide{max-width:1600px;}.blue{color:#036;}p{line-height:25px;}
   </JSXStyle>
   <JSXStyle
-    id="976811457"
+    id="3785076481"
   >
-    a{color:#0053b3;}.btn-link{color:#0053b3;}.content{padding-top:50px;-webkit-flex:1 0 auto;-ms-flex:1 0 auto;flex:1 0 auto;}.footer{-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;}.page-title{background:#f5f5f5;border-bottom:1px solid #ccc;padding:30px 0 30px;}.page-title h1{font-size:25px;font-weight:400;}h3{margin-bottom:20px;font-weight:500;}.blue{color:#036;}p{line-height:25px;}.ciip-card{border:1px solid #036;padding:15px;border-radius:0;box-shadow:1px 8px 13px -5px #00336694;}button.full-width{width:100%;}.btn-primary{background:#036;border-color:#036;}.with-shadow{box-shadow:1px 8px 13px -5px #00336694;}.accordion .card-body{font-size:15px;}.container.wide{max-width:1600px;}@media screen and (min-width:992px){#page-content{padding-top:60px;}}.btn-outline-primary{color:#0053b3;border-color:#0053b3;}.badge-success,.btn-success{background-color:#24883e;}.badge-info,.btn-info{background-color:#197ea3;}
+    a{color:#0053b3;}.btn-link{color:#0053b3;}.btn-link{color:#0053b3;}.badge-primary,.btn-primary{background-color:#036;}.btn-primary{border-color:#036;}.btn-primary:hover{background-color:#002040;border-color:#002040;}.btn-primary:not(:disabled):not(.disabled) .active,.btn-primary:not(:disabled):not(.disabled):active{background-color:#0066cc;border-color:#0066cc;}.btn-outline-primary{color:#036;border-color:#036;}.btn-outline-primary:hover{background-color:#002040;border-color:#002040;}.btn-outline-primary:active{background-color:#002040;border-color:#002040;}.btn-outline-primary:not(:disabled):not(.disabled) .active,.btn-outline-primary:not(:disabled):not(.disabled):active{background-color:#0066cc;border-color:#0066cc;}.badge-success,.btn-success{background-color:#24883e;}.btn-success{border-color:#24883e;}.badge-info,.btn-info{background-color:#197ea3;}.btn-info{border-color:#197ea3;}.btn-info.focus,.btn-info:focus,.btn-info:hover{background-color:#177192;border-color:#177192;}.btn-info:not(:disabled):not(.disabled) .active,.btn-info:not(:disabled):not(.disabled):active{background-color:#135c76;border-color:#135c76;}
   </JSXStyle>
 </div>
 `;
 
 exports[`The DefaultLayout component when logged out matches the last accepted Snapshot 1`] = `
 <div
-  className="jsx-4260734604 page-wrap "
+  className="jsx-2647806953 "
+  id="page-wrap"
 >
   <HeaderLayout
     fixed={false}
@@ -61,24 +62,23 @@ exports[`The DefaultLayout component when logged out matches the last accepted S
     }
   />
   <main
-    className="jsx-4260734604"
+    className="jsx-2647806953"
   >
-    <Container
-      className="content narrow"
-      fluid={false}
+    <div
+      className="jsx-2647806953 container narrow"
       id="page-content"
     />
   </main>
   <Footer />
   <JSXStyle
-    id="1741845444"
+    id="2647806953"
   >
-    .page-wrap.jsx-4260734604{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;min-height:100vh;}main.jsx-4260734604{-webkit-box-flex:1;-webkit-flex-grow:1;-ms-flex-positive:1;flex-grow:1;}.page-wrap.has-fixed-header.jsx-4260734604 main.jsx-4260734604{padding-top:68px;}.title-container.jsx-4260734604{height:100%;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;}
+    #page-wrap.jsx-2647806953{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;min-height:100vh;}main.jsx-2647806953{-webkit-box-flex:1;-webkit-flex-grow:1;-ms-flex-positive:1;flex-grow:1;}#page-wrap.has-fixed-header.jsx-2647806953 main.jsx-2647806953{padding-top:68px;}#page-content.jsx-2647806953{padding-top:50px;-webkit-flex:1 0 auto;-ms-flex:1 0 auto;flex:1 0 auto;}@media screen and (min-width:992px){#page-content.jsx-2647806953{padding-top:60px;}}#page-title.jsx-2647806953{background:#f5f5f5;border-bottom:1px solid #ccc;padding:30px 0 30px;}#page-title.jsx-2647806953 h1.jsx-2647806953{font-size:25px;font-weight:400;}#title-container.jsx-2647806953{height:100%;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;}.container.wide{max-width:1600px;}.blue{color:#036;}p{line-height:25px;}
   </JSXStyle>
   <JSXStyle
-    id="976811457"
+    id="3785076481"
   >
-    a{color:#0053b3;}.btn-link{color:#0053b3;}.content{padding-top:50px;-webkit-flex:1 0 auto;-ms-flex:1 0 auto;flex:1 0 auto;}.footer{-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;}.page-title{background:#f5f5f5;border-bottom:1px solid #ccc;padding:30px 0 30px;}.page-title h1{font-size:25px;font-weight:400;}h3{margin-bottom:20px;font-weight:500;}.blue{color:#036;}p{line-height:25px;}.ciip-card{border:1px solid #036;padding:15px;border-radius:0;box-shadow:1px 8px 13px -5px #00336694;}button.full-width{width:100%;}.btn-primary{background:#036;border-color:#036;}.with-shadow{box-shadow:1px 8px 13px -5px #00336694;}.accordion .card-body{font-size:15px;}.container.wide{max-width:1600px;}@media screen and (min-width:992px){#page-content{padding-top:60px;}}.btn-outline-primary{color:#0053b3;border-color:#0053b3;}.badge-success,.btn-success{background-color:#24883e;}.badge-info,.btn-info{background-color:#197ea3;}
+    a{color:#0053b3;}.btn-link{color:#0053b3;}.btn-link{color:#0053b3;}.badge-primary,.btn-primary{background-color:#036;}.btn-primary{border-color:#036;}.btn-primary:hover{background-color:#002040;border-color:#002040;}.btn-primary:not(:disabled):not(.disabled) .active,.btn-primary:not(:disabled):not(.disabled):active{background-color:#0066cc;border-color:#0066cc;}.btn-outline-primary{color:#036;border-color:#036;}.btn-outline-primary:hover{background-color:#002040;border-color:#002040;}.btn-outline-primary:active{background-color:#002040;border-color:#002040;}.btn-outline-primary:not(:disabled):not(.disabled) .active,.btn-outline-primary:not(:disabled):not(.disabled):active{background-color:#0066cc;border-color:#0066cc;}.badge-success,.btn-success{background-color:#24883e;}.btn-success{border-color:#24883e;}.badge-info,.btn-info{background-color:#197ea3;}.btn-info{border-color:#197ea3;}.btn-info.focus,.btn-info:focus,.btn-info:hover{background-color:#177192;border-color:#177192;}.btn-info:not(:disabled):not(.disabled) .active,.btn-info:not(:disabled):not(.disabled):active{background-color:#135c76;border-color:#135c76;}
   </JSXStyle>
 </div>
 `;

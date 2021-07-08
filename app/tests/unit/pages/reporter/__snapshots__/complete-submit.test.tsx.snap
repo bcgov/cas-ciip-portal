@@ -59,7 +59,6 @@ exports[`Reporter application submission page should render properly 1`] = `
   >
     <Button
       active={false}
-      className="full-width"
       disabled={false}
       size="sm"
       style={
