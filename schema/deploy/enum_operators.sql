@@ -43,7 +43,7 @@ begin
     negator = !=,
     hashes, merges
 );$$;
-      raise notice 'executing: %', code_;
+      raise notice 'creating enum operator: %', enum_name;
       execute code_;
     end loop;
 end
