@@ -10,7 +10,8 @@ declare
   r         record;
   code_     text;
   enum_name text;
-  cmp_func  text;
+  cmp_func_eq  text;
+  cmp_func_neq  text;
 begin
   for r in (
     select distinct
@@ -23,27 +24,46 @@ begin
   )
     loop
       enum_name := r.schema || $$.$$ || r.name;
-      cmp_func := r.schema || $$._cmp_$$ || r.name || $$__text$$;
+      cmp_func_eq := r.schema || $$._cmp_$$ || r.name || $$__text__eq$$;
+      cmp_func_neq := r.schema || $$._cmp_$$ || r.name || $$__text__neq$$;
       code_ := $$
-    create or replace function $$ || cmp_func || $$(_a $$ || enum_name || $$, _b text)
-    returns boolean as
-    $f$
-        select _a = _b::$$ || enum_name || $$;
-    $f$
-    language sql immutable strict;
+        create or replace function $$ || cmp_func_eq || $$(_a $$ || enum_name || $$, _b text)
+        returns boolean as
+        $f$
+            select _a = _b::$$ || enum_name || $$;
+        $f$
+        language sql immutable strict;
 
-  -- no replace, so drop and recreate
-  drop operator if exists = ($$ || enum_name || $$, text);
+        create or replace function $$ || cmp_func_neq || $$(_a $$ || enum_name || $$, _b text)
+        returns boolean as
+        $g$
+            select _a != _b::$$ || enum_name || $$;
+        $g$
+        language sql immutable strict;
 
-  create operator = (
-    leftarg = $$ || enum_name || $$,
-    rightarg = text,
-    procedure = $$ || cmp_func || $$,
-    commutator = =,
-    negator = !=,
-    hashes, merges
-);$$;
-      raise notice 'creating enum operator: %', enum_name;
+        -- no replace, so drop and recreate
+        drop operator if exists = ($$ || enum_name || $$, text);
+        drop operator if exists != ($$ || enum_name || $$, text);
+
+        create operator = (
+          leftarg = $$ || enum_name || $$,
+          rightarg = text,
+          procedure = $$ || cmp_func_eq || $$,
+          commutator = =,
+          negator = !=,
+          hashes, merges
+        );
+
+        create operator != (
+          leftarg = $$ || enum_name || $$,
+          rightarg = text,
+          procedure = $$ || cmp_func_neq || $$,
+          commutator = !=,
+          negator = =,
+          hashes, merges
+        );$$;
+
+      raise notice 'creating enum operators = and != for %', enum_name;
       execute code_;
     end loop;
 end
