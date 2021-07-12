@@ -48,19 +48,13 @@ begin
         create operator = (
           leftarg = $$ || enum_name || $$,
           rightarg = text,
-          procedure = $$ || cmp_func_eq || $$,
-          commutator = =,
-          negator = !=,
-          hashes, merges
+          procedure = $$ || cmp_func_eq || $$
         );
 
         create operator != (
           leftarg = $$ || enum_name || $$,
           rightarg = text,
-          procedure = $$ || cmp_func_neq || $$,
-          commutator = !=,
-          negator = =,
-          hashes, merges
+          procedure = $$ || cmp_func_neq || $$
         );$$;
 
       raise notice 'creating enum operators = and != for %', enum_name;
