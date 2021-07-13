@@ -363,3 +363,4 @@ views/ciip_incentive_per_facility 2021-06-16T17:12:43Z Pierre Bastianelli <pierr
 @v2.9.0 2021-06-24T16:12:00Z Matthieu Foucault <matthieu@button.is> # release v2.9.0
 swrs_functions/refresh_swrs_version_data [swrs_functions/refresh_swrs_version_data@v2.9.0] 2021-07-05T16:49:44Z Dylan Leard <dylan@button.is> # Migration: key on combination of swrs_facility_id and reporting_year
 @v2.10.0 2021-07-07T23:51:18Z Dylan Leard <dylan@button.is> # release v2.10.0
+database_functions/dd_enum_comparison_operators 2021-07-08T21:17:17Z Naomi Aro <naomi.aro@gov.bc.ca> # Enum operators for Metabase.

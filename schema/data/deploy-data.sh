@@ -213,6 +213,7 @@ while [[ "$1" =~ ^- && ! "$1" == "--" ]]; do case $1 in
 esac; shift; done
 
 deployProdData() {
+  _psql -c "select ggircs_portal_private.add_enum_comparison_operators('ggircs_portal');"
   _psql -f "./prod/form_json.sql"
   _psql -f "./prod/ciip_application_wizard.sql"
   _psql -f "./prod/fuel.sql"
