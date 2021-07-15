@@ -19,7 +19,7 @@ create view ggircs_portal.ciip_incentive_per_product as (
   order by ar.application_id, product_id
 );
 
-comment on view ggircs_portal.ciip_incentive_per_product is E'@omit/nReturns a record for each benchmarked product contained in the latest version of submitted applications';
+comment on view ggircs_portal.ciip_incentive_per_product is E'@omit\nReturns a record for each benchmarked product contained in the latest version of submitted applications';
 comment on column ggircs_portal.ciip_incentive_per_product.application_id is 'The id of the application this product is reported in';
 comment on column ggircs_portal.ciip_incentive_per_product.version_number is 'The most recent submitted version number for the application';
 comment on column ggircs_portal.ciip_incentive_per_product.product_id is 'The ID of the benchmarked product';
