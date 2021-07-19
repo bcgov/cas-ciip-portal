@@ -81,4 +81,4 @@ spec:
                   echo "$GGIRCS_HOST:$GGIRCS_PORT:$GGIRCS_DATABASE:$GGIRCS_USER:$GGIRCS_PASSWORD" >> .pgpass;
                   echo "$PORTAL_HOST:$PORTAL_PORT:$PORTAL_DATABASE:$PORTAL_USER:$PORTAL_PASSWORD" >> .pgpass;
                   PGPASSFILE=".pgpass" pg_dump -w -h $GGIRCS_HOST -p $GGIRCS_PORT -U $GGIRCS_USER --format=custom --schema="swrs" $GGIRCS_DATABASE |
-                  PGPASSFILE=".pgpass" pg_restore -w --clean --if-exists --no-owner --no-privileges -d $PORTAL_DATABASE -h $PORTAL_HOST -p $PORTAL_PORT -U $PORTAL_USER
+                  PGPASSFILE=".pgpass" pg_restore -w --clean --if-exists --no-owner --no-privileges --single-transaction -d $PORTAL_DATABASE -h $PORTAL_HOST -p $PORTAL_PORT -U $PORTAL_USER
