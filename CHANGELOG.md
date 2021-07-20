@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.11.0](https://github.com/bcgov/cas-ciip-portal/compare/v2.10.0...v2.11.0) (2021-07-20)
+
+
+### Features
+
+* add ciip_incentive_per_product view ([d68a94c](https://github.com/bcgov/cas-ciip-portal/commit/d68a94c36ab3b4b51fcc3ca5a836003e3437a67c))
+* pg_restore uses the single transaction flag ([0b833dd](https://github.com/bcgov/cas-ciip-portal/commit/0b833ddc2488c1ba2516cb5fdf33348fd4301cfb))
+
+
+### Bug Fixes
+
+* add enum operators for metabase ([2cc827e](https://github.com/bcgov/cas-ciip-portal/commit/2cc827ec830b4398fb16fe0eb97568034f3ac0d0))
+
 ## [2.10.0](https://github.com/bcgov/cas-ciip-portal/compare/v2.8.0...v2.10.0) (2021-07-07)
 
 
