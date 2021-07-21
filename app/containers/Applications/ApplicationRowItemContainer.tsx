@@ -43,9 +43,11 @@ export const ApplicationRowItem: React.FunctionComponent<Props> = (props) => {
         <Badge
           pill
           style={{width: '100%', textTransform: 'uppercase'}}
-          variant={statusBadgeColor[application.status]}
+          variant={statusBadgeColor[application.latestSubmittedRevisionStatus]}
         >
-          {getUserFriendlyStatusLabel(application.status)}
+          {getUserFriendlyStatusLabel(
+            application.latestSubmittedRevisionStatus
+          )}
         </Badge>
       </td>
       <td>
@@ -64,7 +66,7 @@ export default createFragmentContainer(ApplicationRowItem, {
       rowId
       operatorName
       facilityName
-      status
+      latestSubmittedRevisionStatus
       reportingYear
       submissionDate
     }

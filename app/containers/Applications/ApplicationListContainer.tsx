@@ -79,7 +79,7 @@ export default createFragmentContainer(ApplicationList, {
           facilityName: {includesInsensitive: $facility_name}
           reportingYear: {equalTo: $reporting_year}
           submissionDate: {equalTo: $submission_date}
-          status: {notEqualTo: DRAFT, equalTo: $status}
+          latestSubmittedRevisionStatus: {equalTo: $status, isNull: false}
         }
         orderBy: $order_by
       ) {
