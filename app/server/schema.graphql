@@ -650,6 +650,11 @@ type Application implements Node {
   latestSubmittedRevision: ApplicationRevision
 
   """
+  Returns the current status of an application, excluding application revisions that are not submitted yet (i.e. in draft)
+  """
+  latestSubmittedRevisionStatus: CiipApplicationRevisionStatus
+
+  """
   This function is a wrapper to return operator_name from the organisation object
   """
   operatorName: String
@@ -1677,6 +1682,9 @@ input ApplicationFilter {
 
   """Some related `formResultsByApplicationId` exist."""
   formResultsByApplicationIdExist: Boolean
+
+  """Filter by the object’s `latestSubmittedRevisionStatus` field."""
+  latestSubmittedRevisionStatus: CiipApplicationRevisionStatusFilter
 
   """Negates the expression."""
   not: ApplicationFilter
@@ -3910,6 +3918,8 @@ enum ApplicationsOrderBy {
   FACILITY_NAME_DESC
   ID_ASC
   ID_DESC
+  LATEST_SUBMITTED_REVISION_STATUS_ASC
+  LATEST_SUBMITTED_REVISION_STATUS_DESC
   NATURAL
   OPERATOR_NAME_ASC
   OPERATOR_NAME_DESC

@@ -37,7 +37,7 @@ exports[`ApplicationRowItem should render the application 1`] = `
         Object {
           "pathname": "/analyst/application/[applicationId]/",
           "query": Object {
-            "applicationId": undefined,
+            "applicationId": "123",
           },
         }
       }
