@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.11.1](https://github.com/bcgov/cas-ciip-portal/compare/v2.11.0...v2.11.1) (2021-07-21)
+
+
+### Bug Fixes
+
+* application list should retrieve the latest *submitted* status ([ee2507c](https://github.com/bcgov/cas-ciip-portal/commit/ee2507c0de4ef8962bea54e3841b4883965e29a5))
+
 ## [2.11.0](https://github.com/bcgov/cas-ciip-portal/compare/v2.10.0...v2.11.0) (2021-07-20)
 
 
