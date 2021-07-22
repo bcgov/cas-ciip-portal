@@ -2,7 +2,7 @@
 
 begin;
 
-create or replace function ggircs_portal.application_revision_carbon_tax(ggircs_portal.application_revision)
+create function ggircs_portal.application_revision_carbon_tax(ggircs_portal.application_revision)
 returns setof ggircs_portal.application_revision_fuel_carbon_tax
 as $function$
   select

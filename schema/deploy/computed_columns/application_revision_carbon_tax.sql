@@ -2,7 +2,7 @@
 
 begin;
 
-create function ggircs_portal.application_revision_carbon_tax(ggircs_portal.application_revision)
+create or replace function ggircs_portal.application_revision_carbon_tax(ggircs_portal.application_revision)
 returns setof ggircs_portal.application_revision_fuel_carbon_tax
 as $function$
   select
@@ -23,6 +23,9 @@ as $function$
   join swrs.fuel_mapping fm on fuel.swrs_fuel_mapping_id = fm.id
   join swrs.fuel_carbon_tax_details fctd on fm.fuel_carbon_tax_details_id = fctd.id
   -- non-carbon-taxed fuels are filtered out in the following joins
+  join ggircs_portal.emission_category ec
+    on fuel_data.emission_category_id = ec.id
+    and ec.carbon_taxed = true
   join swrs.fuel_charge reporting_fuel_charge
     on reporting_fuel_charge.carbon_tax_act_fuel_type_id = fctd.carbon_tax_act_fuel_type_id
     and reporting_year.reporting_period_end >= reporting_fuel_charge.start_date -- we use the rate applicable at the end of the reporting period
