@@ -116,3 +116,23 @@ cas-postgres:
 
 loadTesting:
   enable: false
+
+airflow-ciip-cert-renewal:
+  airflowEndpoint: https://cas-airflow-dev.apps.silver.devops.gov.bc.ca
+  dagId: ciip_cert_renewal
+  helm:
+    hook: "post-install"
+    hookWeight: 0
+
+airflow-ciip-deploy-db:
+  airflowEndpoint: https://cas-airflow-dev.apps.silver.devops.gov.bc.ca
+  dagId: ciip_deploy_db
+  # This job requires the cas-postgres dependency to be running,
+  # and is required for the app deployment to become ready.
+  # Therefore, it needs to be part of the initial install (instead of a pre/post install hook)
+  # For upgrades, it needs to be a hook so that the delete policy kicks in
+  # and the previous job template gets deleted (as editing job templates is not allowed)
+  # It can be a hook during upgrades as the cas-postgres dependency will already be running
+  helm:
+    hook: "pre-upgrade"
+    hookWeight: 0

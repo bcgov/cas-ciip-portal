@@ -54,3 +54,9 @@ cas-postgres:
   namespace: 09269b-test
   gcs:
     bucketSuffix: ciip-backups
+
+airflow-ciip-cert-renewal:
+  airflowEndpoint: https://cas-airflow-test.apps.silver.devops.gov.bc.ca
+
+airflow-ciip-deploy-db:
+  airflowEndpoint: https://cas-airflow-test.apps.silver.devops.gov.bc.ca
