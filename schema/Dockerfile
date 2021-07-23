@@ -23,15 +23,14 @@ ENV PATH="$PATH:$HOME/extlib/bin"
 ENV PERL5LIB=${HOME}/extlib/lib/perl5
 
 COPY .bin/docker-entrypoint.sh ${CIIP_HOME}
-COPY .bin/trigger-airflow-dag.sh ${CIIP_HOME}
 
 # Make everything in the home group-writable, to accomodate anyuid (in OpenShift)
 # /etc/passwd needs to be group-writable too -_-
 # Needs to be done as root to chown
 RUN useradd -ms /bin/bash -d ${CIIP_HOME} --uid ${USER_ID} ciip
 RUN chown -R ciip:0 ${CIIP_HOME} && \
-    chmod g=u /etc/passwd && \
-    chmod -R g+rwX ${CIIP_HOME}
+  chmod g=u /etc/passwd && \
+  chmod -R g+rwX ${CIIP_HOME}
 
 EXPOSE 3000
 USER ${USER_ID}
