@@ -117,6 +117,21 @@ cas-postgres:
 loadTesting:
   enable: false
 
+download-airflow-ciip-cert-renewal:
+  airflowEndpoint: https://cas-airflow-dev.apps.silver.devops.gov.bc.ca
+  dagId: fetch_and_save_dag_from_github
+  helm:
+    hook: "pre-install,pre-upgrade"
+    hookWeight: -1
+
+download-airflow-ciip-deploy-db:
+  airflowEndpoint: https://cas-airflow-dev.apps.silver.devops.gov.bc.ca
+  dagId: fetch_and_save_dag_from_github
+  helm:
+    hook: "pre-install,pre-upgrade"
+    hookWeight: -1
+
+
 airflow-ciip-cert-renewal:
   airflowEndpoint: https://cas-airflow-dev.apps.silver.devops.gov.bc.ca
   dagId: ciip_cert_renewal

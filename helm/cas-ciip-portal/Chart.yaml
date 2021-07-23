@@ -15,6 +15,14 @@ dependencies:
   - name: cas-airflow-dag-trigger
     version: 1.0.5
     repository: https://bcgov.github.io/cas-airflow
+    alias: download-airflow-ciip-cert-renewal
+  - name: cas-airflow-dag-trigger
+    version: 1.0.5
+    repository: https://bcgov.github.io/cas-airflow
+    alias: download-airflow-ciip-deploy-db
+  - name: cas-airflow-dag-trigger
+    version: 1.0.5
+    repository: https://bcgov.github.io/cas-airflow
     alias: airflow-ciip-cert-renewal
   - name: cas-airflow-dag-trigger
     version: 1.0.5
