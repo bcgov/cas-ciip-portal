@@ -118,19 +118,25 @@ loadTesting:
   enable: false
 
 download-cas-ciip-portal-dags:
+  image:
+    tag: 962a1237107ea338826a86ba78548de06ca70188 # pragma: allowlist secret
   airflowEndpoint: https://cas-airflow-dev.apps.silver.devops.gov.bc.ca
   dagId: fetch_and_save_dag_from_github
   helm:
     hook: "pre-install,pre-upgrade"
 
 airflow-ciip-cert-issue:
+  image:
+    tag: 962a1237107ea338826a86ba78548de06ca70188 # pragma: allowlist secret
   airflowEndpoint: https://cas-airflow-dev.apps.silver.devops.gov.bc.ca
   dagId: ciip_portal_acme_issue
   helm:
     hook: "post-install"
 
 airflow-ciip-deploy-db:
+  image:
+    tag: 962a1237107ea338826a86ba78548de06ca70188 # pragma: allowlist secret
   airflowEndpoint: https://cas-airflow-dev.apps.silver.devops.gov.bc.ca
   dagId: ciip_deploy_db
   helm:
-    hook: ~
+    hook: false
