@@ -117,27 +117,17 @@ cas-postgres:
 loadTesting:
   enable: false
 
-download-airflow-ciip-cert-renewal:
+download-cas-ciip-portal-dags:
   airflowEndpoint: https://cas-airflow-dev.apps.silver.devops.gov.bc.ca
   dagId: fetch_and_save_dag_from_github
   helm:
     hook: "pre-install,pre-upgrade"
-    hookWeight: -1
 
-download-airflow-ciip-deploy-db:
+airflow-ciip-cert-issue:
   airflowEndpoint: https://cas-airflow-dev.apps.silver.devops.gov.bc.ca
-  dagId: fetch_and_save_dag_from_github
-  helm:
-    hook: "pre-install,pre-upgrade"
-    hookWeight: -1
-
-
-airflow-ciip-cert-renewal:
-  airflowEndpoint: https://cas-airflow-dev.apps.silver.devops.gov.bc.ca
-  dagId: ciip_cert_renewal
+  dagId: ciip_portal_acme_issue
   helm:
     hook: "post-install"
-    hookWeight: 0
 
 # This job requires the cas-postgres dependency to be running,
 # and is required for the app deployment to become ready.

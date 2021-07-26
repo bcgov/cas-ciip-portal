@@ -55,8 +55,7 @@ install:
 		--set ggircs.namespace=$(GGIRCS_PROJECT) \
 		--set ggircs.prefix=$(GGIRCS_NAMESPACE_PREFIX) \
 		--set ggircs.environment=$(ENVIRONMENT) \
-		--set download-airflow-ciip-cert-renewal.dagConfiguration="{\"org\": \"bcgov\", \"repo\": \"cas-ciip-portal\", \"ref\": \"$(GIT_SHA1)\", \"path\": \"dags/ggircs_cert_renewal.py\"}" \
-	    --set download-airflow-ciip-deploy-db.dagConfiguration="{\"org\": \"bcgov\", \"repo\": \"cas-ciip-portal\", \"ref\": \"$(GIT_SHA1)\", \"path\": \"dags/ciip_deploy_db.py\"}" \
+	    --set download-cas-ciip-portal-dags.dagConfiguration="{\"org\": \"bcgov\", \"repo\": \"cas-ciip-portal\", \"ref\": \"$(GIT_SHA1)\", \"path\": \"dags/cas_ciip_portal_dags.py\"}" \
 		--values ./helm/cas-ciip-portal/values-$(ENVIRONMENT).yaml \
 		cas-ciip-portal ./helm/cas-ciip-portal; \
 	fi; \
@@ -65,10 +64,7 @@ install:
 	--set ggircs.namespace=$(GGIRCS_PROJECT) \
 	--set ggircs.prefix=$(GGIRCS_NAMESPACE_PREFIX) \
 	--set ggircs.environment=$(ENVIRONMENT) \
-	--set download-airflow-ciip-cert-renewal.dagConfiguration="{\"org\": \"bcgov\", \"repo\": \"cas-ciip-portal\", \"ref\": \"$(GIT_SHA1)\", \"path\": \"dags/ggircs_cert_renewal.py\"}" \
-	--set download-airflow-ciip-deploy-db.dagConfiguration="{\"org\": \"bcgov\", \"repo\": \"cas-ciip-portal\", \"ref\": \"$(GIT_SHA1)\", \"path\": \"dags/ciip_deploy_db.py\"}" \
-	--set airflow-ciip-deploy-db.helm.hook="pre-upgrade" \
-	--set airflow-ciip-deploy-db.helm.hookWeight=0 \
+	--set download-cas-ciip-portal-dags.dagConfiguration="{\"org\": \"bcgov\", \"repo\": \"cas-ciip-portal\", \"ref\": \"$(GIT_SHA1)\", \"path\": \"dags/cas_ciip_portal_dags.py\"}" \
 	--values ./helm/cas-ciip-portal/values-$(ENVIRONMENT).yaml \
 	cas-ciip-portal ./helm/cas-ciip-portal;
 

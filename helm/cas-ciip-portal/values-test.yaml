@@ -55,10 +55,7 @@ cas-postgres:
   gcs:
     bucketSuffix: ciip-backups
 
-download-airflow-ciip-cert-renewal:
-  airflowEndpoint: https://cas-airflow-test.apps.silver.devops.gov.bc.ca
-
-download-airflow-ciip-deploy-db:
+download-cas-ciip-portal-dags:
   airflowEndpoint: https://cas-airflow-test.apps.silver.devops.gov.bc.ca
 
 airflow-ciip-cert-renewal:
