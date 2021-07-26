@@ -29,7 +29,7 @@ cas-postgres:
 download-cas-ciip-portal-dags:
   airflowEndpoint: https://cas-airflow-prod.apps.silver.devops.gov.bc.ca
 
-airflow-ciip-cert-renewal:
+airflow-ciip-cert-issue:
   airflowEndpoint: https://cas-airflow-prod.apps.silver.devops.gov.bc.ca
 
 airflow-ciip-deploy-db:
