@@ -49,7 +49,7 @@ values
     Fuel combustion by mobile equipment that is part of the facility
   $$
 ),
-(7, 'BC_ScheduleB_WasteEmissions', 'Waste', null, false,
+(7, 'BC_ScheduleB_WasteEmissions', 'Waste', null, true,
   $$
     General stationary combustion of waste without production of useful energy
   $$
