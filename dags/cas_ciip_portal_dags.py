@@ -90,7 +90,7 @@ acme_renewal_args = {
     'start_date': START_DATE
 }
 
-acme_issue_dag = DAG('ciip_portal_acme_issue',
+acme_issue_dag = DAG('cas_ciip_portal_acme_issue',
                      schedule_interval=SCHEDULE_INTERVAL, default_args=acme_renewal_args)
 
 cron_acme_issue_task = PythonOperator(
