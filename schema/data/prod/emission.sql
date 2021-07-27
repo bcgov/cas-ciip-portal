@@ -66,7 +66,7 @@ values
   $$
 )
 
-on conflict(id) do update set swrs_emission_category=excluded.swrs_emission_category, display_name=excluded.display_name, deleted_at=excluded.deleted_at, carbon_taxed=excluded.carbon_taxed
+on conflict(id) do update set swrs_emission_category=excluded.swrs_emission_category, display_name=excluded.display_name, deleted_at=excluded.deleted_at, carbon_taxed=excluded.carbon_taxed, category_definition=excluded.category_definition
 returning 1
 ) select 'Inserted ' || count(*) || ' rows into ggircs_portal.emission_category' from rows;
 
