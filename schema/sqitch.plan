@@ -368,3 +368,5 @@ views/ciip_incentive_per_product 2021-07-15T18:36:33Z Matthieu Foucault <matthie
 @v2.11.0 2021-07-20T17:12:11Z Matthieu Foucault <matthieu@button.is> # release v2.11.0
 computed_columns/application_latest_submitted_revision_status 2021-07-21T20:38:31Z Matthieu Foucault <matthieu@button.is> # add a computed column to get an application revision's latest submitted revision status
 @v2.11.1 2021-07-21T21:35:35Z Matthieu Foucault <matthieu@button.is> # release v2.11.1
+tables/emission_category_001 [tables/emission_category] 2021-07-22T17:17:17Z Dylan Leard <dylan@button.is> # Migration: add carbon_taxed column to table
+computed_columns/application_revision_carbon_tax [computed_columns/application_revision_carbon_tax@v2.11.1] 2021-07-22T17:30:19Z Dylan Leard <dylan@button.is> # Migration: exclude fuels not carbon taxed based on the emisison category they were reported under

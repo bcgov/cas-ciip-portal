@@ -25500,6 +25500,10 @@ type EmissionCategoriesEdge {
 
 """Methods to use when ordering `EmissionCategory`."""
 enum EmissionCategoriesOrderBy {
+  CARBON_TAXED_ASC
+  CARBON_TAXED_DESC
+  CATEGORY_DEFINITION_ASC
+  CATEGORY_DEFINITION_DESC
   CREATED_AT_ASC
   CREATED_AT_DESC
   CREATED_BY_ASC
@@ -25523,8 +25527,20 @@ enum EmissionCategoriesOrderBy {
   UPDATED_BY_DESC
 }
 
-"""Table of emission categories used in the CIIP program"""
+"""
+Table of emission categories used in the CIIP program as defined in Schedule A / Schedule B of the Greenhouse Gas Industrial Reporting and Control Act (https://www.bclaws.gov.bc.ca/civix/document/id/complete/statreg/249_2015#ScheduleA)
+"""
 type EmissionCategory implements Node {
+  """
+  Boolean carbon_taxed column indicates whether or not a fuel reported in this category is taxed
+  """
+  carbonTaxed: Boolean
+
+  """
+  Definition of the emission_category as defined in Schedule A / Schedule B of the Greenhouse Gas Industrial Reporting and Control Act (https://www.bclaws.gov.bc.ca/civix/document/id/complete/statreg/249_2015#ScheduleA)
+  """
+  categoryDefinition: String
+
   """Reads a single `CiipUser` that is related to this `EmissionCategory`."""
   ciipUserByCreatedBy: CiipUser
 
@@ -25934,6 +25950,12 @@ A condition to be used against `EmissionCategory` object types. All fields are
 tested for equality and combined with a logical ‘and.’
 """
 input EmissionCategoryCondition {
+  """Checks for equality with the object’s `carbonTaxed` field."""
+  carbonTaxed: Boolean
+
+  """Checks for equality with the object’s `categoryDefinition` field."""
+  categoryDefinition: String
+
   """Checks for equality with the object’s `createdAt` field."""
   createdAt: Datetime
 
@@ -25968,6 +25990,12 @@ A filter to be used against `EmissionCategory` object types. All fields are comb
 input EmissionCategoryFilter {
   """Checks for all expressions in this list."""
   and: [EmissionCategoryFilter!]
+
+  """Filter by the object’s `carbonTaxed` field."""
+  carbonTaxed: BooleanFilter
+
+  """Filter by the object’s `categoryDefinition` field."""
+  categoryDefinition: StringFilter
 
   """Filter by the object’s `ciipUserByCreatedBy` relation."""
   ciipUserByCreatedBy: CiipUserFilter
@@ -26385,6 +26413,16 @@ enum EmissionCategoryGasesOrderBy {
 
 """An input for mutations affecting `EmissionCategory`"""
 input EmissionCategoryInput {
+  """
+  Boolean carbon_taxed column indicates whether or not a fuel reported in this category is taxed
+  """
+  carbonTaxed: Boolean
+
+  """
+  Definition of the emission_category as defined in Schedule A / Schedule B of the Greenhouse Gas Industrial Reporting and Control Act (https://www.bclaws.gov.bc.ca/civix/document/id/complete/statreg/249_2015#ScheduleA)
+  """
+  categoryDefinition: String
+
   """Creation date of row"""
   createdAt: Datetime
 
@@ -26414,6 +26452,16 @@ input EmissionCategoryInput {
 Represents an update to a `EmissionCategory`. Fields that are set will be updated.
 """
 input EmissionCategoryPatch {
+  """
+  Boolean carbon_taxed column indicates whether or not a fuel reported in this category is taxed
+  """
+  carbonTaxed: Boolean
+
+  """
+  Definition of the emission_category as defined in Schedule A / Schedule B of the Greenhouse Gas Industrial Reporting and Control Act (https://www.bclaws.gov.bc.ca/civix/document/id/complete/statreg/249_2015#ScheduleA)
+  """
+  categoryDefinition: String
+
   """Creation date of row"""
   createdAt: Datetime
 
