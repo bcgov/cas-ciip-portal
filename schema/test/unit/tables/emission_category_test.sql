@@ -46,7 +46,8 @@ select columns_are('ggircs_portal'::name, 'emission_category'::name, array[
   'updated_by'::name,
   'deleted_at'::name,
   'deleted_by'::name,
-  'carbon_taxed'::name
+  'carbon_taxed'::name,
+  'category_definition'::name
 ]);
 
 -- Row level security tests --
