@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.11.2](https://github.com/bcgov/cas-ciip-portal/compare/v2.11.0...v2.11.2) (2021-07-27)
+
+
+### Bug Fixes
+
+* add carbon_taxed column to emission_category table ([e3c1e48](https://github.com/bcgov/cas-ciip-portal/commit/e3c1e489f0ba30c3ed6566c54e94b6516085b82c)), closes [#1933](https://github.com/bcgov/cas-ciip-portal/issues/1933)
+* application list should retrieve the latest *submitted* status ([ee2507c](https://github.com/bcgov/cas-ciip-portal/commit/ee2507c0de4ef8962bea54e3841b4883965e29a5))
+
 ### [2.11.1](https://github.com/bcgov/cas-ciip-portal/compare/v2.11.0...v2.11.1) (2021-07-21)
 
 
