@@ -107,6 +107,11 @@ set form_result = json_build_array(
     'emissionCategoryRowId', 6
   ),
   jsonb_build_object(
+    'fuelRowId', (select id from ggircs_portal.fuel where name = 'Coke Oven Gas'),
+    'quantity', 42,
+    'emissionCategoryRowId', 7
+  ),
+  jsonb_build_object(
     'fuelRowId', (select id from ggircs_portal.fuel where name = 'Diesel'),
     'quantity', 42,
     'emissionCategoryRowId', 2
@@ -115,11 +120,6 @@ set form_result = json_build_array(
     'fuelRowId', (select id from ggircs_portal.fuel where name = 'Diesel'),
     'quantity', 42,
     'emissionCategoryRowId', 5
-  ),
-  jsonb_build_object(
-    'fuelRowId', (select id from ggircs_portal.fuel where name = 'Diesel'),
-    'quantity', 42,
-    'emissionCategoryRowId', 7
   ),
   jsonb_build_object(
     'fuelRowId', (select id from ggircs_portal.fuel where name = 'Diesel'),
@@ -148,6 +148,7 @@ select set_eq(
     )
   $$,
   $$values
+    ((select id from ggircs_portal.fuel where name = 'Coke Oven Gas'), 1.47, 0, 0.0350, 0.0483),
     ((select id from ggircs_portal.fuel where name = 'Coke Oven Gas'), 1.47, 0, 0.0350, 0.0483),
     ((select id from ggircs_portal.fuel where name = 'Coke Oven Gas'), 1.47, 0, 0.0350, 0.0483),
     ((select id from ggircs_portal.fuel where name = 'Coke Oven Gas'), 1.47, 0, 0.0350, 0.0483),
