@@ -2,7 +2,6 @@
 import json
 from dag_configuration import default_dag_args
 from trigger_k8s_cronjob import trigger_k8s_cronjob
-from airflow.operators.dummy import DummyOperator
 from airflow.operators.python import PythonOperator, BranchPythonOperator
 from datetime import datetime, timedelta
 from airflow import DAG
@@ -32,7 +31,7 @@ def _pick_data_import(**context):
     if ENV == 'test':
         return 'cas_ciip_portal_prod_restore'
     else:
-        return 'noop'
+        return 'ciip_portal_swrs_import'
 
 
 def pick_data_import(dag):
@@ -60,7 +59,6 @@ def ciip_portal_swrs_import(dag):
         python_callable=trigger_k8s_cronjob,
         task_id='ciip_portal_swrs_import',
         op_args=['cas-ciip-portal-swrs-import', namespace],
-        trigger_rule='none_failed',
         dag=dag)
 
 
@@ -69,6 +67,7 @@ def ciip_portal_deploy_data(dag):
         python_callable=trigger_k8s_cronjob,
         task_id='ciip_portal_deploy_data',
         op_args=['cas-ciip-portal-schema-deploy-data', namespace],
+        trigger_rule='none_failed',
         dag=dag)
 
 
@@ -97,7 +96,7 @@ def ciip_portal_prod_restore(dag):
 
 
 ciip_portal_init_db(deploy_db_dag) >> pick_data_import(deploy_db_dag) >> [ciip_portal_prod_restore(
-    deploy_db_dag), noop(deploy_db_dag)] >> ciip_portal_swrs_import(deploy_db_dag) >> ciip_portal_deploy_data(deploy_db_dag) >> ciip_portal_graphile_schema(
+    deploy_db_dag), ciip_portal_swrs_import(deploy_db_dag)] >> ciip_portal_deploy_data(deploy_db_dag) >> ciip_portal_graphile_schema(
     deploy_db_dag) >> ciip_portal_app_user(deploy_db_dag)
 
 
