@@ -22,7 +22,7 @@ ciip_deploy_db_args = {
 """
 DAG cas_ciip_portal_ciip_deploy_db.
 Initializes the portal database and deploys the schema/data.
-If ENVIRONMENT=test, dag restores data from prod, otherwise it imports data from swrs.
+If ENVIRONMENT=test, dag first restores data from prod and then imports data from swrs.
 """
 deploy_db_dag = DAG('cas_ciip_portal_deploy_db', schedule_interval=None,
                     default_args=ciip_deploy_db_args)
