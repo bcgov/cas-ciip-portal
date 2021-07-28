@@ -1,13 +1,8 @@
 # -*- coding: utf-8 -*-
-"""
-# DAGs to deploy the ciip portal.
-ciip_deploy_db will initialize the portal database and import the swrs data
-cron_acme_issue will issue a certificate for the CIIP portal
-"""
 import json
 from dag_configuration import default_dag_args
 from trigger_k8s_cronjob import trigger_k8s_cronjob
-from airflow.operators.python_operator import PythonOperator
+from airflow.operators.python import PythonOperator, BranchPythonOperator
 from datetime import datetime, timedelta
 from airflow import DAG
 import os
@@ -16,18 +11,35 @@ import os
 YESTERDAY = datetime.now() - timedelta(days=1)
 
 namespace = os.getenv('CIIP_NAMESPACE')
+ENV = os.getenv('ENVIRONMENT')
 
 ciip_deploy_db_args = {
     **default_dag_args,
     'start_date': YESTERDAY
 }
 
-SCHEDULE_INTERVAL = None
+"""
+DAG cas_ciip_portal_ciip_deploy_db.
+Initializes the portal database and imports the swrs data.
+If ENVIRONMENT=dev, dag imports data from swrs, otherwise it restores data from prod.
+"""
+deploy_db_dag = DAG('cas_ciip_portal_deploy_db', schedule_interval=None,
+                    default_args=ciip_deploy_db_args)
 
-default_dag = DAG('cas_ciip_portal_ciip_deploy_db', schedule_interval=SCHEDULE_INTERVAL,
-                  default_args=ciip_deploy_db_args)
-test_dag = DAG('cas_ciip_portal_ciip_deploy_db_test',
-               schedule_interval=SCHEDULE_INTERVAL, default_args=ciip_deploy_db_args)
+
+def _pick_data_import(**context):
+    if ENV is 'test':
+        return 'cas_ciip_portal_prod_restore'
+    else:
+        return 'ciip_portal_swrs_import'
+
+
+def pick_data_import(dag):
+    return BranchPythonOperator(
+        python_callable=_pick_data_import,
+        task_id='pick_data_import',
+        dag=dag
+    )
 
 
 def ciip_portal_init_db(dag):
@@ -51,6 +63,7 @@ def ciip_portal_deploy_data(dag):
         python_callable=trigger_k8s_cronjob,
         task_id='ciip_portal_deploy_data',
         op_args=['cas-ciip-portal-schema-deploy-data', namespace],
+        trigger_rule='none_failed',
         dag=dag)
 
 
@@ -70,18 +83,20 @@ def ciip_portal_app_user(dag):
         dag=dag)
 
 
-def ciip_portal_prod_test_restore(dag):
+def ciip_portal_prod_restore(dag):
     return PythonOperator(
         python_callable=trigger_k8s_cronjob,
-        task_id='cas-ciip-portal-prod-test-restore',
+        task_id='cas_ciip_portal_prod_restore',
         op_args=['cas-ciip-portal-prod-test-restore', namespace],
         dag=dag)
 
 
-ciip_portal_init_db(default_dag) >> ciip_portal_swrs_import(default_dag) >> ciip_portal_deploy_data(
-    default_dag) >> ciip_portal_graphile_schema(default_dag) >> ciip_portal_app_user(default_dag)
-ciip_portal_init_db(test_dag) >> ciip_portal_prod_test_restore(test_dag) >> ciip_portal_deploy_data(
-    test_dag) >> ciip_portal_graphile_schema(test_dag) >> ciip_portal_app_user(test_dag)
+ciip_portal_init_db(deploy_db_dag) >> pick_data_import(deploy_db_dag) >> [ciip_portal_prod_restore(
+    deploy_db_dag), ciip_portal_swrs_import(deploy_db_dag)] >> ciip_portal_deploy_data(deploy_db_dag) >> ciip_portal_graphile_schema(
+    deploy_db_dag) >> ciip_portal_app_user(deploy_db_dag)
+
+
+###################################################
 
 START_DATE = datetime.now() - timedelta(days=2)
 
@@ -90,8 +105,12 @@ acme_renewal_args = {
     'start_date': START_DATE
 }
 
+"""
+DAG cas_ciip_portal_acme_issue
+Issues site certificates for the CIIP portal
+"""
 acme_issue_dag = DAG('cas_ciip_portal_acme_issue',
-                     schedule_interval=SCHEDULE_INTERVAL, default_args=acme_renewal_args)
+                     schedule_interval=None, default_args=acme_renewal_args)
 
 cron_acme_issue_task = PythonOperator(
     python_callable=trigger_k8s_cronjob,
@@ -100,11 +119,15 @@ cron_acme_issue_task = PythonOperator(
     dag=acme_issue_dag)
 
 
-dag = DAG('cas_ciip_portal_acme_renewal', schedule_interval='0 8 * * *',
-          default_args=acme_renewal_args)
+"""
+DAG cas_ciip_portal_acme_renewal
+Renews site certificates for the CIIP portal
+"""
+acme_renewal_dag = DAG('cas_ciip_portal_acme_renewal', schedule_interval='0 8 * * *',
+                       default_args=acme_renewal_args)
 
 cert_renewal_task = PythonOperator(
     python_callable=trigger_k8s_cronjob,
     task_id='cert_renewal',
     op_args=['cas-ciip-portal-acme-renewal', namespace],
-    dag=dag)
+    dag=acme_renewal_dag)
