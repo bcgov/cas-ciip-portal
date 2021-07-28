@@ -42,10 +42,6 @@ def pick_data_import(dag):
     )
 
 
-def noop(dag):
-    return DummyOperator(task_id='noop', dag=dag)
-
-
 def ciip_portal_init_db(dag):
     return PythonOperator(
         python_callable=trigger_k8s_cronjob,
