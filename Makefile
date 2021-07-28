@@ -50,7 +50,7 @@ install:
 	dagConfig=$$(echo '{"org": "bcgov", "repo": "cas-ciip-portal", "ref": "$(GIT_SHA1)", "path": "dags/cas_ciip_portal_dags.py"}' | base64 -w0); \
 	helm dep up ./helm/cas-ciip-portal; \
 	if ! helm status --namespace $(OC_PROJECT) cas-ciip-portal; then \
-		helm install --atomic --timeout 2400s --namespace $(OC_PROJECT) \
+		helm install --atomic --wait-for-jobs --timeout 2400s --namespace $(OC_PROJECT) \
 		--set route.insecure=true \
 		--set image.schema.tag=$(GIT_SHA1) --set image.app.tag=$(GIT_SHA1) \
 		--set ggircs.namespace=$(GGIRCS_PROJECT) \
