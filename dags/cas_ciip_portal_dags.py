@@ -146,8 +146,8 @@ default_args = {
 }
 
 
-ggircs_full_backup_dag = DAG('walg_backup_ciip_full', default_args=default_args,
-                             schedule_interval='0 8 * * *')
+ciip_full_backup_dag = DAG('walg_backup_ciip_full', default_args=default_args,
+                           schedule_interval='0 8 * * *')
 
-create_backup_task(ggircs_full_backup_dag,
+create_backup_task(ciip_full_backup_dag,
                    namespace, 'cas-ciip-portal-patroni')
