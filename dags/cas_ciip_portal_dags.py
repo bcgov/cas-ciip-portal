@@ -2,6 +2,7 @@
 import json
 from dag_configuration import default_dag_args
 from trigger_k8s_cronjob import trigger_k8s_cronjob
+from walg_backups import create_backup_task
 from airflow.operators.python import PythonOperator, BranchPythonOperator
 from datetime import datetime, timedelta
 from airflow import DAG
@@ -9,6 +10,7 @@ import os
 
 
 YESTERDAY = datetime.now() - timedelta(days=1)
+TWO_DAYS_AGO = datetime.now() - timedelta(days=2)
 
 namespace = os.getenv('CIIP_NAMESPACE')
 ENV = os.getenv('ENVIRONMENT')
@@ -27,7 +29,7 @@ deploy_db_dag = DAG('cas_ciip_portal_deploy_db', schedule_interval=None,
                     default_args=ciip_deploy_db_args)
 
 
-def _pick_data_import(**context):
+def _pick_data_import():
     if ENV == 'test':
         return 'cas_ciip_portal_prod_restore'
     else:
@@ -98,11 +100,9 @@ ciip_portal_init_db(deploy_db_dag) >> pick_data_import(deploy_db_dag) >> [ciip_p
 
 ###################################################
 
-START_DATE = datetime.now() - timedelta(days=2)
-
 acme_renewal_args = {
     **default_dag_args,
-    'start_date': START_DATE
+    'start_date': TWO_DAYS_AGO
 }
 
 """
@@ -131,3 +131,23 @@ cert_renewal_task = PythonOperator(
     task_id='cert_renewal',
     op_args=['cas-ciip-portal-acme-renewal', namespace],
     dag=acme_renewal_dag)
+
+"""
+###############################################################################
+#                                                                             #
+# DAG triggering the wal-g backup job                                         #
+#                                                                             #
+###############################################################################
+"""
+
+default_args = {
+    **default_dag_args,
+    'start_date': TWO_DAYS_AGO,
+}
+
+
+ggircs_full_backup_dag = DAG('walg_backup_ciip_full', default_args=default_args,
+                             schedule_interval='0 8 * * *')
+
+create_backup_task(ggircs_full_backup_dag,
+                   namespace, 'cas-ciip-portal-patroni')
