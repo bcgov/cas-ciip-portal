@@ -17,7 +17,8 @@ ENV = os.getenv('ENVIRONMENT')
 
 ciip_deploy_db_args = {
     **default_dag_args,
-    'start_date': YESTERDAY
+    'start_date': YESTERDAY,
+    'is_paused_upon_creation': False
 }
 
 """
@@ -102,7 +103,8 @@ ciip_portal_init_db(deploy_db_dag) >> pick_data_import(deploy_db_dag) >> [ciip_p
 
 acme_renewal_args = {
     **default_dag_args,
-    'start_date': TWO_DAYS_AGO
+    'start_date': TWO_DAYS_AGO,
+    'is_paused_upon_creation': False
 }
 
 """
@@ -143,6 +145,7 @@ cert_renewal_task = PythonOperator(
 default_args = {
     **default_dag_args,
     'start_date': TWO_DAYS_AGO,
+    'is_paused_upon_creation': False
 }
 
 
