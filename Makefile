@@ -47,22 +47,25 @@ install: OC_PROJECT=$(CIIP_NAMESPACE_PREFIX)-$(ENVIRONMENT)
 install: GGIRCS_PROJECT=$(GGIRCS_NAMESPACE_PREFIX)-$(ENVIRONMENT)
 install:
 	@set -euo pipefail; \
+	dagConfig=$$(echo '{"org": "bcgov", "repo": "cas-ciip-portal", "ref": "$(GIT_SHA1)", "path": "dags/cas_ciip_portal_dags.py"}' | base64 -w0); \
 	helm dep up ./helm/cas-ciip-portal; \
 	if ! helm status --namespace $(OC_PROJECT) cas-ciip-portal; then \
-		helm install --atomic --timeout 2400s --namespace $(OC_PROJECT) \
+		helm install --atomic --wait-for-jobs --timeout 2400s --namespace $(OC_PROJECT) \
 		--set route.insecure=true \
 		--set image.schema.tag=$(GIT_SHA1) --set image.app.tag=$(GIT_SHA1) \
 		--set ggircs.namespace=$(GGIRCS_PROJECT) \
 		--set ggircs.prefix=$(GGIRCS_NAMESPACE_PREFIX) \
 		--set ggircs.environment=$(ENVIRONMENT) \
+	    --set download-cas-ciip-portal-dags.dagConfiguration="$$dagConfig" \
 		--values ./helm/cas-ciip-portal/values-$(ENVIRONMENT).yaml \
 		cas-ciip-portal ./helm/cas-ciip-portal; \
 	fi; \
-	helm upgrade --install --atomic --timeout 2400s --namespace $(OC_PROJECT) \
+	helm upgrade --install --atomic --wait-for-jobs --timeout 2400s --namespace $(OC_PROJECT) \
 	--set image.schema.tag=$(GIT_SHA1) --set image.app.tag=$(GIT_SHA1) \
 	--set ggircs.namespace=$(GGIRCS_PROJECT) \
 	--set ggircs.prefix=$(GGIRCS_NAMESPACE_PREFIX) \
 	--set ggircs.environment=$(ENVIRONMENT) \
+	--set download-cas-ciip-portal-dags.dagConfiguration="$$dagConfig" \
 	--values ./helm/cas-ciip-portal/values-$(ENVIRONMENT).yaml \
 	cas-ciip-portal ./helm/cas-ciip-portal;
 

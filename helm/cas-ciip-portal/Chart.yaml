@@ -12,3 +12,15 @@ dependencies:
     version: "3.3.0"
     repository: "https://codecentric.github.io/helm-charts/"
     condition: mailhog.enable
+  - name: cas-airflow-dag-trigger
+    version: 1.0.6
+    repository: https://bcgov.github.io/cas-airflow
+    alias: download-cas-ciip-portal-dags
+  - name: cas-airflow-dag-trigger
+    version: 1.0.6
+    repository: https://bcgov.github.io/cas-airflow
+    alias: airflow-ciip-cert-issue
+  - name: cas-airflow-dag-trigger
+    version: 1.0.6
+    repository: https://bcgov.github.io/cas-airflow
+    alias: airflow-ciip-deploy-db

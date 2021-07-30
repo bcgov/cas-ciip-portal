@@ -5,5 +5,14 @@ dependencies:
 - name: mailhog
   repository: https://codecentric.github.io/helm-charts/
   version: 3.3.0
-digest: sha256:36207493d825d93bb6970a7d8a558661a3897af35a990a8fbb4c10433862a5ad
-generated: "2021-03-05T14:44:48.091672-08:00"
+- name: cas-airflow-dag-trigger
+  repository: https://bcgov.github.io/cas-airflow
+  version: 1.0.6
+- name: cas-airflow-dag-trigger
+  repository: https://bcgov.github.io/cas-airflow
+  version: 1.0.6
+- name: cas-airflow-dag-trigger
+  repository: https://bcgov.github.io/cas-airflow
+  version: 1.0.6
+digest: sha256:1900f27081aa118a2c0549e113ab0e20b86d944fca9bebecdb48a6b982968e7f
+generated: "2021-07-26T16:55:42.883959-07:00"
