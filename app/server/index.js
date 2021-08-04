@@ -28,10 +28,11 @@ const UNSUPPORTED_BROWSERS = require('../data/unsupported-browsers');
 const {run} = require('graphile-worker');
 const path = require('path');
 const namespaceMap = require('../data/kc-namespace-map');
-const printPdf = require('./routes/print-pdf');
 const redirectRouter = require('./redirects');
 const cookieParser = require('cookie-parser');
 const databaseConnectionService = require('./db/databaseConnectionService');
+const {createLightship} = require('lightship');
+const delay = require('delay');
 
 /**
  * Override keycloak accessDenied handler to redirect to our 403 page
@@ -101,6 +102,15 @@ const getRedirectURL = (req) => {
 
 app.prepare().then(async () => {
   const server = express();
+
+  const lightship = createLightship();
+
+  lightship.registerShutdownHandler(async () => {
+    await delay(10000);
+    await new Promise((resolve) => {
+      server.close(() => pgPool.end(resolve));
+    });
+  });
 
   server.use(morgan('combined'));
 
@@ -274,23 +284,14 @@ app.prepare().then(async () => {
 
   server.get('/register', ({res}) => res.redirect(302, kcRegistrationUrl));
 
-  server.use('/print-pdf', await printPdf());
-
-  // Endpoint /health sends a 500 status if there is an error connecting to the database or if the database is in recovery mode (result.rowAsArray === true)
-  server.get('/health', ({res}) => {
-    pgPool.query('SELECT pg_is_in_recovery();', [], (err, result) => {
-      if (err || result.rowAsArray) {
-        res.sendStatus(500);
-      } else {
-        res.sendStatus(200);
-      }
-    });
-  });
-
   server.get('*', async (req, res) => {
     return handle(req, res);
   });
 
+  const handleError = (err) => {
+    console.error(err);
+    lightship.shutdown();
+  };
   if (secure) {
     const domain = /^https:\/\/(.+?)\/?$/.exec(process.env.HOST)[1];
     const key = fs.readFileSync(
@@ -302,32 +303,30 @@ app.prepare().then(async () => {
       'utf8'
     );
     const options = {key, cert};
-    https.createServer(options, server).listen(port, (err) => {
-      if (err) {
-        throw err;
-      }
 
-      console.log(`> Ready on https://localhost:${port}`);
-    });
+    https
+      .createServer(options, server)
+      .listen(port, (err) => {
+        if (err) {
+          handleError(err);
+          return;
+        }
+        lightship.signalReady();
+        console.log(`> Ready on https://localhost:${port}`);
+      })
+      .on('error', handleError);
   } else {
-    http.createServer(server).listen(port, (err) => {
-      if (err) {
-        throw err;
-      }
+    http
+      .createServer(server)
+      .listen(port, (err) => {
+        if (err) {
+          handleError(err);
+          return;
+        }
 
-      console.log(`> Ready on http://localhost:${port}`);
-    });
+        lightship.signalReady();
+        console.log(`> Ready on http://localhost:${port}`);
+      })
+      .on('error', handleError);
   }
-
-  process.on('SIGTERM', () => {
-    console.info('SIGTERM signal received.');
-    console.log('Closing http server.');
-    server.close(() => {
-      console.log('Http server closed.');
-      pgPool.end(() => {
-        console.log('Database connection closed.');
-        process.exit(0);
-      });
-    });
-  });
 });

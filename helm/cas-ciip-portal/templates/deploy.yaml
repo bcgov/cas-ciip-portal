@@ -88,14 +88,30 @@ spec:
         - containerPort: {{ .Values.port }}
           protocol: TCP
         readinessProbe:
-          failureThreshold: 3
           httpGet:
-            path: /health
+            path: /ready
             port: {{ .Values.port }}
             scheme: HTTP{{ if not .Values.route.insecure }}S{{ end }}
-          periodSeconds: 10
+          # we want the readiness threshold to fail fast,
+          # to prevent any request from going to a pod that is not ready
+          failureThreshold: 1
           successThreshold: 1
-          timeoutSeconds: 1
+          periodSeconds: 5
+          timeoutSeconds: 5
+          initialDelaySeconds: 5
+        livenessProbe:
+          # the liveness probe is here to ensure that a pod does not get
+          # stuck in a shutdown state. It needs to allow enough time for
+          # the registered shutdown handler to run to completion.
+          httpGet:
+            path: /live
+            port: {{ .Values.port }}
+            scheme: HTTP{{ if not .Values.route.insecure }}S{{ end }}
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          failureThreshold: 3
+          successThreshold: 1
+          timeoutSeconds: 5
         resources:
 {{ toYaml .Values.resources | indent 10 }}
         securityContext:
