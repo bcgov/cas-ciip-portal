@@ -87,6 +87,8 @@ spec:
         ports:
         - containerPort: {{ .Values.port }}
           protocol: TCP
+        - containerPort: {{ .Values.probesPort }}
+          protocol: TCP
         readinessProbe:
           httpGet:
             path: /ready
