@@ -90,7 +90,7 @@ spec:
         readinessProbe:
           httpGet:
             path: /ready
-            port: {{ .Values.port }}
+            port: {{ .Values.probesPort }}
             scheme: HTTP{{ if not .Values.route.insecure }}S{{ end }}
           # we want the readiness threshold to fail fast,
           # to prevent any request from going to a pod that is not ready
@@ -105,7 +105,7 @@ spec:
           # the registered shutdown handler to run to completion.
           httpGet:
             path: /live
-            port: {{ .Values.port }}
+            port: {{ .Values.probesPort }}
             scheme: HTTP{{ if not .Values.route.insecure }}S{{ end }}
           initialDelaySeconds: 10
           periodSeconds: 10
