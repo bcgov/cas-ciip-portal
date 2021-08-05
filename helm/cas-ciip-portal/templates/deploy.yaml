@@ -91,7 +91,6 @@ spec:
           httpGet:
             path: /ready
             port: {{ .Values.probesPort }}
-            scheme: HTTP{{ if not .Values.route.insecure }}S{{ end }}
           # we want the readiness threshold to fail fast,
           # to prevent any request from going to a pod that is not ready
           failureThreshold: 1
@@ -106,7 +105,6 @@ spec:
           httpGet:
             path: /live
             port: {{ .Values.probesPort }}
-            scheme: HTTP{{ if not .Values.route.insecure }}S{{ end }}
           initialDelaySeconds: 10
           periodSeconds: 10
           failureThreshold: 3
