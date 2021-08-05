@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(17);
+select plan(19);
 
 select has_function(
   'ggircs_portal_private', 'refresh_swrs_version_data',
@@ -37,10 +37,10 @@ update ggircs_portal.facility set swrs_facility_id = 2 where id = 2;
 update ggircs_portal.facility set swrs_facility_id = 3 where id = 3;
 update ggircs_portal.facility set swrs_facility_id = 5 where id = 4;
 
-update swrs.report set swrs_facility_id = 1, version= '1', reporting_period_duration = (select reporting_year from ggircs_portal.opened_reporting_year()) where id = 1;
-update swrs.report set swrs_facility_id = 2, version='1', reporting_period_duration = (select reporting_year from ggircs_portal.opened_reporting_year()) where id = 2;
-update swrs.report set swrs_facility_id = 3, version='1', reporting_period_duration = (select reporting_year from ggircs_portal.opened_reporting_year()) where id = 3;
-update swrs.report set swrs_facility_id = 5, version='1', reporting_period_duration = (select reporting_year from ggircs_portal.opened_reporting_year()) where id = 5;
+update swrs.report set swrs_facility_id = 1, swrs_report_id='123', version= '1', reporting_period_duration = (select reporting_year from ggircs_portal.opened_reporting_year()) where id = 1;
+update swrs.report set swrs_facility_id = 2, swrs_report_id='234', version='1', reporting_period_duration = (select reporting_year from ggircs_portal.opened_reporting_year()) where id = 2;
+update swrs.report set swrs_facility_id = 3, swrs_report_id='345', version='1', reporting_period_duration = (select reporting_year from ggircs_portal.opened_reporting_year()) where id = 3;
+update swrs.report set swrs_facility_id = 5, swrs_report_id='456', version='1', reporting_period_duration = (select reporting_year from ggircs_portal.opened_reporting_year()) where id = 5;
 
 -- Set different swrs_report_version on applications 1&2, this should trigger the refresh function for these applications
 update ggircs_portal.application set swrs_report_version = '99' where id = 1;
@@ -118,6 +118,12 @@ select is(
 );
 
 select is(
+  (select swrs_report_id from ggircs_portal.application where id=2),
+  (select swrs_report_id from swrs.report where swrs_facility_id = (select swrs_facility_id from ggircs_portal.application a join ggircs_portal.facility f on a.facility_id = f.id and a.id = 2)),
+  'The swrs_report_id was updated for application with id 2'
+);
+
+select is(
   (select facility_name from ggircs_portal.ciip_admin where application_id=2 and version_number=0),
   (select facility_name from ggircs_portal.get_swrs_facility_data(2, (select reporting_year from ggircs_portal.opened_reporting_year()))),
   'Refresh function added facility data to the admin form for application with id = 2'
@@ -154,6 +160,12 @@ select is(
   ) > now() - interval '12 hours'),
   true::boolean,
   'Application with id 1 was updated by the refresh function because because report.version !== application.swrs_report_version'
+);
+
+select is(
+  (select swrs_report_id from ggircs_portal.application where id=1),
+  (select swrs_report_id from swrs.report where swrs_facility_id = (select swrs_facility_id from ggircs_portal.application a join ggircs_portal.facility f on a.facility_id = f.id and a.id = 1)),
+  'The swrs_report_id was updated for application with id 1'
 );
 
 select is(
