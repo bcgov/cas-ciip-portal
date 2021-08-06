@@ -13,7 +13,6 @@ YESTERDAY = datetime.now() - timedelta(days=1)
 TWO_DAYS_AGO = datetime.now() - timedelta(days=2)
 
 namespace = os.getenv('CIIP_NAMESPACE')
-ENV = os.getenv('ENVIRONMENT')
 
 ciip_deploy_db_args = {
     **default_dag_args,
@@ -24,14 +23,15 @@ ciip_deploy_db_args = {
 """
 DAG cas_ciip_portal_ciip_deploy_db.
 Initializes the portal database and deploys the schema/data.
-If ENVIRONMENT=test, dag first restores data from prod and then imports data from swrs.
+If we're in the test namespace, dag first restores data from prod and then imports data from swrs.
 """
 deploy_db_dag = DAG('cas_ciip_portal_deploy_db', schedule_interval=None,
                     default_args=ciip_deploy_db_args)
 
 
 def _pick_data_import():
-    if ENV == 'test':
+    is_test = (namespace.split("-")[-1] == 'test')
+    if is_test:
         return 'cas_ciip_portal_prod_restore'
     else:
         return 'ciip_portal_swrs_import'
