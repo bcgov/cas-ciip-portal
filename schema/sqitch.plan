@@ -374,3 +374,4 @@ computed_columns/application_revision_carbon_tax [computed_columns/application_r
 @v2.11.3 2021-08-05T23:25:49Z Matthieu Foucault <matthieu@button.is> # release v2.11.3
 swrs_functions/refresh_swrs_version_data [swrs_functions/refresh_swrs_version_data@v2.11.2] 2021-08-05T21:16:21Z Naomi Aro <naomi.aro@gov.bc.ca> # Change to update swrs_report_id
 fix_swrs_report_id 2021-08-05T22:41:22Z Naomi Aro <naomi.aro@gov.bc.ca> # Migration to update swrs report id inconsistencies
+@v2.11.4 2021-08-06T21:38:14Z Matthieu Foucault <matthieu@button.is> # release v2.11.4
