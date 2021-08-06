@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.11.4](https://github.com/bcgov/cas-ciip-portal/compare/v2.11.3...v2.11.4) (2021-08-06)
+
+
+### Bug Fixes
+
+* add migration to resync swrs_report_id ([166ecb0](https://github.com/bcgov/cas-ciip-portal/commit/166ecb029bb8b5ae15b207401e6683e0d207abab))
+* check namespace suffix for env ([23e1b76](https://github.com/bcgov/cas-ciip-portal/commit/23e1b767ead373af48d8dd8ac2cfae8b1290833b))
+* refresh_swrs_version_data does not update the swrs_report_id ([c129559](https://github.com/bcgov/cas-ciip-portal/commit/c129559f9a83df9a4badb9b019bffe4d402a2d31))
+
 ### [2.11.3](https://github.com/bcgov/cas-ciip-portal/compare/v2.11.2...v2.11.3) (2021-08-05)
 
 
