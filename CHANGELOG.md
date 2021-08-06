@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.11.3](https://github.com/bcgov/cas-ciip-portal/compare/v2.11.2...v2.11.3) (2021-08-05)
+
+
+### Bug Fixes
+
+* ensure graceful server shutdown with Lightship ([8f779ad](https://github.com/bcgov/cas-ciip-portal/commit/8f779ad5593d19beb2944995c506010bc0c3742f))
+* lightship uses port 9000 in k8s, and a random unused port locally ([9a702b8](https://github.com/bcgov/cas-ciip-portal/commit/9a702b81c9bba63b7083a54146191864d60822ea))
+* readiness/liveness probes are always with http scheme (the default) ([97049ab](https://github.com/bcgov/cas-ciip-portal/commit/97049ab948479ad04f2b1fa6b5f3869dd6e90ede))
+
 ### [2.11.2](https://github.com/bcgov/cas-ciip-portal/compare/v2.11.0...v2.11.2) (2021-07-27)
 
 
