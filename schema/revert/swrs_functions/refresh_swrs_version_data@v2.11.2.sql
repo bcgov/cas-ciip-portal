@@ -21,12 +21,7 @@ begin
 
   for application_temp_row in select * from ggircs_portal.application
     loop
-      swrs_version := (
-        select r.version from swrs.report r where r.swrs_facility_id = (
-          select swrs_facility_id from ggircs_portal.facility f
-          where application_temp_row.facility_id = f.id
-        ) and r.reporting_period_duration = application_temp_row.reporting_year
-      );
+      swrs_version := (select r.version from swrs.report r where r.swrs_report_id = application_temp_row.swrs_report_id);
 
       -- Create application_revision, status and form_results with version number = 0 if a report exists and the 0 version does not
       if (swrs_version is not null
