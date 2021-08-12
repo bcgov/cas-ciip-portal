@@ -2,3 +2,8 @@
 # It only affects the subscriptions-transport-ws package.
 # We are not using subscriptions or websockets, so this CVE can be safely ignored for now (it currently has no fix as of June 1 2021)
 1748
+
+# Ignoring this https://www.npmjs.com/advisories/1778 advisory.
+# It is a (nextJs) redirect vulnerability that doesn't affect deployments that have a "pages/404.tsx" file (like we do)
+# Marking this as ignored until we update the major version of next
+1778
