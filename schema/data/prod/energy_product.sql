@@ -23,7 +23,7 @@ values
 (4, 'Purchased heat', 'GJ', 'published' ,true, false, true, true, true),
 (5, 'Generated electricity', 'GWh', 'published' ,true, false, true, true, true),
 (6, 'Generated heat', 'GJ', 'published' ,true, false, true, true, true),
-(7, 'Emissions from EIOs', 'GJ', 'published' ,true, false, true, true, true)
+(7, 'Emissions from EIOs', 'GWh', 'published' ,true, false, true, true, true)
 on conflict(id) do update
 set
 product_name=excluded.product_name,
