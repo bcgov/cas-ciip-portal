@@ -1,4 +1,4 @@
-nodejs 12.22.2
-yarn 1.22.0
+nodejs 14.17.5
+yarn 1.22.5
 postgres 12.6
 python 3.9.2
