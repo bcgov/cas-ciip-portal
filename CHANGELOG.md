@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.12.0](https://github.com/bcgov/cas-ciip-portal/compare/v2.11.4...v2.12.0) (2021-08-25)
+
+
+### Features
+
+* emissions from eios unit change to GWh ([192e5d8](https://github.com/bcgov/cas-ciip-portal/commit/192e5d81f29fa12773c96fc78b072bb1618adec0))
+
 ### [2.11.4](https://github.com/bcgov/cas-ciip-portal/compare/v2.11.3...v2.11.4) (2021-08-06)
 
 
