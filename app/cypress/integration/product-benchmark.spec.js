@@ -90,9 +90,7 @@ describe('The products and benchmark page', () => {
     cy.get('#search-products').clear().type('Product B');
     cy.get('#search-products-item-0 > .dropdown-item').click();
     cy.get('.col-md-2 > .btn').click();
-    cy.get('tbody.jsx-868046180 > tr.jsx-868046180 > :nth-child(1)').contains(
-      'Product B'
-    );
+    cy.contains('tbody.jsx-868046180 > tr.jsx-868046180 > :nth-child(1)', 'B');
     cy.get('.col-md-1 > .btn').click();
     openLinkedProducts(1);
     cy.get('[style="text-align: center;"] > .btn').click();
