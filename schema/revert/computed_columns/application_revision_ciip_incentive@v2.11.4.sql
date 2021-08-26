@@ -14,6 +14,7 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
     em_electricity numeric;
     em_heat numeric;
     em_intensity numeric;
+    intensity_range numeric;
     incentive_ratio numeric;
     incentive_product numeric;
     incentive_product_max numeric;
@@ -38,7 +39,8 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
     where id = application_revision.application_id;
 
     -- Get carbon tax data for the application
-    select sum(carbon_tax_eligible_for_ciip) into incremental_carbon_tax_facility from ggircs_portal.application_revision_carbon_tax(application_revision);
+    select sum(carbon_tax_eligible_for_ciip_flat) into incremental_carbon_tax_facility from ggircs_portal.ciip_carbon_tax_calculation
+    where version_number = application_revision.version_number and application_id = application_revision.application_id;
 
     reported_products = array(
       select row(ciip_production.*)
@@ -178,8 +180,7 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
         end if;
 
         if (product.product_amount = 0) then
-          incentive_ratio = 0;
-          em_intensity = 0;
+          intensity_range = 0;
         else
           -- Calculate Emission Intensity
           em_intensity = em_product / product.product_amount;
@@ -187,13 +188,13 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
 
           -- Calculate Incentive Ratio as
           -- IncRatio = min(IncRatioMax, max(IncRatioMin, 1 - (EmIntensity - BM)/(ET - BM))
-          incentive_ratio = 1 - ((em_intensity - benchmark_data.benchmark) / (benchmark_data.eligibility_threshold - benchmark_data.benchmark));
+          intensity_range = 1 - ((em_intensity - benchmark_data.benchmark) / (benchmark_data.eligibility_threshold - benchmark_data.benchmark));
         end if;
 
         incentive_ratio = least(
           benchmark_data.maximum_incentive_ratio,
           greatest(
-            benchmark_data.minimum_incentive_ratio, incentive_ratio
+            benchmark_data.minimum_incentive_ratio, intensity_range
           )
         );
 
