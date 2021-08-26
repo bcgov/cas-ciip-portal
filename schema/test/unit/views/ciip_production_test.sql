@@ -8,7 +8,7 @@ reset client_min_messages;
 
 begin;
 
-select plan(3);
+select plan(4);
 
 -- Setup
 
@@ -32,7 +32,7 @@ values (
   2,
   1,
   (select id from ggircs_portal.form_json order by id desc limit 1),
-  '[{"productName": "2018product", "quantity": 1, "units": "kl"}]'
+  '[{"productName": "2018product", "quantity": 1, "units": "kl", "comments":"blah blah comment stuff"}]'
 );
 
 -- Begin tests
@@ -57,6 +57,16 @@ select results_eq(
     select '2'::integer, '2018product'::varchar, '1'::numeric, 'kl'::varchar
   $$,
   'ciip_production view returns the correct production data for the 2018 schema'
+);
+
+select results_eq(
+  $$
+    select comments from ggircs_portal.ciip_production where application_id = 2 and version_number=1
+  $$,
+  $$
+    select 'blah blah comment stuff'::varchar
+  $$,
+  'ciip_production view returns comments'
 );
 
 select finish();

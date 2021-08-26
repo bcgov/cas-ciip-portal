@@ -24,7 +24,7 @@ begin;
        (x.production_data ->> 'isEnergyProduct')::boolean as is_energy_product,
        (x.production_data ->> 'productName')::varchar(1000) as product_name,
        (x.production_data ->> 'associatedEmissions')::numeric as associated_emissions,
-       x.comments
+       (x.production_data ->> 'comments')::varchar(10000) as comments
 
     from x
  );
