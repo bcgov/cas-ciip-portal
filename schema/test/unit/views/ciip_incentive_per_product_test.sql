@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 
 begin;
 
-select plan(5);
+select plan(6);
 
 -- Setup
 
@@ -185,6 +185,48 @@ select results_eq(
     )
   $$,
   'ciip_incentive_per_product returns all fields and accurate values'
+);
+
+select application_id, version_number, product_id, product_name, round(emission_intensity,2)
+from ggircs_portal.ciip_incentive_per_product where application_id = 1;
+
+-- Update Product with id=8 to have productAmount/productEmissions = 0
+-- This will test a bugfix where a product with zeroes in those columns was reporting the other product's emission intensity
+update ggircs_portal.form_result
+set form_result = json_build_array(
+  jsonb_build_object(
+    'productRowId', 10,
+    'productUnits', 'tonnes of cement equivalent',
+    'productAmount', 5000,
+    'productEmissions', 800
+  ),
+  jsonb_build_object(
+    'productRowId', 8,
+    'productAmount', 0,
+    'productEmissions', 0
+  )
+)
+where application_id=1 and version_number=1
+  and form_id = (select id from ggircs_portal.form_json where slug = 'production');
+
+select application_id, version_number, product_id, product_name, round(emission_intensity,2)
+from ggircs_portal.ciip_incentive_per_product where application_id = 1;
+
+-- returns an emission_intensity of 0 when productAmount / productEmissions = 0
+select results_eq(
+  $$
+    select
+      application_id, version_number, product_id, product_name,round(emission_intensity,2)
+    from ggircs_portal.ciip_incentive_per_product where application_id = 1 and product_id=8;
+  $$,
+  $$
+    values
+    (
+      1, 1, 8, 'Aluminum Smelting'::varchar(1000),
+      0.
+    )
+  $$,
+  'ciip_incentive_per_product returns an emission_intensity of 0 when productAmount / productEmissions = 0'
 );
 
 select finish();

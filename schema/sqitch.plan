@@ -377,3 +377,4 @@ fix_swrs_report_id 2021-08-05T22:41:22Z Naomi Aro <naomi.aro@gov.bc.ca> # Migrat
 @v2.11.4 2021-08-06T21:38:14Z Matthieu Foucault <matthieu@button.is> # release v2.11.4
 @v2.12.0 2021-08-25T17:51:07Z Dylan Leard <dylan@button.is> # release v2.12.0
 views/ciip_production [views/ciip_production@v2.11.4] 2021-08-26T15:39:47Z Dylan Leard <dylan@button.is> # Migration: fix the location of comments in select statement
+computed_columns/application_revision_ciip_incentive [computed_columns/application_revision_ciip_incentive@v2.11.4] 2021-08-26T20:08:44Z Dylan Leard <dylan@button.is> # Migration: fix issue where the emission intensity for some products is incorrect with 0 values
