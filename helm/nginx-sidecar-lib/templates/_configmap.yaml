@@ -1,0 +1,33 @@
+{{- define "nginx-sidecar-lib.configmap.tpl" -}}
+{{- if .Values.nginxSidecar.enable }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "nginx-sidecar-lib.fullname" . }}-nginx-config
+  labels: {{ include "nginx-sidecar-lib.labels" . | nindent 4 }}
+data:
+  default.conf: |
+    server {
+{{- if .Values.nginxSidecar.sslTermination }}
+      listen {{ .Values.nginxSidecar.port }} ssl;
+      listen [::]:{{ .Values.nginxSidecar.port }} ssl;
+      ssl_certificate     /home/.acme.sh/{{ .Values.nginxSidecar.hostName }}/{{ .Values.nginxSidecar.hostName }}.cer;
+      ssl_certificate_key /home/.acme.sh/{{ .Values.nginxSidecar.hostName }}/{{ .Values.nginxSidecar.hostName }}.key;
+{{- else }}
+      listen {{ .Values.nginxSidecar.port }};
+      listen [::]:{{ .Values.nginxSidecar.port }};
+{{- end }}
+      server_name  _;
+      location / {
+        proxy_pass http://localhost:{{ .Values.service.internalPort }};
+      }
+
+      location ^~ /.well-known/acme-challenge/ {
+        root /home/;
+      }
+    }
+{{- end }}
+{{- end -}}
+{{- define "nginx-sidecar-lib.configmap" -}}
+{{- include "nginx-sidecar-lib.util.merge" (append . "nginx-sidecar-lib.configmap.tpl") -}}
+{{- end -}}
