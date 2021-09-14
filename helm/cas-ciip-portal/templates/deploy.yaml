@@ -23,6 +23,10 @@ spec:
 {{ include "cas-ciip-portal.labels" . | indent 8 }}
     spec:
       containers:
+{{- if .Values.nginxSidecar.enable }}
+      -
+{{- include "nginx-sidecar-lib.deployment-container.tpl" | nindent 8 }}
+{{- end }}
       - name: {{ template "cas-ciip-portal.fullname" . }}
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         image: {{ .Values.image.app.repository }}:{{ .Values.image.app.tag }}
