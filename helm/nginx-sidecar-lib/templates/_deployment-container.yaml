@@ -1,0 +1,21 @@
+{{- /*
+This template is meant to be injected inside a deployment object, as an additional container
+*/}}
+
+{{- define "nginx-sidecar-lib.deployment-container.tpl" -}}
+name: {{ .Chart.Name }}-nginx
+image: "{{ .Values.nginxSidecar.image.repository }}:{{ .Values.nginxSidecar.image.tag }}"
+imagePullPolicy: {{ .Values.nginxSidecar.image.pullPolicy }}
+ports:
+  - containerPort: {{ .Values.nginxSidecar.port }}
+volumeMounts:
+  - name: nginx-configs
+    mountPath: /etc/nginx/conf.d
+  - mountPath: /home/.acme.sh
+    name: acme-home
+  - mountPath: /home/.well-known/acme-challenge
+    name: acme-challenge
+{{- end -}}
+{{- define "nginx-sidecar-lib.deployment-container" -}}
+{{- include "nginx-sidecar-lib.util.merge" (append . "nginx-sidecar-lib.deployment-container.tpl") -}}
+{{- end -}}

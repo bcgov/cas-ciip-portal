@@ -1,0 +1,69 @@
+{{- define "nginx-sidecar-lib.cron-acme-issue.tpl" -}}
+
+
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: {{ template "nginx-sidecar-lib.fullname" . }}-acme-issue
+  labels:
+{{ include "nginx-sidecar-lib.labels" . | indent 4 }}
+  annotations:
+    "helm.sh/hook": "post-upgrade,post-install"
+    "helm.sh/hook-delete-policy": "before-hook-creation"
+    "helm.sh/hook-weight": "-5"
+
+spec:
+  suspend: true # This cron job is intended to be triggered manually
+  schedule: "* * * * *"
+  successfulJobsHistoryLimit: 1
+  jobTemplate:
+    spec:
+      backoffLimit: 0
+      activeDeadlineSeconds: 600
+      template:
+        metadata:
+          labels:
+{{ include "nginx-sidecar-lib.labels" . | indent 14 }}
+        spec:
+          restartPolicy: Never
+          containers:
+            - name: {{ template "nginx-sidecar-lib.fullname" . }}-acme-issue
+              image: bitnami/git
+              resources:
+                limits:
+                  cpu: 1000m
+                  memory: 128Mi
+                requests:
+                  cpu: 100m
+                  memory: 64Mi
+              command:
+                - /usr/bin/env
+                - bash
+                - -c
+                - |
+                  set -euxo pipefail;
+                  if [ ! -f /root/.acme.sh/{{ .Values.route.host }}/{{ .Values.route.host }}.cer ]; then
+                    echo "Getting a new cert from Let's Encrypt for {{ .Values.route.host }}";
+                    git clone --branch 2.8.6 https://github.com/acmesh-official/acme.sh.git /root/acme.sh;
+                    cd /root/acme.sh;
+                    ./acme.sh install --force;
+                    . "/root/.acme.sh/acme.sh.env";
+                    ./acme.sh --issue -d {{ .Values.route.host }} -w /root;
+                  fi;
+              volumeMounts:
+                - mountPath: /root/.acme.sh
+                  name: acme-home
+                - mountPath: /root/.well-known/acme-challenge
+                  name: acme-challenge
+          volumes:
+            - name: acme-home
+              persistentVolumeClaim:
+                claimName: {{ template "nginx-sidecar-lib.fullname" . }}-acme-home
+            - name: acme-challenge
+              persistentVolumeClaim:
+                claimName: {{ template "nginx-sidecar-lib.fullname" . }}-acme-challenge
+
+{{- end -}}
+{{- define "nginx-sidecar-lib.cron-acme-issue" -}}
+{{- include "nginx-sidecar-lib.util.merge" (append . "nginx-sidecar-lib.cron-acme-issue.tpl") -}}
+{{- end -}}
