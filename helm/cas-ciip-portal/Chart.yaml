@@ -24,3 +24,6 @@ dependencies:
     version: 1.0.6
     repository: https://bcgov.github.io/cas-airflow
     alias: airflow-ciip-deploy-db
+  - name: nginx-sidecar-lib
+    version: 0.1.0
+    repository: file://../nginx-sidecar-lib
