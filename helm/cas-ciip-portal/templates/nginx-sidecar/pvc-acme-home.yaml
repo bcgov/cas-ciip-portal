@@ -1,0 +1,3 @@
+{{- include "nginx-sidecar-lib.pvc-acme-home" (list . "workchart.pvc-acme-home") -}}
+{{- define "workchart.pvc-acme-home" -}}
+{{- end -}}
