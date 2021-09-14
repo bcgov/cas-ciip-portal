@@ -1,0 +1,20 @@
+{{- define "nginx-sidecar-lib.pvc-acme-challenge.tpl" -}}
+{{- if .Values.nginxSidecar.enable }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ template "nginx-sidecar-lib.fullname" . }}-acme-challenge
+  labels: {{ include "nginx-sidecar-lib.labels" . | nindent 4 }}
+
+spec:
+  accessModes:
+  - ReadWriteMany
+  resources:
+    requests:
+      storage: 25Mi
+  storageClassName: {{ .Values.nginxSidecar.storageClassName }}
+{{- end }}
+{{- end -}}
+{{- define "nginx-sidecar-lib.pvc-acme-challenge" -}}
+{{- include "nginx-sidecar-lib.util.merge" (append . "nginx-sidecar-lib.pvc-acme-challenge.tpl") -}}
+{{- end -}}
