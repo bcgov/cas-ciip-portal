@@ -24,8 +24,7 @@ spec:
     spec:
       containers:
 {{- if .Values.nginxSidecar.enable }}
-      -
-{{- include "nginx-sidecar-lib.deployment-container.tpl" | nindent 8 }}
+{{- include "nginx-sidecar-lib.deployment-container.tpl" | indent 8 }}
 {{- end }}
       - name: {{ template "cas-ciip-portal.fullname" . }}
         imagePullPolicy: {{ .Values.image.pullPolicy }}
@@ -120,17 +119,6 @@ spec:
           capabilities: {}
           privileged: false
         terminationMessagePath: /dev/termination-log
-        volumeMounts:
-          - mountPath: /root/.acme.sh
-            name: acme-home
-          - mountPath: /root/.well-known/acme-challenge
-            name: acme-challenge
-      volumes:
-        - name: acme-home
-          persistentVolumeClaim:
-            claimName: {{ template "cas-ciip-portal.fullname" . }}-acme-home
-        - name: acme-challenge
-          persistentVolumeClaim:
-            claimName: {{ template "cas-ciip-portal.fullname" . }}-acme-challenge
+      volumes: {{- include "nginx-sidecar-lib.deployment-volumes.tpl" . | nindent 8 }}
       dnsPolicy: ClusterFirst
       restartPolicy: Always
