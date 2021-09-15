@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.12.1](https://github.com/bcgov/cas-ciip-portal/compare/v2.12.0...v2.12.1) (2021-09-15)
+
+
+### Bug Fixes
+
+* ensure proper emission_intensity for products with no emissions ([688fc8d](https://github.com/bcgov/cas-ciip-portal/commit/688fc8d990cde55338237213be93c58f58d72859))
+* properly retrieve comments in ciip_production view ([4196b90](https://github.com/bcgov/cas-ciip-portal/commit/4196b90c4538f691326d0461b53f7168938ecced))
+
 ## [2.12.0](https://github.com/bcgov/cas-ciip-portal/compare/v2.11.4...v2.12.0) (2021-08-25)
 
 
