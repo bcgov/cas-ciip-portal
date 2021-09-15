@@ -5,6 +5,7 @@ image:
   tag: latest
   pullPolicy: Always
 
+# Name of the container hosting the nginx sidecar
 containerName: sidecar-nginx
 
 # set to false to deploy the application with an insecure route,

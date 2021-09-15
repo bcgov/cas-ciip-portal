@@ -2,7 +2,7 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "nginx-sidecar-lib.name" -}}
+{{- define "nginx-sidecar.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 
@@ -11,7 +11,7 @@ Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
 */}}
-{{- define "nginx-sidecar-lib.fullname" -}}
+{{- define "nginx-sidecar.fullname" -}}
 {{- if .Values.fullnameOverride -}}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" -}}
 {{- else -}}
@@ -38,16 +38,16 @@ Return the apiVersion of deployment.
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "nginx-sidecar-lib.chart" -}}
+{{- define "nginx-sidecar.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "nginx-sidecar-lib.labels" -}}
-helm.sh/chart: {{ include "nginx-sidecar-lib.chart" . }}
-{{ include "nginx-sidecar-lib.selectorLabels" . }}
+{{- define "nginx-sidecar.labels" -}}
+helm.sh/chart: {{ include "nginx-sidecar.chart" . }}
+{{ include "nginx-sidecar.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -57,7 +57,7 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Selector labels
 */}}
-{{- define "nginx-sidecar-lib.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "nginx-sidecar-lib.name" . }}
+{{- define "nginx-sidecar.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "nginx-sidecar.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}

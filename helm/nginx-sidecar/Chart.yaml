@@ -1,5 +1,5 @@
 apiVersion: v2
-name: nginx-sidecar-lib
+name: nginx-sidecar
 description: A library helm chart that can be used to inject an nginx sidecar pod to handle SSL termination
 
 type: application

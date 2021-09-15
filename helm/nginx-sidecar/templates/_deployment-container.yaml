@@ -7,9 +7,9 @@ These template are meant to be injected inside a deployment object, as an additi
 {{- /*
 This template is meant to be injected inside a deployment object.
 It needs to be passed an object that matches the structure of the values of this chart
-Example: include "nginx-sidecar-lib.deployment-container.tpl" (index .Values "nginx-sidecar-lib")
+Example: include "nginx-sidecar.deployment-container.tpl" (index .Values "nginx-sidecar")
 */}}
-{{- define "nginx-sidecar-lib.deployment-container.tpl" }}
+{{- define "nginx-sidecar.deployment-container.tpl" }}
 - name: "{{ .containerName }}"
   image: "{{ .image.repository }}:{{ .image.tag }}"
   imagePullPolicy: {{ .image.pullPolicy }}
@@ -18,11 +18,11 @@ Example: include "nginx-sidecar-lib.deployment-container.tpl" (index .Values "ng
   volumeMounts:
     - name: nginx-configs
       mountPath: /etc/nginx/conf.d
-{{ include "nginx-sidecar-lib.deployment-mounts.tpl" . | indent 4 }}
+{{ include "nginx-sidecar.deployment-mounts.tpl" . | indent 4 }}
 {{- end }}
 
 
-{{- define "nginx-sidecar-lib.deployment-mounts.tpl" -}}
+{{- define "nginx-sidecar.deployment-mounts.tpl" -}}
 - mountPath: /home/.acme.sh
   name: acme-home
 - mountPath: /home/.well-known/acme-challenge
@@ -30,11 +30,14 @@ Example: include "nginx-sidecar-lib.deployment-container.tpl" (index .Values "ng
 {{- end -}}
 
 
-{{- define "nginx-sidecar-lib.deployment-volumes.tpl" -}}
+{{- define "nginx-sidecar.deployment-volumes.tpl" -}}
+- name: nginx-configs
+  configMap:
+    name: {{ template "nginx-sidecar.fullname" . }}-nginx-config
 - name: acme-home
   persistentVolumeClaim:
-    claimName: {{ template "nginx-sidecar-lib.fullname" . }}-acme-home
+    claimName: {{ template "nginx-sidecar.fullname" . }}-acme-home
 - name: acme-challenge
   persistentVolumeClaim:
-    claimName: {{ template "nginx-sidecar-lib.fullname" . }}-acme-challenge
+    claimName: {{ template "nginx-sidecar.fullname" . }}-acme-challenge
 {{- end -}}

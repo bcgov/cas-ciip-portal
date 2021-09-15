@@ -8,9 +8,9 @@
 apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
-  name: {{ template "nginx-sidecar-lib.fullname" . }}-acme-renewal
+  name: {{ template "nginx-sidecar.fullname" . }}-acme-renewal
   labels:
-{{ include "nginx-sidecar-lib.labels" . | indent 4 }}
+{{ include "nginx-sidecar.labels" . | indent 4 }}
   annotations:
     "helm.sh/hook": "post-upgrade,post-install"
     "helm.sh/hook-delete-policy": "before-hook-creation"
@@ -27,11 +27,11 @@ spec:
       template:
         metadata:
           labels:
-{{ include "nginx-sidecar-lib.labels" . | indent 14 }}
+{{ include "nginx-sidecar.labels" . | indent 14 }}
         spec:
           restartPolicy: Never
           containers:
-            - name: {{ template "nginx-sidecar-lib.fullname" . }}-acme-renewal
+            - name: {{ template "nginx-sidecar.fullname" . }}-acme-renewal
               image: bitnami/git
               pullPolicy: Always
               resources:
@@ -49,5 +49,5 @@ spec:
                   set -euxo pipefail;
                   # renews the certificate if needed
                   /root/.acme.sh/acme.sh --cron --home /root/.acme.sh --server {{ $caServer }} --days {{.Values.renewalDays}};
-              volumeMounts: {{ include "nginx-sidecar-lib.deployment-mounts.tpl" . | nindent 16 }}
-          volumes: {{ include "nginx-sidecar-lib.deployment-volumes.tpl" . | nindent 12 }}
+              volumeMounts: {{ include "nginx-sidecar.deployment-mounts.tpl" . | nindent 16 }}
+          volumes: {{ include "nginx-sidecar.deployment-volumes.tpl" . | nindent 12 }}

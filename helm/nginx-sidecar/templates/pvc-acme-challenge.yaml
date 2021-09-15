@@ -1,16 +1,15 @@
-
 {{- if .Values.enable }}
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ template "nginx-sidecar-lib.fullname" . }}-acme-home
-  labels: {{ include "nginx-sidecar-lib.labels" . | nindent 4 }}
+  name: {{ template "nginx-sidecar.fullname" . }}-acme-challenge
+  labels: {{ include "nginx-sidecar.labels" . | nindent 4 }}
 
 spec:
   accessModes:
   - ReadWriteMany
   resources:
     requests:
-      storage: 50Mi
+      storage: 25Mi
   storageClassName: {{ .Values.storageClassName }}
 {{- end }}
