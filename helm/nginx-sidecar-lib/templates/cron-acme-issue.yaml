@@ -1,4 +1,10 @@
-{{- define "nginx-sidecar-lib.cron-acme-issue.tpl" -}}
+
+{{- $caServer := "https://acme-v02.api.letsencrypt.org/directory" }}
+
+{{- if .Values.caServerSecret }}
+{{- $secret := (lookup "v1" "Secret" .Release.Namespace .Values.caServerSecret ) }}
+{{- $caServer = (index $secret.data .Values.caServerKey) | b64dec }}
+{{- end -}}
 
 
 apiVersion: batch/v1beta1
@@ -42,28 +48,13 @@ spec:
                 - -c
                 - |
                   set -euxo pipefail;
-                  if [ ! -f /root/.acme.sh/{{ .Values.route.host }}/{{ .Values.route.host }}.cer ]; then
-                    echo "Getting a new cert from Let's Encrypt for {{ .Values.route.host }}";
+                  if [ ! -f /root/.acme.sh/{{ .Values.certTargetHost }}/{{ .Values.certTargetHost }}.cer ]; then
+                    echo "Getting a new cert from Let's Encrypt for {{ .Values.certTargetHost }}";
                     git clone --branch 2.8.6 https://github.com/acmesh-official/acme.sh.git /root/acme.sh;
                     cd /root/acme.sh;
-                    ./acme.sh install --force;
+                    ./acme.sh install --force --server {{ $caServer }} -m {{ .Values.caAccountEmail }} ;
                     . "/root/.acme.sh/acme.sh.env";
-                    ./acme.sh --issue -d {{ .Values.route.host }} -w /root;
+                    ./acme.sh --issue -d {{ .Values.certTargetHost }} -w /root --server {{ $caServer }} -m {{ .Values.caAccountEmail }} --days {{.Values.renewalDays}};
                   fi;
-              volumeMounts:
-                - mountPath: /root/.acme.sh
-                  name: acme-home
-                - mountPath: /root/.well-known/acme-challenge
-                  name: acme-challenge
-          volumes:
-            - name: acme-home
-              persistentVolumeClaim:
-                claimName: {{ template "nginx-sidecar-lib.fullname" . }}-acme-home
-            - name: acme-challenge
-              persistentVolumeClaim:
-                claimName: {{ template "nginx-sidecar-lib.fullname" . }}-acme-challenge
-
-{{- end -}}
-{{- define "nginx-sidecar-lib.cron-acme-issue" -}}
-{{- include "nginx-sidecar-lib.util.merge" (append . "nginx-sidecar-lib.cron-acme-issue.tpl") -}}
-{{- end -}}
+              volumeMounts: {{ include "nginx-sidecar-lib.deployment-mounts.tpl" . | nindent 16 }}
+          volumes: {{- include "nginx-sidecar-lib.deployment-volumes.tpl" . | nindent 12 }}

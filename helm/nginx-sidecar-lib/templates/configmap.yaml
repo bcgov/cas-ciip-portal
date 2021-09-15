@@ -1,4 +1,3 @@
-{{- define "nginx-sidecar-lib.configmap.tpl" -}}
 {{- if .Values.nginxSidecar.enable }}
 apiVersion: v1
 kind: ConfigMap
@@ -27,7 +26,3 @@ data:
       }
     }
 {{- end }}
-{{- end -}}
-{{- define "nginx-sidecar-lib.configmap" -}}
-{{- include "nginx-sidecar-lib.util.merge" (append . "nginx-sidecar-lib.configmap.tpl") -}}
-{{- end -}}

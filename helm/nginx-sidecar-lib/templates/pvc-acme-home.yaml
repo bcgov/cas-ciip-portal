@@ -1,4 +1,4 @@
-{{- define "nginx-sidecar-lib.pvc-acme-home.tpl" -}}
+
 {{- if .Values.nginxSidecar.enable }}
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -14,7 +14,3 @@ spec:
       storage: 50Mi
   storageClassName: {{ .Values.nginxSidecar.storageClassName }}
 {{- end }}
-{{- end -}}
-{{- define "nginx-sidecar-lib.pvc-acme-home" -}}
-{{- include "nginx-sidecar-lib.util.merge" (append . "nginx-sidecar-lib.pvc-acme-home.tpl") -}}
-{{- end -}}

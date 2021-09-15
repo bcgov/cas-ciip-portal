@@ -1,4 +1,3 @@
-{{- define "nginx-sidecar-lib.pvc-acme-challenge.tpl" -}}
 {{- if .Values.nginxSidecar.enable }}
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -14,7 +13,3 @@ spec:
       storage: 25Mi
   storageClassName: {{ .Values.nginxSidecar.storageClassName }}
 {{- end }}
-{{- end -}}
-{{- define "nginx-sidecar-lib.pvc-acme-challenge" -}}
-{{- include "nginx-sidecar-lib.util.merge" (append . "nginx-sidecar-lib.pvc-acme-challenge.tpl") -}}
-{{- end -}}
