@@ -1,3 +1,0 @@
-{{- include "nginx-sidecar-lib.pvc-acme-challenge" (list . "workchart.pvc-acme-challenge") -}}
-{{- define "workchart.pvc-acme-challenge" -}}
-{{- end -}}

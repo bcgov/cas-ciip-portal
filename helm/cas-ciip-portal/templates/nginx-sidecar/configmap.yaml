@@ -1,3 +1,0 @@
-{{- include "nginx-sidecar-lib.configmap" (list . "workchart.configmap") -}}
-{{- define "workchart.configmap" -}}
-{{- end -}}
