@@ -117,7 +117,7 @@ acme_issue_dag = DAG('cas_ciip_portal_acme_issue',
 cron_acme_issue_task = PythonOperator(
     python_callable=trigger_k8s_cronjob,
     task_id='ciip_portal_acme_issue',
-    op_args=['cas-ciip-portal-acme-issue', namespace],
+    op_args=['cas-ciip-portal-nginx-sidecar-acme-issue', namespace],
     dag=acme_issue_dag)
 
 
@@ -131,7 +131,7 @@ acme_renewal_dag = DAG('cas_ciip_portal_acme_renewal', schedule_interval='0 8 * 
 cert_renewal_task = PythonOperator(
     python_callable=trigger_k8s_cronjob,
     task_id='cert_renewal',
-    op_args=['cas-ciip-portal-acme-renewal', namespace],
+    op_args=['cas-ciip-portal-nginx-sidecar-acme-renewal', namespace],
     dag=acme_renewal_dag)
 
 """
