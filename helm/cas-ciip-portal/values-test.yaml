@@ -63,3 +63,6 @@ airflow-ciip-cert-issue:
 
 airflow-ciip-deploy-db:
   airflowEndpoint: https://cas-airflow-test.apps.silver.devops.gov.bc.ca
+
+nginx-sidecar:
+  hostName: test.ciip.gov.bc.ca

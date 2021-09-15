@@ -148,6 +148,10 @@ nginx-sidecar:
     repository: gcr.io/ggl-cas-storage/cas-nginx
     tag: latest
     pullPolicy: Always
+  containerName: cas-ciip-portal-nginx-sidecar
+  hostName: ciip.gov.bc.ca
+  port: 3001
+  internalPort: 3000
   # set to false to deploy the application with an insecure route,
   # and issue an SSL certificate using acme.sh
   sslTermination: true
