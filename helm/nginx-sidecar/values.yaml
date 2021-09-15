@@ -18,9 +18,11 @@ caServerKey: ~
 caAccountEmail: ggircs@gov.bc.ca
 storageClassName: netapp-file-standard
 renewalDays: 60
+
+# Should match the route of the app using this sidecar
 hostName: "example-climate-action-secretariat.gov.bc.ca"
 
 # Port matching the service of the app
-internalPort: 1234
+internalPort: ~
 # Exposed to the outside
-port: 1235
+port: ~
