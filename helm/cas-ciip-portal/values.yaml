@@ -142,8 +142,8 @@ airflow-ciip-deploy-db:
   helm:
     hook: false
 
-nginxSidecar:
-  enable: false
+nginx-sidecar:
+  enable: true
   image:
     repository: gcr.io/ggl-cas-storage/cas-nginx
     tag: latest
@@ -153,7 +153,7 @@ nginxSidecar:
   sslTermination: true
   # If provided, the acme issue/renewal scripts will use a custom server
   # Otherwise it defaults to Let's Encrypt
-  caServerSecret: ~
+  caServerSecret: ~ # pragma: allowlist secret
   caServerKey: ~
   caAccountEmail: ggircs@gov.bc.ca
   storageClassName: netapp-file-standard

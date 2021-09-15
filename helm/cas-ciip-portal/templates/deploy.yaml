@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
 {{- if .Values.nginxSidecar.enable }}
-{{- include "nginx-sidecar-lib.deployment-container.tpl" | indent 8 }}
+{{- include "nginx-sidecar.deployment-container.tpl" | indent 8 }}
 {{- end }}
       - name: {{ template "cas-ciip-portal.fullname" . }}
         imagePullPolicy: {{ .Values.image.pullPolicy }}
@@ -119,6 +119,6 @@ spec:
           capabilities: {}
           privileged: false
         terminationMessagePath: /dev/termination-log
-      volumes: {{- include "nginx-sidecar-lib.deployment-volumes.tpl" . | nindent 8 }}
+      volumes: {{- include "nginx-sidecar.deployment-volumes.tpl" . | nindent 8 }}
       dnsPolicy: ClusterFirst
       restartPolicy: Always
