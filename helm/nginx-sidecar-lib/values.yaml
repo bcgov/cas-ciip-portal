@@ -1,8 +1,12 @@
 enable: false
+
 image:
   repository: gcr.io/ggl-cas-storage/cas-nginx
   tag: latest
   pullPolicy: Always
+
+containerName: sidecar-nginx
+
 # set to false to deploy the application with an insecure route,
 # and issue an SSL certificate using acme.sh
 sslTermination: true
@@ -13,4 +17,9 @@ caServerKey: ~
 caAccountEmail: ggircs@gov.bc.ca
 storageClassName: netapp-file-standard
 renewalDays: 60
-certTargetHost: "example-climate-action-secretariat.gov.bc.ca"
+hostName: "example-climate-action-secretariat.gov.bc.ca"
+
+# Port matching the service of the app
+internalPort: 1234
+# Exposed to the outside
+port: 1235

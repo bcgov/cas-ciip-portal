@@ -2,17 +2,24 @@
 These template are meant to be injected inside a deployment object, as an additional container
 */}}
 
-{{- define "nginx-sidecar-lib.deployment-container.tpl" -}}
-- name: {{ .Chart.Name }}-nginx
-  image: "{{ .Values.nginxSidecar.image.repository }}:{{ .Values.nginxSidecar.image.tag }}"
-  imagePullPolicy: {{ .Values.nginxSidecar.image.pullPolicy }}
+
+
+{{- /*
+This template is meant to be injected inside a deployment object.
+It needs to be passed an object that matches the structure of the values of this chart
+Example: include "nginx-sidecar-lib.deployment-container.tpl" (index .Values "nginx-sidecar-lib")
+*/}}
+{{- define "nginx-sidecar-lib.deployment-container.tpl" }}
+- name: "{{ .containerName }}"
+  image: "{{ .image.repository }}:{{ .image.tag }}"
+  imagePullPolicy: {{ .image.pullPolicy }}
   ports:
-    - containerPort: {{ .Values.nginxSidecar.port }}
+    - containerPort: {{ .port }}
   volumeMounts:
     - name: nginx-configs
       mountPath: /etc/nginx/conf.d
 {{ include "nginx-sidecar-lib.deployment-mounts.tpl" . | indent 4 }}
-{{- end -}}
+{{- end }}
 
 
 {{- define "nginx-sidecar-lib.deployment-mounts.tpl" -}}

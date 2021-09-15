@@ -48,6 +48,6 @@ spec:
                 - |
                   set -euxo pipefail;
                   # renews the certificate if needed
-                  /root/.acme.sh/acme.sh --cron --home /root/.acme.sh --server {{ $caServer }} --days {{.Values.metabase.nginxSidecar.renewalDays}};
+                  /root/.acme.sh/acme.sh --cron --home /root/.acme.sh --server {{ $caServer }} --days {{.Values.renewalDays}};
               volumeMounts: {{ include "nginx-sidecar-lib.deployment-mounts.tpl" . | nindent 16 }}
           volumes: {{ include "nginx-sidecar-lib.deployment-volumes.tpl" . | nindent 12 }}

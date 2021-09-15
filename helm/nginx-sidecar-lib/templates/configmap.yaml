@@ -1,4 +1,4 @@
-{{- if .Values.nginxSidecar.enable }}
+{{- if .Values.enable }}
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -7,18 +7,18 @@ metadata:
 data:
   default.conf: |
     server {
-{{- if .Values.nginxSidecar.sslTermination }}
-      listen {{ .Values.nginxSidecar.port }} ssl;
-      listen [::]:{{ .Values.nginxSidecar.port }} ssl;
-      ssl_certificate     /home/.acme.sh/{{ .Values.nginxSidecar.hostName }}/{{ .Values.nginxSidecar.hostName }}.cer;
-      ssl_certificate_key /home/.acme.sh/{{ .Values.nginxSidecar.hostName }}/{{ .Values.nginxSidecar.hostName }}.key;
+{{- if .Values.sslTermination }}
+      listen {{ .Values.port }} ssl;
+      listen [::]:{{ .Values.port }} ssl;
+      ssl_certificate     /home/.acme.sh/{{ .Values.hostName }}/{{ .Values.hostName }}.cer;
+      ssl_certificate_key /home/.acme.sh/{{ .Values.hostName }}/{{ .Values.hostName }}.key;
 {{- else }}
-      listen {{ .Values.nginxSidecar.port }};
-      listen [::]:{{ .Values.nginxSidecar.port }};
+      listen {{ .Values.port }};
+      listen [::]:{{ .Values.port }};
 {{- end }}
       server_name  _;
       location / {
-        proxy_pass http://localhost:{{ .Values.service.internalPort }};
+        proxy_pass http://localhost:{{ .Values.internalPort }};
       }
 
       location ^~ /.well-known/acme-challenge/ {

@@ -1,4 +1,4 @@
-{{- if .Values.nginxSidecar.enable }}
+{{- if .Values.enable }}
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -11,5 +11,5 @@ spec:
   resources:
     requests:
       storage: 25Mi
-  storageClassName: {{ .Values.nginxSidecar.storageClassName }}
+  storageClassName: {{ .Values.storageClassName }}
 {{- end }}
