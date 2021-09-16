@@ -50,3 +50,5 @@ spec:
                   /root/.acme.sh/acme.sh --cron --home /root/.acme.sh --server {{ $caServer }} --days {{.Values.renewalDays}};
               volumeMounts: {{ include "nginx-sidecar.deployment-mounts.tpl" . | nindent 16 }}
           volumes: {{ include "nginx-sidecar.deployment-volumes-pvcs.tpl" .Values | nindent 12 }}
+          imagePullSecrets:
+            - name: dockerhub-registry

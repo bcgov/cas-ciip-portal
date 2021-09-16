@@ -46,6 +46,7 @@ Create chart name and version as used by the chart label.
 Common labels
 */}}
 {{- define "nginx-sidecar.labels" -}}
+release: {{ .Release.Name }}
 helm.sh/chart: {{ include "nginx-sidecar.chart" . }}
 {{ include "nginx-sidecar.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
