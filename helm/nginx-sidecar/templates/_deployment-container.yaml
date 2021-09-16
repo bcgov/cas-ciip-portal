@@ -30,14 +30,23 @@ Example: include "nginx-sidecar.deployment-container.tpl" (index .Values "nginx-
 {{- end -}}
 
 
-{{- define "nginx-sidecar.deployment-volumes.tpl" -}}
+{{- define "nginx-sidecar.deployment-volumes-nginx.tpl" -}}
 - name: nginx-configs
   configMap:
     name: {{ .objectNamePrefix }}-nginx-config
+{{- end -}}
+
+
+{{- define "nginx-sidecar.deployment-volumes-pvcs.tpl" -}}
 - name: acme-home
   persistentVolumeClaim:
     claimName: {{ .objectNamePrefix }}-acme-home
 - name: acme-challenge
   persistentVolumeClaim:
     claimName: {{ .objectNamePrefix }}-acme-challenge
+{{- end -}}
+
+{{- define "nginx-sidecar.deployment-volumes.tpl" -}}
+{{ include "nginx-sidecar.deployment-volumes-nginx.tpl" . }}
+{{ include "nginx-sidecar.deployment-volumes-pvcs.tpl" . }}
 {{- end -}}

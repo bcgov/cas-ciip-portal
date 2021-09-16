@@ -15,7 +15,6 @@ metadata:
     "helm.sh/hook": "post-upgrade,post-install"
     "helm.sh/hook-delete-policy": "before-hook-creation"
     "helm.sh/hook-weight": "-5"
-
 spec:
   suspend: true # This cron job is intended to be triggered manually
   schedule: "* * * * *"
@@ -50,4 +49,4 @@ spec:
                   # renews the certificate if needed
                   /root/.acme.sh/acme.sh --cron --home /root/.acme.sh --server {{ $caServer }} --days {{.Values.renewalDays}};
               volumeMounts: {{ include "nginx-sidecar.deployment-mounts.tpl" . | nindent 16 }}
-          volumes: {{ include "nginx-sidecar.deployment-volumes.tpl" . | nindent 12 }}
+          volumes: {{ include "nginx-sidecar.deployment-volumes-pvcs.tpl" .Values | nindent 12 }}
