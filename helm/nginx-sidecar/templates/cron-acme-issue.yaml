@@ -13,10 +13,6 @@ metadata:
   name: {{ .Values.objectNamePrefix }}-acme-issue
   labels:
 {{ include "nginx-sidecar.labels" . | indent 4 }}
-  annotations:
-    "helm.sh/hook": "post-upgrade,post-install"
-    "helm.sh/hook-delete-policy": "before-hook-creation"
-    "helm.sh/hook-weight": "-5"
 spec:
   suspend: true # This cron job is intended to be triggered manually
   schedule: "* * * * *"
