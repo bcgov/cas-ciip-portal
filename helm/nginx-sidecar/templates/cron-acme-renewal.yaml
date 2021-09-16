@@ -8,7 +8,7 @@
 apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
-  name: {{ template "nginx-sidecar.fullname" . }}-acme-renewal
+  name: {{ .Values.objectNamePrefix }}-acme-renewal
   labels:
 {{ include "nginx-sidecar.labels" . | indent 4 }}
   annotations:
@@ -31,7 +31,7 @@ spec:
         spec:
           restartPolicy: Never
           containers:
-            - name: {{ template "nginx-sidecar.fullname" . }}-acme-renewal
+            - name: {{ .Values.objectNamePrefix }}-acme-renewal
               image: bitnami/git
               pullPolicy: Always
               resources:

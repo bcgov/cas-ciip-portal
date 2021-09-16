@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ template "nginx-sidecar.fullname" . }}-nginx-config
+  name: {{ .Values.objectNamePrefix }}-nginx-config
   labels: {{ include "nginx-sidecar.labels" . | nindent 4 }}
 data:
   default.conf: |
