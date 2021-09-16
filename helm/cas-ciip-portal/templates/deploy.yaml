@@ -119,6 +119,6 @@ spec:
           capabilities: {}
           privileged: false
         terminationMessagePath: /dev/termination-log
-      volumes: {{- include "nginx-sidecar.deployment-volumes.tpl" . | nindent 8 }}
+      volumes: {{- include "nginx-sidecar.deployment-volumes.tpl" (index .Values "nginx-sidecar") | nindent 8 }}
       dnsPolicy: ClusterFirst
       restartPolicy: Always

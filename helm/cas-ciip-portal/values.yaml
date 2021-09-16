@@ -148,7 +148,7 @@ nginx-sidecar:
     repository: gcr.io/ggl-cas-storage/cas-nginx
     tag: latest
     pullPolicy: Always
-  containerName: cas-ciip-portal-nginx-sidecar
+  objectNamePrefix: cas-ciip-portal-nginx-sidecar
   hostName: ciip.gov.bc.ca
   port: 3001
   internalPort: 3000
