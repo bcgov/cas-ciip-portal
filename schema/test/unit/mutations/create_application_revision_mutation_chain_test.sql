@@ -17,7 +17,7 @@ $fun$
   select mocks.set_mocked_time_in_transaction('2021-04-01 14:49:54.191757-07'::timestamptz - interval '1 second');
 $fun$language sql;
 
-select plan(9);
+select * from no_plan();
 
 -- Setup
 alter table ggircs_portal.application_revision_status disable trigger _status_change_email;
@@ -29,10 +29,6 @@ insert into ggircs_portal.facility(organisation_id, facility_name) values (1, 't
 truncate ggircs_portal.application_revision restart identity cascade;
 
 select ggircs_portal.create_application_mutation_chain((select id from ggircs_portal.facility where facility_name = 'test facility'));
-
--- 2018 data test setup
--- insert into ggircs_portal.application(facility_id, reporting_year)
--- values ((select id from ggircs_portal.facility where facility_name = 'test facility'), 2018);
 
 insert into ggircs_portal.form_json(
 name,
@@ -181,7 +177,77 @@ select lives_ok(
       and facility_name = 'test facility'
     ) select ggircs_portal.create_application_revision_mutation_chain((select id from app_id), 1)
   $$,
-  'create_application_mutation_chain should no throw an exception if the application window is closed and the last version_number is >= 1'
+  'create_application_mutation_chain should not throw an exception if the application window is closed and the last version_number is >= 1'
+);
+
+-- Timetravel tests
+
+truncate ggircs_portal.application restart identity cascade;
+-- set current date to an open reporting period in 2020
+select mocks.set_mocked_time_in_transaction('2020-07-04 14:49:54.191757-07'::timestamptz + interval '1 second');
+-- create a 2019 application
+select ggircs_portal.create_application_mutation_chain((select id from ggircs_portal.facility where facility_name = 'test facility'));
+
+select is (
+  (select reporting_year from ggircs_portal.application where id=1),
+  2019,
+  'Reporting year of test application is 2019'
+);
+
+-- set current date to a closed reporting period in 2021
+select mocks.set_mocked_time_in_transaction('2021-07-01 14:49:54.191757-07'::timestamptz + interval '1 second');
+
+select is (
+  (select reporting_year from ggircs_portal.opened_reporting_year()),
+  2020,
+  'The current reporting year is set to an open date for the 2020 reporting year'
+);
+
+select throws_ok(
+  $$
+    insert into ggircs_portal.application_revision_status(application_id, version_number, application_revision_status) values (1,1,'draft')
+  $$,
+  'You cannot start a draft application for a previous year',
+  'An new draft application cannot be created for previous years'
+);
+
+select throws_ok(
+  $$
+    insert into ggircs_portal.application_revision_status(application_id, version_number, application_revision_status) values (1,1,'submitted')
+  $$,
+  'You cannot submit a first version of an application for a previous year',
+  'An application from a previous year that was not submitted during its application open time (ie: left in draft) cannot be submitted in subsequent years'
+);
+
+-- bypass trigger with an 'update' (The trigger only protects inserts as the app can only insert on the application_revision_status table)
+update ggircs_portal.application_revision_status set application_revision_status = 'submitted';
+
+select lives_ok(
+  $$
+    insert into ggircs_portal.application_revision_status(application_id, version_number, application_revision_status) values (1,1,'approved')
+  $$,
+  'A submitted application from previous years can be approved'
+);
+
+select lives_ok(
+  $$
+    insert into ggircs_portal.application_revision_status(application_id, version_number, application_revision_status) values (1,1,'requested changes');
+  $$,
+  'An approved application from previous years can be set to requested changes'
+);
+
+select lives_ok(
+  $$
+    select ggircs_portal.create_application_revision_mutation_chain(1,1)
+  $$,
+  'An application from previous years that was submitted during its application open time & has had changes requested can be revised in subsequent years'
+);
+
+select lives_ok(
+  $$
+    insert into ggircs_portal.application_revision_status(application_id, version_number, application_revision_status) values (1,2,'submitted')
+  $$,
+  'A new revision (version > 1) of a previous years application can be submitted'
 );
 
 select finish();
