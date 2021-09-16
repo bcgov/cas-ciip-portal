@@ -379,3 +379,5 @@ fix_swrs_report_id 2021-08-05T22:41:22Z Naomi Aro <naomi.aro@gov.bc.ca> # Migrat
 views/ciip_production [views/ciip_production@v2.11.4] 2021-08-26T15:39:47Z Dylan Leard <dylan@button.is> # Migration: fix the location of comments in select statement
 computed_columns/application_revision_ciip_incentive [computed_columns/application_revision_ciip_incentive@v2.11.4] 2021-08-26T20:08:44Z Dylan Leard <dylan@button.is> # Migration: fix issue where the emission intensity for some products is incorrect with 0 values
 @v2.12.1 2021-09-15T17:48:53Z Dylan Leard <dylan@button.is> # release v2.12.1
+trigger_functions/restrict_old_application_submission [function_opened_reporting_year tables/application_revision_status] 2021-09-16T21:05:16Z Dylan Leard <dylan@button.is> # Trigger function restricts submission of applications created in previous reporting years
+tables/application_revision_status_003 [tables/application_revision_status trigger_functions/restrict_old_application_submission] 2021-09-16T21:09:41Z Dylan Leard <dylan@button.is> # Migration: add restriction trigger for old applications
