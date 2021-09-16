@@ -30,6 +30,7 @@ spec:
           containers:
             - name: {{ .Values.objectNamePrefix }}-acme-issue
               image: bitnami/git
+              imagePullPolicy: Always
               resources:
                 limits:
                   cpu: 1000m

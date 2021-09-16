@@ -28,7 +28,7 @@ spec:
           containers:
             - name: {{ .Values.objectNamePrefix }}-acme-renewal
               image: bitnami/git
-              pullPolicy: Always
+              imagePullPolicy: Always
               resources:
                 limits:
                   cpu: 1000m
