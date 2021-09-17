@@ -1,4 +1,3 @@
-{{- if .Values.enable }}
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -25,4 +24,3 @@ data:
         root /home/;
       }
     }
-{{- end }}
