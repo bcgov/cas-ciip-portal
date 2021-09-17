@@ -101,6 +101,8 @@ const getRedirectURL = (req) => {
 app.prepare().then(async () => {
   const server = express();
 
+  server.set('trust proxy', true);
+
   const lightship = createLightship();
 
   lightship.registerShutdownHandler(async () => {
@@ -113,14 +115,6 @@ app.prepare().then(async () => {
   server.use(morgan('combined'));
 
   server.use(redirectRouter);
-
-  // Enable serving ACME HTTP-01 challenge response written to disk by acme.sh
-  // https://letsencrypt.org/docs/challenge-types/#http-01-challenge
-  // https://github.com/acmesh-official/acme.sh
-  server.use(
-    '/.well-known',
-    express.static(path.resolve(__dirname, '../.well-known'))
-  );
 
   server.use(bodyParser.json({limit: '50mb'}));
 
