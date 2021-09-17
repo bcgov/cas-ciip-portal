@@ -101,7 +101,10 @@ const getRedirectURL = (req) => {
 app.prepare().then(async () => {
   const server = express();
 
-  server.set('trust proxy', true);
+  server.set('trust proxy', function (ip) {
+    console.log('REQUEST FROM IP: ' + ip);
+    return true;
+  });
 
   const lightship = createLightship();
 
