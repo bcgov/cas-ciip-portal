@@ -52,11 +52,12 @@ install:
 	if ! helm status --namespace $(OC_PROJECT) cas-ciip-portal; then \
 		helm install --atomic --wait-for-jobs --timeout 2400s --namespace $(OC_PROJECT) \
 		--set route.insecure=true \
+		--set nginx-sidecar.sslTermination=false \
 		--set image.schema.tag=$(GIT_SHA1) --set image.app.tag=$(GIT_SHA1) \
 		--set ggircs.namespace=$(GGIRCS_PROJECT) \
 		--set ggircs.prefix=$(GGIRCS_NAMESPACE_PREFIX) \
 		--set ggircs.environment=$(ENVIRONMENT) \
-	    --set download-cas-ciip-portal-dags.dagConfiguration="$$dagConfig" \
+	  --set download-cas-ciip-portal-dags.dagConfiguration="$$dagConfig" \
 		--values ./helm/cas-ciip-portal/values-$(ENVIRONMENT).yaml \
 		cas-ciip-portal ./helm/cas-ciip-portal; \
 	fi; \

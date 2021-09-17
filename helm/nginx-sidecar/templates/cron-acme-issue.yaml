@@ -38,21 +38,27 @@ spec:
                 requests:
                   cpu: 100m
                   memory: 64Mi
+              env:
+                - name: HOME
+                  value: /tmp
               command:
                 - /usr/bin/env
                 - bash
                 - -c
                 - |
                   set -euxo pipefail;
-                  if [ ! -f /root/.acme.sh/{{ .Values.hostName }}/{{ .Values.hostName }}.cer ]; then
+                  if [ ! -f /tmp/.acme.sh/{{ .Values.hostName }}/{{ .Values.hostName }}.cer ]; then
                     echo "Getting a new cert from Let's Encrypt for {{ .Values.hostName }}";
-                    git clone --branch 2.8.6 https://github.com/acmesh-official/acme.sh.git /root/acme.sh;
-                    cd /root/acme.sh;
+                    git clone --branch 2.8.6 https://github.com/acmesh-official/acme.sh.git /tmp/acme.sh;
+                    cd /tmp/acme.sh;
                     ./acme.sh install --force --server {{ $caServer }} -m {{ .Values.caAccountEmail }} ;
-                    . "/root/.acme.sh/acme.sh.env";
-                    ./acme.sh --issue -d {{ .Values.hostName }} -w /root --server {{ $caServer }} -m {{ .Values.caAccountEmail }} --days {{.Values.renewalDays}};
+                    ./acme.sh --issue -d {{ .Values.hostName }} -w /tmp --server {{ $caServer }} --days {{.Values.renewalDays}};
                   fi;
-              volumeMounts: {{ include "nginx-sidecar.deployment-mounts.tpl" . | nindent 16 }}
+              volumeMounts:
+                - mountPath: /tmp/.acme.sh
+                  name: acme-home
+                - mountPath: /tmp/.well-known/acme-challenge
+                  name: acme-challenge
           volumes: {{- include "nginx-sidecar.deployment-volumes-pvcs.tpl" .Values | nindent 12 }}
           imagePullSecrets:
             - name: dockerhub-registry

@@ -22,6 +22,9 @@ Example: include "nginx-sidecar.deployment-container.tpl" (index .Values "nginx-
 {{- end }}
 
 
+{{- /*
+This template matches the configmap provided in this chart
+*/}}
 {{- define "nginx-sidecar.deployment-mounts.tpl" -}}
 - mountPath: /home/.acme.sh
   name: acme-home

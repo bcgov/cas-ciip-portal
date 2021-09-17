@@ -23,9 +23,6 @@ spec:
 {{ include "cas-ciip-portal.labels" . | indent 8 }}
     spec:
       containers:
-{{- if (index .Values "nginx-sidecar" "enable") }}
-{{- include "nginx-sidecar.deployment-container.tpl" (index .Values "nginx-sidecar") | indent 6 }}
-{{- end }}
       - name: {{ template "cas-ciip-portal.fullname" . }}
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         image: {{ .Values.image.app.repository }}:{{ .Values.image.app.tag }}
@@ -119,6 +116,9 @@ spec:
           capabilities: {}
           privileged: false
         terminationMessagePath: /dev/termination-log
+{{- if (index .Values "nginx-sidecar" "enable") }}
+{{- include "nginx-sidecar.deployment-container.tpl" (index .Values "nginx-sidecar") | indent 6 }}
+{{- end }}
       volumes: {{- include "nginx-sidecar.deployment-volumes.tpl" (index .Values "nginx-sidecar") | nindent 8 }}
       dnsPolicy: ClusterFirst
       restartPolicy: Always
