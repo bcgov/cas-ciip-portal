@@ -20,8 +20,8 @@ describe('When an reporter wants to resubmit an older application', () => {
       .then(() => {
         cy.get('#page-content');
         cy.get('.nav-guide > :nth-child(5)').click();
-        cy.get('.override-accordion > .btn').click();
-        cy.get('.btn').contains('Submit').click();
+        cy.get('.btn-success').click();
+        cy.contains('Submit').click();
         cy.url().should('include', '/reporter/complete-submit');
       });
   });
