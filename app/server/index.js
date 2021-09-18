@@ -101,10 +101,8 @@ const getRedirectURL = (req) => {
 app.prepare().then(async () => {
   const server = express();
 
-  server.set('trust proxy', function (ip) {
-    console.log('REQUEST FROM IP: ' + ip);
-    return true;
-  });
+  // nginx proxy is running in the same pod
+  server.set('trust proxy', 'loopback');
 
   const lightship = createLightship();
 
