@@ -181,10 +181,12 @@ select lives_ok(
 );
 
 -- Timetravel tests
-
 truncate ggircs_portal.application restart identity cascade;
--- set current date to an open reporting period in 2020
+-- set current date to an open reporting period in 2020 (2019 reporting year)
 select mocks.set_mocked_time_in_transaction('2020-07-04 14:49:54.191757-07'::timestamptz + interval '1 second');
+-- Set the active form_json to what was in active use for the 2019 reporting year
+update ggircs_portal.ciip_application_wizard set is_active = true where form_id=1;
+update ggircs_portal.ciip_application_wizard set is_active = false where form_id=5;
 -- create a 2019 application
 select ggircs_portal.create_application_mutation_chain((select id from ggircs_portal.facility where facility_name = 'test facility'));
 
@@ -196,6 +198,9 @@ select is (
 
 -- set current date to a closed reporting period in 2021
 select mocks.set_mocked_time_in_transaction('2021-07-01 14:49:54.191757-07'::timestamptz + interval '1 second');
+-- Set the active form_json to what was in active use for the 2020 reporting year
+update ggircs_portal.ciip_application_wizard set is_active = true where form_id=5;
+update ggircs_portal.ciip_application_wizard set is_active = false where form_id=1;
 
 select is (
   (select reporting_year from ggircs_portal.opened_reporting_year()),
