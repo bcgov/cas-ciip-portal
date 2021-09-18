@@ -116,9 +116,12 @@ spec:
           capabilities: {}
           privileged: false
         terminationMessagePath: /dev/termination-log
-{{- if (index .Values "nginx-sidecar" "enable") }}
+{{- if (index .Values "nginx-sidecar") }}
 {{- include "nginx-sidecar.deployment-container.tpl" (index .Values "nginx-sidecar") | indent 6 }}
 {{- end }}
-      volumes: {{- include "nginx-sidecar.deployment-volumes.tpl" (index .Values "nginx-sidecar") | nindent 8 }}
+      volumes:
+{{- if (index .Values "nginx-sidecar") }}
+{{- include "nginx-sidecar.deployment-volumes.tpl" (index .Values "nginx-sidecar") | indent 8 }}
+{{- end }}
       dnsPolicy: ClusterFirst
       restartPolicy: Always

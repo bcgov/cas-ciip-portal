@@ -15,7 +15,7 @@ dependencies:
   repository: https://bcgov.github.io/cas-airflow
   version: 1.0.6
 - name: nginx-sidecar
-  repository: file://../nginx-sidecar
-  version: 0.1.0
-digest: sha256:e30ba891013cc4e30a0f8b8cc850489bb9cdf8d691957b47a5249b4d7f5bccd3
-generated: "2021-09-15T16:16:27.449119-07:00"
+  repository: https://bcgov.github.io/cas-template-app
+  version: 0.1.1
+digest: sha256:1b8ae53d833a1e84a83ba8f31dc4f921893c680be4396cd035f7e6bfcca99fd7
+generated: "2021-09-17T17:57:36.805069-07:00"

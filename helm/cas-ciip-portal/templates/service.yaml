@@ -10,7 +10,7 @@ spec:
   - name: {{ template "cas-ciip-portal.fullname" . }}
     port: {{ .Values.port }}
     protocol: TCP
-    {{- if (index .Values "nginx-sidecar" "enable") }}
+    {{- if (index .Values "nginx-sidecar") }}
     targetPort: {{ index .Values "nginx-sidecar" "port" }}
     {{- else }}
     targetPort: 3000

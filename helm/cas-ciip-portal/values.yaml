@@ -143,7 +143,6 @@ airflow-ciip-deploy-db:
     hook: false
 
 nginx-sidecar:
-  enable: true
   image:
     repository: gcr.io/ggl-cas-storage/cas-nginx
     tag: latest
