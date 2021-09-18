@@ -381,3 +381,4 @@ computed_columns/application_revision_ciip_incentive [computed_columns/applicati
 @v2.12.1 2021-09-15T17:48:53Z Dylan Leard <dylan@button.is> # release v2.12.1
 trigger_functions/restrict_old_application_submission [function_opened_reporting_year tables/application_revision_status] 2021-09-16T21:05:16Z Dylan Leard <dylan@button.is> # Trigger function restricts submission of applications created in previous reporting years
 tables/application_revision_status_003 [tables/application_revision_status trigger_functions/restrict_old_application_submission] 2021-09-16T21:09:41Z Dylan Leard <dylan@button.is> # Migration: add restriction trigger for old applications
+mutations/create_application_revision_mutation_chain [mutations/create_application_revision_mutation_chain@v2.12.1] 2021-09-17T23:59:00Z Dylan Leard <dylan@button.is> # Migration: rework function to handle resubmitting applications from previous years

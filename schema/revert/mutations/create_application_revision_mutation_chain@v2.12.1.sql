@@ -35,49 +35,47 @@ begin
 
   select facility_id from ggircs_portal.application where id = application_id_input into facility_id_input;
 
-  -- Disregard the active form_jsons in ciip_application_wizard if dealing with an application from a previous reporting year
-  if (select reporting_year from ggircs_portal.application where id = application_id_input) < (select reporting_year - 1 from ggircs_portal.next_reporting_year()) then
-    raise notice 'OLD REPORTING YEAR DETECTED (%), OVERRIDING REVISION FUNCTION TO IGNORE CIIP_APPLICATION_WIZARD', (select reporting_year from ggircs_portal.application where id = application_id_input);
-    for temp_row in
-      select form_id, fr.form_result from ggircs_portal.form_result fr where application_id = application_id_input and version_number = last_revision_id_input
-    loop
-      insert into ggircs_portal.form_result(form_id, application_id, version_number, form_result)
-      values (temp_row.form_id, application_id_input, new_version_number, temp_row.form_result);
-    end loop;
-  -- Use the active form_jsons in ciip_application_wizard if dealing with an application for the current reporting year
-  else
-    for temp_row in
-      select form_id from ggircs_portal.ciip_application_wizard where is_active=true
-    loop
-      -- Populate new revision of form_results with data from previous result on new revision creation
-      if last_revision_id_input > 0 then
-        select fr.form_result from ggircs_portal.form_result fr
-        where fr.form_id = temp_row.form_id
-        and fr.application_id = application_id_input
-        and fr.version_number=last_revision_id_input
-        into form_result;
+  for temp_row in
+    select form_id from ggircs_portal.ciip_application_wizard where is_active=true
+  loop
+    -- Populate new revision of form_results with data from previous result on new revision creation
+    if last_revision_id_input > 0 then
+      select fr.form_result from ggircs_portal.form_result fr
+      where fr.form_id = temp_row.form_id
+      and fr.application_id = application_id_input
+      and fr.version_number=last_revision_id_input
+      into form_result;
 
+    else
+      -- Populate initial version of application form results with data from swrs or empty results
+      if ((select fj.name from ggircs_portal.form_json as fj where temp_row.form_id = fj.id) in ('Production', 'fuel')) then
+        form_result='[{}]';
       else
-        -- Populate initial version of application form results with data from swrs or empty results
-        form_result = (select default_form_result from ggircs_portal.form_json fj where temp_row.form_id = fj.id);
-        if (select prepopulate_from_swrs from ggircs_portal.form_json where id = temp_row.form_id) then
-          select form_result_init_function from ggircs_portal.form_json where id = temp_row.form_id into init_function;
-          if (init_function is not null) then
-            query := format('select * from ggircs_portal.%I($1, $2);', init_function);
-            execute query
-            using facility_id_input, current_reporting_year
-            into form_result;
-          end if;
+        form_result = '{}';
+      end if;
+      if (select prepopulate_from_swrs from ggircs_portal.form_json where id = temp_row.form_id) then
+        select form_result_init_function from ggircs_portal.form_json where id = temp_row.form_id into init_function;
+        if (init_function is not null) then
+          query := format('select * from ggircs_portal.%I($1, $2);', init_function);
+          execute query
+          using facility_id_input, current_reporting_year
+          into form_result;
         end if;
-
       end if;
 
-      -- loop over what is in the wizard, not the forms in case some forms get added/disabled etc
-      insert into ggircs_portal.form_result(form_id, application_id, version_number, form_result)
-      values (temp_row.form_id, application_id_input, new_version_number, form_result) returning id into form_result_id;
+    end if;
 
-    end loop;
-  end if;
+    -- loop over what is in the wizard, not the forms in case some forms get added/disabled etc
+    insert into ggircs_portal.form_result(form_id, application_id, version_number, form_result)
+    values (temp_row.form_id, application_id_input, new_version_number, form_result) returning id into form_result_id;
+
+    if last_revision_id_input = 0 then
+    -- Create form result statuses
+      insert into ggircs_portal.form_result_status(application_id, form_id, form_result_status)
+      values (application_id_input, temp_row.form_id, 'in review');
+    end if;
+
+  end loop;
 
   -- If the application's facility has a report_id then there is a swrs report.
   if (exists(select id from ggircs_portal.facility where id=facility_id_input and report_id is not null)
