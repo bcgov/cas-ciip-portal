@@ -17,7 +17,6 @@ begin
       where reporting_year=' || opened_reporting_year::text || '
   $$ language sql stable;';
 
-
   /**
     We "park" the application open and close times 100 years back to avoid conflicts with now()
     Using the reporting year itself as source makes sure we don't generate overlapping ranges in

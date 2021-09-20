@@ -75,6 +75,11 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
     </Alert>
   );
 
+  // Ensure the application being submitted is from the correct reporting year (ie: not a previous year)
+  const showSubmitButton =
+    applicationRevision.applicationByApplicationId.reportingYear ===
+    query.openedReportingYear.reportingYear;
+
   return (
     <>
       <h1>Summary of your application:</h1>
@@ -148,7 +153,9 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
             </Card.Body>
           </Card>
           <br />
-          <SubmitApplication applicationRevision={applicationRevision} />
+          {showSubmitButton && (
+            <SubmitApplication applicationRevision={applicationRevision} />
+          )}
         </>
       )}
       <style jsx global>
@@ -200,11 +207,17 @@ export default createFragmentContainer(ApplicationWizardConfirmationComponent, {
           }
         }
       }
+      applicationByApplicationId {
+        reportingYear
+      }
     }
   `,
   query: graphql`
     fragment ApplicationWizardConfirmation_query on Query {
       ...ApplicationDetailsContainer_query
+      openedReportingYear {
+        reportingYear
+      }
     }
   `
 });

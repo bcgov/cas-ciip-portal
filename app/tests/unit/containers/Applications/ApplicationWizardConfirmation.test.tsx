@@ -34,6 +34,9 @@ describe('The Confirmation Component', () => {
     },
     validation: {
       edges: []
+    },
+    applicationByApplicationId: {
+      reportingYear: 2020
     }
   };
 
@@ -44,7 +47,8 @@ describe('The Confirmation Component', () => {
           ' $fragmentRefs': {
             ApplicationDetailsContainer_query: true
           },
-          ' $refType': 'ApplicationWizardConfirmation_query'
+          ' $refType': 'ApplicationWizardConfirmation_query',
+          openedReportingYear: {reportingYear: 2020}
         }}
         applicationRevision={applicationRevision}
         relay={null}
@@ -75,7 +79,8 @@ describe('The Confirmation Component', () => {
           ' $fragmentRefs': {
             ApplicationDetailsContainer_query: true
           },
-          ' $refType': 'ApplicationWizardConfirmation_query'
+          ' $refType': 'ApplicationWizardConfirmation_query',
+          openedReportingYear: {reportingYear: 2020}
         }}
         applicationRevision={applicationWithError}
         relay={null}
@@ -94,7 +99,8 @@ describe('The Confirmation Component', () => {
           ' $fragmentRefs': {
             ApplicationDetailsContainer_query: true
           },
-          ' $refType': 'ApplicationWizardConfirmation_query'
+          ' $refType': 'ApplicationWizardConfirmation_query',
+          openedReportingYear: {reportingYear: 2020}
         }}
         applicationRevision={applicationRevision}
         relay={null}
@@ -124,7 +130,8 @@ describe('The Confirmation Component', () => {
           ' $fragmentRefs': {
             ApplicationDetailsContainer_query: true
           },
-          ' $refType': 'ApplicationWizardConfirmation_query'
+          ' $refType': 'ApplicationWizardConfirmation_query',
+          openedReportingYear: {reportingYear: 2020}
         }}
         applicationRevision={applicationWithOverride}
         relay={null}
@@ -164,7 +171,8 @@ describe('The Confirmation Component', () => {
           ' $fragmentRefs': {
             ApplicationDetailsContainer_query: true
           },
-          ' $refType': 'ApplicationWizardConfirmation_query'
+          ' $refType': 'ApplicationWizardConfirmation_query',
+          openedReportingYear: {reportingYear: 2020}
         }}
         applicationRevision={applicationWithValidationErrors}
         relay={null}
@@ -195,7 +203,8 @@ describe('The Confirmation Component', () => {
           ' $fragmentRefs': {
             ApplicationDetailsContainer_query: true
           },
-          ' $refType': 'ApplicationWizardConfirmation_query'
+          ' $refType': 'ApplicationWizardConfirmation_query',
+          openedReportingYear: {reportingYear: 2020}
         }}
         applicationRevision={applicationWithValidationErrors}
         relay={null}
@@ -203,5 +212,25 @@ describe('The Confirmation Component', () => {
     );
     expect(wrapper).toMatchSnapshot();
     expect(wrapper.exists('Alert')).toBe(false);
+  });
+
+  it('does not show the "submit application" button when the application reporting year does not match the open reporting year', () => {
+    const wrapper = shallow(
+      <ApplicationWizardConfirmationComponent
+        query={{
+          ' $fragmentRefs': {
+            ApplicationDetailsContainer_query: true
+          },
+          ' $refType': 'ApplicationWizardConfirmation_query',
+          openedReportingYear: {reportingYear: 2021}
+        }}
+        applicationRevision={applicationRevision}
+        relay={null}
+      />
+    );
+    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.find('Relay(SubmitApplicationComponent)').exists()).toBe(
+      false
+    );
   });
 });

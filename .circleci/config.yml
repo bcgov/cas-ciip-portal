@@ -214,7 +214,7 @@ jobs:
           command: |
             source ~/.bashrc
             pushd schema
-            ./data/deploy-data.sh
+            ./data/deploy-data.sh -prod
             sqitch verify
             popd
       - run:
