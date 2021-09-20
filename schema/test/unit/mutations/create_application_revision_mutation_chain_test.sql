@@ -17,7 +17,7 @@ $fun$
   select mocks.set_mocked_time_in_transaction('2021-04-01 14:49:54.191757-07'::timestamptz - interval '1 second');
 $fun$language sql;
 
-select * from no_plan();
+select plan(17);
 
 -- Setup
 alter table ggircs_portal.application_revision_status disable trigger _status_change_email;

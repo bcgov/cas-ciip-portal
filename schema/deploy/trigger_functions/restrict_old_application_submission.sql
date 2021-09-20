@@ -9,7 +9,7 @@ create or replace function ggircs_portal_private.restrict_old_application_submis
     begin
       if (select reporting_year from ggircs_portal.opened_reporting_year()) is not null
         and new.version_number = 1
-        and (select reporting_year from ggircs_portal.application where id = new.application_id) < (select reporting_year from ggircs_portal.opened_reporting_year()) then
+        and (select reporting_year from ggircs_portal.application where id = new.application_id) != (select reporting_year from ggircs_portal.opened_reporting_year()) then
           if (new.application_revision_status = 'submitted')
             and (select application_revision_status from ggircs_portal.application_revision_status where application_id = new.application_id order by id desc limit 1) = 'draft'
           then
