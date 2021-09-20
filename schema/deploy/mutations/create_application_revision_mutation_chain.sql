@@ -17,8 +17,10 @@ declare
   result ggircs_portal.application_revision;
   facility_id_input int;
   has_swrs_data boolean default false;
+  is_old_application boolean default false;
 begin
   new_version_number := last_revision_id_input + 1;
+  is_old_application := (select reporting_year from ggircs_portal.application where id = application_id_input) < (select reporting_year - 1 from ggircs_portal.next_reporting_year());
 
   -- Insert new row in application_revision
   insert into ggircs_portal.application_revision(application_id, version_number)
@@ -36,7 +38,7 @@ begin
   select facility_id from ggircs_portal.application where id = application_id_input into facility_id_input;
 
   -- Disregard the active form_jsons in ciip_application_wizard if dealing with an application from a previous reporting year
-  if (select reporting_year from ggircs_portal.application where id = application_id_input) < (select reporting_year - 1 from ggircs_portal.next_reporting_year()) then
+  if is_old_application then
     raise notice 'OLD REPORTING YEAR DETECTED (%), OVERRIDING REVISION FUNCTION TO IGNORE CIIP_APPLICATION_WIZARD', (select reporting_year from ggircs_portal.application where id = application_id_input);
     for temp_row in
       select form_id, fr.form_result from ggircs_portal.form_result fr where application_id = application_id_input and version_number = last_revision_id_input
@@ -86,7 +88,7 @@ begin
   end if;
 
   -- Create a duplicate revision 'version 0' with form_results if has_swrs_data = true;
-  if (has_swrs_data) then
+  if (has_swrs_data and not is_old_application) then
     insert into ggircs_portal.application_revision(application_id, version_number)
     values (application_id_input, 0);
     insert into ggircs_portal.application_revision_status(application_id, version_number, application_revision_status)
