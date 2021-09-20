@@ -46,10 +46,4 @@ insert into ggircs_portal.ciip_user_organisation(user_id, organisation_id, statu
 
 select test_helper.modify_triggers('enable');
 
-select * from ggircs_portal.application;
-select * from ggircs_portal.application_revision_status;
-select * from ggircs_portal.reporting_year;
-select 'NEXT REPORTING YEAR';
-select reporting_year from ggircs_portal.next_reporting_year();
-
 commit;

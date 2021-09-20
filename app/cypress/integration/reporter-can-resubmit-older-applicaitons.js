@@ -9,7 +9,7 @@ describe('When an reporter wants to resubmit an older application', () => {
     cy.mockLogin('reporter');
   });
 
-  it('The override justification box should not appear', () => {
+  it('The application should be able to be resubmitted as long as a version 1 was previously submitted', () => {
     cy.visit(`/reporter/facilities`);
     cy.get('#page-content');
     cy.get('#reportingYear').select('2019');
@@ -22,9 +22,7 @@ describe('When an reporter wants to resubmit an older application', () => {
           .then(() => {
             cy.visit(applicationSummaryURL).then(() => {
               cy.get('.override-accordion > .btn').click();
-              cy.get('#overrideJustification')
-                .clear()
-                .type('delete me when fixed');
+              cy.get('#overrideJustification').clear().type('override');
               cy.get('.btn-success').click();
               cy.contains('Submit').click();
               cy.url().should('include', '/reporter/complete-submit');
