@@ -13,21 +13,17 @@ describe('When an reporter wants to resubmit an older application', () => {
     cy.visit(`/reporter/facilities`);
     cy.get('#page-content');
     cy.get('#reportingYear').select('2019');
-    cy.get(':nth-child(8) > .btn').click();
-    cy.get('.fade > .btn')
-      .click()
-      .then(() => {
-        cy.contains('continue')
-          .click()
-          .then(() => {
-            cy.visit(applicationSummaryURL).then(() => {
-              cy.get('.override-accordion > .btn').click();
-              cy.get('#overrideJustification').clear().type('override');
-              cy.get('.btn-success').click();
-              cy.contains('Submit').click();
-              cy.url().should('include', '/reporter/complete-submit');
-            });
-          });
-      });
+    cy.get(':nth-child(8) > .btn').first().click(); // view application
+    cy.url().should('include', '/reporter/application');
+    cy.get('.fade > .btn').click();
+    cy.url().should('include', 'disclaimer');
+    cy.contains('continue').click();
+    cy.visit(applicationSummaryURL);
+    cy.url().should('include', '/reporter/application');
+    cy.get('.override-accordion > .btn').click();
+    cy.get('#overrideJustification').clear().type('override');
+    cy.get('.btn-success').click();
+    cy.contains('Submit').click();
+    cy.url().should('include', '/reporter/complete-submit');
   });
 });
