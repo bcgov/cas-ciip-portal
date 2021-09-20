@@ -38,8 +38,7 @@ begin
   select facility_id from ggircs_portal.application where id = application_id_input into facility_id_input;
 
   -- Disregard the active form_jsons in ciip_application_wizard if dealing with an application from a previous reporting year
-  if is_old_application then
-    raise notice 'OLD REPORTING YEAR DETECTED (%), OVERRIDING REVISION FUNCTION TO IGNORE CIIP_APPLICATION_WIZARD', (select reporting_year from ggircs_portal.application where id = application_id_input);
+  if new_version_number > 1 then
     for temp_row in
       select form_id, fr.form_result from ggircs_portal.form_result fr where application_id = application_id_input and version_number = last_revision_id_input
     loop
@@ -81,27 +80,22 @@ begin
     end loop;
   end if;
 
-  -- If the application's facility has a report_id then there is a swrs report.
+  -- If the application's facility has a report_id then there is a swrs report. Create a duplicate revision 'version 0' with form_result;
   if (exists(select id from ggircs_portal.facility where id=facility_id_input and report_id is not null)
   and last_revision_id_input = 0) then
-    has_swrs_data := true;
-  end if;
-
-  -- Create a duplicate revision 'version 0' with form_results if has_swrs_data = true;
-  if (has_swrs_data and not is_old_application) then
     insert into ggircs_portal.application_revision(application_id, version_number)
     values (application_id_input, 0);
     insert into ggircs_portal.application_revision_status(application_id, version_number, application_revision_status)
-  values (application_id_input, 0, 'submitted');
+    values (application_id_input, 0, 'submitted');
     for temp_row in
       select form_id from ggircs_portal.ciip_application_wizard where is_active=true
     loop
       insert into ggircs_portal.form_result(form_id, application_id, version_number, form_result)
-    values (temp_row.form_id, application_id_input, 0, (select fr.form_result
-                                                        from ggircs_portal.form_result fr
-                                                        where fr.application_id = application_id_input
-                                                        and fr.form_id = temp_row.form_id
-                                                        and fr.version_number = 1));
+      values (temp_row.form_id, application_id_input, 0, (select fr.form_result
+                                                          from ggircs_portal.form_result fr
+                                                          where fr.application_id = application_id_input
+                                                          and fr.form_id = temp_row.form_id
+                                                          and fr.version_number = 1));
     end loop;
   end if;
 

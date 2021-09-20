@@ -17,16 +17,6 @@ begin
       where reporting_year=' || opened_reporting_year::text || '
   $$ language sql stable;';
 
-  -- Mock the next_reporting_year() function to always return the row for the input year +1 (To ensure any applications are created as it the open window is in the current reporting year )
-  execute 'create or replace function ggircs_portal.next_reporting_year()
-  returns ggircs_portal.reporting_year as
-  $$
-      select *
-      from ggircs_portal.reporting_year
-      where reporting_year=' || (opened_reporting_year + 1)::text || '
-  $$ language sql stable;';
-
-
   /**
     We "park" the application open and close times 100 years back to avoid conflicts with now()
     Using the reporting year itself as source makes sure we don't generate overlapping ranges in
