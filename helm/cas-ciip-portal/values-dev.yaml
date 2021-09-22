@@ -64,3 +64,6 @@ cas-postgres:
   namespace: 09269b-dev
   gcs:
     bucketSuffix: ciip-backups
+
+nginx-sidecar:
+  hostName: dev.ciip.gov.bc.ca

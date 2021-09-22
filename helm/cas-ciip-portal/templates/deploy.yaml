@@ -116,17 +116,12 @@ spec:
           capabilities: {}
           privileged: false
         terminationMessagePath: /dev/termination-log
-        volumeMounts:
-          - mountPath: /root/.acme.sh
-            name: acme-home
-          - mountPath: /root/.well-known/acme-challenge
-            name: acme-challenge
+{{- if (index .Values "nginx-sidecar") }}
+{{- include "nginx-sidecar.deployment-container.tpl" (index .Values "nginx-sidecar") | indent 6 }}
+{{- end }}
       volumes:
-        - name: acme-home
-          persistentVolumeClaim:
-            claimName: {{ template "cas-ciip-portal.fullname" . }}-acme-home
-        - name: acme-challenge
-          persistentVolumeClaim:
-            claimName: {{ template "cas-ciip-portal.fullname" . }}-acme-challenge
+{{- if (index .Values "nginx-sidecar") }}
+{{- include "nginx-sidecar.deployment-volumes.tpl" (index .Values "nginx-sidecar") | nindent 8 }}
+{{- end }}
       dnsPolicy: ClusterFirst
       restartPolicy: Always

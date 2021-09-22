@@ -1,9 +1,7 @@
 const express = require('express');
 const http = require('http');
-const https = require('https');
 const Bowser = require('bowser');
 const morgan = require('morgan');
-const fs = require('fs');
 const {postgraphile} = require('postgraphile');
 const postgraphileOptions = require('./postgraphile/postgraphileOptions');
 const authenticationPgSettings = require('./postgraphile/authenticationPgSettings');
@@ -103,6 +101,9 @@ const getRedirectURL = (req) => {
 app.prepare().then(async () => {
   const server = express();
 
+  // nginx proxy is running in the same pod
+  server.set('trust proxy', 'loopback');
+
   const lightship = createLightship();
 
   lightship.registerShutdownHandler(async () => {
@@ -115,14 +116,6 @@ app.prepare().then(async () => {
   server.use(morgan('combined'));
 
   server.use(redirectRouter);
-
-  // Enable serving ACME HTTP-01 challenge response written to disk by acme.sh
-  // https://letsencrypt.org/docs/challenge-types/#http-01-challenge
-  // https://github.com/acmesh-official/acme.sh
-  server.use(
-    '/.well-known',
-    express.static(path.resolve(__dirname, '../.well-known'))
-  );
 
   server.use(bodyParser.json({limit: '50mb'}));
 
@@ -292,41 +285,17 @@ app.prepare().then(async () => {
     console.error(err);
     lightship.shutdown();
   };
-  if (secure) {
-    const domain = /^https:\/\/(.+?)\/?$/.exec(process.env.HOST)[1];
-    const key = fs.readFileSync(
-      `/root/.acme.sh/${domain}/${domain}.key`,
-      'utf8'
-    );
-    const cert = fs.readFileSync(
-      `/root/.acme.sh/${domain}/fullchain.cer`,
-      'utf8'
-    );
-    const options = {key, cert};
 
-    https
-      .createServer(options, server)
-      .listen(port, (err) => {
-        if (err) {
-          handleError(err);
-          return;
-        }
-        lightship.signalReady();
-        console.log(`> Ready on https://localhost:${port}`);
-      })
-      .on('error', handleError);
-  } else {
-    http
-      .createServer(server)
-      .listen(port, (err) => {
-        if (err) {
-          handleError(err);
-          return;
-        }
+  http
+    .createServer(server)
+    .listen(port, (err) => {
+      if (err) {
+        handleError(err);
+        return;
+      }
 
-        lightship.signalReady();
-        console.log(`> Ready on http://localhost:${port}`);
-      })
-      .on('error', handleError);
-  }
+      lightship.signalReady();
+      console.log(`> Ready on http://localhost:${port}`);
+    })
+    .on('error', handleError);
 });

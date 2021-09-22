@@ -14,5 +14,8 @@ dependencies:
 - name: cas-airflow-dag-trigger
   repository: https://bcgov.github.io/cas-airflow
   version: 1.0.6
-digest: sha256:1900f27081aa118a2c0549e113ab0e20b86d944fca9bebecdb48a6b982968e7f
-generated: "2021-07-26T16:55:42.883959-07:00"
+- name: nginx-sidecar
+  repository: https://bcgov.github.io/cas-template-app
+  version: 0.1.2
+digest: sha256:ac0f86ca92443584721c196fd5d1faa257a059db5a029af96c629c662d99b94a
+generated: "2021-09-22T08:56:06.786203-07:00"
