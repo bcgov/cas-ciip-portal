@@ -4,8 +4,11 @@ reset client_min_messages;
 
 begin;
 
-create schema ggircs_test_fixture;
-set search_path to ggircs_test_fixture,public;
+create schema :dummy_schema;
+set search_path to :dummy_schema,public;
+
+-- create schema asdf;
+-- set search_path to :fixture_test_schema,public;
 create table test_fixture
 (
     id         serial,
@@ -17,8 +20,8 @@ values ('Dylan', 'false');
 
 
 /** CREATE AUDIT SCHEMA & LOG TABLE **/
-create schema audit;
-revoke create on schema audit from public;
+create schema :audit_schema;
+revoke create on schema :audit_schema from public;
 
 create table audit.logged_actions
 (
@@ -126,8 +129,8 @@ delete
 from test_fixture
 where fname = 'Dylan';
 -- Test that the rule exists on all tables in schema
-with tnames as (select table_name from information_schema.tables where table_schema = 'ggircs_test_fixture')
-select rule_is_on('ggircs_test_fixture', tbl, 'no_delete', 'delete',
+with tnames as (select table_name from information_schema.tables where table_schema = :'dummy_schema')
+select rule_is_on(:'dummy_schema', tbl, 'no_delete', 'delete',
                   format('Table has rule no_delete. Violation: %I', tbl))
 from tnames f(tbl);
 -- Test that record is not deleted
@@ -138,8 +141,8 @@ select results_eq('select is_deleted from test_fixture where id=1', array [true]
 
 -- GUIDELINE: Changes to the data must be able to be audited
 -- Test that the trigger exists on all tables in schema
-with tnames as (select table_name from information_schema.tables where table_schema = 'ggircs_test_fixture')
-select has_trigger('ggircs_test_fixture', tbl, 'test_fixture_audit',
+with tnames as (select table_name from information_schema.tables where table_schema = :'dummy_schema')
+select has_trigger(:'dummy_schema', tbl, 'test_fixture_audit',
                    format('Table has audit trigger. Violation: %I', tbl))
 from tnames f(tbl);
 -- Test that the if_modified function was triggered when data was updated
