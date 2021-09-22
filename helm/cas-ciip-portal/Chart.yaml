@@ -20,6 +20,7 @@ dependencies:
     version: 1.0.6
     repository: https://bcgov.github.io/cas-airflow
     alias: airflow-ciip-cert-issue
+    condition: route.insecure
   - name: cas-airflow-dag-trigger
     version: 1.0.6
     repository: https://bcgov.github.io/cas-airflow
