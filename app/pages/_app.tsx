@@ -13,6 +13,7 @@ import PageRedirectHandler from 'components/PageRedirectHandler';
 import safeJsonParse from 'lib/safeJsonParse';
 import RelayModernEnvironment from 'relay-runtime/lib/store/RelayModernEnvironment';
 import * as Sentry from '@sentry/react';
+import SessionTimeoutHandler from 'components/SessionTimeoutHandler';
 
 interface AppProps {
   pageProps: {
@@ -64,6 +65,7 @@ export default class App extends NextApp<AppProps> {
 
     return (
       <Sentry.ErrorBoundary fallback={ErrorFallback}>
+        <SessionTimeoutHandler pageComponent={Component} />
         <PageRedirectHandler
           environment={environment}
           pageComponent={Component}
