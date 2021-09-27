@@ -218,6 +218,11 @@ app.prepare().then(async () => {
     );
   });
 
+  // This ensures grant freshness with the next directive - we just return a success response code.
+  server.get('/extend-session', async (req, res) => {
+    return res.status(200);
+  });
+
   // For any request (other than getting the remaining idle time), refresh the grant
   // if needed. If the access token is expired (defaults to 5min in keycloak),
   // the refresh token will be used to get a new access token, and the refresh token expiry will be updated.
