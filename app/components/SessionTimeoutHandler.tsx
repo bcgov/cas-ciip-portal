@@ -7,10 +7,6 @@ interface Props {
   pageComponent: CiipPageComponent;
 }
 
-const sessionTimingHeaders = new Headers({
-  pragma: 'no-cache',
-  'cache-control': 'no-cache'
-});
 const MODAL_DISPLAY_THRESHOLD_SECONDS = 1785;
 
 const SessionTimeoutHandler: React.FunctionComponent<Props> = ({
@@ -34,7 +30,7 @@ const SessionTimeoutHandler: React.FunctionComponent<Props> = ({
   };
 
   const extendSession = async () => {
-    await fetch('/extend-session', {headers: sessionTimingHeaders});
+    await fetch('/extend-session');
     setSessionDueForRefresh({isDue: true});
   };
 
@@ -46,9 +42,7 @@ const SessionTimeoutHandler: React.FunctionComponent<Props> = ({
       if (!pageComponent.isAccessProtected) return;
 
       if (localRemainingSeconds === 0) {
-        const response = await fetch('/session-idle-remaining-time', {
-          headers: sessionTimingHeaders
-        });
+        const response = await fetch('/session-idle-remaining-time');
         if (response.ok) {
           const timeout = Number(await response.json());
           if (timeout > 0) {

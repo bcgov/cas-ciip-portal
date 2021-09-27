@@ -220,7 +220,7 @@ app.prepare().then(async () => {
 
   // This ensures grant freshness with the next directive - we just return a success response code.
   server.get('/extend-session', async (req, res) => {
-    return res.status(200);
+    return res.sendStatus(200);
   });
 
   // For any request (other than getting the remaining idle time), refresh the grant
