@@ -1,17 +1,15 @@
 import React from 'react';
-import {Button, Modal} from 'react-bootstrap';
+import {Button, Form, Modal} from 'react-bootstrap';
 
 interface Props {
   inactivityDelaySeconds: number;
   remainingSeconds: number;
-  onLogout: () => void;
   onExtendSession: () => void;
 }
 
 const LogoutWarningModal: React.FunctionComponent<Props> = ({
   inactivityDelaySeconds,
   remainingSeconds,
-  onLogout,
   onExtendSession
 }) => {
   return (
@@ -24,9 +22,11 @@ const LogoutWarningModal: React.FunctionComponent<Props> = ({
         You will be logged out in {remainingSeconds} seconds.
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={() => onLogout()}>
-          Logout
-        </Button>
+        <Form action="/logout" method="post">
+          <button type="submit" className="btn btn-secondary">
+            Logout
+          </button>
+        </Form>
         <Button onClick={() => onExtendSession()}>Remain active</Button>
       </Modal.Footer>
     </Modal>

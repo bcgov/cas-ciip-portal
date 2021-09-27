@@ -19,12 +19,12 @@ const SessionTimeoutHandler: React.FunctionComponent<Props> = ({
     isDue: false
   });
 
-  const performLogout = async (hasSessionIdled: boolean) => {
+  const logoutOnSessionIdled = async () => {
     router.push({
       pathname: '/login-redirect',
       query: {
         redirectTo: router.asPath,
-        sessionIdled: hasSessionIdled
+        sessionIdled: true
       }
     });
   };
@@ -53,7 +53,7 @@ const SessionTimeoutHandler: React.FunctionComponent<Props> = ({
               checkSessionIdle();
             }, 1000);
           } else {
-            performLogout(true);
+            logoutOnSessionIdled();
           }
         }
       } else {
@@ -78,7 +78,6 @@ const SessionTimeoutHandler: React.FunctionComponent<Props> = ({
     <LogoutWarningModal
       inactivityDelaySeconds={MODAL_DISPLAY_THRESHOLD_SECONDS}
       remainingSeconds={remainingSeconds}
-      onLogout={() => performLogout(false)}
       onExtendSession={() => {
         extendSession();
       }}
