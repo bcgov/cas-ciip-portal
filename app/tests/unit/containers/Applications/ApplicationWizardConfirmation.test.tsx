@@ -12,6 +12,7 @@ describe('The Confirmation Component', () => {
     },
     id: 'abc',
     overrideJustification: null,
+    versionNumber: 1,
     orderedFormResults: {
       edges: [
         {
@@ -214,7 +215,7 @@ describe('The Confirmation Component', () => {
     expect(wrapper.exists('Alert')).toBe(false);
   });
 
-  it('does not show the "submit application" button when the application reporting year does not match the open reporting year', () => {
+  it('does not show the "submit application" button when the application reporting year does not match the open reporting year and versionNumber = 1', () => {
     const wrapper = shallow(
       <ApplicationWizardConfirmationComponent
         query={{
@@ -231,6 +232,62 @@ describe('The Confirmation Component', () => {
     expect(wrapper).toMatchSnapshot();
     expect(wrapper.find('Relay(SubmitApplicationComponent)').exists()).toBe(
       false
+    );
+  });
+
+  it('does shows the "submit application" button when the application reporting year does not match the open reporting year and versionNumber > 1', () => {
+    const applicationRevision: ApplicationWizardConfirmation_applicationRevision = {
+      ' $refType': 'ApplicationWizardConfirmation_applicationRevision',
+      ' $fragmentRefs': {
+        SubmitApplication_applicationRevision: true,
+        ApplicationDetailsContainer_applicationRevision: true
+      },
+      id: 'abc',
+      overrideJustification: null,
+      versionNumber: 2,
+      orderedFormResults: {
+        edges: [
+          {
+            node: {
+              formResult: {foo: 'bar'},
+              formJsonByFormId: {
+                formJson: {
+                  schema: {
+                    type: 'object',
+                    properties: {
+                      foo: {type: 'string'}
+                    },
+                    required: ['foo']
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      validation: {
+        edges: []
+      },
+      applicationByApplicationId: {
+        reportingYear: 2020
+      }
+    };
+    const wrapper = shallow(
+      <ApplicationWizardConfirmationComponent
+        query={{
+          ' $fragmentRefs': {
+            ApplicationDetailsContainer_query: true
+          },
+          ' $refType': 'ApplicationWizardConfirmation_query',
+          openedReportingYear: {reportingYear: 2021}
+        }}
+        applicationRevision={applicationRevision}
+        relay={null}
+      />
+    );
+    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.find('Relay(SubmitApplicationComponent)').exists()).toBe(
+      true
     );
   });
 });

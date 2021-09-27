@@ -75,10 +75,11 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
     </Alert>
   );
 
-  // Ensure the application being submitted is from the correct reporting year (ie: not a previous year)
+  // Ensure the application being submitted is either for the correct reporting year (i.e. not a previous year), or a version greater than 1 (i.e. an existing application being re-submitted)
   const showSubmitButton =
     applicationRevision.applicationByApplicationId.reportingYear ===
-    query.openedReportingYear.reportingYear;
+      query.openedReportingYear.reportingYear ||
+    applicationRevision.versionNumber > 1;
 
   return (
     <>
@@ -186,6 +187,7 @@ export default createFragmentContainer(ApplicationWizardConfirmationComponent, {
     fragment ApplicationWizardConfirmation_applicationRevision on ApplicationRevision {
       id
       overrideJustification
+      versionNumber
       ...SubmitApplication_applicationRevision
       ...ApplicationDetailsContainer_applicationRevision
       orderedFormResults {
