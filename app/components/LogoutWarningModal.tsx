@@ -1,17 +1,31 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Button, Form, Modal} from 'react-bootstrap';
 
 interface Props {
   inactivityDelaySeconds: number;
-  remainingSeconds: number;
+  expiresOn: number;
   onExtendSession: () => void;
 }
 
 const LogoutWarningModal: React.FunctionComponent<Props> = ({
   inactivityDelaySeconds,
-  remainingSeconds,
+  expiresOn,
   onExtendSession
 }) => {
+  const [remainingSeconds, setRemainingSeconds] = useState(
+    Math.floor((expiresOn - Date.now()) / 1000)
+  );
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setRemainingSeconds(Math.floor((expiresOn - Date.now()) / 1000));
+    }, 1000);
+
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, []);
+
   return (
     <Modal show size="lg" onHide={() => {}}>
       <Modal.Header className="h4">Inactivity Logout Warning</Modal.Header>

@@ -14,10 +14,10 @@ const SessionTimeoutHandler: React.FunctionComponent<Props> = ({
 }) => {
   const router = useRouter();
 
-  const [remainingSeconds, setRemainingSeconds] = useState(9999);
-  const [sessionDueForRefresh, setSessionDueForRefresh] = useState({
-    isDue: false
-  });
+  const [showModal, setShowModal] = useState(false);
+
+  // UNIX timestamp (ms)
+  const [sessionExpiresOn, setSessionExpiresOn] = useState(Infinity);
 
   const logoutOnSessionIdled = async () => {
     router.push({
@@ -30,38 +30,41 @@ const SessionTimeoutHandler: React.FunctionComponent<Props> = ({
   };
 
   const extendSession = async () => {
-    await fetch('/extend-session');
-    setSessionDueForRefresh({isDue: true});
+    const response = await fetch('/extend-session');
+    if (response.ok) {
+      const timeout = Number(await response.json());
+      if (timeout > MODAL_DISPLAY_THRESHOLD_SECONDS) {
+        setShowModal(false);
+      }
+      setSessionExpiresOn(timeout * 1000 + Date.now());
+    }
   };
 
   useEffect(() => {
     let timeoutId;
-    let localRemainingSeconds = 0;
 
     const checkSessionIdle = async () => {
       if (!pageComponent.isAccessProtected) return;
 
-      if (localRemainingSeconds === 0) {
-        const response = await fetch('/session-idle-remaining-time');
-        if (response.ok) {
-          const timeout = Number(await response.json());
-          if (timeout > 0) {
-            localRemainingSeconds = timeout;
-            timeoutId = setTimeout(() => {
-              localRemainingSeconds -= 1;
-              setRemainingSeconds(localRemainingSeconds);
-              checkSessionIdle();
-            }, 1000);
-          } else {
-            logoutOnSessionIdled();
-          }
+      const response = await fetch('/session-idle-remaining-time');
+      if (response.ok) {
+        const timeout = Number(await response.json());
+
+        setSessionExpiresOn(Date.now() + timeout * 1000);
+
+        if (timeout > MODAL_DISPLAY_THRESHOLD_SECONDS) {
+          setShowModal(false);
+          timeoutId = setTimeout(() => {
+            checkSessionIdle();
+          }, (timeout - MODAL_DISPLAY_THRESHOLD_SECONDS) * 1000);
+        } else if (timeout > 0) {
+          setShowModal(true);
+          timeoutId = setTimeout(() => {
+            checkSessionIdle();
+          }, timeout * 1000);
+        } else {
+          logoutOnSessionIdled();
         }
-      } else {
-        timeoutId = setTimeout(() => {
-          localRemainingSeconds -= 1;
-          setRemainingSeconds(localRemainingSeconds);
-          checkSessionIdle();
-        }, 1000);
       }
     };
 
@@ -71,18 +74,19 @@ const SessionTimeoutHandler: React.FunctionComponent<Props> = ({
     return () => {
       clearTimeout(timeoutId);
     };
-  }, [router, pageComponent, sessionDueForRefresh]);
+  }, [router, pageComponent]);
 
-  return pageComponent.isAccessProtected &&
-    remainingSeconds < MODAL_DISPLAY_THRESHOLD_SECONDS ? (
-    <LogoutWarningModal
-      inactivityDelaySeconds={MODAL_DISPLAY_THRESHOLD_SECONDS}
-      remainingSeconds={remainingSeconds}
-      onExtendSession={() => {
-        extendSession();
-      }}
-    />
-  ) : null;
+  return (
+    showModal && (
+      <LogoutWarningModal
+        inactivityDelaySeconds={MODAL_DISPLAY_THRESHOLD_SECONDS}
+        expiresOn={sessionExpiresOn}
+        onExtendSession={() => {
+          extendSession();
+        }}
+      />
+    )
+  );
 };
 
 export default SessionTimeoutHandler;
