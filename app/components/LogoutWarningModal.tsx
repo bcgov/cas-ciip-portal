@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Button, Form, Modal} from 'react-bootstrap';
+import {Button, Container, Form, Modal, Row} from 'react-bootstrap';
 
 interface Props {
   inactivityDelaySeconds: number;
@@ -30,10 +30,13 @@ const LogoutWarningModal: React.FunctionComponent<Props> = ({
     <Modal show size="lg" onHide={() => {}}>
       <Modal.Header className="h4">Inactivity Logout Warning</Modal.Header>
       <Modal.Body style={{padding: '2em'}}>
-        Your session is about to expire due to inactivity over{' '}
-        {inactivityDelaySeconds / 60} minutes.
-        <br />
-        You will be logged out in {remainingSeconds} seconds.
+        <Container>
+          <Row>
+            Your session is about to expire due to inactivity over{' '}
+            {inactivityDelaySeconds / 60} minutes.
+          </Row>
+          <Row>You will be logged out in {remainingSeconds} seconds.</Row>
+        </Container>
       </Modal.Body>
       <Modal.Footer>
         <Form action="/logout" method="post">
