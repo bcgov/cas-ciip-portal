@@ -1,0 +1,247 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The Logout Warning Modal Should match the snapshot 1`] = `
+<Modal
+  animation={true}
+  autoFocus={true}
+  backdrop={true}
+  dialogAs={
+    Object {
+      "$$typeof": Symbol(react.forward_ref),
+      "displayName": "ModalDialog",
+      "render": [Function],
+    }
+  }
+  enforceFocus={true}
+  keyboard={true}
+  onHide={[Function]}
+  restoreFocus={true}
+  show={true}
+  size="lg"
+>
+  <ModalHeader
+    className="h4"
+    closeButton={false}
+    closeLabel="Close"
+  >
+    Inactivity Logout Warning
+  </ModalHeader>
+  <ModalBody
+    style={
+      Object {
+        "padding": "2em",
+      }
+    }
+  >
+    <Container
+      fluid={false}
+    >
+      <Row
+        noGutters={false}
+      >
+        Your session is about to expire due to inactivity over
+         
+        2
+         minutes.
+      </Row>
+      <Row
+        noGutters={false}
+      >
+        You will be logged out in 
+        11
+         seconds.
+      </Row>
+    </Container>
+  </ModalBody>
+  <ModalFooter>
+    <Form
+      action="/logout"
+      inline={false}
+      method="post"
+    >
+      <button
+        className="btn btn-secondary"
+        type="submit"
+      >
+        Logout
+      </button>
+    </Form>
+    <Button
+      active={false}
+      disabled={false}
+      onClick={[Function]}
+      variant="primary"
+    >
+      Remain active
+    </Button>
+  </ModalFooter>
+</Modal>
+`;
+
+exports[`The Logout Warning Modal should countdown seconds 1`] = `
+<Portal
+  containerInfo={
+    <body
+      class="modal-open"
+      style="padding-right: 0px;"
+    >
+      <div
+        class="fade modal-backdrop show"
+      />
+      <div
+        aria-modal="true"
+        class="fade modal show"
+        role="dialog"
+        style="display: block;"
+        tabindex="-1"
+      >
+        <div
+          class="modal-dialog modal-lg"
+        >
+          <div
+            class="modal-content"
+          >
+            <div
+              class="h4 modal-header"
+            >
+              Inactivity Logout Warning
+            </div>
+            <div
+              class="modal-body"
+              style="padding: 2em;"
+            >
+              <div
+                class="container"
+              >
+                <div
+                  class="row"
+                >
+                  Your session is about to expire due to inactivity over
+                   
+                  2
+                   minutes.
+                </div>
+                <div
+                  class="row"
+                >
+                  You will be logged out in 
+                  16
+                   seconds.
+                </div>
+              </div>
+            </div>
+            <div
+              class="modal-footer"
+            >
+              <form
+                action="/logout"
+                class=""
+                method="post"
+              >
+                <button
+                  class="btn btn-secondary"
+                  type="submit"
+                >
+                  Logout
+                </button>
+              </form>
+              <button
+                class="btn btn-primary"
+                type="button"
+              >
+                Remain active
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </body>
+  }
+>
+  <div
+    className="fade modal-backdrop show"
+    onClick={[Function]}
+  />
+  <div
+    aria-modal={true}
+    className="fade modal show"
+    onClick={[Function]}
+    onMouseUp={[Function]}
+    role="dialog"
+    style={
+      Object {
+        "paddingLeft": undefined,
+        "paddingRight": undefined,
+      }
+    }
+    tabIndex={-1}
+  >
+    <div
+      className="modal-dialog modal-lg"
+      onMouseDown={[Function]}
+    >
+      <div
+        className="modal-content"
+      >
+        <div
+          className="h4 modal-header"
+        >
+          Inactivity Logout Warning
+        </div>
+        <div
+          className="modal-body"
+          style={
+            Object {
+              "padding": "2em",
+            }
+          }
+        >
+          <div
+            className="container"
+          >
+            <div
+              className="row"
+            >
+              Your session is about to expire due to inactivity over
+               
+              2
+               minutes.
+            </div>
+            <div
+              className="row"
+            >
+              You will be logged out in 
+              16
+               seconds.
+            </div>
+          </div>
+        </div>
+        <div
+          className="modal-footer"
+        >
+          <form
+            action="/logout"
+            className=""
+            method="post"
+          >
+            <button
+              className="btn btn-secondary"
+              type="submit"
+            >
+              Logout
+            </button>
+          </form>
+          <button
+            className="btn btn-primary"
+            disabled={false}
+            onClick={[Function]}
+            type="button"
+          >
+            Remain active
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</Portal>
+`;
