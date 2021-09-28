@@ -4,8 +4,8 @@ reset client_min_messages;
 
 begin;
 
-create schema :dummy_schema;
-set search_path to :dummy_schema,public;
+create schema test_fixture_schema;
+set search_path to test_fixture_schema,public;
 
 -- create schema asdf;
 -- set search_path to :fixture_test_schema,public;
@@ -19,11 +19,11 @@ insert into test_fixture(fname, is_deleted)
 values ('Dylan', 'false');
 
 
-/** CREATE AUDIT SCHEMA & LOG TABLE **/
-create schema :audit_schema;
-revoke create on schema :audit_schema from public;
+/** CREATE audit_schema SCHEMA & LOG TABLE **/
+create schema audit_schema;
+revoke create on schema audit_schema from public;
 
-create table audit.logged_actions
+create table audit_schema.logged_actions
 (
     schema_name   text                     not null,
     table_name    text                     not null,
@@ -35,24 +35,24 @@ create table audit.logged_actions
     query         text
 ) with (fillfactor = 100);
 
-revoke all on audit.logged_actions from public;
+revoke all on audit_schema.logged_actions from public;
 
 -- You may wish to use different permissions; this lets anybody
--- see the full audit data. In Pg 9.0 and above you can use column
+-- see the full audit_schema data. In Pg 9.0 and above you can use column
 -- permissions for fine-grained control.
-grant select on audit.logged_actions to public;
+grant select on audit_schema.logged_actions to public;
 
 create index logged_actions_schema_table_idx
-    on audit.logged_actions (((schema_name || '.' || table_name)::text));
+    on audit_schema.logged_actions (((schema_name || '.' || table_name)::text));
 
 create index logged_actions_action_tstamp_idx
-    on audit.logged_actions (action_tstamp);
+    on audit_schema.logged_actions (action_tstamp);
 
 create index logged_actions_action_idx
-    on audit.logged_actions (action);
+    on audit_schema.logged_actions (action);
 
 /** CREATE IF_MODIFIED FUNCTION **/
-create or replace function audit.if_modified_func() returns trigger as
+create or replace function audit_schema.if_modified_func() returns trigger as
 $body$
 declare
     v_old_data text;
@@ -67,36 +67,36 @@ begin
     if (tg_op = 'UPDATE') then
         v_old_data := row (old.*);
         v_new_data := row (new.*);
-        insert into audit.logged_actions (schema_name, table_name, user_name, action, original_data, new_data, query)
+        insert into audit_schema.logged_actions (schema_name, table_name, user_name, action, original_data, new_data, query)
         values (tg_table_schema::text, tg_table_name::text, session_user::text, substring(tg_op, 1, 1), v_old_data,
                 v_new_data, current_query());
         return new;
     elsif (tg_op = 'DELETE') then
         v_old_data := row (old.*);
-        insert into audit.logged_actions (schema_name, table_name, user_name, action, original_data, query)
+        insert into audit_schema.logged_actions (schema_name, table_name, user_name, action, original_data, query)
         values (tg_table_schema::text, tg_table_name::text, session_user::text, substring(tg_op, 1, 1), v_old_data,
                 current_query());
         return old;
     elsif (tg_op = 'INSERT') then
         v_new_data := row (new.*);
-        insert into audit.logged_actions (schema_name, table_name, user_name, action, new_data, query)
+        insert into audit_schema.logged_actions (schema_name, table_name, user_name, action, new_data, query)
         values (tg_table_schema::text, tg_table_name::text, session_user::text, substring(tg_op, 1, 1), v_new_data,
                 current_query());
         return new;
     else
-        raise warning '[audit.if_modified_func] - other action occurred: %, at %',tg_op,now();
+        raise warning '[audit_schema.if_modified_func] - other action occurred: %, at %',tg_op,now();
         return null;
     end if;
 
 exception
     when data_exception then
-        raise warning '[audit.if_modified_func] - udf error [data exception] - sqlstate: %, sqlerrm: %',sqlstate,sqlerrm;
+        raise warning '[audit_schema.if_modified_func] - udf error [data exception] - sqlstate: %, sqlerrm: %',sqlstate,sqlerrm;
         return null;
     when unique_violation then
-        raise warning '[audit.if_modified_func] - udf error [unique] - sqlstate: %, sqlerrm: %',sqlstate,sqlerrm;
+        raise warning '[audit_schema.if_modified_func] - udf error [unique] - sqlstate: %, sqlerrm: %',sqlstate,sqlerrm;
         return null;
     when others then
-        raise warning '[audit.if_modified_func] - udf error [other] - sqlstate: %, sqlerrm: %',sqlstate,sqlerrm;
+        raise warning '[audit_schema.if_modified_func] - udf error [other] - sqlstate: %, sqlerrm: %',sqlstate,sqlerrm;
         return null;
 end;
 $body$
@@ -117,20 +117,20 @@ create rule no_delete as on delete to test_fixture
     set is_deleted = true
     where id = 1;
 
--- Create Trigger to satisfy audit guideline (next guideline), comment out next 3 lines to test the test
+-- Create Trigger to satisfy audit_schema guideline (next guideline), comment out next 3 lines to test the test
 create trigger test_fixture_audit
     after insert or update or delete
     on test_fixture
     for each row
-execute procedure audit.if_modified_func();
+execute procedure audit_schema.if_modified_func();
 
 -- Run delete operation
 delete
 from test_fixture
 where fname = 'Dylan';
 -- Test that the rule exists on all tables in schema
-with tnames as (select table_name from information_schema.tables where table_schema = :'dummy_schema')
-select rule_is_on(:'dummy_schema', tbl, 'no_delete', 'delete',
+with tnames as (select table_name from information_schema.tables where table_schema = 'test_fixture_schema')
+select rule_is_on('test_fixture_schema', tbl, 'no_delete', 'delete',
                   format('Table has rule no_delete. Violation: %I', tbl))
 from tnames f(tbl);
 -- Test that record is not deleted
@@ -141,10 +141,10 @@ select results_eq('select is_deleted from test_fixture where id=1', array [true]
 
 -- GUIDELINE: Changes to the data must be able to be audited
 -- Test that the trigger exists on all tables in schema
-with tnames as (select table_name from information_schema.tables where table_schema = :'dummy_schema')
-select has_trigger(:'dummy_schema', tbl, 'test_fixture_audit',
-                   format('Table has audit trigger. Violation: %I', tbl))
+with tnames as (select table_name from information_schema.tables where table_schema = 'test_fixture_schema')
+select has_trigger('test_fixture_schema', tbl, 'test_fixture_audit',
+                   format('Table has audit_schema trigger. Violation: %I', tbl))
 from tnames f(tbl);
 -- Test that the if_modified function was triggered when data was updated
-select isnt_empty('select * from audit.logged_actions');
+select isnt_empty('select * from audit_schema.logged_actions');
 rollback;

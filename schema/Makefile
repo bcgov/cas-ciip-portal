@@ -71,7 +71,7 @@ deploy:
 .PHONY: prove_style
 prove_style:
 	# Run style-related test suite on all objects in db using pg_prove
-	@@$(PG_PROVE) --failures -d $(TEST_DB) test/style/*_test.sql --set schemas_to_test=ggircs_portal,ggircs_portal_private --set dummy_schema=test_fixture_schema --set audit_schema=audit
+	@@$(PG_PROVE) --failures -d $(TEST_DB) test/style/*_test.sql --set schemas_to_test=ggircs_portal,ggircs_portal_private
 
 .PHONY: prove_unit
 prove_unit:
