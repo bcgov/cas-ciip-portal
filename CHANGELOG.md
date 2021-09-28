@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.13.0](https://github.com/bcgov/cas-ciip-portal/compare/v2.12.1...v2.13.0) (2021-09-28)
+
+
+### Features
+
+* adding cronjobs and a deployment add-on ([1f10edb](https://github.com/bcgov/cas-ciip-portal/commit/1f10edba19d8dc9417d3f7368ee5b6cacb7c6615))
+* create application chart instead that create openshift artifacts ([3110966](https://github.com/bcgov/cas-ciip-portal/commit/3110966e278ff0ea10894a63db0023182b98290c))
+* express trusts proxies ([4c70bea](https://github.com/bcgov/cas-ciip-portal/commit/4c70bead985aeedcefa5ade8f5cdefde189dd2fe))
+* library helm chart for nginx sidecar templates ([2c1304e](https://github.com/bcgov/cas-ciip-portal/commit/2c1304e811930bd7254ffacaec3d8908ba773f93))
+* using the sidecar library to add nginx container in the deployment ([8ddb569](https://github.com/bcgov/cas-ciip-portal/commit/8ddb5698776b6d5258462500f67afb92866dbe0c))
+
+
+### Bug Fixes
+
+* acme issue dag is only triggered on insecure deploy ([e6577e9](https://github.com/bcgov/cas-ciip-portal/commit/e6577e9eda4d175518b96198bd89bf4a7ab5cbe8))
+* lint step tests all 3 sets of values ([bdabac5](https://github.com/bcgov/cas-ciip-portal/commit/bdabac557bf03e2f1629fe6d6374987bfa4de243))
+* show submit button for older applications with version > 1 ([6a51b51](https://github.com/bcgov/cas-ciip-portal/commit/6a51b518c4fa7589413cdfee7f4c61d72f342f38))
+
 ### [2.12.1](https://github.com/bcgov/cas-ciip-portal/compare/v2.12.0...v2.12.1) (2021-09-15)
 
 
