@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The Session Timeout Handler Shows the modal if there is less time left in the session than the delay 1`] = `""`;
