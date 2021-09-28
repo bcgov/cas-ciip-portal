@@ -5,12 +5,12 @@ import LogoutWarningModal from './LogoutWarningModal';
 
 interface Props {
   pageComponent: CiipPageComponent;
-  modalDisplayDelayBeforeLogout: number;
+  modalDisplaySecondsBeforeLogout: number;
 }
 
 const SessionTimeoutHandler: React.FunctionComponent<Props> = ({
   pageComponent,
-  modalDisplayDelayBeforeLogout
+  modalDisplaySecondsBeforeLogout
 }) => {
   const router = useRouter();
 
@@ -33,7 +33,7 @@ const SessionTimeoutHandler: React.FunctionComponent<Props> = ({
     const response = await fetch('/extend-session');
     if (response.ok) {
       const timeout = Number(await response.json());
-      if (timeout > modalDisplayDelayBeforeLogout) {
+      if (timeout > modalDisplaySecondsBeforeLogout) {
         setShowModal(false);
       }
       setSessionExpiresOn(timeout * 1000 + Date.now());
@@ -52,11 +52,11 @@ const SessionTimeoutHandler: React.FunctionComponent<Props> = ({
 
         setSessionExpiresOn(Date.now() + timeout * 1000);
 
-        if (timeout > modalDisplayDelayBeforeLogout) {
+        if (timeout > modalDisplaySecondsBeforeLogout) {
           setShowModal(false);
           timeoutId = setTimeout(() => {
             checkSessionIdle();
-          }, (timeout - modalDisplayDelayBeforeLogout) * 1000);
+          }, (timeout - modalDisplaySecondsBeforeLogout) * 1000);
         } else if (timeout > 0) {
           setShowModal(true);
           timeoutId = setTimeout(() => {
@@ -79,7 +79,7 @@ const SessionTimeoutHandler: React.FunctionComponent<Props> = ({
   return (
     showModal && (
       <LogoutWarningModal
-        inactivityDelaySeconds={modalDisplayDelayBeforeLogout}
+        inactivityDelaySeconds={modalDisplaySecondsBeforeLogout}
         expiresOn={sessionExpiresOn}
         onExtendSession={() => {
           extendSession();

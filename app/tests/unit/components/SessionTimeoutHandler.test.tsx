@@ -36,7 +36,7 @@ describe('The Session Timeout Handler', () => {
         <div>
           <SessionTimeoutHandler
             pageComponent={{isAccessProtected: true} as any}
-            modalDisplayDelayBeforeLogout={displayDelayBeforeLogout}
+            modalDisplaySecondsBeforeLogout={displayDelayBeforeLogout}
           />
         </div>
       );
@@ -61,7 +61,7 @@ describe('The Session Timeout Handler', () => {
         <div>
           <SessionTimeoutHandler
             pageComponent={{isAccessProtected: true} as any}
-            modalDisplayDelayBeforeLogout={displayDelayBeforeLogout}
+            modalDisplaySecondsBeforeLogout={displayDelayBeforeLogout}
           />
         </div>
       );
@@ -85,7 +85,7 @@ describe('The Session Timeout Handler', () => {
         <div>
           <SessionTimeoutHandler
             pageComponent={{isAccessProtected: false} as any}
-            modalDisplayDelayBeforeLogout={displayDelayBeforeLogout}
+            modalDisplaySecondsBeforeLogout={displayDelayBeforeLogout}
           />
         </div>
       );
@@ -115,7 +115,7 @@ describe('The Session Timeout Handler', () => {
         <div>
           <SessionTimeoutHandler
             pageComponent={{isAccessProtected: true} as any}
-            modalDisplayDelayBeforeLogout={displayDelayBeforeLogout}
+            modalDisplaySecondsBeforeLogout={displayDelayBeforeLogout}
           />
         </div>
       );
@@ -145,7 +145,7 @@ describe('The Session Timeout Handler', () => {
         <div>
           <SessionTimeoutHandler
             pageComponent={{isAccessProtected: true} as any}
-            modalDisplayDelayBeforeLogout={displayDelayBeforeLogout}
+            modalDisplaySecondsBeforeLogout={displayDelayBeforeLogout}
           />
         </div>
       );
