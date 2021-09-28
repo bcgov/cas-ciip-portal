@@ -6,8 +6,8 @@ begin;
 
 select plan(1);
 
-create schema ggircs_test_fixture;
-set search_path to ggircs_test_fixture,public;
+create schema test_fixture_schema;
+set search_path to test_fixture_schema,public;
 
 -- Test fixture exists
 create table csv_import_fixture
