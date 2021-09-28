@@ -1,3 +1,171 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`The Session Timeout Handler Shows the modal if there is less time left in the session than the delay 1`] = `""`;
+exports[`The Session Timeout Handler Shows the modal if there is less time left in the session than the delay 1`] = `
+<div>
+  <Portal
+    containerInfo={
+      <body
+        class="modal-open"
+        style="padding-right: 0px;"
+      >
+        <div
+          class="fade modal-backdrop show"
+        />
+        <div
+          aria-modal="true"
+          class="fade modal show"
+          role="dialog"
+          style="display: block;"
+          tabindex="-1"
+        >
+          <div
+            class="modal-dialog modal-lg"
+          >
+            <div
+              class="modal-content"
+            >
+              <div
+                class="h4 modal-header"
+              >
+                Inactivity Logout Warning
+              </div>
+              <div
+                class="modal-body"
+                style="padding: 2em;"
+              >
+                <div
+                  class="container"
+                >
+                  <div
+                    class="row"
+                  >
+                    Your session is about to expire due to inactivity over
+                     
+                    0.5
+                     minutes.
+                  </div>
+                  <div
+                    class="row"
+                  >
+                    You will be logged out in 
+                    15
+                     seconds.
+                  </div>
+                </div>
+              </div>
+              <div
+                class="modal-footer"
+              >
+                <form
+                  action="/logout"
+                  class=""
+                  method="post"
+                >
+                  <button
+                    class="btn btn-secondary"
+                    type="submit"
+                  >
+                    Logout
+                  </button>
+                </form>
+                <button
+                  class="btn btn-primary"
+                  type="button"
+                >
+                  Remain active
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </body>
+    }
+  >
+    <div
+      className="fade modal-backdrop show"
+      onClick={[Function]}
+    />
+    <div
+      aria-modal={true}
+      className="fade modal show"
+      onClick={[Function]}
+      onMouseUp={[Function]}
+      role="dialog"
+      style={
+        Object {
+          "paddingLeft": undefined,
+          "paddingRight": undefined,
+        }
+      }
+      tabIndex={-1}
+    >
+      <div
+        className="modal-dialog modal-lg"
+        onMouseDown={[Function]}
+      >
+        <div
+          className="modal-content"
+        >
+          <div
+            className="h4 modal-header"
+          >
+            Inactivity Logout Warning
+          </div>
+          <div
+            className="modal-body"
+            style={
+              Object {
+                "padding": "2em",
+              }
+            }
+          >
+            <div
+              className="container"
+            >
+              <div
+                className="row"
+              >
+                Your session is about to expire due to inactivity over
+                 
+                0.5
+                 minutes.
+              </div>
+              <div
+                className="row"
+              >
+                You will be logged out in 
+                15
+                 seconds.
+              </div>
+            </div>
+          </div>
+          <div
+            className="modal-footer"
+          >
+            <form
+              action="/logout"
+              className=""
+              method="post"
+            >
+              <button
+                className="btn btn-secondary"
+                type="submit"
+              >
+                Logout
+              </button>
+            </form>
+            <button
+              className="btn btn-primary"
+              disabled={false}
+              onClick={[Function]}
+              type="button"
+            >
+              Remain active
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </Portal>
+</div>
+`;

@@ -1,43 +1,173 @@
 import SessionTimeoutHandler from 'components/SessionTimeoutHandler';
-import {mount, shallow} from 'enzyme';
+import {mount} from 'enzyme';
 import React from 'react';
-import ReactDOM from 'react-dom';
 import {act} from 'react-dom/test-utils';
+
+const existingFetch = global.fetch;
+
+afterEach(() => {
+  global.fetch = existingFetch;
+  jest.useRealTimers();
+  jest.clearAllMocks();
+});
+
+const setupFetchMock = (timeoutValue) => {
+  const fetchMock = jest.fn();
+  fetchMock.mockImplementation(() => ({
+    ok: true,
+    json: async () => timeoutValue
+  }));
+
+  global.fetch = fetchMock;
+  return fetchMock;
+};
 
 describe('The Session Timeout Handler', () => {
   it('Shows the modal if there is less time left in the session than the delay', async () => {
+    const secondsLeftInSession = 15;
+    const displayDelayBeforeLogout = 30;
+
     jest.useFakeTimers();
-    global.fetch = async () => {
-      return {...({} as any), ok: true, json: async () => '15'};
-    };
-    const dateMock = jest.spyOn(Date, 'now').mockImplementation(() => 10000); // Ten second after January 1st, 1970
+    setupFetchMock(secondsLeftInSession); // 15 seconds left in session
 
-    const useEffectMock = jest
-      .spyOn(React, 'useEffect')
-      .mockImplementation(async (f) => f());
-
-    const componentUnderTest = document.createElement('div');
-    document.body.appendChild(componentUnderTest);
+    let componentUnderTest;
     await act(async () => {
-      await ReactDOM.render(
+      componentUnderTest = mount(
         <div>
           <SessionTimeoutHandler
             pageComponent={{isAccessProtected: true} as any}
-            modalDisplayDelayBeforeLogout={30}
+            modalDisplayDelayBeforeLogout={displayDelayBeforeLogout}
           />
-        </div>,
-        componentUnderTest
+        </div>
       );
     });
 
-    expect(document.body.textContent).toBe('abc');
+    await componentUnderTest.update();
+
+    expect(componentUnderTest.find('.modal').length).toBe(1);
+    expect(componentUnderTest).toMatchSnapshot();
   });
 
-  it('Hides the modal if there is more time left in the session than the delay', () => {});
+  it('Hides the modal if there is more time left in the session than the delay', async () => {
+    const secondsLeftInSession = 45;
+    const displayDelayBeforeLogout = 30;
 
-  it('Hides the modal if the component is not protected', () => {});
+    jest.useFakeTimers();
+    setupFetchMock(secondsLeftInSession); // 15 seconds left in session
 
-  it('Routes to login-redirect if the session is expired', () => {});
+    let componentUnderTest;
+    await act(async () => {
+      componentUnderTest = mount(
+        <div>
+          <SessionTimeoutHandler
+            pageComponent={{isAccessProtected: true} as any}
+            modalDisplayDelayBeforeLogout={displayDelayBeforeLogout}
+          />
+        </div>
+      );
+    });
 
-  it('Calls the /extend-session endpoint when the user clicks the extend button', () => {});
+    await componentUnderTest.update();
+
+    expect(componentUnderTest.find('.modal').length).toBe(0);
+  });
+
+  it('Hides the modal if the component is not protected', async () => {
+    const secondsLeftInSession = 15;
+    const displayDelayBeforeLogout = 30;
+
+    jest.useFakeTimers();
+    setupFetchMock(secondsLeftInSession); // 15 seconds left in session
+
+    let componentUnderTest;
+    await act(async () => {
+      componentUnderTest = mount(
+        <div>
+          <SessionTimeoutHandler
+            pageComponent={{isAccessProtected: false} as any}
+            modalDisplayDelayBeforeLogout={displayDelayBeforeLogout}
+          />
+        </div>
+      );
+    });
+
+    await componentUnderTest.update();
+
+    expect(componentUnderTest.find('.modal').length).toBe(0);
+  });
+
+  it('Routes to login-redirect if the session is expired', async () => {
+    const mockRouter = {push: jest.fn(), asPath: 'mock-redirect-to'};
+    const useRouter = jest.spyOn(require('next/router'), 'useRouter');
+    useRouter.mockImplementation(() => {
+      return mockRouter;
+    });
+
+    const secondsLeftInSession = 0;
+    const displayDelayBeforeLogout = 30;
+
+    jest.useFakeTimers();
+    setupFetchMock(secondsLeftInSession); // 15 seconds left in session
+
+    let componentUnderTest;
+    await act(async () => {
+      componentUnderTest = mount(
+        <div>
+          <SessionTimeoutHandler
+            pageComponent={{isAccessProtected: true} as any}
+            modalDisplayDelayBeforeLogout={displayDelayBeforeLogout}
+          />
+        </div>
+      );
+    });
+
+    await componentUnderTest.update();
+
+    expect(mockRouter.push).toHaveBeenCalledWith({
+      pathname: '/login-redirect',
+      query: {
+        redirectTo: 'mock-redirect-to',
+        sessionIdled: true
+      }
+    });
+  });
+
+  it('Calls the /extend-session endpoint when the user clicks the extend button', async () => {
+    const secondsLeftInSession = 15;
+    const displayDelayBeforeLogout = 30;
+
+    jest.useFakeTimers();
+    setupFetchMock(secondsLeftInSession); // 15 seconds left in session
+
+    let componentUnderTest;
+    await act(async () => {
+      componentUnderTest = mount(
+        <div>
+          <SessionTimeoutHandler
+            pageComponent={{isAccessProtected: true} as any}
+            modalDisplayDelayBeforeLogout={displayDelayBeforeLogout}
+          />
+        </div>
+      );
+    });
+
+    await componentUnderTest.update();
+
+    expect(componentUnderTest.find('.modal').length).toBe(1);
+
+    const fetchMock = setupFetchMock(999);
+
+    const clickRefeshHandler = componentUnderTest
+      .find('.btn-primary')
+      .prop('onClick');
+
+    await act(async () => {
+      await clickRefeshHandler();
+    });
+
+    await componentUnderTest.update();
+
+    expect(componentUnderTest.find('.modal').length).toBe(0);
+    expect(fetchMock).toHaveBeenCalledWith('/extend-session');
+  });
 });
