@@ -28,7 +28,7 @@ describe('The Session Timeout Handler', () => {
     const displayDelayBeforeLogout = 30;
 
     jest.useFakeTimers();
-    setupFetchMock(secondsLeftInSession); // 15 seconds left in session
+    setupFetchMock(secondsLeftInSession);
 
     let componentUnderTest;
     await act(async () => {
@@ -53,7 +53,7 @@ describe('The Session Timeout Handler', () => {
     const displayDelayBeforeLogout = 30;
 
     jest.useFakeTimers();
-    setupFetchMock(secondsLeftInSession); // 15 seconds left in session
+    setupFetchMock(secondsLeftInSession);
 
     let componentUnderTest;
     await act(async () => {
@@ -77,7 +77,7 @@ describe('The Session Timeout Handler', () => {
     const displayDelayBeforeLogout = 30;
 
     jest.useFakeTimers();
-    setupFetchMock(secondsLeftInSession); // 15 seconds left in session
+    setupFetchMock(secondsLeftInSession);
 
     let componentUnderTest;
     await act(async () => {
@@ -107,7 +107,7 @@ describe('The Session Timeout Handler', () => {
     const displayDelayBeforeLogout = 30;
 
     jest.useFakeTimers();
-    setupFetchMock(secondsLeftInSession); // 15 seconds left in session
+    setupFetchMock(secondsLeftInSession);
 
     let componentUnderTest;
     await act(async () => {
@@ -137,7 +137,7 @@ describe('The Session Timeout Handler', () => {
     const displayDelayBeforeLogout = 30;
 
     jest.useFakeTimers();
-    setupFetchMock(secondsLeftInSession); // 15 seconds left in session
+    setupFetchMock(secondsLeftInSession);
 
     let componentUnderTest;
     await act(async () => {

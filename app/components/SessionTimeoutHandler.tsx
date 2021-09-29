@@ -16,7 +16,7 @@ const SessionTimeoutHandler: React.FunctionComponent<Props> = ({
 
   const [showModal, setShowModal] = useState(false);
 
-  // UNIX timestamp (ms)
+  // UNIX epoch (ms)
   const [sessionExpiresOn, setSessionExpiresOn] = useState(Infinity);
 
   const logoutOnSessionIdled = async () => {
