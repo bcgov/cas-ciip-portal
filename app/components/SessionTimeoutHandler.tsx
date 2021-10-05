@@ -70,6 +70,9 @@ const SessionTimeoutHandler: React.FunctionComponent<Props> = ({
         } else {
           logoutOnSessionIdled();
         }
+      } else {
+        // if the response is not OK (i.e. 500)
+        logoutOnSessionIdled();
       }
     };
 

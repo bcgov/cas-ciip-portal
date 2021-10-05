@@ -1,6 +1,7 @@
 import React from 'react';
 import LogoutWarningModal from 'components/LogoutWarningModal';
 import {mount, shallow} from 'enzyme';
+import {act} from 'react-dom/test-utils';
 
 afterEach(() => {
   jest.useRealTimers();
@@ -36,17 +37,22 @@ describe('The Logout Warning Modal', () => {
     expect(expireSpy).toHaveBeenCalled();
   });
 
-  it('should countdown seconds', () => {
+  it('should countdown seconds', async () => {
     jest.useFakeTimers();
     let dateMock = jest.spyOn(Date, 'now').mockImplementation(() => 1000); // 1 second after Jan. 1st, 1970
 
-    const componentUnderTest = mount(
-      <LogoutWarningModal
-        inactivityDelaySeconds={120}
-        onExtendSession={() => {}}
-        expiresOn={17000} // 17 seconds after Jan. 1st, 1970
-      />
-    );
+    let componentUnderTest;
+
+    await act(async () => {
+      componentUnderTest = mount(
+        <LogoutWarningModal
+          inactivityDelaySeconds={120}
+          onExtendSession={() => {}}
+          expiresOn={17000} // 17 seconds after Jan. 1st, 1970
+        />
+      );
+    });
+    await componentUnderTest.update();
 
     expect(componentUnderTest).toMatchSnapshot();
     expect(
@@ -58,7 +64,10 @@ describe('The Logout Warning Modal', () => {
 
     dateMock.mockRestore();
     dateMock = jest.spyOn(Date, 'now').mockImplementation(() => 5000); // 5 second after Jan. 1st, 1970
-    jest.runOnlyPendingTimers();
+
+    await act(async () => {
+      jest.runOnlyPendingTimers();
+    });
 
     // When the timer expires the component re-syncs from the system time
     expect(

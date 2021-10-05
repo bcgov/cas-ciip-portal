@@ -11,11 +11,12 @@ afterEach(() => {
   jest.clearAllMocks();
 });
 
-const setupFetchMock = (timeoutValue) => {
+const setupFetchMock = (timeoutValue, response_override = {}) => {
   const fetchMock = jest.fn();
   fetchMock.mockImplementation(() => ({
     ok: true,
-    json: async () => timeoutValue
+    json: async () => timeoutValue,
+    ...response_override
   }));
 
   global.fetch = fetchMock;
@@ -108,6 +109,41 @@ describe('The Session Timeout Handler', () => {
 
     jest.useFakeTimers();
     setupFetchMock(secondsLeftInSession);
+
+    let componentUnderTest;
+    await act(async () => {
+      componentUnderTest = mount(
+        <div>
+          <SessionTimeoutHandler
+            pageComponent={{isAccessProtected: true} as any}
+            modalDisplaySecondsBeforeLogout={displayDelayBeforeLogout}
+          />
+        </div>
+      );
+    });
+
+    await componentUnderTest.update();
+
+    expect(mockRouter.push).toHaveBeenCalledWith({
+      pathname: '/login-redirect',
+      query: {
+        redirectTo: 'mock-redirect-to',
+        sessionIdled: true
+      }
+    });
+  });
+
+  it('Routes to login-redirect if the server replies with not ok', async () => {
+    const mockRouter = {push: jest.fn(), asPath: 'mock-redirect-to'};
+    const useRouter = jest.spyOn(require('next/router'), 'useRouter');
+    useRouter.mockImplementation(() => {
+      return mockRouter;
+    });
+
+    const secondsLeftInSession = 0;
+    const displayDelayBeforeLogout = 30;
+
+    setupFetchMock(secondsLeftInSession, {ok: false});
 
     let componentUnderTest;
     await act(async () => {

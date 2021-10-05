@@ -14,7 +14,6 @@ exports[`The Logout Warning Modal Should match the snapshot 1`] = `
   }
   enforceFocus={true}
   keyboard={true}
-  onHide={[Function]}
   restoreFocus={true}
   show={true}
   size="lg"

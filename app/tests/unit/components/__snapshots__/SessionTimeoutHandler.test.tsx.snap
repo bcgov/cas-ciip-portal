@@ -41,7 +41,7 @@ exports[`The Session Timeout Handler Shows the modal if there is less time left 
                   >
                     Your session is about to expire due to inactivity over
                      
-                    0.5
+                    0
                      minutes.
                   </div>
                   <div
@@ -127,7 +127,7 @@ exports[`The Session Timeout Handler Shows the modal if there is less time left 
               >
                 Your session is about to expire due to inactivity over
                  
-                0.5
+                0
                  minutes.
               </div>
               <div
