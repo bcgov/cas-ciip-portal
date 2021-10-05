@@ -44,7 +44,7 @@ const LogoutWarningModal: React.FunctionComponent<Props> = ({
             Logout
           </button>
         </Form>
-        <Button onClick={() => onExtendSession()}>Remain active</Button>
+        <Button onClick={onExtendSession}>Remain active</Button>
       </Modal.Footer>
     </Modal>
   );
