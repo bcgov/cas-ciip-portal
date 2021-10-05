@@ -1,15 +1,12 @@
-import {CiipPageComponent} from 'next-env';
 import {useRouter} from 'next/router';
 import React, {useEffect, useState} from 'react';
 import LogoutWarningModal from './LogoutWarningModal';
 
 interface Props {
-  pageComponent: CiipPageComponent;
   modalDisplaySecondsBeforeLogout: number;
 }
 
 const SessionTimeoutHandler: React.FunctionComponent<Props> = ({
-  pageComponent,
   modalDisplaySecondsBeforeLogout
 }) => {
   const router = useRouter();
@@ -44,8 +41,6 @@ const SessionTimeoutHandler: React.FunctionComponent<Props> = ({
     let timeoutId;
 
     const checkSessionIdle = async () => {
-      if (!pageComponent.isAccessProtected) return;
-
       const response = await fetch('/session-idle-remaining-time');
       if (response.ok) {
         const timeout = Number(await response.json());
@@ -82,7 +77,7 @@ const SessionTimeoutHandler: React.FunctionComponent<Props> = ({
     return () => {
       clearTimeout(timeoutId);
     };
-  }, [router, pageComponent]);
+  }, [router]);
 
   return (
     showModal && (

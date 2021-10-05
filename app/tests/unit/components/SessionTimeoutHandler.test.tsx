@@ -36,7 +36,6 @@ describe('The Session Timeout Handler', () => {
       componentUnderTest = mount(
         <div>
           <SessionTimeoutHandler
-            pageComponent={{isAccessProtected: true} as any}
             modalDisplaySecondsBeforeLogout={displayDelayBeforeLogout}
           />
         </div>
@@ -61,31 +60,6 @@ describe('The Session Timeout Handler', () => {
       componentUnderTest = mount(
         <div>
           <SessionTimeoutHandler
-            pageComponent={{isAccessProtected: true} as any}
-            modalDisplaySecondsBeforeLogout={displayDelayBeforeLogout}
-          />
-        </div>
-      );
-    });
-
-    await componentUnderTest.update();
-
-    expect(componentUnderTest.find('.modal').length).toBe(0);
-  });
-
-  it('Hides the modal if the component is not protected', async () => {
-    const secondsLeftInSession = 15;
-    const displayDelayBeforeLogout = 30;
-
-    jest.useFakeTimers();
-    setupFetchMock(secondsLeftInSession);
-
-    let componentUnderTest;
-    await act(async () => {
-      componentUnderTest = mount(
-        <div>
-          <SessionTimeoutHandler
-            pageComponent={{isAccessProtected: false} as any}
             modalDisplaySecondsBeforeLogout={displayDelayBeforeLogout}
           />
         </div>
@@ -115,7 +89,6 @@ describe('The Session Timeout Handler', () => {
       componentUnderTest = mount(
         <div>
           <SessionTimeoutHandler
-            pageComponent={{isAccessProtected: true} as any}
             modalDisplaySecondsBeforeLogout={displayDelayBeforeLogout}
           />
         </div>
@@ -150,7 +123,6 @@ describe('The Session Timeout Handler', () => {
       componentUnderTest = mount(
         <div>
           <SessionTimeoutHandler
-            pageComponent={{isAccessProtected: true} as any}
             modalDisplaySecondsBeforeLogout={displayDelayBeforeLogout}
           />
         </div>
@@ -180,7 +152,6 @@ describe('The Session Timeout Handler', () => {
       componentUnderTest = mount(
         <div>
           <SessionTimeoutHandler
-            pageComponent={{isAccessProtected: true} as any}
             modalDisplaySecondsBeforeLogout={displayDelayBeforeLogout}
           />
         </div>

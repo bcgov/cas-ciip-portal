@@ -65,10 +65,9 @@ export default class App extends NextApp<AppProps> {
 
     return (
       <Sentry.ErrorBoundary fallback={ErrorFallback}>
-        <SessionTimeoutHandler
-          pageComponent={Component}
-          modalDisplaySecondsBeforeLogout={120}
-        />
+        {Component.isAccessProtected && (
+          <SessionTimeoutHandler modalDisplaySecondsBeforeLogout={120} />
+        )}
         <PageRedirectHandler
           environment={environment}
           pageComponent={Component}
