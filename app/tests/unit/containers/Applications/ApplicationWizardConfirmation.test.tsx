@@ -235,7 +235,27 @@ describe('The Confirmation Component', () => {
     );
   });
 
-  it('does shows the "submit application" button when the application reporting year does not match the open reporting year and versionNumber > 1', () => {
+  it('does not show the "submit application" button when the reporting year is closed and versionNumber = 1', () => {
+    const wrapper = shallow(
+      <ApplicationWizardConfirmationComponent
+        query={{
+          ' $fragmentRefs': {
+            ApplicationDetailsContainer_query: true
+          },
+          ' $refType': 'ApplicationWizardConfirmation_query',
+          openedReportingYear: null
+        }}
+        applicationRevision={applicationRevision}
+        relay={null}
+      />
+    );
+    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.find('Relay(SubmitApplicationComponent)').exists()).toBe(
+      false
+    );
+  });
+
+  it('shows the "submit application" button when the application reporting year does not match the open reporting year and versionNumber > 1', () => {
     const applicationRevision: ApplicationWizardConfirmation_applicationRevision = {
       ' $refType': 'ApplicationWizardConfirmation_applicationRevision',
       ' $fragmentRefs': {
@@ -280,6 +300,62 @@ describe('The Confirmation Component', () => {
           },
           ' $refType': 'ApplicationWizardConfirmation_query',
           openedReportingYear: {reportingYear: 2021}
+        }}
+        applicationRevision={applicationRevision}
+        relay={null}
+      />
+    );
+    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.find('Relay(SubmitApplicationComponent)').exists()).toBe(
+      true
+    );
+  });
+
+  it('shows the "submit application" button when the reporting year is closed and versionNumber > 1', () => {
+    const applicationRevision: ApplicationWizardConfirmation_applicationRevision = {
+      ' $refType': 'ApplicationWizardConfirmation_applicationRevision',
+      ' $fragmentRefs': {
+        SubmitApplication_applicationRevision: true,
+        ApplicationDetailsContainer_applicationRevision: true
+      },
+      id: 'abc',
+      overrideJustification: null,
+      versionNumber: 2,
+      orderedFormResults: {
+        edges: [
+          {
+            node: {
+              formResult: {foo: 'bar'},
+              formJsonByFormId: {
+                formJson: {
+                  schema: {
+                    type: 'object',
+                    properties: {
+                      foo: {type: 'string'}
+                    },
+                    required: ['foo']
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      validation: {
+        edges: []
+      },
+      applicationByApplicationId: {
+        reportingYear: 2020
+      }
+    };
+    const wrapper = shallow(
+      <ApplicationWizardConfirmationComponent
+        query={{
+          ' $fragmentRefs': {
+            ApplicationDetailsContainer_query: true
+          },
+          ' $refType': 'ApplicationWizardConfirmation_query',
+          openedReportingYear: null
         }}
         applicationRevision={applicationRevision}
         relay={null}
