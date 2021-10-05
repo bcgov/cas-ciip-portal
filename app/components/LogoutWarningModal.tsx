@@ -27,13 +27,13 @@ const LogoutWarningModal: React.FunctionComponent<Props> = ({
   }, []);
 
   return (
-    <Modal show size="lg" onHide={() => {}}>
+    <Modal show size="lg">
       <Modal.Header className="h4">Inactivity Logout Warning</Modal.Header>
       <Modal.Body style={{padding: '2em'}}>
         <Container>
           <Row>
             Your session is about to expire due to inactivity over{' '}
-            {inactivityDelaySeconds / 60} minutes.
+            {Math.floor(inactivityDelaySeconds / 60)} minutes.
           </Row>
           <Row>You will be logged out in {remainingSeconds} seconds.</Row>
         </Container>

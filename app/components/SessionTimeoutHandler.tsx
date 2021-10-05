@@ -19,7 +19,7 @@ const SessionTimeoutHandler: React.FunctionComponent<Props> = ({
   // UNIX epoch (ms)
   const [sessionExpiresOn, setSessionExpiresOn] = useState(Infinity);
 
-  const logoutOnSessionIdled = async () => {
+  const logoutOnSessionIdled = () => {
     router.push({
       pathname: '/login-redirect',
       query: {
@@ -58,6 +58,11 @@ const SessionTimeoutHandler: React.FunctionComponent<Props> = ({
             checkSessionIdle();
           }, (timeout - modalDisplaySecondsBeforeLogout) * 1000);
         } else if (timeout > 0) {
+          // We display the modal and set a timeout to check again when the session is due to expire according to the server.
+          // If the user has not extended their session by then we will redirect them (by invoking logoutOnSessionIdled() below)
+          // If they do extend their session (or have in a different tab), the `checkSessionIdle()` call will branch into the first condition above, hide the modal,
+          // and set another timeout to check the session idle when the modal is due to be displayed.
+
           setShowModal(true);
           timeoutId = setTimeout(() => {
             checkSessionIdle();
@@ -81,9 +86,7 @@ const SessionTimeoutHandler: React.FunctionComponent<Props> = ({
       <LogoutWarningModal
         inactivityDelaySeconds={modalDisplaySecondsBeforeLogout}
         expiresOn={sessionExpiresOn}
-        onExtendSession={() => {
-          extendSession();
-        }}
+        onExtendSession={extendSession}
       />
     )
   );
