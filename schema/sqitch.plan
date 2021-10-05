@@ -384,3 +384,4 @@ tables/application_revision_status_003 [tables/application_revision_status trigg
 mutations/create_application_revision_mutation_chain [mutations/create_application_revision_mutation_chain@v2.12.1] 2021-09-17T23:59:00Z Dylan Leard <dylan@button.is> # Migration: rework function to handle resubmitting applications from previous years
 @v2.13.0 2021-09-28T16:52:13Z Dylan Leard <dylan@button.is> # release v2.13.0
 @v2.13.1 2021-09-28T19:27:43Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # release v2.13.1
+@v2.13.2 2021-10-05T19:51:38Z Matthieu Foucault <matthieu@button.is> # release v2.13.2

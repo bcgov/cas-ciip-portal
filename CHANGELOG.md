@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.13.2](https://github.com/bcgov/cas-ciip-portal/compare/v2.13.1...v2.13.2) (2021-10-05)
+
+
+### Bug Fixes
+
+* app submit button should not crash when reporting year is closed ([23be1a0](https://github.com/bcgov/cas-ciip-portal/commit/23be1a0b09c82cc3958b225c55f7d514bd326e14))
+* update acme cronjobs in DAGs ([618df42](https://github.com/bcgov/cas-ciip-portal/commit/618df42590a7c644d20208d072d8397e5c5604f1))
+
 ### [2.13.1](https://github.com/bcgov/cas-ciip-portal/compare/v2.13.0...v2.13.1) (2021-09-28)
 
 ## [2.13.0](https://github.com/bcgov/cas-ciip-portal/compare/v2.12.1...v2.13.0) (2021-09-28)
