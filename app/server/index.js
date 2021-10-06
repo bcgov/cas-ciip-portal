@@ -31,6 +31,7 @@ const cookieParser = require('cookie-parser');
 const databaseConnectionService = require('./db/databaseConnectionService');
 const {createLightship} = require('lightship');
 const delay = require('delay');
+const {getSessionRemainingTime} = require('./helpers/keycloakHelpers');
 
 /**
  * Override keycloak accessDenied handler to redirect to our 403 page
@@ -212,17 +213,13 @@ app.prepare().then(async () => {
       return res.json(null);
     }
 
-    const grant = await keycloak.getGrant(req, res);
-    return res.json(
-      Math.round(grant.refresh_token.content.exp - Date.now() / 1000)
-    );
+    return res.json(await getSessionRemainingTime(keycloak, req, res));
   });
 
   // For any request (other than getting the remaining idle time), refresh the grant
   // if needed. If the access token is expired (defaults to 5min in keycloak),
   // the refresh token will be used to get a new access token, and the refresh token expiry will be updated.
   server.use(async (req, res, next) => {
-    if (req.path === '/session-idle-remaining-time') return next();
     if (req.kauth && req.kauth.grant) {
       try {
         const grant = await keycloak.getGrant(req, res);
@@ -231,8 +228,12 @@ app.prepare().then(async () => {
         return next(error);
       }
     }
-
     next();
+  });
+
+  // This ensures grant freshness with the next directive - we just return a success response code.
+  server.get('/extend-session', async (req, res) => {
+    return res.json(await getSessionRemainingTime(keycloak, req, res));
   });
 
   server.use(cookieParser());
