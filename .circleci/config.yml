@@ -8,7 +8,7 @@ orbs:
 jobs:
   tools:
     machine:
-      image: ubuntu-1604:201903-01
+      image: ubuntu-2004:202107-02
     working_directory: ~/cas-ciip-portal
     steps:
       - checkout:
@@ -149,7 +149,7 @@ jobs:
 
   lint:
     machine:
-      image: ubuntu-1604:201903-01
+      image: ubuntu-2004:202107-02
     working_directory: ~/cas-ciip-portal/app
     steps:
       - attach_workspace:
@@ -166,7 +166,7 @@ jobs:
 
   unit:
     machine:
-      image: ubuntu-1604:201903-01
+      image: ubuntu-2004:202107-02
     working_directory: ~/cas-ciip-portal/app
     steps:
       - attach_workspace:
@@ -179,7 +179,7 @@ jobs:
 
   audit:
     machine:
-      image: ubuntu-1604:201903-01
+      image: ubuntu-2004:202107-02
     working_directory: ~/cas-ciip-portal/app
     steps:
       - attach_workspace:
@@ -192,7 +192,7 @@ jobs:
 
   schema:
     machine:
-      image: ubuntu-1604:201903-01
+      image: ubuntu-2004:202107-02
     working_directory: ~/cas-ciip-portal
     steps:
       - run:
@@ -230,7 +230,7 @@ jobs:
 
   compile:
     machine:
-      image: ubuntu-1604:201903-01
+      image: ubuntu-2004:202107-02
     working_directory: ~/cas-ciip-portal/app
     steps:
       - attach_workspace:
@@ -312,7 +312,7 @@ jobs:
 
   test_database:
     machine:
-      image: ubuntu-1604:201903-01
+      image: ubuntu-2004:202107-02
     working_directory: ~/cas-ciip-portal
     steps:
       - run:
@@ -342,7 +342,7 @@ jobs:
 
   e2e-snapshots:
     machine:
-      image: ubuntu-1604:201903-01
+      image: ubuntu-2004:202107-02
     working_directory: ~/cas-ciip-portal
     steps:
       - run:
@@ -403,7 +403,7 @@ jobs:
             popd
   smoke:
     machine:
-      image: ubuntu-1604:201903-01
+      image: ubuntu-2004:202107-02
     working_directory: ~/cas-ciip-portal
     steps:
       - run:
@@ -455,7 +455,7 @@ jobs:
             ./run_test.sh smoke
   sqitch-plan-ends-with-tag:
     machine:
-      image: ubuntu-1604:201903-01
+      image: ubuntu-2004:202107-02
     working_directory: ~/cas-ciip-portal
     steps:
       - checkout:
@@ -470,7 +470,7 @@ jobs:
 
   sqitch-files-before-tag-are-immutable:
     machine:
-      image: ubuntu-1604:201903-01
+      image: ubuntu-2004:202107-02
     working_directory: ~/cas-ciip-portal
     steps:
       - checkout:
