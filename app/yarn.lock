@@ -11862,10 +11862,10 @@ stacktrace-parser@0.1.10:
   dependencies:
     type-fest "^0.7.1"
 
-standard-version@^9.3.0:
-  version "9.3.0"
-  resolved "https://registry.yarnpkg.com/standard-version/-/standard-version-9.3.0.tgz#2e6ff439aa49b2ea8952262f30ae6b70c02467d3"
-  integrity sha512-cYxxKXhYfI3S9+CA84HmrJa9B88H56V5FQ302iFF2TNwJukJCNoU8FgWt+11YtwKFXRkQQFpepC2QOF7aDq2Ow==
+standard-version@^9.3.1:
+  version "9.3.1"
+  resolved "https://registry.yarnpkg.com/standard-version/-/standard-version-9.3.1.tgz#786c16c318847f58a31a2434f97e8db33a635853"
+  integrity sha512-5qMxXw/FxLouC5nANyx/5RY1kiorJx9BppUso8gN07MG64q2uLRmrPb4KfXp3Ql4s/gxjZwZ89e0FwxeLubGww==
   dependencies:
     chalk "^2.4.2"
     conventional-changelog "3.1.24"
@@ -12568,9 +12568,9 @@ trim-newlines@4.0.1, trim-newlines@^1.0.0, trim-newlines@^3.0.0:
   integrity sha512-5n5GIW0uEbjCB2PO6OoaG11rscJmLOLw12ZG9e0vBKNMToDJ2n1+AkUhJpGO2bLj3jXKa/gYTGVmilX5CCxqmA==
 
 trim-off-newlines@^1.0.0:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/trim-off-newlines/-/trim-off-newlines-1.0.1.tgz#9f9ba9d9efa8764c387698bcbfeb2c848f11adb3"
-  integrity sha1-n5up2e+odkw4dpi8v+sshI8RrbM=
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/trim-off-newlines/-/trim-off-newlines-1.0.2.tgz#65d52e4f4115992c0dac87220bdcc279fe58c422"
+  integrity sha512-DAnbtY4lNoOTLw05HLuvPoBFAGV4zOKQ9d1Q45JB+bcDwYIEkCr0xNgwKtygtKFBbRlFA/8ytkAM1V09QGWksg==
 
 ts-invariant@^0.4.0:
   version "0.4.4"
