@@ -22,6 +22,35 @@ spec:
         component: app
 {{ include "cas-ciip-portal.labels" . | indent 8 }}
     spec:
+      initContainers:
+      - name: cas-ciip-portal-db-trigger
+        image: {{ index .Values "airflow-ciip-deploy-db" "image" "repository" }}:{{ index .Values "airflow-ciip-deploy-db" "image" "tag" }}
+        resources:
+          limits:
+            cpu: 50m
+            memory: 128Mi
+          requests:
+            cpu: 10m
+            memory: 64Mi
+        imagePullPolicy: {{ index .Values "airflow-ciip-deploy-db" "image" "pullPolicy" }}
+        env:
+          - name: AIRFLOW_ENDPOINT
+            value: {{ index .Values "airflow-ciip-deploy-db" "airflowEndpoint" }}
+          - name: AIRFLOW_USERNAME
+            value: cas-airflow-admin
+          - name: AIRFLOW_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: {{ index .Values "airflow-ciip-deploy-db" "airflowSecret" "key" }}
+                name: {{ index .Values "airflow-ciip-deploy-db" "airflowSecret" "name" }}
+          - name: RELEASE_SUFFIX
+            value: {{ include "cas-ciip-portal.namespaceSuffix" . }}
+        command:
+          - /usr/bin/env
+          - bash
+          - -c
+          - ./airflow-dag-trigger.sh {{ index .Values "airflow-ciip-deploy-db" "dagId" }} {{ index .Values "airflow-ciip-deploy-db" "dagConfiguration" | default "e30K" | quote }}
+
       containers:
       - name: {{ template "cas-ciip-portal.fullname" . }}
         imagePullPolicy: {{ .Values.image.pullPolicy }}
