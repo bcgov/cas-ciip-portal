@@ -136,14 +136,11 @@ airflow-ciip-cert-issue:
 
 airflow-ciip-deploy-db:
   image:
-    repository: gcr.io/ggl-cas-storage/cas-airflow-dag-trigger
     tag: 1.0.7
-    pullPolicy: Always
   airflowEndpoint: https://cas-airflow-dev.apps.silver.devops.gov.bc.ca
   dagId: cas_ciip_portal_deploy_db
-  airflowSecret:
-    name: airflow-default-user-password
-    key: default-user-pass
+  helm:
+    hook: false
 
 nginx-sidecar:
   image:

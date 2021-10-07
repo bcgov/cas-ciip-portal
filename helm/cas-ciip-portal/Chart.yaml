@@ -21,6 +21,10 @@ dependencies:
     repository: https://bcgov.github.io/cas-airflow
     alias: airflow-ciip-cert-issue
     condition: route.insecure
+  - name: cas-airflow-dag-trigger
+    version: 1.0.7
+    repository: https://bcgov.github.io/cas-airflow
+    alias: airflow-ciip-deploy-db
   - name: nginx-sidecar
     repository: https://bcgov.github.io/cas-template-app
     version: 0.1.6
