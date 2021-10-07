@@ -23,34 +23,53 @@ spec:
 {{ include "cas-ciip-portal.labels" . | indent 8 }}
     spec:
       initContainers:
-      - name: cas-ciip-portal-db-trigger
-        image: {{ index .Values "airflow-ciip-deploy-db" "image" "repository" }}:{{ index .Values "airflow-ciip-deploy-db" "image" "tag" }}
+      - env:
+        - name: SQITCH_TARGET
+          value: "db:pg:"
+        - name: PGUSER
+          valueFrom:
+            secretKeyRef:
+              key: database-user
+              name: {{ template "cas-ciip-portal.fullname" . }}
+        - name: PGPASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: database-password
+              name: {{ template "cas-ciip-portal.fullname" . }}
+        - name: PGDATABASE
+          valueFrom:
+            secretKeyRef:
+              key: database-name
+              name: {{ template "cas-ciip-portal.fullname" . }}
+        - name: PGPORT
+          value: "5432"
+        - name: PGHOST
+          value: {{ template "cas-ciip-portal.fullname" . }}-patroni
+        - name: NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        name: {{ template "cas-ciip-portal.fullname" . }}-wait-for-migrations
+        image: {{ .Values.image.schema.repository }}:{{ .Values.image.schema.tag }}
         resources:
           limits:
-            cpu: 50m
+            cpu: 500m
             memory: 128Mi
           requests:
-            cpu: 10m
+            cpu: 100m
             memory: 64Mi
-        imagePullPolicy: {{ index .Values "airflow-ciip-deploy-db" "image" "pullPolicy" }}
-        env:
-          - name: AIRFLOW_ENDPOINT
-            value: {{ index .Values "airflow-ciip-deploy-db" "airflowEndpoint" }}
-          - name: AIRFLOW_USERNAME
-            value: cas-airflow-admin
-          - name: AIRFLOW_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                key: {{ index .Values "airflow-ciip-deploy-db" "airflowSecret" "key" }}
-                name: {{ index .Values "airflow-ciip-deploy-db" "airflowSecret" "name" }}
-          - name: RELEASE_SUFFIX
-            value: {{ include "cas-ciip-portal.namespaceSuffix" . }}
         command:
           - /usr/bin/env
           - bash
           - -c
-          - ./airflow-dag-trigger.sh {{ index .Values "airflow-ciip-deploy-db" "dagId" }} {{ index .Values "airflow-ciip-deploy-db" "dagConfiguration" | default "e30K" | quote }}
-
+          - |
+            set -euo pipefail;
+            pushd schema;
+            while [ "$(sqitch status | tail -1)" != "Nothing to deploy (up-to-date)" ]; do
+              echo "Waiting 10s for migrations to complete..."
+              sleep 10;
+            done;
       containers:
       - name: {{ template "cas-ciip-portal.fullname" . }}
         imagePullPolicy: {{ .Values.image.pullPolicy }}
