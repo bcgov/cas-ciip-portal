@@ -150,8 +150,6 @@
   },
   "resolutions": {
     "**/node-fetch": "^2.6.1",
-    "next/resolve-url-loader/adjust-sourcemap-loader/object-path": "0.11.5",
-    "**/hosted-git-info": "4.0.1",
     "**/trim-newlines": "4.0.1",
     "easygraphql-parser": "^0.0.15",
     "**/set-value": "4.0.1",
