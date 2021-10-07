@@ -15,7 +15,8 @@ const SessionRefresher: React.FunctionComponent<Props> = ({refreshUrl}) => {
   };
 
   useEffect(() => {
-    const throttledSession = throttle(extendSession, 1000 * 60);
+    console.log('refresher mounted');
+    const throttledSession = throttle(extendSession, 1000 * 60); // bump session each minute.
     window.addEventListener('keydown', throttledSession);
     window.addEventListener('mousedown', throttledSession);
     window.addEventListener('scroll', throttledSession);
