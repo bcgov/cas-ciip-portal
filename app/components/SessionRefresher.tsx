@@ -5,6 +5,8 @@ interface Props {
   refreshUrl: string;
 }
 
+export const THROTTLED_TIME = 1000 * 60;
+
 const SessionRefresher: React.FunctionComponent<Props> = ({refreshUrl}) => {
   const extendSession = async () => {
     try {
@@ -15,8 +17,10 @@ const SessionRefresher: React.FunctionComponent<Props> = ({refreshUrl}) => {
   };
 
   useEffect(() => {
-    console.log('refresher mounted');
-    const throttledSession = throttle(extendSession, 1000 * 60); // bump session each minute.
+    const throttledSession = throttle(extendSession, THROTTLED_TIME, {
+      leading: false,
+      trailing: true
+    }); // bump session each minute.
     window.addEventListener('keydown', throttledSession);
     window.addEventListener('mousedown', throttledSession);
     window.addEventListener('scroll', throttledSession);
