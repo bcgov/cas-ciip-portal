@@ -3,7 +3,13 @@
 # We are not using subscriptions or websockets, so this CVE can be safely ignored for now (it currently has no fix as of June 1 2021)
 1748
 
-# Ignoring this https://www.npmjs.com/advisories/1778 advisory.
+# Ignoring these https://www.npmjs.com/advisories/1778 and https://www.npmjs.com/advisories/1002535 advisories.
 # It is a (nextJs) redirect vulnerability that doesn't affect deployments that have a "pages/404.tsx" file (like we do)
 # Marking this as ignored until we update the major version of next
 1778
+1002535
+
+# Ignoring this https://www.npmjs.com/advisories/1002496 advisory.
+# It is a Next.js vulnerability that only affects apps where "next.config.js" has `images.domains` assigned (we don't)
+# Marking this as ignored until we update the major version of next
+1002496
