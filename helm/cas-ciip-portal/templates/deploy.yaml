@@ -22,6 +22,54 @@ spec:
         component: app
 {{ include "cas-ciip-portal.labels" . | indent 8 }}
     spec:
+      initContainers:
+      - env:
+        - name: SQITCH_TARGET
+          value: "db:pg:"
+        - name: PGUSER
+          valueFrom:
+            secretKeyRef:
+              key: database-user
+              name: {{ template "cas-ciip-portal.fullname" . }}
+        - name: PGPASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: database-password
+              name: {{ template "cas-ciip-portal.fullname" . }}
+        - name: PGDATABASE
+          valueFrom:
+            secretKeyRef:
+              key: database-name
+              name: {{ template "cas-ciip-portal.fullname" . }}
+        - name: PGPORT
+          value: "5432"
+        - name: PGHOST
+          value: {{ template "cas-ciip-portal.fullname" . }}-patroni
+        - name: NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        name: {{ template "cas-ciip-portal.fullname" . }}-wait-for-migrations
+        image: {{ .Values.image.schema.repository }}:{{ .Values.image.schema.tag }}
+        resources:
+          limits:
+            cpu: 500m
+            memory: 128Mi
+          requests:
+            cpu: 100m
+            memory: 64Mi
+        command:
+          - /usr/bin/env
+          - bash
+          - -c
+          - |
+            set -euo pipefail;
+            pushd schema;
+            while [ "$(sqitch status | tail -1)" != "Nothing to deploy (up-to-date)" ]; do
+              echo "Waiting 10s for migrations to complete..."
+              sleep 10;
+            done;
       containers:
       - name: {{ template "cas-ciip-portal.fullname" . }}
         imagePullPolicy: {{ .Values.image.pullPolicy }}
