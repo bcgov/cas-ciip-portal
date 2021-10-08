@@ -92,7 +92,7 @@
   "devDependencies": {
     "@babel/core": "^7.12.13",
     "@types/enzyme": "^3.10.5",
-    "@types/jest": "^25.2.1",
+    "@types/jest": "^27.0.2",
     "@types/react-relay": "^11.0.1",
     "@types/relay-runtime": "^11.0.0",
     "@typescript-eslint/eslint-plugin": "^4.26.1",
@@ -112,7 +112,7 @@
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.6",
     "enzyme-to-json": "^3.6.2",
-    "eslint": "^7.10.0",
+    "eslint": "^7.32.0",
     "eslint-config-airbnb-typescript": "^11.0.0",
     "eslint-config-prettier": "^6.12.0",
     "eslint-plugin-cypress": "^2.11.2",
@@ -127,10 +127,10 @@
     "happo-cypress": "^1.20.0",
     "happo.io": "^6.6.1",
     "identity-obj-proxy": "^3.0.0",
-    "jest": "^27.0.4",
+    "jest": "^27.2.4",
     "jest-canvas-mock": "^2.3.1",
     "jest-extended": "^0.11.5",
-    "jest-mock-random": "^1.0.2",
+    "jest-mock-random": "^1.1.1",
     "jest-raw-loader": "^1.0.1",
     "json-schema-faker": "^0.5.0-rc23",
     "nock": "^9.6.1",
@@ -143,17 +143,17 @@
     "relay-config": "^11.0.1",
     "relay-test-utils": "^11.0.1",
     "require-context.macro": "^1.2.2",
-    "standard-version": "^9.3.0",
+    "standard-version": "^9.3.1",
     "typescript": "4.2.3",
     "wait-on": "^5.3.0",
     "webpack": "^5.38.1"
   },
   "resolutions": {
     "**/node-fetch": "^2.6.1",
-    "next/resolve-url-loader/adjust-sourcemap-loader/object-path": "0.11.5",
-    "**/hosted-git-info": "4.0.1",
     "**/trim-newlines": "4.0.1",
-    "easygraphql-parser": "^0.0.15"
+    "easygraphql-parser": "^0.0.15",
+    "**/set-value": "4.0.1",
+    "**/ansi-regex": "5.0.1"
   },
   "jest": {
     "testEnvironment": "jsdom",
