@@ -2,13 +2,17 @@ set client_min_messages to warning;
 create extension if not exists pgtap;
 reset client_min_messages;
 
+/**
+  This is a theoretical test for the operation of an audit schema.
+  It contains examples of how to implement an audit schema.
+  It then tests the rules & triggers necessary for the auditing to function.
+**/
+
 begin;
 
 create schema test_fixture_schema;
 set search_path to test_fixture_schema,public;
 
--- create schema asdf;
--- set search_path to :fixture_test_schema,public;
 create table test_fixture
 (
     id         serial,
