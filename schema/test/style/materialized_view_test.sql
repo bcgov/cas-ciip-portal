@@ -8,9 +8,9 @@ set search_path to :schemas_to_test,public;
 
 select * from no_plan();
 
-/** Check table compliance **/
+/** Check materialized view compliance **/
 
--- GUIDELINE: All tables should have descriptions
+-- GUIDELINE: All materialized views should have descriptions
 -- Check all materialized views for an existing description (regex '.+')
 with mvnames as (select matviewname from pg_matviews where schemaname = any (string_to_array(:'schemas_to_test', ',')))
 select matches(
