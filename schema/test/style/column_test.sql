@@ -29,7 +29,6 @@ select is_empty(
            );
 
 -- Get all view columns that do not have a comment
--- TODO: find out why regular comments interfere with Postgraphile magic comments & un-comment this test
 prepare null_view_comment as select FORMAT('Violation(view, column): %s, %s', c.relname, a.attname)
     from pg_class as c
     inner join pg_attribute as a on c.oid = a.attrelid
@@ -45,7 +44,7 @@ select is_empty(
     'null_view_comment', 'view columns have descriptions'
 );
 
--- Get all materialized view columns in schema ggrics_swrs that do not have a comment
+-- Get all materialized view columns that do not have a comment
 prepare null_mv_comment as select FORMAT('Violation(materialized view, column): %s, %s', c.relname, a.attname)
     from pg_class as c
     inner join pg_attribute as a on c.oid = a.attrelid
@@ -62,7 +61,7 @@ select is_empty(
            );
 
 -- GUIDELINE: Columns must have defined maximums for CHAR columns
--- Get all max char lengths from char tables
+-- Get all max char lengths from char columns in tables
 prepare table_null_char_max as select columns.character_maximum_length
                    from information_schema.columns
                    where table_schema = any (string_to_array(:'schemas_to_test', ','))
@@ -73,7 +72,7 @@ select is_empty(
                'table_null_char_max', 'table char columns have defined maximums'
            );
 
--- Get all max char lengths from char material views
+-- Get all max char lengths from char columns in materialized views
 prepare mv_null_char_max as select a.attname,
            pg_catalog.format_type(a.atttypid, a.atttypmod),
            a.atttypmod
@@ -88,34 +87,6 @@ prepare mv_null_char_max as select a.attname,
         and a.atttypmod < 0;
 -- Check there are no nulls for character_max_length when datatype is like 'char%'
 select is_empty('mv_null_char_max', 'Material view char columns have defined maximums');
-
--- GUIDELINE: Columns must have defined Scale and Precision for NUMERIC columns
--- Get all table numeric data types that return null when queried for their precision or scale
-prepare table_null_numeric_precision as select columns.numeric_precision, columns.numeric_scale
-                      from information_schema.columns
-                      where table_schema = any (string_to_array(:'schemas_to_test', ','))
-                        and data_type = 'numeric'
-                        and (columns.numeric_precision is null or columns.numeric_scale is null);
--- Check that the result of the above query is empty
--- select is_empty(
---                'table_null_numeric_precision', 'numeric columns have precison and scale'
---            );
-
--- Get all materialized view numeric data types that return null when queried for their precision or scale
-prepare mv_null_num_precision as select a.attname,
-           pg_catalog.format_type(a.atttypid, a.atttypmod),
-           a.atttypmod
-        from pg_attribute a
-        join pg_class t on a.attrelid = t.oid
-        join pg_namespace s on t.relnamespace = s.oid
-        where a.attnum > 0
-        and not a.attisdropped
-        and t.relkind = 'm'
-        and s.nspname = any (string_to_array(:'schemas_to_test', ','))
-        and a.atttypmod < 0
-        and pg_catalog.format_type(a.atttypid, a.atttypmod) = 'numeric';
--- Check there are no nulls for precision/scale when datatype is numeric
--- select is_empty('mv_null_num_precision', 'Material view numeric columns have defined precision and scale');
 
 -- GUIDELINE: Columns must be defined by an accepted data_type
 -- Get all table columns that have an undefined data_type
@@ -174,54 +145,29 @@ prepare mv_improper_datatype as select FORMAT('Violation(materialized view, colu
             );
 
 select is_empty('mv_improper_datatype', 'materialized view columns must be defined by an accepted data_type');
-/*
+
 -- GUIDELINE GROUP: Enforce column naming conventions
 -- GUIDELINE: Names are lower-case with underscores_as_word_separators
--- Check that all columns in schema do not return a match of capital letters or non-word characters
+-- Check that all columns in schema match format: starts with a letter charater, separated by underscores
 with cnames as (select column_name from information_schema.columns where table_schema = any (string_to_array(:'schemas_to_test', ',')))
-select doesnt_match(
+select matches(
                col,
-               '[A-Z]|\W',
+               '^[a-z]+[a-z0-9]*(?:_[a-z0-9]+)*',
                'column names are lower-case and separated by underscores'
            )
 from cnames f(col);
 
--- TODO: Names are singular
-
--- GUIDELINE: Avoid reserved keywords (ie. COMMENT -> [name]_comment) https://www.drupal.org/docs/develop/coding-standards/list-of-sql-reserved-words
--- create table from csv list of reserved words
-create table csv_import_fixture
-(
-    csv_column_fixture text
+-- GUIDELINE: Names do not use reserved keywords as identifiers
+select is_empty(
+  $$
+    select table_schema, table_name, column_name
+    from information_schema.columns
+    where table_schema = any (string_to_array((SELECT setting FROM pg_settings WHERE name = 'search_path'), ', '))
+    and column_name in (select word from pg_get_keywords() where catcode !='U')
+    order by table_schema, table_name
+  $$,
+  'Columns do not use reserved keywords as identifiers. Violation format: {schema, table, column}'
 );
-\copy csv_import_fixture from './test/fixture/sql_reserved_words.csv' delimiter ',' csv;
--- test that all tables in schema do not contain any column names that intersect with reserved words csv dictionary
-with reserved_words as (select csv_column_fixture from csv_import_fixture),
-     tnames as (select table_name from information_schema.tables where table_schema = any (string_to_array(:'schemas_to_test', ',')))
-select hasnt_column(
-               tbl,
-               word,
-               format('Column names avoid reserved keywords. Violation: col: %I, word: %I', tbl, word)
-           )
-from reserved_words as wtmp (word)
-         cross join tnames as ttmp (tbl);
-with reserved_words as (select csv_column_fixture from csv_import_fixture),
-mv_names as (select a.attname
-        from pg_attribute a
-        join pg_class t on a.attrelid = t.oid
-        join pg_namespace s on t.relnamespace = s.oid
-        where a.attnum > 0
-        and not a.attisdropped
-        and t.relkind = 'm'
-        and s.nspname = any (string_to_array(:'schemas_to_test', ',')))
-select hasnt_column(
-               mv,
-               word,
-               format('Column names avoid reserved keywords. Violation: col: %I, word: %I', mv, word)
-           )
-from reserved_words as wtmp (word)
-         cross join mv_names as mvtmp (mv);
-*/
 
 select * from finish();
 
