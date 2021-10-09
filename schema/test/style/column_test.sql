@@ -146,9 +146,8 @@ prepare mv_improper_datatype as select FORMAT('Violation(materialized view, colu
 
 select is_empty('mv_improper_datatype', 'materialized view columns must be defined by an accepted data_type');
 
--- GUIDELINE GROUP: Enforce column naming conventions
 -- GUIDELINE: Names are lower-case with underscores_as_word_separators
--- Check that all columns in schema match format: starts with a letter charater, separated by underscores
+-- Check that all columns names match format: lowercase, starts with a letter charater, separated by underscores
 with cnames as (select column_name from information_schema.columns where table_schema = any (string_to_array(:'schemas_to_test', ',')))
 select matches(
                col,
@@ -157,7 +156,7 @@ select matches(
            )
 from cnames f(col);
 
--- GUIDELINE: Names do not use reserved keywords as identifiers
+-- GUIDELINE: Column names do not use reserved keywords as identifiers
 select is_empty(
   $$
     select table_schema, table_name, column_name
