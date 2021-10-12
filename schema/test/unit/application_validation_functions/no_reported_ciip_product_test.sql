@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(5);
+select plan(6);
 
 select has_function(
   'ggircs_portal', 'no_reported_ciip_product', array['ggircs_portal.application_revision'],
@@ -119,6 +119,29 @@ select is(
     select ggircs_portal.no_reported_ciip_product((select * from record))),
   true,
   'Function returns true when there is at least one valid ciip product reported with productionAmount > 0'
+);
+
+update ggircs_portal.form_result
+set form_result =
+'[
+  {
+    "productRowId": 10,
+    "productUnits": "MWh",
+    "isCiipProduct": true,
+    "productAmount": 0,
+    "productEmissions": 5900,
+    "requiresProductAmount": false,
+    "requiresEmissionAllocation": true
+  }
+]'
+where form_id=(select id from ggircs_portal.form_json where slug = 'production');
+update ggircs_portal.product set requires_product_amount=false where id=10;
+
+select is(
+  (with record as (select row(application_revision.*)::ggircs_portal.application_revision from ggircs_portal.application_revision where application_id=1 and version_number=1)
+    select ggircs_portal.no_reported_ciip_product((select * from record))),
+  true,
+  'Function returns true when there is at least one valid ciip product reported with productionAmount = 0 and requiresProductAmount = false'
 );
 
 select finish();

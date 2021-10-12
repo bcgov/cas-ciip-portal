@@ -386,3 +386,4 @@ mutations/create_application_revision_mutation_chain [mutations/create_applicati
 @v2.13.1 2021-09-28T19:27:43Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # release v2.13.1
 @v2.13.2 2021-10-05T19:51:38Z Matthieu Foucault <matthieu@button.is> # release v2.13.2
 application_validation_functions/emission_category_missing_fuel [application_validation_functions/emission_category_missing_fuel@v2.13.0] 2021-04-27T21:54:17Z Dylan Leard <dylan@button.is> # Validation function to determine if there a missing fuels based on the emission categories with reported emissions
+application_validation_functions/no_reported_ciip_product [application_validation_functions/no_reported_ciip_product@v2.13.0] 2021-10-12T22:07:57Z Alex Zorkin <AizeeDev@BigThink> # Updating validation ogic on un-required products
