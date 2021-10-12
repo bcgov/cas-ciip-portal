@@ -3,11 +3,13 @@ import throttle from 'lodash.throttle';
 
 interface Props {
   refreshUrl: string;
+  throttledTime: number;
 }
 
-export const THROTTLED_TIME = 1000 * 60;
-
-const SessionRefresher: React.FunctionComponent<Props> = ({refreshUrl}) => {
+const SessionRefresher: React.FunctionComponent<Props> = ({
+  refreshUrl,
+  throttledTime = 1000 * 60
+}) => {
   const extendSession = async () => {
     try {
       await fetch(refreshUrl);
@@ -17,10 +19,10 @@ const SessionRefresher: React.FunctionComponent<Props> = ({refreshUrl}) => {
   };
 
   useEffect(() => {
-    const throttledSession = throttle(extendSession, THROTTLED_TIME, {
+    const throttledSession = throttle(extendSession, throttledTime, {
       leading: false,
       trailing: true
-    }); // bump session each minute.
+    });
     window.addEventListener('keydown', throttledSession);
     window.addEventListener('mousedown', throttledSession);
     window.addEventListener('scroll', throttledSession);

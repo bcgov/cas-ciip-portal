@@ -1,4 +1,4 @@
-import SessionRefresher, {THROTTLED_TIME} from 'components/SessionRefresher';
+import SessionRefresher from 'components/SessionRefresher';
 import {mount} from 'enzyme';
 import React from 'react';
 
@@ -12,9 +12,8 @@ beforeEach(() => {
 
 afterEach(() => {
   global.fetch = existingFetch;
-  jest.runOnlyPendingTimers();
+  jest.clearAllTimers();
   jest.useRealTimers();
-  jest.clearAllMocks();
 });
 
 describe('The Session Refresher', () => {
@@ -24,16 +23,27 @@ describe('The Session Refresher', () => {
       map[event] = callback;
     });
 
-    mount(<SessionRefresher refreshUrl="/session-idle-remaining-time" />);
+    const THROTTLED_TIME = 1000;
 
-    expect(global.fetch.mock.calls.length).toBe(0);
+    mount(
+      <SessionRefresher
+        refreshUrl="/session-idle-remaining-time"
+        throttledTime={THROTTLED_TIME}
+      />
+    );
+
+    expect(global.fetch).not.toHaveBeenCalled();
 
     // Trigger keydown event
     map.keydown({key: 'Enter'});
     jest.advanceTimersByTime(THROTTLED_TIME * 0.5);
+
+    expect(global.fetch).not.toHaveBeenCalled();
+
     map.keydown({key: 'Enter'});
     jest.advanceTimersByTime(THROTTLED_TIME);
 
-    expect(global.fetch.mock.calls.length).toBe(1);
+    expect(global.fetch).toHaveBeenCalledWith('/session-idle-remaining-time');
+    expect(global.fetch).toHaveBeenCalledTimes(1);
   });
 });
