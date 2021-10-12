@@ -28,19 +28,7 @@ $$;
 
 select test_helper.mock_open_window();
 select test_helper.create_test_users();
-select test_helper.create_applications(2, True, True);
-
-update ggircs_portal.form_result
-set form_result =
-'[
-    {
-      "fuelRowId": 13,
-      "quantity": 10,
-      "fuelUnits": "t",
-      "emissionCategoryRowId": 1
-    }
-  ]'
-where form_id=3;
+select test_helper.create_applications(1, True, True);
 
 update ggircs_portal.form_result
 set form_result =
@@ -65,34 +53,30 @@ set form_result =
 }'
 where application_id=1 and version_number=1 and form_id=2;
 
-update ggircs_portal.form_result
-set form_result =
-'
-{
-  "sourceTypes": [
-    {
-      "gases":
-        [
-          {"gwp": 1, "gasType": "CO2nonbio", "annualCO2e": 10, "annualEmission": 5, "gasDescription": "Carbon dioxide from non-biomass"}
-        ],
-      "sourceTypeName": "General Stationary Combustion"
-    }
-  ]
-}'
-where application_id=2 and version_number=1 and form_id=2;
-
 select is(
   (with record as (select row(application_revision.*)::ggircs_portal.application_revision from ggircs_portal.application_revision where application_id=1 and version_number=1)
     select ggircs_portal.emission_category_missing_fuel((select * from record))),
   false,
-  'Function returns false when there are emission categories with an emission reported, but no corresponding fuel reported'
+  'Function returns false when there are carbon taxed emission categories with an emission reported, but no corresponding fuel reported'
 );
 
+update ggircs_portal.form_result
+set form_result =
+'[
+    {
+      "fuelRowId": 13,
+      "quantity": 10,
+      "fuelUnits": "t",
+      "emissionCategoryRowId": 1
+    }
+  ]'
+where form_id=3;
+
 select is(
-  (with record as (select row(application_revision.*)::ggircs_portal.application_revision from ggircs_portal.application_revision where application_id=2 and version_number=1)
+  (with record as (select row(application_revision.*)::ggircs_portal.application_revision from ggircs_portal.application_revision where application_id=1 and version_number=1)
     select ggircs_portal.emission_category_missing_fuel((select * from record))),
   true,
-  'Function returns true when all emission categories with an emission reported have a corresponding fuel reported'
+  'Function returns true when all carbon taxed emission categories with an emission reported have a corresponding fuel reported'
 );
 
 select finish();

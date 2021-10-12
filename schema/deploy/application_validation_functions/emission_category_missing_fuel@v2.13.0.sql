@@ -11,9 +11,6 @@ create or replace function ggircs_portal.emission_category_missing_fuel(app_revi
   with emissions as (
     select distinct(source_type_name) as reported_via_emission
     from ggircs_portal.application_revision_emission_form_data(app_revision) ed
-    join ggircs_portal.emission_category ec
-      on ed.source_type_name = ec.display_name
-      and ec.carbon_taxed=true
     where ed.annual_co2e > 0
   ),
   fuel_data as (
