@@ -3,12 +3,12 @@ import throttle from 'lodash.throttle';
 
 interface Props {
   refreshUrl: string;
-  throttledTime: number;
+  throttledTime?: number;
 }
 
 const SessionRefresher: React.FunctionComponent<Props> = ({
   refreshUrl,
-  throttledTime = 1000 * 60
+  throttledTime = 1000 * 60 * 5 // 5 min default
 }) => {
   const extendSession = async () => {
     try {
