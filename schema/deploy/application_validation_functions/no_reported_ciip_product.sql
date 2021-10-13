@@ -15,7 +15,7 @@ create or replace function ggircs_portal.no_reported_ciip_product(app_revision g
       on pfd.product_id = p.id
       and p.is_ciip_product = true
       and p.is_energy_product = false
-      and pfd.product_amount > 0
+      and (pfd.product_amount > 0 or not p.requires_product_amount)
     );
 
 $$ language sql stable;
