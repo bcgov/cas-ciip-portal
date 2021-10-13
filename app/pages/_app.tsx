@@ -14,6 +14,7 @@ import safeJsonParse from 'lib/safeJsonParse';
 import RelayModernEnvironment from 'relay-runtime/lib/store/RelayModernEnvironment';
 import * as Sentry from '@sentry/react';
 import SessionTimeoutHandler from 'components/SessionTimeoutHandler';
+import SessionRefresher from 'components/SessionRefresher';
 
 interface AppProps {
   pageProps: {
@@ -66,7 +67,10 @@ export default class App extends NextApp<AppProps> {
     return (
       <Sentry.ErrorBoundary fallback={ErrorFallback}>
         {Component.isAccessProtected && (
-          <SessionTimeoutHandler modalDisplaySecondsBeforeLogout={120} />
+          <>
+            <SessionTimeoutHandler modalDisplaySecondsBeforeLogout={120} />
+            <SessionRefresher refreshUrl="/session-idle-remaining-time" />
+          </>
         )}
         <PageRedirectHandler
           environment={environment}
