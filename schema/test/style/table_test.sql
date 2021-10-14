@@ -28,7 +28,7 @@ with tnames as (select table_name from information_schema.tables where table_sch
 select matches(
                tbl,
                '^[a-z]+[a-z0-9]*(?:_[a-z0-9]+)*',
-               'column names are lower-case and separated by underscores'
+               'table names are lower-case and separated by underscores'
            )
 from tnames f(tbl);
 
