@@ -22,51 +22,28 @@ select matches(
            )
 from tnames f(tbl);
 
---GUIDELINE GROUP: Enforce table naming conventions
 -- GUIDELINE: Names are lower-case with underscores_as_word_separators
--- Check that all table names do not return a match of capital letters or non-word characters
+-- Check that all table names match format: lowercase, starts with a letter charater, separated by underscores
 with tnames as (select table_name from information_schema.tables where table_schema = any (string_to_array(:'schemas_to_test', ',')))
-select doesnt_match(
+select matches(
                tbl,
-               '[A-Z]|\W',
-               format('Table names are lower-case and separated by underscores. Violation: %I', tbl)
+               '^[a-z]+[a-z0-9]*(?:_[a-z0-9]+)*',
+               'table names are lower-case and separated by underscores'
            )
 from tnames f(tbl);
 
--- TODO: Names are singular
--- POSTGRES stemmer
--- ACTIVE RECORD (Ruby/Rails)
-
--- GUIDELINE: Avoid reserved keywords (ie. COMMENT -> [name]_comment) https://www.drupal.org/docs/develop/coding-standards/list-of-sql-reserved-words
--- create table from csv list of reserved words
-create table csv_import_fixture
-(
-    csv_column_fixture text
+-- GUIDELINE: Table names do not use reserved keywords as identifiers
+select is_empty(
+  $$
+    select table_schema, table_name
+    from information_schema.tables
+    where table_schema = any (string_to_array((SELECT setting FROM pg_settings WHERE name = 'search_path'), ', '))
+    and table_name in (select word from pg_get_keywords() where catcode !='U')
+    order by table_schema, table_name
+  $$,
+  'Tables do not use reserved keywords as identifiers. Violation format: {schema, table}'
 );
-\copy csv_import_fixture from './test/fixture/sql_reserved_words.csv' delimiter ',' csv;
--- test that schema does not contain any table names that intersect with reserved words csv dictionary
-with reserved_words as (select csv_column_fixture from csv_import_fixture),
-schema_names as (select schema_name from information_schema.schemata where schema_name = any (string_to_array(:'schemas_to_test', ',')))
-select hasnt_table(
-               sch,
-               res,
-               format('Table names avoid reserved keywords. Violation: %I', res)
-           )
-from reserved_words as rtmp (res)
-cross join schema_names as stmp (sch);
-drop table csv_import_fixture;
 
--- GUIDELINE: All tables must have a unique primary key
--- pg_TAP built in test functuon for checking all tables in schema have a primary key
-with tnames as (select table_name from information_schema.tables where table_schema = any (string_to_array(:'schemas_to_test', ',')) and table_type != 'VIEW')
-select has_pk(
-               tbl, format('Table has primary key. Violation: %I', tbl)
-           )
-from tnames f(tbl);
-
--- TODO: Related tables must have foreign key constraints : FK column names must match PK name from parent
-
-select *
-from finish();
+select * from finish();
 
 rollback;
