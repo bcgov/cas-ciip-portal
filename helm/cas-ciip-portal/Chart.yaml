@@ -6,7 +6,7 @@ version: 0.3.32
 appVersion: 2.14.2
 dependencies:
   - name: cas-postgres
-    version: "0.8.0"
+    version: "0.8.3"
     repository: https://bcgov.github.io/cas-postgres/
   - name: mailhog
     version: "3.3.0"

@@ -1,7 +1,7 @@
 dependencies:
 - name: cas-postgres
   repository: https://bcgov.github.io/cas-postgres/
-  version: 0.8.0
+  version: 0.8.3
 - name: mailhog
   repository: https://codecentric.github.io/helm-charts/
   version: 3.3.0
