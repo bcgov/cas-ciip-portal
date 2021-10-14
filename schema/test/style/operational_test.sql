@@ -3,9 +3,10 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 /**
-  This is a theoretical test for the operation of an audit schema.
-  It contains examples of how to implement an audit schema.
-  It then tests the rules & triggers necessary for the auditing to function.
+  This is a theoretical test for:
+  1: the operation of an audit schema.
+  2: a table rule to enforce soft-delete over hard-delete
+  It tests examples of the soft-delete rule & the triggers necessary for the audit schema to function.
 **/
 
 begin;

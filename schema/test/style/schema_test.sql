@@ -6,7 +6,7 @@ begin;
 
 set search_path to :schemas_to_test,public;
 
-select plan(5);
+select * from no_plan;
 
 /** Check schema compliance **/
 
