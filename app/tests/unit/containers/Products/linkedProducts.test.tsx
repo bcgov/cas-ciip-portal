@@ -1,44 +1,44 @@
-import React from 'react';
-import {shallow} from 'enzyme';
-import {LinkedProductsContainer} from 'containers/Products/LinkedProducts';
+import React from "react";
+import { shallow } from "enzyme";
+import { LinkedProductsContainer } from "containers/Products/LinkedProducts";
 
-describe('Linked Prdocuts', () => {
-  it('should match the last snapshot', async () => {
+describe("Linked Prdocuts", () => {
+  it("should match the last snapshot", async () => {
     const query = {
       nonEnergyProducts: {
         edges: [
           {
             node: {
-              id: 'abc',
+              id: "abc",
               rowId: 1,
-              productName: 'test product 1'
-            }
-          }
+              productName: "test product 1",
+            },
+          },
         ],
-        totalCount: 1
+        totalCount: 1,
       },
-      ' $refType': null
+      " $refType": null,
     };
     const product = {
-      id: 'abc',
+      id: "abc",
       rowId: 1,
-      productName: 'test product 1',
+      productName: "test product 1",
       linkedProductsByProductId: {
-        __id: 'connection',
+        __id: "connection",
         edges: [
           {
             node: {
-              id: 'asdf',
+              id: "asdf",
               rowId: 2,
               linkedProductId: 2,
               productByLinkedProductId: {
-                productName: 'linked product 1'
-              }
-            }
-          }
-        ]
+                productName: "linked product 1",
+              },
+            },
+          },
+        ],
       },
-      ' $refType': null
+      " $refType": null,
     };
 
     const r = shallow(

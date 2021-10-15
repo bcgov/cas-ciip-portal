@@ -1,17 +1,17 @@
-import React, {Component} from 'react';
-import {graphql} from 'react-relay';
-import {Row, Col, Button} from 'react-bootstrap';
-import {productsBenchmarksQueryResponse} from 'productsBenchmarksQuery.graphql';
-import DefaultLayout from 'layouts/default-layout';
-import ProductCreatorContainer from 'containers/Products/ProductCreatorContainer';
-import ProductListContainer from 'containers/Products/ProductListContainer';
-import {ADMIN_GROUP} from 'data/group-constants';
-import {DEFAULT_PAGE_SIZE} from 'components/FilterableTable/FilterableTablePagination';
+import React, { Component } from "react";
+import { graphql } from "react-relay";
+import { Row, Col, Button } from "react-bootstrap";
+import { productsBenchmarksQueryResponse } from "productsBenchmarksQuery.graphql";
+import DefaultLayout from "layouts/default-layout";
+import ProductCreatorContainer from "containers/Products/ProductCreatorContainer";
+import ProductListContainer from "containers/Products/ProductListContainer";
+import { ADMIN_GROUP } from "data/group-constants";
+import { DEFAULT_PAGE_SIZE } from "components/FilterableTable/FilterableTablePagination";
 
 const ALLOWED_GROUPS = ADMIN_GROUP;
 
 interface Props {
-  query: productsBenchmarksQueryResponse['query'];
+  query: productsBenchmarksQueryResponse["query"];
 }
 
 class ProductsBenchmarks extends Component<Props> {
@@ -50,51 +50,51 @@ class ProductsBenchmarks extends Component<Props> {
   `;
 
   state = {
-    formData: {formId: '', formJson: ''},
-    mode: 'view',
-    expandCreateForm: false
+    formData: { formId: "", formJson: "" },
+    mode: "view",
+    expandCreateForm: false,
   };
 
   static async getInitialProps() {
     return {
       variables: {
-        order_by: 'PRODUCT_NAME_ASC',
+        order_by: "PRODUCT_NAME_ASC",
         pageSize: DEFAULT_PAGE_SIZE,
-        offset: 0
-      }
+        offset: 0,
+      },
     };
   }
 
   toggleShowCreateForm = () => {
     const expanded = this.state.expandCreateForm;
-    this.setState({expandCreateForm: !expanded});
+    this.setState({ expandCreateForm: !expanded });
   };
 
   /** **  ProductRowItem Actions ** **/
 
   // Toggle enabling of editing products
   toggleProductMode = () => {
-    this.state.mode === 'view' || this.state.mode === 'benchmark'
-      ? this.setState({mode: 'product'})
-      : this.setState({mode: 'view'});
+    this.state.mode === "view" || this.state.mode === "benchmark"
+      ? this.setState({ mode: "product" })
+      : this.setState({ mode: "view" });
   };
 
   // Toggle enabling of editing benchmarks
   toggleBenchmarkMode = () => {
-    this.state.mode === 'view' || this.state.mode === 'product'
-      ? this.setState({mode: 'benchmark'})
-      : this.setState({mode: 'view'});
+    this.state.mode === "view" || this.state.mode === "product"
+      ? this.setState({ mode: "benchmark" })
+      : this.setState({ mode: "view" });
   };
 
   formIdHandler = (formId, formJson) => {
-    this.setState({formData: {formId, formJson}});
-    console.log('form-builder.js > formIdHandler state', this.state);
+    this.setState({ formData: { formId, formJson } });
+    console.log("form-builder.js > formIdHandler state", this.state);
   };
 
   /** ** END ProductRowItem Actions ** **/
 
   render() {
-    const {query} = this.props;
+    const { query } = this.props;
     const newProductButton = (
       <Button onClick={this.toggleShowCreateForm}>New Product</Button>
     );

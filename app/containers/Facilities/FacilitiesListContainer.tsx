@@ -1,8 +1,8 @@
-import React, {useMemo} from 'react';
-import {graphql, createFragmentContainer} from 'react-relay';
-import getConfig from 'next/config';
-import {FacilitiesListContainer_query} from 'FacilitiesListContainer_query.graphql';
-import FacilitiesRowItemContainer from './FacilitiesRowItemContainer';
+import React, { useMemo } from "react";
+import { graphql, createFragmentContainer } from "react-relay";
+import getConfig from "next/config";
+import { FacilitiesListContainer_query } from "FacilitiesListContainer_query.graphql";
+import FacilitiesRowItemContainer from "./FacilitiesRowItemContainer";
 import {
   TableFilter,
   TextFilter,
@@ -10,49 +10,49 @@ import {
   NumberFilter,
   ApplicationStatusFilter,
   NoHeaderFilter,
-  ReportingPeriodFilter
-} from 'components/FilterableTable/Filters';
-import FilterableTableLayout from 'components/FilterableTable/FilterableTable';
-import {useRouter} from 'next/router';
-import safeJsonParse from 'lib/safeJsonParse';
+  ReportingPeriodFilter,
+} from "components/FilterableTable/Filters";
+import FilterableTableLayout from "components/FilterableTable/FilterableTable";
+import { useRouter } from "next/router";
+import safeJsonParse from "lib/safeJsonParse";
 
 interface Props {
   query: FacilitiesListContainer_query;
 }
 
 const filters: TableFilter[] = [
-  new TextFilter('Operator Name', 'operatorName', {sortable: false}),
-  new TextFilter('Facility Name', 'facilityName', {sortable: false}),
+  new TextFilter("Operator Name", "operatorName", { sortable: false }),
+  new TextFilter("Facility Name", "facilityName", { sortable: false }),
   new EnumFilter<String>(
-    'Facility Type',
-    'facilityType',
-    ['SFO', 'IF_a', 'IF_b', 'L_c'],
-    {renderEnumValue: (label) => label, sortable: false}
+    "Facility Type",
+    "facilityType",
+    ["SFO", "IF_a", "IF_b", "L_c"],
+    { renderEnumValue: (label) => label, sortable: false }
   ),
-  new TextFilter('BC GHG id', 'facilityBcghgid', {sortable: false}),
+  new TextFilter("BC GHG id", "facilityBcghgid", { sortable: false }),
   new NumberFilter(
-    'Reporting period of last SWRS report',
-    'lastSwrsReportingYear',
-    {sortable: false}
+    "Reporting period of last SWRS report",
+    "lastSwrsReportingYear",
+    { sortable: false }
   ),
   new ApplicationStatusFilter(
-    'Application Status',
-    'applicationStatus',
-    'applicationIdIsNull'
+    "Application Status",
+    "applicationStatus",
+    "applicationIdIsNull"
   ),
-  new NumberFilter('Application #', 'applicationId', {sortable: false}),
-  new NoHeaderFilter()
+  new NumberFilter("Application #", "applicationId", { sortable: false }),
+  new NoHeaderFilter(),
 ];
 
-export const FacilitiesList: React.FunctionComponent<Props> = ({query}) => {
+export const FacilitiesList: React.FunctionComponent<Props> = ({ query }) => {
   const {
-    facilityApplicationByReportingYear: {edges, totalCount},
-    allReportingYears: {edges: reportingYears},
-    defaultDisplayedReportingYear
+    facilityApplicationByReportingYear: { edges, totalCount },
+    allReportingYears: { edges: reportingYears },
+    defaultDisplayedReportingYear,
   } = query;
 
   const adminEmail = getConfig()?.publicRuntimeConfig.ADMIN_EMAIL;
-  const adminMailToUrl = adminEmail ? `mailto:${adminEmail}` : '#';
+  const adminMailToUrl = adminEmail ? `mailto:${adminEmail}` : "#";
 
   const router = useRouter();
   const selectedReportingYear = useMemo(
@@ -76,13 +76,13 @@ export const FacilitiesList: React.FunctionComponent<Props> = ({query}) => {
   );
 
   const selectableReportingYears = [];
-  reportingYears.forEach(({node}) => {
+  reportingYears.forEach(({ node }) => {
     if (node.reportingYear < new Date().getFullYear())
       selectableReportingYears.push(node.reportingYear);
   });
 
   const reportingPeriodFilter = new ReportingPeriodFilter(
-    'reportingYear',
+    "reportingYear",
     selectableReportingYears,
     defaultDisplayedReportingYear.reportingYear
   );
@@ -96,7 +96,7 @@ export const FacilitiesList: React.FunctionComponent<Props> = ({query}) => {
         extraFilters={[reportingPeriodFilter]}
         totalCount={totalCount}
       />
-      If you cannot find your facility in the list, please{' '}
+      If you cannot find your facility in the list, please{" "}
       <a href={adminMailToUrl}>contact CAS</a> at {adminEmail} for assistance.
     </>
   );
@@ -106,19 +106,19 @@ export default createFragmentContainer(FacilitiesList, {
   query: graphql`
     fragment FacilitiesListContainer_query on Query
     @argumentDefinitions(
-      operatorName: {type: "String"}
-      facilityName: {type: "String"}
-      facilityType: {type: "String"}
-      applicationIdIsNull: {type: "Boolean"}
-      applicationId: {type: "Int"}
-      facilityBcghgid: {type: "String"}
-      lastSwrsReportingYear: {type: "Int"}
-      applicationStatus: {type: "CiipApplicationRevisionStatus"}
-      organisationRowId: {type: "Int"}
-      offsetValue: {type: "Int"}
-      reportingYear: {type: "Int"}
-      pageSize: {type: "Int"}
-      offset: {type: "Int"}
+      operatorName: { type: "String" }
+      facilityName: { type: "String" }
+      facilityType: { type: "String" }
+      applicationIdIsNull: { type: "Boolean" }
+      applicationId: { type: "Int" }
+      facilityBcghgid: { type: "String" }
+      lastSwrsReportingYear: { type: "Int" }
+      applicationStatus: { type: "CiipApplicationRevisionStatus" }
+      organisationRowId: { type: "Int" }
+      offsetValue: { type: "Int" }
+      reportingYear: { type: "Int" }
+      pageSize: { type: "Int" }
+      offset: { type: "Int" }
     ) {
       ...FacilitiesRowItemContainer_query
       facilityApplicationByReportingYear(
@@ -126,14 +126,17 @@ export default createFragmentContainer(FacilitiesList, {
         offset: $offset
         _reportingYear: $reportingYear
         filter: {
-          organisationId: {equalTo: $organisationRowId}
-          operatorName: {includesInsensitive: $operatorName}
-          facilityName: {includesInsensitive: $facilityName}
-          facilityType: {equalTo: $facilityType}
-          applicationStatus: {equalTo: $applicationStatus}
-          applicationId: {isNull: $applicationIdIsNull, equalTo: $applicationId}
-          facilityBcghgid: {includes: $facilityBcghgid}
-          lastSwrsReportingYear: {equalTo: $lastSwrsReportingYear}
+          organisationId: { equalTo: $organisationRowId }
+          operatorName: { includesInsensitive: $operatorName }
+          facilityName: { includesInsensitive: $facilityName }
+          facilityType: { equalTo: $facilityType }
+          applicationStatus: { equalTo: $applicationStatus }
+          applicationId: {
+            isNull: $applicationIdIsNull
+            equalTo: $applicationId
+          }
+          facilityBcghgid: { includes: $facilityBcghgid }
+          lastSwrsReportingYear: { equalTo: $lastSwrsReportingYear }
         }
       ) {
         edges {
@@ -156,5 +159,5 @@ export default createFragmentContainer(FacilitiesList, {
         reportingYear
       }
     }
-  `
+  `,
 });

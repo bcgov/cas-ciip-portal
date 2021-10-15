@@ -1,13 +1,13 @@
-import React, {Component} from 'react';
-import {Container} from 'react-bootstrap';
-import {graphql} from 'react-relay';
-import {CiipPageComponentProps} from 'next-env';
-import {applicationDisclaimerQueryResponse} from 'applicationDisclaimerQuery.graphql';
-import DefaultLayout from 'layouts/default-layout';
-import LegalDisclaimerText from 'components/LegalDisclaimerText';
+import React, { Component } from "react";
+import { Container } from "react-bootstrap";
+import { graphql } from "react-relay";
+import { CiipPageComponentProps } from "next-env";
+import { applicationDisclaimerQueryResponse } from "applicationDisclaimerQuery.graphql";
+import DefaultLayout from "layouts/default-layout";
+import LegalDisclaimerText from "components/LegalDisclaimerText";
 
 interface Props extends CiipPageComponentProps {
-  query: applicationDisclaimerQueryResponse['query'];
+  query: applicationDisclaimerQueryResponse["query"];
 }
 
 class ApplicationDisclaimer extends Component<Props> {
@@ -22,8 +22,8 @@ class ApplicationDisclaimer extends Component<Props> {
   `;
 
   render() {
-    const {query} = this.props;
-    const {session} = query || {};
+    const { query } = this.props;
+    const { session } = query || {};
     return (
       <DefaultLayout session={session} title="CIIP Application Disclaimer">
         <Container>

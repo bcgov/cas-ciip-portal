@@ -1,10 +1,10 @@
-import React, {useMemo, useState} from 'react';
-import {Button, Card, Col, Row} from 'react-bootstrap';
-import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
-import {AllowableProductsSearch_query} from '__generated__/AllowableProductsSearch_query.graphql';
-import SearchDropdownComponent from 'components/SearchDropdown';
-import {createProductNaicsCodeMutationVariables} from '__generated__/createProductNaicsCodeMutation.graphql';
-import createProductNaicsCodeMutation from 'mutations/product_naics_code/createProductNaicsCodeMutation';
+import React, { useMemo, useState } from "react";
+import { Button, Card, Col, Row } from "react-bootstrap";
+import { createFragmentContainer, graphql, RelayProp } from "react-relay";
+import { AllowableProductsSearch_query } from "__generated__/AllowableProductsSearch_query.graphql";
+import SearchDropdownComponent from "components/SearchDropdown";
+import { createProductNaicsCodeMutationVariables } from "__generated__/createProductNaicsCodeMutation.graphql";
+import createProductNaicsCodeMutation from "mutations/product_naics_code/createProductNaicsCodeMutation";
 
 interface Props {
   relay: RelayProp;
@@ -13,7 +13,7 @@ interface Props {
 
 export const AllowableProductsSearchContainer: React.FunctionComponent<Props> = ({
   relay,
-  query
+  query,
 }) => {
   const allowableProducts = useMemo(() => {
     const existingProductIds = query.naicsCode.productNaicsCodesByNaicsCodeId.edges.map(
@@ -24,7 +24,7 @@ export const AllowableProductsSearchContainer: React.FunctionComponent<Props> = 
       .map((e) => {
         return {
           id: e.node.rowId,
-          name: e.node.productName
+          name: e.node.productName,
         };
       })
       .filter((option) => !existingProductIds.includes(option.id));
@@ -36,13 +36,13 @@ export const AllowableProductsSearchContainer: React.FunctionComponent<Props> = 
   }>();
 
   const addAllowableProduct = async (productId: number, mandatory: boolean) => {
-    const {environment} = relay;
+    const { environment } = relay;
     const variables: createProductNaicsCodeMutationVariables = {
       input: {
         isMandatoryInput: mandatory,
         naicsCodeIdInput: query.naicsCode.rowId,
-        productIdInput: productId
-      }
+        productIdInput: productId,
+      },
     };
 
     try {
@@ -50,7 +50,7 @@ export const AllowableProductsSearchContainer: React.FunctionComponent<Props> = 
         environment,
         variables,
         query.naicsCode.id,
-        'AllowableProducts_productNaicsCodesByNaicsCodeId'
+        "AllowableProducts_productNaicsCodesByNaicsCodeId"
       );
     } catch (e) {
       console.error(e);
@@ -79,7 +79,7 @@ export const AllowableProductsSearchContainer: React.FunctionComponent<Props> = 
           <Col>
             <SearchDropdownComponent
               id="product-naics-search"
-              inputProps={{id: 'product-naics-search-typeahead'}}
+              inputProps={{ id: "product-naics-search-typeahead" }}
               options={allowableProducts}
               onChange={(items) => {
                 setSelectedProduct(items[0]);
@@ -94,7 +94,7 @@ export const AllowableProductsSearchContainer: React.FunctionComponent<Props> = 
               onClick={() => onAddClick(true)}
             >
               Add as Mandatory
-            </Button>{' '}
+            </Button>{" "}
             <Button
               disabled={!selectedProduct}
               variant="secondary"
@@ -112,13 +112,13 @@ export const AllowableProductsSearchContainer: React.FunctionComponent<Props> = 
 export default createFragmentContainer(AllowableProductsSearchContainer, {
   query: graphql`
     fragment AllowableProductsSearch_query on Query
-    @argumentDefinitions(naicsCodeId: {type: "ID!"}) {
+    @argumentDefinitions(naicsCodeId: { type: "ID!" }) {
       naicsCode(id: $naicsCodeId) {
         id
         rowId
         productNaicsCodesByNaicsCodeId(
           first: 2147483647
-          filter: {deletedAt: {isNull: true}}
+          filter: { deletedAt: { isNull: true } }
         )
           @connection(
             key: "AllowableProducts_productNaicsCodesByNaicsCodeId"
@@ -133,7 +133,7 @@ export default createFragmentContainer(AllowableProductsSearchContainer, {
         }
       }
       allProducts(
-        filter: {productState: {equalTo: PUBLISHED}}
+        filter: { productState: { equalTo: PUBLISHED } }
         orderBy: PRODUCT_NAME_ASC
       ) {
         edges {
@@ -144,5 +144,5 @@ export default createFragmentContainer(AllowableProductsSearchContainer, {
         }
       }
     }
-  `
+  `,
 });

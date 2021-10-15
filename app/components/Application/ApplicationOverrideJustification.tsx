@@ -1,10 +1,10 @@
-import React, {useState, useEffect} from 'react';
-import {createFragmentContainer, RelayProp} from 'react-relay';
-import {Accordion, Alert, Button, Form} from 'react-bootstrap';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faCaretDown} from '@fortawesome/free-solid-svg-icons';
-import updateApplicationRevisionMutation from 'mutations/application/updateApplicationRevisionMutation';
-import LoadingOnClickButton from 'components/helpers/LoadingOnClickButton';
+import React, { useState, useEffect } from "react";
+import { createFragmentContainer, RelayProp } from "react-relay";
+import { Accordion, Alert, Button, Form } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
+import updateApplicationRevisionMutation from "mutations/application/updateApplicationRevisionMutation";
+import LoadingOnClickButton from "components/helpers/LoadingOnClickButton";
 
 interface Props {
   overrideActive: boolean;
@@ -23,13 +23,13 @@ export const ApplicationOverrideJustificationComponent: React.FunctionComponent<
   revisionId,
   relay,
   hasErrors,
-  applicationDetailsRendered
+  applicationDetailsRendered,
 }) => {
   const [accordionOpen, setAccordionOpen] = useState(false);
   const [overrideJustification, setOverrideJustification] = useState(
     applicationOverrideJustification
   );
-  const [emptyError, setEmptyError] = useState('');
+  const [emptyError, setEmptyError] = useState("");
 
   const handleOverrideChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setOverrideJustification(e.target.value);
@@ -37,20 +37,20 @@ export const ApplicationOverrideJustificationComponent: React.FunctionComponent<
 
   const handleOverrideCancel = () => {
     setAccordionOpen(false);
-    setEmptyError('');
+    setEmptyError("");
     setOverrideActive(applicationOverrideJustification !== null);
     setOverrideJustification(applicationOverrideJustification || null);
   };
 
   const handleOverrideDelete = async () => {
-    const {environment} = relay;
+    const { environment } = relay;
     const variables = {
       input: {
         id: revisionId,
         applicationRevisionPatch: {
-          overrideJustification: null
-        }
-      }
+          overrideJustification: null,
+        },
+      },
     };
     await updateApplicationRevisionMutation(environment, variables);
     setOverrideJustification(null);
@@ -60,20 +60,20 @@ export const ApplicationOverrideJustificationComponent: React.FunctionComponent<
   const handleOverrideSave = async () => {
     if (overrideJustification) {
       setAccordionOpen(false);
-      const {environment} = relay;
+      const { environment } = relay;
       const variables = {
         input: {
           id: revisionId,
           applicationRevisionPatch: {
-            overrideJustification
-          }
-        }
+            overrideJustification,
+          },
+        },
       };
 
       await updateApplicationRevisionMutation(environment, variables);
-      setEmptyError('');
+      setEmptyError("");
       setOverrideActive(true);
-    } else setEmptyError('Justification cannot be empty');
+    } else setEmptyError("Justification cannot be empty");
   };
 
   const handleOverrideEdit = () => {
@@ -103,7 +103,7 @@ export const ApplicationOverrideJustificationComponent: React.FunctionComponent<
         </p>
         <p>{overrideJustification}</p>
         <Button
-          style={{marginRight: '5px'}}
+          style={{ marginRight: "5px" }}
           variant="secondary"
           onClick={handleOverrideEdit}
         >
@@ -141,7 +141,7 @@ export const ApplicationOverrideJustificationComponent: React.FunctionComponent<
               Override and Justify
               <FontAwesomeIcon
                 icon={faCaretDown}
-                style={{marginLeft: '0.75em'}}
+                style={{ marginLeft: "0.75em" }}
               />
             </Accordion.Toggle>
           </div>
@@ -154,7 +154,7 @@ export const ApplicationOverrideJustificationComponent: React.FunctionComponent<
                   <Form.Control
                     as="textarea"
                     rows={4}
-                    value={overrideJustification || ''}
+                    value={overrideJustification || ""}
                     onChange={handleOverrideChange}
                   />
                 </Form.Group>
@@ -170,8 +170,8 @@ export const ApplicationOverrideJustificationComponent: React.FunctionComponent<
                   eventKey="0"
                   variant="light"
                   style={{
-                    marginLeft: '1em',
-                    border: '1px solid currentColor'
+                    marginLeft: "1em",
+                    border: "1px solid currentColor",
                   }}
                   onClick={handleOverrideCancel}
                 >

@@ -1,17 +1,17 @@
-import React from 'react';
-import {Table} from 'react-bootstrap';
-import {dateTimeFormat} from 'functions/formatDates';
+import React from "react";
+import { Table } from "react-bootstrap";
+import { dateTimeFormat } from "functions/formatDates";
 
 interface Props {
   pastBenchmarks: any;
 }
 
 const PastBenchmarksComponent: React.FunctionComponent<Props> = (props) => {
-  const {pastBenchmarks} = props;
+  const { pastBenchmarks } = props;
 
-  const renderPastBenchmarks = pastBenchmarks.map(({node}) => (
+  const renderPastBenchmarks = pastBenchmarks.map(({ node }) => (
     <tr key={node.id}>
-      <td>{dateTimeFormat(node.createdAt, 'days_numbered')}</td>
+      <td>{dateTimeFormat(node.createdAt, "days_numbered")}</td>
       <td>{node.benchmark}</td>
       <td>{node.startReportingYear}</td>
       <td>{node.endReportingYear}</td>
@@ -35,7 +35,7 @@ const PastBenchmarksComponent: React.FunctionComponent<Props> = (props) => {
         <h3>Past Benchmarks</h3>
         <hr />
       </span>
-      <Table style={{textAlign: 'center'}}>
+      <Table style={{ textAlign: "center" }}>
         <thead>
           <tr>
             <th>Date Created (D-M-Y)</th>

@@ -1,3 +1,3 @@
-module.exports = (url = '') => {
+module.exports = (url = "") => {
   return `${process.env.HOST}/${url}`;
 };

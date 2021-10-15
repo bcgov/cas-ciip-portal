@@ -1,8 +1,8 @@
-import React from 'react';
-import {Col, Row} from 'react-bootstrap';
-import {Variant} from 'react-bootstrap/esm/types';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faCheck} from '@fortawesome/free-solid-svg-icons';
+import React from "react";
+import { Col, Row } from "react-bootstrap";
+import { Variant } from "react-bootstrap/esm/types";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
 interface NumberCircleProps {
   completed: boolean;
@@ -24,7 +24,7 @@ interface Props {
 const NumberedCircle: React.FunctionComponent<NumberCircleProps> = ({
   completed = false,
   number,
-  style
+  style,
 }) => {
   return (
     <>
@@ -33,9 +33,9 @@ const NumberedCircle: React.FunctionComponent<NumberCircleProps> = ({
           <FontAwesomeIcon
             icon={faCheck}
             style={{
-              fontSize: '30px',
-              verticalAlign: 'middle',
-              height: '0.8em'
+              fontSize: "30px",
+              verticalAlign: "middle",
+              height: "0.8em",
             }}
           />
         ) : (
@@ -63,7 +63,7 @@ const NumberedCircle: React.FunctionComponent<NumberCircleProps> = ({
 export const ProgressStepIndicator: React.FunctionComponent<Props> = ({
   steps,
   title = null,
-  ariaLabel = null
+  ariaLabel = null,
 }) => {
   const totalCompleted = steps.filter((s) => s.completed).length;
   const currStep = Math.max(totalCompleted - 1, 0);
@@ -86,10 +86,10 @@ export const ProgressStepIndicator: React.FunctionComponent<Props> = ({
           aria-valuenow={currStep}
           aria-valuemin={0}
           aria-valuemax={steps.length ? steps.length - 1 : 0}
-          aria-valuetext={steps.length ? steps[currStep].description : ''}
-          aria-labelledby={title && 'progressTitle'}
+          aria-valuetext={steps.length ? steps[currStep].description : ""}
+          aria-labelledby={title && "progressTitle"}
           aria-label={ariaLabel}
-          style={{width: `${progress}%`}}
+          style={{ width: `${progress}%` }}
         />
       </div>
       <div className="d-flex flex-row justify-content-between mb-3">

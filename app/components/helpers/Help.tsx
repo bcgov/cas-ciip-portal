@@ -1,5 +1,5 @@
-import React from 'react';
-import {Popover, OverlayTrigger} from 'react-bootstrap';
+import React from "react";
+import { Popover, OverlayTrigger } from "react-bootstrap";
 
 interface Props {
   title?: string | JSX.Element;

@@ -1,4 +1,4 @@
-const fs = require('fs');
+const fs = require("fs");
 
 function parseResult(filePath) {
   const fileContent = fs.readFileSync(filePath);

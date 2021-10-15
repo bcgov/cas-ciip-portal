@@ -1,45 +1,45 @@
-import React from 'react';
-import {shallow} from 'enzyme';
-import {Organisations_query} from 'Organisations_query.graphql';
-import {OrganisationsComponent} from 'containers/Organisations/Organisations';
+import React from "react";
+import { shallow } from "enzyme";
+import { Organisations_query } from "Organisations_query.graphql";
+import { OrganisationsComponent } from "containers/Organisations/Organisations";
 
 const queryWithoutOrganisations: Organisations_query = {
-  ' $refType': 'Organisations_query',
+  " $refType": "Organisations_query",
   session: {
     ciipUserBySub: {
-      id: '',
-      ciipUserOrganisationsByUserId: {edges: []}
-    }
+      id: "",
+      ciipUserOrganisationsByUserId: { edges: [] },
+    },
   },
-  allOrganisations: {edges: []}
+  allOrganisations: { edges: [] },
 };
 
 const queryWithOrganisations: Organisations_query = {
-  ' $refType': 'Organisations_query',
+  " $refType": "Organisations_query",
   session: {
     ciipUserBySub: {
-      id: '',
+      id: "",
       ciipUserOrganisationsByUserId: {
         edges: [
           {
             node: {
-              id: 'OrgId',
+              id: "OrgId",
               organisationId: 1,
-              status: 'PENDING',
-              ' $fragmentRefs': {UserOrganisation_userOrganisation: true}
-            }
-          }
-        ]
-      }
-    }
+              status: "PENDING",
+              " $fragmentRefs": { UserOrganisation_userOrganisation: true },
+            },
+          },
+        ],
+      },
+    },
   },
   allOrganisations: {
-    edges: []
-  }
+    edges: [],
+  },
 };
 
-describe('Organisations', () => {
-  it('should render no organisations if the user has not requested any access', async () => {
+describe("Organisations", () => {
+  it("should render no organisations if the user has not requested any access", async () => {
     const r = shallow(
       <OrganisationsComponent
         query={queryWithoutOrganisations}
@@ -71,7 +71,7 @@ describe('Organisations', () => {
     );
     expect(r).toMatchSnapshot();
     expect(
-      r.find('Relay(UserOrganisationComponent)').prop('userOrganisation')
+      r.find("Relay(UserOrganisationComponent)").prop("userOrganisation")
     ).toBe(
       queryWithOrganisations.session.ciipUserBySub.ciipUserOrganisationsByUserId
         .edges[0].node

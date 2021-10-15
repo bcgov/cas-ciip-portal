@@ -1,8 +1,8 @@
-import React, {useMemo} from 'react';
-import {Alert, Table} from 'react-bootstrap';
-import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
-import AllowableProductsTableRow from './AllowableProductsTableRow';
-import {AllowableProductsTable_naicsCode} from '__generated__/AllowableProductsTable_naicsCode.graphql';
+import React, { useMemo } from "react";
+import { Alert, Table } from "react-bootstrap";
+import { createFragmentContainer, graphql, RelayProp } from "react-relay";
+import AllowableProductsTableRow from "./AllowableProductsTableRow";
+import { AllowableProductsTable_naicsCode } from "__generated__/AllowableProductsTable_naicsCode.graphql";
 
 interface Props {
   relay: RelayProp;
@@ -71,7 +71,7 @@ export default createFragmentContainer(AllowableProductsTableComponent, {
       id
       productNaicsCodesByNaicsCodeId(
         first: 2147483647
-        filter: {deletedAt: {isNull: true}}
+        filter: { deletedAt: { isNull: true } }
       )
         @connection(
           key: "AllowableProducts_productNaicsCodesByNaicsCodeId"
@@ -88,5 +88,5 @@ export default createFragmentContainer(AllowableProductsTableComponent, {
         }
       }
     }
-  `
+  `,
 });

@@ -1,8 +1,8 @@
-import React from 'react';
-import {Row, Col} from 'react-bootstrap';
-import DefaultLayout from 'layouts/default-layout';
-import Link from 'next/link';
-import getConfig from 'next/config';
+import React from "react";
+import { Row, Col } from "react-bootstrap";
+import DefaultLayout from "layouts/default-layout";
+import Link from "next/link";
+import getConfig from "next/config";
 
 export default () => {
   const supportEmail = getConfig()?.publicRuntimeConfig.SUPPORT_EMAIL;
@@ -11,8 +11,8 @@ export default () => {
   return (
     <>
       <DefaultLayout session={null}>
-        <Row className="justify-content-center" style={{paddingTop: '3em'}}>
-          <Col md={{span: 6}} style={{textAlign: 'center'}}>
+        <Row className="justify-content-center" style={{ paddingTop: "3em" }}>
+          <Col md={{ span: 6 }} style={{ textAlign: "center" }}>
             <h1>Something went wrong</h1>
             <p>
               If you got here from the registration page, this is an issue that

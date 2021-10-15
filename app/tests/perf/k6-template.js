@@ -1,9 +1,9 @@
 // Module that generates a k6 configuration file
 // And writes it on the disk at the specified location
 
-const fs = require('fs');
+const fs = require("fs");
 
-module.exports.render = function (perf_test, role, path = './k6.js') {
+module.exports.render = function (perf_test, role, path = "./k6.js") {
   const fileContent = `
 import executeQueries from './executeQueries.js';
 import {textSummary} from 'https://jslib.k6.io/k6-summary/0.0.1/index.js';
@@ -19,7 +19,7 @@ export function handleSummary(data) {
 
 export default () => {
   executeQueries('${
-    process.env.GRAPHQL_ENDPOINT || 'http://localhost:3004/graphql'
+    process.env.GRAPHQL_ENDPOINT || "http://localhost:3004/graphql"
   }', '${role}');
 };
   `;

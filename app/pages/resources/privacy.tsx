@@ -1,12 +1,12 @@
-import React, {Component} from 'react';
-import {Container} from 'react-bootstrap';
-import {graphql} from 'react-relay';
-import {CiipPageComponentProps} from 'next-env';
-import {privacyQueryResponse} from 'privacyQuery.graphql';
-import DefaultLayout from 'layouts/default-layout';
+import React, { Component } from "react";
+import { Container } from "react-bootstrap";
+import { graphql } from "react-relay";
+import { CiipPageComponentProps } from "next-env";
+import { privacyQueryResponse } from "privacyQuery.graphql";
+import DefaultLayout from "layouts/default-layout";
 
 interface Props extends CiipPageComponentProps {
-  query: privacyQueryResponse['query'];
+  query: privacyQueryResponse["query"];
 }
 
 class Privacy extends Component<Props> {
@@ -21,8 +21,8 @@ class Privacy extends Component<Props> {
   `;
 
   render() {
-    const {query} = this.props;
-    const {session} = query || {};
+    const { query } = this.props;
+    const { session } = query || {};
     return (
       <DefaultLayout session={session} title="Privacy">
         <Container>
@@ -33,7 +33,7 @@ class Privacy extends Component<Props> {
           <p>
             The British Columbia (B.C.) government is committed to protecting
             your privacy. The B.C. Government collects, uses and discloses your
-            personal information in accordance with the{' '}
+            personal information in accordance with the{" "}
             <em>
               <a
                 href="https://www.bclaws.ca/Recon/document/ID/freeside/96165_00"
@@ -43,9 +43,9 @@ class Privacy extends Component<Props> {
                 Freedom of Information and Protection of Privacy Act
               </a>
               &nbsp;(FOIPPA)
-            </em>{' '}
+            </em>{" "}
             and other applicable legislation. ‘Personal information’ is defined
-            broadly in the{' '}
+            broadly in the{" "}
             <em>Freedom of Information and Protection of Privacy Act</em> as
             recorded information about an identifiable individual, other than
             contact information, which is the information used to contact a
@@ -142,7 +142,7 @@ class Privacy extends Component<Props> {
             other enforcement and security purposes. The B.C. government does
             not use this data to determine your identity unless required to do
             so as part of an internal investigation or for another
-            enforcement-related purpose, and then, only in compliance with{' '}
+            enforcement-related purpose, and then, only in compliance with{" "}
             <em>FOIPPA</em>.
           </p>
 
@@ -191,14 +191,14 @@ class Privacy extends Component<Props> {
             no later than 18 months from when they are first placed on your
             computer. Information collected as a part of a cookie or a security
             audit log is retained for 2 years. Information collected or created
-            by the Government of B.C. is maintained in accordance with{' '}
+            by the Government of B.C. is maintained in accordance with{" "}
             <a
               href="https://www.gov.bc.ca/citz/iao/records_mgmt/"
               target="_blank"
               rel="noopener noreferrer"
             >
               government&apos;s records retention schedules
-            </a>{' '}
+            </a>{" "}
             and other legislative requirements.
           </p>
 
@@ -245,7 +245,7 @@ class Privacy extends Component<Props> {
             of personal information, can be directed to a Senior Privacy Advisor
             at the Privacy, Compliance and Training Branch in the Ministry of
             Finance, PO Box 9493 Stn Prov Govt, Victoria, BC., V8W 9N7,
-            telephone (250) 356-1851.{' '}
+            telephone (250) 356-1851.{" "}
             <a href="mailto:Privacy.Helpline@gov.bc.ca">
               Privacy.Helpline@gov.bc.ca
             </a>

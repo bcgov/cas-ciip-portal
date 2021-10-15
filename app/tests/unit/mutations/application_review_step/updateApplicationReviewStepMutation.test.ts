@@ -1,21 +1,21 @@
-import fs from 'fs';
-import path from 'path';
-import EasyGraphQLTester from 'easygraphql-tester';
-import {mutation} from 'mutations/application_review_step/updateApplicationReviewStepMutation';
+import fs from "fs";
+import path from "path";
+import EasyGraphQLTester from "easygraphql-tester";
+import { mutation } from "mutations/application_review_step/updateApplicationReviewStepMutation";
 
 const schemaCode = fs.readFileSync(
-  path.join(__dirname, '../../../../server', 'schema.graphql'),
-  'utf8'
+  path.join(__dirname, "../../../../server", "schema.graphql"),
+  "utf8"
 );
 
 const mutationString = (mutation as any).default.params.text;
 
-describe('updateApplicationReviewStepMutation', () => {
+describe("updateApplicationReviewStepMutation", () => {
   let tester;
   beforeEach(() => {
     tester = new EasyGraphQLTester(schemaCode);
   });
-  it('Should throw an error if input is missing', () => {
+  it("Should throw an error if input is missing", () => {
     let error;
     try {
       tester.mock(mutationString);
@@ -27,13 +27,13 @@ describe('updateApplicationReviewStepMutation', () => {
       'Variable "$input" of required type "UpdateApplicationReviewStepInput!" was not provided.'
     );
   });
-  it('Should throw an error if a variable is missing', () => {
+  it("Should throw an error if a variable is missing", () => {
     let error;
     try {
       tester.mock(mutationString, {
         input: {
-          id: 'abc'
-        }
+          id: "abc",
+        },
       });
     } catch (error_) {
       error = error_;
@@ -43,14 +43,14 @@ describe('updateApplicationReviewStepMutation', () => {
       'Variable "$input" got invalid value { id: "abc" }; Field "applicationReviewStepPatch" of required type "ApplicationReviewStepPatch!" was not provided.'
     );
   });
-  it('Should return isComplete(boolean) if valid', () => {
+  it("Should return isComplete(boolean) if valid", () => {
     const test = tester.mock(mutationString, {
       input: {
-        id: 'abc',
+        id: "abc",
         applicationReviewStepPatch: {
-          isComplete: true
-        }
-      }
+          isComplete: true,
+        },
+      },
     });
     expect(test).toBeDefined();
     expect(

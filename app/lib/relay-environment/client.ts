@@ -1,11 +1,11 @@
-import {Environment, RecordSource, Store} from 'relay-runtime';
+import { Environment, RecordSource, Store } from "relay-runtime";
 import {
   RelayNetworkLayer,
   urlMiddleware,
   batchMiddleware,
-  cacheMiddleware
-} from 'react-relay-network-modern/node8';
-import debounceMutationMiddleware from './debounce-mutations';
+  cacheMiddleware,
+} from "react-relay-network-modern/node8";
+import debounceMutationMiddleware from "./debounce-mutations";
 
 const source = new RecordSource();
 const store = new Store(source);
@@ -23,21 +23,21 @@ export default {
           size: 100, // Max 100 requests
           // Number in milliseconds, how long records stay valid in cache (default: 900000, 15 minutes).
           // TODO: is one minute enough? How long should records stay valid?
-          ttl: oneMinute
+          ttl: oneMinute,
         }),
         urlMiddleware({
-          url: async () => Promise.resolve('/graphql')
+          url: async () => Promise.resolve("/graphql"),
         }),
         debounceMutationMiddleware(),
         batchMiddleware({
-          batchUrl: async () => Promise.resolve('/graphql'),
+          batchUrl: async () => Promise.resolve("/graphql"),
           batchTimeout: 10,
-          allowMutations: true
-        })
+          allowMutations: true,
+        }),
       ]),
-      store
+      store,
     });
 
     return storeEnvironment;
-  }
+  },
 };

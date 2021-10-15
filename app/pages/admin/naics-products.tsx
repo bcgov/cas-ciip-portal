@@ -1,14 +1,14 @@
-import React, {Component} from 'react';
-import {graphql} from 'react-relay';
-import {naicsProductsAssociationsQueryResponse} from 'naicsProductsAssociationsQuery.graphql';
-import DefaultLayout from 'layouts/default-layout';
-import {ADMIN_GROUP} from 'data/group-constants';
-import NaicsCodeProductAssociationComponent from 'containers/Admin/ProductNaicsCode/ProductNaicsCodeAssociation';
+import React, { Component } from "react";
+import { graphql } from "react-relay";
+import { naicsProductsAssociationsQueryResponse } from "naicsProductsAssociationsQuery.graphql";
+import DefaultLayout from "layouts/default-layout";
+import { ADMIN_GROUP } from "data/group-constants";
+import NaicsCodeProductAssociationComponent from "containers/Admin/ProductNaicsCode/ProductNaicsCodeAssociation";
 
 const ALLOWED_GROUPS = ADMIN_GROUP;
 
 interface Props {
-  query: naicsProductsAssociationsQueryResponse['query'];
+  query: naicsProductsAssociationsQueryResponse["query"];
 }
 
 class NaicsProductsAssociations extends Component<Props> {
@@ -29,13 +29,13 @@ class NaicsProductsAssociations extends Component<Props> {
   static async getInitialProps() {
     return {
       variables: {
-        naicsCodeId: ''
-      }
+        naicsCodeId: "",
+      },
     };
   }
 
   render() {
-    const {query} = this.props;
+    const { query } = this.props;
     return (
       <DefaultLayout
         session={query.session}

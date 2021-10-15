@@ -1,11 +1,11 @@
-import React from 'react';
+import React from "react";
 
-const SiteNoticeBanner = ({content}) => {
+const SiteNoticeBanner = ({ content }) => {
   return (
     /* eslint-disable react/no-danger */
     <>
       <div
-        dangerouslySetInnerHTML={{__html: content}}
+        dangerouslySetInnerHTML={{ __html: content }}
         id="site-banner"
         role="alert"
       />

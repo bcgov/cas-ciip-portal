@@ -1,20 +1,20 @@
-import {nowMoment, defaultMoment} from 'functions/formatDates';
+import { nowMoment, defaultMoment } from "functions/formatDates";
 
 const ERRORS = {
   APPLICATION_WINDOW_OVERLAPS:
-    'Application open and close dates must not overlap with those of another reporting period.',
+    "Application open and close dates must not overlap with those of another reporting period.",
   REPORTING_PERIOD_OVERLAPS:
-    'Reporting period start and end dates must not overlap with those of another reporting period.',
+    "Reporting period start and end dates must not overlap with those of another reporting period.",
   CLOSE_BEFORE_OPEN_DATE:
-    'Application close time must occur after the open time',
+    "Application close time must occur after the open time",
   CLOSE_BEFORE_REPORTING_END:
-    'Application close time must occur after the reporting period end',
-  PAST_DATE: 'Please select a future date for:',
+    "Application close time must occur after the reporting period end",
+  PAST_DATE: "Please select a future date for:",
   END_BEFORE_START:
-    'Reporting period end must occur after the reporting period start',
+    "Reporting period end must occur after the reporting period start",
   REPORTING_YEAR:
-    'Reporting year must occur between the reporting period start and end',
-  NON_UNIQUE_KEY: 'Reporting year already exists; please choose another year'
+    "Reporting year must occur between the reporting period start and end",
+  NON_UNIQUE_KEY: "Reporting year already exists; please choose another year",
 };
 
 function isPastDate(date) {
@@ -52,7 +52,7 @@ function validateExclusiveDateRanges(
     applicationOpenTime,
     applicationCloseTime,
     reportingPeriodStart,
-    reportingPeriodEnd
+    reportingPeriodEnd,
   },
   errors
 ) {
@@ -62,8 +62,8 @@ function validateExclusiveDateRanges(
       existingYears,
       applicationOpenTime,
       applicationCloseTime,
-      'applicationOpenTime',
-      'applicationCloseTime'
+      "applicationOpenTime",
+      "applicationCloseTime"
     );
     if (doesApplicationWindowOverlap) {
       errors.addError(ERRORS.APPLICATION_WINDOW_OVERLAPS);
@@ -75,8 +75,8 @@ function validateExclusiveDateRanges(
       existingYears,
       reportingPeriodStart,
       reportingPeriodEnd,
-      'reportingPeriodStart',
-      'reportingPeriodEnd'
+      "reportingPeriodStart",
+      "reportingPeriodEnd"
     );
     if (doesReportingPeriodOverlap) {
       errors.addError(ERRORS.REPORTING_PERIOD_OVERLAPS);
@@ -102,23 +102,23 @@ function validateApplicationDates(
     : undefined;
 
   const reportingEnd =
-    'reportingPeriodEnd' in formData
+    "reportingPeriodEnd" in formData
       ? defaultMoment(formData.reportingPeriodEnd)
-      : 'reportingPeriodEnd' in existingData
+      : "reportingPeriodEnd" in existingData
       ? defaultMoment(existingData.reportingPeriodEnd)
       : null;
 
   if (
     Boolean(openDate) &&
     isPastDate(openDate) &&
-    !uiSchema.applicationOpenTime['ui:disabled']
+    !uiSchema.applicationOpenTime["ui:disabled"]
   ) {
     errors.addError(`${ERRORS.PAST_DATE} Application open time`);
   }
 
   if (
     Boolean(closeDate) &&
-    !uiSchema.applicationCloseTime['ui:disabled'] &&
+    !uiSchema.applicationCloseTime["ui:disabled"] &&
     validateFutureApplicationClose &&
     isPastDate(closeDate)
   ) {
@@ -128,7 +128,7 @@ function validateApplicationDates(
   if (
     Boolean(closeDate) &&
     Boolean(openDate) &&
-    !uiSchema.applicationCloseTime['ui:disabled'] &&
+    !uiSchema.applicationCloseTime["ui:disabled"] &&
     closeDate.isSameOrBefore(openDate)
   ) {
     errors.addError(ERRORS.CLOSE_BEFORE_OPEN_DATE);
@@ -137,7 +137,7 @@ function validateApplicationDates(
   if (
     Boolean(closeDate) &&
     Boolean(reportingEnd) &&
-    !uiSchema.applicationCloseTime['ui:disabled'] &&
+    !uiSchema.applicationCloseTime["ui:disabled"] &&
     closeDate.isBefore(reportingEnd)
   ) {
     errors.addError(ERRORS.CLOSE_BEFORE_REPORTING_END);
@@ -196,5 +196,5 @@ export {
   // Note: The below exports are only used directly by unit tests:
   ERRORS,
   doesRangeOverlap,
-  validateReportingDates
+  validateReportingDates,
 };

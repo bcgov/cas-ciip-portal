@@ -1,15 +1,15 @@
-import {mount} from 'enzyme';
-import withPromiseLoading from 'lib/withPromiseLoading';
-import React from 'react';
-import {act} from 'react-dom/test-utils';
+import { mount } from "enzyme";
+import withPromiseLoading from "lib/withPromiseLoading";
+import React from "react";
+import { act } from "react-dom/test-utils";
 
 interface TestProps {
   asyncFunction: (value: unknown) => Promise<void>;
   toggledProp: boolean;
 }
 
-describe('the withPromiseLoading higher order component', () => {
-  it('toggles the passed property back and forth with the async call', async () => {
+describe("the withPromiseLoading higher order component", () => {
+  it("toggles the passed property back and forth with the async call", async () => {
     let spyedOnProps: TestProps;
 
     const SpyableComponent: React.FunctionComponent<TestProps> = (props) => {
@@ -28,8 +28,8 @@ describe('the withPromiseLoading higher order component', () => {
 
     const HocUnderTest = withPromiseLoading(
       SpyableComponent,
-      'asyncFunction',
-      'toggledProp'
+      "asyncFunction",
+      "toggledProp"
     );
 
     act(() => {

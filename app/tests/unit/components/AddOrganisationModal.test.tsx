@@ -1,9 +1,9 @@
-import React from 'react';
-import {mount} from 'enzyme';
-import AddOrganisationFacility from 'components/AddOrganisationModal';
+import React from "react";
+import { mount } from "enzyme";
+import AddOrganisationFacility from "components/AddOrganisationModal";
 
-describe('AddOrganisationFacility Component', () => {
-  it('should match the last snapshot', () => {
+describe("AddOrganisationFacility Component", () => {
+  it("should match the last snapshot", () => {
     const render = mount(
       <AddOrganisationFacility onAddOrganisation={jest.fn()} />
     );
@@ -14,6 +14,6 @@ describe('AddOrganisationFacility Component', () => {
     const render = mount(
       <AddOrganisationFacility onAddOrganisation={jest.fn()} />
     );
-    expect(render.find('Button').text()).toBe('Add Operation +');
+    expect(render.find("Button").text()).toBe("Add Operation +");
   });
 });

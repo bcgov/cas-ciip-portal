@@ -1,14 +1,14 @@
-import React from 'react';
-import {graphql, createFragmentContainer} from 'react-relay';
-import {Dropdown} from 'react-bootstrap';
+import React from "react";
+import { graphql, createFragmentContainer } from "react-relay";
+import { Dropdown } from "react-bootstrap";
 
 export const FacilityComponent = (props) => {
-  const {facility} = props;
+  const { facility } = props;
   if (!facility) {
     return null;
   }
 
-  let {facilityName} = facility;
+  let { facilityName } = facility;
 
   if (!facility.facilityName)
     facilityName = `empty name (swrs facility id = ${facility.swrsFacilityId})`;
@@ -46,5 +46,5 @@ export default createFragmentContainer(FacilityComponent, {
       swrsReportId
       swrsFacilityId
     }
-  `
+  `,
 });

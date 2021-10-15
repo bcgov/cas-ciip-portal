@@ -1,14 +1,14 @@
-import React from 'react';
-import {createFragmentContainer, graphql} from 'react-relay';
-import Money from 'components/helpers/Money';
-import {IncentiveSegmentContainer_ciipIncentiveByProduct} from 'IncentiveSegmentContainer_ciipIncentiveByProduct.graphql';
+import React from "react";
+import { createFragmentContainer, graphql } from "react-relay";
+import Money from "components/helpers/Money";
+import { IncentiveSegmentContainer_ciipIncentiveByProduct } from "IncentiveSegmentContainer_ciipIncentiveByProduct.graphql";
 
 interface Props {
   ciipIncentiveByProduct: IncentiveSegmentContainer_ciipIncentiveByProduct;
 }
 
 const IncentiveSegmentContainer: React.FunctionComponent<Props> = ({
-  ciipIncentiveByProduct
+  ciipIncentiveByProduct,
 }) => {
   const {
     productName,
@@ -19,7 +19,7 @@ const IncentiveSegmentContainer: React.FunctionComponent<Props> = ({
     incentiveRatio,
     incentiveMultiplier,
     paymentAllocationFactor,
-    emissionIntensity
+    emissionIntensity,
   } = ciipIncentiveByProduct;
 
   return (
@@ -73,5 +73,5 @@ export default createFragmentContainer(IncentiveSegmentContainer, {
       benchmark
       eligibilityThreshold
     }
-  `
+  `,
 });

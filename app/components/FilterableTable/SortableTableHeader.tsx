@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import React, { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSort,
   faCaretUp,
-  faCaretDown
-} from '@fortawesome/free-solid-svg-icons';
-import {useRouter} from 'next/router';
+  faCaretDown,
+} from "@fortawesome/free-solid-svg-icons";
+import { useRouter } from "next/router";
 
 interface Props {
   headerVariables: {
@@ -16,11 +16,11 @@ interface Props {
   };
 }
 
-const SORT_DIRECTION = ['ASC', 'DESC'];
+const SORT_DIRECTION = ["ASC", "DESC"];
 const SORT_ICONS = [faCaretDown, faCaretUp];
 
 const SortableTableHeader: React.FunctionComponent<Props> = ({
-  headerVariables: {columnName, displayName, sortable, hasTableHeader}
+  headerVariables: { columnName, displayName, sortable, hasTableHeader },
 }) => {
   const router = useRouter();
   const sortDirectionIndex = SORT_DIRECTION.indexOf(
@@ -31,7 +31,7 @@ const SortableTableHeader: React.FunctionComponent<Props> = ({
   );
 
   const getOrderbyString = (orderColumnName, sortDirection) => {
-    return orderColumnName.toUpperCase() + '_' + SORT_DIRECTION[sortDirection];
+    return orderColumnName.toUpperCase() + "_" + SORT_DIRECTION[sortDirection];
   };
 
   const triggerSort = (sortColumnName) => {
@@ -43,20 +43,20 @@ const SortableTableHeader: React.FunctionComponent<Props> = ({
       pathname: router.pathname,
       query: {
         ...router.query,
-        order_by: getOrderbyString(sortColumnName, sortDirection)
-      }
+        order_by: getOrderbyString(sortColumnName, sortDirection),
+      },
     };
 
-    router.replace(url, url, {shallow: true});
+    router.replace(url, url, { shallow: true });
   };
 
-  const TableHeaderTag = hasTableHeader ? 'th' : 'td';
+  const TableHeaderTag = hasTableHeader ? "th" : "td";
 
   return (
     <TableHeaderTag onClick={() => sortable && triggerSort(columnName)}>
       <span>{displayName}</span>
       {sortable && (
-        <span style={{height: '100%', position: 'absolute', right: '0.75em'}}>
+        <span style={{ height: "100%", position: "absolute", right: "0.75em" }}>
           <FontAwesomeIcon
             color="white"
             icon={

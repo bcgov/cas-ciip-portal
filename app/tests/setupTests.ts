@@ -1,16 +1,16 @@
 // Enzyme setup file
-import Enzyme from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-import {createSerializer} from 'enzyme-to-json';
-import {queryMock} from './relayQueryMock';
+import Enzyme from "enzyme";
+import Adapter from "enzyme-adapter-react-16";
+import { createSerializer } from "enzyme-to-json";
+import { queryMock } from "./relayQueryMock";
 
 // Set the default serializer for Jest to be the from enzyme-to-json
 // This produces an easier to read (for humans) serialized format.
 // @ts-ignore
-expect.addSnapshotSerializer(createSerializer({mode: 'deep'}));
+expect.addSnapshotSerializer(createSerializer({ mode: "deep" }));
 
 // React 16 Enzyme adapter
-Enzyme.configure({adapter: new Adapter()});
+Enzyme.configure({ adapter: new Adapter() });
 
 // Define globals to cut down on imports in test files
 // global.React = React;
@@ -27,7 +27,7 @@ beforeEach(() => {
    * We clean up mounted things from react-testing-library.
    */
 
-  queryMock.setup('http://localhost:3004/graphql'); // Initialize our queryMock for each test suite
+  queryMock.setup("http://localhost:3004/graphql"); // Initialize our queryMock for each test suite
 });
 
 /**

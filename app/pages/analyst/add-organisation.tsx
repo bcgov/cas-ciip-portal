@@ -1,15 +1,15 @@
-import React, {Component} from 'react';
-import {graphql} from 'react-relay';
-import {Card} from 'react-bootstrap';
-import {addOrganisationQueryResponse} from 'addOrganisationQuery.graphql';
-import DefaultLayout from 'layouts/default-layout';
-import AddOrganisation from 'containers/Organisations/AddOrganisation';
-import {INCENTIVE_ANALYST, ADMIN_GROUP} from 'data/group-constants';
+import React, { Component } from "react";
+import { graphql } from "react-relay";
+import { Card } from "react-bootstrap";
+import { addOrganisationQueryResponse } from "addOrganisationQuery.graphql";
+import DefaultLayout from "layouts/default-layout";
+import AddOrganisation from "containers/Organisations/AddOrganisation";
+import { INCENTIVE_ANALYST, ADMIN_GROUP } from "data/group-constants";
 
 const ALLOWED_GROUPS = [INCENTIVE_ANALYST, ...ADMIN_GROUP];
 
 interface Props {
-  query: addOrganisationQueryResponse['query'];
+  query: addOrganisationQueryResponse["query"];
 }
 class AddOrganisationPage extends Component<Props> {
   static allowedGroups = ALLOWED_GROUPS;
@@ -26,20 +26,20 @@ class AddOrganisationPage extends Component<Props> {
   `;
 
   state = {
-    orgInput: '',
-    selectedOrg: null
+    orgInput: "",
+    selectedOrg: null,
   };
 
   handleInputChange = (event) => {
-    this.setState({orgInput: event});
+    this.setState({ orgInput: event });
   };
 
   handleOrgChange = (orgId) => {
-    this.setState({selectedOrg: orgId});
+    this.setState({ selectedOrg: orgId });
   };
 
   render() {
-    const {query} = this.props;
+    const { query } = this.props;
     return (
       <DefaultLayout session={query.session} title="Add Reporting Operation">
         <Card>

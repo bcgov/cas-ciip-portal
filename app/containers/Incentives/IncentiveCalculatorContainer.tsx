@@ -1,32 +1,32 @@
-import React from 'react';
-import {graphql, createFragmentContainer} from 'react-relay';
-import {Table, Jumbotron} from 'react-bootstrap';
-import Money from 'components/helpers/Money';
-import {IncentiveCalculatorContainer_applicationRevision} from 'IncentiveCalculatorContainer_applicationRevision.graphql';
-import IncentiveSegmentContainer from './IncentiveSegmentContainer';
+import React from "react";
+import { graphql, createFragmentContainer } from "react-relay";
+import { Table, Jumbotron } from "react-bootstrap";
+import Money from "components/helpers/Money";
+import { IncentiveCalculatorContainer_applicationRevision } from "IncentiveCalculatorContainer_applicationRevision.graphql";
+import IncentiveSegmentContainer from "./IncentiveSegmentContainer";
 
 interface Props {
   applicationRevision: IncentiveCalculatorContainer_applicationRevision;
 }
 
 export const IncentiveCalculator: React.FunctionComponent<Props> = ({
-  applicationRevision
+  applicationRevision,
 }) => {
-  const {edges = []} = applicationRevision.ciipIncentive;
+  const { edges = [] } = applicationRevision.ciipIncentive;
 
   const aggTotals = edges.reduce(
     function calcAggs(
       accumulator,
-      {node: {incentiveProduct, incentiveProductMax}}
+      { node: { incentiveProduct, incentiveProductMax } }
     ) {
       return {
         incentiveProduct:
           accumulator.incentiveProduct + Number(incentiveProduct),
         incentiveProductMax:
-          accumulator.incentiveProductMax + Number(incentiveProductMax)
+          accumulator.incentiveProductMax + Number(incentiveProductMax),
       };
     },
-    {incentiveProduct: 0, incentiveProductMax: 0}
+    { incentiveProduct: 0, incentiveProductMax: 0 }
   );
 
   // incentive ratio = calculated incentive / maximum incentive
@@ -65,7 +65,7 @@ export const IncentiveCalculator: React.FunctionComponent<Props> = ({
           </tr>
         </thead>
         <tbody>
-          {edges.map(({node}) => (
+          {edges.map(({ node }) => (
             <IncentiveSegmentContainer
               key={node.rowId}
               ciipIncentiveByProduct={node}
@@ -116,5 +116,5 @@ export default createFragmentContainer(IncentiveCalculator, {
         }
       }
     }
-  `
+  `,
 });

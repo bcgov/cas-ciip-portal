@@ -1,5 +1,5 @@
-const html = require('html-template-tag');
-const createUrl = require('../helpers/createUrl');
+const html = require("html-template-tag");
+const createUrl = require("../helpers/createUrl");
 
 const createConfirmationMail = ({
   applicationId,
@@ -10,15 +10,15 @@ const createConfirmationMail = ({
   operatorName,
   organisationId,
   versionNumber,
-  contactEmail
+  contactEmail,
 }) => {
   const appId = Buffer.from(`["applications",${applicationId}]`).toString(
-    'base64'
+    "base64"
   );
   const encodedAppId = encodeURIComponent(appId);
   const operationFacilitiesUrl = createUrl(
     `reporter/facilities?filterArgs=${encodeURIComponent(
-      JSON.stringify({organisationRowId: organisationId})
+      JSON.stringify({ organisationRowId: organisationId })
     )}`
   );
   return html`

@@ -1,9 +1,9 @@
-import React from 'react';
-import RJSF, {FormProps} from '@rjsf/core';
-import withPromiseLoading from 'lib/withPromiseLoading';
+import React from "react";
+import RJSF, { FormProps } from "@rjsf/core";
+import withPromiseLoading from "lib/withPromiseLoading";
 
-const IN_FLIGHT_PROPERTY = 'disabled';
-const ASYNC_HANDLER = 'onSubmit';
+const IN_FLIGHT_PROPERTY = "disabled";
+const ASYNC_HANDLER = "onSubmit";
 
 interface Props<T> extends FormProps<T> {}
 

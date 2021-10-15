@@ -1,20 +1,20 @@
-import React, {Component} from 'react';
-import {graphql} from 'react-relay';
-import {ApplicationIdPageQueryResponse} from 'ApplicationIdPageQuery.graphql';
-import {CiipPageComponentProps} from 'next-env';
-import DefaultLayout from 'layouts/default-layout';
-import ApplicationWizard from 'containers/Applications/ApplicationWizard';
-import {USER} from 'data/group-constants';
-import {NextRouter} from 'next/router';
+import React, { Component } from "react";
+import { graphql } from "react-relay";
+import { ApplicationIdPageQueryResponse } from "ApplicationIdPageQuery.graphql";
+import { CiipPageComponentProps } from "next-env";
+import DefaultLayout from "layouts/default-layout";
+import ApplicationWizard from "containers/Applications/ApplicationWizard";
+import { USER } from "data/group-constants";
+import { NextRouter } from "next/router";
 import {
   getApplicationDisclaimerPageRoute,
-  getViewApplicationPageRoute
-} from 'routes';
+  getViewApplicationPageRoute,
+} from "routes";
 
 const ALLOWED_GROUPS = [USER];
 
 interface Props extends CiipPageComponentProps {
-  query: ApplicationIdPageQueryResponse['query'];
+  query: ApplicationIdPageQueryResponse["query"];
   router: NextRouter;
 }
 class ApplicationPage extends Component<Props> {
@@ -49,18 +49,18 @@ class ApplicationPage extends Component<Props> {
 
   static getInitialProps = () => ({
     variables: {
-      applicationId: ''
-    }
+      applicationId: "",
+    },
   });
 
   render() {
-    const {query, router} = this.props;
-    const {session} = query || {};
-    const {application} = query || {};
+    const { query, router } = this.props;
+    const { session } = query || {};
+    const { application } = query || {};
 
     // Route to 404 page if no application is present
     if (!application) {
-      router.push({pathname: '/404'});
+      router.push({ pathname: "/404" });
       return null;
     }
 

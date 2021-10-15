@@ -1,5 +1,5 @@
-import JsonSchemaForm from '@rjsf/core';
-import {toErrorList} from '@rjsf/core/dist/cjs/validate';
+import JsonSchemaForm from "@rjsf/core";
+import { toErrorList } from "@rjsf/core/dist/cjs/validate";
 /**
  * Extends the Form class from 'react-jsonchema-form'
  * to enable validation on blur for all fields
@@ -11,10 +11,10 @@ export default class Form<T> extends JsonSchemaForm<T> {
 
     this.onBlur = (id, value) => {
       // Id is 'root_path_to_field'
-      const fieldPath = id.split('_');
+      const fieldPath = id.split("_");
       // Error schema is an object whose shape matches the form data
-      const {formData, errorSchema} = this.state as any;
-      const {errorSchema: newErrorSchema} = this.validate(formData);
+      const { formData, errorSchema } = this.state as any;
+      const { errorSchema: newErrorSchema } = this.validate(formData);
 
       // We only want to retrieve the errors for the blurred field in newErrorSchema
       // as this.validate will validate all fields
@@ -25,7 +25,7 @@ export default class Form<T> extends JsonSchemaForm<T> {
 
       // Although we only want to add the errors from the blurred field,
       // we still want to keep the errors from previously blurred fields
-      const mergedErrorSchema = {...errorSchema};
+      const mergedErrorSchema = { ...errorSchema };
 
       // Find the object that will contain blurredFieldErrorSchema
       let blurredFieldParentSchema = mergedErrorSchema;
@@ -36,7 +36,7 @@ export default class Form<T> extends JsonSchemaForm<T> {
         // Make a copy of the part of the error schema that was blurred.
         // This ensures immutability of the error schema, and proper re-rendering of the form
         blurredFieldParentSchema[fieldPath[i]] = {
-          ...blurredFieldParentSchema[fieldPath[i]]
+          ...blurredFieldParentSchema[fieldPath[i]],
         };
 
         // Go one level down in the error schema tree
@@ -53,7 +53,7 @@ export default class Form<T> extends JsonSchemaForm<T> {
           errors: errorList,
           errorSchema: mergedErrorSchema,
           schemaValidationErrors: errorList,
-          schemaValidationErrorSchema: mergedErrorSchema
+          schemaValidationErrorSchema: mergedErrorSchema,
         },
         () => {
           superOnBlur(id, value);

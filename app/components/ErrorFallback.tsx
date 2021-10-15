@@ -1,8 +1,8 @@
-import React from 'react';
-import {DefaultLayoutComponent} from 'layouts/default-layout';
-import {Alert} from 'react-bootstrap';
-import getConfig from 'next/config';
-import Link from 'next/link';
+import React from "react";
+import { DefaultLayoutComponent } from "layouts/default-layout";
+import { Alert } from "react-bootstrap";
+import getConfig from "next/config";
+import Link from "next/link";
 
 const ErrorFallback = () => {
   const supportEmail = getConfig()?.publicRuntimeConfig.SUPPORT_EMAIL;
@@ -14,7 +14,7 @@ const ErrorFallback = () => {
         <Alert.Heading>Something went wrong</Alert.Heading>
         <p>
           Our development team was automatically notified. If you continue to
-          encounter this problem, consider contacting us at{' '}
+          encounter this problem, consider contacting us at{" "}
           <Alert.Link href={mailtoLink}>{supportEmail}</Alert.Link>.
         </p>
         <p>

@@ -1,6 +1,6 @@
-import React from 'react';
-import type {FilterComponent} from './types';
-import {Form} from 'react-bootstrap';
+import React from "react";
+import type { FilterComponent } from "./types";
+import { Form } from "react-bootstrap";
 
 export interface ISearchOptionSettings {
   filterable?: boolean;
@@ -49,13 +49,13 @@ export default abstract class TableFilter<T = string | number | boolean> {
 
   castValue: (value: string) => T = (value) => value as any;
 
-  Component: FilterComponent = ({filterArgs, onChange}) => {
+  Component: FilterComponent = ({ filterArgs, onChange }) => {
     return (
       <td>
         <Form.Control
           placeholder="Search"
           name={this.argName}
-          value={(filterArgs[this.argName] ?? '') as string | number}
+          value={(filterArgs[this.argName] ?? "") as string | number}
           aria-label={`Filter by ${this.title}`}
           onChange={(evt) =>
             onChange(this.castValue(evt.target.value) as any, this.argName)

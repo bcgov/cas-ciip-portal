@@ -1,1 +1,1 @@
-import 'jest-extended'; // Allows Typescript to recognize the functions from jest-extended
+import "jest-extended"; // Allows Typescript to recognize the functions from jest-extended

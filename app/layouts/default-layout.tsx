@@ -1,18 +1,18 @@
-import React from 'react';
-import {Container, Row, Col} from 'react-bootstrap';
-import globalBootstrapOverrides from 'layouts/GlobalBootstrapOverrideStyles';
-import {graphql, createFragmentContainer} from 'react-relay';
-import {defaultLayout_session} from '__generated__/defaultLayout_session.graphql';
-import getConfig from 'next/config';
-import Header from 'components/Layout/Header';
-import UserProfileDropdown from 'containers/User/UserProfileDropdown';
-import Footer from 'components/Layout/Footer';
-import Subheader from 'components/Layout/Subheader';
-import Help from 'components/helpers/Help';
-import SiteNoticeBanner from 'components/Layout/SiteNoticeBanner';
-import CookieDayPickerInput from 'components/helpers/CookieDayPickerInput';
-import HelpButton from 'components/helpers/HelpButton';
-import {ADMIN_GROUP, INCENTIVE_ANALYST} from 'data/group-constants';
+import React from "react";
+import { Container, Row, Col } from "react-bootstrap";
+import globalBootstrapOverrides from "layouts/GlobalBootstrapOverrideStyles";
+import { graphql, createFragmentContainer } from "react-relay";
+import { defaultLayout_session } from "__generated__/defaultLayout_session.graphql";
+import getConfig from "next/config";
+import Header from "components/Layout/Header";
+import UserProfileDropdown from "containers/User/UserProfileDropdown";
+import Footer from "components/Layout/Footer";
+import Subheader from "components/Layout/Subheader";
+import Help from "components/helpers/Help";
+import SiteNoticeBanner from "components/Layout/SiteNoticeBanner";
+import CookieDayPickerInput from "components/helpers/CookieDayPickerInput";
+import HelpButton from "components/helpers/HelpButton";
+import { ADMIN_GROUP, INCENTIVE_ANALYST } from "data/group-constants";
 
 const runtimeConfig = getConfig()?.publicRuntimeConfig ?? {};
 
@@ -21,7 +21,7 @@ interface Props {
   titleControls?: JSX.Element;
   showSubheader?: boolean;
   session: defaultLayout_session;
-  width?: 'narrow' | 'wide';
+  width?: "narrow" | "wide";
   fixedHeader?: boolean;
   help?: {
     title: string;
@@ -37,16 +37,16 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
   showSubheader,
   fixedHeader = false,
   session,
-  width = 'narrow',
+  width = "narrow",
   help,
-  disableHelpButton = false
+  disableHelpButton = false,
 }) => {
   const isInternalUser = [INCENTIVE_ANALYST, ...ADMIN_GROUP].some((role) => {
     return session?.userGroups.includes(role);
   });
 
   return (
-    <div id="page-wrap" className={`${fixedHeader ? 'has-fixed-header' : ''}`}>
+    <div id="page-wrap" className={`${fixedHeader ? "has-fixed-header" : ""}`}>
       <Header
         fixed={fixedHeader}
         isLoggedIn={Boolean(session)}
@@ -92,7 +92,7 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
         )}
       </main>
       <Footer>
-        {runtimeConfig.ENABLE_DB_MOCKS === 'true' && <CookieDayPickerInput />}
+        {runtimeConfig.ENABLE_DB_MOCKS === "true" && <CookieDayPickerInput />}
       </Footer>
       <style jsx>
         {`
@@ -147,7 +147,7 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
   );
 };
 
-export {DefaultLayout as DefaultLayoutComponent};
+export { DefaultLayout as DefaultLayoutComponent };
 export default createFragmentContainer(DefaultLayout, {
   session: graphql`
     fragment defaultLayout_session on JwtToken {
@@ -156,5 +156,5 @@ export default createFragmentContainer(DefaultLayout, {
       }
       userGroups
     }
-  `
+  `,
 });

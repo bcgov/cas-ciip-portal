@@ -1,4 +1,4 @@
-import css from 'styled-jsx/css';
+import css from "styled-jsx/css";
 
 export default css.global`
   .rjsf .form-row {
@@ -8,7 +8,7 @@ export default css.global`
     margin: 0;
   }
   .no-col-padding .form-row > .col,
-  .no-col-padding .form-row > [class*='col-'] {
+  .no-col-padding .form-row > [class*="col-"] {
     padding: 0;
   }
   .errors {

@@ -63,59 +63,59 @@
 //   });
 // });
 
-describe('When an application does not have errors', () => {
+describe("When an application does not have errors", () => {
   beforeEach(() => {
     cy.cleanSchema();
     cy.deployProdData();
-    cy.sqlFixture('fixtures/reporter-all-access-setup');
-    cy.sqlFixture('fixtures/set-legal-disclaimer-true');
+    cy.sqlFixture("fixtures/reporter-all-access-setup");
+    cy.sqlFixture("fixtures/set-legal-disclaimer-true");
   });
 
-  it('The override justification box should not appear', () => {
-    cy.mockLogin('reporter');
+  it("The override justification box should not appear", () => {
+    cy.mockLogin("reporter");
     const applicationId = window.btoa('["applications",2]');
     cy.visit(`/reporter/application/${applicationId}?confirmationPage=true`);
-    cy.url().should('include', '/reporter/application');
-    cy.get('.btn').contains('Submit Application');
-    cy.get('.override-accordion > .btn').should('not.exist');
+    cy.url().should("include", "/reporter/application");
+    cy.get(".btn").contains("Submit Application");
+    cy.get(".override-accordion > .btn").should("not.exist");
   });
 
-  it('The justification should be automatically deleted if no more errors exist', () => {
-    cy.mockLogin('reporter');
+  it("The justification should be automatically deleted if no more errors exist", () => {
+    cy.mockLogin("reporter");
     const applicationId = window.btoa('["applications",2]');
     cy.visit(`/reporter/application/${applicationId}?confirmationPage=true`);
-    cy.url().should('include', '/reporter/application');
+    cy.url().should("include", "/reporter/application");
     // clear the operator name in the admin page
-    cy.get(':nth-child(1) > .nav-link').click();
-    cy.get('#root_operator_name').clear();
-    cy.get('.card-header').contains('Form input saved');
+    cy.get(":nth-child(1) > .nav-link").click();
+    cy.get("#root_operator_name").clear();
+    cy.get(".card-header").contains("Form input saved");
 
     // go to the summary page and add an override justification
-    cy.get('.nav-guide > :nth-child(5)').click();
-    cy.get('.errors').should('contain', 'contains errors');
-    cy.get('.override-accordion > .btn').click();
-    cy.get('#overrideJustification').clear().type('delete me when fixed');
-    cy.get('.btn-success').click();
-    cy.get('.alert-secondary').should('contain', 'delete me when fixed');
+    cy.get(".nav-guide > :nth-child(5)").click();
+    cy.get(".errors").should("contain", "contains errors");
+    cy.get(".override-accordion > .btn").click();
+    cy.get("#overrideJustification").clear().type("delete me when fixed");
+    cy.get(".btn-success").click();
+    cy.get(".alert-secondary").should("contain", "delete me when fixed");
 
     // go back to the admin page to fix the issue
-    cy.get(':nth-child(1) > .nav-link').click();
-    cy.get('#root_operator_name').clear().type('whoops');
-    cy.get('.card-header').contains('Form input saved');
+    cy.get(":nth-child(1) > .nav-link").click();
+    cy.get("#root_operator_name").clear().type("whoops");
+    cy.get(".card-header").contains("Form input saved");
 
-    cy.get('.nav-guide > :nth-child(5)').click();
-    cy.get('#administrative-data_operator_name').should('contain', 'whoops');
-    cy.get('.override-accordion > .btn').should('not.exist');
-    cy.get(':nth-child(1) > .nav-link').click();
-    cy.get('#root_operator_name').clear();
-    cy.get('.card-header').contains('Form input saved');
+    cy.get(".nav-guide > :nth-child(5)").click();
+    cy.get("#administrative-data_operator_name").should("contain", "whoops");
+    cy.get(".override-accordion > .btn").should("not.exist");
+    cy.get(":nth-child(1) > .nav-link").click();
+    cy.get("#root_operator_name").clear();
+    cy.get(".card-header").contains("Form input saved");
 
-    cy.get('.nav-guide > :nth-child(5)').click();
-    cy.get('.errors').should('contain', 'contains errors');
-    cy.get('.override-accordion > .btn').click();
-    cy.get('#overrideJustification').should(
-      'not.contain',
-      'delete me when fixed'
+    cy.get(".nav-guide > :nth-child(5)").click();
+    cy.get(".errors").should("contain", "contains errors");
+    cy.get(".override-accordion > .btn").click();
+    cy.get("#overrideJustification").should(
+      "not.contain",
+      "delete me when fixed"
     );
   });
 });

@@ -1,6 +1,6 @@
-import React from 'react';
-import {Col} from 'react-bootstrap';
-import {ObjectFieldTemplateProps} from '@rjsf/core';
+import React from "react";
+import { Col } from "react-bootstrap";
+import { ObjectFieldTemplateProps } from "@rjsf/core";
 
 const FormObjectFieldTemplate: React.FunctionComponent<ObjectFieldTemplateProps> = ({
   idSchema,
@@ -8,7 +8,7 @@ const FormObjectFieldTemplate: React.FunctionComponent<ObjectFieldTemplateProps>
   TitleField,
   properties,
   title,
-  description
+  description,
 }) => {
   return (
     <>

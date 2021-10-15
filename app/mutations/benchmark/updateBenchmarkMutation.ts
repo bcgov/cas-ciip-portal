@@ -1,10 +1,10 @@
-import {graphql} from 'react-relay';
-import RelayModernEnvironment from 'relay-runtime/lib/store/RelayModernEnvironment';
+import { graphql } from "react-relay";
+import RelayModernEnvironment from "relay-runtime/lib/store/RelayModernEnvironment";
 import {
   updateBenchmarkMutation as updateBenchmarkMutationType,
-  updateBenchmarkMutationVariables
-} from 'updateBenchmarkMutation.graphql';
-import BaseMutation from 'mutations/BaseMutation';
+  updateBenchmarkMutationVariables,
+} from "updateBenchmarkMutation.graphql";
+import BaseMutation from "mutations/BaseMutation";
 
 const mutation = graphql`
   mutation updateBenchmarkMutation($input: UpdateBenchmarkInput!) {
@@ -33,13 +33,13 @@ const updateBenchmarkMutation = async (
     updateBenchmark: {
       benchmark: {
         id: variables.input.id,
-        ...variables.input.benchmarkPatch
-      }
-    }
+        ...variables.input.benchmarkPatch,
+      },
+    },
   };
 
   const m = new BaseMutation<updateBenchmarkMutationType>(
-    'update-benchmark-mutation'
+    "update-benchmark-mutation"
   );
   return m.performMutation(
     environment,

@@ -1,26 +1,26 @@
-import React from 'react';
-import {CiipApplicationRevisionStatus} from 'FacilitiesRowItemContainer_facilityApplication.graphql';
-import EnumFilter from './EnumFilter';
-import {Form} from 'react-bootstrap';
-import {getUserFriendlyStatusLabel} from 'lib/text-transforms';
-import {FilterComponent} from './types';
+import React from "react";
+import { CiipApplicationRevisionStatus } from "FacilitiesRowItemContainer_facilityApplication.graphql";
+import EnumFilter from "./EnumFilter";
+import { Form } from "react-bootstrap";
+import { getUserFriendlyStatusLabel } from "lib/text-transforms";
+import { FilterComponent } from "./types";
 
 export default class ApplicationStatusFilter extends EnumFilter<
-  CiipApplicationRevisionStatus | 'NOT_STARTED'
+  CiipApplicationRevisionStatus | "NOT_STARTED"
 > {
   constructor(displayName: string, argName: string, nullValueArgName: string) {
     super(
       displayName,
       argName,
       [
-        'NOT_STARTED',
-        'DRAFT',
-        'SUBMITTED',
-        'REQUESTED_CHANGES',
-        'APPROVED',
-        'REJECTED'
+        "NOT_STARTED",
+        "DRAFT",
+        "SUBMITTED",
+        "REQUESTED_CHANGES",
+        "APPROVED",
+        "REJECTED",
       ],
-      {sortable: false}
+      { sortable: false }
     );
     this._nullValueArgName = nullValueArgName;
   }
@@ -30,10 +30,10 @@ export default class ApplicationStatusFilter extends EnumFilter<
     return [this.argName, this._nullValueArgName];
   }
 
-  Component: FilterComponent = ({onChange, filterArgs}) => {
+  Component: FilterComponent = ({ onChange, filterArgs }) => {
     const handleChange = (e) => {
-      const {value} = e.target;
-      if (value === 'NOT_STARTED') {
+      const { value } = e.target;
+      if (value === "NOT_STARTED") {
         onChange(true, this._nullValueArgName);
         onChange(undefined, this.argName);
       } else {
@@ -49,7 +49,7 @@ export default class ApplicationStatusFilter extends EnumFilter<
           name={this.argName}
           value={
             (filterArgs[this.argName] as string) ??
-            (filterArgs[this._nullValueArgName] ? 'NOT_STARTED' : '')
+            (filterArgs[this._nullValueArgName] ? "NOT_STARTED" : "")
           }
           onChange={handleChange}
           aria-label="Filter by application status"

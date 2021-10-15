@@ -1,17 +1,20 @@
-import React from 'react';
-import {faSync, faCheck} from '@fortawesome/free-solid-svg-icons';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import React from "react";
+import { faSync, faCheck } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 interface Props {
   isSaved?: boolean;
   style?: object;
 }
 
-const SavingIndicator: React.FunctionComponent<Props> = ({isSaved, style}) => {
+const SavingIndicator: React.FunctionComponent<Props> = ({
+  isSaved,
+  style,
+}) => {
   return (
-    <div style={{...style}}>
+    <div style={{ ...style }}>
       <FontAwesomeIcon icon={isSaved ? faCheck : faSync} />
-      <span>{isSaved ? 'Form input saved' : 'Saving form input...'}</span>
+      <span>{isSaved ? "Form input saved" : "Saving form input..."}</span>
       <style jsx>
         {`
           div {

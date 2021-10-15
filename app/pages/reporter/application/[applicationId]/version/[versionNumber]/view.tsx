@@ -1,15 +1,15 @@
-import React, {Component} from 'react';
-import {Row, Col, Button, Alert} from 'react-bootstrap';
-import {graphql} from 'react-relay';
-import {CiipPageComponentProps} from 'next-env';
-import {viewApplicationQueryResponse} from 'viewApplicationQuery.graphql';
-import ApplicationDetails from 'containers/Applications/ApplicationDetailsContainer';
-import ReviseApplicationButton from 'containers/Applications/ReviseApplicationButtonContainer';
-import ApplicationDecision from 'components/Application/ApplicationDecision';
-import Link from 'next/link';
-import DefaultLayout from 'layouts/default-layout';
-import {USER} from 'data/group-constants';
-import {getViewApplicationPageRoute} from 'routes';
+import React, { Component } from "react";
+import { Row, Col, Button, Alert } from "react-bootstrap";
+import { graphql } from "react-relay";
+import { CiipPageComponentProps } from "next-env";
+import { viewApplicationQueryResponse } from "viewApplicationQuery.graphql";
+import ApplicationDetails from "containers/Applications/ApplicationDetailsContainer";
+import ReviseApplicationButton from "containers/Applications/ReviseApplicationButtonContainer";
+import ApplicationDecision from "components/Application/ApplicationDecision";
+import Link from "next/link";
+import DefaultLayout from "layouts/default-layout";
+import { USER } from "data/group-constants";
+import { getViewApplicationPageRoute } from "routes";
 
 const ALLOWED_GROUPS = [USER];
 
@@ -18,7 +18,7 @@ const ALLOWED_GROUPS = [USER];
  */
 
 interface Props extends CiipPageComponentProps {
-  query: viewApplicationQueryResponse['query'];
+  query: viewApplicationQueryResponse["query"];
 }
 
 class ViewApplication extends Component<Props> {
@@ -50,7 +50,10 @@ class ViewApplication extends Component<Props> {
             edges {
               node {
                 reviewCommentsByApplicationReviewStepId(
-                  filter: {resolved: {isNull: true}, deletedAt: {isNull: true}}
+                  filter: {
+                    resolved: { isNull: true }
+                    deletedAt: { isNull: true }
+                  }
                 ) {
                   edges {
                     node {
@@ -75,13 +78,13 @@ class ViewApplication extends Component<Props> {
   state = {
     newerDraftExists:
       this.props.query.application?.latestDraftRevision?.versionNumber >
-      this.props.query.application?.latestSubmittedRevision?.versionNumber
+      this.props.query.application?.latestSubmittedRevision?.versionNumber,
   };
 
   render() {
-    const {session} = this.props.query;
-    const {query, router} = this.props;
-    const {application} = query;
+    const { session } = this.props.query;
+    const { query, router } = this.props;
+    const { application } = query;
     const reviewSteps =
       application?.applicationReviewStepsByApplicationId.edges;
     // Merge review comments from all applicationReviewSteps into one list:
@@ -90,19 +93,19 @@ class ViewApplication extends Component<Props> {
         step.node.reviewCommentsByApplicationReviewStepId.edges;
       return [
         ...mergedStepComments,
-        ...stepComments.map((step) => step.node.description)
+        ...stepComments.map((step) => step.node.description),
       ];
     }, []);
     const status =
       application?.applicationRevisionStatus?.applicationRevisionStatus;
 
     if (!status) {
-      router.push('/404');
+      router.push("/404");
       return null;
     }
 
-    const changesRequested = status === 'REQUESTED_CHANGES';
-    const hasBeenReviewed = status !== 'SUBMITTED' && status !== 'DRAFT';
+    const changesRequested = status === "REQUESTED_CHANGES";
+    const hasBeenReviewed = status !== "SUBMITTED" && status !== "DRAFT";
 
     const thisVersion = Number(router.query.versionNumber);
     const latestSubmittedRevision =
@@ -116,7 +119,7 @@ class ViewApplication extends Component<Props> {
     );
     const viewLatestSubmissionButton = (
       <>
-        <p style={{margin: '1rem 0'}}>
+        <p style={{ margin: "1rem 0" }}>
           <strong>Note:</strong> There is a more recently submitted version of
           this application.
         </p>
@@ -131,7 +134,7 @@ class ViewApplication extends Component<Props> {
     )}`;
     const resumeLatestDraftButton = (
       <>
-        <p style={{margin: '1rem 0'}}>
+        <p style={{ margin: "1rem 0" }}>
           <strong>Note:</strong> This application has been revised in a more
           recent draft.
         </p>

@@ -1,14 +1,14 @@
-import React, {useState, useMemo} from 'react';
-import {Card, Alert} from 'react-bootstrap';
-import validateJsonSchema from '@rjsf/core/dist/cjs/validate';
-import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
-import SubmitApplication from 'components/SubmitApplication';
-import {ApplicationWizardConfirmation_query} from 'ApplicationWizardConfirmation_query.graphql';
-import {ApplicationWizardConfirmation_applicationRevision} from 'ApplicationWizardConfirmation_applicationRevision.graphql';
-import ApplicationDetailsContainer from './ApplicationDetailsContainer';
-import ApplicationOverrideJustification from 'components/Application/ApplicationOverrideJustification';
-import {FormJson} from 'next-env';
-import ScrollableApplicationDisclaimer from 'components/Application/ScrollableApplicationDisclaimer';
+import React, { useState, useMemo } from "react";
+import { Card, Alert } from "react-bootstrap";
+import validateJsonSchema from "@rjsf/core/dist/cjs/validate";
+import { createFragmentContainer, graphql, RelayProp } from "react-relay";
+import SubmitApplication from "components/SubmitApplication";
+import { ApplicationWizardConfirmation_query } from "ApplicationWizardConfirmation_query.graphql";
+import { ApplicationWizardConfirmation_applicationRevision } from "ApplicationWizardConfirmation_applicationRevision.graphql";
+import ApplicationDetailsContainer from "./ApplicationDetailsContainer";
+import ApplicationOverrideJustification from "components/Application/ApplicationOverrideJustification";
+import { FormJson } from "next-env";
+import ScrollableApplicationDisclaimer from "components/Application/ScrollableApplicationDisclaimer";
 
 /*
  * The ApplicationWizardConfirmation renders a summary of the data submitted in the application,
@@ -23,14 +23,14 @@ interface Props {
 
 export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Props> = ({
   applicationRevision,
-  query
+  query,
 }) => {
   const hasErrors = useMemo(() => {
     return applicationRevision.orderedFormResults.edges.some(
-      ({node: {formResult, formJsonByFormId}}) => {
-        const {schema, customFormats} = formJsonByFormId.formJson as FormJson;
+      ({ node: { formResult, formJsonByFormId } }) => {
+        const { schema, customFormats } = formJsonByFormId.formJson as FormJson;
 
-        const {errors} = validateJsonSchema(
+        const { errors } = validateJsonSchema(
           formResult,
           schema,
           undefined,
@@ -51,7 +51,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
   );
 
   const hasValidationWarnings = applicationRevision.validation.edges.some(
-    ({node}) => node.isOk === false
+    ({ node }) => node.isOk === false
   );
 
   const validationAlert = (
@@ -65,8 +65,8 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
       </p>
       <ul>
         {applicationRevision.validation.edges
-          .filter(({node}) => node.isOk === false)
-          .map(({node}) => (
+          .filter(({ node }) => node.isOk === false)
+          .map(({ node }) => (
             <li key={node.validationDescription}>
               {node.validationFailedMessage}
             </li>
@@ -84,7 +84,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
   return (
     <>
       <h1>Summary of your application:</h1>
-      <p style={{fontSize: '1.25rem', fontWeight: 500}}>
+      <p style={{ fontSize: "1.25rem", fontWeight: 500 }}>
         Please review the information you have provided before continuing.
       </p>
       {hasValidationWarnings && validationAlert}
@@ -130,7 +130,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
               <p>
                 By submitting the application you agree that the information
                 contained in this application, or information contained in
-                emissions reports submitted under the{' '}
+                emissions reports submitted under the{" "}
                 <a
                   href="https://www.bclaws.ca/civix/document/id/complete/statreg/14029_01"
                   target="_blank"
@@ -140,7 +140,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
                 </a>
                 , may be disclosed to British Columbia government employees,
                 contractors and agencies for the purpose of administering the
-                CleanBC Program for Industry or the{' '}
+                CleanBC Program for Industry or the{" "}
                 <a
                   href="https://www.bclaws.ca/civix/document/id/complete/statreg/14029_01"
                   target="_blank"
@@ -221,5 +221,5 @@ export default createFragmentContainer(ApplicationWizardConfirmationComponent, {
         reportingYear
       }
     }
-  `
+  `,
 });

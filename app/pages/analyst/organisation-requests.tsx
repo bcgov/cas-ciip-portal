@@ -1,15 +1,15 @@
-import React, {Component} from 'react';
-import {graphql} from 'react-relay';
-import {organisationRequestsQueryResponse} from 'organisationRequestsQuery.graphql';
-import DefaultLayout from 'layouts/default-layout';
-import OrganisationRequestsTable from 'containers/Admin/OrganisationRequestsTable';
-import {INCENTIVE_ANALYST, ADMIN_GROUP} from 'data/group-constants';
-import {DEFAULT_PAGE_SIZE} from 'components/FilterableTable/FilterableTablePagination';
+import React, { Component } from "react";
+import { graphql } from "react-relay";
+import { organisationRequestsQueryResponse } from "organisationRequestsQuery.graphql";
+import DefaultLayout from "layouts/default-layout";
+import OrganisationRequestsTable from "containers/Admin/OrganisationRequestsTable";
+import { INCENTIVE_ANALYST, ADMIN_GROUP } from "data/group-constants";
+import { DEFAULT_PAGE_SIZE } from "components/FilterableTable/FilterableTablePagination";
 
 const ALLOWED_GROUPS = [INCENTIVE_ANALYST, ...ADMIN_GROUP];
 
 interface Props {
-  query: organisationRequestsQueryResponse['query'];
+  query: organisationRequestsQueryResponse["query"];
 }
 class OrganisationRequests extends Component<Props> {
   static allowedGroups = ALLOWED_GROUPS;
@@ -49,15 +49,15 @@ class OrganisationRequests extends Component<Props> {
   static async getInitialProps() {
     return {
       variables: {
-        order_by: 'OPERATOR_NAME_ASC',
+        order_by: "OPERATOR_NAME_ASC",
         pageSize: DEFAULT_PAGE_SIZE,
-        offset: 0
-      }
+        offset: 0,
+      },
     };
   }
 
   render() {
-    const {query} = this.props;
+    const { query } = this.props;
     return (
       <DefaultLayout session={query.session} title="Operation Access Requests">
         <OrganisationRequestsTable query={query} />

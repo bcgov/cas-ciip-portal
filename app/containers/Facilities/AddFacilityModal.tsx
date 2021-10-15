@@ -1,15 +1,15 @@
-import React, {useState} from 'react';
-import {graphql, createFragmentContainer} from 'react-relay';
-import {AddFacilityModal_query} from 'AddFacilityModal_query.graphql';
-import {Button, Modal, Card} from 'react-bootstrap';
-import {IChangeEvent} from '@rjsf/core';
-import FormFieldTemplate from 'containers/Forms/FormFieldTemplate';
-import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
-import addFacilitySchema from 'components/facility/addFacilitySchema';
-import OrganisationRowIdField from './OrganisationRowIdField';
-import SearchDropdownWidget from 'components/Forms/SearchDropdownWidget';
-import NumberField from 'containers/Forms/NumberField';
-import JsonSchemaForm from 'components/helpers/LoadingOnSubmitForm';
+import React, { useState } from "react";
+import { graphql, createFragmentContainer } from "react-relay";
+import { AddFacilityModal_query } from "AddFacilityModal_query.graphql";
+import { Button, Modal, Card } from "react-bootstrap";
+import { IChangeEvent } from "@rjsf/core";
+import FormFieldTemplate from "containers/Forms/FormFieldTemplate";
+import FormObjectFieldTemplate from "containers/Forms/FormObjectFieldTemplate";
+import addFacilitySchema from "components/facility/addFacilitySchema";
+import OrganisationRowIdField from "./OrganisationRowIdField";
+import SearchDropdownWidget from "components/Forms/SearchDropdownWidget";
+import NumberField from "containers/Forms/NumberField";
+import JsonSchemaForm from "components/helpers/LoadingOnSubmitForm";
 
 interface Props {
   query: AddFacilityModal_query;
@@ -17,39 +17,44 @@ interface Props {
 }
 
 const AddFacilityModal: React.FunctionComponent<Props> = (props) => {
-  const {onAddFacility, query} = props;
+  const { onAddFacility, query } = props;
   const [isModalVisible, setModalVisible] = useState(false);
 
   const customFormats = {
-    'postal-code': /[a-z]\d[a-z]\s?\d[a-z]\d/i
+    "postal-code": /[a-z]\d[a-z]\s?\d[a-z]\d/i,
   };
 
   const CUSTOM_FIELDS = {
     organisationRowId: (props) => (
       <OrganisationRowIdField query={props.formContext.query} {...props} />
     ),
-    NumberField
+    NumberField,
   };
 
   const addFacilityUiSchema = {
     organisationRowId: {
-      'ui:col-md': 6,
-      'ui:widget': 'SearchWidget',
-      'ui:field': 'organisationRowId'
-    }
+      "ui:col-md": 6,
+      "ui:widget": "SearchWidget",
+      "ui:field": "organisationRowId",
+    },
   };
 
   const saveNewFacility = async (e: IChangeEvent) => {
-    const {facilityName, facilityType, bcghgid, organisationRowId} = e.formData;
+    const {
+      facilityName,
+      facilityType,
+      bcghgid,
+      organisationRowId,
+    } = e.formData;
     const variables = {
       input: {
         facility: {
           facilityName,
           facilityType,
           bcghgid,
-          organisationId: organisationRowId
-        }
-      }
+          organisationId: organisationRowId,
+        },
+      },
     };
     await onAddFacility(variables);
     setModalVisible(!isModalVisible);
@@ -57,7 +62,7 @@ const AddFacilityModal: React.FunctionComponent<Props> = (props) => {
 
   return (
     <>
-      <Card style={{marginTop: '50px'}}>
+      <Card style={{ marginTop: "50px" }}>
         <Card.Body>
           <Card.Title>
             Can&apos;t find the Facility you&apos;re looking for?
@@ -88,9 +93,9 @@ const AddFacilityModal: React.FunctionComponent<Props> = (props) => {
             schema={addFacilitySchema}
             uiSchema={addFacilityUiSchema}
             customFormats={customFormats}
-            formContext={{query}}
+            formContext={{ query }}
             fields={CUSTOM_FIELDS}
-            widgets={{SearchWidget: SearchDropdownWidget}}
+            widgets={{ SearchWidget: SearchDropdownWidget }}
             showErrorList={false}
             FieldTemplate={FormFieldTemplate}
             ObjectFieldTemplate={FormObjectFieldTemplate}
@@ -98,7 +103,7 @@ const AddFacilityModal: React.FunctionComponent<Props> = (props) => {
           >
             <div>
               <Button
-                style={{marginRight: '10px'}}
+                style={{ marginRight: "10px" }}
                 type="submit"
                 variant="primary"
               >
@@ -123,5 +128,5 @@ export default createFragmentContainer(AddFacilityModal, {
     fragment AddFacilityModal_query on Query {
       ...OrganisationRowIdField_query
     }
-  `
+  `,
 });

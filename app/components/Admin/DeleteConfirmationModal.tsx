@@ -1,6 +1,6 @@
-import LoadingOnClickButton from 'components/helpers/LoadingOnClickButton';
-import React from 'react';
-import {Button, Modal, Alert, Col, Row} from 'react-bootstrap';
+import LoadingOnClickButton from "components/helpers/LoadingOnClickButton";
+import React from "react";
+import { Button, Modal, Alert, Col, Row } from "react-bootstrap";
 
 interface Props {
   deleteObject: {
@@ -17,16 +17,16 @@ export const DeleteConfirmationModal: React.FunctionComponent<Props> = ({
   deleteObject,
   handleDelete,
   show,
-  onClose
+  onClose,
 }) => {
   return (
     <Modal centered show={show} onHide={() => onClose()} aria-modal="true">
       <Modal.Header>
-        <Modal.Title style={{margin: 'auto'}}>
+        <Modal.Title style={{ margin: "auto" }}>
           Delete {deleteObject.deleteName}
         </Modal.Title>
       </Modal.Header>
-      <Modal.Body style={{textAlign: 'center'}}>
+      <Modal.Body style={{ textAlign: "center" }}>
         <Alert variant="danger">
           <p>Are you sure you want to delete this {deleteObject.deleteName}?</p>
           <p>
@@ -38,7 +38,7 @@ export const DeleteConfirmationModal: React.FunctionComponent<Props> = ({
         <h5>{deleteObject.deleteItem}</h5>
         <p>{deleteObject.deleteItemDescription}</p>
         <Row>
-          <Col md={{span: 4, offset: 4}}>
+          <Col md={{ span: 4, offset: 4 }}>
             <LoadingOnClickButton
               onClick={handleDelete}
               variant="danger"
@@ -47,7 +47,7 @@ export const DeleteConfirmationModal: React.FunctionComponent<Props> = ({
               Confirm Delete
             </LoadingOnClickButton>
           </Col>
-          <Col md={{span: 3, offset: 1}}>
+          <Col md={{ span: 3, offset: 1 }}>
             <Button onClick={onClose} variant="secondary">
               Cancel
             </Button>

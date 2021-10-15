@@ -1,12 +1,12 @@
-import React, {useEffect, useState} from 'react';
-import {Dropdown, Form, Row, Col} from 'react-bootstrap';
-import DropdownMenuItemComponent from 'components/DropdownMenuItemComponent';
-import {createRefetchContainer, graphql, RelayRefetchProp} from 'react-relay';
-import {ApplicationDetailsContainer_query} from 'ApplicationDetailsContainer_query.graphql';
-import {ApplicationDetailsContainer_applicationRevision} from 'ApplicationDetailsContainer_applicationRevision.graphql';
-import {ApplicationDetailsContainer_diffQuery} from 'ApplicationDetailsContainer_diffQuery.graphql';
+import React, { useEffect, useState } from "react";
+import { Dropdown, Form, Row, Col } from "react-bootstrap";
+import DropdownMenuItemComponent from "components/DropdownMenuItemComponent";
+import { createRefetchContainer, graphql, RelayRefetchProp } from "react-relay";
+import { ApplicationDetailsContainer_query } from "ApplicationDetailsContainer_query.graphql";
+import { ApplicationDetailsContainer_applicationRevision } from "ApplicationDetailsContainer_applicationRevision.graphql";
+import { ApplicationDetailsContainer_diffQuery } from "ApplicationDetailsContainer_diffQuery.graphql";
 
-import ApplicationDetailsCardItem from './ApplicationDetailsCardItem';
+import ApplicationDetailsCardItem from "./ApplicationDetailsCardItem";
 // import FileDownload from 'js-file-download';
 
 /*
@@ -32,9 +32,9 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = ({
   relay,
   review,
   liveValidate,
-  setApplicationDetailsRendered
+  setApplicationDetailsRendered,
 }) => {
-  const {applicationByApplicationId: application} = applicationRevision;
+  const { applicationByApplicationId: application } = applicationRevision;
   const formResults = applicationRevision.orderedFormResults.edges;
   const diffFromResults = review
     ? diffQuery?.old?.orderedFormResults?.edges
@@ -54,7 +54,7 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = ({
     const refetchVariables = {
       oldVersion: oldDiffVersion,
       newVersion: newDiffVersion,
-      applicationId: application.id
+      applicationId: application.id,
     };
     relay.refetch(refetchVariables);
   }, [oldDiffVersion, newDiffVersion, applicationRevision, relay]);
@@ -77,18 +77,18 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = ({
         {showDiff ? (
           <>
             <Col md={2}>
-              <Dropdown style={{width: '100%', textTransform: 'capitalize'}}>
+              <Dropdown style={{ width: "100%", textTransform: "capitalize" }}>
                 <Dropdown.Toggle
-                  style={{width: '100%', textTransform: 'capitalize'}}
+                  style={{ width: "100%", textTransform: "capitalize" }}
                   id="dropdown-old"
                 >
-                  {oldDiffVersion === '0'
-                    ? 'swrs import'
-                    : 'Version '.concat(oldDiffVersion)}
+                  {oldDiffVersion === "0"
+                    ? "swrs import"
+                    : "Version ".concat(oldDiffVersion)}
                 </Dropdown.Toggle>
-                <Dropdown.Menu style={{width: '100%'}}>
+                <Dropdown.Menu style={{ width: "100%" }}>
                   {application.applicationRevisionsByApplicationId.edges.map(
-                    ({node}, index) =>
+                    ({ node }, index) =>
                       index >= Number(newDiffVersion) ||
                       index === Number(oldDiffVersion) ? null : (
                         <DropdownMenuItemComponent
@@ -97,7 +97,7 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = ({
                           itemFunc={setOldDiffVersion}
                           itemTitle={
                             node.versionNumber === 0
-                              ? 'swrs import'
+                              ? "swrs import"
                               : node.versionNumber
                           }
                         />
@@ -108,19 +108,19 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = ({
             </Col>
             <Col md={1}>&nbsp;------&gt;</Col>
             <Col md={2}>
-              <Dropdown style={{width: '100%', textTransform: 'capitalize'}}>
+              <Dropdown style={{ width: "100%", textTransform: "capitalize" }}>
                 <Dropdown.Toggle
-                  style={{width: '100%', textTransform: 'capitalize'}}
+                  style={{ width: "100%", textTransform: "capitalize" }}
                   id="dropdown-new"
                 >
                   {Number(newDiffVersion) ===
                   application.latestSubmittedRevision.versionNumber
                     ? `current (V${newDiffVersion})`
-                    : 'Version '.concat(newDiffVersion)}
+                    : "Version ".concat(newDiffVersion)}
                 </Dropdown.Toggle>
-                <Dropdown.Menu style={{width: '100%'}}>
+                <Dropdown.Menu style={{ width: "100%" }}>
                   {application.applicationRevisionsByApplicationId.edges.map(
-                    ({node}, index) =>
+                    ({ node }, index) =>
                       index <= Number(oldDiffVersion) ? null : (
                         <DropdownMenuItemComponent
                           key={node.id}
@@ -144,7 +144,7 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = ({
       <br />
 
       <div>
-        {formResults.map(({node}) => (
+        {formResults.map(({ node }) => (
           <ApplicationDetailsCardItem
             key={node.id}
             liveValidate={liveValidate}
@@ -180,9 +180,9 @@ export default createRefetchContainer(
     diffQuery: graphql`
       fragment ApplicationDetailsContainer_diffQuery on Query
       @argumentDefinitions(
-        applicationId: {type: "ID!"}
-        newVersion: {type: "String"}
-        oldVersion: {type: "String"}
+        applicationId: { type: "ID!" }
+        newVersion: { type: "String" }
+        oldVersion: { type: "String" }
       ) {
         old: application(id: $applicationId) {
           orderedFormResults(versionNumberInput: $oldVersion) {
@@ -241,7 +241,7 @@ export default createRefetchContainer(
           }
         }
       }
-    `
+    `,
   },
   graphql`
     query ApplicationDetailsContainerRefetchQuery(

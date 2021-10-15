@@ -1,10 +1,10 @@
-import {graphql} from 'react-relay';
+import { graphql } from "react-relay";
 import {
   createFacilityMutation as createFacilityMutationType,
-  createFacilityMutationVariables
-} from 'createFacilityMutation.graphql';
-import RelayModernEnvironment from 'relay-runtime/lib/store/RelayModernEnvironment';
-import BaseMutation from 'mutations/BaseMutation';
+  createFacilityMutationVariables,
+} from "createFacilityMutation.graphql";
+import RelayModernEnvironment from "relay-runtime/lib/store/RelayModernEnvironment";
+import BaseMutation from "mutations/BaseMutation";
 
 const mutation = graphql`
   mutation createFacilityMutation($input: CreateFacilityInput!) {
@@ -25,7 +25,7 @@ const createFacilityMutation = async (
   variables: createFacilityMutationVariables
 ) => {
   return new BaseMutation<createFacilityMutationType>(
-    'create-facility-mutation'
+    "create-facility-mutation"
   ).performMutation(environment, mutation, variables);
 };
 

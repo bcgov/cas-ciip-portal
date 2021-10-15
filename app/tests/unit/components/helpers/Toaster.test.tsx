@@ -1,10 +1,10 @@
-import React from 'react';
-import {mount} from 'enzyme';
-import ToastHelper from 'components/helpers/Toaster';
-import {act} from 'react-dom/test-utils';
-import {graphql} from 'react-relay';
-import BaseMutation from 'mutations/BaseMutation';
-import RelayModernEnvironment from 'relay-runtime/lib/store/RelayModernEnvironment';
+import React from "react";
+import { mount } from "enzyme";
+import ToastHelper from "components/helpers/Toaster";
+import { act } from "react-dom/test-utils";
+import { graphql } from "react-relay";
+import BaseMutation from "mutations/BaseMutation";
+import RelayModernEnvironment from "relay-runtime/lib/store/RelayModernEnvironment";
 
 type FakeMutationVariables = {
   input: Record<string, unknown>;
@@ -15,7 +15,7 @@ type FakeMutationType = {
   readonly variables: FakeMutationVariables;
 };
 
-describe('Toaster', () => {
+describe("Toaster", () => {
   /*
   Using createCiipUser to avoid having to create a dummy mutation in our production schema.
 */
@@ -33,7 +33,7 @@ describe('Toaster', () => {
     environment: RelayModernEnvironment,
     variables: FakeMutationVariables
   ) => {
-    return new BaseMutation<FakeMutationType>('fake-mutation').performMutation(
+    return new BaseMutation<FakeMutationType>("fake-mutation").performMutation(
       environment,
       mutation,
       variables
@@ -42,8 +42,8 @@ describe('Toaster', () => {
 
   const {
     createMockEnvironment,
-    MockPayloadGenerator
-  } = require('relay-test-utils');
+    MockPayloadGenerator,
+  } = require("relay-test-utils");
 
   const environment = createMockEnvironment();
 
@@ -52,13 +52,13 @@ describe('Toaster', () => {
   const fakeInput = {
     input: {
       ciipUser: {
-        emailAddress: 'test@test.com'
-      }
+        emailAddress: "test@test.com",
+      },
     },
     messages: {
-      success: 'Wohoo',
-      failure: 'Oops!'
-    }
+      success: "Wohoo",
+      failure: "Oops!",
+    },
   };
 
   const rejectToast = async () => {
@@ -74,7 +74,7 @@ describe('Toaster', () => {
     });
   };
 
-  it('correctly renders a failure notification when a failure notification is defined', () => {
+  it("correctly renders a failure notification when a failure notification is defined", () => {
     const App = () => (
       <div>
         <ToastHelper />
@@ -85,7 +85,7 @@ describe('Toaster', () => {
     rejectToast();
     act(() => jest.advanceTimersByTime(1000));
     wrapper.update();
-    expect(wrapper.find('.Toastify__toast-body').text()).toContain('Oops!');
+    expect(wrapper.find(".Toastify__toast-body").text()).toContain("Oops!");
     wrapper.unmount();
   });
 });

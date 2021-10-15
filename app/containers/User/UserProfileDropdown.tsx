@@ -1,11 +1,11 @@
-import React from 'react';
-import {graphql, createFragmentContainer} from 'react-relay';
-import {Form, Dropdown} from 'react-bootstrap';
-import Link from 'next/link';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faUser} from '@fortawesome/free-solid-svg-icons';
-import {UserProfileDropdown_user} from '__generated__/UserProfileDropdown_user.graphql';
-import {ButtonCSS} from 'components/Layout/Header';
+import React from "react";
+import { graphql, createFragmentContainer } from "react-relay";
+import { Form, Dropdown } from "react-bootstrap";
+import Link from "next/link";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { UserProfileDropdown_user } from "__generated__/UserProfileDropdown_user.graphql";
+import { ButtonCSS } from "components/Layout/Header";
 
 interface Props {
   user: UserProfileDropdown_user;
@@ -13,38 +13,38 @@ interface Props {
 
 // Bootstrap's Dropdown.Item component doesn't naturally tab and submit the Form item.
 const submitForm = (e) => {
-  if (e.key === 'Enter' || e.which === 13) {
+  if (e.key === "Enter" || e.which === 13) {
     e.currentTarget.submit();
   }
 };
 
-const UserProfileDropdown: React.FunctionComponent<Props> = ({user}) => {
+const UserProfileDropdown: React.FunctionComponent<Props> = ({ user }) => {
   return (
     <>
       <li className="d-none d-lg-block">
-        <Dropdown alignRight style={{paddingLeft: '6px'}}>
+        <Dropdown alignRight style={{ paddingLeft: "6px" }}>
           <Dropdown.Toggle
             id="user-icon"
             as="button"
             variant="primary"
             aria-label="User menu toggle"
             style={{
-              borderRadius: '50%',
+              borderRadius: "50%",
               width: 40,
               height: 40,
-              border: 'none',
-              background: '#fff',
-              position: 'relative'
+              border: "none",
+              background: "#fff",
+              position: "relative",
             }}
           >
             <FontAwesomeIcon
               color="#036"
               icon={faUser}
               style={{
-                fontSize: '30px',
-                verticalAlign: 'middle',
-                height: '0.8em',
-                paddingBottom: '2px'
+                fontSize: "30px",
+                verticalAlign: "middle",
+                height: "0.8em",
+                paddingBottom: "2px",
               }}
             />
           </Dropdown.Toggle>
@@ -101,7 +101,7 @@ const UserProfileDropdown: React.FunctionComponent<Props> = ({user}) => {
   );
 };
 
-export {UserProfileDropdown as UserProfileDropdownComponent};
+export { UserProfileDropdown as UserProfileDropdownComponent };
 export default createFragmentContainer(UserProfileDropdown, {
   user: graphql`
     fragment UserProfileDropdown_user on CiipUser {
@@ -109,5 +109,5 @@ export default createFragmentContainer(UserProfileDropdown, {
       lastName
       emailAddress
     }
-  `
+  `,
 });

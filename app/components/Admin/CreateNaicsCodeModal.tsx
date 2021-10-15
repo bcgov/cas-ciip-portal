@@ -1,5 +1,13 @@
-import React from 'react';
-import {Button, Form, Modal, Container, Col, Row, Alert} from 'react-bootstrap';
+import React from "react";
+import {
+  Button,
+  Form,
+  Modal,
+  Container,
+  Col,
+  Row,
+  Alert,
+} from "react-bootstrap";
 
 interface Props {
   validated: boolean;
@@ -16,7 +24,7 @@ export const CreateNaicsCodeModal: React.FunctionComponent<Props> = ({
   show,
   onClose,
   showActiveCodeError,
-  disabled
+  disabled,
 }) => {
   const submitForm: (e: React.SyntheticEvent<any>) => void = async (e) => {
     e.stopPropagation();

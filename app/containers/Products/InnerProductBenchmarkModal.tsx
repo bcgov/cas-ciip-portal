@@ -1,14 +1,14 @@
-import React from 'react';
-import {Button, Modal, Container} from 'react-bootstrap';
-import {JSONSchema7} from 'json-schema';
-import JsonSchemaForm from '@rjsf/core';
-import FormArrayFieldTemplate from 'containers/Forms/FormArrayFieldTemplate';
-import FormFieldTemplate from 'containers/Forms/FormFieldTemplate';
-import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
-import productSchema from './product-schema.json';
-import HeaderWidget from 'components/HeaderWidget';
-import PastBenchmarks from 'components/Benchmark/PastBenchmarks';
-import {ProductRowItemContainer_product} from 'ProductRowItemContainer_product.graphql';
+import React from "react";
+import { Button, Modal, Container } from "react-bootstrap";
+import { JSONSchema7 } from "json-schema";
+import JsonSchemaForm from "@rjsf/core";
+import FormArrayFieldTemplate from "containers/Forms/FormArrayFieldTemplate";
+import FormFieldTemplate from "containers/Forms/FormFieldTemplate";
+import FormObjectFieldTemplate from "containers/Forms/FormObjectFieldTemplate";
+import productSchema from "./product-schema.json";
+import HeaderWidget from "components/HeaderWidget";
+import PastBenchmarks from "components/Benchmark/PastBenchmarks";
+import { ProductRowItemContainer_product } from "ProductRowItemContainer_product.graphql";
 
 interface Benchmark {
   id: string;
@@ -39,7 +39,7 @@ interface Props {
   isProduct: boolean;
 }
 
-export const productBenchmarkModalHeaderId = 'product-benchmark-header';
+export const productBenchmarkModalHeaderId = "product-benchmark-header";
 
 // Conditionally renders the inside of the Edit/View Product/Benchmark modal based on the value of isProduct
 export const ProductBenchmarkInnerModal: React.FunctionComponent<Props> = ({
@@ -51,11 +51,11 @@ export const ProductBenchmarkInnerModal: React.FunctionComponent<Props> = ({
   editBenchmark,
   createBenchmark,
   pastBenchmarks,
-  isProduct
+  isProduct,
 }) => {
   const modalButtons = () => {
     if (isProduct) {
-      if (product.productState === 'DRAFT')
+      if (product.productState === "DRAFT")
         return (
           <>
             <Button type="submit" variant="primary">
@@ -63,18 +63,18 @@ export const ProductBenchmarkInnerModal: React.FunctionComponent<Props> = ({
             </Button>
             <Button
               variant="success"
-              onClick={async () => updateStatus('PUBLISHED')}
+              onClick={async () => updateStatus("PUBLISHED")}
             >
               Publish Product
             </Button>
           </>
         );
 
-      if (product.productState === 'PUBLISHED' && !product.isReadOnly)
+      if (product.productState === "PUBLISHED" && !product.isReadOnly)
         return (
           <Button
             variant="warning"
-            onClick={async () => updateStatus('ARCHIVED')}
+            onClick={async () => updateStatus("ARCHIVED")}
           >
             Archive Product
           </Button>
@@ -83,8 +83,8 @@ export const ProductBenchmarkInnerModal: React.FunctionComponent<Props> = ({
     }
 
     if (
-      product.productState === 'DRAFT' ||
-      product.productState === 'PUBLISHED'
+      product.productState === "DRAFT" ||
+      product.productState === "PUBLISHED"
     )
       return <Button type="submit">Save</Button>;
 
@@ -93,24 +93,27 @@ export const ProductBenchmarkInnerModal: React.FunctionComponent<Props> = ({
 
   return (
     <>
-      <Modal.Header closeButton style={{color: 'white', background: '#003366'}}>
+      <Modal.Header
+        closeButton
+        style={{ color: "white", background: "#003366" }}
+      >
         <Modal.Title id={productBenchmarkModalHeaderId}>
           <h2 className="h4">
-            {isProduct ? 'Edit Product' : 'Edit Benchmark'}
+            {isProduct ? "Edit Product" : "Edit Benchmark"}
           </h2>
         </Modal.Title>
       </Modal.Header>
-      <Modal.Body style={{background: '#f5f5f5'}}>
+      <Modal.Body style={{ background: "#f5f5f5" }}>
         <Container>
           <JsonSchemaForm
             omitExtraData
             liveOmit
             disabled={
               isProduct
-                ? product.productState !== 'DRAFT' || product.isReadOnly
-                : product.productState === 'ARCHIVED'
+                ? product.productState !== "DRAFT" || product.isReadOnly
+                : product.productState === "ARCHIVED"
             }
-            widgets={{header: HeaderWidget}}
+            widgets={{ header: HeaderWidget }}
             schema={
               isProduct
                 ? (productSchema.schema as JSONSchema7)
@@ -127,7 +130,7 @@ export const ProductBenchmarkInnerModal: React.FunctionComponent<Props> = ({
             onSubmit={
               isProduct
                 ? editProduct
-                : currentBenchmark && product.productState === 'DRAFT'
+                : currentBenchmark && product.productState === "DRAFT"
                 ? editBenchmark
                 : createBenchmark
             }

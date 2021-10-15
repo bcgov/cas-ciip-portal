@@ -1,12 +1,12 @@
-import React, {useState} from 'react';
-import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
-import {ApplicationWizardStep_query} from 'ApplicationWizardStep_query.graphql';
-import {Row, Col} from 'react-bootstrap';
-import Form from 'containers/Forms/Form';
-import updateFormResultMutation from 'mutations/form/updateFormResultMutation';
-import ApplicationWizardConfirmation from './ApplicationWizardConfirmation';
-import {ApplicationWizardStep_formResult} from 'ApplicationWizardStep_formResult.graphql';
-import {ApplicationWizardStep_applicationRevision} from 'ApplicationWizardStep_applicationRevision.graphql';
+import React, { useState } from "react";
+import { graphql, createFragmentContainer, RelayProp } from "react-relay";
+import { ApplicationWizardStep_query } from "ApplicationWizardStep_query.graphql";
+import { Row, Col } from "react-bootstrap";
+import Form from "containers/Forms/Form";
+import updateFormResultMutation from "mutations/form/updateFormResultMutation";
+import ApplicationWizardConfirmation from "./ApplicationWizardConfirmation";
+import { ApplicationWizardStep_formResult } from "ApplicationWizardStep_formResult.graphql";
+import { ApplicationWizardStep_applicationRevision } from "ApplicationWizardStep_applicationRevision.graphql";
 
 interface Props {
   query: ApplicationWizardStep_query;
@@ -29,7 +29,7 @@ const ApplicationWizardStep: React.FunctionComponent<Props> = ({
   review,
   onStepComplete,
   confirmationPage,
-  relay
+  relay,
 }) => {
   if ((!formResult && !confirmationPage) || !applicationRevision) return null;
 
@@ -38,30 +38,30 @@ const ApplicationWizardStep: React.FunctionComponent<Props> = ({
   // Function: store the form result
   const storeResult = async (result) => {
     setSaved(false);
-    const {environment} = relay;
+    const { environment } = relay;
     const variables = {
       input: {
         id: formResult.id,
         formResultPatch: {
-          formResult: result
-        }
+          formResult: result,
+        },
       },
       messages: {
-        failure: 'An error occurred while saving your form.'
-      }
+        failure: "An error occurred while saving your form.",
+      },
     };
     await updateFormResultMutation(environment, variables);
     setSaved(true);
   };
 
   const onComplete = async (result) => {
-    const {formData} = result;
+    const { formData } = result;
     await storeResult(formData);
     onStepComplete();
   };
 
   const onValueChanged = async (change) => {
-    const {formData} = change;
+    const { formData } = change;
     await storeResult(formData);
   };
 
@@ -120,5 +120,5 @@ export default createFragmentContainer(ApplicationWizardStep, {
       id
       ...Form_ciipFormResult
     }
-  `
+  `,
 });

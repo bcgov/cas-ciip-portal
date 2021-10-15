@@ -1,11 +1,11 @@
-import {graphql} from 'react-relay';
-import RelayModernEnvironment from 'relay-runtime/lib/store/RelayModernEnvironment';
+import { graphql } from "react-relay";
+import RelayModernEnvironment from "relay-runtime/lib/store/RelayModernEnvironment";
 import {
   updateNaicsCodeMutationVariables,
-  updateNaicsCodeMutation as updateNaicsCodeMutationType
-} from 'updateNaicsCodeMutation.graphql';
-import BaseMutation from 'mutations/BaseMutation';
-import {RecordSourceSelectorProxy, ConnectionHandler} from 'relay-runtime';
+  updateNaicsCodeMutation as updateNaicsCodeMutationType,
+} from "updateNaicsCodeMutation.graphql";
+import BaseMutation from "mutations/BaseMutation";
+import { RecordSourceSelectorProxy, ConnectionHandler } from "relay-runtime";
 
 const mutation = graphql`
   mutation updateNaicsCodeMutation($input: UpdateNaicsCodeInput!) {
@@ -26,9 +26,9 @@ const updateNaicsCodeMutation = async (
     updateNaicsCode: {
       naicsCode: {
         id: variables.input.id,
-        ...variables.input.naicsCodePatch
-      }
-    }
+        ...variables.input.naicsCodePatch,
+      },
+    },
   };
   const updater = (store: RecordSourceSelectorProxy) => {
     // connectionID is passed as input to the mutation/subscription
@@ -36,7 +36,7 @@ const updateNaicsCodeMutation = async (
     ConnectionHandler.deleteNode(connection, variables.input.id);
   };
   const m = new BaseMutation<updateNaicsCodeMutationType>(
-    'update-naics-code-mutation'
+    "update-naics-code-mutation"
   );
   return m.performMutation(
     environment,

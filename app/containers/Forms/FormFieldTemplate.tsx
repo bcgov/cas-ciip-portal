@@ -1,6 +1,6 @@
-import React from 'react';
-import {Col, Form} from 'react-bootstrap';
-import {FieldTemplateProps} from '@rjsf/core';
+import React from "react";
+import { Col, Form } from "react-bootstrap";
+import { FieldTemplateProps } from "@rjsf/core";
 
 const FormFieldTemplate: React.FunctionComponent<FieldTemplateProps> = ({
   id,
@@ -13,14 +13,14 @@ const FormFieldTemplate: React.FunctionComponent<FieldTemplateProps> = ({
   schema,
   classNames,
   uiSchema,
-  hidden
+  hidden,
 }) => {
   if (hidden) return <div className="hidden">{children}</div>;
 
-  const helpText = uiSchema?.['ui:helplink'] ? (
+  const helpText = uiSchema?.["ui:helplink"] ? (
     <a
       className="font-italic"
-      href={uiSchema['ui:helplink']}
+      href={uiSchema["ui:helplink"]}
       target="_blank"
       rel="noopener noreferrer"
     >
@@ -30,7 +30,7 @@ const FormFieldTemplate: React.FunctionComponent<FieldTemplateProps> = ({
     <span className="font-italic">{help}</span>
   );
 
-  if (schema.type === 'array')
+  if (schema.type === "array")
     return (
       <Col xs={12}>
         {description}
@@ -39,7 +39,7 @@ const FormFieldTemplate: React.FunctionComponent<FieldTemplateProps> = ({
         {children}
       </Col>
     );
-  if (schema.type === 'object')
+  if (schema.type === "object")
     return (
       <Col xs={12} className={classNames}>
         <Form.Row>
@@ -50,13 +50,13 @@ const FormFieldTemplate: React.FunctionComponent<FieldTemplateProps> = ({
       </Col>
     );
 
-  const xs = uiSchema['ui:col-xs'] || 12;
-  const sm = uiSchema['ui:col-sm'] || xs;
-  const md = uiSchema['ui:col-md'] || (sm < 6 ? sm : 6);
-  const lg = uiSchema['ui:col-lg'] || md;
-  const xl = uiSchema['ui:col-xl'] || lg;
+  const xs = uiSchema["ui:col-xs"] || 12;
+  const sm = uiSchema["ui:col-sm"] || xs;
+  const md = uiSchema["ui:col-md"] || (sm < 6 ? sm : 6);
+  const lg = uiSchema["ui:col-lg"] || md;
+  const xl = uiSchema["ui:col-xl"] || lg;
 
-  const renderLabel = uiSchema['ui:options']?.label !== false;
+  const renderLabel = uiSchema["ui:options"]?.label !== false;
 
   return (
     <Form.Group

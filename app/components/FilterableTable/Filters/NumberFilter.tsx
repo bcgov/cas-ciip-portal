@@ -1,4 +1,4 @@
-import BaseFilter from './TableFilter';
+import BaseFilter from "./TableFilter";
 
 /**
  * A filter that converts the input to a numerical value when submitting it

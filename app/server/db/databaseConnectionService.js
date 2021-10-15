@@ -5,41 +5,41 @@
 
 */
 
-const pg = require('pg');
+const pg = require("pg");
 
-const NO_AUTH = process.argv.includes('NO_AUTH');
+const NO_AUTH = process.argv.includes("NO_AUTH");
 // If authentication is disabled, this superuser is used for postgraphile queries
-const NO_AUTH_POSTGRES_ROLE = process.env.NO_AUTH_POSTGRES_ROLE || 'postgres';
+const NO_AUTH_POSTGRES_ROLE = process.env.NO_AUTH_POSTGRES_ROLE || "postgres";
 
 const getDatabaseUrl = () => {
   // If authentication is disabled use the user above to connect to the database
   // Otherwise, use the PGUSER env variable
   const PGUSER = NO_AUTH
     ? NO_AUTH_POSTGRES_ROLE
-    : process.env.PGUSER || 'ciip_portal';
+    : process.env.PGUSER || "ciip_portal";
 
-  let databaseURL = 'postgres://';
+  let databaseURL = "postgres://";
 
   databaseURL += PGUSER;
   if (process.env.PGPASSWORD) {
     databaseURL += `:${process.env.PGPASSWORD}`;
   }
 
-  databaseURL += '@';
+  databaseURL += "@";
 
-  databaseURL += process.env.PGHOST || 'localhost';
+  databaseURL += process.env.PGHOST || "localhost";
   if (process.env.PGPORT) {
     databaseURL += `:${process.env.PGPORT}`;
   }
 
-  databaseURL += '/';
-  databaseURL += process.env.PGDATABASE || 'ciip_portal_dev';
+  databaseURL += "/";
+  databaseURL += process.env.PGDATABASE || "ciip_portal_dev";
 
   return databaseURL;
 };
 
 const createConnectionPool = () => {
-  return new pg.Pool({connectionString: getDatabaseUrl()});
+  return new pg.Pool({ connectionString: getDatabaseUrl() });
 };
 
-module.exports = {createConnectionPool, NO_AUTH_POSTGRES_ROLE};
+module.exports = { createConnectionPool, NO_AUTH_POSTGRES_ROLE };

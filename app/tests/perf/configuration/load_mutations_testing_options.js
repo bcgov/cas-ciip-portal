@@ -6,7 +6,7 @@ export default {
     mutations_spike: {
       vus: 100,
       iterations: 10,
-      executor: 'per-vu-iterations'
-    }
-  }
+      executor: "per-vu-iterations",
+    },
+  },
 };

@@ -1,10 +1,10 @@
-import {graphql} from 'react-relay';
-import RelayModernEnvironment from 'relay-runtime/lib/store/RelayModernEnvironment';
+import { graphql } from "react-relay";
+import RelayModernEnvironment from "relay-runtime/lib/store/RelayModernEnvironment";
 import {
   updateApplicationReviewStepMutationVariables,
-  updateApplicationReviewStepMutation as updateApplicationReviewStepMutationType
-} from 'updateApplicationReviewStepMutation.graphql';
-import BaseMutation from 'mutations/BaseMutation';
+  updateApplicationReviewStepMutation as updateApplicationReviewStepMutationType,
+} from "updateApplicationReviewStepMutation.graphql";
+import BaseMutation from "mutations/BaseMutation";
 
 const mutation = graphql`
   mutation updateApplicationReviewStepMutation(
@@ -27,12 +27,12 @@ const updateApplicationReviewStepMutation = async (
     updateApplicationReviewStep: {
       applicationReviewStep: {
         id: variables.input.id,
-        ...variables.input.applicationReviewStepPatch
-      }
-    }
+        ...variables.input.applicationReviewStepPatch,
+      },
+    },
   };
   const m = new BaseMutation<updateApplicationReviewStepMutationType>(
-    'update-application-review-step-mutation'
+    "update-application-review-step-mutation"
   );
   return m.performMutation(
     environment,
@@ -43,4 +43,4 @@ const updateApplicationReviewStepMutation = async (
 };
 
 export default updateApplicationReviewStepMutation;
-export {mutation};
+export { mutation };

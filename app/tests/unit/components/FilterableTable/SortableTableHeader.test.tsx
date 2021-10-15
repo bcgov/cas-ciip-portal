@@ -1,64 +1,64 @@
-import * as nextRouter from 'next/router';
-import React from 'react';
-import SortableTableHeader from 'components/FilterableTable/SortableTableHeader';
-import {shallow} from 'enzyme';
+import * as nextRouter from "next/router";
+import React from "react";
+import SortableTableHeader from "components/FilterableTable/SortableTableHeader";
+import { shallow } from "enzyme";
 
 nextRouter.useRouter = jest.fn();
 nextRouter.useRouter.mockImplementation(() => ({
-  route: '/',
-  query: ''
+  route: "/",
+  query: "",
 }));
 
-describe('The sortable table header', () => {
-  it('displays the sort direction arrows if sortable is true', () => {
+describe("The sortable table header", () => {
+  it("displays the sort direction arrows if sortable is true", () => {
     const headerVars = {
-      columnName: 'testcolumn',
-      displayName: 'testdisplay',
+      columnName: "testcolumn",
+      displayName: "testdisplay",
       hasTableHeader: true,
-      sortable: true
+      sortable: true,
     };
     const rendered = shallow(
       <SortableTableHeader headerVariables={headerVars} />
     );
 
     expect(rendered).toMatchSnapshot();
-    expect(rendered.find('FontAwesomeIcon').length).toBe(1);
+    expect(rendered.find("FontAwesomeIcon").length).toBe(1);
   });
 
-  it('doesnt display the sort direction arrows if sortable is false', () => {
+  it("doesnt display the sort direction arrows if sortable is false", () => {
     const headerVars = {
-      columnName: 'testcolumn',
-      displayName: 'testdisplay',
+      columnName: "testcolumn",
+      displayName: "testdisplay",
       hasTableHeader: true,
-      sortable: false
+      sortable: false,
     };
     const rendered = shallow(
       <SortableTableHeader headerVariables={headerVars} />
     );
 
     expect(rendered).toMatchSnapshot();
-    expect(rendered.find('FontAwesomeIcon').length).toBe(0);
+    expect(rendered.find("FontAwesomeIcon").length).toBe(0);
   });
 
-  it('gets the sort direction from the router', () => {
+  it("gets the sort direction from the router", () => {
     nextRouter.useRouter.mockImplementation(() => ({
-      route: '/',
-      query: {order_by: 'TEST_COLUMN_ASC'}
+      route: "/",
+      query: { order_by: "TEST_COLUMN_ASC" },
     }));
 
     const headerVars = {
-      columnName: 'test_column',
-      displayName: 'test_display',
+      columnName: "test_column",
+      displayName: "test_display",
       hasTableHeader: true,
-      sortable: true
+      sortable: true,
     };
 
     const rendered = shallow(
       <SortableTableHeader headerVariables={headerVars} />
     );
     expect(rendered).toMatchSnapshot();
-    expect(rendered.find('FontAwesomeIcon').first().props().icon.iconName).toBe(
-      'caret-down'
+    expect(rendered.find("FontAwesomeIcon").first().props().icon.iconName).toBe(
+      "caret-down"
     );
   });
 });

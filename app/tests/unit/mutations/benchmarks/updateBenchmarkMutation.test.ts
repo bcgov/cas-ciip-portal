@@ -1,10 +1,10 @@
-import fs from 'fs';
-import path from 'path';
-import EasyGraphQLTester from 'easygraphql-tester';
+import fs from "fs";
+import path from "path";
+import EasyGraphQLTester from "easygraphql-tester";
 
 const schemaCode = fs.readFileSync(
-  path.join(__dirname, '../../../../server', 'schema.graphql'),
-  'utf8'
+  path.join(__dirname, "../../../../server", "schema.graphql"),
+  "utf8"
 );
 
 const mutation = `
@@ -20,12 +20,12 @@ const mutation = `
       `;
 
 /** *  MUTATIONS * **/
-describe('editBenchmark', () => {
+describe("editBenchmark", () => {
   let tester;
   beforeEach(() => {
     tester = new EasyGraphQLTester(schemaCode);
   });
-  it('Should throw an error if input is missing', () => {
+  it("Should throw an error if input is missing", () => {
     let error;
     try {
       tester.mock(mutation);
@@ -37,13 +37,13 @@ describe('editBenchmark', () => {
       'Variable "$input" of required type "UpdateBenchmarkInput!" was not provided.'
     );
   });
-  it('Should throw an error if a variable is missing', () => {
+  it("Should throw an error if a variable is missing", () => {
     let error;
     try {
       tester.mock(mutation, {
         input: {
-          id: 'abc'
-        }
+          id: "abc",
+        },
       });
     } catch (error_) {
       error = error_;
@@ -53,18 +53,18 @@ describe('editBenchmark', () => {
       'Variable "$input" got invalid value { id: "abc" }; Field "benchmarkPatch" of required type "BenchmarkPatch!" was not provided.'
     );
   });
-  it('Should return id(string) if valid', () => {
+  it("Should return id(string) if valid", () => {
     const test = tester.mock(mutation, {
       input: {
-        id: 'abc',
+        id: "abc",
         benchmarkPatch: {
-          deletedAt: '2017-01-01',
-          deletedBy: 1
-        }
-      }
+          deletedAt: "2017-01-01",
+          deletedBy: 1,
+        },
+      },
     });
 
     expect(test).toBeDefined();
-    expect(typeof test.data.updateBenchmark.benchmark.id).toBe('string');
+    expect(typeof test.data.updateBenchmark.benchmark.id).toBe("string");
   });
 });

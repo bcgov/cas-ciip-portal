@@ -1,19 +1,19 @@
-import React, {useState} from 'react';
-import {Button} from 'react-bootstrap';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faCheck, faLock} from '@fortawesome/free-solid-svg-icons';
-import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
-import {ReviewSidebar_applicationReviewStep} from '__generated__/ReviewSidebar_applicationReviewStep.graphql';
-import {createReviewCommentMutationVariables} from '__generated__/createReviewCommentMutation.graphql';
-import ReviewComment from 'components/Admin/ApplicationReview/ReviewComment';
-import createReviewCommentMutation from 'mutations/application_review_step/createReviewCommentMutation';
-import updateReviewCommentMutation from 'mutations/application_review_step/updateReviewCommentMutation';
-import deleteReviewCommentMutation from 'mutations/application_review_step/deleteReviewCommentMutation';
-import updateApplicationReviewStepMutation from 'mutations/application_review_step/updateApplicationReviewStepMutation';
-import {nowMoment} from 'functions/formatDates';
-import {capitalize} from 'lib/text-transforms';
-import GenericConfirmationModal from 'components/GenericConfirmationModal';
-import AddReviewCommentModal from 'components/Admin/ApplicationReview/AddReviewCommentModal';
+import React, { useState } from "react";
+import { Button } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheck, faLock } from "@fortawesome/free-solid-svg-icons";
+import { graphql, createFragmentContainer, RelayProp } from "react-relay";
+import { ReviewSidebar_applicationReviewStep } from "__generated__/ReviewSidebar_applicationReviewStep.graphql";
+import { createReviewCommentMutationVariables } from "__generated__/createReviewCommentMutation.graphql";
+import ReviewComment from "components/Admin/ApplicationReview/ReviewComment";
+import createReviewCommentMutation from "mutations/application_review_step/createReviewCommentMutation";
+import updateReviewCommentMutation from "mutations/application_review_step/updateReviewCommentMutation";
+import deleteReviewCommentMutation from "mutations/application_review_step/deleteReviewCommentMutation";
+import updateApplicationReviewStepMutation from "mutations/application_review_step/updateApplicationReviewStepMutation";
+import { nowMoment } from "functions/formatDates";
+import { capitalize } from "lib/text-transforms";
+import GenericConfirmationModal from "components/GenericConfirmationModal";
+import AddReviewCommentModal from "components/Admin/ApplicationReview/AddReviewCommentModal";
 
 interface Props {
   onClose: () => void;
@@ -28,12 +28,12 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
   applicationReviewStep,
   isFinalized,
   relay,
-  headerOffset = 68
+  headerOffset = 68,
 }) => {
   const [showingResolved, setShowingResolved] = useState(false);
   const [
     showUnresolvedCommentsModal,
-    setShowUnresolvedCommentsModal
+    setShowUnresolvedCommentsModal,
   ] = useState(false);
   const [showAddCommentModal, setShowAddCommentModal] = useState(false);
   const toggleResolved = () => setShowingResolved((current) => !current);
@@ -57,14 +57,14 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
     (!showingResolved && allInternalCommentsAreResolved);
 
   const markReviewStepComplete = async (isComplete) => {
-    const {environment} = relay;
+    const { environment } = relay;
     const variables = {
       input: {
         id: applicationReviewStep?.id,
         applicationReviewStepPatch: {
-          isComplete
-        }
-      }
+          isComplete,
+        },
+      },
     };
     await updateApplicationReviewStepMutation(environment, variables);
   };
@@ -84,13 +84,13 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
       type="button"
       onClick={confirmCommentsResolvedBeforeMarkCompleted}
     >
-      <FontAwesomeIcon icon={faCheck} style={{marginRight: '0.5rem'}} />
+      <FontAwesomeIcon icon={faCheck} style={{ marginRight: "0.5rem" }} />
       Mark this review step completed
     </Button>
   );
   const markIncompleteButton = (
     <p className="mark-incomplete">
-      <FontAwesomeIcon icon={faCheck} style={{marginRight: 2}} />
+      <FontAwesomeIcon icon={faCheck} style={{ marginRight: 2 }} />
       <span> This review step has been completed. </span>
       <Button variant="link" onClick={() => markReviewStepComplete(false)}>
         Mark incomplete
@@ -98,26 +98,26 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
     </p>
   );
   const resolveComment = async (id, resolve) => {
-    const {environment} = relay;
+    const { environment } = relay;
     const variables = {
       input: {
         id,
         reviewCommentPatch: {
-          resolved: resolve
-        }
-      }
+          resolved: resolve,
+        },
+      },
     };
     await updateReviewCommentMutation(environment, variables);
   };
   const deleteComment = async (id, commentType) => {
-    const {environment} = relay;
+    const { environment } = relay;
     const variables = {
       input: {
         id,
         reviewCommentPatch: {
-          deletedAt: nowMoment().format('YYYY-MM-DDTHH:mm:ss')
-        }
-      }
+          deletedAt: nowMoment().format("YYYY-MM-DDTHH:mm:ss"),
+        },
+      },
     };
 
     await deleteReviewCommentMutation(
@@ -130,7 +130,7 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
 
   const renderComment = (
     commentType,
-    {id, description, createdAt, ciipUserByCreatedBy, resolved}
+    { id, description, createdAt, ciipUserByCreatedBy, resolved }
   ) => {
     return (
       <ReviewComment
@@ -162,7 +162,7 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
       cancelButtonText="Cancel"
       confirmButtonText="Mark this review step completed"
     >
-      <div style={{padding: '1em 1em 0 1em'}}>
+      <div style={{ padding: "1em 1em 0 1em" }}>
         <p>
           There are <strong>unresolved comments</strong> in this review step.
           Are you sure you want to mark it completed?
@@ -173,25 +173,25 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
           application decision.
         </p>
         <p>
-          If you continue,{' '}
-          <strong>unresolved comments will be seen by the applicant</strong>{' '}
+          If you continue,{" "}
+          <strong>unresolved comments will be seen by the applicant</strong>{" "}
           when you make an application decision or request changes.
         </p>
       </div>
     </GenericConfirmationModal>
   );
 
-  const handleAddReviewComment = async ({commentText, isInternalComment}) => {
-    const commentType = isInternalComment ? 'internal' : 'general';
-    const {environment} = relay;
+  const handleAddReviewComment = async ({ commentText, isInternalComment }) => {
+    const commentType = isInternalComment ? "internal" : "general";
+    const { environment } = relay;
     const variables = {
       input: {
         reviewComment: {
           applicationReviewStepId: applicationReviewStep.rowId,
           commentType: commentType.toUpperCase(),
-          description: commentText
-        }
-      }
+          description: commentText,
+        },
+      },
     };
     await createReviewCommentMutation(
       environment,
@@ -219,7 +219,7 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
           : markCompletedButton)}
       <div id="scrollable-comments" tabIndex={0}>
         <h3 id="general-comments-label">
-          General Comments{' '}
+          General Comments{" "}
           <small>
             <em>(Visible to applicant)</em>
           </small>
@@ -231,13 +231,13 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
             {generalComments?.map((comment) => {
               const showComment = showingResolved || !comment.node.resolved;
               return showComment
-                ? renderComment('general', comment.node)
+                ? renderComment("general", comment.node)
                 : null;
             })}
           </ul>
         )}
         <h3 id="internal-comments-label">
-          Internal Comments <FontAwesomeIcon icon={faLock} />{' '}
+          Internal Comments <FontAwesomeIcon icon={faLock} />{" "}
           <small>
             <em>(Not visible to applicant)</em>
           </small>
@@ -249,15 +249,15 @@ export const ReviewSidebar: React.FunctionComponent<Props> = ({
             {internalComments?.map((comment) => {
               const showComment = showingResolved || !comment.node.resolved;
               return showComment
-                ? renderComment('internal', comment.node)
+                ? renderComment("internal", comment.node)
                 : null;
             })}
           </ul>
         )}
       </div>
       <div id="button-footer">
-        <Button variant="link" style={{padding: 0}} onClick={toggleResolved}>
-          {`${showingResolved ? 'Hide' : 'Show'} resolved comments`}
+        <Button variant="link" style={{ padding: 0 }} onClick={toggleResolved}>
+          {`${showingResolved ? "Hide" : "Show"} resolved comments`}
         </Button>
         {!isFinalized && !applicationReviewStep?.isComplete && (
           <Button
@@ -385,7 +385,10 @@ export default createFragmentContainer(ReviewSidebar, {
       }
       internalComments: reviewCommentsByApplicationReviewStepId(
         first: 2147483647
-        filter: {commentType: {equalTo: INTERNAL}, deletedAt: {isNull: true}}
+        filter: {
+          commentType: { equalTo: INTERNAL }
+          deletedAt: { isNull: true }
+        }
       ) @connection(key: "ReviewSidebar_internalComments", filters: []) {
         edges {
           node {
@@ -402,7 +405,10 @@ export default createFragmentContainer(ReviewSidebar, {
       }
       generalComments: reviewCommentsByApplicationReviewStepId(
         first: 2147483647
-        filter: {commentType: {equalTo: GENERAL}, deletedAt: {isNull: true}}
+        filter: {
+          commentType: { equalTo: GENERAL }
+          deletedAt: { isNull: true }
+        }
       ) @connection(key: "ReviewSidebar_generalComments", filters: []) {
         edges {
           node {
@@ -418,5 +424,5 @@ export default createFragmentContainer(ReviewSidebar, {
         }
       }
     }
-  `
+  `,
 });

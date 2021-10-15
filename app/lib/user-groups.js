@@ -1,4 +1,4 @@
-const GROUP_META = require('../data/groups.json');
+const GROUP_META = require("../data/groups.json");
 
 const getAllGroups = () => {
   return Object.keys(GROUP_META);
@@ -13,8 +13,8 @@ const compactGroups = (groups) => {
 const getPriorityGroupData = (validGroups) => {
   // Find the highest priority group
   let priorityGroup = {
-    name: 'Guest',
-    ...GROUP_META.Guest
+    name: "Guest",
+    ...GROUP_META.Guest,
   };
 
   for (let x = 0, len = validGroups.length; x < len; x++) {
@@ -22,7 +22,7 @@ const getPriorityGroupData = (validGroups) => {
     const curr = GROUP_META[name];
 
     if (curr.priority < priorityGroup.priority) {
-      priorityGroup = {...curr, name};
+      priorityGroup = { ...curr, name };
     }
   }
 
@@ -47,5 +47,5 @@ module.exports = {
   getUserGroupLandingRoute,
   getPriorityGroup,
   compactGroups,
-  getAllGroups
+  getAllGroups,
 };

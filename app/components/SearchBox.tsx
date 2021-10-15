@@ -1,9 +1,9 @@
-import React from 'react';
-import {Button, ButtonGroup} from 'react-bootstrap';
-import JsonSchemaForm, {IChangeEvent} from '@rjsf/core';
-import {JSONSchema7} from 'json-schema';
-import FormFieldTemplate from 'containers/Forms/FormFieldTemplate';
-import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
+import React from "react";
+import { Button, ButtonGroup } from "react-bootstrap";
+import JsonSchemaForm, { IChangeEvent } from "@rjsf/core";
+import { JSONSchema7 } from "json-schema";
+import FormFieldTemplate from "containers/Forms/FormFieldTemplate";
+import FormObjectFieldTemplate from "containers/Forms/FormObjectFieldTemplate";
 
 interface Props {
   handleEvent: (action: string, column?: string, value?: string) => void;
@@ -14,12 +14,12 @@ interface Props {
 const SearchBox: React.FunctionComponent<Props> = ({
   handleEvent,
   dropdownSortItems,
-  displayNameToColumnNameMap
+  displayNameToColumnNameMap,
 }) => {
   const handleSubmit = async (e: IChangeEvent) => {
     if (e.formData.searchField) {
       handleEvent(
-        'applySearch',
+        "applySearch",
         displayNameToColumnNameMap[e.formData.searchField],
         e.formData.searchValue
       );
@@ -27,31 +27,31 @@ const SearchBox: React.FunctionComponent<Props> = ({
   };
 
   const handleClear = () => {
-    handleEvent('applySearch', undefined, undefined);
+    handleEvent("applySearch", undefined, undefined);
   };
 
   const schema: JSONSchema7 = {
-    type: 'object',
+    type: "object",
     properties: {
       searchField: {
-        title: 'Search By:',
-        type: 'string',
-        enum: dropdownSortItems
+        title: "Search By:",
+        type: "string",
+        enum: dropdownSortItems,
       },
       searchValue: {
-        title: 'Search Term:',
-        type: 'string'
-      }
-    }
+        title: "Search Term:",
+        type: "string",
+      },
+    },
   };
 
   const uiSchema = {
     searchField: {
-      'ui:col-md': 5
+      "ui:col-md": 5,
     },
     searchValue: {
-      'ui:col-md': 7
-    }
+      "ui:col-md": 7,
+    },
   };
 
   return (

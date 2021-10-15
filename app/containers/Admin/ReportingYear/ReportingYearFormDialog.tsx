@@ -1,19 +1,19 @@
-import React from 'react';
-import {Modal, Container, Button} from 'react-bootstrap';
-import globalFormStyles from '../../Forms/FormSharedStyles';
-import {FormValidation} from '@rjsf/core';
-import {JSONSchema7} from 'json-schema';
-import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
-import FormFieldTemplate from 'containers/Forms/FormFieldTemplate';
-import reportingYearSchema from './edit_reporting_year.json';
-import DatePickerWidget from 'components/Forms/DatePickerWidget';
-import {validateApplicationDates} from './reportingYearValidation';
+import React from "react";
+import { Modal, Container, Button } from "react-bootstrap";
+import globalFormStyles from "../../Forms/FormSharedStyles";
+import { FormValidation } from "@rjsf/core";
+import { JSONSchema7 } from "json-schema";
+import FormObjectFieldTemplate from "containers/Forms/FormObjectFieldTemplate";
+import FormFieldTemplate from "containers/Forms/FormFieldTemplate";
+import reportingYearSchema from "./edit_reporting_year.json";
+import DatePickerWidget from "components/Forms/DatePickerWidget";
+import { validateApplicationDates } from "./reportingYearValidation";
 import {
   defaultMoment,
   nowMoment,
-  ensureFullTimestamp
-} from 'functions/formatDates';
-import LoadingOnSubmitForm from 'components/helpers/LoadingOnSubmitForm';
+  ensureFullTimestamp,
+} from "functions/formatDates";
+import LoadingOnSubmitForm from "components/helpers/LoadingOnSubmitForm";
 
 function transformUiSchema(json, formFields) {
   if (!formFields) return;
@@ -21,9 +21,9 @@ function transformUiSchema(json, formFields) {
 
   // Dates that are past should not be editable - with the exception of applicationCloseTime:
   const swrsDeadline = defaultMoment(formFields.swrsDeadline);
-  json.swrsDeadline['ui:disabled'] = swrsDeadline.isBefore(now);
+  json.swrsDeadline["ui:disabled"] = swrsDeadline.isBefore(now);
   const applicationOpen = defaultMoment(formFields.applicationOpenTime);
-  json.applicationOpenTime['ui:disabled'] = applicationOpen.isBefore(now);
+  json.applicationOpenTime["ui:disabled"] = applicationOpen.isBefore(now);
 
   return json;
 }
@@ -33,7 +33,7 @@ interface Props {
   year: number;
   formFields: object;
   clearForm: () => void;
-  saveReportingYear: ({formData}) => void;
+  saveReportingYear: ({ formData }) => void;
   validateExclusiveDateRanges: (
     year: number,
     formData: object,
@@ -47,13 +47,13 @@ const ReportingYearFormDialog: React.FunctionComponent<Props> = ({
   formFields,
   clearForm,
   saveReportingYear,
-  validateExclusiveDateRanges
+  validateExclusiveDateRanges,
 }) => {
   const uiSchema = transformUiSchema(reportingYearSchema.uiSchema, formFields);
 
   const handleSubmit = (e) => {
-    const beginningOfDay = {hour: 0, minute: 0, second: 0, millisecond: 0};
-    const endOfDay = {hour: 11, minute: 59, second: 59, millisecond: 999};
+    const beginningOfDay = { hour: 0, minute: 0, second: 0, millisecond: 0 };
+    const endOfDay = { hour: 11, minute: 59, second: 59, millisecond: 999 };
     const formData = {
       ...e.formData,
       applicationOpenTime: ensureFullTimestamp(
@@ -64,7 +64,7 @@ const ReportingYearFormDialog: React.FunctionComponent<Props> = ({
         e.formData.applicationCloseTime,
         endOfDay
       ),
-      swrsDeadline: ensureFullTimestamp(e.formData.swrsDeadline, endOfDay)
+      swrsDeadline: ensureFullTimestamp(e.formData.swrsDeadline, endOfDay),
     };
 
     if (e.errors.length === 0) {
@@ -97,7 +97,7 @@ const ReportingYearFormDialog: React.FunctionComponent<Props> = ({
               formData={formFields}
               FieldTemplate={FormFieldTemplate}
               ObjectFieldTemplate={FormObjectFieldTemplate}
-              widgets={{DatePickerWidget}}
+              widgets={{ DatePickerWidget }}
               showErrorList={false}
               validate={(formData, errors) => {
                 validateApplicationDates(

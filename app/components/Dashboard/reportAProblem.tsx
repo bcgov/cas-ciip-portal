@@ -1,25 +1,25 @@
-import React from 'react';
-import {Card} from 'react-bootstrap';
+import React from "react";
+import { Card } from "react-bootstrap";
 
 interface Props {
   supportUrl: string;
 }
 
-const ReportAProblem: React.FunctionComponent<Props> = ({supportUrl}) => {
+const ReportAProblem: React.FunctionComponent<Props> = ({ supportUrl }) => {
   return (
     <Card className="admin-control-card">
       <Card.Body
         style={{
           height: 324,
-          background: '#f5f5f5',
-          display: 'flex',
-          alignItems: 'center'
+          background: "#f5f5f5",
+          display: "flex",
+          alignItems: "center",
         }}
       >
         <p>
           <span role="img" aria-label="waving hand">
             👋
-          </span>{' '}
+          </span>{" "}
           Something wrong?
           <br />
           <a href={supportUrl}>Report a problem</a> to the development team.

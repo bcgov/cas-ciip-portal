@@ -1,12 +1,12 @@
-import React, {Component} from 'react';
-import {Container} from 'react-bootstrap';
-import {graphql} from 'react-relay';
-import {CiipPageComponentProps} from 'next-env';
-import {copyrightQueryResponse} from 'copyrightQuery.graphql';
-import DefaultLayout from 'layouts/default-layout';
+import React, { Component } from "react";
+import { Container } from "react-bootstrap";
+import { graphql } from "react-relay";
+import { CiipPageComponentProps } from "next-env";
+import { copyrightQueryResponse } from "copyrightQuery.graphql";
+import DefaultLayout from "layouts/default-layout";
 
 interface Props extends CiipPageComponentProps {
-  query: copyrightQueryResponse['query'];
+  query: copyrightQueryResponse["query"];
 }
 
 class Copyright extends Component<Props> {
@@ -21,8 +21,8 @@ class Copyright extends Component<Props> {
   `;
 
   render() {
-    const {query} = this.props;
-    const {session} = query || {};
+    const { query } = this.props;
+    const { session } = query || {};
     return (
       <DefaultLayout session={session} title="Copyright">
         <Container>
@@ -49,7 +49,7 @@ class Copyright extends Component<Props> {
 
           <p>
             To request permission to reproduce all or part of any other
-            materials on this website, please complete the{' '}
+            materials on this website, please complete the{" "}
             <a
               href="https://forms.gov.bc.ca/copyright-permission-request/"
               target="_blank"
@@ -65,7 +65,7 @@ class Copyright extends Component<Props> {
           </p>
 
           <p>
-            For the reproduction of provincial legislation found on the{' '}
+            For the reproduction of provincial legislation found on the{" "}
             <a
               href="https://www.bclaws.ca/"
               target="_blank"
@@ -73,7 +73,7 @@ class Copyright extends Component<Props> {
             >
               BC Laws website
             </a>
-            , permission is subject to the terms of the{' '}
+            , permission is subject to the terms of the{" "}
             <a
               href="https://www.bclaws.ca/standards/2014/QP-License_1.0.html"
               target="_blank"
@@ -86,7 +86,7 @@ class Copyright extends Component<Props> {
 
           <p>
             For the reproduction of specified b-roll, interview and podium video
-            footage found on the{' '}
+            footage found on the{" "}
             <a
               href="https://news.gov.bc.ca/"
               target="_blank"
@@ -94,7 +94,7 @@ class Copyright extends Component<Props> {
             >
               BC Gov News website
             </a>
-            , permission is subject to the terms of the{' '}
+            , permission is subject to the terms of the{" "}
             <a
               href="https://news.gov.bc.ca/assets/license"
               target="_blank"
@@ -106,7 +106,7 @@ class Copyright extends Component<Props> {
           </p>
 
           <p>
-            For the reproduction of materials found in the{' '}
+            For the reproduction of materials found in the{" "}
             <a
               href="https://catalogue.data.gov.bc.ca/"
               target="_blank"
@@ -117,7 +117,7 @@ class Copyright extends Component<Props> {
             , either a license agreement (as specified in the BC Data Catalogue)
             will apply or the materials are “access only” and reproduction is
             not permitted without written permission. To request permission,
-            please complete the{' '}
+            please complete the{" "}
             <a
               href="https://forms.gov.bc.ca/copyright-permission-request/"
               target="_blank"
@@ -134,15 +134,15 @@ class Copyright extends Component<Props> {
           </p>
 
           <p>
-            For more information, please read the{' '}
+            For more information, please read the{" "}
             <a
               href="https://www2.gov.bc.ca/gov/content/governments/services-for-government/policies-procedures/intellectual-property/frequently-asked-questions"
               target="_blank"
               rel="noopener noreferrer"
             >
               Frequently&nbsp;Asked Questions
-            </a>{' '}
-            or contact the{' '}
+            </a>{" "}
+            or contact the{" "}
             <a
               href="https://www2.gov.bc.ca/gov/content/governments/services-for-government/policies-procedures/intellectual-property/intellectual-property-program/intellectual-property-disposals"
               target="_blank"
@@ -154,7 +154,7 @@ class Copyright extends Component<Props> {
           </p>
 
           <p>
-            e-mail:{' '}
+            e-mail:{" "}
             <a
               href="mailto:QPIPPCopyright@gov.bc.ca"
               target="_blank"

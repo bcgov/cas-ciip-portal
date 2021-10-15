@@ -1,10 +1,10 @@
-const html = require('html-template-tag');
-const createUrl = require('../helpers/createUrl');
+const html = require("html-template-tag");
+const createUrl = require("../helpers/createUrl");
 
 const createNotifyAdminAccessRequestMail = ({
   firstName,
   lastName,
-  operatorName
+  operatorName,
 }) => {
   return html`
     <table
@@ -30,7 +30,7 @@ const createNotifyAdminAccessRequestMail = ({
           </p>
           <p>
             An analyst can now
-            <a href="${createUrl('analyst/organisation-requests')}">
+            <a href="${createUrl("analyst/organisation-requests")}">
               review and approve their access</a
             >
             to that Operator.

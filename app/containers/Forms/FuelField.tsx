@@ -1,29 +1,31 @@
-import React from 'react';
-import {FieldProps} from '@rjsf/core';
-import {createFragmentContainer, graphql} from 'react-relay';
-import {FuelField_query} from 'FuelField_query.graphql';
-import ObjectField from '@rjsf/core/dist/cjs/components/fields/ObjectField';
+import React from "react";
+import { FieldProps } from "@rjsf/core";
+import { createFragmentContainer, graphql } from "react-relay";
+import { FuelField_query } from "FuelField_query.graphql";
+import ObjectField from "@rjsf/core/dist/cjs/components/fields/ObjectField";
 
 interface Props extends FieldProps {
   query: FuelField_query;
 }
 
 export const FuelFieldComponent: React.FunctionComponent<Props> = (props) => {
-  const {formData, query, onChange} = props;
+  const { formData, query, onChange } = props;
 
   const isFuelArchived =
     formData.fuelRowId !== undefined &&
     query.allFuels.edges.some(
-      ({node}) => node.state === 'archived' && node.rowId === formData.fuelRowId
+      ({ node }) =>
+        node.state === "archived" && node.rowId === formData.fuelRowId
     );
 
   const handlefuelChange = (fuelRowId: number) => {
-    const fuel = query.allFuels.edges.find(({node}) => node.rowId === fuelRowId)
-      ?.node;
+    const fuel = query.allFuels.edges.find(
+      ({ node }) => node.rowId === fuelRowId
+    )?.node;
     onChange({
       ...formData,
       fuelRowId,
-      fuelUnits: fuel?.units
+      fuelUnits: fuel?.units,
     });
   };
 
@@ -50,5 +52,5 @@ export default createFragmentContainer(FuelFieldComponent, {
         }
       }
     }
-  `
+  `,
 });

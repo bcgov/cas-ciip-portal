@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react';
-import throttle from 'lodash.throttle';
+import React, { useEffect } from "react";
+import throttle from "lodash.throttle";
 
 interface Props {
   refreshUrl: string;
@@ -8,7 +8,7 @@ interface Props {
 
 const SessionRefresher: React.FunctionComponent<Props> = ({
   refreshUrl,
-  throttledTime = 1000 * 60 * 5 // 5 min default
+  throttledTime = 1000 * 60 * 5, // 5 min default
 }) => {
   const extendSession = async () => {
     try {
@@ -21,16 +21,16 @@ const SessionRefresher: React.FunctionComponent<Props> = ({
   useEffect(() => {
     const throttledSession = throttle(extendSession, throttledTime, {
       leading: false,
-      trailing: true
+      trailing: true,
     });
-    window.addEventListener('keydown', throttledSession);
-    window.addEventListener('mousedown', throttledSession);
-    window.addEventListener('scroll', throttledSession);
+    window.addEventListener("keydown", throttledSession);
+    window.addEventListener("mousedown", throttledSession);
+    window.addEventListener("scroll", throttledSession);
 
     return () => {
-      window.removeEventListener('keydown', throttledSession);
-      window.removeEventListener('mousedown', throttledSession);
-      window.removeEventListener('scroll', throttledSession);
+      window.removeEventListener("keydown", throttledSession);
+      window.removeEventListener("mousedown", throttledSession);
+      window.removeEventListener("scroll", throttledSession);
       throttledSession.cancel();
     };
   }, []);

@@ -1,9 +1,9 @@
-import React, {useState, useRef} from 'react';
-import Link from 'next/link';
-import LoginButton from 'components/LoginButton';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faBars, faUser} from '@fortawesome/free-solid-svg-icons';
-import css from 'styled-jsx/css';
+import React, { useState, useRef } from "react";
+import Link from "next/link";
+import LoginButton from "components/LoginButton";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars, faUser } from "@fortawesome/free-solid-svg-icons";
+import css from "styled-jsx/css";
 
 export const ButtonCSS = css`
   button {
@@ -27,7 +27,7 @@ export const ButtonCSS = css`
   }
 `;
 
-const DESKTOP_BREAKPOINT_QUERY = '(min-width: 992px)';
+const DESKTOP_BREAKPOINT_QUERY = "(min-width: 992px)";
 
 interface Props {
   isLoggedIn?: boolean;
@@ -40,7 +40,7 @@ const HeaderLayout: React.FunctionComponent<Props> = ({
   isRegistered = false,
   fixed = false,
   userProfileDropdown,
-  children
+  children,
 }) => {
   let mediaMatch;
   /**
@@ -67,7 +67,7 @@ const HeaderLayout: React.FunctionComponent<Props> = ({
   };
 
   return (
-    <header className={`${fixed ? 'fixed' : ''}`}>
+    <header className={`${fixed ? "fixed" : ""}`}>
       <div className="nav-header">
         <nav aria-label="Main">
           <div className="header-left">
@@ -91,23 +91,23 @@ const HeaderLayout: React.FunctionComponent<Props> = ({
               type="button"
               aria-label="Menu toggle"
               onClick={toggleNavMenu}
-              className={isLoggedIn ? 'logged-in' : null}
+              className={isLoggedIn ? "logged-in" : null}
             >
               <FontAwesomeIcon
-                color={isLoggedIn ? '#036' : 'white'}
+                color={isLoggedIn ? "#036" : "white"}
                 icon={isLoggedIn ? faUser : faBars}
                 style={{
-                  fontSize: '30px',
-                  verticalAlign: 'middle',
-                  height: '0.8em',
-                  paddingBottom: '2px'
+                  fontSize: "30px",
+                  verticalAlign: "middle",
+                  height: "0.8em",
+                  paddingBottom: "2px",
                 }}
               />
             </button>
           </div>
           <ul
             className="header-right"
-            style={navMenuHidden ? {display: 'none'} : {display: 'flex'}}
+            style={navMenuHidden ? { display: "none" } : { display: "flex" }}
           >
             {isRegistered ? (
               <li>

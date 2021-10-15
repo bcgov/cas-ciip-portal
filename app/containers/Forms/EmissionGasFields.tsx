@@ -1,9 +1,9 @@
-import React from 'react';
-import {FieldProps} from '@rjsf/core';
-import {Form, Col} from 'react-bootstrap';
-import {JSONSchema7} from 'json-schema';
-import {Decimal} from 'decimal.js-light';
-import ErrorList from 'components/Forms/ErrorList';
+import React from "react";
+import { FieldProps } from "@rjsf/core";
+import { Form, Col } from "react-bootstrap";
+import { JSONSchema7 } from "json-schema";
+import { Decimal } from "decimal.js-light";
+import ErrorList from "components/Forms/ErrorList";
 
 const EmissionGasFields: React.FunctionComponent<FieldProps> = ({
   formData,
@@ -17,23 +17,23 @@ const EmissionGasFields: React.FunctionComponent<FieldProps> = ({
   disabled,
   readonly,
   schema,
-  uiSchema
+  uiSchema,
 }) => {
   const {
     properties: {
       annualEmission: annualEmissionSchema,
-      annualCO2e: annualCO2eSchema
-    }
-  } = schema as {properties: Record<string, JSONSchema7>};
+      annualCO2e: annualCO2eSchema,
+    },
+  } = schema as { properties: Record<string, JSONSchema7> };
 
   const {
-    FieldTemplate
+    FieldTemplate,
   }: {
     FieldTemplate: React.FunctionComponent<any>;
   } = registry as any;
   // Not using the types defined in @types/@rjsf/core as they are out of date
 
-  const hideRow = formData.annualEmission === 0 ? 'zero-emission' : '';
+  const hideRow = formData.annualEmission === 0 ? "zero-emission" : "";
 
   // Function fixes javascript decimal error example: 0.1 + 0.2 = 3.0000000004
   const normalizeDecimal = (value: number) => {
@@ -51,13 +51,13 @@ const EmissionGasFields: React.FunctionComponent<FieldProps> = ({
             style={{
               margin: 0,
               padding: 0,
-              lineHeight: '17px'
+              lineHeight: "17px",
             }}
           >
             <label
               htmlFor={`${idSchema?.$id}_annualEmission`}
               // Inline style counteracts an overreaching `.hidden-title label` rule set in EmissionSourceFields
-              style={{display: 'inline'}}
+              style={{ display: "inline" }}
             >
               <small>{formData.gasDescription}</small>
             </label>
@@ -98,20 +98,20 @@ const EmissionGasFields: React.FunctionComponent<FieldProps> = ({
                   annualEmission: value,
                   annualCO2e: value
                     ? Number(normalizeDecimal(value).times(formData.gwp))
-                    : 0
+                    : 0,
                 })
               }
             />
           </FieldTemplate>
         </Col>
-        <Col md={2} style={{textAlign: 'center'}}>
+        <Col md={2} style={{ textAlign: "center" }}>
           <ul className="gwp">
             <li>X</li>
             <li>{formData.gwp}</li>
             <li>=</li>
           </ul>
         </Col>
-        <Col md={3} style={{textAlign: 'center'}}>
+        <Col md={3} style={{ textAlign: "center" }}>
           <FieldTemplate
             hidden={false}
             id="emissions.annualCO2e"
@@ -139,7 +139,7 @@ const EmissionGasFields: React.FunctionComponent<FieldProps> = ({
               name="annualCO2e"
               onBlur={onBlur}
               onChange={() => {
-                throw new Error('Annual CO2e should not be edited directly');
+                throw new Error("Annual CO2e should not be edited directly");
               }}
             />
           </FieldTemplate>

@@ -1,15 +1,15 @@
-import React, {Component} from 'react';
-import {graphql} from 'react-relay';
-import {Card} from 'react-bootstrap';
-import {addFacilityQueryResponse} from 'addFacilityQuery.graphql';
-import DefaultLayout from 'layouts/default-layout';
-import AddFacility from 'containers/Facilities/AddFacility';
-import {INCENTIVE_ANALYST, ADMIN_GROUP} from 'data/group-constants';
+import React, { Component } from "react";
+import { graphql } from "react-relay";
+import { Card } from "react-bootstrap";
+import { addFacilityQueryResponse } from "addFacilityQuery.graphql";
+import DefaultLayout from "layouts/default-layout";
+import AddFacility from "containers/Facilities/AddFacility";
+import { INCENTIVE_ANALYST, ADMIN_GROUP } from "data/group-constants";
 
 const ALLOWED_GROUPS = [INCENTIVE_ANALYST, ...ADMIN_GROUP];
 
 interface Props {
-  query: addFacilityQueryResponse['query'];
+  query: addFacilityQueryResponse["query"];
 }
 class AddFacilityPage extends Component<Props> {
   static allowedGroups = ALLOWED_GROUPS;
@@ -26,20 +26,20 @@ class AddFacilityPage extends Component<Props> {
   `;
 
   state = {
-    facilityInput: '',
-    selectedFacility: null
+    facilityInput: "",
+    selectedFacility: null,
   };
 
   handleInputChange = (event) => {
-    this.setState({facilityInput: event});
+    this.setState({ facilityInput: event });
   };
 
   handleFacilityChange = (facilityId) => {
-    this.setState({selectedFacility: facilityId});
+    this.setState({ selectedFacility: facilityId });
   };
 
   render() {
-    const {query} = this.props;
+    const { query } = this.props;
     return (
       <DefaultLayout session={query.session} title="Add Facility">
         <Card>

@@ -1,27 +1,27 @@
-import React from 'react';
-import {shallow, mount} from 'enzyme';
-import FilterableTable from 'components/FilterableTable/FilterableTable';
-import * as nextRouter from 'next/router';
+import React from "react";
+import { shallow, mount } from "enzyme";
+import FilterableTable from "components/FilterableTable/FilterableTable";
+import * as nextRouter from "next/router";
 
 import {
   TextFilter,
   DisplayOnlyFilter,
-  TableFilter
-} from 'components/FilterableTable/Filters';
+  TableFilter,
+} from "components/FilterableTable/Filters";
 
-describe('The filterable table', () => {
+describe("The filterable table", () => {
   nextRouter.useRouter = jest.fn();
   nextRouter.useRouter.mockImplementation(() => ({
-    route: '/',
-    query: ''
+    route: "/",
+    query: "",
   }));
 
   const emptyBody = <tbody />;
 
-  it('renders sort headers', () => {
+  it("renders sort headers", () => {
     const filters = [
-      new TextFilter('TextTitle', 'text_column'),
-      new DisplayOnlyFilter('DisplayOnlyTitle')
+      new TextFilter("TextTitle", "text_column"),
+      new DisplayOnlyFilter("DisplayOnlyTitle"),
     ];
 
     const rendered = shallow(
@@ -29,29 +29,29 @@ describe('The filterable table', () => {
     );
 
     expect(rendered).toMatchSnapshot();
-    expect(rendered.find('SortableTableHeader').length).toBe(2);
+    expect(rendered.find("SortableTableHeader").length).toBe(2);
     expect(
-      rendered.find('SortableTableHeader').at(0).prop('headerVariables')
+      rendered.find("SortableTableHeader").at(0).prop("headerVariables")
     ).toEqual({
-      displayName: 'TextTitle',
-      columnName: 'text_column',
+      displayName: "TextTitle",
+      columnName: "text_column",
       hasTableHeader: true,
-      sortable: true
+      sortable: true,
     });
     expect(
-      rendered.find('SortableTableHeader').at(1).prop('headerVariables')
+      rendered.find("SortableTableHeader").at(1).prop("headerVariables")
     ).toEqual({
-      displayName: 'DisplayOnlyTitle',
+      displayName: "DisplayOnlyTitle",
       columnName: undefined,
       hasTableHeader: true,
-      sortable: false
+      sortable: false,
     });
   });
 
-  it('renders filter headers', () => {
+  it("renders filter headers", () => {
     const filters = [
-      new TextFilter('TextTitle', 'text_column'),
-      new DisplayOnlyFilter('DisplayOnlyTitle')
+      new TextFilter("TextTitle", "text_column"),
+      new DisplayOnlyFilter("DisplayOnlyTitle"),
     ];
 
     const rendered = shallow(
@@ -60,11 +60,11 @@ describe('The filterable table', () => {
 
     expect(rendered).toMatchSnapshot();
     expect(
-      rendered.find('FilterableTableFilterRow').at(0).prop('filters')
+      rendered.find("FilterableTableFilterRow").at(0).prop("filters")
     ).toBe(filters);
   });
 
-  it('renders the table body', () => {
+  it("renders the table body", () => {
     const body = (
       <tbody>
         <tr>
@@ -76,26 +76,26 @@ describe('The filterable table', () => {
     const rendered = shallow(<FilterableTable body={body} filters={[]} />);
 
     expect(rendered).toMatchSnapshot();
-    expect(rendered.find('tbody').text()).toContain('this is a test body');
+    expect(rendered.find("tbody").text()).toContain("this is a test body");
   });
 
-  it('renders extra filters', () => {
+  it("renders extra filters", () => {
     const extraFilter: TableFilter = {
-      argName: 'myExtraFilter',
-      title: '',
+      argName: "myExtraFilter",
+      title: "",
       isSearchEnabled: true,
       isSortEnabled: false,
-      Component: ({onChange, filterArgs}) => {
+      Component: ({ onChange, filterArgs }) => {
         return (
           <input
             name="myExtraFilter"
             value={filterArgs.myExtraFilter as string}
             onChange={(e) =>
-              onChange((e.nativeEvent.target as any).value, 'myExtraFilter')
+              onChange((e.nativeEvent.target as any).value, "myExtraFilter")
             }
           />
         );
-      }
+      },
     };
 
     const rendered = mount(

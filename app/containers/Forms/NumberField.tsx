@@ -1,7 +1,7 @@
-import React from 'react';
-import NumberFormat from 'react-number-format';
-import {FieldProps} from '@rjsf/core';
-import {getWidget} from '@rjsf/core/dist/cjs/utils';
+import React from "react";
+import NumberFormat from "react-number-format";
+import { FieldProps } from "@rjsf/core";
+import { getWidget } from "@rjsf/core/dist/cjs/utils";
 
 const NumberField: React.FunctionComponent<FieldProps> = ({
   formData,
@@ -19,14 +19,14 @@ const NumberField: React.FunctionComponent<FieldProps> = ({
   placeholder,
   rawErrors,
   onBlur,
-  onFocus
+  onFocus,
 }) => {
-  const {title} = schema;
-  if (uiSchema?.['ui:widget']) {
+  const { title } = schema;
+  if (uiSchema?.["ui:widget"]) {
     const WidgetComponent = getWidget(
       schema,
       // @ts-ignore
-      uiSchema['ui:widget'],
+      uiSchema["ui:widget"],
       registry.widgets
     );
     return (
@@ -59,7 +59,7 @@ const NumberField: React.FunctionComponent<FieldProps> = ({
   if (readonly) {
     return (
       <NumberFormat
-        thousandSeparator={!uiSchema?.['ui:no-seperator']}
+        thousandSeparator={!uiSchema?.["ui:no-seperator"]}
         id={idSchema.$id}
         disabled={disabled}
         decimalScale={4}
@@ -71,7 +71,7 @@ const NumberField: React.FunctionComponent<FieldProps> = ({
 
   return (
     <NumberFormat
-      thousandSeparator={!uiSchema?.['ui:no-seperator']}
+      thousandSeparator={!uiSchema?.["ui:no-seperator"]}
       id={idSchema.$id}
       disabled={disabled}
       className="form-control"
@@ -79,7 +79,7 @@ const NumberField: React.FunctionComponent<FieldProps> = ({
       decimalScale={4}
       defaultValue={(schema as any).defaultValue}
       value={formData}
-      onValueChange={({floatValue}) => onChange(floatValue)}
+      onValueChange={({ floatValue }) => onChange(floatValue)}
       onBlur={() => onBlur(idSchema.$id, formData)}
     />
   );

@@ -1,7 +1,7 @@
-import React from 'react';
-import Link from 'next/link';
+import React from "react";
+import Link from "next/link";
 
-const Footer = ({children}) => {
+const Footer = ({ children }) => {
   return (
     <footer className="footer">
       {children}

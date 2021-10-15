@@ -1,5 +1,5 @@
-import React from 'react';
-import {Pagination, Dropdown} from 'react-bootstrap';
+import React from "react";
+import { Pagination, Dropdown } from "react-bootstrap";
 
 interface Props {
   /**
@@ -27,7 +27,7 @@ const FilterableTablePagination: React.FunctionComponent<Props> = ({
   pageSize = DEFAULT_PAGE_SIZE,
   offset = 0,
   onOffsetChange,
-  onPageSizeChange
+  onPageSizeChange,
 }) => {
   const activePage = Math.floor(offset / pageSize + 1) || 1;
   const maxPages = Math.ceil(totalCount / pageSize);
@@ -87,7 +87,7 @@ const FilterableTablePagination: React.FunctionComponent<Props> = ({
           </Dropdown.Menu>
         </Dropdown>
         {maxPages > 1 && (
-          <Pagination style={{marginLeft: '15px'}}>
+          <Pagination style={{ marginLeft: "15px" }}>
             <Pagination.First onClick={() => handlePageChange(1)}>
               &lt;&lt; First Page
             </Pagination.First>

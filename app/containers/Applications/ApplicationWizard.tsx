@@ -1,13 +1,13 @@
-import React, {useMemo} from 'react';
-import {useRouter} from 'next/router';
-import {graphql, createFragmentContainer} from 'react-relay';
-import ApplicationFormNavbar from 'components/Forms/ApplicationFormNavbar';
-import {ApplicationWizard_query} from 'ApplicationWizard_query.graphql';
-import ApplicationWizardStep from './ApplicationWizardStep';
-import LoadingSpinner from 'components/LoadingSpinner';
-import ApplicationDecision from 'components/Application/ApplicationDecision';
-import {ApplicationWizard_applicationRevision} from 'ApplicationWizard_applicationRevision.graphql';
-import {getApplicationPageRoute} from 'routes';
+import React, { useMemo } from "react";
+import { useRouter } from "next/router";
+import { graphql, createFragmentContainer } from "react-relay";
+import ApplicationFormNavbar from "components/Forms/ApplicationFormNavbar";
+import { ApplicationWizard_query } from "ApplicationWizard_query.graphql";
+import ApplicationWizardStep from "./ApplicationWizardStep";
+import LoadingSpinner from "components/LoadingSpinner";
+import ApplicationDecision from "components/Application/ApplicationDecision";
+import { ApplicationWizard_applicationRevision } from "ApplicationWizard_applicationRevision.graphql";
+import { getApplicationPageRoute } from "routes";
 
 interface Props {
   query: ApplicationWizard_query;
@@ -23,14 +23,14 @@ interface Props {
 export const ApplicationWizardComponent: React.FunctionComponent<Props> = ({
   query,
   applicationRevision,
-  loading
+  loading,
 }) => {
   const router = useRouter();
-  const {formId} = router.query;
-  const confirmationPage = router.query.confirmationPage === 'true';
+  const { formId } = router.query;
+  const confirmationPage = router.query.confirmationPage === "true";
   const {
-    orderedFormResults: {edges: orderedFormResults},
-    applicationByApplicationId
+    orderedFormResults: { edges: orderedFormResults },
+    applicationByApplicationId,
   } = applicationRevision;
   const reviewSteps =
     applicationByApplicationId?.applicationReviewStepsByApplicationId.edges;
@@ -40,7 +40,7 @@ export const ApplicationWizardComponent: React.FunctionComponent<Props> = ({
       step.node.reviewCommentsByApplicationReviewStepId.edges;
     return [
       ...mergedStepComments,
-      ...stepComments.map((step) => step.node.description)
+      ...stepComments.map((step) => step.node.description),
     ];
   }, []);
   const revisionInProgress = applicationRevision.versionNumber > 1;
@@ -48,7 +48,7 @@ export const ApplicationWizardComponent: React.FunctionComponent<Props> = ({
   const formResult = useMemo(() => {
     if (!formId) return null;
     return orderedFormResults.find(
-      ({node}) => formId === node.formJsonByFormId.id
+      ({ node }) => formId === node.formJsonByFormId.id
     )?.node;
   }, [orderedFormResults, formId]);
 
@@ -58,7 +58,7 @@ export const ApplicationWizardComponent: React.FunctionComponent<Props> = ({
       applicationByApplicationId.id,
       orderedFormResults[0].node.formJsonByFormId.id
     );
-    router.replace(newRoute, newRoute, {shallow: true});
+    router.replace(newRoute, newRoute, { shallow: true });
     return null;
   }
 
@@ -78,7 +78,7 @@ export const ApplicationWizardComponent: React.FunctionComponent<Props> = ({
             )
           : getApplicationPageRoute(applicationByApplicationId.id, nextFormId);
 
-        router.push(newUrl, newUrl, {shallow: true});
+        router.push(newUrl, newUrl, { shallow: true });
       }
     }
   };
@@ -130,7 +130,10 @@ export default createFragmentContainer(ApplicationWizardComponent, {
           edges {
             node {
               reviewCommentsByApplicationReviewStepId(
-                filter: {resolved: {isNull: true}, deletedBy: {isNull: true}}
+                filter: {
+                  resolved: { isNull: true }
+                  deletedBy: { isNull: true }
+                }
               ) {
                 edges {
                   node {
@@ -153,5 +156,5 @@ export default createFragmentContainer(ApplicationWizardComponent, {
         }
       }
     }
-  `
+  `,
 });

@@ -1,15 +1,15 @@
-import React, {useCallback} from 'react';
-import {WidgetProps} from '@rjsf/core';
-import Widgets from '@rjsf/core/dist/cjs/components/widgets';
-import SearchDropdown from 'components/SearchDropdown';
+import React, { useCallback } from "react";
+import { WidgetProps } from "@rjsf/core";
+import Widgets from "@rjsf/core/dist/cjs/components/widgets";
+import SearchDropdown from "components/SearchDropdown";
 
 const SearchDropdownWidget: React.FunctionComponent<WidgetProps> = (props) => {
-  const {onChange, schema, id, placeholder, value, onBlur, readonly} = props;
+  const { onChange, schema, id, placeholder, value, onBlur, readonly } = props;
   const getOptions = useCallback(
     () =>
       schema.enum.map((e: string, index) => ({
         id: e,
-        name: (schema as any).enumNames?.[index] ?? e
+        name: (schema as any).enumNames?.[index] ?? e,
       })),
     [schema]
   );
@@ -20,11 +20,11 @@ const SearchDropdownWidget: React.FunctionComponent<WidgetProps> = (props) => {
     return [
       {
         id: value,
-        name: (schema as any).enumNames?.[index] ?? value
-      }
+        name: (schema as any).enumNames?.[index] ?? value,
+      },
     ];
   }, [schema, value]);
-  const handleChange = (items: Array<{id: string | number}>) => {
+  const handleChange = (items: Array<{ id: string | number }>) => {
     onChange(items[0]?.id);
   };
 
@@ -38,7 +38,7 @@ const SearchDropdownWidget: React.FunctionComponent<WidgetProps> = (props) => {
     <SearchDropdown
       id={id}
       options={getOptions()}
-      inputProps={{id}}
+      inputProps={{ id }}
       placeholder={placeholder}
       selected={getSelected()}
       onChange={handleChange}

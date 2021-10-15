@@ -1,7 +1,7 @@
-import React from 'react';
-import {WidgetProps} from '@rjsf/core';
+import React from "react";
+import { WidgetProps } from "@rjsf/core";
 
-const HeaderWidget: React.FunctionComponent<WidgetProps> = ({options}) => {
+const HeaderWidget: React.FunctionComponent<WidgetProps> = ({ options }) => {
   return (
     <span className="paragraph-text">
       <h3>{options.text}</h3>

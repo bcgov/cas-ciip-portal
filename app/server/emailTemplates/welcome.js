@@ -1,7 +1,7 @@
-const html = require('html-template-tag');
-const createUrl = require('../helpers/createUrl');
+const html = require("html-template-tag");
+const createUrl = require("../helpers/createUrl");
 
-const createWelcomeMail = ({firstName, lastName, email, contactEmail}) => {
+const createWelcomeMail = ({ firstName, lastName, email, contactEmail }) => {
   return html`
     <table
       align="center"
@@ -29,7 +29,7 @@ const createWelcomeMail = ({firstName, lastName, email, contactEmail}) => {
           <ul>
             <li>
               Please log in to the CIIP web application to
-              <a href=${createUrl('reporter')}
+              <a href=${createUrl("reporter")}
                 >request access to apply on behalf of an operator</a
               >.
               <ul>

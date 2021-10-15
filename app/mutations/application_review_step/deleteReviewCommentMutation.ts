@@ -1,15 +1,15 @@
-import {graphql} from 'react-relay';
-import RelayModernEnvironment from 'relay-runtime/lib/store/RelayModernEnvironment';
+import { graphql } from "react-relay";
+import RelayModernEnvironment from "relay-runtime/lib/store/RelayModernEnvironment";
 import {
   updateReviewCommentMutationVariables,
-  updateReviewCommentMutation as updateReviewCommentMutationType
-} from 'updateReviewCommentMutation.graphql';
-import BaseMutation from 'mutations/BaseMutation';
+  updateReviewCommentMutation as updateReviewCommentMutationType,
+} from "updateReviewCommentMutation.graphql";
+import BaseMutation from "mutations/BaseMutation";
 import {
   SelectorStoreUpdater,
-  RecordSourceProxy
-} from 'relay-runtime/lib/store/RelayStoreTypes';
-import {ConnectionHandler} from 'relay-runtime';
+  RecordSourceProxy,
+} from "relay-runtime/lib/store/RelayStoreTypes";
+import { ConnectionHandler } from "relay-runtime";
 
 const mutation = graphql`
   mutation deleteReviewCommentMutation($input: UpdateReviewCommentInput!) {
@@ -37,11 +37,11 @@ const deleteReviewCommentMutation = async (
   };
 
   const m = new BaseMutation<updateReviewCommentMutationType>(
-    'delete-review-comment-mutation'
+    "delete-review-comment-mutation"
   );
 
   return m.performMutation(environment, mutation, variables, null, updater);
 };
 
 export default deleteReviewCommentMutation;
-export {mutation};
+export { mutation };

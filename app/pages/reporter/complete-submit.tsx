@@ -1,18 +1,18 @@
-import React, {Component} from 'react';
-import Link from 'next/link';
-import {Button, Row, Col} from 'react-bootstrap';
-import {graphql} from 'react-relay';
-import {CiipPageComponentProps} from 'next-env';
-import {completeSubmitQueryResponse} from 'completeSubmitQuery.graphql';
-import DefaultLayout from 'layouts/default-layout';
-import {USER} from 'data/group-constants';
-import ApplicationProgressBar from 'components/Application/ApplicationProgressBar';
-import {getViewApplicationPageRoute} from 'routes';
+import React, { Component } from "react";
+import Link from "next/link";
+import { Button, Row, Col } from "react-bootstrap";
+import { graphql } from "react-relay";
+import { CiipPageComponentProps } from "next-env";
+import { completeSubmitQueryResponse } from "completeSubmitQuery.graphql";
+import DefaultLayout from "layouts/default-layout";
+import { USER } from "data/group-constants";
+import ApplicationProgressBar from "components/Application/ApplicationProgressBar";
+import { getViewApplicationPageRoute } from "routes";
 
 const ALLOWED_GROUPS = [USER];
 
 interface Props extends CiipPageComponentProps {
-  query: completeSubmitQueryResponse['query'];
+  query: completeSubmitQueryResponse["query"];
 }
 class CompleteSubmit extends Component<Props> {
   static allowedGroups = ALLOWED_GROUPS;
@@ -40,15 +40,15 @@ class CompleteSubmit extends Component<Props> {
 
   render() {
     const {
-      query: {session, application},
-      router
+      query: { session, application },
+      router,
     } = this.props;
 
-    const {applicationId} = router.query;
-    const {versionNumber} = application.latestSubmittedRevision;
-    const {facilityName} = application.facilityByFacilityId;
+    const { applicationId } = router.query;
+    const { versionNumber } = application.latestSubmittedRevision;
+    const { facilityName } = application.facilityByFacilityId;
     const {
-      operatorName
+      operatorName,
     } = application.facilityByFacilityId.organisationByOrganisationId;
 
     return (
@@ -63,9 +63,9 @@ class CompleteSubmit extends Component<Props> {
         </Row>
         <h1 className="pt-5">Thank you for submitting your application.</h1>
         <p className="lead pb-5 pt-3">
-          Your application for the{' '}
+          Your application for the{" "}
           <span className="font-weight-bold">{facilityName}</span> facility
-          operated by <span className="font-weight-bold">{operatorName}</span>{' '}
+          operated by <span className="font-weight-bold">{operatorName}</span>{" "}
           has been received and is being reviewed. We will notify you by email
           regarding any updates.
         </p>
@@ -77,7 +77,7 @@ class CompleteSubmit extends Component<Props> {
           )}
         >
           <Button
-            style={{padding: '15px', width: '20%'}}
+            style={{ padding: "15px", width: "20%" }}
             variant="primary"
             size="sm"
           >

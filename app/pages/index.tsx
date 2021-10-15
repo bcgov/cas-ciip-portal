@@ -1,31 +1,31 @@
-import React, {Component} from 'react';
-import {Row, Col, Card} from 'react-bootstrap';
-import {graphql} from 'react-relay';
-import {pagesQueryResponse} from 'pagesQuery.graphql';
-import {CiipPageComponentProps} from 'next-env';
-import DefaultLayout from 'layouts/default-layout';
-import RegistrationLoginButtons from 'containers/RegistrationLoginButtons';
-import {GUEST} from 'data/group-constants';
-import KeyDates from 'containers/KeyDates';
-import {getUserGroups} from 'server/helpers/userGroupAuthentication';
-import {getUserGroupLandingRoute} from 'lib/user-groups';
+import React, { Component } from "react";
+import { Row, Col, Card } from "react-bootstrap";
+import { graphql } from "react-relay";
+import { pagesQueryResponse } from "pagesQuery.graphql";
+import { CiipPageComponentProps } from "next-env";
+import DefaultLayout from "layouts/default-layout";
+import RegistrationLoginButtons from "containers/RegistrationLoginButtons";
+import { GUEST } from "data/group-constants";
+import KeyDates from "containers/KeyDates";
+import { getUserGroups } from "server/helpers/userGroupAuthentication";
+import { getUserGroupLandingRoute } from "lib/user-groups";
 
 const ALLOWED_GROUPS = [GUEST];
 
 interface Props extends CiipPageComponentProps {
-  query: pagesQueryResponse['query'];
+  query: pagesQueryResponse["query"];
 }
 
 export async function getServerSideProps(context) {
   const groups = getUserGroups(context.req);
   const landingRoute = getUserGroupLandingRoute(groups);
-  if (landingRoute === '/')
+  if (landingRoute === "/")
     return {
-      props: {}
+      props: {},
     };
 
   return {
-    redirect: {destination: landingRoute, permanent: false}
+    redirect: { destination: landingRoute, permanent: false },
   };
 }
 
@@ -44,8 +44,8 @@ export default class Index extends Component<Props> {
   `;
 
   render() {
-    const {query} = this.props;
-    const {session} = query || {};
+    const { query } = this.props;
+    const { session } = query || {};
     return (
       <DefaultLayout showSubheader={false} session={session}>
         <div className="row">
@@ -54,10 +54,10 @@ export default class Index extends Component<Props> {
               What is the CleanBC Industrial Incentive Program?
             </h1>
             <p>
-              The{' '}
+              The{" "}
               <a href="https://www2.gov.bc.ca/gov/content?id=6F748A4DD83447C59B8B9361882FF9A3">
                 CleanBC Industrial Incentive Program (CIIP)
-              </a>{' '}
+              </a>{" "}
               is part of the CleanBC Program for Industry, which applies to
               large industrial operations that report their emissions under the
               Greenhouse Gas Industrial Reporting and Control Act (GGIRCA).
@@ -77,7 +77,7 @@ export default class Index extends Component<Props> {
           <RegistrationLoginButtons query={query} />
         </div>
 
-        <Row style={{marginTop: '100px'}} id="value-props">
+        <Row style={{ marginTop: "100px" }} id="value-props">
           <Col md={12}>
             <h2 className="blue">How to Apply</h2>
           </Col>
@@ -117,7 +117,7 @@ export default class Index extends Component<Props> {
         </Row>
 
         <div id="photo-row" className="row">
-          <Col md={{span: 7}}>
+          <Col md={{ span: 7 }}>
             <img
               id="photo"
               className="img-fluid"
@@ -136,12 +136,12 @@ export default class Index extends Component<Props> {
               alt="Engineer wearing safety clothing and working at a control panel"
             />
           </Col>
-          <Col md={{span: 5}}>
+          <Col md={{ span: 5 }}>
             <KeyDates query={query} />
             <div id="contact-card" className="card">
               <Card.Body>
                 <Card.Title className="blue">Contact Information</Card.Title>
-                <Card.Text style={{padding: '10px 0 10px 0'}}>
+                <Card.Text style={{ padding: "10px 0 10px 0" }}>
                   Please email us at <strong>GHGRegulator@gov.bc.ca</strong> for
                   any questions.
                 </Card.Text>
@@ -149,7 +149,7 @@ export default class Index extends Component<Props> {
             </div>
             <p>
               Further information on the CleanBC Industrial Incentive Program is
-              available on the{' '}
+              available on the{" "}
               <a href="https://www2.gov.bc.ca/gov/content?id=6F748A4DD83447C59B8B9361882FF9A3">
                 program website
               </a>

@@ -1,10 +1,10 @@
-import {graphql} from 'react-relay';
-import RelayModernEnvironment from 'relay-runtime/lib/store/RelayModernEnvironment';
+import { graphql } from "react-relay";
+import RelayModernEnvironment from "relay-runtime/lib/store/RelayModernEnvironment";
 import {
   createCertificationUrlMutation as createCertificationUrlMutationType,
-  createCertificationUrlMutationVariables
-} from 'createCertificationUrlMutation.graphql';
-import BaseMutation from 'mutations/BaseMutation';
+  createCertificationUrlMutationVariables,
+} from "createCertificationUrlMutation.graphql";
+import BaseMutation from "mutations/BaseMutation";
 
 const mutation = graphql`
   mutation createCertificationUrlMutation(
@@ -25,7 +25,7 @@ const createCertificationUrlMutation = async (
   variables: createCertificationUrlMutationVariables
 ) => {
   const m = new BaseMutation<createCertificationUrlMutationType>(
-    'create-certification-url-mutation'
+    "create-certification-url-mutation"
   );
   return m.performMutation(environment, mutation, variables);
 };
