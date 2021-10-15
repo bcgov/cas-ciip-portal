@@ -1,10 +1,10 @@
-import fs from 'fs';
-import path from 'path';
-import EasyGraphQLTester from 'easygraphql-tester';
+import fs from "fs";
+import path from "path";
+import EasyGraphQLTester from "easygraphql-tester";
 
 const schemaCode = fs.readFileSync(
-  path.join(__dirname, '../../../../server', 'schema.graphql'),
-  'utf8'
+  path.join(__dirname, "../../../../server", "schema.graphql"),
+  "utf8"
 );
 
 const mutation = `
@@ -19,14 +19,14 @@ const mutation = `
   }
 `;
 
-describe('updateReportingYearMutation', () => {
+describe("updateReportingYearMutation", () => {
   let tester;
 
   beforeEach(() => {
     tester = new EasyGraphQLTester(schemaCode);
   });
 
-  it('Should throw an error if input is missing', () => {
+  it("Should throw an error if input is missing", () => {
     let error;
     try {
       tester.mock(mutation);
@@ -39,13 +39,13 @@ describe('updateReportingYearMutation', () => {
     );
   });
 
-  it('Should throw an error if a variable is missing', () => {
+  it("Should throw an error if a variable is missing", () => {
     let error;
     try {
       tester.mock(mutation, {
         input: {
-          id: 'abc'
-        }
+          id: "abc",
+        },
       });
     } catch (error_) {
       error = error_;
@@ -58,20 +58,20 @@ describe('updateReportingYearMutation', () => {
 
   // Skipping until we find a way to make custom scalars testable:
   // https://github.com/EasyGraphQL/easygraphql-tester/issues/118
-  it.skip('Should return applicationOpenTime(string) if valid', () => {
+  it.skip("Should return applicationOpenTime(string) if valid", () => {
     const test = tester.mock(mutation, {
       input: {
-        id: 'abc',
+        id: "abc",
         reportingYearPatch: {
-          applicationOpenTime: '2026-10-30 00:00:00.000-07:00'
-        }
-      }
+          applicationOpenTime: "2026-10-30 00:00:00.000-07:00",
+        },
+      },
     });
 
     expect(test).toBeDefined();
 
     expect(
       typeof test.data.updateReportingYear.reportingYear.applicationOpenTime
-    ).toBe('string');
+    ).toBe("string");
   });
 });

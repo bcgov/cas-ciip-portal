@@ -1,21 +1,21 @@
-import React, {Component} from 'react';
-import {Row} from 'react-bootstrap';
-import {graphql} from 'react-relay';
-import {CiipPageComponentProps} from 'next-env';
-import {adminQueryResponse} from 'adminQuery.graphql';
-import DefaultLayout from 'layouts/default-layout';
-import UserManagement from 'components/Dashboard/userManagement';
-import ReportingOperations from 'components/Dashboard/reportingOperations';
-import ProgramAdministration from 'components/Dashboard/programAdministration';
-import ReportAProblem from 'components/Dashboard/reportAProblem';
-import getConfig from 'next/config';
-import {ADMIN_GROUP} from 'data/group-constants';
-import FormConfiguration from 'components/Dashboard/formConfiguration';
+import React, { Component } from "react";
+import { Row } from "react-bootstrap";
+import { graphql } from "react-relay";
+import { CiipPageComponentProps } from "next-env";
+import { adminQueryResponse } from "adminQuery.graphql";
+import DefaultLayout from "layouts/default-layout";
+import UserManagement from "components/Dashboard/userManagement";
+import ReportingOperations from "components/Dashboard/reportingOperations";
+import ProgramAdministration from "components/Dashboard/programAdministration";
+import ReportAProblem from "components/Dashboard/reportAProblem";
+import getConfig from "next/config";
+import { ADMIN_GROUP } from "data/group-constants";
+import FormConfiguration from "components/Dashboard/formConfiguration";
 
 const ALLOWED_GROUPS = ADMIN_GROUP;
 
 interface Props extends CiipPageComponentProps {
-  query: adminQueryResponse['query'];
+  query: adminQueryResponse["query"];
 }
 class Admin extends Component<Props> {
   static allowedGroups = ALLOWED_GROUPS;
@@ -32,7 +32,7 @@ class Admin extends Component<Props> {
 
   render() {
     const {
-      query: {session}
+      query: { session },
     } = this.props;
     const supportUrl = getConfig()?.publicRuntimeConfig.SUPPORT_EMAIL;
     return (
@@ -45,7 +45,7 @@ class Admin extends Component<Props> {
             <UserManagement />
             <ReportAProblem
               supportUrl={
-                `mailto:${supportUrl}?subject=Internal Support Request` || '#'
+                `mailto:${supportUrl}?subject=Internal Support Request` || "#"
               }
             />
           </Row>

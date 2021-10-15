@@ -1,5 +1,5 @@
-const html = require('html-template-tag');
-const createUrl = require('../helpers/createUrl');
+const html = require("html-template-tag");
+const createUrl = require("../helpers/createUrl");
 
 const createApplicationDecisionMail = ({
   applicationId,
@@ -10,11 +10,11 @@ const createApplicationDecisionMail = ({
   operatorName,
   organisationId,
   status,
-  contactEmail
+  contactEmail,
 }) => {
   const operationFacilitiesUrl = createUrl(
     `reporter/facilities?filterArgs=${encodeURIComponent(
-      JSON.stringify({organisationRowId: organisationId})
+      JSON.stringify({ organisationRowId: organisationId })
     )}`
   );
   return html`
@@ -42,11 +42,11 @@ const createApplicationDecisionMail = ({
             <strong>${operatorName}</strong> has been ${status}.
           </p>
           <p>
-            ${status === 'approved'
-              ? 'Your incentive payment is being processed.'
-              : status === 'rejected'
-              ? 'Thank you for applying to the CIIP. Unfortunately this submission did not meet program requirements and a payment cannot be granted.'
-              : ''}
+            ${status === "approved"
+              ? "Your incentive payment is being processed."
+              : status === "rejected"
+              ? "Thank you for applying to the CIIP. Unfortunately this submission did not meet program requirements and a payment cannot be granted."
+              : ""}
           </p>
           <p>
             Your application(s) can be viewed in the

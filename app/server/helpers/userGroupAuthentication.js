@@ -1,5 +1,5 @@
-const groupConstants = require('../../data/group-constants');
-const {compactGroups} = require('../../lib/user-groups');
+const groupConstants = require("../../data/group-constants");
+const { compactGroups } = require("../../lib/user-groups");
 
 const removeFirstLetter = (str) => str.slice(1);
 
@@ -14,7 +14,7 @@ const getUserGroups = (req) => {
     return [groupConstants.GUEST];
 
   const brokerSessionId = req.kauth.grant.id_token.content.broker_session_id;
-  const {groups} = req.kauth.grant.id_token.content;
+  const { groups } = req.kauth.grant.id_token.content;
 
   const processedGroups = groups.map((value) => removeFirstLetter(value));
   const validGroups = compactGroups(processedGroups);
@@ -22,7 +22,7 @@ const getUserGroups = (req) => {
   if (validGroups.length === 0) {
     return brokerSessionId &&
       brokerSessionId.length === 41 &&
-      brokerSessionId.startsWith('idir.')
+      brokerSessionId.startsWith("idir.")
       ? [groupConstants.PENDING_ANALYST]
       : [groupConstants.USER];
   }
@@ -31,5 +31,5 @@ const getUserGroups = (req) => {
 };
 
 module.exports = {
-  getUserGroups
+  getUserGroups,
 };

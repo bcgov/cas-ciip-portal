@@ -1,5 +1,5 @@
-import React from 'react';
-import {Alert} from 'react-bootstrap';
+import React from "react";
+import { Alert } from "react-bootstrap";
 
 const getMissingProducts = (formResult, query) => {
   if (formResult[0]?.productRowId) {
@@ -8,7 +8,7 @@ const getMissingProducts = (formResult, query) => {
 
     reportedProducts.forEach((productId) => {
       const product = query.products.edges.find(
-        ({node}) => node.rowId === productId
+        ({ node }) => node.rowId === productId
       )?.node;
       if (product?.linkedProduct?.edges?.length > 0) {
         product.linkedProduct.edges.forEach((edge) => {
@@ -16,7 +16,7 @@ const getMissingProducts = (formResult, query) => {
             missingProducts.push({
               linkId: edge.node.rowId,
               product: product.productName,
-              missingLink: edge.node.productName
+              missingLink: edge.node.productName,
             });
           }
         });
@@ -52,7 +52,7 @@ interface Props {
 
 const MissingProductsComponent: React.FunctionComponent<Props> = ({
   formResult,
-  query
+  query,
 }) => {
   return showMissingProducts(formResult, query);
 };

@@ -1,20 +1,20 @@
-import React from 'react';
-import {Modal, Container, Button} from 'react-bootstrap';
-import globalFormStyles from '../../Forms/FormSharedStyles';
-import {FormValidation} from '@rjsf/core';
-import {JSONSchema7} from 'json-schema';
-import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
-import FormFieldTemplate from 'containers/Forms/FormFieldTemplate';
-import newReportingYearSchema from './create_reporting_year.json';
-import DatePickerWidget from 'components/Forms/DatePickerWidget';
-import {validateAllDates, validateUniqueKey} from './reportingYearValidation';
-import {ensureFullTimestamp} from 'functions/formatDates';
-import LoadingOnSubmitForm from 'components/helpers/LoadingOnSubmitForm';
+import React from "react";
+import { Modal, Container, Button } from "react-bootstrap";
+import globalFormStyles from "../../Forms/FormSharedStyles";
+import { FormValidation } from "@rjsf/core";
+import { JSONSchema7 } from "json-schema";
+import FormObjectFieldTemplate from "containers/Forms/FormObjectFieldTemplate";
+import FormFieldTemplate from "containers/Forms/FormFieldTemplate";
+import newReportingYearSchema from "./create_reporting_year.json";
+import DatePickerWidget from "components/Forms/DatePickerWidget";
+import { validateAllDates, validateUniqueKey } from "./reportingYearValidation";
+import { ensureFullTimestamp } from "functions/formatDates";
+import LoadingOnSubmitForm from "components/helpers/LoadingOnSubmitForm";
 
 interface Props {
   show: boolean;
   clearForm: () => void;
-  createReportingYear: ({formData}) => void;
+  createReportingYear: ({ formData }) => void;
   existingYearKeys: number[];
   validateExclusiveDateRanges: (
     year: number,
@@ -28,11 +28,11 @@ const NewReportingYearFormDialog: React.FunctionComponent<Props> = ({
   clearForm,
   createReportingYear,
   existingYearKeys,
-  validateExclusiveDateRanges
+  validateExclusiveDateRanges,
 }) => {
   const handleSubmit = (e) => {
-    const beginningOfDay = {hour: 0, minute: 0, second: 0, millisecond: 0};
-    const endOfDay = {hour: 11, minute: 59, second: 59, millisecond: 999};
+    const beginningOfDay = { hour: 0, minute: 0, second: 0, millisecond: 0 };
+    const endOfDay = { hour: 11, minute: 59, second: 59, millisecond: 999 };
     const formData = {
       ...e.formData,
       reportingPeriodStart: ensureFullTimestamp(
@@ -51,7 +51,7 @@ const NewReportingYearFormDialog: React.FunctionComponent<Props> = ({
         e.formData.applicationCloseTime,
         endOfDay
       ),
-      swrsDeadline: ensureFullTimestamp(e.formData.swrsDeadline, endOfDay)
+      swrsDeadline: ensureFullTimestamp(e.formData.swrsDeadline, endOfDay),
     };
 
     if (e.errors.length === 0) {
@@ -82,7 +82,7 @@ const NewReportingYearFormDialog: React.FunctionComponent<Props> = ({
               formData={{}}
               FieldTemplate={FormFieldTemplate}
               ObjectFieldTemplate={FormObjectFieldTemplate}
-              widgets={{DatePickerWidget}}
+              widgets={{ DatePickerWidget }}
               showErrorList={false}
               validate={(formData, errors) => {
                 validateUniqueKey(existingYearKeys, formData, errors);

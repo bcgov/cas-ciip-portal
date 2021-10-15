@@ -1,10 +1,10 @@
-import fs from 'fs';
-import path from 'path';
-import EasyGraphQLTester from 'easygraphql-tester';
+import fs from "fs";
+import path from "path";
+import EasyGraphQLTester from "easygraphql-tester";
 
 const schemaCode = fs.readFileSync(
-  path.join(__dirname, '../../../../server', 'schema.graphql'),
-  'utf8'
+  path.join(__dirname, "../../../../server", "schema.graphql"),
+  "utf8"
 );
 
 const mutation = `
@@ -20,12 +20,12 @@ const mutation = `
 `;
 
 /** *  MUTATIONS * **/
-describe('userOrganisationMutation', () => {
+describe("userOrganisationMutation", () => {
   let tester;
   beforeEach(() => {
     tester = new EasyGraphQLTester(schemaCode);
   });
-  it('Should throw an error if input is missing', () => {
+  it("Should throw an error if input is missing", () => {
     let error;
     try {
       tester.mock(mutation);
@@ -37,7 +37,7 @@ describe('userOrganisationMutation', () => {
       'Variable "$input" of required type "CreateCiipUserOrganisationInput!" was not provided.'
     );
   });
-  it('Should throw an error if a variable is missing', () => {
+  it("Should throw an error if a variable is missing", () => {
     let error;
     try {
       tester.mock(mutation, {
@@ -45,9 +45,9 @@ describe('userOrganisationMutation', () => {
           rowId: 1,
           ciipUserOrganisationPatch: {
             userId: 1,
-            organisationId: 2
-          }
-        }
+            organisationId: 2,
+          },
+        },
       });
     } catch (error_) {
       error = error_;
@@ -55,20 +55,20 @@ describe('userOrganisationMutation', () => {
 
     expect(error.message).toBeDefined();
   });
-  it('Should return id(string) if valid', () => {
+  it("Should return id(string) if valid", () => {
     const test = tester.mock(mutation, {
       input: {
         ciipUserOrganisation: {
           userId: 1,
           organisationId: 2,
-          status: 'APPROVED'
-        }
-      }
+          status: "APPROVED",
+        },
+      },
     });
 
     expect(test).toBeDefined();
     expect(
       typeof test.data.createCiipUserOrganisation.ciipUserOrganisation.id
-    ).toBe('string');
+    ).toBe("string");
   });
 });

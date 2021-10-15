@@ -1,9 +1,9 @@
-import React from 'react';
-import {Nav} from 'react-bootstrap';
-import {createFragmentContainer, graphql} from 'react-relay';
-import Link from 'next/link';
-import {ApplicationFormNavbar_applicationRevision} from 'ApplicationFormNavbar_applicationRevision.graphql';
-import {getApplicationPageRoute} from 'routes';
+import React from "react";
+import { Nav } from "react-bootstrap";
+import { createFragmentContainer, graphql } from "react-relay";
+import Link from "next/link";
+import { ApplicationFormNavbar_applicationRevision } from "ApplicationFormNavbar_applicationRevision.graphql";
+import { getApplicationPageRoute } from "routes";
 
 interface Props {
   applicationRevision: ApplicationFormNavbar_applicationRevision;
@@ -14,12 +14,12 @@ interface Props {
 const ApplicationFormNavbarComponent: React.FunctionComponent<Props> = ({
   applicationRevision,
   selectedFormId,
-  confirmationPage
+  confirmationPage,
 }) => {
   return (
     <div className="nav-guide-container">
       <Nav justify className="nav-guide" variant="pills">
-        {applicationRevision.orderedFormResults.edges.map(({node}) => (
+        {applicationRevision.orderedFormResults.edges.map(({ node }) => (
           <Nav.Item key={node.id}>
             <Link
               passHref
@@ -29,7 +29,7 @@ const ApplicationFormNavbarComponent: React.FunctionComponent<Props> = ({
               )}
             >
               <Nav.Link active={node.formJsonByFormId.id === selectedFormId}>
-                {node.formJsonByFormId.name}{' '}
+                {node.formJsonByFormId.name}{" "}
               </Nav.Link>
             </Link>
           </Nav.Item>
@@ -105,5 +105,5 @@ export default createFragmentContainer(ApplicationFormNavbarComponent, {
         }
       }
     }
-  `
+  `,
 });

@@ -1,12 +1,12 @@
-import React, {useState} from 'react';
-import {Modal, Button, Form, FormCheck} from 'react-bootstrap';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faLock, faEye} from '@fortawesome/free-solid-svg-icons';
+import React, { useState } from "react";
+import { Modal, Button, Form, FormCheck } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLock, faEye } from "@fortawesome/free-solid-svg-icons";
 
 interface Props {
   show: boolean;
   title: string;
-  onSubmit: ({commentText: string, isInternalComment: boolean}) => void;
+  onSubmit: ({ commentText: string, isInternalComment: boolean }) => void;
   onHide: () => void;
 }
 
@@ -14,14 +14,14 @@ export const AddReviewCommentModal: React.FunctionComponent<Props> = ({
   show,
   title,
   onSubmit,
-  onHide
+  onHide,
 }) => {
   const [isInternalComment, setIsInternalComment] = useState(false);
-  const [commentText, setCommentText] = useState('');
+  const [commentText, setCommentText] = useState("");
 
   const clearForm = () => {
     setIsInternalComment(false);
-    setCommentText('');
+    setCommentText("");
   };
   const handleHide = () => {
     onHide();
@@ -72,7 +72,7 @@ export const AddReviewCommentModal: React.FunctionComponent<Props> = ({
           id="submit"
           onClick={() => {
             if (commentText.trim().length > 0) {
-              onSubmit({commentText, isInternalComment});
+              onSubmit({ commentText, isInternalComment });
               clearForm();
             }
           }}

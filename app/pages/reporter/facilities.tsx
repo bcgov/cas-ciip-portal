@@ -1,18 +1,18 @@
-import React, {Component} from 'react';
-import {graphql} from 'react-relay';
-import {NextRouter} from 'next/router';
-import {facilitiesQueryResponse} from 'facilitiesQuery.graphql';
-import DefaultLayout from 'layouts/default-layout';
-import FacilitiesListContainer from 'containers/Facilities/FacilitiesListContainer';
-import {USER} from 'data/group-constants';
-import {DEFAULT_PAGE_SIZE} from 'components/FilterableTable/FilterableTablePagination';
-import {Col, Row} from 'react-bootstrap';
-import ApplicationProgressBar from 'components/Application/ApplicationProgressBar';
+import React, { Component } from "react";
+import { graphql } from "react-relay";
+import { NextRouter } from "next/router";
+import { facilitiesQueryResponse } from "facilitiesQuery.graphql";
+import DefaultLayout from "layouts/default-layout";
+import FacilitiesListContainer from "containers/Facilities/FacilitiesListContainer";
+import { USER } from "data/group-constants";
+import { DEFAULT_PAGE_SIZE } from "components/FilterableTable/FilterableTablePagination";
+import { Col, Row } from "react-bootstrap";
+import ApplicationProgressBar from "components/Application/ApplicationProgressBar";
 
 const ALLOWED_GROUPS = [USER];
 
 interface Props {
-  query: facilitiesQueryResponse['query'];
+  query: facilitiesQueryResponse["query"];
   router: NextRouter;
 }
 class FacilitiesList extends Component<Props> {
@@ -60,13 +60,13 @@ class FacilitiesList extends Component<Props> {
     return {
       variables: {
         offset: 0,
-        pageSize: DEFAULT_PAGE_SIZE
-      }
+        pageSize: DEFAULT_PAGE_SIZE,
+      },
     };
   }
 
   render() {
-    const {query} = this.props;
+    const { query } = this.props;
     return (
       <DefaultLayout
         showSubheader

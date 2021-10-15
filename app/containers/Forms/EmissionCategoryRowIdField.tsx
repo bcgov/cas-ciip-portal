@@ -1,7 +1,7 @@
-import React, {useMemo} from 'react';
-import {FieldProps} from '@rjsf/core';
-import {createFragmentContainer, graphql} from 'react-relay';
-import {EmissionCategoryRowIdField_query} from 'EmissionCategoryRowIdField_query.graphql';
+import React, { useMemo } from "react";
+import { FieldProps } from "@rjsf/core";
+import { createFragmentContainer, graphql } from "react-relay";
+import { EmissionCategoryRowIdField_query } from "EmissionCategoryRowIdField_query.graphql";
 
 export interface Props extends FieldProps<number> {
   query: EmissionCategoryRowIdField_query;
@@ -23,13 +23,13 @@ export const EmissionCategoryRowIdFieldComponent: React.FunctionComponent<Props>
       schema: {
         ...props.schema,
         enum: props.query.activeEmissionCategories.edges.map(
-          ({node}) => node.rowId
+          ({ node }) => node.rowId
         ),
         enumNames: props.query.activeEmissionCategories.edges.map(
-          ({node}) => node.displayName
-        )
+          ({ node }) => node.displayName
+        ),
       },
-      query: undefined
+      query: undefined,
     }),
     [props]
   );
@@ -37,7 +37,7 @@ export const EmissionCategoryRowIdFieldComponent: React.FunctionComponent<Props>
   // If the form data is set to an archived emission category, we return a text field
   if (props.formData !== undefined) {
     const archivedEmissionCategory = props.query.archivedEmissionCategories.edges.find(
-      ({node}) => node.rowId === props.formData
+      ({ node }) => node.rowId === props.formData
     );
 
     if (archivedEmissionCategory !== undefined)
@@ -55,7 +55,7 @@ export default createFragmentContainer(EmissionCategoryRowIdFieldComponent, {
   query: graphql`
     fragment EmissionCategoryRowIdField_query on Query {
       activeEmissionCategories: allEmissionCategories(
-        filter: {deletedAt: {isNull: true}}
+        filter: { deletedAt: { isNull: true } }
       ) {
         edges {
           node {
@@ -65,7 +65,7 @@ export default createFragmentContainer(EmissionCategoryRowIdFieldComponent, {
         }
       }
       archivedEmissionCategories: allEmissionCategories(
-        filter: {deletedAt: {isNull: false}}
+        filter: { deletedAt: { isNull: false } }
       ) {
         edges {
           node {
@@ -75,5 +75,5 @@ export default createFragmentContainer(EmissionCategoryRowIdFieldComponent, {
         }
       }
     }
-  `
+  `,
 });

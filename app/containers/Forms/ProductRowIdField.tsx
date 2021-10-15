@@ -1,9 +1,9 @@
-import React, {useMemo} from 'react';
-import {InputGroup} from 'react-bootstrap';
-import {FieldProps} from '@rjsf/core';
-import {createFragmentContainer, graphql} from 'react-relay';
-import {ProductRowIdField_query} from 'ProductRowIdField_query.graphql';
-import {ProductRowIdField_naicsCode} from 'ProductRowIdField_naicsCode.graphql';
+import React, { useMemo } from "react";
+import { InputGroup } from "react-bootstrap";
+import { FieldProps } from "@rjsf/core";
+import { createFragmentContainer, graphql } from "react-relay";
+import { ProductRowIdField_query } from "ProductRowIdField_query.graphql";
+import { ProductRowIdField_naicsCode } from "ProductRowIdField_naicsCode.graphql";
 
 interface Props extends FieldProps<number> {
   query: ProductRowIdField_query;
@@ -38,9 +38,9 @@ export const ProductRowIdFieldComponent: React.FunctionComponent<Props> = (
       schema: {
         ...props.schema,
         enum: productIds,
-        enumNames: productNames
+        enumNames: productNames,
       },
-      query: undefined
+      query: undefined,
     };
   }, [props]);
 
@@ -50,20 +50,20 @@ export const ProductRowIdFieldComponent: React.FunctionComponent<Props> = (
   const allProducts = useMemo(
     () => ({
       publishedProductIds: props.query.published.edges.map(
-        ({node}) => node.rowId
+        ({ node }) => node.rowId
       ),
       publishedProductNames: props.query.published.edges.map(
-        ({node}) => node.productName
+        ({ node }) => node.productName
       ),
       archivedProductIds: props.query.archived.edges.map(
-        ({node}) => node.rowId
+        ({ node }) => node.rowId
       ),
       archivedProductNames: props.query.archived.edges.map(
-        ({node}) => node.productName
+        ({ node }) => node.productName
       ),
       productIdsByNaicsCode: props.naicsCode?.productNaicsCodes.edges.map(
         (e) => e.node.productByProductId.rowId
-      )
+      ),
     }),
     [props]
   );
@@ -84,11 +84,11 @@ export const ProductRowIdFieldComponent: React.FunctionComponent<Props> = (
   // Else get the invalid product from the list of all products in the database & render the name as a disabled input.
   const invalidProductIds = [
     ...allProducts.publishedProductIds,
-    ...allProducts.archivedProductIds
+    ...allProducts.archivedProductIds,
   ];
   const invalidProductNames = [
     ...allProducts.publishedProductNames,
-    ...allProducts.archivedProductNames
+    ...allProducts.archivedProductNames,
   ];
   const invalidProductId = invalidProductIds.indexOf(props.formData);
 
@@ -99,7 +99,7 @@ export default createFragmentContainer(ProductRowIdFieldComponent, {
   query: graphql`
     fragment ProductRowIdField_query on Query {
       published: allProducts(
-        filter: {productState: {equalTo: PUBLISHED}}
+        filter: { productState: { equalTo: PUBLISHED } }
         orderBy: PRODUCT_NAME_ASC
       ) {
         edges {
@@ -110,7 +110,7 @@ export default createFragmentContainer(ProductRowIdFieldComponent, {
         }
       }
       archived: allProducts(
-        filter: {productState: {equalTo: ARCHIVED}}
+        filter: { productState: { equalTo: ARCHIVED } }
         orderBy: PRODUCT_NAME_ASC
       ) {
         edges {
@@ -126,8 +126,8 @@ export default createFragmentContainer(ProductRowIdFieldComponent, {
     fragment ProductRowIdField_naicsCode on NaicsCode {
       productNaicsCodes: productNaicsCodesByNaicsCodeId(
         filter: {
-          deletedAt: {isNull: true}
-          productByProductId: {productState: {equalTo: PUBLISHED}}
+          deletedAt: { isNull: true }
+          productByProductId: { productState: { equalTo: PUBLISHED } }
         }
       ) {
         edges {
@@ -140,5 +140,5 @@ export default createFragmentContainer(ProductRowIdFieldComponent, {
         }
       }
     }
-  `
+  `,
 });

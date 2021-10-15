@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
-import {FieldProps} from '@rjsf/core';
-import ObjectField from '@rjsf/core/dist/cjs/components/fields/ObjectField';
-import {Button, Col} from 'react-bootstrap';
+import React, { useState } from "react";
+import { FieldProps } from "@rjsf/core";
+import ObjectField from "@rjsf/core/dist/cjs/components/fields/ObjectField";
+import { Button, Col } from "react-bootstrap";
 
 /**
  * This custom ObjectField component injects the read-only data for a product when the
@@ -11,19 +11,19 @@ export const EmissionFieldComponent: React.FunctionComponent<FieldProps> = (
   props
 ) => {
   const [hideZeroEmissions, setHideZeroEmissions] = useState(
-    'show-zero-emissions'
+    "show-zero-emissions"
   );
   const toggleZeroEmissions = () => {
-    setHideZeroEmissions(hideZeroEmissions === '' ? 'show-zero-emissions' : '');
+    setHideZeroEmissions(hideZeroEmissions === "" ? "show-zero-emissions" : "");
   };
 
   return (
     <Col md={12} className={hideZeroEmissions}>
       <Col className="emission-toggle">
         <Button variant="outline-dark" size="sm" onClick={toggleZeroEmissions}>
-          {hideZeroEmissions === ''
-            ? 'Show gases with no reported emissions'
-            : 'Hide gases with no reported emissions'}
+          {hideZeroEmissions === ""
+            ? "Show gases with no reported emissions"
+            : "Hide gases with no reported emissions"}
         </Button>
       </Col>
       <ObjectField {...props} />

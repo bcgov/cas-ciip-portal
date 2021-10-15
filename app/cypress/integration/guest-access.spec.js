@@ -1,14 +1,14 @@
-describe('An unauthenticated user', () => {
-  it('should not have access to the list of users', () => {
-    cy.sqlFixture('dev/user');
+describe("An unauthenticated user", () => {
+  it("should not have access to the list of users", () => {
+    cy.sqlFixture("dev/user");
     cy.request({
-      url: 'graphql',
+      url: "graphql",
       body:
         '{ "query": "{ allCiipUsers { edges { node { firstName, lastName } } } }" }',
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'}
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
     })
-      .its('body')
-      .should('deep.equal', {data: {allCiipUsers: {edges: []}}});
+      .its("body")
+      .should("deep.equal", { data: { allCiipUsers: { edges: [] } } });
   });
 });

@@ -1,10 +1,10 @@
-import React from 'react';
-import {render} from 'enzyme';
-import Footer from 'components/Layout/Footer';
+import React from "react";
+import { render } from "enzyme";
+import Footer from "components/Layout/Footer";
 
 // It renders the Footer
 
-it('matches the last accepted Snapshot', () => {
+it("matches the last accepted Snapshot", () => {
   const wrapper = render(<Footer />);
   expect(wrapper).toMatchSnapshot();
 });

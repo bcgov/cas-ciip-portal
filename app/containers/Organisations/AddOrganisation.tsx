@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
-import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
-import {Dropdown, FormControl, Card, Table} from 'react-bootstrap';
-import {AddOrganisation_query} from 'AddOrganisation_query.graphql';
-import AddOrganisationModal from 'components/AddOrganisationModal';
-import createOrganisationMutation from 'mutations/organisation/createOrganisationMutation';
-import Organisation from './Organisation';
+import React, { useState } from "react";
+import { graphql, createFragmentContainer, RelayProp } from "react-relay";
+import { Dropdown, FormControl, Card, Table } from "react-bootstrap";
+import { AddOrganisation_query } from "AddOrganisation_query.graphql";
+import AddOrganisationModal from "components/AddOrganisationModal";
+import createOrganisationMutation from "mutations/organisation/createOrganisationMutation";
+import Organisation from "./Organisation";
 
 interface Props {
   query: AddOrganisation_query;
@@ -19,7 +19,7 @@ export const AddOrganisationComponent: React.FunctionComponent<Props> = (
   props
 ) => {
   const [selectedOrgDetails, setSelectedOrgDetails] = useState(null);
-  const {allOrganisations} = props.query;
+  const { allOrganisations } = props.query;
   const changeInput = (event) => {
     event.stopPropagation();
     event.preventDefault();
@@ -29,18 +29,18 @@ export const AddOrganisationComponent: React.FunctionComponent<Props> = (
 
   const selectOrg = (name, id, tradeName, cra, swrsReportId) => {
     props.handleOrgChange(id);
-    props.handleInputChange('');
-    setSelectedOrgDetails({name, id, tradeName, cra, swrsReportId});
+    props.handleInputChange("");
+    setSelectedOrgDetails({ name, id, tradeName, cra, swrsReportId });
   };
 
   const handleAddOrganisation = async (variables) => {
-    const {environment} = props.relay;
+    const { environment } = props.relay;
     await createOrganisationMutation(environment, variables);
   };
 
   return (
     <div>
-      <Card style={{marginTop: '50px'}}>
+      <Card style={{ marginTop: "50px" }}>
         <Card.Body>
           <Card.Title>Search for an operation: </Card.Title>
           <Dropdown className="search-dropdown">
@@ -54,7 +54,7 @@ export const AddOrganisationComponent: React.FunctionComponent<Props> = (
                 onChange={changeInput}
               />
               <div className="org-scroll">
-                {allOrganisations.edges.map(({node}) => {
+                {allOrganisations.edges.map(({ node }) => {
                   return (
                     <Organisation
                       key={node.id}
@@ -71,9 +71,9 @@ export const AddOrganisationComponent: React.FunctionComponent<Props> = (
           {props.selectedOrg !== null && (
             <Table
               style={{
-                textAlign: 'center',
-                margin: '10px 0 2em 0',
-                borderBottom: '1px solid rgb(0,0,0,0.1)'
+                textAlign: "center",
+                margin: "10px 0 2em 0",
+                borderBottom: "1px solid rgb(0,0,0,0.1)",
               }}
             >
               <thead>
@@ -127,5 +127,5 @@ export default createFragmentContainer(AddOrganisationComponent, {
         }
       }
     }
-  `
+  `,
 });

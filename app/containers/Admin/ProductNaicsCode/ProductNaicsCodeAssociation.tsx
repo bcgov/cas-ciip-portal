@@ -1,12 +1,12 @@
-import React from 'react';
-import {Card, Col, Row} from 'react-bootstrap';
-import {NaicsCodeSelectionComponent} from 'components/Admin/NaicsCodeSelectionComponent';
-import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
-import AllowableProductsSearch from './AllowableProductsSearch';
-import {useRouter} from 'next/router';
-import AllowableProductsTable from './AllowableProductsTable';
-import {ProductNaicsCodeAssociation_query} from '__generated__/ProductNaicsCodeAssociation_query.graphql';
-import Link from 'next/link';
+import React from "react";
+import { Card, Col, Row } from "react-bootstrap";
+import { NaicsCodeSelectionComponent } from "components/Admin/NaicsCodeSelectionComponent";
+import { createFragmentContainer, graphql, RelayProp } from "react-relay";
+import AllowableProductsSearch from "./AllowableProductsSearch";
+import { useRouter } from "next/router";
+import AllowableProductsTable from "./AllowableProductsTable";
+import { ProductNaicsCodeAssociation_query } from "__generated__/ProductNaicsCodeAssociation_query.graphql";
+import Link from "next/link";
 
 interface Props {
   relay: RelayProp;
@@ -14,14 +14,14 @@ interface Props {
 }
 
 export const ProductNaicsCodeAssociationContainer: React.FunctionComponent<Props> = ({
-  query
+  query,
 }) => {
   const naicsCodes = query.allNaicsCodes?.edges.map((e) => {
     return {
       code: e.node.naicsCode,
       id: e.node.id,
       rowId: e.node.rowId,
-      description: e.node.naicsDescription
+      description: e.node.naicsDescription,
     };
   });
   const router = useRouter();
@@ -101,13 +101,13 @@ export const ProductNaicsCodeAssociationContainer: React.FunctionComponent<Props
 export default createFragmentContainer(ProductNaicsCodeAssociationContainer, {
   query: graphql`
     fragment ProductNaicsCodeAssociation_query on Query
-    @argumentDefinitions(naicsCodeId: {type: "ID!"}) {
+    @argumentDefinitions(naicsCodeId: { type: "ID!" }) {
       ...AllowableProductsSearch_query @arguments(naicsCodeId: $naicsCodeId)
       naicsCode(id: $naicsCodeId) {
         ...AllowableProductsTable_naicsCode
       }
       allNaicsCodes(
-        filter: {deletedAt: {isNull: true}}
+        filter: { deletedAt: { isNull: true } }
         orderBy: NAICS_CODE_ASC
       ) {
         edges {
@@ -120,5 +120,5 @@ export default createFragmentContainer(ProductNaicsCodeAssociationContainer, {
         }
       }
     }
-  `
+  `,
 });

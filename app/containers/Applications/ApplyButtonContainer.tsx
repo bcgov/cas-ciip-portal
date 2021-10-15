@@ -1,17 +1,17 @@
-import React, {useState, useMemo} from 'react';
-import {Button, Modal} from 'react-bootstrap';
-import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
-import Link from 'next/link';
-import {useRouter} from 'next/router';
-import getConfig from 'next/config';
-import createApplicationMutation from 'mutations/application/createApplicationMutation';
-import {ApplyButtonContainer_applyButtonDetails} from 'ApplyButtonContainer_applyButtonDetails.graphql';
-import {ApplyButtonContainer_query} from 'ApplyButtonContainer_query.graphql';
+import React, { useState, useMemo } from "react";
+import { Button, Modal } from "react-bootstrap";
+import { graphql, createFragmentContainer, RelayProp } from "react-relay";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import getConfig from "next/config";
+import createApplicationMutation from "mutations/application/createApplicationMutation";
+import { ApplyButtonContainer_applyButtonDetails } from "ApplyButtonContainer_applyButtonDetails.graphql";
+import { ApplyButtonContainer_query } from "ApplyButtonContainer_query.graphql";
 import {
   getApplicationDisclaimerPageRoute,
   getApplicationPageRoute,
-  getViewApplicationPageRoute
-} from 'routes';
+  getViewApplicationPageRoute,
+} from "routes";
 interface Props {
   reportingYear: number;
   relay: RelayProp;
@@ -23,20 +23,20 @@ export const ApplyButton: React.FunctionComponent<Props> = ({
   applyButtonDetails,
   query,
   relay,
-  reportingYear
+  reportingYear,
 }) => {
   const {
     facilityByFacilityId,
     applicationStatus,
-    applicationByApplicationId
+    applicationByApplicationId,
   } = applyButtonDetails;
-  const {hasSwrsReport, rowId} = facilityByFacilityId;
+  const { hasSwrsReport, rowId } = facilityByFacilityId;
   const applicationId = applicationByApplicationId?.id;
   const [showMissingReportModal, setShowMissingReportModal] = useState(false);
   const [applyButtonClicked, setApplyButtonClicked] = useState(false);
 
   const adminEmail = getConfig()?.publicRuntimeConfig.ADMIN_EMAIL;
-  const adminMailToUrl = adminEmail ? `mailto:${adminEmail}` : '#';
+  const adminMailToUrl = adminEmail ? `mailto:${adminEmail}` : "#";
 
   const router = useRouter();
 
@@ -48,7 +48,7 @@ export const ApplyButton: React.FunctionComponent<Props> = ({
 
     // The first version of the application was started but not submitted before the deadline
     if (
-      applicationStatus === 'DRAFT' &&
+      applicationStatus === "DRAFT" &&
       applicationByApplicationId?.latestDraftRevision?.versionNumber <= 1
     )
       return false;
@@ -58,21 +58,21 @@ export const ApplyButton: React.FunctionComponent<Props> = ({
     applicationByApplicationId?.latestDraftRevision?.versionNumber,
     applicationId,
     applicationStatus,
-    query.openedReportingYear?.reportingYear
+    query.openedReportingYear?.reportingYear,
   ]);
 
   if (!canOpenApplication) {
-    return <div style={{minWidth: '9.7em'}} />;
+    return <div style={{ minWidth: "9.7em" }} />;
   }
 
   if (!applicationId) {
     const startApplication = async () => {
       setApplyButtonClicked(true);
-      const {environment} = relay;
+      const { environment } = relay;
       const variables = {
         input: {
-          facilityIdInput: rowId
-        }
+          facilityIdInput: rowId,
+        },
       };
 
       const response = await createApplicationMutation(environment, variables);
@@ -96,7 +96,7 @@ export const ApplyButton: React.FunctionComponent<Props> = ({
         </Modal.Header>
         <Modal.Body>
           <p>
-            We can&apos;t find an emissions report for{' '}
+            We can&apos;t find an emissions report for{" "}
             {query.openedReportingYear.reportingYear} for this facility in our
             records.
           </p>
@@ -115,14 +115,14 @@ export const ApplyButton: React.FunctionComponent<Props> = ({
           </p>
           <p>
             Note, submission of a CIIP application does not constitute meeting
-            reporting obligations as required under the{' '}
+            reporting obligations as required under the{" "}
             <a
               href="https://www.bclaws.gov.bc.ca/civix/document/id/complete/statreg/14029_01"
               target="_blank"
               rel="noreferrer noopener"
             >
               <em>Greenhouse Gas Industrial Reporting and Control Act</em>
-            </a>{' '}
+            </a>{" "}
             or its regulations.
           </p>
           <p>
@@ -172,7 +172,7 @@ export const ApplyButton: React.FunctionComponent<Props> = ({
 
   const {
     latestDraftRevision,
-    latestSubmittedRevision
+    latestSubmittedRevision,
   } = applicationByApplicationId;
 
   const latestSubmittedVersionNumber = latestSubmittedRevision?.versionNumber;
@@ -180,7 +180,7 @@ export const ApplyButton: React.FunctionComponent<Props> = ({
   const latestDraftlegalDisclaimerAccepted =
     latestDraftRevision?.legalDisclaimerAccepted;
 
-  if (applicationStatus === 'DRAFT') {
+  if (applicationStatus === "DRAFT") {
     return (
       <Link
         passHref
@@ -200,10 +200,10 @@ export const ApplyButton: React.FunctionComponent<Props> = ({
   }
 
   if (
-    applicationStatus === 'SUBMITTED' ||
-    applicationStatus === 'REQUESTED_CHANGES' ||
-    applicationStatus === 'REJECTED' ||
-    applicationStatus === 'APPROVED'
+    applicationStatus === "SUBMITTED" ||
+    applicationStatus === "REQUESTED_CHANGES" ||
+    applicationStatus === "REJECTED" ||
+    applicationStatus === "APPROVED"
   ) {
     return (
       <Link
@@ -249,5 +249,5 @@ export default createFragmentContainer(ApplyButton, {
         reportingYear
       }
     }
-  `
+  `,
 });

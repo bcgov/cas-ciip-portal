@@ -1,20 +1,20 @@
-import React, {Component} from 'react';
-import {Col, Row} from 'react-bootstrap';
-import {graphql} from 'react-relay';
-import {NextRouter} from 'next/router';
-import {reporterQueryResponse} from 'reporterQuery.graphql';
-import Organisations from 'containers/Organisations/Organisations';
-import DefaultLayout from 'layouts/default-layout';
-import {createUserOrganisationMutation} from 'mutations/user_organisation/createUserOrganisation';
-import {USER} from 'data/group-constants';
-import ProgressStepIndicator from 'components/ProgressStepIndicator';
-import StatusBadgeColor from 'components/helpers/StatusBadgeColor';
+import React, { Component } from "react";
+import { Col, Row } from "react-bootstrap";
+import { graphql } from "react-relay";
+import { NextRouter } from "next/router";
+import { reporterQueryResponse } from "reporterQuery.graphql";
+import Organisations from "containers/Organisations/Organisations";
+import DefaultLayout from "layouts/default-layout";
+import { createUserOrganisationMutation } from "mutations/user_organisation/createUserOrganisation";
+import { USER } from "data/group-constants";
+import ProgressStepIndicator from "components/ProgressStepIndicator";
+import StatusBadgeColor from "components/helpers/StatusBadgeColor";
 
 const ALLOWED_GROUPS = [USER];
 
 interface Props {
   router: NextRouter;
-  query: reporterQueryResponse['query'];
+  query: reporterQueryResponse["query"];
 }
 
 export default class Reporter extends Component<Props> {
@@ -36,27 +36,27 @@ export default class Reporter extends Component<Props> {
   `;
 
   state = {
-    orgInput: '',
+    orgInput: "",
     selectedOrg: null,
-    confirmOrg: false
+    confirmOrg: false,
   };
 
   handleInputChange = (event) => {
-    this.setState({orgInput: event});
+    this.setState({ orgInput: event });
   };
 
   handleContextChange = () => {
     this.state.confirmOrg
-      ? this.setState({confirmOrg: false})
-      : this.setState({confirmOrg: true});
+      ? this.setState({ confirmOrg: false })
+      : this.setState({ confirmOrg: true });
   };
 
   handleOrgChange = (orgId) => {
-    this.setState({selectedOrg: orgId});
+    this.setState({ selectedOrg: orgId });
   };
 
   handleOrgConfirm = async (active, environment) => {
-    const {id: userId, rowId} = this.props.query.session.ciipUserBySub;
+    const { id: userId, rowId } = this.props.query.session.ciipUserBySub;
     await createUserOrganisationMutation(
       environment,
       {
@@ -65,17 +65,17 @@ export default class Reporter extends Component<Props> {
             // Relay requires a value here because it is set to not null, but the userId value is set via a trigger on insert
             userId: rowId,
             organisationId: this.state.selectedOrg,
-            status: active ? 'APPROVED' : 'PENDING'
-          }
-        }
+            status: active ? "APPROVED" : "PENDING",
+          },
+        },
       },
       userId
     );
   };
 
   render() {
-    const {query} = this.props;
-    const {session} = query || {};
+    const { query } = this.props;
+    const { session } = query || {};
 
     return (
       <DefaultLayout showSubheader session={session} title="My Operators">
@@ -86,20 +86,20 @@ export default class Reporter extends Component<Props> {
                 <ProgressStepIndicator
                   steps={[
                     {
-                      description: 'Request access to apply',
+                      description: "Request access to apply",
                       badgeStyle: StatusBadgeColor.INITIAL,
-                      number: 1
+                      number: 1,
                     },
                     {
-                      description: 'CleanBC reviews request',
+                      description: "CleanBC reviews request",
                       badgeStyle: StatusBadgeColor.PENDING,
-                      number: 2
+                      number: 2,
                     },
                     {
-                      description: 'Request approved',
+                      description: "Request approved",
                       badgeStyle: StatusBadgeColor.APPROVED,
-                      number: 3
-                    }
+                      number: 3,
+                    },
                   ]}
                   ariaLabel="Steps to request operator access"
                 />

@@ -1,13 +1,13 @@
-import {useRouter} from 'next/router';
-import React, {useEffect, useState} from 'react';
-import LogoutWarningModal from './LogoutWarningModal';
+import { useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
+import LogoutWarningModal from "./LogoutWarningModal";
 
 interface Props {
   modalDisplaySecondsBeforeLogout: number;
 }
 
 const SessionTimeoutHandler: React.FunctionComponent<Props> = ({
-  modalDisplaySecondsBeforeLogout
+  modalDisplaySecondsBeforeLogout,
 }) => {
   const router = useRouter();
 
@@ -18,16 +18,16 @@ const SessionTimeoutHandler: React.FunctionComponent<Props> = ({
 
   const logoutOnSessionIdled = () => {
     router.push({
-      pathname: '/login-redirect',
+      pathname: "/login-redirect",
       query: {
         redirectTo: router.asPath,
-        sessionIdled: true
-      }
+        sessionIdled: true,
+      },
     });
   };
 
   const extendSession = async () => {
-    const response = await fetch('/extend-session');
+    const response = await fetch("/extend-session");
     if (response.ok) {
       const timeout = Number(await response.json());
       if (timeout > modalDisplaySecondsBeforeLogout) {
@@ -41,7 +41,7 @@ const SessionTimeoutHandler: React.FunctionComponent<Props> = ({
     let timeoutId;
 
     const checkSessionIdle = async () => {
-      const response = await fetch('/session-idle-remaining-time');
+      const response = await fetch("/session-idle-remaining-time");
       if (response.ok) {
         const timeout = Number(await response.json());
 

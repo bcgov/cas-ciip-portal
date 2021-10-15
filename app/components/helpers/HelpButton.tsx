@@ -1,27 +1,27 @@
-import React, {useState} from 'react';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import Link from 'next/link';
-import getConfig from 'next/config';
+import React, { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Link from "next/link";
+import getConfig from "next/config";
 import {
   faQuestion,
   faComments,
-  faTimes
-} from '@fortawesome/free-solid-svg-icons';
+  faTimes,
+} from "@fortawesome/free-solid-svg-icons";
 
 interface Props {
   isInternalUser?: boolean;
 }
 
 const HelpButton: React.FunctionComponent<Props> = ({
-  isInternalUser = true
+  isInternalUser = true,
 }) => {
   const supportEmail = getConfig()?.publicRuntimeConfig.SUPPORT_EMAIL;
   const mailToUrl = supportEmail
     ? `mailto:${supportEmail}?subject=Internal Support Request`
-    : '#';
+    : "#";
   const docsUrl = isInternalUser
-    ? 'https://github.com/bcgov/cas-ciip-portal/wiki/Support-documentation-for-CIIP-Administrators-and-Analysts'
-    : 'https://github.com/bcgov/cas-ciip-portal/wiki/Support-Documentation-for-CIIP-Applicants';
+    ? "https://github.com/bcgov/cas-ciip-portal/wiki/Support-documentation-for-CIIP-Administrators-and-Analysts"
+    : "https://github.com/bcgov/cas-ciip-portal/wiki/Support-Documentation-for-CIIP-Applicants";
 
   const [isOpened, setIsOpened] = useState(false);
   const toggleHelpBubble = () => {
@@ -32,12 +32,12 @@ const HelpButton: React.FunctionComponent<Props> = ({
       <FontAwesomeIcon
         icon={faComments}
         color="white"
-        style={{height: '2.2em', width: '2.5em'}}
+        style={{ height: "2.2em", width: "2.5em" }}
       />
       <FontAwesomeIcon
         icon={faQuestion}
         size="sm"
-        style={{position: 'absolute', top: '29%', left: '33%'}}
+        style={{ position: "absolute", top: "29%", left: "33%" }}
       />
     </>
   );
@@ -69,14 +69,14 @@ const HelpButton: React.FunctionComponent<Props> = ({
           <ul>
             <li>
               <span role="img" aria-hidden="true">
-                {isInternalUser ? '👋' : '📖'}
+                {isInternalUser ? "👋" : "📖"}
               </span>
               {option1}
             </li>
             <li>OR</li>
             <li>
               <span role="img" aria-hidden="true">
-                {isInternalUser ? '📖' : '✉️'}
+                {isInternalUser ? "📖" : "✉️"}
               </span>
               {option2}
             </li>
@@ -151,7 +151,7 @@ const HelpButton: React.FunctionComponent<Props> = ({
           bottom: -20px;
           right: 0;
         }
-        span[role='img'] {
+        span[role="img"] {
           margin-right: 0.5em;
         }
       `}</style>

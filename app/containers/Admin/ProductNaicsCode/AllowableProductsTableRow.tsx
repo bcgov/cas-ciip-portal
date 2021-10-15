@@ -1,11 +1,11 @@
-import {faCheck} from '@fortawesome/free-solid-svg-icons';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import DeleteConfirmationModal from 'components/Admin/DeleteConfirmationModal';
-import deleteProductNaicsCodeMutation from 'mutations/product_naics_code/deleteProductNaicsCodeMutation';
-import React, {useState} from 'react';
-import {Button} from 'react-bootstrap';
-import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
-import {AllowableProductsTableRow_productNaicsCode} from '__generated__/AllowableProductsTableRow_productNaicsCode.graphql';
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import DeleteConfirmationModal from "components/Admin/DeleteConfirmationModal";
+import deleteProductNaicsCodeMutation from "mutations/product_naics_code/deleteProductNaicsCodeMutation";
+import React, { useState } from "react";
+import { Button } from "react-bootstrap";
+import { createFragmentContainer, graphql, RelayProp } from "react-relay";
+import { AllowableProductsTableRow_productNaicsCode } from "__generated__/AllowableProductsTableRow_productNaicsCode.graphql";
 
 interface Props {
   relay: RelayProp;
@@ -16,25 +16,25 @@ interface Props {
 export const AllowableProductsTableRowComponent: React.FunctionComponent<Props> = ({
   relay,
   productNaicsCode,
-  naicsCodeId
+  naicsCodeId,
 }) => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   const deleteProductNaicsCode = async () => {
-    const {environment} = relay;
+    const { environment } = relay;
 
     await deleteProductNaicsCodeMutation(
       environment,
       naicsCodeId,
       productNaicsCode,
-      'AllowableProducts_productNaicsCodesByNaicsCodeId'
+      "AllowableProducts_productNaicsCodesByNaicsCodeId"
     );
   };
 
   const deleteModalContent = {
-    deleteName: 'allowed product',
+    deleteName: "allowed product",
     deleteItem: productNaicsCode.productByProductId.productName,
-    deleteItemDescription: ''
+    deleteItemDescription: "",
   };
 
   return (
@@ -54,7 +54,7 @@ export const AllowableProductsTableRowComponent: React.FunctionComponent<Props> 
               <b> Yes</b>
             </>
           ) : (
-            'No'
+            "No"
           )}
         </td>
         <td className="centered">
@@ -89,5 +89,5 @@ export default createFragmentContainer(AllowableProductsTableRowComponent, {
       deletedAt
       id
     }
-  `
+  `,
 });

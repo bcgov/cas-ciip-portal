@@ -1,7 +1,7 @@
-import React from 'react';
-import Document, {Html, Head, Main, NextScript} from 'next/document';
-import Analytics from 'components/Layout/Analytics';
-import getConfig from 'next/config';
+import React from "react";
+import Document, { Html, Head, Main, NextScript } from "next/document";
+import Analytics from "components/Layout/Analytics";
+import getConfig from "next/config";
 
 const CONFIG = getConfig()?.publicRuntimeConfig;
 
@@ -42,7 +42,7 @@ class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
-          {CONFIG?.ENABLE_ANALYTICS === 'true' && <Analytics />}
+          {CONFIG?.ENABLE_ANALYTICS === "true" && <Analytics />}
         </body>
       </Html>
     );

@@ -1,13 +1,13 @@
-import React from 'react';
-import {Badge} from 'react-bootstrap';
-import {graphql, createFragmentContainer} from 'react-relay';
+import React from "react";
+import { Badge } from "react-bootstrap";
+import { graphql, createFragmentContainer } from "react-relay";
 import {
   CiipApplicationRevisionStatus,
-  FacilitiesRowItemContainer_facilityApplication
-} from 'FacilitiesRowItemContainer_facilityApplication.graphql';
-import {FacilitiesRowItemContainer_query} from 'FacilitiesRowItemContainer_query.graphql';
-import ApplyButtonContainer from 'containers/Applications/ApplyButtonContainer';
-import {getUserFriendlyStatusLabel} from 'lib/text-transforms';
+  FacilitiesRowItemContainer_facilityApplication,
+} from "FacilitiesRowItemContainer_facilityApplication.graphql";
+import { FacilitiesRowItemContainer_query } from "FacilitiesRowItemContainer_query.graphql";
+import ApplyButtonContainer from "containers/Applications/ApplyButtonContainer";
+import { getUserFriendlyStatusLabel } from "lib/text-transforms";
 
 interface Props {
   facilityApplication: FacilitiesRowItemContainer_facilityApplication;
@@ -16,18 +16,18 @@ interface Props {
 }
 const statusBadgeColor: Record<
   CiipApplicationRevisionStatus,
-  'info' | 'danger' | 'success' | 'warning' | 'primary' | 'secondary'
+  "info" | "danger" | "success" | "warning" | "primary" | "secondary"
 > = {
-  DRAFT: 'warning',
-  SUBMITTED: 'info',
-  REJECTED: 'danger',
-  APPROVED: 'success',
-  REQUESTED_CHANGES: 'secondary'
+  DRAFT: "warning",
+  SUBMITTED: "info",
+  REJECTED: "danger",
+  APPROVED: "success",
+  REQUESTED_CHANGES: "secondary",
 };
 export const FacilitiesRowItemComponent: React.FunctionComponent<Props> = ({
   facilityApplication,
   query,
-  reportingYear
+  reportingYear,
 }) => {
   const {
     applicationStatus,
@@ -36,7 +36,7 @@ export const FacilitiesRowItemComponent: React.FunctionComponent<Props> = ({
     facilityName,
     facilityType,
     facilityBcghgid,
-    lastSwrsReportingYear
+    lastSwrsReportingYear,
   } = facilityApplication;
 
   return (
@@ -47,11 +47,11 @@ export const FacilitiesRowItemComponent: React.FunctionComponent<Props> = ({
       <td>{facilityBcghgid}</td>
       <td>{lastSwrsReportingYear}</td>
       <td>
-        {' '}
+        {" "}
         {applicationStatus ? (
           <Badge
             pill
-            style={{width: '100%', textTransform: 'uppercase'}}
+            style={{ width: "100%", textTransform: "uppercase" }}
             variant={statusBadgeColor[applicationStatus]}
           >
             {getUserFriendlyStatusLabel(applicationStatus)}
@@ -89,5 +89,5 @@ export default createFragmentContainer(FacilitiesRowItemComponent, {
     fragment FacilitiesRowItemContainer_query on Query {
       ...ApplyButtonContainer_query
     }
-  `
+  `,
 });

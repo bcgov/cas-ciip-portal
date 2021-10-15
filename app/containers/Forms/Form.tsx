@@ -1,33 +1,33 @@
-import React, {useEffect, useState} from 'react';
-import {graphql, createFragmentContainer} from 'react-relay';
-import {IChangeEvent, ErrorSchema, AjvError} from '@rjsf/core';
-import JsonSchemaForm from 'components/Forms/Form';
-import {Form_query} from 'Form_query.graphql';
-import {Button, Row, Col, Alert} from 'react-bootstrap';
-import globalFormStyles from './FormSharedStyles';
-import Link from 'next/link';
-import {FormJson} from 'next-env';
-import SearchDropdownWidget from 'components/Forms/SearchDropdownWidget';
-import FormObjectFieldTemplate from './FormObjectFieldTemplate';
-import FormFieldTemplate from './FormFieldTemplate';
-import FormArrayFieldTemplate from './FormArrayFieldTemplate';
-import FuelFields from './FuelField';
-import EmissionGasFields from './EmissionGasFields';
-import EmissionSourceFields from './EmissionSourceFields';
-import ProductsArrayField from './ProductsArrayField';
-import ProductField from './ProductField';
-import EmissionField from './EmissionField';
-import ProductRowIdField from './ProductRowIdField';
-import FuelRowIdField from './FuelRowIdField';
-import NumberField from './NumberField';
-import EmissionCategoryRowIdField from './EmissionCategoryRowIdField';
-import AddCommentField from 'components/Forms/AddCommentField';
-import {customTransformErrors} from 'functions/customTransformErrors';
-import SavingIndicator from 'components/helpers/SavingIndicator';
-import NaicsField from './NaicsField';
-import productFieldValidation from './validation/productFieldValidation';
-import MissingProductsComponent from 'components/product/MissingProductsComponent';
-import {Form_ciipFormResult} from 'Form_ciipFormResult.graphql';
+import React, { useEffect, useState } from "react";
+import { graphql, createFragmentContainer } from "react-relay";
+import { IChangeEvent, ErrorSchema, AjvError } from "@rjsf/core";
+import JsonSchemaForm from "components/Forms/Form";
+import { Form_query } from "Form_query.graphql";
+import { Button, Row, Col, Alert } from "react-bootstrap";
+import globalFormStyles from "./FormSharedStyles";
+import Link from "next/link";
+import { FormJson } from "next-env";
+import SearchDropdownWidget from "components/Forms/SearchDropdownWidget";
+import FormObjectFieldTemplate from "./FormObjectFieldTemplate";
+import FormFieldTemplate from "./FormFieldTemplate";
+import FormArrayFieldTemplate from "./FormArrayFieldTemplate";
+import FuelFields from "./FuelField";
+import EmissionGasFields from "./EmissionGasFields";
+import EmissionSourceFields from "./EmissionSourceFields";
+import ProductsArrayField from "./ProductsArrayField";
+import ProductField from "./ProductField";
+import EmissionField from "./EmissionField";
+import ProductRowIdField from "./ProductRowIdField";
+import FuelRowIdField from "./FuelRowIdField";
+import NumberField from "./NumberField";
+import EmissionCategoryRowIdField from "./EmissionCategoryRowIdField";
+import AddCommentField from "components/Forms/AddCommentField";
+import { customTransformErrors } from "functions/customTransformErrors";
+import SavingIndicator from "components/helpers/SavingIndicator";
+import NaicsField from "./NaicsField";
+import productFieldValidation from "./validation/productFieldValidation";
+import MissingProductsComponent from "components/product/MissingProductsComponent";
+import { Form_ciipFormResult } from "Form_ciipFormResult.graphql";
 
 interface Props {
   query: Form_query;
@@ -81,7 +81,7 @@ const CUSTOM_FIELDS = {
     <EmissionCategoryRowIdField query={props.formContext.query} {...props} />
   ),
   NumberField,
-  AddCommentField
+  AddCommentField,
 };
 
 export const FormComponent: React.FunctionComponent<Props> = ({
@@ -89,7 +89,7 @@ export const FormComponent: React.FunctionComponent<Props> = ({
   ciipFormResult,
   isSaved,
   onComplete,
-  onValueChanged
+  onValueChanged,
 }) => {
   const [hasErrors, setHasErrors] = useState(false);
   useEffect(() => {
@@ -98,14 +98,14 @@ export const FormComponent: React.FunctionComponent<Props> = ({
 
   if (!ciipFormResult) return null;
   const {
-    formJsonByFormId: {name, formJson, ciipApplicationWizardByFormId},
-    formResult
+    formJsonByFormId: { name, formJson, ciipApplicationWizardByFormId },
+    formResult,
   } = ciipFormResult;
   const {
     schema,
     uiSchema,
     customFormats,
-    customFormatsErrorMessages
+    customFormatsErrorMessages,
   } = formJson as FormJson;
 
   const transformErrors = (errors: AjvError[]) => {
@@ -128,7 +128,7 @@ export const FormComponent: React.FunctionComponent<Props> = ({
     return errors;
   };
 
-  const formClass = uiSchema?.['ui:className'] || '';
+  const formClass = uiSchema?.["ui:className"] || "";
 
   return (
     <div className={formClass}>
@@ -144,12 +144,12 @@ export const FormComponent: React.FunctionComponent<Props> = ({
             <Col md={4}>
               <SavingIndicator
                 isSaved={isSaved}
-                style={{lineHeight: '2.25em'}}
+                style={{ lineHeight: "2.25em" }}
               />
             </Col>
           </Row>
         </div>
-        <Row style={{padding: '0 2em 2em 2em'}}>
+        <Row style={{ padding: "0 2em 2em 2em" }}>
           <Col md={12}>
             {hasErrors && (
               <div className="errors">Please correct the errors below.</div>
@@ -161,10 +161,10 @@ export const FormComponent: React.FunctionComponent<Props> = ({
               showErrorList={false}
               ArrayFieldTemplate={FormArrayFieldTemplate}
               FieldTemplate={FormFieldTemplate}
-              formContext={{query, ciipFormResult}}
+              formContext={{ query, ciipFormResult }}
               formData={formResult}
               fields={CUSTOM_FIELDS}
-              widgets={{SearchWidget: SearchDropdownWidget}}
+              widgets={{ SearchWidget: SearchDropdownWidget }}
               customFormats={customFormats}
               schema={schema}
               uiSchema={uiSchema}
@@ -188,13 +188,13 @@ export const FormComponent: React.FunctionComponent<Props> = ({
               <Link
                 passHref
                 href={{
-                  pathname: '/reporter'
+                  pathname: "/reporter",
                 }}
               >
                 <Button
                   variant="outline-secondary"
                   className="exit-button"
-                  style={{background: 'white'}}
+                  style={{ background: "white" }}
                   size="lg"
                 >
                   Save &amp; Exit
@@ -235,7 +235,7 @@ export default createFragmentContainer(FormComponent, {
       ...ProductField_query
       ...ProductRowIdField_query
       ...EmissionCategoryRowIdField_query
-      products: allProducts(condition: {productState: PUBLISHED}) {
+      products: allProducts(condition: { productState: PUBLISHED }) {
         edges {
           node {
             rowId
@@ -275,5 +275,5 @@ export default createFragmentContainer(FormComponent, {
         }
       }
     }
-  `
+  `,
 });

@@ -1,17 +1,17 @@
-import React, {useState} from 'react';
-import {Button, Table} from 'react-bootstrap';
-import {graphql, createFragmentContainer} from 'react-relay';
-import UserForm from './UserForm';
+import React, { useState } from "react";
+import { Button, Table } from "react-bootstrap";
+import { graphql, createFragmentContainer } from "react-relay";
+import UserForm from "./UserForm";
 
 const edit = {
-  width: '75px'
+  width: "75px",
 };
 const table = {
-  marginTop: '30px',
-  marginBottom: '50px'
+  marginTop: "30px",
+  marginBottom: "50px",
 };
 
-const UserProfile = ({user}) => {
+const UserProfile = ({ user }) => {
   const [editMode, setEditMode] = useState(false);
   return (
     <div>
@@ -55,7 +55,7 @@ const UserProfile = ({user}) => {
   );
 };
 
-export {UserProfile as UserProfileComponent};
+export { UserProfile as UserProfileComponent };
 export default createFragmentContainer(UserProfile, {
   user: graphql`
     fragment UserProfile_user on CiipUser {
@@ -66,5 +66,5 @@ export default createFragmentContainer(UserProfile, {
       phoneNumber
       occupation
     }
-  `
+  `,
 });

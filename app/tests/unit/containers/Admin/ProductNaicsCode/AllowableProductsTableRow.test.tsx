@@ -1,101 +1,101 @@
-import React from 'react';
-import {shallow} from 'enzyme';
-import {AllowableProductsTableRowComponent} from 'containers/Admin/ProductNaicsCode/AllowableProductsTableRow';
+import React from "react";
+import { shallow } from "enzyme";
+import { AllowableProductsTableRowComponent } from "containers/Admin/ProductNaicsCode/AllowableProductsTableRow";
 
-describe('The allowable product table row for a given NAICS code', () => {
-  const mockNaicsCodeRelayId = 'A-relay-ID';
+describe("The allowable product table row for a given NAICS code", () => {
+  const mockNaicsCodeRelayId = "A-relay-ID";
   const productNaicsCode = {
     productByProductId: {
-      id: 'abc',
-      productName: 'One fancy non-mandatory product'
+      id: "abc",
+      productName: "One fancy non-mandatory product",
     },
     isMandatory: false,
     deletedAt: null,
-    id: 'abcd'
+    id: "abcd",
   };
 
-  it('Should render NO for a non-mandatory product', () => {
+  it("Should render NO for a non-mandatory product", () => {
     const componentUnderTest = shallow(
       <AllowableProductsTableRowComponent
-        relay={{environment: null} as any}
+        relay={{ environment: null } as any}
         naicsCodeId={mockNaicsCodeRelayId}
         productNaicsCode={{
           ...productNaicsCode,
-          ' $refType': 'AllowableProductsTableRow_productNaicsCode'
+          " $refType": "AllowableProductsTableRow_productNaicsCode",
         }}
       />
     );
     expect(componentUnderTest).toMatchSnapshot();
   });
 
-  it('Should render YES and a checkmark for a mandatory product', () => {
+  it("Should render YES and a checkmark for a mandatory product", () => {
     const componentUnderTest = shallow(
       <AllowableProductsTableRowComponent
-        relay={{environment: null} as any}
+        relay={{ environment: null } as any}
         naicsCodeId={mockNaicsCodeRelayId}
         productNaicsCode={{
           ...productNaicsCode,
           isMandatory: true,
-          ' $refType': 'AllowableProductsTableRow_productNaicsCode'
+          " $refType": "AllowableProductsTableRow_productNaicsCode",
         }}
       />
     );
     expect(componentUnderTest).toMatchSnapshot();
   });
 
-  it('Should display a modal when hitting the Delete button', () => {
+  it("Should display a modal when hitting the Delete button", () => {
     const componentUnderTest = shallow(
       <AllowableProductsTableRowComponent
-        relay={{environment: null} as any}
+        relay={{ environment: null } as any}
         naicsCodeId={mockNaicsCodeRelayId}
         productNaicsCode={{
           ...productNaicsCode,
-          ' $refType': 'AllowableProductsTableRow_productNaicsCode'
+          " $refType": "AllowableProductsTableRow_productNaicsCode",
         }}
       />
     );
 
     expect(
-      componentUnderTest.find('DeleteConfirmationModal').prop('show')
+      componentUnderTest.find("DeleteConfirmationModal").prop("show")
     ).toBe(false);
-    componentUnderTest.find('Button').simulate('click');
+    componentUnderTest.find("Button").simulate("click");
     expect(
-      componentUnderTest.find('DeleteConfirmationModal').prop('show')
+      componentUnderTest.find("DeleteConfirmationModal").prop("show")
     ).toBe(true);
   });
 
-  it('Should call the delete mutation when confirming the modal', () => {
+  it("Should call the delete mutation when confirming the modal", () => {
     const spy = jest
       .spyOn(
-        require('mutations/product_naics_code/deleteProductNaicsCodeMutation'),
-        'default'
+        require("mutations/product_naics_code/deleteProductNaicsCodeMutation"),
+        "default"
       )
       .mockImplementation(() => {});
 
     const componentUnderTest = shallow(
       <AllowableProductsTableRowComponent
-        relay={{environment: 'relay env'} as any}
+        relay={{ environment: "relay env" } as any}
         naicsCodeId={mockNaicsCodeRelayId}
         productNaicsCode={{
           ...productNaicsCode,
-          ' $refType': 'AllowableProductsTableRow_productNaicsCode'
+          " $refType": "AllowableProductsTableRow_productNaicsCode",
         }}
       />
     );
     const deleteCallback = componentUnderTest
-      .find('DeleteConfirmationModal')
-      .prop('handleDelete') as (e: React.SyntheticEvent<any>) => Promise<void>;
+      .find("DeleteConfirmationModal")
+      .prop("handleDelete") as (e: React.SyntheticEvent<any>) => Promise<void>;
     deleteCallback({} as any);
 
     expect(spy).toBeCalledTimes(1);
     expect(spy).toBeCalledWith(
-      'relay env',
-      'A-relay-ID',
+      "relay env",
+      "A-relay-ID",
       {
-        ' $refType': 'AllowableProductsTableRow_productNaicsCode',
-        ...productNaicsCode
+        " $refType": "AllowableProductsTableRow_productNaicsCode",
+        ...productNaicsCode,
       },
-      'AllowableProducts_productNaicsCodesByNaicsCodeId'
+      "AllowableProducts_productNaicsCodesByNaicsCodeId"
     );
   });
 });

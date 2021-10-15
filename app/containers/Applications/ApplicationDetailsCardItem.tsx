@@ -1,22 +1,22 @@
-import React, {useState, useMemo} from 'react';
-import {Button, Card, Collapse, Col, Row} from 'react-bootstrap';
-import {createFragmentContainer, graphql} from 'react-relay';
-import JsonSchemaForm, {AjvError} from '@rjsf/core';
-import {FormJson} from 'next-env';
-import {ApplicationDetailsCardItem_formResult} from '__generated__/ApplicationDetailsCardItem_formResult.graphql';
-import {ApplicationDetailsCardItem_query} from '__generated__/ApplicationDetailsCardItem_query.graphql';
-import customBasicFields from 'components/Application/ApplicationDetailsCardItemCustomFields';
-import SummaryFormArrayFieldTemplate from 'containers/Forms/SummaryFormArrayFieldTemplate';
-import SummaryFormFieldTemplate from 'containers/Forms/SummaryFormFieldTemplate';
-import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
-import {customTransformErrors} from 'functions/customTransformErrors';
-import jsonSchemaDiff from 'lib/jsonSchemaDiff';
-import FuelRowIdField from 'containers/Forms/FuelRowIdField';
-import FuelField from 'containers/Forms/FuelField';
-import EmissionCategoryRowIdField from 'containers/Forms/EmissionCategoryRowIdField';
-import NaicsField from 'containers/Forms/NaicsField';
-import ProductField from 'containers/Forms/ProductField';
-import ProductRowIdField from 'containers/Forms/ProductRowIdField';
+import React, { useState, useMemo } from "react";
+import { Button, Card, Collapse, Col, Row } from "react-bootstrap";
+import { createFragmentContainer, graphql } from "react-relay";
+import JsonSchemaForm, { AjvError } from "@rjsf/core";
+import { FormJson } from "next-env";
+import { ApplicationDetailsCardItem_formResult } from "__generated__/ApplicationDetailsCardItem_formResult.graphql";
+import { ApplicationDetailsCardItem_query } from "__generated__/ApplicationDetailsCardItem_query.graphql";
+import customBasicFields from "components/Application/ApplicationDetailsCardItemCustomFields";
+import SummaryFormArrayFieldTemplate from "containers/Forms/SummaryFormArrayFieldTemplate";
+import SummaryFormFieldTemplate from "containers/Forms/SummaryFormFieldTemplate";
+import FormObjectFieldTemplate from "containers/Forms/FormObjectFieldTemplate";
+import { customTransformErrors } from "functions/customTransformErrors";
+import jsonSchemaDiff from "lib/jsonSchemaDiff";
+import FuelRowIdField from "containers/Forms/FuelRowIdField";
+import FuelField from "containers/Forms/FuelField";
+import EmissionCategoryRowIdField from "containers/Forms/EmissionCategoryRowIdField";
+import NaicsField from "containers/Forms/NaicsField";
+import ProductField from "containers/Forms/ProductField";
+import ProductRowIdField from "containers/Forms/ProductRowIdField";
 
 interface Props {
   // The form_result used by the fragment
@@ -44,20 +44,20 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
   diffToResults,
   query,
   showDiff,
-  liveValidate
+  liveValidate,
 }) => {
-  const {formJsonByFormId} = formResult;
-  const {formJson} = formJsonByFormId;
+  const { formJsonByFormId } = formResult;
+  const { formJson } = formJsonByFormId;
   const {
     schema,
     uiSchema,
     customFormats,
-    customFormatsErrorMessages
+    customFormatsErrorMessages,
   } = formJson as FormJson;
 
   const formIdPrefix = `${formJsonByFormId.name
     .toLowerCase()
-    .replace(' ', '-')}`;
+    .replace(" ", "-")}`;
 
   const transformErrors = (errors: AjvError[]) => {
     return customTransformErrors(errors, customFormatsErrorMessages);
@@ -66,18 +66,18 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
   // Expands or collapses the form_result card
   const [isOpen, setIsOpen] = useState(false);
 
-  const {formData, idDiffMap} = useMemo(() => {
+  const { formData, idDiffMap } = useMemo(() => {
     if (!showDiff)
-      return {formData: formResult.formResult, idDiffMap: undefined};
+      return { formData: formResult.formResult, idDiffMap: undefined };
 
     // Select the correct form result to diff to by matching formJson slugs
     const diffTo = diffToResults?.find(
-      ({node}) => node.formJsonByFormId.slug === formJsonByFormId.slug
+      ({ node }) => node.formJsonByFormId.slug === formJsonByFormId.slug
     )?.node.formResult;
 
     // Select the correct form result to diff from by matching formJson slugs
     const diffFrom = diffFromResults?.find(
-      ({node}) => node.formJsonByFormId.slug === formJsonByFormId.slug
+      ({ node }) => node.formJsonByFormId.slug === formJsonByFormId.slug
     )?.node.formResult;
 
     return jsonSchemaDiff(
@@ -119,17 +119,17 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
     fuelRowId: (props) => <FuelRowIdField query={query} {...props} />,
     emissionCategoryRowId: (props) => (
       <EmissionCategoryRowIdField query={query} {...props} />
-    )
+    ),
   };
 
   const customFields = {
     ...customBasicFields,
-    ...customFragmentFields
+    ...customFragmentFields,
   };
 
   return (
     <Card
-      style={{width: '100%', marginBottom: '10px'}}
+      style={{ width: "100%", marginBottom: "10px" }}
       className={`${classTag} summary-card`}
     >
       <Card.Header className="summary-form-header">
@@ -137,14 +137,14 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
           <Col md={6}>
             <h2>{formJsonByFormId.name}</h2>
           </Col>
-          <Col md={1} style={{textAlign: 'right'}}>
+          <Col md={1} style={{ textAlign: "right" }}>
             <Button
               aria-label="toggle-card-open"
               title="expand or collapse the card"
               variant="outline-dark"
               onClick={() => setIsOpen(!isOpen)}
             >
-              {isOpen ? '+' : '-'}
+              {isOpen ? "+" : "-"}
             </Button>
           </Col>
         </Row>
@@ -169,7 +169,7 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
             formContext={{
               query,
               showDiff,
-              idDiffMap
+              idDiffMap,
             }}
           >
             {buttonOverride}
@@ -233,5 +233,5 @@ export default createFragmentContainer(ApplicationDetailsCardItemComponent, {
       ...FuelRowIdField_query
       ...EmissionCategoryRowIdField_query
     }
-  `
+  `,
 });

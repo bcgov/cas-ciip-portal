@@ -1,20 +1,20 @@
-import React from 'react';
-import {QueryRenderer} from 'react-relay';
-import NextApp from 'next/app';
-import {NextRouter} from 'next/router';
-import {CiipPageComponent} from 'next-env';
-import {getRequest} from 'relay-runtime';
-import {createEnvironment} from 'lib/relay-environment';
-import ErrorFallback from 'components/ErrorFallback';
-import LoadingSpinner from 'components/LoadingSpinner';
-import ToasterHelper from 'components/helpers/Toaster';
-import 'react-toastify/dist/ReactToastify.min.css';
-import PageRedirectHandler from 'components/PageRedirectHandler';
-import safeJsonParse from 'lib/safeJsonParse';
-import RelayModernEnvironment from 'relay-runtime/lib/store/RelayModernEnvironment';
-import * as Sentry from '@sentry/react';
-import SessionTimeoutHandler from 'components/SessionTimeoutHandler';
-import SessionRefresher from 'components/SessionRefresher';
+import React from "react";
+import { QueryRenderer } from "react-relay";
+import NextApp from "next/app";
+import { NextRouter } from "next/router";
+import { CiipPageComponent } from "next-env";
+import { getRequest } from "relay-runtime";
+import { createEnvironment } from "lib/relay-environment";
+import ErrorFallback from "components/ErrorFallback";
+import LoadingSpinner from "components/LoadingSpinner";
+import ToasterHelper from "components/helpers/Toaster";
+import "react-toastify/dist/ReactToastify.min.css";
+import PageRedirectHandler from "components/PageRedirectHandler";
+import safeJsonParse from "lib/safeJsonParse";
+import RelayModernEnvironment from "relay-runtime/lib/store/RelayModernEnvironment";
+import * as Sentry from "@sentry/react";
+import SessionTimeoutHandler from "components/SessionTimeoutHandler";
+import SessionRefresher from "components/SessionRefresher";
 
 interface AppProps {
   pageProps: {
@@ -26,16 +26,16 @@ interface AppProps {
 }
 
 export default class App extends NextApp<AppProps> {
-  static getInitialProps = async ({Component, ctx}) => {
+  static getInitialProps = async ({ Component, ctx }) => {
     const initialProps = Component.getInitialProps
       ? await Component.getInitialProps(ctx)
       : {};
     const variables = {
       ...initialProps.variables,
-      ...ctx.query
+      ...ctx.query,
     };
     return {
-      pageProps: {variables}
+      pageProps: { variables },
     };
   };
 
@@ -46,14 +46,14 @@ export default class App extends NextApp<AppProps> {
     const {
       Component,
       router,
-      pageProps: {variables = {}}
+      pageProps: { variables = {} },
     } = this.props;
     const environment = createEnvironment(
       JSON.stringify({
         queryID: Component.query
           ? getRequest(Component.query).params.name
           : undefined,
-        variables: {...variables, ...router.query}
+        variables: { ...variables, ...router.query },
       })
     );
 
@@ -84,9 +84,9 @@ export default class App extends NextApp<AppProps> {
               ...variables,
               ...router.query,
               ...filterArgs,
-              ...pageArgs
+              ...pageArgs,
             }}
-            render={({error, props}: {error: any; props: any}) => {
+            render={({ error, props }: { error: any; props: any }) => {
               if (error !== null) throw error; // Let the ErrorBoundary above render the error nicely
               if (props) {
                 this.prevComponentProps = props;

@@ -1,8 +1,8 @@
-import React, {useEffect} from 'react';
-import {FieldProps} from '@rjsf/core';
-import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
-import {ProductsArrayField_naicsProducts} from 'ProductsArrayField_naicsProducts.graphql';
-import updateFormResultMutation from 'mutations/form/updateFormResultMutation';
+import React, { useEffect } from "react";
+import { FieldProps } from "@rjsf/core";
+import { createFragmentContainer, graphql, RelayProp } from "react-relay";
+import { ProductsArrayField_naicsProducts } from "ProductsArrayField_naicsProducts.graphql";
+import updateFormResultMutation from "mutations/form/updateFormResultMutation";
 
 interface Props extends FieldProps {
   naicsProducts: ProductsArrayField_naicsProducts;
@@ -12,8 +12,8 @@ interface Props extends FieldProps {
 export const ProductsArrayFieldComponent: React.FunctionComponent<Props> = (
   props
 ) => {
-  const {naicsProducts, formContext, registry} = props;
-  const {ArrayField} = registry.fields;
+  const { naicsProducts, formContext, registry } = props;
+  const { ArrayField } = registry.fields;
 
   useEffect(() => {
     const initializeFormResult = async (variables) => {
@@ -23,8 +23,8 @@ export const ProductsArrayFieldComponent: React.FunctionComponent<Props> = (
       (product) => ({
         ...product,
         isMandatory: naicsProducts?.mandatoryProducts?.edges.some(
-          ({node}) => node.productByProductId.rowId === product.productRowId
-        )
+          ({ node }) => node.productByProductId.rowId === product.productRowId
+        ),
       })
     );
 
@@ -53,7 +53,7 @@ export const ProductsArrayFieldComponent: React.FunctionComponent<Props> = (
           subtractExportedHeatEmissions,
           subtractGeneratedElectricityEmissions,
           subtractGeneratedHeatEmissions,
-          addEmissionsFromEios
+          addEmissionsFromEios,
         } = edge.node.productByProductId;
         return {
           requiresEmissionAllocation,
@@ -72,7 +72,7 @@ export const ProductsArrayFieldComponent: React.FunctionComponent<Props> = (
           subtractExportedHeatEmissions,
           subtractGeneratedElectricityEmissions,
           subtractGeneratedHeatEmissions,
-          addEmissionsFromEios
+          addEmissionsFromEios,
         };
       })
     );
@@ -80,9 +80,9 @@ export const ProductsArrayFieldComponent: React.FunctionComponent<Props> = (
       input: {
         id: formContext.ciipFormResult.id,
         formResultPatch: {
-          formResult: initializedFormResult
-        }
-      }
+          formResult: initializedFormResult,
+        },
+      },
     };
     initializeFormResult(variables);
   }, [naicsProducts]);
@@ -96,9 +96,9 @@ export default createFragmentContainer(ProductsArrayFieldComponent, {
     fragment ProductsArrayField_naicsProducts on NaicsCode {
       mandatoryProducts: productNaicsCodesByNaicsCodeId(
         filter: {
-          isMandatory: {equalTo: true}
-          deletedAt: {isNull: true}
-          productByProductId: {productState: {equalTo: PUBLISHED}}
+          isMandatory: { equalTo: true }
+          deletedAt: { isNull: true }
+          productByProductId: { productState: { equalTo: PUBLISHED } }
         }
       ) {
         edges {
@@ -127,5 +127,5 @@ export default createFragmentContainer(ProductsArrayFieldComponent, {
         }
       }
     }
-  `
+  `,
 });

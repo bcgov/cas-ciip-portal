@@ -1,16 +1,16 @@
-import React, {useState} from 'react';
-import {FieldProps} from '@rjsf/core';
-import {Form, Button} from 'react-bootstrap';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faCommentAlt} from '@fortawesome/free-solid-svg-icons';
-import {toast} from 'react-toastify';
+import React, { useState } from "react";
+import { FieldProps } from "@rjsf/core";
+import { Form, Button } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCommentAlt } from "@fortawesome/free-solid-svg-icons";
+import { toast } from "react-toastify";
 
 const AddCommentField: React.FunctionComponent<FieldProps<string>> = (
   props
 ) => {
   const [expanded, setExpanded] = useState(false);
   const [value, setValue] = useState(props.formData);
-  const title = props.formData ? 'Edit comment' : 'Add a comment';
+  const title = props.formData ? "Edit comment" : "Add a comment";
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setValue(e.target.value);
@@ -24,10 +24,10 @@ const AddCommentField: React.FunctionComponent<FieldProps<string>> = (
   const handleSave = () => {
     props.onChange(value);
     setExpanded(false);
-    toast.success('Your comment was saved.', {
-      className: 'toastalert-success',
+    toast.success("Your comment was saved.", {
+      className: "toastalert-success",
       autoClose: 5000,
-      position: 'top-center'
+      position: "top-center",
     });
   };
 
@@ -88,7 +88,7 @@ const AddCommentField: React.FunctionComponent<FieldProps<string>> = (
               Cancel
             </Button>
             <Button
-              style={{marginLeft: 16}}
+              style={{ marginLeft: 16 }}
               variant="success"
               onClick={handleSave}
             >

@@ -1,13 +1,13 @@
-const nodemailer = require('nodemailer');
-const dotenv = require('dotenv');
-const createWelcomeMail = require('../emailTemplates/welcome.js');
-const createConfirmationMail = require('../emailTemplates/confirmation.js');
-const createApplicationDecisionMail = require('../emailTemplates/applicationDecision.js');
-const createAmendmentMail = require('../emailTemplates/amendment.js');
-const createOrganisationAccessRequestMail = require('../emailTemplates/requestForOrganisationAccess.js');
-const createOrganisationAccessApprovedMail = require('../emailTemplates/organisationAccessApproved.js');
-const createNotifyAdminApplicationSubmittedMail = require('../emailTemplates/notifyAdminApplicationSubmitted.js');
-const createNotifyAdminAccessRequestMail = require('../emailTemplates/notifyAdminOrganisationAccess');
+const nodemailer = require("nodemailer");
+const dotenv = require("dotenv");
+const createWelcomeMail = require("../emailTemplates/welcome.js");
+const createConfirmationMail = require("../emailTemplates/confirmation.js");
+const createApplicationDecisionMail = require("../emailTemplates/applicationDecision.js");
+const createAmendmentMail = require("../emailTemplates/amendment.js");
+const createOrganisationAccessRequestMail = require("../emailTemplates/requestForOrganisationAccess.js");
+const createOrganisationAccessApprovedMail = require("../emailTemplates/organisationAccessApproved.js");
+const createNotifyAdminApplicationSubmittedMail = require("../emailTemplates/notifyAdminApplicationSubmitted.js");
+const createNotifyAdminAccessRequestMail = require("../emailTemplates/notifyAdminOrganisationAccess");
 dotenv.config();
 
 const adminEmail = process.env.ADMIN_EMAIL;
@@ -24,10 +24,10 @@ module.exports = async ({
   operatorName,
   organisationId,
   status,
-  versionNumber
+  versionNumber,
 }) => {
   if (!process.env.SMTP_CONNECTION_STRING && !process.env.NO_MAIL)
-    throw new Error('SMTP connection string is undefined');
+    throw new Error("SMTP connection string is undefined");
   const transporter = nodemailer.createTransport(
     process.env.SMTP_CONNECTION_STRING
   );
@@ -35,7 +35,7 @@ module.exports = async ({
   if (!process.env.NO_MAIL) {
     transporter.verify((error) => {
       if (error) console.error(error);
-      else console.log('transporter verified');
+      else console.log("transporter verified");
     });
   }
 
@@ -43,17 +43,17 @@ module.exports = async ({
   let htmlContent;
   switch (type) {
     // New CIIP user welcome
-    case 'welcome':
-      subject = 'Welcome to CIIP';
+    case "welcome":
+      subject = "Welcome to CIIP";
       htmlContent = createWelcomeMail({
         email,
         firstName,
         lastName,
-        contactEmail: adminEmail
+        contactEmail: adminEmail,
       });
       break;
     // Confirmation of CIIP Application submission
-    case 'status_change_submitted':
+    case "status_change_submitted":
       subject = `CIIP Application Submission Confirmation - ${facilityName} (#${applicationId})`;
       htmlContent = createConfirmationMail({
         applicationId,
@@ -64,10 +64,10 @@ module.exports = async ({
         operatorName,
         organisationId,
         versionNumber,
-        contactEmail: adminEmail
+        contactEmail: adminEmail,
       });
       break;
-    case 'status_change_approved':
+    case "status_change_approved":
       subject = `Your CIIP Application has been approved - ${facilityName} (#${applicationId})`;
       htmlContent = createApplicationDecisionMail({
         applicationId,
@@ -78,10 +78,10 @@ module.exports = async ({
         operatorName,
         organisationId,
         status,
-        contactEmail: adminEmail
+        contactEmail: adminEmail,
       });
       break;
-    case 'status_change_rejected':
+    case "status_change_rejected":
       subject = `Your CIIP application has been rejected - ${facilityName} (#${applicationId})`;
       htmlContent = createApplicationDecisionMail({
         applicationId,
@@ -92,10 +92,10 @@ module.exports = async ({
         operatorName,
         organisationId,
         status,
-        contactEmail: adminEmail
+        contactEmail: adminEmail,
       });
       break;
-    case 'status_change_requested_changes':
+    case "status_change_requested_changes":
       subject = `CIIP Application: Changes requested for ${facilityName} (#${applicationId})`;
       htmlContent = createAmendmentMail({
         applicationId,
@@ -105,46 +105,46 @@ module.exports = async ({
         facilityName,
         operatorName,
         versionNumber,
-        contactEmail: adminEmail
+        contactEmail: adminEmail,
       });
       break;
-    case 'request_for_organisation_access':
-      subject = 'CIIP Application: Operation Access Requested';
+    case "request_for_organisation_access":
+      subject = "CIIP Application: Operation Access Requested";
       htmlContent = createOrganisationAccessRequestMail({
         email,
         firstName,
         lastName,
         facilityName,
         operatorName,
-        contactEmail: adminEmail
+        contactEmail: adminEmail,
       });
       break;
-    case 'organisation_access_approved':
-      subject = 'CIIP Application: Operation Access Approved';
+    case "organisation_access_approved":
+      subject = "CIIP Application: Operation Access Approved";
       htmlContent = createOrganisationAccessApprovedMail({
         email,
         firstName,
         lastName,
         operatorName,
         organisationId,
-        contactEmail: adminEmail
+        contactEmail: adminEmail,
       });
       break;
-    case 'notify_admin_submitted':
-      subject = 'CIIP Application Submission';
+    case "notify_admin_submitted":
+      subject = "CIIP Application Submission";
       htmlContent = createNotifyAdminApplicationSubmittedMail({
         applicationId,
         facilityName,
-        operatorName
+        operatorName,
       });
       email = receiverEmail;
       break;
-    case 'notify_admin_organisation_access':
-      subject = 'CIIP Operation Access Request';
+    case "notify_admin_organisation_access":
+      subject = "CIIP Operation Access Request";
       htmlContent = createNotifyAdminAccessRequestMail({
         firstName,
         lastName,
-        operatorName
+        operatorName,
       });
       email = receiverEmail;
       break;
@@ -154,7 +154,7 @@ module.exports = async ({
 
   if (htmlContent === null) {
     return console.error(
-      'Invalid message type, no message could be generated. Email not sent'
+      "Invalid message type, no message could be generated. Email not sent"
     );
   }
 
@@ -162,16 +162,16 @@ module.exports = async ({
     from: senderEmail,
     to: email,
     subject,
-    html: htmlContent
+    html: htmlContent,
   };
   if (process.env.NO_MAIL) {
     return console.log(
-      'NO_MAIL flag is set.\nsendMail Job was sent successfully but no email was sent'
+      "NO_MAIL flag is set.\nsendMail Job was sent successfully but no email was sent"
     );
   }
 
   await transporter.sendMail(message, (error, info) => {
     if (error) return console.error(error);
-    console.log('Message sent: %s', info.messageId);
+    console.log("Message sent: %s", info.messageId);
   });
 };

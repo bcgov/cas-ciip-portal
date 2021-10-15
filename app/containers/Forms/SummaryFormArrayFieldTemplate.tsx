@@ -1,10 +1,10 @@
-import React from 'react';
-import {ArrayFieldTemplateProps} from '@rjsf/core';
-import {Form, Col} from 'react-bootstrap';
+import React from "react";
+import { ArrayFieldTemplateProps } from "@rjsf/core";
+import { Form, Col } from "react-bootstrap";
 
 const SummaryFormArrayFieldTemplate: React.FunctionComponent<ArrayFieldTemplateProps> = ({
   items,
-  className
+  className,
 }) => {
   return (
     <div className={className}>

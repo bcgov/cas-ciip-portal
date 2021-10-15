@@ -1,8 +1,8 @@
-import React, {useMemo} from 'react';
-import {FieldProps} from '@rjsf/core';
-import {createFragmentContainer, graphql} from 'react-relay';
-import {FuelRowIdField_query} from 'FuelRowIdField_query.graphql';
-import {InputGroup} from 'react-bootstrap';
+import React, { useMemo } from "react";
+import { FieldProps } from "@rjsf/core";
+import { createFragmentContainer, graphql } from "react-relay";
+import { FuelRowIdField_query } from "FuelRowIdField_query.graphql";
+import { InputGroup } from "react-bootstrap";
 
 interface Props extends FieldProps<number> {
   query: FuelRowIdField_query;
@@ -21,17 +21,17 @@ export const FuelRowIdFieldComponent: React.FunctionComponent<Props> = (
 
   const fuels = useMemo(
     () => ({
-      activeRowIds: props.query.activeFuels.edges.map(({node}) => node.rowId),
-      activeNames: props.query.activeFuels.edges.map(({node}) => node.name),
+      activeRowIds: props.query.activeFuels.edges.map(({ node }) => node.rowId),
+      activeNames: props.query.activeFuels.edges.map(({ node }) => node.name),
 
       // Object containing the archived fuels, keyed on the rowId
       archived: props.query.archivedFuels.edges.reduce(
-        (archivedDict, {node}) => {
+        (archivedDict, { node }) => {
           archivedDict[node.rowId] = node.name;
           return archivedDict;
         },
         {}
-      )
+      ),
     }),
     [props.query]
   );
@@ -42,9 +42,9 @@ export const FuelRowIdFieldComponent: React.FunctionComponent<Props> = (
       schema: {
         ...props.schema,
         enum: fuels.activeRowIds,
-        enumNames: fuels.activeNames
+        enumNames: fuels.activeNames,
       },
-      query: undefined
+      query: undefined,
     };
   }, [props]);
 
@@ -67,7 +67,7 @@ export default createFragmentContainer(FuelRowIdFieldComponent, {
   query: graphql`
     fragment FuelRowIdField_query on Query {
       activeFuels: allFuels(
-        filter: {state: {equalTo: "active"}}
+        filter: { state: { equalTo: "active" } }
         orderBy: NAME_ASC
       ) {
         edges {
@@ -77,7 +77,7 @@ export default createFragmentContainer(FuelRowIdFieldComponent, {
           }
         }
       }
-      archivedFuels: allFuels(filter: {state: {equalTo: "archived"}}) {
+      archivedFuels: allFuels(filter: { state: { equalTo: "archived" } }) {
         edges {
           node {
             rowId
@@ -86,5 +86,5 @@ export default createFragmentContainer(FuelRowIdFieldComponent, {
         }
       }
     }
-  `
+  `,
 });

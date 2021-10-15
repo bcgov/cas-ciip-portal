@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
-import {WidgetProps} from '@rjsf/core';
-import {dateTimeFormat} from 'functions/formatDates';
+import React, { useState } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { WidgetProps } from "@rjsf/core";
+import { dateTimeFormat } from "functions/formatDates";
 
 function getDateString(date) {
-  return dateTimeFormat(date, 'date_year_first');
+  return dateTimeFormat(date, "date_year_first");
 }
 
 const DatePickerWidget: React.FunctionComponent<WidgetProps> = ({
@@ -15,7 +15,7 @@ const DatePickerWidget: React.FunctionComponent<WidgetProps> = ({
   readonly,
   onBlur,
   onChange,
-  onFocus
+  onFocus,
 }) => {
   const [day, setDay] = useState(value ? new Date(value) : undefined);
 

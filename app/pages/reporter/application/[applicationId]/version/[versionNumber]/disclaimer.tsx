@@ -1,21 +1,21 @@
-import React, {Component} from 'react';
-import {graphql} from 'react-relay';
-import {Card, Alert} from 'react-bootstrap';
-import {disclaimerNewApplicationQueryResponse} from 'disclaimerNewApplicationQuery.graphql';
-import ApplicationConsent from 'containers/Applications/ApplicationConsent';
-import {CiipPageComponentProps} from 'next-env';
-import {NextRouter} from 'next/router';
-import DefaultLayout from 'layouts/default-layout';
-import {USER} from 'data/group-constants';
+import React, { Component } from "react";
+import { graphql } from "react-relay";
+import { Card, Alert } from "react-bootstrap";
+import { disclaimerNewApplicationQueryResponse } from "disclaimerNewApplicationQuery.graphql";
+import ApplicationConsent from "containers/Applications/ApplicationConsent";
+import { CiipPageComponentProps } from "next-env";
+import { NextRouter } from "next/router";
+import DefaultLayout from "layouts/default-layout";
+import { USER } from "data/group-constants";
 import {
   getApplicationDisclaimerPageRoute,
-  getApplicationPageRoute
-} from 'routes';
+  getApplicationPageRoute,
+} from "routes";
 
 const ALLOWED_GROUPS = [USER];
 
 interface Props extends CiipPageComponentProps {
-  query: disclaimerNewApplicationQueryResponse['query'];
+  query: disclaimerNewApplicationQueryResponse["query"];
   router: NextRouter;
 }
 class NewApplicationDisclaimer extends Component<Props> {
@@ -48,22 +48,22 @@ class NewApplicationDisclaimer extends Component<Props> {
   `;
 
   render() {
-    const {query, router} = this.props;
-    const {session, application} = query || {};
-    const {hasSwrsReport} = router.query;
+    const { query, router } = this.props;
+    const { session, application } = query || {};
+    const { hasSwrsReport } = router.query;
 
     if (!application) {
-      router.push('/404');
+      router.push("/404");
       return null;
     }
 
     const {
       applicationRevisionByStringVersionNumber: applicationRevision,
-      latestDraftRevision
+      latestDraftRevision,
     } = application;
 
     if (!applicationRevision || !latestDraftRevision) {
-      router.push('/404');
+      router.push("/404");
       return null;
     }
 
@@ -84,10 +84,10 @@ class NewApplicationDisclaimer extends Component<Props> {
     }
 
     const importMessage =
-      hasSwrsReport === 'true' ? (
+      hasSwrsReport === "true" ? (
         <Alert variant="info">
           <p>
-            We found an emissions report submitted under the{' '}
+            We found an emissions report submitted under the{" "}
             <em>Greenhouse Gas Industrial Reporting and Control Act</em> for an
             operation that includes this facility.
           </p>
@@ -107,7 +107,7 @@ class NewApplicationDisclaimer extends Component<Props> {
             Please review and confirm the information below
           </Card.Header>
           <Card.Body>
-            <Card.Text style={{padding: '10px 0 10px 0'}}>
+            <Card.Text style={{ padding: "10px 0 10px 0" }}>
               Please note that, prior to submission, you will be asked to
               confirm that you have exercised due diligence to ensure that the
               information is true and complete, and that, to the best of your

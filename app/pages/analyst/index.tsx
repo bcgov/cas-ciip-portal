@@ -1,19 +1,19 @@
-import React, {Component} from 'react';
-import {Row} from 'react-bootstrap';
-import {graphql} from 'react-relay';
-import {CiipPageComponentProps} from 'next-env';
-import {analystQueryResponse} from 'analystQuery.graphql';
-import DefaultLayout from 'layouts/default-layout';
-import ReportingOperations from 'components/Dashboard/reportingOperations';
-import ProgramAdministration from 'components/Dashboard/programAdministration';
-import ReportAProblem from 'components/Dashboard/reportAProblem';
-import getConfig from 'next/config';
-import {INCENTIVE_ANALYST} from 'data/group-constants';
+import React, { Component } from "react";
+import { Row } from "react-bootstrap";
+import { graphql } from "react-relay";
+import { CiipPageComponentProps } from "next-env";
+import { analystQueryResponse } from "analystQuery.graphql";
+import DefaultLayout from "layouts/default-layout";
+import ReportingOperations from "components/Dashboard/reportingOperations";
+import ProgramAdministration from "components/Dashboard/programAdministration";
+import ReportAProblem from "components/Dashboard/reportAProblem";
+import getConfig from "next/config";
+import { INCENTIVE_ANALYST } from "data/group-constants";
 
 const ALLOWED_GROUPS = [INCENTIVE_ANALYST];
 
 interface Props extends CiipPageComponentProps {
-  query: analystQueryResponse['query'];
+  query: analystQueryResponse["query"];
 }
 class Analyst extends Component<Props> {
   static allowedGroups = ALLOWED_GROUPS;
@@ -30,7 +30,7 @@ class Analyst extends Component<Props> {
 
   render() {
     const {
-      query: {session}
+      query: { session },
     } = this.props;
     const supportUrl = getConfig()?.publicRuntimeConfig.SUPPORT_EMAIL;
     return (
@@ -41,7 +41,7 @@ class Analyst extends Component<Props> {
             <ReportingOperations />
             <ReportAProblem
               supportUrl={
-                `mailto:${supportUrl}?subject=Internal Support Request` || '#'
+                `mailto:${supportUrl}?subject=Internal Support Request` || "#"
               }
             />
           </Row>

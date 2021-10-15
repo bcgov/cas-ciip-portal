@@ -114,7 +114,7 @@ exports[`ReportingYearFormDialog Should match last accepted snapshot: no inputs 
     </ModalBody>
   </Modal>
   <JSXStyle
-    id="2037158273"
+    id="3923245764"
   >
     .
     r
@@ -258,12 +258,12 @@ exports[`ReportingYearFormDialog Should match last accepted snapshot: no inputs 
     s
     *
     =
-    '
+    "
     c
     o
     l
     -
-    '
+    "
     ]
     {
     p
@@ -747,7 +747,7 @@ exports[`ReportingYearFormDialog Should match last accepted snapshot: some past 
     </ModalBody>
   </Modal>
   <JSXStyle
-    id="2037158273"
+    id="3923245764"
   >
     .
     r
@@ -891,12 +891,12 @@ exports[`ReportingYearFormDialog Should match last accepted snapshot: some past 
     s
     *
     =
-    '
+    "
     c
     o
     l
     -
-    '
+    "
     ]
     {
     p

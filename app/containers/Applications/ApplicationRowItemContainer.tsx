@@ -1,14 +1,14 @@
-import React from 'react';
-import {Button, Badge} from 'react-bootstrap';
-import {graphql, createFragmentContainer} from 'react-relay';
-import Link from 'next/link';
-import {dateTimeFormat} from 'functions/formatDates';
-import {getUserFriendlyStatusLabel} from 'lib/text-transforms';
+import React from "react";
+import { Button, Badge } from "react-bootstrap";
+import { graphql, createFragmentContainer } from "react-relay";
+import Link from "next/link";
+import { dateTimeFormat } from "functions/formatDates";
+import { getUserFriendlyStatusLabel } from "lib/text-transforms";
 import {
   ApplicationRowItemContainer_application,
-  CiipApplicationRevisionStatus
-} from 'ApplicationRowItemContainer_application.graphql';
-import {getReviewApplicationPageRoute} from 'routes';
+  CiipApplicationRevisionStatus,
+} from "ApplicationRowItemContainer_application.graphql";
+import { getReviewApplicationPageRoute } from "routes";
 
 interface Props {
   application: ApplicationRowItemContainer_application;
@@ -16,20 +16,20 @@ interface Props {
 
 const statusBadgeColor: Record<
   CiipApplicationRevisionStatus,
-  'warning' | 'info' | 'danger' | 'success' | 'secondary'
+  "warning" | "info" | "danger" | "success" | "secondary"
 > = {
-  DRAFT: 'warning',
-  SUBMITTED: 'info',
-  REJECTED: 'danger',
-  APPROVED: 'success',
-  REQUESTED_CHANGES: 'secondary'
+  DRAFT: "warning",
+  SUBMITTED: "info",
+  REJECTED: "danger",
+  APPROVED: "success",
+  REQUESTED_CHANGES: "secondary",
 };
 
 export const ApplicationRowItem: React.FunctionComponent<Props> = (props) => {
-  const {application} = props;
+  const { application } = props;
   const readableSubmissionDate = dateTimeFormat(
     application.submissionDate,
-    'seconds'
+    "seconds"
   );
 
   return (
@@ -42,7 +42,7 @@ export const ApplicationRowItem: React.FunctionComponent<Props> = (props) => {
       <td>
         <Badge
           pill
-          style={{width: '100%', textTransform: 'uppercase'}}
+          style={{ width: "100%", textTransform: "uppercase" }}
           variant={statusBadgeColor[application.latestSubmittedRevisionStatus]}
         >
           {getUserFriendlyStatusLabel(
@@ -70,5 +70,5 @@ export default createFragmentContainer(ApplicationRowItem, {
       reportingYear
       submissionDate
     }
-  `
+  `,
 });

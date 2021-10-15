@@ -1,11 +1,11 @@
-import React, {useMemo, useState} from 'react';
-import {Modal, Container, Col, Row, Button, Table} from 'react-bootstrap';
-import {LinkedProducts_product} from 'LinkedProducts_product.graphql';
-import {LinkedProducts_query} from 'LinkedProducts_query.graphql';
-import SearchDropdown from 'components/SearchDropdown';
-import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
-import createLinkedProductMutation from 'mutations/linked_product/createLinkedProductMutation';
-import deleteLinkedProductMutation from 'mutations/linked_product/deleteLinkedProductMutation';
+import React, { useMemo, useState } from "react";
+import { Modal, Container, Col, Row, Button, Table } from "react-bootstrap";
+import { LinkedProducts_product } from "LinkedProducts_product.graphql";
+import { LinkedProducts_query } from "LinkedProducts_query.graphql";
+import SearchDropdown from "components/SearchDropdown";
+import { graphql, createFragmentContainer, RelayProp } from "react-relay";
+import createLinkedProductMutation from "mutations/linked_product/createLinkedProductMutation";
+import deleteLinkedProductMutation from "mutations/linked_product/deleteLinkedProductMutation";
 
 interface Props {
   product: LinkedProducts_product;
@@ -18,27 +18,27 @@ export const LinkedProductsContainer: React.FunctionComponent<Props> = ({
   product,
   setLinkProductModalShow,
   query,
-  relay
+  relay,
 }) => {
   const [selected, setSelected] = useState<{
     id: string | number;
     name: string;
   }>();
-  const {nonEnergyProducts} = query;
+  const { nonEnergyProducts } = query;
   const currentlyLinkedProductIds = product.linkedProductsByProductId.edges.map(
-    ({node}) => node.linkedProductId
+    ({ node }) => node.linkedProductId
   );
   // Populate the dropdown search options by filtering out the parent product & any currently linked products
   const searchOptions = useMemo(
     () =>
       nonEnergyProducts.edges
         .filter(
-          ({node}) =>
+          ({ node }) =>
             product.rowId !== node.rowId &&
             !currentlyLinkedProductIds.includes(node.rowId)
         )
-        .map(({node}) => {
-          return {id: node.rowId, name: node.productName};
+        .map(({ node }) => {
+          return { id: node.rowId, name: node.productName };
         }),
     [nonEnergyProducts, currentlyLinkedProductIds]
   );
@@ -53,9 +53,9 @@ export const LinkedProductsContainer: React.FunctionComponent<Props> = ({
           linkedProduct: {
             productId: product.rowId,
             linkedProductId: selected.id as number,
-            isDeleted: false
-          }
-        }
+            isDeleted: false,
+          },
+        },
       };
       await createLinkedProductMutation(
         relay.environment,
@@ -66,14 +66,14 @@ export const LinkedProductsContainer: React.FunctionComponent<Props> = ({
   };
 
   const handleDeleteLinkedProduct = async (linkedProduct) => {
-    const {environment} = relay;
+    const { environment } = relay;
     const variables = {
       input: {
         id: linkedProduct.id,
         linkedProductPatch: {
-          linkedProductId: linkedProduct.linkedProductId
-        }
-      }
+          linkedProductId: linkedProduct.linkedProductId,
+        },
+      },
     };
     await deleteLinkedProductMutation(
       environment,
@@ -90,12 +90,15 @@ export const LinkedProductsContainer: React.FunctionComponent<Props> = ({
       aria-labelledby="linked-products-header"
       onHide={() => setLinkProductModalShow(false)}
     >
-      <Modal.Header closeButton style={{color: 'white', background: '#003366'}}>
+      <Modal.Header
+        closeButton
+        style={{ color: "white", background: "#003366" }}
+      >
         <Modal.Title id="linked-products-header">
           <h2 className="h3">Product Associations</h2>
         </Modal.Title>
       </Modal.Header>
-      <Modal.Body style={{background: '#f5f5f5'}}>
+      <Modal.Body style={{ background: "#f5f5f5" }}>
         <Container>
           <Row>
             <Col md={12}>
@@ -137,10 +140,10 @@ export const LinkedProductsContainer: React.FunctionComponent<Props> = ({
               <SearchDropdown
                 id="search-products"
                 options={searchOptions}
-                inputProps={{id: 'search-products'}}
+                inputProps={{ id: "search-products" }}
                 placeholder="Search Products..."
                 selected={selected ? [selected] : []}
-                onChange={(option: {id: string | number; name: string}[]) =>
+                onChange={(option: { id: string | number; name: string }[]) =>
                   setSelected(option[0])
                 }
                 onBlur={() => null}
@@ -156,20 +159,20 @@ export const LinkedProductsContainer: React.FunctionComponent<Props> = ({
               </Button>
             </Col>
           </Row>
-          <Row style={{marginTop: '20px'}}>
-            <Col md={{offset: 3, span: 9}}>
+          <Row style={{ marginTop: "20px" }}>
+            <Col md={{ offset: 3, span: 9 }}>
               <Table striped bordered hover>
-                <thead style={{textAlign: 'center'}}>
+                <thead style={{ textAlign: "center" }}>
                   <tr>
                     <th>Product</th>
                     <th>Remove</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {product.linkedProductsByProductId.edges.map(({node}) => (
+                  {product.linkedProductsByProductId.edges.map(({ node }) => (
                     <tr key={node.id}>
                       <td>{node.productByLinkedProductId.productName}</td>
-                      <td style={{textAlign: 'center'}}>
+                      <td style={{ textAlign: "center" }}>
                         <Button
                           variant="outline-danger"
                           onClick={() => handleDeleteLinkedProduct(node)}
@@ -189,7 +192,7 @@ export const LinkedProductsContainer: React.FunctionComponent<Props> = ({
             </Col>
           </Row>
           <Row>
-            <Col md={{span: 1, offset: 11}}>
+            <Col md={{ span: 1, offset: 11 }}>
               <Button
                 onClick={() => setLinkProductModalShow(false)}
                 variant="secondary"
@@ -217,7 +220,7 @@ export default createFragmentContainer(LinkedProductsContainer, {
       productName
       linkedProductsByProductId(
         first: 2147483647
-        filter: {deletedAt: {isNull: true}}
+        filter: { deletedAt: { isNull: true } }
       )
         @connection(
           key: "LinkedProducts_linkedProductsByProductId"
@@ -240,7 +243,7 @@ export default createFragmentContainer(LinkedProductsContainer, {
   query: graphql`
     fragment LinkedProducts_query on Query {
       nonEnergyProducts: allProducts(
-        filter: {isEnergyProduct: {equalTo: false}}
+        filter: { isEnergyProduct: { equalTo: false } }
         orderBy: PRODUCT_NAME_ASC
       ) {
         edges {
@@ -252,5 +255,5 @@ export default createFragmentContainer(LinkedProductsContainer, {
         }
       }
     }
-  `
+  `,
 });

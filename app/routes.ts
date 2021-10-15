@@ -7,12 +7,12 @@ export const getApplicationDisclaimerPageRoute = (
   hasSwrsReport?: boolean | string
 ) => ({
   pathname:
-    '/reporter/application/[applicationId]/version/[versionNumber]/disclaimer',
+    "/reporter/application/[applicationId]/version/[versionNumber]/disclaimer",
   query: {
     applicationId,
     versionNumber,
-    hasSwrsReport
-  }
+    hasSwrsReport,
+  },
 });
 
 export const getApplicationPageRoute = (
@@ -20,12 +20,12 @@ export const getApplicationPageRoute = (
   formId?: string,
   confirmationPage = false
 ) => ({
-  pathname: '/reporter/application/[applicationId]/',
+  pathname: "/reporter/application/[applicationId]/",
   query: {
     applicationId,
     formId,
-    confirmationPage
-  }
+    confirmationPage,
+  },
 });
 
 export const getViewApplicationPageRoute = (
@@ -33,23 +33,23 @@ export const getViewApplicationPageRoute = (
   versionNumber: string | number
 ) => ({
   pathname:
-    '/reporter/application/[applicationId]/version/[versionNumber]/view',
+    "/reporter/application/[applicationId]/version/[versionNumber]/view",
   query: {
     applicationId,
-    versionNumber
-  }
+    versionNumber,
+  },
 });
 
 export const getReviewApplicationPageRoute = (applicationId: string) => ({
-  pathname: '/analyst/application/[applicationId]/',
+  pathname: "/analyst/application/[applicationId]/",
   query: {
-    applicationId
-  }
+    applicationId,
+  },
 });
 
 export const getCompleteApplicationPageRoute = (applicationId: string) => ({
-  pathname: '/reporter/complete-submit',
+  pathname: "/reporter/complete-submit",
   query: {
-    applicationId
-  }
+    applicationId,
+  },
 });

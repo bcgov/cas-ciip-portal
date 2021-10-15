@@ -1,13 +1,17 @@
-import React, {useState, useMemo} from 'react';
-import {Table, Button} from 'react-bootstrap';
-import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
-import {ReportingYearTable_query} from '__generated__/ReportingYearTable_query.graphql';
-import updateReportingYearMutation from 'mutations/reporting_year/updateReportingYearMutation';
-import createReportingYearMutation from 'mutations/reporting_year/createReportingYearMutation';
-import ReportingYearFormDialog from './ReportingYearFormDialog';
-import NewReportingYearFormDialog from './NewReportingYearFormDialog';
-import {nowMoment, defaultMoment, dateTimeFormat} from 'functions/formatDates';
-import {validateExclusiveDateRanges} from 'containers/Admin/ReportingYear/reportingYearValidation';
+import React, { useState, useMemo } from "react";
+import { Table, Button } from "react-bootstrap";
+import { graphql, createFragmentContainer, RelayProp } from "react-relay";
+import { ReportingYearTable_query } from "__generated__/ReportingYearTable_query.graphql";
+import updateReportingYearMutation from "mutations/reporting_year/updateReportingYearMutation";
+import createReportingYearMutation from "mutations/reporting_year/createReportingYearMutation";
+import ReportingYearFormDialog from "./ReportingYearFormDialog";
+import NewReportingYearFormDialog from "./NewReportingYearFormDialog";
+import {
+  nowMoment,
+  defaultMoment,
+  dateTimeFormat,
+} from "functions/formatDates";
+import { validateExclusiveDateRanges } from "containers/Admin/ReportingYear/reportingYearValidation";
 
 interface Props {
   relay: RelayProp;
@@ -15,7 +19,7 @@ interface Props {
 }
 
 function formatListViewDate(date: string) {
-  return dateTimeFormat(date, 'days_string');
+  return dateTimeFormat(date, "days_string");
 }
 
 function getMostRecentlyClosedYear(query) {
@@ -45,7 +49,7 @@ export const ReportingYearTableComponent: React.FunctionComponent<Props> = (
   const [editingYear, setEditingYear] = useState(null);
   const [dialogMode, setDialogMode] = useState(null);
 
-  const {query, relay} = props;
+  const { query, relay } = props;
   if (!query.allReportingYears || !query.allReportingYears.edges) {
     return <div />;
   }
@@ -84,7 +88,7 @@ export const ReportingYearTableComponent: React.FunctionComponent<Props> = (
 
   const editYear = (node) => {
     setEditingYear(node);
-    setDialogMode('edit');
+    setDialogMode("edit");
   };
 
   const saveReportingYear = async (formData) => {
@@ -92,9 +96,9 @@ export const ReportingYearTableComponent: React.FunctionComponent<Props> = (
       input: {
         id: editingYear.id,
         reportingYearPatch: {
-          ...formData
-        }
-      }
+          ...formData,
+        },
+      },
     });
     clearForm();
   };
@@ -103,19 +107,19 @@ export const ReportingYearTableComponent: React.FunctionComponent<Props> = (
     await createReportingYearMutation(relay.environment, {
       input: {
         reportingYear: {
-          ...formData
-        }
-      }
+          ...formData,
+        },
+      },
     });
     clearForm();
   };
 
   return (
     <>
-      <div style={{textAlign: 'right'}}>
+      <div style={{ textAlign: "right" }}>
         <Button
-          style={{marginTop: '-100px'}}
-          onClick={() => setDialogMode('create')}
+          style={{ marginTop: "-100px" }}
+          onClick={() => setDialogMode("create")}
         >
           New Reporting Year
         </Button>
@@ -133,7 +137,7 @@ export const ReportingYearTableComponent: React.FunctionComponent<Props> = (
           </tr>
         </thead>
         <tbody>
-          {query.allReportingYears.edges.map(({node}) => {
+          {query.allReportingYears.edges.map(({ node }) => {
             return (
               <tr key={node.id}>
                 <td>{node.reportingYear}</td>
@@ -153,14 +157,14 @@ export const ReportingYearTableComponent: React.FunctionComponent<Props> = (
         </tbody>
       </Table>
       <NewReportingYearFormDialog
-        show={dialogMode === 'create'}
+        show={dialogMode === "create"}
         createReportingYear={createReportingYear}
         clearForm={clearForm}
         existingYearKeys={existingYearKeys}
         validateExclusiveDateRanges={exclusiveDateRangesValidator}
       />
       <ReportingYearFormDialog
-        show={dialogMode === 'edit'}
+        show={dialogMode === "edit"}
         year={editingYear?.reportingYear}
         formFields={editingYear}
         clearForm={clearForm}
@@ -193,5 +197,5 @@ export default createFragmentContainer(ReportingYearTableComponent, {
         applicationCloseTime
       }
     }
-  `
+  `,
 });

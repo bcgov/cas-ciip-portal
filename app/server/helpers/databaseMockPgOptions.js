@@ -11,18 +11,18 @@ const generateForwardedCookieOptions = (cookies, fields) => {
 // creates the settings object needed for postgres to use the mocks schema by default and the fields to retrieve from the cookies
 const generateDatabaseMockOptions = (cookies, fields) => {
   if (
-    process.env.ENABLE_DB_MOCKS !== 'true' &&
-    process.env.ENABLE_DB_MOCKS_COOKIES_ONLY !== 'true'
+    process.env.ENABLE_DB_MOCKS !== "true" &&
+    process.env.ENABLE_DB_MOCKS_COOKIES_ONLY !== "true"
   )
     return {};
 
   return {
     ...generateForwardedCookieOptions(cookies, fields),
-    search_path: 'mocks,pg_catalog,public'
+    search_path: "mocks,pg_catalog,public",
   };
 };
 
 module.exports = {
   generateForwardedCookieOptions,
-  generateDatabaseMockOptions
+  generateDatabaseMockOptions,
 };

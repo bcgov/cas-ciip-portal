@@ -1,7 +1,7 @@
-import React from 'react';
-import {Form} from 'react-bootstrap';
-import TableFilter from './TableFilter';
-import {FilterComponent} from './types';
+import React from "react";
+import { Form } from "react-bootstrap";
+import TableFilter from "./TableFilter";
+import { FilterComponent } from "./types";
 
 export default class ReportingPeriodFilter extends TableFilter<number> {
   constructor(
@@ -9,14 +9,14 @@ export default class ReportingPeriodFilter extends TableFilter<number> {
     reportingPeriods: number[],
     defaultValue: number
   ) {
-    super('Reporting period', argName);
+    super("Reporting period", argName);
     this._reportingPeriods = reportingPeriods;
     this._defaultValue = defaultValue;
   }
   _reportingPeriods: number[];
   _defaultValue: number;
 
-  Component: FilterComponent = ({onChange, filterArgs}) => {
+  Component: FilterComponent = ({ onChange, filterArgs }) => {
     return (
       <Form>
         <Form.Group controlId="reportingYear">

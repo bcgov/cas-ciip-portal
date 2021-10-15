@@ -1,5 +1,5 @@
-import React from 'react';
-import {Card, ListGroup} from 'react-bootstrap';
+import React from "react";
+import { Card, ListGroup } from "react-bootstrap";
 
 const DevOpsManagement: React.FunctionComponent = () => {
   return (

@@ -1,32 +1,32 @@
-import React, {useState} from 'react';
-import {Button, Modal} from 'react-bootstrap';
-import {IChangeEvent} from '@rjsf/core';
-import FormFieldTemplate from 'containers/Forms/FormFieldTemplate';
-import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
-import addOperatorSchema from 'components/organisation/addOrganisationSchema';
-import JsonSchemaForm from './helpers/LoadingOnSubmitForm';
+import React, { useState } from "react";
+import { Button, Modal } from "react-bootstrap";
+import { IChangeEvent } from "@rjsf/core";
+import FormFieldTemplate from "containers/Forms/FormFieldTemplate";
+import FormObjectFieldTemplate from "containers/Forms/FormObjectFieldTemplate";
+import addOperatorSchema from "components/organisation/addOrganisationSchema";
+import JsonSchemaForm from "./helpers/LoadingOnSubmitForm";
 
 interface Props {
   onAddOrganisation?: (...args: any[]) => void;
 }
 
 const AddOrganisationModal: React.FunctionComponent<Props> = (props) => {
-  const {onAddOrganisation} = props;
+  const { onAddOrganisation } = props;
   const [isModalVisible, setModalVisible] = useState(false);
 
   const customFormats = {
-    'postal-code': /[a-z]\d[a-z]\s?\d[a-z]\d/i
+    "postal-code": /[a-z]\d[a-z]\s?\d[a-z]\d/i,
   };
 
   const saveNewOrganisation = async (e: IChangeEvent) => {
-    const {operatorName, craBusinessNumber} = e.formData;
+    const { operatorName, craBusinessNumber } = e.formData;
     const variables = {
       input: {
         organisation: {
           operatorName,
-          craBusinessNumber
-        }
-      }
+          craBusinessNumber,
+        },
+      },
     };
     await onAddOrganisation(variables);
     setModalVisible(!isModalVisible);
@@ -34,7 +34,7 @@ const AddOrganisationModal: React.FunctionComponent<Props> = (props) => {
 
   return (
     <>
-      <p style={{marginTop: '20px'}}>Operation not in the list?</p>
+      <p style={{ marginTop: "20px" }}>Operation not in the list?</p>
       <Button
         variant="outline-primary"
         onClick={() => setModalVisible(!isModalVisible)}
@@ -62,7 +62,7 @@ const AddOrganisationModal: React.FunctionComponent<Props> = (props) => {
           >
             <div>
               <Button
-                style={{marginRight: '10px'}}
+                style={{ marginRight: "10px" }}
                 type="submit"
                 variant="primary"
               >

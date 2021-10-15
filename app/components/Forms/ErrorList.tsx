@@ -1,10 +1,10 @@
-import React from 'react';
+import React from "react";
 
 interface Props {
   errors?: string[];
 }
 
-const ErrorList: React.FunctionComponent<Props> = ({errors = []}) => {
+const ErrorList: React.FunctionComponent<Props> = ({ errors = [] }) => {
   if (errors.length === 0) {
     return null;
   }

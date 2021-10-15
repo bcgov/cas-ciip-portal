@@ -1,11 +1,11 @@
-import React from 'react';
-import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
-import {useRouter} from 'next/router';
-import {CiipApplicationRevisionStatus} from 'createApplicationRevisionStatusMutation.graphql';
-import createApplicationRevisionStatusMutation from 'mutations/application/createApplicationRevisionStatusMutation';
-import {SubmitApplication_applicationRevision} from 'SubmitApplication_applicationRevision.graphql';
-import {getCompleteApplicationPageRoute} from 'routes';
-import LoadingOnClickButton from './helpers/LoadingOnClickButton';
+import React from "react";
+import { createFragmentContainer, graphql, RelayProp } from "react-relay";
+import { useRouter } from "next/router";
+import { CiipApplicationRevisionStatus } from "createApplicationRevisionStatusMutation.graphql";
+import createApplicationRevisionStatusMutation from "mutations/application/createApplicationRevisionStatusMutation";
+import { SubmitApplication_applicationRevision } from "SubmitApplication_applicationRevision.graphql";
+import { getCompleteApplicationPageRoute } from "routes";
+import LoadingOnClickButton from "./helpers/LoadingOnClickButton";
 
 interface Props {
   applicationRevision: SubmitApplication_applicationRevision;
@@ -14,20 +14,20 @@ interface Props {
 
 export const SubmitApplicationComponent: React.FunctionComponent<Props> = ({
   applicationRevision,
-  relay
+  relay,
 }) => {
   const router = useRouter();
   // Change application status to 'submitted' on application submit
   const submitApplication = async () => {
-    const {environment} = relay;
+    const { environment } = relay;
     const variables = {
       input: {
         applicationRevisionStatus: {
           applicationId: applicationRevision.applicationId,
           versionNumber: applicationRevision.versionNumber,
-          applicationRevisionStatus: 'SUBMITTED' as CiipApplicationRevisionStatus
-        }
-      }
+          applicationRevisionStatus: "SUBMITTED" as CiipApplicationRevisionStatus,
+        },
+      },
     };
 
     // TODO: check response
@@ -43,7 +43,7 @@ export const SubmitApplicationComponent: React.FunctionComponent<Props> = ({
   return (
     <LoadingOnClickButton
       className="float-right"
-      style={{marginTop: '10px'}}
+      style={{ marginTop: "10px" }}
       onClick={submitApplication}
       loadingText="Submitting Application..."
     >
@@ -61,5 +61,5 @@ export default createFragmentContainer(SubmitApplicationComponent, {
         id
       }
     }
-  `
+  `,
 });

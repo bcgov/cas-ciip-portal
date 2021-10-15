@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
-import {Button} from 'react-bootstrap';
-import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
-import {NaicsCodeTableRow_naicsCode} from '__generated__/NaicsCodeTableRow_naicsCode.graphql';
-import updateNaicsCodeMutation from 'mutations/naics_code/updateNaicsCodeMutation';
-import {nowMoment} from 'functions/formatDates';
-import DeleteConfirmationModal from 'components/Admin/DeleteConfirmationModal';
+import React, { useState } from "react";
+import { Button } from "react-bootstrap";
+import { graphql, createFragmentContainer, RelayProp } from "react-relay";
+import { NaicsCodeTableRow_naicsCode } from "__generated__/NaicsCodeTableRow_naicsCode.graphql";
+import updateNaicsCodeMutation from "mutations/naics_code/updateNaicsCodeMutation";
+import { nowMoment } from "functions/formatDates";
+import DeleteConfirmationModal from "components/Admin/DeleteConfirmationModal";
 
 interface Props {
   relay: RelayProp;
@@ -15,11 +15,11 @@ interface Props {
 export const NaicsCodeTableRowContainer: React.FunctionComponent<Props> = (
   props
 ) => {
-  const {naicsCode, connectionId} = props;
+  const { naicsCode, connectionId } = props;
   const [showConfirmModal, setShowConfirmModal] = useState(false);
 
   const handleDeleteNaicsCode = async () => {
-    const {environment} = props.relay;
+    const { environment } = props.relay;
     const variables = {
       input: {
         id: naicsCode.id,
@@ -27,17 +27,17 @@ export const NaicsCodeTableRowContainer: React.FunctionComponent<Props> = (
           naicsCode: naicsCode.naicsCode,
           ciipSector: naicsCode.ciipSector,
           naicsDescription: naicsCode.naicsDescription,
-          deletedAt: nowMoment().format('YYYY-MM-DDTHH:mm:ss')
-        }
-      }
+          deletedAt: nowMoment().format("YYYY-MM-DDTHH:mm:ss"),
+        },
+      },
     };
     await updateNaicsCodeMutation(environment, variables, connectionId);
   };
 
   const deleteObject = {
-    deleteName: 'NAICS Code',
+    deleteName: "NAICS Code",
     deleteItem: naicsCode.naicsCode,
-    deleteItemDescription: naicsCode.naicsDescription
+    deleteItemDescription: naicsCode.naicsDescription,
   };
 
   return (
@@ -52,7 +52,7 @@ export const NaicsCodeTableRowContainer: React.FunctionComponent<Props> = (
         <td>{naicsCode.naicsCode}</td>
         <td>{naicsCode.ciipSector}</td>
         <td>{naicsCode.naicsDescription}</td>
-        <td style={{textAlign: 'center'}}>
+        <td style={{ textAlign: "center" }}>
           <Button variant="danger" onClick={() => setShowConfirmModal(true)}>
             Delete
           </Button>
@@ -71,5 +71,5 @@ export default createFragmentContainer(NaicsCodeTableRowContainer, {
       naicsDescription
       deletedAt
     }
-  `
+  `,
 });

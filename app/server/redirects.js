@@ -1,8 +1,8 @@
-const express = require('express');
+const express = require("express");
 const redirectRouter = express.Router();
 
 const base64Decode = (str) =>
-  Buffer.from(String(str), 'base64').toString('utf8');
+  Buffer.from(String(str), "base64").toString("utf8");
 
 const isValidApplicationId = (applicationId) => {
   try {
@@ -10,23 +10,23 @@ const isValidApplicationId = (applicationId) => {
     return (
       Array.isArray(idParts) &&
       idParts.length === 2 &&
-      idParts[0] === 'applications' &&
-      typeof idParts[1] === 'number'
+      idParts[0] === "applications" &&
+      typeof idParts[1] === "number"
     );
   } catch (e) {
     return false;
   }
 };
 
-redirectRouter.get('/reporter/view-application', (req, res) => {
-  const {applicationId, version} = req.query;
+redirectRouter.get("/reporter/view-application", (req, res) => {
+  const { applicationId, version } = req.query;
   if (
     !applicationId ||
     !version ||
     !isValidApplicationId(applicationId) ||
     Number.isNaN(Number(version))
   ) {
-    res.redirect('/404');
+    res.redirect("/404");
     return;
   }
 
@@ -35,25 +35,25 @@ redirectRouter.get('/reporter/view-application', (req, res) => {
   );
 });
 
-redirectRouter.get('/reporter/application', (req, res) => {
-  const {applicationId} = req.query;
+redirectRouter.get("/reporter/application", (req, res) => {
+  const { applicationId } = req.query;
   if (!applicationId || !isValidApplicationId(applicationId)) {
-    res.redirect('/404');
+    res.redirect("/404");
     return;
   }
 
   res.redirect(`/reporter/application/${applicationId}`);
 });
 
-redirectRouter.get('/reporter/new-application-disclaimer', (req, res) => {
-  const {applicationId, version} = req.query;
+redirectRouter.get("/reporter/new-application-disclaimer", (req, res) => {
+  const { applicationId, version } = req.query;
   if (
     !applicationId ||
     !version ||
     !isValidApplicationId(applicationId) ||
     Number.isNaN(Number(version))
   ) {
-    res.redirect('/404');
+    res.redirect("/404");
     return;
   }
 

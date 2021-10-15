@@ -1,10 +1,10 @@
-import {graphql} from 'react-relay';
+import { graphql } from "react-relay";
 import {
   updateReportingYearMutation as updateReportingYearMutationType,
-  updateReportingYearMutationVariables
-} from '__generated__/updateReportingYearMutation.graphql';
-import RelayModernEnvironment from 'relay-runtime/lib/store/RelayModernEnvironment';
-import BaseMutation from 'mutations/BaseMutation';
+  updateReportingYearMutationVariables,
+} from "__generated__/updateReportingYearMutation.graphql";
+import RelayModernEnvironment from "relay-runtime/lib/store/RelayModernEnvironment";
+import BaseMutation from "mutations/BaseMutation";
 
 const mutation = graphql`
   mutation updateReportingYearMutation($input: UpdateReportingYearInput!) {
@@ -27,13 +27,13 @@ const updateReportingYearMutation = async (
     updateReportingYear: {
       reportingYear: {
         id: variables.input.id,
-        ...variables.input.reportingYearPatch
-      }
-    }
+        ...variables.input.reportingYearPatch,
+      },
+    },
   };
 
   return new BaseMutation<updateReportingYearMutationType>(
-    'update-reporting-year-mutation'
+    "update-reporting-year-mutation"
   ).performMutation(environment, mutation, variables, payload);
 };
 

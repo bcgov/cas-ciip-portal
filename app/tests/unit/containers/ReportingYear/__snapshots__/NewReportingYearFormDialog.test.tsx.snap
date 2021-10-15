@@ -175,12 +175,12 @@ exports[`NewReportingYearFormDialog Should match last accepted snapshot 1`] = `
           "14": "w",
           "140": "*",
           "141": "=",
-          "142": "'",
+          "142": "\\"",
           "143": "c",
           "144": "o",
           "145": "l",
           "146": "-",
-          "147": "'",
+          "147": "\\"",
           "148": "]",
           "149": "{",
           "15": "{",
@@ -639,13 +639,13 @@ exports[`NewReportingYearFormDialog Should match last accepted snapshot 1`] = `
           "97": "m",
           "98": "-",
           "99": "r",
-          "__hash": "2037158273",
+          "__hash": "3923245764",
         },
       ]
     }
     id="2630456174"
   >
-    .rjsf .form-row{margin:20px 0 20px;}.emission-form .rjsf .form-row{margin:0;}.no-col-padding .form-row&gt;.col,.no-col-padding .form-row&gt;[class*='col-']{padding:0;}.errors{margin:1em 0 0 0;padding:20px;background:#ce5c5c;color:white;font-size:20px;}ul.error-detail{padding:0;list-style:none;}ul.error-detail li.text-danger{background:#ce5c5c;color:white !important;padding:5px;}.exit-button{color:#003366;margin-left:5px;border-color:#003366;}.exit-button:hover{color:white !important;background:#007bff !important;} #root_reportingYear{width:12em;}
+    .rjsf .form-row{margin:20px 0 20px;}.emission-form .rjsf .form-row{margin:0;}.no-col-padding .form-row&gt;.col,.no-col-padding .form-row&gt;[class*="col-"]{padding:0;}.errors{margin:1em 0 0 0;padding:20px;background:#ce5c5c;color:white;font-size:20px;}ul.error-detail{padding:0;list-style:none;}ul.error-detail li.text-danger{background:#ce5c5c;color:white !important;padding:5px;}.exit-button{color:#003366;margin-left:5px;border-color:#003366;}.exit-button:hover{color:white !important;background:#007bff !important;} #root_reportingYear{width:12em;}
   </JSXStyle>
 </Fragment>
 `;

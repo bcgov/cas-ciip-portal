@@ -4,5 +4,5 @@ async function getSessionRemainingTime(keycloak, req, res) {
 }
 
 module.exports = {
-  getSessionRemainingTime
+  getSessionRemainingTime,
 };

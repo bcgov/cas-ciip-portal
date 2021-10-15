@@ -1,31 +1,31 @@
-import React from 'react';
-import Link from 'next/link';
-import {useRouter} from 'next/router';
+import React from "react";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
-const DASHBOARD_PATH = '/reporter';
-const APPLICATIONS_PATH = '/reporter/facilities';
+const DASHBOARD_PATH = "/reporter";
+const APPLICATIONS_PATH = "/reporter/facilities";
 
 const Subheader = () => {
-  const {route} = useRouter();
+  const { route } = useRouter();
 
   return (
     <div>
       <nav className="navigation-main" id="navbar" aria-label="Secondary">
         <div className="container">
           <ul>
-            <li className={route === DASHBOARD_PATH ? 'active' : ''}>
+            <li className={route === DASHBOARD_PATH ? "active" : ""}>
               <Link
                 href={{
-                  pathname: DASHBOARD_PATH
+                  pathname: DASHBOARD_PATH,
                 }}
               >
                 <a>My Dashboard</a>
               </Link>
             </li>
-            <li className={route === APPLICATIONS_PATH ? 'active' : ''}>
+            <li className={route === APPLICATIONS_PATH ? "active" : ""}>
               <Link
                 href={{
-                  pathname: APPLICATIONS_PATH
+                  pathname: APPLICATIONS_PATH,
                 }}
               >
                 <a>My Applications</a>

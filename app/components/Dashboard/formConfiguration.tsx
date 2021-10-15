@@ -1,6 +1,6 @@
-import React from 'react';
-import {Card, ListGroup} from 'react-bootstrap';
-import Link from 'next/link';
+import React from "react";
+import { Card, ListGroup } from "react-bootstrap";
+import Link from "next/link";
 
 const FormConfiguration: React.FunctionComponent = () => {
   return (

@@ -1,7 +1,7 @@
-import React, {useMemo} from 'react';
-import {FieldProps} from '@rjsf/core';
-import {createFragmentContainer, graphql} from 'react-relay';
-import {OrganisationRowIdField_query} from 'OrganisationRowIdField_query.graphql';
+import React, { useMemo } from "react";
+import { FieldProps } from "@rjsf/core";
+import { createFragmentContainer, graphql } from "react-relay";
+import { OrganisationRowIdField_query } from "OrganisationRowIdField_query.graphql";
 
 interface Props extends FieldProps<number> {
   query: OrganisationRowIdField_query;
@@ -19,11 +19,11 @@ export const OrganisationRowIdFieldComponent: React.FunctionComponent<Props> = (
       ...props,
       schema: {
         ...props.schema,
-        enum: props.query.allOrganisations.edges.map(({node}) => node.rowId),
+        enum: props.query.allOrganisations.edges.map(({ node }) => node.rowId),
         enumNames: props.query.allOrganisations.edges.map(
-          ({node}) => node.operatorName
-        )
-      }
+          ({ node }) => node.operatorName
+        ),
+      },
     }),
     [props]
   );
@@ -43,5 +43,5 @@ export default createFragmentContainer(OrganisationRowIdFieldComponent, {
         }
       }
     }
-  `
+  `,
 });

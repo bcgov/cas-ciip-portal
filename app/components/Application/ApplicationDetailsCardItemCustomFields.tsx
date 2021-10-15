@@ -1,10 +1,10 @@
-import React from 'react';
-import EmissionGasFields from 'containers/Forms/EmissionGasFields';
-import EmissionSourceFields from 'containers/Forms/EmissionSourceFields';
-import {FieldProps} from '@rjsf/core';
-import NumberFormat from 'react-number-format';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faExclamationTriangle} from '@fortawesome/free-solid-svg-icons';
+import React from "react";
+import EmissionGasFields from "containers/Forms/EmissionGasFields";
+import EmissionSourceFields from "containers/Forms/EmissionSourceFields";
+import { FieldProps } from "@rjsf/core";
+import NumberFormat from "react-number-format";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 
 // Some formData values are numbers that map to enums, this function uses the number values to return the enum names stored in the schema
 const getDisplayValue = (schema, value) => {
@@ -33,7 +33,7 @@ const CUSTOM_FIELDS: Record<string, React.FunctionComponent<FieldProps>> = {
       idSchema,
       schema,
       formData,
-      formContext: {showDiff, idDiffMap}
+      formContext: { showDiff, idDiffMap },
     } = props;
     const displayValue = getDisplayValue(schema, formData);
     const id = idSchema?.$id;
@@ -55,7 +55,7 @@ const CUSTOM_FIELDS: Record<string, React.FunctionComponent<FieldProps>> = {
       }
     }
 
-    if (formData === null || formData === undefined || formData === '')
+    if (formData === null || formData === undefined || formData === "")
       return (
         <>
           <i id={id}>[No Data Entered]</i>
@@ -74,7 +74,7 @@ const CUSTOM_FIELDS: Record<string, React.FunctionComponent<FieldProps>> = {
     const {
       idSchema,
       formData,
-      formContext: {showDiff, idDiffMap}
+      formContext: { showDiff, idDiffMap },
     } = props;
     const id = idSchema?.$id;
     const diff = idDiffMap?.[id];
@@ -83,11 +83,11 @@ const CUSTOM_FIELDS: Record<string, React.FunctionComponent<FieldProps>> = {
       return (
         <>
           <span id={`${id}-diffFrom`} className="diffFrom">
-            {diff.lhs ? 'Yes' : 'No'}
+            {diff.lhs ? "Yes" : "No"}
           </span>
           &nbsp;---&gt;&nbsp;
           <span id={`${id}-diffTo`} className="diffTo">
-            {diff.rhs ? 'Yes' : 'No'}
+            {diff.rhs ? "Yes" : "No"}
           </span>
         </>
       );
@@ -103,7 +103,7 @@ const CUSTOM_FIELDS: Record<string, React.FunctionComponent<FieldProps>> = {
           <>
             No <ErrorIcon {...props} />
           </>
-        )}{' '}
+        )}{" "}
       </span>
     );
   },
@@ -114,10 +114,10 @@ const CUSTOM_FIELDS: Record<string, React.FunctionComponent<FieldProps>> = {
       idSchema,
       formData,
       schema,
-      formContext: {showDiff, idDiffMap}
+      formContext: { showDiff, idDiffMap },
     } = props;
     const id = idSchema?.$id;
-    if (formData === null || formData === undefined || formData === '')
+    if (formData === null || formData === undefined || formData === "")
       return (
         <>
           <i id={id}>[No Data Entered]</i>
@@ -174,7 +174,7 @@ const CUSTOM_FIELDS: Record<string, React.FunctionComponent<FieldProps>> = {
         <ErrorIcon {...props} />
       </>
     );
-  }
+  },
 };
 
 export default CUSTOM_FIELDS;

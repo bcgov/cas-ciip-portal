@@ -1,14 +1,14 @@
-import React from 'react';
-import {FieldProps} from '@rjsf/core';
-import {Col, Row} from 'react-bootstrap';
+import React from "react";
+import { FieldProps } from "@rjsf/core";
+import { Col, Row } from "react-bootstrap";
 
 const EmissionSourceFields: React.FunctionComponent<FieldProps> = ({
-  formData
+  formData,
 }) => {
   return (
-    <Row style={{margin: '20px 0 20px 0'}} className="source-field-heading">
+    <Row style={{ margin: "20px 0 20px 0" }} className="source-field-heading">
       <Col xs={12} md={4}>
-        <h2 style={{textAlign: 'left'}}>{formData}</h2>
+        <h2 style={{ textAlign: "left" }}>{formData}</h2>
       </Col>
       <Col xs={12} md={3}>
         <p className="unit">Tonnes</p>

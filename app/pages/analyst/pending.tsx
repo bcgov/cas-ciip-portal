@@ -1,14 +1,14 @@
-import React, {Component} from 'react';
-import {graphql} from 'react-relay';
-import {CiipPageComponentProps} from 'next-env';
-import {pendingAnalystQueryResponse} from 'pendingAnalystQuery.graphql';
-import DefaultLayout from 'layouts/default-layout';
-import {PENDING_ANALYST} from 'data/group-constants';
+import React, { Component } from "react";
+import { graphql } from "react-relay";
+import { CiipPageComponentProps } from "next-env";
+import { pendingAnalystQueryResponse } from "pendingAnalystQuery.graphql";
+import DefaultLayout from "layouts/default-layout";
+import { PENDING_ANALYST } from "data/group-constants";
 
 const ALLOWED_GROUPS = [PENDING_ANALYST];
 
 interface Props extends CiipPageComponentProps {
-  query: pendingAnalystQueryResponse['query'];
+  query: pendingAnalystQueryResponse["query"];
 }
 class PendingAnalyst extends Component<Props> {
   static allowedGroups = ALLOWED_GROUPS;
@@ -25,7 +25,7 @@ class PendingAnalyst extends Component<Props> {
 
   render() {
     const {
-      query: {session}
+      query: { session },
     } = this.props;
     return (
       <DefaultLayout session={session} title="Approval Required">

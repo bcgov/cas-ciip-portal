@@ -1,28 +1,28 @@
-import React, {Component} from 'react';
-import {graphql} from 'react-relay';
-import {ApplicationIdReviewQueryResponse} from 'ApplicationIdReviewQuery.graphql';
-import {Row, Button, OverlayTrigger, Tooltip} from 'react-bootstrap';
-import IncentiveCalculatorContainer from 'containers/Incentives/IncentiveCalculatorContainer';
-import {CiipApplicationRevisionStatus} from 'analystCreateApplicationRevisionStatusMutation.graphql';
-import analystCreateApplicationRevisionStatusMutation from 'mutations/application/analystCreateApplicationRevisionStatusMutation';
-import DefaultLayout from 'layouts/default-layout';
-import ApplicationDetails from 'containers/Applications/ApplicationDetailsContainer';
-import {CiipPageComponentProps} from 'next-env';
-import getConfig from 'next/config';
-import {INCENTIVE_ANALYST, ADMIN_GROUP} from 'data/group-constants';
-import ApplicationReviewStepSelector from 'containers/Admin/ApplicationReview/ApplicationReviewStepSelector';
-import ReviewSidebar from 'containers/Admin/ApplicationReview/ReviewSidebar';
-import DecisionModal from 'components/Admin/ApplicationReview/DecisionModal';
-import HelpButton from 'components/helpers/HelpButton';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faArrowUp, faInfoCircle} from '@fortawesome/free-solid-svg-icons';
-import ApplicationReviewValidationContainer from 'containers/Applications/ApplicationReviewValidationContainer';
+import React, { Component } from "react";
+import { graphql } from "react-relay";
+import { ApplicationIdReviewQueryResponse } from "ApplicationIdReviewQuery.graphql";
+import { Row, Button, OverlayTrigger, Tooltip } from "react-bootstrap";
+import IncentiveCalculatorContainer from "containers/Incentives/IncentiveCalculatorContainer";
+import { CiipApplicationRevisionStatus } from "analystCreateApplicationRevisionStatusMutation.graphql";
+import analystCreateApplicationRevisionStatusMutation from "mutations/application/analystCreateApplicationRevisionStatusMutation";
+import DefaultLayout from "layouts/default-layout";
+import ApplicationDetails from "containers/Applications/ApplicationDetailsContainer";
+import { CiipPageComponentProps } from "next-env";
+import getConfig from "next/config";
+import { INCENTIVE_ANALYST, ADMIN_GROUP } from "data/group-constants";
+import ApplicationReviewStepSelector from "containers/Admin/ApplicationReview/ApplicationReviewStepSelector";
+import ReviewSidebar from "containers/Admin/ApplicationReview/ReviewSidebar";
+import DecisionModal from "components/Admin/ApplicationReview/DecisionModal";
+import HelpButton from "components/helpers/HelpButton";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowUp, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
+import ApplicationReviewValidationContainer from "containers/Applications/ApplicationReviewValidationContainer";
 
 const runtimeConfig = getConfig()?.publicRuntimeConfig ?? {};
 const ALLOWED_GROUPS = [INCENTIVE_ANALYST, ...ADMIN_GROUP];
 
 interface Props extends CiipPageComponentProps {
-  query: ApplicationIdReviewQueryResponse['query'];
+  query: ApplicationIdReviewQueryResponse["query"];
 }
 
 interface State {
@@ -76,7 +76,7 @@ class ApplicationReview extends Component<Props, State> {
   state = {
     isSidebarOpened: false,
     selectedReviewStepId: null,
-    showDecisionModal: false
+    showDecisionModal: false,
   };
 
   constructor(props) {
@@ -89,12 +89,12 @@ class ApplicationReview extends Component<Props, State> {
   }
   openDecisionModal() {
     this.setState((state) => {
-      return {...state, showDecisionModal: true};
+      return { ...state, showDecisionModal: true };
     });
   }
   closeDecisionModal() {
     this.setState((state) => {
-      return {...state, showDecisionModal: false};
+      return { ...state, showDecisionModal: false };
     });
   }
   closeSidebar() {
@@ -102,7 +102,7 @@ class ApplicationReview extends Component<Props, State> {
       return {
         ...state,
         selectedReviewStepId: null,
-        isSidebarOpened: false
+        isSidebarOpened: false,
       };
     });
   }
@@ -118,21 +118,21 @@ class ApplicationReview extends Component<Props, State> {
       return {
         ...state,
         selectedReviewStepId: appReviewStepId,
-        isSidebarOpened: true
+        isSidebarOpened: true,
       };
     });
   }
   async saveDecision(decision: CiipApplicationRevisionStatus) {
     const applicationId = this.props.query.application.rowId;
-    const {versionNumber} = this.props.query.application.applicationRevision;
+    const { versionNumber } = this.props.query.application.applicationRevision;
     const variables = {
       input: {
         applicationRevisionStatus: {
           applicationId,
           applicationRevisionStatus: decision,
-          versionNumber
-        }
-      }
+          versionNumber,
+        },
+      },
     };
     await analystCreateApplicationRevisionStatusMutation(
       this.props.relayEnvironment,
@@ -140,23 +140,23 @@ class ApplicationReview extends Component<Props, State> {
     );
   }
   render() {
-    const {query, router} = this.props;
-    const {application} = query;
+    const { query, router } = this.props;
+    const { application } = query;
     if (!application) {
-      router.push('/404');
+      router.push("/404");
       return null;
     }
 
-    const {isCurrentVersion, versionNumber} = application.applicationRevision;
-    const {bcghgid} = application.facilityByFacilityId;
+    const { isCurrentVersion, versionNumber } = application.applicationRevision;
+    const { bcghgid } = application.facilityByFacilityId;
     const {
-      applicationRevisionStatus
+      applicationRevisionStatus,
     } = application.applicationRevision.applicationRevisionStatus;
-    const {session} = query || {};
+    const { session } = query || {};
     const isUserAdmin = session.userGroups.some((groupConst) =>
       ADMIN_GROUP.includes(groupConst)
     );
-    const currentReviewIsFinalized = applicationRevisionStatus !== 'SUBMITTED';
+    const currentReviewIsFinalized = applicationRevisionStatus !== "SUBMITTED";
 
     return (
       <DefaultLayout
@@ -182,7 +182,7 @@ class ApplicationReview extends Component<Props, State> {
                   <span id="revised-tag">
                     <FontAwesomeIcon
                       icon={faInfoCircle}
-                      style={{marginRight: '0.5em'}}
+                      style={{ marginRight: "0.5em" }}
                     />
                     Revised: version {versionNumber}
                   </span>
@@ -233,7 +233,7 @@ class ApplicationReview extends Component<Props, State> {
                 variant="dark"
                 type="button"
                 onClick={() => {
-                  const main = document.body.getElementsByTagName('main')[0];
+                  const main = document.body.getElementsByTagName("main")[0];
                   main?.scrollIntoView();
                 }}
               >

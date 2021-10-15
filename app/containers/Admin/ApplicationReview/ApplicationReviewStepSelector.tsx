@@ -1,6 +1,6 @@
-import React from 'react';
-import {Row, Button, ListGroup} from 'react-bootstrap';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import React from "react";
+import { Row, Button, ListGroup } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCheck,
   faComments,
@@ -8,12 +8,12 @@ import {
   faTimes,
   faHourglassHalf,
   faKey,
-  faEnvelope
-} from '@fortawesome/free-solid-svg-icons';
-import {graphql, createFragmentContainer} from 'react-relay';
-import {CiipApplicationRevisionStatus} from 'ApplicationIdReviewQuery.graphql';
-import {ApplicationReviewStepSelector_applicationReviewSteps} from '__generated__/ApplicationReviewStepSelector_applicationReviewSteps.graphql';
-import {capitalize} from 'lib/text-transforms';
+  faEnvelope,
+} from "@fortawesome/free-solid-svg-icons";
+import { graphql, createFragmentContainer } from "react-relay";
+import { CiipApplicationRevisionStatus } from "ApplicationIdReviewQuery.graphql";
+import { ApplicationReviewStepSelector_applicationReviewSteps } from "__generated__/ApplicationReviewStepSelector_applicationReviewSteps.graphql";
+import { capitalize } from "lib/text-transforms";
 
 interface Props {
   applicationReviewSteps: ApplicationReviewStepSelector_applicationReviewSteps;
@@ -27,21 +27,21 @@ interface Props {
 
 const DECISION_BS_VARIANT = {
   SUBMITTED: undefined,
-  APPROVED: 'success',
-  REJECTED: 'danger',
-  REQUESTED_CHANGES: 'secondary'
+  APPROVED: "success",
+  REJECTED: "danger",
+  REQUESTED_CHANGES: "secondary",
 };
 
 const DECISION_ICON = {
   APPROVED: faCheck,
   REJECTED: faTimes,
-  REQUESTED_CHANGES: faHourglassHalf
+  REQUESTED_CHANGES: faHourglassHalf,
 };
 
 const DECISION_BUTTON_TEXT = {
-  APPROVED: 'Application has been approved and applicant notified',
-  REJECTED: 'Application has been rejected and applicant notified',
-  REQUESTED_CHANGES: 'Changes have been requested and applicant notified'
+  APPROVED: "Application has been approved and applicant notified",
+  REJECTED: "Application has been rejected and applicant notified",
+  REQUESTED_CHANGES: "Changes have been requested and applicant notified",
 };
 
 export const ApplicationReviewStepSelector: React.FunctionComponent<Props> = ({
@@ -51,26 +51,26 @@ export const ApplicationReviewStepSelector: React.FunctionComponent<Props> = ({
   decisionOrChangeRequestStatus,
   newerDraftExists,
   onDecisionOrChangeRequestAction,
-  changeDecision
+  changeDecision,
 }) => {
   const steps = applicationReviewSteps.edges;
   const allStepsAreComplete = steps.every((edge) => edge.node.isComplete);
-  const decisionHasBeenMade = decisionOrChangeRequestStatus !== 'SUBMITTED';
+  const decisionHasBeenMade = decisionOrChangeRequestStatus !== "SUBMITTED";
   const decisionOrChangeRequestIsDisabled =
     !allStepsAreComplete || decisionHasBeenMade || newerDraftExists;
   const renderStepStatusIcon = (icon) => (
     <FontAwesomeIcon
       icon={icon}
       style={{
-        position: 'absolute',
-        left: '1.2rem',
-        top: 'calc(50% - 0.5em)'
+        position: "absolute",
+        left: "1.2rem",
+        top: "calc(50% - 0.5em)",
       }}
     />
   );
   const changeDecisionButton = (
     <Button variant="link" onClick={changeDecision}>
-      <FontAwesomeIcon icon={faKey} style={{marginRight: 8}} />
+      <FontAwesomeIcon icon={faKey} style={{ marginRight: 8 }} />
       Change decision
     </Button>
   );
@@ -78,9 +78,9 @@ export const ApplicationReviewStepSelector: React.FunctionComponent<Props> = ({
     <Button
       variant="link"
       disabled
-      style={{opacity: 1, color: '#343a40', textAlign: 'left'}}
+      style={{ opacity: 1, color: "#343a40", textAlign: "left" }}
     >
-      <FontAwesomeIcon icon={faLock} style={{marginRight: 8}} />
+      <FontAwesomeIcon icon={faLock} style={{ marginRight: 8 }} />
       There is a newer draft of this application.
     </Button>
   );
@@ -89,11 +89,11 @@ export const ApplicationReviewStepSelector: React.FunctionComponent<Props> = ({
       <div className="col-xxl-6 col-xl-7 col-lg-8 col-md-10">
         <ListGroup as="ul" id="selector">
           {steps.map((edge) => {
-            const {reviewStepId, isComplete} = edge.node;
+            const { reviewStepId, isComplete } = edge.node;
             const isSelectedStep = edge.node.id === selectedStep;
-            const callToAction = `${isComplete ? '' : 'Open'} ${capitalize(
+            const callToAction = `${isComplete ? "" : "Open"} ${capitalize(
               edge.node.reviewStepByReviewStepId.stepName
-            )} review ${isComplete ? 'completed' : ''}`;
+            )} review ${isComplete ? "completed" : ""}`;
             return (
               <ListGroup.Item
                 className="review-step-option"
@@ -104,12 +104,12 @@ export const ApplicationReviewStepSelector: React.FunctionComponent<Props> = ({
                 active={isSelectedStep}
                 onClick={() => onSelectStep(edge.node.id)}
                 onKeyDown={(e) => {
-                  if (e.key === 'Enter') onSelectStep(edge.node.id);
+                  if (e.key === "Enter") onSelectStep(edge.node.id);
                 }}
                 style={{
-                  cursor: 'pointer',
-                  position: 'relative',
-                  paddingLeft: '3rem'
+                  cursor: "pointer",
+                  position: "relative",
+                  paddingLeft: "3rem",
                 }}
               >
                 {renderStepStatusIcon(isComplete ? faCheck : faComments)}
@@ -125,7 +125,7 @@ export const ApplicationReviewStepSelector: React.FunctionComponent<Props> = ({
             key="decision"
             tabIndex={0}
             variant={DECISION_BS_VARIANT[decisionOrChangeRequestStatus]}
-            style={{cursor: 'pointer', paddingLeft: '3rem'}}
+            style={{ cursor: "pointer", paddingLeft: "3rem" }}
             disabled={decisionOrChangeRequestIsDisabled}
             aria-disabled={decisionOrChangeRequestIsDisabled}
             onClick={() => {
@@ -133,7 +133,7 @@ export const ApplicationReviewStepSelector: React.FunctionComponent<Props> = ({
                 onDecisionOrChangeRequestAction();
             }}
             onKeyDown={(e) => {
-              if (e.key === 'Enter' && !decisionOrChangeRequestIsDisabled)
+              if (e.key === "Enter" && !decisionOrChangeRequestIsDisabled)
                 onDecisionOrChangeRequestAction();
             }}
           >
@@ -141,9 +141,9 @@ export const ApplicationReviewStepSelector: React.FunctionComponent<Props> = ({
               <FontAwesomeIcon
                 icon={DECISION_ICON[decisionOrChangeRequestStatus]}
                 style={{
-                  position: 'absolute',
-                  left: '1.2rem',
-                  top: 'calc(50% - 0.5em)'
+                  position: "absolute",
+                  left: "1.2rem",
+                  top: "calc(50% - 0.5em)",
                 }}
               />
             )}
@@ -160,9 +160,9 @@ export const ApplicationReviewStepSelector: React.FunctionComponent<Props> = ({
                   <FontAwesomeIcon
                     icon={faEnvelope}
                     style={{
-                      position: 'absolute',
-                      left: '1.2rem',
-                      top: 'calc(50% - 0.5em)'
+                      position: "absolute",
+                      left: "1.2rem",
+                      top: "calc(50% - 0.5em)",
                     }}
                   />
                   Make a decision or request changes
@@ -222,5 +222,5 @@ export default createFragmentContainer(ApplicationReviewStepSelector, {
         }
       }
     }
-  `
+  `,
 });

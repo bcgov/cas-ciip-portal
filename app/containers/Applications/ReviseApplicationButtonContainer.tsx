@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
-import {useRouter} from 'next/router';
-import createApplicationRevisionMutation from 'mutations/application/createApplicationRevisionMutation';
-import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
-import {ReviseApplicationButtonContainer_application} from 'ReviseApplicationButtonContainer_application.graphql';
-import {getApplicationPageRoute} from 'routes';
-import LoadingOnClickButton from 'components/helpers/LoadingOnClickButton';
+import React, { useState } from "react";
+import { useRouter } from "next/router";
+import createApplicationRevisionMutation from "mutations/application/createApplicationRevisionMutation";
+import { createFragmentContainer, graphql, RelayProp } from "react-relay";
+import { ReviseApplicationButtonContainer_application } from "ReviseApplicationButtonContainer_application.graphql";
+import { getApplicationPageRoute } from "routes";
+import LoadingOnClickButton from "components/helpers/LoadingOnClickButton";
 
 interface Props {
   application: ReviseApplicationButtonContainer_application;
@@ -13,7 +13,7 @@ interface Props {
 
 export const ReviseApplicationButton: React.FunctionComponent<Props> = ({
   application,
-  relay
+  relay,
 }) => {
   const router = useRouter();
 
@@ -25,8 +25,8 @@ export const ReviseApplicationButton: React.FunctionComponent<Props> = ({
     const variables = {
       input: {
         applicationIdInput: application.rowId,
-        lastRevisionIdInput: latestSubmittedRevision
-      }
+        lastRevisionIdInput: latestSubmittedRevision,
+      },
     };
 
     await createApplicationRevisionMutation(relay.environment, variables);
@@ -54,5 +54,5 @@ export default createFragmentContainer(ReviseApplicationButton, {
         versionNumber
       }
     }
-  `
+  `,
 });

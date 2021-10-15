@@ -1,10 +1,10 @@
-import {graphql} from 'react-relay';
-import RelayModernEnvironment from 'relay-runtime/lib/store/RelayModernEnvironment';
+import { graphql } from "react-relay";
+import RelayModernEnvironment from "relay-runtime/lib/store/RelayModernEnvironment";
 import {
   createApplicationMutationVariables,
-  createApplicationMutation as createApplicationMutationType
-} from 'createApplicationMutation.graphql';
-import BaseMutation from 'mutations/BaseMutation';
+  createApplicationMutation as createApplicationMutationType,
+} from "createApplicationMutation.graphql";
+import BaseMutation from "mutations/BaseMutation";
 
 const mutation = graphql`
   mutation createApplicationMutation(
@@ -26,7 +26,7 @@ const createApplicationMutation = async (
   variables: createApplicationMutationVariables
 ) => {
   const m = new BaseMutation<createApplicationMutationType>(
-    'create-application-mutation'
+    "create-application-mutation"
   );
   return m.performMutation(environment, mutation, variables);
 };

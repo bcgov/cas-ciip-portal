@@ -1,10 +1,10 @@
-import {graphql, DeclarativeMutationConfig} from 'react-relay';
+import { graphql, DeclarativeMutationConfig } from "react-relay";
 import {
   createUserOrganisationMutation as createUserOrganisationMutationType,
-  createUserOrganisationMutationVariables
-} from 'createUserOrganisationMutation.graphql';
-import RelayModernEnvironment from 'relay-runtime/lib/store/RelayModernEnvironment';
-import BaseMutation from 'mutations/BaseMutation';
+  createUserOrganisationMutationVariables,
+} from "createUserOrganisationMutation.graphql";
+import RelayModernEnvironment from "relay-runtime/lib/store/RelayModernEnvironment";
+import BaseMutation from "mutations/BaseMutation";
 
 const mutation = graphql`
   mutation createUserOrganisationMutation(
@@ -28,20 +28,20 @@ export const createUserOrganisationMutation = async (
 ) => {
   const configs: DeclarativeMutationConfig[] = [
     {
-      type: 'RANGE_ADD',
+      type: "RANGE_ADD",
       parentID: userId,
       connectionInfo: [
         {
-          key: 'Organisations_ciipUserOrganisationsByUserId',
-          rangeBehavior: 'append'
-        }
+          key: "Organisations_ciipUserOrganisationsByUserId",
+          rangeBehavior: "append",
+        },
       ],
-      edgeName: 'ciipUserOrganisationEdge'
-    }
+      edgeName: "ciipUserOrganisationEdge",
+    },
   ];
 
   const m = new BaseMutation<createUserOrganisationMutationType>(
-    'create-ciip-user-organisation-mutation',
+    "create-ciip-user-organisation-mutation",
     configs
   );
   return m.performMutation(environment, mutation, variables);

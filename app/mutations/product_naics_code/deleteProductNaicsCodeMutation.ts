@@ -1,13 +1,13 @@
-import {graphql} from 'react-relay';
-import RelayModernEnvironment from 'relay-runtime/lib/store/RelayModernEnvironment';
+import { graphql } from "react-relay";
+import RelayModernEnvironment from "relay-runtime/lib/store/RelayModernEnvironment";
 import {
   deleteProductNaicsCodeMutation as deleteProductNaicsCodeMutationType,
-  deleteProductNaicsCodeMutationVariables
-} from 'deleteProductNaicsCodeMutation.graphql';
-import BaseMutation from 'mutations/BaseMutation';
-import {ConnectionHandler, RecordSourceSelectorProxy} from 'relay-runtime';
-import {AllowableProductsTableRow_productNaicsCode} from '__generated__/AllowableProductsTableRow_productNaicsCode.graphql';
-import {nowMoment} from 'functions/formatDates';
+  deleteProductNaicsCodeMutationVariables,
+} from "deleteProductNaicsCodeMutation.graphql";
+import BaseMutation from "mutations/BaseMutation";
+import { ConnectionHandler, RecordSourceSelectorProxy } from "relay-runtime";
+import { AllowableProductsTableRow_productNaicsCode } from "__generated__/AllowableProductsTableRow_productNaicsCode.graphql";
+import { nowMoment } from "functions/formatDates";
 
 const mutation = graphql`
   mutation deleteProductNaicsCodeMutation(
@@ -33,9 +33,9 @@ const deleteProductNaicsCodeMutation = async (
     input: {
       id: productNaicsCode.id,
       productNaicsCodePatch: {
-        deletedAt: nowMoment().format('YYYY-MM-DDTHH:mm:ss')
-      }
-    }
+        deletedAt: nowMoment().format("YYYY-MM-DDTHH:mm:ss"),
+      },
+    },
   };
 
   const optimisticResponse = {
@@ -43,9 +43,9 @@ const deleteProductNaicsCodeMutation = async (
       productNaicsCode: {
         id: variables.input.id,
         ...variables.input.productNaicsCodePatch,
-        ...productNaicsCode
-      }
-    }
+        ...productNaicsCode,
+      },
+    },
   };
 
   const updater = (store: RecordSourceSelectorProxy) => {
@@ -55,7 +55,7 @@ const deleteProductNaicsCodeMutation = async (
   };
 
   const m = new BaseMutation<deleteProductNaicsCodeMutationType>(
-    'delete-product_naics_code-mutation'
+    "delete-product_naics_code-mutation"
   );
   return m.performMutation(
     environment,

@@ -1,16 +1,16 @@
-const fs = require('fs');
-const path = require('path');
-const LoadTesting = require('easygraphql-load-tester');
-const queries = Object.values(require('./queries.json'));
-const k6Template = require('./k6-template');
+const fs = require("fs");
+const path = require("path");
+const LoadTesting = require("easygraphql-load-tester");
+const queries = Object.values(require("./queries.json"));
+const k6Template = require("./k6-template");
 
 const schemaCode = fs.readFileSync(
-  path.join(__dirname, '../../server', 'schema.graphql'),
-  'utf8'
+  path.join(__dirname, "../../server", "schema.graphql"),
+  "utf8"
 );
 
 const base64Encode = (jsonData) =>
-  Buffer.from(JSON.stringify(jsonData)).toString('base64');
+  Buffer.from(JSON.stringify(jsonData)).toString("base64");
 
 const args = {
   productsBenchmarksQuery: {
@@ -20,12 +20,12 @@ const args = {
     requires_emission_allocation: null,
     is_ciip_product: null,
     product_state: null,
-    order_by: 'PRODUCT_NAME_ASC',
+    order_by: "PRODUCT_NAME_ASC",
     pageSize: 20,
-    offset: 0
+    offset: 0,
   },
   naicsProductsAssociationsQuery: {
-    naicsCodeId: base64Encode(['naics_codes', 1])
+    naicsCodeId: base64Encode(["naics_codes", 1]),
   },
   applicationsQuery: {
     id: null,
@@ -36,7 +36,7 @@ const args = {
     status: null,
     order_by: null,
     pageSize: null,
-    offset: null
+    offset: null,
   },
   organisationRequestsQuery: {
     user_id: null,
@@ -47,28 +47,28 @@ const args = {
     status: null,
     order_by: null,
     pageSize: null,
-    offset: null
-  }
+    offset: null,
+  },
 };
 
 const easyGraphQLLoadTester = new LoadTesting(schemaCode, args);
 
 const k6ConfigFile = `k6-admin-${process.env.PERF_MODE}.js`;
-k6Template.render(process.env.PERF_MODE, 'admin', k6ConfigFile);
+k6Template.render(process.env.PERF_MODE, "admin", k6ConfigFile);
 
 easyGraphQLLoadTester.k6(k6ConfigFile, {
   customQueries: queries,
   onlyCustomQueries: true,
   selectedQueries: [
-    'productsBenchmarksQuery',
-    'naicsCodesQuery',
-    'naicsProductsAssociationsQuery',
-    'reportingYearsQuery',
-    'usersQuery',
-    'addFacilityQuery',
-    'addOrganisationQuery',
-    'applicationsQuery',
-    'organisationRequestsQuery'
+    "productsBenchmarksQuery",
+    "naicsCodesQuery",
+    "naicsProductsAssociationsQuery",
+    "reportingYearsQuery",
+    "usersQuery",
+    "addFacilityQuery",
+    "addOrganisationQuery",
+    "applicationsQuery",
+    "organisationRequestsQuery",
   ],
-  queryFile: true
+  queryFile: true,
 });

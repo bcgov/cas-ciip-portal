@@ -1,12 +1,12 @@
-import React from 'react';
-import {Table} from 'react-bootstrap';
-import {graphql, createFragmentContainer} from 'react-relay';
-import {UserTable_query} from '__generated__/UserTable_query.graphql';
+import React from "react";
+import { Table } from "react-bootstrap";
+import { graphql, createFragmentContainer } from "react-relay";
+import { UserTable_query } from "__generated__/UserTable_query.graphql";
 interface Props {
   query: UserTable_query;
 }
 export const UserTableComponent: React.FunctionComponent<Props> = (props) => {
-  const {query} = props;
+  const { query } = props;
   if (!query.allCiipUsers || !query.allCiipUsers.edges) {
     return <div />;
   }
@@ -25,7 +25,7 @@ export const UserTableComponent: React.FunctionComponent<Props> = (props) => {
           </tr>
         </thead>
         <tbody>
-          {query.allCiipUsers.edges.map(({node}) => {
+          {query.allCiipUsers.edges.map(({ node }) => {
             return (
               <tr key={node.id}>
                 <td>{node.rowId}</td>
@@ -60,5 +60,5 @@ export default createFragmentContainer(UserTableComponent, {
         }
       }
     }
-  `
+  `,
 });

@@ -1,29 +1,29 @@
-import React from 'react';
-import {shallow} from 'enzyme';
-import ReportingYears from 'pages/admin/reporting-years';
-import {reportingYearsQueryResponse} from 'reportingYearsQuery.graphql';
+import React from "react";
+import { shallow } from "enzyme";
+import ReportingYears from "pages/admin/reporting-years";
+import { reportingYearsQueryResponse } from "reportingYearsQuery.graphql";
 
-const query: reportingYearsQueryResponse['query'] = {
+const query: reportingYearsQueryResponse["query"] = {
   session: {
-    ' $fragmentRefs': {
-      defaultLayout_session: true
-    }
+    " $fragmentRefs": {
+      defaultLayout_session: true,
+    },
   },
-  ' $fragmentRefs': {
-    ReportingYearTable_query: true
-  }
+  " $fragmentRefs": {
+    ReportingYearTable_query: true,
+  },
 };
 
-describe('admin', () => {
-  it('matches the last accepted Snapshot', () => {
+describe("admin", () => {
+  it("matches the last accepted Snapshot", () => {
     const wrapper = shallow(<ReportingYears query={query} />);
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('passes a query to the ReportingYearTable component', () => {
+  it("passes a query to the ReportingYearTable component", () => {
     const wrapper = shallow(<ReportingYears query={query} />);
     expect(
-      wrapper.find('Relay(ReportingYearTableComponent)').first().prop('query')
+      wrapper.find("Relay(ReportingYearTableComponent)").first().prop("query")
     ).toBe(query);
   });
 });

@@ -1,9 +1,9 @@
 import {
   Middleware,
   RelayNetworkLayerRequest,
-  RelayNetworkLayerResponse
-} from 'react-relay-network-modern/node8';
-import {CacheConfigWithDebounce} from 'next-env';
+  RelayNetworkLayerResponse,
+} from "react-relay-network-modern/node8";
+import { CacheConfigWithDebounce } from "next-env";
 
 let debouncedMutation: {
   debounceKey: string;
@@ -21,7 +21,7 @@ const debounceMutationMiddleware = (timeout = 250): Middleware => {
       return next(req);
     }
 
-    const {debounceKey} = (req.cacheConfig as CacheConfigWithDebounce) || {};
+    const { debounceKey } = (req.cacheConfig as CacheConfigWithDebounce) || {};
     if (!debounceKey) {
       if (debouncedMutation) {
         debouncedMutation.debouncedFn();
@@ -54,7 +54,7 @@ const debounceMutationMiddleware = (timeout = 250): Middleware => {
         debouncedMutation = {
           debounceKey,
           debouncedFn,
-          timeoutId: window.setTimeout(debouncedFn, timeout)
+          timeoutId: window.setTimeout(debouncedFn, timeout),
         };
       });
     };

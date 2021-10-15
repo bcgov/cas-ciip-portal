@@ -1,4 +1,4 @@
-describe('When viewing an application in draft as a reporter', () => {
+describe("When viewing an application in draft as a reporter", () => {
   const applicationUrl = `/reporter/application/${window.btoa(
     '["applications",1]'
   )}`;
@@ -20,265 +20,265 @@ describe('When viewing an application in draft as a reporter', () => {
   beforeEach(() => {
     cy.cleanSchema();
     cy.deployProdData();
-    cy.sqlFixture('fixtures/form-validation-setup');
-    cy.mockLogin('reporter');
+    cy.sqlFixture("fixtures/form-validation-setup");
+    cy.mockLogin("reporter");
   });
 
-  it.only('The application admin form shows validation errors', () => {
+  it.only("The application admin form shows validation errors", () => {
     const comment = "I don't know my registry id";
     cy.visit(adminFormUrl);
-    cy.get('#page-content');
-    cy.get('body').happoScreenshot({component: 'Administration Form'});
+    cy.get("#page-content");
+    cy.get("body").happoScreenshot({ component: "Administration Form" });
 
     // Add a comment to the admin form
-    cy.get('.btn').contains('Add a comment').click();
-    cy.get('.report-field textarea').type(comment);
-    cy.get('.report-field button').contains('Save Comment').click();
+    cy.get(".btn").contains("Add a comment").click();
+    cy.get(".report-field textarea").type(comment);
+    cy.get(".report-field button").contains("Save Comment").click();
 
     // Operator details
-    cy.get('#root_operator_name').clear().type('John Smith');
-    cy.get('#root_operator_tradeName').clear().type('Acme Co');
-    cy.get('#root_operator_naics').clear();
-    cy.get('#root_operator_naics').type('1234');
-    cy.get('#root_operator_bcCorporateRegistryNumber')
+    cy.get("#root_operator_name").clear().type("John Smith");
+    cy.get("#root_operator_tradeName").clear().type("Acme Co");
+    cy.get("#root_operator_naics").clear();
+    cy.get("#root_operator_naics").type("1234");
+    cy.get("#root_operator_bcCorporateRegistryNumber")
       .clear()
-      .type('111112222233333');
+      .type("111112222233333");
 
     // Operator mailing address
-    cy.get('#root_operator_mailingAddress_streetAddress')
+    cy.get("#root_operator_mailingAddress_streetAddress")
       .clear()
-      .type('100 North Pole');
-    cy.get('#root_operator_mailingAddress_city').clear().type('Calgary');
-    cy.get('#root_operator_mailingAddress_postalCode').clear().type('H2O 0H0');
-    cy.get('#root_operator_mailingAddress_province').select('Alberta');
+      .type("100 North Pole");
+    cy.get("#root_operator_mailingAddress_city").clear().type("Calgary");
+    cy.get("#root_operator_mailingAddress_postalCode").clear().type("H2O 0H0");
+    cy.get("#root_operator_mailingAddress_province").select("Alberta");
 
     // Operation rep details
-    cy.get('#root_operationalRepresentative_firstName').clear().type('John');
-    cy.get('#root_operationalRepresentative_lastName').clear().type('Smith');
-    cy.get('#root_operationalRepresentative_position').clear().type('CEO');
-    cy.get('#root_operationalRepresentative_email')
+    cy.get("#root_operationalRepresentative_firstName").clear().type("John");
+    cy.get("#root_operationalRepresentative_lastName").clear().type("Smith");
+    cy.get("#root_operationalRepresentative_position").clear().type("CEO");
+    cy.get("#root_operationalRepresentative_email")
       .clear()
-      .type('john@acme.com');
-    cy.get('#root_operationalRepresentative_phone').clear().type('9009009001');
+      .type("john@acme.com");
+    cy.get("#root_operationalRepresentative_phone").clear().type("9009009001");
 
     // Operation rep mailing address
-    cy.get('#root_operationalRepresentative_mailingAddress_streetAddress')
+    cy.get("#root_operationalRepresentative_mailingAddress_streetAddress")
       .clear()
-      .type('100 North Pole');
-    cy.get('#root_operationalRepresentative_mailingAddress_city')
+      .type("100 North Pole");
+    cy.get("#root_operationalRepresentative_mailingAddress_city")
       .clear()
-      .type('Calgary');
-    cy.get('#root_operationalRepresentative_mailingAddress_postalCode')
+      .type("Calgary");
+    cy.get("#root_operationalRepresentative_mailingAddress_postalCode")
       .clear()
-      .type('111111');
-    cy.get('#root_operationalRepresentative_mailingAddress_province').select(
-      'Alberta'
+      .type("111111");
+    cy.get("#root_operationalRepresentative_mailingAddress_province").select(
+      "Alberta"
     );
 
     // Primary application contact
-    cy.get('#root_primaryContact_firstName').clear().type('John');
-    cy.get('#root_primaryContact_lastName').clear().type('Smith');
-    cy.get('#root_primaryContact_email').clear().type('john@acme.com');
-    cy.get('#root_primaryContact_phone').clear().type('9009009001');
-    cy.get('#root_primaryContact_position').clear().type('CEO');
-    cy.get('#root_primaryContact_organization').clear().type('Acme Co');
+    cy.get("#root_primaryContact_firstName").clear().type("John");
+    cy.get("#root_primaryContact_lastName").clear().type("Smith");
+    cy.get("#root_primaryContact_email").clear().type("john@acme.com");
+    cy.get("#root_primaryContact_phone").clear().type("9009009001");
+    cy.get("#root_primaryContact_position").clear().type("CEO");
+    cy.get("#root_primaryContact_organization").clear().type("Acme Co");
 
     // Facility details
-    cy.get('#root_facility_facilityName').clear().type('Acme1');
-    cy.get('#root_facility_facilityType').select('SFO');
+    cy.get("#root_facility_facilityName").clear().type("Acme1");
+    cy.get("#root_facility_facilityType").select("SFO");
 
-    cy.get('div.card-header').contains('Form input saved');
-    cy.contains('Continue').click();
-    cy.get('#root_operator_naics')
-      .parents('.form-group')
-      .get('.error-detail')
-      .contains('is a required property');
+    cy.get("div.card-header").contains("Form input saved");
+    cy.contains("Continue").click();
+    cy.get("#root_operator_naics")
+      .parents(".form-group")
+      .get(".error-detail")
+      .contains("is a required property");
     cy.get(
-      '#root_operator_bcCorporateRegistryNumber +div .error-detail'
+      "#root_operator_bcCorporateRegistryNumber +div .error-detail"
     ).contains(
-      'BC Corporate Registry number should be 1-3 letters followed by 7 digits'
+      "BC Corporate Registry number should be 1-3 letters followed by 7 digits"
     );
     cy.get(
-      '#root_operationalRepresentative_mailingAddress_postalCode +div .error-detail'
-    ).contains('Format should be A1A 1A1');
+      "#root_operationalRepresentative_mailingAddress_postalCode +div .error-detail"
+    ).contains("Format should be A1A 1A1");
 
     cy.visit(summaryPageUrl);
 
-    cy.get('#administrative-data_comments').contains(comment);
+    cy.get("#administrative-data_comments").contains(comment);
 
     // Format error messages for should be explicit
-    cy.get('#administrative-data_operator_naics ~div .text-danger').contains(
-      'is a required property'
+    cy.get("#administrative-data_operator_naics ~div .text-danger").contains(
+      "is a required property"
     );
-    cy.get('.admin-2020 > .collapse').contains(
-      'BC Corporate Registry number should be 1-3 letters followed by 7 digits'
+    cy.get(".admin-2020 > .collapse").contains(
+      "BC Corporate Registry number should be 1-3 letters followed by 7 digits"
     );
-    cy.get('.admin-2020 > .collapse').contains('Format should be A1A 1A1');
-    cy.get('.admin-2020.summary-card').happoScreenshot({
-      component: 'Admin Summary Card',
-      variant: 'with errors'
+    cy.get(".admin-2020 > .collapse").contains("Format should be A1A 1A1");
+    cy.get(".admin-2020.summary-card").happoScreenshot({
+      component: "Admin Summary Card",
+      variant: "with errors",
     });
 
     // Override Justification screenshots
-    cy.get('body').happoScreenshot({
-      component: 'Override Justification',
-      variant: 'closed'
+    cy.get("body").happoScreenshot({
+      component: "Override Justification",
+      variant: "closed",
     });
-    cy.get('.override-accordion > .btn').click();
-    cy.get('body').happoScreenshot({
-      component: 'Override Justification',
-      variant: 'open'
+    cy.get(".override-accordion > .btn").click();
+    cy.get("body").happoScreenshot({
+      component: "Override Justification",
+      variant: "open",
     });
-    cy.get('#overrideJustification').clear().type('justification goes here');
-    cy.get('.btn-success').contains('Save').click();
-    cy.contains('You have chosen to override');
-    cy.get('body').happoScreenshot({
-      component: 'Override Justification',
-      variant: 'override active'
+    cy.get("#overrideJustification").clear().type("justification goes here");
+    cy.get(".btn-success").contains("Save").click();
+    cy.contains("You have chosen to override");
+    cy.get("body").happoScreenshot({
+      component: "Override Justification",
+      variant: "override active",
     });
-    cy.get('.btn-danger').click();
+    cy.get(".btn-danger").click();
     cy.visit(adminFormUrl);
 
     // Fix invalid data
-    cy.get('#root_operator_naics').clear().type('777777');
-    cy.get('.dropdown-item').click();
-    cy.get('#root_operationalRepresentative_mailingAddress_postalCode')
+    cy.get("#root_operator_naics").clear().type("777777");
+    cy.get(".dropdown-item").click();
+    cy.get("#root_operationalRepresentative_mailingAddress_postalCode")
       .clear()
-      .type('A1A 1A1');
-    cy.get('#root_operator_bcCorporateRegistryNumber')
+      .type("A1A 1A1");
+    cy.get("#root_operator_bcCorporateRegistryNumber")
       .clear()
-      .type('LLC1234567');
+      .type("LLC1234567");
 
-    cy.get('div.card-header').contains('Form input saved');
-    cy.contains('Continue').click();
-    cy.get('#page-content h1').contains('SWRS Onsite Emissions');
+    cy.get("div.card-header").contains("Form input saved");
+    cy.contains("Continue").click();
+    cy.get("#page-content h1").contains("SWRS Onsite Emissions");
     cy.visit(summaryPageUrl);
-    cy.contains('Administrative Data');
-    cy.get('.admin-2020.summary-card').happoScreenshot({
-      component: 'Admin Summary Card',
-      variant: 'no errors'
+    cy.contains("Administrative Data");
+    cy.get(".admin-2020.summary-card").happoScreenshot({
+      component: "Admin Summary Card",
+      variant: "no errors",
     });
   });
 
-  it('The application emissions form shows validation errors', () => {
+  it("The application emissions form shows validation errors", () => {
     // Emission Form
     cy.visit(emissionFormUrl);
     cy.wait(1000);
-    cy.get('#root_sourceTypes_0_gases_0_annualEmission').clear();
-    cy.get('div.card-header').contains('Form input saved');
-    cy.contains('Continue').click(); // Try to submit the form
+    cy.get("#root_sourceTypes_0_gases_0_annualEmission").clear();
+    cy.get("div.card-header").contains("Form input saved");
+    cy.contains("Continue").click(); // Try to submit the form
     cy.get(
-      '#root_sourceTypes_0_gases_0_annualEmission +div .error-detail'
-    ).contains('is a required property');
+      "#root_sourceTypes_0_gases_0_annualEmission +div .error-detail"
+    ).contains("is a required property");
 
     cy.visit(summaryPageUrl);
-    cy.contains('Emission');
-    cy.get('.emission.summary-card').happoScreenshot({
-      component: 'Emission Summary Card',
-      variant: 'with errors'
+    cy.contains("Emission");
+    cy.get(".emission.summary-card").happoScreenshot({
+      component: "Emission Summary Card",
+      variant: "with errors",
     });
     cy.visit(emissionFormUrl);
 
     // Fix invalid data
-    cy.get('#root_sourceTypes_0_gases_0_annualEmission').clear().type('42');
-    cy.get('body').happoScreenshot({component: 'Emissions form'});
-    cy.get('div.card-header').contains('Form input saved');
-    cy.contains('Continue').click();
-    cy.get('#page-content h1').contains('Fuel');
+    cy.get("#root_sourceTypes_0_gases_0_annualEmission").clear().type("42");
+    cy.get("body").happoScreenshot({ component: "Emissions form" });
+    cy.get("div.card-header").contains("Form input saved");
+    cy.contains("Continue").click();
+    cy.get("#page-content h1").contains("Fuel");
     cy.visit(summaryPageUrl);
-    cy.contains('Emission');
-    cy.get('.emission.summary-card').happoScreenshot({
-      component: 'Emission Summary Card',
-      variant: 'no errors'
+    cy.contains("Emission");
+    cy.get(".emission.summary-card").happoScreenshot({
+      component: "Emission Summary Card",
+      variant: "no errors",
     });
   });
 
-  it('The application fuels form shows validation errors', () => {
+  it("The application fuels form shows validation errors", () => {
     // Fuel Form
     cy.visit(fuelFormUrl);
-    cy.contains('Add a fuel').click();
-    cy.get('div.card-header').contains('Form input saved');
-    cy.contains('Continue').click();
-    cy.get('#root_0_quantity +div .error-detail').contains(
-      'is a required property'
+    cy.contains("Add a fuel").click();
+    cy.get("div.card-header").contains("Form input saved");
+    cy.contains("Continue").click();
+    cy.get("#root_0_quantity +div .error-detail").contains(
+      "is a required property"
     );
-    cy.get('#root_0_emissionCategoryRowId +div .error-detail').contains(
-      'is a required property'
+    cy.get("#root_0_emissionCategoryRowId +div .error-detail").contains(
+      "is a required property"
     );
 
     cy.visit(summaryPageUrl);
-    cy.contains('Fuel');
-    cy.get('.fuel.summary-card').happoScreenshot({
-      component: 'Fuel Summary Card',
-      variant: 'with errors'
+    cy.contains("Fuel");
+    cy.get(".fuel.summary-card").happoScreenshot({
+      component: "Fuel Summary Card",
+      variant: "with errors",
     });
     cy.visit(fuelFormUrl);
 
     // Fix invalid data
-    cy.contains('Remove').click();
-    cy.contains('Add').click();
-    cy.get('#root_0_fuelRowId').type('Diesel');
-    cy.get('#root_0_fuelRowId-item-1 > .dropdown-item').click();
-    cy.get('#root_0_quantity').type('4');
-    cy.get('#root_0_emissionCategoryRowId').select(
-      'General Stationary Combustion'
+    cy.contains("Remove").click();
+    cy.contains("Add").click();
+    cy.get("#root_0_fuelRowId").type("Diesel");
+    cy.get("#root_0_fuelRowId-item-1 > .dropdown-item").click();
+    cy.get("#root_0_quantity").type("4");
+    cy.get("#root_0_emissionCategoryRowId").select(
+      "General Stationary Combustion"
     );
-    cy.get('body').happoScreenshot({component: 'Fuels Form'});
-    cy.get('div.card-header').contains('Form input saved');
-    cy.contains('Continue').click();
-    cy.get('#page-content h1').contains('Production');
+    cy.get("body").happoScreenshot({ component: "Fuels Form" });
+    cy.get("div.card-header").contains("Form input saved");
+    cy.contains("Continue").click();
+    cy.get("#page-content h1").contains("Production");
     cy.visit(summaryPageUrl);
-    cy.contains('Fuel');
-    cy.get('.fuel.summary-card').happoScreenshot({
-      component: 'Fuel Summary Card',
-      variant: 'no errors'
+    cy.contains("Fuel");
+    cy.get(".fuel.summary-card").happoScreenshot({
+      component: "Fuel Summary Card",
+      variant: "no errors",
     });
   });
 
-  it('The application production form shows validation errors', () => {
+  it("The application production form shows validation errors", () => {
     // Production Form
     cy.visit(productionFormUrl);
-    cy.get('div.card-header').contains('Form input saved');
-    cy.contains('Add a Product').click();
-    cy.contains('Continue').click();
-    cy.get('.rbt +div .error-detail').contains('is a required property');
-    cy.get('#root_0_productRowId').click();
-    cy.get('#root_0_productRowId-item-0 > .dropdown-item').click();
-    cy.get('div.card-header').contains('Form input saved');
-    cy.contains('Continue').click();
-    cy.get('#root_0_productAmount +div .error-detail').contains(
-      'is a required property'
+    cy.get("div.card-header").contains("Form input saved");
+    cy.contains("Add a Product").click();
+    cy.contains("Continue").click();
+    cy.get(".rbt +div .error-detail").contains("is a required property");
+    cy.get("#root_0_productRowId").click();
+    cy.get("#root_0_productRowId-item-0 > .dropdown-item").click();
+    cy.get("div.card-header").contains("Form input saved");
+    cy.contains("Continue").click();
+    cy.get("#root_0_productAmount +div .error-detail").contains(
+      "is a required property"
     );
-    cy.get('#root_0_productEmissions +div .error-detail').contains(
-      'is a required property'
+    cy.get("#root_0_productEmissions +div .error-detail").contains(
+      "is a required property"
     );
 
     cy.visit(summaryPageUrl);
-    cy.contains('Production');
-    cy.get('.production.summary-card').happoScreenshot({
-      component: 'Production Summary Card',
-      variant: 'with errors'
+    cy.contains("Production");
+    cy.get(".production.summary-card").happoScreenshot({
+      component: "Production Summary Card",
+      variant: "with errors",
     });
     cy.visit(productionFormUrl);
 
     // Fix invalid data
-    cy.contains('Remove').click();
-    cy.contains('Add').click();
-    cy.get('#root_0_productRowId').clear();
-    cy.get('#root_0_productRowId').type('Aluminum');
-    cy.get('.dropdown-item').click();
-    cy.get('#root_0_productAmount').type('1');
-    cy.get('#root_0_productEmissions').type('4');
+    cy.contains("Remove").click();
+    cy.contains("Add").click();
+    cy.get("#root_0_productRowId").clear();
+    cy.get("#root_0_productRowId").type("Aluminum");
+    cy.get(".dropdown-item").click();
+    cy.get("#root_0_productAmount").type("1");
+    cy.get("#root_0_productEmissions").type("4");
 
-    cy.get('body').happoScreenshot({
-      component: 'Products and Energy Form'
+    cy.get("body").happoScreenshot({
+      component: "Products and Energy Form",
     });
-    cy.get('div.card-header').contains('Form input saved');
-    cy.contains('Continue').click();
-    cy.get('#page-content h1').contains('Summary');
-    cy.get('.production.summary-card').happoScreenshot({
-      component: 'Production Summary Card',
-      variant: 'no errors'
+    cy.get("div.card-header").contains("Form input saved");
+    cy.contains("Continue").click();
+    cy.get("#page-content h1").contains("Summary");
+    cy.get(".production.summary-card").happoScreenshot({
+      component: "Production Summary Card",
+      variant: "no errors",
     });
   });
 });

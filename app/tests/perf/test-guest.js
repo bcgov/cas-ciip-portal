@@ -1,27 +1,27 @@
-const fs = require('fs');
-const path = require('path');
-const LoadTesting = require('easygraphql-load-tester');
-const queries = Object.values(require('./queries.json'));
-const k6Template = require('./k6-template');
+const fs = require("fs");
+const path = require("path");
+const LoadTesting = require("easygraphql-load-tester");
+const queries = Object.values(require("./queries.json"));
+const k6Template = require("./k6-template");
 
 const schemaCode = fs.readFileSync(
-  path.join(__dirname, '../../server', 'schema.graphql'),
-  'utf8'
+  path.join(__dirname, "../../server", "schema.graphql"),
+  "utf8"
 );
 
 const queriesWithParams = {
   pagesQuery: {},
-  loginRedirectQuery: {}
+  loginRedirectQuery: {},
 };
 
 const easyGraphQLLoadTester = new LoadTesting(schemaCode, queriesWithParams);
 
 const k6ConfigFile = `k6-guest-${process.env.PERF_MODE}.js`;
-k6Template.render(process.env.PERF_MODE, 'guest', k6ConfigFile);
+k6Template.render(process.env.PERF_MODE, "guest", k6ConfigFile);
 
 easyGraphQLLoadTester.k6(k6ConfigFile, {
   customQueries: queries,
   onlyCustomQueries: true,
   selectedQueries: Object.keys(queriesWithParams),
-  queryFile: true
+  queryFile: true,
 });

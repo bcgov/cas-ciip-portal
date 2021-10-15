@@ -1,20 +1,20 @@
-import './commands';
-import 'cypress-axe';
+import "./commands";
+import "cypress-axe";
 // eslint-disable-next-line import/no-unresolved
-import authenticatedPages from './authenticatedPages.json';
+import authenticatedPages from "./authenticatedPages.json";
 
-const EXCLUDED_SELECTORS = [['.rbt-input-hint']];
+const EXCLUDED_SELECTORS = [[".rbt-input-hint"]];
 
 function excludeA11y(axeRun) {
   return function customAxeRun(ctx, ...args) {
-    const runCtx = {exclude: EXCLUDED_SELECTORS};
+    const runCtx = { exclude: EXCLUDED_SELECTORS };
 
     if (ctx === undefined || ctx === null) {
       axeRun(runCtx, ...args);
       return;
     }
 
-    if (typeof ctx === 'string') {
+    if (typeof ctx === "string") {
       runCtx.include = [[ctx]];
     } else if (ctx instanceof HTMLElement || ctx instanceof NodeList) {
       runCtx.include = ctx;

@@ -1,11 +1,11 @@
-import React, {useMemo} from 'react';
-import {Col, Table, Alert} from 'react-bootstrap';
-import SortableTableHeader from './SortableTableHeader';
-import FilterableTableFilterRow from './FilterableTableFilterRow';
-import FilterableTablePagination from './FilterableTablePagination';
-import {TableFilter, FilterArgs, PageArgs} from './Filters';
-import {useRouter} from 'next/router';
-import safeJsonParse from 'lib/safeJsonParse';
+import React, { useMemo } from "react";
+import { Col, Table, Alert } from "react-bootstrap";
+import SortableTableHeader from "./SortableTableHeader";
+import FilterableTableFilterRow from "./FilterableTableFilterRow";
+import FilterableTablePagination from "./FilterableTablePagination";
+import { TableFilter, FilterArgs, PageArgs } from "./Filters";
+import { useRouter } from "next/router";
+import safeJsonParse from "lib/safeJsonParse";
 
 interface Props {
   filters: TableFilter[];
@@ -22,7 +22,7 @@ export const FilterableTable: React.FunctionComponent<Props> = ({
   isLoading,
   extraFilters = [],
   paginated,
-  totalCount
+  totalCount,
 }) => {
   const router = useRouter();
   const filterArgs = useMemo<FilterArgs>(
@@ -30,7 +30,7 @@ export const FilterableTable: React.FunctionComponent<Props> = ({
     [router]
   );
 
-  const {offset, pageSize} = useMemo<PageArgs>(
+  const { offset, pageSize } = useMemo<PageArgs>(
     () => safeJsonParse(router.query.pageArgs as string),
     [router]
   );
@@ -39,7 +39,7 @@ export const FilterableTable: React.FunctionComponent<Props> = ({
     const newQuery = {
       // copy the vars from the query string, so that the args coming from extraFilters are not overriden
       ...filterArgs,
-      ...newFilterArgs
+      ...newFilterArgs,
     };
     filters.forEach((filter) => {
       filter.argNames.forEach((argName) => {
@@ -54,11 +54,11 @@ export const FilterableTable: React.FunctionComponent<Props> = ({
       query: {
         ...router.query,
         filterArgs: queryString,
-        pageArgs: JSON.stringify({offset: 0, pageSize})
-      }
+        pageArgs: JSON.stringify({ offset: 0, pageSize }),
+      },
     };
 
-    router.push(url, url, {shallow: true});
+    router.push(url, url, { shallow: true });
   };
 
   const applyPageArgs = (newPageArgs: PageArgs) => {
@@ -66,18 +66,18 @@ export const FilterableTable: React.FunctionComponent<Props> = ({
       pathname: router.pathname,
       query: {
         ...router.query,
-        pageArgs: JSON.stringify(newPageArgs)
-      }
+        pageArgs: JSON.stringify(newPageArgs),
+      },
     };
-    router.push(url, url, {shallow: true});
+    router.push(url, url, { shallow: true });
   };
 
   const handleOffsetChange = (value: number) => {
-    applyPageArgs({offset: value, pageSize});
+    applyPageArgs({ offset: value, pageSize });
   };
 
   const handleMaxResultsChange = (value: number) => {
-    applyPageArgs({offset: 0, pageSize: value});
+    applyPageArgs({ offset: 0, pageSize: value });
   };
 
   const bodyLength =
@@ -97,7 +97,7 @@ export const FilterableTable: React.FunctionComponent<Props> = ({
             <f.Component
               key={f.argName}
               onChange={(value, argName) =>
-                applyFilterArgs({...filterArgs, [argName]: value})
+                applyFilterArgs({ ...filterArgs, [argName]: value })
               }
               filterArgs={filterArgs}
             />
@@ -108,18 +108,18 @@ export const FilterableTable: React.FunctionComponent<Props> = ({
         striped
         bordered
         hover
-        className={isLoading ? 'search-table loading' : 'search-table'}
+        className={isLoading ? "search-table loading" : "search-table"}
       >
         <thead>
           <tr>
             {filters.map((filter) => (
               <SortableTableHeader
-                key={filter.title + '-sortHeader'}
+                key={filter.title + "-sortHeader"}
                 headerVariables={{
                   columnName: filter.sortColumnName,
                   displayName: filter.title,
                   sortable: filter.isSortEnabled,
-                  hasTableHeader: filter.hasTableHeader
+                  hasTableHeader: filter.hasTableHeader,
                 }}
               />
             ))}
@@ -132,7 +132,7 @@ export const FilterableTable: React.FunctionComponent<Props> = ({
         </thead>
         {body}
       </Table>
-      <Col md={{span: 6, offset: 3}}>{noSearchResults}</Col>
+      <Col md={{ span: 6, offset: 3 }}>{noSearchResults}</Col>
       {paginated && (
         <FilterableTablePagination
           totalCount={totalCount}
@@ -160,7 +160,7 @@ export const FilterableTable: React.FunctionComponent<Props> = ({
           background-color: black;
           border-radius: 50%;
           opacity: 0;
-          content: '';
+          content: "";
           position: absolute;
           top: 50%;
           left: 50%;

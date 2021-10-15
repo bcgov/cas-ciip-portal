@@ -1,8 +1,8 @@
-import {FieldProps} from '@rjsf/core';
-import React, {useMemo} from 'react';
-import {Alert} from 'react-bootstrap';
-import {createFragmentContainer, graphql} from 'react-relay';
-import {NaicsField_query} from '__generated__/NaicsField_query.graphql';
+import { FieldProps } from "@rjsf/core";
+import React, { useMemo } from "react";
+import { Alert } from "react-bootstrap";
+import { createFragmentContainer, graphql } from "react-relay";
+import { NaicsField_query } from "__generated__/NaicsField_query.graphql";
 
 interface Props extends FieldProps<string> {
   query: NaicsField_query;
@@ -27,8 +27,8 @@ export const NaicsFieldComponent: React.FunctionComponent<Props> = (props) => {
     schema: {
       ...props.schema,
       enum: naicsList,
-      enumNames: naicsDisplayList
-    }
+      enumNames: naicsDisplayList,
+    },
   };
 
   const invalidNaicsAlert =
@@ -60,5 +60,5 @@ export default createFragmentContainer(NaicsFieldComponent, {
         }
       }
     }
-  `
+  `,
 });

@@ -1,8 +1,8 @@
-import React from 'react';
-import {Button, OverlayTrigger, Tooltip} from 'react-bootstrap';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faTrash} from '@fortawesome/free-solid-svg-icons';
-import {dateTimeFormat} from 'functions/formatDates';
+import React from "react";
+import { Button, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { dateTimeFormat } from "functions/formatDates";
 
 interface Props {
   id: string;
@@ -23,7 +23,7 @@ export const ReviewComment: React.FunctionComponent<Props> = ({
   viewOnly,
   isResolved,
   onResolveToggle,
-  onDelete
+  onDelete,
 }) => {
   return (
     <li>
@@ -31,7 +31,7 @@ export const ReviewComment: React.FunctionComponent<Props> = ({
         <p>{description}</p>
         <p className="timestamp">
           <span>{createdBy}</span>
-          {`${dateTimeFormat(createdAt, 'minutes')}`}
+          {`${dateTimeFormat(createdAt, "minutes")}`}
         </p>
       </div>
       {!viewOnly && (
@@ -39,10 +39,10 @@ export const ReviewComment: React.FunctionComponent<Props> = ({
           <Button
             size="sm"
             variant="outline-primary"
-            style={{marginRight: '0.5em'}}
+            style={{ marginRight: "0.5em" }}
             onClick={() => onResolveToggle(id, !isResolved)}
           >
-            {`${isResolved ? 'Unresolve' : 'Resolve'}`}
+            {`${isResolved ? "Unresolve" : "Resolve"}`}
           </Button>
           <OverlayTrigger
             placement="top"

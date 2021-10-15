@@ -1,27 +1,27 @@
-import React from 'react';
-import {Button} from 'react-bootstrap';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
-import {useCookies} from 'react-cookie';
+import React from "react";
+import { Button } from "react-bootstrap";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { useCookies } from "react-cookie";
 
 interface CookieProps {
-  cookies: {[name: string]: any};
+  cookies: { [name: string]: any };
   setCookie: (name: string, value: any, options?: any) => void;
   removeCookie: (name: string, options?: any) => void;
 }
 
 class InternalCookieDayPickerInput extends React.Component<CookieProps> {
   static CookieOptions = {
-    path: '/',
+    path: "/",
     secure: true,
-    sameSite: 'strict'
+    sameSite: "strict",
   };
-  static MockTimeCookieIdentifier = 'mocks.mocked_timestamp';
+  static MockTimeCookieIdentifier = "mocks.mocked_timestamp";
 
   state = {
     selectedDay: InternalCookieDayPickerInput.getCookieValue(
       this.props.cookies[InternalCookieDayPickerInput.MockTimeCookieIdentifier]
-    )
+    ),
   };
 
   constructor(props) {
@@ -49,7 +49,7 @@ class InternalCookieDayPickerInput extends React.Component<CookieProps> {
       InternalCookieDayPickerInput.CookieOptions
     );
 
-    this.setState({selectedDay: day});
+    this.setState({ selectedDay: day });
     //No need to refresh as the cookies will be transmitted next time there is a request to the server
   }
 
@@ -61,11 +61,11 @@ class InternalCookieDayPickerInput extends React.Component<CookieProps> {
     delete this.props.cookies[
       InternalCookieDayPickerInput.MockTimeCookieIdentifier
     ];
-    this.setState({selectedDay: undefined});
+    this.setState({ selectedDay: undefined });
   }
 
   render() {
-    const {selectedDay} = this.state;
+    const { selectedDay } = this.state;
     return (
       <div id="mock-database-date-picker">
         <Button onClick={this.reset} size="sm">
@@ -100,7 +100,7 @@ class InternalCookieDayPickerInput extends React.Component<CookieProps> {
 
 const CookieDayPickerInput = () => {
   const [cookies, setCookie, removeCookie] = useCookies([
-    InternalCookieDayPickerInput.MockTimeCookieIdentifier
+    InternalCookieDayPickerInput.MockTimeCookieIdentifier,
   ]);
   return (
     <InternalCookieDayPickerInput

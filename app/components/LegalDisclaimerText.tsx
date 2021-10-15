@@ -1,5 +1,5 @@
-import React from 'react';
-import getConfig from 'next/config';
+import React from "react";
+import getConfig from "next/config";
 
 const LegalDisclaimerText: React.FunctionComponent = () => {
   const adminEmail = getConfig()?.publicRuntimeConfig.ADMIN_EMAIL;
@@ -8,7 +8,7 @@ const LegalDisclaimerText: React.FunctionComponent = () => {
       <p>In this application:</p>
       <ol id="glossary">
         <li>
-          (a) &quot;CIIP&quot; means the{' '}
+          (a) &quot;CIIP&quot; means the{" "}
           <a
             href="https://www2.gov.bc.ca/gov/content?id=6F748A4DD83447C59B8B9361882FF9A3"
             target="_blank"
@@ -18,7 +18,7 @@ const LegalDisclaimerText: React.FunctionComponent = () => {
           </a>
         </li>
         <li>
-          (b) &quot;GGIRCA&quot; means{' '}
+          (b) &quot;GGIRCA&quot; means{" "}
           <em>Greenhouse Gas Industrial Reporting and Control Act</em>;
         </li>
         <li>
@@ -79,10 +79,10 @@ const LegalDisclaimerText: React.FunctionComponent = () => {
           confidentiality of information.
         </li>
         <li>
-          The Operator may at any time withdraw its consent under paragraphs{' '}
+          The Operator may at any time withdraw its consent under paragraphs{" "}
           <strong>c</strong> or <strong>d</strong> by submitting a withdrawal of
           consent in a form specified by the director appointed under GGIRCA.
-          Forms may be obtained by submitting an email request to{' '}
+          Forms may be obtained by submitting an email request to{" "}
           <a
             href={`mailto:${adminEmail}?subject=CIIP: Request for consent withdrawal forms`}
           >

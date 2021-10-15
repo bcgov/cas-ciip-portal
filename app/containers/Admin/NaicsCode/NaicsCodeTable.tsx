@@ -1,16 +1,16 @@
-import React, {useState} from 'react';
-import {Table, Button} from 'react-bootstrap';
-import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
-import {NaicsCodeTable_query} from '__generated__/NaicsCodeTable_query.graphql';
-import NaicsCodeTableRow from './NaicsCodeTableRow';
-import CreateNaicsCodeModal from 'components/Admin/CreateNaicsCodeModal';
-import createNaicsCodeMutation from 'mutations/naics_code/createNaicsCodeMutation';
-import withPromiseLoading from 'lib/withPromiseLoading';
+import React, { useState } from "react";
+import { Table, Button } from "react-bootstrap";
+import { graphql, createFragmentContainer, RelayProp } from "react-relay";
+import { NaicsCodeTable_query } from "__generated__/NaicsCodeTable_query.graphql";
+import NaicsCodeTableRow from "./NaicsCodeTableRow";
+import CreateNaicsCodeModal from "components/Admin/CreateNaicsCodeModal";
+import createNaicsCodeMutation from "mutations/naics_code/createNaicsCodeMutation";
+import withPromiseLoading from "lib/withPromiseLoading";
 
 const LoadingCreateNaicsCodeModal = withPromiseLoading(
   CreateNaicsCodeModal,
-  'onSubmit',
-  'disabled'
+  "onSubmit",
+  "disabled"
 );
 interface Props {
   relay: RelayProp;
@@ -23,7 +23,7 @@ export const NaicsCodeTableContainer: React.FunctionComponent<Props> = (
   const [validated, setValidated] = useState(false);
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [showActiveCodeError, setShowActiveCodeError] = useState(false);
-  const {query} = props;
+  const { query } = props;
 
   const handleClose = () => {
     setShowCreateModal(false);
@@ -42,13 +42,13 @@ export const NaicsCodeTableContainer: React.FunctionComponent<Props> = (
 
     if (naicsCodeIsActive(form[1].value)) setShowActiveCodeError(true);
     else if (form.checkValidity() === true) {
-      const {environment} = props.relay;
+      const { environment } = props.relay;
       const variables = {
         input: {
           naicsCodeInput: form[1].value,
           ciipSectorInput: form[2].value ? form[2].value : null,
-          naicsDescriptionInput: form[3].value
-        }
+          naicsDescriptionInput: form[3].value,
+        },
       };
 
       await createNaicsCodeMutation(environment, variables);
@@ -57,9 +57,9 @@ export const NaicsCodeTableContainer: React.FunctionComponent<Props> = (
 
   return (
     <>
-      <div style={{textAlign: 'right'}}>
+      <div style={{ textAlign: "right" }}>
         <Button
-          style={{marginTop: '-100px'}}
+          style={{ marginTop: "-100px" }}
           onClick={() => setShowCreateModal(true)}
         >
           New NAICS Code
@@ -82,7 +82,7 @@ export const NaicsCodeTableContainer: React.FunctionComponent<Props> = (
           </tr>
         </thead>
         <tbody>
-          {query.allNaicsCodes?.edges.map(({node}) => {
+          {query.allNaicsCodes?.edges.map(({ node }) => {
             return (
               <NaicsCodeTableRow
                 key={node.id}
@@ -108,7 +108,7 @@ export default createFragmentContainer(NaicsCodeTableContainer, {
     fragment NaicsCodeTable_query on Query {
       allNaicsCodes(
         first: 2147483647
-        filter: {deletedAt: {isNull: true}}
+        filter: { deletedAt: { isNull: true } }
         orderBy: NAICS_CODE_ASC
       ) @connection(key: "NaicsCodeTableContainer_allNaicsCodes", filters: []) {
         __id
@@ -121,5 +121,5 @@ export default createFragmentContainer(NaicsCodeTableContainer, {
         }
       }
     }
-  `
+  `,
 });

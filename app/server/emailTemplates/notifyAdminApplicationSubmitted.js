@@ -1,13 +1,13 @@
-const html = require('html-template-tag');
-const createUrl = require('../helpers/createUrl');
+const html = require("html-template-tag");
+const createUrl = require("../helpers/createUrl");
 
 const createNotifyAdminApplicationSubmittedMail = ({
   applicationId,
   facilityName,
-  operatorName
+  operatorName,
 }) => {
   const appId = Buffer.from(`["applications",${applicationId}]`).toString(
-    'base64'
+    "base64"
   );
   const encodedAppId = encodeURIComponent(appId);
   return html`

@@ -1,17 +1,19 @@
-import React from 'react';
-import {Table} from 'react-bootstrap';
-import {createFragmentContainer, graphql} from 'react-relay';
-import {KeyDates_query} from '__generated__/KeyDates_query.graphql';
-import {defaultMoment} from 'functions/formatDates';
+import React from "react";
+import { Table } from "react-bootstrap";
+import { createFragmentContainer, graphql } from "react-relay";
+import { KeyDates_query } from "__generated__/KeyDates_query.graphql";
+import { defaultMoment } from "functions/formatDates";
 
-const DATE_FORMAT = 'MMM D, YYYY';
+const DATE_FORMAT = "MMM D, YYYY";
 
 interface Props {
   query: KeyDates_query;
 }
 
-export const KeyDatesComponent: React.FunctionComponent<Props> = ({query}) => {
-  const {openedReportingYear, nextReportingYear} = query;
+export const KeyDatesComponent: React.FunctionComponent<Props> = ({
+  query,
+}) => {
+  const { openedReportingYear, nextReportingYear } = query;
 
   if (!openedReportingYear && !nextReportingYear) return null;
 
@@ -30,19 +32,19 @@ export const KeyDatesComponent: React.FunctionComponent<Props> = ({query}) => {
   const keyDates = [
     {
       date: swrsDeadline,
-      description: 'Industrial GHG reporting deadline',
-      key: '848tfh282740jd'
+      description: "Industrial GHG reporting deadline",
+      key: "848tfh282740jd",
     },
     {
       date: startDate,
-      description: 'CIIP application forms open',
-      key: 'j87kj39uhf8930'
+      description: "CIIP application forms open",
+      key: "j87kj39uhf8930",
     },
     {
       date: endDate,
-      description: 'CIIP application form due',
-      key: 'kd9393hd8sy273'
-    }
+      description: "CIIP application form due",
+      key: "kd9393hd8sy273",
+    },
   ];
 
   const keyDatesRows = keyDates
@@ -88,5 +90,5 @@ export default createFragmentContainer(KeyDatesComponent, {
         applicationCloseTime
       }
     }
-  `
+  `,
 });

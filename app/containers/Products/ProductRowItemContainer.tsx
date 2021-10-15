@@ -1,21 +1,21 @@
-import React, {useMemo} from 'react';
-import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
-import {Modal, Badge, Dropdown, Button} from 'react-bootstrap';
-import {IChangeEvent} from '@rjsf/core';
-import {ProductRowItemContainer_product} from 'ProductRowItemContainer_product.graphql';
-import {ProductRowItemContainer_query} from 'ProductRowItemContainer_query.graphql';
-import updateProductMutation from 'mutations/product/updateProductMutation';
-import {CiipProductState} from 'updateProductMutation.graphql';
-import updateBenchmarkMutation from 'mutations/benchmark/updateBenchmarkMutation';
-import createBenchmarkMutation from 'mutations/benchmark/createBenchmarkMutation';
-import benchmarkSchemaFunction from './benchmark-schema';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faCog} from '@fortawesome/free-solid-svg-icons';
+import React, { useMemo } from "react";
+import { graphql, createFragmentContainer, RelayProp } from "react-relay";
+import { Modal, Badge, Dropdown, Button } from "react-bootstrap";
+import { IChangeEvent } from "@rjsf/core";
+import { ProductRowItemContainer_product } from "ProductRowItemContainer_product.graphql";
+import { ProductRowItemContainer_query } from "ProductRowItemContainer_query.graphql";
+import updateProductMutation from "mutations/product/updateProductMutation";
+import { CiipProductState } from "updateProductMutation.graphql";
+import updateBenchmarkMutation from "mutations/benchmark/updateBenchmarkMutation";
+import createBenchmarkMutation from "mutations/benchmark/createBenchmarkMutation";
+import benchmarkSchemaFunction from "./benchmark-schema";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCog } from "@fortawesome/free-solid-svg-icons";
 import InnerModal, {
-  productBenchmarkModalHeaderId
-} from './InnerProductBenchmarkModal';
-import {dateTimeFormat} from 'functions/formatDates';
-import LinkedProducts from './LinkedProducts';
+  productBenchmarkModalHeaderId,
+} from "./InnerProductBenchmarkModal";
+import { dateTimeFormat } from "functions/formatDates";
+import LinkedProducts from "./LinkedProducts";
 
 interface Props {
   relay: RelayProp;
@@ -26,7 +26,7 @@ interface Props {
 export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
   relay,
   product,
-  query
+  query,
 }) => {
   const [productModalShow, setProductModalShow] = React.useState(false);
   const [benchmarkModalShow, setBenchmarkModalShow] = React.useState(false);
@@ -38,7 +38,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
   // Schema for ProductRowItemContainer
   const benchmarkSchema = useMemo(() => {
     const reportingYears = query.allReportingYears.edges.map(
-      ({node}) => node.reportingYear
+      ({ node }) => node.reportingYear
     );
     return benchmarkSchemaFunction(reportingYears);
   }, [query.allReportingYears]);
@@ -51,9 +51,9 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
       input: {
         id: product.id,
         productPatch: {
-          productState: state
-        }
-      }
+          productState: state,
+        },
+      },
     };
     await updateProductMutation(relay.environment, variables);
     setProductModalShow(false);
@@ -83,37 +83,37 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
           subtractGeneratedHeatEmissions:
             e.formData.subtractGeneratedHeatEmissions,
           requiresProductAmount: e.formData.requiresProductAmount,
-          addEmissionsFromEios: e.formData.addEmissionsFromEios
-        }
-      }
+          addEmissionsFromEios: e.formData.addEmissionsFromEios,
+        },
+      },
     };
     await updateProductMutation(relay.environment, variables);
     setProductModalShow(false);
   };
 
-  const createBenchmark = async ({formData}: IChangeEvent) => {
+  const createBenchmark = async ({ formData }: IChangeEvent) => {
     const variables = {
       input: {
         benchmark: {
           ...formData,
-          productId: product.rowId
-        }
+          productId: product.rowId,
+        },
       },
-      productId: product.id
+      productId: product.id,
     };
 
     await createBenchmarkMutation(relay.environment, variables);
     setBenchmarkModalShow(false);
   };
 
-  const editBenchmark = async ({formData}: IChangeEvent) => {
+  const editBenchmark = async ({ formData }: IChangeEvent) => {
     const variables = {
       input: {
         id: currentBenchmark.id,
         benchmarkPatch: {
-          ...formData
-        }
-      }
+          ...formData,
+        },
+      },
     };
     await updateBenchmarkMutation(relay.environment, variables);
     setBenchmarkModalShow(false);
@@ -171,11 +171,11 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
 
   const statusBadgeColor: Record<
     CiipProductState,
-    'warning' | 'success' | 'secondary'
+    "warning" | "success" | "secondary"
   > = {
-    DRAFT: 'warning',
-    PUBLISHED: 'success',
-    ARCHIVED: 'secondary'
+    DRAFT: "warning",
+    PUBLISHED: "success",
+    ARCHIVED: "secondary",
   };
 
   return (
@@ -190,7 +190,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
               as={Button}
               aria-label="Product Settings"
               title="Product Settings"
-              style={{background: 'transparent', border: 'none'}}
+              style={{ background: "transparent", border: "none" }}
             >
               <FontAwesomeIcon size="lg" icon={faCog} />
             </Dropdown.Toggle>
@@ -209,11 +209,11 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
             </Dropdown.Menu>
           </Dropdown>
         </td>
-        <td>{dateTimeFormat(product.updatedAt, 'date_year_first')}</td>
+        <td>{dateTimeFormat(product.updatedAt, "date_year_first")}</td>
         <td>{currentBenchmark?.benchmark ?? null}</td>
         <td>{currentBenchmark?.eligibilityThreshold ?? null}</td>
-        <td>{product.requiresEmissionAllocation ? 'Yes' : 'No'}</td>
-        <td>{product.isCiipProduct ? 'Yes' : 'No'}</td>
+        <td>{product.requiresEmissionAllocation ? "Yes" : "No"}</td>
+        <td>{product.isCiipProduct ? "Yes" : "No"}</td>
         <td>
           <Badge pill variant={statusBadgeColor[product.productState]}>
             {product.productState}
@@ -312,5 +312,5 @@ export default createFragmentContainer(ProductRowItemComponent, {
       }
       ...LinkedProducts_query
     }
-  `
+  `,
 });

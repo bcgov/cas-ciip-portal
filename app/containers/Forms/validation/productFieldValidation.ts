@@ -43,45 +43,45 @@ const productFieldValidation: (formData: any, errors: any) => any = (
   }
 
   if (hasFalseRequiresEmissionAllocation && nonEnergyProductCount > 1)
-    errors['0'].addError(
+    errors["0"].addError(
       `Products: ${productsInConflict.join(
-        ','
+        ","
       )} cannot be reported together as at least one of these products does not require manual allocation of emissions.`
     );
 
   if (hasRequirePurchasedElectricity && !energyProductsReported.includes(3))
-    errors['0'].addError(
-      'Purchased Electricity is a required product based on the products you have reported, please refer to the guidance document'
+    errors["0"].addError(
+      "Purchased Electricity is a required product based on the products you have reported, please refer to the guidance document"
     );
 
   if (hasRequirePurchasedHeat && !energyProductsReported.includes(4))
-    errors['0'].addError(
-      'Purchased Heat is a required product based on the products you have reported, please refer to the guidance document'
+    errors["0"].addError(
+      "Purchased Heat is a required product based on the products you have reported, please refer to the guidance document"
     );
 
   if (hasRequireExportedElectricity && !energyProductsReported.includes(1))
-    errors['0'].addError(
-      'Sold Electricity is a required product based on the products you have reported, please refer to the guidance document'
+    errors["0"].addError(
+      "Sold Electricity is a required product based on the products you have reported, please refer to the guidance document"
     );
 
   if (hasRequireExportedHeat && !energyProductsReported.includes(2))
-    errors['0'].addError(
-      'Sold Heat is a required product based on the products you have reported, please refer to the guidance document'
+    errors["0"].addError(
+      "Sold Heat is a required product based on the products you have reported, please refer to the guidance document"
     );
 
   if (hasRequireGeneratedElectricity && !energyProductsReported.includes(5))
-    errors['0'].addError(
-      'Generated Electricity is a required product based on the products you have reported, please refer to the guidance document'
+    errors["0"].addError(
+      "Generated Electricity is a required product based on the products you have reported, please refer to the guidance document"
     );
 
   if (hasRequireGeneratedHeat && !energyProductsReported.includes(6))
-    errors['0'].addError(
-      'Generated Heat is a required product based on the products you have reported, please refer to the guidance document'
+    errors["0"].addError(
+      "Generated Heat is a required product based on the products you have reported, please refer to the guidance document"
     );
 
   if (hasRequireEmissionsFromEios && !energyProductsReported.includes(7))
-    errors['0'].addError(
-      'Emissions from EIOs is a required product based on the products you have reported, please refer to the guidance document'
+    errors["0"].addError(
+      "Emissions from EIOs is a required product based on the products you have reported, please refer to the guidance document"
     );
 
   return errors;

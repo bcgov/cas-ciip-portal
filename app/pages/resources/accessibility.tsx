@@ -1,11 +1,11 @@
-import React, {Component} from 'react';
-import {graphql} from 'react-relay';
-import {CiipPageComponentProps} from 'next-env';
-import {accessibilityQueryResponse} from 'accessibilityQuery.graphql';
-import DefaultLayout from 'layouts/default-layout';
+import React, { Component } from "react";
+import { graphql } from "react-relay";
+import { CiipPageComponentProps } from "next-env";
+import { accessibilityQueryResponse } from "accessibilityQuery.graphql";
+import DefaultLayout from "layouts/default-layout";
 
 interface Props extends CiipPageComponentProps {
-  query: accessibilityQueryResponse['query'];
+  query: accessibilityQueryResponse["query"];
 }
 
 class Accessibility extends Component<Props> {
@@ -21,8 +21,8 @@ class Accessibility extends Component<Props> {
 
   // TODO: Add content to this empty page
   render() {
-    const {query} = this.props;
-    const {session} = query || {};
+    const { query } = this.props;
+    const { session } = query || {};
     return <DefaultLayout session={session} title="Accessibility" />;
   }
 }

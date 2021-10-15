@@ -1,3 +1,3 @@
-import ErrorFallback from 'components/ErrorFallback';
+import ErrorFallback from "components/ErrorFallback";
 
 export default ErrorFallback;

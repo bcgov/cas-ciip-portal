@@ -1,6 +1,6 @@
-import SessionRefresher from 'components/SessionRefresher';
-import {mount} from 'enzyme';
-import React from 'react';
+import SessionRefresher from "components/SessionRefresher";
+import { mount } from "enzyme";
+import React from "react";
 
 const existingFetch = global.fetch;
 
@@ -16,8 +16,8 @@ afterEach(() => {
   jest.useRealTimers();
 });
 
-describe('The Session Refresher', () => {
-  it('Throttles calls to fetch on user events', async () => {
+describe("The Session Refresher", () => {
+  it("Throttles calls to fetch on user events", async () => {
     const map = {};
     window.addEventListener = jest.fn((event, callback) => {
       map[event] = callback;
@@ -35,15 +35,15 @@ describe('The Session Refresher', () => {
     expect(global.fetch).not.toHaveBeenCalled();
 
     // Trigger keydown event
-    map.keydown({key: 'Enter'});
+    map.keydown({ key: "Enter" });
     jest.advanceTimersByTime(THROTTLED_TIME * 0.5);
 
     expect(global.fetch).not.toHaveBeenCalled();
 
-    map.keydown({key: 'Enter'});
+    map.keydown({ key: "Enter" });
     jest.advanceTimersByTime(THROTTLED_TIME);
 
-    expect(global.fetch).toHaveBeenCalledWith('/session-idle-remaining-time');
+    expect(global.fetch).toHaveBeenCalledWith("/session-idle-remaining-time");
     expect(global.fetch).toHaveBeenCalledTimes(1);
   });
 });

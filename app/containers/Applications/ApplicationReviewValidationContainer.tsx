@@ -5,35 +5,35 @@ import {
   faExclamation,
   faExclamationTriangle,
   faInfoCircle,
-  faTimes
-} from '@fortawesome/free-solid-svg-icons';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import React, {useState} from 'react';
-import {Button, Col, ListGroup, Row} from 'react-bootstrap';
-import {createFragmentContainer, graphql} from 'react-relay';
-import {ApplicationReviewValidationContainer_applicationRevision} from '__generated__/ApplicationReviewValidationContainer_applicationRevision.graphql';
+  faTimes,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { useState } from "react";
+import { Button, Col, ListGroup, Row } from "react-bootstrap";
+import { createFragmentContainer, graphql } from "react-relay";
+import { ApplicationReviewValidationContainer_applicationRevision } from "__generated__/ApplicationReviewValidationContainer_applicationRevision.graphql";
 
 interface Props {
   applicationRevision: ApplicationReviewValidationContainer_applicationRevision;
 }
 
 export const ApplicationReviewValidation: React.FunctionComponent<Props> = ({
-  applicationRevision
+  applicationRevision,
 }) => {
   const [expanded, setExpanded] = useState(false);
 
   const failedValidationItems = applicationRevision.validation.edges.filter(
-    ({node}) => !node.isOk
+    ({ node }) => !node.isOk
   );
   const passedValidationItems = applicationRevision.validation.edges.filter(
-    ({node}) => node.isOk
+    ({ node }) => node.isOk
   );
 
   const failedValidationCount = failedValidationItems.length;
   const totalValidationCount = applicationRevision.validation.edges.length;
   const hasFailedValidations = failedValidationCount > 0;
 
-  const validationVariant = hasFailedValidations ? 'warning' : 'info';
+  const validationVariant = hasFailedValidations ? "warning" : "info";
   const validationIcon = hasFailedValidations
     ? faExclamationTriangle
     : faInfoCircle;
@@ -43,7 +43,7 @@ export const ApplicationReviewValidation: React.FunctionComponent<Props> = ({
 
     return (
       <ul>
-        {validations.map(({node}) => (
+        {validations.map(({ node }) => (
           <li key={node.validationDescription}>
             <FontAwesomeIcon icon={icon} fixedWidth className="mr-1" />
             {node.validationDescription}
@@ -124,8 +124,8 @@ export const ApplicationReviewValidation: React.FunctionComponent<Props> = ({
               onClick={() => setExpanded(!expanded)}
             >
               {expanded
-                ? 'Hide validation details'
-                : 'See all validation details'}
+                ? "Hide validation details"
+                : "See all validation details"}
               <FontAwesomeIcon
                 icon={expanded ? faCaretUp : faCaretDown}
                 className="ml-2"
@@ -156,5 +156,5 @@ export default createFragmentContainer(ApplicationReviewValidation, {
         }
       }
     }
-  `
+  `,
 });

@@ -1,8 +1,8 @@
 import {
   RelayNetworkLayer,
-  urlMiddleware
-} from 'react-relay-network-modern/node8';
-import {Environment, RecordSource, Store} from 'relay-runtime';
+  urlMiddleware,
+} from "react-relay-network-modern/node8";
+import { Environment, RecordSource, Store } from "relay-runtime";
 
 export default {
   // TODO: Not currently used, as SSR is broken. Leaving it in for now.
@@ -18,10 +18,10 @@ export default {
           urlMiddleware({
             // TODO: set $RELAY_ENDPOINT
             // url: req => process.env.RELAY_ENDPOINT
-            url: () => 'http://localhost:3004/grapqhl'
-          })
-        ])
-      })
+            url: () => "http://localhost:3004/grapqhl",
+          }),
+        ]),
+      }),
     };
   },
   createEnvironment: () => {
@@ -34,9 +34,9 @@ export default {
         urlMiddleware({
           // TODO: set $RELAY_ENDPOINT
           // url: req => process.env.RELAY_ENDPOINT
-          url: () => 'http://localhost:3004/grapqhl'
-        })
-      ])
+          url: () => "http://localhost:3004/grapqhl",
+        }),
+      ]),
     });
-  }
+  },
 };

@@ -1,16 +1,16 @@
-import React from 'react';
-import {Typeahead} from 'react-bootstrap-typeahead';
+import React from "react";
+import { Typeahead } from "react-bootstrap-typeahead";
 
 interface Props {
   id?: string;
   placeholder?: string;
   defaultInputValue?: string;
-  options: Array<{id: string | number; name: string}>;
-  inputProps: {id: string};
-  onChange: (items: Array<{id: string | number; name: string}>) => void;
+  options: Array<{ id: string | number; name: string }>;
+  inputProps: { id: string };
+  onChange: (items: Array<{ id: string | number; name: string }>) => void;
   onBlur?: (...args: any[]) => void;
   onMenuToggle?: (...args: any[]) => void;
-  selected?: Array<{id: string | number; name: string}>;
+  selected?: Array<{ id: string | number; name: string }>;
   errorSchema?: any;
 }
 
@@ -23,7 +23,7 @@ export const SearchDropdownComponent: React.FunctionComponent<Props> = ({
   inputProps,
   onChange,
   onBlur,
-  onMenuToggle
+  onMenuToggle,
 }) => {
   return (
     <>
@@ -38,10 +38,10 @@ export const SearchDropdownComponent: React.FunctionComponent<Props> = ({
           // Filter by input
           return option.name.toLowerCase().includes(props.text.toLowerCase());
         }}
-        placeholder={placeholder || 'Search...'}
+        placeholder={placeholder || "Search..."}
         defaultInputValue={defaultInputValue}
         options={options}
-        inputProps={{...inputProps, ...{className: 'typeahead-input'}}}
+        inputProps={{ ...inputProps, ...{ className: "typeahead-input" } }}
         labelKey="name"
         selected={selected}
         onChange={(items) => onChange(items)}

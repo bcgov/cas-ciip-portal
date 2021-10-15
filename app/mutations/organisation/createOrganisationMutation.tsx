@@ -1,10 +1,10 @@
-import {graphql} from 'react-relay';
+import { graphql } from "react-relay";
 import {
   createOrganisationMutation as createOrganisationMutationType,
-  createOrganisationMutationVariables
-} from 'createOrganisationMutation.graphql';
-import RelayModernEnvironment from 'relay-runtime/lib/store/RelayModernEnvironment';
-import BaseMutation from 'mutations/BaseMutation';
+  createOrganisationMutationVariables,
+} from "createOrganisationMutation.graphql";
+import RelayModernEnvironment from "relay-runtime/lib/store/RelayModernEnvironment";
+import BaseMutation from "mutations/BaseMutation";
 
 const mutation = graphql`
   mutation createOrganisationMutation($input: CreateOrganisationInput!) {
@@ -26,7 +26,7 @@ const createOrganisationMutation = async (
   variables: createOrganisationMutationVariables
 ) => {
   const m = new BaseMutation<createOrganisationMutationType>(
-    'create-organisation-mutation'
+    "create-organisation-mutation"
   );
   return m.performMutation(environment, mutation, variables);
 };

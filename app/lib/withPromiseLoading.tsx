@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import * as Sentry from '@sentry/nextjs';
+import React, { useEffect, useState } from "react";
+import * as Sentry from "@sentry/nextjs";
 
 const withPromiseLoading = function higherOrderComponent<
   TProps,
@@ -43,11 +43,11 @@ const withPromiseLoading = function higherOrderComponent<
       const childProps = {
         ...props,
         [isInFlightProp]: isLoading,
-        [asyncEventHandler]: handleAsyncEvent
+        [asyncEventHandler]: handleAsyncEvent,
       };
 
       return <Wrapped {...childProps} />;
-    }
+    },
   }[`WithPromiseLoading(${Wrapped.name})`];
 };
 

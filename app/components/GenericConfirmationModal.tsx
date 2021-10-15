@@ -1,5 +1,5 @@
-import React from 'react';
-import {Modal, Button} from 'react-bootstrap';
+import React from "react";
+import { Modal, Button } from "react-bootstrap";
 
 interface Props {
   show: boolean;
@@ -10,7 +10,7 @@ interface Props {
   cancelButtonText?: string;
   confirmButtonVariant?: string;
   cancelButtonVariant?: string;
-  size?: 'sm' | 'lg' | 'xl';
+  size?: "sm" | "lg" | "xl";
 }
 
 export const GenericConfirmationModal: React.FunctionComponent<Props> = ({
@@ -20,10 +20,10 @@ export const GenericConfirmationModal: React.FunctionComponent<Props> = ({
   onConfirm,
   onCancel,
   confirmButtonVariant,
-  confirmButtonText = 'Confirm',
-  cancelButtonVariant = 'secondary',
-  cancelButtonText = 'Cancel',
-  size
+  confirmButtonText = "Confirm",
+  cancelButtonVariant = "secondary",
+  cancelButtonText = "Cancel",
+  size,
 }) => {
   return (
     <Modal

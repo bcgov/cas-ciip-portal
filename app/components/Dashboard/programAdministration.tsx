@@ -1,13 +1,13 @@
-import React from 'react';
-import {Card, ListGroup} from 'react-bootstrap';
-import Link from 'next/link';
+import React from "react";
+import { Card, ListGroup } from "react-bootstrap";
+import Link from "next/link";
 
 interface Props {
   viewOnly?: boolean;
 }
 
 const ProgramDataManagement: React.FunctionComponent<Props> = ({
-  viewOnly = false
+  viewOnly = false,
 }) => {
   let EditableItems = null;
 

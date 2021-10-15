@@ -1,12 +1,12 @@
-import React from 'react';
-import {Alert, OverlayTrigger, Tooltip} from 'react-bootstrap';
-import {FieldProps} from '@rjsf/core';
-import ObjectField from '@rjsf/core/dist/cjs/components/fields/ObjectField';
-import {createFragmentContainer, graphql} from 'react-relay';
-import {ProductField_query} from 'ProductField_query.graphql';
-import {ProductField_naicsCode} from 'ProductField_naicsCode.graphql';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faInfoCircle} from '@fortawesome/free-solid-svg-icons';
+import React from "react";
+import { Alert, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { FieldProps } from "@rjsf/core";
+import ObjectField from "@rjsf/core/dist/cjs/components/fields/ObjectField";
+import { createFragmentContainer, graphql } from "react-relay";
+import { ProductField_query } from "ProductField_query.graphql";
+import { ProductField_naicsCode } from "ProductField_naicsCode.graphql";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 
 interface FormData {
   productRowId?: number;
@@ -30,13 +30,13 @@ interface Props extends FieldProps<FormData> {
 export const ProductFieldComponent: React.FunctionComponent<Props> = (
   props
 ) => {
-  const {formData, query, naicsCode, onChange} = props;
+  const { formData, query, naicsCode, onChange } = props;
 
   const productIsPublished =
     query.allProducts.edges.some(
-      ({node}) =>
+      ({ node }) =>
         node.rowId === formData.productRowId &&
-        node.productState === 'PUBLISHED'
+        node.productState === "PUBLISHED"
     ) || !formData.productRowId;
 
   const productInNaicsCode =
@@ -48,7 +48,7 @@ export const ProductFieldComponent: React.FunctionComponent<Props> = (
 
   const handleProductChange = (productRowId: number) => {
     const product = query.allProducts.edges.find(
-      ({node}) => node.rowId === productRowId
+      ({ node }) => node.rowId === productRowId
     )?.node;
     onChange({
       ...formData,
@@ -66,7 +66,7 @@ export const ProductFieldComponent: React.FunctionComponent<Props> = (
       subtractGeneratedElectricityEmissions:
         product?.subtractGeneratedElectricityEmissions,
       subtractGeneratedHeatEmissions: product?.subtractGeneratedHeatEmissions,
-      addEmissionsFromEios: product?.addEmissionsFromEios
+      addEmissionsFromEios: product?.addEmissionsFromEios,
     });
   };
 
@@ -162,8 +162,8 @@ export default createFragmentContainer(ProductFieldComponent, {
     fragment ProductField_naicsCode on NaicsCode {
       allowableProducts: productNaicsCodesByNaicsCodeId(
         filter: {
-          deletedAt: {isNull: true}
-          productByProductId: {productState: {equalTo: PUBLISHED}}
+          deletedAt: { isNull: true }
+          productByProductId: { productState: { equalTo: PUBLISHED } }
         }
       ) {
         edges {
@@ -174,5 +174,5 @@ export default createFragmentContainer(ProductFieldComponent, {
         }
       }
     }
-  `
+  `,
 });

@@ -1,10 +1,10 @@
-import {graphql} from 'react-relay';
-import RelayModernEnvironment from 'relay-runtime/lib/store/RelayModernEnvironment';
+import { graphql } from "react-relay";
+import RelayModernEnvironment from "relay-runtime/lib/store/RelayModernEnvironment";
 import {
   updateProductMutation as updateProductMutationType,
-  updateProductMutationVariables
-} from 'updateProductMutation.graphql';
-import BaseMutation from 'mutations/BaseMutation';
+  updateProductMutationVariables,
+} from "updateProductMutation.graphql";
+import BaseMutation from "mutations/BaseMutation";
 
 const mutation = graphql`
   mutation updateProductMutation($input: UpdateProductInput!) {
@@ -22,7 +22,7 @@ const updateProductMutation = async (
   variables: updateProductMutationVariables
 ) => {
   const m = new BaseMutation<updateProductMutationType>(
-    'update-product-mutation'
+    "update-product-mutation"
   );
   return m.performMutation(environment, mutation, variables);
 };

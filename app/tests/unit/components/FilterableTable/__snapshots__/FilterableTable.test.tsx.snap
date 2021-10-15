@@ -3,7 +3,7 @@
 exports[`The filterable table renders extra filters 1`] = `
 Array [
   <div
-    className="jsx-571785697"
+    className="jsx-3918581450"
   >
     <input
       name="myExtraFilter"
@@ -14,10 +14,10 @@ Array [
     className="search-table table table-striped table-bordered table-hover"
   >
     <thead
-      className="jsx-571785697"
+      className="jsx-3918581450"
     >
       <tr
-        className="jsx-571785697"
+        className="jsx-3918581450"
       />
       <tr
         className="jsx-870174952"
@@ -74,7 +74,7 @@ Array [
 exports[`The filterable table renders filter headers 1`] = `
 <Fragment>
   <div
-    className="jsx-571785697"
+    className="jsx-3918581450"
   />
   <ForwardRef
     bordered={true}
@@ -83,10 +83,10 @@ exports[`The filterable table renders filter headers 1`] = `
     striped={true}
   >
     <thead
-      className="jsx-571785697"
+      className="jsx-3918581450"
     >
       <tr
-        className="jsx-571785697"
+        className="jsx-3918581450"
       >
         <SortableTableHeader
           headerVariables={
@@ -174,9 +174,9 @@ exports[`The filterable table renders filter headers 1`] = `
     </Alert>
   </Col>
   <JSXStyle
-    id="571785697"
+    id="3918581450"
   >
-    .search-table{text-align:center;}.search-table.loading td{opacity:0;pointer-events:none;}.search-table.loading tbody{position:relative;}.search-table.loading tbody::after{width:2rem;height:2rem;vertical-align:text-bottom;background-color:black;border-radius:50%;opacity:0;content:'';position:absolute;top:50%;left:50%;-webkit-animation:spinner-grow 0.75s linear infinite;animation:spinner-grow 0.75s linear infinite;}#no-search-results{text-align:center;}
+    .search-table{text-align:center;}.search-table.loading td{opacity:0;pointer-events:none;}.search-table.loading tbody{position:relative;}.search-table.loading tbody::after{width:2rem;height:2rem;vertical-align:text-bottom;background-color:black;border-radius:50%;opacity:0;content:"";position:absolute;top:50%;left:50%;-webkit-animation:spinner-grow 0.75s linear infinite;animation:spinner-grow 0.75s linear infinite;}#no-search-results{text-align:center;}
   </JSXStyle>
 </Fragment>
 `;
@@ -184,7 +184,7 @@ exports[`The filterable table renders filter headers 1`] = `
 exports[`The filterable table renders sort headers 1`] = `
 <Fragment>
   <div
-    className="jsx-571785697"
+    className="jsx-3918581450"
   />
   <ForwardRef
     bordered={true}
@@ -193,10 +193,10 @@ exports[`The filterable table renders sort headers 1`] = `
     striped={true}
   >
     <thead
-      className="jsx-571785697"
+      className="jsx-3918581450"
     >
       <tr
-        className="jsx-571785697"
+        className="jsx-3918581450"
       >
         <SortableTableHeader
           headerVariables={
@@ -284,9 +284,9 @@ exports[`The filterable table renders sort headers 1`] = `
     </Alert>
   </Col>
   <JSXStyle
-    id="571785697"
+    id="3918581450"
   >
-    .search-table{text-align:center;}.search-table.loading td{opacity:0;pointer-events:none;}.search-table.loading tbody{position:relative;}.search-table.loading tbody::after{width:2rem;height:2rem;vertical-align:text-bottom;background-color:black;border-radius:50%;opacity:0;content:'';position:absolute;top:50%;left:50%;-webkit-animation:spinner-grow 0.75s linear infinite;animation:spinner-grow 0.75s linear infinite;}#no-search-results{text-align:center;}
+    .search-table{text-align:center;}.search-table.loading td{opacity:0;pointer-events:none;}.search-table.loading tbody{position:relative;}.search-table.loading tbody::after{width:2rem;height:2rem;vertical-align:text-bottom;background-color:black;border-radius:50%;opacity:0;content:"";position:absolute;top:50%;left:50%;-webkit-animation:spinner-grow 0.75s linear infinite;animation:spinner-grow 0.75s linear infinite;}#no-search-results{text-align:center;}
   </JSXStyle>
 </Fragment>
 `;
@@ -294,7 +294,7 @@ exports[`The filterable table renders sort headers 1`] = `
 exports[`The filterable table renders the table body 1`] = `
 <Fragment>
   <div
-    className="jsx-571785697"
+    className="jsx-3918581450"
   />
   <ForwardRef
     bordered={true}
@@ -303,10 +303,10 @@ exports[`The filterable table renders the table body 1`] = `
     striped={true}
   >
     <thead
-      className="jsx-571785697"
+      className="jsx-3918581450"
     >
       <tr
-        className="jsx-571785697"
+        className="jsx-3918581450"
       />
       <FilterableTableFilterRow
         filterArgs={Object {}}
@@ -354,9 +354,9 @@ exports[`The filterable table renders the table body 1`] = `
     </Alert>
   </Col>
   <JSXStyle
-    id="571785697"
+    id="3918581450"
   >
-    .search-table{text-align:center;}.search-table.loading td{opacity:0;pointer-events:none;}.search-table.loading tbody{position:relative;}.search-table.loading tbody::after{width:2rem;height:2rem;vertical-align:text-bottom;background-color:black;border-radius:50%;opacity:0;content:'';position:absolute;top:50%;left:50%;-webkit-animation:spinner-grow 0.75s linear infinite;animation:spinner-grow 0.75s linear infinite;}#no-search-results{text-align:center;}
+    .search-table{text-align:center;}.search-table.loading td{opacity:0;pointer-events:none;}.search-table.loading tbody{position:relative;}.search-table.loading tbody::after{width:2rem;height:2rem;vertical-align:text-bottom;background-color:black;border-radius:50%;opacity:0;content:"";position:absolute;top:50%;left:50%;-webkit-animation:spinner-grow 0.75s linear infinite;animation:spinner-grow 0.75s linear infinite;}#no-search-results{text-align:center;}
   </JSXStyle>
 </Fragment>
 `;

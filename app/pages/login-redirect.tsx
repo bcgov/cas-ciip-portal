@@ -1,14 +1,14 @@
-import React, {Component} from 'react';
-import {Row, Col} from 'react-bootstrap';
-import {graphql} from 'react-relay';
-import {loginRedirectQueryResponse} from 'loginRedirectQuery.graphql';
-import {CiipPageComponentProps} from 'next-env';
-import DefaultLayout from 'layouts/default-layout';
-import RegistrationLoginButtons from 'containers/RegistrationLoginButtons';
-import {NextRouter} from 'next/router';
+import React, { Component } from "react";
+import { Row, Col } from "react-bootstrap";
+import { graphql } from "react-relay";
+import { loginRedirectQueryResponse } from "loginRedirectQuery.graphql";
+import { CiipPageComponentProps } from "next-env";
+import DefaultLayout from "layouts/default-layout";
+import RegistrationLoginButtons from "containers/RegistrationLoginButtons";
+import { NextRouter } from "next/router";
 
 interface Props extends CiipPageComponentProps {
-  query: loginRedirectQueryResponse['query'];
+  query: loginRedirectQueryResponse["query"];
   router: NextRouter;
 }
 
@@ -25,12 +25,12 @@ export default class LoginRedirect extends Component<Props> {
   `;
 
   render() {
-    const {query, router} = this.props;
-    const {session} = query || {};
+    const { query, router } = this.props;
+    const { session } = query || {};
 
     const headerText = router.query.sessionIdled
-      ? 'You were logged out due to inactivity.'
-      : 'You need to be logged in to access this page.';
+      ? "You were logged out due to inactivity."
+      : "You need to be logged in to access this page.";
     return (
       <DefaultLayout showSubheader={false} session={session}>
         <Row>

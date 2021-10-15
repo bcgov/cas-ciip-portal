@@ -1,11 +1,11 @@
-import {DeclarativeMutationConfig, graphql} from 'react-relay';
-import RelayModernEnvironment from 'relay-runtime/lib/store/RelayModernEnvironment';
+import { DeclarativeMutationConfig, graphql } from "react-relay";
+import RelayModernEnvironment from "relay-runtime/lib/store/RelayModernEnvironment";
 
-import BaseMutation from 'mutations/BaseMutation';
+import BaseMutation from "mutations/BaseMutation";
 import {
   createProductNaicsCodeMutation as createProductNaicsCodeMutationType,
-  createProductNaicsCodeMutationVariables
-} from '__generated__/createProductNaicsCodeMutation.graphql';
+  createProductNaicsCodeMutationVariables,
+} from "__generated__/createProductNaicsCodeMutation.graphql";
 
 // The default createNaicsCode mutation has been overridden by a custom function in our database in order to upsert on conflict
 const mutation = graphql`
@@ -32,20 +32,20 @@ const createProductNaicsCodeMutation = async (
 ) => {
   const configs: DeclarativeMutationConfig[] = [
     {
-      type: 'RANGE_ADD',
+      type: "RANGE_ADD",
       parentID: naicsCodeId,
       connectionInfo: [
         {
           key: connectionKey,
-          rangeBehavior: 'append'
-        }
+          rangeBehavior: "append",
+        },
       ],
-      edgeName: 'productNaicsCodeEdge'
-    }
+      edgeName: "productNaicsCodeEdge",
+    },
   ];
 
   const m = new BaseMutation<createProductNaicsCodeMutationType>(
-    'create-product_naics_code-mutation',
+    "create-product_naics_code-mutation",
     configs
   );
   return m.performMutation(environment, mutation, variables);

@@ -1,9 +1,9 @@
-const fs = require('fs');
-const path = require('path');
+const fs = require("fs");
+const path = require("path");
 
-function listFiles(basePath, currentSubDir = '', arrayOfFiles = []) {
+function listFiles(basePath, currentSubDir = "", arrayOfFiles = []) {
   const files = fs.readdirSync(path.join(basePath, currentSubDir), {
-    withFileTypes: true
+    withFileTypes: true,
   });
 
   files.forEach((file) => {
@@ -14,8 +14,8 @@ function listFiles(basePath, currentSubDir = '', arrayOfFiles = []) {
         arrayOfFiles
       );
     } else {
-      const basename = path.basename(file.name, '.tsx');
-      if (basename === 'index') {
+      const basename = path.basename(file.name, ".tsx");
+      if (basename === "index") {
         arrayOfFiles.push(currentSubDir);
       } else {
         arrayOfFiles.push(path.join(currentSubDir, basename));
@@ -28,11 +28,11 @@ function listFiles(basePath, currentSubDir = '', arrayOfFiles = []) {
 
 function getRoutes(currentPath, ignoreFolders = []) {
   const json = {};
-  const entries = fs.readdirSync(currentPath, {withFileTypes: true});
+  const entries = fs.readdirSync(currentPath, { withFileTypes: true });
 
   const files = entries
     .filter((file) => !file.isDirectory())
-    .map((file) => path.basename(file.name, '.tsx'));
+    .map((file) => path.basename(file.name, ".tsx"));
 
   const folders = entries.filter(
     (folder) => folder.isDirectory() && !ignoreFolders.includes(folder.name)
@@ -46,9 +46,9 @@ function getRoutes(currentPath, ignoreFolders = []) {
 }
 
 function listAuthenticatedPages(
-  writeFile = 'cypress/support/authenticatedPages.json'
+  writeFile = "cypress/support/authenticatedPages.json"
 ) {
-  const routes = getRoutes('pages', ['resources']);
+  const routes = getRoutes("pages", ["resources"]);
   if (writeFile) fs.writeFileSync(writeFile, JSON.stringify(routes));
 }
 

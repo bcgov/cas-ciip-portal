@@ -1,9 +1,13 @@
-import React from 'react';
-import {Modal, Button, Alert} from 'react-bootstrap';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faEnvelope, faCheck, faTimes} from '@fortawesome/free-solid-svg-icons';
-import ModalSharedStyles from 'components/ModalSharedStyles';
-import {getUserFriendlyStatusLabel} from 'lib/text-transforms';
+import React from "react";
+import { Modal, Button, Alert } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faEnvelope,
+  faCheck,
+  faTimes,
+} from "@fortawesome/free-solid-svg-icons";
+import ModalSharedStyles from "components/ModalSharedStyles";
+import { getUserFriendlyStatusLabel } from "lib/text-transforms";
 
 interface Props {
   show: boolean;
@@ -16,26 +20,26 @@ export const DecisionModal: React.FunctionComponent<Props> = ({
   show,
   onHide,
   onDecision,
-  currentStatus
+  currentStatus,
 }) => {
-  const decisionHasBeenMade = currentStatus !== 'SUBMITTED';
+  const decisionHasBeenMade = currentStatus !== "SUBMITTED";
   const title = decisionHasBeenMade
     ? `Revert Decision`
-    : 'Make a Decision or Request Changes';
+    : "Make a Decision or Request Changes";
 
   const makeDecisionContent = (
     <>
       <Modal.Body>
         <p>
           Once a decision is made or changes are requested, general comments
-          will become visible to the applicant, who will be{' '}
+          will become visible to the applicant, who will be{" "}
           <strong>immediately notified of the decision by email</strong>.
         </p>
         <p className="d-flex justify-content-center">
           <Button
             variant="outline-secondary"
             size="lg"
-            onClick={() => onDecision('REQUESTED_CHANGES')}
+            onClick={() => onDecision("REQUESTED_CHANGES")}
           >
             <FontAwesomeIcon icon={faEnvelope} />
             Request Changes
@@ -46,7 +50,7 @@ export const DecisionModal: React.FunctionComponent<Props> = ({
         <Button
           variant="success"
           size="lg"
-          onClick={() => onDecision('APPROVED')}
+          onClick={() => onDecision("APPROVED")}
         >
           <FontAwesomeIcon icon={faCheck} />
           Approve
@@ -55,7 +59,7 @@ export const DecisionModal: React.FunctionComponent<Props> = ({
         <Button
           variant="danger"
           size="lg"
-          onClick={() => onDecision('REJECTED')}
+          onClick={() => onDecision("REJECTED")}
         >
           <FontAwesomeIcon icon={faTimes} />
           Reject
@@ -67,17 +71,17 @@ export const DecisionModal: React.FunctionComponent<Props> = ({
     <>
       <Modal.Body>
         <p>
-          The applicant was notified by email of the following decision:{' '}
+          The applicant was notified by email of the following decision:{" "}
           <strong>{getUserFriendlyStatusLabel(currentStatus)}</strong>
         </p>
         <p>Would you like to revert this decision?</p>
         <p>
-          Doing so will change this application&apos;s status back to{' '}
+          Doing so will change this application&apos;s status back to{" "}
           <strong>Submitted</strong> and you will have the opportunity to make
           further changes to the review before making a new decision or
           requesting changes.
         </p>
-        {currentStatus === 'REQUESTED_CHANGES' && (
+        {currentStatus === "REQUESTED_CHANGES" && (
           <Alert variant="secondary">
             <strong>Note:</strong> If the applicant begins drafting a new
             revision of the application, it will no longer be possible to revert
@@ -86,7 +90,7 @@ export const DecisionModal: React.FunctionComponent<Props> = ({
         )}
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={() => onDecision('SUBMITTED')}>Revert Decision</Button>
+        <Button onClick={() => onDecision("SUBMITTED")}>Revert Decision</Button>
       </Modal.Footer>
     </>
   );

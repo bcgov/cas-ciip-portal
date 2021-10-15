@@ -1,9 +1,9 @@
-import React from 'react';
-import withPromiseLoading from 'lib/withPromiseLoading';
-import {Button as BootstrapButton, ButtonProps} from 'react-bootstrap';
+import React from "react";
+import withPromiseLoading from "lib/withPromiseLoading";
+import { Button as BootstrapButton, ButtonProps } from "react-bootstrap";
 
-const IN_FLIGHT_PROPERTY = 'disabled';
-const ASYNC_HANDLER = 'onClick';
+const IN_FLIGHT_PROPERTY = "disabled";
+const ASYNC_HANDLER = "onClick";
 
 interface Props extends ButtonProps {
   loadingText?: string;

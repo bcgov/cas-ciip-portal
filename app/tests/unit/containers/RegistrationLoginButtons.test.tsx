@@ -1,44 +1,44 @@
-import React from 'react';
-import {shallow} from 'enzyme';
-import {RegistrationLoginButtonsComponent} from 'containers/RegistrationLoginButtons';
+import React from "react";
+import { shallow } from "enzyme";
+import { RegistrationLoginButtonsComponent } from "containers/RegistrationLoginButtons";
 
-describe('The RegistrationLoginButtons component', () => {
-  const useRouter = jest.spyOn(require('next/router'), 'useRouter');
+describe("The RegistrationLoginButtons component", () => {
+  const useRouter = jest.spyOn(require("next/router"), "useRouter");
   useRouter.mockImplementation(() => ({
-    query: {}
+    query: {},
   }));
 
-  it('should render the date where the current application window closes', () => {
+  it("should render the date where the current application window closes", () => {
     const component = shallow(
       <RegistrationLoginButtonsComponent
         query={{
-          ' $refType': 'RegistrationLoginButtons_query',
+          " $refType": "RegistrationLoginButtons_query",
           openedReportingYear: {
-            applicationCloseTime: '2020-01-01T23:59:59-07:00'
-          }
+            applicationCloseTime: "2020-01-01T23:59:59-07:00",
+          },
         }}
       />
     );
 
     expect(component).toMatchSnapshot();
-    expect(component.find('Card p').first().text()).toStartWith(
-      'Operators must submit a CIIP application form by January 1st, 2020.'
+    expect(component.find("Card p").first().text()).toStartWith(
+      "Operators must submit a CIIP application form by January 1st, 2020."
     );
   });
 
-  it('should render a message about the application window being closed', () => {
+  it("should render a message about the application window being closed", () => {
     const component = shallow(
       <RegistrationLoginButtonsComponent
         query={{
-          ' $refType': 'RegistrationLoginButtons_query',
-          openedReportingYear: null
+          " $refType": "RegistrationLoginButtons_query",
+          openedReportingYear: null,
         }}
       />
     );
 
     expect(component).toMatchSnapshot();
-    expect(component.find('Card p').first().text()).toStartWith(
-      'The due date for CIIP application forms has passed.'
+    expect(component.find("Card p").first().text()).toStartWith(
+      "The due date for CIIP application forms has passed."
     );
   });
 
@@ -47,14 +47,14 @@ describe('The RegistrationLoginButtons component', () => {
     const component = shallow(
       <RegistrationLoginButtonsComponent
         query={{
-          ' $refType': 'RegistrationLoginButtons_query',
+          " $refType": "RegistrationLoginButtons_query",
           openedReportingYear: {
-            applicationCloseTime: '2020-01-01T23:59:59-07:00'
-          }
+            applicationCloseTime: "2020-01-01T23:59:59-07:00",
+          },
         }}
       />
     );
-    expect(component.find('a').first().prop('href')).toEqual('/register');
-    expect(component.find('a').first().parent().type()).not.toEqual('Link');
+    expect(component.find("a").first().prop("href")).toEqual("/register");
+    expect(component.find("a").first().parent().type()).not.toEqual("Link");
   });
 });

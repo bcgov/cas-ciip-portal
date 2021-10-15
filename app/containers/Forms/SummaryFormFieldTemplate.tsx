@@ -1,6 +1,6 @@
-import React from 'react';
-import {Col, Form} from 'react-bootstrap';
-import {FieldTemplateProps} from '@rjsf/core';
+import React from "react";
+import { Col, Form } from "react-bootstrap";
+import { FieldTemplateProps } from "@rjsf/core";
 
 const FormFieldTemplate: React.FunctionComponent<FieldTemplateProps> = ({
   label,
@@ -10,24 +10,24 @@ const FormFieldTemplate: React.FunctionComponent<FieldTemplateProps> = ({
   classNames,
   hidden,
   uiSchema,
-  formData
+  formData,
 }) => {
   if (hidden) return null;
 
   if (
-    uiSchema['ui:options']?.disableRenderingIfEmpty &&
+    uiSchema["ui:options"]?.disableRenderingIfEmpty &&
     (formData === null || formData === undefined)
   )
     return null;
 
-  if (schema.type === 'array')
+  if (schema.type === "array")
     return (
       <Col xs={12} className={`${classNames} summary-array-col`}>
         {children}
         {errors}
       </Col>
     );
-  if (schema.type === 'object')
+  if (schema.type === "object")
     return (
       <Col xs={12} className={`${classNames} summary-formrow`}>
         <Form.Row>

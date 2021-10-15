@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
-import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
-import {Dropdown, FormControl, Card, Table} from 'react-bootstrap';
-import {AddFacility_query} from 'AddFacility_query.graphql';
-import AddFacilityModal from './AddFacilityModal';
-import createFacilityMutation from 'mutations/facility/createFacilityMutation';
-import Facility from './Facility';
+import React, { useState } from "react";
+import { graphql, createFragmentContainer, RelayProp } from "react-relay";
+import { Dropdown, FormControl, Card, Table } from "react-bootstrap";
+import { AddFacility_query } from "AddFacility_query.graphql";
+import AddFacilityModal from "./AddFacilityModal";
+import createFacilityMutation from "mutations/facility/createFacilityMutation";
+import Facility from "./Facility";
 
 interface Props {
   query: AddFacility_query;
@@ -17,8 +17,8 @@ interface Props {
 
 export const AddFacilityComponent: React.FunctionComponent<Props> = (props) => {
   const [selectedFacilityDetails, setSelectedFacilityDetails] = useState(null);
-  const {query} = props;
-  const {allFacilities} = query;
+  const { query } = props;
+  const { allFacilities } = query;
   const changeInput = (event) => {
     event.stopPropagation();
     event.preventDefault();
@@ -35,25 +35,25 @@ export const AddFacilityComponent: React.FunctionComponent<Props> = (props) => {
     swrsReportId
   ) => {
     props.handleFacilityChange(id);
-    props.handleInputChange('');
+    props.handleInputChange("");
     setSelectedFacilityDetails({
       name,
       id,
       operatorName,
       facilityType,
       bcghgid,
-      swrsReportId
+      swrsReportId,
     });
   };
 
   const handleAddFacility = async (variables) => {
-    const {environment} = props.relay;
+    const { environment } = props.relay;
     await createFacilityMutation(environment, variables);
   };
 
   return (
     <div>
-      <Card style={{marginTop: '50px'}}>
+      <Card style={{ marginTop: "50px" }}>
         <Card.Body>
           <Card.Title>Search for a facility: </Card.Title>
           <Dropdown className="search-dropdown">
@@ -67,7 +67,7 @@ export const AddFacilityComponent: React.FunctionComponent<Props> = (props) => {
                 onChange={changeInput}
               />
               <div className="facility-scroll">
-                {allFacilities.edges.map(({node}) => {
+                {allFacilities.edges.map(({ node }) => {
                   return (
                     <Facility
                       key={node.id}
@@ -84,9 +84,9 @@ export const AddFacilityComponent: React.FunctionComponent<Props> = (props) => {
           {props.selectedFacility !== null && (
             <Table
               style={{
-                textAlign: 'center',
-                marginTop: '10px',
-                borderBottom: '1px solid rgb(0,0,0,0.1)'
+                textAlign: "center",
+                marginTop: "10px",
+                borderBottom: "1px solid rgb(0,0,0,0.1)",
               }}
             >
               <thead>
@@ -144,5 +144,5 @@ export default createFragmentContainer(AddFacilityComponent, {
       }
       ...AddFacilityModal_query
     }
-  `
+  `,
 });

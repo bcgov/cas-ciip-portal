@@ -1,20 +1,20 @@
-import React from 'react';
-import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
+import React from "react";
+import { graphql, createFragmentContainer, RelayProp } from "react-relay";
 import {
   Table,
   Dropdown,
   Button,
   FormControl,
   Alert,
-  Card
-} from 'react-bootstrap';
-import getConfig from 'next/config';
-import {Organisations_query} from 'Organisations_query.graphql';
-import RelayModernEnvironment from 'relay-runtime/lib/store/RelayModernEnvironment';
-import LoadingSpinner from 'components/LoadingSpinner';
-import Organisation from './Organisation';
-import UserOrganisation from './UserOrganisation';
-import LoadingOnClickButton from 'components/helpers/LoadingOnClickButton';
+  Card,
+} from "react-bootstrap";
+import getConfig from "next/config";
+import { Organisations_query } from "Organisations_query.graphql";
+import RelayModernEnvironment from "relay-runtime/lib/store/RelayModernEnvironment";
+import LoadingSpinner from "components/LoadingSpinner";
+import Organisation from "./Organisation";
+import UserOrganisation from "./UserOrganisation";
+import LoadingOnClickButton from "components/helpers/LoadingOnClickButton";
 
 interface Props {
   query: Organisations_query;
@@ -31,11 +31,11 @@ interface Props {
 export const OrganisationsComponent: React.FunctionComponent<Props> = (
   props
 ) => {
-  const {session, allOrganisations} = props.query;
+  const { session, allOrganisations } = props.query;
   const adminEmail = getConfig()?.publicRuntimeConfig.ADMIN_EMAIL;
   const adminMailToUrl = adminEmail
     ? `mailto:${adminEmail}?subject=CIIP Portal Inquiry`
-    : '#';
+    : "#";
   if (!session) return <LoadingSpinner />;
 
   const changeInput = (event) => {
@@ -54,14 +54,14 @@ export const OrganisationsComponent: React.FunctionComponent<Props> = (
   const claimOrg = async (active) => {
     await props.handleOrgConfirm(active, props.relay.environment);
     props.handleContextChange();
-    props.handleInputChange('');
+    props.handleInputChange("");
     props.handleOrgChange(null);
   };
 
   const cancelClaim = () => {
     props.handleOrgChange(null);
     props.handleContextChange();
-    props.handleInputChange('');
+    props.handleInputChange("");
   };
 
   const userOrgs = session.ciipUserBySub.ciipUserOrganisationsByUserId.edges;
@@ -71,15 +71,15 @@ export const OrganisationsComponent: React.FunctionComponent<Props> = (
       <Card bg="light">
         <Card.Body>
           Operator, Operation Representative, and Reporting Operation are
-          defined in the{' '}
+          defined in the{" "}
           <a
             href="https://www.bclaws.ca/civix/document/id/lc/statreg/249_2015"
             target="_blank"
             rel="noreferrer noopener"
           >
             Greenhouse Gas Emission Reporting Regulation
-          </a>{' '}
-          of the{' '}
+          </a>{" "}
+          of the{" "}
           <a
             href="https://www.bclaws.ca/civix/document/id/complete/statreg/14029_01"
             target="_blank"
@@ -96,7 +96,7 @@ export const OrganisationsComponent: React.FunctionComponent<Props> = (
           striped
           bordered
           hover
-          style={{textAlign: 'left', marginBottom: '40px'}}
+          style={{ textAlign: "left", marginBottom: "40px" }}
         >
           <thead>
             <tr>
@@ -106,7 +106,7 @@ export const OrganisationsComponent: React.FunctionComponent<Props> = (
             </tr>
           </thead>
           <tbody>
-            {userOrgs.map(({node}) => {
+            {userOrgs.map(({ node }) => {
               return <UserOrganisation key={node.id} userOrganisation={node} />;
             })}
           </tbody>
@@ -122,16 +122,16 @@ export const OrganisationsComponent: React.FunctionComponent<Props> = (
       )}
 
       <div>
-        <Card style={{marginTop: '50px'}}>
+        <Card style={{ marginTop: "50px" }}>
           <Card.Body>
             {props.confirmOrg ? (
               <>
                 <Card.Title>Requesting access to: </Card.Title>
-                <h4 style={{fontWeight: 300, margin: '15px 0'}}>
-                  {props.orgInput}{' '}
+                <h4 style={{ fontWeight: 300, margin: "15px 0" }}>
+                  {props.orgInput}{" "}
                 </h4>
                 <LoadingOnClickButton
-                  style={{marginRight: '15px'}}
+                  style={{ marginRight: "15px" }}
                   variant="primary"
                   onClick={async () => claimOrg(false)}
                   loadingText="Requesting..."
@@ -153,15 +153,15 @@ export const OrganisationsComponent: React.FunctionComponent<Props> = (
                     The CleanBC Industrial Incentive Program application must be
                     submitted by the Operator of the Reporting Operation or, if
                     there is more than one Operator, the Designated Operator as
-                    defined by the{' '}
+                    defined by the{" "}
                     <Alert.Link
                       href="https://www.bclaws.ca/civix/document/id/lc/statreg/249_2015"
                       target="_blank"
                       rel="noreferrer noopener"
                     >
                       Greenhouse Gas Emission Reporting Regulation
-                    </Alert.Link>{' '}
-                    of the{' '}
+                    </Alert.Link>{" "}
+                    of the{" "}
                     <Alert.Link
                       href="https://www.bclaws.ca/civix/document/id/complete/statreg/14029_01"
                       target="_blank"
@@ -174,7 +174,7 @@ export const OrganisationsComponent: React.FunctionComponent<Props> = (
                     is provided.
                   </p>
                   <p>
-                    Further information about CIIP can be found on the{' '}
+                    Further information about CIIP can be found on the{" "}
                     <Alert.Link
                       href="https://www2.gov.bc.ca/gov/content?id=6F748A4DD83447C59B8B9361882FF9A3"
                       target="_blank"
@@ -185,11 +185,11 @@ export const OrganisationsComponent: React.FunctionComponent<Props> = (
                     .
                   </p>
                   <p>
-                    If you have any questions, please email{' '}
+                    If you have any questions, please email{" "}
                     <Alert.Link href={adminMailToUrl}>{adminEmail}</Alert.Link>.
                   </p>
                 </Alert>
-                <small style={{display: 'block', marginBottom: '20px'}}>
+                <small style={{ display: "block", marginBottom: "20px" }}>
                   (You can search to narrow the results in the dropdown)
                 </small>
                 <Dropdown.Toggle id="org-dropdown" className="search-toggle">
@@ -208,7 +208,7 @@ export const OrganisationsComponent: React.FunctionComponent<Props> = (
                           (uo) => uo.node.organisationId === org.node.rowId
                         );
                       })
-                      .map(({node}) => {
+                      .map(({ node }) => {
                         return (
                           <Organisation
                             key={node.id}
@@ -224,7 +224,7 @@ export const OrganisationsComponent: React.FunctionComponent<Props> = (
               </Dropdown>
             )}
             <hr />
-            If you cannot find your operator in the list, please{' '}
+            If you cannot find your operator in the list, please{" "}
             <a href={adminMailToUrl}>contact CAS</a> for assistance.
             <style jsx>
               {`
@@ -271,5 +271,5 @@ export default createFragmentContainer(OrganisationsComponent, {
         }
       }
     }
-  `
+  `,
 });

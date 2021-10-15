@@ -1,13 +1,13 @@
-import React from 'react';
-import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
-import FormArrayFieldTemplate from 'containers/Forms/FormArrayFieldTemplate';
-import FormFieldTemplate from 'containers/Forms/FormFieldTemplate';
-import {JSONSchema7} from 'json-schema';
-import productSchema from './product-schema.json';
-import {IChangeEvent} from '@rjsf/core';
-import {Button} from 'react-bootstrap';
-import HeaderWidget from 'components/HeaderWidget';
-import LoadingOnSubmitForm from 'components/helpers/LoadingOnSubmitForm';
+import React from "react";
+import FormObjectFieldTemplate from "containers/Forms/FormObjectFieldTemplate";
+import FormArrayFieldTemplate from "containers/Forms/FormArrayFieldTemplate";
+import FormFieldTemplate from "containers/Forms/FormFieldTemplate";
+import { JSONSchema7 } from "json-schema";
+import productSchema from "./product-schema.json";
+import { IChangeEvent } from "@rjsf/core";
+import { Button } from "react-bootstrap";
+import HeaderWidget from "components/HeaderWidget";
+import LoadingOnSubmitForm from "components/helpers/LoadingOnSubmitForm";
 
 interface Props {
   saveProduct: (e: IChangeEvent) => Promise<void>;
@@ -18,13 +18,13 @@ interface Props {
 const ProductCreatorForm: React.FunctionComponent<Props> = ({
   saveProduct,
   disabled,
-  toggleShowCreateForm
+  toggleShowCreateForm,
 }) => {
   return (
     <LoadingOnSubmitForm
       omitExtraData
       liveOmit
-      widgets={{header: HeaderWidget}}
+      widgets={{ header: HeaderWidget }}
       schema={productSchema.schema as JSONSchema7}
       uiSchema={productSchema.uiSchema}
       showErrorList={false}
@@ -39,7 +39,7 @@ const ProductCreatorForm: React.FunctionComponent<Props> = ({
       </Button>
       <Button
         variant="secondary"
-        style={{marginLeft: '0.5em'}}
+        style={{ marginLeft: "0.5em" }}
         onClick={toggleShowCreateForm}
       >
         Close

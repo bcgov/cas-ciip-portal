@@ -1,18 +1,18 @@
 import {
   commitMutation as commitMutationDefault,
-  GraphQLTaggedNode
-} from 'react-relay';
+  GraphQLTaggedNode,
+} from "react-relay";
 import {
   DeclarativeMutationConfig,
   Disposable,
-  MutationParameters
-} from 'relay-runtime';
-import {toast} from 'react-toastify';
-import RelayModernEnvironment from 'relay-runtime/lib/store/RelayModernEnvironment';
-import {MutationConfigWithDebounce} from 'next-env';
+  MutationParameters,
+} from "relay-runtime";
+import { toast } from "react-toastify";
+import RelayModernEnvironment from "relay-runtime/lib/store/RelayModernEnvironment";
+import { MutationConfigWithDebounce } from "next-env";
 
 interface BaseMutationType extends MutationParameters {
-  variables: {input: any; messages?: {success: string; failure: string}};
+  variables: { input: any; messages?: { success: string; failure: string } };
 }
 
 const debouncedMutationMap = new Map<string, Disposable>();
@@ -30,29 +30,29 @@ export default class BaseMutation<T extends BaseMutationType = never> {
   async performMutation(
     environment: RelayModernEnvironment,
     mutation: GraphQLTaggedNode,
-    variables: T['variables'],
+    variables: T["variables"],
     optimisticResponse?: any,
     updater?: (...args: any[]) => any,
     debounceKey?: string
   ) {
     const successMessage = variables.messages?.success
       ? variables.messages.success
-      : '';
+      : "";
     const failureMessage = variables.messages?.failure
       ? variables.messages.failure
-      : 'Oops! Seems like something went wrong';
+      : "Oops! Seems like something went wrong";
 
-    const {configs, mutationName} = this;
+    const { configs, mutationName } = this;
     async function commitMutation(
       commitEnvironment,
       options: {
         mutation: GraphQLTaggedNode;
-        variables: T['variables'];
+        variables: T["variables"];
         optimisticResponse: any;
         updater: any;
       }
     ) {
-      return new Promise<T['response']>((resolve, reject) => {
+      return new Promise<T["response"]>((resolve, reject) => {
         // Debounced mutations should be commited immediately to perform the optimisticUpdate
         // The actual request will be cancelled in the network layer
         // Here we either dispose of a debounced mutation, or remove it from the map when it errors/completes
@@ -66,7 +66,7 @@ export default class BaseMutation<T extends BaseMutationType = never> {
         const disposable = commitMutationDefault<T>(commitEnvironment, {
           ...options,
           configs,
-          cacheConfig: {debounceKey},
+          cacheConfig: { debounceKey },
           onError: (error) => {
             if (debounceKey) {
               debouncedMutationMap.delete(debounceKey);
@@ -75,11 +75,11 @@ export default class BaseMutation<T extends BaseMutationType = never> {
             reject(error);
             if (failureMessage) {
               toast(failureMessage, {
-                className: 'toastalert-error',
+                className: "toastalert-error",
                 autoClose: false,
-                position: 'top-center',
+                position: "top-center",
                 // Don't show duplicate errors if the same mutation fails several times in a row
-                toastId: mutationName
+                toastId: mutationName,
               });
             }
           },
@@ -91,12 +91,12 @@ export default class BaseMutation<T extends BaseMutationType = never> {
             errors ? reject(errors) : resolve(response);
             if (successMessage) {
               toast(successMessage, {
-                className: 'toastalert-success',
+                className: "toastalert-success",
                 autoClose: 5000,
-                position: 'top-center'
+                position: "top-center",
               });
             }
-          }
+          },
         } as MutationConfigWithDebounce<T>);
         if (debounceKey) {
           debouncedMutationMap.set(debounceKey, disposable);
@@ -108,7 +108,7 @@ export default class BaseMutation<T extends BaseMutationType = never> {
       mutation,
       variables,
       optimisticResponse,
-      updater
+      updater,
     });
   }
 }

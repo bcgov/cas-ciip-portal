@@ -1,5 +1,5 @@
-const html = require('html-template-tag');
-const createUrl = require('../helpers/createUrl');
+const html = require("html-template-tag");
+const createUrl = require("../helpers/createUrl");
 
 const createOrganisationAccessApprovedMail = ({
   email,
@@ -7,11 +7,11 @@ const createOrganisationAccessApprovedMail = ({
   lastName,
   operatorName,
   organisationId,
-  contactEmail
+  contactEmail,
 }) => {
   const operationFacilitiesUrl = createUrl(
     `reporter/facilities?filterArgs=${encodeURIComponent(
-      JSON.stringify({organisationRowId: organisationId})
+      JSON.stringify({ organisationRowId: organisationId })
     )}`
   );
   return html`

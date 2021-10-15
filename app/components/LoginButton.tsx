@@ -1,10 +1,10 @@
-import React from 'react';
-import {useRouter} from 'next/router';
-import {Form} from 'react-bootstrap';
+import React from "react";
+import { useRouter } from "next/router";
+import { Form } from "react-bootstrap";
 
-const LoginForm: React.FunctionComponent = ({children}) => {
+const LoginForm: React.FunctionComponent = ({ children }) => {
   const router = useRouter();
-  let loginURI = '/login';
+  let loginURI = "/login";
 
   if (router.query.redirectTo)
     loginURI += `?redirectTo=${encodeURIComponent(

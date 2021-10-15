@@ -1,10 +1,10 @@
-import React from 'react';
-import {createFragmentContainer, RelayProp} from 'react-relay';
-import {IChangeEvent} from '@rjsf/core';
-import {Card} from 'react-bootstrap';
-import createProductMutation from 'mutations/product/createProductMutation';
-import {CiipProductState} from 'createProductMutation.graphql';
-import ProductCreatorForm from './ProductCreatorForm';
+import React from "react";
+import { createFragmentContainer, RelayProp } from "react-relay";
+import { IChangeEvent } from "@rjsf/core";
+import { Card } from "react-bootstrap";
+import createProductMutation from "mutations/product/createProductMutation";
+import { CiipProductState } from "createProductMutation.graphql";
+import ProductCreatorForm from "./ProductCreatorForm";
 
 interface Props {
   relay: RelayProp;
@@ -13,7 +13,7 @@ interface Props {
 
 export const ProductCreator: React.FunctionComponent<Props> = ({
   relay,
-  toggleShowCreateForm
+  toggleShowCreateForm,
 }) => {
   const saveProduct = async (e: IChangeEvent) => {
     const variables = {
@@ -21,7 +21,7 @@ export const ProductCreator: React.FunctionComponent<Props> = ({
         product: {
           productName: e.formData.productName,
           units: e.formData.units,
-          productState: 'DRAFT' as CiipProductState,
+          productState: "DRAFT" as CiipProductState,
           requiresEmissionAllocation: e.formData.requiresEmissionAllocation,
           isCiipProduct: e.formData.isCiipProduct,
           isEnergyProduct: false,
@@ -36,39 +36,39 @@ export const ProductCreator: React.FunctionComponent<Props> = ({
             e.formData.subtractGeneratedElectricityEmissions,
           subtractGeneratedHeatEmissions:
             e.formData.subtractGeneratedHeatEmissions,
-          requiresProductAmount: e.formData.requiresProductAmount
-        }
+          requiresProductAmount: e.formData.requiresProductAmount,
+        },
       },
       messages: {
-        success: 'Product created successfully.'
-      }
+        success: "Product created successfully.",
+      },
     };
-    const {environment} = relay;
+    const { environment } = relay;
     await createProductMutation(environment, variables);
     toggleShowCreateForm();
   };
 
   return (
     <>
-      <div style={{marginBottom: '50px'}}>
+      <div style={{ marginBottom: "50px" }}>
         <Card
           style={{
-            marginTop: '10px',
-            borderColor: '#a4a4a4',
-            backgroundColor: '#f4f4f4'
+            marginTop: "10px",
+            borderColor: "#a4a4a4",
+            backgroundColor: "#f4f4f4",
           }}
         >
           <Card.Header
             as="h2"
             style={{
-              backgroundColor: '#036',
-              color: '#fff',
-              fontSize: '1.5rem'
+              backgroundColor: "#036",
+              color: "#fff",
+              fontSize: "1.5rem",
             }}
           >
             Create a Product
           </Card.Header>
-          <Card.Body style={{padding: '2em'}}>
+          <Card.Body style={{ padding: "2em" }}>
             <ProductCreatorForm
               saveProduct={saveProduct}
               disabled={false}

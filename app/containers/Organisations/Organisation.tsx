@@ -1,9 +1,9 @@
-import React from 'react';
-import {graphql, createFragmentContainer} from 'react-relay';
-import {Dropdown} from 'react-bootstrap';
+import React from "react";
+import { graphql, createFragmentContainer } from "react-relay";
+import { Dropdown } from "react-bootstrap";
 
 export const OrganisationComponent = (props) => {
-  const {organisation} = props;
+  const { organisation } = props;
   if (!organisation) {
     return null;
   }
@@ -41,5 +41,5 @@ export default createFragmentContainer(OrganisationComponent, {
       craBusinessNumber
       swrsReportId
     }
-  `
+  `,
 });

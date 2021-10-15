@@ -1,9 +1,9 @@
-import React from 'react';
-import {shallow} from 'enzyme';
-import {ReviewComment} from 'components/Admin/ApplicationReview/ReviewComment';
+import React from "react";
+import { shallow } from "enzyme";
+import { ReviewComment } from "components/Admin/ApplicationReview/ReviewComment";
 
-describe('ReviewComment', () => {
-  it('interactable (viewOnly = false) comments should match the last accepted snapshot', async () => {
+describe("ReviewComment", () => {
+  it("interactable (viewOnly = false) comments should match the last accepted snapshot", async () => {
     const unresolved = shallow(
       <ReviewComment
         id="abc"
@@ -31,7 +31,7 @@ describe('ReviewComment', () => {
     );
     expect(resolved).toMatchSnapshot();
   });
-  it('non-interactable (viewOnly) comments should match the last accepted snapshot', async () => {
+  it("non-interactable (viewOnly) comments should match the last accepted snapshot", async () => {
     const unresolved = shallow(
       <ReviewComment
         id="abc"
@@ -59,7 +59,7 @@ describe('ReviewComment', () => {
     expect(unresolved).toMatchSnapshot();
     expect(resolved).toMatchSnapshot();
   });
-  it('clicking Resolve/Unresolve should call the onResolveToggle handler', async () => {
+  it("clicking Resolve/Unresolve should call the onResolveToggle handler", async () => {
     const onResolveToggle = jest.fn();
     const onUnresolveToggle = jest.fn();
     const unresolved = shallow(
@@ -86,17 +86,17 @@ describe('ReviewComment', () => {
         onDelete={() => {}}
       />
     );
-    const resolveBtn = unresolved.find('Button').first();
-    expect(resolveBtn.text()).toEqual('Resolve');
-    unresolved.find('Button').first().simulate('click');
+    const resolveBtn = unresolved.find("Button").first();
+    expect(resolveBtn.text()).toEqual("Resolve");
+    unresolved.find("Button").first().simulate("click");
     expect(onResolveToggle).toBeCalledTimes(1);
 
-    const unresolveBtn = resolved.find('Button').first();
-    expect(unresolveBtn.text()).toEqual('Unresolve');
-    resolved.find('Button').first().simulate('click');
+    const unresolveBtn = resolved.find("Button").first();
+    expect(unresolveBtn.text()).toEqual("Unresolve");
+    resolved.find("Button").first().simulate("click");
     expect(onUnresolveToggle).toBeCalledTimes(1);
   });
-  it('clicking Delete should call the onDelete handler', async () => {
+  it("clicking Delete should call the onDelete handler", async () => {
     const onDelete = jest.fn();
     const r = shallow(
       <ReviewComment
@@ -111,7 +111,7 @@ describe('ReviewComment', () => {
       />
     );
     const deleteBtn = r.find('Button[aria-label="Delete"]');
-    deleteBtn.simulate('click');
+    deleteBtn.simulate("click");
     expect(onDelete).toBeCalledTimes(1);
   });
 });

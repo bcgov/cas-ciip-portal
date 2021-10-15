@@ -195,7 +195,7 @@ exports[`The Form Component should match the snapshot 1`] = `
     </Row>
   </div>
   <JSXStyle
-    id="2037158273"
+    id="3923245764"
   >
     .
     r
@@ -339,12 +339,12 @@ exports[`The Form Component should match the snapshot 1`] = `
     s
     *
     =
-    '
+    "
     c
     o
     l
     -
-    '
+    "
     ]
     {
     p
@@ -930,7 +930,7 @@ exports[`The Form Component should not render an alert reminder to check the gui
     </Row>
   </div>
   <JSXStyle
-    id="2037158273"
+    id="3923245764"
   >
     .
     r
@@ -1074,12 +1074,12 @@ exports[`The Form Component should not render an alert reminder to check the gui
     s
     *
     =
-    '
+    "
     c
     o
     l
     -
-    '
+    "
     ]
     {
     p
@@ -1689,7 +1689,7 @@ exports[`The Form Component should render alert reminder to check the guidance i
     </Row>
   </div>
   <JSXStyle
-    id="2037158273"
+    id="3923245764"
   >
     .
     r
@@ -1833,12 +1833,12 @@ exports[`The Form Component should render alert reminder to check the guidance i
     s
     *
     =
-    '
+    "
     c
     o
     l
     -
-    '
+    "
     ]
     {
     p

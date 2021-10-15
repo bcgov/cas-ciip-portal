@@ -1,8 +1,8 @@
-import React from 'react';
-import {Card} from 'react-bootstrap';
-import LegalDisclaimerText from 'components/LegalDisclaimerText';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faExternalLinkAlt} from '@fortawesome/free-solid-svg-icons';
+import React from "react";
+import { Card } from "react-bootstrap";
+import LegalDisclaimerText from "components/LegalDisclaimerText";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons";
 
 const ScrollableApplicationDisclaimer: React.FunctionComponent = () => {
   return (

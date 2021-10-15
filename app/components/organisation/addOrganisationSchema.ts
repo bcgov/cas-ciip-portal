@@ -1,18 +1,18 @@
-import {JSONSchema7} from 'json-schema';
+import { JSONSchema7 } from "json-schema";
 
 const addOperatorSchema: JSONSchema7 = {
-  type: 'object',
+  type: "object",
   properties: {
     operatorName: {
-      type: 'string',
-      title: 'Operator Legal name'
+      type: "string",
+      title: "Operator Legal name",
     },
     craBusinessNumber: {
-      type: 'string',
-      title: 'CRA Business Number'
-    }
+      type: "string",
+      title: "CRA Business Number",
+    },
   },
-  required: ['operatorName', 'craBusinessNumber']
+  required: ["operatorName", "craBusinessNumber"],
 };
 
 export default addOperatorSchema;

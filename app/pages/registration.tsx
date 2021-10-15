@@ -1,13 +1,13 @@
-import React, {Component} from 'react';
-import {graphql} from 'react-relay';
-import {registrationQueryResponse} from 'registrationQuery.graphql';
-import {CiipPageComponentProps} from 'next-env';
-import UserForm from 'containers/User/UserForm';
-import DefaultLayout from 'layouts/default-layout';
-import {INCENTIVE_ANALYST, ADMIN_GROUP, USER} from 'data/group-constants';
+import React, { Component } from "react";
+import { graphql } from "react-relay";
+import { registrationQueryResponse } from "registrationQuery.graphql";
+import { CiipPageComponentProps } from "next-env";
+import UserForm from "containers/User/UserForm";
+import DefaultLayout from "layouts/default-layout";
+import { INCENTIVE_ANALYST, ADMIN_GROUP, USER } from "data/group-constants";
 
 interface Props extends CiipPageComponentProps {
-  query: registrationQueryResponse['query'];
+  query: registrationQueryResponse["query"];
 }
 
 class Registration extends Component<Props> {
@@ -37,10 +37,10 @@ class Registration extends Component<Props> {
 
   render() {
     const {
-      query: {session},
-      router
+      query: { session },
+      router,
     } = this.props;
-    const {ciipUserBySub, sub, givenName, familyName, email} = session || {};
+    const { ciipUserBySub, sub, givenName, familyName, email } = session || {};
 
     return (
       <DefaultLayout title="Registration" session={session}>
@@ -56,7 +56,7 @@ class Registration extends Component<Props> {
               router.push(
                 router.query.redirectTo
                   ? (router.query.redirectTo as string)
-                  : '/reporter'
+                  : "/reporter"
               )
             }
           />

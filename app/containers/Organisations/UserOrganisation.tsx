@@ -1,11 +1,11 @@
-import React from 'react';
-import {graphql, createFragmentContainer} from 'react-relay';
-import {Badge} from 'react-bootstrap';
-import Link from 'next/link';
-import statusBadgeColor from 'components/helpers/StatusBadgeColor';
+import React from "react";
+import { graphql, createFragmentContainer } from "react-relay";
+import { Badge } from "react-bootstrap";
+import Link from "next/link";
+import statusBadgeColor from "components/helpers/StatusBadgeColor";
 
 export const UserOrganisationComponent = (props) => {
-  const {userOrganisation} = props;
+  const { userOrganisation } = props;
   if (!userOrganisation) {
     return null;
   }
@@ -16,24 +16,24 @@ export const UserOrganisationComponent = (props) => {
       <td>
         <Badge
           pill
-          style={{width: '100%', padding: '8px'}}
+          style={{ width: "100%", padding: "8px" }}
           variant={statusBadgeColor[userOrganisation.status]}
         >
           {userOrganisation.status}
         </Badge>
       </td>
       <td>
-        {' '}
-        {userOrganisation.status === 'APPROVED' ? (
+        {" "}
+        {userOrganisation.status === "APPROVED" ? (
           <Link
             href={{
-              pathname: '/reporter/facilities',
+              pathname: "/reporter/facilities",
               query: {
                 filterArgs: JSON.stringify({
                   organisationRowId:
-                    userOrganisation.organisationByOrganisationId.rowId
-                })
-              }
+                    userOrganisation.organisationByOrganisationId.rowId,
+                }),
+              },
             }}
           >
             <a className="btn btn-outline-primary">View Facilities</a>
@@ -60,5 +60,5 @@ export default createFragmentContainer(UserOrganisationComponent, {
         operatorName
       }
     }
-  `
+  `,
 });

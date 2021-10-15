@@ -1,11 +1,11 @@
-import React from 'react';
-import {Button, ButtonGroup, Badge} from 'react-bootstrap';
-import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
+import React from "react";
+import { Button, ButtonGroup, Badge } from "react-bootstrap";
+import { graphql, createFragmentContainer, RelayProp } from "react-relay";
 import {
   OrganisationRequestsTableRow_userOrganisation,
-  CiipUserOrganisationStatus
-} from 'OrganisationRequestsTableRow_userOrganisation.graphql';
-import {updateUserOrganisationMutation} from 'mutations/user_organisation/updateUserOrganisation';
+  CiipUserOrganisationStatus,
+} from "OrganisationRequestsTableRow_userOrganisation.graphql";
+import { updateUserOrganisationMutation } from "mutations/user_organisation/updateUserOrganisation";
 
 interface Props {
   relay: RelayProp;
@@ -15,15 +15,15 @@ interface Props {
 export const OrganisationRequestsTableRowComponent: React.FunctionComponent<Props> = (
   props
 ) => {
-  const {userOrganisation} = props;
+  const { userOrganisation } = props;
 
   const statusBadgeColor: Record<
     CiipUserOrganisationStatus,
-    'danger' | 'info' | 'success'
+    "danger" | "info" | "success"
   > = {
-    REJECTED: 'danger',
-    PENDING: 'info',
-    APPROVED: 'success'
+    REJECTED: "danger",
+    PENDING: "info",
+    APPROVED: "success",
   };
 
   const handleStatusChange = async (status) => {
@@ -31,9 +31,9 @@ export const OrganisationRequestsTableRowComponent: React.FunctionComponent<Prop
       input: {
         id: userOrganisation.id,
         ciipUserOrganisationPatch: {
-          status
-        }
-      }
+          status,
+        },
+      },
     };
 
     await updateUserOrganisationMutation(props.relay.environment, variables);
@@ -49,7 +49,7 @@ export const OrganisationRequestsTableRowComponent: React.FunctionComponent<Prop
       <td>
         <Badge
           pill
-          style={{width: '100%', padding: '8px'}}
+          style={{ width: "100%", padding: "8px" }}
           variant={statusBadgeColor[userOrganisation.status]}
         >
           {userOrganisation.status}
@@ -57,27 +57,27 @@ export const OrganisationRequestsTableRowComponent: React.FunctionComponent<Prop
       </td>
       <td>
         <ButtonGroup aria-label="Status change">
-          {userOrganisation.status === 'PENDING' ? (
+          {userOrganisation.status === "PENDING" ? (
             <Button
               variant="success"
-              onClick={async () => handleStatusChange('APPROVED')}
+              onClick={async () => handleStatusChange("APPROVED")}
             >
               Approve
             </Button>
           ) : null}
-          {userOrganisation.status === 'PENDING' ||
-          userOrganisation.status === 'APPROVED' ? (
+          {userOrganisation.status === "PENDING" ||
+          userOrganisation.status === "APPROVED" ? (
             <Button
               variant="danger"
-              onClick={async () => handleStatusChange('REJECTED')}
+              onClick={async () => handleStatusChange("REJECTED")}
             >
               Reject
             </Button>
           ) : null}
-          {userOrganisation.status === 'REJECTED' ? (
+          {userOrganisation.status === "REJECTED" ? (
             <Button
               variant="info"
-              onClick={async () => handleStatusChange('PENDING')}
+              onClick={async () => handleStatusChange("PENDING")}
             >
               Reset
             </Button>
@@ -99,5 +99,5 @@ export default createFragmentContainer(OrganisationRequestsTableRowComponent, {
       userId
       operatorName
     }
-  `
+  `,
 });

@@ -1,12 +1,12 @@
-const html = require('html-template-tag');
-const createUrl = require('../helpers/createUrl');
+const html = require("html-template-tag");
+const createUrl = require("../helpers/createUrl");
 
 const createOrganisationAccessRequestMail = ({
   email,
   firstName,
   lastName,
   operatorName,
-  contactEmail
+  contactEmail,
 }) => {
   return html`
     <table
@@ -33,7 +33,7 @@ const createOrganisationAccessRequestMail = ({
           </h4>
           <p>
             You have requested access to submit an application on behalf of
-            <a href="${createUrl('reporter')}"
+            <a href="${createUrl("reporter")}"
               ><strong>${operatorName}</strong></a
             >.
           </p>

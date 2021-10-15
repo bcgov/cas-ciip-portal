@@ -1,6 +1,6 @@
-import React from 'react';
-import {ArrayFieldTemplateProps} from '@rjsf/core';
-import {Form, Button, Col} from 'react-bootstrap';
+import React from "react";
+import { ArrayFieldTemplateProps } from "@rjsf/core";
+import { Form, Button, Col } from "react-bootstrap";
 
 const FormArrayFieldTemplate: React.FunctionComponent<ArrayFieldTemplateProps> = ({
   items,
@@ -8,7 +8,7 @@ const FormArrayFieldTemplate: React.FunctionComponent<ArrayFieldTemplateProps> =
   onAddClick,
   uiSchema,
   idSchema,
-  className
+  className,
 }) => {
   return (
     <div className={className}>
@@ -17,13 +17,13 @@ const FormArrayFieldTemplate: React.FunctionComponent<ArrayFieldTemplateProps> =
         let shouldRenderRemoveButton = element.hasRemove;
 
         if (
-          'ui:hasRemove' in elementProps.uiSchema &&
-          'isFalse' in elementProps.uiSchema['ui:hasRemove']
+          "ui:hasRemove" in elementProps.uiSchema &&
+          "isFalse" in elementProps.uiSchema["ui:hasRemove"]
         ) {
           shouldRenderRemoveButton =
             shouldRenderRemoveButton &&
             !elementProps.formData[
-              elementProps.uiSchema['ui:hasRemove'].isFalse
+              elementProps.uiSchema["ui:hasRemove"].isFalse
             ];
         }
 
@@ -43,7 +43,7 @@ const FormArrayFieldTemplate: React.FunctionComponent<ArrayFieldTemplateProps> =
               {shouldRenderRemoveButton && uiSchema.linkProduct && (
                 <Col
                   xs={12}
-                  md={{span: 1, offset: 1}}
+                  md={{ span: 1, offset: 1 }}
                   className="remove-button-container"
                 >
                   <Button
@@ -51,7 +51,7 @@ const FormArrayFieldTemplate: React.FunctionComponent<ArrayFieldTemplateProps> =
                     variant="danger"
                     onClick={element.onDropIndexClick(element.index)}
                   >
-                    {uiSchema['ui:remove-text'] || 'Remove'}
+                    {uiSchema["ui:remove-text"] || "Remove"}
                   </Button>
                 </Col>
               )}
@@ -63,7 +63,7 @@ const FormArrayFieldTemplate: React.FunctionComponent<ArrayFieldTemplateProps> =
                       variant="danger"
                       onClick={element.onDropIndexClick(element.index)}
                     >
-                      {uiSchema['ui:remove-text'] || 'Remove'}
+                      {uiSchema["ui:remove-text"] || "Remove"}
                     </Button>
                   </div>
                 </Col>
@@ -76,14 +76,14 @@ const FormArrayFieldTemplate: React.FunctionComponent<ArrayFieldTemplateProps> =
       {canAdd && (
         <Form.Row>
           {uiSchema.linkProduct ? (
-            <Col xs={12} md={{span: 1, offset: 6}}>
+            <Col xs={12} md={{ span: 1, offset: 6 }}>
               <div className="add-button-container">
                 <Button
                   id={`${idSchema.$id}-add`}
                   type="button"
                   onClick={onAddClick}
                 >
-                  {uiSchema['ui:add-text'] || 'Add'}
+                  {uiSchema["ui:add-text"] || "Add"}
                 </Button>
               </div>
             </Col>
@@ -95,7 +95,7 @@ const FormArrayFieldTemplate: React.FunctionComponent<ArrayFieldTemplateProps> =
                   type="button"
                   onClick={onAddClick}
                 >
-                  {uiSchema['ui:add-text'] || 'Add'}
+                  {uiSchema["ui:add-text"] || "Add"}
                 </Button>
               </div>
             </Col>

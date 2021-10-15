@@ -1,33 +1,33 @@
-import React from 'react';
-import {render} from 'enzyme';
-import Subheader from 'components/Layout/Subheader';
+import React from "react";
+import { render } from "enzyme";
+import Subheader from "components/Layout/Subheader";
 
-describe('The Subheader', () => {
-  it('matches the last accepted Snapshot', () => {
-    const useRouter = jest.spyOn(require('next/router'), 'useRouter');
+describe("The Subheader", () => {
+  it("matches the last accepted Snapshot", () => {
+    const useRouter = jest.spyOn(require("next/router"), "useRouter");
     useRouter.mockImplementationOnce(() => ({
-      route: '/reporter'
+      route: "/reporter",
     }));
     const wrapper = render(<Subheader />);
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('changes the active menu item depending on the current route', () => {
-    const useRouter = jest.spyOn(require('next/router'), 'useRouter');
+  it("changes the active menu item depending on the current route", () => {
+    const useRouter = jest.spyOn(require("next/router"), "useRouter");
     useRouter
       .mockImplementationOnce(() => ({
-        route: '/reporter'
+        route: "/reporter",
       }))
       .mockImplementation(() => {
         // ideally we would use mockImplementationOnce (and did until upgrating to next 9.5.5),
         // but now the function is called multiple times for each render, not sure why
         return {
-          route: '/reporter/facilities'
+          route: "/reporter/facilities",
         };
       });
     let wrapper = render(<Subheader />);
-    expect(wrapper.find('.active a').text()).toBe('My Dashboard');
+    expect(wrapper.find(".active a").text()).toBe("My Dashboard");
     wrapper = render(<Subheader />);
-    expect(wrapper.find('.active a').text()).toBe('My Applications');
+    expect(wrapper.find(".active a").text()).toBe("My Applications");
   });
 });

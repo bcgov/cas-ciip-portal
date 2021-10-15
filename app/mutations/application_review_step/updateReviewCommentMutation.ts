@@ -1,10 +1,10 @@
-import {graphql} from 'react-relay';
-import RelayModernEnvironment from 'relay-runtime/lib/store/RelayModernEnvironment';
+import { graphql } from "react-relay";
+import RelayModernEnvironment from "relay-runtime/lib/store/RelayModernEnvironment";
 import {
   updateReviewCommentMutationVariables,
-  updateReviewCommentMutation as updateReviewCommentMutationType
-} from 'updateReviewCommentMutation.graphql';
-import BaseMutation from 'mutations/BaseMutation';
+  updateReviewCommentMutation as updateReviewCommentMutationType,
+} from "updateReviewCommentMutation.graphql";
+import BaseMutation from "mutations/BaseMutation";
 
 const mutation = graphql`
   mutation updateReviewCommentMutation($input: UpdateReviewCommentInput!) {
@@ -24,12 +24,12 @@ const updateReviewCommentMutation = async (
     updateReviewComment: {
       reviewComment: {
         id: variables.input.id,
-        ...variables.input.reviewCommentPatch
-      }
-    }
+        ...variables.input.reviewCommentPatch,
+      },
+    },
   };
   const m = new BaseMutation<updateReviewCommentMutationType>(
-    'update-review-comment-mutation'
+    "update-review-comment-mutation"
   );
   return m.performMutation(
     environment,

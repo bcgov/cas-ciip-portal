@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from 'react';
-import {Button} from 'react-bootstrap';
-import {TableFilter, FilterArgs} from './Filters';
+import React, { useEffect, useState } from "react";
+import { Button } from "react-bootstrap";
+import { TableFilter, FilterArgs } from "./Filters";
 
 interface Props {
   filters: TableFilter[];
@@ -11,7 +11,7 @@ interface Props {
 const FilterableTableFilterRow: React.FunctionComponent<Props> = ({
   filters,
   filterArgs,
-  onSubmit
+  onSubmit,
 }) => {
   const [searchFilters, setSearchFilters] = useState(filterArgs);
   useEffect(() => setSearchFilters(filterArgs), [filterArgs]); // reset the local state when the prop changes
@@ -22,7 +22,7 @@ const FilterableTableFilterRow: React.FunctionComponent<Props> = ({
     // which can happen when a single filter component handles multiple variables
     setSearchFilters((prevFilters) => ({
       ...prevFilters,
-      [column]: value
+      [column]: value,
     }));
   };
 
@@ -32,7 +32,7 @@ const FilterableTableFilterRow: React.FunctionComponent<Props> = ({
   };
 
   const handleKeyDown: React.KeyboardEventHandler = (e) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       onSubmit(searchFilters);
     }
   };
@@ -52,7 +52,7 @@ const FilterableTableFilterRow: React.FunctionComponent<Props> = ({
             Clear
           </Button>
           <Button
-            style={{marginLeft: '5px'}}
+            style={{ marginLeft: "5px" }}
             variant="primary"
             onClick={() => onSubmit(searchFilters)}
           >
