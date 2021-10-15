@@ -4,7 +4,7 @@ exports[`HelpButton as an external user (closed) matches the last accepted snaps
 Array [
   <button
     aria-label="Click for help options"
-    className="jsx-2871078921"
+    className="jsx-381520504"
     id="help-button"
     onClick={[Function]}
     type="button"
@@ -63,18 +63,18 @@ Array [
 exports[`HelpButton as an external user (opened) matches the last accepted snapshot 1`] = `
 Array [
   <div
-    className="jsx-2871078921"
+    className="jsx-381520504"
     id="help-bubble"
   >
     <ul
-      className="jsx-2871078921"
+      className="jsx-381520504"
     >
       <li
-        className="jsx-2871078921"
+        className="jsx-381520504"
       >
         <span
           aria-hidden="true"
-          className="jsx-2871078921"
+          className="jsx-381520504"
           role="img"
         >
           📖
@@ -88,16 +88,16 @@ Array [
         </a>
       </li>
       <li
-        className="jsx-2871078921"
+        className="jsx-381520504"
       >
         OR
       </li>
       <li
-        className="jsx-2871078921"
+        className="jsx-381520504"
       >
         <span
           aria-hidden="true"
-          className="jsx-2871078921"
+          className="jsx-381520504"
           role="img"
         >
           ✉️
@@ -114,14 +114,14 @@ Array [
       </li>
     </ul>
     <span
-      className="jsx-2871078921 triangle"
+      className="jsx-381520504 triangle"
     >
       ◥
     </span>
   </div>,
   <button
     aria-label="Click for help options"
-    className="jsx-2871078921"
+    className="jsx-381520504"
     id="help-button"
     onClick={[Function]}
     type="button"
@@ -153,7 +153,7 @@ exports[`HelpButton as an internal user (closed) matches the last accepted snaps
 Array [
   <button
     aria-label="Click for help options"
-    className="jsx-2871078921"
+    className="jsx-381520504"
     id="help-button"
     onClick={[Function]}
     type="button"
@@ -212,18 +212,18 @@ Array [
 exports[`HelpButton as an internal user (opened) matches the last accepted snapshot 1`] = `
 Array [
   <div
-    className="jsx-2871078921"
+    className="jsx-381520504"
     id="help-bubble"
   >
     <ul
-      className="jsx-2871078921"
+      className="jsx-381520504"
     >
       <li
-        className="jsx-2871078921"
+        className="jsx-381520504"
       >
         <span
           aria-hidden="true"
-          className="jsx-2871078921"
+          className="jsx-381520504"
           role="img"
         >
           👋
@@ -235,16 +235,16 @@ Array [
         </a>
       </li>
       <li
-        className="jsx-2871078921"
+        className="jsx-381520504"
       >
         OR
       </li>
       <li
-        className="jsx-2871078921"
+        className="jsx-381520504"
       >
         <span
           aria-hidden="true"
-          className="jsx-2871078921"
+          className="jsx-381520504"
           role="img"
         >
           📖
@@ -259,14 +259,14 @@ Array [
       </li>
     </ul>
     <span
-      className="jsx-2871078921 triangle"
+      className="jsx-381520504 triangle"
     >
       ◥
     </span>
   </div>,
   <button
     aria-label="Click for help options"
-    className="jsx-2871078921"
+    className="jsx-381520504"
     id="help-button"
     onClick={[Function]}
     type="button"
