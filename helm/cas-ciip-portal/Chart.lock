@@ -16,6 +16,6 @@ dependencies:
   version: 1.0.7
 - name: nginx-sidecar
   repository: https://bcgov.github.io/cas-template-app
-  version: 0.1.6
-digest: sha256:fa2916b1aa85db5c164677a3aa029b24917a1eaf7a1f2518dfec3b1ed217116a
-generated: "2021-10-07T10:14:46.22308-07:00"
+  version: 0.1.7
+digest: sha256:d6da979cc14f6e6f25fd3c4d92b335519d272c31d9ca4fea40e80803d0f3fe63
+generated: "2021-10-28T14:53:00.440736258-07:00"
