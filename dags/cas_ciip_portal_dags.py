@@ -2,6 +2,7 @@
 import json
 from dag_configuration import default_dag_args
 from trigger_k8s_cronjob import trigger_k8s_cronjob
+from reload_nginx_containers import reload_nginx_containers
 from walg_backups import create_backup_task
 from airflow.operators.python import PythonOperator, BranchPythonOperator
 from datetime import datetime, timedelta
@@ -133,6 +134,14 @@ cert_renewal_task = PythonOperator(
     task_id='cert_renewal',
     op_args=['cas-ciip-portal-acme-renewal', namespace],
     dag=acme_renewal_dag)
+
+reload_nginx_task = PythonOperator(
+    python_callable=reload_nginx_containers,
+    task_id='cas_ciip_portal_reload_nginx',
+    op_args=['cas-ciip-portal', namespace],
+    dag=acme_renewal_dag)
+
+cert_renewal_task >> reload_nginx_task
 
 """
 ###############################################################################
