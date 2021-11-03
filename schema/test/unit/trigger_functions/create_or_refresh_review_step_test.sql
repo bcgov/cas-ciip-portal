@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(10);
+select plan(11);
 
 select has_function(
   'ggircs_portal_private', 'checksum_form_results',
@@ -27,12 +27,14 @@ do $$
   end;
 $$;
 select test_helper.create_test_users();
-select test_helper.create_applications(2, False, True);
+select test_helper.create_applications(3, False, True);
 insert into ggircs_portal.review_step (step_name, is_active) values ('test_step1', true);
 insert into ggircs_portal.review_step (step_name, is_active) values ('test_step2', true);
 insert into ggircs_portal.review_step (step_name, is_active) values ('no_step', false);
 insert into ggircs_portal.application_review_step (application_id, review_step_id, is_complete)
   values (2,1,true), (2,2,true);
+insert into ggircs_portal.application_review_step (application_id, review_step_id, is_complete)
+  values (3,3,true);
 
 insert into ggircs_portal.application_revision(application_id, version_number) values (1,0);
 
@@ -131,6 +133,20 @@ select results_eq(
   $$,
   ARRAY[false::boolean, false::boolean],
   'Trigger function sets is_complete column to false when review_steps already exist'
+);
+
+-- Fire trigger by submitting an application with an existing legacy review_step with is_complete set to true
+insert into ggircs_portal.application_revision_status (application_id, version_number, application_revision_status)
+  values (3,1,'submitted');
+
+select results_eq(
+  $$
+    select review_step_id, is_complete from ggircs_portal.application_review_step where application_id=3;
+  $$,
+  $$
+  values(3::integer, false::boolean)
+  $$,
+  'Trigger function refreshes the legacy step without creating extraneous new active steps'
 );
 
 select finish();

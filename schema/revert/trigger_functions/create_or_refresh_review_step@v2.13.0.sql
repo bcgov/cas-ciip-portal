@@ -11,21 +11,14 @@ declare
 
 begin
 
-  if new.version_number > 0 then
-
-    -- If review steps exist, refresh the review steps by setting is_complete=false
-    if (select exists (select id from ggircs_portal.application_review_step ars where ars.application_id = new.application_id limit 1)) then
-      update ggircs_portal.application_review_step ars set is_complete=false where ars.application_id = new.application_id;
-    -- Create new review steps if none exist (first submission)
-    else
-      for temp_row in
-        select id, step_name from ggircs_portal.review_step where is_active = true
-      loop
-        insert into ggircs_portal.application_review_step(application_id, review_step_id)
-          values (new.application_id, temp_row.id);
-      end loop;
-    end if;
-  end if;
+  for temp_row in
+    select id, step_name from ggircs_portal.review_step where is_active = true
+  loop
+    insert into ggircs_portal.application_review_step(application_id, review_step_id)
+      values (new.application_id, temp_row.id)
+      on conflict (application_id, review_step_id)
+      do update set is_complete=false;
+  end loop;
 
   return new;
 end;
