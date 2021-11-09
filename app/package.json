@@ -1,6 +1,6 @@
 {
   "name": "ggircs-industry-ciip-portal",
-  "version": "2.13.2",
+  "version": "2.14.0",
   "description": "The online portal for Industry to apply and track their CIIP applications",
   "scripts": {
     "pretest": "npm run build:relay",
@@ -154,7 +154,8 @@
     "**/trim-newlines": "4.0.1",
     "easygraphql-parser": "^0.0.15",
     "**/set-value": "4.0.1",
-    "**/ansi-regex": "5.0.1"
+    "**/ansi-regex": "5.0.1",
+    "**/jsonpointer": "5.0.0"
   },
   "jest": {
     "testEnvironment": "jsdom",
