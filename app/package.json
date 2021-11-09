@@ -154,7 +154,8 @@
     "**/trim-newlines": "4.0.1",
     "easygraphql-parser": "^0.0.15",
     "**/set-value": "4.0.1",
-    "**/ansi-regex": "5.0.1"
+    "**/ansi-regex": "5.0.1",
+    "**/jsonpointer": "5.0.0"
   },
   "jest": {
     "testEnvironment": "jsdom",
