@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.14.0](https://github.com/bcgov/cas-ciip-portal/compare/v2.13.1...v2.14.0) (2021-11-09)
+
+
+### Features
+
+* component to handle login expiry modal ([2bbbe36](https://github.com/bcgov/cas-ciip-portal/commit/2bbbe36d0053be822addc885e77c87e0a6bbb779))
+* refresh-session endpoint for server ([17bb6d1](https://github.com/bcgov/cas-ciip-portal/commit/17bb6d13497da0347475355e3afd101010f1c49b))
+* start session refresh ([8ff0cf3](https://github.com/bcgov/cas-ciip-portal/commit/8ff0cf37a1b6a51aa41df0230798a00792d5034c))
+* update validation function to ignore non carbon-taxed fuels ([24d8d22](https://github.com/bcgov/cas-ciip-portal/commit/24d8d22c2f699cc15ade30d954044fd4cf27ef7e))
+* updating validation logic on un-required products ([1435b6e](https://github.com/bcgov/cas-ciip-portal/commit/1435b6eb2baaac456cf5673a9b7c330239616efe))
+
+
+### Bug Fixes
+
+* adding manual dag trigger to init container ([0ab5a66](https://github.com/bcgov/cas-ciip-portal/commit/0ab5a66169b0e98e81c7cd08e0474f6be6b43802))
+* app submit button should not crash when reporting year is closed ([23be1a0](https://github.com/bcgov/cas-ciip-portal/commit/23be1a0b09c82cc3958b225c55f7d514bd326e14))
+* do not create extraneous review steps for older applications ([9b50a1d](https://github.com/bcgov/cas-ciip-portal/commit/9b50a1deec2651bb7c8dc08f75bed0d5a825a946))
+* invalidating old cpan package cache ([3eac737](https://github.com/bcgov/cas-ciip-portal/commit/3eac7375b35727f74ae9cd4b80e7c14bab9a02ae))
+* reload nginx containers ([a4950a4](https://github.com/bcgov/cas-ciip-portal/commit/a4950a41d68e7b15f13c289801a183a1f968f45f))
+* update acme cronjobs in DAGs ([618df42](https://github.com/bcgov/cas-ciip-portal/commit/618df42590a7c644d20208d072d8397e5c5604f1))
+* updating circleci machine image ([5e9b0b5](https://github.com/bcgov/cas-ciip-portal/commit/5e9b0b57fbe3de64770fa0188919501cdd438ae3))
+
 ### [2.13.2](https://github.com/bcgov/cas-ciip-portal/compare/v2.13.1...v2.13.2) (2021-10-05)
 
 
