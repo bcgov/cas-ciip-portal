@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.14.1](https://github.com/bcgov/cas-ciip-portal/compare/v2.14.0...v2.14.1) (2021-11-10)
+
+
+### Bug Fixes
+
+* removing the environment variable form the deploy ([f283a50](https://github.com/bcgov/cas-ciip-portal/commit/f283a5096c8c1a05cb68afdac7033df87c39a1e3))
+
 ## [2.14.0](https://github.com/bcgov/cas-ciip-portal/compare/v2.13.1...v2.14.0) (2021-11-09)
 
 
