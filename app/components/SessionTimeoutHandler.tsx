@@ -84,6 +84,8 @@ const SessionTimeoutHandler: React.FunctionComponent<Props> = ({
           modalTimeoutId = setTimeout(() => {
             setShowModal(true);
           }, (timeout + SERVER_DELAY_SECONDS - modalDisplaySecondsBeforeLogout) * 1000);
+        } else {
+          setShowModal(true);
         }
 
         // If the user has not extended their session by then we will redirect them (by invoking logoutOnSessionIdled() below)
