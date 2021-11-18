@@ -179,7 +179,7 @@ describe("The Session Timeout Handler", () => {
   });
 
   it("Shows the modal again after the user extends the session and time passes", async () => {
-    const secondsLeftInSession = 15;
+    const secondsLeftInSession = 45;
     const displayDelayBeforeLogout = 30;
 
     jest.useFakeTimers();
@@ -197,7 +197,14 @@ describe("The Session Timeout Handler", () => {
     });
 
     await componentUnderTest.update();
+    expect(componentUnderTest.find(".modal").length).toBe(0);
 
+    await act(async () => {
+      // Advance the clock by 30 seconds
+      jest.advanceTimersByTime(30000);
+    });
+
+    await componentUnderTest.update();
     expect(componentUnderTest.find(".modal").length).toBe(1);
 
     const fetchMock = setupFetchMock(60); // One minute left in session
