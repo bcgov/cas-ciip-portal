@@ -73,34 +73,28 @@ const SessionTimeoutHandler: React.FunctionComponent<Props> = ({
   // timeout is updated.
   useEffect(() => {
     let modalTimeoutId;
-    let sessionTimeoutId;
 
-    const checkSessionIdle = () => {
-      const timeout = sessionTimeout;
+    const timeout = sessionTimeout;
 
-      if (timeout > 0) {
-        if (timeout > modalDisplaySecondsBeforeLogout) {
-          setShowModal(false);
-          modalTimeoutId = setTimeout(() => {
-            setShowModal(true);
-          }, (timeout + SERVER_DELAY_SECONDS - modalDisplaySecondsBeforeLogout) * 1000);
-        } else {
-          setShowModal(true);
-        }
+    if (timeout === Infinity) return;
+    if (timeout <= 0) logoutOnSessionIdled();
 
-        // If the user has not extended their session by then we will redirect them (by invoking logoutOnSessionIdled() below)
-        // If they do extend their session (or have in a different tab), the `checkSessionIdle()` call will branch into the first condition above, hide the modal,
-        // and set another timeout to check the session idle when the modal is due to be displayed.
+    if (timeout > modalDisplaySecondsBeforeLogout) {
+      setShowModal(false);
+      modalTimeoutId = setTimeout(() => {
+        setShowModal(true);
+      }, (timeout + SERVER_DELAY_SECONDS - modalDisplaySecondsBeforeLogout) * 1000);
+    } else {
+      setShowModal(true);
+    }
 
-        sessionTimeoutId = setTimeout(() => {
-          fetchSessionTimeout();
-        }, (timeout + SERVER_DELAY_SECONDS) * 1000);
-      } else {
-        logoutOnSessionIdled();
-      }
-    };
+    // If the user has not extended their session by then we will redirect them (by invoking logoutOnSessionIdled() below)
+    // If they do extend their session (or have in a different tab), the `checkSessionIdle()` call will branch into the first condition above, hide the modal,
+    // and set another timeout to check the session idle when the modal is due to be displayed.
 
-    checkSessionIdle();
+    const sessionTimeoutId = setTimeout(() => {
+      fetchSessionTimeout();
+    }, (timeout + SERVER_DELAY_SECONDS) * 1000);
 
     // Return cleanup function
     return () => {
