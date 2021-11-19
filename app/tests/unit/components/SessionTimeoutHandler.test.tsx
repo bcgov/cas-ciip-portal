@@ -140,7 +140,7 @@ describe("The Session Timeout Handler", () => {
     });
   });
 
-  it("Calls the /extend-session endpoint when the user clicks the extend button", async () => {
+  it("Calls the /session-idle-remaining-time endpoint and hides the modal when the user clicks the extend button", async () => {
     const secondsLeftInSession = 15;
     const displayDelayBeforeLogout = 30;
 
@@ -175,6 +175,63 @@ describe("The Session Timeout Handler", () => {
     await componentUnderTest.update();
 
     expect(componentUnderTest.find(".modal").length).toBe(0);
-    expect(fetchMock).toHaveBeenCalledWith("/extend-session");
+    expect(fetchMock).toHaveBeenCalledWith("/session-idle-remaining-time");
+  });
+
+  it("Shows the modal again after the user extends the session and time passes", async () => {
+    const secondsLeftInSession = 45;
+    const displayDelayBeforeLogout = 30;
+
+    jest.useFakeTimers();
+    setupFetchMock(secondsLeftInSession);
+
+    let componentUnderTest;
+    await act(async () => {
+      componentUnderTest = mount(
+        <div>
+          <SessionTimeoutHandler
+            modalDisplaySecondsBeforeLogout={displayDelayBeforeLogout}
+          />
+        </div>
+      );
+    });
+
+    await componentUnderTest.update();
+    expect(componentUnderTest.find(".modal").length).toBe(0);
+
+    await act(async () => {
+      // Advance the clock by 30 seconds
+      jest.advanceTimersByTime(30000);
+    });
+
+    await componentUnderTest.update();
+    expect(componentUnderTest.find(".modal").length).toBe(1);
+
+    const fetchMock = setupFetchMock(60); // One minute left in session
+
+    const clickRefeshHandler = componentUnderTest
+      .find(".btn-primary")
+      .prop("onClick");
+
+    await act(async () => {
+      await clickRefeshHandler();
+    });
+
+    await componentUnderTest.update();
+
+    expect(componentUnderTest.find(".modal").length).toBe(0);
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+    expect(fetchMock).toHaveBeenCalledWith("/session-idle-remaining-time");
+
+    await act(async () => {
+      // Advance 31 seconds - modal should show again
+      jest.advanceTimersByTime(31000);
+    });
+
+    await componentUnderTest.update();
+
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+
+    expect(componentUnderTest.find(".modal").length).toBe(1);
   });
 });
