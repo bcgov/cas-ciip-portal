@@ -62,7 +62,7 @@
     "improved-yarn-audit": "^2.3.3",
     "isomorphic-fetch": "^3.0.0",
     "js-file-download": "^0.4.12",
-    "json-schema": "^0.2.5",
+    "json-schema": "^0.4.0",
     "keycloak-connect": "^10.0.0",
     "lightship": "^6.7.2",
     "lodash.throttle": "^4.1.1",
@@ -155,7 +155,8 @@
     "easygraphql-parser": "^0.0.15",
     "**/set-value": "4.0.1",
     "**/ansi-regex": "5.0.1",
-    "**/jsonpointer": "5.0.0"
+    "**/jsonpointer": "5.0.0",
+    "cypress/@cypress/request/http-signature/jsprim/json-schema": "0.4.0"
   },
   "jest": {
     "testEnvironment": "jsdom",
