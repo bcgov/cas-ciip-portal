@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.14.2](https://github.com/bcgov/cas-ciip-portal/compare/v2.14.1...v2.14.2) (2021-11-24)
+
+
+### Bug Fixes
+
+* session timeout now doesn't refresh the session automatically ([1c8eb38](https://github.com/bcgov/cas-ciip-portal/commit/1c8eb38c6f7173c99d1b3167415d4655906f202d))
+* updating non-impacting CVE ignore codes ([cd64992](https://github.com/bcgov/cas-ciip-portal/commit/cd6499288796353efe85ccf7ea494d03e39415cc))
+
 ### [2.14.1](https://github.com/bcgov/cas-ciip-portal/compare/v2.14.0...v2.14.1) (2021-11-10)
 
 
