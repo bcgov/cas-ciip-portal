@@ -3,7 +3,7 @@ import {
   RelayNetworkLayerRequest,
   RelayNetworkLayerResponse,
 } from "react-relay-network-modern/node8";
-import { CacheConfigWithDebounce } from "next-env";
+import type { CacheConfigWithDebounce } from "types";
 
 let debouncedMutation: {
   debounceKey: string;

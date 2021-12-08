@@ -3,7 +3,7 @@ import { graphql } from "react-relay";
 import { Card, Alert } from "react-bootstrap";
 import { disclaimerNewApplicationQueryResponse } from "disclaimerNewApplicationQuery.graphql";
 import ApplicationConsent from "containers/Applications/ApplicationConsent";
-import { CiipPageComponentProps } from "next-env";
+import type { CiipPageComponentProps } from "types";
 import { NextRouter } from "next/router";
 import DefaultLayout from "layouts/default-layout";
 import { USER } from "data/group-constants";

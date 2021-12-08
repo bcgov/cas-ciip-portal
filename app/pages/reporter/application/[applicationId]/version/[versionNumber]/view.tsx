@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Row, Col, Button, Alert } from "react-bootstrap";
 import { graphql } from "react-relay";
-import { CiipPageComponentProps } from "next-env";
+import type { CiipPageComponentProps } from "types";
 import { viewApplicationQueryResponse } from "viewApplicationQuery.graphql";
 import ApplicationDetails from "containers/Applications/ApplicationDetailsContainer";
 import ReviseApplicationButton from "containers/Applications/ReviseApplicationButtonContainer";

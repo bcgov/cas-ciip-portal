@@ -9,7 +9,7 @@ import {
 } from "relay-runtime";
 import { toast } from "react-toastify";
 import RelayModernEnvironment from "relay-runtime/lib/store/RelayModernEnvironment";
-import { MutationConfigWithDebounce } from "next-env";
+import type { MutationConfigWithDebounce } from "types";
 
 interface BaseMutationType extends MutationParameters {
   variables: { input: any; messages?: { success: string; failure: string } };

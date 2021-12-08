@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Row } from "react-bootstrap";
 import { graphql } from "react-relay";
-import { CiipPageComponentProps } from "next-env";
+import type { CiipPageComponentProps } from "types";
 import { adminQueryResponse } from "adminQuery.graphql";
 import DefaultLayout from "layouts/default-layout";
 import UserManagement from "components/Dashboard/userManagement";

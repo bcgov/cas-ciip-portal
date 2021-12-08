@@ -7,7 +7,7 @@ import { CiipApplicationRevisionStatus } from "analystCreateApplicationRevisionS
 import analystCreateApplicationRevisionStatusMutation from "mutations/application/analystCreateApplicationRevisionStatusMutation";
 import DefaultLayout from "layouts/default-layout";
 import ApplicationDetails from "containers/Applications/ApplicationDetailsContainer";
-import { CiipPageComponentProps } from "next-env";
+import type { CiipPageComponentProps } from "types";
 import getConfig from "next/config";
 import { INCENTIVE_ANALYST, ADMIN_GROUP } from "data/group-constants";
 import ApplicationReviewStepSelector from "containers/Admin/ApplicationReview/ApplicationReviewStepSelector";

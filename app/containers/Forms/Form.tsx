@@ -6,7 +6,7 @@ import { Form_query } from "Form_query.graphql";
 import { Button, Row, Col, Alert } from "react-bootstrap";
 import globalFormStyles from "./FormSharedStyles";
 import Link from "next/link";
-import { FormJson } from "next-env";
+import type { FormJson } from "types";
 import SearchDropdownWidget from "components/Forms/SearchDropdownWidget";
 import FormObjectFieldTemplate from "./FormObjectFieldTemplate";
 import FormFieldTemplate from "./FormFieldTemplate";

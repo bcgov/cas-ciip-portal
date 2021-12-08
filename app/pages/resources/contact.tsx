@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { graphql } from "react-relay";
 import getConfig from "next/config";
-import { CiipPageComponentProps } from "next-env";
+import type { CiipPageComponentProps } from "types";
 import { contactQueryResponse } from "contactQuery.graphql";
 import DefaultLayout from "layouts/default-layout";
 

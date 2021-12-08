@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { graphql } from "react-relay";
 import { registrationQueryResponse } from "registrationQuery.graphql";
-import { CiipPageComponentProps } from "next-env";
+import type { CiipPageComponentProps } from "types";
 import UserForm from "containers/User/UserForm";
 import DefaultLayout from "layouts/default-layout";
 import { INCENTIVE_ANALYST, ADMIN_GROUP, USER } from "data/group-constants";

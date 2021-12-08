@@ -3,9 +3,9 @@ import { useRouter } from "next/router";
 import { fetchQuery, graphql } from "relay-runtime";
 import LoadingSpinner from "components/LoadingSpinner";
 import RelayModernEnvironment from "relay-runtime/lib/store/RelayModernEnvironment";
-import { CiipPageComponent } from "next-env";
 import { getUserGroupLandingRoute } from "lib/user-groups";
 import { PageRedirectHandlerQuery } from "__generated__/PageRedirectHandlerQuery.graphql";
+import type { CiipPageComponent } from "types";
 
 interface Props {
   environment: RelayModernEnvironment;

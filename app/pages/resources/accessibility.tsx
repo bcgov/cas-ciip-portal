@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { graphql } from "react-relay";
-import { CiipPageComponentProps } from "next-env";
+import type { CiipPageComponentProps } from "types";
 import { accessibilityQueryResponse } from "accessibilityQuery.graphql";
 import DefaultLayout from "layouts/default-layout";
 
