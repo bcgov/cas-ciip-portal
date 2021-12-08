@@ -26,7 +26,6 @@ exports[`ProductList should match the previous snapshot 1`] = `
                 "disabled": false,
                 "variant": "primary",
               },
-              "displayName": "Button",
               "render": [Function],
             }
           }
@@ -81,7 +80,6 @@ exports[`ProductList should match the previous snapshot 1`] = `
             as={
               Object {
                 "$$typeof": Symbol(react.forward_ref),
-                "displayName": "SafeAnchor",
                 "render": [Function],
               }
             }
@@ -94,7 +92,6 @@ exports[`ProductList should match the previous snapshot 1`] = `
             as={
               Object {
                 "$$typeof": Symbol(react.forward_ref),
-                "displayName": "SafeAnchor",
                 "render": [Function],
               }
             }
@@ -107,7 +104,6 @@ exports[`ProductList should match the previous snapshot 1`] = `
             as={
               Object {
                 "$$typeof": Symbol(react.forward_ref),
-                "displayName": "SafeAnchor",
                 "render": [Function],
               }
             }
@@ -167,7 +163,6 @@ exports[`ProductList should match the previous snapshot 1`] = `
     dialogAs={
       Object {
         "$$typeof": Symbol(react.forward_ref),
-        "displayName": "ModalDialog",
         "render": [Function],
       }
     }
@@ -345,7 +340,6 @@ exports[`ProductList should match the previous snapshot 1`] = `
     dialogAs={
       Object {
         "$$typeof": Symbol(react.forward_ref),
-        "displayName": "ModalDialog",
         "render": [Function],
       }
     }

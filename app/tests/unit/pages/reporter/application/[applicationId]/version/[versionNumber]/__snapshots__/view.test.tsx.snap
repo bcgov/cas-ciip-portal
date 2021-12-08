@@ -427,7 +427,6 @@ exports[`View submitted application page should render a "View most recent submi
               "timeout": 300,
               "unmountOnExit": false,
             },
-            "displayName": "Fade",
             "render": [Function],
           }
         }
@@ -589,7 +588,6 @@ exports[`View submitted application page should render a "View most recent submi
               "timeout": 300,
               "unmountOnExit": false,
             },
-            "displayName": "Fade",
             "render": [Function],
           }
         }

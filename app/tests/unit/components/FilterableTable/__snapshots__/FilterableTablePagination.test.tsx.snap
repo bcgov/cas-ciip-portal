@@ -28,7 +28,6 @@ exports[`PaginationBar should not render the Pagination component if Math.ceil(t
           as={
             Object {
               "$$typeof": Symbol(react.forward_ref),
-              "displayName": "SafeAnchor",
               "render": [Function],
             }
           }
@@ -42,7 +41,6 @@ exports[`PaginationBar should not render the Pagination component if Math.ceil(t
           as={
             Object {
               "$$typeof": Symbol(react.forward_ref),
-              "displayName": "SafeAnchor",
               "render": [Function],
             }
           }
@@ -56,7 +54,6 @@ exports[`PaginationBar should not render the Pagination component if Math.ceil(t
           as={
             Object {
               "$$typeof": Symbol(react.forward_ref),
-              "displayName": "SafeAnchor",
               "render": [Function],
             }
           }
@@ -105,7 +102,6 @@ exports[`PaginationBar should render a maximum of 9 pagination pages if Math.cei
           as={
             Object {
               "$$typeof": Symbol(react.forward_ref),
-              "displayName": "SafeAnchor",
               "render": [Function],
             }
           }
@@ -119,7 +115,6 @@ exports[`PaginationBar should render a maximum of 9 pagination pages if Math.cei
           as={
             Object {
               "$$typeof": Symbol(react.forward_ref),
-              "displayName": "SafeAnchor",
               "render": [Function],
             }
           }
@@ -133,7 +128,6 @@ exports[`PaginationBar should render a maximum of 9 pagination pages if Math.cei
           as={
             Object {
               "$$typeof": Symbol(react.forward_ref),
-              "displayName": "SafeAnchor",
               "render": [Function],
             }
           }
@@ -288,7 +282,6 @@ exports[`PaginationBar should render the Pagination component if Math.ceil(total
           as={
             Object {
               "$$typeof": Symbol(react.forward_ref),
-              "displayName": "SafeAnchor",
               "render": [Function],
             }
           }
@@ -302,7 +295,6 @@ exports[`PaginationBar should render the Pagination component if Math.ceil(total
           as={
             Object {
               "$$typeof": Symbol(react.forward_ref),
-              "displayName": "SafeAnchor",
               "render": [Function],
             }
           }
@@ -316,7 +308,6 @@ exports[`PaginationBar should render the Pagination component if Math.ceil(total
           as={
             Object {
               "$$typeof": Symbol(react.forward_ref),
-              "displayName": "SafeAnchor",
               "render": [Function],
             }
           }

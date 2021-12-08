@@ -62,7 +62,6 @@ exports[`Organisations should render no organisations if the user has not reques
                   "timeout": 300,
                   "unmountOnExit": false,
                 },
-                "displayName": "Fade",
                 "render": [Function],
               }
             }
@@ -291,7 +290,6 @@ exports[`Organisations should render the user's requested organisations 1`] = `
                   "timeout": 300,
                   "unmountOnExit": false,
                 },
-                "displayName": "Fade",
                 "render": [Function],
               }
             }

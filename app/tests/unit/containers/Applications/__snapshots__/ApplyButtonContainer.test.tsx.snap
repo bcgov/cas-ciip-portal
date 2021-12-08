@@ -125,7 +125,6 @@ exports[`The apply button should render a warning modal if no swrs report exists
     dialogAs={
       Object {
         "$$typeof": Symbol(react.forward_ref),
-        "displayName": "ModalDialog",
         "render": [Function],
       }
     }
@@ -224,7 +223,6 @@ exports[`The apply button should render an Apply For CIIP button if no applicati
     dialogAs={
       Object {
         "$$typeof": Symbol(react.forward_ref),
-        "displayName": "ModalDialog",
         "render": [Function],
       }
     }

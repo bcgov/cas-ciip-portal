@@ -27,7 +27,6 @@ exports[`Contact page matches the last accepted Snapshot 1`] = `
             "timeout": 300,
             "unmountOnExit": false,
           },
-          "displayName": "Fade",
           "render": [Function],
         }
       }

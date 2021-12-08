@@ -11,7 +11,6 @@ exports[`CreateNaicsCodeModal should match the snapshot with the NaicsCodeTable 
     dialogAs={
       Object {
         "$$typeof": Symbol(react.forward_ref),
-        "displayName": "ModalDialog",
         "render": [Function],
       }
     }

@@ -15,7 +15,6 @@ exports[`The ProductField with archived product matched to a naics code should m
           "timeout": 300,
           "unmountOnExit": false,
         },
-        "displayName": "Fade",
         "render": [Function],
       }
     }
@@ -159,7 +158,6 @@ exports[`The ProductField with archived product not matched to a naics code shou
           "timeout": 300,
           "unmountOnExit": false,
         },
-        "displayName": "Fade",
         "render": [Function],
       }
     }
@@ -183,7 +181,6 @@ exports[`The ProductField with archived product not matched to a naics code shou
           "timeout": 300,
           "unmountOnExit": false,
         },
-        "displayName": "Fade",
         "render": [Function],
       }
     }
@@ -327,7 +324,6 @@ exports[`The ProductField with no naics code should match the snapshot 1`] = `
           "timeout": 300,
           "unmountOnExit": false,
         },
-        "displayName": "Fade",
         "render": [Function],
       }
     }
@@ -568,7 +564,6 @@ exports[`The ProductField with published product not matched to a naics code sho
           "timeout": 300,
           "unmountOnExit": false,
         },
-        "displayName": "Fade",
         "render": [Function],
       }
     }

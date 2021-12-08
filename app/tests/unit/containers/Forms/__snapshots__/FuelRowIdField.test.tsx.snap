@@ -74,13 +74,13 @@ exports[`The FuelRowIdField component renders an active fuel as a StringField 1`
 `;
 
 exports[`The FuelRowIdField component renders an archived fuel as an input group 1`] = `
-<InputGroup>
+<ForwardRef(InputGroup)>
   <InputGroupText
     className="col-md-12"
   >
     archived fuel
   </InputGroupText>
-</InputGroup>
+</ForwardRef(InputGroup)>
 `;
 
 exports[`The FuelRowIdField component renders an undefined form data as a StringField 1`] = `

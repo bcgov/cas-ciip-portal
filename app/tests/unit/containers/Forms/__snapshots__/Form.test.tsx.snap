@@ -17,7 +17,6 @@ exports[`The Form Component should match the snapshot 1`] = `
           "timeout": 300,
           "unmountOnExit": false,
         },
-        "displayName": "Fade",
         "render": [Function],
       }
     }
@@ -736,7 +735,6 @@ exports[`The Form Component should not render an alert reminder to check the gui
           "timeout": 300,
           "unmountOnExit": false,
         },
-        "displayName": "Fade",
         "render": [Function],
       }
     }
@@ -1471,7 +1469,6 @@ exports[`The Form Component should render alert reminder to check the guidance i
           "timeout": 300,
           "unmountOnExit": false,
         },
-        "displayName": "Fade",
         "render": [Function],
       }
     }
@@ -1641,7 +1638,6 @@ exports[`The Form Component should render alert reminder to check the guidance i
                   "timeout": 300,
                   "unmountOnExit": false,
                 },
-                "displayName": "Fade",
                 "render": [Function],
               }
             }

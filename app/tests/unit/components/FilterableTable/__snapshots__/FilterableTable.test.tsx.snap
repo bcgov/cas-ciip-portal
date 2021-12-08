@@ -164,7 +164,6 @@ exports[`The filterable table renders filter headers 1`] = `
             "timeout": 300,
             "unmountOnExit": false,
           },
-          "displayName": "Fade",
           "render": [Function],
         }
       }
@@ -274,7 +273,6 @@ exports[`The filterable table renders sort headers 1`] = `
             "timeout": 300,
             "unmountOnExit": false,
           },
-          "displayName": "Fade",
           "render": [Function],
         }
       }
@@ -344,7 +342,6 @@ exports[`The filterable table renders the table body 1`] = `
             "timeout": 300,
             "unmountOnExit": false,
           },
-          "displayName": "Fade",
           "render": [Function],
         }
       }

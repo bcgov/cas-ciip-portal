@@ -7,7 +7,6 @@ exports[`Organisation should render an organisation if the organisation contains
   as={
     Object {
       "$$typeof": Symbol(react.forward_ref),
-      "displayName": "SafeAnchor",
       "render": [Function],
     }
   }
