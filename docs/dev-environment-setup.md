@@ -21,11 +21,14 @@ The purpose of this exercise is to enable a developer new to the project to get 
 
 - [Install asdf](https://asdf-vm.com/#/core-manage-asdf) using your system's package manager & follow instructions to add it to your shell.
 - From the project root, run `make install_asdf_tools`, which installs the [additional asdf plugins](https://asdf-vm.com/#/plugins-all) needed to manage the various tools in [`.tool-versions`](../.tool-versions).
+
   - Later versions of gpg might [run into this issue](https://github.com/asdf-vm/asdf-nodejs/issues/192)
+
   ```
   gpg: keyserver receive failed: Network is unreachable
   gpg: keyserver receive failed: No keyserver available
   ```
+
   - this script also [imports the Node.js release team's OpenPGP keys](https://xscode.com/asdf-vm/asdf-nodejs) for checksum verification.
   - the script also attempts to install Postgres `--with-libxml` via asdf to include a database plugin for XML. Your system will need `libxml2` installed for this.
   - lastly, it installs `pip` dependencies that relate to `pre-commit`, which helps us run linters to keep things tidy.
@@ -141,7 +144,6 @@ Although Perl is not specifically used in this project, our database migration t
 
   [Perlbrew](https://perlbrew.pl/)
 
-
   ```
   perlbrew init
 
@@ -165,7 +167,6 @@ Although Perl is not specifically used in this project, our database migration t
   cd schema
   cpanm --installdeps .
   ```
-
 
 - **Troubleshooting**:
 
@@ -241,10 +242,6 @@ Work that changes Relay GraphQL queries will require you to re-run `yarn build:r
 ### GraphQL Query Debugger
 
 Graphiql is an interactive in-browser GraphQL IDE available in development at `localhost:3004/graphiql`. It is handy for developing queries interactively before inserting them into a Relay fragment.
-
-### Voyager
-
-Voyager is an API graph explorer for GraphQL and is available in development at `localhost:3004/voyager`.
 
 ## 7.5 Bypass Authentication in Development
 
