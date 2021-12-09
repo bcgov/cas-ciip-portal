@@ -4434,7 +4434,7 @@ type CarbonTaxDatum {
   fuelMappingId: Int
   rateEndDate: Date
   rateStartDate: Date
-  unitConversionFactor: Int
+  unitConversionFactor: BigFloat
 }
 
 """
@@ -4469,7 +4469,7 @@ input CarbonTaxDatumFilter {
   rateStartDate: DateFilter
 
   """Filter by the object’s `unitConversionFactor` field."""
-  unitConversionFactor: IntFilter
+  unitConversionFactor: BigFloatFilter
 }
 
 """Table containing the certification_url for an application"""
