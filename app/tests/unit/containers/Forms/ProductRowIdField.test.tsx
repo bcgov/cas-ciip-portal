@@ -133,7 +133,7 @@ describe("The ProductionRowIdField Component with archived product", () => {
 
   it("should render the product name in an input group", () => {
     const wrapper = shallow(<ProductRowIdFieldComponent {...props} />);
-    expect(wrapper.find("InputGroup").text()).toBe("bar");
+    expect(wrapper.find("InputGroupText").text()).toBe("bar");
   });
 });
 
@@ -181,6 +181,6 @@ describe("The ProductionFields Component without naics code", () => {
 
   it("should render the product name in an input group", () => {
     const wrapper = shallow(<ProductRowIdFieldComponent {...props} />);
-    expect(wrapper.find("InputGroup").text()).toBe("foo");
+    expect(wrapper.find("InputGroupText").text()).toBe("foo");
   });
 });

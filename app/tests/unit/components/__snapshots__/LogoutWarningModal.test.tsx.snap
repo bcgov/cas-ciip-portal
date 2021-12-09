@@ -8,7 +8,6 @@ exports[`The Logout Warning Modal Should match the snapshot 1`] = `
   dialogAs={
     Object {
       "$$typeof": Symbol(react.forward_ref),
-      "displayName": "ModalDialog",
       "render": [Function],
     }
   }

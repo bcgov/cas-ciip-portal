@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Container } from "react-bootstrap";
 import { graphql } from "react-relay";
-import { CiipPageComponentProps } from "next-env";
+import type { CiipPageComponentProps } from "types";
 import { copyrightQueryResponse } from "copyrightQuery.graphql";
 import DefaultLayout from "layouts/default-layout";
 

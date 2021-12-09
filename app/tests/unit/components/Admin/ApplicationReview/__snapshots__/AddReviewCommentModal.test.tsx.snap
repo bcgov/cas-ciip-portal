@@ -9,7 +9,6 @@ exports[`Add Review Comment modal matches the last accepted snapshot ("internal"
   dialogAs={
     Object {
       "$$typeof": Symbol(react.forward_ref),
-      "displayName": "ModalDialog",
       "render": [Function],
     }
   }

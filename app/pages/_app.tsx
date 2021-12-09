@@ -2,7 +2,7 @@ import React from "react";
 import { QueryRenderer } from "react-relay";
 import NextApp from "next/app";
 import { NextRouter } from "next/router";
-import { CiipPageComponent } from "next-env";
+import type { CiipPageComponent } from "types";
 import { getRequest } from "relay-runtime";
 import { createEnvironment } from "lib/relay-environment";
 import ErrorFallback from "components/ErrorFallback";

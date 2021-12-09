@@ -10,7 +10,6 @@ exports[`Application decision modal presents options to make a decision or reque
   dialogAs={
     Object {
       "$$typeof": Symbol(react.forward_ref),
-      "displayName": "ModalDialog",
       "render": [Function],
     }
   }
@@ -379,7 +378,6 @@ exports[`Application decision modal presents the option to revert the applicatio
   dialogAs={
     Object {
       "$$typeof": Symbol(react.forward_ref),
-      "displayName": "ModalDialog",
       "render": [Function],
     }
   }
@@ -637,7 +635,6 @@ exports[`Application decision modal shows a special note about limitations on re
   dialogAs={
     Object {
       "$$typeof": Symbol(react.forward_ref),
-      "displayName": "ModalDialog",
       "render": [Function],
     }
   }
@@ -691,7 +688,6 @@ exports[`Application decision modal shows a special note about limitations on re
             "timeout": 300,
             "unmountOnExit": false,
           },
-          "displayName": "Fade",
           "render": [Function],
         }
       }

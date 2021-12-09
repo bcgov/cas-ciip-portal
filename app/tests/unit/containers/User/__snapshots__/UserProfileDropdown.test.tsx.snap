@@ -115,22 +115,18 @@ exports[`UserProfileDropdown desktop matches snapshot 1`] = `
                 "$$typeof": Symbol(react.forward_ref),
                 "Input": Object {
                   "$$typeof": Symbol(react.forward_ref),
-                  "displayName": "FormCheckInput",
                   "render": [Function],
                 },
                 "Label": Object {
                   "$$typeof": Symbol(react.forward_ref),
-                  "displayName": "FormCheckLabel",
                   "render": [Function],
                 },
-                "displayName": "FormCheck",
                 "render": [Function],
               },
               "Control": Object {
                 "$$typeof": Symbol(react.forward_ref),
                 "Feedback": Object {
                   "$$typeof": Symbol(react.forward_ref),
-                  "displayName": "Feedback",
                   "propTypes": Object {
                     "as": [Function],
                     "tooltip": [Function],
@@ -138,27 +134,22 @@ exports[`UserProfileDropdown desktop matches snapshot 1`] = `
                   },
                   "render": [Function],
                 },
-                "displayName": "FormControl",
                 "render": [Function],
               },
               "File": Object {
                 "$$typeof": Symbol(react.forward_ref),
                 "Input": Object {
                   "$$typeof": Symbol(react.forward_ref),
-                  "displayName": "FormFileInput",
                   "render": [Function],
                 },
                 "Label": Object {
                   "$$typeof": Symbol(react.forward_ref),
-                  "displayName": "FormFileLabel",
                   "render": [Function],
                 },
-                "displayName": "FormFile",
                 "render": [Function],
               },
               "Group": Object {
                 "$$typeof": Symbol(react.forward_ref),
-                "displayName": "FormGroup",
                 "render": [Function],
               },
               "Label": Object {
@@ -167,39 +158,32 @@ exports[`UserProfileDropdown desktop matches snapshot 1`] = `
                   "column": false,
                   "srOnly": false,
                 },
-                "displayName": "FormLabel",
                 "render": [Function],
               },
               "Row": Object {
                 "$$typeof": Symbol(react.forward_ref),
                 "defaultProps": undefined,
-                "displayName": "FormRow",
                 "render": [Function],
               },
               "Switch": Object {
                 "$$typeof": Symbol(react.forward_ref),
                 "Input": Object {
                   "$$typeof": Symbol(react.forward_ref),
-                  "displayName": "FormCheckInput",
                   "render": [Function],
                 },
                 "Label": Object {
                   "$$typeof": Symbol(react.forward_ref),
-                  "displayName": "FormCheckLabel",
                   "render": [Function],
                 },
-                "displayName": "Switch",
                 "render": [Function],
               },
               "Text": Object {
                 "$$typeof": Symbol(react.forward_ref),
-                "displayName": "FormText",
                 "render": [Function],
               },
               "defaultProps": Object {
                 "inline": false,
               },
-              "displayName": "Form",
               "render": [Function],
             }
           }

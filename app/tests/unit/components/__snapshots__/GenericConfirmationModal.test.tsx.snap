@@ -10,7 +10,6 @@ exports[`Generic Confirmation Modal should render a Bootstrap modal (with custom
   dialogAs={
     Object {
       "$$typeof": Symbol(react.forward_ref),
-      "displayName": "ModalDialog",
       "render": [Function],
     }
   }
@@ -84,7 +83,6 @@ exports[`Generic Confirmation Modal should render a default Bootstrap modal with
   dialogAs={
     Object {
       "$$typeof": Symbol(react.forward_ref),
-      "displayName": "ModalDialog",
       "render": [Function],
     }
   }

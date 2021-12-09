@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Link from "next/link";
 import { Button, Row, Col } from "react-bootstrap";
 import { graphql } from "react-relay";
-import { CiipPageComponentProps } from "next-env";
+import type { CiipPageComponentProps } from "types";
 import { completeSubmitQueryResponse } from "completeSubmitQuery.graphql";
 import DefaultLayout from "layouts/default-layout";
 import { USER } from "data/group-constants";

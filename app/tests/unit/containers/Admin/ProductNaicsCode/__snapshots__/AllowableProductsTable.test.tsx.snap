@@ -15,7 +15,6 @@ exports[`The allowable products table for a NAICS code should render an alert bo
         "timeout": 300,
         "unmountOnExit": false,
       },
-      "displayName": "Fade",
       "render": [Function],
     }
   }

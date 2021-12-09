@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { graphql } from "react-relay";
 import { ApplicationIdPageQueryResponse } from "ApplicationIdPageQuery.graphql";
-import { CiipPageComponentProps } from "next-env";
+import type { CiipPageComponentProps } from "types";
 import DefaultLayout from "layouts/default-layout";
 import ApplicationWizard from "containers/Applications/ApplicationWizard";
 import { USER } from "data/group-constants";

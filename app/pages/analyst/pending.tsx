@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { graphql } from "react-relay";
-import { CiipPageComponentProps } from "next-env";
+import type { CiipPageComponentProps } from "types";
 import { pendingAnalystQueryResponse } from "pendingAnalystQuery.graphql";
 import DefaultLayout from "layouts/default-layout";
 import { PENDING_ANALYST } from "data/group-constants";

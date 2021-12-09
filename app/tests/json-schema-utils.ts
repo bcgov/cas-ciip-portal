@@ -1,5 +1,5 @@
 import jsf from "json-schema-faker";
-import { FormJson } from "next-env";
+import { FormJson } from "types";
 import { getDefaultRegistry, IdSchema } from "@rjsf/core/dist/cjs/utils";
 
 const generateFakeSchemaData = (formJson: FormJson) => {

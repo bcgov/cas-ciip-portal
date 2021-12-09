@@ -1,9 +1,1 @@
-# Ignoring this https://www.npmjs.com/advisories/1002535 advisory.
-# It is a (nextJs) redirect vulnerability that doesn't affect deployments that have a "pages/404.tsx" file (like we do)
-# Marking this as ignored until we update the major version of next
-1005071
-
-# Ignoring this https://www.npmjs.com/advisories/1002496 advisory.
-# It is a Next.js vulnerability that only affects apps where "next.config.js" has `images.domains` assigned (we don't)
-# Marking this as ignored until we update the major version of next
-1005033
+# add ingnored CVEs here, with a justification for ignoring them

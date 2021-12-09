@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Row, Col } from "react-bootstrap";
 import { graphql } from "react-relay";
 import { loginRedirectQueryResponse } from "loginRedirectQuery.graphql";
-import { CiipPageComponentProps } from "next-env";
+import type { CiipPageComponentProps } from "types";
 import DefaultLayout from "layouts/default-layout";
 import RegistrationLoginButtons from "containers/RegistrationLoginButtons";
 import { NextRouter } from "next/router";

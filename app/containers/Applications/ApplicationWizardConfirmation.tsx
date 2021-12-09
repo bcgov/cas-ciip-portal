@@ -7,7 +7,7 @@ import { ApplicationWizardConfirmation_query } from "ApplicationWizardConfirmati
 import { ApplicationWizardConfirmation_applicationRevision } from "ApplicationWizardConfirmation_applicationRevision.graphql";
 import ApplicationDetailsContainer from "./ApplicationDetailsContainer";
 import ApplicationOverrideJustification from "components/Application/ApplicationOverrideJustification";
-import { FormJson } from "next-env";
+import type { FormJson } from "types";
 import ScrollableApplicationDisclaimer from "components/Application/ScrollableApplicationDisclaimer";
 
 /*

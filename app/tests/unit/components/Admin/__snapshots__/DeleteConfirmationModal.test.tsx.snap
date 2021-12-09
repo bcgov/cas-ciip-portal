@@ -10,7 +10,6 @@ exports[`CreateNaicsCodeModal should match the snapshot with the DeleteConfirmat
   dialogAs={
     Object {
       "$$typeof": Symbol(react.forward_ref),
-      "displayName": "ModalDialog",
       "render": [Function],
     }
   }
@@ -55,7 +54,6 @@ exports[`CreateNaicsCodeModal should match the snapshot with the DeleteConfirmat
             "timeout": 300,
             "unmountOnExit": false,
           },
-          "displayName": "Fade",
           "render": [Function],
         }
       }

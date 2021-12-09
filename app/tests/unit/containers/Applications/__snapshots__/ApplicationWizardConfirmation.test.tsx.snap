@@ -993,7 +993,6 @@ exports[`The Confirmation Component should render the validation alert if there 
           "timeout": 300,
           "unmountOnExit": false,
         },
-        "displayName": "Fade",
         "render": [Function],
       }
     }

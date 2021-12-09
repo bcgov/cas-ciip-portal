@@ -2,7 +2,7 @@ import React, { useState, useMemo } from "react";
 import { Button, Card, Collapse, Col, Row } from "react-bootstrap";
 import { createFragmentContainer, graphql } from "react-relay";
 import JsonSchemaForm, { AjvError } from "@rjsf/core";
-import { FormJson } from "next-env";
+import type { FormJson } from "types";
 import { ApplicationDetailsCardItem_formResult } from "__generated__/ApplicationDetailsCardItem_formResult.graphql";
 import { ApplicationDetailsCardItem_query } from "__generated__/ApplicationDetailsCardItem_query.graphql";
 import customBasicFields from "components/Application/ApplicationDetailsCardItemCustomFields";

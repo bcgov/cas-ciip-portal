@@ -19,7 +19,6 @@ const PgSession = require("connect-pg-simple")(session);
 const bodyParser = require("body-parser");
 const Keycloak = require("keycloak-connect");
 const cors = require("cors");
-const voyagerMiddleware = require("graphql-voyager/middleware").express;
 const { getUserGroupLandingRoute } = require("../lib/user-groups");
 const { getUserGroups } = require("./helpers/userGroupAuthentication");
 const UNSUPPORTED_BROWSERS = require("../data/unsupported-browsers");
@@ -254,14 +253,6 @@ app.prepare().then(async () => {
         };
         return opts;
       },
-    })
-  );
-
-  server.use(
-    "/voyager",
-    voyagerMiddleware({
-      endpointUrl: "/graphql",
-      displayOptions: { hideRoot: true, showLeafFields: false },
     })
   );
 
