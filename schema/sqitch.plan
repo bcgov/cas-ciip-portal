@@ -391,3 +391,4 @@ trigger_functions/create_or_refresh_review_step [trigger_functions/create_or_ref
 @v2.14.0 2021-11-09T18:57:51Z Dylan Leard <dylan@button.is> # release v2.14.0
 @v2.14.1 2021-11-10T16:39:22Z Dylan Leard <dylan@button.is> # release v2.14.1
 @v2.14.2 2021-11-24T19:40:25Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # release v2.14.2
+swrs_functions/get_carbon_tax_data [swrs_functions/get_carbon_tax_data@v2.14.0] 2021-12-08T20:06:30Z Matthieu Foucault <matthieu@button.is> # update the type of unit_conversion_factor to numeric
