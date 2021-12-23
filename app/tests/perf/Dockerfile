@@ -41,8 +41,6 @@ COPY .tool-versions ${CIIP_HOME}/.tool-versions
 RUN sed -i -nr '/node|yarn/p' ${CIIP_HOME}/.tool-versions
 RUN cat ${CIIP_HOME}/.tool-versions | cut -f 1 -d ' ' | xargs -n 1 asdf plugin-add
 RUN asdf plugin-update --all
-# The nodejs release team keyring is needed to install the asdf node plugin
-RUN ~/.asdf/plugins/nodejs/bin/import-release-team-keyring
 
 RUN asdf install
 RUN asdf reshim
