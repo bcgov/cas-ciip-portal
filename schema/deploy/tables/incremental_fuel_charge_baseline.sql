@@ -60,4 +60,40 @@ comment on column ggircs_portal.incremental_fuel_charge_baseline.updated_by is '
 comment on column ggircs_portal.incremental_fuel_charge_baseline.deleted_at is 'Date of deletion';
 comment on column ggircs_portal.incremental_fuel_charge_baseline.deleted_by is 'The user who deleted the row';
 
+-- Add the 2021 baseline data
+insert into ggircs_portal.incremental_fuel_charge_baseline(
+  carbon_tax_act_fuel_type_id,
+  start_reporting_period,
+  end_reporting_period,
+  fuel_charge_baseline,
+  comment
+) values
+    ((select id from swrs.carbon_tax_fuel_type where carbon_tax_fuel_type = 'Aviation Fuel'), 2021, null, 0.0747, null),
+    ((select id from swrs.carbon_tax_fuel_type where carbon_tax_fuel_type = 'Gasoline'), 2021, null, 0.0663, null),
+    ((select id from swrs.carbon_tax_fuel_type where carbon_tax_fuel_type = 'Heavy Fuel Oil'), 2021, null, 0.0956, null),
+    ((select id from swrs.carbon_tax_fuel_type where carbon_tax_fuel_type = 'Jet Fuel'), 2021, null, 0.0775, null),
+    ((select id from swrs.carbon_tax_fuel_type where carbon_tax_fuel_type = 'Kerosene'), 2021, null, 0.0775, null),
+    ((select id from swrs.carbon_tax_fuel_type where carbon_tax_fuel_type = 'Light Fuel Oil'), 2021, null, 0.0781,
+      $$ The $30/tonne rate for Light Fuel Oil is different from the federal rate because the feds reduce their full rate by 2% instead of the BC rate of 5%. Both reductions are to account for renewable fuel requirements.
+         To derive the light fuel oil rate we have multiplied the BC rate of $50/tonne rate by .6 and rounded to four decimal places as per the practice with rounding in the CTA.
+      $$
+    ),
+    ((select id from swrs.carbon_tax_fuel_type where carbon_tax_fuel_type = 'Methanol'), 2021, null, 0.0775, null),
+    ((select id from swrs.carbon_tax_fuel_type where carbon_tax_fuel_type = 'Naptha'), 2021, null, 0.0676, null),
+    ((select id from swrs.carbon_tax_fuel_type where carbon_tax_fuel_type = 'Butane'), 2021, null, 0.0534, null),
+    ((select id from swrs.carbon_tax_fuel_type where carbon_tax_fuel_type = 'Coke Oven Gas'), 2021, null, 0.021, null),
+    ((select id from swrs.carbon_tax_fuel_type where carbon_tax_fuel_type = 'Ethane'), 2021, null, 0.0306, null),
+    ((select id from swrs.carbon_tax_fuel_type where carbon_tax_fuel_type = 'Propane'), 2021, null, 0.0464, null),
+    ((select id from swrs.carbon_tax_fuel_type where carbon_tax_fuel_type = 'Natural Gas'), 2021, null, 0.0587, null),
+    ((select id from swrs.carbon_tax_fuel_type where carbon_tax_fuel_type = 'Refinery Gas'), 2021, null, 0.081, null),
+    ((select id from swrs.carbon_tax_fuel_type where carbon_tax_fuel_type = 'High Heat Value Coal'), 2021, null, 67.55, null),
+    ((select id from swrs.carbon_tax_fuel_type where carbon_tax_fuel_type = 'Low Heat Value Coal'), 2021, null, 53.17, null),
+    ((select id from swrs.carbon_tax_fuel_type where carbon_tax_fuel_type = 'Coke'), 2021, null, 95.39, null),
+    ((select id from swrs.carbon_tax_fuel_type where carbon_tax_fuel_type = 'Petroleum Coke'), 2021, null, 0.1151, null),
+    ((select id from swrs.carbon_tax_fuel_type where carbon_tax_fuel_type = 'Gas Liquids'), 2021, null, 0.0499, null),
+    ((select id from swrs.carbon_tax_fuel_type where carbon_tax_fuel_type = 'Pentanes Plus'), 2021, null, 0.0534, null),
+    ((select id from swrs.carbon_tax_fuel_type where carbon_tax_fuel_type = 'Peat'), 2021, null, 30.66, 'There is no federal rate for peat, so this is the $30/tonne rate for BC.'),
+    -- This is the rate for 'Combustible Waste'. Shredded / Whole tires have been merged into Combustible Waste and now share the same rate.
+    ((select id from swrs.carbon_tax_fuel_type where carbon_tax_fuel_type = 'Tires - Whole'), 2021, null, 59.92, null);
+
 commit;
