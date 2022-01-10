@@ -55,7 +55,12 @@ insert into ggircs_portal.reporting_year (reporting_year,
     (2020, '2020-01-01', '2020-12-31', '2020-12-31', '2020-01-01', '2020-12-31'),
     (2021, '2021-01-01', '2021-12-31', '2021-12-31', '2021-01-01', '2021-12-31');
 
-insert into ggircs_portal.incremental_fuel_charge_baseline(carbon_tax_act_fuel_type_id, start_reporting_period, end_reporting_period, fuel_charge_baseline) values (1, 2020, 2021, 1.0);
+insert into ggircs_portal.incremental_fuel_charge_baseline(
+  carbon_tax_act_fuel_type_id,
+  start_reporting_period,
+  end_reporting_period,
+  fuel_charge_baseline
+) values (1, 2020, 2021, 1.0);
 
 -- Row level security tests --
 
