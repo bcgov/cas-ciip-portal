@@ -24,8 +24,8 @@ WORKDIR ${CIIP_HOME}
 
 COPY app/ ${CIIP_HOME}/
 
-RUN git clone https://github.com/asdf-vm/asdf.git ${CIIP_HOME}/asdf --branch v0.7.4
-RUN cd ${CIIP_HOME}/asdf && git checkout v0.7.4
+RUN git clone https://github.com/asdf-vm/asdf.git ${CIIP_HOME}/asdf --branch v0.8.1
+RUN cd ${CIIP_HOME}/asdf && git checkout v0.8.1
 ENV BASH_ENV="${CIIP_HOME}/asdf/asdf.sh"
 # Because asdf is loaded via BASH_ENV, all commands using adsf need to be executed using /usr/bin/env bash -c
 SHELL ["/usr/bin/env", "bash", "-c"]
@@ -35,8 +35,6 @@ COPY .tool-versions ${CIIP_HOME}/.tool-versions
 RUN sed -i -nr '/node|yarn/p' ${CIIP_HOME}/.tool-versions
 RUN cat ${CIIP_HOME}/.tool-versions | cut -f 1 -d ' ' | xargs -n 1 asdf plugin-add
 RUN asdf plugin-update --all
-# The nodejs release team keyring is needed to install the asdf node plugin
-RUN ~/.asdf/plugins/nodejs/bin/import-release-team-keyring
 
 RUN asdf install
 RUN asdf reshim
