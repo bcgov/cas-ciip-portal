@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(17);
+select plan(19);
 
 -- Table exists
 select has_table(
@@ -38,7 +38,7 @@ select columns_are('ggircs_portal'::name, 'incremental_fuel_charge_baseline'::na
     'updated_at'::name,
     'updated_by'::name,
     'deleted_at'::name,
-    'deleted_by'::name,
+    'deleted_by'::name
 ]);
 
 -- Test Setup
@@ -97,10 +97,10 @@ select lives_ok(
 
 select results_eq(
   $$
-    select naics_description from ggircs_portal.incremental_fuel_charge_baseline where incremental_fuel_charge_baseline='1001';
+    select fuel_charge_baseline from ggircs_portal.incremental_fuel_charge_baseline where id = 2;
   $$,
-    ARRAY['admin updated'::varchar(10000)],
-    'Data was updated by ciip_administrator'
+  ARRAY[2.5::numeric],
+  'Data was updated by ciip_administrator'
 );
 
 select throws_like(
@@ -120,7 +120,7 @@ select results_eq(
     select fuel_charge_baseline from ggircs_portal.incremental_fuel_charge_baseline where id = 1;
   $$,
   ARRAY[1.0::numeric],
-    'Industry user can view data from the incremental_fuel_charge_baseline table'
+  'Industry user can view data from the incremental_fuel_charge_baseline table'
 );
 
 select throws_like(
@@ -129,7 +129,7 @@ select throws_like(
     values (3, 2020, 2021, 3.0);
   $$,
   'permission denied%',
-    'Industry User cannot insert into ggircs_portal.incremental_fuel_charge_baseline'
+  'Industry User cannot insert into ggircs_portal.incremental_fuel_charge_baseline'
 );
 
 select throws_like(
@@ -137,7 +137,7 @@ select throws_like(
     update ggircs_portal.incremental_fuel_charge_baseline set fuel_charge_baseline = 2.9 where id = 2;
   $$,
   'permission denied%',
-    'Industry User cannot update ggircs_portal.incremental_fuel_charge_baseline'
+  'Industry User cannot update ggircs_portal.incremental_fuel_charge_baseline'
 );
 
 select throws_like(
@@ -145,7 +145,7 @@ select throws_like(
     delete from ggircs_portal.incremental_fuel_charge_baseline;
   $$,
   'permission denied%',
-    'Industry User cannot delete rows from table_naics'
+  'Industry User cannot delete rows from the incremental_fuel_charge_baseline table'
 );
 
 -- CIIP_ANALYST
@@ -156,8 +156,8 @@ select results_eq(
   $$
     select fuel_charge_baseline from ggircs_portal.incremental_fuel_charge_baseline where id = 1;
   $$,
-  ARRAY[1234::varchar(1000)],
-  'Analyst can select from table naics'
+  ARRAY[1.0::numeric],
+  'Analyst can select from the incremental_fuel_charge_baseline table'
 );
 
 select throws_like(
@@ -174,7 +174,7 @@ select throws_like(
     update ggircs_portal.incremental_fuel_charge_baseline set fuel_charge_baseline = 2.9 where id = 2;
   $$,
   'permission denied%',
-    'Analyst cannot update ggircs_portal.incremental_fuel_charge_baseline'
+  'Analyst cannot update ggircs_portal.incremental_fuel_charge_baseline'
 );
 
 select throws_like(
@@ -182,7 +182,7 @@ select throws_like(
     delete from ggircs_portal.incremental_fuel_charge_baseline;
   $$,
   'permission denied%',
-    'Analyst cannot delete rows from table_naics'
+    'Analyst cannot delete rows from ggircs_portal.incremental_fuel_charge_baseline'
 );
 
 select finish();
