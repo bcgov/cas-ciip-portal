@@ -93,7 +93,12 @@ insert into ggircs_portal.incremental_fuel_charge_baseline(
     ((select id from swrs.carbon_tax_fuel_type where carbon_tax_fuel_type = 'Gas Liquids'), 2021, null, 0.0499, null),
     ((select id from swrs.carbon_tax_fuel_type where carbon_tax_fuel_type = 'Pentanes Plus'), 2021, null, 0.0534, null),
     ((select id from swrs.carbon_tax_fuel_type where carbon_tax_fuel_type = 'Peat'), 2021, null, 30.66, 'There is no federal rate for peat, so this is the $30/tonne rate for BC.'),
-    -- This is the rate for 'Combustible Waste'. Shredded / Whole tires have been merged into Combustible Waste and now share the same rate.
+    /*
+      The rate for "Tires - Shredded" and "Tires - Whole" below is the federal rate for 'Combustible Waste'.
+      Shredded / Whole tires have been merged into Combustible Waste as of 2021-04-01 and now share the same rate.
+      They have different historical rates, so we will need to continue to treat them individually to preserve that historical difference.
+    */
+    ((select id from swrs.carbon_tax_fuel_type where carbon_tax_fuel_type = 'Tires - Shredded'), 2021, null, 59.92, null);
     ((select id from swrs.carbon_tax_fuel_type where carbon_tax_fuel_type = 'Tires - Whole'), 2021, null, 59.92, null);
 
 commit;
