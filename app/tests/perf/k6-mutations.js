@@ -89,7 +89,7 @@ export default () => {
       headers: { "Content-Type": "application/json" },
       cookies: {
         "mocks.auth": "reporter",
-        "mocks.current_timestamp": "2021-06-28 17:20:00-07",
+        "mocks.mocked_timestamp": 1624926000,
       },
       tags: {
         name: query.name,
