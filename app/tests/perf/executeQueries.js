@@ -15,7 +15,7 @@ module.exports = (url, role) => {
       headers: { "Content-Type": "application/json" },
       cookies: {
         "mocks.auth": role,
-        "mocks.current_timestamp": "2020-06-28 17:20:00-07",
+        "mocks.current_timestamp": "2021-06-28 17:20:00-07",
       },
       tags: {
         name: query.name,
