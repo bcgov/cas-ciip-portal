@@ -455,6 +455,9 @@ jobs:
             pushd app
             yarn start AS_CYPRESS & yarn wait-on http://localhost:3004
             popd
+            pushd mocks_schema
+            SQITCH_TARGET="ciip_portal_dev" sqitch deploy
+            popd
             pushd app/tests/perf
             psql -d ciip_portal_dev -f mutations-setup.sql
             ./run_test.sh smoke
