@@ -78,7 +78,7 @@ insert into ggircs_portal.incremental_fuel_charge_baseline(
          To derive the light fuel oil rate we have multiplied the BC rate of $50/tonne rate by .6 and rounded to four decimal places as per the practice with rounding in the CTA.
       $$
     ),
-    ((select id from swrs.carbon_tax_act_fuel_type where carbon_tax_fuel_type = 'Methanol'), 2021, 9999, 0.0775, null),
+    ((select id from swrs.carbon_tax_act_fuel_type where carbon_tax_fuel_type = 'Methanol'), 2021, 9999, 0.0329, null),
     ((select id from swrs.carbon_tax_act_fuel_type where carbon_tax_fuel_type = 'Naphtha'), 2021, 9999, 0.0676, null),
     ((select id from swrs.carbon_tax_act_fuel_type where carbon_tax_fuel_type = 'Butane'), 2021, 9999, 0.0534, null),
     ((select id from swrs.carbon_tax_act_fuel_type where carbon_tax_fuel_type = 'Coke Oven Gas'), 2021, 9999, 0.021, null),
