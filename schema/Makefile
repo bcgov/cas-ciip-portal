@@ -57,6 +57,7 @@ test_deploy_revert: | dropdb createdb deploy_ggircs deploy revert
 deploy_ggircs:
 	# Deploy all SWRS changes to $(TEST_DB) using sqitch
 	@@pushd .cas-ggircs && SQITCH_TARGET="db:pg:" PGHOST=localhost PGDATABASE=$(TEST_DB) sqitch deploy && popd
+	-@@$(PSQL) -d $(TEST_DB) -c "select swrs_transform.load()"
 
 .PHONY: revert_ggircs
 revert_ggircs:
