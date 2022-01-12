@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(19);
+select plan(17);
 
 -- Table exists
 select has_table(
@@ -14,16 +14,6 @@ select has_table(
 select has_index(
     'ggircs_portal', 'incremental_fuel_charge_baseline', 'fuel_charge_baseline_ct_act_fuel_type_fkey',
     'Foreign key carbon_tax_act_fuel_type_id is indexed'
-);
-
-select has_index(
-    'ggircs_portal', 'incremental_fuel_charge_baseline', 'fuel_charge_baseline_start_year_fkey',
-    'Foreign key start_reporting_period is indexed'
-);
-
-select has_index(
-    'ggircs_portal', 'incremental_fuel_charge_baseline', 'fuel_charge_baseline_end_year_fkey',
-    'Foreign key end_reporting_period is indexed'
 );
 
 select columns_are('ggircs_portal'::name, 'incremental_fuel_charge_baseline'::name, array[
