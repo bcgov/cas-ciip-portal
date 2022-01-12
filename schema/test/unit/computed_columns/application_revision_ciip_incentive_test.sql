@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select * from no_plan();
+select plan(30);
 
 -- Set the timestamp to the start of the 2018 reporting year reporting window
 select mocks.set_mocked_time_in_transaction('2019-04-01 14:49:54.191757-07'::timestamptz);
@@ -152,6 +152,25 @@ select is(
   ),
   0.5,
   'the correct incentive ratio is returned with a simple product with no allocation of emissions'
+);
+
+update ggircs_portal.form_result
+set form_result = '[
+  {
+    "productRowId": 9,
+    "productAmount": 1123,
+    "productEmissions": 151
+  }
+]'
+where application_id = 1 and version_number = 1 and form_id = 4;
+
+select is(
+  (
+    with record as (select row(application_revision.*)::ggircs_portal.application_revision from ggircs_portal.application_revision where application_id = 1 and version_number = 1)
+    select incentive_ratio from ggircs_portal.application_revision_ciip_incentive((select * from record))
+  ),
+  0.83,
+  'the incentive ratio is rounded to 2 decimal places'
 );
 
 -- Report 2 ciip products with allocation and one non-ciip product
