@@ -14,6 +14,7 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
     em_electricity numeric;
     em_heat numeric;
     em_intensity numeric;
+    intensity_range numeric;
     incentive_ratio numeric;
     incentive_product numeric;
     incentive_product_max numeric;
@@ -178,8 +179,7 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
         end if;
 
         if (product.product_amount = 0) then
-          incentive_ratio = 0;
-          em_intensity = 0;
+          intensity_range = 0;
         else
           -- Calculate Emission Intensity
           em_intensity = em_product / product.product_amount;
@@ -187,13 +187,13 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
 
           -- Calculate Incentive Ratio as
           -- IncRatio = min(IncRatioMax, max(IncRatioMin, 1 - (EmIntensity - BM)/(ET - BM))
-          incentive_ratio = 1 - ((em_intensity - benchmark_data.benchmark) / (benchmark_data.eligibility_threshold - benchmark_data.benchmark));
+          intensity_range = 1 - ((em_intensity - benchmark_data.benchmark) / (benchmark_data.eligibility_threshold - benchmark_data.benchmark));
         end if;
 
         incentive_ratio = least(
           benchmark_data.maximum_incentive_ratio,
           greatest(
-            benchmark_data.minimum_incentive_ratio, incentive_ratio
+            benchmark_data.minimum_incentive_ratio, intensity_range
           )
         );
 
