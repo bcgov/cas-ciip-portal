@@ -53,9 +53,11 @@ select set_eq(
   $$,
   'The application_revision_carbon_tax function calculates the correct carbon tax for the 2020 reporting period'
   -- Coke Oven Gas is in the CTA, at 3.15 cent/cubic meter in 2020, so 42 m^3 is 42 * 3.15 / 100 = $1.323"
+  -- There is no baseline set for the 2020 year, so the fuel_charge reverts to the rate on March 31st 2018
   -- The Coke Oven Gas fuel charge was higher on March 31st, 2018, at 4.83, there should be no tax eligible for CIIP
 
   -- Diesel is under "Light Fuel Oil in the CTA, at 10.23 cent/L in 2020, so 42 kL is 42 * 1000 * 10.23 / 100 = $4296.6"
+  -- There is no baseline set for the 2020 year, so the fuel_charge reverts to the rate on March 31st 2018
   -- Diesel was priced at 7.67 cent/L on March 31st, 2018, so the portion eligible for ciip is 4296.6 - (42 * 1000 * 7.67 / 100) = 1075.2
 );
 
@@ -71,15 +73,17 @@ select set_eq(
     )
   $$,
   $$values
-    ((select id from ggircs_portal.fuel where name = 'Coke Oven Gas'), 1.47, 0, 0.0350, 0.0483),
-    ((select id from ggircs_portal.fuel where name = 'Diesel'), 4918.2, 1696.8, 0.1171, 0.0767)
+    ((select id from ggircs_portal.fuel where name = 'Coke Oven Gas'), 1.47, 0.5880, 0.0350, 0.021),
+    ((select id from ggircs_portal.fuel where name = 'Diesel'), 4918.2, 1638, 0.1171, 0.0781)
   $$,
   'The application_revision_carbon_tax function calculates the correct carbon tax for the 2021 reporting period'
-  -- Coke Oven Gas is in the CTA, at 3.50 cent/cubic meter in 2020, so 42 m^3 is 42 * 3.50 / 100 = $1.47"
-  -- The Coke Oven Gas fuel charge was higher on March 31st, 2018, at 4.83, there should be no tax eligible for CIIP
+  -- Coke Oven Gas is in the CTA, at 3.50 cent/cubic meter in 2021, so 42 m^3 is 42 * 3.50 / 100 = $1.47"
+  -- There is a baseline set for the 2021 year, so the fuel_charge is retrieved from the incremental_fuel_charge_baseline table
+  -- The Coke Oven Gas baseline fuel charge is set at 0.021 for 2021, so the portion eligible for ciip is 1.47 - (42 * 1 * 2.10 / 100) = 0.5580
 
-  -- Diesel is under "Light Fuel Oil in the CTA, at 11.71 cent/L in 2020, so 42 kL is 42 * 1000 * 11.71 / 100 = $4918.2"
-  -- Diesel was priced at 7.67 cent/L on March 31st, 2018, so the portion eligible for ciip is 4918.2 - (42 * 1000 * 7.67 / 100) = 1696.8);
+  -- Diesel is under "Light Fuel Oil in the CTA, at 11.71 cent/L in 2021, so 42 kL is 42 * 1000 * 11.71 / 100 = $4918.2"
+  -- There is a baseline set for the 2021 year, so the fuel_charge is retrieved from the incremental_fuel_charge_baseline table
+  -- Diesel baseline fuel charge is set at 7.81 cent/L, so the portion eligible for ciip is 4918.2 - (42 * 1000 * 7.81 / 100) = 1638.00;
 );
 
 
@@ -148,11 +152,11 @@ select set_eq(
     )
   $$,
   $$values
-    ((select id from ggircs_portal.fuel where name = 'Coke Oven Gas'), 1.47, 0, 0.0350, 0.0483),
-    ((select id from ggircs_portal.fuel where name = 'Coke Oven Gas'), 1.47, 0, 0.0350, 0.0483),
-    ((select id from ggircs_portal.fuel where name = 'Coke Oven Gas'), 1.47, 0, 0.0350, 0.0483),
-    ((select id from ggircs_portal.fuel where name = 'Coke Oven Gas'), 1.47, 0, 0.0350, 0.0483),
-    ((select id from ggircs_portal.fuel where name = 'Coke Oven Gas'), 1.47, 0, 0.0350, 0.0483)
+    ((select id from ggircs_portal.fuel where name = 'Coke Oven Gas'), 1.47, 0.5880, 0.0350, 0.021),
+    ((select id from ggircs_portal.fuel where name = 'Coke Oven Gas'), 1.47, 0.5880, 0.0350, 0.021),
+    ((select id from ggircs_portal.fuel where name = 'Coke Oven Gas'), 1.47, 0.5880, 0.0350, 0.021),
+    ((select id from ggircs_portal.fuel where name = 'Coke Oven Gas'), 1.47, 0.5880, 0.0350, 0.021),
+    ((select id from ggircs_portal.fuel where name = 'Coke Oven Gas'), 1.47, 0.5880, 0.0350, 0.021)
   $$,
   'The application_revision_carbon_tax includes fuels reported under carbon-taxed emission categories and ignores non-taxed categories'
     -- carbon_taxed categories (id: 1 - General Stationary Combustion, 3 - Venting, 4 - Flaring, 6 - On-site Transportation)
