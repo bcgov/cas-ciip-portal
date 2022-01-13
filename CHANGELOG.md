@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.15.0](https://github.com/bcgov/cas-ciip-portal/compare/v2.14.3...v2.15.0) (2022-01-13)
+
+
+### Features
+
+* add incremental_fuel_charge_baseline table ([0cb0397](https://github.com/bcgov/cas-ciip-portal/commit/0cb0397d57b531f1cf1b1b996fca617ff8fd39ac))
+* round incentive ratio to 2 decimal places ([44c97de](https://github.com/bcgov/cas-ciip-portal/commit/44c97de9e5b4169cb2c1f3e4d74254f912b81bb7))
+
 ### [2.14.3](https://github.com/bcgov/cas-ciip-portal/compare/v2.14.2...v2.14.3) (2021-12-09)
 
 ### [2.14.2](https://github.com/bcgov/cas-ciip-portal/compare/v2.14.1...v2.14.2) (2021-11-24)
