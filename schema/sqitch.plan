@@ -396,3 +396,4 @@ swrs_functions/get_carbon_tax_data [swrs_functions/get_carbon_tax_data@v2.14.0] 
 tables/incremental_fuel_charge_baseline [schema_ggircs_portal] 2022-01-10T20:50:27Z Dylan Leard <dylan@button.is> # Add table to define the baseline carbon tax per taxed fuel type
 policies/incremental_fuel_charge_baseline_policies [tables/incremental_fuel_charge_baseline] 2022-01-10T22:13:17Z Dylan Leard <dylan@button.is> # Add RLS policies for incremental_fuel_charge_baseline table
 computed_columns/application_revision_carbon_tax [computed_columns/application_revision_carbon_tax@v2.14.3] 2022-01-11T21:22:31Z Dylan Leard <dylan@button.is> # Migration: use the incremental_fuel_charge_baseline table retrieving carbon tax data
+computed_columns/application_revision_ciip_incentive [computed_columns/application_revision_ciip_incentive@v2.14.3] 2022-01-12T21:25:28Z Dylan Leard <dylan@button.is> # Migration: round incentive ratio to 2 decimal places during calculation

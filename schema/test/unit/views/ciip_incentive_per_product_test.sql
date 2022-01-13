@@ -181,7 +181,7 @@ select results_eq(
       1, 1, 10, 'Cement equivalent'::varchar(1000),
       5000., 800., 1., 0.21,
       3025.80, 0.16, 0.048, 0.46,
-      463.84, 637.01, 0.7282
+      465.02, 637.01, 0.7300
     )
   $$,
   'ciip_incentive_per_product returns all fields and accurate values'

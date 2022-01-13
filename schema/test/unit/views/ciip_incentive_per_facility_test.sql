@@ -182,9 +182,9 @@ select results_eq(
       'Ftavhrcsu'::varchar,
       8,
       'Nckgmvysf, Inc.'::varchar,
-      2852.63,
+      2853.81,
       3025.80,
-      0.9428
+      0.9432
     )
   $$,
   'ciip_incentive_per_facility returns all fields and accurate values'
