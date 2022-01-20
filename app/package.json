@@ -152,7 +152,9 @@
     "**/set-value": "4.0.1",
     "**/ansi-regex": "5.0.1",
     "**/jsonpointer": "5.0.0",
-    "cypress/@cypress/request/http-signature/jsprim/json-schema": "0.4.0"
+    "cypress/@cypress/request/http-signature/jsprim/json-schema": "0.4.0",
+    "standard-version/**/shelljs": "0.8.5",
+    "standard-version/**/trim-off-newlines": "1.0.3"
   },
   "jest": {
     "testEnvironment": "jsdom",
