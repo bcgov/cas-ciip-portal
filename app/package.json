@@ -37,7 +37,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "@fortawesome/react-fontawesome": "^0.1.16",
     "@graphile-contrib/pg-many-to-many": "^1.0.0",
-    "@rjsf/core": "^2.5.1",
+    "@rjsf/core": "^3.2.1",
     "@sentry/nextjs": "^6.16.0",
     "@sentry/react": "^6.16.0",
     "body-parser": "^1.19.0",
@@ -154,8 +154,7 @@
     "**/jsonpointer": "5.0.0",
     "cypress/@cypress/request/http-signature/jsprim/json-schema": "0.4.0",
     "standard-version/**/shelljs": "0.8.5",
-    "standard-version/**/trim-off-newlines": "1.0.3",
-    "**/nanoid": "^3.1.31"
+    "standard-version/**/trim-off-newlines": "1.0.3"
   },
   "jest": {
     "testEnvironment": "jsdom",
