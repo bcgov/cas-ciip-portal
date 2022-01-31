@@ -37,7 +37,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "@fortawesome/react-fontawesome": "^0.1.16",
     "@graphile-contrib/pg-many-to-many": "^1.0.0",
-    "@rjsf/core": "^2.5.1",
+    "@rjsf/core": "^3.2.1",
     "@sentry/nextjs": "^6.16.0",
     "@sentry/react": "^6.16.0",
     "body-parser": "^1.19.0",
@@ -146,7 +146,7 @@
     "webpack": "^5.38.1"
   },
   "resolutions": {
-    "**/node-fetch": "^2.6.1",
+    "**/node-fetch": "^2.6.7",
     "**/trim-newlines": "4.0.1",
     "easygraphql-parser": "^0.0.15",
     "**/set-value": "4.0.1",

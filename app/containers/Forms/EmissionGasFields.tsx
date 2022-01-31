@@ -18,6 +18,7 @@ const EmissionGasFields: React.FunctionComponent<FieldProps> = ({
   readonly,
   schema,
   uiSchema,
+  onFocus,
 }) => {
   const {
     properties: {
@@ -80,6 +81,7 @@ const EmissionGasFields: React.FunctionComponent<FieldProps> = ({
           >
             <registry.fields.NumberField
               required
+              onFocus={onFocus}
               schema={annualEmissionSchema}
               uiSchema={uiSchema}
               formData={formData.annualEmission}
@@ -127,6 +129,7 @@ const EmissionGasFields: React.FunctionComponent<FieldProps> = ({
             <registry.fields.NumberField
               required
               readonly
+              onFocus={onFocus}
               schema={annualCO2eSchema}
               uiSchema={uiSchema}
               formData={formData.annualCO2e}
