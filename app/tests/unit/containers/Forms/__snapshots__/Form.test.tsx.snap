@@ -146,6 +146,7 @@ exports[`The Form Component should match the snapshot 1`] = `
           omitExtraData={false}
           onError={[Function]}
           onSubmit={[MockFunction]}
+          readonly={false}
           schema={Object {}}
           showErrorList={false}
           transformErrors={[Function]}
@@ -880,6 +881,7 @@ exports[`The Form Component should not render an alert reminder to check the gui
           omitExtraData={false}
           onError={[Function]}
           onSubmit={[MockFunction]}
+          readonly={false}
           schema={Object {}}
           showErrorList={false}
           transformErrors={[Function]}
@@ -1614,6 +1616,7 @@ exports[`The Form Component should render alert reminder to check the guidance i
           omitExtraData={false}
           onError={[Function]}
           onSubmit={[MockFunction]}
+          readonly={false}
           schema={Object {}}
           showErrorList={false}
           transformErrors={[Function]}

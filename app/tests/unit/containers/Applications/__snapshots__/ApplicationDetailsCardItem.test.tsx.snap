@@ -102,6 +102,7 @@ exports[`ApplicationDetailsCardItemComponent should render the individual summar
         noHtml5Validate={false}
         noValidate={false}
         omitExtraData={true}
+        readonly={false}
         schema={
           Object {
             "title": "Fuel UsageCollapse",
