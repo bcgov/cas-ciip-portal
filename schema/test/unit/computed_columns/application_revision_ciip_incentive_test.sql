@@ -169,8 +169,8 @@ select is(
     with record as (select row(application_revision.*)::ggircs_portal.application_revision from ggircs_portal.application_revision where application_id = 1 and version_number = 1)
     select incentive_ratio from ggircs_portal.application_revision_ciip_incentive((select * from record))
   ),
-  0.83,
-  'the incentive ratio is rounded to 2 decimal places'
+  0.8277,
+  'the incentive ratio is rounded to 4 decimal places'
 );
 
 -- Report 2 ciip products with allocation and one non-ciip product

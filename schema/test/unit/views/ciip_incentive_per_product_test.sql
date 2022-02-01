@@ -181,14 +181,11 @@ select results_eq(
       1, 1, 10, 'Cement equivalent'::varchar(1000),
       5000., 800., 1., 0.21,
       3025.80, 0.16, 0.048, 0.46,
-      465.02, 637.01, 0.7300
+      463.87, 637.01, 0.7282
     )
   $$,
   'ciip_incentive_per_product returns all fields and accurate values'
 );
-
-select application_id, version_number, product_id, product_name, round(emission_intensity,2)
-from ggircs_portal.ciip_incentive_per_product where application_id = 1;
 
 -- Update Product with id=8 to have productAmount/productEmissions = 0
 -- This will test a bugfix where a product with zeroes in those columns was reporting the other product's emission intensity
