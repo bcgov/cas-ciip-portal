@@ -398,3 +398,4 @@ policies/incremental_fuel_charge_baseline_policies [tables/incremental_fuel_char
 computed_columns/application_revision_carbon_tax [computed_columns/application_revision_carbon_tax@v2.14.3] 2022-01-11T21:22:31Z Dylan Leard <dylan@button.is> # Migration: use the incremental_fuel_charge_baseline table retrieving carbon tax data
 computed_columns/application_revision_ciip_incentive [computed_columns/application_revision_ciip_incentive@v2.14.3] 2022-01-12T21:25:28Z Dylan Leard <dylan@button.is> # Migration: round incentive ratio to 2 decimal places during calculation
 @v2.15.0 2022-01-13T18:00:00Z Dylan Leard <dylan@button.is> # release v2.15.0
+computed_columns/application_revision_ciip_incentive [computed_columns/application_revision_ciip_incentive@v2.15.0] 2022-02-01T21:45:07Z Dylan Leard <dylan@button.is> # Migration: round incentive ratio to 4 decimal places during calculation

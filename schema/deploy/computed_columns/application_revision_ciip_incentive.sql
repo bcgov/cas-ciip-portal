@@ -190,14 +190,14 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
           incentive_ratio = 1 - ((em_intensity - benchmark_data.benchmark) / (benchmark_data.eligibility_threshold - benchmark_data.benchmark));
         end if;
 
-        -- The incentive ratio should be rounded to 2 decimal places to match the guidance provided by CAS
+        -- The incentive ratio should be rounded to 4 decimal places to match the guidance provided by CAS
         -- https://www2.gov.bc.ca/gov/content/environment/climate-change/industry/cleanbc-industrial-incentive-program#guidance
         incentive_ratio = round(least(
           benchmark_data.maximum_incentive_ratio,
           greatest(
             benchmark_data.minimum_incentive_ratio, incentive_ratio
           )
-        ), 2);
+        ), 4);
 
         -- Determine the payment allocation factor.
         if (select array_length(reported_ciip_products, 1)) = 1 then
