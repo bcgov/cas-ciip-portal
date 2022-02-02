@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.16.0](https://github.com/bcgov/cas-ciip-portal/compare/v2.15.0...v2.16.0) (2022-02-02)
+
+
+### Features
+
+* round incentive ratio to 4 decimal places during calculation ([9ca1552](https://github.com/bcgov/cas-ciip-portal/commit/9ca155255a318d6a8e755df33c6a286561f354b4))
+
+
+### Bug Fixes
+
+* redirect unauthorized idir users to /analyst/pending ([7401964](https://github.com/bcgov/cas-ciip-portal/commit/7401964b87ab2ccfc49ede2a96babb0b3018b0b8))
+
 ## [2.15.0](https://github.com/bcgov/cas-ciip-portal/compare/v2.14.3...v2.15.0) (2022-01-13)
 
 
