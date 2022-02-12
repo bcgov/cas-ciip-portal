@@ -3,26 +3,6 @@
 
 begin;
 
-  create type ggircs_portal.facility_data as (
-      report_id integer ,
-      swrs_report_id integer ,
-      swrs_facility_id integer ,
-      swrs_organisation_id integer ,
-      reporting_year integer,
-      facility_name varchar(1000),
-      facility_type varchar(1000),
-      bcghgid varchar(1000),
-      naics_code varchar(1000),
-      naics_classification varchar(1000),
-      latitude numeric,
-      longitude numeric,
-      facility_mailing_address varchar(1000),
-      facility_city varchar(1000),
-      facility_province varchar(1000),
-      facility_postal_code varchar(1000),
-      facility_country varchar(1000)
-  );
-
   create or replace function ggircs_portal.get_swrs_facility_data(
     facility_id integer ,
     reporting_year integer
