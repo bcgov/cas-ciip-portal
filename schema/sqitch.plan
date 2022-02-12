@@ -400,3 +400,4 @@ computed_columns/application_revision_ciip_incentive [computed_columns/applicati
 @v2.15.0 2022-01-13T18:00:00Z Dylan Leard <dylan@button.is> # release v2.15.0
 computed_columns/application_revision_ciip_incentive [computed_columns/application_revision_ciip_incentive@v2.15.0] 2022-02-01T21:45:07Z Dylan Leard <dylan@button.is> # Migration: round incentive ratio to 4 decimal places during calculation
 @v2.16.0 2022-02-02T16:47:46Z Dylan Leard <dylan@button.is> # release v2.16.0
+swrs_functions/get_swrs_facility_data [swrs_functions/get_swrs_facility_data@v2.16.0] 2022-02-11T23:26:27Z Dylan Leard <dylan@button.is> # Migration: the swrs.facility_details view has been dropped from the ggircs data, refactoring this function not to rely on that view

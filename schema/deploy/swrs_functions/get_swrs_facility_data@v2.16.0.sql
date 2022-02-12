@@ -3,6 +3,26 @@
 
 begin;
 
+  create type ggircs_portal.facility_data as (
+      report_id integer ,
+      swrs_report_id integer ,
+      swrs_facility_id integer ,
+      swrs_organisation_id integer ,
+      reporting_year integer,
+      facility_name varchar(1000),
+      facility_type varchar(1000),
+      bcghgid varchar(1000),
+      naics_code varchar(1000),
+      naics_classification varchar(1000),
+      latitude numeric,
+      longitude numeric,
+      facility_mailing_address varchar(1000),
+      facility_city varchar(1000),
+      facility_province varchar(1000),
+      facility_postal_code varchar(1000),
+      facility_country varchar(1000)
+  );
+
   create or replace function ggircs_portal.get_swrs_facility_data(
     facility_id integer ,
     reporting_year integer
@@ -31,9 +51,9 @@ begin;
           _rep.reporting_period_duration,
           _fac.facility_name,
           _fac.facility_type,
-          _identifier.identifier_value,
-          _naics.naics_code::varchar(1000),
-          _naics.naics_classification,
+          _fac.identifier_value,
+          _fac.naics_code::varchar(1000),
+          _fac.naics_classification,
           _fac.latitude,
           _fac.longitude,
 
@@ -52,17 +72,9 @@ begin;
            _fac_add.mailing_address_postal_code_zip_code,
            _fac_add.mailing_address_country
         )
-        from selected_report as _rep
-      --  inner join swrs.facility_details as _fac
-      --   on _rep.id = _fac.report_id
-        join swrs.facility _fac
-          on _rep.id = _fac.report_id
-        left join swrs.naics _naics
-          on _rep.id = _naics.report_id
-          and _naics.naics_priority = 'Primary'
-        left join swrs.identifier as _identifier
-          on _fac.id = _identifier.facility_bcghgid_id
-        left outer join swrs.address as _fac_add on _rep.id = _fac_add.report_id
+         from selected_report as _rep
+         inner join swrs.facility_details as _fac on _rep.id = _fac.report_id
+         left outer join swrs.address as _fac_add on _rep.id = _fac_add.report_id
                                             and _fac_add.type = 'Facility'
                                             and _fac_add.path_context = 'RegistrationData'
                                             limit 1
