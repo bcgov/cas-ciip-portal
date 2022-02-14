@@ -14,7 +14,7 @@ begin;
       select * from swrs.report where swrs_facility_id = facility_id
       and reporting_period_duration = reporting_year
     )
-    select row(
+    select
       _rep.id,
       _rep.swrs_report_id,
       _rep.swrs_facility_id ,
@@ -42,7 +42,6 @@ begin;
         _fac_add.mailing_address_prov_terr_state,
         _fac_add.mailing_address_postal_code_zip_code,
         _fac_add.mailing_address_country
-    )
     from selected_report as _rep
     join swrs.facility _fac
       on _rep.id = _fac.report_id
