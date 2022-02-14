@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.16.1](https://github.com/bcgov/cas-ciip-portal/compare/v2.16.0...v2.16.1) (2022-02-14)
+
+
+### Bug Fixes
+
+* get_swrs_facility_data() does not rely on deprecated view ([c1edc1c](https://github.com/bcgov/cas-ciip-portal/commit/c1edc1cda0f76b1e509305a072ffb25e270a184f))
+* remove old reference to deprecated view ([0331363](https://github.com/bcgov/cas-ciip-portal/commit/0331363dbba8810d449038bd94fcfe7de41306be))
+
 ## [2.16.0](https://github.com/bcgov/cas-ciip-portal/compare/v2.15.0...v2.16.0) (2022-02-02)
 
 
