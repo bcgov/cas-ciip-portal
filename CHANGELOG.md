@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.16.2](https://github.com/bcgov/cas-ciip-portal/compare/v2.16.1...v2.16.2) (2022-02-15)
+
+
+### Bug Fixes
+
+* include new ggircs_parameters schema in cron-swrs-import ([fa7da72](https://github.com/bcgov/cas-ciip-portal/commit/fa7da72126f2c395af7e8f73148e6a9aba44e760))
+
 ### [2.16.1](https://github.com/bcgov/cas-ciip-portal/compare/v2.16.0...v2.16.1) (2022-02-14)
 
 
