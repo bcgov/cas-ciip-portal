@@ -68,7 +68,6 @@
     "morgan": "^1.10.0",
     "next": "^12.1.0",
     "nodemailer": "^6.6.1",
-    "normalize.css": "^8.0.1",
     "pg": "^8.2.0",
     "postgraphile": "^4.11.0",
     "postgraphile-log-consola": "^1.0.1",

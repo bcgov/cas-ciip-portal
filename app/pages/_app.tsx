@@ -14,7 +14,6 @@ import safeJsonParse from "lib/safeJsonParse";
 import RelayModernEnvironment from "relay-runtime/lib/store/RelayModernEnvironment";
 import * as Sentry from "@sentry/react";
 import SessionTimeoutHandler from "components/SessionTimeoutHandler";
-import "normalize.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 config.autoAddCss = false;
