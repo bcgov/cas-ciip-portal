@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "skipLibCheck": true,
     "strict": false,
     "forceConsistentCasingInFileNames": true,
@@ -14,11 +18,24 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
-      "*": ["*", "../*", "__generated__/*"]
+      "*": [
+        "*",
+        "../*",
+        "__generated__/*"
+      ]
     },
     "allowJs": true,
-    "downlevelIteration": true
+    "downlevelIteration": true,
+    "incremental": true
   },
-  "exclude": [".next", "node_modules", "static", "cypress"],
-  "include": ["./**/*", "./.eslintrc.js"]
+  "exclude": [
+    ".next",
+    "node_modules",
+    "static",
+    "cypress"
+  ],
+  "include": [
+    "./**/*",
+    "./.eslintrc.js"
+  ]
 }
