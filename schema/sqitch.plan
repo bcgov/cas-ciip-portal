@@ -404,3 +404,4 @@ swrs_functions/get_swrs_facility_data [swrs_functions/get_swrs_facility_data@v2.
 @v2.16.1 2022-02-14T23:24:47Z Dylan Leard <dylan@button.is> # release v2.16.1
 @v2.16.2 2022-02-15T00:42:04Z Dylan Leard <dylan@button.is> # release v2.16.2
 swrs_functions/get_carbon_tax_data [swrs_functions/get_carbon_tax_data@v2.16.1] 2022-02-23T17:01:49Z Dylan Leard <dylan@button.is> # DROP: drop deprecated swrs_function
+@v2.16.3 2022-02-23T18:31:35Z Dylan Leard <dylan@button.is> # release v2.16.3
