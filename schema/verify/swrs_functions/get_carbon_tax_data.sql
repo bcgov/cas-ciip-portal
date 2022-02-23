@@ -2,6 +2,7 @@
 
 begin;
 
-select pg_get_functiondef('ggircs_portal.get_carbon_tax_data()'::regprocedure);
+select ggircs_portal_private.verify_function_not_present('ggircs_portal.application_current_user_can_edit');
+select ggircs_portal_private.verify_type_not_present('carbon_tax_data');
 
 rollback;
