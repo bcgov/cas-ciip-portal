@@ -4401,77 +4401,6 @@ input BooleanFilter {
   notIn: [Boolean!]
 }
 
-"""A connection to a list of `CarbonTaxDatum` values."""
-type CarbonTaxDataConnection {
-  """
-  A list of edges which contains the `CarbonTaxDatum` and cursor to aid in pagination.
-  """
-  edges: [CarbonTaxDataEdge!]!
-
-  """A list of `CarbonTaxDatum` objects."""
-  nodes: [CarbonTaxDatum]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """The count of *all* `CarbonTaxDatum` you could get from the connection."""
-  totalCount: Int!
-}
-
-"""A `CarbonTaxDatum` edge in the connection."""
-type CarbonTaxDataEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `CarbonTaxDatum` at the end of the edge."""
-  node: CarbonTaxDatum
-}
-
-type CarbonTaxDatum {
-  carbonTaxRate: BigFloat
-  ctaRateUnits: String
-  fuelCharge: BigFloat
-  fuelMappingId: Int
-  rateEndDate: Date
-  rateStartDate: Date
-  unitConversionFactor: BigFloat
-}
-
-"""
-A filter to be used against `CarbonTaxDatum` object types. All fields are combined with a logical ‘and.’
-"""
-input CarbonTaxDatumFilter {
-  """Checks for all expressions in this list."""
-  and: [CarbonTaxDatumFilter!]
-
-  """Filter by the object’s `carbonTaxRate` field."""
-  carbonTaxRate: BigFloatFilter
-
-  """Filter by the object’s `ctaRateUnits` field."""
-  ctaRateUnits: StringFilter
-
-  """Filter by the object’s `fuelCharge` field."""
-  fuelCharge: BigFloatFilter
-
-  """Filter by the object’s `fuelMappingId` field."""
-  fuelMappingId: IntFilter
-
-  """Negates the expression."""
-  not: CarbonTaxDatumFilter
-
-  """Checks for any expressions in this list."""
-  or: [CarbonTaxDatumFilter!]
-
-  """Filter by the object’s `rateEndDate` field."""
-  rateEndDate: DateFilter
-
-  """Filter by the object’s `rateStartDate` field."""
-  rateStartDate: DateFilter
-
-  """Filter by the object’s `unitConversionFactor` field."""
-  unitConversionFactor: BigFloatFilter
-}
-
 """Table containing the certification_url for an application"""
 type CertificationUrl implements Node {
   """
@@ -24783,51 +24712,6 @@ type CreateReviewStepPayload {
 """A location in a connection that can be used for resuming pagination."""
 scalar Cursor
 
-"""The day, does not include a time."""
-scalar Date
-
-"""
-A filter to be used against Date fields. All fields are combined with a logical ‘and.’
-"""
-input DateFilter {
-  """
-  Not equal to the specified value, treating null like an ordinary value.
-  """
-  distinctFrom: Date
-
-  """Equal to the specified value."""
-  equalTo: Date
-
-  """Greater than the specified value."""
-  greaterThan: Date
-
-  """Greater than or equal to the specified value."""
-  greaterThanOrEqualTo: Date
-
-  """Included in the specified list."""
-  in: [Date!]
-
-  """
-  Is null (if `true` is specified) or is not null (if `false` is specified).
-  """
-  isNull: Boolean
-
-  """Less than the specified value."""
-  lessThan: Date
-
-  """Less than or equal to the specified value."""
-  lessThanOrEqualTo: Date
-
-  """Equal to the specified value, treating null like an ordinary value."""
-  notDistinctFrom: Date
-
-  """Not equal to the specified value."""
-  notEqualTo: Date
-
-  """Not included in the specified list."""
-  notIn: [Date!]
-}
-
 """
 A point in time as described by the [ISO
 8601](https://en.wikipedia.org/wiki/ISO_8601) standard. May or may not include a timezone.
@@ -38414,32 +38298,6 @@ type Query implements Node {
     id: ID!
   ): Gas
   gasByRowId(rowId: Int!): Gas
-
-  """Reads and enables pagination through a set of `CarbonTaxDatum`."""
-  getCarbonTaxData(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: CarbonTaxDatumFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-  ): CarbonTaxDataConnection
 
   """Reads and enables pagination through a set of `EmissionDatum`."""
   getSwrsEmissionData(
