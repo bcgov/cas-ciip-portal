@@ -1,8 +1,3 @@
-ggircs:
-  namespace: 9212c9-dev
-  prefix: 9212c9
-  environment: dev
-
 replicas: 2
 route:
   host: dev.ciip.gov.bc.ca
@@ -67,3 +62,12 @@ cas-postgres:
 
 nginx-sidecar:
   hostName: dev.ciip.gov.bc.ca
+
+ggircs:
+  host: https://cas-ggircs-dev.apps.silver.devops.gov.bc.ca/
+  namespace: 9212c9-dev
+  prefix: 9212c9
+  environment: dev
+
+metabase:
+  host: https://cas-metabase-dev.apps.silver.devops.gov.bc.ca/

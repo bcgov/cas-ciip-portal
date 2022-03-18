@@ -28,6 +28,7 @@ networkPolicies:
 
 # Will tell which target to use when building the NSP for communication with the GGIRCS app
 ggircs:
+  host: ~
   namespace: ~
   prefix: ~
   environment: ~
@@ -35,6 +36,7 @@ ggircs:
   instanceName: cas-ggircs
 
 metabase:
+  host: ~
   instanceName: cas-metabase
 
 route:

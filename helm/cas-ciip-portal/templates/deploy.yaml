@@ -115,6 +115,10 @@ spec:
             value: {{ .Values.sitewide_notice.content | quote }}
           - name: HOST
             value: http{{ if not .Values.route.insecure }}s{{ end }}://{{ .Values.route.host }}
+          - name: GGIRCS_HOST
+            value: {{ .Values.ggircs.host }}
+          - name: METABASE_HOST
+            value: {{ .Values.metabase.host }}
           - name: SENTRY_ENVIRONMENT
             value: {{ include "cas-ciip-portal.namespaceSuffix" . }}
           - name: SENTRY_RELEASE
