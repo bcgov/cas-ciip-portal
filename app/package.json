@@ -74,7 +74,7 @@
     "postgraphile-plugin-connection-filter": "^2.1.1",
     "prop-types": "^15.5.8",
     "react": "^17.0.2",
-    "react-bootstrap": "^1.4.3",
+    "react-bootstrap": "^1.6.4",
     "react-bootstrap-typeahead": "^4.2.3",
     "react-cookie": "^4.0.3",
     "react-datepicker": "^4.5.0",

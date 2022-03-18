@@ -2,25 +2,25 @@
 
 exports[`The ProductionFields Component without naics code should match the snapshot 1`] = `
 <div>
-  <ForwardRef(InputGroup)>
+  <InputGroup>
     <InputGroupText
       className="col-md-12"
     >
       foo
     </InputGroupText>
-  </ForwardRef(InputGroup)>
+  </InputGroup>
 </div>
 `;
 
 exports[`The ProductionRowIdField Component with archived product should match the snapshot 1`] = `
 <div>
-  <ForwardRef(InputGroup)>
+  <InputGroup>
     <InputGroupText
       className="col-md-12"
     >
       bar
     </InputGroupText>
-  </ForwardRef(InputGroup)>
+  </InputGroup>
 </div>
 `;
 
