@@ -11,6 +11,7 @@ import ReportAProblem from "components/Dashboard/reportAProblem";
 import getConfig from "next/config";
 import { ADMIN_GROUP } from "data/group-constants";
 import FormConfiguration from "components/Dashboard/formConfiguration";
+import GgircsAppLink from "components/Dashboard/ggircsAppLink";
 
 const ALLOWED_GROUPS = ADMIN_GROUP;
 
@@ -43,6 +44,7 @@ class Admin extends Component<Props> {
             <ReportingOperations />
             <FormConfiguration />
             <UserManagement />
+            <GgircsAppLink />
             <ReportAProblem
               supportUrl={
                 `mailto:${supportUrl}?subject=Internal Support Request` || "#"

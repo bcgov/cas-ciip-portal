@@ -43,7 +43,7 @@ const ProgramDataManagement: React.FunctionComponent<Props> = ({
           </Link>
         </ListGroup.Item>
         <ListGroup.Item>
-          <Card.Link target="_blank" href="https://cas-metabase.nrs.gov.bc.ca/">
+          <Card.Link target="_blank" href={`${process.env.METABASE_HOST}`}>
             Data Insights (Metabase)
           </Card.Link>
         </ListGroup.Item>
