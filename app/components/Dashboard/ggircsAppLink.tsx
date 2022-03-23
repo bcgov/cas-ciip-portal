@@ -1,5 +1,8 @@
+import getConfig from "next/config";
 import React from "react";
 import { Card, ListGroup } from "react-bootstrap";
+
+const { GGIRCS_HOST } = getConfig().publicRuntimeConfig || {};
 
 const GgircsAppLink: React.FunctionComponent = () => {
   return (
@@ -13,7 +16,7 @@ const GgircsAppLink: React.FunctionComponent = () => {
       </Card.Body>
       <ListGroup variant="flush">
         <ListGroup.Item>
-          <Card.Link target="_blank" href={`${process.env.GGIRCS_HOST}`}>
+          <Card.Link target="_blank" href={`${GGIRCS_HOST}`}>
             Access the GGIRCS App
           </Card.Link>
         </ListGroup.Item>

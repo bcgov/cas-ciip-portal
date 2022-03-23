@@ -1,6 +1,9 @@
 import React from "react";
 import { Card, ListGroup } from "react-bootstrap";
 import Link from "next/link";
+import getConfig from "next/config";
+
+const { METABASE_HOST } = getConfig().publicRuntimeConfig || {};
 
 interface Props {
   viewOnly?: boolean;
@@ -43,7 +46,7 @@ const ProgramDataManagement: React.FunctionComponent<Props> = ({
           </Link>
         </ListGroup.Item>
         <ListGroup.Item>
-          <Card.Link target="_blank" href={`${process.env.METABASE_HOST}`}>
+          <Card.Link target="_blank" href={`${METABASE_HOST}`}>
             Data Insights (Metabase)
           </Card.Link>
         </ListGroup.Item>
