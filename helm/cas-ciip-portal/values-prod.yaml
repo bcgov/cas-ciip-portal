@@ -37,3 +37,9 @@ airflow-ciip-deploy-db:
 
 nginx-sidecar:
   hostName: ciip.gov.bc.ca
+
+ggircs:
+  host: https://cas-ggircs.apps.silver.devops.gov.bc.ca/
+
+metabase:
+  host: https://cas-metabase.nrs.gov.bc.ca/

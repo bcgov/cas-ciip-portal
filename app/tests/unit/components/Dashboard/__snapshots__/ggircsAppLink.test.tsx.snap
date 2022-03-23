@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`the ggircs app link component matches the snapshot with the ggircs link 1`] = `
+<div
+  className="admin-control-card card"
+>
+  <div
+    className="card-body"
+  >
+    <div
+      className="card-title h5"
+    >
+      GGIRCS
+    </div>
+    <p
+      className="card-text"
+    >
+      Manage fuel, carbon tax and other data in the SWRS database
+    </p>
+    <p
+      className="card-text"
+    >
+      Access SWRS reports and attachments
+    </p>
+  </div>
+  <div
+    className="list-group list-group-flush"
+    onKeyDown={[Function]}
+  >
+    <div
+      className="list-group-item"
+      data-rb-event-key={null}
+      disabled={false}
+      onClick={[Function]}
+    >
+      <a
+        className="card-link"
+        href="a-test-ggircs-host"
+        target="_blank"
+      >
+        Access the GGIRCS App
+      </a>
+    </div>
+  </div>
+</div>
+`;

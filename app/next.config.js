@@ -29,6 +29,8 @@ module.exports = withSentryConfig(
       ENABLE_DB_MOCKS: process.env.ENABLE_DB_MOCKS,
       SENTRY_ENVIRONMENT: process.env.SENTRY_ENVIRONMENT,
       SENTRY_RELEASE: process.env.SENTRY_RELEASE,
+      GGIRCS_HOST: process.env.GGIRCS_HOST,
+      METABASE_HOST: process.env.METABASE_HOST,
     },
   },
   {
