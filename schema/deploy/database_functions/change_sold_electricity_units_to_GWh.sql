@@ -13,6 +13,8 @@
 
 begin;
 
+alter table ggircs_portal.form_result disable trigger _immutable_form_result;
+
 do
 $body$
     declare
@@ -45,6 +47,8 @@ $body$
           product_index := 0;
       end loop;
     end
-  $body$
+  $body$;
+
+  alter table ggircs_portal.form_result enable trigger _immutable_form_result;
 
 commit;
