@@ -6,7 +6,6 @@ begin;
 select plan(10);
 
 /** TEST SETUP **/
-truncate ggircs_portal.organisation restart identity cascade;
 truncate ggircs_portal.application restart identity cascade;
 truncate ggircs_portal.form_result restart identity cascade;
 do $$
@@ -309,8 +308,44 @@ where application_id=3 and form_id=4;
 update ggircs_portal.form_result set form_result = '{"changed": false}' where form_id != 4;
 
 -- Call the sqitch migration script that changes the productUnits to GWh and scales the productAmount by a factor of 1000
-\i deploy/database_functions/change_sold_electricity_units_to_GWh.sql
-\i data/prod/energy_product.sql
+-- \i deploy/database_functions/change_sold_electricity_units_to_GWh.sql
+alter table ggircs_portal.form_result disable trigger _immutable_form_result;
+
+do
+$body$
+    declare
+      temp_row record;
+      element jsonb;
+      product_index integer;
+      json_data jsonb;
+      new_data jsonb;
+    begin
+    product_index := 0;
+    -- Loop over all production form_result records that report Sold Electricity (productRowId=1).
+    for temp_row in
+      select application_id, id as form_result_id, form_result
+      from ggircs_portal.form_result
+      where form_id=(select id from ggircs_portal.form_json where slug='production')
+      and form_result::jsonb@>'[{"productRowId":1}]'::jsonb = true
+      -- Loop over each element of the form_result JSON array and edit the productUnits & productAmount if the element is the Sold Electricity product.
+      loop
+        for element in select jsonb_array_elements(form_result) from ggircs_portal.form_result where id=temp_row.form_result_id
+          loop
+            if (element::jsonb->>'productRowId')::int = 1 then
+              -- Change productUnits to 'GWh' and scale by productAmount by a factor of 1000 to compensate.
+              new_data := '{"productUnits": "GWh", "productAmount": ' || ((element::jsonb->>'productAmount')::numeric / 1000)::real ||' }';
+              json_data := (select jsonb (element) - 'productAmount' - 'productUnits' || new_data::jsonb);
+              -- Update the corresponding element in the form_result JSON array.
+              update ggircs_portal.form_result set form_result[product_index] = json_data where id = temp_row.form_result_id;
+            end if;
+            product_index := product_index + 1;
+          end loop;
+          product_index := 0;
+      end loop;
+    end
+  $body$;
+
+  alter table ggircs_portal.form_result enable trigger _immutable_form_result;
 
 /** END SETUP **/
 
@@ -321,7 +356,7 @@ select is (
 );
 
 select is (
-  (select form_result from ggircs_portal.form_result where application_id=4 and form_id=4),
+  (select form_result from ggircs_portal.form_result where application_id=4 and version_number=1 and form_id=4),
   '[]'::jsonb,
   'The migration does not affect empty form_results'
 );
