@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(9);
+select plan(10);
 
 /** TEST SETUP **/
 truncate ggircs_portal.organisation restart identity cascade;
@@ -310,8 +310,15 @@ update ggircs_portal.form_result set form_result = '{"changed": false}' where fo
 
 -- Call the sqitch migration script that changes the productUnits to GWh and scales the productAmount by a factor of 1000
 \i deploy/database_functions/change_sold_electricity_units_to_GWh.sql
+\i data/prod/energy_product.sql
 
 /** END SETUP **/
+
+select is (
+  (select units from ggircs_portal.product where id=1),
+  'GWh'::varchar,
+  'Sold Electricity product units should be GWh'
+);
 
 select is (
   (select form_result from ggircs_portal.form_result where application_id=4 and form_id=4),
