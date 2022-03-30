@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(10);
+select plan(11);
 
 /** TEST SETUP **/
 truncate ggircs_portal.application restart identity cascade;
@@ -313,7 +313,7 @@ select ggircs_portal_private.change_sold_electricity_units_to_gwh();
 /** END SETUP **/
 
 select has_function(
-  'ggircs_portal_private', 'change_sold_electricity_units_to_gwh'',
+  'ggircs_portal_private', 'change_sold_electricity_units_to_gwh',
   'Function change_sold_electricity_units_to_gwh should exist'
 );
 
