@@ -9,11 +9,10 @@ $body$
     declare
       temp_row record;
       element jsonb;
-      product_index integer;
       json_data jsonb;
       new_data jsonb;
+      product_array jsonb[];
     begin
-    product_index := 0;
     for temp_row in
       select application_id, id as form_result_id, form_result
       from ggircs_portal.form_result
@@ -22,14 +21,15 @@ $body$
       loop
         for element in select jsonb_array_elements(form_result) from ggircs_portal.form_result where id=temp_row.form_result_id
           loop
-            if (element::jsonb->>'productRowId')::int = 1 then
-              new_data := '{"productUnits": "MWh", "productAmount": ' || ((element::jsonb->>'productAmount')::numeric * 1000)::real ||' }';
+            json_data := element;
+            if (element::jsonb->>'productRowId')::int = 1 and (element::jsonb->>'productUnits') = 'GWh' then
+              new_data := jsonb_build_object('productUnits', 'MWh', 'productAmount', ((element::jsonb->>'productAmount')::numeric * 1000)::real );
               json_data := (select jsonb (element) - 'productAmount' - 'productUnits' || new_data::jsonb);
-              update ggircs_portal.form_result set form_result[product_index] = json_data where id = temp_row.form_result_id;
             end if;
-            product_index := product_index + 1;
+            product_array = array_append(product_array, json_data);
           end loop;
-          product_index := 0;
+          update ggircs_portal.form_result set form_result = array_to_json(product_array)::jsonb where id = temp_row.form_result_id;
+          product_array := null;
       end loop;
     end
   $body$;
