@@ -307,50 +307,15 @@ where application_id=3 and form_id=4;
 
 update ggircs_portal.form_result set form_result = '{"changed": false}' where form_id != 4;
 
--- Call the sqitch migration script that changes the productUnits to GWh and scales the productAmount by a factor of 1000
--- \i deploy/database_functions/change_sold_electricity_units_to_GWh.sql
-alter table ggircs_portal.form_result disable trigger _immutable_form_result;
-
-do
-$body$
-    declare
-      temp_row record;
-      element jsonb;
-      json_data jsonb;
-      new_data jsonb;
-      product_array jsonb[];
-    begin
-    -- Loop over all production form_result records that report Sold Electricity (productRowId=1).
-    for temp_row in
-      select application_id, id as form_result_id, form_result
-      from ggircs_portal.form_result
-      where form_id=(select id from ggircs_portal.form_json where slug='production')
-      and form_result::jsonb@>'[{"productRowId":1}]'::jsonb = true
-      -- Loop over each element of the form_result JSON array and edit the productUnits & productAmount if the element is the Sold Electricity product.
-      loop
-        for element in select jsonb_array_elements(form_result) from ggircs_portal.form_result where id=temp_row.form_result_id
-          loop
-            -- Grab the JSON data for the current element.
-            json_data := element;
-            if (element::jsonb->>'productRowId')::int = 1 then
-              -- Edit the JSON data to change the productUnits to GWh and scale the productAmount by a factor of 1000.
-              new_data := '{"productUnits": "GWh", "productAmount": ' || ((element::jsonb->>'productAmount')::numeric / 1000)::real ||' }';
-              json_data := (select jsonb (element) - 'productAmount' - 'productUnits' || new_data::jsonb);
-            end if;
-            -- Append the JSON data to the product_array to recreate the array of products.
-            product_array = array_append(product_array, json_data);
-          end loop;
-          -- Update the form_result record with the edited JSON data.
-          update ggircs_portal.form_result set form_result = ('[' || array_to_string(product_array, ',') || ']')::jsonb where id = temp_row.form_result_id;
-          -- Reset the product_array for the next iteration.
-          product_array := null;
-      end loop;
-    end
-  $body$;
-
-  alter table ggircs_portal.form_result enable trigger _immutable_form_result;
+-- Call the function that changes the productUnits to GWh and scales the productAmount by a factor of 1000
+select ggircs_portal_private.change_sold_electricity_units_to_gwh();
 
 /** END SETUP **/
+
+select has_function(
+  'ggircs_portal_private', 'change_sold_electricity_units_to_gwh'',
+  'Function change_sold_electricity_units_to_gwh should exist'
+);
 
 select is (
   (select units from ggircs_portal.product where id=1),
