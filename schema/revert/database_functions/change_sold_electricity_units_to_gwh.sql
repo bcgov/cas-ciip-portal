@@ -36,4 +36,6 @@ $body$
 
 alter table ggircs_portal.form_result enable trigger _immutable_form_result;
 
+drop function ggircs_portal_private.change_sold_electricity_units_to_gwh;
+
 commit;

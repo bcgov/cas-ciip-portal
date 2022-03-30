@@ -2,6 +2,6 @@
 
 begin;
 
--- No verification required
+select pg_get_functiondef('ggircs_portal_private.change_sold_electricity_units_to_gwh()'::regprocedure);
 
 rollback;
