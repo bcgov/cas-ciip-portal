@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.17.0](https://github.com/bcgov/cas-ciip-portal/compare/v2.16.3...v2.17.0) (2022-04-05)
+
+
+### Features
+
+* ggircs link on the admin dashboard ([ee79185](https://github.com/bcgov/cas-ciip-portal/commit/ee79185bba584a24947e447de47eea859ace28f6))
+* Sold Electricity product units is in GWh ([8dedd87](https://github.com/bcgov/cas-ciip-portal/commit/8dedd874bb6349e02293df3a08fb83bfc3b35325))
+
 ### [2.16.3](https://github.com/bcgov/cas-ciip-portal/compare/v2.16.2...v2.16.3) (2022-02-23)
 
 ### [2.16.2](https://github.com/bcgov/cas-ciip-portal/compare/v2.16.1...v2.16.2) (2022-02-15)
