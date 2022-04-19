@@ -36,16 +36,15 @@ export const FacilitiesRowItemComponent: React.FunctionComponent<Props> = ({
     facilityName,
     facilityType,
     facilityBcghgid,
-    lastSwrsReportingYear,
+    hasSwrsReport,
   } = facilityApplication;
-
   return (
     <tr>
       <td>{operatorName}</td>
       <td>{facilityName}</td>
       <td>{facilityType}</td>
       <td>{facilityBcghgid}</td>
-      <td>{lastSwrsReportingYear}</td>
+      <td>{hasSwrsReport ? "Yes" : "No"}</td>
       <td>
         {" "}
         {applicationStatus ? (
@@ -79,10 +78,10 @@ export default createFragmentContainer(FacilitiesRowItemComponent, {
       facilityName
       facilityType
       facilityBcghgid
-      lastSwrsReportingYear
       applicationId
       applicationStatus
       operatorName
+      hasSwrsReport
     }
   `,
   query: graphql`
