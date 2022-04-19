@@ -407,3 +407,4 @@ swrs_functions/get_carbon_tax_data [swrs_functions/get_carbon_tax_data@v2.16.1] 
 @v2.16.3 2022-02-23T18:31:35Z Dylan Leard <dylan@button.is> # release v2.16.3
 database_functions/change_sold_electricity_units_to_gwh [tables/form_result] 2022-03-25T23:06:22Z Dylan Leard <dylan@button.is> # Migration: Changes the units for Sold Electricity to GWh and scales the reported productAmount in each form_result
 @v2.17.0 2022-04-05T23:02:54Z Dylan Leard <dylan@button.is> # release v2.17.0
+computed_columns/facility_application_has_swrs_report [tables/application] 2022-04-19T20:02:21Z Dylan Leard <dylan@button.is> # Computed column returns true if an application has a corresponding swrs report for the year
