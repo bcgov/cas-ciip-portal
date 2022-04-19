@@ -27682,6 +27682,7 @@ type FacilityApplication {
   facilityId: Int
   facilityName: String
   facilityType: String
+  hasSwrsReport: Boolean
   lastSwrsReportingYear: Int
   operatorName: String
 
@@ -27730,6 +27731,9 @@ input FacilityApplicationFilter {
 
   """Filter by the object’s `facilityType` field."""
   facilityType: StringFilter
+
+  """Filter by the object’s `hasSwrsReport` field."""
+  hasSwrsReport: BooleanFilter
 
   """Filter by the object’s `lastSwrsReportingYear` field."""
   lastSwrsReportingYear: IntFilter
