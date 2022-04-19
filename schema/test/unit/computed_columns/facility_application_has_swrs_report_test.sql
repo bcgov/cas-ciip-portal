@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(3);
+select plan(5);
 
 -- Clean schema
 select test_helper.clean_ggircs_portal_schema();
@@ -54,6 +54,37 @@ select is(
   ),
   false,
   'Function returns false when a swrs report does not exist.'
+);
+
+-- Function should still work when no application has been started
+truncate ggircs_portal.application restart identity cascade;
+
+select is(
+  (
+    select ggircs_portal.facility_application_has_swrs_report(
+      (
+        select row(facility_application_by_reporting_year.*)::ggircs_portal.facility_application
+        from ggircs_portal.facility_application_by_reporting_year(2019)
+        where facility_id = 1
+      )
+    )
+  ),
+  true,
+  'Function returns true when a swrs report exists and no application has been started.'
+);
+
+select is(
+  (
+    select ggircs_portal.facility_application_has_swrs_report(
+      (
+        select row(facility_application_by_reporting_year.*)::ggircs_portal.facility_application
+        from ggircs_portal.facility_application_by_reporting_year(2019)
+        where facility_id = 2
+      )
+    )
+  ),
+  false,
+  'Function returns false when a swrs report does not exist and no application has been started.'
 );
 
 select finish();
