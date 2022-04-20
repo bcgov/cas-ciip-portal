@@ -31,7 +31,7 @@ const filters: TableFilter[] = [
     { renderEnumValue: (label) => label, sortable: false }
   ),
   new TextFilter("BC GHG id", "facilityBcghgid", { sortable: false }),
-  new YesNoFilter("Has SWRS report", "hasSwrsReport"),
+  new YesNoFilter("SWRS Report Received", "hasSwrsReport"),
   new ApplicationStatusFilter(
     "Application Status",
     "applicationStatus",
