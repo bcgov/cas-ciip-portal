@@ -165,7 +165,7 @@ exports[`FacilitiesListContainer should match the previous snapshot 1`] = `
             },
           ],
           "sortColumnName": "hasSwrsReport",
-          "title": "Has SWRS report",
+          "title": "SWRS Report Received",
         },
         ApplicationStatusFilter {
           "Component": [Function],
