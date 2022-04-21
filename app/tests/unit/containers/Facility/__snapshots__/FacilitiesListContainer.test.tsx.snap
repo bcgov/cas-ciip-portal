@@ -142,15 +142,30 @@ exports[`FacilitiesListContainer should match the previous snapshot 1`] = `
           "sortColumnName": "facilityBcghgid",
           "title": "BC GHG id",
         },
-        NumberFilter {
+        YesNoFilter {
           "Component": [Function],
-          "argName": "lastSwrsReportingYear",
+          "argName": "hasSwrsReport",
           "castValue": [Function],
+          "enumValues": Array [
+            true,
+            false,
+          ],
           "hasTableHeader": true,
           "isSearchEnabled": true,
-          "isSortEnabled": false,
-          "sortColumnName": "lastSwrsReportingYear",
-          "title": "Reporting period of last SWRS report",
+          "isSortEnabled": true,
+          "renderEnumValue": [Function],
+          "searchOptionValues": Array [
+            Object {
+              "display": "Yes",
+              "value": true,
+            },
+            Object {
+              "display": "No",
+              "value": false,
+            },
+          ],
+          "sortColumnName": "hasSwrsReport",
+          "title": "SWRS Report Received",
         },
         ApplicationStatusFilter {
           "Component": [Function],

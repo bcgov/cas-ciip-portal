@@ -38,7 +38,7 @@ const queriesWithParams = {
     offset: 0,
     pageSize: 20,
     reportingYear: null,
-    lastSwrsReportingYear: null,
+    hasSwrsReport: null,
     facilityBcghgid: null,
   },
   reporterQuery: {},

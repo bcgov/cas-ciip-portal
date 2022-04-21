@@ -10,6 +10,8 @@ review:
 ci:
   hide:
     - "ci/circleci: release/release_approval"
+  allow_failures:
+    - "ci/circleci: audit"
 links:
   PVC_usage: https://app.sysdigcloud.com/#/dashboards/224524?last=3600
   Health_overview: https://app.sysdigcloud.com/#/dashboards/225040?last=3600

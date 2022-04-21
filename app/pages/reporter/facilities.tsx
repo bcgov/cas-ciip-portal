@@ -30,7 +30,7 @@ class FacilitiesList extends Component<Props> {
       $offset: Int
       $pageSize: Int
       $reportingYear: Int
-      $lastSwrsReportingYear: Int
+      $hasSwrsReport: Boolean
       $facilityBcghgid: String
     ) {
       query {
@@ -43,7 +43,7 @@ class FacilitiesList extends Component<Props> {
             applicationIdIsNull: $applicationIdIsNull
             applicationId: $applicationId
             organisationRowId: $organisationRowId
-            lastSwrsReportingYear: $lastSwrsReportingYear
+            hasSwrsReport: $hasSwrsReport
             offset: $offset
             pageSize: $pageSize
             reportingYear: $reportingYear

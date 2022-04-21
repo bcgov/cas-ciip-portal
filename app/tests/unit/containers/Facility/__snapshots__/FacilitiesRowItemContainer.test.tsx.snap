@@ -15,7 +15,7 @@ exports[`FacilitiesRowItem should match the previous snapshot 1`] = `
     123
   </td>
   <td>
-    2019
+    No
   </td>
   <td>
      
@@ -81,7 +81,7 @@ exports[`FacilitiesRowItem should show Draft in the status if the application is
     123
   </td>
   <td>
-    2019
+    No
   </td>
   <td>
      
@@ -147,7 +147,7 @@ exports[`FacilitiesRowItem should show approved in the status if the application
     123
   </td>
   <td>
-    2019
+    No
   </td>
   <td>
      

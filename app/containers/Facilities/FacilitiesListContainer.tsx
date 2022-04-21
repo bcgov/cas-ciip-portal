@@ -11,6 +11,7 @@ import {
   ApplicationStatusFilter,
   NoHeaderFilter,
   ReportingPeriodFilter,
+  YesNoFilter,
 } from "components/FilterableTable/Filters";
 import FilterableTableLayout from "components/FilterableTable/FilterableTable";
 import { useRouter } from "next/router";
@@ -30,11 +31,7 @@ const filters: TableFilter[] = [
     { renderEnumValue: (label) => label, sortable: false }
   ),
   new TextFilter("BC GHG id", "facilityBcghgid", { sortable: false }),
-  new NumberFilter(
-    "Reporting period of last SWRS report",
-    "lastSwrsReportingYear",
-    { sortable: false }
-  ),
+  new YesNoFilter("SWRS Report Received", "hasSwrsReport"),
   new ApplicationStatusFilter(
     "Application Status",
     "applicationStatus",
@@ -112,7 +109,7 @@ export default createFragmentContainer(FacilitiesList, {
       applicationIdIsNull: { type: "Boolean" }
       applicationId: { type: "Int" }
       facilityBcghgid: { type: "String" }
-      lastSwrsReportingYear: { type: "Int" }
+      hasSwrsReport: { type: "Boolean" }
       applicationStatus: { type: "CiipApplicationRevisionStatus" }
       organisationRowId: { type: "Int" }
       offsetValue: { type: "Int" }
@@ -136,7 +133,7 @@ export default createFragmentContainer(FacilitiesList, {
             equalTo: $applicationId
           }
           facilityBcghgid: { includes: $facilityBcghgid }
-          lastSwrsReportingYear: { equalTo: $lastSwrsReportingYear }
+          hasSwrsReport: { equalTo: $hasSwrsReport }
         }
       ) {
         edges {
