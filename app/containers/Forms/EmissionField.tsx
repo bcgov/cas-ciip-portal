@@ -64,8 +64,15 @@ export const EmissionFieldComponent: React.FunctionComponent<Props> = (
           .emission-form .show-zero-emissions .zero-emission {
             display: block !important;
           }
+
+          /* .emission class is for the summary page */
           .emission .emission-row {
-            display: none !important;
+            margin-bottom: 0;
+            border-bottom: none;
+            padding-bottom: 0 !important;
+          }
+          .emission .emission-toggle {
+            display: none;
           }
 
           .emission-form .field-array hr {

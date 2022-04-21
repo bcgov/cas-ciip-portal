@@ -17,6 +17,7 @@ import EmissionCategoryRowIdField from "containers/Forms/EmissionCategoryRowIdFi
 import NaicsField from "containers/Forms/NaicsField";
 import ProductField from "containers/Forms/ProductField";
 import ProductRowIdField from "containers/Forms/ProductRowIdField";
+import EmissionField from "containers/Forms/EmissionField";
 
 interface Props {
   // The form_result used by the fragment
@@ -112,6 +113,15 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
             .naicsCode
         }
         query={query}
+        {...props}
+      />
+    ),
+    emission: (props) => (
+      <EmissionField
+        totalOnsiteEmissions={
+          formResult.applicationRevisionByApplicationIdAndVersionNumber
+            .totalCiipEmissions
+        }
         {...props}
       />
     ),
@@ -217,6 +227,7 @@ export default createFragmentContainer(ApplicationDetailsCardItemComponent, {
         formJson
       }
       applicationRevisionByApplicationIdAndVersionNumber {
+        totalCiipEmissions
         naicsCode {
           ...ProductRowIdField_naicsCode
           ...ProductField_naicsCode
