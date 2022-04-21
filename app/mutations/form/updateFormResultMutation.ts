@@ -12,6 +12,11 @@ const mutation = graphql`
       formResult {
         id
         formResult
+        applicationByApplicationId {
+          latestDraftRevision {
+            totalCiipEmissions
+          }
+        }
       }
     }
   }

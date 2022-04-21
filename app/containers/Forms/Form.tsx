@@ -62,7 +62,14 @@ const CUSTOM_FIELDS = {
     />
   ),
   emission: (props) => (
-    <EmissionField query={props.formContext.query} {...props} />
+    <EmissionField
+      query={props.formContext.query}
+      totalOnsiteEmissions={
+        props.formContext.ciipFormResult.applicationByApplicationId
+          .latestDraftRevision.totalCiipEmissions
+      }
+      {...props}
+    />
   ),
   productRowId: (props) => (
     <ProductRowIdField
@@ -267,6 +274,7 @@ export default createFragmentContainer(FormComponent, {
       }
       applicationByApplicationId {
         latestDraftRevision {
+          totalCiipEmissions
           naicsCode {
             ...ProductRowIdField_naicsCode
             ...ProductField_naicsCode
