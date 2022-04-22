@@ -23,6 +23,7 @@ const createDefaultJsonSchemaFormProps = () => {
     errorSchema: {},
     onChange: jest.fn(),
     onBlur: jest.fn(),
+    onFocus: jest.fn(),
     registry: {
       ...getDefaultRegistry(),
     },

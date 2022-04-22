@@ -8,7 +8,7 @@ describe("The EmissionField", () => {
     const componentUnderTest = mount(
       <EmissionFieldComponent
         totalOnsiteEmissions={1234567.89}
-        {...(createDefaultJsonSchemaFormProps() as any)}
+        {...createDefaultJsonSchemaFormProps()}
       />
     );
 

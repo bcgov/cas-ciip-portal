@@ -3,14 +3,11 @@ import { FieldProps } from "@rjsf/core";
 import ObjectField from "@rjsf/core/dist/cjs/components/fields/ObjectField";
 import { Button, Col, Row } from "react-bootstrap";
 import NumberFormat from "react-number-format";
+
 interface Props extends FieldProps {
   totalOnsiteEmissions: number;
 }
 
-/**
- * This custom ObjectField component injects the read-only data for a product when the
- * product id changes
- */
 export const EmissionFieldComponent: React.FunctionComponent<Props> = (
   props
 ) => {

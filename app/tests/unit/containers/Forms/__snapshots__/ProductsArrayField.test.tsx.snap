@@ -44,6 +44,7 @@ exports[`ProductsArrayField NAICS code specified, with allowable products 1`] = 
   name=""
   onBlur={[MockFunction]}
   onChange={[MockFunction]}
+  onFocus={[MockFunction]}
   readonly={false}
   registry={
     Object {
@@ -110,6 +111,7 @@ exports[`ProductsArrayField no NAICS code specified 1`] = `
   name=""
   onBlur={[MockFunction]}
   onChange={[MockFunction]}
+  onFocus={[MockFunction]}
   readonly={false}
   registry={
     Object {

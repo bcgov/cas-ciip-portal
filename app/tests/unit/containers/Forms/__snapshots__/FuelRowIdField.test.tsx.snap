@@ -15,6 +15,7 @@ exports[`The FuelRowIdField component renders an active fuel as a StringField 1`
   name=""
   onBlur={[MockFunction]}
   onChange={[MockFunction]}
+  onFocus={[MockFunction]}
   readonly={false}
   registry={
     Object {
@@ -97,6 +98,7 @@ exports[`The FuelRowIdField component renders an undefined form data as a String
   name=""
   onBlur={[MockFunction]}
   onChange={[MockFunction]}
+  onFocus={[MockFunction]}
   readonly={false}
   registry={
     Object {
