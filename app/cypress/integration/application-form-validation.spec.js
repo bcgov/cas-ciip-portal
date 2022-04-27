@@ -181,12 +181,18 @@ describe("When viewing an application in draft as a reporter", () => {
 
     // Fix invalid data
     cy.get("#root_sourceTypes_0_gases_0_annualEmission").clear().type("42");
+    cy.get(".emission-header").contains(
+      "Total On-site Emissions (excl. CO2BioC): 42 tCO2e"
+    );
     cy.get("body").happoScreenshot({ component: "Emissions form" });
     cy.get("div.card-header").contains("Form input saved");
     cy.contains("Continue").click();
     cy.get("#page-content h1").contains("Fuel");
     cy.visit(summaryPageUrl);
     cy.contains("Emission");
+    cy.get(".emission-header").contains(
+      "Total On-site Emissions (excl. CO2BioC): 42 tCO2e"
+    );
     cy.get(".emission.summary-card").happoScreenshot({
       component: "Emission Summary Card",
       variant: "no errors",

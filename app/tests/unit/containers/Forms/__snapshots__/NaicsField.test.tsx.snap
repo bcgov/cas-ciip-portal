@@ -8,6 +8,7 @@ exports[`The Naics Field custom field Displays (<code> - <description>) when the
   id="myField"
   onBlur={[Function]}
   onChange={[Function]}
+  onFocus={[Function]}
   required={false}
   value="222222"
 >
@@ -38,6 +39,7 @@ Array [
     id="myField"
     onBlur={[Function]}
     onChange={[Function]}
+    onFocus={[Function]}
     required={false}
     value="1234"
   >
@@ -77,6 +79,7 @@ exports[`The Naics Field custom field Displays the list of returned NAICS codes 
   id="myField"
   onBlur={[Function]}
   onChange={[Function]}
+  onFocus={[Function]}
   required={false}
   value=""
 >

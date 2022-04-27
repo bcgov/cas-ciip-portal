@@ -23,6 +23,7 @@ exports[`The EmissionCategoryRowIdField component injects the category ids and n
   name="emissionCategoryRowId"
   onBlur={[MockFunction]}
   onChange={[MockFunction]}
+  onFocus={[MockFunction]}
   readonly={false}
   registry={
     Object {

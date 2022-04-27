@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { FieldProps } from "@rjsf/core";
 import ObjectField from "@rjsf/core/dist/cjs/components/fields/ObjectField";
-import { Button, Col } from "react-bootstrap";
+import { Button, Col, Row } from "react-bootstrap";
+import NumberFormat from "react-number-format";
 
-/**
- * This custom ObjectField component injects the read-only data for a product when the
- * product id changes
- */
-export const EmissionFieldComponent: React.FunctionComponent<FieldProps> = (
+interface Props extends FieldProps {
+  totalOnsiteEmissions: number;
+}
+
+export const EmissionFieldComponent: React.FunctionComponent<Props> = (
   props
 ) => {
   const [hideZeroEmissions, setHideZeroEmissions] = useState(
@@ -19,19 +20,38 @@ export const EmissionFieldComponent: React.FunctionComponent<FieldProps> = (
 
   return (
     <Col md={12} className={hideZeroEmissions}>
-      <Col className="emission-toggle">
-        <Button variant="outline-dark" size="sm" onClick={toggleZeroEmissions}>
-          {hideZeroEmissions === ""
-            ? "Show gases with no reported emissions"
-            : "Hide gases with no reported emissions"}
-        </Button>
-      </Col>
+      <Row className="emission-header">
+        <Col md={8}>
+          Total On-site Emissions (excl. CO2BioC):{" "}
+          <NumberFormat
+            thousandSeparator
+            decimalScale={4}
+            value={props.totalOnsiteEmissions}
+            displayType="text"
+          />{" "}
+          tCO2e
+        </Col>
+        <Col className="emission-toggle">
+          <Button
+            variant="outline-dark"
+            size="sm"
+            onClick={toggleZeroEmissions}
+          >
+            {hideZeroEmissions === ""
+              ? "Show gases with no reported emissions"
+              : "Hide gases with no reported emissions"}
+          </Button>
+        </Col>
+      </Row>
+
       <ObjectField {...props} />
       <style jsx global>
         {`
+          .emission-header {
+            margin: 1.5em 0 0.5em 0;
+          }
           .emission-toggle {
             text-align: right;
-            margin: 1.5em 0 0.5em 0;
           }
           .emission .zero-emission,
           .emission-form .zero-emission {
@@ -41,8 +61,15 @@ export const EmissionFieldComponent: React.FunctionComponent<FieldProps> = (
           .emission-form .show-zero-emissions .zero-emission {
             display: block !important;
           }
+
+          /* .emission class is for the summary page */
           .emission .emission-row {
-            display: none !important;
+            margin-bottom: 0;
+            border-bottom: none;
+            padding-bottom: 0 !important;
+          }
+          .emission .emission-toggle {
+            display: none;
           }
 
           .emission-form .field-array hr {
