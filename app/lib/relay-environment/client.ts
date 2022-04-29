@@ -32,7 +32,7 @@ export default {
         batchMiddleware({
           batchUrl: async () => Promise.resolve("/graphql"),
           batchTimeout: 10,
-          allowMutations: true,
+          allowMutations: false,
         }),
       ]),
       store,
