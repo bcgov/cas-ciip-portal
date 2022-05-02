@@ -25,10 +25,10 @@ exports[`The RegistrationLoginButtons component should render a message about th
         Apply for the CleanBC Industrial Incentive Program (CIIP)
       </CardTitle>
       <p>
-        The due date for CIIP application forms has passed.
+        In 2022, CIIP applications will be accepted from May 24 to June 30.
       </p>
       <p>
-        You may still log in to view your submitted CIIP applications and submit any changes requested by the Climate Action Secretariat.
+        Outside of this period, you may still log in to view your submitted CIIP applications and submit any changes requested by the Climate Action Secretariat.
       </p>
       <a
         className="jsx-513087841 btn btn-primary btn-lg"
