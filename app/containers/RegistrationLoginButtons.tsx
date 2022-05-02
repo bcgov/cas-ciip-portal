@@ -29,10 +29,11 @@ export const RegistrationLoginButtonsComponent: React.FunctionComponent<Props> =
     </>
   ) : (
     <>
-      <p>The due date for CIIP application forms has passed.</p>
+      <p>In 2022, CIIP applications will be accepted from May 24 to June 30.</p>
       <p>
-        You may still log in to view your submitted CIIP applications and submit
-        any changes requested by the Climate Action Secretariat.
+        Outside of this period, you may still log in to view your submitted CIIP
+        applications and submit any changes requested by the Climate Action
+        Secretariat.
       </p>
     </>
   );
