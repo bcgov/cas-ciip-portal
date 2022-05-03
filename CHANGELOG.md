@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.18.0](https://github.com/bcgov/cas-ciip-portal/compare/v2.17.0...v2.18.0) (2022-05-03)
+
+
+### Features
+
+* replace lastSwrsReportingYear with hasSwrsReport boolean ([b881ba4](https://github.com/bcgov/cas-ciip-portal/commit/b881ba4596a1967e1b0173e5f8e4cc8f93b45702))
+* total co2 emissions on the summary page ([7f2e005](https://github.com/bcgov/cas-ciip-portal/commit/7f2e00585e33382ee88b8877d16d8aaa3cccef4d))
+* total on swrs onsite emissions ([c0cc2d7](https://github.com/bcgov/cas-ciip-portal/commit/c0cc2d7621494e545496bc4a5a459ef09c545d8b))
+
+
+### Bug Fixes
+
+* disable mutation batching ([6b7a126](https://github.com/bcgov/cas-ciip-portal/commit/6b7a1265dbc43bffd3b3c4f408fa726c97d0f3a7))
+
 ## [2.17.0](https://github.com/bcgov/cas-ciip-portal/compare/v2.16.3...v2.17.0) (2022-04-05)
 
 
