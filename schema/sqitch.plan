@@ -410,3 +410,4 @@ database_functions/change_sold_electricity_units_to_gwh [tables/form_result] 202
 queries/facility_application_by_reporting_year [queries/facility_application_by_reporting_year@v2.17.0] 2022-04-19T21:55:17Z Dylan Leard <dylan@button.is> # Migration: function should return a reporting_year when no application exists
 computed_columns/facility_application_has_swrs_report [queries/facility_application_by_reporting_year tables/facility] 2022-04-19T20:02:21Z Dylan Leard <dylan@button.is> # Computed column returns true if an application has a corresponding swrs report for the year
 @v2.18.0 2022-05-03T21:56:12Z Dylan Leard <dylan@button.is> # release v2.18.0
+@v2.18.1 2022-05-04T15:28:59Z Dylan Leard <dylan@button.is> # release v2.18.1
