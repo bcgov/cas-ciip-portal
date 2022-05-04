@@ -153,7 +153,7 @@ spec:
                     \$do\$;
                   EOF
                   echo RESTORING TO TEST...
-                  pg_dump --no-password --format=custom --schema=sqitch --schema=graphile_worker --schema=ggircs_portal --schema=ggircs_portal_private --schema=swrs ciip |
+                  pg_dump --no-password --format=custom --schema=sqitch --schema=graphile_worker --schema=ggircs_portal --schema=ggircs_portal_private --schema=swrs --schema=ggircs_parameters ciip |
                   PGPASSFILE=".pgpass" pg_restore --no-password -d $PORTAL_DATABASE -h $PORTAL_HOST -p $PORTAL_PORT -U $PORTAL_USER
               volumeMounts:
                 - mountPath: /home/postgres/
