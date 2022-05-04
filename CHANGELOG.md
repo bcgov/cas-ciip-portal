@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.18.1](https://github.com/bcgov/cas-ciip-portal/compare/v2.18.0...v2.18.1) (2022-05-04)
+
+
+### Bug Fixes
+
+* prod-test-restore missing ggircs_parameters schema ([a2260d2](https://github.com/bcgov/cas-ciip-portal/commit/a2260d2df409e0c0f69fb5b3f960b2c6aa839a39))
+
 ## [2.18.0](https://github.com/bcgov/cas-ciip-portal/compare/v2.17.0...v2.18.0) (2022-05-03)
 
 
