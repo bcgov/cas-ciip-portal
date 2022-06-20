@@ -19,6 +19,7 @@ TEST_DB=ciip_portal_test
 PG_PROVE=pg_prove -h localhost
 PG_SHAREDIR=$(shell pg_config --sharedir)
 DEPLOY_DEFAULT_DATA=deploy_dev_data
+PGTAP_VERSION=1.2.0
 
 .PHONY: test
 test: | test_deploy_revert test_data deploy_test_helpers deploy_mocks_schema prove_unit prove_style dropdb
@@ -168,18 +169,18 @@ verify_ready:
 .PHONY: verify
 verify: verify_installed verify_ready
 
-pgtap:
-	# clone the source for pgTAP
-	git clone https://github.com/theory/pgtap.git && \
-		cd pgtap && \
-		git checkout v1.2.0;
-
 .PHONY: install_pgtap
-install_pgtap: pgtap
-	$(info install pgTAP into postgres)
-	@@$(MAKE) -C pgtap
-	@@$(MAKE) -C pgtap install
-	@@$(MAKE) -C pgtap installcheck
+install_pgtap: ## install pgTAP extension into postgres
+install_pgtap:
+	@pg_ctl status || pg_ctl start
+install_pgtap:
+	@$(PSQL) -d postgres -tc "select count(*) from pg_available_extensions where name='pgtap' and default_version='$(PGTAP_VERSION)';" | \
+		grep -q 1 || \
+		(git clone https://github.com/theory/pgtap.git --depth 1 --branch v$(PGTAP_VERSION) && \
+		$(MAKE) -C pgtap && \
+		$(MAKE) -C pgtap install && \
+		$(MAKE) -C pgtap installcheck && \
+		rm -rf pgtap)
 
 .PHONY: install_cpanm
 install_cpanm:
