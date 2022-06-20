@@ -350,6 +350,8 @@ jobs:
     machine:
       image: ubuntu-2004:202107-02
     working_directory: ~/cas-ciip-portal
+    environment:
+      PGUSER: postgres
     steps:
       - run:
           name: install libdbd-pg-perl
