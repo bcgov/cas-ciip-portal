@@ -6,7 +6,7 @@ CPAN=cpan
 CPANM=cpanm
 SQITCH=sqitch
 SQITCH_VERSION=${word 3,${shell ${SQITCH} --version}}
-SQITCH_MIN_VERSION=0.97
+SQITCH_MIN_VERSION=1.0.0
 GREP=grep
 AWK=awk
 PSQL=psql -h localhost
@@ -172,7 +172,7 @@ pgtap:
 	# clone the source for pgTAP
 	git clone https://github.com/theory/pgtap.git && \
 		cd pgtap && \
-		git checkout v1.2.0;
+		git checkout v1.2.1;
 
 .PHONY: install_pgtap
 install_pgtap: pgtap
