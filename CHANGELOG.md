@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.18.3](https://github.com/bcgov/cas-ciip-portal/compare/v2.18.2...v2.18.3) (2022-07-20)
+
 ### [2.18.2](https://github.com/bcgov/cas-ciip-portal/compare/v2.18.1...v2.18.2) (2022-07-18)
 
 ### [2.18.1](https://github.com/bcgov/cas-ciip-portal/compare/v2.18.0...v2.18.1) (2022-05-04)
