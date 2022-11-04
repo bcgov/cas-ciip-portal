@@ -413,3 +413,4 @@ computed_columns/facility_application_has_swrs_report [queries/facility_applicat
 @v2.18.1 2022-05-04T15:28:59Z Dylan Leard <dylan@button.is> # release v2.18.1
 @v2.18.2 2022-07-18T17:00:15Z Dylan Leard <dylan@button.is> # release v2.18.2
 @v2.18.3 2022-07-20T16:55:59Z Dylan Leard <dylan@button.is> # release v2.18.3
+@v2.18.4 2022-11-04T20:58:09Z Dylan Leard <dylan@button.is> # release v2.18.4

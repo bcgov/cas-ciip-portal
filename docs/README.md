@@ -7,3 +7,4 @@
   * [Button stack](./stack.md)
   * [Use of JSON schemas](./json-schema.md)
   * [Application release process](./release.md)
+  * [Database disaster recovery](https://github.com/bcgov/cas-postgres#point-in-time-recovery)
