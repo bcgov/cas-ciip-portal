@@ -2,6 +2,6 @@
 
 begin;
 
-function ggircs_portal_private.user_session_sub_immutable_with_flag_set;
+drop function ggircs_portal_private.user_session_sub_immutable_with_flag_set;
 
 commit;
