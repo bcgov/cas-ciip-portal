@@ -422,3 +422,4 @@ policies/application_review_step_policies_001_drop_before_type_change 2023-01-12
 types/jwt_token [types/jwt_token@v2.18.0] 2023-01-11T00:01:27Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # Updating the jwt_token to have a sub of type text
 trigger_functions/user_uuid_immutable_with_flag 2023-01-11T00:07:27Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # Trigger that throws on update if the allow_sub_update flag is set to false
 tables/ciip_user [tables/ciip_user@v2.18.0] 2023-01-11T19:48:19Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # Reworking the user table to contain a session_sub instead of a uuid field
+trigger_functions/set_user_id [trigger_functions/set_user_id@v2.18.0] 2023-01-12T22:06:23Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # Updating the uuid type to text for a ciip user
