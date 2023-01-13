@@ -1,22 +1,20 @@
+const { isAuthenticated } = require("@bcgov-cas/sso-express/dist/helpers");
+
 const groupConstants = require("../../data/group-constants");
 const { compactGroups } = require("../../lib/user-groups");
 
-const removeFirstLetter = (str) => str.slice(1);
+const removeLeadingSlash = (str) => (str[0] === "/" ? str.slice(1) : str);
 
 const getUserGroups = (req) => {
-  if (
-    !req.kauth ||
-    !req.kauth.grant ||
-    !req.kauth.grant.id_token ||
-    !req.kauth.grant.id_token.content ||
-    !req.kauth.grant.id_token.content.groups
-  )
-    return [groupConstants.GUEST];
+  if (process.argv.includes("AS_CYPRESS") && req.cookies["mocks.auth"]) {
+    return [req.cookies["mocks.auth"]];
+  }
+  if (!isAuthenticated(req)) return [groupConstants.GUEST];
 
-  const identityProvider = req.kauth.grant.id_token.content.identity_provider;
-  const { groups } = req.kauth.grant.id_token.content;
+  const identityProvider = req.claims.identity_provider;
+  const groups = req.claims.groups || [];
 
-  const processedGroups = groups.map((value) => removeFirstLetter(value));
+  const processedGroups = groups.map((value) => removeLeadingSlash(value));
   const validGroups = compactGroups(processedGroups);
 
   if (validGroups.length === 0) {
