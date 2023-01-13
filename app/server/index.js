@@ -14,8 +14,6 @@ const port = Number.parseInt(process.env.PORT, 10) || 3004;
 const dev = process.env.NODE_ENV !== "production";
 const app = nextjs({ dev });
 const handle = app.getRequestHandler();
-const session = require("express-session");
-const PgSession = require("connect-pg-simple")(session);
 const bodyParser = require("body-parser");
 const Keycloak = require("keycloak-connect");
 const cors = require("cors");
@@ -27,10 +25,11 @@ const path = require("path");
 const namespaceMap = require("../data/kc-namespace-map");
 const redirectRouter = require("./redirects");
 const cookieParser = require("cookie-parser");
-const databaseConnectionService = require("./db/databaseConnectionService");
+const { pgPool } = require("./db/databaseConnectionService");
 const { createLightship } = require("lightship");
 const delay = require("delay");
 const { getSessionRemainingTime } = require("./helpers/keycloakHelpers");
+const session = require("./middleware/session");
 
 /**
  * Override keycloak accessDenied handler to redirect to our 403 page
@@ -58,8 +57,6 @@ if (secure && process.env.SESSION_SECRET.length < 24)
 if (!process.env.SESSION_SECRET)
   console.warn("SESSION_SECRET missing from environment");
 const secret = process.env.SESSION_SECRET || crypto.randomBytes(32).toString();
-
-const pgPool = databaseConnectionService.createConnectionPool();
 
 // Graphile-worker function
 async function worker() {
@@ -142,20 +139,8 @@ app.prepare().then(async () => {
     else next();
   });
 
-  const store = new PgSession({
-    pool: pgPool,
-    schemaName: "ggircs_portal_private",
-    tableName: "connect_session",
-  });
-  server.use(
-    session({
-      secret,
-      resave: false,
-      saveUninitialized: true,
-      cookie: { secure },
-      store,
-    })
-  );
+  const { middleware: sessionMiddleware } = session();
+  server.use(sessionMiddleware);
 
   // Keycloak instantiation for dev/test/prod
   const kcNamespace = process.env.NAMESPACE
@@ -176,6 +161,15 @@ app.prepare().then(async () => {
   }&response_type=code&scope=openid&redirect_uri=${encodeURIComponent(
     `${process.env.HOST}/login?auth_callback=1`
   )}`;
+
+  const expressSession = require("express-session");
+  const connectPgSimple = require("connect-pg-simple");
+  const PgSession = connectPgSimple(expressSession);
+  const store = new PgSession({
+    pool: pgPool,
+    schemaName: "ggircs_portal_private",
+    tableName: "connect_session",
+  });
   const keycloak = new Keycloak({ store }, kcConfig);
 
   // Nuke the siteminder session token on logout if we can

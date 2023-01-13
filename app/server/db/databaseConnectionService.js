@@ -38,8 +38,6 @@ const getDatabaseUrl = () => {
   return databaseURL;
 };
 
-const createConnectionPool = () => {
-  return new pg.Pool({ connectionString: getDatabaseUrl() });
-};
+const pgPool = new pg.Pool({ connectionString: getDatabaseUrl() });
 
-module.exports = { createConnectionPool, NO_AUTH_POSTGRES_ROLE };
+module.exports = { pgPool, getDatabaseUrl, NO_AUTH_POSTGRES_ROLE };
