@@ -4,10 +4,10 @@ import { Form } from "react-bootstrap";
 
 const LoginForm: React.FunctionComponent = ({ children }) => {
   const router = useRouter();
-  let loginURI = "/login";
+  let loginURI = "/login?kc_idp_hint=idir";
 
   if (router.query.redirectTo)
-    loginURI += `?redirectTo=${encodeURIComponent(
+    loginURI += `&redirectTo=${encodeURIComponent(
       router.query.redirectTo as string
     )}`;
 

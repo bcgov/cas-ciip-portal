@@ -46,20 +46,9 @@ export const RegistrationLoginButtonsComponent: React.FunctionComponent<Props> =
             Apply for the CleanBC Industrial Incentive Program (CIIP)
           </Card.Title>
           {cardText}
-          <a
-            href="/register"
-            style={{ padding: "15px", display: "block" }}
-            className="btn btn-primary btn-lg"
-          >
-            Register and Apply
-          </a>
         </Card.Body>
       </Card>
-      <LoginButton>
-        <Button className="login-link" type="submit" variant="outline-dark">
-          Already have an account? Click here to login.
-        </Button>
-      </LoginButton>
+
       <style jsx global>{`
         .login-link {
           padding: 20px;
