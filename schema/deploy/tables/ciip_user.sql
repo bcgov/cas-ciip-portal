@@ -29,13 +29,13 @@ do
 $grant$
 begin
 
--- Permissions for allow_sub_update column
+-- Permissions for allow_uuid_update column
 perform ggircs_portal_private.grant_permissions('update', 'ciip_user', 'ciip_administrator',
-  ARRAY['allow_uuid_update']);
+  ARRAY['uuid','allow_uuid_update']);
 perform ggircs_portal_private.grant_permissions('update', 'ciip_user', 'ciip_analyst',
-  ARRAY['allow_uuid_update']);
+  ARRAY['uuid','allow_uuid_update']);
 perform ggircs_portal_private.grant_permissions('update', 'ciip_user', 'ciip_industry_user',
-  ARRAY['allow_uuid_update']);
+  ARRAY['uuid','allow_uuid_update']);
 
 -- Email is no longer changeable since it's the identifier for the account
 revoke update (email_address) on ggircs_portal.ciip_user from ciip_administrator;

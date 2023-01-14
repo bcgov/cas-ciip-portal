@@ -24403,6 +24403,50 @@ type CreateNaicsCodePayload {
   query: Query
 }
 
+"""All input for the `createOrUpdateCiipUser` mutation."""
+input CreateOrUpdateCiipUserInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  firstName: String
+  lastName: String
+  occupation: String
+  phoneNumber: String
+}
+
+"""The output of our `createOrUpdateCiipUser` mutation."""
+type CreateOrUpdateCiipUserPayload {
+  ciipUser: CiipUser
+
+  """Reads a single `CiipUser` that is related to this `CiipUser`."""
+  ciipUserByCreatedBy: CiipUser
+
+  """Reads a single `CiipUser` that is related to this `CiipUser`."""
+  ciipUserByDeletedBy: CiipUser
+
+  """Reads a single `CiipUser` that is related to this `CiipUser`."""
+  ciipUserByUpdatedBy: CiipUser
+
+  """An edge for our `CiipUser`. May be used by Relay 1."""
+  ciipUserEdge(
+    """The method to use when ordering `CiipUser`."""
+    orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CiipUsersEdge
+
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
 """All input for the create `Organisation` mutation."""
 input CreateOrganisationInput {
   """
@@ -31906,6 +31950,16 @@ type Mutation {
     input: CreateNaicsCodeInput!
   ): CreateNaicsCodePayload
 
+  """
+  This custom create mutation tries to find an exising user formerly in the system, and to update it if allowed
+  """
+  createOrUpdateCiipUser(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateOrUpdateCiipUserInput!
+  ): CreateOrUpdateCiipUserPayload
+
   """Creates a single `Organisation`."""
   createOrganisation(
     """
@@ -37122,6 +37176,15 @@ enum ProductsOrderBy {
 
 """The root query type which gives access points into the data universe."""
 type Query implements Node {
+  _cmpCiipApplicationRevisionStatusTextEq(_a: CiipApplicationRevisionStatus!, _b: String!): Boolean
+  _cmpCiipApplicationRevisionStatusTextNeq(_a: CiipApplicationRevisionStatus!, _b: String!): Boolean
+  _cmpCiipProductStateTextEq(_a: CiipProductState!, _b: String!): Boolean
+  _cmpCiipProductStateTextNeq(_a: CiipProductState!, _b: String!): Boolean
+  _cmpCiipUserOrganisationStatusTextEq(_a: CiipUserOrganisationStatus!, _b: String!): Boolean
+  _cmpCiipUserOrganisationStatusTextNeq(_a: CiipUserOrganisationStatus!, _b: String!): Boolean
+  _cmpReviewCommentTypeTextEq(_a: ReviewCommentType!, _b: String!): Boolean
+  _cmpReviewCommentTypeTextNeq(_a: ReviewCommentType!, _b: String!): Boolean
+
   """Reads and enables pagination through a set of `ApplicationReviewStep`."""
   allApplicationReviewSteps(
     """Read all values in the set after (below) this cursor."""
