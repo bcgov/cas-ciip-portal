@@ -20,8 +20,8 @@ describe("Toaster", () => {
   Using createCiipUser to avoid having to create a dummy mutation in our production schema.
 */
   const mutation = graphql`
-    mutation ToasterMutation($input: CreateCiipUserInput!) {
-      createCiipUser(input: $input) {
+    mutation ToasterMutation($input: CreateOrUpdateCiipUserInput!) {
+      createOrUpdateCiipUser(input: $input) {
         ciipUser {
           emailAddress
         }

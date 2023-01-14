@@ -22,7 +22,6 @@ class Registration extends Component<Props> {
     query registrationQuery {
       query {
         session {
-          sub
           givenName
           familyName
           email
@@ -40,7 +39,7 @@ class Registration extends Component<Props> {
       query: { session },
       router,
     } = this.props;
-    const { ciipUserBySub, sub, givenName, familyName, email } = session || {};
+    const { ciipUserBySub, givenName, familyName, email } = session || {};
 
     return (
       <DefaultLayout title="Registration" session={session}>
@@ -48,7 +47,6 @@ class Registration extends Component<Props> {
         <div className="registration-form">
           <UserForm
             user={ciipUserBySub}
-            uuid={sub as string}
             defaultGivenName={givenName}
             defaultFamilyName={familyName}
             defaultEmail={email}

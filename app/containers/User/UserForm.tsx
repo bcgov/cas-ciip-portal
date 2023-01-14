@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { createFragmentContainer, graphql, RelayProp } from "react-relay";
 import JsonSchemaForm, { IChangeEvent, AjvError } from "@rjsf/core";
 import { JSONSchema7 } from "json-schema";
 import { UserForm_user } from "UserForm_user.graphql";
-import createUserMutation from "mutations/user/createUserMutation";
+import createOrUpdateUserMutation from "mutations/user/createOrUpdateUserMutation";
 import updateUserMutation from "mutations/user/updateUserMutation";
 import FormArrayFieldTemplate from "containers/Forms/FormArrayFieldTemplate";
 import FormFieldTemplate from "containers/Forms/FormFieldTemplate";
@@ -13,7 +13,6 @@ import { customTransformErrors } from "functions/customTransformErrors";
 interface Props {
   user?: UserForm_user;
   relay: RelayProp;
-  uuid?: string;
   defaultGivenName?: string;
   defaultFamilyName?: string;
   defaultEmail?: string;
@@ -37,7 +36,6 @@ const transformErrors = (errors: AjvError[]) => {
 
 const UserForm: React.FunctionComponent<Props> = ({
   user,
-  uuid,
   defaultGivenName,
   defaultFamilyName,
   defaultEmail,
@@ -46,20 +44,13 @@ const UserForm: React.FunctionComponent<Props> = ({
 }) => {
   const handleChange = async (e: IChangeEvent<UserForm_user>) => {
     if (user) {
-      const {
-        firstName,
-        lastName,
-        emailAddress,
-        phoneNumber,
-        occupation,
-      } = e.formData;
+      const { firstName, lastName, phoneNumber, occupation } = e.formData;
       await updateUserMutation(relay.environment, {
         input: {
           id: user.id,
           ciipUserPatch: {
             firstName,
             lastName,
-            emailAddress,
             phoneNumber,
             occupation,
           },
@@ -70,49 +61,54 @@ const UserForm: React.FunctionComponent<Props> = ({
 
   const handleSubmit = async (e: IChangeEvent<UserForm_user>) => {
     if (user) await handleChange(e);
-    else
-      await createUserMutation(relay.environment, {
+    else {
+      const { firstName, lastName, phoneNumber, occupation } = e.formData;
+      await createOrUpdateUserMutation(relay.environment, {
         input: {
-          ciipUser: {
-            ...e.formData,
-            uuid,
-          },
+          firstName,
+          lastName,
+          phoneNumber,
+          occupation,
         },
       });
+    }
     onSubmit();
   };
 
-  const userSchema: JSONSchema7 = {
-    type: "object",
-    properties: {
-      firstName: {
-        type: "string",
-        title: "First Name",
-        default: defaultGivenName,
+  const userSchema: JSONSchema7 = useMemo(
+    () => ({
+      type: "object",
+      properties: {
+        firstName: {
+          type: "string",
+          title: "First Name",
+          default: defaultGivenName,
+        },
+        lastName: {
+          type: "string",
+          title: "Last Name",
+          default: defaultFamilyName,
+        },
+        emailAddress: {
+          type: "string",
+          title: "Email Address",
+          default: defaultEmail,
+          format: "email",
+        },
+        phoneNumber: {
+          type: "string",
+          title: "Phone Number",
+          format: "phoneNumber",
+        },
+        occupation: {
+          type: "string",
+          title: "Occupation",
+        },
       },
-      lastName: {
-        type: "string",
-        title: "Last Name",
-        default: defaultFamilyName,
-      },
-      emailAddress: {
-        type: "string",
-        title: "Email Address",
-        default: defaultEmail,
-        format: "email",
-      },
-      phoneNumber: {
-        type: "string",
-        title: "Phone Number",
-        format: "phoneNumber",
-      },
-      occupation: {
-        type: "string",
-        title: "Occupation",
-      },
-    },
-    required: ["firstName", "lastName", "phoneNumber", "occupation"],
-  };
+      required: ["firstName", "lastName", "phoneNumber", "occupation"],
+    }),
+    [defaultGivenName, defaultFamilyName, defaultEmail]
+  );
 
   const uiSchema = {
     emailAddress: {
