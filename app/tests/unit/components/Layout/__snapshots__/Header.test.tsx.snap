@@ -101,25 +101,12 @@ exports[`matches the last accepted Snapshot 1`] = `
         <li
           className="jsx-3552254249 jsx-1444636411"
         >
-          <Link
-            href="/register"
-          >
-            <a
-              className="jsx-3552254249 jsx-1444636411 nav-button"
-            >
-              Register
-            </a>
-          </Link>
-        </li>
-        <li
-          className="jsx-3552254249 jsx-1444636411"
-        >
           <LoginForm>
             <button
               className="jsx-3552254249 jsx-1444636411 nav-button"
               type="submit"
             >
-              Login
+              Login (IDIR)
             </button>
           </LoginForm>
         </li>

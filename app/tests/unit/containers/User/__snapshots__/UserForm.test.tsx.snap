@@ -71,14 +71,14 @@ exports[`Form Edit User should render the snapshot 1`] = `
           class="form-label"
           for="root_emailAddress"
         >
-          Email Address *
+          Email Address
         </label>
         <input
           class="form-control"
+          disabled=""
           id="root_emailAddress"
           label="Email Address"
           placeholder=""
-          required=""
           type="email"
           value="Test@test.com"
         />
