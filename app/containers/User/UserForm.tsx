@@ -82,7 +82,7 @@ const UserForm: React.FunctionComponent<Props> = ({
     onSubmit();
   };
 
-  const [userSchema] = useState<JSONSchema7>({
+  const userSchema: JSONSchema7 = {
     type: "object",
     properties: {
       firstName: {
@@ -111,14 +111,14 @@ const UserForm: React.FunctionComponent<Props> = ({
         title: "Occupation",
       },
     },
-    required: [
-      "firstName",
-      "lastName",
-      "emailAddress",
-      "phoneNumber",
-      "occupation",
-    ],
-  });
+    required: ["firstName", "lastName", "phoneNumber", "occupation"],
+  };
+
+  const uiSchema = {
+    emailAddress: {
+      "ui:disabled": true,
+    },
+  };
 
   return (
     <JsonSchemaForm
@@ -126,6 +126,7 @@ const UserForm: React.FunctionComponent<Props> = ({
       liveOmit
       liveValidate
       schema={userSchema}
+      uiSchema={uiSchema}
       customFormats={customFormats}
       transformErrors={transformErrors}
       formData={user}
