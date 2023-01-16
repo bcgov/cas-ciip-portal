@@ -428,3 +428,4 @@ policies/application_review_step_policies_002_recreate_after_type_change 2023-01
 policies/ciip_user_organisation_policies_002_recreate_after_type_change 2023-01-12T23:33:28Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # Recreating the policies impacted by the cif_user uuid type change
 policies/ciip_user_policies_002_recreate_after_type_change 2023-01-12T23:36:30Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # Recreating the policies impacted by the cif_user uuid type change
 mutations/create_or_update_ciip_user 2023-01-14T00:11:45Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # Custom mutation to create or update users upon login
+2022_01_16_keycloak_gold_reject_all_organisation_membership 2023-01-16T18:29:46Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # Rejecting all organisation approval ahead of migrationg to keycloak gold, so that user accounts don't inherit permissions accidentally
