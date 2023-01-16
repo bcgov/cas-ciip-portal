@@ -54,7 +54,7 @@ begin
 
 end;
 
-$function$ language plpgsql volatile;
+$function$ language plpgsql strict volatile security definer;
 
 grant execute on function ggircs_portal.create_or_update_ciip_user to ciip_administrator, ciip_analyst, ciip_industry_user;
 comment on function ggircs_portal.create_or_update_ciip_user is 'This custom create mutation tries to find an exising user formerly in the system, and to update it if allowed';

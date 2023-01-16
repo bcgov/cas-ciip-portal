@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(23);
+select plan(24);
 
 create role test_superuser superuser;
 
@@ -57,9 +57,21 @@ select throws_like(
   $$
     update ggircs_portal.ciip_user set uuid = 'ca716545-a8d3-4034-819c-5e45b0e775c9' where uuid = '11111111-1111-1111-1111-111111111111';
   $$,
-    'permission denied%',
-    'ciip_administrator can not change data in the uuid column in ciip_user table'
+    'uuid cannot be updated when allow_uuid_update is false',
+    'ciip_administrator can not change data in the uuid column in ciip_user table if the allow_uuid_update flag is not set'
 );
+
+update ggircs_portal.ciip_user set allow_uuid_update = true where uuid = '11111111-1111-1111-1111-111111111111';
+
+select lives_ok(
+  $$
+    update ggircs_portal.ciip_user set uuid = 'updated_uuid_value@provider' where uuid = '11111111-1111-1111-1111-111111111111';
+    update ggircs_portal.ciip_user set uuid = '11111111-1111-1111-1111-111111111111' where uuid = 'updated_uuid_value@provider';
+  $$,
+  'ciip_administrator can update the uuid if the allow_uuid_update flag is set'
+); 
+
+update ggircs_portal.ciip_user set allow_uuid_update = false where uuid =  '11111111-1111-1111-1111-111111111111';
 
 select throws_like(
   $$
@@ -98,10 +110,10 @@ select results_eq(
 
 select throws_like(
   $$
-    update ggircs_portal.ciip_user set uuid = 'ca716545-a8d3-4034-819c-5e45b0e775c9' where uuid!=(select sub from ggircs_portal.session())
+    update ggircs_portal.ciip_user set uuid = 'ca716545-a8d3-4034-819c-5e45b0e775c9' where uuid = (select sub from ggircs_portal.session())
   $$,
-  'permission denied%',
-    'Industry user cannot update their uuid'
+  'uuid cannot be updated when allow_uuid_update is false',
+    'Industry user cannot update their uuid if the allow_uuid_update flag is not set'
 );
 
 select throws_like(
@@ -154,9 +166,9 @@ select results_eq(
 
 select throws_like(
   $$
-    update ggircs_portal.ciip_user set uuid = 'ca716545-a8d3-4034-819c-5e45b0e775c9' where uuid!=(select sub from ggircs_portal.session())
+    update ggircs_portal.ciip_user set uuid = 'ca716545-a8d3-4034-819c-5e45b0e775c9' where uuid=(select sub from ggircs_portal.session())
   $$,
-  'permission denied%',
+  'uuid cannot be updated when allow_uuid_update is false',
     'Analyst cannot update their uuid'
 );
 
