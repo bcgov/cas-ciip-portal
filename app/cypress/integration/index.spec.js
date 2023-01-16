@@ -5,14 +5,14 @@ describe("The index page", () => {
 
     cy.visit("/");
     cy.get("#page-content");
-    cy.get("header").contains("Register");
-    cy.get("header").contains("Login");
+    cy.get("header").contains("Register").should("not.exist");
+    cy.get("header").contains("Login (IDIR)");
     cy.get("header").happoScreenshot({ component: "Header" });
     cy.get("footer").happoScreenshot({ component: "Footer" });
-    cy.get("#page-content").contains("Register and Apply");
-    cy.get("#page-content").contains(
-      "Already have an account? Click here to login."
-    );
+    cy.get("#page-content").contains("Register and Apply").should("not.exist");
+    cy.get("#page-content")
+      .contains("Already have an account? Click here to login.")
+      .should("not.exist");
 
     cy.contains("Jan 23, 1991");
     cy.get("body").happoScreenshot({ component: "Index Page" });
