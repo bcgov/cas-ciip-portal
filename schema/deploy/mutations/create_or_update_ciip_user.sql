@@ -16,24 +16,24 @@ declare
 begin
 
   select * from ggircs_portal.session() into jwt;
- 
+
   if (select count(*) from ggircs_portal.ciip_user where uuid=jwt.sub) = 0
   then
 
     insert into ggircs_portal.ciip_user(
-      uuid, 
+      uuid,
       first_name,
-      last_name, 
-      email_address, 
-      occupation, 
-      phone_number, 
+      last_name,
+      email_address,
+      occupation,
+      phone_number,
       allow_uuid_update
     )
     values (
-      jwt.sub, 
-      first_name, 
-      last_name, 
-      jwt.email, 
+      jwt.sub,
+      first_name,
+      last_name,
+      jwt.email,
       occupation,
       phone_number,
       false

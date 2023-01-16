@@ -69,7 +69,7 @@ select lives_ok(
     update ggircs_portal.ciip_user set uuid = '11111111-1111-1111-1111-111111111111' where uuid = 'updated_uuid_value@provider';
   $$,
   'ciip_administrator can update the uuid if the allow_uuid_update flag is set'
-); 
+);
 
 update ggircs_portal.ciip_user set allow_uuid_update = false where uuid =  '11111111-1111-1111-1111-111111111111';
 

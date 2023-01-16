@@ -5,5 +5,3 @@ begin;
 select pg_get_functiondef('ggircs_portal.create_or_update_ciip_user(text, text, text, text)'::regprocedure);
 
 rollback;
-
-

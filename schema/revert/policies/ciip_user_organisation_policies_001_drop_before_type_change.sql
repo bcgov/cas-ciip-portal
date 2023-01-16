@@ -5,7 +5,7 @@ begin;
 do
   $policy$
   begin
-   
+
     -- ciip_industry_user RLS
     perform ggircs_portal_private.upsert_policy(
       'ciip_industry_user_select_ciip_user_organisation',

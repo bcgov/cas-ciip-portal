@@ -6,4 +6,3 @@ drop policy ciip_industry_user_select_ciip_user_organisation on ggircs_portal.ci
 drop policy ciip_industry_user_insert_ciip_user_organisation on ggircs_portal.ciip_user_organisation;
 
 commit;
-

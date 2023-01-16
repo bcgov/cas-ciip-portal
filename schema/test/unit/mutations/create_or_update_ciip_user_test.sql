@@ -30,7 +30,7 @@ set jwt.claims.email to 'bob.loblaw@gov.bc.ca';
 -- Returns the user that was created
 select results_eq(
   $$
-    select uuid, first_name, last_name, email_address, occupation, phone_number 
+    select uuid, first_name, last_name, email_address, occupation, phone_number
     from ggircs_portal.create_or_update_ciip_user('first','last','tester','123-456-6780');
   $$,
   $$
