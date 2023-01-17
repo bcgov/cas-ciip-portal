@@ -144,15 +144,8 @@
     "webpack": "^5.38.1"
   },
   "resolutions": {
-    "**/node-fetch": "^2.6.7",
-    "**/trim-newlines": "4.0.1",
+    "**/trim-newlines": "4.0.2",
     "easygraphql-parser": "^0.0.15",
-    "**/set-value": "4.0.1",
-    "**/ansi-regex": "5.0.1",
-    "**/jsonpointer": "5.0.0",
-    "cypress/@cypress/request/http-signature/jsprim/json-schema": "0.4.0",
-    "standard-version/**/shelljs": "0.8.5",
-    "standard-version/**/trim-off-newlines": "1.0.3",
     "**/jsonwebtoken": "9.0.0",
     "**/json5": "2.2.2"
   },
