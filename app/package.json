@@ -62,7 +62,6 @@
     "isomorphic-fetch": "^3.0.0",
     "js-file-download": "^0.4.12",
     "json-schema": "^0.4.0",
-    "keycloak-connect": "^10.0.0",
     "lightship": "^6.7.2",
     "lodash.throttle": "^4.1.1",
     "moment-timezone": "^0.5.35",

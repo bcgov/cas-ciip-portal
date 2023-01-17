@@ -9,13 +9,11 @@ const {
   generateDatabaseMockOptions,
 } = require("./helpers/databaseMockPgOptions");
 const nextjs = require("next");
-const crypto = require("crypto");
 const port = Number.parseInt(process.env.PORT, 10) || 3004;
 const dev = process.env.NODE_ENV !== "production";
 const app = nextjs({ dev });
 const handle = app.getRequestHandler();
 const bodyParser = require("body-parser");
-const Keycloak = require("keycloak-connect");
 const cors = require("cors");
 const UNSUPPORTED_BROWSERS = require("../data/unsupported-browsers");
 const { run } = require("graphile-worker");

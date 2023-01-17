@@ -71,7 +71,7 @@ We are using Yarn for package management as opposed to NPM. One of the advantage
 
 ### Authentication and Authorization
 
-Authentication is performed using the Red Hat SSO provider (Keycloak). We use the [`keycloak-connect`](https://github.com/keycloak/keycloak-nodejs-connect) package to manage authentication from our application server.
+Authentication is performed using the Red Hat SSO provider (Keycloak) through a client on a shared realm. We use the [`@bc-cas/sso-express`](https://www.npmjs.com/package/@bcgov-cas/sso-express) package to manage authentication from our application server.
 
 #### Session expiry
 

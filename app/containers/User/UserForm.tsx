@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo } from "react";
 import { createFragmentContainer, graphql, RelayProp } from "react-relay";
 import JsonSchemaForm, { IChangeEvent, AjvError } from "@rjsf/core";
 import { JSONSchema7 } from "json-schema";
