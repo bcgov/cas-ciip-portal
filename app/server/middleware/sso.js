@@ -30,8 +30,6 @@ async function middleware() {
   return ssoExpress({
     applicationDomain: ".gov.bc.ca",
     getLandingRoute: (req) => {
-      console.log("============================= LANDING ROUTE");
-      console.log("");
       if (req.query.redirectTo) return req.query.redirectTo;
 
       const groups = getUserGroups(req);
