@@ -4,6 +4,7 @@
   "screenshotOnRunFailure": false,
   "defaultCommandTimeout": 10000,
   "ignoreTestFiles": "*.example*",
+  "testFiles": "zz-page-access.spec.js",
   "retries": {
     "runMode": 3,
     "openMode": 0
