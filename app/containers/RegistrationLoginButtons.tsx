@@ -1,6 +1,5 @@
 import React from "react";
-import { Col, Card, Button } from "react-bootstrap";
-import LoginButton from "../components/LoginButton";
+import { Col, Card } from "react-bootstrap";
 import { createFragmentContainer, graphql } from "react-relay";
 import { RegistrationLoginButtons_query } from "RegistrationLoginButtons_query.graphql";
 import { dateTimeFormat } from "functions/formatDates";
