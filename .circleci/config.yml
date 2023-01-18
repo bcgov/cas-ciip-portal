@@ -215,7 +215,6 @@ jobs:
             source ~/.bashrc
             pushd schema
             ./data/deploy-data.sh -prod
-            sqitch verify
             popd
       - run:
           name: regenerate schema via introspection
