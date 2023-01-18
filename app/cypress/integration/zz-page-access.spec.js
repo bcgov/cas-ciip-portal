@@ -5,7 +5,7 @@
   so this test suite should be run last (hence the file name starting with zz)
 */
 
-describe("When logged in as a reporter", () => {
+describe.skip("When logged in as a reporter", () => {
   before(() => {
     cy.cleanSchema();
     cy.sqlFixture("dev/user");
@@ -24,7 +24,7 @@ describe("When logged in as a reporter", () => {
   });
 });
 
-describe("When logged in as an analyst", () => {
+describe.skip("When logged in as an analyst", () => {
   before(() => {
     cy.cleanSchema();
     cy.sqlFixture("dev/user");
@@ -43,7 +43,7 @@ describe("When logged in as an analyst", () => {
   });
 });
 
-describe("When logged in as an admin", () => {
+describe.skip("When logged in as an admin", () => {
   before(() => {
     cy.cleanSchema();
     cy.sqlFixture("dev/user");

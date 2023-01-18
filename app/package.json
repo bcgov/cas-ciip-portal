@@ -121,7 +121,7 @@
     "graphql-query-test-mock": "^0.12.0",
     "graphql-tag-pluck": "^0.8.5",
     "happo-cypress": "^1.20.0",
-    "happo.io": "^6.6.1",
+    "happo.io": "^8.3.1",
     "identity-obj-proxy": "^3.0.0",
     "improved-yarn-audit": "^3.0.0",
     "jest": "^27.2.4",
@@ -144,15 +144,10 @@
     "webpack": "^5.38.1"
   },
   "resolutions": {
-    "**/node-fetch": "^2.6.7",
-    "**/trim-newlines": "4.0.1",
+    "**/trim-newlines": "4.0.2",
     "easygraphql-parser": "^0.0.15",
-    "**/set-value": "4.0.1",
-    "**/ansi-regex": "5.0.1",
-    "**/jsonpointer": "5.0.0",
-    "cypress/@cypress/request/http-signature/jsprim/json-schema": "0.4.0",
-    "standard-version/**/shelljs": "0.8.5",
-    "standard-version/**/trim-off-newlines": "1.0.3"
+    "**/jsonwebtoken": "9.0.0",
+    "**/json5": "2.2.2"
   },
   "jest": {
     "testEnvironment": "jsdom",
