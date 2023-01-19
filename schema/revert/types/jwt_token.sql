@@ -1,10 +1,7 @@
--- Deploy ggircs-portal:type_jwt_token to pg
--- requires: schema_ggircs_portal
+-- Revert ggircs-portal:type_jwt_token from pg
 
 begin;
 
-alter type ggircs_portal.jwt_token alter attribute sub type uuid;
-
-comment on type ggircs_portal.jwt_token is E'@primaryKey sub\n@foreignKey (sub) references ciip_user (uuid)';
+drop type ggircs_portal.jwt_token;
 
 commit;
