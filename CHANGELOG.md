@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file. See [standa
 ## [2.19.0](https://github.com/bcgov/cas-ciip-portal/compare/v2.18.6...v2.19.0) (2023-01-19)
 
 
+### Features
+
+* Keycloak Gold integration ([aef6348](https://github.com/bcgov/cas-ciip-portal/commit/aef63481eee3bf4677619f13d8fc78d36b07243f))
+
 ### Bug Fixes
 
 * session idled message is not displayed when user tries to login ([f94bc6d](https://github.com/bcgov/cas-ciip-portal/commit/f94bc6d998c7abda4f3f2d804289e3bdbfed34c9))
