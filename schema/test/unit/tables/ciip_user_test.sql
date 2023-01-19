@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(24);
+select plan(23);
 
 create role test_superuser superuser;
 
@@ -57,21 +57,9 @@ select throws_like(
   $$
     update ggircs_portal.ciip_user set uuid = 'ca716545-a8d3-4034-819c-5e45b0e775c9' where uuid = '11111111-1111-1111-1111-111111111111';
   $$,
-    'uuid cannot be updated when allow_uuid_update is false',
-    'ciip_administrator can not change data in the uuid column in ciip_user table if the allow_uuid_update flag is not set'
+   'permission denied for table ciip_user',
+    'ciip_administrator can not change data in the uuid column in ciip_user table'
 );
-
-update ggircs_portal.ciip_user set allow_uuid_update = true where uuid = '11111111-1111-1111-1111-111111111111';
-
-select lives_ok(
-  $$
-    update ggircs_portal.ciip_user set uuid = 'updated_uuid_value@provider' where uuid = '11111111-1111-1111-1111-111111111111';
-    update ggircs_portal.ciip_user set uuid = '11111111-1111-1111-1111-111111111111' where uuid = 'updated_uuid_value@provider';
-  $$,
-  'ciip_administrator can update the uuid if the allow_uuid_update flag is set'
-);
-
-update ggircs_portal.ciip_user set allow_uuid_update = false where uuid =  '11111111-1111-1111-1111-111111111111';
 
 select throws_like(
   $$
@@ -112,8 +100,8 @@ select throws_like(
   $$
     update ggircs_portal.ciip_user set uuid = 'ca716545-a8d3-4034-819c-5e45b0e775c9' where uuid = (select sub from ggircs_portal.session())
   $$,
-  'uuid cannot be updated when allow_uuid_update is false',
-    'Industry user cannot update their uuid if the allow_uuid_update flag is not set'
+  'permission denied for table ciip_user',
+    'Industry user cannot update their uuid'
 );
 
 select throws_like(
@@ -168,7 +156,7 @@ select throws_like(
   $$
     update ggircs_portal.ciip_user set uuid = 'ca716545-a8d3-4034-819c-5e45b0e775c9' where uuid=(select sub from ggircs_portal.session())
   $$,
-  'uuid cannot be updated when allow_uuid_update is false',
+  'permission denied for table ciip_user',
     'Analyst cannot update their uuid'
 );
 
