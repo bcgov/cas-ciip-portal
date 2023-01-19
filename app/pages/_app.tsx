@@ -68,13 +68,13 @@ export default class App extends NextApp<AppProps> {
 
     return (
       <Sentry.ErrorBoundary fallback={ErrorFallback}>
-        {Component.isAccessProtected && (
-          <SessionTimeoutHandler modalDisplaySecondsBeforeLogout={120} />
-        )}
         <PageRedirectHandler
           environment={environment}
           pageComponent={Component}
         >
+          {Component.isAccessProtected && (
+            <SessionTimeoutHandler modalDisplaySecondsBeforeLogout={120} />
+          )}
           <QueryRenderer
             environment={environment}
             fetchPolicy="store-and-network"
@@ -121,6 +121,7 @@ export default class App extends NextApp<AppProps> {
             }}
           />
         </PageRedirectHandler>
+
         <ToasterHelper />
       </Sentry.ErrorBoundary>
     );

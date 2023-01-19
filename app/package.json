@@ -27,12 +27,13 @@
     "lint": "eslint --ext .js,.jsx,.ts,.tsx ."
   },
   "engines": {
-    "node": "14.17.5",
+    "node": "14.21.1",
     "yarn": "1.22.19"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@bcgov-cas/sso-express": "^3.2.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.31",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "@fortawesome/react-fontawesome": "^0.1.16",
@@ -61,13 +62,13 @@
     "isomorphic-fetch": "^3.0.0",
     "js-file-download": "^0.4.12",
     "json-schema": "^0.4.0",
-    "keycloak-connect": "^10.0.0",
     "lightship": "^6.7.2",
     "lodash.throttle": "^4.1.1",
     "moment-timezone": "^0.5.35",
     "morgan": "^1.10.0",
     "next": "^12.1.0",
     "nodemailer": "^6.6.1",
+    "openid-client": "5",
     "pg": "^8.2.0",
     "postgraphile": "^4.11.0",
     "postgraphile-log-consola": "^1.0.1",

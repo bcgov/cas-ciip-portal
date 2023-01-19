@@ -41,20 +41,4 @@ describe("The RegistrationLoginButtons component", () => {
       "In 2022, CIIP applications will be accepted from May 24 to June 30."
     );
   });
-
-  it('should render an <a href="/register" /> that is not wrapped in a next.js Link', () => {
-    // The register route is redirecting to keycloak, so we don't want Next to prefetch it
-    const component = shallow(
-      <RegistrationLoginButtonsComponent
-        query={{
-          " $refType": "RegistrationLoginButtons_query",
-          openedReportingYear: {
-            applicationCloseTime: "2020-01-01T23:59:59-07:00",
-          },
-        }}
-      />
-    );
-    expect(component.find("a").first().prop("href")).toEqual("/register");
-    expect(component.find("a").first().parent().type()).not.toEqual("Link");
-  });
 });

@@ -1,3 +1,4 @@
+const { isAuthenticated } = require("@bcgov-cas/sso-express/dist/helpers");
 const { getAllGroups, getPriorityGroup } = require("../../lib/user-groups");
 const { getUserGroups } = require("../helpers/userGroupAuthentication");
 const groupData = require("../../data/groups");
@@ -66,23 +67,18 @@ const authenticationPgSettings = (req) => {
   const groups = getUserGroups(req);
   const priorityGroup = getPriorityGroup(groups);
 
-  const claims = {
+  const claimsSettings = {
     role: groupData[priorityGroup].pgRole,
   };
-  if (
-    !req.kauth ||
-    !req.kauth.grant ||
-    !req.kauth.grant.id_token ||
-    !req.kauth.grant.id_token.content
-  )
+  if (!isAuthenticated(req))
     return {
-      ...claims,
+      ...claimsSettings,
     };
 
-  const token = req.kauth.grant.id_token.content;
+  const { claims } = req;
 
-  token.user_groups = groups.join(",");
-  token.priority_group = priorityGroup;
+  claims.user_groups = groups.join(",");
+  claims.priority_group = priorityGroup;
 
   const properties = [
     "jti",
@@ -108,11 +104,11 @@ const authenticationPgSettings = (req) => {
     "priority_group",
   ];
   properties.forEach((property) => {
-    claims[`jwt.claims.${property}`] = token[property];
+    claimsSettings[`jwt.claims.${property}`] = claims[property];
   });
 
   return {
-    ...claims,
+    ...claimsSettings,
   };
 };
 

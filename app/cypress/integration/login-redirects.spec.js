@@ -43,9 +43,7 @@ function testRedirectsForScopedPages(scope, pages) {
 
       cy.mockLogin(scope);
 
-      // As the SSO login page won't open in a frame in Cypress, the final redirect must be
-      // tested indirectly as though we're following the auth callback:
-      cy.visit(`/login?redirectTo=${encodeURIComponent(url)}`);
+      cy.visit(url);
       cy.url().should("include", url);
     });
   });
@@ -61,12 +59,4 @@ describe("Successful redirection of authenticated pages through login", () => {
   Object.keys(AUTHENTICATED_PAGES).forEach((scope) =>
     testRedirectsForScopedPages(scope, AUTHENTICATED_PAGES[scope])
   );
-});
-
-describe("When failing the keycloak authorization", () => {
-  it("should redirect to the 403 page", () => {
-    // Any request with the auth_callback=1 query param will be routed through the keycloak middleware
-    cy.visit("/login?auth_callback=1");
-    cy.url().should("include", "/403");
-  });
 });

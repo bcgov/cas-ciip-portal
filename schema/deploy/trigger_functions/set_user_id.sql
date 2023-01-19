@@ -7,7 +7,7 @@ create or replace function ggircs_portal_private.set_user_id()
   returns trigger as $$
 
 declare
-  user_sub uuid;
+  user_sub text;
 begin
   user_sub := (select sub from ggircs_portal.session());
   new.user_id := (select id from ggircs_portal.ciip_user as cu where cu.uuid = user_sub);

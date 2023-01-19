@@ -121,14 +121,9 @@ const HeaderLayout: React.FunctionComponent<Props> = ({
             ) : (
               <>
                 <li>
-                  <Link href="/register">
-                    <a className="nav-button">Register</a>
-                  </Link>
-                </li>
-                <li>
                   <LoginButton>
                     <button className="nav-button" type="submit">
-                      Login
+                      Login (IDIR)
                     </button>
                   </LoginButton>
                 </li>

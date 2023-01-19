@@ -33,14 +33,14 @@ select lives_ok(
 
 select lives_ok(
   $$
-    insert into ggircs_portal.ciip_user (uuid, first_name, last_name) values ('11111111-1111-1111-1111-111111111111'::uuid, 'test', 'testerson');
+    insert into ggircs_portal.ciip_user (uuid, first_name, last_name) values ('11111111-1111-1111-1111-111111111111', 'test', 'testerson');
   $$,
     'ciip_administrator can insert data in ciip_user table'
 );
 
 select lives_ok(
   $$
-    update ggircs_portal.ciip_user set first_name = 'changed by admin' where uuid='11111111-1111-1111-1111-111111111111'::uuid;
+    update ggircs_portal.ciip_user set first_name = 'changed by admin' where uuid='11111111-1111-1111-1111-111111111111';
   $$,
     'ciip_administrator can change data in ciip_user table'
 );
@@ -55,9 +55,9 @@ select results_eq(
 
 select throws_like(
   $$
-    update ggircs_portal.ciip_user set uuid = 'ca716545-a8d3-4034-819c-5e45b0e775c9' where uuid = '11111111-1111-1111-1111-111111111111'::uuid;
+    update ggircs_portal.ciip_user set uuid = 'ca716545-a8d3-4034-819c-5e45b0e775c9' where uuid = '11111111-1111-1111-1111-111111111111';
   $$,
-    'permission denied%',
+   'permission denied for table ciip_user',
     'ciip_administrator can not change data in the uuid column in ciip_user table'
 );
 
@@ -81,14 +81,6 @@ select results_eq(
     'Industry user can view all data from ciip_user'
 );
 
--- select results_eq(
---   $$
---     select uuid from ggircs_portal.ciip_user
---   $$,
---   ARRAY['11111111-1111-1111-1111-111111111111'::uuid],
---     'Industry user can view data from ciip_user where the uuid column matches their session uuid'
--- );
-
 select lives_ok(
   $$
     update ggircs_portal.ciip_user set first_name = 'doood' where uuid=(select sub from ggircs_portal.session())
@@ -106,9 +98,9 @@ select results_eq(
 
 select throws_like(
   $$
-    update ggircs_portal.ciip_user set uuid = 'ca716545-a8d3-4034-819c-5e45b0e775c9' where uuid!=(select sub from ggircs_portal.session())
+    update ggircs_portal.ciip_user set uuid = 'ca716545-a8d3-4034-819c-5e45b0e775c9' where uuid = (select sub from ggircs_portal.session())
   $$,
-  'permission denied%',
+  'permission denied for table ciip_user',
     'Industry user cannot update their uuid'
 );
 
@@ -162,9 +154,9 @@ select results_eq(
 
 select throws_like(
   $$
-    update ggircs_portal.ciip_user set uuid = 'ca716545-a8d3-4034-819c-5e45b0e775c9' where uuid!=(select sub from ggircs_portal.session())
+    update ggircs_portal.ciip_user set uuid = 'ca716545-a8d3-4034-819c-5e45b0e775c9' where uuid=(select sub from ggircs_portal.session())
   $$,
-  'permission denied%',
+  'permission denied for table ciip_user',
     'Analyst cannot update their uuid'
 );
 
@@ -197,7 +189,7 @@ select results_eq(
   $$
     select uuid from ggircs_portal.ciip_user
   $$,
-  ARRAY['11111111-1111-1111-1111-111111111111'::uuid],
+  ARRAY['11111111-1111-1111-1111-111111111111'::varchar],
     'Guest can only select their own user'
 );
 
@@ -211,7 +203,7 @@ select throws_like(
 
 select throws_like(
   $$
-    insert into ggircs_portal.ciip_user (uuid, first_name, last_name) values ('21111111-1111-1111-1111-111111111111'::uuid, 'test', 'testerson');
+    insert into ggircs_portal.ciip_user (uuid, first_name, last_name) values ('21111111-1111-1111-1111-111111111111', 'test', 'testerson');
   $$,
   'permission denied%',
   'Guest cannot insert'

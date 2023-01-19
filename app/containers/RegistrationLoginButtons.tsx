@@ -1,6 +1,5 @@
 import React from "react";
-import { Col, Card, Button } from "react-bootstrap";
-import LoginButton from "../components/LoginButton";
+import { Col, Card } from "react-bootstrap";
 import { createFragmentContainer, graphql } from "react-relay";
 import { RegistrationLoginButtons_query } from "RegistrationLoginButtons_query.graphql";
 import { dateTimeFormat } from "functions/formatDates";
@@ -46,20 +45,9 @@ export const RegistrationLoginButtonsComponent: React.FunctionComponent<Props> =
             Apply for the CleanBC Industrial Incentive Program (CIIP)
           </Card.Title>
           {cardText}
-          <a
-            href="/register"
-            style={{ padding: "15px", display: "block" }}
-            className="btn btn-primary btn-lg"
-          >
-            Register and Apply
-          </a>
         </Card.Body>
       </Card>
-      <LoginButton>
-        <Button className="login-link" type="submit" variant="outline-dark">
-          Already have an account? Click here to login.
-        </Button>
-      </LoginButton>
+
       <style jsx global>{`
         .login-link {
           padding: 20px;

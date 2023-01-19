@@ -7,7 +7,7 @@ create or replace function ggircs_portal_private.update_timestamps()
   returns trigger as $$
 
 declare
-  user_sub uuid;
+  user_sub text;
   ciip_user_id int;
 
 begin

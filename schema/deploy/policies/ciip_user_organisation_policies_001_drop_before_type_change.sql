@@ -1,0 +1,8 @@
+-- Deploy ggircs-portal:policies/ciip_user_organisation_policies_001_drop_before_type_change to pg
+
+begin;
+
+drop policy ciip_industry_user_select_ciip_user_organisation on ggircs_portal.ciip_user_organisation;
+drop policy ciip_industry_user_insert_ciip_user_organisation on ggircs_portal.ciip_user_organisation;
+
+commit;

@@ -5402,8 +5402,14 @@ input CiipProductStateFilter {
   notIn: [CiipProductState!]
 }
 
-"""Table containing the benchmark and eligibility threshold for a product"""
+""" Table containing the benchmark and eligibility threshold for a product
+"""
 type CiipUser implements Node {
+  """
+  Boolean value determines whether a legacy user can be updated. Legacy users may be updated only once.
+  """
+  allowUuidUpdate: Boolean!
+
   """Reads and enables pagination through a set of `ApplicationReviewStep`."""
   applicationReviewStepsByReviewCommentCreatedByAndApplicationReviewStepId(
     """Read all values in the set after (below) this cursor."""
@@ -12538,8 +12544,10 @@ type CiipUser implements Node {
   """The person who updated the user"""
   updatedBy: Int
 
-  """Universally Unique ID for the user used for auth"""
-  uuid: UUID!
+  """
+  Unique ID for the user/provider combination, defined by the single sign-on provider.
+  """
+  uuid: String!
 }
 
 """
@@ -20223,6 +20231,9 @@ A condition to be used against `CiipUser` object types. All fields are tested
 for equality and combined with a logical ‘and.’
 """
 input CiipUserCondition {
+  """Checks for equality with the object’s `allowUuidUpdate` field."""
+  allowUuidUpdate: Boolean
+
   """Checks for equality with the object’s `createdAt` field."""
   createdAt: Datetime
 
@@ -20260,7 +20271,7 @@ input CiipUserCondition {
   updatedBy: Int
 
   """Checks for equality with the object’s `uuid` field."""
-  uuid: UUID
+  uuid: String
 }
 
 """
@@ -20465,6 +20476,9 @@ type CiipUserEmissionCategoriesByEmissionCategoryGasUpdatedByAndEmissionCategory
 A filter to be used against `CiipUser` object types. All fields are combined with a logical ‘and.’
 """
 input CiipUserFilter {
+  """Filter by the object’s `allowUuidUpdate` field."""
+  allowUuidUpdate: BooleanFilter
+
   """Checks for all expressions in this list."""
   and: [CiipUserFilter!]
 
@@ -20871,7 +20885,7 @@ input CiipUserFilter {
   updatedBy: IntFilter
 
   """Filter by the object’s `uuid` field."""
-  uuid: UUIDFilter
+  uuid: StringFilter
 }
 
 """
@@ -21244,45 +21258,6 @@ type CiipUserGasesByEmissionCategoryGasUpdatedByAndGasIdManyToManyEdge {
 
   """The `Gas` at the end of the edge."""
   node: Gas
-}
-
-"""An input for mutations affecting `CiipUser`"""
-input CiipUserInput {
-  """The date the user was updated"""
-  createdAt: Datetime
-
-  """The person who updated the user"""
-  createdBy: Int
-
-  """The date the user was deleted"""
-  deletedAt: Datetime
-
-  """The person who deleted the user"""
-  deletedBy: Int
-
-  """User's email address"""
-  emailAddress: String
-
-  """User's first name"""
-  firstName: String
-
-  """User's last name"""
-  lastName: String
-
-  """User's occupation"""
-  occupation: String
-
-  """User's phone number"""
-  phoneNumber: String
-
-  """The date the user was updated"""
-  updatedAt: Datetime
-
-  """The person who updated the user"""
-  updatedBy: Int
-
-  """Universally Unique ID for the user used for auth"""
-  uuid: UUID!
 }
 
 """
@@ -21784,6 +21759,11 @@ enum CiipUserOrganisationsOrderBy {
 Represents an update to a `CiipUser`. Fields that are set will be updated.
 """
 input CiipUserPatch {
+  """
+  Boolean value determines whether a legacy user can be updated. Legacy users may be updated only once.
+  """
+  allowUuidUpdate: Boolean
+
   """The date the user was updated"""
   createdAt: Datetime
 
@@ -21817,8 +21797,10 @@ input CiipUserPatch {
   """The person who updated the user"""
   updatedBy: Int
 
-  """Universally Unique ID for the user used for auth"""
-  uuid: UUID
+  """
+  Unique ID for the user/provider combination, defined by the single sign-on provider.
+  """
+  uuid: String
 }
 
 """
@@ -23429,6 +23411,8 @@ type CiipUsersEdge {
 
 """Methods to use when ordering `CiipUser`."""
 enum CiipUsersOrderBy {
+  ALLOW_UUID_UPDATE_ASC
+  ALLOW_UUID_UPDATE_DESC
   CREATED_AT_ASC
   CREATED_AT_DESC
   CREATED_BY_ASC
@@ -23902,18 +23886,6 @@ type CreateCiipApplicationWizardPayload {
   query: Query
 }
 
-"""All input for the create `CiipUser` mutation."""
-input CreateCiipUserInput {
-  """The `CiipUser` to be created by this mutation."""
-  ciipUser: CiipUserInput!
-
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-}
-
 """All input for the create `CiipUserOrganisation` mutation."""
 input CreateCiipUserOrganisationInput {
   """The `CiipUserOrganisation` to be created by this mutation."""
@@ -23952,38 +23924,6 @@ type CreateCiipUserOrganisationPayload {
   Reads a single `Organisation` that is related to this `CiipUserOrganisation`.
   """
   organisationByOrganisationId: Organisation
-
-  """
-  Our root query field type. Allows us to run any query from our mutation payload.
-  """
-  query: Query
-}
-
-"""The output of our create `CiipUser` mutation."""
-type CreateCiipUserPayload {
-  """The `CiipUser` that was created by this mutation."""
-  ciipUser: CiipUser
-
-  """Reads a single `CiipUser` that is related to this `CiipUser`."""
-  ciipUserByCreatedBy: CiipUser
-
-  """Reads a single `CiipUser` that is related to this `CiipUser`."""
-  ciipUserByDeletedBy: CiipUser
-
-  """Reads a single `CiipUser` that is related to this `CiipUser`."""
-  ciipUserByUpdatedBy: CiipUser
-
-  """An edge for our `CiipUser`. May be used by Relay 1."""
-  ciipUserEdge(
-    """The method to use when ordering `CiipUser`."""
-    orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
-  ): CiipUsersEdge
-
-  """
-  The exact same `clientMutationId` that was provided in the mutation input,
-  unchanged and unused. May be used by a client to track mutations.
-  """
-  clientMutationId: String
 
   """
   Our root query field type. Allows us to run any query from our mutation payload.
@@ -24456,6 +24396,50 @@ type CreateNaicsCodePayload {
     """The method to use when ordering `NaicsCode`."""
     orderBy: [NaicsCodesOrderBy!] = [PRIMARY_KEY_ASC]
   ): NaicsCodesEdge
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""All input for the `createOrUpdateCiipUser` mutation."""
+input CreateOrUpdateCiipUserInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  firstName: String!
+  lastName: String!
+  occupation: String!
+  phoneNumber: String!
+}
+
+"""The output of our `createOrUpdateCiipUser` mutation."""
+type CreateOrUpdateCiipUserPayload {
+  ciipUser: CiipUser
+
+  """Reads a single `CiipUser` that is related to this `CiipUser`."""
+  ciipUserByCreatedBy: CiipUser
+
+  """Reads a single `CiipUser` that is related to this `CiipUser`."""
+  ciipUserByDeletedBy: CiipUser
+
+  """Reads a single `CiipUser` that is related to this `CiipUser`."""
+  ciipUserByUpdatedBy: CiipUser
+
+  """An edge for our `CiipUser`. May be used by Relay 1."""
+  ciipUserEdge(
+    """The method to use when ordering `CiipUser`."""
+    orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CiipUsersEdge
+
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
 
   """
   Our root query field type. Allows us to run any query from our mutation payload.
@@ -31375,7 +31359,7 @@ type JwtToken {
   preferredUsername: String
   priorityGroup: String
   sessionState: UUID
-  sub: UUID
+  sub: String
   typ: String
   userGroups: [String]
 }
@@ -31454,7 +31438,7 @@ input JwtTokenFilter {
   sessionState: UUIDFilter
 
   """Filter by the object’s `sub` field."""
-  sub: UUIDFilter
+  sub: StringFilter
 
   """Filter by the object’s `typ` field."""
   typ: StringFilter
@@ -31876,14 +31860,6 @@ type Mutation {
     input: CreateCiipApplicationWizardInput!
   ): CreateCiipApplicationWizardPayload
 
-  """Creates a single `CiipUser`."""
-  createCiipUser(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: CreateCiipUserInput!
-  ): CreateCiipUserPayload
-
   """Creates a single `CiipUserOrganisation`."""
   createCiipUserOrganisation(
     """
@@ -31973,6 +31949,16 @@ type Mutation {
     """
     input: CreateNaicsCodeInput!
   ): CreateNaicsCodePayload
+
+  """
+  This custom create mutation tries to find an exising user formerly in the system, and to update it if allowed
+  """
+  createOrUpdateCiipUser(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateOrUpdateCiipUserInput!
+  ): CreateOrUpdateCiipUserPayload
 
   """Creates a single `Organisation`."""
   createOrganisation(
