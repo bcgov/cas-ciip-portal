@@ -130,6 +130,11 @@ spec:
                 fieldPath: metadata.namespace
           - name: ENABLE_DB_MOCKS
             value: {{ .Values.env.enableDbMocks | quote }}
+          - name: KC_CLIENT_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: keycloak-gold-client-secret
+                key: kcClientSecret
         ports:
         - containerPort: {{ .Values.port }}
           protocol: TCP
