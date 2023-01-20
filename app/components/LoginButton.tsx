@@ -2,9 +2,13 @@ import React from "react";
 import { useRouter } from "next/router";
 import { Form } from "react-bootstrap";
 
-const LoginForm: React.FunctionComponent = ({ children }) => {
+interface Props {
+  idpHint: "idir" | "bceidboth";
+}
+
+const LoginForm: React.FunctionComponent<Props> = ({ children, idpHint }) => {
   const router = useRouter();
-  let loginURI = "/login?kc_idp_hint=idir";
+  let loginURI = `/login?kc_idp_hint=${idpHint}`;
 
   if (router.query.redirectTo)
     loginURI += `&redirectTo=${encodeURIComponent(

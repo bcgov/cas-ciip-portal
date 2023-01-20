@@ -60,7 +60,7 @@ async function middleware() {
     authorizationUrlParams: (req) => {
       if (req.query.kc_idp_hint === "idir") return { kc_idp_hint: "idir" };
       if (req.query.kc_idp_hint === "bceidboth")
-        console.warn("BCeID login is not supported yet.");
+        return { kc_idp_hint: "bceidboth" };
       return {};
     },
   });
