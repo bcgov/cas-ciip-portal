@@ -47,7 +47,7 @@ perform ggircs_portal_private.upsert_policy('ciip_analyst_update_review_comment'
 -- statement for select using & insert with check
 industry_user_statement := $$
                              application_review_step_id in (select ggircs_portal_private.get_valid_review_comments())
-                             and review_comment.comment_type in ('internal')
+                             and review_comment.comment_type::text='internal'
                            $$;
 
 -- ciip_industry_user RLS

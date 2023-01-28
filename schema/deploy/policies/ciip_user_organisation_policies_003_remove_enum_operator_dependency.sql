@@ -12,7 +12,7 @@ do
         'ciip_user_organisation',
         'insert',
         'ciip_industry_user',
-        $$user_id=(select id from ggircs_portal.ciip_user where uuid = (select sub from ggircs_portal.session())) and status in ('pending')$$
+        $$user_id=(select id from ggircs_portal.ciip_user where uuid = (select sub from ggircs_portal.session())) and status::text='pending'$$
     );
 
   end
