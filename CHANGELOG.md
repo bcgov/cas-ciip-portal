@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.19.2](https://github.com/bcgov/cas-ciip-portal/compare/v2.19.1...v2.19.2) (2023-01-28)
+
+
+### Bug Fixes
+
+* ciip user organisation policy doesnt depend on equal operator ([8d8a417](https://github.com/bcgov/cas-ciip-portal/commit/8d8a4174be339897ffa40ba3f6200b421c9870c4))
+* review comment policy doesnt depend on equal operator ([8e227b1](https://github.com/bcgov/cas-ciip-portal/commit/8e227b155f88d6c9332510bb2fa8b7adb3c7a31d))
+* rls policy to pull the right comments ([ed59b7c](https://github.com/bcgov/cas-ciip-portal/commit/ed59b7c7ab936c5409e8c9859aeefaf9f8101064))
+
 ### [2.19.1](https://github.com/bcgov/cas-ciip-portal/compare/v2.19.0...v2.19.1) (2023-01-19)
 
 ## [2.19.0](https://github.com/bcgov/cas-ciip-portal/compare/v2.18.6...v2.19.0) (2023-01-19)
