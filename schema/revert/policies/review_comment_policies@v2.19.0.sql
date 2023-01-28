@@ -41,10 +41,13 @@ perform ggircs_portal_private.upsert_policy('ciip_analyst_insert_review_comment'
 perform ggircs_portal_private.upsert_policy('ciip_analyst_update_review_comment', 'review_comment', 'update', 'ciip_analyst', 'created_by=(select ggircs_portal_private.analyst_owns_comment())');
 
 -- statement for select using & insert with check
+industry_user_statement := $$
+                             application_id in (select ggircs_portal_private.get_valid_review_comments())
+                             and comment_type='requested change'
+                           $$;
 
 -- ciip_industry_user RLS
--- dropping a policy that was in a broken state before this migration, to satisfy the sqitch revert
-drop policy ciip_industry_user_select_review_comment on ggircs_portal.review_comment;
+perform ggircs_portal_private.upsert_policy('ciip_industry_user_select_review_comment', 'review_comment', 'select', 'ciip_industry_user', industry_user_statement);
 
 end
 $policy$;
