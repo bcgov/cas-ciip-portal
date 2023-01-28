@@ -3,10 +3,14 @@
 
 begin;
 
+-- Function that returns all application review step ids belonging to the current user
+-- so we can match the correct review comments
 create or replace function ggircs_portal_private.get_valid_review_comments()
 returns setof integer as
 $fn$
-  select a.id from ggircs_portal.application a
+  select ars.id from ggircs_portal.application_review_step ars
+    join ggircs_portal.application a
+      on ars.application_id = a.id
     join ggircs_portal.facility f
       on a.facility_id = f.id
     join ggircs_portal.ciip_user_organisation cuo
@@ -42,8 +46,8 @@ perform ggircs_portal_private.upsert_policy('ciip_analyst_update_review_comment'
 
 -- statement for select using & insert with check
 industry_user_statement := $$
-                             application_id in (select ggircs_portal_private.get_valid_review_comments())
-                             and comment_type in ('internal')
+                             application_review_step_id in (select ggircs_portal_private.get_valid_review_comments())
+                             and review_comment.comment_type in ('internal')
                            $$;
 
 -- ciip_industry_user RLS
