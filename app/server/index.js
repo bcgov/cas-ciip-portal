@@ -25,6 +25,7 @@ const { createLightship } = require("lightship");
 const delay = require("delay");
 const session = require("./middleware/session");
 const ssoMiddleware = require("./middleware/sso");
+const userMiddleware = require("./middleware/user");
 
 const NO_MAIL = process.argv.includes("NO_MAIL");
 
@@ -104,6 +105,7 @@ app.prepare().then(async () => {
 
   const { middleware: sessionMiddleware } = session();
   server.use(sessionMiddleware);
+  server.use(userMiddleware);
   server.use(await ssoMiddleware());
 
   server.use(cookieParser());
