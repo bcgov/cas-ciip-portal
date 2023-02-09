@@ -37176,15 +37176,6 @@ enum ProductsOrderBy {
 
 """The root query type which gives access points into the data universe."""
 type Query implements Node {
-  _cmpCiipApplicationRevisionStatusTextEq(_a: CiipApplicationRevisionStatus!, _b: String!): Boolean
-  _cmpCiipApplicationRevisionStatusTextNeq(_a: CiipApplicationRevisionStatus!, _b: String!): Boolean
-  _cmpCiipProductStateTextEq(_a: CiipProductState!, _b: String!): Boolean
-  _cmpCiipProductStateTextNeq(_a: CiipProductState!, _b: String!): Boolean
-  _cmpCiipUserOrganisationStatusTextEq(_a: CiipUserOrganisationStatus!, _b: String!): Boolean
-  _cmpCiipUserOrganisationStatusTextNeq(_a: CiipUserOrganisationStatus!, _b: String!): Boolean
-  _cmpReviewCommentTypeTextEq(_a: ReviewCommentType!, _b: String!): Boolean
-  _cmpReviewCommentTypeTextNeq(_a: ReviewCommentType!, _b: String!): Boolean
-
   """Reads and enables pagination through a set of `ApplicationReviewStep`."""
   allApplicationReviewSteps(
     """Read all values in the set after (below) this cursor."""
@@ -38487,6 +38478,7 @@ type Query implements Node {
     searchValue: String
   ): FacilitiesConnection
   session: JwtToken
+  validateCurrentUser: Boolean
 }
 
 """
