@@ -105,8 +105,9 @@ app.prepare().then(async () => {
 
   const { middleware: sessionMiddleware } = session();
   server.use(sessionMiddleware);
-  server.use(userMiddleware);
+
   server.use(await ssoMiddleware());
+  server.use(userMiddleware);
 
   server.use(cookieParser());
 

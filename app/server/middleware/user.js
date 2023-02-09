@@ -1,4 +1,5 @@
 const { performQuery } = require("../postgraphile/graphql");
+const axios = require("axios");
 
 // Middleware to verify that there aren't any existing users
 // with the same email address as the one requesting access.
@@ -8,26 +9,37 @@ const { performQuery } = require("../postgraphile/graphql");
 
 const createUserMutation = `
 query {
-    verifyUserValid(input: {}) {
-    __typename
-  }
+    validateCurrentUser
 }
 `;
 
-function validateUserMiddleware() {
-  const f = async (req) => {
-    const response = await performQuery(createUserMutation, {}, req);
+const host = process.env.HOST || "http://localhost:3004";
 
-    if (response.errors) {
-      throw new Error(
-        `Failed to update or create user from session:\n${response.errors.join(
-          "\n"
-        )}`
+const validateUserMiddleware = async (req, res, next) => {
+  const response = await performQuery(createUserMutation, {}, req);
+  if (!response.data.validateCurrentUser) {
+    const config = {
+      method: "post",
+      url: `${host}/logout`,
+    };
+
+    axios(config)
+      .then((response) => {
+        console.log(
+          "Duplicate email error. Another user account with this email already exists in the system."
+        );
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    return res
+      .status(403)
+      .send(
+        `Duplicate email detected. Access denied. Please contact ${process.env.ADMIN_EMAIL} for assistance.`
       );
-    }
-  };
-
-  return f;
-}
+  }
+  return next();
+};
 
 module.exports = validateUserMiddleware;
