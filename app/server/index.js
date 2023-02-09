@@ -107,9 +107,10 @@ app.prepare().then(async () => {
   server.use(sessionMiddleware);
 
   server.use(await ssoMiddleware());
-  server.use(userMiddleware);
 
   server.use(cookieParser());
+
+  server.use(userMiddleware);
 
   server.use(
     postgraphile(pgPool, process.env.DATABASE_SCHEMA || "ggircs_portal", {

@@ -20,7 +20,7 @@ const postgraphileSchema = async () => {
   if (!postgraphileSchemaSingleton) {
     postgraphileSchemaSingleton = await createPostGraphileSchema(
       getDatabaseUrl(),
-      process.env.DATABASE_SCHEMA || "ggircs_app",
+      process.env.DATABASE_SCHEMA || "ggircs_portal",
       postgraphileOptions()
     );
   }
