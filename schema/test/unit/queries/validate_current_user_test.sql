@@ -5,7 +5,7 @@ create extension if not exists pgtap;
 alter table ggircs_portal.ciip_user disable trigger _welcome_email;
 
 
-select no_plan();
+select plan(4);
 
 truncate ggircs_portal.ciip_user restart identity cascade;
 
