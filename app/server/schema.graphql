@@ -38487,6 +38487,7 @@ type Query implements Node {
     searchValue: String
   ): FacilitiesConnection
   session: JwtToken
+  validateCurrentUser: Boolean
 }
 
 """
