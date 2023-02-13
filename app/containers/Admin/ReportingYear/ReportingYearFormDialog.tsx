@@ -53,7 +53,7 @@ const ReportingYearFormDialog: React.FunctionComponent<Props> = ({
 
   const handleSubmit = (e) => {
     const beginningOfDay = { hour: 0, minute: 0, second: 0, millisecond: 0 };
-    const endOfDay = { hour: 11, minute: 59, second: 59, millisecond: 999 };
+    const endOfDay = { hour: 23, minute: 59, second: 59, millisecond: 999 };
     const formData = {
       ...e.formData,
       applicationOpenTime: ensureFullTimestamp(
