@@ -1,0 +1,17 @@
+name: "Local CIIP app run"
+description: "Runs the CIIP app locally"
+runs:
+  using: composite
+  steps:
+    - name: start postgres and create database
+      shell: bash
+      run: pg_ctl start && createdb `whoami` && createdb ciip_portal_dev && pushd schema && ./data/deploy-data.sh -prod
+    - name: deploy migrations
+      shell: bash
+      run: docker run --network=host -e "PGUSER=postgres" ghcr.io/bcgov/cas-ciip-schema:$509e525a9a799bb168193ecd2b339f9186dfe57e sqitch deploy
+    - name: deploy mocks_schema migrations
+      shell: bash
+      run: docker run --network=host -e "PGUSER=postgres" --workdir="/root/mocks_schema" ghcr.io/bcgov/cas-ciip-schema:${{ github.sha }} sqitch deploy
+    - name: start app
+      shell: bash
+      run: docker run -d --network=host -e "PGUSER=postgres" -e "GROWTHBOOK_API_KEY={{ secrets.GROWTHBOOK_API_KEY }}" -e "BYPASS_GROWTHBOOK=true" -e "PROGRAM_DIRECTOR_NAME=director name" -e "PROGRAM_DIRECTOR_EMAIL=director@email.com" -p 3004:3004 ghcr.io/bcgov/cas-cif-app:${{ github.sha }} "/usr/bin/env" "bash" "-c" "ENABLE_MOCK_TIME='true' SHOW_KC_LOGIN='true' ENABLE_MOCK_AUTH='true' yarn start"

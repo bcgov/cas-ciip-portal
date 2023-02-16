@@ -1,0 +1,12 @@
+name: Pre-release checks
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  sqitch-plan-ends-with-tag:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: ./.bin/sqitch-last-change-is-tag.sh schema
