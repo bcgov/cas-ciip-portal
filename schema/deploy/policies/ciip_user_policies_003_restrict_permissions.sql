@@ -1,6 +1,12 @@
 -- Deploy ggircs-portal:policies/ciip_user_policies_003_restrict_permissions to pg
 -- requires: policies/ciip_user_policies_002_recreate_after_type_change
 
+/*
+Policy restricts external users from viewing data in the ciip_user table with the following rules:
+  - can see their own user data
+  - can see data for users that are approved to report for the same organisation as they are
+  - can see data for analyst users
+*/
 begin;
 
 create or replace function ggircs_portal_private.get_valid_users()

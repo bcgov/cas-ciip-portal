@@ -2,8 +2,6 @@
 
 begin;
 
-
-
 do
 $policy$
 begin
