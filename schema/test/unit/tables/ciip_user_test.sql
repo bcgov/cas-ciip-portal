@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(25);
+select plan(26);
 
 create role test_superuser superuser;
 
@@ -88,6 +88,13 @@ set role ciip_industry_user;
 select concat('current user is: ', (select current_user));
 
 select id from ggircs_portal.ciip_user;
+
+select isnt_empty(
+  $$
+    select * from ggircs_portal.ciip_user where uuid=(select sub from ggircs_portal.session());
+  $$,
+    'Industry user can view their own data in the ciip_user table'
+);
 
 select isnt_empty(
   $$

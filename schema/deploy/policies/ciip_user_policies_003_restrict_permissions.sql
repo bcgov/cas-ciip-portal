@@ -37,23 +37,3 @@ end
 $policy$;
 
 commit;
-
-create or replace function ggircs_portal_private.get_valid_users()
-returns setof integer as
-$fn$
-  with valid_orgs as (
-    select organisation_id
-    from ggircs_portal.ciip_user_organisation
-    where status = 'approved'
-    and user_id=(
-      (select id from ggircs_portal.ciip_user where uuid = ((select sub from ggircs_portal.session()))
-      )
-    )
-  )
-  select user_id
-  from ggircs_portal.ciip_user_organisation
-  where organisation_id
-  in (select * from valid_orgs)
-  union
-  select id from ggircs_portal.ciip_user where uuid ilike '%@idir';
-$fn$ language sql strict stable security definer;
