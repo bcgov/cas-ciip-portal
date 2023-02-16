@@ -1,4 +1,25 @@
 SHELL := /usr/bin/env bash
+PERL=perl
+PERL_VERSION=${shell ${PERL} -e 'print substr($$^V, 1)'}
+PERL_MIN_VERSION=5.10
+CPAN=cpan
+CPANM=cpanm
+SQITCH=sqitch
+SQITCH_VERSION=${word 3,${shell ${SQITCH} --version}}
+SQITCH_MIN_VERSION=1.0.0
+GREP=grep
+AWK=awk
+PSQL=psql -h localhost
+# "psql --version" prints "psql (PostgreSQL) XX.XX"
+PSQL_VERSION=${word 3,${shell ${PSQL} --version}}
+PG_SERVER_VERSION=${strip ${shell ${PSQL} -tc 'show server_version;' || echo error}}
+PG_MIN_VERSION=9.1
+PG_ROLE=${shell whoami}
+TEST_DB=ciip_portal_test
+PG_PROVE=pg_prove -h localhost
+PG_SHAREDIR=$(shell pg_config --sharedir)
+DEPLOY_DEFAULT_DATA=deploy_dev_data
+PGTAP_VERSION=1.2.0
 ifeq ($(MAKECMDGOALS),$(filter $(MAKECMDGOALS),help whoami lint configure build_app build_schema build_tools build install install_test clean_old_tags))
 include .pipeline/oc.mk
 include .pipeline/make.mk
@@ -91,11 +112,7 @@ install_load_test:
 	--values ./helm/cas-ciip-portal/values-load-testing.yaml \
 	cas-ciip-portal ./helm/cas-ciip-portal;
 
-# Might need to install the bundle containing DB-Pg on a Mac
-# perl -MCPAN -e 'install Bundle::DBD::Pg'
-.PHONY: install_perl_tools
-install_perl_tools:
-	@@$(MAKE) -C schema install CPANM="cpanm --notest"
+
 
 .PHONY: install_asdf_tools
 install_asdf_tools:
@@ -107,11 +124,63 @@ install_asdf_tools:
 	@pip install -r requirements.txt
 	@asdf reshim
 
+.PHONY: install_pgtap
+install_pgtap: ## install pgTAP extension into postgres
+install_pgtap: start_pg
+install_pgtap:
+	@$(PSQL) -d postgres -tc "select count(*) from pg_available_extensions where name='pgtap' and default_version='$(PGTAP_VERSION)';" | \
+		grep -q 1 || \
+		(git clone https://github.com/theory/pgtap.git --depth 1 --branch v$(PGTAP_VERSION) && \
+		$(MAKE) -C pgtap && \
+		$(MAKE) -C pgtap install && \
+		$(MAKE) -C pgtap installcheck && \
+		rm -rf pgtap)
+
+.PHONY: install_cpanm
+install_cpanm: ## install the cpanm tool
+install_cpanm:
+ifeq ($(shell which $(word 2,$(CPANM))),)
+	# install cpanm
+	@$(CPAN) App::cpanminus
+endif
+
+.PHONY: install_cpandeps
+install_cpandeps: ## install Perl dependencies from cpanfile
+install_cpandeps:
+	@$(CPANM) --installdeps .
+	@rm -rf $(__DIRNAME)/.cpanm
+
+.PHONY: postinstall_check
+postinstall_check: ## check that the installation was successful and that the correct sqitch version is available in the PATH
+postinstall_check:
+	@printf '%s\n%s\n' "${SQITCH_MIN_VERSION}" "${SQITCH_VERSION}" | sort -CV ||\
+ 	(echo "FATAL: sqitch version should be at least ${SQITCH_MIN_VERSION}. Make sure the sqitch executable installed by cpanminus is available has the highest priority in the PATH" && exit 1);
+
+.PHONY: install_perl_tools
+install_perl_tools: ## install cpanm and sqitch
+install_perl_tools: install_cpanm install_cpandeps postinstall_check
+
 .PHONY: install_dev_tools
-install_dev_tools: $(call make_help,install_dev_tools,install development tools via asdf and Perl)
-install_dev_tools: install_asdf_tools install_perl_tools
+install_dev_tools: ## install development tools
+install_dev_tools: stop_pg install_asdf_tools install_perl_tools install_pgtap
+
+.PHONY: start_pg
+start_pg: ## start the database server if it is not running
+start_pg:
+	@pg_ctl status || pg_ctl start
+
+.PHONY: stop_pg
+stop_pg: ## stop the database server. Always exits with 0
+stop_pg:
+	@pg_ctl stop; true
 
 .PHONY: deploy_test_data
 deploy_test_data: $(call make_help,deploy_data,deploys database schemas and data)
 deploy_test_data:
 	@bash ./.bin/deploy-data.sh --drop-db --dev-data
+
+.PHONY: release
+release: ## Tag a release using release-it
+release:
+	@yarn
+	@yarn release-it
