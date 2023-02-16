@@ -17,7 +17,6 @@ const host = process.env.HOST || "http://localhost:3004";
 
 const validateUserMiddleware = async (req, res, next) => {
   const response = await performQuery(createUserMutation, {}, req);
-  console.log("RESPONSE: ", response.data);
   if (!response.data.validateCurrentUser) {
     const config = {
       method: "post",
