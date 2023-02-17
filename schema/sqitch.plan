@@ -434,5 +434,5 @@ mutations/create_or_update_ciip_user 2023-01-14T00:11:45Z Pierre Bastianelli <pi
 policies/review_comment_policies [policies/review_comment_policies@v2.19.0] 2023-01-28T01:16:39Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # Removing dependency on = operator
 policies/ciip_user_organisation_policies_003_remove_enum_operator_dependency 2023-01-28T01:26:16Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # Remove dependency on = operator on enum type
 @v2.19.2 2023-01-28T02:49:53Z Dylan Leard <dylan@button.is> # release v2.19.2
-
 queries/validate_current_user 2023-01-31T01:07:55Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # Custom query to validate whether the currently logged in user is allowed to move forward in the app, or should be logged out.
+policies/ciip_user_policies_003_restrict_permissions [policies/ciip_user_policies_002_recreate_after_type_change] 2023-02-17T23:18:16Z Dylan Leard <dylan@button.is> # Migration: update policy to be more restrictive for industry users
