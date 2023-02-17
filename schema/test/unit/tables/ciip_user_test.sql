@@ -79,15 +79,10 @@ select throws_like(
     'Administrator cannot delete rows from table_ciip_user'
 );
 
-select user_id from ggircs_portal.ciip_user_organisation where organisation_id=7;
-select * from ggircs_portal.ciip_user_organisation;
-
 -- CIIP_INDUSTRY_USER
 set jwt.claims.sub to '00000000-0000-0000-0000-000000000000';
 set role ciip_industry_user;
 select concat('current user is: ', (select current_user));
-
-select id from ggircs_portal.ciip_user;
 
 select isnt_empty(
   $$
@@ -112,9 +107,9 @@ select isnt_empty(
 
 select is_empty(
   $$
-    select * from ggircs_portal.ciip_user where id = 1;
+    select * from ggircs_portal.ciip_user where id not in (2,3,6);
   $$,
-    'Industry user cannot view data from ciip_user table for users that are not approved for the same organisation'
+    'Industry user cannot view data from ciip_user table for users that do not satisfy the RLS policy'
 );
 
 select lives_ok(
