@@ -3,9 +3,19 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(23);
+select plan(26);
 
 create role test_superuser superuser;
+
+alter table ggircs_portal.ciip_user_organisation disable trigger _send_request_for_access_email;
+alter table ggircs_portal.ciip_user_organisation disable trigger _send_access_approved_email;
+alter table ggircs_portal.ciip_user_organisation disable trigger _set_user_id;
+update ggircs_portal.ciip_user set allow_uuid_update=true where id=3 or id=2;
+update ggircs_portal.ciip_user set uuid = '11111111-1111-1111-1111-111111111111@idir' where id = 2;
+insert into ggircs_portal.ciip_user_organisation(user_id, organisation_id, status) values
+(1,1,'approved'),
+(4,8,'approved');
+update ggircs_portal.ciip_user_organisation set status = 'rejected' where user_id=3 and organisation_id=8;
 
 -- Table exists
 select has_table(
@@ -70,15 +80,36 @@ select throws_like(
 );
 
 -- CIIP_INDUSTRY_USER
+set jwt.claims.sub to '00000000-0000-0000-0000-000000000000';
 set role ciip_industry_user;
 select concat('current user is: ', (select current_user));
 
-select results_eq(
+select isnt_empty(
   $$
-    select count(*) from ggircs_portal.ciip_user
+    select * from ggircs_portal.ciip_user where uuid=(select sub from ggircs_portal.session());
   $$,
-  ARRAY['7'::bigint],
-    'Industry user can view all data from ciip_user'
+    'Industry user can view their own data in the ciip_user table'
+);
+
+select isnt_empty(
+  $$
+    select * from ggircs_portal.ciip_user where id = 6;
+  $$,
+    'Industry user can view data from ciip_user table for users within the same approved organisation'
+);
+
+select isnt_empty(
+  $$
+    select * from ggircs_portal.ciip_user where id = 2;
+  $$,
+    'Industry user can view data from ciip_user table for CAS users (uuid ends in @idir)'
+);
+
+select is_empty(
+  $$
+    select * from ggircs_portal.ciip_user where id not in (2,3,6);
+  $$,
+    'Industry user cannot view data from ciip_user table for users that do not satisfy the RLS policy'
 );
 
 select lives_ok(
@@ -182,6 +213,7 @@ select is_empty(
 );
 
 -- CIIP_GUEST
+set jwt.claims.sub to '11111111-1111-1111-1111-111111111111';
 set role ciip_guest;
 select concat('current user is: ', (select current_user));
 
