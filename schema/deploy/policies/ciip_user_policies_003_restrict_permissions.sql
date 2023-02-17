@@ -25,7 +25,10 @@ $fn$
     )
   )
   union
-  select id from ggircs_portal.ciip_user where uuid ilike '%@idir';
+  select id
+  from ggircs_portal.ciip_user
+  where uuid ilike '%@idir'
+  or uuid=(select sub from ggircs_portal.session());
 $fn$ language sql strict stable security definer;
 
 grant execute on function ggircs_portal_private.get_valid_users to ciip_administrator, ciip_analyst, ciip_industry_user;
@@ -34,7 +37,7 @@ do
 $policy$
 declare industry_user_statement text;
 begin
-industry_user_statement := 'id in (select ggircs_portal_private.get_valid_users()) or uuid=(select sub from ggircs_portal.session())';
+industry_user_statement := 'id in (select ggircs_portal_private.get_valid_users())';
 
 -- ciip_industry_user RLS select policy
 perform ggircs_portal_private.upsert_policy('ciip_industry_user_select_ciip_user', 'ciip_user', 'select', 'ciip_industry_user', industry_user_statement);
