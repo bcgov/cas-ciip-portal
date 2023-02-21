@@ -133,6 +133,7 @@ describe("Confirmation emails", () => {
   beforeEach(() => {
     cy.mockLogin("reporter");
   });
+});
 
 function makeApplicationDecision(decision, appId) {
   const applicationId = window.btoa(`["applications", ${appId}]`);
