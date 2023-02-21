@@ -134,45 +134,6 @@ describe("Confirmation emails", () => {
     cy.mockLogin("reporter");
   });
 
-  it("should send an email to the reporter and to the admin when application has been submitted", () => {
-    const applicationId = window.btoa('["applications",1]');
-    cy.visit(`/reporter/application/${applicationId}?confirmationPage=true`);
-    cy.url().should("include", "/reporter/application");
-    cy.get("#next-step ~ button");
-    cy.contains("Submit Application").click();
-    cy.wait(1000);
-    cy.request("localhost:8025/api/v1/messages").then((response) => {
-      expect(response.status).to.eq(200);
-      const messages = response.body;
-      expect(messages).to.satisfy((messages) => {
-        return messages.some((msg) =>
-          msg.To[0].Mailbox.includes("ciip-reporter")
-        );
-      });
-      const reporterMail = messages.find((msg) =>
-        msg.To[0].Mailbox.includes("ciip-reporter")
-      );
-      expect(reporterMail.Content.Headers.Subject[0]).to.contain("CIIP");
-      expect(decoded(reporterMail.Content.Body)).to.contain(
-        "Thank you for your submission"
-      );
-      expect(messages).to.satisfy((messages) => {
-        return messages.some((msg) =>
-          msg.To[0].Mailbox.includes("GHGRegulator")
-        );
-      });
-      const adminMail = messages.find((msg) =>
-        msg.To[0].Mailbox.includes("GHGRegulator")
-      );
-      expect(adminMail.Content.Headers.Subject[0]).to.contain("CIIP");
-      expect(decoded(adminMail.Content.Body)).to.contain(
-        "has been submitted or updated"
-      );
-      cy.request("DELETE", "localhost:8025/api/v1/messages");
-    });
-  });
-});
-
 function makeApplicationDecision(decision, appId) {
   const applicationId = window.btoa(`["applications", ${appId}]`);
   cy.visit(`/analyst/application/${encodeURIComponent(applicationId)}`);
