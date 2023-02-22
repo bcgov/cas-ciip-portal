@@ -123,18 +123,6 @@ describe("Organisation access request emails", () => {
   });
 });
 
-describe("Confirmation emails", () => {
-  before(() => {
-    cy.wait(500);
-    cy.cleanSchema();
-    cy.deployProdData();
-    cy.sqlFixture("fixtures/email-setup");
-  });
-  beforeEach(() => {
-    cy.mockLogin("reporter");
-  });
-});
-
 function makeApplicationDecision(decision, appId) {
   const applicationId = window.btoa(`["applications", ${appId}]`);
   cy.visit(`/analyst/application/${encodeURIComponent(applicationId)}`);
