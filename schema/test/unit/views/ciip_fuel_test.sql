@@ -4,7 +4,7 @@ reset client_min_messages;
 
 begin;
 
-select plan(3);
+select plan(4);
 
 -- Setup
 
@@ -53,6 +53,16 @@ select results_eq(
     select '2'::integer, 'type'::varchar, 'typealt'::varchar, '1'::numeric, 'kl'::varchar, '1'::numeric
   $$,
   'ciip_fuel view returns the correct fuel data for the 2018 schema'
+);
+
+select results_eq(
+  $$
+    select comments from ggircs_portal.ciip_fuel where application_id = 1
+  $$,
+  $$
+    values('abc'::varchar(10000))
+  $$,
+  'ciip_fuel view returns comments from the fuel data'
 );
 
 select finish();

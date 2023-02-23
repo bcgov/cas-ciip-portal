@@ -7,8 +7,7 @@ begin;
       select
         form_result.application_id,
         form_result.version_number,
-        json_array_elements((form_result)::json) as fuel_data,
-        (form_result.form_result ->> 'comments')::varchar(10000) as comments
+        json_array_elements((form_result)::json) as fuel_data
       from ggircs_portal.form_result
       join ggircs_portal.form_json
       on form_result.form_id = form_json.id
@@ -25,7 +24,7 @@ begin;
        (x.fuel_data ->> 'fuelTypeAlt')::varchar(1000) as fuel_type_alt,
        (x.fuel_data ->> 'fuelDescription')::varchar(10000) as fuel_description,
        (x.fuel_data ->> 'associatedEmissions')::numeric as associated_emissions,
-       x.comments
+       (x.fuel_data ->> 'comments')::varchar(10000) as comments
     from x
  );
 
@@ -44,6 +43,5 @@ comment on column ggircs_portal.ciip_fuel.fuel_description is 'A description of 
 comment on column ggircs_portal.ciip_fuel.associated_emissions is 'The quantity of emissions associated with the fuel combusted';
 comment on column ggircs_portal.ciip_fuel.associated_emissions is 'The quantity of emissions associated with the fuel combusted';
 comment on column ggircs_portal.ciip_fuel.comments is 'Any comments the reporter added to this form while filling it out';
-
 
 commit;
