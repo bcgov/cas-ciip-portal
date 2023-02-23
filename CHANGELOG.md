@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.20.0](https://github.com/bcgov/cas-ciip-portal/compare/v2.19.2...v2.20.0) (2023-02-23)
+
+
+### Features
+
+* middleware that verifies a logged in user is allowed to access the system ([063525e](https://github.com/bcgov/cas-ciip-portal/commit/063525e97b09365b9164a4aa95ad728f36d58c70))
+
+
+### Bug Fixes
+
+* change close time to 23:59:59 ([e1e5ace](https://github.com/bcgov/cas-ciip-portal/commit/e1e5aced36e292a546c93c20e94bde2ae148705b))
+* parse comments from json array ([11de1b8](https://github.com/bcgov/cas-ciip-portal/commit/11de1b8d26e95bc88ce746f869e31ed331ea758d))
+* removing notify admin on new submissions ([cdbee4f](https://github.com/bcgov/cas-ciip-portal/commit/cdbee4fd36c2a07811ef585ef886f4d7d7b2b2ad))
+
 ### [2.19.2](https://github.com/bcgov/cas-ciip-portal/compare/v2.19.1...v2.19.2) (2023-01-28)
 
 
