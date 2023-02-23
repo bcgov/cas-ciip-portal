@@ -438,3 +438,4 @@ queries/validate_current_user 2023-01-31T01:07:55Z Pierre Bastianelli <pierre.ba
 policies/ciip_user_policies_003_restrict_permissions [policies/ciip_user_policies_002_recreate_after_type_change] 2023-02-17T23:18:16Z Dylan Leard <dylan@button.is> # Migration: update policy to be more restrictive for industry users
 trigger_functions/run_graphile_worker_job [trigger_functions/run_graphile_worker_job@v2.19.2] 2023-02-21T15:38:26Z Gurjeet Matharu <gurjeet@matharuco.com> # reworking to remove notify_admin case
 views/ciip_fuel [views/ciip_fuel@v2.19.2] 2023-02-23T18:22:07Z Dylan Leard <dylan@button.is> # Migration: parse comments correctly from json array
+@v2.20.0 2023-02-23T23:34:45Z Dylan Leard <dylan@button.is> # release v2.20.0
