@@ -3,7 +3,7 @@ begin;
 with rows as (
 insert into ggircs_portal.fuel_emission_category (
     id,
-    fuel_id, 
+    fuel_id,
     emission_category_id
 )
 overriding system value

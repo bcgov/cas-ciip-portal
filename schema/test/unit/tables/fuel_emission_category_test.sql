@@ -32,7 +32,7 @@ select results_eq(
 
 select lives_ok(
   $$
-    insert into ggircs_portal.fuel_emission_category (id, fuel_id, 
+    insert into ggircs_portal.fuel_emission_category (id, fuel_id,
   emission_category_id) overriding system value
   -- fuel_id 85 is Vented Natural Gas
     values (1000, 85,1);
@@ -86,7 +86,7 @@ select results_eq(
 
 select throws_like(
   $$
-    insert into ggircs_portal.fuel_emission_category (id, fuel_id, 
+    insert into ggircs_portal.fuel_emission_category (id, fuel_id,
   emission_category_id) overriding system value
     values (1001, 1, 1);
   $$,

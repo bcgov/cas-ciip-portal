@@ -3,7 +3,7 @@
 begin;
 create table ggircs_portal.fuel_emission_category (
   id integer primary key generated always as identity,
-  fuel_id integer not null references ggircs_portal.fuel(id), 
+  fuel_id integer not null references ggircs_portal.fuel(id),
   emission_category_id integer not null references ggircs_portal.emission_category(id)
 );
 
@@ -52,4 +52,3 @@ comment on column ggircs_portal.fuel_emission_category.deleted_at is 'Date of de
 comment on column ggircs_portal.fuel_emission_category.deleted_by is 'The user who deleted the row';
 
 commit;
-
