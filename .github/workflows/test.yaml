@@ -91,11 +91,11 @@ jobs:
     strategy:
       matrix:
         include:
-          - image: ghcr.io/bcgov/cas-ciip-app
+          - image: ghcr.io/bcgov/cas-ciip-portal-app
             context: .
             dockerfile: app/Dockerfile
             name: app
-          - image: ghcr.io/bcgov/cas-ciip-schema
+          - image: ghcr.io/bcgov/cas-ciip-portal-schema
             context: .
             dockerfile: schema/Dockerfile
             name: schema
