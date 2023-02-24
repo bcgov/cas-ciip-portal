@@ -439,3 +439,4 @@ policies/ciip_user_policies_003_restrict_permissions [policies/ciip_user_policie
 trigger_functions/run_graphile_worker_job [trigger_functions/run_graphile_worker_job@v2.19.2] 2023-02-21T15:38:26Z Gurjeet Matharu <gurjeet@matharuco.com> # reworking to remove notify_admin case
 views/ciip_fuel [views/ciip_fuel@v2.19.2] 2023-02-23T18:22:07Z Dylan Leard <dylan@button.is> # Migration: parse comments correctly from json array
 tables/fuel_emission_category 2023-02-21T21:21:09Z Brianna Cerkiewicz <briannacerkiewicz@pop-os> # Create a fuel_emission_category table
+@v2.20.0 2023-02-24T23:35:05Z Dylan Leard <dylan@button.is> # release v2.20.0
