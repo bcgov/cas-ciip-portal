@@ -1,10 +1,10 @@
 image:
   schema:
-    repository: gcr.io/ggl-cas-storage/cas-ciip-portal-schema
+    repository: ghcr.io/bcgov/cas-ciip-portal-schema
     tag: b530194a9df22e64b1a701defd3b65f41b01676b # pragma: allowlist secret
     pullPolicy: IfNotPresent
   app:
-    repository: gcr.io/ggl-cas-storage/cas-ciip-portal-app
+    repository: ghcr.io/bcgov/cas-ciip-portal-app
     tag: b530194a9df22e64b1a701defd3b65f41b01676b # pragma: allowlist secret
     pullPolicy: IfNotPresent
   psql:
