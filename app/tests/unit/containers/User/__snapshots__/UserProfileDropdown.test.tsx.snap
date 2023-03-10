@@ -106,99 +106,6 @@ exports[`UserProfileDropdown desktop matches snapshot 1`] = `
             </div>
           </a>
         </DropdownItem>
-        <DropdownItem
-          action="/logout"
-          as={
-            Object {
-              "$$typeof": Symbol(react.forward_ref),
-              "Check": Object {
-                "$$typeof": Symbol(react.forward_ref),
-                "Input": Object {
-                  "$$typeof": Symbol(react.forward_ref),
-                  "render": [Function],
-                },
-                "Label": Object {
-                  "$$typeof": Symbol(react.forward_ref),
-                  "render": [Function],
-                },
-                "render": [Function],
-              },
-              "Control": Object {
-                "$$typeof": Symbol(react.forward_ref),
-                "Feedback": Object {
-                  "$$typeof": Symbol(react.forward_ref),
-                  "propTypes": Object {
-                    "as": [Function],
-                    "tooltip": [Function],
-                    "type": [Function],
-                  },
-                  "render": [Function],
-                },
-                "render": [Function],
-              },
-              "File": Object {
-                "$$typeof": Symbol(react.forward_ref),
-                "Input": Object {
-                  "$$typeof": Symbol(react.forward_ref),
-                  "render": [Function],
-                },
-                "Label": Object {
-                  "$$typeof": Symbol(react.forward_ref),
-                  "render": [Function],
-                },
-                "render": [Function],
-              },
-              "Group": Object {
-                "$$typeof": Symbol(react.forward_ref),
-                "render": [Function],
-              },
-              "Label": Object {
-                "$$typeof": Symbol(react.forward_ref),
-                "defaultProps": Object {
-                  "column": false,
-                  "srOnly": false,
-                },
-                "render": [Function],
-              },
-              "Row": Object {
-                "$$typeof": Symbol(react.forward_ref),
-                "defaultProps": undefined,
-                "render": [Function],
-              },
-              "Switch": Object {
-                "$$typeof": Symbol(react.forward_ref),
-                "Input": Object {
-                  "$$typeof": Symbol(react.forward_ref),
-                  "render": [Function],
-                },
-                "Label": Object {
-                  "$$typeof": Symbol(react.forward_ref),
-                  "render": [Function],
-                },
-                "render": [Function],
-              },
-              "Text": Object {
-                "$$typeof": Symbol(react.forward_ref),
-                "render": [Function],
-              },
-              "defaultProps": Object {
-                "inline": false,
-              },
-              "render": [Function],
-            }
-          }
-          disabled={false}
-          method="post"
-          onKeyPress={[Function]}
-          tabIndex={0}
-        >
-          <button
-            className="jsx-1261654342 jsx-1444636411 w-100 text-right"
-            type="submit"
-          >
-            Logout
-          </button>
-        </DropdownItem>
       </DropdownMenu>
     </Dropdown>
   </li>
@@ -233,22 +140,6 @@ exports[`UserProfileDropdown desktop matches snapshot 1`] = `
         </div>
       </a>
     </Link>
-  </li>
-  <li
-    className="jsx-1261654342 jsx-1444636411 d-lg-none"
-  >
-    <Form
-      action="/logout"
-      inline={false}
-      method="post"
-    >
-      <button
-        className="jsx-1261654342 jsx-1444636411 nav-button text-right"
-        type="submit"
-      >
-        Logout
-      </button>
-    </Form>
   </li>
   <JSXStyle
     id="1444636411"

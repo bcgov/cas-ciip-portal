@@ -1,6 +1,6 @@
 import React from "react";
 import { graphql, createFragmentContainer } from "react-relay";
-import { Form, Dropdown } from "react-bootstrap";
+import { Dropdown } from "react-bootstrap";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
@@ -57,17 +57,6 @@ const UserProfileDropdown: React.FunctionComponent<Props> = ({ user }) => {
                 <div className="small text-muted">{user.emailAddress}</div>
               </a>
             </Dropdown.Item>
-            <Dropdown.Item
-              as={Form}
-              action="/logout"
-              method="post"
-              tabIndex={0}
-              onKeyPress={submitForm}
-            >
-              <button type="submit" className="w-100 text-right">
-                Logout
-              </button>
-            </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
       </li>
@@ -80,13 +69,6 @@ const UserProfileDropdown: React.FunctionComponent<Props> = ({ user }) => {
             <div className="small">{user.emailAddress}</div>
           </a>
         </Link>
-      </li>
-      <li className="d-lg-none">
-        <Form action="/logout" method="post">
-          <button type="submit" className="nav-button text-right">
-            Logout
-          </button>
-        </Form>
       </li>
       <style jsx>{ButtonCSS}</style>
       <style jsx global>{`

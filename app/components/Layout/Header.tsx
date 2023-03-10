@@ -4,6 +4,7 @@ import LoginButton from "components/LoginButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faUser } from "@fortawesome/free-solid-svg-icons";
 import css from "styled-jsx/css";
+import { Form } from "react-bootstrap";
 
 export const ButtonCSS = css`
   button {
@@ -117,7 +118,17 @@ const HeaderLayout: React.FunctionComponent<Props> = ({
               </li>
             ) : null}
             {isLoggedIn ? (
-              isRegistered && userProfileDropdown
+              <>
+                <Form action="/logout" method="post">
+                  <button
+                    type="submit"
+                    className="nav-button text-right ml-2 btn-link"
+                  >
+                    Logout
+                  </button>
+                </Form>
+                {isRegistered && userProfileDropdown}
+              </>
             ) : (
               <>
                 <li>
