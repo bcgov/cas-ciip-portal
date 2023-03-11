@@ -11,13 +11,6 @@ interface Props {
   user: UserProfileDropdown_user;
 }
 
-// Bootstrap's Dropdown.Item component doesn't naturally tab and submit the Form item.
-const submitForm = (e) => {
-  if (e.key === "Enter" || e.which === 13) {
-    e.currentTarget.submit();
-  }
-};
-
 const UserProfileDropdown: React.FunctionComponent<Props> = ({ user }) => {
   return (
     <>
