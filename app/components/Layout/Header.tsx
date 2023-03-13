@@ -119,14 +119,16 @@ const HeaderLayout: React.FunctionComponent<Props> = ({
             ) : null}
             {isLoggedIn ? (
               <>
-                <Form action="/logout" method="post">
-                  <button
-                    type="submit"
-                    className="nav-button text-right ml-2 btn-link"
-                  >
-                    Logout
-                  </button>
-                </Form>
+                <li>
+                  <Form action="/logout" method="post">
+                    <button
+                      type="submit"
+                      className="nav-button text-right btn-link"
+                    >
+                      Logout
+                    </button>
+                  </Form>
+                </li>
                 {isRegistered && userProfileDropdown}
               </>
             ) : (
