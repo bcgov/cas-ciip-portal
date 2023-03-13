@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`matches the last accepted Snapshot 1`] = `
+exports[`The Header matches the last accepted Snapshot 1`] = `
 <header
   className="jsx-3552254249 jsx-1444636411 "
 >
