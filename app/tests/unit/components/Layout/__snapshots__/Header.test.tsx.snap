@@ -101,12 +101,28 @@ exports[`The Header matches the last accepted Snapshot 1`] = `
         <li
           className="jsx-3552254249 jsx-1444636411"
         >
-          <LoginForm>
+          <LoginForm
+            idpHint="idir"
+          >
             <button
               className="jsx-3552254249 jsx-1444636411 nav-button"
               type="submit"
             >
-              Login (IDIR)
+              Program Administrator Login (IDIR)
+            </button>
+          </LoginForm>
+        </li>
+        <li
+          className="jsx-3552254249 jsx-1444636411"
+        >
+          <LoginForm
+            idpHint="bceidboth"
+          >
+            <button
+              className="jsx-3552254249 jsx-1444636411 nav-button"
+              type="submit"
+            >
+              Industrial Operator Login (BCeID)
             </button>
           </LoginForm>
         </li>

@@ -6,7 +6,8 @@ describe("The index page", () => {
     cy.visit("/");
     cy.get("#page-content");
     cy.get("header").contains("Register").should("not.exist");
-    cy.get("header").contains("Login (IDIR)");
+    cy.get("header").contains("Program Administrator Login (IDIR)");
+    cy.get("header").contains("Industrial Operator Login (BCeID)");
     cy.get("header").happoScreenshot({ component: "Header" });
     cy.get("footer").happoScreenshot({ component: "Footer" });
     cy.get("#page-content").contains("Register and Apply").should("not.exist");
