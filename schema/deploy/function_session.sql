@@ -35,6 +35,7 @@ begin
                    current_setting('jwt.claims.email', true),
                    current_setting('jwt.claims.broker_session_id', true),
                    current_setting('jwt.claims.priority_group', true),
+                   current_setting('jwt.claims.bceid_business_name', true),
                    (select string_to_array(current_setting('jwt.claims.user_groups', true), ','))
                    )::ggircs_portal.jwt_token
     );
