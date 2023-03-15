@@ -3,6 +3,6 @@
 
 begin;
 
-alter type ggircs_portal.jwt_token add attribute bceid_business_name type text;
+alter type ggircs_portal.jwt_token add attribute bceid_business_name text;
 
 commit;
