@@ -113,7 +113,7 @@ describe("When filtering organisation requests", () => {
     cy.useMockedTime(new Date("June 10, 2020 09:00:00"));
   });
 
-  it.only("The requests can be filtered by multiple search fields", () => {
+  it("The requests can be filtered by multiple search fields", () => {
     cy.mockLogin("analyst");
     cy.visit("/analyst/organisation-requests");
     cy.get("#page-content");
