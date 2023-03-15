@@ -136,14 +136,14 @@ const HeaderLayout: React.FunctionComponent<Props> = ({
                 <li>
                   <LoginButton idpHint="idir">
                     <button className="nav-button" type="submit">
-                      Login (IDIR)
+                      Program Administrator Login (IDIR)
                     </button>
                   </LoginButton>
                 </li>
                 <li>
                   <LoginButton idpHint="bceidboth">
                     <button className="nav-button" type="submit">
-                      Login (BCeID)
+                      Industrial Operator Login (BCeID)
                     </button>
                   </LoginButton>
                 </li>
