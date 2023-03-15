@@ -21,7 +21,8 @@ describe("The Header", () => {
     const wrapper = shallow(<HeaderLayout />);
     expect(wrapper.contains("Dashboard")).toBe(false);
     expect(wrapper.contains("Logout")).toBe(false);
-    expect(wrapper.contains("Login (IDIR)")).toBe(true);
+    expect(wrapper.contains("Program Administrator Login (IDIR)")).toBe(true);
+    expect(wrapper.contains("Industrial Operator Login (BCeID)")).toBe(true);
   });
 
   it("renders HeaderLayout when user is not registered but is logged-in", () => {
@@ -32,7 +33,8 @@ describe("The Header", () => {
       <HeaderLayout isLoggedIn userProfileDropdown={userProfileWrapper} />
     );
     expect(wrapper.contains("Dashboard")).toBe(false);
-    expect(wrapper.contains("Login (IDIR)")).toBe(false);
+    expect(wrapper.contains("Program Administrator Login (IDIR)")).toBe(false);
+    expect(wrapper.contains("Industrial Operator Login (BCeID)")).toBe(false);
     expect(wrapper.contains("Logout")).toBe(true);
   });
   it("renders HeaderLayout when user is registered and logged-in", () => {
@@ -51,6 +53,7 @@ describe("The Header", () => {
     expect(wrapper.find("button[aria-label='User menu toggle']")).toHaveLength(
       1
     );
-    expect(wrapper.contains("Login (IDIR)")).toBe(false);
+    expect(wrapper.contains("Program Administrator Login (IDIR)")).toBe(false);
+    expect(wrapper.contains("Industrial Operator Login (BCeID)")).toBe(false);
   });
 });
