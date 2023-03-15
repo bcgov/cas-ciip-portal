@@ -102,6 +102,7 @@ const authenticationPgSettings = (req) => {
     "broker_session_id",
     "user_groups",
     "priority_group",
+    "bceid_business_name",
   ];
   properties.forEach((property) => {
     claimsSettings[`jwt.claims.${property}`] = claims[property];
