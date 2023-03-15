@@ -60,6 +60,16 @@ exports[`Organisations should render the user's requested organisations 1`] = `
       },
       TextFilter {
         "Component": [Function],
+        "argName": "bceid_business_name",
+        "castValue": [Function],
+        "hasTableHeader": true,
+        "isSearchEnabled": true,
+        "isSortEnabled": true,
+        "sortColumnName": "bceid_business_name",
+        "title": "BCeID Business Name",
+      },
+      TextFilter {
+        "Component": [Function],
         "argName": "operator_name",
         "castValue": [Function],
         "hasTableHeader": true,
