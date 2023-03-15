@@ -45,6 +45,7 @@ export const OrganisationRequestsTableRowComponent: React.FunctionComponent<Prop
       <td>{userOrganisation.firstName}</td>
       <td>{userOrganisation.lastName}</td>
       <td>{userOrganisation.emailAddress}</td>
+      <td>{userOrganisation.bceidBusinessName}</td>
       <td>{userOrganisation.operatorName}</td>
       <td>
         <Badge
@@ -98,6 +99,7 @@ export default createFragmentContainer(OrganisationRequestsTableRowComponent, {
       status
       userId
       operatorName
+      bceidBusinessName
     }
   `,
 });
