@@ -113,12 +113,12 @@ describe("When filtering organisation requests", () => {
     cy.useMockedTime(new Date("June 10, 2020 09:00:00"));
   });
 
-  it("The application can be filtered by multiple search fields", () => {
+  it.only("The requests can be filtered by multiple search fields", () => {
     cy.mockLogin("analyst");
     cy.visit("/analyst/organisation-requests");
     cy.get("#page-content");
     cy.get("table.search-table > tbody").find("tr").should("have.length", 5);
-    cy.get("thead > tr > td:nth-child(6) > select.form-control").select(
+    cy.get("thead > tr > td:nth-child(7) > select.form-control").select(
       "Approved"
     );
     cy.get("thead > tr > td:nth-child(3) > input.form-control")
@@ -131,9 +131,13 @@ describe("When filtering organisation requests", () => {
       "analyst/organisation-requests?filterArgs=%7B%22status%22%3A%22APPROVED%22%2C%22last_name%22%3A%22Filch%22%7D"
     );
     cy.get("table.search-table > tbody").find("tr").should("have.length", 1);
-    cy.get("tbody > tr:nth-child(1) > td:nth-child(5)").should(
+    cy.get("tbody > tr:nth-child(1) > td:nth-child(6)").should(
       "have.text",
       "test_organisation 3"
+    );
+    cy.get("tbody > tr:nth-child(1) > td:nth-child(5)").should(
+      "have.text",
+      "from bceid"
     );
     cy.get("body").happoScreenshot({
       component: "Organisation Requests List",
