@@ -11,6 +11,7 @@ describe("Organisation request rows", () => {
       firstName: "First",
       lastName: "Last",
       operatorName: "Company Inc",
+      bceidBusinessName: "Company Inc",
       status: "APPROVED",
       id: "abc",
       userId: 1,

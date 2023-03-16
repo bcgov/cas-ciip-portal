@@ -18,6 +18,9 @@ exports[`Organisation request rows should render an organisation properly 1`] = 
     Company Inc
   </td>
   <td>
+    Company Inc
+  </td>
+  <td>
     <Badge
       pill={true}
       style={

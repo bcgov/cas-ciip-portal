@@ -27,8 +27,8 @@ insert into ggircs_portal.ciip_user_organisation(user_id, organisation_id, statu
   values (1, 1, 'approved');
 insert into ggircs_portal.ciip_user_organisation(user_id, organisation_id, status)
   values (2, 1, 'rejected');
-insert into ggircs_portal.ciip_user_organisation(user_id, organisation_id, status)
-  values (2, 3, 'approved');
+insert into ggircs_portal.ciip_user_organisation(user_id, organisation_id, bceid_business_name, status)
+  values (2, 3, 'from bceid', 'approved');
 insert into ggircs_portal.ciip_user_organisation(user_id, organisation_id, status)
   values (6, 2, 'approved');
 insert into ggircs_portal.ciip_user_organisation(user_id, organisation_id, status)

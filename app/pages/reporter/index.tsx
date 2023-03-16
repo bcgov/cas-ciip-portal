@@ -30,6 +30,7 @@ export default class Reporter extends Component<Props> {
             id
             rowId
           }
+          bceidBusinessName
         }
       }
     }
@@ -66,6 +67,7 @@ export default class Reporter extends Component<Props> {
             userId: rowId,
             organisationId: this.state.selectedOrg,
             status: active ? "APPROVED" : "PENDING",
+            bceidBusinessName: this.props.query.session.bceidBusinessName,
           },
         },
       },

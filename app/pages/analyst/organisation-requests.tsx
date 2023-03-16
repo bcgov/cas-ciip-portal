@@ -20,6 +20,7 @@ class OrganisationRequests extends Component<Props> {
       $first_name: String
       $last_name: String
       $email_address: String
+      $bceid_business_name: String
       $operator_name: String
       $status: CiipUserOrganisationStatus
       $order_by: [CiipUserOrganisationsOrderBy!]
@@ -36,6 +37,7 @@ class OrganisationRequests extends Component<Props> {
             first_name: $first_name
             last_name: $last_name
             email_address: $email_address
+            bceid_business_name: $bceid_business_name
             operator_name: $operator_name
             status: $status
             order_by: $order_by

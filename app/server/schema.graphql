@@ -22759,6 +22759,11 @@ Table containing the access rights for a user to report on behalf of an organisa
 """
 type CiipUserOrganisation implements Node {
   """
+  The name of the business associated with the user requesting access as per the returned auth token. Null if user did not use business bceid to log in.
+  """
+  bceidBusinessName: String
+
+  """
   Reads a single `CiipUser` that is related to this `CiipUserOrganisation`.
   """
   ciipUserByUserId: CiipUser
@@ -22811,6 +22816,9 @@ A condition to be used against `CiipUserOrganisation` object types. All fields
 are tested for equality and combined with a logical ‘and.’
 """
 input CiipUserOrganisationCondition {
+  """Checks for equality with the object’s `bceidBusinessName` field."""
+  bceidBusinessName: String
+
   """Checks for equality with the object’s `organisationId` field."""
   organisationId: Int
 
@@ -22830,6 +22838,9 @@ A filter to be used against `CiipUserOrganisation` object types. All fields are 
 input CiipUserOrganisationFilter {
   """Checks for all expressions in this list."""
   and: [CiipUserOrganisationFilter!]
+
+  """Filter by the object’s `bceidBusinessName` field."""
+  bceidBusinessName: StringFilter
 
   """Filter by the object’s `ciipUserByUserId` relation."""
   ciipUserByUserId: CiipUserFilter
@@ -22870,6 +22881,11 @@ input CiipUserOrganisationFilter {
 
 """An input for mutations affecting `CiipUserOrganisation`"""
 input CiipUserOrganisationInput {
+  """
+  The name of the business associated with the user requesting access as per the returned auth token. Null if user did not use business bceid to log in.
+  """
+  bceidBusinessName: String
+
   """foreign key that references the organisation table"""
   organisationId: Int!
 
@@ -22884,6 +22900,11 @@ input CiipUserOrganisationInput {
 Represents an update to a `CiipUserOrganisation`. Fields that are set will be updated.
 """
 input CiipUserOrganisationPatch {
+  """
+  The name of the business associated with the user requesting access as per the returned auth token. Null if user did not use business bceid to log in.
+  """
+  bceidBusinessName: String
+
   """foreign key that references the organisation table"""
   organisationId: Int
 
@@ -23036,6 +23057,8 @@ type CiipUserOrganisationsEdge {
 
 """Methods to use when ordering `CiipUserOrganisation`."""
 enum CiipUserOrganisationsOrderBy {
+  BCEID_BUSINESS_NAME_ASC
+  BCEID_BUSINESS_NAME_DESC
   EMAIL_ADDRESS_ASC
   EMAIL_ADDRESS_DESC
   FIRST_NAME_ASC
@@ -33970,6 +33993,7 @@ type JwtToken {
   aud: String
   authTime: Int
   azp: String
+  bceidBusinessName: String
   brokerSessionId: String
 
   """Reads a single `CiipUser` that is related to this `JwtToken`."""
@@ -34010,6 +34034,9 @@ input JwtTokenFilter {
 
   """Filter by the object’s `azp` field."""
   azp: StringFilter
+
+  """Filter by the object’s `bceidBusinessName` field."""
+  bceidBusinessName: StringFilter
 
   """Filter by the object’s `brokerSessionId` field."""
   brokerSessionId: StringFilter

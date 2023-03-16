@@ -440,3 +440,6 @@ trigger_functions/run_graphile_worker_job [trigger_functions/run_graphile_worker
 views/ciip_fuel [views/ciip_fuel@v2.19.2] 2023-02-23T18:22:07Z Dylan Leard <dylan@button.is> # Migration: parse comments correctly from json array
 tables/fuel_emission_category 2023-02-21T21:21:09Z Brianna Cerkiewicz <briannacerkiewicz@pop-os> # Create a fuel_emission_category table
 @v2.20.0 2023-02-24T23:35:05Z Dylan Leard <dylan@button.is> # release v2.20.0
+types/jwt_token_002_business_bceid [types/jwt_token_001_sub_is_text] 2023-03-15T21:00:37Z Dylan Leard <dylan@button.is> # Migration: add the bceid_business_name attribute to token
+function_session [function_session@v2.20.0] 2023-03-15T21:04:31Z Dylan Leard <dylan@button.is> # Migration: add bceid_business_name to session function
+tables/ciip_user_organisation_001_bceid [tables/ciip_user_organisation] 2023-03-15T21:06:40Z Dylan Leard <dylan@button.is> # Migration: add column for bceid_business_name from jwt token

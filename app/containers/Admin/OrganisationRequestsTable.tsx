@@ -21,6 +21,7 @@ const filters: TableFilter[] = [
   new TextFilter("First Name", "first_name"),
   new TextFilter("Last Name", "last_name"),
   new TextFilter("Email", "email_address"),
+  new TextFilter("BCeID Business Name", "bceid_business_name"),
   new TextFilter("Operator", "operator_name"),
   new EnumFilter<CiipUserOrganisationStatus>("Status", "status", [
     "APPROVED",
@@ -63,6 +64,7 @@ export default createFragmentContainer(OrganisationRequestsTableComponent, {
       first_name: { type: "String" }
       last_name: { type: "String" }
       email_address: { type: "String" }
+      bceid_business_name: { type: "String" }
       operator_name: { type: "String" }
       status: { type: "CiipUserOrganisationStatus" }
       order_by: { type: "[CiipUserOrganisationsOrderBy!]" }
@@ -77,6 +79,7 @@ export default createFragmentContainer(OrganisationRequestsTableComponent, {
           firstName: { includesInsensitive: $first_name }
           lastName: { includesInsensitive: $last_name }
           emailAddress: { includesInsensitive: $email_address }
+          bceidBusinessName: { includesInsensitive: $bceid_business_name }
           operatorName: { includesInsensitive: $operator_name }
           status: { equalTo: $status }
         }
