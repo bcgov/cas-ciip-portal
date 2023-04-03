@@ -1,10 +1,10 @@
 import { FilePicker } from "@button-inc/bcgov-theme";
 import LoadingSpinner from "components/LoadingSpinner";
 import React from "react";
-import { Row, Button, Col } from "react-bootstrap";
 import { RelayProp } from "react-relay";
 import createAttachmentMutation from "mutations/application/createAttachmentMutation";
 import { SubmitApplication_applicationRevision } from "__generated__/SubmitApplication_applicationRevision.graphql";
+import { Row, Col } from "react-bootstrap";
 
 function formatBytes(bytes: number, decimals = 2) {
   if (bytes <= 0) return "0 Bytes";
@@ -70,9 +70,9 @@ export const AttachmentUploadComponent: React.FunctionComponent<Props> = ({
             </div>
           ) : (
             <div className="upload-button-container">
-              <Button onChange={saveAttachment} name={"upload-attachment"}>
+              <FilePicker onChange={saveAttachment} name={"upload-attachment"}>
                 Upload New Attachment
-              </Button>
+              </FilePicker>
             </div>
           )}
         </Col>
