@@ -26,6 +26,7 @@ const delay = require("delay");
 const session = require("./middleware/session");
 const ssoMiddleware = require("./middleware/sso");
 const userMiddleware = require("./middleware/user");
+const resolveFileUpload = require("./postgraphile/resolveFileUpload");
 
 const NO_MAIL = process.argv.includes("NO_MAIL");
 
@@ -118,6 +119,13 @@ app.prepare().then(async () => {
       graphileBuildOptions: {
         connectionFilterAllowNullInput: true,
         connectionFilterRelations: true,
+        uploadFieldDefinitions: [
+          {
+            match: ({ table, column }) =>
+              table === "attachment" && column === "file",
+            resolve: resolveFileUpload,
+          },
+        ],
       },
       pgSettings: (req) => {
         const opts = {
