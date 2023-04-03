@@ -10,6 +10,11 @@ const UserManagement: React.FunctionComponent = () => {
       </Card.Body>
       <ListGroup variant="flush">
         <ListGroup.Item>
+          <Link href="/analyst/manage-bceid-users" passHref>
+            <Card.Link href="#">Manage BCeID User Access</Card.Link>
+          </Link>
+        </ListGroup.Item>
+        <ListGroup.Item>
           <Link href="/admin/users" passHref>
             <Card.Link href="#">View all users</Card.Link>
           </Link>
