@@ -50,12 +50,15 @@ export const ManageBceidUserTableRowComponent: React.FunctionComponent<Props> = 
       </td>
       <td>
         {user.allowUuidUpdate ? (
-          <Button variant="outline-primary" onClick={handleChange}>
-            Disable New Login
+          <Button
+            variant="outline-primary"
+            onClick={async () => handleChange()}
+          >
+            Disable New BCeID Login
           </Button>
         ) : (
           <Button variant="primary" onClick={handleChange}>
-            Enable New Login
+            Enable New BCeID Login
           </Button>
         )}
       </td>
