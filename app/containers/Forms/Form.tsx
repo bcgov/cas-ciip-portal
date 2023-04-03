@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { graphql, createFragmentContainer } from "react-relay";
+import { graphql, createFragmentContainer, RelayProp } from "react-relay";
 import { IChangeEvent, ErrorSchema, AjvError } from "@rjsf/core";
 import JsonSchemaForm from "components/Forms/Form";
 import { Form_query } from "Form_query.graphql";
@@ -28,6 +28,7 @@ import NaicsField from "./NaicsField";
 import productFieldValidation from "./validation/productFieldValidation";
 import MissingProductsComponent from "components/product/MissingProductsComponent";
 import { Form_ciipFormResult } from "Form_ciipFormResult.graphql";
+import AttachmentUpload from "./AttachmentUpload";
 
 interface Props {
   query: Form_query;
@@ -35,6 +36,7 @@ interface Props {
   onComplete: (e: IChangeEvent) => void;
   onValueChanged?: (e: IChangeEvent, es?: ErrorSchema) => void;
   isSaved: boolean;
+  relay: RelayProp;
 }
 
 const CUSTOM_FIELDS = {
@@ -97,6 +99,7 @@ export const FormComponent: React.FunctionComponent<Props> = ({
   isSaved,
   onComplete,
   onValueChanged,
+  relay,
 }) => {
   const [hasErrors, setHasErrors] = useState(false);
   useEffect(() => {
@@ -130,6 +133,11 @@ export const FormComponent: React.FunctionComponent<Props> = ({
       return result?.requiresEmissionAllocation === true;
     });
 
+  let showVerificationStatement;
+  if (ciipApplicationWizardByFormId?.formPosition === 3) {
+    showVerificationStatement = true;
+  }
+
   const customValidation = (formData, errors) => {
     errors = productFieldValidation(formData, errors);
     return errors;
@@ -142,6 +150,14 @@ export const FormComponent: React.FunctionComponent<Props> = ({
       <Alert variant="info">
         Note: Your form input will be saved automatically as you type.
       </Alert>
+      {showVerificationStatement && (
+        <AttachmentUpload
+          applicationRevisionId={
+            ciipFormResult.applicationByApplicationId.rowId
+          }
+          relay={relay}
+        />
+      )}
       <div className="card">
         <div className="card-header">
           <Row>
@@ -228,6 +244,12 @@ export const FormComponent: React.FunctionComponent<Props> = ({
           font-size: 30px;
           display: inline-block;
         }
+        .add-button-container {
+          height: 100%;
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+        }
       `}</style>
     </div>
   );
@@ -273,6 +295,7 @@ export default createFragmentContainer(FormComponent, {
         }
       }
       applicationByApplicationId {
+        rowId
         latestDraftRevision {
           totalCiipEmissions
           naicsCode {

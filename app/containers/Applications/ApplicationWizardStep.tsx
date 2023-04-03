@@ -90,6 +90,7 @@ const ApplicationWizardStep: React.FunctionComponent<Props> = ({
       isSaved={isSaved}
       onComplete={onComplete}
       onValueChanged={onValueChanged}
+      relay={relay}
     />
   );
 
