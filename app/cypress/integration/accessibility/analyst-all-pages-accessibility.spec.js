@@ -92,4 +92,12 @@ describe("When logged in as an analyst", () => {
     cy.get("#page-content");
     cy.checkA11y(null, modalExcludeRules);
   });
+
+  it.only("The manage bceid users page has no detectable ally violations on load", () => {
+    cy.visit("/analyst/manage-bceid-users");
+    cy.url().should("include", "/analyst/manage-bceid-users");
+    cy.injectAxe();
+    cy.get("#page-content");
+    cy.checkA11y();
+  });
 });

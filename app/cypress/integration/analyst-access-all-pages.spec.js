@@ -30,5 +30,7 @@ describe("When logged in as an analyst", () => {
     cy.visit("/analyst");
     cy.url().should("include", "/analyst");
     cy.get(".card-body");
+    cy.get(".card-link").contains("Manage").click();
+    cy.url().should("include", "/analyst/manage-bceid-users");
   });
 });
