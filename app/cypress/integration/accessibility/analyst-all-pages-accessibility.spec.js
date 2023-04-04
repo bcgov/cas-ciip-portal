@@ -93,7 +93,7 @@ describe("When logged in as an analyst", () => {
     cy.checkA11y(null, modalExcludeRules);
   });
 
-  it.only("The manage bceid users page has no detectable ally violations on load", () => {
+  it("The manage bceid users page has no detectable ally violations on load", () => {
     cy.visit("/analyst/manage-bceid-users");
     cy.url().should("include", "/analyst/manage-bceid-users");
     cy.injectAxe();

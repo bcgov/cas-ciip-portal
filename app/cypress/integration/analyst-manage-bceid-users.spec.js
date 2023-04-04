@@ -13,6 +13,10 @@ describe("When the analyst is managing bceid user access", () => {
     cy.get(":nth-child(4) > :nth-child(5) > .btn").click();
     cy.get("#page-content");
     cy.get(":nth-child(4) > :nth-child(5) > .btn").should("contain", "Disable");
+    cy.get("body").happoScreenshot({
+      component: "Manage BCeID Users",
+      variant: "enabled/disabled access",
+    });
   });
 
   it("The analyst should be able to view the access requests for a user", () => {
