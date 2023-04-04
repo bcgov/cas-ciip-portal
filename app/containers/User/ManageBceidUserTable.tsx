@@ -27,8 +27,6 @@ export const ManageBceidUserTableComponent: React.FunctionComponent<Props> = (
 ) => {
   const { edges, totalCount } = props.query.allCiipUsers;
 
-  console.log(edges);
-
   const body = (
     <tbody>
       {edges.map((edge) => (
