@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Organisation request rows should render an organisation properly 1`] = `
+exports[`Manage BCeID Users table should render a user properly 1`] = `
 <tr>
   <td>
     First
