@@ -59,6 +59,15 @@ jobs:
       - run: cd ../app && yarn build:schema
         working-directory: ./schema
       - run: git diff --exit-code || (echo 'The contents of the `schema` folder are out of sync with `app/server/schema.graphql`. Did you forget to \"yarn build:schema\"?' && false)
+  test-database:
+    needs: install-dev-tools
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: dev env setup
+        uses: ./.github/actions/dev-env-setup
+      - run: make test
+        working-directory: ./schema
 
   pre-commit:
     needs: install-dev-tools
