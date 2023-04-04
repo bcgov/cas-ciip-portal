@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Organisations should render the user's requested organisations 1`] = `
+<FilterableTable
+  body={
+    <tbody>
+      <Relay(ManageBceidUserTableRowComponent)
+        user={
+          Object {
+            " $fragmentRefs": Object {
+              "ManageBceidUserTableRow_user": true,
+            },
+            "id": "abc",
+          }
+        }
+      />
+    </tbody>
+  }
+  filters={
+    Array [
+      TextFilter {
+        "Component": [Function],
+        "argName": "first_name",
+        "castValue": [Function],
+        "hasTableHeader": true,
+        "isSearchEnabled": true,
+        "isSortEnabled": true,
+        "sortColumnName": "first_name",
+        "title": "First Name",
+      },
+      TextFilter {
+        "Component": [Function],
+        "argName": "last_name",
+        "castValue": [Function],
+        "hasTableHeader": true,
+        "isSearchEnabled": true,
+        "isSortEnabled": true,
+        "sortColumnName": "last_name",
+        "title": "Last Name",
+      },
+      TextFilter {
+        "Component": [Function],
+        "argName": "email_address",
+        "castValue": [Function],
+        "hasTableHeader": true,
+        "isSearchEnabled": true,
+        "isSortEnabled": true,
+        "sortColumnName": "email_address",
+        "title": "Email",
+      },
+      DisplayOnlyFilter {
+        "Component": [Function],
+        "argName": undefined,
+        "castValue": [Function],
+        "hasTableHeader": true,
+        "isSearchEnabled": false,
+        "isSortEnabled": false,
+        "sortColumnName": undefined,
+        "title": "View Access Requests",
+      },
+      NoHeaderFilter {
+        "Component": [Function],
+        "argName": null,
+        "castValue": [Function],
+        "hasTableHeader": false,
+        "isSearchEnabled": false,
+        "isSortEnabled": false,
+        "sortColumnName": null,
+        "title": null,
+      },
+    ]
+  }
+  paginated={true}
+  totalCount={1}
+/>
+`;
