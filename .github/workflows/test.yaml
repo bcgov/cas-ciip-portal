@@ -66,6 +66,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: dev env setup
         uses: ./.github/actions/dev-env-setup
+      - run: pg_ctl start
       - run: make test
         working-directory: ./schema
 
