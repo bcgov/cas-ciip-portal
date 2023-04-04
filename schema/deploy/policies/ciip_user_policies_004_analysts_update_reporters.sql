@@ -16,7 +16,7 @@ do
         'ciip_user',
         'update',
         'ciip_analyst',
-        $$uuid=(select sub from ggircs_portal.session()) or uuid !~ 'idir'$$
+        $$uuid=(select sub from ggircs_portal.session()) or uuid !~* 'idir'$$
       );
     end;
   $do$;
