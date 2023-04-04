@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Organisation request rows should render an organisation properly 1`] = `
+<tr>
+  <td>
+    First
+  </td>
+  <td>
+    Last
+  </td>
+  <td>
+    a@a.a
+  </td>
+  <td>
+    <Link
+      href="/analyst/organisation-requests?filterArgs=%7B%22user_id%22%3A1%7D"
+      passHref={true}
+    >
+      <a
+        className="alert-link"
+        href="#"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        Access Requests
+      </a>
+    </Link>
+  </td>
+  <td>
+    <Button
+      active={false}
+      disabled={false}
+      onClick={[Function]}
+      variant="outline-primary"
+    >
+      Disable New BCeID Login
+    </Button>
+  </td>
+</tr>
+`;
