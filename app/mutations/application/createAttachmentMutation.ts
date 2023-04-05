@@ -8,21 +8,23 @@ import BaseMutation from "mutations/BaseMutation";
 
 const mutation = graphql`
   mutation createAttachmentMutation(
-    $connections: [ID!]!
+    # $connections: [ID!]!
     $input: CreateAttachmentInput!
   ) {
     createAttachment(input: $input) {
-      attachmentEdge @appendEdge(connections: $connections) {
-        cursor
-        node {
-          file
-          fileName
-          fileSize
-          fileType
-          createdBy
-          applicationId
-        }
+      # attachmentEdge @appendEdge(connections: $connections) {
+      # attachmentEdge {
+      attachment {
+        # cursor
+        # node {
+        file
+        fileName
+        fileSize
+        fileType
+        # createdBy
+        applicationId
       }
+      # }
     }
   }
 `;
