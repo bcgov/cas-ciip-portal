@@ -39,11 +39,6 @@ export const FuelRowIdFieldComponent: React.FunctionComponent<Props> = (
   const fieldProps = useMemo(() => {
     return {
       ...props,
-      schema: {
-        ...props.schema,
-        enum: fuels.activeRowIds,
-        enumNames: fuels.activeNames,
-      },
       query: undefined,
     };
   }, [props]);
