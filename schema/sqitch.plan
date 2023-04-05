@@ -447,3 +447,4 @@ policies/ciip_user_policies_004_analysts_update_reporters [policies/ciip_user_po
 views/ciip_production [views/ciip_production@v2.20.0] 2023-04-11T22:37:18Z Dylan Leard <dylan@button.is> # Retrieve the product_name field from the product table
 tables/attachment 2023-04-03T20:56:53Z Brianna Cerkiewicz <briannacerkiewicz@pop-os> #  Create table for attachments
 attachment_policies 2023-04-05T22:42:21Z Brianna Cerkiewicz <briannacerkiewicz@pop-os> #  Row level security policies for the attachments table
+computed_columns/fuel_ids_by_emission_category_id 2023-04-04T22:29:19Z Mike Vesprini <mike@button.is> # Copmuted column that returns the fuels associated with a given emission category id

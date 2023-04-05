@@ -46,11 +46,11 @@
       },
       "ui:field": "fuel",
       "ui:order": [
+        "emissionCategoryRowId",
         "comments",
         "fuelRowId",
         "quantity",
-        "fuelUnits",
-        "emissionCategoryRowId"
+        "fuelUnits"
       ],
       "fuelRowId": {
         "ui:widget": "SearchWidget",
