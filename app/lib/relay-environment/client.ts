@@ -4,6 +4,7 @@ import {
   urlMiddleware,
   batchMiddleware,
   cacheMiddleware,
+  uploadMiddleware,
 } from "react-relay-network-modern/node8";
 import debounceMutationMiddleware from "./debounce-mutations";
 
@@ -34,6 +35,7 @@ export default {
           batchTimeout: 10,
           allowMutations: false,
         }),
+        uploadMiddleware(),
       ]),
       store,
     });

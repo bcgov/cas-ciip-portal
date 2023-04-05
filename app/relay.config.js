@@ -7,6 +7,7 @@ module.exports = {
     JSON: "any",
     BigFloat: "String",
     Cursor: "String",
+    Upload: "any",
   },
   exclude: [
     "**/.next/**",

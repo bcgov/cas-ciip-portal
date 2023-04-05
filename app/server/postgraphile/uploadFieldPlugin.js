@@ -7,10 +7,17 @@
 // eslint-disable-next-line import/extensions
 const Upload = require("graphql-upload/Upload.js");
 
+console.log("im in upload plugin");
+
 module.exports = function UploadFieldPlugin(
   builder,
   { uploadFieldDefinitions }
 ) {
+  console.log(
+    "uploadFieldDefinitions in uploadfieldplugin",
+    uploadFieldDefinitions
+  );
+  console.log("\u0007");
   const findMatchingDefinitions = (def, table, attr) =>
     def.match({
       schema: table.namespaceName,
@@ -62,14 +69,18 @@ module.exports = function UploadFieldPlugin(
           findMatchingDefinitions(def, table, attr)
         ).length === 1;
 
+      console.log("foundUploadFieldDefinition", foundUploadFieldDefinition);
+
       if (!foundUploadFieldDefinition) {
         return field;
       }
 
-      // Replace existing GraphQL type with `Upload` type
-      return Object.assign({}, field, {
+      const rainbows = Object.assign({}, field, {
         type: getTypeByName("Upload"),
       });
+      console.log("rainbows", rainbows);
+      // Replace existing GraphQL type with `Upload` type
+      return rainbows;
     }
   );
 
@@ -89,8 +100,12 @@ module.exports = function UploadFieldPlugin(
     // we fall back to a default resolver.
     const defaultResolver = (obj) => obj[fieldName];
 
+    console.log("defaultResolver", defaultResolver);
+
     // Extract the old resolver from `field`
     const { resolve: oldResolve = defaultResolver, ...rest } = field;
+
+    console.log("field", field);
 
     const uploadResolversByFieldName = introspectionResultsByKind.attribute
       .filter((attr) => attr.classId === table.id)

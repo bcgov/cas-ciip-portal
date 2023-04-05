@@ -30,8 +30,12 @@ export const AttachmentUploadComponent: React.FunctionComponent<Props> = ({
 
   const saveAttachment = async (e) => {
     const { environment } = relay;
+    e.stopPropagation();
+    e.preventDefault();
+    e.persist();
     const file = e.target.files[0];
     console.log("file", file);
+    console.log("e.e.target.files", e.target.files);
     const variables = {
       input: {
         attachment: {

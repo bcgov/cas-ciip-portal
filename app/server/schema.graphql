@@ -4111,7 +4111,7 @@ input AttachmentInput {
   """
   Universally Unique ID for the attachment, created by the fastapi storage micro-service
   """
-  file: UUID
+  file: Upload
 
   """Original uploaded file name"""
   fileName: String
@@ -4138,7 +4138,7 @@ input AttachmentPatch {
   """
   Universally Unique ID for the attachment, created by the fastapi storage micro-service
   """
-  file: UUID
+  file: Upload
 
   """Original uploaded file name"""
   fileName: String
@@ -45993,3 +45993,6 @@ type UpdateReviewStepPayload {
     orderBy: [ReviewStepsOrderBy!] = [PRIMARY_KEY_ASC]
   ): ReviewStepsEdge
 }
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
