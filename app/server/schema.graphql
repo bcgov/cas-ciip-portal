@@ -33734,6 +33734,57 @@ input FuelFormDatumFilter {
   quantity: BigFloatFilter
 }
 
+"""A connection to a list of `FuelIdsByEmissionCategoryIdRecord` values."""
+type FuelIdsByEmissionCategoryIdConnection {
+  """
+  A list of edges which contains the `FuelIdsByEmissionCategoryIdRecord` and cursor to aid in pagination.
+  """
+  edges: [FuelIdsByEmissionCategoryIdEdge!]!
+
+  """A list of `FuelIdsByEmissionCategoryIdRecord` objects."""
+  nodes: [FuelIdsByEmissionCategoryIdRecord]!
+
+  """
+  The count of *all* `FuelIdsByEmissionCategoryIdRecord` you could get from the connection.
+  """
+  totalCount: Int!
+}
+
+"""A `FuelIdsByEmissionCategoryIdRecord` edge in the connection."""
+type FuelIdsByEmissionCategoryIdEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `FuelIdsByEmissionCategoryIdRecord` at the end of the edge."""
+  node: FuelIdsByEmissionCategoryIdRecord
+}
+
+"""The return type of our `fuelIdsByEmissionCategoryId` query."""
+type FuelIdsByEmissionCategoryIdRecord {
+  emissionCategoryId: Int
+  fuelIds: [Int]
+}
+
+"""
+A filter to be used against `FuelIdsByEmissionCategoryIdRecord` object types. All fields are combined with a logical ‘and.’
+"""
+input FuelIdsByEmissionCategoryIdRecordFilter {
+  """Checks for all expressions in this list."""
+  and: [FuelIdsByEmissionCategoryIdRecordFilter!]
+
+  """Filter by the object’s `emissionCategoryId` field."""
+  emissionCategoryId: IntFilter
+
+  """Filter by the object’s `fuelIds` field."""
+  fuelIds: IntListFilter
+
+  """Negates the expression."""
+  not: FuelIdsByEmissionCategoryIdRecordFilter
+
+  """Checks for any expressions in this list."""
+  or: [FuelIdsByEmissionCategoryIdRecordFilter!]
+}
+
 """An input for mutations affecting `Fuel`"""
 input FuelInput {
   """Metadata about this fuel row"""
@@ -42356,6 +42407,34 @@ type Query implements Node {
     id: ID!
   ): FuelEmissionCategory
   fuelEmissionCategoryByRowId(rowId: Int!): FuelEmissionCategory
+
+  """
+  Computed column that returns a list of emission category ids and a list of its corresponding fuel_ids
+  """
+  fuelIdsByEmissionCategoryId(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: FuelIdsByEmissionCategoryIdRecordFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+  ): FuelIdsByEmissionCategoryIdConnection
 
   """Reads a single `Gas` using its globally unique `ID`."""
   gas(
