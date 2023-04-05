@@ -21,7 +21,7 @@ describe("The /analyst/manage-bcied-users page", () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it("passes a query to the NaicsCodeTableContainer Component", () => {
+  it("passes a query to the ManageBceidUserTable Component", () => {
     const wrapper = shallow(<ManageBceidUsers query={query} />);
     expect(
       wrapper.find("Relay(ManageBceidUserTableComponent)").prop("query")
