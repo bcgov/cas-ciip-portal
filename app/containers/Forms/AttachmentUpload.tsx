@@ -1,10 +1,11 @@
 import { FilePicker } from "@button-inc/bcgov-theme";
 import LoadingSpinner from "components/LoadingSpinner";
 import React from "react";
-import { RelayProp } from "react-relay";
+import { createFragmentContainer, graphql, RelayProp } from "react-relay";
 import createAttachmentMutation from "mutations/application/createAttachmentMutation";
 import { SubmitApplication_applicationRevision } from "__generated__/SubmitApplication_applicationRevision.graphql";
 import { Row, Col } from "react-bootstrap";
+import deleteAttachmentMutation from "mutations/application/deleteAttachment";
 
 function formatBytes(bytes: number, decimals = 2) {
   if (bytes <= 0) return "0 Bytes";
@@ -19,23 +20,23 @@ function formatBytes(bytes: number, decimals = 2) {
 }
 
 interface Props {
-  applicationRevisionId: SubmitApplication_applicationRevision;
+  // applicationRevision: SubmitApplication_applicationRevision;
+  application: any;
+  // applicationRevisionId: SubmitApplication_applicationRevision; //brianna don't need?
   relay: RelayProp;
 }
 export const AttachmentUploadComponent: React.FunctionComponent<Props> = ({
-  applicationRevisionId,
+  // applicationRevisionId,
+  applicationRevision,
+  application,
   relay,
 }) => {
-  console.log("applicationRevisionId", applicationRevisionId);
-
+  const { environment } = relay;
   const saveAttachment = async (e) => {
-    const { environment } = relay;
     e.stopPropagation();
     e.preventDefault();
     e.persist();
     const file = e.target.files[0];
-    console.log("file", file);
-    console.log("e.e.target.files", e.target.files);
     const variables = {
       input: {
         attachment: {
@@ -43,7 +44,7 @@ export const AttachmentUploadComponent: React.FunctionComponent<Props> = ({
           fileName: file.name,
           fileSize: formatBytes(file.size),
           fileType: file.type,
-          applicationId: applicationRevisionId,
+          applicationId: application.rowId,
         },
       },
       // connections: [applicationRevision.applicationId.attachments.__id], //brianna
@@ -53,6 +54,8 @@ export const AttachmentUploadComponent: React.FunctionComponent<Props> = ({
   };
 
   const isCreatingAttachment = false; // brianna
+
+  console.log("application", application);
 
   return (
     <div className="card">
@@ -80,6 +83,31 @@ export const AttachmentUploadComponent: React.FunctionComponent<Props> = ({
             </div>
           )}
         </Col>
+        <Col xs={12} style={{ margin: "20px 0 20px" }}>
+          {application.attachmentsByApplicationId.edges.map(({ node }) => {
+            console.log("node", node);
+            return (
+              <>
+                {/* brianna not showing up, optimistic response? wrong id? */}
+                <a href="#" className="attachment-link">
+                  {node.fileName} node.id={node.id}
+                </a>
+                <button
+                  onClick={() => {
+                    deleteAttachmentMutation(environment, {
+                      input: {
+                        id: node.id,
+                      },
+                    });
+                  }}
+                >
+                  trash can
+                </button>
+                <div className="uploaded-on">Uploaded on</div>
+              </>
+            );
+          })}
+        </Col>
       </Row>
       <style jsx>{`
         .card {
@@ -96,11 +124,18 @@ export const AttachmentUploadComponent: React.FunctionComponent<Props> = ({
           display: inline-block;
         }
         .upload-button-container {
-        margin top: 2em;
+          margin top: 2em;
           height: 100%;
           display: flex;
           justify-content: space-around;
           align-items: center;
+        }
+        .attachment-link {
+          font-size: 1.25em;
+        }
+        .uploaded-on {
+          font-style: italic;
+          font-size: 1.25em;
         }
 
       `}</style>
@@ -109,4 +144,19 @@ export const AttachmentUploadComponent: React.FunctionComponent<Props> = ({
 };
 
 // brianna what are you looking for here
-export default AttachmentUploadComponent;
+export default createFragmentContainer(AttachmentUploadComponent, {
+  application: graphql`
+    fragment AttachmentUpload_application on Application {
+      rowId
+      attachmentsByApplicationId {
+        edges {
+          node {
+            fileName
+            id
+            rowId
+          }
+        }
+      }
+    }
+  `,
+});

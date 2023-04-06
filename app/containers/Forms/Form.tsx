@@ -152,10 +152,8 @@ export const FormComponent: React.FunctionComponent<Props> = ({
       </Alert>
       {showVerificationStatement && (
         <AttachmentUpload
-          applicationRevisionId={
-            ciipFormResult.applicationByApplicationId.rowId
-          }
           relay={relay}
+          application={ciipFormResult.applicationByApplicationId}
         />
       )}
       <div className="card">
@@ -304,6 +302,7 @@ export default createFragmentContainer(FormComponent, {
             ...ProductsArrayField_naicsProducts
           }
         }
+        ...AttachmentUpload_application
       }
     }
   `,
