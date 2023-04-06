@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(26);
+select plan(29);
 
 create role test_superuser superuser;
 
@@ -175,12 +175,35 @@ select lives_ok(
     'Analyst can update data if their uuid matches the uuid of the row'
 );
 
+select lives_ok(
+  $$
+    update ggircs_portal.ciip_user set first_name = 'analystchanged' where uuid not ilike '%idir%' and uuid !=(select sub from ggircs_portal.session())
+  $$,
+    'Analyst can update data if their uuid matches the uuid of the row'
+);
+
 select results_eq(
   $$
     select first_name from ggircs_portal.ciip_user where uuid=(select sub from ggircs_portal.session())
   $$,
   ARRAY['buddy'::varchar(1000)],
     'Data was changed by Analyst'
+);
+
+select isnt_empty(
+  $$
+    select * from ggircs_portal.ciip_user where first_name = 'analystchanged'
+  $$,
+    'Data was changed by Analyst'
+);
+
+update ggircs_portal.ciip_user set first_name = 'didnotchange' where uuid ilike '%idir%';
+
+select is_empty(
+  $$
+    select * from ggircs_portal.ciip_user where first_name = 'didnotchange'
+  $$,
+    'Analyst cannot change other non-reporter users data'
 );
 
 select throws_like(
@@ -200,7 +223,7 @@ select throws_like(
 );
 
 -- Try to update ciip user data where
-update ggircs_portal.ciip_user set first_name = 'wolverine' where uuid!=(select sub from ggircs_portal.session());
+update ggircs_portal.ciip_user set first_name = 'wolverine' where uuid ilike '%idir%';
 
 set role test_superuser;
 select concat('current user is: ', (select current_user));
@@ -209,7 +232,7 @@ select is_empty(
   $$
     select * from ggircs_portal.ciip_user where first_name='wolverine'
   $$,
-    'Analyst cannot update data if their uuid does not match the uuid of the row'
+    'Analyst cannot update data of other idir users'
 );
 
 -- CIIP_GUEST

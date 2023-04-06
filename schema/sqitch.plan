@@ -443,3 +443,4 @@ tables/fuel_emission_category 2023-02-21T21:21:09Z Brianna Cerkiewicz <briannace
 types/jwt_token_002_business_bceid [types/jwt_token_001_sub_is_text] 2023-03-15T21:00:37Z Dylan Leard <dylan@button.is> # Migration: add the bceid_business_name attribute to token
 function_session [function_session@v2.20.0] 2023-03-15T21:04:31Z Dylan Leard <dylan@button.is> # Migration: add bceid_business_name to session function
 tables/ciip_user_organisation_001_bceid [tables/ciip_user_organisation] 2023-03-15T21:06:40Z Dylan Leard <dylan@button.is> # Migration: add column for bceid_business_name from jwt token
+policies/ciip_user_policies_004_analysts_update_reporters [policies/ciip_user_policies_003_restrict_permissions] 2023-04-03T21:45:35Z Dylan Leard <dylan@button.is> # Migration: allow analysts to update reporter user data to allow re-login with a new bceid

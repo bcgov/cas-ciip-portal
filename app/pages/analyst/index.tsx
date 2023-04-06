@@ -6,6 +6,7 @@ import { analystQueryResponse } from "analystQuery.graphql";
 import DefaultLayout from "layouts/default-layout";
 import ReportingOperations from "components/Dashboard/reportingOperations";
 import ProgramAdministration from "components/Dashboard/programAdministration";
+import UserManagement from "components/Dashboard/userManagement";
 import ReportAProblem from "components/Dashboard/reportAProblem";
 import getConfig from "next/config";
 import { INCENTIVE_ANALYST } from "data/group-constants";
@@ -39,6 +40,7 @@ class Analyst extends Component<Props> {
           <Row>
             <ProgramAdministration viewOnly />
             <ReportingOperations />
+            <UserManagement />
             <ReportAProblem
               supportUrl={
                 `mailto:${supportUrl}?subject=Internal Support Request` || "#"

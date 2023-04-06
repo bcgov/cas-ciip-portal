@@ -16,6 +16,7 @@ const mutationQuery = graphql`
         emailAddress
         occupation
         phoneNumber
+        allowUuidUpdate
       }
     }
   }
