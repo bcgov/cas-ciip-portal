@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { graphql, createFragmentContainer, RelayProp } from "react-relay";
+import { graphql, createFragmentContainer } from "react-relay";
 import { IChangeEvent, ErrorSchema, AjvError } from "@rjsf/core";
 import JsonSchemaForm from "components/Forms/Form";
 import { Form_query } from "Form_query.graphql";
@@ -36,7 +36,6 @@ interface Props {
   onComplete: (e: IChangeEvent) => void;
   onValueChanged?: (e: IChangeEvent, es?: ErrorSchema) => void;
   isSaved: boolean;
-  relay: RelayProp;
 }
 
 const CUSTOM_FIELDS = {
@@ -99,7 +98,6 @@ export const FormComponent: React.FunctionComponent<Props> = ({
   isSaved,
   onComplete,
   onValueChanged,
-  relay,
 }) => {
   const [hasErrors, setHasErrors] = useState(false);
   useEffect(() => {
@@ -152,7 +150,7 @@ export const FormComponent: React.FunctionComponent<Props> = ({
       </Alert>
       {showVerificationStatement && (
         <AttachmentUpload
-          relay={relay}
+          // relay={relay}
           application={ciipFormResult.applicationByApplicationId}
         />
       )}

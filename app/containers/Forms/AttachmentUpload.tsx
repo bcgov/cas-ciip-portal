@@ -6,6 +6,9 @@ import createAttachmentMutation from "mutations/application/createAttachmentMuta
 import { SubmitApplication_applicationRevision } from "__generated__/SubmitApplication_applicationRevision.graphql";
 import { Row, Col } from "react-bootstrap";
 import deleteAttachmentMutation from "mutations/application/deleteAttachment";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { NodeNextRequest } from "next/dist/server/base-http/node";
 
 function formatBytes(bytes: number, decimals = 2) {
   if (bytes <= 0) return "0 Bytes";
@@ -20,22 +23,15 @@ function formatBytes(bytes: number, decimals = 2) {
 }
 
 interface Props {
-  // applicationRevision: SubmitApplication_applicationRevision;
   application: any;
-  // applicationRevisionId: SubmitApplication_applicationRevision; //brianna don't need?
   relay: RelayProp;
 }
 export const AttachmentUploadComponent: React.FunctionComponent<Props> = ({
-  // applicationRevisionId,
-  applicationRevision,
   application,
   relay,
 }) => {
   const { environment } = relay;
   const saveAttachment = async (e) => {
-    e.stopPropagation();
-    e.preventDefault();
-    e.persist();
     const file = e.target.files[0];
     const variables = {
       input: {
@@ -47,7 +43,6 @@ export const AttachmentUploadComponent: React.FunctionComponent<Props> = ({
           applicationId: application.rowId,
         },
       },
-      // connections: [applicationRevision.applicationId.attachments.__id], //brianna
     };
 
     await createAttachmentMutation(environment, variables);
@@ -88,11 +83,12 @@ export const AttachmentUploadComponent: React.FunctionComponent<Props> = ({
             console.log("node", node);
             return (
               <>
-                {/* brianna not showing up, optimistic response? wrong id? */}
+                {/* brianna not showing up, optimistic response? */}
                 <a href="#" className="attachment-link">
                   {node.fileName} node.id={node.id}
-                </a>
-                <button
+                </a>{" "}
+                <FontAwesomeIcon
+                  icon={faTrash}
                   onClick={() => {
                     deleteAttachmentMutation(environment, {
                       input: {
@@ -100,9 +96,7 @@ export const AttachmentUploadComponent: React.FunctionComponent<Props> = ({
                       },
                     });
                   }}
-                >
-                  trash can
-                </button>
+                />
                 <div className="uploaded-on">Uploaded on</div>
               </>
             );
@@ -143,7 +137,6 @@ export const AttachmentUploadComponent: React.FunctionComponent<Props> = ({
   );
 };
 
-// brianna what are you looking for here
 export default createFragmentContainer(AttachmentUploadComponent, {
   application: graphql`
     fragment AttachmentUpload_application on Application {

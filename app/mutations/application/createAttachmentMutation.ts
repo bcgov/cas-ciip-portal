@@ -7,16 +7,9 @@ import {
 import BaseMutation from "mutations/BaseMutation";
 
 const mutation = graphql`
-  mutation createAttachmentMutation(
-    # $connections: [ID!]!
-    $input: CreateAttachmentInput!
-  ) {
+  mutation createAttachmentMutation($input: CreateAttachmentInput!) {
     createAttachment(input: $input) {
-      # attachmentEdge @appendEdge(connections: $connections) {
-      # attachmentEdge {
       attachment {
-        # cursor
-        # node {
         file
         fileName
         fileSize
