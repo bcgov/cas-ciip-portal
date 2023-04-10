@@ -1,4 +1,3 @@
-{{- if not .Values.db.restore.enabled }}
 apiVersion: batch/v1
 kind: Job
 metadata:
@@ -44,4 +43,3 @@ spec:
               set -xeuo pipefail;
               /script.sh {{ .Release.Namespace | quote }} cas-ciip-portal-documents;
       restartPolicy: Never
-{{- end }}
