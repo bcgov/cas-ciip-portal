@@ -19,20 +19,12 @@ export const FuelRowIdFieldComponent: React.FunctionComponent<Props> = (
    * Other props are passed as-is to the StringField
    */
 
-  const fuels = useMemo(
-    () => ({
-      activeRowIds: props.query.activeFuels.edges.map(({ node }) => node.rowId),
-      activeNames: props.query.activeFuels.edges.map(({ node }) => node.name),
-
-      // Object containing the archived fuels, keyed on the rowId
-      archived: props.query.archivedFuels.edges.reduce(
-        (archivedDict, { node }) => {
-          archivedDict[node.rowId] = node.name;
-          return archivedDict;
-        },
-        {}
-      ),
-    }),
+  const archivedFuels = useMemo(
+    () =>
+      props.query.archivedFuels.edges.reduce((archivedDict, { node }) => {
+        archivedDict[node.rowId] = node.name;
+        return archivedDict;
+      }, {}),
     [props.query]
   );
 
@@ -43,16 +35,13 @@ export const FuelRowIdFieldComponent: React.FunctionComponent<Props> = (
     };
   }, [props]);
 
-  if (
-    fuels.activeRowIds.includes(props.formData) ||
-    props.formData === undefined
-  )
+  if (!archivedFuels[props.formData] || props.formData === undefined)
     return <props.registry.fields.StringField {...fieldProps} />;
 
   return (
     <InputGroup>
       <InputGroup.Text className="col-md-12">
-        {fuels.archived[props.formData]}
+        {archivedFuels[props.formData]}
       </InputGroup.Text>
     </InputGroup>
   );
@@ -61,17 +50,6 @@ export const FuelRowIdFieldComponent: React.FunctionComponent<Props> = (
 export default createFragmentContainer(FuelRowIdFieldComponent, {
   query: graphql`
     fragment FuelRowIdField_query on Query {
-      activeFuels: allFuels(
-        filter: { state: { equalTo: "active" } }
-        orderBy: NAME_ASC
-      ) {
-        edges {
-          node {
-            rowId
-            name
-          }
-        }
-      }
       archivedFuels: allFuels(filter: { state: { equalTo: "archived" } }) {
         edges {
           node {
