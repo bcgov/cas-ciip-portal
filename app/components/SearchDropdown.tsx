@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { Typeahead } from "react-bootstrap-typeahead";
 
 interface Props {
@@ -25,10 +25,15 @@ export const SearchDropdownComponent: React.FunctionComponent<Props> = ({
   onBlur,
   onMenuToggle,
 }) => {
+  const ref = useRef<Typeahead>(null);
+  useEffect(() => {
+    if (!selected) ref.current?.clear();
+  });
   return (
     <>
       <Typeahead
         id={id}
+        ref={ref}
         filterBy={(option, props) => {
           if (props.selected.length > 0 || defaultInputValue) {
             // Display all the options if there's a selection

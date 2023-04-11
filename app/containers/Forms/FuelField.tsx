@@ -15,11 +15,14 @@ export const FuelFieldComponent: React.FunctionComponent<Props> = (props) => {
     [formData]
   );
 
-  const emissionCategoryFuelIds = useMemo(() => {
+  const getFuelIdsByEmissionCategoryRowId = (EmissionCategoryRowId) => {
     const categoryObject = query.fuelIdsByEmissionCategoryId.edges.find(
-      (edge) => edge.node.emissionCategoryId === selectedEmissionCategoryRowId
+      (edge) => edge.node.emissionCategoryId === EmissionCategoryRowId
     );
     return categoryObject?.node?.fuelIds;
+  };
+  const emissionCategoryFuelIds = useMemo(() => {
+    return getFuelIdsByEmissionCategoryRowId(selectedEmissionCategoryRowId);
   }, [selectedEmissionCategoryRowId]);
 
   const fuels = useMemo(
@@ -85,8 +88,20 @@ export const FuelFieldComponent: React.FunctionComponent<Props> = (props) => {
     });
   };
 
+  const handleEmissionCategoryChange = (fuel) => {
+    const { emissionCategoryRowId, fuelRowId } = fuel;
+    const newFuelIds =
+      emissionCategoryRowId && fuelRowId
+        ? getFuelIdsByEmissionCategoryRowId(emissionCategoryRowId)
+        : null;
+    if (newFuelIds && newFuelIds.includes(fuelRowId)) onChange(fuel);
+    else onChange({ ...fuel, fuelRowId: undefined, fuelUnits: undefined });
+  };
+
   const handleChange = (fuel) => {
-    if (formData.fuelRowId === fuel.fuelRowId) onChange(fuel);
+    if (formData.emissionCategoryRowId !== fuel.emissionCategoryRowId)
+      handleEmissionCategoryChange(fuel);
+    else if (formData.fuelRowId === fuel.fuelRowId) onChange(fuel);
     else handlefuelChange(fuel.fuelRowId);
   };
 
