@@ -7,17 +7,22 @@ import {
 import BaseMutation from "mutations/BaseMutation";
 
 const mutation = graphql`
-  mutation createAttachmentMutation($input: CreateAttachmentInput!) {
+  mutation createAttachmentMutation(
+    $connections: [ID!]!
+    $input: CreateAttachmentInput!
+  ) {
     createAttachment(input: $input) {
-      attachment {
-        file
-        fileName
-        fileSize
-        fileType
-        # createdBy
-        applicationId
+      attachmentEdge @appendEdge(connections: $connections) {
+        cursor
+        node {
+          file
+          fileName
+          fileSize
+          fileType
+          createdAt
+          applicationId
+        }
       }
-      # }
     }
   }
 `;
@@ -33,3 +38,4 @@ const createAttachmentMutation = async (
 };
 
 export default createAttachmentMutation;
+export { mutation };

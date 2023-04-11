@@ -34,6 +34,7 @@ export const AttachmentUploadComponent: React.FunctionComponent<Props> = ({
   const saveAttachment = async (e) => {
     const file = e.target.files[0];
     const variables = {
+      connections: [application.attachmentsByApplicationId.__id],
       input: {
         attachment: {
           file: file,
@@ -41,6 +42,7 @@ export const AttachmentUploadComponent: React.FunctionComponent<Props> = ({
           fileSize: formatBytes(file.size),
           fileType: file.type,
           applicationId: application.rowId,
+          versionNumber: application.latestDraftRevision.versionNumber,
         },
       },
     };
@@ -49,8 +51,6 @@ export const AttachmentUploadComponent: React.FunctionComponent<Props> = ({
   };
 
   const isCreatingAttachment = false; // brianna
-
-  console.log("application", application);
 
   return (
     <div className="card">
@@ -91,13 +91,16 @@ export const AttachmentUploadComponent: React.FunctionComponent<Props> = ({
                   icon={faTrash}
                   onClick={() => {
                     deleteAttachmentMutation(environment, {
+                      connections: [
+                        application.attachmentsByApplicationId.__id,
+                      ],
                       input: {
                         id: node.id,
                       },
                     });
                   }}
                 />
-                <div className="uploaded-on">Uploaded on</div>
+                <div className="uploaded-on">Uploaded on {node.createdAt}</div>
               </>
             );
           })}
@@ -136,17 +139,30 @@ export const AttachmentUploadComponent: React.FunctionComponent<Props> = ({
     </div>
   );
 };
+// brianna check out relay dev tools later
 
 export default createFragmentContainer(AttachmentUploadComponent, {
   application: graphql`
     fragment AttachmentUpload_application on Application {
       rowId
-      attachmentsByApplicationId {
+      # it probably won't be hard delete
+      latestDraftRevision {
+        versionNumber
+      }
+      # if we soft delete we're going to need to filter by deleted_at=null
+      # brianna will need to pass the connection info in delete mutation too
+      attachmentsByApplicationId(first: 2000000000)
+        @connection(
+          key: "AttachmentUpload_attachmentsByApplicationId"
+          filters: []
+        ) {
+        __id
         edges {
           node {
             fileName
             id
             rowId
+            createdAt
           }
         }
       }
