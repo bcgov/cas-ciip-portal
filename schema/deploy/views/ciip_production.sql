@@ -22,10 +22,9 @@ begin;
        (x.production_data ->> 'productEmissions')::numeric as product_emissions,
        (x.production_data ->> 'requiresEmissionAllocation')::boolean as requires_emission_allocation,
        (x.production_data ->> 'isEnergyProduct')::boolean as is_energy_product,
-       (x.production_data ->> 'productName')::varchar(1000) as product_name,
+       (select product_name from ggircs_portal.product p where p.id = (x.production_data ->> 'productRowId')::int) as product_name,
        (x.production_data ->> 'associatedEmissions')::numeric as associated_emissions,
        (x.production_data ->> 'comments')::varchar(10000) as comments
-
     from x
  );
 
