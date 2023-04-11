@@ -135,6 +135,13 @@ spec:
               secretKeyRef:
                 name: keycloak-gold-client-secret
                 key: kcClientSecret
+          - name: GOOGLE_APPLICATION_CREDENTIALS
+            value: "/attachments-credentials/attachments-credentials.json"
+          - name: ATTACHMENTS_BUCKET
+            valueFrom:
+              secretKeyRef:
+                name: gcp-{{ .Release.Namespace }}-cas-ciip-portal-documents-service-account-key
+                key: bucket_name
         ports:
         - containerPort: {{ .Values.port }}
           protocol: TCP
@@ -163,6 +170,10 @@ spec:
           timeoutSeconds: 5
         resources:
 {{ toYaml .Values.resources | indent 10 }}
+        volumeMounts:
+          - mountPath: "/attachments-credentials"
+            name: gcs-documents-credentials
+            readOnly: true
         securityContext:
           capabilities: {}
           privileged: false
@@ -174,5 +185,11 @@ spec:
 {{- if (index .Values "nginx-sidecar") }}
 {{- include "nginx-sidecar.deployment-volumes.tpl" (index .Values "nginx-sidecar") | nindent 8 }}
 {{- end }}
+        - name: gcs-documents-credentials
+          secret:
+            secretName: gcp-{{ .Release.Namespace }}-cas-ciip-portal-documents-service-account-key
+            items:
+            - key: credentials.json
+              path: attachments-credentials.json
       dnsPolicy: ClusterFirst
       restartPolicy: Always
