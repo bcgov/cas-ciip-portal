@@ -61,11 +61,11 @@ export const FuelFieldComponent: React.FunctionComponent<Props> = (props) => {
       ...uiSchema,
       fuelRowId: {
         ...uiSchema.fuelRowId,
-        "ui:readonly": !Boolean(selectedEmissionCategoryRowId),
+        "ui:readonly": !selectedEmissionCategoryRowId,
       },
       quantity: {
         ...uiSchema.quantity,
-        "ui:disabled": !Boolean(selectedEmissionCategoryRowId),
+        "ui:disabled": !selectedEmissionCategoryRowId,
       },
     };
   }, [selectedEmissionCategoryRowId]);
