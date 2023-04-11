@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(17);
+select plan(18);
 
 -- Table exists
 select has_table(
@@ -23,7 +23,7 @@ alter table ggircs_portal.ciip_user_organisation
 alter table ggircs_portal.ciip_user_organisation
   disable trigger _send_access_approved_email;
 
--- User 999 has access to attachment 222 (part of application 999), but not attachment 333 (part of application 1000)
+-- User 999 has access to application 999 (containing attachment 222), but not application 1000 (containing attachment 333)
 insert into ggircs_portal.ciip_user(id, uuid) overriding system value
 values (999, '11111111-1111-1111-1111-111111111111'), (1000, '22222222-2222-2222-2222-222222222222');
 insert into ggircs_portal.organisation(id) overriding system value values(999), (1000), (555);
@@ -52,7 +52,7 @@ select results_eq(
 select lives_ok(
   $$
     insert into ggircs_portal.attachment (id, application_id) overriding system value
-    values (444, 999);
+    values (444, 1000);
   $$,
     'ciip_administrator can insert data in attachment table'
 );
@@ -86,46 +86,44 @@ select concat('current user is: ', (select current_user));
 
 select results_eq(
   $$
-    select id from ggircs_portal.attachment
+    select application_id from ggircs_portal.attachment
   $$,
-  ARRAY[222::integer],
+  ARRAY[999::integer],
     'Industry user can view data from attachment for their applications'
 );
 
 select is_empty(
   $$
-    select id from ggircs_portal.attachment where id = 333;
+    select id from ggircs_portal.attachment where application_id = 1000;
   $$,
   'Industry user cannot view attachments for other other users applications'
 );
 
 select lives_ok(
   $$
-    insert into ggircs_portal.attachment(application_id) values (555);
+    insert into ggircs_portal.attachment(application_id) values (999);
   $$,
     'Industry user can create an attachment for their applications '
 );
 
 select throws_like(
   $$
-    insert into ggircs_portal.attachment(application_id) values (333);
+    insert into ggircs_portal.attachment(application_id) values (1000);
   $$,
   'new row violates%',
     'Industry User cannot create attachments for other users applications'
 );
 
-select results_eq(
+select lives_ok(
   $$
-    update ggircs_portal.attachment set file_name = 'monkeyfuzz' where id=222;
+    update ggircs_portal.attachment set file_name = 'monkeyfuzz' where application_id=999;
   $$,
-  ARRAY[999::integer],
     'Industry user can update attachments for their applications'
 );
 
-
 select throws_like(
   $$
-    update ggircs_portal.attachment set file_name = 'rainbowunicorn' where id=333;
+    update ggircs_portal.attachment set file_name = 'rainbowunicorn' where application_id=1000;
   $$,
   'permission denied%',
     'Industry User cannot update attachment belonging to others applications'
@@ -133,14 +131,14 @@ select throws_like(
 
 select lives_ok(
   $$
-    delete from ggircs_portal.attachment where id=222;
+    delete from ggircs_portal.attachment where application_id=999;
   $$,
     'Industry user can delete their own attachments'
 );
 
 select throws_like(
   $$
-    delete from ggircs_portal.attachment where id=333;
+    delete from ggircs_portal.attachment where application_id=1000;
   $$,
   'permission denied%',
     'Industry User cannot delete attachment belonging to others applications'
@@ -153,16 +151,17 @@ select concat('current user is: ', (select current_user));
 
 select results_eq(
   $$
-    select count(*) from ggircs_portal.attachment where id = 222 or id=333;
+    select count(*) from ggircs_portal.attachment where application_id = 999 or application_id=1000;
   $$,
   ARRAY[2::bigint],
   'Analyst can select all from table attachment'
 );
 
-select lives_ok(
+select throws_like(
   $$
     update ggircs_portal.attachment set file_name = 'analyst' where id = 222;
   $$,
+  'permission denied%',
   'Analyst cannot update table attachment'
 );
 
