@@ -4,6 +4,12 @@ import React from "react";
 import { createDefaultJsonSchemaFormProps } from "tests/json-schema-utils";
 import { FuelField_query } from "__generated__/FuelField_query.graphql";
 
+const mockFuelSchema = {
+  properties: {
+    fuelRowId: {},
+  },
+};
+
 describe("The Fuel Field", () => {
   it("renders an interactive form when the form data fuel is active", () => {
     const testQuery: FuelField_query = {
@@ -18,8 +24,29 @@ describe("The Fuel Field", () => {
           },
         ],
       },
+      fuelIdsByEmissionCategoryId: {
+        edges: [
+          {
+            node: {
+              emissionCategoryId: 1,
+              fuelIds: [1],
+            },
+          },
+        ],
+      },
+      activeFuels: {
+        edges: [
+          {
+            node: {
+              rowId: 1,
+              name: "test_fuel",
+            },
+          },
+        ],
+      },
       " $refType": "FuelField_query",
     };
+
     const initialProps = {
       ...createDefaultJsonSchemaFormProps(),
       formData: {
@@ -28,7 +55,9 @@ describe("The Fuel Field", () => {
       query: testQuery,
     };
 
-    const component = shallow(<FuelFieldComponent {...initialProps} />);
+    const component = shallow(
+      <FuelFieldComponent {...initialProps} schema={mockFuelSchema} />
+    );
 
     expect(component).toMatchSnapshot();
     expect(component.find("ObjectField").at(0).prop("disabled")).toBe(false);
@@ -47,6 +76,26 @@ describe("The Fuel Field", () => {
           },
         ],
       },
+      fuelIdsByEmissionCategoryId: {
+        edges: [
+          {
+            node: {
+              emissionCategoryId: 1,
+              fuelIds: [1],
+            },
+          },
+        ],
+      },
+      activeFuels: {
+        edges: [
+          {
+            node: {
+              rowId: 1,
+              name: "test_fuel",
+            },
+          },
+        ],
+      },
       " $refType": "FuelField_query",
     };
     const initialProps = {
@@ -57,7 +106,9 @@ describe("The Fuel Field", () => {
       query: testQuery,
     };
 
-    const component = shallow(<FuelFieldComponent {...initialProps} />);
+    const component = shallow(
+      <FuelFieldComponent {...initialProps} schema={mockFuelSchema} />
+    );
 
     expect(component).toMatchSnapshot();
     expect(component.find("ObjectField").at(0).prop("disabled")).toBe(false);
@@ -76,6 +127,26 @@ describe("The Fuel Field", () => {
           },
         ],
       },
+      fuelIdsByEmissionCategoryId: {
+        edges: [
+          {
+            node: {
+              emissionCategoryId: 1,
+              fuelIds: [1],
+            },
+          },
+        ],
+      },
+      activeFuels: {
+        edges: [
+          {
+            node: {
+              rowId: 2,
+              name: "test_fuel",
+            },
+          },
+        ],
+      },
       " $refType": "FuelField_query",
     };
     const initialProps = {
@@ -86,7 +157,9 @@ describe("The Fuel Field", () => {
       query: testQuery,
     };
 
-    const component = shallow(<FuelFieldComponent {...initialProps} />);
+    const component = shallow(
+      <FuelFieldComponent {...initialProps} schema={mockFuelSchema} />
+    );
 
     expect(component).toMatchSnapshot();
     expect(component.find("ObjectField").at(0).prop("disabled")).toBe(true);
