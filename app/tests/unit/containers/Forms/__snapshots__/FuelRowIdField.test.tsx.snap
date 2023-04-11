@@ -60,16 +60,7 @@ exports[`The FuelRowIdField component renders an active fuel as a StringField 1`
     }
   }
   required={false}
-  schema={
-    Object {
-      "enum": Array [
-        1,
-      ],
-      "enumNames": Array [
-        "active fuel",
-      ],
-    }
-  }
+  schema={Object {}}
   uiSchema={Object {}}
 />
 `;
@@ -143,16 +134,7 @@ exports[`The FuelRowIdField component renders an undefined form data as a String
     }
   }
   required={false}
-  schema={
-    Object {
-      "enum": Array [
-        1,
-      ],
-      "enumNames": Array [
-        "active fuel",
-      ],
-    }
-  }
+  schema={Object {}}
   uiSchema={Object {}}
 />
 `;
