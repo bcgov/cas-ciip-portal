@@ -95,7 +95,13 @@ export const FuelFieldComponent: React.FunctionComponent<Props> = (props) => {
         ? getFuelIdsByEmissionCategoryRowId(emissionCategoryRowId)
         : null;
     if (newFuelIds && newFuelIds.includes(fuelRowId)) onChange(fuel);
-    else onChange({ ...fuel, fuelRowId: undefined, fuelUnits: undefined });
+    else
+      onChange({
+        ...fuel,
+        fuelRowId: undefined,
+        quantity: "",
+        fuelUnits: undefined,
+      });
   };
 
   const handleChange = (fuel) => {
