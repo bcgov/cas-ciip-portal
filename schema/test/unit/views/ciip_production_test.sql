@@ -41,20 +41,20 @@ select has_view('ggircs_portal', 'ciip_production', 'There is a ciip_production 
 
 select results_eq(
   $$
-    select application_id, product_id, requires_emission_allocation, product_amount from ggircs_portal.ciip_production where application_id=1 and version_number=1
+    select application_id, product_id, requires_emission_allocation, product_amount, product_name from ggircs_portal.ciip_production where application_id=1 and version_number=1
   $$,
   $$
-    select '1'::integer, '1'::integer, 'false'::boolean, '5'::numeric
+    select '1'::integer, '1'::integer, 'false'::boolean, '5'::numeric, 'Sold electricity'::varchar
   $$,
   'ciip_production view returns the correct production data for current schema'
 );
 
 select results_eq(
   $$
-    select application_id, product_name, product_amount, product_units from ggircs_portal.ciip_production where application_id = 2 and version_number=1
+    select application_id, product_name, product_amount, product_units, product_name from ggircs_portal.ciip_production where application_id = 2 and version_number=1
   $$,
   $$
-    select '2'::integer, '2018product'::varchar, '1'::numeric, 'kl'::varchar
+    select '2'::integer, '2018product'::varchar, '1'::numeric, 'kl'::varchar, '2018product'::varchar
   $$,
   'ciip_production view returns the correct production data for the 2018 schema'
 );
