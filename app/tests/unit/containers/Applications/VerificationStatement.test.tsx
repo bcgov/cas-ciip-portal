@@ -1,5 +1,5 @@
 import React from "react";
-import { shallow, mount } from "enzyme";
+import { shallow } from "enzyme";
 import { VerificationStatement_application } from "__generated__/VerificationStatement_application.graphql";
 import { VerificationStatementComponent } from "containers/Forms/VerificationStatement";
 
@@ -21,6 +21,14 @@ describe("The Attachment Upload Component", () => {
             createdAt: "date",
           },
         },
+        {
+          node: {
+            fileName: "test-filename-2",
+            id: "test-id-2",
+            rowId: 8,
+            createdAt: "date-2",
+          },
+        },
       ],
     },
   };
@@ -36,9 +44,9 @@ describe("The Attachment Upload Component", () => {
     const wrapper = shallow(
       <VerificationStatementComponent application={application} relay={null} />
     );
-    // brianna these don't work
     expect(wrapper.find("h1").text()).toEqual("Verification Statement");
-    expect(wrapper.find("input").exists()).toBe(true);
+    expect(wrapper.find("FilePicker").exists()).toBe(true);
     expect(wrapper.find("a.attachment-link").exists()).toBe(true);
+    expect(wrapper.find("div.uploaded-on").exists()).toBe(true);
   });
 });
