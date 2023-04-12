@@ -743,7 +743,7 @@ exports[`The Form Component should not render an alert reminder to check the gui
   >
     Note: Your form input will be saved automatically as you type.
   </Alert>
-  <Relay(AttachmentUploadComponent) />
+  <Relay(VerificationStatementComponent) />
   <div
     className="jsx-1645944843 card"
   >
@@ -1479,7 +1479,7 @@ exports[`The Form Component should render alert reminder to check the guidance i
   >
     Note: Your form input will be saved automatically as you type.
   </Alert>
-  <Relay(AttachmentUploadComponent) />
+  <Relay(VerificationStatementComponent) />
   <div
     className="jsx-1645944843 card"
   >

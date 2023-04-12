@@ -28,7 +28,7 @@ import NaicsField from "./NaicsField";
 import productFieldValidation from "./validation/productFieldValidation";
 import MissingProductsComponent from "components/product/MissingProductsComponent";
 import { Form_ciipFormResult } from "Form_ciipFormResult.graphql";
-import AttachmentUpload from "./AttachmentUpload";
+import VerificationStatement from "./VerificationStatement";
 
 interface Props {
   query: Form_query;
@@ -149,7 +149,7 @@ export const FormComponent: React.FunctionComponent<Props> = ({
         Note: Your form input will be saved automatically as you type.
       </Alert>
       {showVerificationStatement && (
-        <AttachmentUpload
+        <VerificationStatement
           // relay={relay}
           application={ciipFormResult.applicationByApplicationId}
         />
@@ -300,7 +300,7 @@ export default createFragmentContainer(FormComponent, {
             ...ProductsArrayField_naicsProducts
           }
         }
-        ...AttachmentUpload_application
+        ...VerificationStatement_application
       }
     }
   `,

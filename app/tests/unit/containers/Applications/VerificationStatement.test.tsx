@@ -1,11 +1,11 @@
 import React from "react";
 import { shallow, mount } from "enzyme";
-import { AttachmentUpload_application } from "__generated__/AttachmentUpload_application.graphql";
-import { AttachmentUploadComponent } from "containers/Forms/AttachmentUpload";
+import { VerificationStatement_application } from "__generated__/VerificationStatement_application.graphql";
+import { VerificationStatementComponent } from "containers/Forms/VerificationStatement";
 
 describe("The Attachment Upload Component", () => {
-  const application: AttachmentUpload_application = {
-    " $refType": "AttachmentUpload_application",
+  const application: VerificationStatement_application = {
+    " $refType": "VerificationStatement_application",
     rowId: 1,
     latestDraftRevision: {
       versionNumber: 1,
@@ -27,14 +27,14 @@ describe("The Attachment Upload Component", () => {
 
   it("should match the snapshot", () => {
     const wrapper = shallow(
-      <AttachmentUploadComponent application={application} relay={null} />
+      <VerificationStatementComponent application={application} relay={null} />
     );
     expect(wrapper).toMatchSnapshot();
   });
 
   it("renders the component", () => {
     const wrapper = shallow(
-      <AttachmentUploadComponent application={application} relay={null} />
+      <VerificationStatementComponent application={application} relay={null} />
     );
     // brianna these don't work
     expect(wrapper.find("h1").text()).toEqual("Verification Statement");

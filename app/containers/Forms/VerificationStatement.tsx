@@ -9,6 +9,7 @@ import deleteAttachmentMutation from "mutations/application/deleteAttachment";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { NodeNextRequest } from "next/dist/server/base-http/node";
+import { VerificationStatement_application } from "__generated__/VerificationStatement_application.graphql";
 
 function formatBytes(bytes: number, decimals = 2) {
   if (bytes <= 0) return "0 Bytes";
@@ -23,15 +24,15 @@ function formatBytes(bytes: number, decimals = 2) {
 }
 
 interface Props {
-  application: any;
+  application: VerificationStatement_application;
   relay: RelayProp;
 }
-export const AttachmentUploadComponent: React.FunctionComponent<Props> = ({
+export const VerificationStatementComponent: React.FunctionComponent<Props> = ({
   application,
   relay,
 }) => {
-  const { environment } = relay;
   const saveAttachment = async (e) => {
+    const { environment } = relay;
     const file = e.target.files[0];
     const variables = {
       connections: [application.attachmentsByApplicationId.__id],
@@ -49,6 +50,8 @@ export const AttachmentUploadComponent: React.FunctionComponent<Props> = ({
 
     await createAttachmentMutation(environment, variables);
   };
+
+  console.log("application", application);
 
   const isCreatingAttachment = false; // brianna
 
@@ -83,14 +86,14 @@ export const AttachmentUploadComponent: React.FunctionComponent<Props> = ({
             console.log("node", node);
             return (
               <>
-                {/* brianna not showing up, optimistic response? */}
-                <a href="#" className="attachment-link">
-                  {node.fileName} node.id={node.id}
+                <a href="#" className="attachment-link" key={node.id}>
+                  {node.fileName}
                 </a>{" "}
                 <FontAwesomeIcon
                   icon={faTrash}
                   onClick={() => {
-                    deleteAttachmentMutation(environment, {
+                    const { environment } = relay;
+                    return deleteAttachmentMutation(environment, {
                       connections: [
                         application.attachmentsByApplicationId.__id,
                       ],
@@ -141,9 +144,9 @@ export const AttachmentUploadComponent: React.FunctionComponent<Props> = ({
 };
 // brianna check out relay dev tools later
 
-export default createFragmentContainer(AttachmentUploadComponent, {
+export default createFragmentContainer(VerificationStatementComponent, {
   application: graphql`
-    fragment AttachmentUpload_application on Application {
+    fragment VerificationStatement_application on Application {
       rowId
       # it probably won't be hard delete
       latestDraftRevision {
@@ -153,7 +156,7 @@ export default createFragmentContainer(AttachmentUploadComponent, {
       # brianna will need to pass the connection info in delete mutation too
       attachmentsByApplicationId(first: 2000000000)
         @connection(
-          key: "AttachmentUpload_attachmentsByApplicationId"
+          key: "VerificationStatement_attachmentsByApplicationId"
           filters: []
         ) {
         __id
