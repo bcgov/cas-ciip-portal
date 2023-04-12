@@ -2,7 +2,7 @@
 
 exports[`The Form Component should match the snapshot 1`] = `
 <div
-  className="jsx-1563044622 "
+  className="jsx-1645944843 "
 >
   <Alert
     closeLabel="Close alert"
@@ -25,10 +25,10 @@ exports[`The Form Component should match the snapshot 1`] = `
     Note: Your form input will be saved automatically as you type.
   </Alert>
   <div
-    className="jsx-1563044622 card"
+    className="jsx-1645944843 card"
   >
     <div
-      className="jsx-1563044622 card-header"
+      className="jsx-1645944843 card-header"
     >
       <Row
         noGutters={false}
@@ -37,7 +37,7 @@ exports[`The Form Component should match the snapshot 1`] = `
           md={8}
         >
           <h1
-            className="jsx-1563044622"
+            className="jsx-1645944843"
           >
             Foo
           </h1>
@@ -712,16 +712,16 @@ exports[`The Form Component should match the snapshot 1`] = `
     }
   </JSXStyle>
   <JSXStyle
-    id="1563044622"
+    id="1645944843"
   >
-    .card.jsx-1563044622{border-color:#a4a4a4;background-color:#f4f4f4;}.card-header.jsx-1563044622{background-color:#036;color:#fff;}.card-header.jsx-1563044622 h1.jsx-1563044622{margin-bottom:0;font-size:30px;display:inline-block;}
+    .card.jsx-1645944843{border-color:#a4a4a4;background-color:#f4f4f4;}.card-header.jsx-1645944843{background-color:#036;color:#fff;}.card-header.jsx-1645944843 h1.jsx-1645944843{margin-bottom:0;font-size:30px;display:inline-block;}.add-button-container.jsx-1645944843{height:100%;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:space-around;-webkit-justify-content:space-around;-ms-flex-pack:space-around;justify-content:space-around;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}
   </JSXStyle>
 </div>
 `;
 
 exports[`The Form Component should not render an alert reminder to check the guidance if no product requires emission allocation 1`] = `
 <div
-  className="jsx-1563044622 "
+  className="jsx-1645944843 "
 >
   <Alert
     closeLabel="Close alert"
@@ -743,11 +743,12 @@ exports[`The Form Component should not render an alert reminder to check the gui
   >
     Note: Your form input will be saved automatically as you type.
   </Alert>
+  <Relay(AttachmentUploadComponent) />
   <div
-    className="jsx-1563044622 card"
+    className="jsx-1645944843 card"
   >
     <div
-      className="jsx-1563044622 card-header"
+      className="jsx-1645944843 card-header"
     >
       <Row
         noGutters={false}
@@ -756,7 +757,7 @@ exports[`The Form Component should not render an alert reminder to check the gui
           md={8}
         >
           <h1
-            className="jsx-1563044622"
+            className="jsx-1645944843"
           >
             Foo
           </h1>
@@ -1447,16 +1448,16 @@ exports[`The Form Component should not render an alert reminder to check the gui
     }
   </JSXStyle>
   <JSXStyle
-    id="1563044622"
+    id="1645944843"
   >
-    .card.jsx-1563044622{border-color:#a4a4a4;background-color:#f4f4f4;}.card-header.jsx-1563044622{background-color:#036;color:#fff;}.card-header.jsx-1563044622 h1.jsx-1563044622{margin-bottom:0;font-size:30px;display:inline-block;}
+    .card.jsx-1645944843{border-color:#a4a4a4;background-color:#f4f4f4;}.card-header.jsx-1645944843{background-color:#036;color:#fff;}.card-header.jsx-1645944843 h1.jsx-1645944843{margin-bottom:0;font-size:30px;display:inline-block;}.add-button-container.jsx-1645944843{height:100%;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:space-around;-webkit-justify-content:space-around;-ms-flex-pack:space-around;justify-content:space-around;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}
   </JSXStyle>
 </div>
 `;
 
 exports[`The Form Component should render alert reminder to check the guidance if any product requires emission allocation 1`] = `
 <div
-  className="jsx-1563044622 "
+  className="jsx-1645944843 "
 >
   <Alert
     closeLabel="Close alert"
@@ -1478,11 +1479,12 @@ exports[`The Form Component should render alert reminder to check the guidance i
   >
     Note: Your form input will be saved automatically as you type.
   </Alert>
+  <Relay(AttachmentUploadComponent) />
   <div
-    className="jsx-1563044622 card"
+    className="jsx-1645944843 card"
   >
     <div
-      className="jsx-1563044622 card-header"
+      className="jsx-1645944843 card-header"
     >
       <Row
         noGutters={false}
@@ -1491,7 +1493,7 @@ exports[`The Form Component should render alert reminder to check the guidance i
           md={8}
         >
           <h1
-            className="jsx-1563044622"
+            className="jsx-1645944843"
           >
             Foo
           </h1>
@@ -2205,9 +2207,9 @@ exports[`The Form Component should render alert reminder to check the guidance i
     }
   </JSXStyle>
   <JSXStyle
-    id="1563044622"
+    id="1645944843"
   >
-    .card.jsx-1563044622{border-color:#a4a4a4;background-color:#f4f4f4;}.card-header.jsx-1563044622{background-color:#036;color:#fff;}.card-header.jsx-1563044622 h1.jsx-1563044622{margin-bottom:0;font-size:30px;display:inline-block;}
+    .card.jsx-1645944843{border-color:#a4a4a4;background-color:#f4f4f4;}.card-header.jsx-1645944843{background-color:#036;color:#fff;}.card-header.jsx-1645944843 h1.jsx-1645944843{margin-bottom:0;font-size:30px;display:inline-block;}.add-button-container.jsx-1645944843{height:100%;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:space-around;-webkit-justify-content:space-around;-ms-flex-pack:space-around;justify-content:space-around;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}
   </JSXStyle>
 </div>
 `;
