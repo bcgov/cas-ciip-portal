@@ -121,14 +121,6 @@ select lives_ok(
     'Industry user can update attachments for their applications'
 );
 
-select throws_like(
-  $$
-    update ggircs_portal.attachment set file_name = 'rainbowunicorn' where application_id=1000;
-  $$,
-  'permission denied%',
-    'Industry User cannot update attachment belonging to others applications'
-);
-
 select lives_ok(
   $$
     delete from ggircs_portal.attachment where application_id=999;
@@ -136,11 +128,34 @@ select lives_ok(
     'Industry user can delete their own attachments'
 );
 
-select throws_like(
+-- users don't have permission to update or delete other users' applications, but no error is thrown, so to test, we have to switch to administrator to view the record and confirm that the update did nothing
+update ggircs_portal.attachment set file_name = 'rainbowunicorn' where application_id=1000;
+
+set role ciip_administrator;
+select concat('current user is: ', (select current_user));
+select is_empty(
   $$
-    delete from ggircs_portal.attachment where application_id=1000;
+    select application_id from ggircs_portal.attachment where file_name = 'rainbowunicorn';
   $$,
-  'permission denied%',
+    'Industry User cannot update attachment belonging to others applications'
+);
+
+
+
+set role ciip_industry_user;
+select concat('current user is: ', (select current_user));
+delete from ggircs_portal.attachment where application_id=1000;
+
+set role ciip_administrator;
+select concat('current user is: ', (select current_user));
+
+select results_eq(
+  $$
+    select count(*) from ggircs_portal.attachment where application_id = 1000;
+  $$,
+    $$
+    values (2::bigint)
+    $$,
     'Industry User cannot delete attachment belonging to others applications'
 );
 
