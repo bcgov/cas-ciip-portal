@@ -10,6 +10,7 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { NodeNextRequest } from "next/dist/server/base-http/node";
 import { VerificationStatement_application } from "__generated__/VerificationStatement_application.graphql";
+import { dateTimeFormat } from "functions/formatDates";
 
 function formatBytes(bytes: number, decimals = 2) {
   if (bytes <= 0) return "0 Bytes";
@@ -103,7 +104,9 @@ export const VerificationStatementComponent: React.FunctionComponent<Props> = ({
                     });
                   }}
                 />
-                <div className="uploaded-on">Uploaded on {node.createdAt}</div>
+                <div className="uploaded-on">
+                  Uploaded on {dateTimeFormat(node.createdAt, "days_string")}
+                </div>
               </>
             );
           })}
