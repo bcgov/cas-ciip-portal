@@ -54,11 +54,19 @@ describe("createAttachmentMutation", () => {
           fileSize: "2523",
           fileType: "pdf",
           applicationId: 1,
+          versionNumber: 4,
         },
       },
     });
 
+    // "schema" (resolvers, getAsset, etc., not the same thing as a postgresql) is more than a list of types--it contains the functions that interact with the db and this being abstracted away leaves confusion
+
+    // input is a collection of basically arguments you pass a mutation, here we pass it attachment which consists of file
+    // input isn't necessarily what you get back, it can be but you can write functions to give back other parts of it, extras, less
+
     expect(test).toBeDefined();
-    expect(typeof test.data.createAttachment.attachment.id).toBe("string");
+    expect(typeof test.data.createAttachment.attachmentEdge.node.id).toBe(
+      "string"
+    );
   });
 });
