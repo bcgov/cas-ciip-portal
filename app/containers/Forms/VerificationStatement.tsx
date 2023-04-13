@@ -25,10 +25,12 @@ function formatBytes(bytes: number, decimals = 2) {
 interface Props {
   application: VerificationStatement_application;
   relay: RelayProp;
+  onError: () => void;
 }
 export const VerificationStatementComponent: React.FunctionComponent<Props> = ({
   application,
   relay,
+  onError,
 }) => {
   const [isUploading, setIsUploading] = useState(false);
   const saveAttachment = async (e) => {
@@ -76,7 +78,11 @@ export const VerificationStatementComponent: React.FunctionComponent<Props> = ({
             </div>
           ) : (
             <div className="upload-button-container">
-              <FilePicker onChange={saveAttachment} name="upload-attachment">
+              <FilePicker
+                onChange={saveAttachment}
+                onError={onError}
+                name="upload-attachment"
+              >
                 Upload New Attachment
               </FilePicker>
             </div>
@@ -84,7 +90,6 @@ export const VerificationStatementComponent: React.FunctionComponent<Props> = ({
         </Col>
         <Col xs={12} style={{ margin: "20px 0 20px" }}>
           {application.attachmentsByApplicationId.edges.map(({ node }) => {
-            console.log("node", node);
             return (
               <>
                 <a href="#" className="attachment-link" key={node.id}>
@@ -145,18 +150,15 @@ export const VerificationStatementComponent: React.FunctionComponent<Props> = ({
     </div>
   );
 };
-// brianna check out relay dev tools later
 
 export default createFragmentContainer(VerificationStatementComponent, {
   application: graphql`
     fragment VerificationStatement_application on Application {
       rowId
-      # it probably won't be hard delete
       latestDraftRevision {
         versionNumber
       }
       # if we soft delete we're going to need to filter by deleted_at=null
-      # brianna will need to pass the connection info in delete mutation too
       attachmentsByApplicationId(first: 2000000000)
         @connection(
           key: "VerificationStatement_attachmentsByApplicationId"

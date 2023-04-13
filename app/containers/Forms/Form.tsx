@@ -150,7 +150,7 @@ export const FormComponent: React.FunctionComponent<Props> = ({
       </Alert>
       {showVerificationStatement && (
         <VerificationStatement
-          // relay={relay}
+          onError={onError}
           application={ciipFormResult.applicationByApplicationId}
         />
       )}
