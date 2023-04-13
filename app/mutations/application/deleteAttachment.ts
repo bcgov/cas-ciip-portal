@@ -7,7 +7,6 @@ import {
 import BaseMutation from "mutations/BaseMutation";
 
 const mutation = graphql`
-  # will need @deleteedge
   mutation deleteAttachmentMutation(
     $connections: [ID!]!
     $input: DeleteAttachmentInput!
@@ -31,3 +30,4 @@ const deleteAttachmentMutation = async (
 };
 
 export default deleteAttachmentMutation;
+export { mutation };
