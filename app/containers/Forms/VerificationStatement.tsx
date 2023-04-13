@@ -158,7 +158,6 @@ export default createFragmentContainer(VerificationStatementComponent, {
       latestDraftRevision {
         versionNumber
       }
-      # if we soft delete we're going to need to filter by deleted_at=null
       attachmentsByApplicationId(first: 2000000000)
         @connection(
           key: "VerificationStatement_attachmentsByApplicationId"
