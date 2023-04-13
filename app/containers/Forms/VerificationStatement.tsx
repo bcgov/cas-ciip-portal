@@ -1,16 +1,14 @@
 import { FilePicker } from "@button-inc/bcgov-theme";
-import LoadingSpinner from "components/LoadingSpinner";
-import React from "react";
-import { createFragmentContainer, graphql, RelayProp } from "react-relay";
-import createAttachmentMutation from "mutations/application/createAttachmentMutation";
-import { SubmitApplication_applicationRevision } from "__generated__/SubmitApplication_applicationRevision.graphql";
-import { Row, Col } from "react-bootstrap";
-import deleteAttachmentMutation from "mutations/application/deleteAttachment";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { NodeNextRequest } from "next/dist/server/base-http/node";
-import { VerificationStatement_application } from "__generated__/VerificationStatement_application.graphql";
+import LoadingSpinner from "components/LoadingSpinner";
 import { dateTimeFormat } from "functions/formatDates";
+import createAttachmentMutation from "mutations/application/createAttachmentMutation";
+import deleteAttachmentMutation from "mutations/application/deleteAttachment";
+import React, { useState } from "react";
+import { Col, Row } from "react-bootstrap";
+import { createFragmentContainer, graphql, RelayProp } from "react-relay";
+import { VerificationStatement_application } from "__generated__/VerificationStatement_application.graphql";
 
 function formatBytes(bytes: number, decimals = 2) {
   if (bytes <= 0) return "0 Bytes";
@@ -21,7 +19,7 @@ function formatBytes(bytes: number, decimals = 2) {
 
   const i = Math.floor(Math.log(bytes) / Math.log(k));
 
-  return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i];
+  return parseFloat((bytes / k ** i).toFixed(dm)) + " " + sizes[i];
 }
 
 interface Props {
@@ -32,14 +30,16 @@ export const VerificationStatementComponent: React.FunctionComponent<Props> = ({
   application,
   relay,
 }) => {
+  const [isUploading, setIsUploading] = useState(false);
   const saveAttachment = async (e) => {
+    setIsUploading(true);
     const { environment } = relay;
     const file = e.target.files[0];
     const variables = {
       connections: [application.attachmentsByApplicationId.__id],
       input: {
         attachment: {
-          file: file,
+          file,
           fileName: file.name,
           fileSize: formatBytes(file.size),
           fileType: file.type,
@@ -49,12 +49,12 @@ export const VerificationStatementComponent: React.FunctionComponent<Props> = ({
       },
     };
 
-    await createAttachmentMutation(environment, variables);
+    await createAttachmentMutation(environment, variables)
+      .catch(() => {
+        setIsUploading(false);
+      })
+      .then(() => setIsUploading(false));
   };
-
-  console.log("application", application);
-
-  const isCreatingAttachment = false; // brianna
 
   return (
     <div className="card">
@@ -67,16 +67,16 @@ export const VerificationStatementComponent: React.FunctionComponent<Props> = ({
       </div>
       <Row style={{ padding: "0 2em 2em 2em" }}>
         <Col xs={12} style={{ margin: "20px 0 20px" }}>
-          {isCreatingAttachment ? (
+          {isUploading ? (
             <div>
               <div className="loadingSpinnerContainer">
-                <LoadingSpinner></LoadingSpinner>
+                <LoadingSpinner />
                 <span>Uploading file...</span>
               </div>
             </div>
           ) : (
             <div className="upload-button-container">
-              <FilePicker onChange={saveAttachment} name={"upload-attachment"}>
+              <FilePicker onChange={saveAttachment} name="upload-attachment">
                 Upload New Attachment
               </FilePicker>
             </div>
