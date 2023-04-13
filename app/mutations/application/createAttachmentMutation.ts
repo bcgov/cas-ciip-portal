@@ -15,12 +15,14 @@ const mutation = graphql`
       attachmentEdge @appendEdge(connections: $connections) {
         cursor
         node {
+          id
           file
           fileName
           fileSize
           fileType
           createdAt
           applicationId
+          versionNumber
         }
       }
     }
