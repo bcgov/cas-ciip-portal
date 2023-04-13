@@ -13,20 +13,6 @@ perform ggircs_portal_private.upsert_policy('ciip_administrator_update_attachmen
 perform ggircs_portal_private.upsert_policy('ciip_analyst_select_attachment', 'attachment', 'select', 'ciip_analyst', 'true');
 
 industry_user_statement := '(select facility_id from ggircs_portal.application where application.id = attachment.application_id) in (select ggircs_portal_private.get_valid_application_facilities())';
--- industry_user_statement :=
---     select facility_id
---     from ggircs_portal.application
---     join ggircs_portal.attachment
---         on ggircs_portal.application.id = ggircs_portal.attachment.application_id
---     in (select ggircs_portal_private.get_valid_application_facilities());
-
-    -- industry_user_statement := (select facility_id from (
-    --     select facility_id
-    --     from ggircs_portal.application
-    --     where application.id in (select application_id from ggircs_portal.attachment)
-    --     ) as facility_ids
-    --     where facility_id
-    --     in (select ggircs_portal_private.get_valid_application_facilities()));
 
 -- ciip_industry_user RLS
 perform ggircs_portal_private.upsert_policy('ciip_industry_user_select_attachment', 'attachment', 'select', 'ciip_industry_user', industry_user_statement);

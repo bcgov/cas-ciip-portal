@@ -59,5 +59,6 @@ comment on column ggircs_portal.attachment.file_name is 'Original uploaded file 
 comment on column ggircs_portal.attachment.file_type is 'Original uploaded file type';
 comment on column ggircs_portal.attachment.file_size is 'Original uploaded file size';
 comment on column ggircs_portal.attachment.application_id is 'The id of the application (ggircs_portal.application.id) that the attachment was uploaded to';
+comment on column ggircs_portal.attachment.version_number is 'The attachment version this attachment is attached to';
 
 commit;

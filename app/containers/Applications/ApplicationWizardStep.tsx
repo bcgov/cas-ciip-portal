@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { graphql, createFragmentContainer } from "react-relay";
+import { graphql, createFragmentContainer, RelayProp } from "react-relay";
 import { ApplicationWizardStep_query } from "ApplicationWizardStep_query.graphql";
 import { Row, Col } from "react-bootstrap";
 import Form from "containers/Forms/Form";
@@ -15,6 +15,7 @@ interface Props {
   review: React.ReactNode;
   onStepComplete: () => void;
   confirmationPage: boolean;
+  relay: RelayProp;
 }
 
 /*
@@ -89,7 +90,6 @@ const ApplicationWizardStep: React.FunctionComponent<Props> = ({
       isSaved={isSaved}
       onComplete={onComplete}
       onValueChanged={onValueChanged}
-      relay={relay}
     />
   );
 

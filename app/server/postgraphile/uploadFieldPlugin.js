@@ -7,17 +7,10 @@
 // eslint-disable-next-line import/extensions
 const Upload = require("graphql-upload/Upload.js");
 
-console.log("im in upload plugin");
-
 module.exports = function UploadFieldPlugin(
   builder,
   { uploadFieldDefinitions }
 ) {
-  console.log(
-    "uploadFieldDefinitions in uploadfieldplugin",
-    uploadFieldDefinitions
-  );
-  console.log("\u0007");
   const findMatchingDefinitions = (def, table, attr) =>
     def.match({
       schema: table.namespaceName,
@@ -69,18 +62,14 @@ module.exports = function UploadFieldPlugin(
           findMatchingDefinitions(def, table, attr)
         ).length === 1;
 
-      console.log("foundUploadFieldDefinition", foundUploadFieldDefinition);
-
       if (!foundUploadFieldDefinition) {
         return field;
       }
 
-      const rainbows = Object.assign({}, field, {
+      // Replace existing GraphQL type with `Upload` type
+      return Object.assign({}, field, {
         type: getTypeByName("Upload"),
       });
-      console.log("rainbows", rainbows);
-      // Replace existing GraphQL type with `Upload` type
-      return rainbows;
     }
   );
 
