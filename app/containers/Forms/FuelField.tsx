@@ -10,21 +10,36 @@ interface Props extends FieldProps {
 
 export const FuelFieldComponent: React.FunctionComponent<Props> = (props) => {
   const { formData, schema, uiSchema, query, onChange } = props;
-  const selectedEmissionCategoryRowId = useMemo(
-    () => formData.emissionCategoryRowId,
-    [formData]
-  );
 
+  /**
+   *
+   * @param EmissionCategoryRowId
+   * @returns array of fuels that can be reported under given emission category
+   */
   const getFuelIdsByEmissionCategoryRowId = (EmissionCategoryRowId) => {
     const categoryObject = query.fuelIdsByEmissionCategoryId.edges.find(
       (edge) => edge.node.emissionCategoryId === EmissionCategoryRowId
     );
     return categoryObject?.node?.fuelIds;
   };
+
+  const selectedEmissionCategoryRowId = useMemo(
+    () => formData.emissionCategoryRowId,
+    [formData]
+  );
+  // This updates the list of fuel ids whenever the selected emission category changes.
   const emissionCategoryFuelIds = useMemo(() => {
     return getFuelIdsByEmissionCategoryRowId(selectedEmissionCategoryRowId);
   }, [selectedEmissionCategoryRowId]);
 
+  /**
+   * fuels filters the activeFuels query result by the list of emissionCategoryFuelIds to create two arrays:
+   * @property activeRowIds a list of all of the fuels that can be reported under the selected category, and are active
+   * @property activeNames a list of the fuel names corresponding to the activeRowIds
+   *
+   * These lists are used as the lists of enum values and names for the midifiedSchema, effectively filtering
+   * which fuels can be selected based on which emissions category is selected.
+   */
   const fuels = useMemo(
     () => ({
       activeRowIds: props.query.activeFuels.edges
@@ -36,7 +51,7 @@ export const FuelFieldComponent: React.FunctionComponent<Props> = (props) => {
     }),
     [props.query, emissionCategoryFuelIds]
   );
-  const fuelByRowIdSchema = useMemo(
+  const fuelRowIdSchema = useMemo(
     () => JSON.parse(JSON.stringify(schema.properties.fuelRowId)),
     [schema]
   );
@@ -47,7 +62,7 @@ export const FuelFieldComponent: React.FunctionComponent<Props> = (props) => {
       properties: {
         ...schema.properties,
         fuelRowId: {
-          ...fuelByRowIdSchema,
+          ...fuelRowIdSchema,
           enum: fuels.activeRowIds,
           enumNames: fuels.activeNames,
         },
@@ -56,6 +71,7 @@ export const FuelFieldComponent: React.FunctionComponent<Props> = (props) => {
     [schema, fuels]
   );
 
+  // When an emission category is not set, the fuel and quantity cannot be filled.
   const modifiedUiSchema = useMemo(() => {
     return {
       ...uiSchema,
@@ -65,7 +81,7 @@ export const FuelFieldComponent: React.FunctionComponent<Props> = (props) => {
       },
       quantity: {
         ...uiSchema.quantity,
-        "ui:disabled": !selectedEmissionCategoryRowId,
+        "ui:disabled": !selectedEmissionCategoryRowId, // disabled was used as the widget changes drastically in readonly, but not in disabled
       },
     };
   }, [selectedEmissionCategoryRowId]);
@@ -77,6 +93,7 @@ export const FuelFieldComponent: React.FunctionComponent<Props> = (props) => {
         node.state === "archived" && node.rowId === formData.fuelRowId
     );
 
+  // This function updates the fuel, along with the units associated with that fuel
   const handlefuelChange = (fuelRowId: number) => {
     const fuel = query.allFuels.edges.find(
       ({ node }) => node.rowId === fuelRowId
@@ -88,18 +105,28 @@ export const FuelFieldComponent: React.FunctionComponent<Props> = (props) => {
     });
   };
 
-  const handleEmissionCategoryChange = (fuel) => {
-    const { emissionCategoryRowId, fuelRowId } = fuel;
-    const newFuelIds =
-      emissionCategoryRowId && fuelRowId
-        ? getFuelIdsByEmissionCategoryRowId(emissionCategoryRowId)
-        : null;
-    if (newFuelIds && newFuelIds.includes(fuelRowId)) onChange(fuel);
+  /**
+   * on change handler for when the emissions category is changed.
+   * @param fuelFormData updated form data to be handled
+   * There are three scenarios that this function handles:
+   * 1. The emission category is changed to another category that allows the currently selected fuel ==> the fuel data remains in place
+   * 2. The emissions categotry was unset ==> the fuel, fuelUnits, and quantity are also be unset
+   * 3. The emission category is changed to one that does not contain the currently selected fuel ==> the fuel, fuelUnits, and quantity are also be unset
+   */
+  const handleEmissionCategoryChange = (fuelFormData) => {
+    const { emissionCategoryRowId, fuelRowId } = fuelFormData;
+    const newFuelIds = emissionCategoryRowId
+      ? getFuelIdsByEmissionCategoryRowId(emissionCategoryRowId)
+      : null;
+
+    // Scenario 3
+    if (newFuelIds && newFuelIds.includes(fuelRowId)) onChange(fuelFormData);
+    // Sceanrios 2 & 3
     else
       onChange({
-        ...fuel,
+        ...fuelFormData,
         fuelRowId: undefined,
-        quantity: "",
+        quantity: "", // This one needs to be an empty string for the widget to rerender without the text when the value is cleared
         fuelUnits: undefined,
       });
   };
