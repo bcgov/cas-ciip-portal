@@ -30,12 +30,12 @@ export default {
           url: async () => Promise.resolve("/graphql"),
         }),
         debounceMutationMiddleware(),
+        uploadMiddleware(),
         batchMiddleware({
           batchUrl: async () => Promise.resolve("/graphql"),
           batchTimeout: 10,
           allowMutations: false,
         }),
-        uploadMiddleware(),
       ]),
       store,
     });
