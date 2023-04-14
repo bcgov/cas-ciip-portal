@@ -24,8 +24,7 @@ select ggircs_portal_private.upsert_timestamp_columns(
   table_schema_name := 'ggircs_portal',
   table_name := 'attachment',
   add_create := true,
-  add_update := true,
-  add_delete := true);
+  add_update := true);
 
 do
 $grant$
@@ -61,5 +60,9 @@ comment on column ggircs_portal.attachment.file_type is 'Original uploaded file 
 comment on column ggircs_portal.attachment.file_size is 'Original uploaded file size';
 comment on column ggircs_portal.attachment.application_id is 'The id of the application (ggircs_portal.application.id) that the attachment was uploaded to';
 comment on column ggircs_portal.attachment.version_number is 'The attachment version this attachment is attached to';
+comment on column ggircs_portal.attachment.created_at is 'The date the attachment was updated';
+comment on column ggircs_portal.attachment.created_by is 'The person who updated the attachment';
+comment on column ggircs_portal.attachment.updated_at is 'The date the attachment was updated';
+comment on column ggircs_portal.attachment.updated_by is 'The person who updated the attachment';
 
 commit;
