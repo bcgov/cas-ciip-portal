@@ -16,7 +16,8 @@ create table ggircs_portal.attachment
   unique (application_id, version_number)
 );
 
-create unique index attachment_file on ggircs_portal.attachment(file);
+create index attachment_file on ggircs_portal.attachment(file);
+create index application_id on ggircs_portal.attachment(application_id);
 create index ggircs_portal_attachment_foreign_key on ggircs_portal.attachment(application_id, version_number);
 
 select ggircs_portal_private.upsert_timestamp_columns(
