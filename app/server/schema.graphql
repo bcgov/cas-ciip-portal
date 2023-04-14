@@ -318,40 +318,6 @@ type Application implements Node {
   ): ApplicationCiipUsersByAttachmentApplicationIdAndCreatedByManyToManyConnection!
 
   """Reads and enables pagination through a set of `CiipUser`."""
-  ciipUsersByAttachmentApplicationIdAndDeletedBy(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: CiipUserCondition
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: CiipUserFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `CiipUser`."""
-    orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
-  ): ApplicationCiipUsersByAttachmentApplicationIdAndDeletedByManyToManyConnection!
-
-  """Reads and enables pagination through a set of `CiipUser`."""
   ciipUsersByAttachmentApplicationIdAndUpdatedBy(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
@@ -1208,68 +1174,6 @@ type ApplicationCiipUsersByAttachmentApplicationIdAndCreatedByManyToManyConnecti
 type ApplicationCiipUsersByAttachmentApplicationIdAndCreatedByManyToManyEdge {
   """Reads and enables pagination through a set of `Attachment`."""
   attachmentsByCreatedBy(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: AttachmentCondition
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: AttachmentFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `Attachment`."""
-    orderBy: [AttachmentsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): AttachmentsConnection!
-
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `CiipUser` at the end of the edge."""
-  node: CiipUser
-}
-
-"""
-A connection to a list of `CiipUser` values, with data from `Attachment`.
-"""
-type ApplicationCiipUsersByAttachmentApplicationIdAndDeletedByManyToManyConnection {
-  """
-  A list of edges which contains the `CiipUser`, info from the `Attachment`, and the cursor to aid in pagination.
-  """
-  edges: [ApplicationCiipUsersByAttachmentApplicationIdAndDeletedByManyToManyEdge!]!
-
-  """A list of `CiipUser` objects."""
-  nodes: [CiipUser]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """The count of *all* `CiipUser` you could get from the connection."""
-  totalCount: Int!
-}
-
-"""A `CiipUser` edge in the connection, with data from `Attachment`."""
-type ApplicationCiipUsersByAttachmentApplicationIdAndDeletedByManyToManyEdge {
-  """Reads and enables pagination through a set of `Attachment`."""
-  attachmentsByDeletedBy(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -4351,14 +4255,13 @@ type Attachment implements Node {
   ciipUserByCreatedBy: CiipUser
 
   """Reads a single `CiipUser` that is related to this `Attachment`."""
-  ciipUserByDeletedBy: CiipUser
-
-  """Reads a single `CiipUser` that is related to this `Attachment`."""
   ciipUserByUpdatedBy: CiipUser
+
+  """The date the attachment was updated"""
   createdAt: Datetime!
+
+  """The person who updated the attachment"""
   createdBy: Int
-  deletedAt: Datetime
-  deletedBy: Int
 
   """Description of the attachment"""
   description: String
@@ -4384,7 +4287,11 @@ type Attachment implements Node {
 
   """Unique ID for the attachment"""
   rowId: Int!
+
+  """The date the attachment was updated"""
   updatedAt: Datetime!
+
+  """The person who updated the attachment"""
   updatedBy: Int
 
   """The attachment version this attachment is attached to"""
@@ -4404,12 +4311,6 @@ input AttachmentCondition {
 
   """Checks for equality with the object’s `createdBy` field."""
   createdBy: Int
-
-  """Checks for equality with the object’s `deletedAt` field."""
-  deletedAt: Datetime
-
-  """Checks for equality with the object’s `deletedBy` field."""
-  deletedBy: Int
 
   """Checks for equality with the object’s `description` field."""
   description: String
@@ -4466,12 +4367,6 @@ input AttachmentFilter {
   """A related `ciipUserByCreatedBy` exists."""
   ciipUserByCreatedByExists: Boolean
 
-  """Filter by the object’s `ciipUserByDeletedBy` relation."""
-  ciipUserByDeletedBy: CiipUserFilter
-
-  """A related `ciipUserByDeletedBy` exists."""
-  ciipUserByDeletedByExists: Boolean
-
   """Filter by the object’s `ciipUserByUpdatedBy` relation."""
   ciipUserByUpdatedBy: CiipUserFilter
 
@@ -4483,12 +4378,6 @@ input AttachmentFilter {
 
   """Filter by the object’s `createdBy` field."""
   createdBy: IntFilter
-
-  """Filter by the object’s `deletedAt` field."""
-  deletedAt: DatetimeFilter
-
-  """Filter by the object’s `deletedBy` field."""
-  deletedBy: IntFilter
 
   """Filter by the object’s `description` field."""
   description: StringFilter
@@ -4530,10 +4419,12 @@ input AttachmentInput {
   The id of the application (ggircs_portal.application.id) that the attachment was uploaded to
   """
   applicationId: Int!
+
+  """The date the attachment was updated"""
   createdAt: Datetime
+
+  """The person who updated the attachment"""
   createdBy: Int
-  deletedAt: Datetime
-  deletedBy: Int
 
   """Description of the attachment"""
   description: String
@@ -4551,7 +4442,11 @@ input AttachmentInput {
 
   """Original uploaded file type"""
   fileType: String
+
+  """The date the attachment was updated"""
   updatedAt: Datetime
+
+  """The person who updated the attachment"""
   updatedBy: Int
 
   """The attachment version this attachment is attached to"""
@@ -4566,10 +4461,12 @@ input AttachmentPatch {
   The id of the application (ggircs_portal.application.id) that the attachment was uploaded to
   """
   applicationId: Int
+
+  """The date the attachment was updated"""
   createdAt: Datetime
+
+  """The person who updated the attachment"""
   createdBy: Int
-  deletedAt: Datetime
-  deletedBy: Int
 
   """Description of the attachment"""
   description: String
@@ -4587,7 +4484,11 @@ input AttachmentPatch {
 
   """Original uploaded file type"""
   fileType: String
+
+  """The date the attachment was updated"""
   updatedAt: Datetime
+
+  """The person who updated the attachment"""
   updatedBy: Int
 
   """The attachment version this attachment is attached to"""
@@ -4628,10 +4529,6 @@ enum AttachmentsOrderBy {
   CREATED_AT_DESC
   CREATED_BY_ASC
   CREATED_BY_DESC
-  DELETED_AT_ASC
-  DELETED_AT_DESC
-  DELETED_BY_ASC
-  DELETED_BY_DESC
   DESCRIPTION_ASC
   DESCRIPTION_DESC
   FILE_ASC
@@ -6645,40 +6542,6 @@ type CiipUser implements Node {
   ): CiipUserApplicationsByAttachmentCreatedByAndApplicationIdManyToManyConnection!
 
   """Reads and enables pagination through a set of `Application`."""
-  applicationsByAttachmentDeletedByAndApplicationId(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: ApplicationCondition
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: ApplicationFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `Application`."""
-    orderBy: [ApplicationsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): CiipUserApplicationsByAttachmentDeletedByAndApplicationIdManyToManyConnection!
-
-  """Reads and enables pagination through a set of `Application`."""
   applicationsByAttachmentUpdatedByAndApplicationId(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
@@ -6952,40 +6815,6 @@ type CiipUser implements Node {
 
   """Reads and enables pagination through a set of `Attachment`."""
   attachmentsByCreatedBy(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: AttachmentCondition
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: AttachmentFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `Attachment`."""
-    orderBy: [AttachmentsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): AttachmentsConnection!
-
-  """Reads and enables pagination through a set of `Attachment`."""
-  attachmentsByDeletedBy(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -7742,40 +7571,6 @@ type CiipUser implements Node {
   ): CiipUserCiipUsersByApplicationRevisionUpdatedByAndDeletedByManyToManyConnection!
 
   """Reads and enables pagination through a set of `CiipUser`."""
-  ciipUsersByAttachmentCreatedByAndDeletedBy(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: CiipUserCondition
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: CiipUserFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `CiipUser`."""
-    orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
-  ): CiipUserCiipUsersByAttachmentCreatedByAndDeletedByManyToManyConnection!
-
-  """Reads and enables pagination through a set of `CiipUser`."""
   ciipUsersByAttachmentCreatedByAndUpdatedBy(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
@@ -7810,74 +7605,6 @@ type CiipUser implements Node {
   ): CiipUserCiipUsersByAttachmentCreatedByAndUpdatedByManyToManyConnection!
 
   """Reads and enables pagination through a set of `CiipUser`."""
-  ciipUsersByAttachmentDeletedByAndCreatedBy(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: CiipUserCondition
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: CiipUserFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `CiipUser`."""
-    orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
-  ): CiipUserCiipUsersByAttachmentDeletedByAndCreatedByManyToManyConnection!
-
-  """Reads and enables pagination through a set of `CiipUser`."""
-  ciipUsersByAttachmentDeletedByAndUpdatedBy(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: CiipUserCondition
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: CiipUserFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `CiipUser`."""
-    orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
-  ): CiipUserCiipUsersByAttachmentDeletedByAndUpdatedByManyToManyConnection!
-
-  """Reads and enables pagination through a set of `CiipUser`."""
   ciipUsersByAttachmentUpdatedByAndCreatedBy(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
@@ -7910,40 +7637,6 @@ type CiipUser implements Node {
     """The method to use when ordering `CiipUser`."""
     orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
   ): CiipUserCiipUsersByAttachmentUpdatedByAndCreatedByManyToManyConnection!
-
-  """Reads and enables pagination through a set of `CiipUser`."""
-  ciipUsersByAttachmentUpdatedByAndDeletedBy(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: CiipUserCondition
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: CiipUserFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `CiipUser`."""
-    orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
-  ): CiipUserCiipUsersByAttachmentUpdatedByAndDeletedByManyToManyConnection!
 
   """Reads and enables pagination through a set of `CiipUser`."""
   ciipUsersByBenchmarkCreatedByAndDeletedBy(
@@ -14705,68 +14398,6 @@ type CiipUserApplicationsByAttachmentCreatedByAndApplicationIdManyToManyEdge {
 """
 A connection to a list of `Application` values, with data from `Attachment`.
 """
-type CiipUserApplicationsByAttachmentDeletedByAndApplicationIdManyToManyConnection {
-  """
-  A list of edges which contains the `Application`, info from the `Attachment`, and the cursor to aid in pagination.
-  """
-  edges: [CiipUserApplicationsByAttachmentDeletedByAndApplicationIdManyToManyEdge!]!
-
-  """A list of `Application` objects."""
-  nodes: [Application]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """The count of *all* `Application` you could get from the connection."""
-  totalCount: Int!
-}
-
-"""A `Application` edge in the connection, with data from `Attachment`."""
-type CiipUserApplicationsByAttachmentDeletedByAndApplicationIdManyToManyEdge {
-  """Reads and enables pagination through a set of `Attachment`."""
-  attachmentsByApplicationId(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: AttachmentCondition
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: AttachmentFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `Attachment`."""
-    orderBy: [AttachmentsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): AttachmentsConnection!
-
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `Application` at the end of the edge."""
-  node: Application
-}
-
-"""
-A connection to a list of `Application` values, with data from `Attachment`.
-"""
 type CiipUserApplicationsByAttachmentUpdatedByAndApplicationIdManyToManyConnection {
   """
   A list of edges which contains the `Application`, info from the `Attachment`, and the cursor to aid in pagination.
@@ -16051,68 +15682,6 @@ type CiipUserCiipUsersByApplicationRevisionUpdatedByAndDeletedByManyToManyEdge {
 """
 A connection to a list of `CiipUser` values, with data from `Attachment`.
 """
-type CiipUserCiipUsersByAttachmentCreatedByAndDeletedByManyToManyConnection {
-  """
-  A list of edges which contains the `CiipUser`, info from the `Attachment`, and the cursor to aid in pagination.
-  """
-  edges: [CiipUserCiipUsersByAttachmentCreatedByAndDeletedByManyToManyEdge!]!
-
-  """A list of `CiipUser` objects."""
-  nodes: [CiipUser]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """The count of *all* `CiipUser` you could get from the connection."""
-  totalCount: Int!
-}
-
-"""A `CiipUser` edge in the connection, with data from `Attachment`."""
-type CiipUserCiipUsersByAttachmentCreatedByAndDeletedByManyToManyEdge {
-  """Reads and enables pagination through a set of `Attachment`."""
-  attachmentsByDeletedBy(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: AttachmentCondition
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: AttachmentFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `Attachment`."""
-    orderBy: [AttachmentsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): AttachmentsConnection!
-
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `CiipUser` at the end of the edge."""
-  node: CiipUser
-}
-
-"""
-A connection to a list of `CiipUser` values, with data from `Attachment`.
-"""
 type CiipUserCiipUsersByAttachmentCreatedByAndUpdatedByManyToManyConnection {
   """
   A list of edges which contains the `CiipUser`, info from the `Attachment`, and the cursor to aid in pagination.
@@ -16131,130 +15700,6 @@ type CiipUserCiipUsersByAttachmentCreatedByAndUpdatedByManyToManyConnection {
 
 """A `CiipUser` edge in the connection, with data from `Attachment`."""
 type CiipUserCiipUsersByAttachmentCreatedByAndUpdatedByManyToManyEdge {
-  """Reads and enables pagination through a set of `Attachment`."""
-  attachmentsByUpdatedBy(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: AttachmentCondition
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: AttachmentFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `Attachment`."""
-    orderBy: [AttachmentsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): AttachmentsConnection!
-
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `CiipUser` at the end of the edge."""
-  node: CiipUser
-}
-
-"""
-A connection to a list of `CiipUser` values, with data from `Attachment`.
-"""
-type CiipUserCiipUsersByAttachmentDeletedByAndCreatedByManyToManyConnection {
-  """
-  A list of edges which contains the `CiipUser`, info from the `Attachment`, and the cursor to aid in pagination.
-  """
-  edges: [CiipUserCiipUsersByAttachmentDeletedByAndCreatedByManyToManyEdge!]!
-
-  """A list of `CiipUser` objects."""
-  nodes: [CiipUser]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """The count of *all* `CiipUser` you could get from the connection."""
-  totalCount: Int!
-}
-
-"""A `CiipUser` edge in the connection, with data from `Attachment`."""
-type CiipUserCiipUsersByAttachmentDeletedByAndCreatedByManyToManyEdge {
-  """Reads and enables pagination through a set of `Attachment`."""
-  attachmentsByCreatedBy(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: AttachmentCondition
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: AttachmentFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `Attachment`."""
-    orderBy: [AttachmentsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): AttachmentsConnection!
-
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `CiipUser` at the end of the edge."""
-  node: CiipUser
-}
-
-"""
-A connection to a list of `CiipUser` values, with data from `Attachment`.
-"""
-type CiipUserCiipUsersByAttachmentDeletedByAndUpdatedByManyToManyConnection {
-  """
-  A list of edges which contains the `CiipUser`, info from the `Attachment`, and the cursor to aid in pagination.
-  """
-  edges: [CiipUserCiipUsersByAttachmentDeletedByAndUpdatedByManyToManyEdge!]!
-
-  """A list of `CiipUser` objects."""
-  nodes: [CiipUser]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """The count of *all* `CiipUser` you could get from the connection."""
-  totalCount: Int!
-}
-
-"""A `CiipUser` edge in the connection, with data from `Attachment`."""
-type CiipUserCiipUsersByAttachmentDeletedByAndUpdatedByManyToManyEdge {
   """Reads and enables pagination through a set of `Attachment`."""
   attachmentsByUpdatedBy(
     """Read all values in the set after (below) this cursor."""
@@ -16319,68 +15764,6 @@ type CiipUserCiipUsersByAttachmentUpdatedByAndCreatedByManyToManyConnection {
 type CiipUserCiipUsersByAttachmentUpdatedByAndCreatedByManyToManyEdge {
   """Reads and enables pagination through a set of `Attachment`."""
   attachmentsByCreatedBy(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: AttachmentCondition
-
-    """
-    A filter to be used in determining which values should be returned by the collection.
-    """
-    filter: AttachmentFilter
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `Attachment`."""
-    orderBy: [AttachmentsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): AttachmentsConnection!
-
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `CiipUser` at the end of the edge."""
-  node: CiipUser
-}
-
-"""
-A connection to a list of `CiipUser` values, with data from `Attachment`.
-"""
-type CiipUserCiipUsersByAttachmentUpdatedByAndDeletedByManyToManyConnection {
-  """
-  A list of edges which contains the `CiipUser`, info from the `Attachment`, and the cursor to aid in pagination.
-  """
-  edges: [CiipUserCiipUsersByAttachmentUpdatedByAndDeletedByManyToManyEdge!]!
-
-  """A list of `CiipUser` objects."""
-  nodes: [CiipUser]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """The count of *all* `CiipUser` you could get from the connection."""
-  totalCount: Int!
-}
-
-"""A `CiipUser` edge in the connection, with data from `Attachment`."""
-type CiipUserCiipUsersByAttachmentUpdatedByAndDeletedByManyToManyEdge {
-  """Reads and enables pagination through a set of `Attachment`."""
-  attachmentsByDeletedBy(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -23312,12 +22695,6 @@ input CiipUserFilter {
   """Some related `attachmentsByCreatedBy` exist."""
   attachmentsByCreatedByExist: Boolean
 
-  """Filter by the object’s `attachmentsByDeletedBy` relation."""
-  attachmentsByDeletedBy: CiipUserToManyAttachmentFilter
-
-  """Some related `attachmentsByDeletedBy` exist."""
-  attachmentsByDeletedByExist: Boolean
-
   """Filter by the object’s `attachmentsByUpdatedBy` relation."""
   attachmentsByUpdatedBy: CiipUserToManyAttachmentFilter
 
@@ -26838,9 +26215,6 @@ type CreateAttachmentPayload {
   ciipUserByCreatedBy: CiipUser
 
   """Reads a single `CiipUser` that is related to this `Attachment`."""
-  ciipUserByDeletedBy: CiipUser
-
-  """Reads a single `CiipUser` that is related to this `Attachment`."""
   ciipUserByUpdatedBy: CiipUser
 
   """
@@ -28257,9 +27631,6 @@ type DeleteAttachmentPayload {
 
   """Reads a single `CiipUser` that is related to this `Attachment`."""
   ciipUserByCreatedBy: CiipUser
-
-  """Reads a single `CiipUser` that is related to this `Attachment`."""
-  ciipUserByDeletedBy: CiipUser
 
   """Reads a single `CiipUser` that is related to this `Attachment`."""
   ciipUserByUpdatedBy: CiipUser
@@ -45932,9 +45303,6 @@ type UpdateAttachmentPayload {
 
   """Reads a single `CiipUser` that is related to this `Attachment`."""
   ciipUserByCreatedBy: CiipUser
-
-  """Reads a single `CiipUser` that is related to this `Attachment`."""
-  ciipUserByDeletedBy: CiipUser
 
   """Reads a single `CiipUser` that is related to this `Attachment`."""
   ciipUserByUpdatedBy: CiipUser

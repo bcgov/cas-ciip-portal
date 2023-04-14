@@ -24,7 +24,8 @@ select ggircs_portal_private.upsert_timestamp_columns(
   table_schema_name := 'ggircs_portal',
   table_name := 'attachment',
   add_create := true,
-  add_update := true);
+  add_update := true,
+  add_delete := false);
 
 do
 $grant$

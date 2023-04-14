@@ -1,3 +1,4 @@
+/* eslint-disable */
 /**
  * File copied from https://github.com/graphile-contrib/postgraphile-plugin-upload-field/blob/5aca056eacda9a9206323af49dd9528e607e20a7/src/UploadFieldPlugin.js
  * And updated to support the newer export style from graphql-upload
