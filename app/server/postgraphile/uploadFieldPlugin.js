@@ -89,12 +89,8 @@ module.exports = function UploadFieldPlugin(
     // we fall back to a default resolver.
     const defaultResolver = (obj) => obj[fieldName];
 
-    console.log("defaultResolver", defaultResolver);
-
     // Extract the old resolver from `field`
     const { resolve: oldResolve = defaultResolver, ...rest } = field;
-
-    console.log("field", field);
 
     const uploadResolversByFieldName = introspectionResultsByKind.attribute
       .filter((attr) => attr.classId === table.id)
