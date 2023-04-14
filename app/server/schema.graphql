@@ -4386,6 +4386,8 @@ type Attachment implements Node {
   rowId: Int!
   updatedAt: Datetime!
   updatedBy: Int
+
+  """The attachment version this attachment is attached to"""
   versionNumber: Int
 }
 
@@ -4551,6 +4553,8 @@ input AttachmentInput {
   fileType: String
   updatedAt: Datetime
   updatedBy: Int
+
+  """The attachment version this attachment is attached to"""
   versionNumber: Int
 }
 
@@ -4585,6 +4589,8 @@ input AttachmentPatch {
   fileType: String
   updatedAt: Datetime
   updatedBy: Int
+
+  """The attachment version this attachment is attached to"""
   versionNumber: Int
 }
 
@@ -28199,6 +28205,8 @@ input DeleteAttachmentByApplicationIdAndVersionNumberInput {
   payload verbatim. May be used to track mutations by the client.
   """
   clientMutationId: String
+
+  """The attachment version this attachment is attached to"""
   versionNumber: Int!
 }
 
@@ -45862,6 +45870,8 @@ input UpdateAttachmentByApplicationIdAndVersionNumberInput {
   payload verbatim. May be used to track mutations by the client.
   """
   clientMutationId: String
+
+  """The attachment version this attachment is attached to"""
   versionNumber: Int!
 }
 
