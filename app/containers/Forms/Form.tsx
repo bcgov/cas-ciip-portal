@@ -28,6 +28,7 @@ import NaicsField from "./NaicsField";
 import productFieldValidation from "./validation/productFieldValidation";
 import MissingProductsComponent from "components/product/MissingProductsComponent";
 import { Form_ciipFormResult } from "Form_ciipFormResult.graphql";
+import VerificationStatement from "./VerificationStatement";
 
 interface Props {
   query: Form_query;
@@ -130,6 +131,11 @@ export const FormComponent: React.FunctionComponent<Props> = ({
       return result?.requiresEmissionAllocation === true;
     });
 
+  let showVerificationStatement;
+  if (ciipApplicationWizardByFormId?.formPosition === 3) {
+    showVerificationStatement = true;
+  }
+
   const customValidation = (formData, errors) => {
     errors = productFieldValidation(formData, errors);
     return errors;
@@ -142,6 +148,12 @@ export const FormComponent: React.FunctionComponent<Props> = ({
       <Alert variant="info">
         Note: Your form input will be saved automatically as you type.
       </Alert>
+      {showVerificationStatement && (
+        <VerificationStatement
+          onError={onError}
+          application={ciipFormResult.applicationByApplicationId}
+        />
+      )}
       <div className="card">
         <div className="card-header">
           <Row>
@@ -228,6 +240,12 @@ export const FormComponent: React.FunctionComponent<Props> = ({
           font-size: 30px;
           display: inline-block;
         }
+        .add-button-container {
+          height: 100%;
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+        }
       `}</style>
     </div>
   );
@@ -273,6 +291,7 @@ export default createFragmentContainer(FormComponent, {
         }
       }
       applicationByApplicationId {
+        rowId
         latestDraftRevision {
           totalCiipEmissions
           naicsCode {
@@ -281,6 +300,7 @@ export default createFragmentContainer(FormComponent, {
             ...ProductsArrayField_naicsProducts
           }
         }
+        ...VerificationStatement_application
       }
     }
   `,

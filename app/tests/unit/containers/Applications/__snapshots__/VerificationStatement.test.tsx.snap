@@ -1,0 +1,159 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The Attachment Upload Component should match the snapshot 1`] = `
+<div
+  className="jsx-2923195881 card"
+>
+  <div
+    className="jsx-2923195881 card-header"
+  >
+    <Row
+      noGutters={false}
+    >
+      <Col
+        md={8}
+      >
+        <h1
+          className="jsx-2923195881"
+        >
+          Verification Statement
+        </h1>
+      </Col>
+    </Row>
+  </div>
+  <Row
+    noGutters={false}
+    style={
+      Object {
+        "padding": "0 2em 2em 2em",
+      }
+    }
+  >
+    <Col
+      style={
+        Object {
+          "margin": "20px 0 20px",
+        }
+      }
+      xs={12}
+    >
+      <div
+        className="jsx-2923195881 upload-button-container"
+      >
+        <FilePicker
+          name="upload-attachment"
+          onChange={[Function]}
+        >
+          Upload New Attachment
+        </FilePicker>
+      </div>
+    </Col>
+    <Col
+      style={
+        Object {
+          "margin": "20px 0 20px",
+        }
+      }
+      xs={12}
+    >
+      <a
+        className="jsx-2923195881 attachment-link"
+        href="#"
+        key="test-id"
+      >
+        test-filename
+      </a>
+       
+      <FontAwesomeIcon
+        border={false}
+        className=""
+        fixedWidth={false}
+        flip={null}
+        icon={
+          Object {
+            "icon": Array [
+              448,
+              512,
+              Array [],
+              "f1f8",
+              "M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z",
+            ],
+            "iconName": "trash",
+            "prefix": "fas",
+          }
+        }
+        inverse={false}
+        listItem={false}
+        mask={null}
+        onClick={[Function]}
+        pull={null}
+        pulse={false}
+        rotation={null}
+        size={null}
+        spin={false}
+        swapOpacity={false}
+        symbol={false}
+        title=""
+        transform={null}
+      />
+      <div
+        className="jsx-2923195881 uploaded-on"
+      >
+        Uploaded on 
+        Invalid date
+      </div>
+      <a
+        className="jsx-2923195881 attachment-link"
+        href="#"
+        key="test-id-2"
+      >
+        test-filename-2
+      </a>
+       
+      <FontAwesomeIcon
+        border={false}
+        className=""
+        fixedWidth={false}
+        flip={null}
+        icon={
+          Object {
+            "icon": Array [
+              448,
+              512,
+              Array [],
+              "f1f8",
+              "M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z",
+            ],
+            "iconName": "trash",
+            "prefix": "fas",
+          }
+        }
+        inverse={false}
+        listItem={false}
+        mask={null}
+        onClick={[Function]}
+        pull={null}
+        pulse={false}
+        rotation={null}
+        size={null}
+        spin={false}
+        swapOpacity={false}
+        symbol={false}
+        title=""
+        transform={null}
+      />
+      <div
+        className="jsx-2923195881 uploaded-on"
+      >
+        Uploaded on 
+        January 31st, 2001
+      </div>
+    </Col>
+  </Row>
+  <JSXStyle
+    id="2923195881"
+  >
+    .card.jsx-2923195881{border-color:#a4a4a4;background-color:#f4f4f4;}.card-header.jsx-2923195881{background-color:#036;color:#fff;}.card-header.jsx-2923195881 h1.jsx-2923195881{margin-bottom:0;font-size:30px;display:inline-block;}.upload-button-container.jsx-2923195881{margin top:2em;height:100%;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:space-around;-webkit-justify-content:space-around;-ms-flex-pack:space-around;justify-content:space-around;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}.attachment-link.jsx-2923195881{font-size:1.25em;}.uploaded-on.jsx-2923195881{font-style:italic;font-size:1.25em;}
+  </JSXStyle>
+</div>
+`;

@@ -445,3 +445,5 @@ function_session [function_session@v2.20.0] 2023-03-15T21:04:31Z Dylan Leard <dy
 tables/ciip_user_organisation_001_bceid [tables/ciip_user_organisation] 2023-03-15T21:06:40Z Dylan Leard <dylan@button.is> # Migration: add column for bceid_business_name from jwt token
 policies/ciip_user_policies_004_analysts_update_reporters [policies/ciip_user_policies_003_restrict_permissions] 2023-04-03T21:45:35Z Dylan Leard <dylan@button.is> # Migration: allow analysts to update reporter user data to allow re-login with a new bceid
 views/ciip_production [views/ciip_production@v2.20.0] 2023-04-11T22:37:18Z Dylan Leard <dylan@button.is> # Retrieve the product_name field from the product table
+tables/attachment 2023-04-03T20:56:53Z Brianna Cerkiewicz <briannacerkiewicz@pop-os> #  Create table for attachments
+attachment_policies 2023-04-05T22:42:21Z Brianna Cerkiewicz <briannacerkiewicz@pop-os> #  Row level security policies for the attachments table

@@ -4,6 +4,7 @@ import {
   urlMiddleware,
   batchMiddleware,
   cacheMiddleware,
+  uploadMiddleware,
 } from "react-relay-network-modern/node8";
 import debounceMutationMiddleware from "./debounce-mutations";
 
@@ -29,6 +30,7 @@ export default {
           url: async () => Promise.resolve("/graphql"),
         }),
         debounceMutationMiddleware(),
+        uploadMiddleware(),
         batchMiddleware({
           batchUrl: async () => Promise.resolve("/graphql"),
           batchTimeout: 10,

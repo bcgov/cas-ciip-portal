@@ -1,3 +1,4 @@
+{{- if not .Values.db.restore.enabled }}
 apiVersion: batch/v1
 kind: Job
 metadata:
@@ -41,5 +42,7 @@ spec:
             - -c
             - |
               set -xeuo pipefail;
-              /script.sh {{ .Release.Namespace | quote }} cas-ciip-portal-documents;
+              /script.sh {{ .Release.Namespace | quote }} cif-backups;
+              /script.sh {{ .Release.Namespace | quote }} cif-documents;
       restartPolicy: Never
+{{- end }}
