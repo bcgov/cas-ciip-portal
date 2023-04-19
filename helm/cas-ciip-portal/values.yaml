@@ -11,6 +11,10 @@ image:
     repository: gcr.io/ggl-cas-storage/cas-postgres
     pullPolicy: Always
     tag: "0.1.0"
+  casShelf:
+    repository: artifacts.developer.gov.bc.ca/google-docker-remote/ggl-cas-storage/cas-shelf-tfe-add-app
+    tag: "0.1"
+    pullPolicy: IfNotPresent
 
 replicas: 2
 port: 3000
