@@ -1,4 +1,3 @@
-{{- if not .Values.db.restore.enabled }}
 apiVersion: batch/v1
 kind: Job
 metadata:
@@ -13,7 +12,6 @@ spec:
       labels: {{ include "cas-ciip-portal.labels" . | nindent 8 }}
     spec:
       activeDeadlineSeconds: 1200
-      imagePullSecrets: {{ include "cas-ciip-portal.imagePullSecrets" . | nindent 8 }}
       containers:
         - name: bucket-provisioner
           resources:
@@ -45,4 +43,3 @@ spec:
               /script.sh {{ .Release.Namespace | quote }} cif-backups;
               /script.sh {{ .Release.Namespace | quote }} cif-documents;
       restartPolicy: Never
-{{- end }}
