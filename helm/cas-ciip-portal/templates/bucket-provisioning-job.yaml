@@ -40,6 +40,6 @@ spec:
             - -c
             - |
               set -xeuo pipefail;
-              /script.sh {{ .Release.Namespace | quote }} cif-backups;
-              /script.sh {{ .Release.Namespace | quote }} cif-documents;
+              /script.sh {{ .Release.Namespace | quote }} ciip-portal-backups;
+              /script.sh {{ .Release.Namespace | quote }} ciip-portal-documents;
       restartPolicy: Never
