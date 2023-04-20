@@ -140,7 +140,7 @@ spec:
           - name: ATTACHMENTS_BUCKET
             valueFrom:
               secretKeyRef:
-                name: gcp-{{ .Release.Namespace }}-cas-ciip-portal-documents-service-account-key
+                name: gcp-{{ .Release.Namespace }}-ciip-documents-service-account-key
                 key: bucket_name
         ports:
         - containerPort: {{ .Values.port }}
