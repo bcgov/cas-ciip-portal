@@ -40,6 +40,6 @@ spec:
             - -c
             - |
               set -xeuo pipefail;
-              /script.sh {{ .Release.Namespace | quote }} cas-ciip-portal-backups;
-              /script.sh {{ .Release.Namespace | quote }} cas-ciip-portal-documents;
+              /script.sh {{ .Release.Namespace | quote }} ciip-backups;
+              /script.sh {{ .Release.Namespace | quote }} ciip-documents;
       restartPolicy: Never
