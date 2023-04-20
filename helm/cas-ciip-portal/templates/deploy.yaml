@@ -187,7 +187,7 @@ spec:
 {{- end }}
         - name: gcs-documents-credentials
           secret:
-            secretName: gcp-{{ .Release.Namespace }}-cas-ciip-portal-documents-service-account-key
+            secretName: gcp-{{ .Release.Namespace }}-ciip-documents-service-account-key
             items:
             - key: credentials.json
               path: attachments-credentials.json
