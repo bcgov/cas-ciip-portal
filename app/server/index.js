@@ -118,7 +118,7 @@ app.prepare().then(async () => {
 
   server.use(userMiddleware);
 
-  server.use(graphqlUploadExpress());
+  server.use(graphqlUploadExpress({ maxFileSize: 500000000 }));
 
   server.use(attachmentDownloadRouter);
 
