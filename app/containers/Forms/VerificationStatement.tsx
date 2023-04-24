@@ -9,6 +9,8 @@ import React, { useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { createFragmentContainer, graphql, RelayProp } from "react-relay";
 import { VerificationStatement_application } from "__generated__/VerificationStatement_application.graphql";
+import Link from "next/link";
+import { getAttachmentDownloadRoute } from "routes";
 
 function formatBytes(bytes: number, decimals = 2) {
   if (bytes <= 0) return "0 Bytes";
@@ -92,23 +94,25 @@ export const VerificationStatementComponent: React.FunctionComponent<Props> = ({
           {application.attachmentsByApplicationId.edges.map(({ node }) => {
             return (
               <>
-                <a href="#" className="attachment-link" key={node.id}>
-                  {node.fileName}
-                </a>{" "}
-                <FontAwesomeIcon
-                  icon={faTrash}
-                  onClick={() => {
-                    const { environment } = relay;
-                    return deleteAttachmentMutation(environment, {
-                      connections: [
-                        application.attachmentsByApplicationId.__id,
-                      ],
-                      input: {
-                        id: node.id,
-                      },
-                    });
-                  }}
-                />
+                <div className="attachment-link" key={node.id}>
+                  <Link href={getAttachmentDownloadRoute(node.id)} passHref>
+                    {node.fileName}
+                  </Link>{" "}
+                  <FontAwesomeIcon
+                    icon={faTrash}
+                    onClick={() => {
+                      const { environment } = relay;
+                      return deleteAttachmentMutation(environment, {
+                        connections: [
+                          application.attachmentsByApplicationId.__id,
+                        ],
+                        input: {
+                          id: node.id,
+                        },
+                      });
+                    }}
+                  />
+                </div>
                 <div className="uploaded-on">
                   Uploaded on {dateTimeFormat(node.createdAt, "days_string")}
                 </div>

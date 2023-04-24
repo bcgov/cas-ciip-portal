@@ -26,6 +26,9 @@ const delay = require("delay");
 const session = require("./middleware/session");
 const ssoMiddleware = require("./middleware/sso");
 const userMiddleware = require("./middleware/user");
+const {
+  attachmentDownloadRouter,
+} = require("./middleware/attachmentDownloadRouter");
 const { resolveFileUpload } = require("./postgraphile/resolveFileUpload");
 // graphql-upload exports the `.js` in the path: https://github.com/jaydenseric/graphql-upload/blob/aa15ee0eb2b3a4e2421d098393bbbf9252f1a8c7/package.json#L41
 // eslint-disable-next-line import/extensions
@@ -116,6 +119,8 @@ app.prepare().then(async () => {
   server.use(userMiddleware);
 
   server.use(graphqlUploadExpress());
+
+  server.use(attachmentDownloadRouter);
 
   server.use(
     postgraphile(pgPool, process.env.DATABASE_SCHEMA || "ggircs_portal", {
