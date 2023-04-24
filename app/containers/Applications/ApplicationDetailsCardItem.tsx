@@ -137,6 +137,10 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
     ...customFragmentFields,
   };
 
+  const attachmentName = formResult.tom.attachmentsByApplicationId.edges[0].node.fileName;
+  console.log(attachmentName)
+
+
   return (
     <Card
       style={{ width: "100%", marginBottom: "10px" }}
@@ -161,6 +165,8 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
       </Card.Header>
       <Collapse in={!isOpen}>
         <Card.Body>
+          {formJsonByFormId.name === "Production and Emissions Allocation" &&
+            <div>"attachment name" {attachmentName}</div>}
           <JsonSchemaForm
             omitExtraData
             liveOmit
@@ -225,6 +231,17 @@ export default createFragmentContainer(ApplicationDetailsCardItemComponent, {
         name
         slug
         formJson
+      }
+      tom: applicationByApplicationId {
+        attachmentsByApplicationId {
+          edges {
+            node {
+              file
+              id
+              fileName
+            }
+          }
+        }
       }
       applicationRevisionByApplicationIdAndVersionNumber {
         totalCiipEmissions
