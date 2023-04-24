@@ -8,9 +8,6 @@ describe("The FuelRowIdField component", () => {
   it("renders an active fuel as a StringField", () => {
     const testQuery: FuelRowIdField_query = {
       " $refType": "FuelRowIdField_query",
-      activeFuels: {
-        edges: [{ node: { name: "active fuel", rowId: 1 } }],
-      },
       archivedFuels: {
         edges: [{ node: { name: "archived fuel", rowId: 2 } }],
       },
@@ -28,9 +25,6 @@ describe("The FuelRowIdField component", () => {
   it("renders an undefined form data as a StringField", () => {
     const testQuery: FuelRowIdField_query = {
       " $refType": "FuelRowIdField_query",
-      activeFuels: {
-        edges: [{ node: { name: "active fuel", rowId: 1 } }],
-      },
       archivedFuels: {
         edges: [{ node: { name: "archived fuel", rowId: 2 } }],
       },
@@ -48,9 +42,6 @@ describe("The FuelRowIdField component", () => {
   it("renders an archived fuel as an input group", () => {
     const testQuery: FuelRowIdField_query = {
       " $refType": "FuelRowIdField_query",
-      activeFuels: {
-        edges: [{ node: { name: "active fuel", rowId: 1 } }],
-      },
       archivedFuels: {
         edges: [{ node: { name: "archived fuel", rowId: 2 } }],
       },

@@ -23,6 +23,16 @@ exports[`The Fuel Field renders a disabled form when the form data fuel is archi
   query={
     Object {
       " $refType": "FuelField_query",
+      "activeFuels": Object {
+        "edges": Array [
+          Object {
+            "node": Object {
+              "name": "test_fuel",
+              "rowId": 2,
+            },
+          },
+        ],
+      },
       "allFuels": Object {
         "edges": Array [
           Object {
@@ -30,6 +40,18 @@ exports[`The Fuel Field renders a disabled form when the form data fuel is archi
               "rowId": 1,
               "state": "archived",
               "units": "unit",
+            },
+          },
+        ],
+      },
+      "fuelIdsByEmissionCategoryId": Object {
+        "edges": Array [
+          Object {
+            "node": Object {
+              "emissionCategoryId": 1,
+              "fuelIds": Array [
+                1,
+              ],
             },
           },
         ],
@@ -80,8 +102,26 @@ exports[`The Fuel Field renders a disabled form when the form data fuel is archi
     }
   }
   required={false}
-  schema={Object {}}
-  uiSchema={Object {}}
+  schema={
+    Object {
+      "properties": Object {
+        "fuelRowId": Object {
+          "enum": Array [],
+          "enumNames": Array [],
+        },
+      },
+    }
+  }
+  uiSchema={
+    Object {
+      "fuelRowId": Object {
+        "ui:readonly": true,
+      },
+      "quantity": Object {
+        "ui:disabled": true,
+      },
+    }
+  }
 />
 `;
 
@@ -108,6 +148,16 @@ exports[`The Fuel Field renders an interactive form when the form data fuel is a
   query={
     Object {
       " $refType": "FuelField_query",
+      "activeFuels": Object {
+        "edges": Array [
+          Object {
+            "node": Object {
+              "name": "test_fuel",
+              "rowId": 1,
+            },
+          },
+        ],
+      },
       "allFuels": Object {
         "edges": Array [
           Object {
@@ -115,6 +165,18 @@ exports[`The Fuel Field renders an interactive form when the form data fuel is a
               "rowId": 1,
               "state": "published",
               "units": "unit",
+            },
+          },
+        ],
+      },
+      "fuelIdsByEmissionCategoryId": Object {
+        "edges": Array [
+          Object {
+            "node": Object {
+              "emissionCategoryId": 1,
+              "fuelIds": Array [
+                1,
+              ],
             },
           },
         ],
@@ -165,8 +227,26 @@ exports[`The Fuel Field renders an interactive form when the form data fuel is a
     }
   }
   required={false}
-  schema={Object {}}
-  uiSchema={Object {}}
+  schema={
+    Object {
+      "properties": Object {
+        "fuelRowId": Object {
+          "enum": Array [],
+          "enumNames": Array [],
+        },
+      },
+    }
+  }
+  uiSchema={
+    Object {
+      "fuelRowId": Object {
+        "ui:readonly": true,
+      },
+      "quantity": Object {
+        "ui:disabled": true,
+      },
+    }
+  }
 />
 `;
 
@@ -193,6 +273,16 @@ exports[`The Fuel Field renders an interactive form when the form data is undefi
   query={
     Object {
       " $refType": "FuelField_query",
+      "activeFuels": Object {
+        "edges": Array [
+          Object {
+            "node": Object {
+              "name": "test_fuel",
+              "rowId": 1,
+            },
+          },
+        ],
+      },
       "allFuels": Object {
         "edges": Array [
           Object {
@@ -200,6 +290,18 @@ exports[`The Fuel Field renders an interactive form when the form data is undefi
               "rowId": 1,
               "state": "published",
               "units": "unit",
+            },
+          },
+        ],
+      },
+      "fuelIdsByEmissionCategoryId": Object {
+        "edges": Array [
+          Object {
+            "node": Object {
+              "emissionCategoryId": 1,
+              "fuelIds": Array [
+                1,
+              ],
             },
           },
         ],
@@ -250,7 +352,25 @@ exports[`The Fuel Field renders an interactive form when the form data is undefi
     }
   }
   required={false}
-  schema={Object {}}
-  uiSchema={Object {}}
+  schema={
+    Object {
+      "properties": Object {
+        "fuelRowId": Object {
+          "enum": Array [],
+          "enumNames": Array [],
+        },
+      },
+    }
+  }
+  uiSchema={
+    Object {
+      "fuelRowId": Object {
+        "ui:readonly": true,
+      },
+      "quantity": Object {
+        "ui:disabled": true,
+      },
+    }
+  }
 />
 `;

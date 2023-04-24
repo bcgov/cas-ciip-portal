@@ -27,6 +27,11 @@ values
   'carbon_taxed_fuels_match_rev_zero',
   'Reported carbon-taxed fuel quantities in this application are within 0.1% of the quantities reported in SWRS',
   'The fuel amounts reported here do not match the fuel amounts that were reported in SWRS. If the fuels as reported here for CIIP are correct, please ensure you also update the reported fuels in SWRS.'
+),
+(
+  'fuels_match_emissions_category',
+  'The fuel type selected is invalid for the selected emission category',
+  'The fuel type you have selected did not match the eligible fuel types for the selected emission category.'
 )
 on conflict(validation_function_name)
 do update
