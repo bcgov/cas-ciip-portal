@@ -2789,11 +2789,6 @@ type ApplicationRevision implements Node {
     orderBy: [ApplicationRevisionStatusesOrderBy!] = [PRIMARY_KEY_ASC]
   ): ApplicationRevisionStatusesConnection!
 
-  """
-  Reads a single `Attachment` that is related to this `ApplicationRevision`.
-  """
-  attachmentByApplicationIdAndVersionNumber: Attachment
-
   """Reads and enables pagination through a set of `Attachment`."""
   attachmentsByApplicationIdAndVersionNumber(
     """Read all values in the set after (below) this cursor."""
@@ -2826,7 +2821,7 @@ type ApplicationRevision implements Node {
 
     """The method to use when ordering `Attachment`."""
     orderBy: [AttachmentsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): AttachmentsConnection! @deprecated(reason: "Please use attachmentByApplicationIdAndVersionNumber instead")
+  ): AttachmentsConnection!
 
   """
   Returns a set of application_revision_fuel_carbon_tax containing the estimated carbon tax paid and the amount eligible to CIIP for each fuel
@@ -3224,12 +3219,12 @@ input ApplicationRevisionFilter {
   applicationRevisionStatusesByApplicationIdAndVersionNumberExist: Boolean
 
   """
-  Filter by the object’s `attachmentByApplicationIdAndVersionNumber` relation.
+  Filter by the object’s `attachmentsByApplicationIdAndVersionNumber` relation.
   """
-  attachmentByApplicationIdAndVersionNumber: AttachmentFilter
+  attachmentsByApplicationIdAndVersionNumber: ApplicationRevisionToManyAttachmentFilter
 
-  """A related `attachmentByApplicationIdAndVersionNumber` exists."""
-  attachmentByApplicationIdAndVersionNumberExists: Boolean
+  """Some related `attachmentsByApplicationIdAndVersionNumber` exist."""
+  attachmentsByApplicationIdAndVersionNumberExist: Boolean
 
   """
   Filter by the object’s `certificationUrlsByApplicationIdAndVersionNumber` relation.
@@ -3767,6 +3762,26 @@ input ApplicationRevisionToManyApplicationRevisionStatusFilter {
   Some related `ApplicationRevisionStatus` matches the filter criteria. All fields are combined with a logical ‘and.’
   """
   some: ApplicationRevisionStatusFilter
+}
+
+"""
+A filter to be used against many `Attachment` object types. All fields are combined with a logical ‘and.’
+"""
+input ApplicationRevisionToManyAttachmentFilter {
+  """
+  Every related `Attachment` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  every: AttachmentFilter
+
+  """
+  No related `Attachment` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  none: AttachmentFilter
+
+  """
+  Some related `Attachment` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  some: AttachmentFilter
 }
 
 """
@@ -27565,25 +27580,6 @@ type DeleteApplicationRevisionStatusPayload {
   query: Query
 }
 
-"""
-All input for the `deleteAttachmentByApplicationIdAndVersionNumber` mutation.
-"""
-input DeleteAttachmentByApplicationIdAndVersionNumberInput {
-  """
-  The id of the application (ggircs_portal.application.id) that the attachment was uploaded to
-  """
-  applicationId: Int!
-
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """The attachment version this attachment is attached to"""
-  versionNumber: Int!
-}
-
 """All input for the `deleteAttachmentByRowId` mutation."""
 input DeleteAttachmentByRowIdInput {
   """
@@ -36038,14 +36034,6 @@ type Mutation {
   ): DeleteAttachmentPayload
 
   """Deletes a single `Attachment` using a unique key."""
-  deleteAttachmentByApplicationIdAndVersionNumber(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: DeleteAttachmentByApplicationIdAndVersionNumberInput!
-  ): DeleteAttachmentPayload
-
-  """Deletes a single `Attachment` using a unique key."""
   deleteAttachmentByRowId(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
@@ -36507,14 +36495,6 @@ type Mutation {
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
     input: UpdateAttachmentInput!
-  ): UpdateAttachmentPayload
-
-  """Updates a single `Attachment` using a unique key and a patch."""
-  updateAttachmentByApplicationIdAndVersionNumber(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: UpdateAttachmentByApplicationIdAndVersionNumberInput!
   ): UpdateAttachmentPayload
 
   """Updates a single `Attachment` using a unique key and a patch."""
@@ -42276,7 +42256,6 @@ type Query implements Node {
     """
     id: ID!
   ): Attachment
-  attachmentByApplicationIdAndVersionNumber(applicationId: Int!, versionNumber: Int!): Attachment
   attachmentByRowId(rowId: Int!): Attachment
 
   """Reads a single `Benchmark` using its globally unique `ID`."""
@@ -45299,30 +45278,6 @@ type UpdateApplicationRevisionStatusPayload {
   Our root query field type. Allows us to run any query from our mutation payload.
   """
   query: Query
-}
-
-"""
-All input for the `updateAttachmentByApplicationIdAndVersionNumber` mutation.
-"""
-input UpdateAttachmentByApplicationIdAndVersionNumberInput {
-  """
-  The id of the application (ggircs_portal.application.id) that the attachment was uploaded to
-  """
-  applicationId: Int!
-
-  """
-  An object where the defined keys will be set on the `Attachment` being updated.
-  """
-  attachmentPatch: AttachmentPatch!
-
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """The attachment version this attachment is attached to"""
-  versionNumber: Int!
 }
 
 """All input for the `updateAttachmentByRowId` mutation."""
