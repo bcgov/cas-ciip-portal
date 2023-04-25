@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`The Attachment Upload Component should match the snapshot 1`] = `
+exports[`The Verification Statement component should match the snapshot 1`] = `
 <div
-  className="jsx-2923195881 card"
+  className="jsx-450921531 card"
 >
   <div
-    className="jsx-2923195881 card-header"
+    className="jsx-450921531 card-header"
   >
     <Row
       noGutters={false}
@@ -14,7 +14,7 @@ exports[`The Attachment Upload Component should match the snapshot 1`] = `
         md={8}
       >
         <h1
-          className="jsx-2923195881"
+          className="jsx-450921531"
         >
           Verification Statement
         </h1>
@@ -38,7 +38,7 @@ exports[`The Attachment Upload Component should match the snapshot 1`] = `
       xs={12}
     >
       <div
-        className="jsx-2923195881 upload-button-container"
+        className="jsx-450921531 upload-button-container"
       >
         <FilePicker
           name="upload-attachment"
@@ -47,16 +47,25 @@ exports[`The Attachment Upload Component should match the snapshot 1`] = `
         >
           Upload New Attachment
         </FilePicker>
+        <div
+          className="jsx-450921531"
+        >
+          Only PDF formats are accepted and file size must be smaller than 50MB
+        </div>
       </div>
     </Col>
     <Col
       style={
         Object {
+          "alignItems": "center",
+          "display": "flex",
+          "justifyContent": "space-around",
           "margin": "20px 0 20px",
         }
       }
       xs={12}
     >
+<<<<<<< HEAD
       <div
         className="jsx-2923195881 attachment-link"
         key="test-id"
@@ -155,12 +164,121 @@ exports[`The Attachment Upload Component should match the snapshot 1`] = `
         Uploaded on 
         Invalid date
       </div>
+=======
+      <table
+        className="jsx-450921531 bc-table"
+      >
+        <tr
+          className="jsx-450921531"
+        >
+          <th
+            className="jsx-450921531"
+          >
+            File
+          </th>
+          <th
+            className="jsx-450921531"
+          >
+            Created Date
+          </th>
+          <th
+            className="jsx-450921531"
+          >
+            Version Number
+          </th>
+        </tr>
+        <tr
+          className="jsx-450921531 "
+        >
+          <td
+            className="jsx-450921531"
+          >
+            <a
+              className="jsx-450921531"
+              href="#"
+              key="test-id"
+            >
+              test-filename
+            </a>
+             
+          </td>
+          <td
+            className="jsx-450921531"
+          >
+            January 11th, 1111
+          </td>
+          <td
+            className="jsx-450921531"
+          >
+            1
+          </td>
+        </tr>
+        <tr
+          className="jsx-450921531 latest-version"
+        >
+          <td
+            className="jsx-450921531"
+          >
+            <a
+              className="jsx-450921531"
+              href="#"
+              key="test-id-2"
+            >
+              test-filename-2
+            </a>
+             
+            <FontAwesomeIcon
+              border={false}
+              className=""
+              fixedWidth={false}
+              flip={null}
+              icon={
+                Object {
+                  "icon": Array [
+                    448,
+                    512,
+                    Array [],
+                    "f1f8",
+                    "M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z",
+                  ],
+                  "iconName": "trash",
+                  "prefix": "fas",
+                }
+              }
+              inverse={false}
+              listItem={false}
+              mask={null}
+              onClick={[Function]}
+              pull={null}
+              pulse={false}
+              rotation={null}
+              size={null}
+              spin={false}
+              swapOpacity={false}
+              symbol={false}
+              title=""
+              transform={null}
+            />
+          </td>
+          <td
+            className="jsx-450921531"
+          >
+            February 22nd, 2222
+          </td>
+          <td
+            className="jsx-450921531"
+          >
+            2
+          </td>
+        </tr>
+      </table>
+>>>>>>> 430db0a3 (test: update VerificationStatement tests)
     </Col>
   </Row>
   <JSXStyle
-    id="2923195881"
+    id="450921531"
   >
-    .card.jsx-2923195881{border-color:#a4a4a4;background-color:#f4f4f4;}.card-header.jsx-2923195881{background-color:#036;color:#fff;}.card-header.jsx-2923195881 h1.jsx-2923195881{margin-bottom:0;font-size:30px;display:inline-block;}.upload-button-container.jsx-2923195881{margin top:2em;height:100%;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:space-around;-webkit-justify-content:space-around;-ms-flex-pack:space-around;justify-content:space-around;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}.attachment-link.jsx-2923195881{font-size:1.25em;}.uploaded-on.jsx-2923195881{font-style:italic;font-size:1.25em;}
+    .card.jsx-450921531{border-color:#a4a4a4;background-color:#f4f4f4;}.card-header.jsx-450921531{background-color:#036;color:#fff;}.card-header.jsx-450921531 h1.jsx-450921531{margin-bottom:0;font-size:30px;display:inline-block;}.upload-button-container.jsx-450921531{margin top:2em;height:100%;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-box-pack:space-around;-webkit-justify-content:space-around;-ms-flex-pack:space-around;justify-content:space-around;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}table.bc-table.jsx-450921531{margin-top:1rem;border-collapse:separate;border-spacing:0;}table.bc-table td{border-right:1px solid #939393;border-bottom:1px solid #939393;text-align:left;padding:0.5rem;}td:first-child{border-left:1px solid #939393;}th.jsx-450921531{position:relative;cursor:pointer;background-color:#003366;color:white;text-align:left;padding:0.5rem;height:4rem;}th.jsx-450921531:not(last-child){border-right:1px solid #ccc;}th.jsx-450921531:first-child{border-top-left-radius:0.25rem;border-left:1px solid #003366;border-top:1px solid #003366;padding:0.5rem;}th.jsx-450921531:last-child{border-top-right-radius:0.25rem;border-right:1px solid #003366;border-top:1px solid #003366;}.latest-version.jsx-450921531{background-color:yellow;}
   </JSXStyle>
 </div>
 `;
