@@ -33,6 +33,7 @@ const { resolveFileUpload } = require("./postgraphile/resolveFileUpload");
 // graphql-upload exports the `.js` in the path: https://github.com/jaydenseric/graphql-upload/blob/aa15ee0eb2b3a4e2421d098393bbbf9252f1a8c7/package.json#L41
 // eslint-disable-next-line import/extensions
 const graphqlUploadExpress = require("graphql-upload/graphqlUploadExpress.js");
+const attachmentDeleteRouter = require("./middleware/deleteFileMiddleware");
 
 const NO_MAIL = process.argv.includes("NO_MAIL");
 if (NO_MAIL) process.env.NO_MAIL = true;
@@ -121,6 +122,7 @@ app.prepare().then(async () => {
   server.use(graphqlUploadExpress({ maxFileSize: 500000000 }));
 
   server.use(attachmentDownloadRouter);
+  server.use(attachmentDeleteRouter);
 
   server.use(
     postgraphile(pgPool, process.env.DATABASE_SCHEMA || "ggircs_portal", {
