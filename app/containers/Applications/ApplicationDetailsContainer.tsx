@@ -1,11 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { Dropdown, Form, Row, Col } from "react-bootstrap";
+import {
+  Dropdown,
+  Form,
+  Row,
+  Col,
+  Button,
+  Card,
+  Collapse,
+} from "react-bootstrap";
 import DropdownMenuItemComponent from "components/DropdownMenuItemComponent";
 import { createRefetchContainer, graphql, RelayRefetchProp } from "react-relay";
 import { ApplicationDetailsContainer_query } from "ApplicationDetailsContainer_query.graphql";
 import { ApplicationDetailsContainer_applicationRevision } from "ApplicationDetailsContainer_applicationRevision.graphql";
 import { ApplicationDetailsContainer_diffQuery } from "ApplicationDetailsContainer_diffQuery.graphql";
-
+import Link from "next/link";
+import { getAttachmentDownloadRoute } from "routes";
 import ApplicationDetailsCardItem from "./ApplicationDetailsCardItem";
 // import FileDownload from 'js-file-download';
 
@@ -36,6 +45,8 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = ({
 }) => {
   const { applicationByApplicationId: application } = applicationRevision;
   const formResults = applicationRevision.orderedFormResults.edges;
+  const attachments =
+    applicationRevision.attachmentsByApplicationIdAndVersionNumber.edges;
   const diffFromResults = review
     ? diffQuery?.old?.orderedFormResults?.edges
     : undefined;
@@ -49,6 +60,8 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = ({
     applicationRevision.orderedFormResults.edges[0].node.versionNumber.toString()
   );
   const [showDiff, setShowDiff] = useState(false);
+
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const refetchVariables = {
@@ -156,10 +169,67 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = ({
           />
         ))}
       </div>
+      <Card
+        style={{ width: "100%", marginBottom: "10px" }}
+        className="verification-statement-summary-card"
+      >
+        <Card.Header className="summary-form-header">
+          <Row>
+            <Col md={6}>
+              <h2>Verification Statement </h2>
+            </Col>
+            <Col md={1} style={{ textAlign: "right" }}>
+              <Button
+                aria-label="toggle-card-open"
+                title="expand or collapse the card"
+                variant="outline-dark"
+                onClick={() => setIsOpen(!isOpen)}
+              >
+                {isOpen ? "+" : "-"}
+              </Button>
+            </Col>
+          </Row>
+        </Card.Header>
+        <Collapse in={!isOpen}>
+          <Card.Body>
+            {attachments.map((opt) => (
+              <div className="attachment-link" key={opt.node.id}>
+                <Link href={getAttachmentDownloadRoute(opt.node.id)} passHref>
+                  {opt.node.fileName}
+                </Link>
+              </div>
+            ))}
+          </Card.Body>
+        </Collapse>
+      </Card>
       <style jsx global>{`
+        h2 {
+          font-size: 1.5rem;
+          margin-bottom: 0.5rem;
+          font-weight: 500;
+          line-height: 1.2;
+        }
+        .diffFrom {
+          background-color: rgba(243, 76, 96, 0.3);
+        }
+        .diffTo {
+          background-color: rgba(70, 241, 118, 0.3);
+        }
+        .has-error .summary-item svg,
+        .has-error .summary-item .error-detail .text-danger {
+          color: #c70012 !important;
+        }
+        .summary-form-header > .row {
+          justify-content: space-between;
+        }
         @media print {
           header .header-right,
           #navbar,
+          button,
+          .btn {
+            display: none !important;
+          }
+          ,
           footer {
             display: none !important;
           }
@@ -217,6 +287,17 @@ export default createRefetchContainer(
     applicationRevision: graphql`
       fragment ApplicationDetailsContainer_applicationRevision on ApplicationRevision {
         versionNumber
+        attachmentsByApplicationIdAndVersionNumber {
+          edges {
+            node {
+              id
+              file
+              fileName
+              fileSize
+              createdAt
+            }
+          }
+        }
         orderedFormResults {
           edges {
             node {

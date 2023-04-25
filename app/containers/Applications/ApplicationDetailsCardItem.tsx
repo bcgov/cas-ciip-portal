@@ -158,6 +158,7 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
           </Col>
         </Row>
       </Card.Header>
+
       <Collapse in={!isOpen}>
         <Card.Body>
           <JsonSchemaForm
@@ -224,17 +225,6 @@ export default createFragmentContainer(ApplicationDetailsCardItemComponent, {
         name
         slug
         formJson
-      }
-      tom: applicationByApplicationId {
-        attachmentsByApplicationId {
-          edges {
-            node {
-              file
-              id
-              fileName
-            }
-          }
-        }
       }
       applicationRevisionByApplicationIdAndVersionNumber {
         totalCiipEmissions
