@@ -55,6 +55,10 @@ export const VerificationStatementComponent: React.FunctionComponent<Props> = ({
           versionNumber: application.latestDraftRevision.versionNumber,
         },
       },
+      messages: {
+        failure:
+          "There was an error uploading your file. Please check that it is a PDF smaller than 50MB",
+      },
     };
 
     await createAttachmentMutation(environment, variables)
@@ -101,6 +105,10 @@ export const VerificationStatementComponent: React.FunctionComponent<Props> = ({
               >
                 Upload New Attachment
               </FilePicker>
+              <div>
+                Only PDF formats are accepted and file size must be smaller than
+                50MB
+              </div>
             </div>
           )}
         </Col>
@@ -113,44 +121,45 @@ export const VerificationStatementComponent: React.FunctionComponent<Props> = ({
             alignItems: "center",
           }}
         >
-          {application.attachmentsByApplicationId.edges.map(({ node }) => {
-            const doesFileBelongToLatestVersion =
-              node.versionNumber ===
-              application.latestDraftRevision.versionNumber;
-            console.log("node is", node);
-            return (
-              <table className="bc-table">
-                <tr>
-                  <th>File</th>
-                  <th>Created Date</th>
-                  <th>Version Number</th>
-                </tr>
-                <tr
-                  className={
-                    doesFileBelongToLatestVersion ? "latest-version" : ""
-                  }
-                >
-                  <td>
-                    <Link href={getAttachmentDownloadRoute(node.id)} passHref>
-                      {node.fileName}
-                    </Link>{" "}
-                    {doesFileBelongToLatestVersion && (
-                      <FontAwesomeIcon
-                        icon={faTrash}
-                        onClick={() =>
-                          router
-                            .push(getAttachmentDeleteRoute(node.id))
-                            .then(() => deleteAttachment(node.id))
-                        }
-                      />
-                    )}
-                  </td>
-                  <td>{dateTimeFormat(node.createdAt, "days_string")}</td>
-                  <td>{node.versionNumber}</td>
-                </tr>
-              </table>
-            );
-          })}
+          {application.attachmentsByApplicationId.edges.length > 0 && (
+            <table className="bc-table">
+              <tr>
+                <th>File</th>
+                <th>Created Date</th>
+                <th>Version Number</th>
+              </tr>
+              {application.attachmentsByApplicationId.edges.map(({ node }) => {
+                const doesFileBelongToLatestVersion =
+                  node.versionNumber ===
+                  application.latestDraftRevision.versionNumber;
+                return (
+                  <tr
+                    className={
+                      doesFileBelongToLatestVersion ? "latest-version" : ""
+                    }
+                  >
+                    <td>
+                      <Link href={getAttachmentDownloadRoute(node.id)} passHref>
+                        {node.fileName}
+                      </Link>{" "}
+                      {doesFileBelongToLatestVersion && (
+                        <FontAwesomeIcon
+                          icon={faTrash}
+                          onClick={() =>
+                            router
+                              .push(getAttachmentDeleteRoute(node.id))
+                              .then(() => deleteAttachment(node.id))
+                          }
+                        />
+                      )}
+                    </td>
+                    <td>{dateTimeFormat(node.createdAt, "days_string")}</td>
+                    <td>{node.versionNumber}</td>
+                  </tr>
+                );
+              })}
+            </table>
+          )}
         </Col>
       </Row>
       <style jsx>{`
@@ -171,6 +180,7 @@ export const VerificationStatementComponent: React.FunctionComponent<Props> = ({
           margin top: 2em;
           height: 100%;
           display: flex;
+          flex-direction: column;
           justify-content: space-around;
           align-items: center;
         }

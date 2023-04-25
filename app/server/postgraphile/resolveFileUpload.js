@@ -20,6 +20,9 @@ async function saveRemoteFile({ stream }) {
 }
 
 async function resolveFileUpload(upload) {
+  if (upload.mimetype !== "application/pdf") {
+    throw new Error("Only PDF format is accepted");
+  }
   const { createReadStream } = upload;
   const stream = createReadStream();
 
