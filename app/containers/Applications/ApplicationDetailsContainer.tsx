@@ -16,7 +16,7 @@ import { ApplicationDetailsContainer_diffQuery } from "ApplicationDetailsContain
 import Link from "next/link";
 import { getAttachmentDownloadRoute } from "routes";
 import ApplicationDetailsCardItem from "./ApplicationDetailsCardItem";
-// import FileDownload from 'js-file-download';
+import { dateTimeFormat } from "functions/formatDates";
 
 /*
  * The ApplicationDetails renders a summary of the data submitted in the application,
@@ -45,11 +45,11 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = ({
 }) => {
   const { applicationByApplicationId: application } = applicationRevision;
   const formResults = applicationRevision.orderedFormResults.edges;
-  const attachments =
-    applicationRevision.attachmentsByApplicationIdAndVersionNumber.edges;
   const diffFromResults = review
     ? diffQuery?.old?.orderedFormResults?.edges
     : undefined;
+  const attachments =
+    applicationRevision.attachmentsByApplicationIdAndVersionNumber.edges;
 
   const [oldDiffVersion, setOldDiffVersion] = useState(
     (
@@ -191,14 +191,30 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = ({
           </Row>
         </Card.Header>
         <Collapse in={!isOpen}>
-          <Card.Body>
-            {attachments.map((opt) => (
-              <div className="attachment-link" key={opt.node.id}>
-                <Link href={getAttachmentDownloadRoute(opt.node.id)} passHref>
-                  {opt.node.fileName}
-                </Link>
+          <Card.Body className="card-body">
+            {attachments.length > 0 ? (
+              attachments.map((opt) => (
+                <>
+                  <div className="attachment-link" key={opt.node.id}>
+                    <Link
+                      href={getAttachmentDownloadRoute(opt.node.id)}
+                      passHref
+                    >
+                      {opt.node.fileName}
+                    </Link>
+                  </div>
+                  <div className="uploaded-on">
+                    Uploaded on{" "}
+                    {dateTimeFormat(opt.node.createdAt, "days_string")}
+                  </div>
+                </>
+              ))
+            ) : (
+              <div>
+                {" "}
+                No verification statement was uploaded by the applicant.{" "}
               </div>
-            ))}
+            )}
           </Card.Body>
         </Collapse>
       </Card>
@@ -209,27 +225,19 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = ({
           font-weight: 500;
           line-height: 1.2;
         }
-        .diffFrom {
-          background-color: rgba(243, 76, 96, 0.3);
+        .card-body {
+          padding: 1.25rem;
         }
-        .diffTo {
-          background-color: rgba(70, 241, 118, 0.3);
+        .attachment-link {
+          font-size: 1.25em;
         }
-        .has-error .summary-item svg,
-        .has-error .summary-item .error-detail .text-danger {
-          color: #c70012 !important;
-        }
-        .summary-form-header > .row {
-          justify-content: space-between;
+        .uploaded-on {
+          font-style: italic;
+          font-size: 1.25em;
         }
         @media print {
           header .header-right,
           #navbar,
-          button,
-          .btn {
-            display: none !important;
-          }
-          ,
           footer {
             display: none !important;
           }
