@@ -11,11 +11,11 @@ const attachmentDetailsQuery = `query AttachmentDetailsQuery($attachmentId: ID!)
 }`;
 
 const handleDelete = async (req, res, next) => {
-  const attachmentQueryVariables = {
-    attachmentId: req.params.attachmentId,
-  };
-
   try {
+    const attachmentQueryVariables = {
+      attachmentId: req.params.attachmentId,
+    };
+
     const result = await performQuery(
       attachmentDetailsQuery,
       attachmentQueryVariables,
@@ -40,4 +40,4 @@ const handleDelete = async (req, res, next) => {
 
 attachmentDeleteRouter.get("/delete/:attachmentId", handleDelete);
 
-module.exports = attachmentDeleteRouter;
+module.exports = { attachmentDeleteRouter, handleDelete };
