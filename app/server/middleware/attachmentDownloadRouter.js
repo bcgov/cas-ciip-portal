@@ -55,4 +55,4 @@ const handleDownload = async (req, res, next) => {
 
 attachmentDownloadRouter.get("/download/:attachmentId", handleDownload);
 
-module.exports = { handleDownload, attachmentDownloadRouter };
+module.exports = { attachmentDownloadRouter, handleDownload };
