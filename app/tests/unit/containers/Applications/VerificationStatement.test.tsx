@@ -3,7 +3,9 @@ import { shallow } from "enzyme";
 import { VerificationStatement_application } from "__generated__/VerificationStatement_application.graphql";
 import { VerificationStatementComponent } from "containers/Forms/VerificationStatement";
 import deleteAttachmentMutation from "mutations/application/deleteAttachment";
-import * as nextRouter from "next/router";
+// import * as nextRouter from "next/router";
+const next = require("next/router");
+jest.mock("next/router");
 
 const getAttachmentDownloadRoute = require("routes");
 jest.mock("routes");
@@ -13,6 +15,11 @@ nextRouter.useRouter.mockImplementation(() => ({
   push: jest.fn(),
   // query: "",
 }));
+// nextRouter.useRouter = jest.fn();
+// nextRouter.useRouter.mockImplementation(() => ({
+//   push: jest.fn(),
+//   // query: "",
+// }));
 describe("The Verification Statement component", () => {
   const onError = jest.fn();
   const application: VerificationStatement_application = {
@@ -114,8 +121,14 @@ describe("The Verification Statement component", () => {
       />
     );
 
+    const mockedUseRouter = jest.spyOn(next, "useRouter");
+
+    mockedUseRouter.mockImplementationOnce(() => {
+      push: jest.fn();
+    });
+
     wrapper.find("FontAwesomeIcon").simulate("click");
-    expect(deleteAttachmentMutation).toHaveBeenCalledWith("l");
+    expect(mockedUseRouter).toHaveBeenCalledWith("l");
   });
   it("shows a custom error message", () => {
     const wrapper = shallow(

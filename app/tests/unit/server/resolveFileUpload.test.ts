@@ -1,63 +1,71 @@
 import { resolveFileUpload } from "server/postgraphile/resolveFileUpload";
-// const {
-//   saveRemoteFile,
-// } = require("../../../server/postgraphile/saveRemoteFile");
-import * as saveRemoteFile from "server/postgraphile/saveRemoteFile";
-// if this is within the test it tries to run real function
+const saveRemoteFile = require("server/postgraphile/saveRemoteFile");
 jest.mock("server/postgraphile/saveRemoteFile");
+const mockedCreateReadStream = jest.fn();
+const upload = {
+  filename: "1dummy.jpg",
+  mimetype: "application/pdf",
+  encoding: "7bit",
+  createReadStream: mockedCreateReadStream.mockReturnValue({
+    _writeStream: {
+      _writableState: {
+        length: 49000000,
+      },
+    },
+  }),
+};
 
 describe("The resolveFileUpload function", () => {
-  it.only("should call saveRemoteFile", async () => {
-    const upload = {
-      filename: "1dummy.pdf",
-      mimetype: "application/pdf",
-      encoding: "7bit",
-      createReadStream: jest.fn(),
-    };
-    // const spy = jest.mock("server/postgraphile/saveRemoteFile", () => () =>
-    //   Promise.resolve()
-    // );
+  beforeEach(() => {
+    jest.restoreAllMocks();
+  });
+  it("should call saveRemoteFile", async () => {
+    const mockedSaveRemoteFile = jest.spyOn(saveRemoteFile, "saveRemoteFile");
 
-    // const myfuncspy = jest
-    //   .spyOn(
-    //     require("../../../server/postgraphile/saveRemoteFile"),
-    //     "saveRemoteFile"
-    //   )
-    //   .mockImplementation(() => Promise.resolve());
-
-    // const spy = jest
-    //   .spyOn(require("./saveRemoteFile"), "saveRemoteFile")
-    //   .mockImplementation(() => () => Promise.resolve());
-
-    const mockSaveRemoteFile = (saveRemoteFile.saveRemoteFile = jest
-      .fn()
-      .mockReturnValue(() => Promise.resolve({ uuid: "dh" })));
+    mockedSaveRemoteFile.mockResolvedValue(() => {
+      // eslint-disable-next-line
+      uuid: "lala";
+    });
 
     await resolveFileUpload(upload);
-    expect(mockSaveRemoteFile).toHaveBeenCalled();
+    expect(mockedSaveRemoteFile).toHaveBeenCalled();
   });
+
   it("throw an error if filetype is not PDF", async () => {
     const upload = {
       filename: "1dummy.jpg",
       mimetype: "not a pdf",
       encoding: "7bit",
-      createReadStream: jest.fn(),
+      createReadStream: mockedCreateReadStream.mockReturnValue({
+        _writeStream: {
+          _writableState: {
+            length: 45000000,
+          },
+        },
+      }),
     };
-    // need to wrap assertion in a function or else the error will not be caught
-    expect(() => {
-      resolveFileUpload(upload);
-    }).toThrow;
+
+    await resolveFileUpload(upload).catch((e) => {
+      expect(e.message).toEqual("Only PDF format is accepted");
+    });
   });
+
   it("should throw an error if the file is too large", async () => {
     const upload = {
-      filename: "1dummy.pdf",
+      filename: "1dummy.jpg",
       mimetype: "application/pdf",
       encoding: "7bit",
-      createReadStream: jest.fn(),
+      createReadStream: mockedCreateReadStream.mockReturnValue({
+        _writeStream: {
+          _writableState: {
+            length: 60000000,
+          },
+        },
+      }),
     };
-    // if this ends up being done elsewhere test there
+
+    await resolveFileUpload(upload).catch((e) => {
+      expect(e.message).toEqual("Files must be smaller than 50MB");
+    });
   });
 });
-
-// check that it's called with the right things
-// check error thrown on save function

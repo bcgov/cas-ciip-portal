@@ -1,22 +1,20 @@
 const { saveRemoteFile } = require("./saveRemoteFile");
 
-const myfunc = () => "lalal";
-
 async function resolveFileUpload(upload) {
   if (upload.mimetype !== "application/pdf") {
     throw new Error("Only PDF format is accepted");
   }
-  myfunc();
-  // console.log("upload", upload);
   const { createReadStream } = upload;
   const stream = createReadStream();
-  // console.log("$$$$$stream,", stream);
-  // console.log("saveremotefile", saveRemoteFile);
+  const fileSize = stream._writeStream._writableState.length;
+  if (fileSize > 50000000) {
+    throw new Error("Files must be smaller than 50MB");
+  }
 
   // Save tile to remote storage system
-  const remoteFile = await saveRemoteFile({ stream });
+  const { uuid } = await saveRemoteFile({ stream });
   // return remoteFile.uuid;
-  return "ladela";
+  return uuid;
 }
 
 module.exports = { resolveFileUpload };
