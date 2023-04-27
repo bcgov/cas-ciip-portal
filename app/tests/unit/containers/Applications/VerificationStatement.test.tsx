@@ -2,10 +2,17 @@ import React from "react";
 import { shallow } from "enzyme";
 import { VerificationStatement_application } from "__generated__/VerificationStatement_application.graphql";
 import { VerificationStatementComponent } from "containers/Forms/VerificationStatement";
+import deleteAttachmentMutation from "mutations/application/deleteAttachment";
+import * as nextRouter from "next/router";
 
 const getAttachmentDownloadRoute = require("routes");
 jest.mock("routes");
 
+nextRouter.useRouter = jest.fn();
+nextRouter.useRouter.mockImplementation(() => ({
+  push: jest.fn(),
+  // query: "",
+}));
 describe("The Verification Statement component", () => {
   const onError = jest.fn();
   const application: VerificationStatement_application = {
@@ -92,6 +99,31 @@ describe("The Verification Statement component", () => {
     );
     expect(wrapper.find("tr").at(2).text()).toEqual(
       "test-filename-2 <FontAwesomeIcon />February 22nd, 22222"
+    );
+    expect(wrapper.find("tr.latest-version").text()).toEqual(
+      "test-filename-2 <FontAwesomeIcon />February 22nd, 22222"
+    );
+  });
+
+  it("calls the delete mutation", () => {
+    const wrapper = shallow(
+      <VerificationStatementComponent
+        application={application}
+        relay={null}
+        onError={onError}
+      />
+    );
+
+    wrapper.find("FontAwesomeIcon").simulate("click");
+    expect(deleteAttachmentMutation).toHaveBeenCalledWith("l");
+  });
+  it("shows a custom error message", () => {
+    const wrapper = shallow(
+      <VerificationStatementComponent
+        application={application}
+        relay={null}
+        onError={onError}
+      />
     );
   });
 

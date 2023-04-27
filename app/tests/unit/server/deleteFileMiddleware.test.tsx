@@ -29,7 +29,7 @@ describe("The attachment delete router", () => {
     const next = jest.fn();
     const handlerUnderTest = handleDelete;
 
-    handlerUnderTest({ garbage: "garbage" }, {}, next);
+    handlerUnderTest({ garbage: "i will cause an error" }, {}, next);
 
     expect(next).toHaveBeenCalledWith(error);
   });

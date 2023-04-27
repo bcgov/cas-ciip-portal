@@ -43,6 +43,12 @@ export const VerificationStatementComponent: React.FunctionComponent<Props> = ({
     setIsUploading(true);
     const { environment } = relay;
     const file = e.target.files[0];
+    console.log("filesize", file.size);
+
+    // if (file.size > 5000000) {
+    //   throw new Error("dd");
+    // }
+
     const variables = {
       connections: [application.attachmentsByApplicationId.__id],
       input: {
@@ -148,7 +154,10 @@ export const VerificationStatementComponent: React.FunctionComponent<Props> = ({
                           onClick={() =>
                             router
                               .push(getAttachmentDeleteRoute(node.id))
-                              .then(() => deleteAttachment(node.id))
+                              .then((value) => {
+                                console.log("value", value);
+                                return deleteAttachment(node.id);
+                              })
                           }
                         />
                       )}

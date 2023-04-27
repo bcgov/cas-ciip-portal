@@ -1,34 +1,22 @@
-const { Storage } = require("@google-cloud/storage");
-const crypto = require("crypto");
-const dotenv = require("dotenv");
-dotenv.config();
+const { saveRemoteFile } = require("./saveRemoteFile");
 
-async function saveRemoteFile({ stream }) {
-  const storageClient = new Storage();
-  const bucket = storageClient.bucket(process.env.ATTACHMENTS_BUCKET);
-
-  return new Promise((resolve, reject) => {
-    const uuid = crypto.randomUUID();
-    const file = bucket.file(uuid);
-    const writeStream = file.createWriteStream();
-
-    stream
-      .pipe(writeStream)
-      .on("finish", () => resolve({ uuid }))
-      .on("error", (err) => reject(err));
-  });
-}
+const myfunc = () => "lalal";
 
 async function resolveFileUpload(upload) {
   if (upload.mimetype !== "application/pdf") {
     throw new Error("Only PDF format is accepted");
   }
+  myfunc();
+  // console.log("upload", upload);
   const { createReadStream } = upload;
   const stream = createReadStream();
+  // console.log("$$$$$stream,", stream);
+  // console.log("saveremotefile", saveRemoteFile);
 
   // Save tile to remote storage system
-  const { uuid } = await saveRemoteFile({ stream });
-  return uuid;
+  const remoteFile = await saveRemoteFile({ stream });
+  // return remoteFile.uuid;
+  return "ladela";
 }
 
 module.exports = { resolveFileUpload };
