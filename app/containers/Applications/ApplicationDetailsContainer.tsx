@@ -48,9 +48,8 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = ({
   const diffFromResults = review
     ? diffQuery?.old?.orderedFormResults?.edges
     : undefined;
-  const attachments = applicationRevision.attachmentsByApplicationIdAndVersionNumber
-    ? applicationRevision.attachmentsByApplicationIdAndVersionNumber.edges
-    : undefined;
+  const attachments =
+    applicationRevision?.attachmentsByApplicationIdAndVersionNumber?.edges;
 
   const [oldDiffVersion, setOldDiffVersion] = useState(
     (
@@ -193,20 +192,16 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = ({
         </Card.Header>
         <Collapse in={!isOpen}>
           <Card.Body className="card-body">
-            {attachments ? (
-              attachments.map((opt) => (
+            {attachments.length > 0 ? (
+              attachments.map(({ node }) => (
                 <>
-                  <div className="attachment-link" key={opt.node.id}>
-                    <Link
-                      href={getAttachmentDownloadRoute(opt.node.id)}
-                      passHref
-                    >
-                      {opt.node.fileName}
+                  <div className="attachment-link" key={node.id}>
+                    <Link href={getAttachmentDownloadRoute(node.id)} passHref>
+                      {node.fileName}
                     </Link>
                   </div>
                   <div className="uploaded-on">
-                    Uploaded on{" "}
-                    {dateTimeFormat(opt.node.createdAt, "days_string")}
+                    Uploaded on {dateTimeFormat(node.createdAt, "days_string")}
                   </div>
                 </>
               ))

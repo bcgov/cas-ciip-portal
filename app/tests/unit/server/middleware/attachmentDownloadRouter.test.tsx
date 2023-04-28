@@ -6,10 +6,10 @@ import {
   handleDownload,
 } from "server/middleware/attachmentDownloadRouter";
 
-const performQuery = require("../../../../server/postgraphile/graphql");
+const performQuery = require("server/postgraphile/graphql");
 const Storage = require("@google-cloud/storage");
 
-jest.mock("../../../../server/postgraphile/graphql");
+jest.mock("server/postgraphile/graphql");
 jest.mock("@google-cloud/storage");
 
 describe("The attachment download router", () => {
