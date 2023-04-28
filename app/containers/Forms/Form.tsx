@@ -121,6 +121,7 @@ export const FormComponent: React.FunctionComponent<Props> = ({
   };
 
   const onError = () => {
+    console.log("did i hit onerror");
     setHasErrors(true);
     window.scrollTo(0, 0);
   };

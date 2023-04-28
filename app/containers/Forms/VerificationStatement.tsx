@@ -45,9 +45,9 @@ export const VerificationStatementComponent: React.FunctionComponent<Props> = ({
     const file = e.target.files[0];
     console.log("filesize", file.size);
 
-    // if (file.size > 5000000) {
-    //   throw new Error("dd");
-    // }
+    if (file.size > 50000000) {
+      throw Error("brianna breaks things");
+    }
 
     const variables = {
       connections: [application.attachmentsByApplicationId.__id],
