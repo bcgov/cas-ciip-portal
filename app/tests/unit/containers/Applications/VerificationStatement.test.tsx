@@ -2,10 +2,27 @@ import React from "react";
 import { shallow } from "enzyme";
 import { VerificationStatement_application } from "__generated__/VerificationStatement_application.graphql";
 import { VerificationStatementComponent } from "containers/Forms/VerificationStatement";
-import deleteAttachmentMutation from "mutations/application/deleteAttachment";
-// import * as nextRouter from "next/router";
-const next = require("next/router");
-jest.mock("next/router");
+import * as nextRouter from "next/router";
+import { createMockEnvironment } from "relay-test-utils";
+const deleteAttachment = require("mutations/application/deleteAttachment");
+const getAttachmentDeleteRoute = require("routes");
+
+const mockRelay = {
+  environment: createMockEnvironment(),
+  refetch: undefined,
+  hasMore: undefined,
+};
+
+const mockPush = jest.fn();
+nextRouter.useRouter = jest.fn();
+nextRouter.useRouter.mockImplementation(() => ({
+  push: mockPush.mockResolvedValue(true),
+  route: "/",
+  query: "",
+}));
+
+jest.mock("routes");
+jest.mock("mutations/application/deleteAttachment");
 
 const getAttachmentDownloadRoute = require("routes");
 jest.mock("routes");
@@ -112,32 +129,31 @@ describe("The Verification Statement component", () => {
     );
   });
 
-  it("calls the delete mutation", () => {
+  it("calls the delete mutation", async () => {
     const wrapper = shallow(
       <VerificationStatementComponent
         application={application}
-        relay={null}
+        relay={mockRelay}
         onError={onError}
       />
     );
+    const mockDownloadRoute = jest.spyOn(
+      getAttachmentDeleteRoute,
+      "getAttachmentDeleteRoute"
+    );
+    const mockDeleteAttachmentMutation = jest.spyOn(
+      deleteAttachment,
+      "default"
+    );
 
-    const mockedUseRouter = jest.spyOn(next, "useRouter");
-
-    mockedUseRouter.mockImplementationOnce(() => {
-      push: jest.fn();
+    mockDownloadRoute.mockImplementation(() => {
+      jest.fn();
     });
 
     wrapper.find("FontAwesomeIcon").simulate("click");
-    expect(mockedUseRouter).toHaveBeenCalledWith("l");
-  });
-  it("shows a custom error message", () => {
-    const wrapper = shallow(
-      <VerificationStatementComponent
-        application={application}
-        relay={null}
-        onError={onError}
-      />
-    );
+
+    await expect(mockDownloadRoute).toHaveBeenCalledWith("test-id-2");
+    await expect(mockDeleteAttachmentMutation).toHaveReturned();
   });
 
   it("calls the download router", () => {
