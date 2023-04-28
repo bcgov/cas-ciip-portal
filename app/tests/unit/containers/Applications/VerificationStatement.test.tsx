@@ -46,7 +46,7 @@ describe("The Attachment Upload Component", () => {
     );
     expect(wrapper.find("h1").text()).toEqual("Verification Statement");
     expect(wrapper.find("FilePicker").exists()).toBe(true);
-    expect(wrapper.find("a.attachment-link").exists()).toBe(true);
+    expect(wrapper.find("div.attachment-link").exists()).toBe(true);
     expect(wrapper.find("div.uploaded-on").exists()).toBe(true);
   });
 });

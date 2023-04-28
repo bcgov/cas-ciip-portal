@@ -48,8 +48,9 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = ({
   const diffFromResults = review
     ? diffQuery?.old?.orderedFormResults?.edges
     : undefined;
-  const attachments =
-    applicationRevision.attachmentsByApplicationIdAndVersionNumber.edges;
+  const attachments = applicationRevision.attachmentsByApplicationIdAndVersionNumber
+    ? applicationRevision.attachmentsByApplicationIdAndVersionNumber.edges
+    : undefined;
 
   const [oldDiffVersion, setOldDiffVersion] = useState(
     (
@@ -192,7 +193,7 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = ({
         </Card.Header>
         <Collapse in={!isOpen}>
           <Card.Body className="card-body">
-            {attachments.length > 0 ? (
+            {attachments ? (
               attachments.map((opt) => (
                 <>
                   <div className="attachment-link" key={opt.node.id}>
