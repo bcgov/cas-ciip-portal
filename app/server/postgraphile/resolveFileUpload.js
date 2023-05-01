@@ -13,7 +13,6 @@ async function resolveFileUpload(upload) {
 
   // Save tile to remote storage system
   const { uuid } = await saveRemoteFile({ stream });
-  // return remoteFile.uuid;
   return uuid;
 }
 
