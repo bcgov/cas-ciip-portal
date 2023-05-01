@@ -65,106 +65,6 @@ exports[`The Verification Statement component should match the snapshot 1`] = `
       }
       xs={12}
     >
-<<<<<<< HEAD
-      <div
-        className="jsx-2923195881 attachment-link"
-        key="test-id"
-      >
-        <Link
-          passHref={true}
-        >
-          test-filename
-        </Link>
-         
-        <FontAwesomeIcon
-          border={false}
-          className=""
-          fixedWidth={false}
-          flip={null}
-          icon={
-            Object {
-              "icon": Array [
-                448,
-                512,
-                Array [],
-                "f1f8",
-                "M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z",
-              ],
-              "iconName": "trash",
-              "prefix": "fas",
-            }
-          }
-          inverse={false}
-          listItem={false}
-          mask={null}
-          onClick={[Function]}
-          pull={null}
-          pulse={false}
-          rotation={null}
-          size={null}
-          spin={false}
-          swapOpacity={false}
-          symbol={false}
-          title=""
-          transform={null}
-        />
-      </div>
-      <div
-        className="jsx-2923195881 uploaded-on"
-      >
-        Uploaded on 
-        Invalid date
-      </div>
-      <div
-        className="jsx-2923195881 attachment-link"
-        key="test-id-2"
-      >
-        <Link
-          passHref={true}
-        >
-          test2-filename
-        </Link>
-         
-        <FontAwesomeIcon
-          border={false}
-          className=""
-          fixedWidth={false}
-          flip={null}
-          icon={
-            Object {
-              "icon": Array [
-                448,
-                512,
-                Array [],
-                "f1f8",
-                "M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z",
-              ],
-              "iconName": "trash",
-              "prefix": "fas",
-            }
-          }
-          inverse={false}
-          listItem={false}
-          mask={null}
-          onClick={[Function]}
-          pull={null}
-          pulse={false}
-          rotation={null}
-          size={null}
-          spin={false}
-          swapOpacity={false}
-          symbol={false}
-          title=""
-          transform={null}
-        />
-      </div>
-      <div
-        className="jsx-2923195881 uploaded-on"
-      >
-        Uploaded on 
-        Invalid date
-      </div>
-=======
       <table
         className="jsx-450921531 bc-table"
       >
@@ -193,13 +93,11 @@ exports[`The Verification Statement component should match the snapshot 1`] = `
           <td
             className="jsx-450921531"
           >
-            <a
-              className="jsx-450921531"
-              href="#"
-              key="test-id"
+            <Link
+              passHref={true}
             >
               test-filename
-            </a>
+            </Link>
              
           </td>
           <td
@@ -219,13 +117,11 @@ exports[`The Verification Statement component should match the snapshot 1`] = `
           <td
             className="jsx-450921531"
           >
-            <a
-              className="jsx-450921531"
-              href="#"
-              key="test-id-2"
+            <Link
+              passHref={true}
             >
-              test-filename-2
-            </a>
+              test2-filename
+            </Link>
              
             <FontAwesomeIcon
               border={false}
@@ -272,7 +168,6 @@ exports[`The Verification Statement component should match the snapshot 1`] = `
           </td>
         </tr>
       </table>
->>>>>>> 430db0a3 (test: update VerificationStatement tests)
     </Col>
   </Row>
   <JSXStyle

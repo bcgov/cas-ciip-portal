@@ -6,6 +6,7 @@ import * as nextRouter from "next/router";
 import { createMockEnvironment } from "relay-test-utils";
 const deleteAttachment = require("mutations/application/deleteAttachment");
 const getAttachmentDeleteRoute = require("routes");
+const getAttachmentDownloadRoute = require("routes");
 
 const mockRelay = {
   environment: createMockEnvironment(),
@@ -24,19 +25,6 @@ nextRouter.useRouter.mockImplementation(() => ({
 jest.mock("routes");
 jest.mock("mutations/application/deleteAttachment");
 
-const getAttachmentDownloadRoute = require("routes");
-jest.mock("routes");
-
-nextRouter.useRouter = jest.fn();
-nextRouter.useRouter.mockImplementation(() => ({
-  push: jest.fn(),
-  // query: "",
-}));
-// nextRouter.useRouter = jest.fn();
-// nextRouter.useRouter.mockImplementation(() => ({
-//   push: jest.fn(),
-//   // query: "",
-// }));
 describe("The Verification Statement component", () => {
   const onError = jest.fn();
   const application: VerificationStatement_application = {
@@ -119,13 +107,13 @@ describe("The Verification Statement component", () => {
 
     // only current version's row should have delete icon (FontAwesomeIcon)
     expect(wrapper.find("tr").at(1).text()).toEqual(
-      "test-filename January 11th, 11111"
+      "<Link /> January 11th, 11111"
     );
     expect(wrapper.find("tr").at(2).text()).toEqual(
-      "test-filename-2 <FontAwesomeIcon />February 22nd, 22222"
+      "<Link /> <FontAwesomeIcon />February 22nd, 22222"
     );
     expect(wrapper.find("tr.latest-version").text()).toEqual(
-      "test-filename-2 <FontAwesomeIcon />February 22nd, 22222"
+      "<Link /> <FontAwesomeIcon />February 22nd, 22222"
     );
   });
 
@@ -137,7 +125,7 @@ describe("The Verification Statement component", () => {
         onError={onError}
       />
     );
-    const mockDownloadRoute = jest.spyOn(
+    const mockDeleteRoute = jest.spyOn(
       getAttachmentDeleteRoute,
       "getAttachmentDeleteRoute"
     );
@@ -146,13 +134,13 @@ describe("The Verification Statement component", () => {
       "default"
     );
 
-    mockDownloadRoute.mockImplementation(() => {
+    mockDeleteRoute.mockImplementation(() => {
       jest.fn();
     });
 
     wrapper.find("FontAwesomeIcon").simulate("click");
 
-    await expect(mockDownloadRoute).toHaveBeenCalledWith("test-id-2");
+    await expect(mockDeleteRoute).toHaveBeenCalledWith("test-id-2");
     await expect(mockDeleteAttachmentMutation).toHaveReturned();
   });
 
@@ -173,8 +161,8 @@ describe("The Verification Statement component", () => {
       jest.fn();
     });
 
-    wrapper.find("div.attachment-link").at(0).simulate("click");
-    wrapper.find("div.attachment-link").at(1).simulate("click");
+    wrapper.find("Link").at(0).simulate("click");
+    wrapper.find("Link").at(1).simulate("click");
 
     expect(mockDownloadRoute).toHaveBeenCalledWith("test-id");
     expect(mockDownloadRoute).toHaveBeenCalledWith("test-id-2");

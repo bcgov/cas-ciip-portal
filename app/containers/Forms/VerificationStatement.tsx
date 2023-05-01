@@ -10,8 +10,7 @@ import { Col, Row } from "react-bootstrap";
 import { createFragmentContainer, graphql, RelayProp } from "react-relay";
 import { VerificationStatement_application } from "__generated__/VerificationStatement_application.graphql";
 import Link from "next/link";
-import { getAttachmentDownloadRoute } from "routes";
-import { getAttachmentDeleteRoute } from "routes";
+import { getAttachmentDownloadRoute, getAttachmentDeleteRoute } from "routes";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 
