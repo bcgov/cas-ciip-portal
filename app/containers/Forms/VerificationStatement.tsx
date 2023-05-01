@@ -13,6 +13,7 @@ import Link from "next/link";
 import { getAttachmentDownloadRoute } from "routes";
 import { getAttachmentDeleteRoute } from "routes";
 import { useRouter } from "next/router";
+import { toast } from "react-toastify";
 
 function formatBytes(bytes: number, decimals = 2) {
   if (bytes <= 0) return "0 Bytes";
@@ -40,38 +41,48 @@ export const VerificationStatementComponent: React.FunctionComponent<Props> = ({
 
   const [isUploading, setIsUploading] = useState(false);
   const saveAttachment = async (e) => {
-    setIsUploading(true);
-    const { environment } = relay;
-    const file = e.target.files[0];
-    console.log("filesize", file.size);
+    try {
+      setIsUploading(true);
+      const { environment } = relay;
+      const file = e.target.files[0];
 
-    if (file.size > 50000000) {
-      throw Error("brianna breaks things");
-    }
+      if (file.size > 5000000) {
+        throw Error("Files must be smaller than 50MB");
+      }
 
-    const variables = {
-      connections: [application.attachmentsByApplicationId.__id],
-      input: {
-        attachment: {
-          file,
-          fileName: file.name,
-          fileSize: formatBytes(file.size),
-          fileType: file.type,
-          applicationId: application.rowId,
-          versionNumber: application.latestDraftRevision.versionNumber,
+      const variables = {
+        connections: [application.attachmentsByApplicationId.__id],
+        input: {
+          attachment: {
+            file,
+            fileName: file.name,
+            fileSize: formatBytes(file.size),
+            fileType: file.type,
+            applicationId: application.rowId,
+            versionNumber: application.latestDraftRevision.versionNumber,
+          },
         },
-      },
-      messages: {
-        failure:
-          "There was an error uploading your file. Please check that it is a PDF smaller than 50MB",
-      },
-    };
+        messages: {
+          failure:
+            "There was an error uploading your file. Please check that it is a PDF smaller than 50MB",
+        },
+      };
 
-    await createAttachmentMutation(environment, variables)
-      .catch(() => {
-        setIsUploading(false);
-      })
-      .then(() => setIsUploading(false));
+      await createAttachmentMutation(environment, variables)
+        .catch(() => {
+          setIsUploading(false);
+        })
+        .then(() => setIsUploading(false));
+    } catch (e) {
+      setIsUploading(false);
+      toast(e.message, {
+        className: "toastalert-error",
+        autoClose: false,
+        position: "top-center",
+        // Don't show duplicate errors if the same mutation fails several times in a row
+        toastId: "verification-upload",
+      });
+    }
   };
 
   const deleteAttachment = async (id) => {
@@ -154,8 +165,7 @@ export const VerificationStatementComponent: React.FunctionComponent<Props> = ({
                           onClick={() =>
                             router
                               .push(getAttachmentDeleteRoute(node.id))
-                              .then((value) => {
-                                console.log("value", value);
+                              .then(() => {
                                 return deleteAttachment(node.id);
                               })
                           }
