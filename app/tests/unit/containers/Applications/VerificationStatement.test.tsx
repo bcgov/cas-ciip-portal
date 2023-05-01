@@ -24,6 +24,14 @@ describe("The Attachment Upload Component", () => {
             createdAt: "date",
           },
         },
+        {
+          node: {
+            fileName: "test2-filename",
+            id: "test-id-2",
+            rowId: 8,
+            createdAt: "date2",
+          },
+        },
       ],
     },
   };
@@ -70,7 +78,11 @@ describe("The Attachment Upload Component", () => {
     mockDownloadRoute.mockImplementationOnce(() => {
       jest.fn();
     });
-    wrapper.find("div.attachment-link").simulate("click");
+
+    wrapper.find("div.attachment-link").at(0).simulate("click");
+    wrapper.find("div.attachment-link").at(1).simulate("click");
+
     expect(mockDownloadRoute).toHaveBeenCalledWith("test-id");
+    expect(mockDownloadRoute).toHaveBeenCalledWith("test-id-2");
   });
 });
