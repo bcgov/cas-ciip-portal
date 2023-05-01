@@ -192,7 +192,7 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = ({
         </Card.Header>
         <Collapse in={!isOpen}>
           <Card.Body className="card-body">
-            {attachments.length > 0 ? (
+            {attachments && attachments.length > 0 ? (
               attachments.map(({ node }) => (
                 <>
                   <div className="attachment-link" key={node.id}>

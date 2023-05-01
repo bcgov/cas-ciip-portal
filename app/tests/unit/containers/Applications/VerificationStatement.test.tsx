@@ -4,7 +4,6 @@ import { VerificationStatement_application } from "__generated__/VerificationSta
 import { VerificationStatementComponent } from "containers/Forms/VerificationStatement";
 
 const getAttachmentDownloadRoute = require("routes");
-
 jest.mock("routes");
 
 describe("The Attachment Upload Component", () => {
