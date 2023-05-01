@@ -18,7 +18,6 @@ import NaicsField from "containers/Forms/NaicsField";
 import ProductField from "containers/Forms/ProductField";
 import ProductRowIdField from "containers/Forms/ProductRowIdField";
 import EmissionField from "containers/Forms/EmissionField";
-
 interface Props {
   // The form_result used by the fragment
   formResult: ApplicationDetailsCardItem_formResult;
@@ -159,6 +158,7 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
           </Col>
         </Row>
       </Card.Header>
+
       <Collapse in={!isOpen}>
         <Card.Body>
           <JsonSchemaForm

@@ -53,3 +53,7 @@ export const getCompleteApplicationPageRoute = (applicationId: string) => ({
     applicationId,
   },
 });
+
+export const getAttachmentDownloadRoute = (attachmentId: string) => ({
+  pathname: `/download/${attachmentId}`,
+});

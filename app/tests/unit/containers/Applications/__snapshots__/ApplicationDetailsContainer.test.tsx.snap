@@ -8,10 +8,10 @@ exports[`ApplicationDetailsComponent should match the snapshot with the Applicat
     <Col />
   </Row>
   <br
-    className="jsx-2472284510"
+    className="jsx-4186037039"
   />
   <div
-    className="jsx-2472284510"
+    className="jsx-4186037039"
   >
     <Relay(ApplicationDetailsCardItemComponent)
       diffToResults={
@@ -50,10 +50,77 @@ exports[`ApplicationDetailsComponent should match the snapshot with the Applicat
       showDiff={false}
     />
   </div>
-  <JSXStyle
-    id="2472284510"
+  <Card
+    body={false}
+    className="verification-statement-summary-card"
+    style={
+      Object {
+        "marginBottom": "10px",
+        "width": "100%",
+      }
+    }
   >
-    @media print{header .header-right,#navbar,footer{display:none !important;}}
+    <CardHeader
+      className="summary-form-header"
+    >
+      <Row
+        noGutters={false}
+      >
+        <Col
+          md={6}
+        >
+          <h2
+            className="jsx-4186037039"
+          >
+            Verification Statement 
+          </h2>
+        </Col>
+        <Col
+          md={1}
+          style={
+            Object {
+              "textAlign": "right",
+            }
+          }
+        >
+          <Button
+            active={false}
+            aria-label="toggle-card-open"
+            disabled={false}
+            onClick={[Function]}
+            title="expand or collapse the card"
+            variant="outline-dark"
+          >
+            -
+          </Button>
+        </Col>
+      </Row>
+    </CardHeader>
+    <ForwardRef
+      appear={false}
+      getDimensionValue={[Function]}
+      in={true}
+      mountOnEnter={false}
+      timeout={300}
+      unmountOnExit={false}
+    >
+      <CardBody
+        className="card-body"
+      >
+        <div
+          className="jsx-4186037039"
+        >
+           
+          No verification statement was uploaded by the applicant.
+           
+        </div>
+      </CardBody>
+    </ForwardRef>
+  </Card>
+  <JSXStyle
+    id="4186037039"
+  >
+    h2{font-size:1.5rem;margin-bottom:0.5rem;font-weight:500;line-height:1.2;}.card-body{padding:1.25rem;}.attachment-link{font-size:1.25em;}.uploaded-on{font-style:italic;font-size:1.25em;}@media print{header .header-right,#navbar,footer{display:none !important;}}
   </JSXStyle>
 </Fragment>
 `;

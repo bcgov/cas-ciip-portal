@@ -1,13 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { Dropdown, Form, Row, Col } from "react-bootstrap";
+import {
+  Dropdown,
+  Form,
+  Row,
+  Col,
+  Button,
+  Card,
+  Collapse,
+} from "react-bootstrap";
 import DropdownMenuItemComponent from "components/DropdownMenuItemComponent";
 import { createRefetchContainer, graphql, RelayRefetchProp } from "react-relay";
 import { ApplicationDetailsContainer_query } from "ApplicationDetailsContainer_query.graphql";
 import { ApplicationDetailsContainer_applicationRevision } from "ApplicationDetailsContainer_applicationRevision.graphql";
 import { ApplicationDetailsContainer_diffQuery } from "ApplicationDetailsContainer_diffQuery.graphql";
-
+import Link from "next/link";
+import { getAttachmentDownloadRoute } from "routes";
 import ApplicationDetailsCardItem from "./ApplicationDetailsCardItem";
-// import FileDownload from 'js-file-download';
+import { dateTimeFormat } from "functions/formatDates";
 
 /*
  * The ApplicationDetails renders a summary of the data submitted in the application,
@@ -39,6 +48,8 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = ({
   const diffFromResults = review
     ? diffQuery?.old?.orderedFormResults?.edges
     : undefined;
+  const attachments =
+    applicationRevision?.attachmentsByApplicationIdAndVersionNumber?.edges;
 
   const [oldDiffVersion, setOldDiffVersion] = useState(
     (
@@ -49,6 +60,8 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = ({
     applicationRevision.orderedFormResults.edges[0].node.versionNumber.toString()
   );
   const [showDiff, setShowDiff] = useState(false);
+
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const refetchVariables = {
@@ -156,7 +169,68 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = ({
           />
         ))}
       </div>
+      <Card
+        style={{ width: "100%", marginBottom: "10px" }}
+        className="verification-statement-summary-card"
+      >
+        <Card.Header className="summary-form-header">
+          <Row>
+            <Col md={6}>
+              <h2>Verification Statement </h2>
+            </Col>
+            <Col md={1} style={{ textAlign: "right" }}>
+              <Button
+                aria-label="toggle-card-open"
+                title="expand or collapse the card"
+                variant="outline-dark"
+                onClick={() => setIsOpen(!isOpen)}
+              >
+                {isOpen ? "+" : "-"}
+              </Button>
+            </Col>
+          </Row>
+        </Card.Header>
+        <Collapse in={!isOpen}>
+          <Card.Body className="card-body">
+            {attachments?.length > 0 ? (
+              attachments.map(({ node }) => (
+                <>
+                  <div className="attachment-link" key={node.id}>
+                    <Link href={getAttachmentDownloadRoute(node.id)} passHref>
+                      {node.fileName}
+                    </Link>
+                  </div>
+                  <div className="uploaded-on">
+                    Uploaded on {dateTimeFormat(node.createdAt, "days_string")}
+                  </div>
+                </>
+              ))
+            ) : (
+              <div>
+                {" "}
+                No verification statement was uploaded by the applicant.{" "}
+              </div>
+            )}
+          </Card.Body>
+        </Collapse>
+      </Card>
       <style jsx global>{`
+        h2 {
+          font-size: 1.5rem;
+          margin-bottom: 0.5rem;
+          font-weight: 500;
+          line-height: 1.2;
+        }
+        .card-body {
+          padding: 1.25rem;
+        }
+        .attachment-link {
+          font-size: 1.25em;
+        }
+        .uploaded-on {
+          font-style: italic;
+          font-size: 1.25em;
+        }
         @media print {
           header .header-right,
           #navbar,
@@ -217,6 +291,17 @@ export default createRefetchContainer(
     applicationRevision: graphql`
       fragment ApplicationDetailsContainer_applicationRevision on ApplicationRevision {
         versionNumber
+        attachmentsByApplicationIdAndVersionNumber {
+          edges {
+            node {
+              id
+              file
+              fileName
+              fileSize
+              createdAt
+            }
+          }
+        }
         orderedFormResults {
           edges {
             node {

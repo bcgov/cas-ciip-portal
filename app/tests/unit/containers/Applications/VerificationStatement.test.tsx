@@ -3,6 +3,9 @@ import { shallow } from "enzyme";
 import { VerificationStatement_application } from "__generated__/VerificationStatement_application.graphql";
 import { VerificationStatementComponent } from "containers/Forms/VerificationStatement";
 
+const getAttachmentDownloadRoute = require("routes");
+jest.mock("routes");
+
 describe("The Attachment Upload Component", () => {
   const application: VerificationStatement_application = {
     " $refType": "VerificationStatement_application",
@@ -23,30 +26,63 @@ describe("The Attachment Upload Component", () => {
         },
         {
           node: {
-            fileName: "test-filename-2",
+            fileName: "test2-filename",
             id: "test-id-2",
             rowId: 8,
-            createdAt: "date-2",
+            createdAt: "date2",
           },
         },
       ],
     },
   };
+  const onError = jest.fn();
 
   it("should match the snapshot", () => {
     const wrapper = shallow(
-      <VerificationStatementComponent application={application} relay={null} />
+      <VerificationStatementComponent
+        application={application}
+        relay={null}
+        onError={onError}
+      />
     );
     expect(wrapper).toMatchSnapshot();
   });
 
   it("renders the component", () => {
     const wrapper = shallow(
-      <VerificationStatementComponent application={application} relay={null} />
+      <VerificationStatementComponent
+        application={application}
+        relay={null}
+        onError={onError}
+      />
     );
     expect(wrapper.find("h1").text()).toEqual("Verification Statement");
     expect(wrapper.find("FilePicker").exists()).toBe(true);
-    expect(wrapper.find("a.attachment-link").exists()).toBe(true);
+    expect(wrapper.find("div.attachment-link").exists()).toBe(true);
     expect(wrapper.find("div.uploaded-on").exists()).toBe(true);
+  });
+
+  it("calls the download router", () => {
+    const wrapper = shallow(
+      <VerificationStatementComponent
+        application={application}
+        relay={null}
+        onError={onError}
+      />
+    );
+    const mockDownloadRoute = jest.spyOn(
+      getAttachmentDownloadRoute,
+      "getAttachmentDownloadRoute"
+    );
+
+    mockDownloadRoute.mockImplementationOnce(() => {
+      jest.fn();
+    });
+
+    wrapper.find("div.attachment-link").at(0).simulate("click");
+    wrapper.find("div.attachment-link").at(1).simulate("click");
+
+    expect(mockDownloadRoute).toHaveBeenCalledWith("test-id");
+    expect(mockDownloadRoute).toHaveBeenCalledWith("test-id-2");
   });
 });
