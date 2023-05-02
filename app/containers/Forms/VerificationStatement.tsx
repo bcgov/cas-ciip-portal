@@ -142,7 +142,7 @@ export const VerificationStatementComponent: React.FunctionComponent<Props> = ({
               <tr>
                 <th>File</th>
                 <th>Created Date</th>
-                <th>Version Number</th>
+                <th>Application Version Number</th>
               </tr>
               {application.attachmentsByApplicationId.edges.map(({ node }) => {
                 const doesFileBelongToLatestVersion =
