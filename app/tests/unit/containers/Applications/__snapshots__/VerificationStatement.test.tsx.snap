@@ -84,7 +84,7 @@ exports[`The Verification Statement component should match the snapshot 1`] = `
           <th
             className="jsx-450921531"
           >
-            Version Number
+            Application Version Number
           </th>
         </tr>
         <tr
