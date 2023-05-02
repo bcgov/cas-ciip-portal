@@ -151,7 +151,7 @@ endif
 install_cpandeps: ## install Perl dependencies from cpanfile
 install_cpandeps:
 	@$(CPANM) --installdeps .
-	@rm -rf $(__DIRNAME)/.cpanm
+
 
 .PHONY: postinstall_check
 postinstall_check: ## check that the installation was successful and that the correct sqitch version is available in the PATH
