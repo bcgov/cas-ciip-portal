@@ -49,7 +49,8 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = ({
     ? diffQuery?.old?.orderedFormResults?.edges
     : undefined;
   const attachments =
-    applicationRevision?.attachmentsByApplicationIdAndVersionNumber?.edges;
+    applicationRevision?.applicationByApplicationId?.attachmentsByApplicationId
+      .edges;
 
   const [oldDiffVersion, setOldDiffVersion] = useState(
     (
@@ -291,17 +292,6 @@ export default createRefetchContainer(
     applicationRevision: graphql`
       fragment ApplicationDetailsContainer_applicationRevision on ApplicationRevision {
         versionNumber
-        attachmentsByApplicationIdAndVersionNumber {
-          edges {
-            node {
-              id
-              file
-              fileName
-              fileSize
-              createdAt
-            }
-          }
-        }
         orderedFormResults {
           edges {
             node {
@@ -313,6 +303,17 @@ export default createRefetchContainer(
         }
         applicationByApplicationId {
           id
+          attachmentsByApplicationId {
+            edges {
+              node {
+                id
+                file
+                fileName
+                fileSize
+                createdAt
+              }
+            }
+          }
           latestSubmittedRevision {
             versionNumber
           }
