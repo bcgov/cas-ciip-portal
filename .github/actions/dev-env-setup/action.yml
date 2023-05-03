@@ -6,6 +6,8 @@ runs:
     - name: asdf setup
       uses: asdf-vm/actions/setup@v1
     - uses: shogo82148/actions-setup-perl@v1.20.2
+      with:
+        perl-version: '5.28'
     - name: install pg perl library
       run: sudo apt-get install -y libpq-dev libdbd-pg-perl
       shell: bash
@@ -29,7 +31,7 @@ runs:
       with:
         path: |
           ~/perl5
-        key: ${{ runner.os }}-perl-cache-${{ env.CURRENT_PERL_VERSION }}-${{ hashFiles('cpanfile') }}
+        key: ${{ runner.os }}-perl-cache-${{ env.CURRENT_PERL_VERSION }}-${{ hashFiles('cpanfile') }}-v2
     - uses: actions/cache@v2
       id: yarn-cache
       with:
