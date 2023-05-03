@@ -12,17 +12,13 @@ env:
   PROGRAM_DIRECTOR_EMAIL: director@email.com
 
 jobs:
-  tmate-ssh:
+  install-dev-tools:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@v3
         with:
           limit-access-to-actor: true
-  install-dev-tools:
-    runs-on: ubuntu-latest
-    steps:
       - uses: actions/checkout@v2
       - name: dev env setup
         uses: ./.github/actions/dev-env-setup
