@@ -12,6 +12,14 @@ env:
   PROGRAM_DIRECTOR_EMAIL: director@email.com
 
 jobs:
+  tmate-ssh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
+        with:
+          limit-access-to-actor: true
   install-dev-tools:
     runs-on: ubuntu-latest
     steps:
@@ -26,7 +34,6 @@ jobs:
       - run: make stop_pg # cleanly stop the database, otherwise it will complain in the subsequent jobs
       - run: yarn install --frozen-lockfile
         working-directory: ./app
-
   yarn-test:
     needs: install-dev-tools
     runs-on: ubuntu-latest
