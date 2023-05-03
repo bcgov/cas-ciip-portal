@@ -36,6 +36,7 @@ jobs:
         working-directory: ./app
 
   tmate-ssh:
+    needs: install-dev-tools
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
