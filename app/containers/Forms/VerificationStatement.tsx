@@ -86,12 +86,16 @@ export const VerificationStatementComponent: React.FunctionComponent<Props> = ({
 
   const deleteAttachment = async (id) => {
     const { environment } = relay;
-    deleteAttachmentMutation(environment, {
-      connections: [application.attachmentsByApplicationId.__id],
-      input: {
-        id,
-      },
-    });
+    try {
+      await deleteAttachmentMutation(environment, {
+        connections: [application.attachmentsByApplicationId.__id],
+        input: {
+          id,
+        },
+      });
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   return (
