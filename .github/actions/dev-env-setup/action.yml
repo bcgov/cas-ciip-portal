@@ -5,7 +5,7 @@ runs:
   steps:
     - name: asdf setup
       uses: asdf-vm/actions/setup@v1
-    - uses: shogo82148/actions-setup-perl@v1.18.0
+    - uses: shogo82148/actions-setup-perl@v1.21.0
       with:
         perl-version: '5.28'
     - name: install pg perl library
