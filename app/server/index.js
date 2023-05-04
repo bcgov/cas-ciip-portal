@@ -26,6 +26,7 @@ const delay = require("delay");
 const session = require("./middleware/session");
 const ssoMiddleware = require("./middleware/sso");
 const userMiddleware = require("./middleware/user");
+const voyagerMiddleware = require("graphql-voyager/middleware").express;
 
 const NO_MAIL = process.argv.includes("NO_MAIL");
 
@@ -74,6 +75,14 @@ app.prepare().then(async () => {
       server.close(() => pgPool.end(resolve));
     });
   });
+
+  server.use(
+    "/voyager",
+    voyagerMiddleware({
+      endpointUrl: "/graphql",
+      displayOptions: { hideRoot: true, showLeafFields: false },
+    })
+  );
 
   server.use(morgan("combined"));
 
