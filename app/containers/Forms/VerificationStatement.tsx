@@ -45,7 +45,7 @@ export const VerificationStatementComponent: React.FunctionComponent<Props> = ({
       const { environment } = relay;
       const file = e.target.files[0];
 
-      if (file.size > 5000000) {
+      if (file.size > 50000000) {
         throw Error("Files must be smaller than 50MB");
       }
 
