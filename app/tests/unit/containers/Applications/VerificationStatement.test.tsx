@@ -144,6 +144,20 @@ describe("The Verification Statement component", () => {
     await expect(mockDeleteAttachmentMutation).toHaveReturned();
   });
 
+  it("renders the alert", () => {
+    const wrapper = shallow(
+      <VerificationStatementComponent
+        application={application}
+        relay={null}
+        onError={onError}
+      />
+    );
+    expect(wrapper.find("Alert").exists()).toBe(true);
+    expect(wrapper.find("p").text()).toEqual(
+      "A production data verification report is required for either:"
+    );
+  });
+
   it("calls the download router", () => {
     const wrapper = shallow(
       <VerificationStatementComponent
