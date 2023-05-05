@@ -12,8 +12,7 @@ create table ggircs_portal.attachment
   file_size varchar(100),
   application_id integer not null references ggircs_portal.application(id),
   version_number int,
-  foreign key (application_id, version_number) references ggircs_portal.application_revision(application_id, version_number),
-  unique (application_id, version_number)
+  foreign key (application_id, version_number) references ggircs_portal.application_revision(application_id, version_number)
 );
 
 create index attachment_file on ggircs_portal.attachment(file);

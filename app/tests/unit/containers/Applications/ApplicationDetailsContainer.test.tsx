@@ -75,6 +75,29 @@ describe("ApplicationDetailsComponent", () => {
       latestSubmittedRevision: {
         versionNumber: 2,
       },
+      attachmentsByApplicationId: {
+        __id: "abc",
+        edges: [
+          {
+            node: {
+              fileName: "test-filename",
+              file: "123",
+              id: "test-id",
+              createdAt: "1111-01-11",
+              fileSize: "500",
+            },
+          },
+          {
+            node: {
+              fileName: "test2-filename",
+              file: "456",
+              id: "test-id-2",
+              createdAt: "2222-02-22",
+              fileSize: "566",
+            },
+          },
+        ],
+      },
       applicationRevisionsByApplicationId: {
         edges: [
           {

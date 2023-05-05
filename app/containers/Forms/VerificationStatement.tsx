@@ -10,7 +10,9 @@ import { Col, Row } from "react-bootstrap";
 import { createFragmentContainer, graphql, RelayProp } from "react-relay";
 import { VerificationStatement_application } from "__generated__/VerificationStatement_application.graphql";
 import Link from "next/link";
-import { getAttachmentDownloadRoute } from "routes";
+import { getAttachmentDownloadRoute, getAttachmentDeleteRoute } from "routes";
+import { useRouter } from "next/router";
+import { toast } from "react-toastify";
 
 function formatBytes(bytes: number, decimals = 2) {
   if (bytes <= 0) return "0 Bytes";
@@ -34,30 +36,66 @@ export const VerificationStatementComponent: React.FunctionComponent<Props> = ({
   relay,
   onError,
 }) => {
+  const router = useRouter();
+
   const [isUploading, setIsUploading] = useState(false);
   const saveAttachment = async (e) => {
-    setIsUploading(true);
-    const { environment } = relay;
-    const file = e.target.files[0];
-    const variables = {
-      connections: [application.attachmentsByApplicationId.__id],
-      input: {
-        attachment: {
-          file,
-          fileName: file.name,
-          fileSize: formatBytes(file.size),
-          fileType: file.type,
-          applicationId: application.rowId,
-          versionNumber: application.latestDraftRevision.versionNumber,
-        },
-      },
-    };
+    try {
+      setIsUploading(true);
+      const { environment } = relay;
+      const file = e.target.files[0];
 
-    await createAttachmentMutation(environment, variables)
-      .catch(() => {
-        setIsUploading(false);
-      })
-      .then(() => setIsUploading(false));
+      if (file.size > 50000000) {
+        throw Error("Files must be smaller than 50MB");
+      }
+
+      const variables = {
+        connections: [application.attachmentsByApplicationId.__id],
+        input: {
+          attachment: {
+            file,
+            fileName: file.name,
+            fileSize: formatBytes(file.size),
+            fileType: file.type,
+            applicationId: application.rowId,
+            versionNumber: application.latestDraftRevision.versionNumber,
+          },
+        },
+        messages: {
+          failure:
+            "There was an error uploading your file. Please check that it is a PDF smaller than 50MB",
+        },
+      };
+
+      await createAttachmentMutation(environment, variables)
+        .catch(() => {
+          setIsUploading(false);
+        })
+        .then(() => setIsUploading(false));
+    } catch (e) {
+      setIsUploading(false);
+      toast(e.message, {
+        className: "toastalert-error",
+        autoClose: false,
+        position: "top-center",
+        // Don't show duplicate errors if the same mutation fails several times in a row
+        toastId: "verification-upload",
+      });
+    }
+  };
+
+  const deleteAttachment = async (id) => {
+    const { environment } = relay;
+    try {
+      await deleteAttachmentMutation(environment, {
+        connections: [application.attachmentsByApplicationId.__id],
+        input: {
+          id,
+        },
+      });
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   return (
@@ -87,38 +125,63 @@ export const VerificationStatementComponent: React.FunctionComponent<Props> = ({
               >
                 Upload New Attachment
               </FilePicker>
+              <div>
+                Only PDF formats are accepted and file size must be smaller than
+                50MB
+              </div>
             </div>
           )}
         </Col>
-        <Col xs={12} style={{ margin: "20px 0 20px" }}>
-          {application.attachmentsByApplicationId.edges.map(({ node }) => {
-            return (
-              <>
-                <div className="attachment-link" key={node.id}>
-                  <Link href={getAttachmentDownloadRoute(node.id)} passHref>
-                    {node.fileName}
-                  </Link>{" "}
-                  <FontAwesomeIcon
-                    icon={faTrash}
-                    onClick={() => {
-                      const { environment } = relay;
-                      return deleteAttachmentMutation(environment, {
-                        connections: [
-                          application.attachmentsByApplicationId.__id,
-                        ],
-                        input: {
-                          id: node.id,
-                        },
-                      });
-                    }}
-                  />
-                </div>
-                <div className="uploaded-on">
-                  Uploaded on {dateTimeFormat(node.createdAt, "days_string")}
-                </div>
-              </>
-            );
-          })}
+        <Col
+          xs={12}
+          style={{
+            margin: "20px 0 20px",
+            display: "flex",
+            justifyContent: "space-around",
+            alignItems: "center",
+          }}
+        >
+          {application.attachmentsByApplicationId.edges.length > 0 && (
+            <table className="bc-table">
+              <tr>
+                <th>File</th>
+                <th>Created Date</th>
+                <th>Application Version Number</th>
+              </tr>
+              {application.attachmentsByApplicationId.edges.map(({ node }) => {
+                const doesFileBelongToLatestVersion =
+                  node.versionNumber ===
+                  application.latestDraftRevision.versionNumber;
+                return (
+                  <tr
+                    className={
+                      doesFileBelongToLatestVersion ? "latest-version" : ""
+                    }
+                  >
+                    <td>
+                      <Link href={getAttachmentDownloadRoute(node.id)} passHref>
+                        {node.fileName}
+                      </Link>{" "}
+                      {doesFileBelongToLatestVersion && (
+                        <FontAwesomeIcon
+                          icon={faTrash}
+                          onClick={() =>
+                            router
+                              .push(getAttachmentDeleteRoute(node.id))
+                              .then(() => {
+                                return deleteAttachment(node.id);
+                              })
+                          }
+                        />
+                      )}
+                    </td>
+                    <td>{dateTimeFormat(node.createdAt, "days_string")}</td>
+                    <td>{node.versionNumber}</td>
+                  </tr>
+                );
+              })}
+            </table>
+          )}
         </Col>
       </Row>
       <style jsx>{`
@@ -139,15 +202,54 @@ export const VerificationStatementComponent: React.FunctionComponent<Props> = ({
           margin top: 2em;
           height: 100%;
           display: flex;
+          flex-direction: column;
           justify-content: space-around;
           align-items: center;
         }
-        .attachment-link {
-          font-size: 1.25em;
+        table.bc-table {
+          margin-top: 1rem;
+          border-collapse: separate;
+          border-spacing: 0;
+
         }
-        .uploaded-on {
-          font-style: italic;
-          font-size: 1.25em;
+        :global(table.bc-table td) {
+          border-right: 1px solid #939393;
+          border-bottom: 1px solid #939393;
+          text-align: left;
+          padding: 0.5rem;
+        }
+
+        :global(td:first-child) {
+          border-left: 1px solid #939393;
+        }
+        th {
+          position: relative;
+          cursor: pointer;
+          background-color: #003366;
+          color: white;
+          text-align: left;
+          padding: 0.5rem;
+          height: 4rem;
+        }
+
+        th:not(last-child) {
+          border-right: 1px solid #ccc;
+        }
+
+        th:first-child {
+          border-top-left-radius: 0.25rem;
+          border-left: 1px solid #003366;
+          border-top: 1px solid #003366;
+          padding: 0.5rem;
+        }
+
+        th:last-child {
+          border-top-right-radius: 0.25rem;
+          border-right: 1px solid #003366;
+          border-top: 1px solid #003366;
+        }
+        .latest-version {
+          background-color: yellow;
         }
 
       `}</style>
@@ -174,6 +276,7 @@ export default createFragmentContainer(VerificationStatementComponent, {
             id
             rowId
             createdAt
+            versionNumber
           }
         }
       }
