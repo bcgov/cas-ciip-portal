@@ -40,20 +40,20 @@ exports[`The Verification Statement component should match the snapshot 1`] = `
     variant="info"
   >
     <p
-      className="jsx-2923195881"
+      className="jsx-450921531"
     >
       A production data verification report is required for either:
     </p>
     <ul
-      className="jsx-2923195881"
+      className="jsx-450921531"
     >
       <li
-        className="jsx-2923195881"
+        className="jsx-450921531"
       >
         a facility that is a Single Facility Operation (SFO) for which verification is required under GGERR, or
       </li>
       <li
-        className="jsx-2923195881"
+        className="jsx-450921531"
       >
         a facility that is part of a Linear Facilities Operation (LFO) if that facility emitted 25,000 tCO2e or more, not including reporting-only emissions, in the current or any of the past three reporting periods
       </li>
