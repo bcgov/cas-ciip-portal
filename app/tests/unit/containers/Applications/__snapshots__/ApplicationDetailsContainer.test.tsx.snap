@@ -108,11 +108,46 @@ exports[`ApplicationDetailsComponent should match the snapshot with the Applicat
         className="card-body"
       >
         <div
-          className="jsx-4186037039"
+          className="jsx-4186037039 attachment-link"
+          key="test-id"
         >
-           
-          No verification statement was uploaded by the applicant.
-           
+          <Link
+            href={
+              Object {
+                "pathname": "/download/test-id",
+              }
+            }
+            passHref={true}
+          >
+            test-filename
+          </Link>
+        </div>
+        <div
+          className="jsx-4186037039 uploaded-on"
+        >
+          Uploaded on 
+          January 11th, 1111
+        </div>
+        <div
+          className="jsx-4186037039 attachment-link"
+          key="test-id-2"
+        >
+          <Link
+            href={
+              Object {
+                "pathname": "/download/test-id-2",
+              }
+            }
+            passHref={true}
+          >
+            test2-filename
+          </Link>
+        </div>
+        <div
+          className="jsx-4186037039 uploaded-on"
+        >
+          Uploaded on 
+          February 22nd, 2222
         </div>
       </CardBody>
     </ForwardRef>
