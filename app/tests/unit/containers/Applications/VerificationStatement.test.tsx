@@ -91,6 +91,10 @@ describe("The Verification Statement component", () => {
     expect(wrapper.find("h1").text()).toEqual("Verification Statement");
     expect(wrapper.find("FilePicker").exists()).toBe(true);
     expect(wrapper.find("table.bc-table").exists()).toBe(false);
+    expect(wrapper.find("Alert").exists()).toBe(true);
+    expect(wrapper.find("p").text()).toEqual(
+      "A production data verification report is required for either:"
+    );
   });
 
   it("renders the component with attachment table", () => {
@@ -104,6 +108,10 @@ describe("The Verification Statement component", () => {
     expect(wrapper.find("h1").text()).toEqual("Verification Statement");
     expect(wrapper.find("FilePicker").exists()).toBe(true);
     expect(wrapper.find("table.bc-table").exists()).toBe(true);
+    expect(wrapper.find("Alert").exists()).toBe(true);
+    expect(wrapper.find("p").text()).toEqual(
+      "A production data verification report is required for either:"
+    );
 
     // only current version's row should have delete icon (FontAwesomeIcon)
     expect(wrapper.find("tr").at(1).text()).toEqual(

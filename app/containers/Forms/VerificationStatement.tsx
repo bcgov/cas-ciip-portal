@@ -6,7 +6,7 @@ import { dateTimeFormat } from "functions/formatDates";
 import createAttachmentMutation from "mutations/application/createAttachmentMutation";
 import deleteAttachmentMutation from "mutations/application/deleteAttachment";
 import React, { useState } from "react";
-import { Col, Row } from "react-bootstrap";
+import { Col, Row, Alert } from "react-bootstrap";
 import { createFragmentContainer, graphql, RelayProp } from "react-relay";
 import { VerificationStatement_application } from "__generated__/VerificationStatement_application.graphql";
 import Link from "next/link";
@@ -107,6 +107,21 @@ export const VerificationStatementComponent: React.FunctionComponent<Props> = ({
           </Col>
         </Row>
       </div>
+      <Alert variant="info">
+        <p>A production data verification report is required for either:</p>
+        <ul>
+          <li>
+            a facility that is a Single Facility Operation (SFO) for which
+            verification is required under GGERR, or
+          </li>
+          <li>
+            a facility that is part of a Linear Facilities Operation (LFO) if
+            that facility emitted 25,000 tCO2e or more, not including
+            reporting-only emissions, in the current or any of the past three
+            reporting periods
+          </li>
+        </ul>
+      </Alert>
       <Row style={{ padding: "0 2em 2em 2em" }}>
         <Col xs={12} style={{ margin: "20px 0 20px" }}>
           {isUploading ? (
