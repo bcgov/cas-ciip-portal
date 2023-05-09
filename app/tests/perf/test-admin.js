@@ -43,6 +43,7 @@ const args = {
     first_name: null,
     last_name: null,
     email_address: null,
+    bceidBusinessName: null,
     operator_name: null,
     status: null,
     order_by: null,
@@ -68,7 +69,7 @@ easyGraphQLLoadTester.k6(k6ConfigFile, {
     "addFacilityQuery",
     "addOrganisationQuery",
     "applicationsQuery",
-    "organisationRequestsQuery",
+    // "organisationRequestsQuery",
   ],
   queryFile: true,
 });

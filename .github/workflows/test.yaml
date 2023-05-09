@@ -109,6 +109,10 @@ jobs:
             context: .
             dockerfile: schema/Dockerfile
             name: schema
+          - image: ghcr.io/bcgov/cas-ciip-portal-k6
+            context: .
+            dockerfile: app/tests/perf/Dockerfile
+            name: k6
     name: Build ${{ matrix.name }} docker image
     steps:
       - uses: actions/checkout@v2
@@ -194,3 +198,26 @@ jobs:
           SMTP_CONNECTION_STRING: smtp://@localhost:1025
           ENABLE_DB_MOCKS: "true"
         working-directory: ./app
+
+  smoke-test:
+    needs: ["docker-build", "install-dev-tools"]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: dev env setup
+        uses: ./.github/actions/dev-env-setup
+      - run: sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C5AD17C747E3415A3642D57D77C6C491D6AC1D69
+      - run: echo "deb https://dl.k6.io/deb stable main" | sudo tee /etc/apt/sources.list.d/k6.list
+      - run: sudo apt-get update && sudo apt-get install k6 libdbd-pg-perl
+      - run: source ~/.bashrc
+      - run: pg_ctl start
+      - run: createdb `whoami`
+      - run: createdb ciip_portal_dev
+      - run: pushd schema && ./data/deploy-data.sh -dev && popd
+      - run: cd ./app && yarn build:schema
+      - run: cd ./test_helper_schema && SQITCH_TARGET="ciip_portal_dev" sqitch deploy
+      - run: cd ./schema && SQITCH_TARGET="ciip_portal_dev" sqitch deploy
+      - run: cd ./app && yarn build:relay-persist && yarn build:next
+      - run: cd ./app && yarn start AS_CYPRESS & yarn wait-on http://localhost:3004 || true
+      - run: cd ./app/tests/perf && psql -d ciip_portal_dev -f mutations-setup.sql
+      - run: cd ./app/tests/perf && ./run_test.sh smoke
