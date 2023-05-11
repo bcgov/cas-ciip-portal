@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.21.0](https://github.com/bcgov/cas-ciip-portal/compare/v2.20.0...v2.21.0) (2023-05-11)
+
+
+### Features
+
+* add table to manage BCeID user access ([6604e9e](https://github.com/bcgov/cas-ciip-portal/commit/6604e9eb76032f532fb2e9aa6ccce3b960ef0ef7))
+* added verification statement alert ([deffe89](https://github.com/bcgov/cas-ciip-portal/commit/deffe895d8a9b08086ae0da6b4b6a35969c90652))
+* download verification statement ([9badee3](https://github.com/bcgov/cas-ciip-portal/commit/9badee31688956ec1b890f91d628afb1c170a72f))
+* enabling bceid login ([a4b9df5](https://github.com/bcgov/cas-ciip-portal/commit/a4b9df5a76d3680709c50786a5f5249036299f4b))
+* filter fuels by emission categry ([69055c5](https://github.com/bcgov/cas-ciip-portal/commit/69055c5f83fce18e35886d4b5267e0448b59706e))
+* show BCeId business name associated with user on org requests page ([b638f07](https://github.com/bcgov/cas-ciip-portal/commit/b638f07c5c6df0a474859b43397bdb7dd861ca8c))
+
+
+### Bug Fixes
+
+* derive product_name from product table in view ([0ee2035](https://github.com/bcgov/cas-ciip-portal/commit/0ee2035d881f7b729495024719f2a6b4aed29326))
+* move logout button outside profile dropdown ([231e9ee](https://github.com/bcgov/cas-ciip-portal/commit/231e9ee78eeb4d9eee603435fedb929b53dcd679))
+
 ## [2.20.0](https://github.com/bcgov/cas-ciip-portal/compare/v2.19.2...v2.20.0) (2023-02-24)
 
 
