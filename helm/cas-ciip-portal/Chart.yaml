@@ -2,8 +2,8 @@ apiVersion: v2
 name: cas-ciip-portal
 description: A Helm chart for the CIIP portal
 type: application
-version: 0.3.50
-appVersion: 2.20.0
+version: 0.3.51
+appVersion: 2.21.0
 dependencies:
   - name: cas-postgres
     version: "0.8.4"

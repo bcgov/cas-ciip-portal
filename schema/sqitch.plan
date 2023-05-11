@@ -445,7 +445,8 @@ function_session [function_session@v2.20.0] 2023-03-15T21:04:31Z Dylan Leard <dy
 tables/ciip_user_organisation_001_bceid [tables/ciip_user_organisation] 2023-03-15T21:06:40Z Dylan Leard <dylan@button.is> # Migration: add column for bceid_business_name from jwt token
 policies/ciip_user_policies_004_analysts_update_reporters [policies/ciip_user_policies_003_restrict_permissions] 2023-04-03T21:45:35Z Dylan Leard <dylan@button.is> # Migration: allow analysts to update reporter user data to allow re-login with a new bceid
 views/ciip_production [views/ciip_production@v2.20.0] 2023-04-11T22:37:18Z Dylan Leard <dylan@button.is> # Retrieve the product_name field from the product table
-tables/attachment 2023-04-03T20:56:53Z Brianna Cerkiewicz <briannacerkiewicz@pop-os> #  Create table for attachments
-attachment_policies 2023-04-05T22:42:21Z Brianna Cerkiewicz <briannacerkiewicz@pop-os> #  Row level security policies for the attachments table
+tables/attachment 2023-04-03T20:56:53Z Brianna Cerkiewicz <briannacerkiewicz@pop-os> # Create table for attachments
+attachment_policies 2023-04-05T22:42:21Z Brianna Cerkiewicz <briannacerkiewicz@pop-os> # Row level security policies for the attachments table
 computed_columns/fuel_ids_by_emission_category_id 2023-04-04T22:29:19Z Mike Vesprini <mike@button.is> # Copmuted column that returns the fuels associated with a given emission category id
 application_validation_functions/fuels_match_emissions_category 2023-04-10T21:41:56Z Mike Vesprini <mike@button.is> # Validation function to ensure that fuels are reported for a valid emissions category
+@v2.21.0 2023-05-11T18:04:16Z Dylan Leard <dylan@button.is> # release v2.21.0
