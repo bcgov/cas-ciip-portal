@@ -36,11 +36,6 @@ env:
   adminEmail: admin@ciip.dev
   enableDbMocks: true
 
-sitewide_notice:
-  content: |
-    <div class="alert alert-warning">This is the DEV environment. All emails will be sent to <a href="https://cas-mailhog-dev.apps.silver.devops.gov.bc.ca/">the dev inbox</a> instead of the real recipients.</div>
-    <div class="alert alert-warning">The CIIP Application platform will be out of service from the 20th of January 2023 until further notice. A message will be sent to all users once the App is up and running again. During the outage, if you need access to information contained in your previous CIIP applications please forward a request to <a href="mailto:GHGregulator@gov.bc.ca">GHGregulator@gov.bc.ca</a></div>
-
 mailhog:
   enable: true
   securityContext:
