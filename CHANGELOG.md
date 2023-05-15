@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.21.1](https://github.com/bcgov/cas-ciip-portal/compare/v2.21.0...v2.21.1) (2023-05-15)
+
+
+### Bug Fixes
+
+* increase file upload max size in nginx via helm ([877ead0](https://github.com/bcgov/cas-ciip-portal/commit/877ead0f29c7aac707290d5158e056b52c9d5fb9))
+
 ## [2.21.0](https://github.com/bcgov/cas-ciip-portal/compare/v2.20.0...v2.21.0) (2023-05-11)
 
 
