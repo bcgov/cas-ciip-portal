@@ -167,3 +167,4 @@ nginx-sidecar:
   caAccountEmail: ggircs@gov.bc.ca
   storageClassName: netapp-file-standard
   renewalDays: 60
+  clientMaxBodySize: 50M
