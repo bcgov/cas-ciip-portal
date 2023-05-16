@@ -2,8 +2,8 @@ apiVersion: v2
 name: cas-ciip-portal
 description: A Helm chart for the CIIP portal
 type: application
-version: 0.3.52
-appVersion: 2.21.1
+version: 0.3.53
+appVersion: 2.21.2
 dependencies:
   - name: cas-postgres
     version: "0.8.4"
@@ -27,4 +27,4 @@ dependencies:
     alias: airflow-ciip-deploy-db
   - name: nginx-sidecar
     repository: https://bcgov.github.io/cas-template-app
-    version: 0.1.12
+    version: 0.1.13
