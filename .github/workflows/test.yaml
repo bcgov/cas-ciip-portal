@@ -220,4 +220,4 @@ jobs:
       - run: cd ./app && yarn build:relay-persist && yarn build:next
       - run: cd ./app && yarn start AS_CYPRESS & yarn wait-on http://localhost:3004 || true
       - run: cd ./app/tests/perf && psql -d ciip_portal_dev -f mutations-setup.sql
-      - run: cd ./app/tests/perf && ./run_test.sh smoke
+      - run: pushd app/tests/perf && ./run_test.sh smoke
