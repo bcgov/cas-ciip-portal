@@ -39,8 +39,9 @@ const updateFormResultVariables = (formResultId, formResult) => {
   };
 };
 
-export const options = require(`./configuration/${__ENV.PERF_MODE}_mutations_testing_options.js`)
-  .default;
+// export const options = require(`./configuration/${__ENV.PERF_MODE}_mutations_testing_options.js`)
+//   .default;
+import options from `./configuration/${__ENV.PERF_MODE}_mutations_testing_options.js`;
 
 const longString = "1234567890asdfghjklzxcvbnm1234567890qwertyuioasdfghjzxcvbn".repeat(
   200
