@@ -199,13 +199,6 @@ jobs:
           ENABLE_DB_MOCKS: "true"
         working-directory: ./app
 
-  tmate:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
-
   smoke-test:
     needs: ["docker-build", "install-dev-tools"]
     runs-on: ubuntu-latest
