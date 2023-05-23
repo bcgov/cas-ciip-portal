@@ -9,6 +9,9 @@ function parseResult(filePath) {
 
 const exitCode =
   parseResult(
+    __dirname + `/results/guest_${process.env.PERF_MODE}_result.json`
+  ) +
+  parseResult(
     __dirname + `/results/reporter_${process.env.PERF_MODE}_result.json`
   ) +
   parseResult(

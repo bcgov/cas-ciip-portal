@@ -38,17 +38,6 @@ const args = {
     pageSize: null,
     offset: null,
   },
-  organisationRequestsQuery: {
-    user_id: null,
-    first_name: null,
-    last_name: null,
-    email_address: null,
-    operator_name: null,
-    status: null,
-    order_by: null,
-    pageSize: null,
-    offset: null,
-  },
 };
 
 const easyGraphQLLoadTester = new LoadTesting(schemaCode, args);
@@ -68,7 +57,6 @@ easyGraphQLLoadTester.k6(k6ConfigFile, {
     "addFacilityQuery",
     "addOrganisationQuery",
     "applicationsQuery",
-    "organisationRequestsQuery",
   ],
   queryFile: true,
 });
