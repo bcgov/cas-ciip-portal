@@ -6,8 +6,10 @@ begin;
 create table ggircs_portal.gwp (
   id integer primary key generated always as identity,
   gas_id integer references ggircs_portal.gas
-  gwp numeric,
+  gwp numeric not null,
   description varchar(10000),
+  reporting_year_start integer not null,
+  reporting_year_end integer not null,
   created_at timestamp with time zone not null default now(),
   created_by int references ggircs_portal.ciip_user,
   updated_at timestamp with time zone not null default now(),
@@ -44,7 +46,8 @@ comment on table ggircs_portal.gwp is 'Table of legislated GWP values used in th
 comment on column ggircs_portal.gwp.id is 'Primary key for the gwp table';
 comment on column ggircs_portal.gwp.gas_id is 'Foreign key to the gas table';
 comment on column ggircs_portal.gwp.gwp is 'Global warming potential of the gwp';
-comment on column ggircs_portal.gwp.description is 'Description of the gwp row';
+comment on column ggircs_portal.gwp.reporting_year_start is 'The first reporting year that this GWP value came into effect';
+comment on column ggircs_portal.gwp.description is 'The last reporting year that this GWP value was in effect';
 comment on column ggircs_portal.gwp.created_at is 'Creation date of row';
 comment on column ggircs_portal.gwp.created_by is 'Creator of row';
 comment on column ggircs_portal.gwp.updated_at is 'Updated date of row';
