@@ -57,7 +57,7 @@ begin
                 and ec.swrs_emission_category is not null
               inner join ggircs_portal.gas g on ecg.gas_id = g.id
               join ggircs_portal.gwp on gwp.gas_id = g.id
-              and (reporting_year between gwp.start_reporting_year and gwp.end_reporting_year)
+              and (reporting_year between gwp.reporting_year_start and gwp.reporting_year_end)
             ) as map
             on (
               select
