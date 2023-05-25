@@ -19,6 +19,9 @@ const exitCode =
   ) +
   parseResult(
     __dirname + `/results/mutations_${process.env.PERF_MODE}_result.json`
+  ) +
+  parseResult(
+    __dirname + `/results/uploads_${process.env.PERF_MODE}_result.json`
   );
 
 process.exit(exitCode);
