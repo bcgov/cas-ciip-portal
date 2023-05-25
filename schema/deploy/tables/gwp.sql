@@ -5,7 +5,7 @@ begin;
 
 create table ggircs_portal.gwp (
   id integer primary key generated always as identity,
-  gas_id integer references ggircs_portal.gas
+  gas_id integer references ggircs_portal.gas,
   gwp numeric not null,
   description varchar(10000),
   reporting_year_start integer not null,
@@ -42,7 +42,7 @@ $grant$;
 
 -- No further row-level security policies necessary beyond grants
 
-comment on table ggircs_portal.gwp is 'Table of legislated GWP values used in the CIIP program';
+comment on table ggircs_portal.gwp is 'Table of legislated GWP (Global Warming Potential) values used in the CIIP program';
 comment on column ggircs_portal.gwp.id is 'Primary key for the gwp table';
 comment on column ggircs_portal.gwp.gas_id is 'Foreign key to the gas table';
 comment on column ggircs_portal.gwp.gwp is 'Global warming potential of the gwp';

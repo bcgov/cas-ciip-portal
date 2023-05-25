@@ -452,3 +452,7 @@ application_validation_functions/fuels_match_emissions_category 2023-04-10T21:41
 @v2.21.0 2023-05-11T18:04:16Z Dylan Leard <dylan@button.is> # release v2.21.0
 @v2.21.1 2023-05-15T20:26:38Z Dylan Leard <dylan@button.is> # release v2.21.1
 @v2.21.2 2023-05-16T18:36:20Z Dylan Leard <dylan@button.is> # release v2.21.2
+tables/gwp [tables/gas_001] 2023-05-25T20:35:36Z Dylan Leard <dylan@button.is> # Add table to contain gwp (global warming potential) modifiers and temporal data to match with application reporting years
+swrs_functions/init_application_emission_form_result [swrs_functions/init_application_emission_form_result@v2.21.0] 2023-05-25T20:52:07Z Dylan Leard <dylan@button.is> # Migration: update function to allow for applying different gwp values depending on reporting_year
+computed_columns/application_revision_total_ciip_emissions [computed_columns/application_revision_total_ciip_emissions@v2.21.0 tables/gwp] 2023-05-25T21:16:56Z Dylan Leard <dylan@button.is> # Migration: update function to apply gwp according to reporting_year
+tables/gas_002_ar5_gwp [tables/gwp] 2023-05-25T20:35:36Z Dylan Leard <dylan@button.is> # Drop gwp column. It now exists in its own table.
