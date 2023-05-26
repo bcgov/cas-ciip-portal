@@ -50,7 +50,7 @@ begin
                 ec.display_name as emission_category,
                 g.gas_type,
                 g.gas_description,
-                g.gwp
+                gwp.gwp
                 from ggircs_portal.emission_category_gas ecg
               inner join ggircs_portal.emission_category ec
                 on ecg.emission_category_id = ec.id
