@@ -60,6 +60,7 @@ select set_hasnt(
   'Other, non-carbon taxed emission category is not included in the form result after running init_application_emission_form_result'
 );
 
+select * from ggircs_portal.form_result order by id desc limit 1;
 
 
 select finish();

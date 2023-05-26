@@ -23,7 +23,6 @@ select columns_are('ggircs_portal'::name, 'gas'::name, array[
   'id'::name,
   'gas_type'::name,
   'gas_description'::name,
-  'gwp'::name,
   'created_at'::name,
   'created_by'::name,
   'updated_at'::name,
