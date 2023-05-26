@@ -184,3 +184,13 @@ release: ## Tag a release using release-it
 release:
 	@yarn
 	@yarn release-it
+
+.PHONY: generate_perf_files
+generate_perf_files: ## Create k6files folder and generate mock upload test files
+generate_perf_files:
+	@mkdir -p k6files;
+	 cd k6files && head -c 100000 </dev/urandom >file_100KB.pdf;
+	 cd k6files && head -c 1000000 </dev/urandom >file_1M.pdf;
+	 cd k6files && head -c 10000000 </dev/urandom >file_10M.pdf;
+	 cd k6files && head -c 50000000 </dev/urandom >file_50M.pdf;
+	 cd k6files && head -c 100000000 </dev/urandom >file_100M.pdf;
