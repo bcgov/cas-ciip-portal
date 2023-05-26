@@ -36132,6 +36132,8 @@ type Gwp implements Node {
 
   """The user who deleted the row"""
   deletedBy: Int
+
+  """Description of the gwp row"""
   description: String
 
   """Reads a single `Gas` that is related to this `Gwp`."""
@@ -36292,6 +36294,8 @@ input GwpInput {
 
   """The user who deleted the row"""
   deletedBy: Int
+
+  """Description of the gwp row"""
   description: String
 
   """Foreign key to the gas table"""
@@ -36326,6 +36330,8 @@ input GwpPatch {
 
   """The user who deleted the row"""
   deletedBy: Int
+
+  """Description of the gwp row"""
   description: String
 
   """Foreign key to the gas table"""
