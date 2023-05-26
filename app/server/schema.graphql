@@ -9966,6 +9966,210 @@ type CiipUser implements Node {
   ): CiipUserCiipUsersByGasUpdatedByAndDeletedByManyToManyConnection!
 
   """Reads and enables pagination through a set of `CiipUser`."""
+  ciipUsersByGwpCreatedByAndDeletedBy(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CiipUserCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: CiipUserFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `CiipUser`."""
+    orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CiipUserCiipUsersByGwpCreatedByAndDeletedByManyToManyConnection!
+
+  """Reads and enables pagination through a set of `CiipUser`."""
+  ciipUsersByGwpCreatedByAndUpdatedBy(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CiipUserCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: CiipUserFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `CiipUser`."""
+    orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CiipUserCiipUsersByGwpCreatedByAndUpdatedByManyToManyConnection!
+
+  """Reads and enables pagination through a set of `CiipUser`."""
+  ciipUsersByGwpDeletedByAndCreatedBy(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CiipUserCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: CiipUserFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `CiipUser`."""
+    orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CiipUserCiipUsersByGwpDeletedByAndCreatedByManyToManyConnection!
+
+  """Reads and enables pagination through a set of `CiipUser`."""
+  ciipUsersByGwpDeletedByAndUpdatedBy(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CiipUserCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: CiipUserFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `CiipUser`."""
+    orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CiipUserCiipUsersByGwpDeletedByAndUpdatedByManyToManyConnection!
+
+  """Reads and enables pagination through a set of `CiipUser`."""
+  ciipUsersByGwpUpdatedByAndCreatedBy(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CiipUserCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: CiipUserFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `CiipUser`."""
+    orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CiipUserCiipUsersByGwpUpdatedByAndCreatedByManyToManyConnection!
+
+  """Reads and enables pagination through a set of `CiipUser`."""
+  ciipUsersByGwpUpdatedByAndDeletedBy(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CiipUserCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: CiipUserFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `CiipUser`."""
+    orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CiipUserCiipUsersByGwpUpdatedByAndDeletedByManyToManyConnection!
+
+  """Reads and enables pagination through a set of `CiipUser`."""
   ciipUsersByIncrementalFuelChargeBaselineCreatedByAndDeletedBy(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
@@ -12432,6 +12636,108 @@ type CiipUser implements Node {
   ): CiipUserGasesByEmissionCategoryGasUpdatedByAndGasIdManyToManyConnection!
 
   """Reads and enables pagination through a set of `Gas`."""
+  gasesByGwpCreatedByAndGasId(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: GasCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: GasFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `Gas`."""
+    orderBy: [GasesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CiipUserGasesByGwpCreatedByAndGasIdManyToManyConnection!
+
+  """Reads and enables pagination through a set of `Gas`."""
+  gasesByGwpDeletedByAndGasId(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: GasCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: GasFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `Gas`."""
+    orderBy: [GasesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CiipUserGasesByGwpDeletedByAndGasIdManyToManyConnection!
+
+  """Reads and enables pagination through a set of `Gas`."""
+  gasesByGwpUpdatedByAndGasId(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: GasCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: GasFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `Gas`."""
+    orderBy: [GasesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CiipUserGasesByGwpUpdatedByAndGasIdManyToManyConnection!
+
+  """Reads and enables pagination through a set of `Gas`."""
   gasesByUpdatedBy(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
@@ -12464,6 +12770,108 @@ type CiipUser implements Node {
     """The method to use when ordering `Gas`."""
     orderBy: [GasesOrderBy!] = [PRIMARY_KEY_ASC]
   ): GasesConnection!
+
+  """Reads and enables pagination through a set of `Gwp`."""
+  gwpsByCreatedBy(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: GwpCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: GwpFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `Gwp`."""
+    orderBy: [GwpsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): GwpsConnection!
+
+  """Reads and enables pagination through a set of `Gwp`."""
+  gwpsByDeletedBy(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: GwpCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: GwpFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `Gwp`."""
+    orderBy: [GwpsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): GwpsConnection!
+
+  """Reads and enables pagination through a set of `Gwp`."""
+  gwpsByUpdatedBy(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: GwpCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: GwpFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `Gwp`."""
+    orderBy: [GwpsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): GwpsConnection!
 
   """
   A globally unique identifier. Can be used in various places throughout the system to identify this single value.
@@ -19946,6 +20354,366 @@ type CiipUserCiipUsersByGasUpdatedByAndDeletedByManyToManyEdge {
   node: CiipUser
 }
 
+"""A connection to a list of `CiipUser` values, with data from `Gwp`."""
+type CiipUserCiipUsersByGwpCreatedByAndDeletedByManyToManyConnection {
+  """
+  A list of edges which contains the `CiipUser`, info from the `Gwp`, and the cursor to aid in pagination.
+  """
+  edges: [CiipUserCiipUsersByGwpCreatedByAndDeletedByManyToManyEdge!]!
+
+  """A list of `CiipUser` objects."""
+  nodes: [CiipUser]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `CiipUser` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `CiipUser` edge in the connection, with data from `Gwp`."""
+type CiipUserCiipUsersByGwpCreatedByAndDeletedByManyToManyEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """Reads and enables pagination through a set of `Gwp`."""
+  gwpsByDeletedBy(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: GwpCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: GwpFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `Gwp`."""
+    orderBy: [GwpsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): GwpsConnection!
+
+  """The `CiipUser` at the end of the edge."""
+  node: CiipUser
+}
+
+"""A connection to a list of `CiipUser` values, with data from `Gwp`."""
+type CiipUserCiipUsersByGwpCreatedByAndUpdatedByManyToManyConnection {
+  """
+  A list of edges which contains the `CiipUser`, info from the `Gwp`, and the cursor to aid in pagination.
+  """
+  edges: [CiipUserCiipUsersByGwpCreatedByAndUpdatedByManyToManyEdge!]!
+
+  """A list of `CiipUser` objects."""
+  nodes: [CiipUser]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `CiipUser` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `CiipUser` edge in the connection, with data from `Gwp`."""
+type CiipUserCiipUsersByGwpCreatedByAndUpdatedByManyToManyEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """Reads and enables pagination through a set of `Gwp`."""
+  gwpsByUpdatedBy(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: GwpCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: GwpFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `Gwp`."""
+    orderBy: [GwpsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): GwpsConnection!
+
+  """The `CiipUser` at the end of the edge."""
+  node: CiipUser
+}
+
+"""A connection to a list of `CiipUser` values, with data from `Gwp`."""
+type CiipUserCiipUsersByGwpDeletedByAndCreatedByManyToManyConnection {
+  """
+  A list of edges which contains the `CiipUser`, info from the `Gwp`, and the cursor to aid in pagination.
+  """
+  edges: [CiipUserCiipUsersByGwpDeletedByAndCreatedByManyToManyEdge!]!
+
+  """A list of `CiipUser` objects."""
+  nodes: [CiipUser]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `CiipUser` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `CiipUser` edge in the connection, with data from `Gwp`."""
+type CiipUserCiipUsersByGwpDeletedByAndCreatedByManyToManyEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """Reads and enables pagination through a set of `Gwp`."""
+  gwpsByCreatedBy(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: GwpCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: GwpFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `Gwp`."""
+    orderBy: [GwpsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): GwpsConnection!
+
+  """The `CiipUser` at the end of the edge."""
+  node: CiipUser
+}
+
+"""A connection to a list of `CiipUser` values, with data from `Gwp`."""
+type CiipUserCiipUsersByGwpDeletedByAndUpdatedByManyToManyConnection {
+  """
+  A list of edges which contains the `CiipUser`, info from the `Gwp`, and the cursor to aid in pagination.
+  """
+  edges: [CiipUserCiipUsersByGwpDeletedByAndUpdatedByManyToManyEdge!]!
+
+  """A list of `CiipUser` objects."""
+  nodes: [CiipUser]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `CiipUser` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `CiipUser` edge in the connection, with data from `Gwp`."""
+type CiipUserCiipUsersByGwpDeletedByAndUpdatedByManyToManyEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """Reads and enables pagination through a set of `Gwp`."""
+  gwpsByUpdatedBy(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: GwpCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: GwpFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `Gwp`."""
+    orderBy: [GwpsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): GwpsConnection!
+
+  """The `CiipUser` at the end of the edge."""
+  node: CiipUser
+}
+
+"""A connection to a list of `CiipUser` values, with data from `Gwp`."""
+type CiipUserCiipUsersByGwpUpdatedByAndCreatedByManyToManyConnection {
+  """
+  A list of edges which contains the `CiipUser`, info from the `Gwp`, and the cursor to aid in pagination.
+  """
+  edges: [CiipUserCiipUsersByGwpUpdatedByAndCreatedByManyToManyEdge!]!
+
+  """A list of `CiipUser` objects."""
+  nodes: [CiipUser]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `CiipUser` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `CiipUser` edge in the connection, with data from `Gwp`."""
+type CiipUserCiipUsersByGwpUpdatedByAndCreatedByManyToManyEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """Reads and enables pagination through a set of `Gwp`."""
+  gwpsByCreatedBy(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: GwpCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: GwpFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `Gwp`."""
+    orderBy: [GwpsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): GwpsConnection!
+
+  """The `CiipUser` at the end of the edge."""
+  node: CiipUser
+}
+
+"""A connection to a list of `CiipUser` values, with data from `Gwp`."""
+type CiipUserCiipUsersByGwpUpdatedByAndDeletedByManyToManyConnection {
+  """
+  A list of edges which contains the `CiipUser`, info from the `Gwp`, and the cursor to aid in pagination.
+  """
+  edges: [CiipUserCiipUsersByGwpUpdatedByAndDeletedByManyToManyEdge!]!
+
+  """A list of `CiipUser` objects."""
+  nodes: [CiipUser]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `CiipUser` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `CiipUser` edge in the connection, with data from `Gwp`."""
+type CiipUserCiipUsersByGwpUpdatedByAndDeletedByManyToManyEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """Reads and enables pagination through a set of `Gwp`."""
+  gwpsByDeletedBy(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: GwpCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: GwpFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `Gwp`."""
+    orderBy: [GwpsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): GwpsConnection!
+
+  """The `CiipUser` at the end of the edge."""
+  node: CiipUser
+}
+
 """
 A connection to a list of `CiipUser` values, with data from `IncrementalFuelChargeBaseline`.
 """
@@ -22944,6 +23712,24 @@ input CiipUserFilter {
   """Some related `gasesByUpdatedBy` exist."""
   gasesByUpdatedByExist: Boolean
 
+  """Filter by the object’s `gwpsByCreatedBy` relation."""
+  gwpsByCreatedBy: CiipUserToManyGwpFilter
+
+  """Some related `gwpsByCreatedBy` exist."""
+  gwpsByCreatedByExist: Boolean
+
+  """Filter by the object’s `gwpsByDeletedBy` relation."""
+  gwpsByDeletedBy: CiipUserToManyGwpFilter
+
+  """Some related `gwpsByDeletedBy` exist."""
+  gwpsByDeletedByExist: Boolean
+
+  """Filter by the object’s `gwpsByUpdatedBy` relation."""
+  gwpsByUpdatedBy: CiipUserToManyGwpFilter
+
+  """Some related `gwpsByUpdatedBy` exist."""
+  gwpsByUpdatedByExist: Boolean
+
   """
   Filter by the object’s `incrementalFuelChargeBaselinesByCreatedBy` relation.
   """
@@ -23651,6 +24437,186 @@ type CiipUserGasesByEmissionCategoryGasUpdatedByAndGasIdManyToManyEdge {
     """The method to use when ordering `EmissionCategoryGas`."""
     orderBy: [EmissionCategoryGasesOrderBy!] = [PRIMARY_KEY_ASC]
   ): EmissionCategoryGasesConnection!
+
+  """The `Gas` at the end of the edge."""
+  node: Gas
+}
+
+"""A connection to a list of `Gas` values, with data from `Gwp`."""
+type CiipUserGasesByGwpCreatedByAndGasIdManyToManyConnection {
+  """
+  A list of edges which contains the `Gas`, info from the `Gwp`, and the cursor to aid in pagination.
+  """
+  edges: [CiipUserGasesByGwpCreatedByAndGasIdManyToManyEdge!]!
+
+  """A list of `Gas` objects."""
+  nodes: [Gas]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `Gas` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `Gas` edge in the connection, with data from `Gwp`."""
+type CiipUserGasesByGwpCreatedByAndGasIdManyToManyEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """Reads and enables pagination through a set of `Gwp`."""
+  gwpsByGasId(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: GwpCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: GwpFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `Gwp`."""
+    orderBy: [GwpsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): GwpsConnection!
+
+  """The `Gas` at the end of the edge."""
+  node: Gas
+}
+
+"""A connection to a list of `Gas` values, with data from `Gwp`."""
+type CiipUserGasesByGwpDeletedByAndGasIdManyToManyConnection {
+  """
+  A list of edges which contains the `Gas`, info from the `Gwp`, and the cursor to aid in pagination.
+  """
+  edges: [CiipUserGasesByGwpDeletedByAndGasIdManyToManyEdge!]!
+
+  """A list of `Gas` objects."""
+  nodes: [Gas]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `Gas` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `Gas` edge in the connection, with data from `Gwp`."""
+type CiipUserGasesByGwpDeletedByAndGasIdManyToManyEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """Reads and enables pagination through a set of `Gwp`."""
+  gwpsByGasId(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: GwpCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: GwpFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `Gwp`."""
+    orderBy: [GwpsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): GwpsConnection!
+
+  """The `Gas` at the end of the edge."""
+  node: Gas
+}
+
+"""A connection to a list of `Gas` values, with data from `Gwp`."""
+type CiipUserGasesByGwpUpdatedByAndGasIdManyToManyConnection {
+  """
+  A list of edges which contains the `Gas`, info from the `Gwp`, and the cursor to aid in pagination.
+  """
+  edges: [CiipUserGasesByGwpUpdatedByAndGasIdManyToManyEdge!]!
+
+  """A list of `Gas` objects."""
+  nodes: [Gas]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `Gas` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `Gas` edge in the connection, with data from `Gwp`."""
+type CiipUserGasesByGwpUpdatedByAndGasIdManyToManyEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """Reads and enables pagination through a set of `Gwp`."""
+  gwpsByGasId(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: GwpCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: GwpFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `Gwp`."""
+    orderBy: [GwpsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): GwpsConnection!
 
   """The `Gas` at the end of the edge."""
   node: Gas
@@ -25703,6 +26669,26 @@ input CiipUserToManyGasFilter {
 }
 
 """
+A filter to be used against many `Gwp` object types. All fields are combined with a logical ‘and.’
+"""
+input CiipUserToManyGwpFilter {
+  """
+  Every related `Gwp` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  every: GwpFilter
+
+  """
+  No related `Gwp` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  none: GwpFilter
+
+  """
+  Some related `Gwp` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  some: GwpFilter
+}
+
+"""
 A filter to be used against many `IncrementalFuelChargeBaseline` object types. All fields are combined with a logical ‘and.’
 """
 input CiipUserToManyIncrementalFuelChargeBaselineFilter {
@@ -26817,6 +27803,53 @@ type CreateGasPayload {
     """The method to use when ordering `Gas`."""
     orderBy: [GasesOrderBy!] = [PRIMARY_KEY_ASC]
   ): GasesEdge
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""All input for the create `Gwp` mutation."""
+input CreateGwpInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `Gwp` to be created by this mutation."""
+  gwp: GwpInput!
+}
+
+"""The output of our create `Gwp` mutation."""
+type CreateGwpPayload {
+  """Reads a single `CiipUser` that is related to this `Gwp`."""
+  ciipUserByCreatedBy: CiipUser
+
+  """Reads a single `CiipUser` that is related to this `Gwp`."""
+  ciipUserByDeletedBy: CiipUser
+
+  """Reads a single `CiipUser` that is related to this `Gwp`."""
+  ciipUserByUpdatedBy: CiipUser
+
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """Reads a single `Gas` that is related to this `Gwp`."""
+  gasByGasId: Gas
+
+  """The `Gwp` that was created by this mutation."""
+  gwp: Gwp
+
+  """An edge for our `Gwp`. May be used by Relay 1."""
+  gwpEdge(
+    """The method to use when ordering `Gwp`."""
+    orderBy: [GwpsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): GwpsEdge
 
   """
   Our root query field type. Allows us to run any query from our mutation payload.
@@ -28488,6 +29521,68 @@ type DeleteGasPayload {
     """The method to use when ordering `Gas`."""
     orderBy: [GasesOrderBy!] = [PRIMARY_KEY_ASC]
   ): GasesEdge
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""All input for the `deleteGwpByRowId` mutation."""
+input DeleteGwpByRowIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """Primary key for the gwp table"""
+  rowId: Int!
+}
+
+"""All input for the `deleteGwp` mutation."""
+input DeleteGwpInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `Gwp` to be deleted.
+  """
+  id: ID!
+}
+
+"""The output of our delete `Gwp` mutation."""
+type DeleteGwpPayload {
+  """Reads a single `CiipUser` that is related to this `Gwp`."""
+  ciipUserByCreatedBy: CiipUser
+
+  """Reads a single `CiipUser` that is related to this `Gwp`."""
+  ciipUserByDeletedBy: CiipUser
+
+  """Reads a single `CiipUser` that is related to this `Gwp`."""
+  ciipUserByUpdatedBy: CiipUser
+
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+  deletedGwpId: ID
+
+  """Reads a single `Gas` that is related to this `Gwp`."""
+  gasByGasId: Gas
+
+  """The `Gwp` that was deleted by this mutation."""
+  gwp: Gwp
+
+  """An edge for our `Gwp`. May be used by Relay 1."""
+  gwpEdge(
+    """The method to use when ordering `Gwp`."""
+    orderBy: [GwpsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): GwpsEdge
 
   """
   Our root query field type. Allows us to run any query from our mutation payload.
@@ -34067,6 +35162,108 @@ type Gas implements Node {
     orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
   ): GasCiipUsersByEmissionCategoryGasGasIdAndUpdatedByManyToManyConnection!
 
+  """Reads and enables pagination through a set of `CiipUser`."""
+  ciipUsersByGwpGasIdAndCreatedBy(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CiipUserCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: CiipUserFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `CiipUser`."""
+    orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
+  ): GasCiipUsersByGwpGasIdAndCreatedByManyToManyConnection!
+
+  """Reads and enables pagination through a set of `CiipUser`."""
+  ciipUsersByGwpGasIdAndDeletedBy(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CiipUserCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: CiipUserFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `CiipUser`."""
+    orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
+  ): GasCiipUsersByGwpGasIdAndDeletedByManyToManyConnection!
+
+  """Reads and enables pagination through a set of `CiipUser`."""
+  ciipUsersByGwpGasIdAndUpdatedBy(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CiipUserCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: CiipUserFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `CiipUser`."""
+    orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
+  ): GasCiipUsersByGwpGasIdAndUpdatedByManyToManyConnection!
+
   """Creation date of row"""
   createdAt: Datetime!
 
@@ -34153,8 +35350,39 @@ type Gas implements Node {
   """The name of the gas"""
   gasType: String
 
-  """Global warming potential of the gas"""
-  gwp: BigFloat
+  """Reads and enables pagination through a set of `Gwp`."""
+  gwpsByGasId(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: GwpCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: GwpFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `Gwp`."""
+    orderBy: [GwpsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): GwpsConnection!
 
   """
   A globally unique identifier. Can be used in various places throughout the system to identify this single value.
@@ -34368,6 +35596,186 @@ type GasCiipUsersByEmissionCategoryGasGasIdAndUpdatedByManyToManyEdge {
   node: CiipUser
 }
 
+"""A connection to a list of `CiipUser` values, with data from `Gwp`."""
+type GasCiipUsersByGwpGasIdAndCreatedByManyToManyConnection {
+  """
+  A list of edges which contains the `CiipUser`, info from the `Gwp`, and the cursor to aid in pagination.
+  """
+  edges: [GasCiipUsersByGwpGasIdAndCreatedByManyToManyEdge!]!
+
+  """A list of `CiipUser` objects."""
+  nodes: [CiipUser]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `CiipUser` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `CiipUser` edge in the connection, with data from `Gwp`."""
+type GasCiipUsersByGwpGasIdAndCreatedByManyToManyEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """Reads and enables pagination through a set of `Gwp`."""
+  gwpsByCreatedBy(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: GwpCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: GwpFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `Gwp`."""
+    orderBy: [GwpsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): GwpsConnection!
+
+  """The `CiipUser` at the end of the edge."""
+  node: CiipUser
+}
+
+"""A connection to a list of `CiipUser` values, with data from `Gwp`."""
+type GasCiipUsersByGwpGasIdAndDeletedByManyToManyConnection {
+  """
+  A list of edges which contains the `CiipUser`, info from the `Gwp`, and the cursor to aid in pagination.
+  """
+  edges: [GasCiipUsersByGwpGasIdAndDeletedByManyToManyEdge!]!
+
+  """A list of `CiipUser` objects."""
+  nodes: [CiipUser]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `CiipUser` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `CiipUser` edge in the connection, with data from `Gwp`."""
+type GasCiipUsersByGwpGasIdAndDeletedByManyToManyEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """Reads and enables pagination through a set of `Gwp`."""
+  gwpsByDeletedBy(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: GwpCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: GwpFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `Gwp`."""
+    orderBy: [GwpsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): GwpsConnection!
+
+  """The `CiipUser` at the end of the edge."""
+  node: CiipUser
+}
+
+"""A connection to a list of `CiipUser` values, with data from `Gwp`."""
+type GasCiipUsersByGwpGasIdAndUpdatedByManyToManyConnection {
+  """
+  A list of edges which contains the `CiipUser`, info from the `Gwp`, and the cursor to aid in pagination.
+  """
+  edges: [GasCiipUsersByGwpGasIdAndUpdatedByManyToManyEdge!]!
+
+  """A list of `CiipUser` objects."""
+  nodes: [CiipUser]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `CiipUser` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `CiipUser` edge in the connection, with data from `Gwp`."""
+type GasCiipUsersByGwpGasIdAndUpdatedByManyToManyEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """Reads and enables pagination through a set of `Gwp`."""
+  gwpsByUpdatedBy(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: GwpCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: GwpFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `Gwp`."""
+    orderBy: [GwpsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): GwpsConnection!
+
+  """The `CiipUser` at the end of the edge."""
+  node: CiipUser
+}
+
 """
 A condition to be used against `Gas` object types. All fields are tested for equality and combined with a logical ‘and.’
 """
@@ -34389,9 +35797,6 @@ input GasCondition {
 
   """Checks for equality with the object’s `gasType` field."""
   gasType: String
-
-  """Checks for equality with the object’s `gwp` field."""
-  gwp: BigFloat
 
   """Checks for equality with the object’s `isCiipEmission` field."""
   isCiipEmission: Boolean
@@ -34521,8 +35926,11 @@ input GasFilter {
   """Filter by the object’s `gasType` field."""
   gasType: StringFilter
 
-  """Filter by the object’s `gwp` field."""
-  gwp: BigFloatFilter
+  """Filter by the object’s `gwpsByGasId` relation."""
+  gwpsByGasId: GasToManyGwpFilter
+
+  """Some related `gwpsByGasId` exist."""
+  gwpsByGasIdExist: Boolean
 
   """Filter by the object’s `isCiipEmission` field."""
   isCiipEmission: BooleanFilter
@@ -34563,9 +35971,6 @@ input GasInput {
   """The name of the gas"""
   gasType: String
 
-  """Global warming potential of the gas"""
-  gwp: BigFloat
-
   """
   boolean column indicates whether this row should be included when totalling emissions in the context of CIIP (CleanBC Industrial Incentive Program)
   """
@@ -34598,9 +36003,6 @@ input GasPatch {
   """The name of the gas"""
   gasType: String
 
-  """Global warming potential of the gas"""
-  gwp: BigFloat
-
   """
   boolean column indicates whether this row should be included when totalling emissions in the context of CIIP (CleanBC Industrial Incentive Program)
   """
@@ -34631,6 +36033,26 @@ input GasToManyEmissionCategoryGasFilter {
   Some related `EmissionCategoryGas` matches the filter criteria. All fields are combined with a logical ‘and.’
   """
   some: EmissionCategoryGasFilter
+}
+
+"""
+A filter to be used against many `Gwp` object types. All fields are combined with a logical ‘and.’
+"""
+input GasToManyGwpFilter {
+  """
+  Every related `Gwp` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  every: GwpFilter
+
+  """
+  No related `Gwp` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  none: GwpFilter
+
+  """
+  Some related `Gwp` matches the filter criteria. All fields are combined with a logical ‘and.’
+  """
+  some: GwpFilter
 }
 
 """A connection to a list of `Gas` values."""
@@ -34673,8 +36095,6 @@ enum GasesOrderBy {
   GAS_DESCRIPTION_DESC
   GAS_TYPE_ASC
   GAS_TYPE_DESC
-  GWP_ASC
-  GWP_DESC
   ID_ASC
   ID_DESC
   IS_CIIP_EMISSION_ASC
@@ -34682,6 +36102,302 @@ enum GasesOrderBy {
   NATURAL
   PRIMARY_KEY_ASC
   PRIMARY_KEY_DESC
+  UPDATED_AT_ASC
+  UPDATED_AT_DESC
+  UPDATED_BY_ASC
+  UPDATED_BY_DESC
+}
+
+"""
+Table of legislated GWP (Global Warming Potential) values used in the CIIP program
+"""
+type Gwp implements Node {
+  """Reads a single `CiipUser` that is related to this `Gwp`."""
+  ciipUserByCreatedBy: CiipUser
+
+  """Reads a single `CiipUser` that is related to this `Gwp`."""
+  ciipUserByDeletedBy: CiipUser
+
+  """Reads a single `CiipUser` that is related to this `Gwp`."""
+  ciipUserByUpdatedBy: CiipUser
+
+  """Creation date of row"""
+  createdAt: Datetime!
+
+  """Creator of row"""
+  createdBy: Int
+
+  """Date of deletion"""
+  deletedAt: Datetime
+
+  """The user who deleted the row"""
+  deletedBy: Int
+  description: String
+
+  """Reads a single `Gas` that is related to this `Gwp`."""
+  gasByGasId: Gas
+
+  """Foreign key to the gas table"""
+  gasId: Int
+
+  """Global warming potential of the gwp"""
+  gwp: BigFloat!
+
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  id: ID!
+
+  """The last reporting year that this GWP value was in effect"""
+  reportingYearEnd: Int!
+
+  """The first reporting year that this GWP value came into effect"""
+  reportingYearStart: Int!
+
+  """Primary key for the gwp table"""
+  rowId: Int!
+
+  """Updated date of row"""
+  updatedAt: Datetime!
+
+  """Updator of row"""
+  updatedBy: Int
+}
+
+"""
+A condition to be used against `Gwp` object types. All fields are tested for equality and combined with a logical ‘and.’
+"""
+input GwpCondition {
+  """Checks for equality with the object’s `createdAt` field."""
+  createdAt: Datetime
+
+  """Checks for equality with the object’s `createdBy` field."""
+  createdBy: Int
+
+  """Checks for equality with the object’s `deletedAt` field."""
+  deletedAt: Datetime
+
+  """Checks for equality with the object’s `deletedBy` field."""
+  deletedBy: Int
+
+  """Checks for equality with the object’s `description` field."""
+  description: String
+
+  """Checks for equality with the object’s `gasId` field."""
+  gasId: Int
+
+  """Checks for equality with the object’s `gwp` field."""
+  gwp: BigFloat
+
+  """Checks for equality with the object’s `reportingYearEnd` field."""
+  reportingYearEnd: Int
+
+  """Checks for equality with the object’s `reportingYearStart` field."""
+  reportingYearStart: Int
+
+  """Checks for equality with the object’s `rowId` field."""
+  rowId: Int
+
+  """Checks for equality with the object’s `updatedAt` field."""
+  updatedAt: Datetime
+
+  """Checks for equality with the object’s `updatedBy` field."""
+  updatedBy: Int
+}
+
+"""
+A filter to be used against `Gwp` object types. All fields are combined with a logical ‘and.’
+"""
+input GwpFilter {
+  """Checks for all expressions in this list."""
+  and: [GwpFilter!]
+
+  """Filter by the object’s `ciipUserByCreatedBy` relation."""
+  ciipUserByCreatedBy: CiipUserFilter
+
+  """A related `ciipUserByCreatedBy` exists."""
+  ciipUserByCreatedByExists: Boolean
+
+  """Filter by the object’s `ciipUserByDeletedBy` relation."""
+  ciipUserByDeletedBy: CiipUserFilter
+
+  """A related `ciipUserByDeletedBy` exists."""
+  ciipUserByDeletedByExists: Boolean
+
+  """Filter by the object’s `ciipUserByUpdatedBy` relation."""
+  ciipUserByUpdatedBy: CiipUserFilter
+
+  """A related `ciipUserByUpdatedBy` exists."""
+  ciipUserByUpdatedByExists: Boolean
+
+  """Filter by the object’s `createdAt` field."""
+  createdAt: DatetimeFilter
+
+  """Filter by the object’s `createdBy` field."""
+  createdBy: IntFilter
+
+  """Filter by the object’s `deletedAt` field."""
+  deletedAt: DatetimeFilter
+
+  """Filter by the object’s `deletedBy` field."""
+  deletedBy: IntFilter
+
+  """Filter by the object’s `description` field."""
+  description: StringFilter
+
+  """Filter by the object’s `gasByGasId` relation."""
+  gasByGasId: GasFilter
+
+  """A related `gasByGasId` exists."""
+  gasByGasIdExists: Boolean
+
+  """Filter by the object’s `gasId` field."""
+  gasId: IntFilter
+
+  """Filter by the object’s `gwp` field."""
+  gwp: BigFloatFilter
+
+  """Negates the expression."""
+  not: GwpFilter
+
+  """Checks for any expressions in this list."""
+  or: [GwpFilter!]
+
+  """Filter by the object’s `reportingYearEnd` field."""
+  reportingYearEnd: IntFilter
+
+  """Filter by the object’s `reportingYearStart` field."""
+  reportingYearStart: IntFilter
+
+  """Filter by the object’s `rowId` field."""
+  rowId: IntFilter
+
+  """Filter by the object’s `updatedAt` field."""
+  updatedAt: DatetimeFilter
+
+  """Filter by the object’s `updatedBy` field."""
+  updatedBy: IntFilter
+}
+
+"""An input for mutations affecting `Gwp`"""
+input GwpInput {
+  """Creation date of row"""
+  createdAt: Datetime
+
+  """Creator of row"""
+  createdBy: Int
+
+  """Date of deletion"""
+  deletedAt: Datetime
+
+  """The user who deleted the row"""
+  deletedBy: Int
+  description: String
+
+  """Foreign key to the gas table"""
+  gasId: Int
+
+  """Global warming potential of the gwp"""
+  gwp: BigFloat!
+
+  """The last reporting year that this GWP value was in effect"""
+  reportingYearEnd: Int!
+
+  """The first reporting year that this GWP value came into effect"""
+  reportingYearStart: Int!
+
+  """Updated date of row"""
+  updatedAt: Datetime
+
+  """Updator of row"""
+  updatedBy: Int
+}
+
+"""Represents an update to a `Gwp`. Fields that are set will be updated."""
+input GwpPatch {
+  """Creation date of row"""
+  createdAt: Datetime
+
+  """Creator of row"""
+  createdBy: Int
+
+  """Date of deletion"""
+  deletedAt: Datetime
+
+  """The user who deleted the row"""
+  deletedBy: Int
+  description: String
+
+  """Foreign key to the gas table"""
+  gasId: Int
+
+  """Global warming potential of the gwp"""
+  gwp: BigFloat
+
+  """The last reporting year that this GWP value was in effect"""
+  reportingYearEnd: Int
+
+  """The first reporting year that this GWP value came into effect"""
+  reportingYearStart: Int
+
+  """Updated date of row"""
+  updatedAt: Datetime
+
+  """Updator of row"""
+  updatedBy: Int
+}
+
+"""A connection to a list of `Gwp` values."""
+type GwpsConnection {
+  """
+  A list of edges which contains the `Gwp` and cursor to aid in pagination.
+  """
+  edges: [GwpsEdge!]!
+
+  """A list of `Gwp` objects."""
+  nodes: [Gwp]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `Gwp` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `Gwp` edge in the connection."""
+type GwpsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `Gwp` at the end of the edge."""
+  node: Gwp
+}
+
+"""Methods to use when ordering `Gwp`."""
+enum GwpsOrderBy {
+  CREATED_AT_ASC
+  CREATED_AT_DESC
+  CREATED_BY_ASC
+  CREATED_BY_DESC
+  DELETED_AT_ASC
+  DELETED_AT_DESC
+  DELETED_BY_ASC
+  DELETED_BY_DESC
+  DESCRIPTION_ASC
+  DESCRIPTION_DESC
+  GAS_ID_ASC
+  GAS_ID_DESC
+  GWP_ASC
+  GWP_DESC
+  ID_ASC
+  ID_DESC
+  NATURAL
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+  REPORTING_YEAR_END_ASC
+  REPORTING_YEAR_END_DESC
+  REPORTING_YEAR_START_ASC
+  REPORTING_YEAR_START_DESC
   UPDATED_AT_ASC
   UPDATED_AT_DESC
   UPDATED_BY_ASC
@@ -35873,6 +37589,14 @@ type Mutation {
     input: CreateGasInput!
   ): CreateGasPayload
 
+  """Creates a single `Gwp`."""
+  createGwp(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateGwpInput!
+  ): CreateGwpPayload
+
   """Creates a single `IncrementalFuelChargeBaseline`."""
   createIncrementalFuelChargeBaseline(
     """
@@ -36264,6 +37988,22 @@ type Mutation {
     """
     input: DeleteGasByRowIdInput!
   ): DeleteGasPayload
+
+  """Deletes a single `Gwp` using its globally unique id."""
+  deleteGwp(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteGwpInput!
+  ): DeleteGwpPayload
+
+  """Deletes a single `Gwp` using a unique key."""
+  deleteGwpByRowId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteGwpByRowIdInput!
+  ): DeleteGwpPayload
 
   """
   Deletes a single `IncrementalFuelChargeBaseline` using its globally unique id.
@@ -36748,6 +38488,22 @@ type Mutation {
     """
     input: UpdateGasByRowIdInput!
   ): UpdateGasPayload
+
+  """Updates a single `Gwp` using its globally unique id and a patch."""
+  updateGwp(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateGwpInput!
+  ): UpdateGwpPayload
+
+  """Updates a single `Gwp` using a unique key and a patch."""
+  updateGwpByRowId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateGwpByRowIdInput!
+  ): UpdateGwpPayload
 
   """
   Updates a single `IncrementalFuelChargeBaseline` using its globally unique id and a patch.
@@ -41892,6 +43648,40 @@ type Query implements Node {
     orderBy: [GasesOrderBy!] = [PRIMARY_KEY_ASC]
   ): GasesConnection
 
+  """Reads and enables pagination through a set of `Gwp`."""
+  allGwps(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: GwpCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: GwpFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `Gwp`."""
+    orderBy: [GwpsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): GwpsConnection
+
   """
   Reads and enables pagination through a set of `IncrementalFuelChargeBaseline`.
   """
@@ -42480,6 +44270,13 @@ type Query implements Node {
   ): FuelDataConnection
   getSwrsOperatorContactData(facilityId: Int, reportingYear: Int): OperatorContactDatum
   getSwrsOrganisationData(facilityId: Int, reportingYear: Int): OrganisationDatum
+
+  """Reads a single `Gwp` using its globally unique `ID`."""
+  gwp(
+    """The globally unique `ID` to be used in selecting a single `Gwp`."""
+    id: ID!
+  ): Gwp
+  gwpByRowId(rowId: Int!): Gwp
 
   """
   The root query type must be a `Node` to work well with Relay 1 mutations. This just resolves to `query`.
@@ -46324,6 +48121,77 @@ type UpdateGasPayload {
     """The method to use when ordering `Gas`."""
     orderBy: [GasesOrderBy!] = [PRIMARY_KEY_ASC]
   ): GasesEdge
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""All input for the `updateGwpByRowId` mutation."""
+input UpdateGwpByRowIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `Gwp` being updated.
+  """
+  gwpPatch: GwpPatch!
+
+  """Primary key for the gwp table"""
+  rowId: Int!
+}
+
+"""All input for the `updateGwp` mutation."""
+input UpdateGwpInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `Gwp` being updated.
+  """
+  gwpPatch: GwpPatch!
+
+  """
+  The globally unique `ID` which will identify a single `Gwp` to be updated.
+  """
+  id: ID!
+}
+
+"""The output of our update `Gwp` mutation."""
+type UpdateGwpPayload {
+  """Reads a single `CiipUser` that is related to this `Gwp`."""
+  ciipUserByCreatedBy: CiipUser
+
+  """Reads a single `CiipUser` that is related to this `Gwp`."""
+  ciipUserByDeletedBy: CiipUser
+
+  """Reads a single `CiipUser` that is related to this `Gwp`."""
+  ciipUserByUpdatedBy: CiipUser
+
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """Reads a single `Gas` that is related to this `Gwp`."""
+  gasByGasId: Gas
+
+  """The `Gwp` that was updated by this mutation."""
+  gwp: Gwp
+
+  """An edge for our `Gwp`. May be used by Relay 1."""
+  gwpEdge(
+    """The method to use when ordering `Gwp`."""
+    orderBy: [GwpsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): GwpsEdge
 
   """
   Our root query field type. Allows us to run any query from our mutation payload.
