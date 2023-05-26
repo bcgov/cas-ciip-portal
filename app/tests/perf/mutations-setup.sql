@@ -26,7 +26,10 @@ insert into ggircs_portal.ciip_user_organisation(user_id, organisation_id, statu
   select user_id, organisation_id, status::ggircs_portal.ciip_user_organisation_status from user_orgs;
 
 -- we make sure there aren't any applications in the system
-truncate table ggircs_portal.application cascade;
+truncate table ggircs_portal.application restart identity cascade;
+
+-- add an application for uploads to use. id will be 1 as we reset the identity
+select test_helper.create_applications(1, True, false);
 
 
 select test_helper.modify_triggers('enable');
