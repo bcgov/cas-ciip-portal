@@ -4,18 +4,12 @@ reset client_min_messages;
 
 begin;
 
-select plan(28);
+select plan(34);
 
 select has_function(
   'ggircs_portal', 'init_application_emission_form_result', array['integer', 'integer'],
   'Function init_application_emission_form_result should exist'
 );
-
---update swrs.emission
---set emission_units = E'string\nwith\nnewlines'
---where report_id = (
---  select report_id from ggircs_portal.facility where id = 1
---);
 
 select lives_ok(
 format($$
@@ -60,7 +54,65 @@ select set_hasnt(
   'Other, non-carbon taxed emission category is not included in the form result after running init_application_emission_form_result'
 );
 
+select ialike(
+(
+  select ggircs_portal.init_application_emission_form_result(
+  1, 2022
+)::text
+),
+($$%"gwp": 28, "gasType": "CH4"%$$),
+'init_application_emission_form_result initializes with the correct CH4 AR5 GWP values for reporting year 2022'
+);
 
+select alike(
+(
+  select ggircs_portal.init_application_emission_form_result(
+  1, 2021
+)::text
+),
+($$%"gwp": 25, "gasType": "CH4"%$$),
+'init_application_emission_form_result initializes with the correct CH4 AR4 GWP values for reporting years before 2022'
+);
+
+select ialike(
+(
+  select ggircs_portal.init_application_emission_form_result(
+  1, 2022
+)::text
+),
+($$%"gwp": 265, "gasType": "N2O"%$$),
+'init_application_emission_form_result initializes with the correct N2O AR5 GWP values for reporting year 2022'
+);
+
+select alike(
+(
+  select ggircs_portal.init_application_emission_form_result(
+  1, 2021
+)::text
+),
+($$%"gwp": 298, "gasType": "N2O"%$$),
+'init_application_emission_form_result initializes with the correct N2O AR4 GWP values for reporting years before 2022'
+);
+
+select ialike(
+(
+  select ggircs_portal.init_application_emission_form_result(
+  1, 2022
+)::text
+),
+($$%"gwp": 1, "gasType": "CO2nonbio"%$$),
+'CO2 GWP values are always 1 regardless of reporting year (2021)'
+);
+
+select alike(
+(
+  select ggircs_portal.init_application_emission_form_result(
+  1, 2021
+)::text
+),
+($$%"gwp": 1, "gasType": "CO2nonbio"%$$),
+'CO2 GWP values are always 1 regardless of reporting year (2022)'
+);
 
 select finish();
 
