@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.22.0](https://github.com/bcgov/cas-ciip-portal/compare/v2.21.2...v2.22.0) (2023-05-29)
+
+
+### Features
+
+* add AR5 GWP values to database ([08286d0](https://github.com/bcgov/cas-ciip-portal/commit/08286d038a80533840e35df2c80813445e89de5e))
+
 ### [2.21.2](https://github.com/bcgov/cas-ciip-portal/compare/v2.21.1...v2.21.2) (2023-05-16)
 
 ### [2.21.1](https://github.com/bcgov/cas-ciip-portal/compare/v2.21.0...v2.21.1) (2023-05-15)
