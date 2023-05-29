@@ -1,7 +1,7 @@
 -- Verify ggircs-portal:tables/gas_002_ar5_gwp on pg
 
-BEGIN;
+begin;
 
--- XXX Add verifications here.
+select pg_catalog.has_table_privilege('ggircs_portal.gas', 'select');
 
-ROLLBACK;
+rollback;

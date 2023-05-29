@@ -1,7 +1,7 @@
 -- Revert ggircs-portal:tables/gas_002_ar5_gwp from pg
 
-BEGIN;
+begin;
 
--- XXX Add DDLs here.
+alter table ggircs_portal.gas add column gwp numeric;
 
-COMMIT;
+commit;
