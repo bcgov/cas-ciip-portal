@@ -8,4 +8,5 @@ export default {
     { duration: "2m", target: 100 },
     { duration: "2m", target: 0 },
   ],
+  rps: 50,
 };

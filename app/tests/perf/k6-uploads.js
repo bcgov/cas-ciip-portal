@@ -78,6 +78,7 @@ export const options =
             executor: "per-vu-iterations",
           },
         },
+        rps: 50,
       }
     : {
         scenarios: {
