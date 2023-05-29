@@ -6,7 +6,7 @@ async function resolveFileUpload(upload) {
     // Temporarily added for load testing purposes, can be removed
     upload.mimetype !== "application/octet-stream"
   ) {
-    throw new Error("Only PDF format is accepted, you gave " + upload.mimetype);
+    throw new Error("Only PDF format is accepted");
   }
   const { createReadStream } = upload;
   const stream = createReadStream();
