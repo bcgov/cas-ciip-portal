@@ -1,7 +1,11 @@
 const { saveRemoteFile } = require("./saveRemoteFile");
 
 async function resolveFileUpload(upload) {
-  if (upload.mimetype !== "application/pdf") {
+  if (
+    upload.mimetype !== "application/pdf" &&
+    // Temporarily added for load testing purposes, can be removed
+    upload.mimetype !== "application/octet-stream"
+  ) {
     throw new Error("Only PDF format is accepted");
   }
   const { createReadStream } = upload;

@@ -213,6 +213,7 @@ jobs:
       - run: pg_ctl start
       - run: createdb `whoami`
       - run: createdb ciip_portal_dev
+      - run: make generate_perf_files
       - run: pushd schema && ./data/deploy-data.sh -dev && popd
       - run: cd ./app && yarn build:schema
       - run: cd ./test_helper_schema && SQITCH_TARGET="ciip_portal_dev" sqitch deploy

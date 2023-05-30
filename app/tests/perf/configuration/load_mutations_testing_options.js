@@ -9,4 +9,5 @@ export default {
       executor: "per-vu-iterations",
     },
   },
+  rps: 50,
 };

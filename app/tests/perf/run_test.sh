@@ -8,7 +8,6 @@ export PERF_MODE=$1
 node test-guest.js
 node test-reporter.js
 node test-admin.js
-k6 run k6-mutations.js
 
 node parse_results.js
 

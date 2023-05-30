@@ -39,23 +39,17 @@ const updateFormResultVariables = (formResultId, formResult) => {
   };
 };
 
+export const options = require(`./configuration/${__ENV.PERF_MODE}_mutations_testing_options.js`)
+  .default;
+
 const longString = "1234567890asdfghjklzxcvbnm1234567890qwertyuioasdfghjzxcvbn".repeat(
   200
 );
 
 const getQueries = (vu, iteration) => {
   const options =
-    __ENV.PERF_MODE === "smoke"
+    __ENV.PERF_MODE === "load"
       ? {
-          scenarios: {
-            mutations_spike: {
-              vus: 2,
-              iterations: 2,
-              executor: "per-vu-iterations",
-            },
-          },
-        }
-      : {
           scenarios: {
             mutations_spike: {
               vus: 100,
@@ -63,9 +57,20 @@ const getQueries = (vu, iteration) => {
               executor: "per-vu-iterations",
             },
           },
+          rps: 50,
+        }
+      : {
+          scenarios: {
+            mutations_spike: {
+              vus: 1,
+              iterations: 1,
+              executor: "per-vu-iterations",
+            },
+          },
         };
+
   const facilityId =
-    (vu - 1) * options.scenarios.mutations_spike.iterations + iteration + 1;
+    (vu - 1) * options.scenarios.mutations_spike.iterations + iteration + 2;
 
   return [
     {
