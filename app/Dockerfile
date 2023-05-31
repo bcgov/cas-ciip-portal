@@ -48,6 +48,12 @@ ENV NODE_ENV=production
 # Needed for pre-rendering of 500 page
 ENV SUPPORT_EMAIL=ggircs@gov.bc.ca
 
+RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C5AD17C747E3415A3642D57D77C6C491D6AC1D69 && \
+  echo "deb https://dl.k6.io/deb stable main" | tee /etc/apt/sources.list.d/k6.list && \
+  apt-get update && \
+  apt-get install k6 && \
+  apt-get clean
+
 RUN PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=1 CYPRESS_INSTALL_BINARY=0 \
     yarn install --frozen-lockfile --production=false && \
     yarn build:relay && \
