@@ -31,6 +31,18 @@ truncate table ggircs_portal.application restart identity cascade;
 -- add an application for uploads to use. id will be 1 as we reset the identity
 select test_helper.create_applications(1, True, false);
 
+-- -- add more facilites
+truncate table ggircs_portal.facility restart identity cascade;
+do $$
+begin
+  for counter in 1..1002 loop
+    insert into ggircs_portal.facility(organisation_id, swrs_report_id)
+      values (
+        (select organisation_id from ggircs_portal.ciip_user_organisation
+          where user_id = (select id from ggircs_portal.ciip_user where first_name='Cypress' and last_name='Reporter') limit 1),
+        counter);
+  end loop;
+end; $$;
 
 select test_helper.modify_triggers('enable');
 
