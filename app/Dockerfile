@@ -66,4 +66,4 @@ EXPOSE 3000 9000
 USER ${USER_ID}
 WORKDIR ${CIIP_HOME}
 
-CMD ["yarn", "dev", "AS_CYPRESS"]
+CMD ["yarn", "start"]
