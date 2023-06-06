@@ -6895,6 +6895,10 @@ type CiipUser implements Node {
     """The method to use when ordering `Attachment`."""
     orderBy: [AttachmentsOrderBy!] = [PRIMARY_KEY_ASC]
   ): AttachmentsConnection!
+
+  """
+  The bceid business name associated with the user. This value is derived from the claims object returned by sso on log-in.
+  """
   bceidBusinessName: String
 
   """Reads and enables pagination through a set of `Benchmark`."""
@@ -25155,6 +25159,10 @@ input CiipUserPatch {
   Boolean value determines whether a legacy user can be updated. Legacy users may be updated only once.
   """
   allowUuidUpdate: Boolean
+
+  """
+  The bceid business name associated with the user. This value is derived from the claims object returned by sso on log-in.
+  """
   bceidBusinessName: String
 
   """The date the user was updated"""
