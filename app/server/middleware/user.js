@@ -26,7 +26,7 @@ const validateUserMiddleware = async (req, res, next) => {
     axios(config)
       .then((response) => {
         console.log(
-          "Duplicate email error. Another user account with this email already exists in the system."
+          "Duplicate bceid account error. Another user account with the same bceid details already exists in the system."
         );
         console.log(response);
       })
@@ -36,7 +36,7 @@ const validateUserMiddleware = async (req, res, next) => {
     return res
       .status(403)
       .send(
-        `Duplicate email detected. Access denied. Please contact ${process.env.ADMIN_EMAIL} for assistance.`
+        `Duplicate bceid account detected. Access denied. Please contact ${process.env.ADMIN_EMAIL} for assistance.`
       );
   }
   return next();
