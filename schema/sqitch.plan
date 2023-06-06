@@ -456,4 +456,5 @@ tables/gwp [tables/gas_001] 2023-05-25T20:35:36Z Dylan Leard <dylan@button.is> #
 swrs_functions/init_application_emission_form_result [swrs_functions/init_application_emission_form_result@v2.21.0] 2023-05-25T20:52:07Z Dylan Leard <dylan@button.is> # Migration: update function to allow for applying different gwp values depending on reporting_year
 tables/gas_002_ar5_gwp [tables/gwp] 2023-05-25T20:35:36Z Dylan Leard <dylan@button.is> # Drop gwp column. It now exists in its own table.
 @v2.22.0 2023-05-29T20:38:34Z Dylan Leard <dylan@button.is> # release v2.22.0
+tables/ciip_user_002_business_bceid [tables/ciip_user_001_uuid_is_varchar] 2023-06-06T17:07:46Z Dylan Leard <dylan@button.is> # Migration: add column bceid_business_name
 queries/validate_current_user [queries/validate_current_user@v2.22.0] 2023-06-06T17:04:40Z Dylan Leard <dylan@button.is> # Migration: Ignore business bceid logins and fix function permissions

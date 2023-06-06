@@ -12,7 +12,7 @@ create or replace function ggircs_portal.validate_current_user()
                 email_address = (select email from jwt)
             and uuid != (select sub from jwt )
             and allow_uuid_update = false
-            and jwt.bceid_business_name is null)
+            and coalesce((select bceid_business_name from jwt), '') = coalesce(ciip_user.bceid_business_name, ''))
 
   $$ language sql stable security definer;
 
