@@ -11,10 +11,11 @@ create or replace function ggircs_portal.validate_current_user()
         (select * from ggircs_portal.ciip_user where
                 email_address = (select email from jwt)
             and uuid != (select sub from jwt )
-            and allow_uuid_update = false)
+            and allow_uuid_update = false
+            and coalesce((select bceid_business_name from jwt), '') = coalesce(ciip_user.bceid_business_name, ''))
 
-  $$ language sql stable;
+  $$ language sql stable security definer;
 
-grant execute on function ggircs_portal.default_displayed_reporting_year to ciip_administrator, ciip_analyst, ciip_industry_user, ciip_guest;
+grant execute on function ggircs_portal.validate_current_user to ciip_administrator, ciip_analyst, ciip_industry_user, ciip_guest;
 
 commit;

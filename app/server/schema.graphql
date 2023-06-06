@@ -6896,6 +6896,11 @@ type CiipUser implements Node {
     orderBy: [AttachmentsOrderBy!] = [PRIMARY_KEY_ASC]
   ): AttachmentsConnection!
 
+  """
+  The bceid business name associated with the user. This value is derived from the claims object returned by sso on log-in.
+  """
+  bceidBusinessName: String
+
   """Reads and enables pagination through a set of `Benchmark`."""
   benchmarksByCreatedBy(
     """Read all values in the set after (below) this cursor."""
@@ -22978,6 +22983,9 @@ input CiipUserCondition {
   """Checks for equality with the object’s `allowUuidUpdate` field."""
   allowUuidUpdate: Boolean
 
+  """Checks for equality with the object’s `bceidBusinessName` field."""
+  bceidBusinessName: String
+
   """Checks for equality with the object’s `createdAt` field."""
   createdAt: Datetime
 
@@ -23483,6 +23491,9 @@ input CiipUserFilter {
 
   """Some related `attachmentsByUpdatedBy` exist."""
   attachmentsByUpdatedByExist: Boolean
+
+  """Filter by the object’s `bceidBusinessName` field."""
+  bceidBusinessName: StringFilter
 
   """Filter by the object’s `benchmarksByCreatedBy` relation."""
   benchmarksByCreatedBy: CiipUserToManyBenchmarkFilter
@@ -25148,6 +25159,11 @@ input CiipUserPatch {
   Boolean value determines whether a legacy user can be updated. Legacy users may be updated only once.
   """
   allowUuidUpdate: Boolean
+
+  """
+  The bceid business name associated with the user. This value is derived from the claims object returned by sso on log-in.
+  """
+  bceidBusinessName: String
 
   """The date the user was updated"""
   createdAt: Datetime
@@ -26858,6 +26874,8 @@ type CiipUsersEdge {
 enum CiipUsersOrderBy {
   ALLOW_UUID_UPDATE_ASC
   ALLOW_UUID_UPDATE_DESC
+  BCEID_BUSINESS_NAME_ASC
+  BCEID_BUSINESS_NAME_DESC
   CREATED_AT_ASC
   CREATED_AT_DESC
   CREATED_BY_ASC

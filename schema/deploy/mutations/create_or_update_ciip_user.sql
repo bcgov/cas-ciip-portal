@@ -27,7 +27,8 @@ begin
       email_address,
       occupation,
       phone_number,
-      allow_uuid_update
+      allow_uuid_update,
+      bceid_business_name
     )
     values (
       jwt.sub,
@@ -36,9 +37,10 @@ begin
       jwt.email,
       occupation,
       phone_number,
-      false
+      false,
+      jwt.bceid_business_name
     )
-    on conflict(email_address) do
+    on conflict(email_address, coalesce(bceid_business_name, '')) do
     update
     set uuid=excluded.uuid,
         first_name=excluded.first_name,
