@@ -460,3 +460,4 @@ tables/ciip_user_002_business_bceid [tables/ciip_user_001_uuid_is_varchar] 2023-
 queries/validate_current_user [queries/validate_current_user@v2.22.0] 2023-06-06T17:04:40Z Dylan Leard <dylan@button.is> # Migration: Ignore business bceid logins and fix function permissions
 mutations/create_or_update_ciip_user [mutations/create_or_update_ciip_user@v2.22.0] 2023-06-06T17:45:40Z Dylan Leard <dylan@button.is> # Migration: add bceid_business_name to ciip_user table on create
 @v2.22.1 2023-06-06T22:35:02Z Dylan Leard <dylan@button.is> # release v2.22.1
+@v2.22.2 2023-06-13T22:39:59Z Dylan Leard <dylan@button.is> # release v2.22.2
