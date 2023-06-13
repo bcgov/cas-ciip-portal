@@ -126,7 +126,6 @@ export const FuelFieldComponent: React.FunctionComponent<Props> = (props) => {
       onChange({
         ...fuelFormData,
         fuelRowId: undefined,
-        quantity: "", // This one needs to be an empty string for the widget to rerender without the text when the value is cleared
         fuelUnits: undefined,
       });
   };
