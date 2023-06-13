@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.22.2](https://github.com/bcgov/cas-ciip-portal/compare/v2.22.1...v2.22.2) (2023-06-13)
+
+
+### Bug Fixes
+
+* do not allow empty string in fuel quantity field ([e39b4a2](https://github.com/bcgov/cas-ciip-portal/commit/e39b4a23157c6b2b9cf765f72d5d67b02c58a9e0))
+
 ### [2.22.1](https://github.com/bcgov/cas-ciip-portal/compare/v2.22.0...v2.22.1) (2023-06-06)
 
 
