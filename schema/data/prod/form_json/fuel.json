@@ -17,7 +17,8 @@
           },
           "quantity": {
             "title": "Quantity",
-            "type": "number"
+            "type": "number",
+            "default": null
           },
           "fuelUnits": {
             "title": "Units",
