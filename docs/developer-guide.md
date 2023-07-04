@@ -2,6 +2,7 @@
 
 ## Setting up the test data
 
+
 The `schema/deploy-test-data.sh` script allows you to set up you database schemas, and populate it with dummy data.
 
 ### Prerequisites
