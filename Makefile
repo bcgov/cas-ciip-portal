@@ -147,7 +147,15 @@ endif
 .PHONY: install_cpandeps
 install_cpandeps: ## install Perl dependencies from cpanfile
 install_cpandeps:
-	@$(CPANM) --installdeps .
+	@$(CPANM) --notest --installdeps .
+	@rm -rf $(__DIRNAME)/.cpanm
+
+.PHONY: install_cpandeps_ci
+install_cpandeps_ci: ## install Perl dependencies from cpanfile
+install_cpandeps_ci:
+	@$(CPANM) --installdeps DBD::Pg@3.16.0
+	@$(CPANM) --notest --installdeps App::Sqitch@1.3.1
+	@$(CPANM) --installdeps TAP::Parser::SourceHandler::pgTAP@3.36
 	@rm -rf $(__DIRNAME)/.cpanm
 
 .PHONY: postinstall_check
@@ -159,6 +167,10 @@ postinstall_check:
 .PHONY: install_perl_tools
 install_perl_tools: ## install cpanm and sqitch
 install_perl_tools: install_cpanm install_cpandeps postinstall_check
+
+.PHONY: install_perl_tools_ci
+install_perl_tools_ci: ## install cpanm and sqitch
+install_perl_tools_ci: install_cpanm install_cpandeps postinstall_check
 
 .PHONY: install_dev_tools
 install_dev_tools: ## install development tools
