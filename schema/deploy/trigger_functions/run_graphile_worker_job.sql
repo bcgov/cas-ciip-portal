@@ -42,6 +42,8 @@ begin
       select operator_name, organisation_id, facility_name, first_name, last_name, email_address from ad into application_details;
       -- Choose type of email to sent based on what the status of the application has been changed to
       case
+        when new.application_revision_status = 'submitted' then
+          status_change_type := 'status_change_submitted';
         when new.application_revision_status = 'approved' then
           status_change_type := 'status_change_approved';
         when new.application_revision_status = 'rejected' then
