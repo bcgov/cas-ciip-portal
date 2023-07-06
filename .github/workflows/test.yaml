@@ -21,7 +21,7 @@ jobs:
       - run: make stop_pg
       - run: make install_asdf_tools
       - run: cat .tool-versions | xargs -n2 asdf global
-      - run: make install_perl_tools_ci
+      - run: make install_perl_tools
       - run: make install_pgtap
       - run: make stop_pg # cleanly stop the database, otherwise it will complain in the subsequent jobs
       - run: yarn install --frozen-lockfile
