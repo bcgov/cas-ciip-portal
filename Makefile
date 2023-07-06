@@ -147,7 +147,7 @@ endif
 .PHONY: install_cpandeps
 install_cpandeps: ## install Perl dependencies from cpanfile
 install_cpandeps:
-	@$(CPANM) --installdeps .
+	@$(CPANM) --notest --installdeps .
 	@rm -rf $(__DIRNAME)/.cpanm
 
 .PHONY: postinstall_check
