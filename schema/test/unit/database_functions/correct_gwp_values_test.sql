@@ -84,7 +84,7 @@ select set_eq (
   $$
   select distinct gwp from ggircs_portal.gwp where reporting_year_start = 2022 or gwp = 1
   $$,
-  'Application with ID 2 was updated because it was created between before April 1st 2023 and May 30 2023'
+  'Application with ID 2 was updated because it was created between April 1st 2023 and May 30 2023'
 );
 
 select set_eq (
