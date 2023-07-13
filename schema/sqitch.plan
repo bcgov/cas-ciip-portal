@@ -463,3 +463,4 @@ mutations/create_or_update_ciip_user [mutations/create_or_update_ciip_user@v2.22
 @v2.22.2 2023-06-13T22:39:59Z Dylan Leard <dylan@button.is> # release v2.22.2
 trigger_functions/run_graphile_worker_job [trigger_functions/run_graphile_worker_job@v2.22.1] 2023-07-04T20:06:19Z Dylan Leard <dylan@button.is> # Migration: notify reporters of application submission
 database_functions/correct_gwp_values 2023-07-13T18:31:01Z Dylan Leard <dylan@button.is> # Function to update gwp values that were set incorrectly
+data/correct_gwp_values [database_functions/correct_gwp_values] 2023-07-13T18:43:50Z Dylan Leard <dylan@button.is> # Migration to correct incorrectly initialized GWP values
