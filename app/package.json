@@ -1,6 +1,6 @@
 {
   "name": "ggircs-industry-ciip-portal",
-  "version": "2.22.2",
+  "version": "2.22.3",
   "description": "The online portal for Industry to apply and track their CIIP applications",
   "scripts": {
     "pretest": "npm run build:relay",

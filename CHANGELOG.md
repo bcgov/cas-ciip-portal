@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.22.3](https://github.com/bcgov/cas-ciip-portal/compare/v2.22.2...v2.22.3) (2023-07-14)
+
+
+### Bug Fixes
+
+* add function to correct incorrectly initialized GWP values ([11bc8b9](https://github.com/bcgov/cas-ciip-portal/commit/11bc8b920089500e93aa33eefbac4967adc15d7e))
+* notify reporter when application submitted ([6b006ff](https://github.com/bcgov/cas-ciip-portal/commit/6b006ff1da3ef71be96d2173ff737bfea13e082e))
+
 ### [2.22.2](https://github.com/bcgov/cas-ciip-portal/compare/v2.22.1...v2.22.2) (2023-06-13)
 
 
