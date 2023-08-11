@@ -45,4 +45,3 @@ where application_id in (
 $$ language sql volatile;
 
 commit;
-

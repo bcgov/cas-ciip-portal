@@ -27,13 +27,13 @@ update ggircs_portal.form_result
 set form_result =
 '{"sourceTypes": [
   {"gases": [
-    {"gwp": 10, "gasType": "CO2nonbio", "annualCO2e": 50, "annualEmission": 5, "gasDescription": "Carbon dioxide from non-biomass"}, 
+    {"gwp": 10, "gasType": "CO2nonbio", "annualCO2e": 50, "annualEmission": 5, "gasDescription": "Carbon dioxide from non-biomass"},
     {"gwp": 28, "gasType": "CH4", "annualCO2e": 40, "annualEmission": 20, "gasDescription": "Methane"}],
   "sourceTypeName": "General Stationary Combustion"
-  }, 
+  },
   {"gases": [
-    {"gwp": 1, "gasType": "CO2nonbio", "annualCO2e": 60, "annualEmission": 30, "gasDescription": "Carbon dioxide from non-biomass"}, 
-    {"gwp": 25, "gasType": "CH4", "annualCO2e": 90, "annualEmission": 45, "gasDescription": "Methane"}, 
+    {"gwp": 1, "gasType": "CO2nonbio", "annualCO2e": 60, "annualEmission": 30, "gasDescription": "Carbon dioxide from non-biomass"},
+    {"gwp": 25, "gasType": "CH4", "annualCO2e": 90, "annualEmission": 45, "gasDescription": "Methane"},
     {"gwp": 298, "gasType": "N2O", "annualCO2e": 100, "annualEmission": 50, "gasDescription": "Nitrous oxide"}],
   "sourceTypeName": "General Stationary Combustion"
   }
@@ -53,9 +53,9 @@ select results_eq(
   select form_result from ggircs_portal.form_result where application_id=1;
   $$,
   $$
-  values 
-  ('{"test": "dont change me"}'::jsonb), 
-  ('{"test": "dont change me"}'::jsonb), 
+  values
+  ('{"test": "dont change me"}'::jsonb),
+  ('{"test": "dont change me"}'::jsonb),
   ('{"test": "dont change me"}'::jsonb),
   ('{"test": "dont change me"}'::jsonb),
   ('{"test": "dont change me"}'::jsonb),
@@ -72,16 +72,16 @@ select set_eq (
   select form_result from ggircs_portal.form_result where application_id=2 and form_id=2;
   $$,
   $$
-  values 
+  values
   ('{"sourceTypes": [
     {"gases": [
-      {"gwp": 10, "gasType": "CO2nonbio", "annualCO2e": 50, "annualEmission": 5, "gasDescription": "Carbon dioxide from non-biomass"}, 
+      {"gwp": 10, "gasType": "CO2nonbio", "annualCO2e": 50, "annualEmission": 5, "gasDescription": "Carbon dioxide from non-biomass"},
       {"gwp": 28, "gasType": "CH4", "annualCO2e": 560, "annualEmission": 20, "gasDescription": "Methane"}],
     "sourceTypeName": "General Stationary Combustion"
-    }, 
+    },
     {"gases": [
-      {"gwp": 1, "gasType": "CO2nonbio", "annualCO2e": 30, "annualEmission": 30, "gasDescription": "Carbon dioxide from non-biomass"}, 
-      {"gwp": 25, "gasType": "CH4", "annualCO2e": 1125, "annualEmission": 45, "gasDescription": "Methane"}, 
+      {"gwp": 1, "gasType": "CO2nonbio", "annualCO2e": 30, "annualEmission": 30, "gasDescription": "Carbon dioxide from non-biomass"},
+      {"gwp": 25, "gasType": "CH4", "annualCO2e": 1125, "annualEmission": 45, "gasDescription": "Methane"},
       {"gwp": 298, "gasType": "N2O", "annualCO2e": 14900, "annualEmission": 50, "gasDescription": "Nitrous oxide"}],
     "sourceTypeName": "General Stationary Combustion"
     }
@@ -96,9 +96,9 @@ select results_eq(
   select form_result from ggircs_portal.form_result where application_id=2 and form_id!=2;
   $$,
   $$
-  values 
-  ('{"test": "dont change me"}'::jsonb), 
-  ('{"test": "dont change me"}'::jsonb), 
+  values
+  ('{"test": "dont change me"}'::jsonb),
+  ('{"test": "dont change me"}'::jsonb),
   ('{"test": "dont change me"}'::jsonb),
   ('{"test": "dont change me"}'::jsonb),
   ('{"test": "dont change me"}'::jsonb),
@@ -113,9 +113,9 @@ select results_eq(
   select form_result from ggircs_portal.form_result where application_id=3;
   $$,
   $$
-  values 
-  ('{"test": "dont change me"}'::jsonb), 
-  ('{"test": "dont change me"}'::jsonb), 
+  values
+  ('{"test": "dont change me"}'::jsonb),
+  ('{"test": "dont change me"}'::jsonb),
   ('{"test": "dont change me"}'::jsonb),
   ('{"test": "dont change me"}'::jsonb),
   ('{"test": "dont change me"}'::jsonb),
@@ -139,9 +139,9 @@ select results_eq(
   select form_result from ggircs_portal.form_result where application_id=1;
   $$,
   $$
-  values 
-  ('{"test": "dont change me"}'::jsonb), 
-  ('{"test": "dont change me"}'::jsonb), 
+  values
+  ('{"test": "dont change me"}'::jsonb),
+  ('{"test": "dont change me"}'::jsonb),
   ('{"test": "dont change me"}'::jsonb),
   ('{"test": "dont change me"}'::jsonb),
   ('{"test": "dont change me"}'::jsonb),
@@ -158,16 +158,16 @@ select set_eq (
   select form_result from ggircs_portal.form_result where application_id=2 and form_id=2;
   $$,
   $$
-  values 
+  values
   ('{"sourceTypes": [
     {"gases": [
-      {"gwp": 10, "gasType": "CO2nonbio", "annualCO2e": 50, "annualEmission": 5, "gasDescription": "Carbon dioxide from non-biomass"}, 
+      {"gwp": 10, "gasType": "CO2nonbio", "annualCO2e": 50, "annualEmission": 5, "gasDescription": "Carbon dioxide from non-biomass"},
       {"gwp": 28, "gasType": "CH4", "annualCO2e": 560, "annualEmission": 20, "gasDescription": "Methane"}],
     "sourceTypeName": "General Stationary Combustion"
-    }, 
+    },
     {"gases": [
-      {"gwp": 1, "gasType": "CO2nonbio", "annualCO2e": 30, "annualEmission": 30, "gasDescription": "Carbon dioxide from non-biomass"}, 
-      {"gwp": 25, "gasType": "CH4", "annualCO2e": 1125, "annualEmission": 45, "gasDescription": "Methane"}, 
+      {"gwp": 1, "gasType": "CO2nonbio", "annualCO2e": 30, "annualEmission": 30, "gasDescription": "Carbon dioxide from non-biomass"},
+      {"gwp": 25, "gasType": "CH4", "annualCO2e": 1125, "annualEmission": 45, "gasDescription": "Methane"},
       {"gwp": 298, "gasType": "N2O", "annualCO2e": 14900, "annualEmission": 50, "gasDescription": "Nitrous oxide"}],
     "sourceTypeName": "General Stationary Combustion"
     }
@@ -182,9 +182,9 @@ select results_eq(
   select form_result from ggircs_portal.form_result where application_id=2 and form_id!=2;
   $$,
   $$
-  values 
-  ('{"test": "dont change me"}'::jsonb), 
-  ('{"test": "dont change me"}'::jsonb), 
+  values
+  ('{"test": "dont change me"}'::jsonb),
+  ('{"test": "dont change me"}'::jsonb),
   ('{"test": "dont change me"}'::jsonb),
   ('{"test": "dont change me"}'::jsonb),
   ('{"test": "dont change me"}'::jsonb),
@@ -199,9 +199,9 @@ select results_eq(
   select form_result from ggircs_portal.form_result where application_id=3;
   $$,
   $$
-  values 
-  ('{"test": "dont change me"}'::jsonb), 
-  ('{"test": "dont change me"}'::jsonb), 
+  values
+  ('{"test": "dont change me"}'::jsonb),
+  ('{"test": "dont change me"}'::jsonb),
   ('{"test": "dont change me"}'::jsonb),
   ('{"test": "dont change me"}'::jsonb),
   ('{"test": "dont change me"}'::jsonb),
