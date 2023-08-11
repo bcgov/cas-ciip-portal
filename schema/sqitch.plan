@@ -466,3 +466,4 @@ database_functions/correct_gwp_values 2023-07-13T18:31:01Z Dylan Leard <dylan@bu
 data/correct_gwp_values [database_functions/correct_gwp_values] 2023-07-13T18:43:50Z Dylan Leard <dylan@button.is> # Migration to correct incorrectly initialized GWP values
 @v2.22.3 2023-07-14T16:22:57Z Dylan Leard <dylan@button.is> # release v2.22.3
 database_functions/correct_annual_co2e_values 2023-08-10T19:28:59Z Sepehr Sobhani <sepehr.sobhani@gov.bc.ca> # Function to update annual CO2e values that were set incorrectly
+data/correct_annual_co2e_values [database_functions/correct_annual_co2e_values] 2023-08-11T17:06:22Z Sepehr Sobhani <sepehr.sobhani@gov.bc.ca> # Migration to update annual CO2e values that were set incorrectly
