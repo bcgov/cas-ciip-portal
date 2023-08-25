@@ -465,3 +465,4 @@ trigger_functions/run_graphile_worker_job [trigger_functions/run_graphile_worker
 database_functions/correct_gwp_values 2023-07-13T18:31:01Z Dylan Leard <dylan@button.is> # Function to update gwp values that were set incorrectly
 data/correct_gwp_values [database_functions/correct_gwp_values] 2023-07-13T18:43:50Z Dylan Leard <dylan@button.is> # Migration to correct incorrectly initialized GWP values
 @v2.22.3 2023-07-14T16:22:57Z Dylan Leard <dylan@button.is> # release v2.22.3
+@v2.22.4 2023-08-25T22:31:39Z Dylan Leard <dylan@button.is> # release v2.22.4
