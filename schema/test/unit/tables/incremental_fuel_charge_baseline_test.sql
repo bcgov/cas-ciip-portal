@@ -31,6 +31,39 @@ select columns_are('ggircs_portal'::name, 'incremental_fuel_charge_baseline'::na
     'deleted_by'::name
 ]);
 
+-- baselines are correct (values from 2022 baseline excel file provided by CAS)
+select set_eq(
+  $$
+    select fuel_charge_baseline from ggircs_portal.incremental_fuel_charge_baseline order by carbon_tax_act_fuel_type_id asc
+  $$,
+  $$
+    values
+      (0.07464),
+      (0.0663),
+      (0.09558),
+      (0.07746),
+      (0.07746),
+      (0.07806),
+      (0.0329),
+      (0.06762),
+      (0.0534),
+      (0.021),
+      (0.03054),
+      (0.04644),
+      (0.05874),
+      (0.081),
+      (67.548),
+      (53.172),
+      (95.394),
+      (0.11514),
+      (0.04992),
+      (0.0534),
+      (30.66),
+      (59.922)
+  $$,
+  'Baseline values are correct'
+);
+
 -- Test Setup
 select test_helper.clean_ggircs_portal_schema();
 alter table ggircs_portal.ciip_user disable trigger _welcome_email;
@@ -178,40 +211,6 @@ select throws_like(
   $$,
   'permission denied%',
     'Analyst cannot delete rows from ggircs_portal.incremental_fuel_charge_baseline'
-);
-
--- baselines are correct (values from 2022 baseline excel file provided by CAS)
-select results_eq(
-  $$
-    select fuel_charge_baseline from ggircs_portal.incremental_fuel_charge_baseline order by carbon_tax_act_fuel_type_id asc
-  $$,
-  $$
-    values (
-      (0.07464),
-      (0.0663),
-      (0.09558),
-      (0.07746),
-      (0.07746),
-      (0.07806),
-      (0.0329),
-      (0.06762),
-      (0.0534),
-      (0.021),
-      (0.03054),
-      (0.04644),
-      (0.05874),
-      (0.081),
-      (67.548),
-      (53.172),
-      (95.394),
-      (0.11514),
-      (0.04992),
-      (0.0534),
-      (30.66),
-      (59.922)
-    )
-  $$,
-  'Baseline values are correct'
 );
 
 select finish();
