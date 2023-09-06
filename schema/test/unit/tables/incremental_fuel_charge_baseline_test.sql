@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(17);
+select plan(18);
 
 -- Table exists
 select has_table(
@@ -30,6 +30,39 @@ select columns_are('ggircs_portal'::name, 'incremental_fuel_charge_baseline'::na
     'deleted_at'::name,
     'deleted_by'::name
 ]);
+
+-- baselines are correct (values from 2022 baseline excel file provided by CAS)
+select set_eq(
+  $$
+    select fuel_charge_baseline from ggircs_portal.incremental_fuel_charge_baseline order by carbon_tax_act_fuel_type_id asc
+  $$,
+  $$
+    values
+      (0.07464),
+      (0.0663),
+      (0.09558),
+      (0.07746),
+      (0.07746),
+      (0.07806),
+      (0.0329),
+      (0.06762),
+      (0.0534),
+      (0.021),
+      (0.03054),
+      (0.04644),
+      (0.05874),
+      (0.081),
+      (67.548),
+      (53.172),
+      (95.394),
+      (0.11514),
+      (0.04992),
+      (0.0534),
+      (30.66),
+      (59.922)
+  $$,
+  'Baseline values are correct'
+);
 
 -- Test Setup
 select test_helper.clean_ggircs_portal_schema();

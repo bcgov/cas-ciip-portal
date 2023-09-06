@@ -74,7 +74,7 @@ select set_eq(
   $$,
   $$values
     ((select id from ggircs_portal.fuel where name = 'Coke Oven Gas'), 1.47, 0.5880, 0.0350, 0.021),
-    ((select id from ggircs_portal.fuel where name = 'Diesel'), 4918.2, 1638, 0.1171, 0.0781)
+    ((select id from ggircs_portal.fuel where name = 'Diesel'), 4918.2, 1639.68, 0.1171, 0.07806)
   $$,
   'The application_revision_carbon_tax function calculates the correct carbon tax for the 2021 reporting period'
   -- Coke Oven Gas is in the CTA, at 3.50 cent/cubic meter in 2021, so 42 m^3 is 42 * 3.50 / 100 = $1.47"
