@@ -78,7 +78,7 @@ select set_eq(
         (
       3, 1, 2021, 'General Stationary Combustion',
       (select id from ggircs_portal.fuel where name = 'Diesel'), 'Diesel', 42, 'kL',
-      4918.2, 1638.00, 0.1171, 0.0781
+      4918.2, 1639.68, 0.1171, 0.07806
     )
   $$,
   'ciip_carbon_tax_calculation view returns the expected results'
