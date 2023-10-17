@@ -156,7 +156,8 @@
     "**/json5": "2.2.2",
     "**/semver": "7.5.4",
     "**/tough-cookie": "4.1.3",
-    "@cypress/request": "3.0.0"
+    "@cypress/request": "3.0.0",
+    "postcss": "8.4.31"
   },
   "jest": {
     "testEnvironment": "jsdom",
