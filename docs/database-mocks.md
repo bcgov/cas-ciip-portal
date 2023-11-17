@@ -31,3 +31,4 @@ For running e2e tests locally, the schema must be deployed manually. This can be
 
 ### `now()`
 checks for a setting (https://www.postgresql.org/docs/12/config-setting.html) named `mocks.current_timestamp` conaining a Unix Epoch value, and returns that value if set. If `mocks.current_timestamp` is not set, the mock calls the default `pg_catalog.now()`.
+test change
