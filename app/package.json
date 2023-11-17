@@ -6,7 +6,7 @@
     "pretest": "npm run build:relay",
     "test": "NODE_OPTIONS=\"--unhandled-rejections=strict\" jest",
     "pretest:e2e-snapshots": "node cypress/support/listAuthenticatedPages.js",
-    "test:e2e-snapshots": "yarn happo-cypress -- -- cypress run",
+    "test:e2e-snapshots": "yarn happo-e2e -- -- cypress run",
     "pretest:e2e": "node cypress/support/listAuthenticatedPages.js",
     "test:e2e": "cypress run",
     "test:e2e-with-mocks": "cypress run --config integrationFolder=cypress/integration_mocks",
