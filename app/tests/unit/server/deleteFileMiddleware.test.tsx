@@ -24,7 +24,7 @@ describe("The attachment delete router", () => {
 
   it("calls next() with the error if an exception is thrown", async () => {
     const error = new TypeError(
-      "Cannot read property 'attachmentId' of undefined"
+      "Cannot read properties of undefined (reading 'attachmentId')"
     );
     const next = jest.fn();
     const handlerUnderTest = handleDelete;
