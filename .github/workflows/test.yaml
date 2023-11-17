@@ -85,7 +85,7 @@ jobs:
       - name: show python version
         run: python -VV
       - name: show pre-commit version
-        run: precommit -V
+        run: pre-commit -V
       - name: create commitlint COMMIT_EDITMSG if not exists
         run: |
           if test -f ".git/COMMIT_EDITMSG"; then
