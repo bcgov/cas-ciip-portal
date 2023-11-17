@@ -13,7 +13,7 @@ repos:
       files: \.(j|t)sx?$
       entry: ./.bin/format.sh
 - repo: https://github.com/pre-commit/pre-commit-hooks
-  rev: v2.3.0
+  rev: v4.5.0
   hooks:
     - id: check-added-large-files
     - id: check-case-conflict
@@ -27,7 +27,7 @@ repos:
     - id: trailing-whitespace
       exclude: .*/tests/.*
 - repo: https://github.com/Yelp/detect-secrets
-  rev: v0.12.7
+  rev: v1.4.0
   hooks:
     - id: detect-secrets
       args: ['--baseline', '.secrets.baseline']
