@@ -82,6 +82,10 @@ jobs:
           echo "PRE_COMMIT_HOME=$GITHUB_WORKSPACE/.pre-commit-cache" >> $GITHUB_ENV
       - name: set PY
         run: echo "PY=$(python -VV | sha256sum | cut -d' ' -f1)" >> $GITHUB_ENV
+      - name: show python version
+        run: python -VV
+      - name: show pre-commit version
+        run: pre-commit -V
       - name: create commitlint COMMIT_EDITMSG if not exists
         run: |
           if test -f ".git/COMMIT_EDITMSG"; then
