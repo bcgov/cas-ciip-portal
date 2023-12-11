@@ -28,7 +28,7 @@ export const RegistrationLoginButtonsComponent: React.FunctionComponent<Props> =
     </>
   ) : (
     <>
-      <p>In 2024, CIIP applications will be accepted from May 21 to June 38.</p>
+      <p>In 2024, CIIP applications will be accepted from May 21 to June 28.</p>
       <p>
         Outside of this period, you may still log in to view your submitted CIIP
         applications and submit any changes requested by the Climate Action
