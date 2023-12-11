@@ -38,7 +38,7 @@ describe("The RegistrationLoginButtons component", () => {
 
     expect(component).toMatchSnapshot();
     expect(component.find("Card p").first().text()).toStartWith(
-      "In 2022, CIIP applications will be accepted from May 24 to June 30."
+      "In 2024, CIIP applications will be accepted from May 21 to June 28."
     );
   });
 });
