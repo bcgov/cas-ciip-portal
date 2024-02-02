@@ -168,3 +168,17 @@ nginx-sidecar:
   storageClassName: netapp-file-standard
   renewalDays: 60
   clientMaxBodySize: 50M
+
+devops:
+  image:
+    repository: hashicorp/terraform
+    pullPolicy: Always
+    tag: "1.4.6"
+
+  resources:
+    limits:
+      cpu: 1000m
+      memory: 512Mi
+    requests:
+      cpu: 100m
+      memory: 64Mi
