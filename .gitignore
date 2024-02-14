@@ -10,3 +10,5 @@ app/.env.local
 app/sentry.properties
 app/tests/perf/**/*.json
 k6files/
+
+.terraform

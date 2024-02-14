@@ -21,3 +21,11 @@
 .idea/
 *.tmproj
 .vscode/
+
+# Terraform files from local and migration runs
+.terraform/
+*.tfstate
+*.tfvars
+.terraform.lock.hcl
+credentials.json
+terraform/*.sh
