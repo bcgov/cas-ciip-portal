@@ -12,3 +12,9 @@ app/tests/perf/**/*.json
 k6files/
 
 .terraform
+.terraform/
+*.tfstate
+*.tfvars
+.terraform.lock.hcl
+credentials.json
+terraform/*.sh
