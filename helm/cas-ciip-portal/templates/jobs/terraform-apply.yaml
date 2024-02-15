@@ -38,14 +38,13 @@ spec:
                   name: gcp-credentials-secret
                   key: gcp_project_id
             - name: TF_VAR_openshift_namespace
-              value: "{{ .Release.Namespace | quote }}"
+              value: {{ .Release.Namespace | quote }}
             - name: TF_VAR_apps
               value: '["ciip-backups", "ciip-documents", "ciip-2018"]'
             - name: kubernetes_host
               value: "https://api.silver.devops.gov.bc.ca:6443"
             - name: GOOGLE_APPLICATION_CREDENTIALS
               value: "/etc/gcp/credentials.json"
-          # Terraform was having an issue pulling kubernetes_host in as a TF_VAR, so we add it as a attribute to the command
           command:
             - /bin/sh
             - -c
@@ -55,7 +54,7 @@ spec:
               cd working;
               export TF_VAR_kubernetes_token=$( cat /var/run/secrets/kubernetes.io/serviceaccount/token );
               terraform init -backend-config=/etc/tf/gcs.tfbackend;
-              terraform apply -var=\"kubernetes_host=$kubernetes_host\" -auto-approve";
+              terraform apply -var="kubernetes_host=$kubernetes_host" -auto-approve;
       restartPolicy: Never
       volumes:
         - name: service-account-credentials-volume
