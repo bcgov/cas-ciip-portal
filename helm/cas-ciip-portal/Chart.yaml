@@ -6,8 +6,11 @@ version: 0.3.62
 appVersion: 2.23.3
 dependencies:
   - name: cas-postgres
-    version: "0.8.4"
+    version: "0.9.1"
     repository: https://bcgov.github.io/cas-postgres/
+  - name: terraform-bucket-provision
+    version: "0.1.2"
+    repository: https://bcgov.github.io/cas-pipeline/
   - name: mailhog
     version: "3.3.0"
     repository: "https://codecentric.github.io/helm-charts/"

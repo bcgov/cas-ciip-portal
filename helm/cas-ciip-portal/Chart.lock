@@ -1,7 +1,10 @@
 dependencies:
 - name: cas-postgres
   repository: https://bcgov.github.io/cas-postgres/
-  version: 0.8.4
+  version: 0.9.1
+- name: terraform-bucket-provision
+  repository: https://bcgov.github.io/cas-pipeline/
+  version: 0.1.2
 - name: mailhog
   repository: https://codecentric.github.io/helm-charts/
   version: 3.3.0
@@ -16,6 +19,6 @@ dependencies:
   version: 1.0.7
 - name: nginx-sidecar
   repository: https://bcgov.github.io/cas-template-app
-  version: 0.1.12
-digest: sha256:bfc589e80ce40eea666fd0a0102aed37f94e00323557c355ea9778820a5ac873
-generated: "2023-05-12T15:40:26.643889932-07:00"
+  version: 0.1.13
+digest: sha256:a0a9397ec66fc31006c74a026d1e73731d5bb1a2c0c26c3f69d3f07e888909b7
+generated: "2024-02-16T16:21:38.845613-08:00"

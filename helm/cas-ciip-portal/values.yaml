@@ -184,3 +184,7 @@ devops:
       cpu: 100m
       memory: 64Mi
       ephemeral-storage: 256Mi
+
+terraform-bucket-provision:
+  terraform:
+    namespace_apps: '["ciip-backups", "ciip-documents", "ciip-2018"]'
