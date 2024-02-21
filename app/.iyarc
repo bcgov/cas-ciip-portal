@@ -1,1 +1,6 @@
 # add ingnored CVEs here, with a justification for ignoring them
+
+
+# NextJS will need to be upgraded to fix this vulnerability.
+# In the meanwhile this can safely be ignored as we're not using a CDN
+GHSA-c59h-r6p8-q9wc
