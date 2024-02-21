@@ -24,10 +24,11 @@
     "build:next": "next build",
     "start": "NODE_ENV=production node --unhandled-rejections=strict server",
     "format": "prettier --write .",
-    "lint": "eslint --ext .js,.jsx,.ts,.tsx ."
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
+    "audit-deps": "improved-yarn-audit"
   },
   "engines": {
-    "node": "20.9.0",
+    "node": "20.11.1",
     "yarn": "1.22.19"
   },
   "author": "",
