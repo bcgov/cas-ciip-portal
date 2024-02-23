@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.23.4](https://github.com/bcgov/cas-ciip-portal/compare/v2.23.3...v2.23.4) (2024-02-23)
+
+
+### Bug Fixes
+
+* add storage limits to tf pod to satisfy sonarcloud ([dbe0d37](https://github.com/bcgov/cas-ciip-portal/commit/dbe0d37c180dfdc09b6cdbb28cb1189cb326e106))
+* remove comment and double quote ([008b2cd](https://github.com/bcgov/cas-ciip-portal/commit/008b2cdc15fcb2d74a5a55b16f1d96c041880af8))
+
 ### [2.23.3](https://github.com/bcgov/cas-ciip-portal/compare/v2.23.2...v2.23.3) (2023-12-11)
 
 ### [2.23.2](https://github.com/bcgov/cas-ciip-portal/compare/v2.23.1...v2.23.2) (2023-11-22)
