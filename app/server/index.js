@@ -14,7 +14,6 @@ const dev = process.env.NODE_ENV !== "production";
 const app = nextjs({ dev });
 const handle = app.getRequestHandler();
 const bodyParser = require("body-parser");
-const cors = require("cors");
 const UNSUPPORTED_BROWSERS = require("../data/unsupported-browsers");
 const { run } = require("graphile-worker");
 const path = require("path");
@@ -87,9 +86,6 @@ app.prepare().then(async () => {
   server.use(redirectRouter);
 
   server.use(bodyParser.json({ limit: "50mb" }));
-
-  // Only allow CORS for the <Analytics /> component
-  server.use(cors({ origin: "https://www2.gov.bc.ca" }));
 
   // Tell search + crawlers not to index non-production environments:
   server.use(({ res, next }) => {
