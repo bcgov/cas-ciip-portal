@@ -179,7 +179,7 @@
     "setupFilesAfterEnv": [
       "<rootDir>tests/setupTests.ts",
       "jest-canvas-mock",
-      "jest-extended"
+      "jest-extended/all"
     ],
     "transform": {
       ".*(ts|tsx|js|jsx)$": "babel-jest",
