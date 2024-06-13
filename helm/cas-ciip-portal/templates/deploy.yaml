@@ -109,8 +109,6 @@ spec:
             value: {{ .Values.env.adminEmail }}
           - name: SUPPORT_EMAIL
             value: {{ .Values.env.supportEmail }}
-          - name: ENABLE_ANALYTICS
-            value: {{ .Values.analytics.enable | quote }}
           - name: SITEWIDE_NOTICE
             value: {{ .Values.sitewide_notice.content | quote }}
           - name: HOST

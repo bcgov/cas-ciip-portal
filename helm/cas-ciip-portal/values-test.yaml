@@ -8,8 +8,6 @@ env:
   adminEmail: admin@ciip.test
   enableDbMocks: true
 
-analytics:
-  enable: true
 
 dag:
   # cleanup the test db before deploying to test

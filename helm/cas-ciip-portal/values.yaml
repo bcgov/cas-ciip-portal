@@ -75,9 +75,6 @@ env:
 sitewide_notice:
   content: null
 
-analytics:
-  enable: false
-
 restoreFromProd:
   enable: false
 

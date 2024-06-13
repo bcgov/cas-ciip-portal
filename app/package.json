@@ -135,7 +135,7 @@
     "improved-yarn-audit": "^3.0.0",
     "jest": "^27.2.4",
     "jest-canvas-mock": "^2.3.1",
-    "jest-extended": "^0.11.5",
+    "jest-extended": "^4.0.2",
     "jest-mock-random": "^1.1.1",
     "jest-raw-loader": "^1.0.1",
     "json-schema-faker": "^0.5.0-rc23",
@@ -179,7 +179,7 @@
     "setupFilesAfterEnv": [
       "<rootDir>tests/setupTests.ts",
       "jest-canvas-mock",
-      "jest-extended"
+      "jest-extended/all"
     ],
     "transform": {
       ".*(ts|tsx|js|jsx)$": "babel-jest",
