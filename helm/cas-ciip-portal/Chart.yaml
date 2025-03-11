@@ -6,7 +6,7 @@ version: 0.3.64
 appVersion: 2.23.5
 dependencies:
   - name: cas-postgres
-    version: "0.9.1"
+    version: "0.10.1"
     repository: https://bcgov.github.io/cas-postgres/
   - name: terraform-bucket-provision
     version: "0.1.3"
@@ -30,4 +30,4 @@ dependencies:
     alias: airflow-ciip-deploy-db
   - name: nginx-sidecar
     repository: https://bcgov.github.io/cas-template-app
-    version: 0.1.13
+    version: 0.1.14
