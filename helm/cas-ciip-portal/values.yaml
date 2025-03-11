@@ -8,7 +8,7 @@ image:
     tag: b530194a9df22e64b1a701defd3b65f41b01676b # pragma: allowlist secret
     pullPolicy: IfNotPresent
   psql:
-    repository: gcr.io/ggl-cas-storage/cas-postgres
+    repository: ghcr.io/bcgov/cas-postgres
     pullPolicy: Always
     tag: "0.1.0"
   casShelf:
@@ -81,7 +81,7 @@ restoreFromProd:
 mailhog:
   enable: false
   image:
-    repository: gcr.io/ggl-cas-storage/mailhog
+    repository: ghcr.io/bcgov/mailhog
   resources:
     limits:
       cpu: 100m
@@ -147,7 +147,7 @@ airflow-ciip-deploy-db:
 
 nginx-sidecar:
   image:
-    repository: gcr.io/ggl-cas-storage/cas-nginx
+    repository: ghcr.io/bcgov/cas-nginx
     tag: latest
     pullPolicy: Always
   objectNamePrefix: cas-ciip-portal

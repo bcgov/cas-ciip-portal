@@ -1,7 +1,7 @@
 loadTesting:
   enable: true
   image:
-    repository: gcr.io/ggl-cas-storage/cas-ciip-portal-k6
+    repository: ghcr.io/bcgov/cas-ciip-portal-k6
     tag: latest
     pullPolicy: Always
 
