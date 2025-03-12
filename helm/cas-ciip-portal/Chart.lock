@@ -1,7 +1,7 @@
 dependencies:
 - name: cas-postgres
   repository: https://bcgov.github.io/cas-postgres/
-  version: 0.9.1
+  version: 0.10.2
 - name: terraform-bucket-provision
   repository: https://bcgov.github.io/cas-pipeline/
   version: 0.1.3
@@ -10,15 +10,15 @@ dependencies:
   version: 3.3.0
 - name: cas-airflow-dag-trigger
   repository: https://bcgov.github.io/cas-airflow
-  version: 1.0.7
+  version: 1.0.20
 - name: cas-airflow-dag-trigger
   repository: https://bcgov.github.io/cas-airflow
-  version: 1.0.7
+  version: 1.0.20
 - name: cas-airflow-dag-trigger
   repository: https://bcgov.github.io/cas-airflow
-  version: 1.0.7
+  version: 1.0.20
 - name: nginx-sidecar
   repository: https://bcgov.github.io/cas-template-app
-  version: 0.1.13
-digest: sha256:508d55425ebba6fffe2de82fddeb8b3bb26d6a1fbe3c9f3f14926848036ef5c2
-generated: "2024-02-23T14:05:18.07295-08:00"
+  version: 0.1.16
+digest: sha256:e4a381f3f9ca87226694e1cb5017fbd837bf0d60132913ee2598ad5fb3d31103
+generated: "2025-03-12T16:03:44.328555392-07:00"
