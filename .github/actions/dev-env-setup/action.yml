@@ -6,7 +6,7 @@ runs:
     - name: asdf setup
       uses: asdf-vm/actions/setup@v3
     - name: install pg perl library
-      run: sudo apt-get install -y perl libpq-dev libdbd-pg-perl
+      run: sudo apt-get install -y perl libpq-dev libdbd-pg-perl libreadline-dev uuid-dev libsqlite3-dev
       shell: bash
     - name: set perl env variables
       shell: bash
