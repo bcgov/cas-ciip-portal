@@ -11,7 +11,7 @@ image:
     pullPolicy: Always
   psql:
     pullPolicy: Always
-    tag: "0.2.0"
+    tag: "latest"
 
 dag:
   preInitDb: |

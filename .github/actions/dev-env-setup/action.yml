@@ -22,13 +22,13 @@ runs:
       with:
         path: |
           ~/.asdf
-        key: ${{ runner.os }}-asdf-cache-${{ hashFiles('.tool-versions') }}
+        key: ${{ runner.os }}-asdf-cache-${{ hashFiles('.tool-versions') }}-v1
     - uses: actions/cache@v4
       id: perl-cache
       with:
         path: |
           ~/perl5
-        key: ${{ runner.os }}-perl-cache-${{ env.CURRENT_PERL_VERSION }}-${{ hashFiles('cpanfile') }}
+        key: ${{ runner.os }}-perl-cache-${{ env.CURRENT_PERL_VERSION }}-${{ hashFiles('cpanfile') }}-v1
     - uses: actions/cache@v4
       id: yarn-cache
       with:
