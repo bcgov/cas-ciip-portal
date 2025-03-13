@@ -55,7 +55,7 @@ jobs:
       - run: pg_ctl start
       - run: createdb `whoami`
       - run: createdb ciip_portal_dev
-      - run: pushd schema && ./data/deploy-data.sh -prod && popd
+      - run: pushd schema && ./data/deploy-data.sh -s -prod && popd
       - run: cd ../app && yarn build:schema
         working-directory: ./schema
       - run: git diff --exit-code || (echo 'The contents of the `schema` folder are out of sync with `app/server/schema.graphql`. Did you forget to \"yarn build:schema\"?' && false)
@@ -93,7 +93,7 @@ jobs:
           else
               touch .git/COMMIT_EDITMSG
           fi
-      - uses: actions/cache@v2
+      - uses: actions/cache@v4
         with:
           path: |
             ./.pre-commit-cache
@@ -141,7 +141,7 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Cache Docker layers
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: /tmp/.buildx-cache
           key: ${{ runner.os }}-buildx-${{ matrix.name }}-${{ github.sha }}
@@ -190,7 +190,7 @@ jobs:
       - run: pg_ctl start
       - run: createdb `whoami`
       - run: createdb ciip_portal_dev
-      - run: pushd schema && ./data/deploy-data.sh -prod && popd
+      - run: pushd schema && ./data/deploy-data.sh -s -prod && popd
       - run: cd ./app && yarn build:schema
       - run: cd ./test_helper_schema && SQITCH_TARGET="ciip_portal_dev" sqitch deploy
       - run: cd ./schema && SQITCH_TARGET="ciip_portal_dev" sqitch deploy
@@ -218,7 +218,7 @@ jobs:
       - run: createdb `whoami`
       - run: createdb ciip_portal_dev
       - run: make generate_perf_files
-      - run: pushd schema && ./data/deploy-data.sh -dev && popd
+      - run: pushd schema && ./data/deploy-data.sh -s -dev && popd
       - run: cd ./app && yarn build:schema
       - run: cd ./test_helper_schema && SQITCH_TARGET="ciip_portal_dev" sqitch deploy
       - run: cd ./schema && SQITCH_TARGET="ciip_portal_dev" sqitch deploy

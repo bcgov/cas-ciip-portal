@@ -4,9 +4,9 @@ runs:
   using: composite
   steps:
     - name: asdf setup
-      uses: asdf-vm/actions/setup@v1
+      uses: asdf-vm/actions/setup@v3
     - name: install pg perl library
-      run: sudo apt-get install -y perl libpq-dev libdbd-pg-perl
+      run: sudo apt-get install -y perl libpq-dev libdbd-pg-perl libreadline-dev uuid-dev libsqlite3-dev
       shell: bash
     - name: set perl env variables
       shell: bash
@@ -17,19 +17,19 @@ runs:
         echo "PERL_MM_OPT=INSTALL_BASE=/home/runner/perl5" >> $GITHUB_ENV
         echo "/home/runner/perl5/bin" >> $GITHUB_PATH
         echo "CURRENT_PERL_VERSION=$(perl -e 'print "$^V\n"')" >> $GITHUB_ENV
-    - uses: actions/cache@v3
+    - uses: actions/cache@v4
       id: asdf-cache
       with:
         path: |
           ~/.asdf
-        key: ${{ runner.os }}-asdf-cache-${{ hashFiles('.tool-versions') }}
-    - uses: actions/cache@v3
+        key: ${{ runner.os }}-asdf-cache-${{ hashFiles('.tool-versions') }}-v1
+    - uses: actions/cache@v4
       id: perl-cache
       with:
         path: |
           ~/perl5
-        key: ${{ runner.os }}-perl-cache-${{ env.CURRENT_PERL_VERSION }}-${{ hashFiles('cpanfile') }}
-    - uses: actions/cache@v3
+        key: ${{ runner.os }}-perl-cache-${{ env.CURRENT_PERL_VERSION }}-${{ hashFiles('cpanfile') }}-v1
+    - uses: actions/cache@v4
       id: yarn-cache
       with:
         path: |

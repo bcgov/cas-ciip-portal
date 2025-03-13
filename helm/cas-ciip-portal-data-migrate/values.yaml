@@ -3,7 +3,7 @@ storage:
   storageClass: netapp-block-standard
 image:
   psql:
-    repository: gcr.io/ggl-cas-storage/cas-postgres
+    repository: ghcr.io/bcgov/cas-postgres
     pullPolicy: Always
     tag: "0.2.0"
 
