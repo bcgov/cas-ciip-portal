@@ -55,7 +55,7 @@ jobs:
       - run: pg_ctl start
       - run: createdb `whoami`
       - run: createdb ciip_portal_dev
-      - run: pushd schema && ./data/deploy-data.sh -prod && popd
+      - run: pushd schema && ./data/deploy-data.sh -s -prod && popd
       - run: cd ../app && yarn build:schema
         working-directory: ./schema
       - run: git diff --exit-code || (echo 'The contents of the `schema` folder are out of sync with `app/server/schema.graphql`. Did you forget to \"yarn build:schema\"?' && false)
@@ -190,7 +190,7 @@ jobs:
       - run: pg_ctl start
       - run: createdb `whoami`
       - run: createdb ciip_portal_dev
-      - run: pushd schema && ./data/deploy-data.sh -prod && popd
+      - run: pushd schema && ./data/deploy-data.sh -s -prod && popd
       - run: cd ./app && yarn build:schema
       - run: cd ./test_helper_schema && SQITCH_TARGET="ciip_portal_dev" sqitch deploy
       - run: cd ./schema && SQITCH_TARGET="ciip_portal_dev" sqitch deploy
@@ -218,7 +218,7 @@ jobs:
       - run: createdb `whoami`
       - run: createdb ciip_portal_dev
       - run: make generate_perf_files
-      - run: pushd schema && ./data/deploy-data.sh -dev && popd
+      - run: pushd schema && ./data/deploy-data.sh -s -dev && popd
       - run: cd ./app && yarn build:schema
       - run: cd ./test_helper_schema && SQITCH_TARGET="ciip_portal_dev" sqitch deploy
       - run: cd ./schema && SQITCH_TARGET="ciip_portal_dev" sqitch deploy
