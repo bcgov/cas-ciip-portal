@@ -119,7 +119,7 @@ loadTesting:
 
 download-cas-ciip-portal-dags:
   image:
-    tag: 1.0.7
+    tag: 1.0.20
   airflowEndpoint: https://cas-airflow-dev.apps.silver.devops.gov.bc.ca
   dagId: fetch_and_save_dag_from_github
   helm:
@@ -127,7 +127,7 @@ download-cas-ciip-portal-dags:
 
 airflow-ciip-cert-issue:
   image:
-    tag: 1.0.7
+    tag: 1.0.20
   airflowEndpoint: https://cas-airflow-dev.apps.silver.devops.gov.bc.ca
   dagId: cas_ciip_portal_acme_issue
   helm:
@@ -135,7 +135,7 @@ airflow-ciip-cert-issue:
 
 airflow-ciip-deploy-db:
   image:
-    tag: 1.0.7
+    tag: 1.0.20
   airflowEndpoint: https://cas-airflow-dev.apps.silver.devops.gov.bc.ca
   dagId: cas_ciip_portal_deploy_db
   helm:
