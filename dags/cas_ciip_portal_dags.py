@@ -87,16 +87,8 @@ def ciip_portal_app_user(dag):
         dag=dag)
 
 
-def ciip_portal_prod_restore(dag):
-    return PythonOperator(
-        python_callable=trigger_k8s_cronjob,
-        task_id='cas_ciip_portal_prod_restore',
-        op_args=['cas-ciip-portal-prod-test-restore', namespace],
-        dag=dag)
 
-
-ciip_portal_init_db(deploy_db_dag) >> pick_data_import(deploy_db_dag) >> [ciip_portal_prod_restore(
-    deploy_db_dag), ciip_portal_swrs_import(deploy_db_dag)] >> ciip_portal_deploy_data(deploy_db_dag) >> ciip_portal_graphile_schema(
+ciip_portal_init_db(deploy_db_dag) >> pick_data_import(deploy_db_dag) >> ciip_portal_swrs_import(deploy_db_dag) >> ciip_portal_deploy_data(deploy_db_dag) >> ciip_portal_graphile_schema(
     deploy_db_dag) >> ciip_portal_app_user(deploy_db_dag)
 
 
