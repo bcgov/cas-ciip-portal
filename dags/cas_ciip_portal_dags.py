@@ -30,21 +30,6 @@ deploy_db_dag = DAG('cas_ciip_portal_deploy_db', schedule_interval=None,
                     default_args=ciip_deploy_db_args)
 
 
-def _pick_data_import():
-    is_test = (namespace.split("-")[-1] == 'test')
-    if is_test:
-        return 'cas_ciip_portal_prod_restore'
-    else:
-        return 'ciip_portal_swrs_import'
-
-
-def pick_data_import(dag):
-    return BranchPythonOperator(
-        python_callable=_pick_data_import,
-        task_id='pick_data_import',
-        dag=dag
-    )
-
 
 def ciip_portal_init_db(dag):
     return PythonOperator(
@@ -88,7 +73,7 @@ def ciip_portal_app_user(dag):
 
 
 
-ciip_portal_init_db(deploy_db_dag) >> pick_data_import(deploy_db_dag) >> ciip_portal_swrs_import(deploy_db_dag) >> ciip_portal_deploy_data(deploy_db_dag) >> ciip_portal_graphile_schema(
+ciip_portal_init_db(deploy_db_dag) >> ciip_portal_swrs_import(deploy_db_dag) >> ciip_portal_deploy_data(deploy_db_dag) >> ciip_portal_graphile_schema(
     deploy_db_dag) >> ciip_portal_app_user(deploy_db_dag)
 
 
