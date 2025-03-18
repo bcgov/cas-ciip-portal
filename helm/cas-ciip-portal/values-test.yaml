@@ -27,7 +27,7 @@ dag:
   name: "ciip_deploy_db_test"
 
 restoreFromProd:
-  enable: true
+  enable: false
 
 mailhog:
   enable: true

@@ -474,3 +474,4 @@ tables/incremental_fuel_charge_baseline_001 [tables/incremental_fuel_charge_base
 @v2.23.4 2024-02-23T21:10:41Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # release v2.23.4
 @v2.23.5 2024-08-01T16:41:07Z Pierre Bastianelli <pierre.bastianelli@gov.bc.ca> # release v2.23.5
 @v2.23.6 2025-03-13T21:14:12Z Dylan Leard <dylan@button.is> # release v2.23.6
+@v2.23.7 2025-03-17T23:48:17Z Dylan Leard <dylan@button.is> # release v2.23.7
