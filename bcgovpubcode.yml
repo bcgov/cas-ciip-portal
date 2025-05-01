@@ -8,7 +8,7 @@ product_external_dependencies:
   identity_authorization:
     - BCGov-SSO-Keycloak
   notification_standard:
-    - Common-Hosted-Email-Service
+    - Custom-SMTP
 product_information:
   api_specifications: []
   ministry:
@@ -21,9 +21,9 @@ product_information:
     information about an industrial facility's energy use, emissions, and
     production is required. This project is the portal to that application,
     which upon approval, leads to the GGIRCS (Greenhouse Gas Industrial
-    Reporting and Control System) for the Climate Action Secretariat (CAS).
+    Reporting and Control System) for the Climate Action Secretariat (CAS)
   product_name: CleanBC Industrial Incentive Program
-  product_status: maturing
+  product_status: stable
   product_urls:
     - https://ciip.gov.bc.ca/
   program_area: Climate Action Secretariat
@@ -32,7 +32,7 @@ product_technology_information:
     - name: Node.js
       version: '20'
     - name: Next.js
-      version: '13'
+      version: '12'
   backend_languages_version:
     - name: Other
       version: SQL and PL/PgSQL v16
@@ -48,9 +48,9 @@ product_technology_information:
   data_storage_platforms_custom: Google Cloud Storage
   frontend_frameworks:
     - name: React
-      version: '18'
+      version: '17'
     - name: Other
-      version: Relay v13
+      version: Relay v11
   frontend_languages:
     - name: TypeScript
       version: '5'
