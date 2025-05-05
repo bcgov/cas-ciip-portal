@@ -1,0 +1,59 @@
+---
+data_management_roles:
+  data_custodian: Maral Sotoudehnia
+  product_owner: Patricia Russell
+product_external_dependencies:
+  common_components:
+    - Design-System
+  identity_authorization:
+    - BCGov-SSO-Keycloak
+  notification_standard:
+    - Custom-SMTP
+product_information:
+  api_specifications: []
+  ministry:
+    - Environment and Climate Change Strategy
+  product_acronym: CIIP
+  product_description: >-
+    CIIP is a voluntary program created for industrial operations in B.C.
+    Operators must submit a CIIP application form by the program application
+    deadline (announced by the program area). As part of the application,
+    information about an industrial facility's energy use, emissions, and
+    production is required. This project is the portal to that application,
+    which upon approval, leads to the GGIRCS (Greenhouse Gas Industrial
+    Reporting and Control System) for the Climate Action Secretariat (CAS)
+  product_name: CleanBC Industrial Incentive Program
+  product_status: retired
+  product_urls:
+    - https://ciip.gov.bc.ca/
+  program_area: Climate Action Secretariat
+product_technology_information:
+  backend_frameworks:
+    - name: Node.js
+      version: '20'
+    - name: Next.js
+      version: '12'
+  backend_languages_version:
+    - name: Other
+      version: SQL and PL/PgSQL v16
+    - name: JavaScript
+      version: ECMAScript 6
+  ci_cd_tools:
+    - GitHub-Actions
+    - Helm
+    - Terraform
+  data_storage_platforms:
+    - Postgresql
+    - Other
+  data_storage_platforms_custom: Google Cloud Storage
+  frontend_frameworks:
+    - name: React
+      version: '17'
+    - name: Other
+      version: Relay v11
+  frontend_languages:
+    - name: TypeScript
+      version: '5'
+  hosting_platforms:
+    - Private-Cloud-Openshift
+version: 1
