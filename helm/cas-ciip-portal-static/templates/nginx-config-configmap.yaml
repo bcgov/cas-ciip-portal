@@ -7,11 +7,11 @@ data:
   default.conf: |
     server {
       listen 3000;
-      server_name localhost;
+
+      root /www/data;
 
       location / {
-        root html;
-        index /var/www/ciip-static.html;
+        index ciip-static.html;
       }
 
     }

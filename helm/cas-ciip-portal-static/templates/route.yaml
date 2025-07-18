@@ -8,8 +8,8 @@ spec:
   port:
     targetPort: {{ template "cas-ciip-portal-static.fullname" . }}
   tls:
-    termination: passthrough
-    insecureEdgeTerminationPolicy: Redirect
+    termination: edge
+    insecureEdgeTerminationPolicy: Allow
   to:
     kind: Service
     name:  {{ template "cas-ciip-portal-static.fullname" . }}
@@ -17,9 +17,7 @@ spec:
   wildcardPolicy: None
 status:
   ingress:
-  - conditions:
-    - status: 'True'
-      type: Admitted
-    host: ciip-dev.apps.silver.devops.gov.bc.ca
-    routerName: router
-    wildcardPolicy: None
+    - host: ciip-dev.apps.silver.devops.gov.bc.ca
+      routerName: default
+      routerCanonicalHostname: apps.silver.devops.gov.bc.ca
+      wildcardPolicy: None

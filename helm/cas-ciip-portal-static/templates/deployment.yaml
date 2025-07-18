@@ -13,11 +13,13 @@ spec:
   template:
     metadata:
       labels:
-{{- include "cas-ciip-portal-static.selectorLabels" . | nindent 8 }}
+{{- include "cas-ciip-portal-static.labels" . | nindent 8 }}
     spec:
       containers:
         - name: {{ .Release.Name }}
-          image: nginx:1.29
+          labels:
+{{- include "cas-ciip-portal-static.labels" . | nindent 12 }}
+          image: ghcr.io/bcgov/cas-nginx:0.1.16
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 3000
@@ -55,7 +57,7 @@ spec:
             - name: nginx-config
               mountPath: /etc/nginx/conf.d
             - name: ciip-static
-              mountPath: /var/www
+              mountPath: /www/data
       restartPolicy: Always
       volumes:
         - name: nginx-config
