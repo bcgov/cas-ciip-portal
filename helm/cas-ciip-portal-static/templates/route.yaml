@@ -1,0 +1,25 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: {{ template "cas-ciip-portal-static.fullname" . }}
+  labels: {{ include "cas-ciip-portal-static.labels" . | nindent 4 }}
+spec:
+  host: ciip-dev.apps.silver.devops.gov.bc.ca
+  port:
+    targetPort: {{ template "cas-ciip-portal-static.fullname" . }}
+  tls:
+    termination: passthrough
+    insecureEdgeTerminationPolicy: Redirect
+  to:
+    kind: Service
+    name:  {{ template "cas-ciip-portal-static.fullname" . }}
+    weight: 100
+  wildcardPolicy: None
+status:
+  ingress:
+  - conditions:
+    - status: 'True'
+      type: Admitted
+    host: ciip-dev.apps.silver.devops.gov.bc.ca
+    routerName: router
+    wildcardPolicy: None

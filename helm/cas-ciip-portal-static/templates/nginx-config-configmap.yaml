@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "cas-ciip-portal-static.fullname" . }}-nginx-config
+  labels: {{ include "cas-ciip-portal-static.labels" . | nindent 4 }}
+data:
+  default.conf: |
+    server {
+      listen 3000;
+      server_name localhost;
+
+      location / {
+        root html;
+        index /var/www/ciip-static.html;
+      }
+
+    }

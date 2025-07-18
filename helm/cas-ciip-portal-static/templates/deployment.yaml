@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "cas-ciip-portal-static.fullname" . }}
+  labels:
+{{- include "cas-ciip-portal-static.labels" . | nindent 4 }}
+spec:
+  selector:
+    matchLabels:
+{{- include "cas-ciip-portal-static.selectorLabels" . | nindent 6 }}
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+{{- include "cas-ciip-portal-static.selectorLabels" . | nindent 8 }}
+    spec:
+      containers:
+        - name: {{ .Release.Name }}
+          image: nginx:1.29
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3000
+              protocol: TCP
+          readinessProbe:
+            httpGet:
+              path: /readiness
+              port: 8000
+            # we want the readiness threshold to fail fast,
+            # to prevent any request from going to a pod that is not ready
+            failureThreshold: 1
+            successThreshold: 1
+            periodSeconds: 30
+            timeoutSeconds: 5
+            initialDelaySeconds: 120
+          livenessProbe:
+            # the liveness probe is here to ensure that a pod does not get
+            # stuck in a shutdown state. It needs to allow enough time for
+            # the registered shutdown handler to run to completion.
+            httpGet:
+              path: /liveness
+              port: 8000
+            initialDelaySeconds: 150
+            periodSeconds: 30
+            failureThreshold: 3
+            successThreshold: 1
+            timeoutSeconds: 5
+          resources:
+            limits:
+              memory: 256Mi
+            requests:
+              cpu: 100m
+              memory: 128Mi
+          volumeMounts:
+            - name: nginx-config
+              mountPath: /etc/nginx/conf.d
+            - name: ciip-static
+              mountPath: /var/www
+      restartPolicy: Always
+      volumes:
+        - name: nginx-config
+          configMap:
+            name: {{ include "cas-ciip-portal-static.fullname" . }}-nginx-config
+        - name: ciip-static
+          configMap:
+            name: {{ include "cas-ciip-portal-static.fullname" . }}-ciip-static
