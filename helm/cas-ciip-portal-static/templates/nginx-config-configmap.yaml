@@ -14,4 +14,12 @@ data:
         index ciip-static.html;
       }
 
+      location /readiness {
+        return 200;
+      }
+
+      location /liveness {
+        return 200;
+      }
+
     }

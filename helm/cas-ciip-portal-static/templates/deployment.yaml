@@ -27,22 +27,22 @@ spec:
           readinessProbe:
             httpGet:
               path: /readiness
-              port: 8000
+              port: 3000
             # we want the readiness threshold to fail fast,
             # to prevent any request from going to a pod that is not ready
             failureThreshold: 1
             successThreshold: 1
             periodSeconds: 30
             timeoutSeconds: 5
-            initialDelaySeconds: 120
+            initialDelaySeconds: 20
           livenessProbe:
             # the liveness probe is here to ensure that a pod does not get
             # stuck in a shutdown state. It needs to allow enough time for
             # the registered shutdown handler to run to completion.
             httpGet:
               path: /liveness
-              port: 8000
-            initialDelaySeconds: 150
+              port: 3000
+            initialDelaySeconds: 20
             periodSeconds: 30
             failureThreshold: 3
             successThreshold: 1
