@@ -16,10 +16,11 @@ spec:
 {{- include "cas-ciip-portal-static.labels" . | nindent 8 }}
     spec:
       containers:
+{{- if (index .Values "nginx-sidecar") }}
+{{- include "nginx-sidecar.deployment-container.tpl" (index .Values "nginx-sidecar") | indent 8 }}
+{{- end }}
         - name: {{ .Release.Name }}
-          labels:
-{{- include "cas-ciip-portal-static.labels" . | nindent 12 }}
-          image: ghcr.io/bcgov/cas-nginx:0.1.16
+          image: ghcr.io/bcgov/cas-nginx:1.29.0
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 3000
@@ -28,17 +29,12 @@ spec:
             httpGet:
               path: /readiness
               port: 3000
-            # we want the readiness threshold to fail fast,
-            # to prevent any request from going to a pod that is not ready
             failureThreshold: 1
             successThreshold: 1
             periodSeconds: 30
             timeoutSeconds: 5
             initialDelaySeconds: 20
           livenessProbe:
-            # the liveness probe is here to ensure that a pod does not get
-            # stuck in a shutdown state. It needs to allow enough time for
-            # the registered shutdown handler to run to completion.
             httpGet:
               path: /liveness
               port: 3000
@@ -66,3 +62,6 @@ spec:
         - name: ciip-static
           configMap:
             name: {{ include "cas-ciip-portal-static.fullname" . }}-ciip-static
+{{- if (index .Values "nginx-sidecar") }}
+{{- include "nginx-sidecar.deployment-volumes.tpl" (index .Values "nginx-sidecar") | indent 8 }}
+{{- end }}

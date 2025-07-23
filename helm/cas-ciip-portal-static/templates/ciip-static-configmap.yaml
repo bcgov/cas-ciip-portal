@@ -4,5 +4,4 @@ metadata:
   name: {{ include "cas-ciip-portal-static.fullname" . }}-ciip-static
   labels: {{ include "cas-ciip-portal-static.labels" . | nindent 4 }}
 data:
-  index.html: |
-    {{ .Files.Get "files/index.html" | indent 4 }}
+{{ (.Files.Glob "files/*").AsConfig | indent 2 }}
