@@ -1,20 +1,18 @@
 
 route:
   host: ~
-  insecure: true
+  insecure: false
 
 nginx-sidecar:
   image:
     repository: ghcr.io/bcgov/cas-nginx
-    tag: 0.1.16
+    tag: 0.2.0
     pullPolicy: Always
   objectNamePrefix: cas-ciip-portal-static
   hostName: dev.ciip.gov.bc.ca
   port: 3001
   internalPort: 3000
-  sslTermination: false
-  caServerSecret: ~ # pragma: allowlist secret
-  caServerKey: https://acme-staging-v02.api.letsencrypt.org/directory
+  sslTermination: true
   caAccountEmail: ggircs@gov.bc.ca
   storageClassName: netapp-file-standard
   renewalDays: 60
