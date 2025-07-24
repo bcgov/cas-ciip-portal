@@ -6,7 +6,7 @@ route:
 nginx-sidecar:
   image:
     repository: ghcr.io/bcgov/cas-nginx
-    tag: 0.2.0
+    tag: 0.2.1
     pullPolicy: Always
   objectNamePrefix: cas-ciip-portal-static
   hostName: dev.ciip.gov.bc.ca
@@ -16,4 +16,6 @@ nginx-sidecar:
   caAccountEmail: ggircs@gov.bc.ca
   storageClassName: netapp-file-standard
   renewalDays: 60
+  # Monthly at 8:00 AM UTC
+  renewSchedule: "0 8 1 * *"
   clientMaxBodySize: 50M
