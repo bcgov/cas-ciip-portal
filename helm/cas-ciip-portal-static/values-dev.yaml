@@ -1,0 +1,7 @@
+
+
+route:
+  host: dev.ciip.gov.bc.ca
+
+nginx-sidecar:
+  hostName: dev.ciip.gov.bc.ca

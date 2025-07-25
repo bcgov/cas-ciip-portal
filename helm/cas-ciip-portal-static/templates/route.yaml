@@ -1,0 +1,57 @@
+# Secure route for when the deployment succeeded once
+
+{{- if not .Values.route.insecure }}
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: {{ template "cas-ciip-portal-static.fullname" . }}
+  labels: {{ include "cas-ciip-portal-static.labels" . | nindent 4 }}
+spec:
+  host: {{ .Values.route.host }}
+  port:
+    targetPort: {{ template "cas-ciip-portal-static.fullname" . }}
+  tls:
+    termination: passthrough
+    insecureEdgeTerminationPolicy: Redirect
+  to:
+    kind: Service
+    name:  {{ template "cas-ciip-portal-static.fullname" . }}
+    weight: 100
+  wildcardPolicy: None
+status:
+  ingress:
+  - conditions:
+    - status: 'True'
+      type: Admitted
+    host: {{ .Values.route.host }}
+    routerName: router
+    wildcardPolicy: None
+{{- end }}
+
+# Insecure route for first deployment
+
+{{- if .Values.route.insecure }}
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: {{ template "cas-ciip-portal-static.fullname" . }}-insecure
+  labels:
+{{ include "cas-ciip-portal-static.labels" . | indent 4 }}
+spec:
+  host: {{ .Values.route.host }}
+  port:
+    targetPort: {{ template "cas-ciip-portal-static.fullname" . }}
+  to:
+    kind: Service
+    name:  {{ template "cas-ciip-portal-static.fullname" . }}
+    weight: 100
+  wildcardPolicy: None
+status:
+  ingress:
+  - conditions:
+    - status: 'True'
+      type: Admitted
+    host: {{ .Values.route.host }}
+    routerName: router
+    wildcardPolicy: None
+{{- end }}
