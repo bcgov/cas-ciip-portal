@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
-import json
 from dag_configuration import default_dag_args
 from trigger_k8s_cronjob import trigger_k8s_cronjob
 from reload_nginx_containers import reload_nginx_containers
 from walg_backups import create_backup_task
-from airflow.operators.python import PythonOperator, BranchPythonOperator
+from airflow.providers.standard.operators.python import PythonOperator
 from datetime import datetime, timedelta
 from airflow import DAG
 import os
@@ -26,7 +25,7 @@ DAG cas_ciip_portal_ciip_deploy_db.
 Initializes the portal database and deploys the schema/data.
 If we're in the test namespace, dag first restores data from prod and then imports data from swrs.
 """
-deploy_db_dag = DAG('cas_ciip_portal_deploy_db', schedule_interval=None,
+deploy_db_dag = DAG('cas_ciip_portal_deploy_db', schedule=None,
                     default_args=ciip_deploy_db_args)
 
 
@@ -90,7 +89,7 @@ DAG cas_ciip_portal_acme_issue
 Issues site certificates for the CIIP portal
 """
 acme_issue_dag = DAG('cas_ciip_portal_acme_issue',
-                     schedule_interval=None, default_args=acme_renewal_args)
+                     schedule=None, default_args=acme_renewal_args)
 
 cron_acme_issue_task = PythonOperator(
     python_callable=trigger_k8s_cronjob,
@@ -103,7 +102,7 @@ cron_acme_issue_task = PythonOperator(
 DAG cas_ciip_portal_acme_renewal
 Renews site certificates for the CIIP portal
 """
-acme_renewal_dag = DAG('cas_ciip_portal_acme_renewal', schedule_interval='0 8 * * *',
+acme_renewal_dag = DAG('cas_ciip_portal_acme_renewal', schedule='0 8 * * *',
                        default_args=acme_renewal_args)
 
 cert_renewal_task = PythonOperator(
@@ -136,7 +135,7 @@ default_args = {
 
 
 ciip_full_backup_dag = DAG('walg_backup_ciip_full', default_args=default_args,
-                           schedule_interval='0 8 * * *')
+                           schedule='0 8 * * *')
 
 create_backup_task(ciip_full_backup_dag,
                    namespace, 'cas-ciip-portal-patroni')
