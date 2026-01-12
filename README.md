@@ -17,8 +17,6 @@ CIIP requires an application form to be submitted annually. CIIP is a voluntary 
 
 - Quality Gate: [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=bcgov_cas-ciip-portal&metric=alert_status)](https://sonarcloud.io/dashboard?id=bcgov_cas-ciip-portal)
 
-- CircleCI: [![CircleCI](https://circleci.com/gh/bcgov/cas-ciip-portal.svg?style=svg)](https://circleci.com/gh/bcgov/cas-ciip-portal)
-
 - CII Best Practices: [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/3459/badge)](https://bestpractices.coreinfrastructure.org/projects/3459)
 
 ## Notes
